@@ -30,7 +30,7 @@ use Psr\Http\Message\StreamInterface;
 class ManageObjectsTest extends StorageTestCase
 {
     const DATA = 'data';
-    
+
     public function testListsObjects()
     {
         $foundObjects = [];
