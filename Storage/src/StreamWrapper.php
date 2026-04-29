@@ -211,7 +211,8 @@ class StreamWrapper
      * download the file to see if it can be opened.
      *
      * @param string $path The path of the resource to open
-     * @param string $mode The fopen mode. Currently supports ('r', 'rb', 'rt', 'w', 'wb', 'wt', 'a', 'ab', 'at', 'x', 'xb', 'xt')
+     * @param string $mode The fopen mode. Currently supports ('r', 'rb', 'rt',
+     *        'w', 'wb', 'wt', 'a', 'ab', 'at', 'x', 'xb', 'xt')
      * @param int $flags Bitwise options STREAM_USE_PATH|STREAM_REPORT_ERRORS|STREAM_MUST_SEEK
      * @param string $openedPath Will be set to the path on success if STREAM_USE_PATH option is set
      * @return bool
