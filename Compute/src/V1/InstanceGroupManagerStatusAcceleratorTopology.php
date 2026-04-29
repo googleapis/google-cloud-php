@@ -15,21 +15,21 @@ use Google\Protobuf\RepeatedField;
 class InstanceGroupManagerStatusAcceleratorTopology extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. [Output Only] Topology in the format of: "16x16", "4x4x4", etc.
+     * Output only. Topology in the format of: "16x16", "4x4x4", etc.
      * The value is the same as configured in the WorkloadPolicy.
      *
      * Generated from protobuf field <code>optional string accelerator_topology = 389323203;</code>
      */
     protected $accelerator_topology = null;
     /**
-     * Output only. [Output Only] The state of the accelerator topology.
+     * Output only. The state of the accelerator topology.
      * Check the State enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string state = 109757585;</code>
      */
     protected $state = null;
     /**
-     * Output only. [Output Only] The result of the latest accelerator topology state
+     * Output only. The result of the latest accelerator topology state
      * check.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerStatusAcceleratorTopologyAcceleratorTopologyStateDetails state_details = 95566996;</code>
@@ -43,13 +43,13 @@ class InstanceGroupManagerStatusAcceleratorTopology extends \Google\Protobuf\Int
      *     Optional. Data for populating the Message object.
      *
      *     @type string $accelerator_topology
-     *           Output only. [Output Only] Topology in the format of: "16x16", "4x4x4", etc.
+     *           Output only. Topology in the format of: "16x16", "4x4x4", etc.
      *           The value is the same as configured in the WorkloadPolicy.
      *     @type string $state
-     *           Output only. [Output Only] The state of the accelerator topology.
+     *           Output only. The state of the accelerator topology.
      *           Check the State enum for the list of possible values.
      *     @type \Google\Cloud\Compute\V1\InstanceGroupManagerStatusAcceleratorTopologyAcceleratorTopologyStateDetails $state_details
-     *           Output only. [Output Only] The result of the latest accelerator topology state
+     *           Output only. The result of the latest accelerator topology state
      *           check.
      * }
      */
@@ -59,7 +59,7 @@ class InstanceGroupManagerStatusAcceleratorTopology extends \Google\Protobuf\Int
     }
 
     /**
-     * Output only. [Output Only] Topology in the format of: "16x16", "4x4x4", etc.
+     * Output only. Topology in the format of: "16x16", "4x4x4", etc.
      * The value is the same as configured in the WorkloadPolicy.
      *
      * Generated from protobuf field <code>optional string accelerator_topology = 389323203;</code>
@@ -81,7 +81,7 @@ class InstanceGroupManagerStatusAcceleratorTopology extends \Google\Protobuf\Int
     }
 
     /**
-     * Output only. [Output Only] Topology in the format of: "16x16", "4x4x4", etc.
+     * Output only. Topology in the format of: "16x16", "4x4x4", etc.
      * The value is the same as configured in the WorkloadPolicy.
      *
      * Generated from protobuf field <code>optional string accelerator_topology = 389323203;</code>
@@ -97,7 +97,7 @@ class InstanceGroupManagerStatusAcceleratorTopology extends \Google\Protobuf\Int
     }
 
     /**
-     * Output only. [Output Only] The state of the accelerator topology.
+     * Output only. The state of the accelerator topology.
      * Check the State enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string state = 109757585;</code>
@@ -119,7 +119,7 @@ class InstanceGroupManagerStatusAcceleratorTopology extends \Google\Protobuf\Int
     }
 
     /**
-     * Output only. [Output Only] The state of the accelerator topology.
+     * Output only. The state of the accelerator topology.
      * Check the State enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string state = 109757585;</code>
@@ -135,7 +135,7 @@ class InstanceGroupManagerStatusAcceleratorTopology extends \Google\Protobuf\Int
     }
 
     /**
-     * Output only. [Output Only] The result of the latest accelerator topology state
+     * Output only. The result of the latest accelerator topology state
      * check.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerStatusAcceleratorTopologyAcceleratorTopologyStateDetails state_details = 95566996;</code>
@@ -157,7 +157,7 @@ class InstanceGroupManagerStatusAcceleratorTopology extends \Google\Protobuf\Int
     }
 
     /**
-     * Output only. [Output Only] The result of the latest accelerator topology state
+     * Output only. The result of the latest accelerator topology state
      * check.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerStatusAcceleratorTopologyAcceleratorTopologyStateDetails state_details = 95566996;</code>

@@ -113,6 +113,15 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
      */
     protected $params = null;
     /**
+     * Output only. [Output Only] URL of the region where the regional backend bucket
+     * resides. This field is not applicable to global backend buckets.
+     * You must specify this field as part of the HTTP request URL. It is
+     * not settable as a field in the request body.
+     *
+     * Generated from protobuf field <code>optional string region = 138946292;</code>
+     */
+    protected $region = null;
+    /**
      * [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
@@ -174,6 +183,11 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Compute\V1\BackendBucketParams $params
      *           Input only. [Input Only] Additional params passed with the request, but not persisted
      *           as part of resource payload.
+     *     @type string $region
+     *           Output only. [Output Only] URL of the region where the regional backend bucket
+     *           resides. This field is not applicable to global backend buckets.
+     *           You must specify this field as part of the HTTP request URL. It is
+     *           not settable as a field in the request body.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
      *     @type \Google\Cloud\Compute\V1\BackendBucketUsedBy[] $used_by
@@ -673,6 +687,48 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\BackendBucketParams::class);
         $this->params = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. [Output Only] URL of the region where the regional backend bucket
+     * resides. This field is not applicable to global backend buckets.
+     * You must specify this field as part of the HTTP request URL. It is
+     * not settable as a field in the request body.
+     *
+     * Generated from protobuf field <code>optional string region = 138946292;</code>
+     * @return string
+     */
+    public function getRegion()
+    {
+        return isset($this->region) ? $this->region : '';
+    }
+
+    public function hasRegion()
+    {
+        return isset($this->region);
+    }
+
+    public function clearRegion()
+    {
+        unset($this->region);
+    }
+
+    /**
+     * Output only. [Output Only] URL of the region where the regional backend bucket
+     * resides. This field is not applicable to global backend buckets.
+     * You must specify this field as part of the HTTP request URL. It is
+     * not settable as a field in the request body.
+     *
+     * Generated from protobuf field <code>optional string region = 138946292;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRegion($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->region = $var;
 
         return $this;
     }

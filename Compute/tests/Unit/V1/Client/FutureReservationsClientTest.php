@@ -428,6 +428,7 @@ class FutureReservationsClientTest extends GeneratedTest
         // Mock response
         $autoCreatedReservationsDeleteTime = 'autoCreatedReservationsDeleteTime-294015792';
         $autoDeleteAutoCreatedReservations = true;
+        $confidentialComputeType = 'confidentialComputeType-1761036391';
         $creationTimestamp = 'creationTimestamp567396278';
         $deploymentType = 'deploymentType2007335028';
         $description = 'description-1724546052';
@@ -447,6 +448,7 @@ class FutureReservationsClientTest extends GeneratedTest
         $expectedResponse = new FutureReservation();
         $expectedResponse->setAutoCreatedReservationsDeleteTime($autoCreatedReservationsDeleteTime);
         $expectedResponse->setAutoDeleteAutoCreatedReservations($autoDeleteAutoCreatedReservations);
+        $expectedResponse->setConfidentialComputeType($confidentialComputeType);
         $expectedResponse->setCreationTimestamp($creationTimestamp);
         $expectedResponse->setDeploymentType($deploymentType);
         $expectedResponse->setDescription($description);

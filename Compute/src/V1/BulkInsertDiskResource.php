@@ -18,6 +18,19 @@ use Google\Protobuf\RepeatedField;
 class BulkInsertDiskResource extends \Google\Protobuf\Internal\Message
 {
     /**
+     * The parameters for the instant snapshot group.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstantSnapshotGroupParameters instant_snapshot_group_parameters = 17051623;</code>
+     */
+    protected $instant_snapshot_group_parameters = null;
+    /**
+     * The parameters for the snapshot group. The usage of snapshot group feature
+     * is restricted.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SnapshotGroupParameters snapshot_group_parameters = 42252485;</code>
+     */
+    protected $snapshot_group_parameters = null;
+    /**
      * The URL of the DiskConsistencyGroupPolicy for the group of disks to clone.
      * This may be a full or partial URL, such as:
      *      -
@@ -37,6 +50,11 @@ class BulkInsertDiskResource extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type \Google\Cloud\Compute\V1\InstantSnapshotGroupParameters $instant_snapshot_group_parameters
+     *           The parameters for the instant snapshot group.
+     *     @type \Google\Cloud\Compute\V1\SnapshotGroupParameters $snapshot_group_parameters
+     *           The parameters for the snapshot group. The usage of snapshot group feature
+     *           is restricted.
      *     @type string $source_consistency_group_policy
      *           The URL of the DiskConsistencyGroupPolicy for the group of disks to clone.
      *           This may be a full or partial URL, such as:
@@ -51,6 +69,80 @@ class BulkInsertDiskResource extends \Google\Protobuf\Internal\Message
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Compute\V1\Compute::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * The parameters for the instant snapshot group.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstantSnapshotGroupParameters instant_snapshot_group_parameters = 17051623;</code>
+     * @return \Google\Cloud\Compute\V1\InstantSnapshotGroupParameters|null
+     */
+    public function getInstantSnapshotGroupParameters()
+    {
+        return $this->instant_snapshot_group_parameters;
+    }
+
+    public function hasInstantSnapshotGroupParameters()
+    {
+        return isset($this->instant_snapshot_group_parameters);
+    }
+
+    public function clearInstantSnapshotGroupParameters()
+    {
+        unset($this->instant_snapshot_group_parameters);
+    }
+
+    /**
+     * The parameters for the instant snapshot group.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstantSnapshotGroupParameters instant_snapshot_group_parameters = 17051623;</code>
+     * @param \Google\Cloud\Compute\V1\InstantSnapshotGroupParameters $var
+     * @return $this
+     */
+    public function setInstantSnapshotGroupParameters($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\InstantSnapshotGroupParameters::class);
+        $this->instant_snapshot_group_parameters = $var;
+
+        return $this;
+    }
+
+    /**
+     * The parameters for the snapshot group. The usage of snapshot group feature
+     * is restricted.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SnapshotGroupParameters snapshot_group_parameters = 42252485;</code>
+     * @return \Google\Cloud\Compute\V1\SnapshotGroupParameters|null
+     */
+    public function getSnapshotGroupParameters()
+    {
+        return $this->snapshot_group_parameters;
+    }
+
+    public function hasSnapshotGroupParameters()
+    {
+        return isset($this->snapshot_group_parameters);
+    }
+
+    public function clearSnapshotGroupParameters()
+    {
+        unset($this->snapshot_group_parameters);
+    }
+
+    /**
+     * The parameters for the snapshot group. The usage of snapshot group feature
+     * is restricted.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SnapshotGroupParameters snapshot_group_parameters = 42252485;</code>
+     * @param \Google\Cloud\Compute\V1\SnapshotGroupParameters $var
+     * @return $this
+     */
+    public function setSnapshotGroupParameters($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\SnapshotGroupParameters::class);
+        $this->snapshot_group_parameters = $var;
+
+        return $this;
     }
 
     /**
