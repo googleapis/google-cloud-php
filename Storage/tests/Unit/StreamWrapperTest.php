@@ -83,8 +83,43 @@ class StreamWrapperTest extends TestCase
      */
     public function testUnknownOpenMode()
     {
+        $fp = @fopen('gs://my_bucket/existing_file.txt', 'z');
+        $this->assertFalse($fp);
+    }
+
+    /**
+     * @group storageWrite
+     */
+    public function testOpeningExistingFileWithXModeReturnsFalse()
+    {
+        $object = $this->prophesize(StorageObject::class);
+        $object->exists()->willReturn(true);
+        $this->bucket->object('existing_file.txt')->willReturn($object->reveal());
+
         $fp = @fopen('gs://my_bucket/existing_file.txt', 'x');
         $this->assertFalse($fp);
+    }
+
+    /**
+     * @group storageWrite
+     */
+    public function testOpeningNonExistentFileWithXModeSucceeds()
+    {
+        $object = $this->prophesize(StorageObject::class);
+        $object->exists()->willReturn(false);
+        $this->bucket->object('new_file.txt')->willReturn($object->reveal());
+
+        $uploader = $this->prophesize(StreamableUploader::class);
+        $uploader->upload()->shouldBeCalled();
+        $uploader->getResumeUri()->willReturn('https://resume-uri/');
+        
+        $this->bucket->getStreamableUploader(Argument::any(), Argument::withEntry('ifGenerationMatch', 0))
+            ->willReturn($uploader->reveal());
+
+        $fp = fopen('gs://my_bucket/new_file.txt', 'x');
+        $this->assertIsResource($fp);
+        fwrite($fp, "some data");
+        fclose($fp);
     }
 
     /**
