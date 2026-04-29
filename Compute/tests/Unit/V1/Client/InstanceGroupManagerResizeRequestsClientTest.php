@@ -357,6 +357,7 @@ class InstanceGroupManagerResizeRequestsClientTest extends GeneratedTest
         $id = 3355;
         $kind = 'kind3292052';
         $name = 'name3373707';
+        $region = 'region-934795532';
         $resizeBy = 2144348098;
         $selfLink = 'selfLink-1691268851';
         $selfLinkWithId = 'selfLinkWithId-1029220862';
@@ -368,6 +369,7 @@ class InstanceGroupManagerResizeRequestsClientTest extends GeneratedTest
         $expectedResponse->setId($id);
         $expectedResponse->setKind($kind);
         $expectedResponse->setName($name);
+        $expectedResponse->setRegion($region);
         $expectedResponse->setResizeBy($resizeBy);
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setSelfLinkWithId($selfLinkWithId);

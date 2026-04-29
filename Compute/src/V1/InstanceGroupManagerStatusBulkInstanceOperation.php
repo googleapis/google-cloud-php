@@ -17,13 +17,13 @@ use Google\Protobuf\RepeatedField;
 class InstanceGroupManagerStatusBulkInstanceOperation extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. [Output Only] Informs whether bulk instance operation is in progress.
+     * Output only. Informs whether bulk instance operation is in progress.
      *
      * Generated from protobuf field <code>optional bool in_progress = 320200711;</code>
      */
     protected $in_progress = null;
     /**
-     * Output only. [Output Only] Information from the last progress check of bulk instance
+     * Output only. Information from the last progress check of bulk instance
      * operation.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerStatusBulkInstanceOperationLastProgressCheck last_progress_check = 208638271;</code>
@@ -37,9 +37,9 @@ class InstanceGroupManagerStatusBulkInstanceOperation extends \Google\Protobuf\I
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $in_progress
-     *           Output only. [Output Only] Informs whether bulk instance operation is in progress.
+     *           Output only. Informs whether bulk instance operation is in progress.
      *     @type \Google\Cloud\Compute\V1\InstanceGroupManagerStatusBulkInstanceOperationLastProgressCheck $last_progress_check
-     *           Output only. [Output Only] Information from the last progress check of bulk instance
+     *           Output only. Information from the last progress check of bulk instance
      *           operation.
      * }
      */
@@ -49,7 +49,7 @@ class InstanceGroupManagerStatusBulkInstanceOperation extends \Google\Protobuf\I
     }
 
     /**
-     * Output only. [Output Only] Informs whether bulk instance operation is in progress.
+     * Output only. Informs whether bulk instance operation is in progress.
      *
      * Generated from protobuf field <code>optional bool in_progress = 320200711;</code>
      * @return bool
@@ -70,7 +70,7 @@ class InstanceGroupManagerStatusBulkInstanceOperation extends \Google\Protobuf\I
     }
 
     /**
-     * Output only. [Output Only] Informs whether bulk instance operation is in progress.
+     * Output only. Informs whether bulk instance operation is in progress.
      *
      * Generated from protobuf field <code>optional bool in_progress = 320200711;</code>
      * @param bool $var
@@ -85,7 +85,7 @@ class InstanceGroupManagerStatusBulkInstanceOperation extends \Google\Protobuf\I
     }
 
     /**
-     * Output only. [Output Only] Information from the last progress check of bulk instance
+     * Output only. Information from the last progress check of bulk instance
      * operation.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerStatusBulkInstanceOperationLastProgressCheck last_progress_check = 208638271;</code>
@@ -107,7 +107,7 @@ class InstanceGroupManagerStatusBulkInstanceOperation extends \Google\Protobuf\I
     }
 
     /**
-     * Output only. [Output Only] Information from the last progress check of bulk instance
+     * Output only. Information from the last progress check of bulk instance
      * operation.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerStatusBulkInstanceOperationLastProgressCheck last_progress_check = 208638271;</code>

@@ -372,6 +372,28 @@ return [
                     ],
                 ],
             ],
+            'UpdateKmsKey' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/disks/{disk}/updateKmsKey',
+                'body' => 'region_disk_update_kms_key_request_resource',
+                'placeholders' => [
+                    'disk' => [
+                        'getters' => [
+                            'getDisk',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'region' => [
+                        'getters' => [
+                            'getRegion',
+                        ],
+                    ],
+                ],
+            ],
         ],
         'google.cloud.compute.v1.RegionOperations' => [
             'Delete' => [

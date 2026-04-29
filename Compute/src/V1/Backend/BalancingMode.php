@@ -42,6 +42,12 @@ class BalancingMode
      */
     const CUSTOM_METRICS = 331575765;
     /**
+     * Balance based on the number of in-flight requests.
+     *
+     * Generated from protobuf enum <code>IN_FLIGHT = 190040266;</code>
+     */
+    const IN_FLIGHT = 190040266;
+    /**
      * Balance based on requests per second (RPS).
      *
      * Generated from protobuf enum <code>RATE = 2508000;</code>
@@ -58,6 +64,7 @@ class BalancingMode
         self::UNDEFINED_BALANCING_MODE => 'UNDEFINED_BALANCING_MODE',
         self::CONNECTION => 'CONNECTION',
         self::CUSTOM_METRICS => 'CUSTOM_METRICS',
+        self::IN_FLIGHT => 'IN_FLIGHT',
         self::RATE => 'RATE',
         self::UTILIZATION => 'UTILIZATION',
     ];

@@ -32,9 +32,9 @@ class SessionType
     /**
      * For internal protocol testing only.
      *
-     * Generated from protobuf enum <code>SESSION_TYPE_TEST = -1;</code>
+     * Generated from protobuf enum <code>SESSION_TYPE_TEST = 9999;</code>
      */
-    const SESSION_TYPE_TEST = -1;
+    const SESSION_TYPE_TEST = 9999;
 
     private static $valueToName = [
         self::SESSION_TYPE_UNSET => 'SESSION_TYPE_UNSET',
