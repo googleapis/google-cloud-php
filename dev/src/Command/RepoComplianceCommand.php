@@ -49,7 +49,7 @@ class RepoComplianceCommand extends Command
             ->addOption('component', 'c', InputOption::VALUE_REQUIRED, 'If specified, display repo info for this component only', '')
             ->addOption('token', 't', InputOption::VALUE_REQUIRED, 'Github token to use for authentication', '')
             ->addOption('format', 'f', InputOption::VALUE_REQUIRED, 'can be "ci" or "table"', 'table')
-            ->addOption('new-packagist-token', '', InputOption::VALUE_REQUIRED, 'update the packagist token')
+            ->addOption('packagist-token', 'p', InputOption::VALUE_REQUIRED, 'Packagist token for the webhook')
         ;
     }
 
@@ -58,7 +58,7 @@ class RepoComplianceCommand extends Command
         // Create github client wrapper
         $http = new Client();
         $this->github = new GitHub(new RunShell(), $http, $input->getOption('token'), $output);
-        $this->packagist = new Packagist($http, self::PACKAGIST_USERNAME, $input->getOption('new-packagist-token') ?? '');
+        $this->packagist = new Packagist($http, self::PACKAGIST_USERNAME, $input->getOption('packagist-token') ?? '');
 
         $format = $input->getOption('format');
         if (!in_array($format, ['ci', 'table'])) {
@@ -82,48 +82,38 @@ class RepoComplianceCommand extends Command
 
         $isCompliant = true;
         foreach ($components as $i => $component) {
-            $details = $this->getRepoDetails($component);
-            $settingsCheck = true;
-            $packagistCheck = true;
-            $teamCheck = true;
-
-            $refreshDetails = false;
-            if (!$this->checkSettingsCompliance($details)) {
-                $settingsCheck = false;
-                $refreshDetails |= $this->askFixSettingsCompliance($input, $output, $details);
-            }
-            if (!$this->checkPackagistCompliance($details)) {
-                $packagistCheck = false;
-                $refreshDetails |= $this->askFixPackagistCompliance($input, $output, $component->getRepoName());
-            }
-            if (!$this->checkTeamCompliance($details)) {
-                $teamCheck = $this->github->token ? false : null;
-                $refreshDetails |= $this->askFixTeamCompliance($input, $output, $component->getRepoName());
-            }
-            if ($refreshDetails) {
+            do {
                 $details = $this->getRepoDetails($component);
-            }
-            if ($packagistToken = $this->packagist->getApiToken()) {
-                $repoName = 'googleapis/' . $details['name'];
-                $webhookUrl = $this->packagist->getWebhookUrl();
-                if (!$webhookId = $this->github->getWebhook($repoName, $webhookUrl, $packagistToken)) {
-                    $output->writeln(sprintf('<error>%s</error>: Webhook not found in', $repoName));
-                } elseif (!$this->github->updateWebhook($repoName, $webhookId, $packagistToken, $webhookUrl)) {
-                    $output->writeln(sprintf('<error>%s</error>: Unable to update webhook.', $repoName));
-                } else {
-                    $output->writeln(sprintf('<comment>%s</comment>: Packagist webhook token updated.', $repoName));
+                $settingsCheck = $packagistCheck = $webhookCheck = $teamCheck = true;
+                $refreshDetails = false;
+                if (!$this->checkSettingsCompliance($details)) {
+                    $settingsCheck = false;
+                    $refreshDetails |= $this->askFixSettingsCompliance($input, $output, $details);
                 }
-            }
+                if (!$this->checkWebhookCompliance($details)) {
+                    $webhookCheck = false;
+                    $refreshDetails |= $this->askFixWebhookCompliance($input, $output, $details);
+                }
+                if (!$this->checkPackagistCompliance($details)) {
+                    $packagistCheck = false;
+                    $refreshDetails |= $this->askFixPackagistCompliance($input, $output, $component->getRepoName());
+                }
+                if (!$this->checkTeamCompliance($details)) {
+                    $teamCheck = $this->github->token ? false : null;
+                    $refreshDetails |= $this->askFixTeamCompliance($input, $output, $component->getRepoName());
+                }
+            } while ($refreshDetails);
 
             $emoji = fn (?bool $check) => match ($check) { null => '❓', true => '✅', false => '❌'};
             $details['compliant'] = implode("\n", [
                 sprintf('%s Issues, Projects, Wiki, Pages, and Discussion are disabled', $emoji($settingsCheck)),
+                sprintf('%s Packagist webhook is configured', $emoji($webhookCheck)),
                 sprintf('%s Packagist maintainer is "google-cloud"', $emoji($packagistCheck)),
                 sprintf('%s Github teams permissions are configured correctly', $emoji($teamCheck)),
                 '',
             ]);
 
-            $isCompliant = $isCompliant && $settingsCheck && $packagistCheck && $teamCheck;
+            $isCompliant &= $settingsCheck && $webhookCheck && $packagistCheck && $teamCheck;
             if ($format == 'ci') {
                 unset($details['repo_config'], $details['packagist_config'], $details['teams']);
             }
@@ -174,6 +164,44 @@ discussions: false";
             );
             return true;
         }
+        return false;
+    }
+
+    private function checkWebhookCompliance(array $details): bool
+    {
+        $repoName = 'googleapis/' . $details['name'];
+        $webhookUrl = $this->packagist->getWebhookUrl();
+
+        return null !== $this->github->getWebhook($repoName, $webhookUrl);
+    }
+
+    private function askFixWebhookCompliance(InputInterface $input, OutputInterface $output, array $details)
+    {
+        if (!$this->github->token || $input->getOption('format') == 'ci') {
+            // without a token, or in CI mode, don't ask to fix compliance
+            return false;
+        }
+
+        $question = new ConfirmationQuestion(sprintf(
+            'Repo %s does not have the packagist webhook configured. Would you like to configure it? (Y/n)',
+            $details['name'],
+        ), true);
+        if ($this->getHelper('question')->ask($input, $output, $question)) {
+            if (!$packagistToken = $this->packagist->getApiToken()) {
+                throw new \Exception('Packagist token required to update webhook compliance');
+            }
+
+            $repoName = 'googleapis/' . $details['name'];
+            $webhookUrl = $this->packagist->getWebhookUrl();
+            if (!$this->github->addWebhook($repoName, $webhookUrl, $packagistToken)) {
+                $output->writeln(sprintf('<error>%s</error>: Unable to create Packagist webhook.', $repoName));
+
+                return false;
+            }
+            $output->writeln(sprintf('<comment>%s</comment>: Packagist webhook created.', $repoName));
+            return true;
+        }
+
         return false;
     }
 
