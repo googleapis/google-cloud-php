@@ -63,6 +63,7 @@ for DIR in ${DIRS}; do
     cp "${DIR}/composer.json" "${DIR}/composer-local.json"
     # Update composer to use local packages
     PACKAGE_DEPENDENCIES=(
+        "Gax,gax"
         "CommonProtos,common-protos,4.100"
         "BigQuery,cloud-bigquery"
         "Core,cloud-core"

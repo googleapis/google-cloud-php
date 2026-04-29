@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Spanner\Tests\Snippet;
 
+use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Spanner\PgJsonb;
 
@@ -25,8 +26,12 @@ use Google\Cloud\Spanner\PgJsonb;
  */
 class PgJsonbTest extends SnippetTestCase
 {
+    use GrpcTestTrait;
+
     public function testClass()
     {
+        $this->checkAndSkipGrpcTests();
+
         $expected = new PgJsonb('{}');
         $snippet = $this->snippetFromClass(PgJsonb::class);
         $res = $snippet->invoke('pgJsonb');

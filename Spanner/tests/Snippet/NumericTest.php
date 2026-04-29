@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Spanner\Tests\Snippet;
 
+use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Spanner\Numeric;
 
@@ -25,8 +26,12 @@ use Google\Cloud\Spanner\Numeric;
  */
 class NumericTest extends SnippetTestCase
 {
+    use GrpcTestTrait;
+
     public function testClass()
     {
+        $this->checkAndSkipGrpcTests();
+
         $expected = new Numeric('99999999999999999999999999999999999999.999999999');
         $snippet = $this->snippetFromClass(Numeric::class);
         $res = $snippet->invoke('numeric');
