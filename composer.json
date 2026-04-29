@@ -254,7 +254,7 @@
         "google/cloud-spanner": "2.7.0",
         "google/cloud-speech": "2.5.0",
         "google/cloud-sql-admin": "1.8.0",
-        "google/cloud-storage": "1.51.0",
+        "google/cloud-storage": "2.0.0",
         "google/cloud-storage-control": "1.8.0",
         "google/cloud-storage-transfer": "2.4.0",
         "google/cloud-storagebatchoperations": "0.7.0",
