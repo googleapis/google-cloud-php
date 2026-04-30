@@ -123,6 +123,28 @@ class StreamWrapperTest extends TestCase
     }
 
     /**
+     * @group storageWrite
+     */
+    public function testOpeningNonExistentFileWithXbModeSucceeds()
+    {
+        $object = $this->prophesize(StorageObject::class);
+        $object->exists()->willReturn(false);
+        $this->bucket->object('new_file.txt')->willReturn($object->reveal());
+
+        $uploader = $this->prophesize(StreamableUploader::class);
+        $uploader->upload()->shouldBeCalled();
+        $uploader->getResumeUri()->willReturn('https://resume-uri/');
+
+        $this->bucket->getStreamableUploader(Argument::any(), Argument::withEntry('ifGenerationMatch', 0))
+            ->willReturn($uploader->reveal());
+
+        $fp = fopen('gs://my_bucket/new_file.txt', 'xb');
+        $this->assertIsResource($fp);
+        fwrite($fp, "some data");
+        fclose($fp);
+    }
+
+    /**
      * @group storageRead
      */
     public function testFileGetContents()
