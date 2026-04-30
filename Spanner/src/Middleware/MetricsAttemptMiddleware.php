@@ -136,7 +136,7 @@ class MetricsAttemptMiddleware implements MiddlewareInterface
 
         // This gets the metadata on an ok status meaning we can get the GFE latency header for unary calls
         $options['metadataCallback'] = function ($metadata) use ($originalCallback, $call, $options) {
-            $this->recordGfeAndAfeLatency($metadata, $call, $options);
+            $this->recordGfeAndAfeLatency($metadata, $call, $options, Code::OK);
             if ($originalCallback) {
                 $originalCallback($metadata);
             }
@@ -156,7 +156,7 @@ class MetricsAttemptMiddleware implements MiddlewareInterface
 
         if ($response instanceof ServerStream) {
             $this->recordAttempt($startTime, Code::OK, $call->getMethod(), $options);
-            $this->recordGfeAndAfeLatency($response->getServerStreamingCall()->getMetadata(), $call, $options);
+            $this->recordGfeAndAfeLatency($response->getServerStreamingCall()->getMetadata(), $call, $options, Code::OK);
         }
 
         if ($response instanceof PromiseInterface) {
@@ -207,7 +207,7 @@ class MetricsAttemptMiddleware implements MiddlewareInterface
      *
      * @return void
      */
-    private function recordGfeAndAfeLatency($metadata, Call $call, array $options): void
+    private function recordGfeAndAfeLatency($metadata, Call $call, array $options, int $status): void
     {
         $serverTiming = $metadata['server-timing'][0] ?? null;
         $gfeLatency = null;
@@ -223,7 +223,7 @@ class MetricsAttemptMiddleware implements MiddlewareInterface
             }
         }
 
-        $labels = $this->getMetricLabels($call->getMethod(), $options, Code::OK);
+        $labels = $this->getMetricLabels($call->getMethod(), $options, $status);
 
         if (!is_null($gfeLatency)) {
             $this->attemptGfeHistogram->record($gfeLatency, $labels);
@@ -285,9 +285,9 @@ class MetricsAttemptMiddleware implements MiddlewareInterface
     private function recordGfeAndAfeError(Exception $e, Call $call, array $options): void
     {
         if ($e instanceof ApiException) {
-            $this->recordGfeAndAfeLatency($e->getMetadata() ?? [], $call, $options);
+            $this->recordGfeAndAfeLatency($e->getMetadata() ?? [], $call, $options, $e->getCode());
         } else {
-            $this->recordGfeAndAfeLatency([], $call, $options);
+            $this->recordGfeAndAfeLatency([], $call, $options, Code::UNKNOWN);
         }
     }
 }
