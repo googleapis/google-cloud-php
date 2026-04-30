@@ -5,6 +5,30 @@
     "protoPackage": "google.cloud.chronicle.v1",
     "libraryPackage": "Google\\Cloud\\Chronicle\\V1",
     "services": {
+        "BigQueryExportService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "BigQueryExportServiceGapicClient",
+                    "rpcs": {
+                        "GetBigQueryExport": {
+                            "methods": [
+                                "getBigQueryExport"
+                            ]
+                        },
+                        "ProvisionBigQueryExport": {
+                            "methods": [
+                                "provisionBigQueryExport"
+                            ]
+                        },
+                        "UpdateBigQueryExport": {
+                            "methods": [
+                                "updateBigQueryExport"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "DashboardQueryService": {
             "clients": {
                 "grpc": {

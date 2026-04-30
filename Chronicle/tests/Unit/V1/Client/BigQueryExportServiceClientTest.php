@@ -50,7 +50,9 @@ class BigQueryExportServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return BigQueryExportServiceClient */
@@ -79,8 +81,7 @@ class BigQueryExportServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->bigQueryExportName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $request = (new GetBigQueryExportRequest())
-            ->setName($formattedName);
+        $request = (new GetBigQueryExportRequest())->setName($formattedName);
         $response = $gapicClient->getBigQueryExport($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -104,17 +105,19 @@ class BigQueryExportServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->bigQueryExportName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $request = (new GetBigQueryExportRequest())
-            ->setName($formattedName);
+        $request = (new GetBigQueryExportRequest())->setName($formattedName);
         try {
             $gapicClient->getBigQueryExport($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -145,8 +148,7 @@ class BigQueryExportServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $request = (new ProvisionBigQueryExportRequest())
-            ->setParent($formattedParent);
+        $request = (new ProvisionBigQueryExportRequest())->setParent($formattedParent);
         $response = $gapicClient->provisionBigQueryExport($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -170,17 +172,19 @@ class BigQueryExportServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $request = (new ProvisionBigQueryExportRequest())
-            ->setParent($formattedParent);
+        $request = (new ProvisionBigQueryExportRequest())->setParent($formattedParent);
         try {
             $gapicClient->provisionBigQueryExport($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -211,8 +215,7 @@ class BigQueryExportServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $bigQueryExport = new BigQueryExport();
-        $request = (new UpdateBigQueryExportRequest())
-            ->setBigQueryExport($bigQueryExport);
+        $request = (new UpdateBigQueryExportRequest())->setBigQueryExport($bigQueryExport);
         $response = $gapicClient->updateBigQueryExport($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -236,17 +239,19 @@ class BigQueryExportServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $bigQueryExport = new BigQueryExport();
-        $request = (new UpdateBigQueryExportRequest())
-            ->setBigQueryExport($bigQueryExport);
+        $request = (new UpdateBigQueryExportRequest())->setBigQueryExport($bigQueryExport);
         try {
             $gapicClient->updateBigQueryExport($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -277,8 +282,7 @@ class BigQueryExportServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->bigQueryExportName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $request = (new GetBigQueryExportRequest())
-            ->setName($formattedName);
+        $request = (new GetBigQueryExportRequest())->setName($formattedName);
         $response = $gapicClient->getBigQueryExportAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
