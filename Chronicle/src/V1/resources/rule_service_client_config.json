@@ -9,8 +9,8 @@
                 "retry_policy_3_codes": [
                     "UNAVAILABLE"
                 ],
-                "no_retry_1_codes": [],
-                "no_retry_2_codes": []
+                "no_retry_2_codes": [],
+                "no_retry_3_codes": []
             },
             "retry_params": {
                 "no_retry_params": {
@@ -40,7 +40,7 @@
                     "max_rpc_timeout_millis": 600000,
                     "total_timeout_millis": 600000
                 },
-                "no_retry_1_params": {
+                "no_retry_2_params": {
                     "initial_retry_delay_millis": 0,
                     "retry_delay_multiplier": 0.0,
                     "max_retry_delay_millis": 0,
@@ -49,7 +49,7 @@
                     "max_rpc_timeout_millis": 60000,
                     "total_timeout_millis": 60000
                 },
-                "no_retry_2_params": {
+                "no_retry_3_params": {
                     "initial_retry_delay_millis": 0,
                     "retry_delay_multiplier": 0.0,
                     "max_retry_delay_millis": 0,
@@ -62,18 +62,18 @@
             "methods": {
                 "CreateRetrohunt": {
                     "timeout_millis": 600000,
-                    "retry_codes_name": "no_retry_2_codes",
-                    "retry_params_name": "no_retry_2_params"
+                    "retry_codes_name": "no_retry_3_codes",
+                    "retry_params_name": "no_retry_3_params"
                 },
                 "CreateRule": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "no_retry_1_codes",
-                    "retry_params_name": "no_retry_1_params"
+                    "retry_codes_name": "no_retry_2_codes",
+                    "retry_params_name": "no_retry_2_params"
                 },
                 "DeleteRule": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "no_retry_1_codes",
-                    "retry_params_name": "no_retry_1_params"
+                    "retry_codes_name": "no_retry_2_codes",
+                    "retry_params_name": "no_retry_2_params"
                 },
                 "GetRetrohunt": {
                     "timeout_millis": 60000,
@@ -112,13 +112,13 @@
                 },
                 "UpdateRule": {
                     "timeout_millis": 600000,
-                    "retry_codes_name": "no_retry_2_codes",
-                    "retry_params_name": "no_retry_2_params"
+                    "retry_codes_name": "no_retry_3_codes",
+                    "retry_params_name": "no_retry_3_params"
                 },
                 "UpdateRuleDeployment": {
                     "timeout_millis": 600000,
-                    "retry_codes_name": "no_retry_2_codes",
-                    "retry_params_name": "no_retry_2_params"
+                    "retry_codes_name": "no_retry_3_codes",
+                    "retry_params_name": "no_retry_3_params"
                 }
             }
         }

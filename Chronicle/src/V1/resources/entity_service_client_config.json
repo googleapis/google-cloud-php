@@ -6,7 +6,7 @@
                 "retry_policy_2_codes": [
                     "UNAVAILABLE"
                 ],
-                "no_retry_3_codes": []
+                "no_retry_4_codes": []
             },
             "retry_params": {
                 "no_retry_params": {
@@ -27,7 +27,7 @@
                     "max_rpc_timeout_millis": 90000,
                     "total_timeout_millis": 90000
                 },
-                "no_retry_3_params": {
+                "no_retry_4_params": {
                     "initial_retry_delay_millis": 0,
                     "retry_delay_multiplier": 0.0,
                     "max_retry_delay_millis": 0,
@@ -40,13 +40,13 @@
             "methods": {
                 "CreateWatchlist": {
                     "timeout_millis": 90000,
-                    "retry_codes_name": "no_retry_3_codes",
-                    "retry_params_name": "no_retry_3_params"
+                    "retry_codes_name": "no_retry_4_codes",
+                    "retry_params_name": "no_retry_4_params"
                 },
                 "DeleteWatchlist": {
                     "timeout_millis": 90000,
-                    "retry_codes_name": "no_retry_3_codes",
-                    "retry_params_name": "no_retry_3_params"
+                    "retry_codes_name": "no_retry_4_codes",
+                    "retry_params_name": "no_retry_4_params"
                 },
                 "GetWatchlist": {
                     "timeout_millis": 90000,
@@ -60,8 +60,8 @@
                 },
                 "UpdateWatchlist": {
                     "timeout_millis": 90000,
-                    "retry_codes_name": "no_retry_3_codes",
-                    "retry_params_name": "no_retry_3_params"
+                    "retry_codes_name": "no_retry_4_codes",
+                    "retry_params_name": "no_retry_4_params"
                 }
             }
         }

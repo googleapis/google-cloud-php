@@ -6,7 +6,7 @@
                 "retry_policy_4_codes": [
                     "UNAVAILABLE"
                 ],
-                "no_retry_4_codes": []
+                "no_retry_5_codes": []
             },
             "retry_params": {
                 "no_retry_params": {
@@ -27,7 +27,7 @@
                     "max_rpc_timeout_millis": 600000,
                     "total_timeout_millis": 600000
                 },
-                "no_retry_4_params": {
+                "no_retry_5_params": {
                     "initial_retry_delay_millis": 0,
                     "retry_delay_multiplier": 0.0,
                     "max_retry_delay_millis": 0,
@@ -40,8 +40,8 @@
             "methods": {
                 "BulkCreateDataTableRows": {
                     "timeout_millis": 600000,
-                    "retry_codes_name": "no_retry_4_codes",
-                    "retry_params_name": "no_retry_4_params"
+                    "retry_codes_name": "no_retry_5_codes",
+                    "retry_params_name": "no_retry_5_params"
                 },
                 "BulkGetDataTableRows": {
                     "timeout_millis": 600000,
@@ -50,33 +50,33 @@
                 },
                 "BulkReplaceDataTableRows": {
                     "timeout_millis": 600000,
-                    "retry_codes_name": "no_retry_4_codes",
-                    "retry_params_name": "no_retry_4_params"
+                    "retry_codes_name": "no_retry_5_codes",
+                    "retry_params_name": "no_retry_5_params"
                 },
                 "BulkUpdateDataTableRows": {
                     "timeout_millis": 600000,
-                    "retry_codes_name": "no_retry_4_codes",
-                    "retry_params_name": "no_retry_4_params"
+                    "retry_codes_name": "no_retry_5_codes",
+                    "retry_params_name": "no_retry_5_params"
                 },
                 "CreateDataTable": {
                     "timeout_millis": 600000,
-                    "retry_codes_name": "no_retry_4_codes",
-                    "retry_params_name": "no_retry_4_params"
+                    "retry_codes_name": "no_retry_5_codes",
+                    "retry_params_name": "no_retry_5_params"
                 },
                 "CreateDataTableRow": {
                     "timeout_millis": 600000,
-                    "retry_codes_name": "no_retry_4_codes",
-                    "retry_params_name": "no_retry_4_params"
+                    "retry_codes_name": "no_retry_5_codes",
+                    "retry_params_name": "no_retry_5_params"
                 },
                 "DeleteDataTable": {
                     "timeout_millis": 600000,
-                    "retry_codes_name": "no_retry_4_codes",
-                    "retry_params_name": "no_retry_4_params"
+                    "retry_codes_name": "no_retry_5_codes",
+                    "retry_params_name": "no_retry_5_params"
                 },
                 "DeleteDataTableRow": {
                     "timeout_millis": 600000,
-                    "retry_codes_name": "no_retry_4_codes",
-                    "retry_params_name": "no_retry_4_params"
+                    "retry_codes_name": "no_retry_5_codes",
+                    "retry_params_name": "no_retry_5_params"
                 },
                 "GetDataTable": {
                     "timeout_millis": 600000,
@@ -105,13 +105,13 @@
                 },
                 "UpdateDataTable": {
                     "timeout_millis": 600000,
-                    "retry_codes_name": "no_retry_4_codes",
-                    "retry_params_name": "no_retry_4_params"
+                    "retry_codes_name": "no_retry_5_codes",
+                    "retry_params_name": "no_retry_5_params"
                 },
                 "UpdateDataTableRow": {
                     "timeout_millis": 600000,
-                    "retry_codes_name": "no_retry_4_codes",
-                    "retry_params_name": "no_retry_4_params"
+                    "retry_codes_name": "no_retry_5_codes",
+                    "retry_params_name": "no_retry_5_params"
                 }
             }
         }
