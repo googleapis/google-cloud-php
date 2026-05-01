@@ -81,7 +81,11 @@ class RepoComplianceCommand extends Command
         $components = $componentName ? [new Component($componentName)] : Component::getComponents();
 
         $isCompliant = true;
+        $emoji = fn ($check) => match ($check) { 'skipped' => '⚪', false => '❌', true => '✅', null => '❓'};
         foreach ($components as $i => $component) {
+            $isNewComponent = $component->getPackageVersion() === '0.0.0'
+                || $component->getPackageVersion() === '0.1.0' && $format == 'ci';
+
             do {
                 $refreshDetails = false;
                 if (!$details = $this->getRepoDetails($component) ){
@@ -96,11 +100,12 @@ class RepoComplianceCommand extends Command
                     $refreshDetails |= $this->askFixSettingsCompliance($input, $output, $details);
                 }
                 if (!$this->checkWebhookCompliance($details)) {
-                    $webhookCheck = $this->github->token ? false : null;
+                    $webhookCheck = $this->github->token ? ($isNewComponent ? 'skipped' : false) : null;
                     $refreshDetails |= $this->askFixWebhookCompliance($input, $output, $details);
                 }
-                if (!$this->checkPackagistCompliance($details, $component, $format)) {
-                    $packagistCheck = false;
+                if (!$this->checkPackagistCompliance($details)) {
+                    // New components don't have packagist config, so bypass for CI.
+                    $packagistCheck = $isNewComponent ? 'skipped' : false;
                     $refreshDetails |= $this->askFixPackagistCompliance($input, $output, $details);
                     $details['packagist_config'] ??= '**PACKAGE NOT FOUND**';
                 }
@@ -110,7 +115,6 @@ class RepoComplianceCommand extends Command
                 }
             } while ($refreshDetails);
 
-            $emoji = fn (?bool $check) => match ($check) { null => '❓', true => '✅', false => '❌'};
             $details['compliant'] = implode("\n", [
                 sprintf('%s Issues, Projects, Wiki, Pages, and Discussion are disabled', $emoji($settingsCheck)),
                 sprintf('%s Packagist webhook is configured', $emoji($webhookCheck)),
@@ -214,16 +218,8 @@ discussions: false";
         return false;
     }
 
-    private function checkPackagistCompliance(array $details, Component $component, string $format)
+    private function checkPackagistCompliance(array $details)
     {
-        if (null === $details['packagist_config']
-            && $component->getPackageVersion() === '0.1.0'
-            && $format === 'ci'
-        ) {
-            // New components don't have packagist config, so bypass for CI.
-            return true;
-        }
-
         return !empty(array_filter(
             explode("\n", (string) $details['packagist_config']),
             fn ($team) => $team === self::PACKAGIST_USERNAME
