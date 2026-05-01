@@ -66,7 +66,7 @@ class RepoComplianceCommand extends Command
         }
 
         $table = (new Table($output));
-        $table->setColumnWidths([55, 20, 22, 35, 50]);
+        $table->setColumnWidths([55, 20, 22, 33, 50]);
         $table->setStyle('compact');
         $headers = $format == 'ci' ? ['Name', 'Compliance'] : [
             'Name',
@@ -99,12 +99,10 @@ class RepoComplianceCommand extends Command
                     $webhookCheck = $this->github->token ? false : null;
                     $refreshDetails |= $this->askFixWebhookCompliance($input, $output, $details);
                 }
-                if (!$this->checkPackagistCompliance($details)) {
+                if (!$this->checkPackagistCompliance($details, $component, $format)) {
                     $packagistCheck = false;
                     $refreshDetails |= $this->askFixPackagistCompliance($input, $output, $details);
-                    if (null === $details['packagist_config']) {
-                        $details['packagist_config'] = '**PACKAGE NOT FOUND**';
-                    }
+                    $details['packagist_config'] ??= '**PACKAGE NOT FOUND**';
                 }
                 if (!$this->checkTeamCompliance($details)) {
                     $teamCheck = $this->github->token ? false : null;
@@ -216,10 +214,18 @@ discussions: false";
         return false;
     }
 
-    private function checkPackagistCompliance(array $details)
+    private function checkPackagistCompliance(array $details, Component $component, string $format)
     {
-        return null !== $details['packagist_config'] && !empty(array_filter(
-            explode("\n", $details['packagist_config']),
+        if (null === $details['packagist_config']
+            && $component->getPackageVersion() === '0.1.0'
+            && $format === 'ci'
+        ) {
+            // New components don't have packagist config, so bypass for CI.
+            return true;
+        }
+
+        return !empty(array_filter(
+            explode("\n", (string) $details['packagist_config']),
             fn ($team) => $team === self::PACKAGIST_USERNAME
         ));
     }
@@ -227,7 +233,7 @@ discussions: false";
     private function askFixPackagistCompliance(InputInterface $input, OutputInterface $output, array $details)
     {
         if (!$this->github->token || $input->getOption('format') == 'ci' || $details['packagist_config'] === null) {
-            // without a token, or in CI mode, don't ask to fix compliance
+            // cannot fix compliance without a token, or in CI mode, or without packagist config
             return false;
         }
         throw new \Exception('not implemented');
