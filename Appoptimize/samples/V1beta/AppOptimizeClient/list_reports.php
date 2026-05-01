@@ -25,9 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START appoptimize_v1beta_generated_AppOptimize_ListReports_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Appoptimize\V1beta\Client\AppOptimizeClient;
-use Google\Cloud\Appoptimize\V1beta\ListReportsRequest;
-use Google\Cloud\Appoptimize\V1beta\Report;
+use Google\Cloud\AppOptimize\V1beta\Client\AppOptimizeClient;
+use Google\Cloud\AppOptimize\V1beta\ListReportsRequest;
+use Google\Cloud\AppOptimize\V1beta\Report;
 
 /**
  * Lists reports within a given project.

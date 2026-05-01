@@ -3,7 +3,7 @@
     "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
     "language": "php",
     "protoPackage": "google.cloud.appoptimize.v1beta",
-    "libraryPackage": "Google\\Cloud\\Appoptimize\\V1beta",
+    "libraryPackage": "Google\\Cloud\\AppOptimize\\V1beta",
     "services": {
         "AppOptimize": {
             "clients": {

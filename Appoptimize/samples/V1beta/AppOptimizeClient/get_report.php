@@ -24,9 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START appoptimize_v1beta_generated_AppOptimize_GetReport_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\Appoptimize\V1beta\Client\AppOptimizeClient;
-use Google\Cloud\Appoptimize\V1beta\GetReportRequest;
-use Google\Cloud\Appoptimize\V1beta\Report;
+use Google\Cloud\AppOptimize\V1beta\Client\AppOptimizeClient;
+use Google\Cloud\AppOptimize\V1beta\GetReportRequest;
+use Google\Cloud\AppOptimize\V1beta\Report;
 
 /**
  * Retrieves the details of a report configuration.

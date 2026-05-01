@@ -20,21 +20,21 @@
  * This file was automatically generated - do not edit!
  */
 
-namespace Google\Cloud\Appoptimize\Tests\Unit\V1beta\Client;
+namespace Google\Cloud\AppOptimize\Tests\Unit\V1beta\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-use Google\Cloud\Appoptimize\V1beta\Client\AppOptimizeClient;
-use Google\Cloud\Appoptimize\V1beta\CreateReportRequest;
-use Google\Cloud\Appoptimize\V1beta\DeleteReportRequest;
-use Google\Cloud\Appoptimize\V1beta\GetReportRequest;
-use Google\Cloud\Appoptimize\V1beta\ListReportsRequest;
-use Google\Cloud\Appoptimize\V1beta\ListReportsResponse;
-use Google\Cloud\Appoptimize\V1beta\ReadReportRequest;
-use Google\Cloud\Appoptimize\V1beta\ReadReportResponse;
-use Google\Cloud\Appoptimize\V1beta\Report;
+use Google\Cloud\AppOptimize\V1beta\Client\AppOptimizeClient;
+use Google\Cloud\AppOptimize\V1beta\CreateReportRequest;
+use Google\Cloud\AppOptimize\V1beta\DeleteReportRequest;
+use Google\Cloud\AppOptimize\V1beta\GetReportRequest;
+use Google\Cloud\AppOptimize\V1beta\ListReportsRequest;
+use Google\Cloud\AppOptimize\V1beta\ListReportsResponse;
+use Google\Cloud\AppOptimize\V1beta\ReadReportRequest;
+use Google\Cloud\AppOptimize\V1beta\ReadReportResponse;
+use Google\Cloud\AppOptimize\V1beta\Report;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\ListLocationsResponse;

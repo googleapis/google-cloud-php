@@ -24,7 +24,7 @@
  * @experimental
  */
 
-namespace Google\Cloud\Appoptimize\V1beta\Client;
+namespace Google\Cloud\AppOptimize\V1beta\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
@@ -37,12 +37,12 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
-use Google\Cloud\Appoptimize\V1beta\CreateReportRequest;
-use Google\Cloud\Appoptimize\V1beta\DeleteReportRequest;
-use Google\Cloud\Appoptimize\V1beta\GetReportRequest;
-use Google\Cloud\Appoptimize\V1beta\ListReportsRequest;
-use Google\Cloud\Appoptimize\V1beta\ReadReportRequest;
-use Google\Cloud\Appoptimize\V1beta\Report;
+use Google\Cloud\AppOptimize\V1beta\CreateReportRequest;
+use Google\Cloud\AppOptimize\V1beta\DeleteReportRequest;
+use Google\Cloud\AppOptimize\V1beta\GetReportRequest;
+use Google\Cloud\AppOptimize\V1beta\ListReportsRequest;
+use Google\Cloud\AppOptimize\V1beta\ReadReportRequest;
+use Google\Cloud\AppOptimize\V1beta\Report;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
@@ -299,7 +299,7 @@ final class AppOptimizeClient
      *           of your systems and data. It is recommended to create the credentials explicitly
      *           ```
      *           use Google\Auth\Credentials\ServiceAccountCredentials;
-     *           use Google\Cloud\Appoptimize\V1beta\AppOptimizeClient;
+     *           use Google\Cloud\AppOptimize\V1beta\AppOptimizeClient;
      *           $creds = new ServiceAccountCredentials($scopes, $json);
      *           $options = new AppOptimizeClient(['credentials' => $creds]);
      *           ```

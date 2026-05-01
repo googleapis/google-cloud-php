@@ -25,8 +25,8 @@ return [
         'google.cloud.appoptimize.v1beta.AppOptimize' => [
             'CreateReport' => [
                 'longRunning' => [
-                    'operationReturnType' => '\Google\Cloud\Appoptimize\V1beta\Report',
-                    'metadataReturnType' => '\Google\Cloud\Appoptimize\V1beta\OperationMetadata',
+                    'operationReturnType' => '\Google\Cloud\AppOptimize\V1beta\Report',
+                    'metadataReturnType' => '\Google\Cloud\AppOptimize\V1beta\OperationMetadata',
                     'initialPollDelayMillis' => '500',
                     'pollDelayMultiplier' => '1.5',
                     'maxPollDelayMillis' => '5000',
@@ -56,7 +56,7 @@ return [
             ],
             'GetReport' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
-                'responseType' => 'Google\Cloud\Appoptimize\V1beta\Report',
+                'responseType' => 'Google\Cloud\AppOptimize\V1beta\Report',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -76,7 +76,7 @@ return [
                     'resourcesGetMethod' => 'getReports',
                 ],
                 'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
-                'responseType' => 'Google\Cloud\Appoptimize\V1beta\ListReportsResponse',
+                'responseType' => 'Google\Cloud\AppOptimize\V1beta\ListReportsResponse',
                 'headerParams' => [
                     [
                         'keyName' => 'parent',
@@ -96,7 +96,7 @@ return [
                     'resourcesGetMethod' => 'getRows',
                 ],
                 'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
-                'responseType' => 'Google\Cloud\Appoptimize\V1beta\ReadReportResponse',
+                'responseType' => 'Google\Cloud\AppOptimize\V1beta\ReadReportResponse',
                 'headerParams' => [
                     [
                         'keyName' => 'name',

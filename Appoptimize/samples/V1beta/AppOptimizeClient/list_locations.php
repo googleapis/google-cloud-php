@@ -25,7 +25,7 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START appoptimize_v1beta_generated_AppOptimize_ListLocations_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Appoptimize\V1beta\Client\AppOptimizeClient;
+use Google\Cloud\AppOptimize\V1beta\Client\AppOptimizeClient;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
 
