@@ -88,7 +88,7 @@ class RepoComplianceCommand extends Command
 
             do {
                 $refreshDetails = false;
-                if (!$details = $this->getRepoDetails($component) ){
+                if (!$details = $this->getRepoDetails($component)) {
                     $isCompliant = $settingsCheck = $packagistCheck = $webhookCheck = $teamCheck = false;
                     $details = array_fill(0, count($headers) - 1, '**REPO NOT FOUND**');
                     $details[0] = str_replace('googleapis/', '', $component->getRepoName());
