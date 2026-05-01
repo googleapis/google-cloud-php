@@ -5,6 +5,68 @@
     "protoPackage": "google.cloud.chronicle.v1",
     "libraryPackage": "Google\\Cloud\\Chronicle\\V1",
     "services": {
+        "BigQueryExportService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "BigQueryExportServiceGapicClient",
+                    "rpcs": {
+                        "GetBigQueryExport": {
+                            "methods": [
+                                "getBigQueryExport"
+                            ]
+                        },
+                        "ProvisionBigQueryExport": {
+                            "methods": [
+                                "provisionBigQueryExport"
+                            ]
+                        },
+                        "UpdateBigQueryExport": {
+                            "methods": [
+                                "updateBigQueryExport"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "DashboardQueryService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "DashboardQueryServiceGapicClient",
+                    "rpcs": {
+                        "ExecuteDashboardQuery": {
+                            "methods": [
+                                "executeDashboardQuery"
+                            ]
+                        },
+                        "GetDashboardQuery": {
+                            "methods": [
+                                "getDashboardQuery"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "DashboardChartService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "DashboardChartServiceGapicClient",
+                    "rpcs": {
+                        "BatchGetDashboardCharts": {
+                            "methods": [
+                                "batchGetDashboardCharts"
+                            ]
+                        },
+                        "GetDashboardChart": {
+                            "methods": [
+                                "getDashboardChart"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "DataAccessControlService": {
             "clients": {
                 "grpc": {
@@ -176,6 +238,99 @@
                         "UpdateWatchlist": {
                             "methods": [
                                 "updateWatchlist"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "NativeDashboardService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "NativeDashboardServiceGapicClient",
+                    "rpcs": {
+                        "AddChart": {
+                            "methods": [
+                                "addChart"
+                            ]
+                        },
+                        "CreateNativeDashboard": {
+                            "methods": [
+                                "createNativeDashboard"
+                            ]
+                        },
+                        "DeleteNativeDashboard": {
+                            "methods": [
+                                "deleteNativeDashboard"
+                            ]
+                        },
+                        "DuplicateChart": {
+                            "methods": [
+                                "duplicateChart"
+                            ]
+                        },
+                        "DuplicateNativeDashboard": {
+                            "methods": [
+                                "duplicateNativeDashboard"
+                            ]
+                        },
+                        "EditChart": {
+                            "methods": [
+                                "editChart"
+                            ]
+                        },
+                        "ExportNativeDashboards": {
+                            "methods": [
+                                "exportNativeDashboards"
+                            ]
+                        },
+                        "GetNativeDashboard": {
+                            "methods": [
+                                "getNativeDashboard"
+                            ]
+                        },
+                        "ImportNativeDashboards": {
+                            "methods": [
+                                "importNativeDashboards"
+                            ]
+                        },
+                        "ListNativeDashboards": {
+                            "methods": [
+                                "listNativeDashboards"
+                            ]
+                        },
+                        "RemoveChart": {
+                            "methods": [
+                                "removeChart"
+                            ]
+                        },
+                        "UpdateNativeDashboard": {
+                            "methods": [
+                                "updateNativeDashboard"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "FeaturedContentNativeDashboardService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "FeaturedContentNativeDashboardServiceGapicClient",
+                    "rpcs": {
+                        "GetFeaturedContentNativeDashboard": {
+                            "methods": [
+                                "getFeaturedContentNativeDashboard"
+                            ]
+                        },
+                        "InstallFeaturedContentNativeDashboard": {
+                            "methods": [
+                                "installFeaturedContentNativeDashboard"
+                            ]
+                        },
+                        "ListFeaturedContentNativeDashboards": {
+                            "methods": [
+                                "listFeaturedContentNativeDashboards"
                             ]
                         }
                     }
