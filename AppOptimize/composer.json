@@ -5,7 +5,7 @@
     "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
-            "Google\\Cloud\\Appoptimize\\": "src",
+            "Google\\Cloud\\AppOptimize\\": "src",
             "GPBMetadata\\Google\\Cloud\\Appoptimize\\": "metadata"
         }
     },
