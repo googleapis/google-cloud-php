@@ -12,7 +12,7 @@
     "extra": {
         "component": {
             "id": "cloud-appoptimize",
-            "path": "Appoptimize",
+            "path": "AppOptimize",
             "target": "googleapis/google-cloud-php-appoptimize"
         }
     },
