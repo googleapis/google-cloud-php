@@ -46,8 +46,13 @@ class RepoComplianceCommand extends Command
     {
         $this->setName('repo:compliance')
             ->setDescription('ensure all github repositories meet compliance')
-            ->addOption('component', 'c', InputOption::VALUE_REQUIRED, 'If specified, display repo info for this component only', '')
-            ->addOption('token', 't', InputOption::VALUE_REQUIRED, 'Github token to use for authentication', '')
+            ->addOption(
+                'component',
+                'c',
+                InputOption::VALUE_REQUIRED|InputOption::VALUE_IS_ARRAY,
+                'If specified, display repo info for this component only'
+            )
+            ->addOption('token', 't', InputOption::VALUE_REQUIRED, 'Github token to use for authentication')
             ->addOption('format', 'f', InputOption::VALUE_REQUIRED, 'can be "ci" or "table"', 'table')
             ->addOption('packagist-token', 'p', InputOption::VALUE_REQUIRED, 'Packagist token for the webhook')
         ;
@@ -77,11 +82,12 @@ class RepoComplianceCommand extends Command
         ];
         (clone $table)->setHeaders($headers)->render();
 
-        $componentName = $input->getOption('component');
-        $components = $componentName ? [new Component($componentName)] : Component::getComponents();
+        $components = $input->getOption('component')
+            ? array_map(fn ($c) => new Component($c), $input->getOption('component'))
+            : Component::getComponents();
 
-        $isCompliant = true;
         $emoji = fn ($check) => match ($check) { 'skipped' => '⚪', false => '❌', true => '✅', null => '❓'};
+        $failed = [];
         foreach ($components as $i => $component) {
             $isNewComponent = $component->getPackageVersion() === '0.0.0'
                 || ($component->getPackageVersion() === '0.1.0' && $format == 'ci');
@@ -89,7 +95,7 @@ class RepoComplianceCommand extends Command
             do {
                 $refreshDetails = false;
                 if (!$details = $this->getRepoDetails($component)) {
-                    $isCompliant = $settingsCheck = $packagistCheck = $webhookCheck = $teamCheck = false;
+                    $settingsCheck = $packagistCheck = $webhookCheck = $teamCheck = false;
                     $details = array_fill(0, count($headers) - 1, '**REPO NOT FOUND**');
                     $details[0] = str_replace('googleapis/', '', $component->getRepoName());
                     continue;
@@ -122,14 +128,26 @@ class RepoComplianceCommand extends Command
                 sprintf('%s Github teams permissions are configured correctly', $emoji($teamCheck)),
                 '',
             ]);
-            $isCompliant &= $settingsCheck && $webhookCheck && $packagistCheck && $teamCheck;
             if ($format == 'ci') {
                 unset($details['repo_config'], $details['packagist_config'], $details['teams']);
             }
-            (clone $table)->addRow($details)->render();
+            $componentTable = (clone $table);
+            $componentTable->addRow($details)->render();
+
+            if (!($settingsCheck && $webhookCheck && $packagistCheck && $teamCheck)) {
+                $failed[] = $componentTable;
+            }
         }
 
-        return $isCompliant ? Command::SUCCESS : Command::FAILURE;
+        if (count($failed) > 0) {
+            $output->writeln('<error>ERROR: ' . count($failed) . ' components failed the repo compliance check:');
+            foreach ($failed as $table) {
+                $table->render();
+            }
+            return Command::FAILURE;
+        }
+
+        return Command::SUCCESS;
     }
 
     private function checkSettingsCompliance(array $details)
