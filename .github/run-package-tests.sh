@@ -68,7 +68,7 @@ for DIR in ${DIRS}; do
         "Core,cloud-core"
         "Logging,cloud-logging"
         "PubSub,cloud-pubsub"
-        "Storage,cloud-storage"
+        "Storage,cloud-storage,2.100"
         "ShoppingCommonProtos,shopping-common-protos"
         "GeoCommonProtos,geo-common-protos,0.1"
     )
