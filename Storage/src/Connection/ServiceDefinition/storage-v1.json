@@ -1561,6 +1561,41 @@
                     "type": "string",
                     "description": "The modification time of the object metadata in RFC 3339 format. Set initially to object creation time and then updated whenever any metadata of the object changes. This includes changes made by a requester, such as modifying custom metadata, as well as changes made by Cloud Storage on behalf of a requester, such as changing the storage class based on an Object Lifecycle Configuration.",
                     "format": "date-time"
+                },
+                "contexts" : {
+                    "type": "object",
+                    "description": "User-defined or system-defined object contexts. Represented as key-payload pairs, where the key identifies the context and the payload contains the associated value and additional metadata.",
+                    "properties" : {
+                        "custom" : {
+                            "type": "object",
+                            "description": "User-provided object contexts where each entry consists of a unique key and a corresponding payload.",
+                            "additionalProperties": {
+                                "$ref": "ObjectCustomContextPayload",
+                                "description": "A single user-defined object context."
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "ObjectCustomContextPayload": {
+            "id": "ObjectCustomContextPayload",
+            "type": "object",
+            "description": "The payload associated with a user-defined context key.",
+            "properties": {
+                "value": {
+                    "type": "string",
+                    "description": "The value of the object contexts."
+                },
+                "createTime": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "The time at which the object contexts was created in RFC 3339 format."
+                },
+                "updateTime": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "The time at which the object context was last updated in RFC 3339 format."
                 }
             }
         },
@@ -4864,6 +4899,11 @@
                             "description": "Name of the bucket in which to look for objects.",
                             "required": true,
                             "location": "path"
+                        },
+                        "filter": {
+                            "type": "string",
+                            "description": "Filter results to include only objects to which the specified context is attached. You can filter by the presence, absence, or specific value of context keys.",
+                            "location": "query"
                         },
                         "delimiter": {
                             "type": "string",
