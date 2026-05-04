@@ -1,5 +1,93 @@
 # Changelog
 
+## 0.328.0
+
+<details><summary>google/cloud-ai-platform 1.59.0</summary>
+
+
+
+### Features
+
+* [AiPlatform]Making grounding with parallel.ai available on SDK ([#9147](https://github.com/googleapis/google-cloud-php/issues/9147)) ([8875409](https://github.com/googleapis/google-cloud-php/commit/8875409d7b3f6d6c4a89a5bca6652da0f6b77a0d))
+
+</details>
+
+<details><summary>google/analytics-data 0.24.0</summary>
+
+
+
+### Features
+
+* [AnalyticsData] remove SheetExportAudienceList method, associated resources, and OAuth scopes from v1 alpha ([#9145](https://github.com/googleapis/google-cloud-php/issues/9145)) ([a430e29](https://github.com/googleapis/google-cloud-php/commit/a430e291567305f570716e849a0cbd74a3551ee2))
+
+</details>
+
+<details><summary>google/cloud-appoptimize 0.1.0</summary>
+
+
+
+### Features
+
+* introduce AppOptimize ([#9136](https://github.com/googleapis/google-cloud-php/issues/9136)) ([7fc8468](https://github.com/googleapis/google-cloud-php/commit/7fc8468a87956f3bea03338a53f36922af6f0b59))
+
+</details>
+
+<details><summary>google/cloud-chronicle 0.4.0</summary>
+
+
+
+### Features
+
+* [Chronicle] Adding Client Libraries for BigQueryExportService ([#9151](https://github.com/googleapis/google-cloud-php/issues/9151)) ([f6021a7](https://github.com/googleapis/google-cloud-php/commit/f6021a7e7a70bc38df1167dc7807cfd03d6b56e7))
+
+</details>
+
+<details><summary>google/developers-knowledge 0.1.0</summary>
+
+
+
+### Features
+
+* Introduce DeveloperKnowledge ([#9137](https://github.com/googleapis/google-cloud-php/issues/9137)) ([7d6d975](https://github.com/googleapis/google-cloud-php/commit/7d6d97517d2b61627c175238f59b1fc43b4ce555))
+
+</details>
+
+<details><summary>google/cloud-error-reporting 0.26.1</summary>
+
+
+
+### Bug Fixes
+
+* **deps:** Update dependency google/cloud-logging to v2 ([#9143](https://github.com/googleapis/google-cloud-php/issues/9143)) ([c83a27a](https://github.com/googleapis/google-cloud-php/commit/c83a27a7b431dbf0ddd49f0d6facc3666572782b))
+
+</details>
+
+<details><summary>google/cloud-memorystore 0.10.0</summary>
+
+
+
+### Features
+
+* [Memorystore] Synchronize new proto/yaml changes. ([#9153](https://github.com/googleapis/google-cloud-php/issues/9153)) ([2a30342](https://github.com/googleapis/google-cloud-php/commit/2a303425061e43bcfb2922c7638dddff5af3c9e1))
+
+</details>
+
+<details><summary>google/cloud-storage 2.0.0</summary>
+
+
+
+### Features
+
+* **storage:** Implement Object Contexts with advanced filtering and validation ([#9122](https://github.com/googleapis/google-cloud-php/issues/9122)) ([c59cc4d](https://github.com/googleapis/google-cloud-php/commit/c59cc4dd686c696114bb7468450d0772b022f5dc))
+* **storage:** Set CRC32C as the default checksum option ([#9107](https://github.com/googleapis/google-cloud-php/issues/9107)) ([a0adbb7](https://github.com/googleapis/google-cloud-php/commit/a0adbb7faf9f94738543eba12fb1903eaa2a8b7b))
+
+
+### Bug Fixes
+
+* Set CRC32C as the default checksum option ([a0adbb7](https://github.com/googleapis/google-cloud-php/commit/a0adbb7faf9f94738543eba12fb1903eaa2a8b7b))
+
+</details>
+
 ## 0.327.0
 
 <details><summary>google/cloud-ai-platform 1.58.0</summary>
