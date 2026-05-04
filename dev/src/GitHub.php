@@ -407,6 +407,9 @@ class GitHub
 
             return $res->getStatusCode() === 201;
         } catch (\Exception $e) {
+            if (422 === $e->getCode()) {
+                return true; // webhook already exists!
+            }
             $this->logException($e);
             return false;
         }
