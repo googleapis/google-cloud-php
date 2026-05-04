@@ -84,7 +84,7 @@ class RepoComplianceCommand extends Command
         $emoji = fn ($check) => match ($check) { 'skipped' => '⚪', false => '❌', true => '✅', null => '❓'};
         foreach ($components as $i => $component) {
             $isNewComponent = $component->getPackageVersion() === '0.0.0'
-                || ($component->getPackageVersion() === '0.0.1' && $format == 'ci');
+                || ($component->getPackageVersion() === '0.1.0' && $format == 'ci');
 
             do {
                 $refreshDetails = false;
