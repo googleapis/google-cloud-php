@@ -18,6 +18,13 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: "8.1"
+      - name: "Ensure that branch is up to date with main branch"
+        if: github.event.pull_request.user.login != 'release-please[bot]'
+        run: |
+          if ! git merge-base --is-ancestor origin/main ${{ github.event.pull_request.head.sha }}; then
+            echo "PR branch is out of date with main. Please merge or rebase main into your branch to avoid false BC break detections."
+            exit 1
+          fi
       - name: "Install dependencies"
         run: composer global require "roave/backward-compatibility-check:^8.2"
       - name: "Check for BC breaks"
