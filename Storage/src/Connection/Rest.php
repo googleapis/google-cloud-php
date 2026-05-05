@@ -509,7 +509,10 @@ class Rest implements ConnectionInterface
             $userMd5 = $args['md5'];
             unset($args['md5']);
         }
-        if ((isset($userCrc32c) || isset($userMd5)) && !isset($args['headers']['X-Goog-Hash'])) {
+        if (isset($userCrc32c) || isset($userMd5)) {
+            // Disable auto-validation to prevent redundant calculations
+            $args['validate'] = false;
+
             $xGoogHash = [];
             if (isset($userMd5)) {
                 $xGoogHash[] = 'md5=' . $userMd5;
@@ -517,7 +520,13 @@ class Rest implements ConnectionInterface
             if (isset($userCrc32c)) {
                 $xGoogHash[] = 'crc32c=' . $userCrc32c;
             }
-            $args['headers']['X-Goog-Hash'] = implode(',', $xGoogHash);
+
+            // Append to existing X-Goog-Hash if present
+            if (isset($args['headers']['X-Goog-Hash'])) {
+                $args['headers']['X-Goog-Hash'] .= ',' . implode(',', $xGoogHash);
+            } else {
+                $args['headers']['X-Goog-Hash'] = implode(',', $xGoogHash);
+            }
         }
 
         $validate = $this->chooseValidationMethod($args);
