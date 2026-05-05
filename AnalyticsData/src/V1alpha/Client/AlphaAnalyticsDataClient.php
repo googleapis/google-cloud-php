@@ -30,13 +30,17 @@ use Google\Analytics\Data\V1alpha\AudienceList;
 use Google\Analytics\Data\V1alpha\CreateAudienceListRequest;
 use Google\Analytics\Data\V1alpha\CreateRecurringAudienceListRequest;
 use Google\Analytics\Data\V1alpha\CreateReportTaskRequest;
+use Google\Analytics\Data\V1alpha\Dimension;
 use Google\Analytics\Data\V1alpha\GetAudienceListRequest;
+use Google\Analytics\Data\V1alpha\GetMetadataRequest;
 use Google\Analytics\Data\V1alpha\GetPropertyQuotasSnapshotRequest;
 use Google\Analytics\Data\V1alpha\GetRecurringAudienceListRequest;
 use Google\Analytics\Data\V1alpha\GetReportTaskRequest;
 use Google\Analytics\Data\V1alpha\ListAudienceListsRequest;
 use Google\Analytics\Data\V1alpha\ListRecurringAudienceListsRequest;
 use Google\Analytics\Data\V1alpha\ListReportTasksRequest;
+use Google\Analytics\Data\V1alpha\Metadata;
+use Google\Analytics\Data\V1alpha\Metric;
 use Google\Analytics\Data\V1alpha\PropertyQuotasSnapshot;
 use Google\Analytics\Data\V1alpha\QueryAudienceListRequest;
 use Google\Analytics\Data\V1alpha\QueryAudienceListResponse;
@@ -46,9 +50,9 @@ use Google\Analytics\Data\V1alpha\RecurringAudienceList;
 use Google\Analytics\Data\V1alpha\ReportTask;
 use Google\Analytics\Data\V1alpha\RunFunnelReportRequest;
 use Google\Analytics\Data\V1alpha\RunFunnelReportResponse;
+use Google\Analytics\Data\V1alpha\RunReportRequest;
+use Google\Analytics\Data\V1alpha\RunReportResponse;
 use Google\Analytics\Data\V1alpha\Segment;
-use Google\Analytics\Data\V1alpha\SheetExportAudienceListRequest;
-use Google\Analytics\Data\V1alpha\SheetExportAudienceListResponse;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
@@ -82,6 +86,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<RecurringAudienceList> createRecurringAudienceListAsync(CreateRecurringAudienceListRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createReportTaskAsync(CreateReportTaskRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<AudienceList> getAudienceListAsync(GetAudienceListRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Metadata> getMetadataAsync(GetMetadataRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PropertyQuotasSnapshot> getPropertyQuotasSnapshotAsync(GetPropertyQuotasSnapshotRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<RecurringAudienceList> getRecurringAudienceListAsync(GetRecurringAudienceListRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ReportTask> getReportTaskAsync(GetReportTaskRequest $request, array $optionalArgs = [])
@@ -91,7 +96,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<QueryAudienceListResponse> queryAudienceListAsync(QueryAudienceListRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<QueryReportTaskResponse> queryReportTaskAsync(QueryReportTaskRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<RunFunnelReportResponse> runFunnelReportAsync(RunFunnelReportRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<SheetExportAudienceListResponse> sheetExportAudienceListAsync(SheetExportAudienceListRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RunReportResponse> runReportAsync(RunReportRequest $request, array $optionalArgs = [])
  */
 final class AlphaAnalyticsDataClient
 {
@@ -121,9 +126,6 @@ final class AlphaAnalyticsDataClient
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/analytics',
         'https://www.googleapis.com/auth/analytics.readonly',
-        'https://www.googleapis.com/auth/drive',
-        'https://www.googleapis.com/auth/drive.file',
-        'https://www.googleapis.com/auth/spreadsheets',
     ];
 
     private $operationsClient;
@@ -219,6 +221,23 @@ final class AlphaAnalyticsDataClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a metadata
+     * resource.
+     *
+     * @param string $property
+     *
+     * @return string The formatted metadata resource.
+     *
+     * @experimental
+     */
+    public static function metadataName(string $property): string
+    {
+        return self::getPathTemplate('metadata')->render([
+            'property' => $property,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a property
      * resource.
      *
@@ -295,6 +314,7 @@ final class AlphaAnalyticsDataClient
      * The following name formats are supported:
      * Template: Pattern
      * - audienceList: properties/{property}/audienceLists/{audience_list}
+     * - metadata: properties/{property}/metadata
      * - property: properties/{property}
      * - propertyQuotasSnapshot: properties/{property}/propertyQuotasSnapshot
      * - recurringAudienceList: properties/{property}/recurringAudienceLists/{recurring_audience_list}
@@ -582,6 +602,43 @@ final class AlphaAnalyticsDataClient
     public function getAudienceList(GetAudienceListRequest $request, array $callOptions = []): AudienceList
     {
         return $this->startApiCall('GetAudienceList', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Returns metadata for dimensions and metrics available in reporting methods.
+     * Used to explore the dimensions and metrics. In this method, a Google
+     * Analytics property identifier is specified in the request, and
+     * the metadata response includes Custom dimensions and metrics as well as
+     * Universal metadata.
+     *
+     * For example if a custom metric with parameter name `levels_unlocked` is
+     * registered to a property, the Metadata response will contain
+     * `customEvent:levels_unlocked`. Universal metadata are dimensions and
+     * metrics applicable to any property such as `country` and `totalUsers`.
+     *
+     * The async variant is {@see AlphaAnalyticsDataClient::getMetadataAsync()} .
+     *
+     * @example samples/V1alpha/AlphaAnalyticsDataClient/get_metadata.php
+     *
+     * @param GetMetadataRequest $request     A request to house fields associated with the call.
+     * @param array              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Metadata
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function getMetadata(GetMetadataRequest $request, array $callOptions = []): Metadata
+    {
+        return $this->startApiCall('GetMetadata', $request, $callOptions)->wait();
     }
 
     /**
@@ -921,33 +978,20 @@ final class AlphaAnalyticsDataClient
     }
 
     /**
-     * Exports an audience list of users to a Google Sheet. After creating an
-     * audience, the users are not immediately available for listing. First, a
-     * request to `CreateAudienceList` is necessary to create an audience list of
-     * users, and then second, this method is used to export those users in the
-     * audience list to a Google Sheet.
+     * Returns a customized report of your Google Analytics event data. Reports
+     * contain statistics derived from data collected by the Google Analytics
+     * tracking code. The data returned from the API is as a table with columns
+     * for the requested dimensions and metrics. Metrics are individual
+     * measurements of user activity on your property, such as active users or
+     * event count. Dimensions break down metrics across some common criteria,
+     * such as country or event name.
      *
-     * See [Creating an Audience
-     * List](https://developers.google.com/analytics/devguides/reporting/data/v1/audience-list-basics)
-     * for an introduction to Audience Lists with examples.
+     * The async variant is {@see AlphaAnalyticsDataClient::runReportAsync()} .
      *
-     * Audiences in Google Analytics 4 allow you to segment your users in the ways
-     * that are important to your business. To learn more, see
-     * https://support.google.com/analytics/answer/9267572.
+     * @example samples/V1alpha/AlphaAnalyticsDataClient/run_report.php
      *
-     * This method is introduced at alpha stability with the intention of
-     * gathering feedback on syntax and capabilities before entering beta. To give
-     * your feedback on this API, complete the
-     * [Google Analytics Audience Export API
-     * Feedback](https://forms.gle/EeA5u5LW6PEggtCEA) form.
-     *
-     * The async variant is
-     * {@see AlphaAnalyticsDataClient::sheetExportAudienceListAsync()} .
-     *
-     * @example samples/V1alpha/AlphaAnalyticsDataClient/sheet_export_audience_list.php
-     *
-     * @param SheetExportAudienceListRequest $request     A request to house fields associated with the call.
-     * @param array                          $callOptions {
+     * @param RunReportRequest $request     A request to house fields associated with the call.
+     * @param array            $callOptions {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
@@ -956,16 +1000,14 @@ final class AlphaAnalyticsDataClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return SheetExportAudienceListResponse
+     * @return RunReportResponse
      *
      * @throws ApiException Thrown if the API call fails.
      *
      * @experimental
      */
-    public function sheetExportAudienceList(
-        SheetExportAudienceListRequest $request,
-        array $callOptions = []
-    ): SheetExportAudienceListResponse {
-        return $this->startApiCall('SheetExportAudienceList', $request, $callOptions)->wait();
+    public function runReport(RunReportRequest $request, array $callOptions = []): RunReportResponse
+    {
+        return $this->startApiCall('RunReport', $request, $callOptions)->wait();
     }
 }

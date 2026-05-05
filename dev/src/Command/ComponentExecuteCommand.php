@@ -22,6 +22,11 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Output\OutputInterface;
 use Google\Cloud\Dev\Component;
+use Google\Cloud\Dev\GitHub;
+use Google\Cloud\Dev\Packagist;
+use Google\Cloud\Dev\RunShell;
+use GuzzleHttp\Client;
+use Symfony\Component\Console\Input\InputOption;
 
 /**
  * Execute commands for every Component
@@ -37,6 +42,8 @@ use Google\Cloud\Dev\Component;
  */
 class ComponentExecuteCommand extends Command
 {
+    private const PACKAGIST_USERNAME = 'google-cloud';
+
     protected function configure()
     {
         $this->setName('component:execute')
@@ -52,22 +59,37 @@ Execute a PHP file:
 
 EOF)
             ->addArgument('code', InputArgument::REQUIRED, 'Path to a file or PHP code to execute')
+            ->addOption('component', 'c', InputOption::VALUE_REQUIRED, 'If specified, display repo info for this component only', '')
+            ->addOption('token', 't', InputOption::VALUE_REQUIRED, 'Github token to use for authentication', '')
+            ->addOption('packagist-token', 'p', InputOption::VALUE_REQUIRED, 'Packagist token for the webhook')
         ;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $code = $input->getArgument('code');
-        $components = Component::getComponents();
+        // Create github client wrapper
+        $http = new Client();
+        $github = new GitHub(new RunShell(), $http, $input->getOption('token'), $output);
+        $packagist = new Packagist($http, self::PACKAGIST_USERNAME, $input->getOption('packagist-token') ?? '');
 
-        $codeToExecute = file_exists($code) ? file_get_contents($code) : $code;
-        if (0 === strpos($codeToExecute, '<?php')) {
-            $codeToExecute = substr($codeToExecute, 5);
+        $componentName = $input->getOption('component');
+        $components = $componentName ? [new Component($componentName)] : Component::getComponents();
+
+        $code = $input->getArgument('code');
+        if (file_exists($code)) {
+            $executeFn = require $code;
+        } else {
+            if (0 === strpos($code, '<?php')) {
+                $code = substr($code, 5);
+            }
+            $executeFn = function ($component, $github, $packagist, $output) use ($code) {
+                eval($code);
+            };
         }
-        $output->writeln('<info>' . $codeToExecute . '</>');
+
         foreach ($components as $component) {
             $output->writeln('Executing for ' . $component->getName());
-            eval($codeToExecute);
+            $executeFn($component, $github, $packagist, $output);
         }
 
         return 0;
