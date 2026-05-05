@@ -581,6 +581,140 @@ class RestTest extends TestCase
         $this->assertArrayNotHasKey('crc32c', $metadata);
     }
 
+    public function testInsertObjectWithUserProvidedHashes()
+    {
+        $rest = new Rest();
+        $testData = 'some test data';
+        $testStream = Utils::streamFor($testData);
+        $userCrc32c = 'user-crc';
+        $userMd5 = 'user-md5';
+        $expectedHashHeader = 'md5=' . $userMd5 . ',crc32c=' . $userCrc32c;
+
+        $actualRequest = null;
+        $response = new Response(200, ['Location' => 'http://www.mordor.com'], $this->successBody);
+
+        $this->requestWrapper->send(
+            Argument::type(RequestInterface::class),
+            Argument::type('array')
+        )->will(
+            function ($args) use (&$actualRequest, $response) {
+                $actualRequest = $args[0];
+                return $response;
+            }
+        );
+
+        $rest->setRequestWrapper($this->requestWrapper->reveal());
+
+        $options = [
+            'bucket' => 'my-test-bucket',
+            'name' => 'test-user-hash-file.txt',
+            'data' => $testStream,
+            'crc32c' => $userCrc32c,
+            'md5' => $userMd5,
+            'validate' => true
+        ];
+
+        $uploader = $rest->insertObject($options);
+        $this->assertInstanceOf(MultipartUploader::class, $uploader);
+        $uploader->upload();
+
+        $this->assertNotNull($actualRequest);
+        $this->assertTrue($actualRequest->hasHeader('X-Goog-Hash'));
+        $this->assertEquals([$expectedHashHeader], $actualRequest->getHeader('X-Goog-Hash'));
+
+        list($contentType, $metadata) = $this->getContentTypeAndMetadata($actualRequest);
+        $this->assertEquals($userMd5, $metadata['md5Hash']);
+        $this->assertEquals($userCrc32c, $metadata['crc32c']);
+    }
+
+    public function testInsertObjectWithUserProvidedCrc32cOnly()
+    {
+        $rest = new Rest();
+        $testData = 'some test data';
+        $testStream = Utils::streamFor($testData);
+        $userCrc32c = 'user-crc';
+        $expectedHashHeader = 'crc32c=' . $userCrc32c;
+
+        $actualRequest = null;
+        $response = new Response(200, ['Location' => 'http://www.mordor.com'], $this->successBody);
+
+        $this->requestWrapper->send(
+            Argument::type(RequestInterface::class),
+            Argument::type('array')
+        )->will(
+            function ($args) use (&$actualRequest, $response) {
+                $actualRequest = $args[0];
+                return $response;
+            }
+        );
+
+        $rest->setRequestWrapper($this->requestWrapper->reveal());
+
+        $options = [
+            'bucket' => 'my-test-bucket',
+            'name' => 'test-user-hash-file.txt',
+            'data' => $testStream,
+            'crc32c' => $userCrc32c,
+            'validate' => true
+        ];
+
+        $uploader = $rest->insertObject($options);
+        $this->assertInstanceOf(MultipartUploader::class, $uploader);
+        $uploader->upload();
+
+        $this->assertNotNull($actualRequest);
+        $this->assertTrue($actualRequest->hasHeader('X-Goog-Hash'));
+        $this->assertEquals([$expectedHashHeader], $actualRequest->getHeader('X-Goog-Hash'));
+
+        list($contentType, $metadata) = $this->getContentTypeAndMetadata($actualRequest);
+        $this->assertEquals($userCrc32c, $metadata['crc32c']);
+        $this->assertArrayNotHasKey('md5Hash', $metadata);
+    }
+
+    public function testInsertObjectWithUserProvidedMd5Only()
+    {
+        $rest = new Rest();
+        $testData = 'some test data';
+        $testStream = Utils::streamFor($testData);
+        $userMd5 = 'user-md5';
+        $expectedHashHeader = 'md5=' . $userMd5;
+
+        $actualRequest = null;
+        $response = new Response(200, ['Location' => 'http://www.mordor.com'], $this->successBody);
+
+        $this->requestWrapper->send(
+            Argument::type(RequestInterface::class),
+            Argument::type('array')
+        )->will(
+            function ($args) use (&$actualRequest, $response) {
+                $actualRequest = $args[0];
+                return $response;
+            }
+        );
+
+        $rest->setRequestWrapper($this->requestWrapper->reveal());
+
+        $options = [
+            'bucket' => 'my-test-bucket',
+            'name' => 'test-user-hash-file.txt',
+            'data' => $testStream,
+            'md5' => $userMd5,
+            'validate' => true
+        ];
+
+        $uploader = $rest->insertObject($options);
+        $this->assertInstanceOf(MultipartUploader::class, $uploader);
+        $uploader->upload();
+
+        $this->assertNotNull($actualRequest);
+        $this->assertTrue($actualRequest->hasHeader('X-Goog-Hash'));
+        $this->assertEquals([$expectedHashHeader], $actualRequest->getHeader('X-Goog-Hash'));
+
+        list($contentType, $metadata) = $this->getContentTypeAndMetadata($actualRequest);
+        $this->assertEquals($userMd5, $metadata['md5Hash']);
+        $this->assertArrayNotHasKey('crc32c', $metadata);
+    }
+
     /**
      * @dataProvider validationMethod
      */

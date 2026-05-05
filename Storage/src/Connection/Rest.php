@@ -499,6 +499,27 @@ class Rest implements ConnectionInterface
             $args['name'] = basename($args['data']->getMetadata('uri'));
         }
 
+        if (isset($args['crc32c'])) {
+            $args['metadata']['crc32c'] = $args['crc32c'];
+            $userCrc32c = $args['crc32c'];
+            unset($args['crc32c']);
+        }
+        if (isset($args['md5'])) {
+            $args['metadata']['md5Hash'] = $args['md5'];
+            $userMd5 = $args['md5'];
+            unset($args['md5']);
+        }
+        if ((isset($userCrc32c) || isset($userMd5)) && !isset($args['headers']['X-Goog-Hash'])) {
+            $xGoogHash = [];
+            if (isset($userMd5)) {
+                $xGoogHash[] = 'md5=' . $userMd5;
+            }
+            if (isset($userCrc32c)) {
+                $xGoogHash[] = 'crc32c=' . $userCrc32c;
+            }
+            $args['headers']['X-Goog-Hash'] = implode(',', $xGoogHash);
+        }
+
         $validate = $this->chooseValidationMethod($args);
         $xGoogHashHeader = '';
         if ($validate !== false) {
