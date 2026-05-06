@@ -28,6 +28,7 @@ use DateTime;
 class Component
 {
     const VERSION_REGEX = '/^V([0-9])?(p[0-9])?(beta|alpha)?[0-9]?$/';
+    private const PROTOBUF = 'google/protobuf';
     public const ROOT_DIR = __DIR__ . '/../../';
     private string $path;
     private string $releaseLevel;
@@ -188,7 +189,10 @@ class Component
         $this->description = $composerJson['description'];
         $this->composerVersion = $composerJson['version'] ?? null;
 
-        if (!$repoName = $composerJson['extra']['component']['target'] ?? null) {
+        if ($this->packageName === Component::PROTOBUF) {
+            // special handling for protobuf "virtual" package
+            $repoName = 'protocolbuffers/protobuf';
+        } elseif (!$repoName = $composerJson['extra']['component']['target'] ?? null) {
             if (!str_starts_with($composerJson['homepage'], 'https://github.com/')) {
                 throw new RuntimeException(
                     'composer does not contain extra.component.target, and homepage is not a github URL'
@@ -204,6 +208,13 @@ class Component
             $repoMetadataJson = $repoMetadataFullJson[$this->name];
         } elseif (file_exists($repoMetadataPath = $this->path . '/.repo-metadata.json')) {
             $repoMetadataJson = json_decode(file_get_contents($repoMetadataPath), true);
+        } elseif ($this->packageName === Component::PROTOBUF) {
+            // special handling for protobuf "virtual" package
+            $repoMetadataJson = [
+                'release_level' => 'stable',
+                'client_documentation' => 'https://cloud.google.com/php/docs/reference/auth/latest',
+                'library_type' => 'CORE',
+            ];
         } else {
             throw new RuntimeException(sprintf(
                 'repo metadata not found for component "%s" and no .repo-metadata.json file found in %s',
@@ -218,16 +229,22 @@ class Component
                 $this->name
             ));
         }
-        if (empty($repoMetadataJson['release_level'])) {
+        if (empty($repoMetadataJson['client_documentation'])) {
             throw new RuntimeException(sprintf(
                 'repo metadata does not contain "client_documentation" for component "%s"',
                 $this->name
             ));
         }
+        if (empty($repoMetadataJson['library_type'])) {
+            throw new RuntimeException(sprintf(
+                'repo metadata does not contain "library_type" for component "%s"',
+                $this->name
+            ));
+        }
         $this->releaseLevel = $repoMetadataJson['release_level'];
         $this->clientDocumentation = $repoMetadataJson['client_documentation'];
-        $this->productDocumentation = $repoMetadataJson['product_documentation'] ?? '';
         $this->libraryType = $repoMetadataJson['library_type'];
+        $this->productDocumentation = $repoMetadataJson['product_documentation'] ?? '';
 
         $namespaces = [];
         foreach ($composerJson['autoload']['psr-4'] as $namespace => $dir) {
@@ -261,6 +278,10 @@ class Component
                 $this->componentDependencies[] = new Component('CommonProtos');
             }
         }
+        // add protobuf if it's required
+        if (isset($composerJson['require']['google/protobuf'])) {
+            $this->componentDependencies[] = new Component('protobuf', self::ROOT_DIR . '/dev/vendor/google/protobuf');
+        }
     }
 
     /**
@@ -268,6 +289,9 @@ class Component
      */
     public function getPackageVersion(): string
     {
+        if (!file_exists(sprintf('%s/VERSION', $this->path))) {
+            return '';
+        }
         return trim(file_get_contents(sprintf('%s/VERSION', $this->path)));
     }
 

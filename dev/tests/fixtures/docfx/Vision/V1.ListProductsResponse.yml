@@ -54,7 +54,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Internal/RepeatedField">Google\Protobuf\Internal\RepeatedField</a>'
+          var_type: '<xref uid="\Google\Protobuf\Internal\RepeatedField">Google\Protobuf\Internal\RepeatedField</xref>'
   -
     uid: '\Google\Cloud\Vision\V1\ListProductsResponse::setProducts()'
     name: setProducts

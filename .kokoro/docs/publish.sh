@@ -60,6 +60,16 @@ $PROJECT_DIR/dev/google-cloud docfx \
     $STAGING_FLAG \
     $VERBOSITY_FLAG
 
+# Add protobuf
+PROTOBUF_DIR=$PROJECT_DIR/dev/vendor/google/protobuf
+PROTOBUF_VERSION=$(composer info google/protobuf -f json | jq .versions[0])
+$PROJECT_DIR/dev/google-cloud docfx \
+    --path $PROTOBUF_DIR \
+    --out protobuf-out \
+    --metadata-version $PROTOBUF_VERSION \
+    $STAGING_FLAG \
+    $VERBOSITY_FLAG
+
 # Add product-neutral guides
 $PROJECT_DIR/dev/google-cloud docfx \
     --generate-product-neutral-guides \
