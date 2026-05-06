@@ -454,4 +454,33 @@ class ManageTablesTest extends BigQueryTestCase
             ],
         ];
     }
+
+    public function testTableView()
+    {
+        $id = uniqid(self::TESTING_PREFIX);
+        $table = self::$dataset->createTable($id, [
+            'schema' => [
+                'fields' => [
+                    ['name' => 'column', 'type' => 'STRING']
+                ]
+            ]
+        ]);
+
+        $this->runJob($table->load('{"column": "test"}' . PHP_EOL, [
+            'configuration' => [
+                'load' => [
+                    'sourceFormat' => 'NEWLINE_DELIMITED_JSON'
+                ]
+            ]
+        ]));
+
+        // BASIC view should not include storage statistics
+        $info = $table->reload(['view' => Table::BASIC_METADATA_VIEW]);
+        $this->assertArrayNotHasKey('numRows', $info);
+
+        // FULL view should include storage statistics
+        $info = $table->reload(['view' => Table::FULL_METADATA_VIEW]);
+        $this->assertArrayHasKey('numRows', $info);
+        $this->assertEquals(1, $info['numRows']);
+    }
 }

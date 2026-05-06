@@ -41,6 +41,10 @@ class Table
 {
     const MAX_RETRIES = 100;
     const INSERT_CREATE_MAX_DELAY_MICROSECONDS = 60000000;
+    public const BASIC_METADATA_VIEW = 'BASIC';
+    public const FULL_METADATA_VIEW = 'FULL';
+    public const STORAGE_STATS_METADATA_VIEW = 'STORAGE_STATS';
+    public const UNSPECIFIED_METADATA_VIEW = 'TABLE_METADATA_VIEW_UNSPECIFIED';
 
     use ArrayTrait;
     use ConcurrencyControlTrait;
@@ -717,7 +721,15 @@ class Table
      *
      * @see https://cloud.google.com/bigquery/docs/reference/rest/v2/tables Tables resource documentation.
      *
-     * @param array $options [optional] Configuration options.
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     **Note:** If metadata is already cached, $options will be ignored.
+     *     Use {@see Table::reload()} to force a refresh with specific options.
+     *
+     *     More information:
+     *     https://docs.cloud.google.com/bigquery/docs/reference/rest/v2/tables/get#query-parameters
+     * }
      * @return array
      */
     public function info(array $options = [])
@@ -741,7 +753,12 @@ class Table
      *
      * @see https://cloud.google.com/bigquery/docs/reference/rest/v2/tables/get Tables get API documentation.
      *
-     * @param array $options [optional] Configuration options.
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     More information:
+     *     https://docs.cloud.google.com/bigquery/docs/reference/rest/v2/tables/get#query-parameters
+     * }
      * @return array
      */
     public function reload(array $options = [])
