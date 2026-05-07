@@ -10,7 +10,7 @@ use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
- * [ListLineageEvents][google.cloud.datacatalog.lineage.v1.ListLineageEvents].
+ * [ListLineageEvents][google.cloud.datacatalog.lineage.v1.Lineage.ListLineageEvents].
  *
  * Generated from protobuf message <code>google.cloud.datacatalog.lineage.v1.ListLineageEventsRequest</code>
  */
@@ -24,21 +24,21 @@ class ListLineageEventsRequest extends \Google\Protobuf\Internal\Message
      */
     protected $parent = '';
     /**
-     * The maximum number of lineage events to return.
+     * Optional. The maximum number of lineage events to return.
      * The service may return fewer events than this value.
      * If unspecified, at most 50 events are returned. The maximum value is 100;
      * values greater than 100 are cut to 100.
      *
-     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $page_size = 0;
     /**
-     * The page token received from a previous `ListLineageEvents` call. Specify
-     * it to get the next page.
+     * Optional. The page token received from a previous `ListLineageEvents` call.
+     * Specify it to get the next page.
      * When paginating, all other parameters specified in this call must
      * match the parameters of the call that provided the page token.
      *
-     * Generated from protobuf field <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $page_token = '';
 
@@ -66,13 +66,13 @@ class ListLineageEventsRequest extends \Google\Protobuf\Internal\Message
      *           Required. The name of the run that owns the collection of lineage events to
      *           get.
      *     @type int $page_size
-     *           The maximum number of lineage events to return.
+     *           Optional. The maximum number of lineage events to return.
      *           The service may return fewer events than this value.
      *           If unspecified, at most 50 events are returned. The maximum value is 100;
      *           values greater than 100 are cut to 100.
      *     @type string $page_token
-     *           The page token received from a previous `ListLineageEvents` call. Specify
-     *           it to get the next page.
+     *           Optional. The page token received from a previous `ListLineageEvents` call.
+     *           Specify it to get the next page.
      *           When paginating, all other parameters specified in this call must
      *           match the parameters of the call that provided the page token.
      * }
@@ -111,12 +111,12 @@ class ListLineageEventsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of lineage events to return.
+     * Optional. The maximum number of lineage events to return.
      * The service may return fewer events than this value.
      * If unspecified, at most 50 events are returned. The maximum value is 100;
      * values greater than 100 are cut to 100.
      *
-     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getPageSize()
@@ -125,12 +125,12 @@ class ListLineageEventsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of lineage events to return.
+     * Optional. The maximum number of lineage events to return.
      * The service may return fewer events than this value.
      * If unspecified, at most 50 events are returned. The maximum value is 100;
      * values greater than 100 are cut to 100.
      *
-     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -143,12 +143,12 @@ class ListLineageEventsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The page token received from a previous `ListLineageEvents` call. Specify
-     * it to get the next page.
+     * Optional. The page token received from a previous `ListLineageEvents` call.
+     * Specify it to get the next page.
      * When paginating, all other parameters specified in this call must
      * match the parameters of the call that provided the page token.
      *
-     * Generated from protobuf field <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getPageToken()
@@ -157,12 +157,12 @@ class ListLineageEventsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The page token received from a previous `ListLineageEvents` call. Specify
-     * it to get the next page.
+     * Optional. The page token received from a previous `ListLineageEvents` call.
+     * Specify it to get the next page.
      * When paginating, all other parameters specified in this call must
      * match the parameters of the call that provided the page token.
      *
-     * Generated from protobuf field <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

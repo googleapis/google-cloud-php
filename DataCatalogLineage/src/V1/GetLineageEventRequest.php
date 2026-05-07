@@ -10,7 +10,7 @@ use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
- * [GetLineageEvent][google.cloud.datacatalog.lineage.v1.GetLineageEvent].
+ * [GetLineageEvent][google.cloud.datacatalog.lineage.v1.Lineage.GetLineageEvent].
  *
  * Generated from protobuf message <code>google.cloud.datacatalog.lineage.v1.GetLineageEventRequest</code>
  */
