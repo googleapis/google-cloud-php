@@ -39,6 +39,8 @@ use Google\Api\HttpBody;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\AIPlatform\V1\AsyncQueryReasoningEngineRequest;
 use Google\Cloud\AIPlatform\V1\AsyncQueryReasoningEngineResponse;
+use Google\Cloud\AIPlatform\V1\CancelAsyncQueryReasoningEngineRequest;
+use Google\Cloud\AIPlatform\V1\CancelAsyncQueryReasoningEngineResponse;
 use Google\Cloud\AIPlatform\V1\QueryReasoningEngineRequest;
 use Google\Cloud\AIPlatform\V1\QueryReasoningEngineResponse;
 use Google\Cloud\AIPlatform\V1\StreamQueryReasoningEngineRequest;
@@ -67,6 +69,7 @@ use Psr\Log\LoggerInterface;
  * contained within formatted names that are returned by the API.
  *
  * @method PromiseInterface<OperationResponse> asyncQueryReasoningEngineAsync(AsyncQueryReasoningEngineRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CancelAsyncQueryReasoningEngineResponse> cancelAsyncQueryReasoningEngineAsync(CancelAsyncQueryReasoningEngineRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<QueryReasoningEngineResponse> queryReasoningEngineAsync(QueryReasoningEngineRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
@@ -328,6 +331,36 @@ final class ReasoningEngineExecutionServiceClient
         array $callOptions = []
     ): OperationResponse {
         return $this->startApiCall('AsyncQueryReasoningEngine', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Cancels an AsyncQueryReasoningEngine operation.
+     *
+     * The async variant is
+     * {@see ReasoningEngineExecutionServiceClient::cancelAsyncQueryReasoningEngineAsync()}
+     * .
+     *
+     * @example samples/V1/ReasoningEngineExecutionServiceClient/cancel_async_query_reasoning_engine.php
+     *
+     * @param CancelAsyncQueryReasoningEngineRequest $request     A request to house fields associated with the call.
+     * @param array                                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return CancelAsyncQueryReasoningEngineResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function cancelAsyncQueryReasoningEngine(
+        CancelAsyncQueryReasoningEngineRequest $request,
+        array $callOptions = []
+    ): CancelAsyncQueryReasoningEngineResponse {
+        return $this->startApiCall('CancelAsyncQueryReasoningEngine', $request, $callOptions)->wait();
     }
 
     /**
