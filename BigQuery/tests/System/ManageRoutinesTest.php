@@ -18,6 +18,8 @@
 namespace Google\Cloud\BigQuery\Tests\System;
 
 use Google\Cloud\BigQuery\Routine;
+use Google\Cloud\Core\RequestWrapper;
+use GuzzleHttp\Psr7\Request;
 
 /**
  * @group bigquery
@@ -132,5 +134,89 @@ class ManageRoutinesTest extends BigQueryTestCase
         $routine->delete();
 
         $this->assertFalse($routine->exists());
+    }
+
+    public function testCreateRemoteUdf()
+    {
+        $routineId = uniqid(self::TESTING_PREFIX);
+        $connectionId = uniqid('udf_conn');
+
+        $connectionName = $this->createConnection($connectionId);
+
+        try {
+            $routine = self::$dataset->createRoutine($routineId, [
+                'routineType' => 'SCALAR_FUNCTION',
+                'language' => 'SQL',
+                'returnType' => [
+                    'typeKind' => 'STRING'
+                ],
+                'remoteFunctionOptions' => [
+                    'endpoint' => 'https://us-east1-my_gcf_project.cloudfunctions.net/remote_add',
+                    'connection' => $connectionName,
+                    'maxBatchingRows' => '10',
+                    'userDefinedContext' => [
+                        'key' => 'value'
+                    ]
+                ]
+            ]);
+
+            $this->assertTrue($routine->exists());
+
+            $info = $routine->info();
+            $this->assertEquals('SCALAR_FUNCTION', $info['routineType']);
+            $this->assertArrayHasKey('remoteFunctionOptions', $info);
+            $this->assertEquals(
+                'https://us-east1-my_gcf_project.cloudfunctions.net/remote_add',
+                $info['remoteFunctionOptions']['endpoint']
+            );
+
+            $routine->delete();
+        } finally {
+            $this->deleteConnection($connectionName);
+        }
+    }
+
+    private function createConnection($connectionId)
+    {
+        // There is a BigQueryConnection client available in the PHP cloud
+        // but decided to create it here manually instead of adding it as a dependency just for testing.
+        $projectId = self::$dataset->identity()['projectId'];
+        $location = 'us';
+        $parent = "projects/$projectId/locations/$location";
+        $uri = "https://bigqueryconnection.googleapis.com/v1/$parent/connections?connectionId=$connectionId";
+
+        $body = json_encode([
+            'friendlyName' => $connectionId,
+            'cloudResource' => new \stdClass()
+        ]);
+
+        $request = new Request(
+            'POST',
+            $uri,
+            ['Content-Type' => 'application/json'],
+            $body
+        );
+
+        $requestWrapper = new RequestWrapper([
+            'keyFilePath' => getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH'),
+            'scopes' => ['https://www.googleapis.com/auth/cloud-platform']
+        ]);
+
+        $response = $requestWrapper->send($request);
+        $data = json_decode($response->getBody(), true);
+        return $data['name'];
+    }
+
+    private function deleteConnection($name)
+    {
+        $uri = "https://bigqueryconnection.googleapis.com/v1/$name";
+        $request = new Request('DELETE', $uri);
+
+        $requestWrapper = new RequestWrapper([
+            'keyFilePath' => getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH'),
+            'scopes' => ['https://www.googleapis.com/auth/cloud-platform']
+        ]);
+
+        $requestWrapper->send($request);
     }
 }
