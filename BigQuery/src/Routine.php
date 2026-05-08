@@ -201,6 +201,20 @@ class Routine
      * ]);
      * ```
      *
+     * ```
+     * // Update the routine with remote function options.
+     * $routine->update([
+     *     'remoteFunctionOptions' => [
+     *         'endpoint' => 'https://us-east1-my_gcf_project.cloudfunctions.net/remote_add',
+     *         'connection' => 'projects/project-id/locations/us/connections/connection-id',
+     *         'maxBatchingRows' => '10',
+     *         'userDefinedContext' => [
+     *             'key' => 'value'
+     *         ]
+     *     ]
+     * ]);
+     * ```
+     *
      * @see https://cloud.google.com/bigquery/docs/reference/rest/v2/routines/update Update Routines API documentation.
      * @param array $metadata The full routine resource with desired
      *        modifications.
