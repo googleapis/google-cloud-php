@@ -115,6 +115,22 @@ class DocFxCommandTest extends TestCase
         $this->assertFileEqualsWithDiff($left, $right, '1' === getenv('UPDATE_FIXTURES'));
     }
 
+    public function testDocFxIterfaceFile()
+    {
+        self::getCommandTester()->execute([
+            '--component' => 'Auth',
+            '--xml' => self::$fixturesDir . '/phpdoc/auth.xml',
+            '--out' => $tmpDir = sys_get_temp_dir() . '/' . rand(),
+            '--metadata-version' => '1.0.0',
+            '--path' => __DIR__ . '/../../../vendor/google/auth',
+            '--with-cache' => true,
+        ]);
+
+        $left  = self::$fixturesDir . '/docfx/Auth/FetchAuthTokenInterface.yml';
+        $right = $tmpDir . '/FetchAuthTokenInterface.yml';
+        $this->assertFileEqualsWithDiff($left, $right, '1' === getenv('UPDATE_FIXTURES'));
+    }
+
     /**
      * @depends testDocFxFiles
      */
