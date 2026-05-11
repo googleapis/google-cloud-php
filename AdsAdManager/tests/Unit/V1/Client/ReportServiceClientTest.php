@@ -44,7 +44,6 @@ use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
-use Google\Protobuf\FieldMask;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -533,8 +532,7 @@ class ReportServiceClientTest extends GeneratedTest
         $reportDefinitionReportType = ReportType::REPORT_TYPE_UNSPECIFIED;
         $reportReportDefinition->setReportType($reportDefinitionReportType);
         $report->setReportDefinition($reportReportDefinition);
-        $updateMask = new FieldMask();
-        $request = (new UpdateReportRequest())->setReport($report)->setUpdateMask($updateMask);
+        $request = (new UpdateReportRequest())->setReport($report);
         $response = $gapicClient->updateReport($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -544,8 +542,6 @@ class ReportServiceClientTest extends GeneratedTest
         $this->assertSame('/google.ads.admanager.v1.ReportService/UpdateReport', $actualFuncCall);
         $actualValue = $actualRequestObject->getReport();
         $this->assertProtobufEquals($report, $actualValue);
-        $actualValue = $actualRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -582,8 +578,7 @@ class ReportServiceClientTest extends GeneratedTest
         $reportDefinitionReportType = ReportType::REPORT_TYPE_UNSPECIFIED;
         $reportReportDefinition->setReportType($reportDefinitionReportType);
         $report->setReportDefinition($reportReportDefinition);
-        $updateMask = new FieldMask();
-        $request = (new UpdateReportRequest())->setReport($report)->setUpdateMask($updateMask);
+        $request = (new UpdateReportRequest())->setReport($report);
         try {
             $gapicClient->updateReport($request);
             // If the $gapicClient method call did not throw, fail the test

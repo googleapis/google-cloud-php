@@ -26,6 +26,12 @@ class ReportType
      */
     const HISTORICAL = 1;
     /**
+     * Future sell through.
+     *
+     * Generated from protobuf enum <code>FUTURE_SELL_THROUGH = 4;</code>
+     */
+    const FUTURE_SELL_THROUGH = 4;
+    /**
      * Reach.
      *
      * Generated from protobuf enum <code>REACH = 5;</code>
@@ -55,15 +61,51 @@ class ReportType
      * Generated from protobuf enum <code>AD_SPEED = 13;</code>
      */
     const AD_SPEED = 13;
+    /**
+     * Real time video.
+     *
+     * Generated from protobuf enum <code>REAL_TIME_VIDEO = 15;</code>
+     */
+    const REAL_TIME_VIDEO = 15;
+    /**
+     * Youtube consolidated.
+     *
+     * Generated from protobuf enum <code>YOUTUBE_CONSOLIDATED = 16;</code>
+     */
+    const YOUTUBE_CONSOLIDATED = 16;
+    /**
+     * Ads traffic navigator report.
+     *
+     * Generated from protobuf enum <code>ADS_TRAFFIC_NAVIGATOR = 21;</code>
+     */
+    const ADS_TRAFFIC_NAVIGATOR = 21;
+    /**
+     * Off property campaigns report.
+     *
+     * Generated from protobuf enum <code>OFF_PROPERTY_CAMPAIGNS = 22;</code>
+     */
+    const OFF_PROPERTY_CAMPAIGNS = 22;
+    /**
+     * On platform multicall report.
+     *
+     * Generated from protobuf enum <code>ON_PLATFORM_MULTICALL = 24;</code>
+     */
+    const ON_PLATFORM_MULTICALL = 24;
 
     private static $valueToName = [
         self::REPORT_TYPE_UNSPECIFIED => 'REPORT_TYPE_UNSPECIFIED',
         self::HISTORICAL => 'HISTORICAL',
+        self::FUTURE_SELL_THROUGH => 'FUTURE_SELL_THROUGH',
         self::REACH => 'REACH',
         self::PRIVACY_AND_MESSAGING => 'PRIVACY_AND_MESSAGING',
         self::REVENUE_VERIFICATION => 'REVENUE_VERIFICATION',
         self::PARTNER_FINANCE => 'PARTNER_FINANCE',
         self::AD_SPEED => 'AD_SPEED',
+        self::REAL_TIME_VIDEO => 'REAL_TIME_VIDEO',
+        self::YOUTUBE_CONSOLIDATED => 'YOUTUBE_CONSOLIDATED',
+        self::ADS_TRAFFIC_NAVIGATOR => 'ADS_TRAFFIC_NAVIGATOR',
+        self::OFF_PROPERTY_CAMPAIGNS => 'OFF_PROPERTY_CAMPAIGNS',
+        self::ON_PLATFORM_MULTICALL => 'ON_PLATFORM_MULTICALL',
     ];
 
     public static function name($value)

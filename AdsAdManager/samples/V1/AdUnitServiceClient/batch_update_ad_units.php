@@ -29,7 +29,6 @@ use Google\Ads\AdManager\V1\BatchUpdateAdUnitsResponse;
 use Google\Ads\AdManager\V1\Client\AdUnitServiceClient;
 use Google\Ads\AdManager\V1\UpdateAdUnitRequest;
 use Google\ApiCore\ApiException;
-use Google\Protobuf\FieldMask;
 
 /**
  * API to batch update `AdUnit` objects.
@@ -58,10 +57,8 @@ function batch_update_ad_units_sample(
     $requestsAdUnit = (new AdUnit())
         ->setParentAdUnit($formattedRequestsAdUnitParentAdUnit)
         ->setDisplayName($requestsAdUnitDisplayName);
-    $requestsUpdateMask = new FieldMask();
     $updateAdUnitRequest = (new UpdateAdUnitRequest())
-        ->setAdUnit($requestsAdUnit)
-        ->setUpdateMask($requestsUpdateMask);
+        ->setAdUnit($requestsAdUnit);
     $requests = [$updateAdUnitRequest,];
     $request = (new BatchUpdateAdUnitsRequest())
         ->setParent($formattedParent)

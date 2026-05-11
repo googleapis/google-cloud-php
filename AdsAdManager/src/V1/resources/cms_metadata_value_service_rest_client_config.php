@@ -23,6 +23,30 @@
 return [
     'interfaces' => [
         'google.ads.admanager.v1.CmsMetadataValueService' => [
+            'BatchActivateCmsMetadataValues' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/cmsMetadataValues:batchActivate',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchDeactivateCmsMetadataValues' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/cmsMetadataValues:batchDeactivate',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'GetCmsMetadataValue' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=networks/*/cmsMetadataValues/*}',
@@ -47,6 +71,17 @@ return [
             ],
         ],
         'google.longrunning.Operations' => [
+            'CancelOperation' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=networks/*/operations/reports/runs/*}:cancel',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetOperation' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=networks/*/operations/reports/runs/*}',

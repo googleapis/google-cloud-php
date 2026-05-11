@@ -27,7 +27,6 @@ use Google\Ads\AdManager\V1\Client\SiteServiceClient;
 use Google\Ads\AdManager\V1\Site;
 use Google\Ads\AdManager\V1\UpdateSiteRequest;
 use Google\ApiCore\ApiException;
-use Google\Protobuf\FieldMask;
 
 /**
  * API to update a `Site` object.
@@ -42,10 +41,8 @@ function update_site_sample(string $siteUrl): void
     // Prepare the request message.
     $site = (new Site())
         ->setUrl($siteUrl);
-    $updateMask = new FieldMask();
     $request = (new UpdateSiteRequest())
-        ->setSite($site)
-        ->setUpdateMask($updateMask);
+        ->setSite($site);
 
     // Call the API and handle any network failures.
     try {

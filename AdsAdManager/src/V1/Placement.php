@@ -23,9 +23,10 @@ class Placement extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
-     * Output only. `Placement` ID.
+     * Output only. Deprecated: `Placement` ID.
      *
-     * Generated from protobuf field <code>int64 placement_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>int64 placement_id = 2 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @deprecated
      */
     protected $placement_id = 0;
     /**
@@ -79,7 +80,7 @@ class Placement extends \Google\Protobuf\Internal\Message
      *           Identifier. The resource name of the `Placement`.
      *           Format: `networks/{network_code}/placements/{placement_id}`
      *     @type int|string $placement_id
-     *           Output only. `Placement` ID.
+     *           Output only. Deprecated: `Placement` ID.
      *     @type string $display_name
      *           Required. The display name of the placement. This attribute has a maximum
      *           length of 255 characters.
@@ -132,25 +133,31 @@ class Placement extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. `Placement` ID.
+     * Output only. Deprecated: `Placement` ID.
      *
-     * Generated from protobuf field <code>int64 placement_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>int64 placement_id = 2 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int|string
+     * @deprecated
      */
     public function getPlacementId()
     {
+        if ($this->placement_id !== 0) {
+            @trigger_error('placement_id is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->placement_id;
     }
 
     /**
-     * Output only. `Placement` ID.
+     * Output only. Deprecated: `Placement` ID.
      *
-     * Generated from protobuf field <code>int64 placement_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>int64 placement_id = 2 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int|string $var
      * @return $this
+     * @deprecated
      */
     public function setPlacementId($var)
     {
+        @trigger_error('placement_id is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkInt64($var);
         $this->placement_id = $var;
 
