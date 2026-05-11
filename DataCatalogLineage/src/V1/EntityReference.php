@@ -17,12 +17,25 @@ class EntityReference extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. [Fully Qualified Name
-     * (FQN)](https://cloud.google.com/data-catalog/docs/fully-qualified-names)
+     * (FQN)](https://cloud.google.com/dataplex/docs/fully-qualified-names)
      * of the entity.
      *
      * Generated from protobuf field <code>string fully_qualified_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $fully_qualified_name = '';
+    /**
+     * Optional. Field path within the entity. Each nesting level should be a
+     * separate value in the repeated field. The order matters. Must be empty for
+     * asset level lineage
+     * For example to address "salary.net" subfield where "salary" is a column and
+     * "net" is a proto field two values in the `field` should be reported,
+     * the first is "salary" and the second is "net".
+     * Each field length is limited to 500 characters.
+     * Maximum supported nesting level is 20.
+     *
+     * Generated from protobuf field <code>repeated string field = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $field;
 
     /**
      * Constructor.
@@ -32,8 +45,17 @@ class EntityReference extends \Google\Protobuf\Internal\Message
      *
      *     @type string $fully_qualified_name
      *           Required. [Fully Qualified Name
-     *           (FQN)](https://cloud.google.com/data-catalog/docs/fully-qualified-names)
+     *           (FQN)](https://cloud.google.com/dataplex/docs/fully-qualified-names)
      *           of the entity.
+     *     @type string[] $field
+     *           Optional. Field path within the entity. Each nesting level should be a
+     *           separate value in the repeated field. The order matters. Must be empty for
+     *           asset level lineage
+     *           For example to address "salary.net" subfield where "salary" is a column and
+     *           "net" is a proto field two values in the `field` should be reported,
+     *           the first is "salary" and the second is "net".
+     *           Each field length is limited to 500 characters.
+     *           Maximum supported nesting level is 20.
      * }
      */
     public function __construct($data = NULL) {
@@ -43,7 +65,7 @@ class EntityReference extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. [Fully Qualified Name
-     * (FQN)](https://cloud.google.com/data-catalog/docs/fully-qualified-names)
+     * (FQN)](https://cloud.google.com/dataplex/docs/fully-qualified-names)
      * of the entity.
      *
      * Generated from protobuf field <code>string fully_qualified_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -56,7 +78,7 @@ class EntityReference extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. [Fully Qualified Name
-     * (FQN)](https://cloud.google.com/data-catalog/docs/fully-qualified-names)
+     * (FQN)](https://cloud.google.com/dataplex/docs/fully-qualified-names)
      * of the entity.
      *
      * Generated from protobuf field <code>string fully_qualified_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -67,6 +89,46 @@ class EntityReference extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->fully_qualified_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Field path within the entity. Each nesting level should be a
+     * separate value in the repeated field. The order matters. Must be empty for
+     * asset level lineage
+     * For example to address "salary.net" subfield where "salary" is a column and
+     * "net" is a proto field two values in the `field` should be reported,
+     * the first is "salary" and the second is "net".
+     * Each field length is limited to 500 characters.
+     * Maximum supported nesting level is 20.
+     *
+     * Generated from protobuf field <code>repeated string field = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return RepeatedField<string>
+     */
+    public function getField()
+    {
+        return $this->field;
+    }
+
+    /**
+     * Optional. Field path within the entity. Each nesting level should be a
+     * separate value in the repeated field. The order matters. Must be empty for
+     * asset level lineage
+     * For example to address "salary.net" subfield where "salary" is a column and
+     * "net" is a proto field two values in the `field` should be reported,
+     * the first is "salary" and the second is "net".
+     * Each field length is limited to 500 characters.
+     * Maximum supported nesting level is 20.
+     *
+     * Generated from protobuf field <code>repeated string field = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string[] $var
+     * @return $this
+     */
+    public function setField($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->field = $arr;
 
         return $this;
     }
