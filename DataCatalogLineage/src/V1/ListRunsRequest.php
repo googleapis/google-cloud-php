@@ -10,7 +10,7 @@ use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
- * [ListRuns][google.cloud.datacatalog.lineage.v1.ListRuns].
+ * [ListRuns][google.cloud.datacatalog.lineage.v1.Lineage.ListRuns].
  *
  * Generated from protobuf message <code>google.cloud.datacatalog.lineage.v1.ListRunsRequest</code>
  */
@@ -23,21 +23,21 @@ class ListRunsRequest extends \Google\Protobuf\Internal\Message
      */
     protected $parent = '';
     /**
-     * The maximum number of runs to return. The service may return
+     * Optional. The maximum number of runs to return. The service may return
      * fewer than this value. If unspecified, at most 50 runs are
      * returned. The maximum value is 100; values greater than 100 are cut to
      * 100.
      *
-     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $page_size = 0;
     /**
-     * The page token received from a previous `ListRuns` call. Specify
+     * Optional. The page token received from a previous `ListRuns` call. Specify
      * it to get the next page.
      * When paginating, all other parameters specified in this call must
      * match the parameters of the call that provided the page token.
      *
-     * Generated from protobuf field <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $page_token = '';
 
@@ -64,12 +64,12 @@ class ListRunsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The name of process that owns this collection of runs.
      *     @type int $page_size
-     *           The maximum number of runs to return. The service may return
+     *           Optional. The maximum number of runs to return. The service may return
      *           fewer than this value. If unspecified, at most 50 runs are
      *           returned. The maximum value is 100; values greater than 100 are cut to
      *           100.
      *     @type string $page_token
-     *           The page token received from a previous `ListRuns` call. Specify
+     *           Optional. The page token received from a previous `ListRuns` call. Specify
      *           it to get the next page.
      *           When paginating, all other parameters specified in this call must
      *           match the parameters of the call that provided the page token.
@@ -107,12 +107,12 @@ class ListRunsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of runs to return. The service may return
+     * Optional. The maximum number of runs to return. The service may return
      * fewer than this value. If unspecified, at most 50 runs are
      * returned. The maximum value is 100; values greater than 100 are cut to
      * 100.
      *
-     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getPageSize()
@@ -121,12 +121,12 @@ class ListRunsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of runs to return. The service may return
+     * Optional. The maximum number of runs to return. The service may return
      * fewer than this value. If unspecified, at most 50 runs are
      * returned. The maximum value is 100; values greater than 100 are cut to
      * 100.
      *
-     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -139,12 +139,12 @@ class ListRunsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The page token received from a previous `ListRuns` call. Specify
+     * Optional. The page token received from a previous `ListRuns` call. Specify
      * it to get the next page.
      * When paginating, all other parameters specified in this call must
      * match the parameters of the call that provided the page token.
      *
-     * Generated from protobuf field <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getPageToken()
@@ -153,12 +153,12 @@ class ListRunsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The page token received from a previous `ListRuns` call. Specify
+     * Optional. The page token received from a previous `ListRuns` call. Specify
      * it to get the next page.
      * When paginating, all other parameters specified in this call must
      * match the parameters of the call that provided the page token.
      *
-     * Generated from protobuf field <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

@@ -351,6 +351,7 @@ class ChatServiceClientTest extends GeneratedTest
         $fallbackText = 'fallbackText563106922';
         $argumentText = 'argumentText-39826065';
         $threadReply = false;
+        $silent = false;
         $clientAssignedMessageId = 'clientAssignedMessageId-1116632848';
         $expectedResponse = new Message();
         $expectedResponse->setName($name);
@@ -359,6 +360,7 @@ class ChatServiceClientTest extends GeneratedTest
         $expectedResponse->setFallbackText($fallbackText);
         $expectedResponse->setArgumentText($argumentText);
         $expectedResponse->setThreadReply($threadReply);
+        $expectedResponse->setSilent($silent);
         $expectedResponse->setClientAssignedMessageId($clientAssignedMessageId);
         $transport->addResponse($expectedResponse);
         // Mock request
@@ -1393,6 +1395,7 @@ class ChatServiceClientTest extends GeneratedTest
         $fallbackText = 'fallbackText563106922';
         $argumentText = 'argumentText-39826065';
         $threadReply = false;
+        $silent = false;
         $clientAssignedMessageId = 'clientAssignedMessageId-1116632848';
         $expectedResponse = new Message();
         $expectedResponse->setName($name2);
@@ -1401,6 +1404,7 @@ class ChatServiceClientTest extends GeneratedTest
         $expectedResponse->setFallbackText($fallbackText);
         $expectedResponse->setArgumentText($argumentText);
         $expectedResponse->setThreadReply($threadReply);
+        $expectedResponse->setSilent($silent);
         $expectedResponse->setClientAssignedMessageId($clientAssignedMessageId);
         $transport->addResponse($expectedResponse);
         // Mock request
@@ -2726,6 +2730,7 @@ class ChatServiceClientTest extends GeneratedTest
         $fallbackText = 'fallbackText563106922';
         $argumentText = 'argumentText-39826065';
         $threadReply = false;
+        $silent = false;
         $clientAssignedMessageId = 'clientAssignedMessageId-1116632848';
         $expectedResponse = new Message();
         $expectedResponse->setName($name);
@@ -2734,6 +2739,7 @@ class ChatServiceClientTest extends GeneratedTest
         $expectedResponse->setFallbackText($fallbackText);
         $expectedResponse->setArgumentText($argumentText);
         $expectedResponse->setThreadReply($threadReply);
+        $expectedResponse->setSilent($silent);
         $expectedResponse->setClientAssignedMessageId($clientAssignedMessageId);
         $transport->addResponse($expectedResponse);
         // Mock request

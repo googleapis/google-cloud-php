@@ -10,7 +10,7 @@ use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
- * [DeleteRun][google.cloud.datacatalog.lineage.v1.DeleteRun].
+ * [DeleteRun][google.cloud.datacatalog.lineage.v1.Lineage.DeleteRun].
  *
  * Generated from protobuf message <code>google.cloud.datacatalog.lineage.v1.DeleteRunRequest</code>
  */
@@ -23,10 +23,10 @@ class DeleteRunRequest extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
-     * If set to true and the run is not found, the request
+     * Optional. If set to true and the run is not found, the request
      * succeeds but the server doesn't perform any actions.
      *
-     * Generated from protobuf field <code>bool allow_missing = 2;</code>
+     * Generated from protobuf field <code>bool allow_missing = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $allow_missing = false;
 
@@ -53,7 +53,7 @@ class DeleteRunRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. The name of the run to delete.
      *     @type bool $allow_missing
-     *           If set to true and the run is not found, the request
+     *           Optional. If set to true and the run is not found, the request
      *           succeeds but the server doesn't perform any actions.
      * }
      */
@@ -89,10 +89,10 @@ class DeleteRunRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If set to true and the run is not found, the request
+     * Optional. If set to true and the run is not found, the request
      * succeeds but the server doesn't perform any actions.
      *
-     * Generated from protobuf field <code>bool allow_missing = 2;</code>
+     * Generated from protobuf field <code>bool allow_missing = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getAllowMissing()
@@ -101,10 +101,10 @@ class DeleteRunRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If set to true and the run is not found, the request
+     * Optional. If set to true and the run is not found, the request
      * succeeds but the server doesn't perform any actions.
      *
-     * Generated from protobuf field <code>bool allow_missing = 2;</code>
+     * Generated from protobuf field <code>bool allow_missing = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */

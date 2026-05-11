@@ -42,6 +42,18 @@ return [
                     ],
                 ],
             ],
+            'CancelAsyncQueryReasoningEngine' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\AIPlatform\V1\CancelAsyncQueryReasoningEngineResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'QueryReasoningEngine' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\AIPlatform\V1\QueryReasoningEngineResponse',
