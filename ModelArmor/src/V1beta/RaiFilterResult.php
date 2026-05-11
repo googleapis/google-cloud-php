@@ -41,7 +41,8 @@ class RaiFilterResult extends \Google\Protobuf\Internal\Message
     protected $match_state = 0;
     /**
      * The map of RAI filter results where key is RAI filter type - either of
-     * "sexually_explicit", "hate_speech", "harassment", "dangerous".
+     * "sexually_explicit", "hate_speech", "harassment", "dangerous", "violence",
+     * "sexually_suggestive".
      *
      * Generated from protobuf field <code>map<string, .google.cloud.modelarmor.v1beta.RaiFilterResult.RaiFilterTypeResult> rai_filter_type_results = 4;</code>
      */
@@ -67,7 +68,8 @@ class RaiFilterResult extends \Google\Protobuf\Internal\Message
      *           equal to or higher than the confidence level defined in configuration.
      *     @type array|\Google\Protobuf\Internal\MapField $rai_filter_type_results
      *           The map of RAI filter results where key is RAI filter type - either of
-     *           "sexually_explicit", "hate_speech", "harassment", "dangerous".
+     *           "sexually_explicit", "hate_speech", "harassment", "dangerous", "violence",
+     *           "sexually_suggestive".
      * }
      */
     public function __construct($data = NULL) {
@@ -167,7 +169,8 @@ class RaiFilterResult extends \Google\Protobuf\Internal\Message
 
     /**
      * The map of RAI filter results where key is RAI filter type - either of
-     * "sexually_explicit", "hate_speech", "harassment", "dangerous".
+     * "sexually_explicit", "hate_speech", "harassment", "dangerous", "violence",
+     * "sexually_suggestive".
      *
      * Generated from protobuf field <code>map<string, .google.cloud.modelarmor.v1beta.RaiFilterResult.RaiFilterTypeResult> rai_filter_type_results = 4;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -179,7 +182,8 @@ class RaiFilterResult extends \Google\Protobuf\Internal\Message
 
     /**
      * The map of RAI filter results where key is RAI filter type - either of
-     * "sexually_explicit", "hate_speech", "harassment", "dangerous".
+     * "sexually_explicit", "hate_speech", "harassment", "dangerous", "violence",
+     * "sexually_suggestive".
      *
      * Generated from protobuf field <code>map<string, .google.cloud.modelarmor.v1beta.RaiFilterResult.RaiFilterTypeResult> rai_filter_type_results = 4;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

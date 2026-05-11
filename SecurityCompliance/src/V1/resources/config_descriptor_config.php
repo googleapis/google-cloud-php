@@ -198,7 +198,12 @@ return [
             'templateMap' => [
                 'cloudControl' => 'organizations/{organization}/locations/{location}/cloudControls/{cloud_control}',
                 'framework' => 'organizations/{organization}/locations/{location}/frameworks/{framework}',
+                'location' => 'projects/{project}/locations/{location}',
                 'organizationLocation' => 'organizations/{organization}/locations/{location}',
+                'organizationLocationCloudControl' => 'organizations/{organization}/locations/{location}/cloudControls/{cloud_control}',
+                'organizationLocationFramework' => 'organizations/{organization}/locations/{location}/frameworks/{framework}',
+                'projectLocationCloudControl' => 'projects/{project}/locations/{location}/cloudControls/{cloud_control}',
+                'projectLocationFramework' => 'projects/{project}/locations/{location}/frameworks/{framework}',
             ],
         ],
     ],

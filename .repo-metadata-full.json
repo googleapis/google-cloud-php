@@ -145,6 +145,14 @@
         "library_type": "GAPIC_AUTO",
         "api_shortname": "apphub"
     },
+    "AppOptimize": {
+        "language": "php",
+        "distribution_name": "google/cloud-appoptimize",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-appoptimize/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "appoptimize"
+    },
     "AppsChat": {
         "language": "php",
         "distribution_name": "google/apps-chat",
@@ -652,6 +660,14 @@
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-developerconnect/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "developerconnect"
+    },
+    "DevelopersKnowledge": {
+        "language": "php",
+        "distribution_name": "google/developers-knowledge",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/developers-knowledge/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "developerknowledge"
     },
     "DeviceStreaming": {
         "language": "php",

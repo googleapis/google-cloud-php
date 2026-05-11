@@ -233,6 +233,8 @@ class RegionInstantSnapshotsClientTest extends GeneratedTest
         $selfLinkWithId = 'selfLinkWithId-1029220862';
         $sourceDisk = 'sourceDisk-85117119';
         $sourceDiskId = 'sourceDiskId-1693292839';
+        $sourceInstantSnapshotGroup = 'sourceInstantSnapshotGroup1062862598';
+        $sourceInstantSnapshotGroupId = 'sourceInstantSnapshotGroupId1240845556';
         $status = 'status-892481550';
         $zone = 'zone3744684';
         $expectedResponse = new InstantSnapshot();
@@ -251,6 +253,8 @@ class RegionInstantSnapshotsClientTest extends GeneratedTest
         $expectedResponse->setSelfLinkWithId($selfLinkWithId);
         $expectedResponse->setSourceDisk($sourceDisk);
         $expectedResponse->setSourceDiskId($sourceDiskId);
+        $expectedResponse->setSourceInstantSnapshotGroup($sourceInstantSnapshotGroup);
+        $expectedResponse->setSourceInstantSnapshotGroupId($sourceInstantSnapshotGroupId);
         $expectedResponse->setStatus($status);
         $expectedResponse->setZone($zone);
         $transport->addResponse($expectedResponse);

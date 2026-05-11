@@ -53,6 +53,7 @@ use Google\Cloud\Compute\V1\StopAsyncReplicationRegionDiskRequest;
 use Google\Cloud\Compute\V1\StopGroupAsyncReplicationRegionDiskRequest;
 use Google\Cloud\Compute\V1\TestIamPermissionsRegionDiskRequest;
 use Google\Cloud\Compute\V1\TestPermissionsResponse;
+use Google\Cloud\Compute\V1\UpdateKmsKeyRegionDiskRequest;
 use Google\Cloud\Compute\V1\UpdateRegionDiskRequest;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
@@ -80,6 +81,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<OperationResponse> stopGroupAsyncReplicationAsync(StopGroupAsyncReplicationRegionDiskRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRegionDiskRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateAsync(UpdateRegionDiskRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateKmsKeyAsync(UpdateKmsKeyRegionDiskRequest $request, array $optionalArgs = [])
  */
 final class RegionDisksClient
 {
@@ -763,5 +765,32 @@ final class RegionDisksClient
     public function update(UpdateRegionDiskRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('Update', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Rotates the customer-managed
+     * encryption key to the latest version for the specified persistent disk.
+     *
+     * The async variant is {@see RegionDisksClient::updateKmsKeyAsync()} .
+     *
+     * @example samples/V1/RegionDisksClient/update_kms_key.php
+     *
+     * @param UpdateKmsKeyRegionDiskRequest $request     A request to house fields associated with the call.
+     * @param array                         $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateKmsKey(UpdateKmsKeyRegionDiskRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('UpdateKmsKey', $request, $callOptions)->wait();
     }
 }

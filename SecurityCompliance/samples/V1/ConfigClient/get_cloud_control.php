@@ -37,8 +37,12 @@ use Google\Cloud\CloudSecurityCompliance\V1\GetCloudControlRequest;
  * To retrieve a specific major version, include `major_revision_id` in
  * the request.
  *
- * @param string $formattedName The name of the cloud control to retrieve, in the format
- *                              `organizations/{organization}/locations/{location}/cloudControls/{cloud_control}`.
+ * @param string $formattedName The name of the cloud control to retrieve, in one of the
+ *                              following formats:
+ *                              `organizations/{organization}/locations/{location}/cloudControls/{cloud_control}`
+ *                              or
+ *                              `projects/{project}/locations/{location}/cloudControls/{cloud_control}`.
+ *
  *                              The only supported location is `global`. Please see
  *                              {@see ConfigClient::cloudControlName()} for help formatting this field.
  */

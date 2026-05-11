@@ -161,7 +161,7 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
     protected $google_product_category = null;
     /**
      * Global Trade Item Numbers
-     * ([GTIN](https://support.google.com/merchants/answer/188494#gtin)) of the
+     * ([GTIN](https://support.google.com/merchants/answer/6324461)) of the
      * item.
      * You can provide up to 10 GTINs.
      *
@@ -183,7 +183,7 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
     protected $material = null;
     /**
      * Manufacturer Part Number
-     * ([MPN](https://support.google.com/merchants/answer/188494#mpn)) of the
+     * ([MPN](https://support.google.com/merchants/answer/6324482)) of the
      * item.
      *
      * Generated from protobuf field <code>optional string mpn = 29;</code>
@@ -712,6 +712,15 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1.ProductSustainabilityIncentive sustainability_incentives = 138;</code>
      */
     private $sustainability_incentives;
+    /**
+     * Optional. A list of video URLs for the item. Use this attribute to provide
+     * more visuals for your product beyond your image attributes. See the [Help
+     * Center article](https://support.google.com/merchants/answer/15216925) for
+     * more information.
+     *
+     * Generated from protobuf field <code>repeated string video_links = 169 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $video_links;
 
     /**
      * Constructor.
@@ -785,7 +794,7 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
      *           categories through the API.
      *     @type string[] $gtins
      *           Global Trade Item Numbers
-     *           ([GTIN](https://support.google.com/merchants/answer/188494#gtin)) of the
+     *           ([GTIN](https://support.google.com/merchants/answer/6324461)) of the
      *           item.
      *           You can provide up to 10 GTINs.
      *     @type string $item_group_id
@@ -795,7 +804,7 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
      *           which the item is made. For example, "Leather" or "Cotton".
      *     @type string $mpn
      *           Manufacturer Part Number
-     *           ([MPN](https://support.google.com/merchants/answer/188494#mpn)) of the
+     *           ([MPN](https://support.google.com/merchants/answer/6324482)) of the
      *           item.
      *     @type string $pattern
      *           The item's [pattern](https://support.google.com/merchants/answer/6324483).
@@ -1028,6 +1037,11 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
      *           thereby preserving the offer's value and profitability.
      *     @type \Google\Shopping\Merchant\Products\V1\ProductSustainabilityIncentive[] $sustainability_incentives
      *           The list of sustainability incentive programs.
+     *     @type string[] $video_links
+     *           Optional. A list of video URLs for the item. Use this attribute to provide
+     *           more visuals for your product beyond your image attributes. See the [Help
+     *           Center article](https://support.google.com/merchants/answer/15216925) for
+     *           more information.
      * }
      */
     public function __construct($data = NULL) {
@@ -1795,7 +1809,7 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
 
     /**
      * Global Trade Item Numbers
-     * ([GTIN](https://support.google.com/merchants/answer/188494#gtin)) of the
+     * ([GTIN](https://support.google.com/merchants/answer/6324461)) of the
      * item.
      * You can provide up to 10 GTINs.
      *
@@ -1809,7 +1823,7 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
 
     /**
      * Global Trade Item Numbers
-     * ([GTIN](https://support.google.com/merchants/answer/188494#gtin)) of the
+     * ([GTIN](https://support.google.com/merchants/answer/6324461)) of the
      * item.
      * You can provide up to 10 GTINs.
      *
@@ -1901,7 +1915,7 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
 
     /**
      * Manufacturer Part Number
-     * ([MPN](https://support.google.com/merchants/answer/188494#mpn)) of the
+     * ([MPN](https://support.google.com/merchants/answer/6324482)) of the
      * item.
      *
      * Generated from protobuf field <code>optional string mpn = 29;</code>
@@ -1924,7 +1938,7 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
 
     /**
      * Manufacturer Part Number
-     * ([MPN](https://support.google.com/merchants/answer/188494#mpn)) of the
+     * ([MPN](https://support.google.com/merchants/answer/6324482)) of the
      * item.
      *
      * Generated from protobuf field <code>optional string mpn = 29;</code>
@@ -4523,6 +4537,38 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Shopping\Merchant\Products\V1\ProductSustainabilityIncentive::class);
         $this->sustainability_incentives = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. A list of video URLs for the item. Use this attribute to provide
+     * more visuals for your product beyond your image attributes. See the [Help
+     * Center article](https://support.google.com/merchants/answer/15216925) for
+     * more information.
+     *
+     * Generated from protobuf field <code>repeated string video_links = 169 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return RepeatedField<string>
+     */
+    public function getVideoLinks()
+    {
+        return $this->video_links;
+    }
+
+    /**
+     * Optional. A list of video URLs for the item. Use this attribute to provide
+     * more visuals for your product beyond your image attributes. See the [Help
+     * Center article](https://support.google.com/merchants/answer/15216925) for
+     * more information.
+     *
+     * Generated from protobuf field <code>repeated string video_links = 169 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string[] $var
+     * @return $this
+     */
+    public function setVideoLinks($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->video_links = $arr;
 
         return $this;
     }

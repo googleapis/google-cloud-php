@@ -28,7 +28,8 @@ class Counters extends \Google\Protobuf\Internal\Message
      */
     protected $succeeded_object_count = 0;
     /**
-     * Output only. Number of objects failed.
+     * Output only. The number of objects that failed due to user errors or
+     * service errors.
      *
      * Generated from protobuf field <code>int64 failed_object_count = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -40,6 +41,29 @@ class Counters extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional int64 total_bytes_found = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $total_bytes_found = null;
+    /**
+     * Output only. Number of object custom contexts created. This field is only
+     * populated for jobs with the UpdateObjectCustomContext transformation.
+     *
+     * Generated from protobuf field <code>optional int64 object_custom_contexts_created = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $object_custom_contexts_created = null;
+    /**
+     * Output only. Number of object custom contexts deleted. This field is only
+     * populated for jobs with the UpdateObjectCustomContext transformation.
+     *
+     * Generated from protobuf field <code>optional int64 object_custom_contexts_deleted = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $object_custom_contexts_deleted = null;
+    /**
+     * Output only. Number of object custom contexts updated. This counter tracks
+     * custom contexts where the key already existed, but the payload was
+     * modified. This field is only populated for jobs with the
+     * UpdateObjectCustomContext transformation.
+     *
+     * Generated from protobuf field <code>optional int64 object_custom_contexts_updated = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $object_custom_contexts_updated = null;
 
     /**
      * Constructor.
@@ -52,10 +76,22 @@ class Counters extends \Google\Protobuf\Internal\Message
      *     @type int|string $succeeded_object_count
      *           Output only. Number of objects completed.
      *     @type int|string $failed_object_count
-     *           Output only. Number of objects failed.
+     *           Output only. The number of objects that failed due to user errors or
+     *           service errors.
      *     @type int|string $total_bytes_found
      *           Output only. Number of bytes found from source. This field is only
      *           populated for jobs with a prefix list object configuration.
+     *     @type int|string $object_custom_contexts_created
+     *           Output only. Number of object custom contexts created. This field is only
+     *           populated for jobs with the UpdateObjectCustomContext transformation.
+     *     @type int|string $object_custom_contexts_deleted
+     *           Output only. Number of object custom contexts deleted. This field is only
+     *           populated for jobs with the UpdateObjectCustomContext transformation.
+     *     @type int|string $object_custom_contexts_updated
+     *           Output only. Number of object custom contexts updated. This counter tracks
+     *           custom contexts where the key already existed, but the payload was
+     *           modified. This field is only populated for jobs with the
+     *           UpdateObjectCustomContext transformation.
      * }
      */
     public function __construct($data = NULL) {
@@ -116,7 +152,8 @@ class Counters extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Number of objects failed.
+     * Output only. The number of objects that failed due to user errors or
+     * service errors.
      *
      * Generated from protobuf field <code>int64 failed_object_count = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int|string
@@ -127,7 +164,8 @@ class Counters extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Number of objects failed.
+     * Output only. The number of objects that failed due to user errors or
+     * service errors.
      *
      * Generated from protobuf field <code>int64 failed_object_count = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int|string $var
@@ -175,6 +213,124 @@ class Counters extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt64($var);
         $this->total_bytes_found = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Number of object custom contexts created. This field is only
+     * populated for jobs with the UpdateObjectCustomContext transformation.
+     *
+     * Generated from protobuf field <code>optional int64 object_custom_contexts_created = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int|string
+     */
+    public function getObjectCustomContextsCreated()
+    {
+        return isset($this->object_custom_contexts_created) ? $this->object_custom_contexts_created : 0;
+    }
+
+    public function hasObjectCustomContextsCreated()
+    {
+        return isset($this->object_custom_contexts_created);
+    }
+
+    public function clearObjectCustomContextsCreated()
+    {
+        unset($this->object_custom_contexts_created);
+    }
+
+    /**
+     * Output only. Number of object custom contexts created. This field is only
+     * populated for jobs with the UpdateObjectCustomContext transformation.
+     *
+     * Generated from protobuf field <code>optional int64 object_custom_contexts_created = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setObjectCustomContextsCreated($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->object_custom_contexts_created = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Number of object custom contexts deleted. This field is only
+     * populated for jobs with the UpdateObjectCustomContext transformation.
+     *
+     * Generated from protobuf field <code>optional int64 object_custom_contexts_deleted = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int|string
+     */
+    public function getObjectCustomContextsDeleted()
+    {
+        return isset($this->object_custom_contexts_deleted) ? $this->object_custom_contexts_deleted : 0;
+    }
+
+    public function hasObjectCustomContextsDeleted()
+    {
+        return isset($this->object_custom_contexts_deleted);
+    }
+
+    public function clearObjectCustomContextsDeleted()
+    {
+        unset($this->object_custom_contexts_deleted);
+    }
+
+    /**
+     * Output only. Number of object custom contexts deleted. This field is only
+     * populated for jobs with the UpdateObjectCustomContext transformation.
+     *
+     * Generated from protobuf field <code>optional int64 object_custom_contexts_deleted = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setObjectCustomContextsDeleted($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->object_custom_contexts_deleted = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Number of object custom contexts updated. This counter tracks
+     * custom contexts where the key already existed, but the payload was
+     * modified. This field is only populated for jobs with the
+     * UpdateObjectCustomContext transformation.
+     *
+     * Generated from protobuf field <code>optional int64 object_custom_contexts_updated = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int|string
+     */
+    public function getObjectCustomContextsUpdated()
+    {
+        return isset($this->object_custom_contexts_updated) ? $this->object_custom_contexts_updated : 0;
+    }
+
+    public function hasObjectCustomContextsUpdated()
+    {
+        return isset($this->object_custom_contexts_updated);
+    }
+
+    public function clearObjectCustomContextsUpdated()
+    {
+        unset($this->object_custom_contexts_updated);
+    }
+
+    /**
+     * Output only. Number of object custom contexts updated. This counter tracks
+     * custom contexts where the key already existed, but the payload was
+     * modified. This field is only populated for jobs with the
+     * UpdateObjectCustomContext transformation.
+     *
+     * Generated from protobuf field <code>optional int64 object_custom_contexts_updated = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setObjectCustomContextsUpdated($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->object_custom_contexts_updated = $var;
 
         return $this;
     }

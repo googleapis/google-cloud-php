@@ -16,11 +16,11 @@ use Google\Protobuf\RepeatedField;
 class MeasurementProtocolSecret extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. Resource name of this secret. This secret may be a child of
-     * any type of stream. Format:
+     * Identifier. Resource name of this secret. This secret may be a child of any
+     * type of stream. Format:
      * properties/{property}/dataStreams/{dataStream}/measurementProtocolSecrets/{measurementProtocolSecret}
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
@@ -45,8 +45,8 @@ class MeasurementProtocolSecret extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Output only. Resource name of this secret. This secret may be a child of
-     *           any type of stream. Format:
+     *           Identifier. Resource name of this secret. This secret may be a child of any
+     *           type of stream. Format:
      *           properties/{property}/dataStreams/{dataStream}/measurementProtocolSecrets/{measurementProtocolSecret}
      *     @type string $display_name
      *           Required. Human-readable display name for this secret.
@@ -62,11 +62,11 @@ class MeasurementProtocolSecret extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Resource name of this secret. This secret may be a child of
-     * any type of stream. Format:
+     * Identifier. Resource name of this secret. This secret may be a child of any
+     * type of stream. Format:
      * properties/{property}/dataStreams/{dataStream}/measurementProtocolSecrets/{measurementProtocolSecret}
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -75,11 +75,11 @@ class MeasurementProtocolSecret extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Resource name of this secret. This secret may be a child of
-     * any type of stream. Format:
+     * Identifier. Resource name of this secret. This secret may be a child of any
+     * type of stream. Format:
      * properties/{property}/dataStreams/{dataStream}/measurementProtocolSecrets/{measurementProtocolSecret}
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */

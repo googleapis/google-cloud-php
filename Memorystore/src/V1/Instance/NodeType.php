@@ -45,6 +45,42 @@ class NodeType
      * Generated from protobuf enum <code>STANDARD_SMALL = 4;</code>
      */
     const STANDARD_SMALL = 4;
+    /**
+     * Custom micro.
+     *
+     * Generated from protobuf enum <code>CUSTOM_MICRO = 5;</code>
+     */
+    const CUSTOM_MICRO = 5;
+    /**
+     * Custom mini.
+     *
+     * Generated from protobuf enum <code>CUSTOM_MINI = 6;</code>
+     */
+    const CUSTOM_MINI = 6;
+    /**
+     * High cpu medium.
+     *
+     * Generated from protobuf enum <code>HIGHCPU_MEDIUM = 7;</code>
+     */
+    const HIGHCPU_MEDIUM = 7;
+    /**
+     * Standard large.
+     *
+     * Generated from protobuf enum <code>STANDARD_LARGE = 8;</code>
+     */
+    const STANDARD_LARGE = 8;
+    /**
+     * High memory 2x large.
+     *
+     * Generated from protobuf enum <code>HIGHMEM_2XLARGE = 9;</code>
+     */
+    const HIGHMEM_2XLARGE = 9;
+    /**
+     * Custom pico.
+     *
+     * Generated from protobuf enum <code>CUSTOM_PICO = 10;</code>
+     */
+    const CUSTOM_PICO = 10;
 
     private static $valueToName = [
         self::NODE_TYPE_UNSPECIFIED => 'NODE_TYPE_UNSPECIFIED',
@@ -52,6 +88,12 @@ class NodeType
         self::HIGHMEM_MEDIUM => 'HIGHMEM_MEDIUM',
         self::HIGHMEM_XLARGE => 'HIGHMEM_XLARGE',
         self::STANDARD_SMALL => 'STANDARD_SMALL',
+        self::CUSTOM_MICRO => 'CUSTOM_MICRO',
+        self::CUSTOM_MINI => 'CUSTOM_MINI',
+        self::HIGHCPU_MEDIUM => 'HIGHCPU_MEDIUM',
+        self::STANDARD_LARGE => 'STANDARD_LARGE',
+        self::HIGHMEM_2XLARGE => 'HIGHMEM_2XLARGE',
+        self::CUSTOM_PICO => 'CUSTOM_PICO',
     ];
 
     public static function name($value)

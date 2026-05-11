@@ -427,7 +427,7 @@ class ValueMapper
 
         // Convert library specific wrapper type to type code and type
         // code annotation, if applicable.
-        if (isset(self::$typeCodes[$givenType])) {
+        if (null !== $givenType && isset(self::$typeCodes[$givenType])) {
             $typeAnnotation = self::$typeAnnotations[$givenType];
             $givenType = self::$typeCodes[$givenType];
         }
@@ -889,7 +889,7 @@ class ValueMapper
      */
     private static function isCustomType(string|null $type): bool
     {
-        return array_key_exists($type, self::$typeToClassMap);
+        return null !== $type && array_key_exists($type, self::$typeToClassMap);
     }
 
     /**

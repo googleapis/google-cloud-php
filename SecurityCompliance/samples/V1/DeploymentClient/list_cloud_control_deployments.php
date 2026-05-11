@@ -33,8 +33,9 @@ use Google\Cloud\CloudSecurityCompliance\V1\ListCloudControlDeploymentsRequest;
  * Lists the cloud conrol deployments in a given parent resource.
  *
  * @param string $formattedParent The parent resource for the cloud control deployment, in the
- *                                format `organizations/{organization}/locations/{location}`. The only
- *                                supported location is `global`. Please see
+ *                                format `organizations/{organization}/locations/{location}` or
+ *                                `projects/{project}/locations/{location}`.
+ *                                The only supported location is `global`. Please see
  *                                {@see DeploymentClient::organizationLocationName()} for help formatting this field.
  */
 function list_cloud_control_deployments_sample(string $formattedParent): void

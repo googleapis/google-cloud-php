@@ -146,6 +146,7 @@ use Google\Analytics\Admin\V1alpha\GetSKAdNetworkConversionValueSchemaRequest;
 use Google\Analytics\Admin\V1alpha\GetSearchAds360LinkRequest;
 use Google\Analytics\Admin\V1alpha\GetSubpropertyEventFilterRequest;
 use Google\Analytics\Admin\V1alpha\GetSubpropertySyncConfigRequest;
+use Google\Analytics\Admin\V1alpha\GetUserProvidedDataSettingsRequest;
 use Google\Analytics\Admin\V1alpha\GlobalSiteTag;
 use Google\Analytics\Admin\V1alpha\GoogleAdsLink;
 use Google\Analytics\Admin\V1alpha\GoogleSignalsSettings;
@@ -225,6 +226,7 @@ use Google\Analytics\Admin\V1alpha\UpdateSKAdNetworkConversionValueSchemaRequest
 use Google\Analytics\Admin\V1alpha\UpdateSearchAds360LinkRequest;
 use Google\Analytics\Admin\V1alpha\UpdateSubpropertyEventFilterRequest;
 use Google\Analytics\Admin\V1alpha\UpdateSubpropertySyncConfigRequest;
+use Google\Analytics\Admin\V1alpha\UserProvidedDataSettings;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
@@ -343,6 +345,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<SearchAds360Link> getSearchAds360LinkAsync(GetSearchAds360LinkRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<SubpropertyEventFilter> getSubpropertyEventFilterAsync(GetSubpropertyEventFilterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<SubpropertySyncConfig> getSubpropertySyncConfigAsync(GetSubpropertySyncConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<UserProvidedDataSettings> getUserProvidedDataSettingsAsync(GetUserProvidedDataSettingsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listAccessBindingsAsync(ListAccessBindingsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listAccountSummariesAsync(ListAccountSummariesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listAccountsAsync(ListAccountsRequest $request, array $optionalArgs = [])
@@ -1182,6 +1185,23 @@ final class AnalyticsAdminServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * user_provided_data_settings resource.
+     *
+     * @param string $property
+     *
+     * @return string The formatted user_provided_data_settings resource.
+     *
+     * @experimental
+     */
+    public static function userProvidedDataSettingsName(string $property): string
+    {
+        return self::getPathTemplate('userProvidedDataSettings')->render([
+            'property' => $property,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
@@ -1223,6 +1243,7 @@ final class AnalyticsAdminServiceClient
      * - searchAds360Link: properties/{property}/searchAds360Links/{search_ads_360_link}
      * - subpropertyEventFilter: properties/{property}/subpropertyEventFilters/{sub_property_event_filter}
      * - subpropertySyncConfig: properties/{property}/subpropertySyncConfigs/{subproperty_sync_config}
+     * - userProvidedDataSettings: properties/{property}/userProvidedDataSettings
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -3905,7 +3926,7 @@ final class AnalyticsAdminServiceClient
     }
 
     /**
-     * Returns the singleton data retention settings for this property.
+     * Returns the reporting identity settings for this property.
      *
      * The async variant is
      * {@see AnalyticsAdminServiceClient::getReportingIdentitySettingsAsync()} .
@@ -4088,6 +4109,37 @@ final class AnalyticsAdminServiceClient
         array $callOptions = []
     ): SubpropertySyncConfig {
         return $this->startApiCall('GetSubpropertySyncConfig', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Looks up settings related to user-provided data for a property.
+     *
+     * The async variant is
+     * {@see AnalyticsAdminServiceClient::getUserProvidedDataSettingsAsync()} .
+     *
+     * @example samples/V1alpha/AnalyticsAdminServiceClient/get_user_provided_data_settings.php
+     *
+     * @param GetUserProvidedDataSettingsRequest $request     A request to house fields associated with the call.
+     * @param array                              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return UserProvidedDataSettings
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function getUserProvidedDataSettings(
+        GetUserProvidedDataSettingsRequest $request,
+        array $callOptions = []
+    ): UserProvidedDataSettings {
+        return $this->startApiCall('GetUserProvidedDataSettings', $request, $callOptions)->wait();
     }
 
     /**

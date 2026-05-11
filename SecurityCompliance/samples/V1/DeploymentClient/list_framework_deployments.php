@@ -33,7 +33,9 @@ use Google\Cloud\CloudSecurityCompliance\V1\ListFrameworkDeploymentsRequest;
  * Lists the framework deployments in a given parent resource.
  *
  * @param string $formattedParent The parent resource of the framework deployment, in the format
- *                                `organizations/{organization}/locations/{location}`.
+ *                                `organizations/{organization}/locations/{location}`
+ *                                or
+ *                                `projects/{project}/locations/{location}`.
  *                                The only supported location is `global`. Please see
  *                                {@see DeploymentClient::organizationLocationName()} for help formatting this field.
  */

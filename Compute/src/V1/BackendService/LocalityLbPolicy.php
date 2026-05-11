@@ -35,7 +35,7 @@ use UnexpectedValueException;
  *    HTTP response header field Endpoint-Load-Metrics. The reported
  *    metrics to use for computing the weights are specified via thecustomMetrics field.
  *    This field is applicable to either:
- *       - A regional backend service with the service_protocol set to HTTP,
+ *       - A regional backend service with the service protocol set to HTTP,
  *       HTTPS, HTTP2 or H2C, and load_balancing_scheme set to
  *       INTERNAL_MANAGED.
  *       - A global backend service with the

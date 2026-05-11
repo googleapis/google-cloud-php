@@ -49,6 +49,18 @@ class CommitResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.spanner.v1.CacheUpdate cache_update = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $cache_update = null;
+    /**
+     * The isolation level used for the read-write transaction.
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.TransactionOptions.IsolationLevel isolation_level = 7;</code>
+     */
+    protected $isolation_level = 0;
+    /**
+     * The read lock mode used for the read-write transaction.
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.TransactionOptions.ReadWrite.ReadLockMode read_lock_mode = 8;</code>
+     */
+    protected $read_lock_mode = 0;
     protected $MultiplexedSessionRetry;
 
     /**
@@ -78,6 +90,10 @@ class CommitResponse extends \Google\Protobuf\Internal\Message
      *           in response to requests that included a `RoutingHint` field, but may also
      *           be obtained by explicit location-fetching RPCs which may be added in the
      *           future.
+     *     @type int $isolation_level
+     *           The isolation level used for the read-write transaction.
+     *     @type int $read_lock_mode
+     *           The read lock mode used for the read-write transaction.
      * }
      */
     public function __construct($data = NULL) {
@@ -278,6 +294,58 @@ class CommitResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Spanner\V1\CacheUpdate::class);
         $this->cache_update = $var;
+
+        return $this;
+    }
+
+    /**
+     * The isolation level used for the read-write transaction.
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.TransactionOptions.IsolationLevel isolation_level = 7;</code>
+     * @return int
+     */
+    public function getIsolationLevel()
+    {
+        return $this->isolation_level;
+    }
+
+    /**
+     * The isolation level used for the read-write transaction.
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.TransactionOptions.IsolationLevel isolation_level = 7;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setIsolationLevel($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Spanner\V1\TransactionOptions\IsolationLevel::class);
+        $this->isolation_level = $var;
+
+        return $this;
+    }
+
+    /**
+     * The read lock mode used for the read-write transaction.
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.TransactionOptions.ReadWrite.ReadLockMode read_lock_mode = 8;</code>
+     * @return int
+     */
+    public function getReadLockMode()
+    {
+        return $this->read_lock_mode;
+    }
+
+    /**
+     * The read lock mode used for the read-write transaction.
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.TransactionOptions.ReadWrite.ReadLockMode read_lock_mode = 8;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setReadLockMode($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Spanner\V1\TransactionOptions\ReadWrite\ReadLockMode::class);
+        $this->read_lock_mode = $var;
 
         return $this;
     }

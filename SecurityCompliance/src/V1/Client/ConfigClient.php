@@ -162,6 +162,23 @@ final class ConfigClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a location
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     *
+     * @return string The formatted location resource.
+     */
+    public static function locationName(string $project, string $location): string
+    {
+        return self::getPathTemplate('location')->render([
+            'project' => $project,
+            'location' => $location,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a
      * organization_location resource.
      *
@@ -179,12 +196,102 @@ final class ConfigClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * organization_location_cloud_control resource.
+     *
+     * @param string $organization
+     * @param string $location
+     * @param string $cloudControl
+     *
+     * @return string The formatted organization_location_cloud_control resource.
+     */
+    public static function organizationLocationCloudControlName(
+        string $organization,
+        string $location,
+        string $cloudControl
+    ): string {
+        return self::getPathTemplate('organizationLocationCloudControl')->render([
+            'organization' => $organization,
+            'location' => $location,
+            'cloud_control' => $cloudControl,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * organization_location_framework resource.
+     *
+     * @param string $organization
+     * @param string $location
+     * @param string $framework
+     *
+     * @return string The formatted organization_location_framework resource.
+     */
+    public static function organizationLocationFrameworkName(
+        string $organization,
+        string $location,
+        string $framework
+    ): string {
+        return self::getPathTemplate('organizationLocationFramework')->render([
+            'organization' => $organization,
+            'location' => $location,
+            'framework' => $framework,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_cloud_control resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $cloudControl
+     *
+     * @return string The formatted project_location_cloud_control resource.
+     */
+    public static function projectLocationCloudControlName(
+        string $project,
+        string $location,
+        string $cloudControl
+    ): string {
+        return self::getPathTemplate('projectLocationCloudControl')->render([
+            'project' => $project,
+            'location' => $location,
+            'cloud_control' => $cloudControl,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_framework resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $framework
+     *
+     * @return string The formatted project_location_framework resource.
+     */
+    public static function projectLocationFrameworkName(string $project, string $location, string $framework): string
+    {
+        return self::getPathTemplate('projectLocationFramework')->render([
+            'project' => $project,
+            'location' => $location,
+            'framework' => $framework,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - cloudControl: organizations/{organization}/locations/{location}/cloudControls/{cloud_control}
      * - framework: organizations/{organization}/locations/{location}/frameworks/{framework}
+     * - location: projects/{project}/locations/{location}
      * - organizationLocation: organizations/{organization}/locations/{location}
+     * - organizationLocationCloudControl: organizations/{organization}/locations/{location}/cloudControls/{cloud_control}
+     * - organizationLocationFramework: organizations/{organization}/locations/{location}/frameworks/{framework}
+     * - projectLocationCloudControl: projects/{project}/locations/{location}/cloudControls/{cloud_control}
+     * - projectLocationFramework: projects/{project}/locations/{location}/frameworks/{framework}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -629,6 +736,21 @@ final class ConfigClient
 
     /**
      * Lists information about the supported locations for this service.
+
+    This method lists locations based on the resource scope provided in
+    the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+    **Global locations**: If `name` is empty, the method lists the
+    public locations available to all projects. * **Project-specific
+    locations**: If `name` follows the format
+    `projects/{project}`, the method lists locations visible to that
+    specific project. This includes public, private, or other
+    project-specific locations enabled for the project.
+
+    For gRPC and client library implementations, the resource name is
+    passed as the `name` field. For direct service calls, the resource
+    name is
+    incorporated into the request path based on the specific service
+    implementation and version.
      *
      * The async variant is {@see ConfigClient::listLocationsAsync()} .
      *

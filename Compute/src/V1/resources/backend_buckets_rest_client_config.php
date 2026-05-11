@@ -40,6 +40,17 @@ return [
                     ],
                 ],
             ],
+            'AggregatedList' => [
+                'method' => 'get',
+                'uriTemplate' => '/compute/v1/projects/{project}/aggregated/backendBuckets',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
             'Delete' => [
                 'method' => 'delete',
                 'uriTemplate' => '/compute/v1/projects/{project}/global/backendBuckets/{backend_bucket}',
@@ -122,6 +133,17 @@ return [
             'List' => [
                 'method' => 'get',
                 'uriTemplate' => '/compute/v1/projects/{project}/global/backendBuckets',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
+            'ListUsable' => [
+                'method' => 'get',
+                'uriTemplate' => '/compute/v1/projects/{project}/global/backendBuckets/listUsable',
                 'placeholders' => [
                     'project' => [
                         'getters' => [
