@@ -60,6 +60,17 @@ return [
             ],
         ],
         'google.longrunning.Operations' => [
+            'CancelOperation' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=networks/*/operations/reports/runs/*}:cancel',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetOperation' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=networks/*/operations/reports/runs/*}',

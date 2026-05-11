@@ -29,7 +29,6 @@ use Google\Ads\AdManager\V1\Client\PlacementServiceClient;
 use Google\Ads\AdManager\V1\Placement;
 use Google\Ads\AdManager\V1\UpdatePlacementRequest;
 use Google\ApiCore\ApiException;
-use Google\Protobuf\FieldMask;
 
 /**
  * API to batch update `Placement` objects.
@@ -52,10 +51,8 @@ function batch_update_placements_sample(
     // Prepare the request message.
     $requestsPlacement = (new Placement())
         ->setDisplayName($requestsPlacementDisplayName);
-    $requestsUpdateMask = new FieldMask();
     $updatePlacementRequest = (new UpdatePlacementRequest())
-        ->setPlacement($requestsPlacement)
-        ->setUpdateMask($requestsUpdateMask);
+        ->setPlacement($requestsPlacement);
     $requests = [$updatePlacementRequest,];
     $request = (new BatchUpdatePlacementsRequest())
         ->setParent($formattedParent)

@@ -23,9 +23,10 @@ class Order extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
-     * Output only. Order ID.
+     * Output only. Deprecated: Order ID.
      *
-     * Generated from protobuf field <code>optional int64 order_id = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional int64 order_id = 4 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @deprecated
      */
     protected $order_id = null;
     /**
@@ -143,8 +144,7 @@ class Order extends \Google\Protobuf\Internal\Message
      */
     protected $archived = null;
     /**
-     * Output only. The application which modified this order. This attribute is
-     * assigned by Google.
+     * Output only. The application which modified this order.
      *
      * Generated from protobuf field <code>optional string last_modified_by_app = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -230,7 +230,7 @@ class Order extends \Google\Protobuf\Internal\Message
      *           Identifier. The resource name of the `Order`.
      *           Format: `networks/{network_code}/orders/{order_id}`
      *     @type int|string $order_id
-     *           Output only. Order ID.
+     *           Output only. Deprecated: Order ID.
      *     @type string $display_name
      *           Required. The display name of the Order.  This value has a maximum length
      *           of 255 characters.
@@ -282,8 +282,7 @@ class Order extends \Google\Protobuf\Internal\Message
      *     @type bool $archived
      *           Output only. The archival status of the Order.
      *     @type string $last_modified_by_app
-     *           Output only. The application which modified this order. This attribute is
-     *           assigned by Google.
+     *           Output only. The application which modified this order.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. The instant this Order was last modified.
      *     @type string $notes
@@ -350,35 +349,45 @@ class Order extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Order ID.
+     * Output only. Deprecated: Order ID.
      *
-     * Generated from protobuf field <code>optional int64 order_id = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional int64 order_id = 4 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int|string
+     * @deprecated
      */
     public function getOrderId()
     {
+        if (isset($this->order_id)) {
+            @trigger_error('order_id is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->order_id) ? $this->order_id : 0;
     }
 
     public function hasOrderId()
     {
+        if (isset($this->order_id)) {
+            @trigger_error('order_id is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->order_id);
     }
 
     public function clearOrderId()
     {
+        @trigger_error('order_id is deprecated.', E_USER_DEPRECATED);
         unset($this->order_id);
     }
 
     /**
-     * Output only. Order ID.
+     * Output only. Deprecated: Order ID.
      *
-     * Generated from protobuf field <code>optional int64 order_id = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional int64 order_id = 4 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int|string $var
      * @return $this
+     * @deprecated
      */
     public function setOrderId($var)
     {
+        @trigger_error('order_id is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkInt64($var);
         $this->order_id = $var;
 
@@ -958,8 +967,7 @@ class Order extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The application which modified this order. This attribute is
-     * assigned by Google.
+     * Output only. The application which modified this order.
      *
      * Generated from protobuf field <code>optional string last_modified_by_app = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -980,8 +988,7 @@ class Order extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The application which modified this order. This attribute is
-     * assigned by Google.
+     * Output only. The application which modified this order.
      *
      * Generated from protobuf field <code>optional string last_modified_by_app = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

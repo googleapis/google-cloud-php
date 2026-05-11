@@ -24,9 +24,10 @@ class PrivateAuctionDeal extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
-     * Output only. `PrivateAuctionDeal` ID.
+     * Output only. Deprecated: `PrivateAuctionDeal` ID.
      *
-     * Generated from protobuf field <code>optional int64 private_auction_deal_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional int64 private_auction_deal_id = 2 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @deprecated
      */
     protected $private_auction_deal_id = null;
     /**
@@ -135,7 +136,7 @@ class PrivateAuctionDeal extends \Google\Protobuf\Internal\Message
      *           Format:
      *           `networks/{network_code}/privateAuctionDeals/{private_auction_deal_id}`
      *     @type int|string $private_auction_deal_id
-     *           Output only. `PrivateAuctionDeal` ID.
+     *           Output only. Deprecated: `PrivateAuctionDeal` ID.
      *     @type int|string $private_auction_id
      *           Immutable. The ID of the
      *           [PrivateAuction](google.ads.admanager.v1.PrivateAuction).
@@ -208,35 +209,45 @@ class PrivateAuctionDeal extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. `PrivateAuctionDeal` ID.
+     * Output only. Deprecated: `PrivateAuctionDeal` ID.
      *
-     * Generated from protobuf field <code>optional int64 private_auction_deal_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional int64 private_auction_deal_id = 2 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int|string
+     * @deprecated
      */
     public function getPrivateAuctionDealId()
     {
+        if (isset($this->private_auction_deal_id)) {
+            @trigger_error('private_auction_deal_id is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->private_auction_deal_id) ? $this->private_auction_deal_id : 0;
     }
 
     public function hasPrivateAuctionDealId()
     {
+        if (isset($this->private_auction_deal_id)) {
+            @trigger_error('private_auction_deal_id is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->private_auction_deal_id);
     }
 
     public function clearPrivateAuctionDealId()
     {
+        @trigger_error('private_auction_deal_id is deprecated.', E_USER_DEPRECATED);
         unset($this->private_auction_deal_id);
     }
 
     /**
-     * Output only. `PrivateAuctionDeal` ID.
+     * Output only. Deprecated: `PrivateAuctionDeal` ID.
      *
-     * Generated from protobuf field <code>optional int64 private_auction_deal_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional int64 private_auction_deal_id = 2 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int|string $var
      * @return $this
+     * @deprecated
      */
     public function setPrivateAuctionDealId($var)
     {
+        @trigger_error('private_auction_deal_id is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkInt64($var);
         $this->private_auction_deal_id = $var;
 

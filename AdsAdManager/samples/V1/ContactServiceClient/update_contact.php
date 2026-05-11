@@ -27,7 +27,6 @@ use Google\Ads\AdManager\V1\Client\ContactServiceClient;
 use Google\Ads\AdManager\V1\Contact;
 use Google\Ads\AdManager\V1\UpdateContactRequest;
 use Google\ApiCore\ApiException;
-use Google\Protobuf\FieldMask;
 
 /**
  * API to update a `Contact` object.
@@ -47,10 +46,8 @@ function update_contact_sample(string $contactDisplayName, string $formattedCont
     $contact = (new Contact())
         ->setDisplayName($contactDisplayName)
         ->setCompany($formattedContactCompany);
-    $updateMask = new FieldMask();
     $request = (new UpdateContactRequest())
-        ->setContact($contact)
-        ->setUpdateMask($updateMask);
+        ->setContact($contact);
 
     // Call the API and handle any network failures.
     try {

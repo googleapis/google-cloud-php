@@ -29,7 +29,6 @@ use Google\Ads\AdManager\V1\Client\EntitySignalsMappingServiceClient;
 use Google\Ads\AdManager\V1\EntitySignalsMapping;
 use Google\Ads\AdManager\V1\UpdateEntitySignalsMappingRequest;
 use Google\ApiCore\ApiException;
-use Google\Protobuf\FieldMask;
 
 /**
  * API to batch update `EntitySignalsMapping` objects.
@@ -46,10 +45,8 @@ function batch_update_entity_signals_mappings_sample(string $formattedParent): v
 
     // Prepare the request message.
     $requestsEntitySignalsMapping = new EntitySignalsMapping();
-    $requestsUpdateMask = new FieldMask();
     $updateEntitySignalsMappingRequest = (new UpdateEntitySignalsMappingRequest())
-        ->setEntitySignalsMapping($requestsEntitySignalsMapping)
-        ->setUpdateMask($requestsUpdateMask);
+        ->setEntitySignalsMapping($requestsEntitySignalsMapping);
     $requests = [$updateEntitySignalsMappingRequest,];
     $request = (new BatchUpdateEntitySignalsMappingsRequest())
         ->setParent($formattedParent)

@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * A piece of content from a Publisher's CMS.
+ * A piece of `Content` from a Publisher's CMS.
  *
  * Generated from protobuf message <code>google.ads.admanager.v1.Content</code>
  */

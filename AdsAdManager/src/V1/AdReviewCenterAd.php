@@ -44,6 +44,16 @@ class AdReviewCenterAd extends \Google\Protobuf\Internal\Message
      */
     protected $status = 0;
     /**
+     * Output only. The manual review status of the AdReviewCenterAd (for web
+     * properties in MCR mode). For MCR mode, a single ad could have multiple
+     * statuses (for example, pending and serving at the same time, if the ad is
+     * affected by a protection in certain inventory only). This field is not set
+     * for the standard mode.
+     *
+     * Generated from protobuf field <code>repeated .google.ads.admanager.v1.ManualAdReviewCenterAdStatusEnum.ManualAdReviewCenterAdStatus manual_review_statuses = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $manual_review_statuses;
+    /**
      * Output only. The preview URL that can be embedded or accessed directly
      * which will present the rendered contents of the ad. (This URL expires 72
      * hours after being retrieved.).
@@ -69,6 +79,12 @@ class AdReviewCenterAd extends \Google\Protobuf\Internal\Message
      *           AdReviewCenterAd.
      *     @type int $status
      *           The status of the AdReviewCenterAd.
+     *     @type int[] $manual_review_statuses
+     *           Output only. The manual review status of the AdReviewCenterAd (for web
+     *           properties in MCR mode). For MCR mode, a single ad could have multiple
+     *           statuses (for example, pending and serving at the same time, if the ad is
+     *           affected by a protection in certain inventory only). This field is not set
+     *           for the standard mode.
      *     @type string $preview_url
      *           Output only. The preview URL that can be embedded or accessed directly
      *           which will present the rendered contents of the ad. (This URL expires 72
@@ -186,6 +202,40 @@ class AdReviewCenterAd extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Ads\AdManager\V1\AdReviewCenterAdStatusEnum\AdReviewCenterAdStatus::class);
         $this->status = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The manual review status of the AdReviewCenterAd (for web
+     * properties in MCR mode). For MCR mode, a single ad could have multiple
+     * statuses (for example, pending and serving at the same time, if the ad is
+     * affected by a protection in certain inventory only). This field is not set
+     * for the standard mode.
+     *
+     * Generated from protobuf field <code>repeated .google.ads.admanager.v1.ManualAdReviewCenterAdStatusEnum.ManualAdReviewCenterAdStatus manual_review_statuses = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return RepeatedField<int>
+     */
+    public function getManualReviewStatuses()
+    {
+        return $this->manual_review_statuses;
+    }
+
+    /**
+     * Output only. The manual review status of the AdReviewCenterAd (for web
+     * properties in MCR mode). For MCR mode, a single ad could have multiple
+     * statuses (for example, pending and serving at the same time, if the ad is
+     * affected by a protection in certain inventory only). This field is not set
+     * for the standard mode.
+     *
+     * Generated from protobuf field <code>repeated .google.ads.admanager.v1.ManualAdReviewCenterAdStatusEnum.ManualAdReviewCenterAdStatus manual_review_statuses = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int[] $var
+     * @return $this
+     */
+    public function setManualReviewStatuses($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::ENUM, \Google\Ads\AdManager\V1\ManualAdReviewCenterAdStatusEnum\ManualAdReviewCenterAdStatus::class);
+        $this->manual_review_statuses = $arr;
 
         return $this;
     }

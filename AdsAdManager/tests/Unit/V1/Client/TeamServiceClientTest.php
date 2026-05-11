@@ -41,7 +41,6 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-use Google\Protobuf\FieldMask;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -595,8 +594,7 @@ class TeamServiceClientTest extends GeneratedTest
         $team = new Team();
         $teamDisplayName = 'teamDisplayName1137381328';
         $team->setDisplayName($teamDisplayName);
-        $updateMask = new FieldMask();
-        $request = (new UpdateTeamRequest())->setTeam($team)->setUpdateMask($updateMask);
+        $request = (new UpdateTeamRequest())->setTeam($team);
         $response = $gapicClient->updateTeam($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -606,8 +604,6 @@ class TeamServiceClientTest extends GeneratedTest
         $this->assertSame('/google.ads.admanager.v1.TeamService/UpdateTeam', $actualFuncCall);
         $actualValue = $actualRequestObject->getTeam();
         $this->assertProtobufEquals($team, $actualValue);
-        $actualValue = $actualRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -636,8 +632,7 @@ class TeamServiceClientTest extends GeneratedTest
         $team = new Team();
         $teamDisplayName = 'teamDisplayName1137381328';
         $team->setDisplayName($teamDisplayName);
-        $updateMask = new FieldMask();
-        $request = (new UpdateTeamRequest())->setTeam($team)->setUpdateMask($updateMask);
+        $request = (new UpdateTeamRequest())->setTeam($team);
         try {
             $gapicClient->updateTeam($request);
             // If the $gapicClient method call did not throw, fail the test

@@ -32,7 +32,6 @@ use Google\Ads\AdManager\V1\ReportDefinition\Metric;
 use Google\Ads\AdManager\V1\ReportDefinition\ReportType;
 use Google\Ads\AdManager\V1\UpdateReportRequest;
 use Google\ApiCore\ApiException;
-use Google\Protobuf\FieldMask;
 
 /**
  * API to update a `Report` object.
@@ -62,10 +61,8 @@ function update_report_sample(
         ->setReportType($reportReportDefinitionReportType);
     $report = (new Report())
         ->setReportDefinition($reportReportDefinition);
-    $updateMask = new FieldMask();
     $request = (new UpdateReportRequest())
-        ->setReport($report)
-        ->setUpdateMask($updateMask);
+        ->setReport($report);
 
     // Call the API and handle any network failures.
     try {

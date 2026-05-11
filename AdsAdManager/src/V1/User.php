@@ -23,9 +23,10 @@ class User extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
-     * Output only. `User` ID.
+     * Output only. Deprecated: `User` ID.
      *
-     * Generated from protobuf field <code>optional int64 user_id = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional int64 user_id = 10 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @deprecated
      */
     protected $user_id = null;
     /**
@@ -90,7 +91,7 @@ class User extends \Google\Protobuf\Internal\Message
      *           Identifier. The resource name of the User.
      *           Format: `networks/{network_code}/users/{user_id}`
      *     @type int|string $user_id
-     *           Output only. `User` ID.
+     *           Output only. Deprecated: `User` ID.
      *     @type string $display_name
      *           Required. The name of the User. It has a maximum length of 128 characters.
      *     @type string $email
@@ -150,35 +151,45 @@ class User extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. `User` ID.
+     * Output only. Deprecated: `User` ID.
      *
-     * Generated from protobuf field <code>optional int64 user_id = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional int64 user_id = 10 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int|string
+     * @deprecated
      */
     public function getUserId()
     {
+        if (isset($this->user_id)) {
+            @trigger_error('user_id is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->user_id) ? $this->user_id : 0;
     }
 
     public function hasUserId()
     {
+        if (isset($this->user_id)) {
+            @trigger_error('user_id is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->user_id);
     }
 
     public function clearUserId()
     {
+        @trigger_error('user_id is deprecated.', E_USER_DEPRECATED);
         unset($this->user_id);
     }
 
     /**
-     * Output only. `User` ID.
+     * Output only. Deprecated: `User` ID.
      *
-     * Generated from protobuf field <code>optional int64 user_id = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional int64 user_id = 10 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int|string $var
      * @return $this
+     * @deprecated
      */
     public function setUserId($var)
     {
+        @trigger_error('user_id is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkInt64($var);
         $this->user_id = $var;
 

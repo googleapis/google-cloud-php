@@ -41,7 +41,6 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-use Google\Protobuf\FieldMask;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -583,8 +582,7 @@ class SiteServiceClientTest extends GeneratedTest
         $site = new Site();
         $siteUrl = 'siteUrl2099991720';
         $site->setUrl($siteUrl);
-        $updateMask = new FieldMask();
-        $request = (new UpdateSiteRequest())->setSite($site)->setUpdateMask($updateMask);
+        $request = (new UpdateSiteRequest())->setSite($site);
         $response = $gapicClient->updateSite($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -594,8 +592,6 @@ class SiteServiceClientTest extends GeneratedTest
         $this->assertSame('/google.ads.admanager.v1.SiteService/UpdateSite', $actualFuncCall);
         $actualValue = $actualRequestObject->getSite();
         $this->assertProtobufEquals($site, $actualValue);
-        $actualValue = $actualRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -624,8 +620,7 @@ class SiteServiceClientTest extends GeneratedTest
         $site = new Site();
         $siteUrl = 'siteUrl2099991720';
         $site->setUrl($siteUrl);
-        $updateMask = new FieldMask();
-        $request = (new UpdateSiteRequest())->setSite($site)->setUpdateMask($updateMask);
+        $request = (new UpdateSiteRequest())->setSite($site);
         try {
             $gapicClient->updateSite($request);
             // If the $gapicClient method call did not throw, fail the test

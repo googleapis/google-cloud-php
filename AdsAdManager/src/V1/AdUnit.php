@@ -23,9 +23,10 @@ class AdUnit extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
-     * Output only. AdUnit ID.
+     * Output only. Deprecated: AdUnit ID.
      *
-     * Generated from protobuf field <code>int64 ad_unit_id = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>int64 ad_unit_id = 15 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @deprecated
      */
     protected $ad_unit_id = 0;
     /**
@@ -211,7 +212,7 @@ class AdUnit extends \Google\Protobuf\Internal\Message
      *           Identifier. The resource name of the AdUnit.
      *           Format: `networks/{network_code}/adUnits/{ad_unit_id}`
      *     @type int|string $ad_unit_id
-     *           Output only. AdUnit ID.
+     *           Output only. Deprecated: AdUnit ID.
      *     @type string $parent_ad_unit
      *           Required. Immutable. The AdUnit's parent. Every ad unit has a parent except
      *           for the root ad unit, which is created by Google. Format:
@@ -327,25 +328,31 @@ class AdUnit extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. AdUnit ID.
+     * Output only. Deprecated: AdUnit ID.
      *
-     * Generated from protobuf field <code>int64 ad_unit_id = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>int64 ad_unit_id = 15 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int|string
+     * @deprecated
      */
     public function getAdUnitId()
     {
+        if ($this->ad_unit_id !== 0) {
+            @trigger_error('ad_unit_id is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->ad_unit_id;
     }
 
     /**
-     * Output only. AdUnit ID.
+     * Output only. Deprecated: AdUnit ID.
      *
-     * Generated from protobuf field <code>int64 ad_unit_id = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>int64 ad_unit_id = 15 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int|string $var
      * @return $this
+     * @deprecated
      */
     public function setAdUnitId($var)
     {
+        @trigger_error('ad_unit_id is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkInt64($var);
         $this->ad_unit_id = $var;
 

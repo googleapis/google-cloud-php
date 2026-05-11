@@ -25,8 +25,18 @@
 namespace Google\Ads\AdManager\V1\Client;
 
 use Google\Ads\AdManager\V1\Application;
+use Google\Ads\AdManager\V1\BatchArchiveApplicationsRequest;
+use Google\Ads\AdManager\V1\BatchArchiveApplicationsResponse;
+use Google\Ads\AdManager\V1\BatchCreateApplicationsRequest;
+use Google\Ads\AdManager\V1\BatchCreateApplicationsResponse;
+use Google\Ads\AdManager\V1\BatchUnarchiveApplicationsRequest;
+use Google\Ads\AdManager\V1\BatchUnarchiveApplicationsResponse;
+use Google\Ads\AdManager\V1\BatchUpdateApplicationsRequest;
+use Google\Ads\AdManager\V1\BatchUpdateApplicationsResponse;
+use Google\Ads\AdManager\V1\CreateApplicationRequest;
 use Google\Ads\AdManager\V1\GetApplicationRequest;
 use Google\Ads\AdManager\V1\ListApplicationsRequest;
+use Google\Ads\AdManager\V1\UpdateApplicationRequest;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
@@ -51,8 +61,14 @@ use Psr\Log\LoggerInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
+ * @method PromiseInterface<BatchArchiveApplicationsResponse> batchArchiveApplicationsAsync(BatchArchiveApplicationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchCreateApplicationsResponse> batchCreateApplicationsAsync(BatchCreateApplicationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchUnarchiveApplicationsResponse> batchUnarchiveApplicationsAsync(BatchUnarchiveApplicationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchUpdateApplicationsResponse> batchUpdateApplicationsAsync(BatchUpdateApplicationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Application> createApplicationAsync(CreateApplicationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Application> getApplicationAsync(GetApplicationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listApplicationsAsync(ListApplicationsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Application> updateApplicationAsync(UpdateApplicationRequest $request, array $optionalArgs = [])
  */
 final class ApplicationServiceClient
 {
@@ -79,7 +95,10 @@ final class ApplicationServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/admanager'];
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/admanager',
+        'https://www.googleapis.com/auth/admanager.readonly',
+    ];
 
     private static function getClientDefaults()
     {
@@ -252,6 +271,148 @@ final class ApplicationServiceClient
     }
 
     /**
+     * / API to batch archive `Application` objects.
+     *
+     * The async variant is
+     * {@see ApplicationServiceClient::batchArchiveApplicationsAsync()} .
+     *
+     * @example samples/V1/ApplicationServiceClient/batch_archive_applications.php
+     *
+     * @param BatchArchiveApplicationsRequest $request     A request to house fields associated with the call.
+     * @param array                           $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchArchiveApplicationsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchArchiveApplications(
+        BatchArchiveApplicationsRequest $request,
+        array $callOptions = []
+    ): BatchArchiveApplicationsResponse {
+        return $this->startApiCall('BatchArchiveApplications', $request, $callOptions)->wait();
+    }
+
+    /**
+     * API to batch create `Application` objects.
+     *
+     * The async variant is
+     * {@see ApplicationServiceClient::batchCreateApplicationsAsync()} .
+     *
+     * @example samples/V1/ApplicationServiceClient/batch_create_applications.php
+     *
+     * @param BatchCreateApplicationsRequest $request     A request to house fields associated with the call.
+     * @param array                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchCreateApplicationsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchCreateApplications(
+        BatchCreateApplicationsRequest $request,
+        array $callOptions = []
+    ): BatchCreateApplicationsResponse {
+        return $this->startApiCall('BatchCreateApplications', $request, $callOptions)->wait();
+    }
+
+    /**
+     * / API to batch unarchive `Application` objects.
+     *
+     * The async variant is
+     * {@see ApplicationServiceClient::batchUnarchiveApplicationsAsync()} .
+     *
+     * @example samples/V1/ApplicationServiceClient/batch_unarchive_applications.php
+     *
+     * @param BatchUnarchiveApplicationsRequest $request     A request to house fields associated with the call.
+     * @param array                             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchUnarchiveApplicationsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchUnarchiveApplications(
+        BatchUnarchiveApplicationsRequest $request,
+        array $callOptions = []
+    ): BatchUnarchiveApplicationsResponse {
+        return $this->startApiCall('BatchUnarchiveApplications', $request, $callOptions)->wait();
+    }
+
+    /**
+     * API to batch update `Application` objects.
+     *
+     * The async variant is
+     * {@see ApplicationServiceClient::batchUpdateApplicationsAsync()} .
+     *
+     * @example samples/V1/ApplicationServiceClient/batch_update_applications.php
+     *
+     * @param BatchUpdateApplicationsRequest $request     A request to house fields associated with the call.
+     * @param array                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchUpdateApplicationsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchUpdateApplications(
+        BatchUpdateApplicationsRequest $request,
+        array $callOptions = []
+    ): BatchUpdateApplicationsResponse {
+        return $this->startApiCall('BatchUpdateApplications', $request, $callOptions)->wait();
+    }
+
+    /**
+     * API to create a `Application` object.
+     *
+     * The async variant is {@see ApplicationServiceClient::createApplicationAsync()} .
+     *
+     * @example samples/V1/ApplicationServiceClient/create_application.php
+     *
+     * @param CreateApplicationRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Application
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createApplication(CreateApplicationRequest $request, array $callOptions = []): Application
+    {
+        return $this->startApiCall('CreateApplication', $request, $callOptions)->wait();
+    }
+
+    /**
      * API to retrieve a `Application` object.
      *
      * The async variant is {@see ApplicationServiceClient::getApplicationAsync()} .
@@ -301,5 +462,31 @@ final class ApplicationServiceClient
     public function listApplications(ListApplicationsRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('ListApplications', $request, $callOptions);
+    }
+
+    /**
+     * API to update a `Application` object.
+     *
+     * The async variant is {@see ApplicationServiceClient::updateApplicationAsync()} .
+     *
+     * @example samples/V1/ApplicationServiceClient/update_application.php
+     *
+     * @param UpdateApplicationRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Application
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateApplication(UpdateApplicationRequest $request, array $callOptions = []): Application
+    {
+        return $this->startApiCall('UpdateApplication', $request, $callOptions)->wait();
     }
 }

@@ -43,7 +43,6 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-use Google\Protobuf\FieldMask;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -630,10 +629,7 @@ class CustomTargetingKeyServiceClientTest extends GeneratedTest
         $customTargetingKeyReportableType =
             CustomTargetingKeyReportableType::CUSTOM_TARGETING_KEY_REPORTABLE_TYPE_UNSPECIFIED;
         $customTargetingKey->setReportableType($customTargetingKeyReportableType);
-        $updateMask = new FieldMask();
-        $request = (new UpdateCustomTargetingKeyRequest())
-            ->setCustomTargetingKey($customTargetingKey)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateCustomTargetingKeyRequest())->setCustomTargetingKey($customTargetingKey);
         $response = $gapicClient->updateCustomTargetingKey($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -646,8 +642,6 @@ class CustomTargetingKeyServiceClientTest extends GeneratedTest
         );
         $actualValue = $actualRequestObject->getCustomTargetingKey();
         $this->assertProtobufEquals($customTargetingKey, $actualValue);
-        $actualValue = $actualRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -679,10 +673,7 @@ class CustomTargetingKeyServiceClientTest extends GeneratedTest
         $customTargetingKeyReportableType =
             CustomTargetingKeyReportableType::CUSTOM_TARGETING_KEY_REPORTABLE_TYPE_UNSPECIFIED;
         $customTargetingKey->setReportableType($customTargetingKeyReportableType);
-        $updateMask = new FieldMask();
-        $request = (new UpdateCustomTargetingKeyRequest())
-            ->setCustomTargetingKey($customTargetingKey)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateCustomTargetingKeyRequest())->setCustomTargetingKey($customTargetingKey);
         try {
             $gapicClient->updateCustomTargetingKey($request);
             // If the $gapicClient method call did not throw, fail the test
