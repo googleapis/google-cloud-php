@@ -717,7 +717,23 @@ class Table
      *
      * @see https://cloud.google.com/bigquery/docs/reference/rest/v2/tables Tables resource documentation.
      *
-     * @param array $options [optional] Configuration options.
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type string $selectedFields List of table schema fields to return
+     *           (comma-separated). If unspecified, all fields are returned.
+     *     @type string $view Specifies the view that determines which table
+     *           information is returned. Acceptable values are defined in
+     *           {@see \Google\Cloud\BigQuery\TableMetadataView}. By default,
+     *           basic table information and storage statistics (STORAGE_STATS)
+     *           are returned.
+     *
+     *     **Note:** If metadata is already cached, $options will be ignored.
+     *     Use {@see Table::reload()} to force a refresh with specific options.
+     *
+     *     More information:
+     *     https://docs.cloud.google.com/bigquery/docs/reference/rest/v2/tables/get#query-parameters
+     * }
      * @return array
      */
     public function info(array $options = [])
@@ -741,7 +757,20 @@ class Table
      *
      * @see https://cloud.google.com/bigquery/docs/reference/rest/v2/tables/get Tables get API documentation.
      *
-     * @param array $options [optional] Configuration options.
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type string $selectedFields List of table schema fields to return
+     *           (comma-separated). If unspecified, all fields are returned.
+     *     @type string $view Specifies the view that determines which table
+     *           information is returned. Acceptable values are defined in
+     *           {@see \Google\Cloud\BigQuery\TableMetadataView}. By default,
+     *           basic table information and storage statistics (STORAGE_STATS)
+     *           are returned.
+     *
+     *     More information:
+     *     https://docs.cloud.google.com/bigquery/docs/reference/rest/v2/tables/get#query-parameters
+     * }
      * @return array
      */
     public function reload(array $options = [])
