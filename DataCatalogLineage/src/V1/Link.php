@@ -49,6 +49,13 @@ class Link extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 5;</code>
      */
     protected $end_time = null;
+    /**
+     * Optional. The dependency info of the link (applies only to column level
+     * links).
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.datacatalog.lineage.v1.Link.DependencyInfo dependency_info = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $dependency_info;
 
     /**
      * Constructor.
@@ -67,6 +74,9 @@ class Link extends \Google\Protobuf\Internal\Message
      *           The start of the first event establishing this link.
      *     @type \Google\Protobuf\Timestamp $end_time
      *           The end of the last event establishing this link.
+     *     @type \Google\Cloud\DataCatalog\Lineage\V1\Link\DependencyInfo[] $dependency_info
+     *           Optional. The dependency info of the link (applies only to column level
+     *           links).
      * }
      */
     public function __construct($data = NULL) {
@@ -242,6 +252,34 @@ class Link extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->end_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The dependency info of the link (applies only to column level
+     * links).
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.datacatalog.lineage.v1.Link.DependencyInfo dependency_info = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return RepeatedField<\Google\Cloud\DataCatalog\Lineage\V1\Link\DependencyInfo>
+     */
+    public function getDependencyInfo()
+    {
+        return $this->dependency_info;
+    }
+
+    /**
+     * Optional. The dependency info of the link (applies only to column level
+     * links).
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.datacatalog.lineage.v1.Link.DependencyInfo dependency_info = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\DataCatalog\Lineage\V1\Link\DependencyInfo[] $var
+     * @return $this
+     */
+    public function setDependencyInfo($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\DataCatalog\Lineage\V1\Link\DependencyInfo::class);
+        $this->dependency_info = $arr;
 
         return $this;
     }

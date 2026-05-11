@@ -24,6 +24,7 @@ namespace Google\Cloud\DataCatalog\Lineage\Tests\Unit\V1\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
+use Google\ApiCore\ServerStream;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\DataCatalog\Lineage\V1\BatchSearchLinkProcessesRequest;
@@ -52,6 +53,10 @@ use Google\Cloud\DataCatalog\Lineage\V1\ProcessOpenLineageRunEventRequest;
 use Google\Cloud\DataCatalog\Lineage\V1\ProcessOpenLineageRunEventResponse;
 use Google\Cloud\DataCatalog\Lineage\V1\Run;
 use Google\Cloud\DataCatalog\Lineage\V1\Run\State;
+use Google\Cloud\DataCatalog\Lineage\V1\SearchLineageStreamingRequest;
+use Google\Cloud\DataCatalog\Lineage\V1\SearchLineageStreamingRequest\RootCriteria;
+use Google\Cloud\DataCatalog\Lineage\V1\SearchLineageStreamingRequest\SearchDirection;
+use Google\Cloud\DataCatalog\Lineage\V1\SearchLineageStreamingResponse;
 use Google\Cloud\DataCatalog\Lineage\V1\SearchLinksRequest;
 use Google\Cloud\DataCatalog\Lineage\V1\SearchLinksResponse;
 use Google\Cloud\DataCatalog\Lineage\V1\UpdateProcessRequest;
@@ -1197,6 +1202,101 @@ class LineageClientTest extends GeneratedTest
         try {
             $gapicClient->processOpenLineageRunEvent($request);
             // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function searchLineageStreamingTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new SearchLineageStreamingResponse();
+        $transport->addResponse($expectedResponse);
+        $expectedResponse2 = new SearchLineageStreamingResponse();
+        $transport->addResponse($expectedResponse2);
+        $expectedResponse3 = new SearchLineageStreamingResponse();
+        $transport->addResponse($expectedResponse3);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $locations = [];
+        $rootCriteria = new RootCriteria();
+        $direction = SearchDirection::SEARCH_DIRECTION_UNSPECIFIED;
+        $request = (new SearchLineageStreamingRequest())
+            ->setParent($formattedParent)
+            ->setLocations($locations)
+            ->setRootCriteria($rootCriteria)
+            ->setDirection($direction);
+        $serverStream = $gapicClient->searchLineageStreaming($request);
+        $this->assertInstanceOf(ServerStream::class, $serverStream);
+        $responses = iterator_to_array($serverStream->readAll());
+        $expectedResponses = [];
+        $expectedResponses[] = $expectedResponse;
+        $expectedResponses[] = $expectedResponse2;
+        $expectedResponses[] = $expectedResponse3;
+        $this->assertEquals($expectedResponses, $responses);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.datacatalog.lineage.v1.Lineage/SearchLineageStreaming', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getLocations();
+        $this->assertProtobufEquals($locations, $actualValue);
+        $actualValue = $actualRequestObject->getRootCriteria();
+        $this->assertProtobufEquals($rootCriteria, $actualValue);
+        $actualValue = $actualRequestObject->getDirection();
+        $this->assertProtobufEquals($direction, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function searchLineageStreamingExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->setStreamingStatus($status);
+        $this->assertTrue($transport->isExhausted());
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $locations = [];
+        $rootCriteria = new RootCriteria();
+        $direction = SearchDirection::SEARCH_DIRECTION_UNSPECIFIED;
+        $request = (new SearchLineageStreamingRequest())
+            ->setParent($formattedParent)
+            ->setLocations($locations)
+            ->setRootCriteria($rootCriteria)
+            ->setDirection($direction);
+        $serverStream = $gapicClient->searchLineageStreaming($request);
+        $results = $serverStream->readAll();
+        try {
+            iterator_to_array($results);
+            // If the close stream method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

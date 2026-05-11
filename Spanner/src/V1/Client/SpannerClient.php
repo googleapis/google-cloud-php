@@ -41,6 +41,7 @@ use Google\Cloud\Spanner\V1\BatchCreateSessionsResponse;
 use Google\Cloud\Spanner\V1\BatchWriteRequest;
 use Google\Cloud\Spanner\V1\BatchWriteResponse;
 use Google\Cloud\Spanner\V1\BeginTransactionRequest;
+use Google\Cloud\Spanner\V1\CacheUpdate;
 use Google\Cloud\Spanner\V1\CommitRequest;
 use Google\Cloud\Spanner\V1\CommitResponse;
 use Google\Cloud\Spanner\V1\CreateSessionRequest;
@@ -49,6 +50,7 @@ use Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest;
 use Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest\Statement;
 use Google\Cloud\Spanner\V1\ExecuteBatchDmlResponse;
 use Google\Cloud\Spanner\V1\ExecuteSqlRequest;
+use Google\Cloud\Spanner\V1\FetchCacheUpdateRequest;
 use Google\Cloud\Spanner\V1\GetSessionRequest;
 use Google\Cloud\Spanner\V1\ListSessionsRequest;
 use Google\Cloud\Spanner\V1\Mutation;
@@ -606,6 +608,36 @@ final class SpannerClient
     public function executeStreamingSql(ExecuteSqlRequest $request, array $callOptions = []): ServerStream
     {
         return $this->startApiCall('ExecuteStreamingSql', $request, $callOptions);
+    }
+
+    /**
+     * Retrieves a cache update for a given database.
+     *
+     * This RPC can be used to warm up the client cache by fetching key recipes
+     * and server information for a given database. It is recommended to call
+     * this RPC at the beginning of the client's lifecycle, prior to any other
+     * data plane operations.
+     *
+     * The cache update is returned as a stream because the response can be too
+     * large to fit into a single `CacheUpdate` message.
+     *
+     * @example samples/V1/SpannerClient/fetch_cache_update.php
+     *
+     * @param FetchCacheUpdateRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type int $timeoutMillis
+     *           Timeout to use for this call.
+     * }
+     *
+     * @return ServerStream<CacheUpdate>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function fetchCacheUpdate(FetchCacheUpdateRequest $request, array $callOptions = []): ServerStream
+    {
+        return $this->startApiCall('FetchCacheUpdate', $request, $callOptions);
     }
 
     /**

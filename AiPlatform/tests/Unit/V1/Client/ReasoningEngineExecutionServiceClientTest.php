@@ -30,6 +30,8 @@ use Google\ApiCore\Testing\MockTransport;
 use Google\Api\HttpBody;
 use Google\Cloud\AIPlatform\V1\AsyncQueryReasoningEngineRequest;
 use Google\Cloud\AIPlatform\V1\AsyncQueryReasoningEngineResponse;
+use Google\Cloud\AIPlatform\V1\CancelAsyncQueryReasoningEngineRequest;
+use Google\Cloud\AIPlatform\V1\CancelAsyncQueryReasoningEngineResponse;
 use Google\Cloud\AIPlatform\V1\Client\ReasoningEngineExecutionServiceClient;
 use Google\Cloud\AIPlatform\V1\QueryReasoningEngineRequest;
 use Google\Cloud\AIPlatform\V1\QueryReasoningEngineResponse;
@@ -205,6 +207,80 @@ class ReasoningEngineExecutionServiceClientTest extends GeneratedTest
         $operationsTransport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
         $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function cancelAsyncQueryReasoningEngineTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new CancelAsyncQueryReasoningEngineResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->reasoningEngineName('[PROJECT]', '[LOCATION]', '[REASONING_ENGINE]');
+        $operationName = 'operationName-1433164189';
+        $request = (new CancelAsyncQueryReasoningEngineRequest())
+            ->setName($formattedName)
+            ->setOperationName($operationName);
+        $response = $gapicClient->cancelAsyncQueryReasoningEngine($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.aiplatform.v1.ReasoningEngineExecutionService/CancelAsyncQueryReasoningEngine',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualRequestObject->getOperationName();
+        $this->assertProtobufEquals($operationName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function cancelAsyncQueryReasoningEngineExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->reasoningEngineName('[PROJECT]', '[LOCATION]', '[REASONING_ENGINE]');
+        $operationName = 'operationName-1433164189';
+        $request = (new CancelAsyncQueryReasoningEngineRequest())
+            ->setName($formattedName)
+            ->setOperationName($operationName);
+        try {
+            $gapicClient->cancelAsyncQueryReasoningEngine($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */

@@ -32,6 +32,7 @@ use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
+use Google\ApiCore\ServerStream;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
@@ -53,6 +54,8 @@ use Google\Cloud\DataCatalog\Lineage\V1\Process;
 use Google\Cloud\DataCatalog\Lineage\V1\ProcessOpenLineageRunEventRequest;
 use Google\Cloud\DataCatalog\Lineage\V1\ProcessOpenLineageRunEventResponse;
 use Google\Cloud\DataCatalog\Lineage\V1\Run;
+use Google\Cloud\DataCatalog\Lineage\V1\SearchLineageStreamingRequest;
+use Google\Cloud\DataCatalog\Lineage\V1\SearchLineageStreamingResponse;
 use Google\Cloud\DataCatalog\Lineage\V1\SearchLinksRequest;
 use Google\Cloud\DataCatalog\Lineage\V1\UpdateProcessRequest;
 use Google\Cloud\DataCatalog\Lineage\V1\UpdateRunRequest;
@@ -770,6 +773,54 @@ final class LineageClient
         array $callOptions = []
     ): ProcessOpenLineageRunEventResponse {
         return $this->startApiCall('ProcessOpenLineageRunEvent', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Retrieves a streaming response of lineage links connected to the requested
+     * assets by performing a breadth-first search in the given direction. Links
+     * represent the data flow between **source** (upstream) and **target**
+     * (downstream) assets in transformation pipelines. Links are stored in the
+     * same project as the Lineage Events that create them. This method retrieves
+     * links from all valid locations provided in the request. This method
+     * supports Column-Level Lineage (CLL) along with wildcard support to retrieve
+     * all CLL for an Entity FQN.
+     *
+     * Following permissions are required to retrieve links:
+     * * `datalineage.events.get` permission for the project where the link is
+     * stored for entity-level lineage.
+     * * `datalineage.events.getFields` permission for the project where the link
+     * is stored for column-level lineage.
+     *
+     * This method also returns processes that created the links if explicitly
+     * requested by setting
+     * [max_process_per_link](google.cloud.datacatalog.lineage.v1.SearchLineageStreamingRequest.limits.max_process_per_link)
+     * is non-zero and full process details are requested via
+     * `links.processes.process` in the
+     * [FieldMask](https://developers.google.com/workspace/docs/api/how-tos/field-masks#read_with_a_field_mask).
+     *
+     * Permission required to retrieve processes:
+     * * `datalineage.processes.get` permission for the project where the process
+     * is stored.
+     *
+     * @example samples/V1/LineageClient/search_lineage_streaming.php
+     *
+     * @param SearchLineageStreamingRequest $request     A request to house fields associated with the call.
+     * @param array                         $callOptions {
+     *     Optional.
+     *
+     *     @type int $timeoutMillis
+     *           Timeout to use for this call.
+     * }
+     *
+     * @return ServerStream<SearchLineageStreamingResponse>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function searchLineageStreaming(
+        SearchLineageStreamingRequest $request,
+        array $callOptions = []
+    ): ServerStream {
+        return $this->startApiCall('SearchLineageStreaming', $request, $callOptions);
     }
 
     /**

@@ -10,7 +10,7 @@ use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
- * [UpdateRun][google.cloud.datacatalog.lineage.v1.UpdateRun].
+ * [UpdateRun][google.cloud.datacatalog.lineage.v1.Lineage.UpdateRun].
  *
  * Generated from protobuf message <code>google.cloud.datacatalog.lineage.v1.UpdateRunRequest</code>
  */
@@ -26,16 +26,16 @@ class UpdateRunRequest extends \Google\Protobuf\Internal\Message
      */
     protected $run = null;
     /**
-     * The list of fields to update. Currently not used. The whole message is
-     * updated.
+     * Optional. The list of fields to update. Currently not used. The whole
+     * message is updated.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $update_mask = null;
     /**
-     * If set to true and the run is not found, the request creates it.
+     * Optional. If set to true and the run is not found, the request creates it.
      *
-     * Generated from protobuf field <code>bool allow_missing = 3;</code>
+     * Generated from protobuf field <code>bool allow_missing = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $allow_missing = false;
 
@@ -46,8 +46,8 @@ class UpdateRunRequest extends \Google\Protobuf\Internal\Message
      *
      *                                                             Format:
      *                                                             `projects/{project}/locations/{location}/processes/{process}/runs/{run}`.
-     * @param \Google\Protobuf\FieldMask               $updateMask The list of fields to update. Currently not used. The whole message is
-     *                                                             updated.
+     * @param \Google\Protobuf\FieldMask               $updateMask Optional. The list of fields to update. Currently not used. The whole
+     *                                                             message is updated.
      *
      * @return \Google\Cloud\DataCatalog\Lineage\V1\UpdateRunRequest
      *
@@ -72,10 +72,10 @@ class UpdateRunRequest extends \Google\Protobuf\Internal\Message
      *           Format:
      *           `projects/{project}/locations/{location}/processes/{process}/runs/{run}`.
      *     @type \Google\Protobuf\FieldMask $update_mask
-     *           The list of fields to update. Currently not used. The whole message is
-     *           updated.
+     *           Optional. The list of fields to update. Currently not used. The whole
+     *           message is updated.
      *     @type bool $allow_missing
-     *           If set to true and the run is not found, the request creates it.
+     *           Optional. If set to true and the run is not found, the request creates it.
      * }
      */
     public function __construct($data = NULL) {
@@ -126,10 +126,10 @@ class UpdateRunRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The list of fields to update. Currently not used. The whole message is
-     * updated.
+     * Optional. The list of fields to update. Currently not used. The whole
+     * message is updated.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
@@ -148,10 +148,10 @@ class UpdateRunRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The list of fields to update. Currently not used. The whole message is
-     * updated.
+     * Optional. The list of fields to update. Currently not used. The whole
+     * message is updated.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\FieldMask $var
      * @return $this
      */
@@ -164,9 +164,9 @@ class UpdateRunRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If set to true and the run is not found, the request creates it.
+     * Optional. If set to true and the run is not found, the request creates it.
      *
-     * Generated from protobuf field <code>bool allow_missing = 3;</code>
+     * Generated from protobuf field <code>bool allow_missing = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getAllowMissing()
@@ -175,9 +175,9 @@ class UpdateRunRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If set to true and the run is not found, the request creates it.
+     * Optional. If set to true and the run is not found, the request creates it.
      *
-     * Generated from protobuf field <code>bool allow_missing = 3;</code>
+     * Generated from protobuf field <code>bool allow_missing = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */

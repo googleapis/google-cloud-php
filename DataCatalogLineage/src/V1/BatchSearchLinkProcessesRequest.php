@@ -33,20 +33,20 @@ class BatchSearchLinkProcessesRequest extends \Google\Protobuf\Internal\Message
      */
     private $links;
     /**
-     * The maximum number of processes to return in a single page of the response.
-     * A page may contain fewer results than this value.
+     * Optional. The maximum number of processes to return in a single page of the
+     * response. A page may contain fewer results than this value.
      *
-     * Generated from protobuf field <code>int32 page_size = 3;</code>
+     * Generated from protobuf field <code>int32 page_size = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $page_size = 0;
     /**
-     * The page token received from a previous `BatchSearchLinkProcesses` call.
-     * Use it to get the next page.
+     * Optional. The page token received from a previous
+     * `BatchSearchLinkProcesses` call. Use it to get the next page.
      * When requesting subsequent pages of a response, remember that
      * all parameters must match the values you provided
      * in the original request.
      *
-     * Generated from protobuf field <code>string page_token = 4;</code>
+     * Generated from protobuf field <code>string page_token = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $page_token = '';
 
@@ -65,11 +65,11 @@ class BatchSearchLinkProcessesRequest extends \Google\Protobuf\Internal\Message
      *           `INVALID_ARGUMENT` error.
      *           Format: `projects/{project}/locations/{location}/links/{link}`.
      *     @type int $page_size
-     *           The maximum number of processes to return in a single page of the response.
-     *           A page may contain fewer results than this value.
+     *           Optional. The maximum number of processes to return in a single page of the
+     *           response. A page may contain fewer results than this value.
      *     @type string $page_token
-     *           The page token received from a previous `BatchSearchLinkProcesses` call.
-     *           Use it to get the next page.
+     *           Optional. The page token received from a previous
+     *           `BatchSearchLinkProcesses` call. Use it to get the next page.
      *           When requesting subsequent pages of a response, remember that
      *           all parameters must match the values you provided
      *           in the original request.
@@ -141,10 +141,10 @@ class BatchSearchLinkProcessesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of processes to return in a single page of the response.
-     * A page may contain fewer results than this value.
+     * Optional. The maximum number of processes to return in a single page of the
+     * response. A page may contain fewer results than this value.
      *
-     * Generated from protobuf field <code>int32 page_size = 3;</code>
+     * Generated from protobuf field <code>int32 page_size = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getPageSize()
@@ -153,10 +153,10 @@ class BatchSearchLinkProcessesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of processes to return in a single page of the response.
-     * A page may contain fewer results than this value.
+     * Optional. The maximum number of processes to return in a single page of the
+     * response. A page may contain fewer results than this value.
      *
-     * Generated from protobuf field <code>int32 page_size = 3;</code>
+     * Generated from protobuf field <code>int32 page_size = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -169,13 +169,13 @@ class BatchSearchLinkProcessesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The page token received from a previous `BatchSearchLinkProcesses` call.
-     * Use it to get the next page.
+     * Optional. The page token received from a previous
+     * `BatchSearchLinkProcesses` call. Use it to get the next page.
      * When requesting subsequent pages of a response, remember that
      * all parameters must match the values you provided
      * in the original request.
      *
-     * Generated from protobuf field <code>string page_token = 4;</code>
+     * Generated from protobuf field <code>string page_token = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getPageToken()
@@ -184,13 +184,13 @@ class BatchSearchLinkProcessesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The page token received from a previous `BatchSearchLinkProcesses` call.
-     * Use it to get the next page.
+     * Optional. The page token received from a previous
+     * `BatchSearchLinkProcesses` call. Use it to get the next page.
      * When requesting subsequent pages of a response, remember that
      * all parameters must match the values you provided
      * in the original request.
      *
-     * Generated from protobuf field <code>string page_token = 4;</code>
+     * Generated from protobuf field <code>string page_token = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
