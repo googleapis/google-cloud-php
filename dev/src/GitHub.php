@@ -274,7 +274,9 @@ class GitHub
 
             return json_decode((string) $res->getBody(), true);
         } catch (\Exception $e) {
-            $this->logException($e);
+            if ($e->getCode() !== 404) {
+                $this->logException($e);
+            }
             return null;
         }
     }

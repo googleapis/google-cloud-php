@@ -780,6 +780,16 @@ class RestTest extends TestCase
                 true,
                 true,
                 false
+            ],[
+                ['validate' => null],
+                true,
+                true,
+                'crc32'
+            ], [
+                ['validate' => ''],
+                true,
+                true,
+                'crc32'
             ]
         ];
     }

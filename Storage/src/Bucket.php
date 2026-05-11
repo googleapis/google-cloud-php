@@ -279,6 +279,12 @@ class Bucket
      *     @type array $metadata The full list of available options are outlined
      *           at the [JSON API docs](https://cloud.google.com/storage/docs/json_api/v1/objects/insert#request-body).
      *     @type array $metadata.metadata User-provided metadata, in key/value pairs.
+     *     @type array $contexts Object contexts. See at the
+     *           [API docs](https://docs.cloud.google.com/storage/docs/use-object-contexts) for more details.
+     *     @type string $contexts.custom.{key}.createTime The time the context
+     *           was created in RFC 3339 format. **(read only)**
+     *     @type string $contexts.custom.{key}.updateTime The time the context
+     *           was last updated in RFC 3339 format. **(read only)**
      *     @type string $encryptionKey A base64 encoded AES-256 customer-supplied
      *           encryption key. If you would prefer to manage encryption
      *           utilizing the Cloud Key Management Service (KMS) please use the
@@ -297,6 +303,15 @@ class Bucket
     {
         if ($this->isObjectNameRequired($data) && !isset($options['name'])) {
             throw new \InvalidArgumentException('A name is required when data is of type string or null.');
+        }
+
+        if (isset($options['contexts'])) {
+            if (!is_array($options['contexts'])) {
+                throw new \InvalidArgumentException('Object contexts must be an array.');
+            }
+            if (isset($options['contexts']['custom']) && !is_array($options['contexts']['custom'])) {
+                throw new \InvalidArgumentException('Object contexts custom field must be an array.');
+            }
         }
 
         $encryptionKey = $options['encryptionKey'] ?? null;
@@ -713,6 +728,9 @@ class Bucket
      *           distinct results. **Defaults to** `false`.
      *     @type string $fields Selector which will cause the response to only
      *           return the specified fields.
+     *     @type string $filter Filter results to include only objects to which the
+     *           specified context is attached. You can filter by the presence,
+     *           absence, or specific value of context keys.
      *     @type string $matchGlob A glob pattern to filter results. The string
      *           value must be UTF-8 encoded. See:
      *           https://cloud.google.com/storage/docs/json_api/v1/objects/list#list-object-glob
@@ -722,7 +740,6 @@ class Bucket
     public function objects(array $options = [])
     {
         $resultLimit = $this->pluck('resultLimit', $options, false);
-
         return new ObjectIterator(
             new ObjectPageIterator(
                 function (array $object) {

@@ -479,7 +479,7 @@ class Rest implements ConnectionInterface
         $args += [
             'bucket' => null,
             'name' => null,
-            'validate' => true,
+            'validate' => 'crc32',
             'resumable' => null,
             'streamable' => null,
             'predefinedAcl' => null,
@@ -555,6 +555,12 @@ class Rest implements ConnectionInterface
             // but not into request body
             $args['metadata']['retention'] = $args['retention'];
             unset($args['retention']);
+        }
+        if (isset($args['contexts'])) {
+            // during object creation context properties are part of the object resource
+            // and should be included in the request body.
+            $args['metadata']['contexts'] = $args['contexts'];
+            unset($args['contexts']);
         }
         unset($args['name']);
         $args['contentType'] = $args['metadata']['contentType']

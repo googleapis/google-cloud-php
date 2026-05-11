@@ -54,7 +54,7 @@ class BucketTest extends TestCase
     const BUCKET_NAME = 'my-bucket';
     const PROJECT_ID = 'my-project';
     const NOTIFICATION_ID = '1234';
-
+    const FILE_NAME_TEST = 'test.txt';
     private $connection;
     private $resumableUploader;
     private $multipartUploader;
@@ -640,6 +640,214 @@ class BucketTest extends TestCase
         $this->resumableUploader->getResumeUri()->willThrow(new ServerException('maintainence'));
         $bucket = $this->getBucket();
         $bucket->isWritable(); // raises exception
+    }
+
+    public function testCreateObjectWithValidContexts()
+    {
+        $contexts = [
+            'custom' => [
+                'dept' => ['value' => 'engineering'],
+                'env' => ['value' => 'production']
+            ]
+        ];
+        $this->resumableUploader->upload()->willReturn([
+            'name' => 'data.txt',
+            'generation' => 123,
+            'contexts' => $contexts
+        ]);
+
+        $this->connection->insertObject(Argument::any())
+            ->willReturn($this->resumableUploader->reveal());
+        $object = $this->getBucket()->upload('upload', [
+            'name' => 'data.txt',
+            'contexts' => $contexts
+        ]);
+        $this->assertInstanceOf(StorageObject::class, $object);
+        $this->assertEquals($contexts, $object->info()['contexts']);
+    }
+
+    public function testUpdateReplacesAllMetadataIncludingContexts()
+    {
+        $objectName = 'replace-test.txt';
+        $object = new StorageObject($this->connection->reveal(), $objectName, self::BUCKET_NAME);
+        $newContexts = ['custom' => ['new-key' => ['value' => 'new-val']]];
+
+        $this->connection->patchObject(Argument::withEntry('contexts', $newContexts))
+            ->shouldBeCalled()
+            ->willReturn([
+                'name' => $objectName,
+                'contexts' => $newContexts,
+            ]);
+
+        $result = $object->update(['contexts' => $newContexts]);
+        $this->assertEquals('new-val', $result['contexts']['custom']['new-key']['value']);
+    }
+
+    public function testAddAndModifyWithIndividualContexts()
+    {
+        $patchMetadata = [
+            'contexts' => [
+                'custom' => [
+                    'new-key' => ['value' => 'added'],
+                    'existing-key' => ['value' => 'modified']
+                ]
+            ]
+        ];
+
+        $this->connection->patchObject(Argument::withEntry('metadata', $patchMetadata))
+        ->willReturn(['metadata' => $patchMetadata]);
+        
+        $file = $this->getBucket()->object(self::FILE_NAME_TEST);
+        $response = $file->update(['metadata' => $patchMetadata]);
+
+        $this->assertArrayHasKey('contexts', $response['metadata']);
+        $this->assertSame('added', $response['metadata']['contexts']['custom']['new-key']['value']);
+        $this->assertSame('modified', $response['metadata']['contexts']['custom']['existing-key']['value']);
+    }
+
+    /**
+    * @dataProvider removeAndClearAllContextsDataProvider
+    */
+    public function testRemoveAndClearAllObjectContexts($objectContexts)
+    {
+        $this->connection->patchObject(
+            Argument::withEntry('contexts', $objectContexts)
+        )->shouldBeCalled()->willReturn([
+            'name' => self::FILE_NAME_TEST,
+            'contexts' => $objectContexts
+        ]);
+
+        $object = new StorageObject(
+            $this->connection->reveal(),
+            self::FILE_NAME_TEST,
+            '',
+            1,
+            ['bucket' => self::BUCKET_NAME]
+        );
+        $object->update(['contexts' => $objectContexts]);
+        $info = $object->info();
+        if ($objectContexts === null) {
+            $hasContexts = isset($info['contexts']) && $info['contexts'] !== null;
+            $this->assertFalse($hasContexts);
+        } else {
+            $actualContexts = $object->info()['contexts'] ?? null;
+            $this->assertEquals($objectContexts, $actualContexts);
+        }
+    }
+
+    public function removeAndClearAllContextsDataProvider()
+    {
+        return [
+            'remove an individual context by setting it to null' => [
+                ['custom' => ['key-to-delete' => null]]
+            ],
+            'clear all contexts by setting custom to null' => [
+                ['custom' => null]
+            ]
+        ];
+    }
+
+    public function testCopyObjectWithMetadataOverrides()
+    {
+        $destFileName = 'destination.txt';
+        $metadata = [
+            'contexts' => [
+                'custom' => ['tag' => ['value' => 'overridden']],
+            ],
+        ];
+
+        $destinationObject = $this->prophesize(StorageObject::class);
+        $destinationObject->info()->willReturn(['metadata' => $metadata]);
+        $sourceObject = $this->prophesize(StorageObject::class);
+        $sourceObject->copy(Argument::any(), Argument::withEntry('metadata', $metadata))
+            ->shouldBeCalled()
+            ->willReturn($destinationObject->reveal());
+
+        $response = $sourceObject->reveal()->copy(self::BUCKET_NAME, [
+            'name' => $destFileName,
+            'metadata' => $metadata
+        ]);
+
+        $this->assertSame(
+            $metadata['contexts'],
+            $response->info()['metadata']['contexts']
+        );
+    }
+
+    public function testListFiltersByPresenceOfKeyValuePair()
+    {
+        $filter = 'contexts."status"="active"';
+        $this->connection->listObjects(Argument::withEntry('filter', $filter))
+            ->shouldBeCalled()
+            ->willReturn([
+                'items' => null
+            ]);
+
+        $bucket = $this->getBucket();
+        $iterator = $bucket->objects([
+            'filter' => $filter
+        ]);
+        $this->assertCount(0, iterator_to_array($iterator));
+    }
+
+    /**
+    * @dataProvider listFilterExistenceDataProvider
+    */
+    public function testListFiltersByExistence($filter)
+    {
+        $this->connection->listObjects(Argument::withEntry('filter', $filter))
+            ->shouldBeCalled()
+            ->willReturn([
+                'items' => null
+            ]);
+
+        $bucket = $this->getBucket();
+        $iterator = $bucket->objects([
+            'filter' => $filter
+        ]);
+
+        $this->assertCount(0, iterator_to_array($iterator));
+    }
+
+    public function listFilterExistenceDataProvider()
+    {
+        return [
+            'presence of key (Existence)' => ['contexts."status":*'],
+            'absence of key (Non-existence)' => ['-contexts."status":*']
+        ];
+    }
+
+    public function testGetFilesIncludesContextsInMetadata()
+    {
+        $fileMetadata = [
+            'name' => 'filename',
+            'metadata' => [
+                'contexts' => [ 'custom' => [ 'dept' =>
+                        [
+                            'value' => 'eng',
+                            'createTime' => '2026-04-16T01:01:01.045123456Z',
+                            'updateTime' => '2026-04-16T01:01:01.045123'
+                        ]
+                    ]
+                ]
+            ]
+        ];
+        $this->connection->listObjects(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([
+                'items' => [$fileMetadata]
+            ]);
+
+        $bucket = $this->getBucket();
+        $files = iterator_to_array($bucket->objects());
+
+        $this->assertCount(1, $files);
+        $this->assertInstanceOf(StorageObject::class, $files[0]);
+
+        $this->assertEquals(
+            $fileMetadata['metadata']['contexts'],
+            $files[0]->info()['metadata']['contexts']
+        );
     }
 
     public function testIam()

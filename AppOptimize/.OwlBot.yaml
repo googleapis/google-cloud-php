@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/cloud/appoptimize/(v1beta)/.*-php/(.*)
+      dest: /owl-bot-staging/Appoptimize/$1/$2
+api-name: Appoptimize
