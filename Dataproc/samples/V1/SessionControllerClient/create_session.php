@@ -35,24 +35,19 @@ use Google\Rpc\Status;
  *
  * @param string $formattedParent The parent resource where this session will be created. Please see
  *                                {@see SessionControllerClient::locationName()} for help formatting this field.
- * @param string $sessionName     The resource name of the session.
  * @param string $sessionId       The ID to use for the session, which becomes the final component
  *                                of the session's resource name.
  *
  *                                This value must be 4-63 characters. Valid characters
  *                                are /[a-z][0-9]-/.
  */
-function create_session_sample(
-    string $formattedParent,
-    string $sessionName,
-    string $sessionId
-): void {
+function create_session_sample(string $formattedParent, string $sessionId): void
+{
     // Create a client.
     $sessionControllerClient = new SessionControllerClient();
 
     // Prepare the request message.
-    $session = (new Session())
-        ->setName($sessionName);
+    $session = new Session();
     $request = (new CreateSessionRequest())
         ->setParent($formattedParent)
         ->setSession($session)
@@ -90,9 +85,8 @@ function create_session_sample(
 function callSample(): void
 {
     $formattedParent = SessionControllerClient::locationName('[PROJECT]', '[LOCATION]');
-    $sessionName = '[NAME]';
     $sessionId = '[SESSION_ID]';
 
-    create_session_sample($formattedParent, $sessionName, $sessionId);
+    create_session_sample($formattedParent, $sessionId);
 }
 // [END dataproc_v1_generated_SessionController_CreateSession_sync]

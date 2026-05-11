@@ -84,12 +84,6 @@ class Component
      */
     const JUPYTER = 1;
     /**
-     * The Jupyter Kernel Gateway.
-     *
-     * Generated from protobuf enum <code>JUPYTER_KERNEL_GATEWAY = 22;</code>
-     */
-    const JUPYTER_KERNEL_GATEWAY = 22;
-    /**
      * The Pig component.
      *
      * Generated from protobuf enum <code>PIG = 21;</code>
@@ -131,6 +125,12 @@ class Component
      * Generated from protobuf enum <code>ZOOKEEPER = 8;</code>
      */
     const ZOOKEEPER = 8;
+    /**
+     * The Jupyter Kernel Gateway.
+     *
+     * Generated from protobuf enum <code>JUPYTER_KERNEL_GATEWAY = 22;</code>
+     */
+    const JUPYTER_KERNEL_GATEWAY = 22;
 
     private static $valueToName = [
         self::COMPONENT_UNSPECIFIED => 'COMPONENT_UNSPECIFIED',
@@ -144,7 +144,6 @@ class Component
         self::HUDI => 'HUDI',
         self::ICEBERG => 'ICEBERG',
         self::JUPYTER => 'JUPYTER',
-        self::JUPYTER_KERNEL_GATEWAY => 'JUPYTER_KERNEL_GATEWAY',
         self::PIG => 'PIG',
         self::PRESTO => 'PRESTO',
         self::TRINO => 'TRINO',
@@ -152,6 +151,7 @@ class Component
         self::SOLR => 'SOLR',
         self::ZEPPELIN => 'ZEPPELIN',
         self::ZOOKEEPER => 'ZOOKEEPER',
+        self::JUPYTER_KERNEL_GATEWAY => 'JUPYTER_KERNEL_GATEWAY',
     ];
 
     public static function name($value)

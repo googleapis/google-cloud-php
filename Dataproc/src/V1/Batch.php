@@ -124,6 +124,8 @@ class Batch extends \Google\Protobuf\Internal\Message
      *           Optional. SparkR batch config.
      *     @type \Google\Cloud\Dataproc\V1\SparkSqlBatch $spark_sql_batch
      *           Optional. SparkSql batch config.
+     *     @type \Google\Cloud\Dataproc\V1\PySparkNotebookBatch $pyspark_notebook_batch
+     *           Optional. PySpark notebook batch config.
      *     @type \Google\Cloud\Dataproc\V1\RuntimeInfo $runtime_info
      *           Output only. Runtime information about batch execution.
      *     @type int $state
@@ -368,6 +370,37 @@ class Batch extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1\SparkSqlBatch::class);
         $this->writeOneof(7, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. PySpark notebook batch config.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.PySparkNotebookBatch pyspark_notebook_batch = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dataproc\V1\PySparkNotebookBatch|null
+     */
+    public function getPysparkNotebookBatch()
+    {
+        return $this->readOneof(19);
+    }
+
+    public function hasPysparkNotebookBatch()
+    {
+        return $this->hasOneof(19);
+    }
+
+    /**
+     * Optional. PySpark notebook batch config.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.PySparkNotebookBatch pyspark_notebook_batch = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dataproc\V1\PySparkNotebookBatch $var
+     * @return $this
+     */
+    public function setPysparkNotebookBatch($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1\PySparkNotebookBatch::class);
+        $this->writeOneof(19, $var);
 
         return $this;
     }
