@@ -52,6 +52,8 @@ class InterfaceNode extends ClassNode
                 $this->implementingClasses[] = '\\' . $className;
             }
         }
+
+        sort($this->implementingClasses);
     }
 
     public function getLongDescription(): string

@@ -9,14 +9,14 @@ items:
       An interface implemented by objects that can fetch auth tokens.
 
       Classes which implement this interface in this package:
+       - <xref uid="\Google\Auth\CredentialsLoader">CredentialsLoader</xref>
        - <xref uid="\Google\Auth\Credentials\ExternalAccountCredentials">Credentials\ExternalAccountCredentials</xref>
-       - <xref uid="\Google\Auth\Credentials\ServiceAccountJwtAccessCredentials">Credentials\ServiceAccountJwtAccessCredentials</xref>
-       - <xref uid="\Google\Auth\Credentials\UserRefreshCredentials">Credentials\UserRefreshCredentials</xref>
-       - <xref uid="\Google\Auth\Credentials\ServiceAccountCredentials">Credentials\ServiceAccountCredentials</xref>
        - <xref uid="\Google\Auth\Credentials\GCECredentials">Credentials\GCECredentials</xref>
        - <xref uid="\Google\Auth\Credentials\ImpersonatedServiceAccountCredentials">Credentials\ImpersonatedServiceAccountCredentials</xref>
        - <xref uid="\Google\Auth\Credentials\InsecureCredentials">Credentials\InsecureCredentials</xref>
-       - <xref uid="\Google\Auth\CredentialsLoader">CredentialsLoader</xref>
+       - <xref uid="\Google\Auth\Credentials\ServiceAccountCredentials">Credentials\ServiceAccountCredentials</xref>
+       - <xref uid="\Google\Auth\Credentials\ServiceAccountJwtAccessCredentials">Credentials\ServiceAccountJwtAccessCredentials</xref>
+       - <xref uid="\Google\Auth\Credentials\UserRefreshCredentials">Credentials\UserRefreshCredentials</xref>
        - <xref uid="\Google\Auth\FetchAuthTokenCache">FetchAuthTokenCache</xref>
        - <xref uid="\Google\Auth\OAuth2">OAuth2</xref>
     type: class
