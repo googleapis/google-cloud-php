@@ -19,6 +19,7 @@ namespace Google\Cloud\BigQuery\Tests\System;
 
 use Google\Cloud\BigQuery\BigQueryClient;
 use Google\Cloud\BigQuery\Table;
+use Google\Cloud\BigQuery\TableMetadataView;
 use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\Core\Exception\FailedPreconditionException;
 
@@ -475,11 +476,11 @@ class ManageTablesTest extends BigQueryTestCase
         ]));
 
         // BASIC view should not include storage statistics
-        $info = $table->reload(['view' => Table::BASIC_METADATA_VIEW]);
+        $info = $table->reload(['view' => TableMetadataView::BASIC]);
         $this->assertArrayNotHasKey('numRows', $info);
 
         // FULL view should include storage statistics
-        $info = $table->reload(['view' => Table::FULL_METADATA_VIEW]);
+        $info = $table->reload(['view' => TableMetadataView::FULL]);
         $this->assertArrayHasKey('numRows', $info);
         $this->assertEquals(1, $info['numRows']);
     }

@@ -41,10 +41,6 @@ class Table
 {
     const MAX_RETRIES = 100;
     const INSERT_CREATE_MAX_DELAY_MICROSECONDS = 60000000;
-    public const BASIC_METADATA_VIEW = 'BASIC';
-    public const FULL_METADATA_VIEW = 'FULL';
-    public const STORAGE_STATS_METADATA_VIEW = 'STORAGE_STATS';
-    public const UNSPECIFIED_METADATA_VIEW = 'TABLE_METADATA_VIEW_UNSPECIFIED';
 
     use ArrayTrait;
     use ConcurrencyControlTrait;
@@ -724,6 +720,14 @@ class Table
      * @param array $options [optional] {
      *     Configuration options.
      *
+     *     @type string $selectedFields List of table schema fields to return
+     *           (comma-separated). If unspecified, all fields are returned.
+     *     @type string $view Specifies the view that determines which table
+     *           information is returned. Acceptable values are defined in
+     *           {@see \Google\Cloud\BigQuery\TableMetadataView}. By default,
+     *           basic table information and storage statistics (STORAGE_STATS)
+     *           are returned.
+     *
      *     **Note:** If metadata is already cached, $options will be ignored.
      *     Use {@see Table::reload()} to force a refresh with specific options.
      *
@@ -755,6 +759,14 @@ class Table
      *
      * @param array $options [optional] {
      *     Configuration options.
+     *
+     *     @type string $selectedFields List of table schema fields to return
+     *           (comma-separated). If unspecified, all fields are returned.
+     *     @type string $view Specifies the view that determines which table
+     *           information is returned. Acceptable values are defined in
+     *           {@see \Google\Cloud\BigQuery\TableMetadataView}. By default,
+     *           basic table information and storage statistics (STORAGE_STATS)
+     *           are returned.
      *
      *     More information:
      *     https://docs.cloud.google.com/bigquery/docs/reference/rest/v2/tables/get#query-parameters
