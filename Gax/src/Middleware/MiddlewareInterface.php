@@ -75,7 +75,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * });
  * ```
  *
- * @see Google\ApiCore\Middleware\ResponseMetadataMiddleware
+ * @see ResponseMetadataMiddleware
  */
 interface MiddlewareInterface
 {
