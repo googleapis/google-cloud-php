@@ -55,6 +55,11 @@
                                 "executeStreamingSql"
                             ]
                         },
+                        "FetchCacheUpdate": {
+                            "methods": [
+                                "fetchCacheUpdate"
+                            ]
+                        },
                         "GetSession": {
                             "methods": [
                                 "getSession"
