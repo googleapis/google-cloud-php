@@ -41,7 +41,7 @@ items:
           description: 'By default, Cloud Vision API only includes confidence score for DOCUMENT_TEXT_DETECTION result. Set the flag to true to include confidence score for TEXT_DETECTION as well.'
         -
           id: '↳ advanced_ocr_options'
-          var_type: array<string>
+          var_type: 'string[]'
           description: 'A list of advanced OCR options to further fine-tune OCR behavior. Current valid values are: - `legacy_layout`: a heuristics layout detection algorithm, which serves as an alternative to the current ML-based layout detection algorithm. Customers can choose the best suitable layout algorithm based on their situation.'
   -
     uid: '\Google\Cloud\Vision\V1\TextDetectionParams::getEnableTextDetectionConfidenceScore()'
@@ -99,7 +99,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Internal/RepeatedField">Google\Protobuf\Internal\RepeatedField</a>'
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/RepeatedField">Google\Protobuf\RepeatedField</a>&lt;<xref uid="string">string</xref>&gt;'
   -
     uid: '\Google\Cloud\Vision\V1\TextDetectionParams::setAdvancedOcrOptions()'
     name: setAdvancedOcrOptions

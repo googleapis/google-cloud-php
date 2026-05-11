@@ -258,4 +258,40 @@ class ClassNode
     {
         $this->tocName = $tocName;
     }
+
+    public function excludeFromDocs(): bool
+    {
+        // Skip the protobuf classes with underscores, they're all deprecated
+        // @TODO: Do not generate them in V2
+        if (false !== strpos($this->getName(), '_')) {
+            return true;
+        }
+
+        // Skip deprecated classes
+        if ('deprecated' === $this->getStatus()) {
+            return true;
+        }
+
+        // Manually skip GAPIC base clients
+        if ($this->isServiceBaseClass()) {
+
+            return true;
+        }
+
+        // Skip internal classes
+        if ($this->isInternal()) {
+            return true;
+        }
+
+        // Manually skip Grpc classes
+        // @TODO: remove this once we no longer have V2 classes
+        if (
+            'GrpcClient' === substr($this->getFullName(), -10)
+            && '\Grpc\BaseStub' === $this->getExtends()
+        ) {
+            return true;
+        }
+
+        return false;
+    }
 }

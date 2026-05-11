@@ -78,7 +78,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Internal/RepeatedField">Google\Protobuf\Internal\RepeatedField</a>'
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/RepeatedField">Google\Protobuf\RepeatedField</a>&lt;<xref uid="\Google\Cloud\Vision\V1\WebDetection\WebEntity">WebDetection\WebEntity</xref>&gt;'
   -
     uid: '\Google\Cloud\Vision\V1\WebDetection::setWebEntities()'
     name: setWebEntities
@@ -112,7 +112,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Internal/RepeatedField">Google\Protobuf\Internal\RepeatedField</a>'
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/RepeatedField">Google\Protobuf\RepeatedField</a>&lt;<xref uid="\Google\Cloud\Vision\V1\WebDetection\WebImage">WebDetection\WebImage</xref>&gt;'
   -
     uid: '\Google\Cloud\Vision\V1\WebDetection::setFullMatchingImages()'
     name: setFullMatchingImages
@@ -150,7 +150,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Internal/RepeatedField">Google\Protobuf\Internal\RepeatedField</a>'
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/RepeatedField">Google\Protobuf\RepeatedField</a>&lt;<xref uid="\Google\Cloud\Vision\V1\WebDetection\WebImage">WebDetection\WebImage</xref>&gt;'
   -
     uid: '\Google\Cloud\Vision\V1\WebDetection::setPartialMatchingImages()'
     name: setPartialMatchingImages
@@ -185,7 +185,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Internal/RepeatedField">Google\Protobuf\Internal\RepeatedField</a>'
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/RepeatedField">Google\Protobuf\RepeatedField</a>&lt;<xref uid="\Google\Cloud\Vision\V1\WebDetection\WebPage">WebDetection\WebPage</xref>&gt;'
   -
     uid: '\Google\Cloud\Vision\V1\WebDetection::setPagesWithMatchingImages()'
     name: setPagesWithMatchingImages
@@ -216,7 +216,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Internal/RepeatedField">Google\Protobuf\Internal\RepeatedField</a>'
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/RepeatedField">Google\Protobuf\RepeatedField</a>&lt;<xref uid="\Google\Cloud\Vision\V1\WebDetection\WebImage">WebDetection\WebImage</xref>&gt;'
   -
     uid: '\Google\Cloud\Vision\V1\WebDetection::setVisuallySimilarImages()'
     name: setVisuallySimilarImages
@@ -250,7 +250,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Internal/RepeatedField">Google\Protobuf\Internal\RepeatedField</a>'
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/RepeatedField">Google\Protobuf\RepeatedField</a>&lt;<xref uid="\Google\Cloud\Vision\V1\WebDetection\WebLabel">WebDetection\WebLabel</xref>&gt;'
   -
     uid: '\Google\Cloud\Vision\V1\WebDetection::setBestGuessLabels()'
     name: setBestGuessLabels

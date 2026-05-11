@@ -17,8 +17,11 @@
 
 namespace Google\Cloud\Dev\Tests\Unit\DocFx;
 
+use Google\Auth\Credentials\ServiceAccountCredentials;
+use Google\Auth\FetchAuthTokenInterface;
 use PHPUnit\Framework\TestCase;
 use Google\Cloud\Dev\DocFx\Node\ClassNode;
+use Google\Cloud\Dev\DocFx\Node\InterfaceNode;
 use Google\Cloud\Dev\DocFx\Page\OverviewPage;
 use Google\Cloud\Dev\DocFx\Page\Page;
 use Google\Cloud\Dev\DocFx\Page\PageTree;
@@ -65,7 +68,7 @@ class PageTest extends TestCase
 
     public function testLoadPagesProtoPackages()
     {
-        $structureXml = __DIR__ . '/../../fixtures/phpdoc/structure.xml';
+        $structureXml = __DIR__ . '/../../fixtures/phpdoc/vision.xml';
         $componentPath = __DIR__ . '/../../fixtures/component/Vision';
         $protoPackages = [
             'google.longrunning' => 'Google\LongRunning',
@@ -107,6 +110,36 @@ class PageTest extends TestCase
         $this->assertStringContainsString('pre-GA', $overview4->getContents());
         $this->assertStringStartsWith("# Yes beta\n", $overview4->getContents());
         $this->assertStringEndsWith("\nend.", $overview4->getContents());
+    }
+
+    public function testInterfacePage()
+    {
+        $structureXml = __DIR__ . '/../../fixtures/phpdoc/auth.xml';
+        $componentPath = __DIR__ . '/../../../vendor/google/auth';
+        $protoPackages = [];
+        $pageTree = new PageTree(
+            $structureXml,
+            'Google\Auth',
+            'Google Auth',
+            $componentPath,
+            $protoPackages
+        );
+
+        $pages = $pageTree->getPages();
+        $interfacePage = null;
+        foreach ($pages as $page) {
+            if (ltrim($page->getClassNode()->getFullname(), '\\') === FetchAuthTokenInterface::class) {
+                $interfacePage = $page;
+                break;
+            }
+        }
+
+        $this->assertNotNull($interfacePage);
+        $description = $interfacePage->getItems()[0]['summary'] ?? '';
+        $this->assertStringContainsString(
+            ServiceAccountCredentials::class,
+            $description
+        );
     }
 
     public function testHandleSample()

@@ -50,7 +50,7 @@ items:
           description: 'The resource name of a <xref uid="\Google\Cloud\Vision\V1\ProductSet">ProductSet</xref> to be searched for similar images. Format is: `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`.'
         -
           id: '↳ product_categories'
-          var_type: array<string>
+          var_type: 'string[]'
           description: 'The list of product categories to search in. Currently, we only consider the first category, and either "homegoods-v2", "apparel-v2", "toys-v2", "packagedgoods-v1", or "general-v1" should be specified. The legacy categories "homegoods", "apparel", and "toys" are still supported but will be deprecated. For new products, please use "homegoods-v2", "apparel-v2", or "toys-v2" for better product search accuracy. It is recommended to migrate existing products to these categories as well.'
         -
           id: '↳ filter'
@@ -169,7 +169,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Internal/RepeatedField">Google\Protobuf\Internal\RepeatedField</a>'
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/RepeatedField">Google\Protobuf\RepeatedField</a>&lt;<xref uid="string">string</xref>&gt;'
   -
     uid: '\Google\Cloud\Vision\V1\ProductSearchParams::setProductCategories()'
     name: setProductCategories
