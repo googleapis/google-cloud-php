@@ -48,8 +48,8 @@ class RuntimeConfig extends \Google\Protobuf\Internal\Message
      */
     protected $autotuning_config = null;
     /**
-     * Optional. Cohort identifier. Identifies families of the workloads having
-     * the same shape, e.g. daily ETL jobs.
+     * Optional. Cohort identifier. Identifies families of the workloads that have
+     * the same shape, for example, daily ETL jobs.
      *
      * Generated from protobuf field <code>string cohort = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -74,8 +74,8 @@ class RuntimeConfig extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dataproc\V1\AutotuningConfig $autotuning_config
      *           Optional. Autotuning configuration of the workload.
      *     @type string $cohort
-     *           Optional. Cohort identifier. Identifies families of the workloads having
-     *           the same shape, e.g. daily ETL jobs.
+     *           Optional. Cohort identifier. Identifies families of the workloads that have
+     *           the same shape, for example, daily ETL jobs.
      * }
      */
     public function __construct($data = NULL) {
@@ -238,8 +238,8 @@ class RuntimeConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Cohort identifier. Identifies families of the workloads having
-     * the same shape, e.g. daily ETL jobs.
+     * Optional. Cohort identifier. Identifies families of the workloads that have
+     * the same shape, for example, daily ETL jobs.
      *
      * Generated from protobuf field <code>string cohort = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -250,8 +250,8 @@ class RuntimeConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Cohort identifier. Identifies families of the workloads having
-     * the same shape, e.g. daily ETL jobs.
+     * Optional. Cohort identifier. Identifies families of the workloads that have
+     * the same shape, for example, daily ETL jobs.
      *
      * Generated from protobuf field <code>string cohort = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

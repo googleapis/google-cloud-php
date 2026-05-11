@@ -31,7 +31,7 @@ use Google\Cloud\Dataproc\V1\UpdateSessionTemplateRequest;
 /**
  * Updates the session template synchronously.
  *
- * @param string $sessionTemplateName The resource name of the session template.
+ * @param string $sessionTemplateName Identifier. The resource name of the session template.
  */
 function update_session_template_sample(string $sessionTemplateName): void
 {

@@ -38,10 +38,9 @@ class CreateBatchRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A unique ID used to identify the request. If the service
      * receives two
-     * [CreateBatchRequest](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.CreateBatchRequest)s
-     * with the same request_id, the second request is ignored and the
-     * Operation that corresponds to the first Batch created and stored
-     * in the backend is returned.
+     * `CreateBatchRequests` with the same `request_id`, the second request is
+     * ignored and the operation that corresponds to the first Batch created and
+     * stored in the backend is returned.
      * Recommendation: Set this value to a
      * [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier).
      * The value must contain only letters (a-z, A-Z), numbers (0-9),
@@ -89,10 +88,9 @@ class CreateBatchRequest extends \Google\Protobuf\Internal\Message
      *     @type string $request_id
      *           Optional. A unique ID used to identify the request. If the service
      *           receives two
-     *           [CreateBatchRequest](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.CreateBatchRequest)s
-     *           with the same request_id, the second request is ignored and the
-     *           Operation that corresponds to the first Batch created and stored
-     *           in the backend is returned.
+     *           `CreateBatchRequests` with the same `request_id`, the second request is
+     *           ignored and the operation that corresponds to the first Batch created and
+     *           stored in the backend is returned.
      *           Recommendation: Set this value to a
      *           [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier).
      *           The value must contain only letters (a-z, A-Z), numbers (0-9),
@@ -199,10 +197,9 @@ class CreateBatchRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A unique ID used to identify the request. If the service
      * receives two
-     * [CreateBatchRequest](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.CreateBatchRequest)s
-     * with the same request_id, the second request is ignored and the
-     * Operation that corresponds to the first Batch created and stored
-     * in the backend is returned.
+     * `CreateBatchRequests` with the same `request_id`, the second request is
+     * ignored and the operation that corresponds to the first Batch created and
+     * stored in the backend is returned.
      * Recommendation: Set this value to a
      * [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier).
      * The value must contain only letters (a-z, A-Z), numbers (0-9),
@@ -219,10 +216,9 @@ class CreateBatchRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A unique ID used to identify the request. If the service
      * receives two
-     * [CreateBatchRequest](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.CreateBatchRequest)s
-     * with the same request_id, the second request is ignored and the
-     * Operation that corresponds to the first Batch created and stored
-     * in the backend is returned.
+     * `CreateBatchRequests` with the same `request_id`, the second request is
+     * ignored and the operation that corresponds to the first Batch created and
+     * stored in the backend is returned.
      * Recommendation: Set this value to a
      * [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier).
      * The value must contain only letters (a-z, A-Z), numbers (0-9),

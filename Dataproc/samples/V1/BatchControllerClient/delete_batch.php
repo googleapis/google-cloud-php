@@ -28,8 +28,10 @@ use Google\Cloud\Dataproc\V1\Client\BatchControllerClient;
 use Google\Cloud\Dataproc\V1\DeleteBatchRequest;
 
 /**
- * Deletes the batch workload resource. If the batch is not in terminal state,
- * the delete fails and the response returns `FAILED_PRECONDITION`.
+ * Deletes the batch workload resource. If the batch is not in a
+ * `CANCELLED`, `SUCCEEDED` or `FAILED`
+ * [`State`][google.cloud.dataproc.v1.Batch.State], the delete operation fails
+ * and the response returns `FAILED_PRECONDITION`.
  *
  * @param string $formattedName The fully qualified name of the batch to retrieve
  *                              in the format

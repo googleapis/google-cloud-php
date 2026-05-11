@@ -94,7 +94,11 @@ final class BatchControllerClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/cloud-platform',
+        'https://www.googleapis.com/auth/dataproc',
+        'https://www.googleapis.com/auth/dataproc.read-only',
+    ];
 
     private $operationsClient;
 
@@ -185,6 +189,27 @@ final class BatchControllerClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a crypto_key
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $keyRing
+     * @param string $cryptoKey
+     *
+     * @return string The formatted crypto_key resource.
+     */
+    public static function cryptoKeyName(string $project, string $location, string $keyRing, string $cryptoKey): string
+    {
+        return self::getPathTemplate('cryptoKey')->render([
+            'project' => $project,
+            'location' => $location,
+            'key_ring' => $keyRing,
+            'crypto_key' => $cryptoKey,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a location
      * resource.
      *
@@ -225,6 +250,7 @@ final class BatchControllerClient
      * The following name formats are supported:
      * Template: Pattern
      * - batch: projects/{project}/locations/{location}/batches/{batch}
+     * - cryptoKey: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}
      * - location: projects/{project}/locations/{location}
      * - service: projects/{project}/locations/{location}/services/{service}
      *
@@ -359,8 +385,10 @@ final class BatchControllerClient
     }
 
     /**
-     * Deletes the batch workload resource. If the batch is not in terminal state,
-     * the delete fails and the response returns `FAILED_PRECONDITION`.
+     * Deletes the batch workload resource. If the batch is not in a
+     * `CANCELLED`, `SUCCEEDED` or `FAILED`
+     * [`State`][google.cloud.dataproc.v1.Batch.State], the delete operation fails
+     * and the response returns `FAILED_PRECONDITION`.
      *
      * The async variant is {@see BatchControllerClient::deleteBatchAsync()} .
      *
