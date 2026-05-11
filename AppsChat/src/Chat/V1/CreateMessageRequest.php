@@ -78,6 +78,14 @@ class CreateMessageRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string message_id = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $message_id = '';
+    /**
+     * Optional. Controls the notification behavior when the message is posted.
+     * To learn more, see [Force notifications or send silent
+     * messages](https://developer.google.com/workspace/chat/create-messages#force-notify-silent).
+     *
+     * Generated from protobuf field <code>.google.chat.v1.CreateMessageNotificationOptions create_message_notification_options = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $create_message_notification_options = null;
 
     /**
      * @param string                       $parent    Required. The resource name of the space in which to create a message.
@@ -157,6 +165,10 @@ class CreateMessageRequest extends \Google\Protobuf\Internal\Message
      *           different messages.
      *           For details, see [Name a
      *           message](https://developers.google.com/workspace/chat/create-messages#name_a_created_message).
+     *     @type \Google\Apps\Chat\V1\CreateMessageNotificationOptions $create_message_notification_options
+     *           Optional. Controls the notification behavior when the message is posted.
+     *           To learn more, see [Force notifications or send silent
+     *           messages](https://developer.google.com/workspace/chat/create-messages#force-notify-silent).
      * }
      */
     public function __construct($data = NULL) {
@@ -384,6 +396,46 @@ class CreateMessageRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->message_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Controls the notification behavior when the message is posted.
+     * To learn more, see [Force notifications or send silent
+     * messages](https://developer.google.com/workspace/chat/create-messages#force-notify-silent).
+     *
+     * Generated from protobuf field <code>.google.chat.v1.CreateMessageNotificationOptions create_message_notification_options = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Apps\Chat\V1\CreateMessageNotificationOptions|null
+     */
+    public function getCreateMessageNotificationOptions()
+    {
+        return $this->create_message_notification_options;
+    }
+
+    public function hasCreateMessageNotificationOptions()
+    {
+        return isset($this->create_message_notification_options);
+    }
+
+    public function clearCreateMessageNotificationOptions()
+    {
+        unset($this->create_message_notification_options);
+    }
+
+    /**
+     * Optional. Controls the notification behavior when the message is posted.
+     * To learn more, see [Force notifications or send silent
+     * messages](https://developer.google.com/workspace/chat/create-messages#force-notify-silent).
+     *
+     * Generated from protobuf field <code>.google.chat.v1.CreateMessageNotificationOptions create_message_notification_options = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Apps\Chat\V1\CreateMessageNotificationOptions $var
+     * @return $this
+     */
+    public function setCreateMessageNotificationOptions($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Apps\Chat\V1\CreateMessageNotificationOptions::class);
+        $this->create_message_notification_options = $var;
 
         return $this;
     }

@@ -206,6 +206,13 @@ class Message extends \Google\Protobuf\Internal\Message
      */
     protected $thread_reply = false;
     /**
+     * Output only. Whether this is a silent message. Silent messages are messages
+     * where Chat suppresses push notifications for recipients.
+     *
+     * Generated from protobuf field <code>bool silent = 46 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $silent = false;
+    /**
      * Optional. A custom ID for the message. You can use field to identify a
      * message, or to get, delete, or update a message. To set a custom ID,
      * specify the
@@ -395,6 +402,9 @@ class Message extends \Google\Protobuf\Internal\Message
      *           either the first message of a thread or a message with no threaded replies.
      *           If the space doesn't support reply in threads, this field is always
      *           `false`.
+     *     @type bool $silent
+     *           Output only. Whether this is a silent message. Silent messages are messages
+     *           where Chat suppresses push notifications for recipients.
      *     @type string $client_assigned_message_id
      *           Optional. A custom ID for the message. You can use field to identify a
      *           message, or to get, delete, or update a message. To set a custom ID,
@@ -1182,6 +1192,34 @@ class Message extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->thread_reply = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Whether this is a silent message. Silent messages are messages
+     * where Chat suppresses push notifications for recipients.
+     *
+     * Generated from protobuf field <code>bool silent = 46 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSilent()
+    {
+        return $this->silent;
+    }
+
+    /**
+     * Output only. Whether this is a silent message. Silent messages are messages
+     * where Chat suppresses push notifications for recipients.
+     *
+     * Generated from protobuf field <code>bool silent = 46 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSilent($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->silent = $var;
 
         return $this;
     }
