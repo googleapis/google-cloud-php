@@ -2140,6 +2140,11 @@
                                 "asyncQueryReasoningEngine"
                             ]
                         },
+                        "CancelAsyncQueryReasoningEngine": {
+                            "methods": [
+                                "cancelAsyncQueryReasoningEngine"
+                            ]
+                        },
                         "QueryReasoningEngine": {
                             "methods": [
                                 "queryReasoningEngine"

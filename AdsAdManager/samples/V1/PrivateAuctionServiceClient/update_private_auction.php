@@ -27,7 +27,6 @@ use Google\Ads\AdManager\V1\Client\PrivateAuctionServiceClient;
 use Google\Ads\AdManager\V1\PrivateAuction;
 use Google\Ads\AdManager\V1\UpdatePrivateAuctionRequest;
 use Google\ApiCore\ApiException;
-use Google\Protobuf\FieldMask;
 
 /**
  * API to update a `PrivateAuction` object.
@@ -43,10 +42,8 @@ function update_private_auction_sample(string $privateAuctionDisplayName): void
     // Prepare the request message.
     $privateAuction = (new PrivateAuction())
         ->setDisplayName($privateAuctionDisplayName);
-    $updateMask = new FieldMask();
     $request = (new UpdatePrivateAuctionRequest())
-        ->setPrivateAuction($privateAuction)
-        ->setUpdateMask($updateMask);
+        ->setPrivateAuction($privateAuction);
 
     // Call the API and handle any network failures.
     try {

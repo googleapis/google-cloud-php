@@ -30,7 +30,7 @@ class ExecutionConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The Cloud KMS key to use for encryption.
      *
-     * Generated from protobuf field <code>string kms_key = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string kms_key = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
     protected $kms_key = '';
     /**
@@ -89,6 +89,17 @@ class ExecutionConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.AuthenticationConfig authentication_config = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $authentication_config = null;
+    /**
+     * Optional. Associates Resource Manager tags with the workload nodes.
+     * There is a max limit of 30 tags.
+     * Keys and values can be either in numeric format, such as
+     * `tagKeys/{tag_key_id}` and `tagValues/{tag_value_id}`, or in namespaced
+     * format, such as `{org_id|project_id}/{tag_key_short_name}` and
+     * `{tag_value_short_name}`.
+     *
+     * Generated from protobuf field <code>map<string, string> resource_manager_tags = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $resource_manager_tags;
     protected $network;
 
     /**
@@ -147,6 +158,13 @@ class ExecutionConfig extends \Google\Protobuf\Internal\Message
      *           the workload execution. The config specifies the type of identity
      *           (service account or user) that will be used by workloads to access
      *           resources on the project(s).
+     *     @type array|\Google\Protobuf\Internal\MapField $resource_manager_tags
+     *           Optional. Associates Resource Manager tags with the workload nodes.
+     *           There is a max limit of 30 tags.
+     *           Keys and values can be either in numeric format, such as
+     *           `tagKeys/{tag_key_id}` and `tagValues/{tag_value_id}`, or in namespaced
+     *           format, such as `{org_id|project_id}/{tag_key_short_name}` and
+     *           `{tag_value_short_name}`.
      * }
      */
     public function __construct($data = NULL) {
@@ -271,7 +289,7 @@ class ExecutionConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The Cloud KMS key to use for encryption.
      *
-     * Generated from protobuf field <code>string kms_key = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string kms_key = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getKmsKey()
@@ -282,7 +300,7 @@ class ExecutionConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The Cloud KMS key to use for encryption.
      *
-     * Generated from protobuf field <code>string kms_key = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string kms_key = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -488,6 +506,42 @@ class ExecutionConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1\AuthenticationConfig::class);
         $this->authentication_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Associates Resource Manager tags with the workload nodes.
+     * There is a max limit of 30 tags.
+     * Keys and values can be either in numeric format, such as
+     * `tagKeys/{tag_key_id}` and `tagValues/{tag_value_id}`, or in namespaced
+     * format, such as `{org_id|project_id}/{tag_key_short_name}` and
+     * `{tag_value_short_name}`.
+     *
+     * Generated from protobuf field <code>map<string, string> resource_manager_tags = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getResourceManagerTags()
+    {
+        return $this->resource_manager_tags;
+    }
+
+    /**
+     * Optional. Associates Resource Manager tags with the workload nodes.
+     * There is a max limit of 30 tags.
+     * Keys and values can be either in numeric format, such as
+     * `tagKeys/{tag_key_id}` and `tagValues/{tag_value_id}`, or in namespaced
+     * format, such as `{org_id|project_id}/{tag_key_short_name}` and
+     * `{tag_value_short_name}`.
+     *
+     * Generated from protobuf field <code>map<string, string> resource_manager_tags = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setResourceManagerTags($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->resource_manager_tags = $arr;
 
         return $this;
     }

@@ -29,7 +29,6 @@ use Google\Ads\AdManager\V1\Client\SiteServiceClient;
 use Google\Ads\AdManager\V1\Site;
 use Google\Ads\AdManager\V1\UpdateSiteRequest;
 use Google\ApiCore\ApiException;
-use Google\Protobuf\FieldMask;
 
 /**
  * API to batch update `Site` objects.
@@ -49,10 +48,8 @@ function batch_update_sites_sample(string $formattedParent, string $requestsSite
     // Prepare the request message.
     $requestsSite = (new Site())
         ->setUrl($requestsSiteUrl);
-    $requestsUpdateMask = new FieldMask();
     $updateSiteRequest = (new UpdateSiteRequest())
-        ->setSite($requestsSite)
-        ->setUpdateMask($requestsUpdateMask);
+        ->setSite($requestsSite);
     $requests = [$updateSiteRequest,];
     $request = (new BatchUpdateSitesRequest())
         ->setParent($formattedParent)

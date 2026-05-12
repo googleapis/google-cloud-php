@@ -35,7 +35,7 @@ jobs:
       with:
         timeout_minutes: 10
         max_attempts: 3
-        command: composer --no-interaction --no-ansi --no-progress update -d dev
+        command: composer --no-interaction --no-ansi --no-progress --no-cache update -d dev
     - name: Run DocFX Unit Test Suite
       run: dev/vendor/bin/phpunit -c dev/phpunit-docfx.xml.dist
     - name: Run Docs Generator (Dry Run)

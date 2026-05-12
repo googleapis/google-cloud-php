@@ -29,7 +29,6 @@ use Google\Ads\AdManager\V1\Client\TeamServiceClient;
 use Google\Ads\AdManager\V1\Team;
 use Google\Ads\AdManager\V1\UpdateTeamRequest;
 use Google\ApiCore\ApiException;
-use Google\Protobuf\FieldMask;
 
 /**
  * API to batch update `Team` objects.
@@ -50,10 +49,8 @@ function batch_update_teams_sample(string $formattedParent, string $requestsTeam
     // Prepare the request message.
     $requestsTeam = (new Team())
         ->setDisplayName($requestsTeamDisplayName);
-    $requestsUpdateMask = new FieldMask();
     $updateTeamRequest = (new UpdateTeamRequest())
-        ->setTeam($requestsTeam)
-        ->setUpdateMask($requestsUpdateMask);
+        ->setTeam($requestsTeam);
     $requests = [$updateTeamRequest,];
     $request = (new BatchUpdateTeamsRequest())
         ->setParent($formattedParent)

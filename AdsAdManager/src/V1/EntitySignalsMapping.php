@@ -24,9 +24,10 @@ class EntitySignalsMapping extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
-     * Output only. `EntitySignalsMapping` ID.
+     * Output only. Deprecated: `EntitySignalsMapping` ID.
      *
-     * Generated from protobuf field <code>optional int64 entity_signals_mapping_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional int64 entity_signals_mapping_id = 2 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @deprecated
      */
     protected $entity_signals_mapping_id = null;
     /**
@@ -55,7 +56,7 @@ class EntitySignalsMapping extends \Google\Protobuf\Internal\Message
      *           Format:
      *           `networks/{network_code}/entitySignalsMappings/{entity_signals_mapping_id}`
      *     @type int|string $entity_signals_mapping_id
-     *           Output only. `EntitySignalsMapping` ID.
+     *           Output only. Deprecated: `EntitySignalsMapping` ID.
      *     @type int[]|string[] $taxonomy_category_ids
      *           Optional. The IDs of the categories that are associated with the
      *           referencing entity.
@@ -190,35 +191,45 @@ class EntitySignalsMapping extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. `EntitySignalsMapping` ID.
+     * Output only. Deprecated: `EntitySignalsMapping` ID.
      *
-     * Generated from protobuf field <code>optional int64 entity_signals_mapping_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional int64 entity_signals_mapping_id = 2 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int|string
+     * @deprecated
      */
     public function getEntitySignalsMappingId()
     {
+        if (isset($this->entity_signals_mapping_id)) {
+            @trigger_error('entity_signals_mapping_id is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->entity_signals_mapping_id) ? $this->entity_signals_mapping_id : 0;
     }
 
     public function hasEntitySignalsMappingId()
     {
+        if (isset($this->entity_signals_mapping_id)) {
+            @trigger_error('entity_signals_mapping_id is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->entity_signals_mapping_id);
     }
 
     public function clearEntitySignalsMappingId()
     {
+        @trigger_error('entity_signals_mapping_id is deprecated.', E_USER_DEPRECATED);
         unset($this->entity_signals_mapping_id);
     }
 
     /**
-     * Output only. `EntitySignalsMapping` ID.
+     * Output only. Deprecated: `EntitySignalsMapping` ID.
      *
-     * Generated from protobuf field <code>optional int64 entity_signals_mapping_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional int64 entity_signals_mapping_id = 2 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int|string $var
      * @return $this
+     * @deprecated
      */
     public function setEntitySignalsMappingId($var)
     {
+        @trigger_error('entity_signals_mapping_id is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkInt64($var);
         $this->entity_signals_mapping_id = $var;
 

@@ -25,10 +25,10 @@ class LineItem extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
-     * Output only. The ID of the Order to which the LineItem belongs. This
-     * attribute is required. Format: `networks/{network_code}/orders/{order}`
+     * Required. Immutable. The ID of the Order to which the LineItem belongs.
+     * Format: `networks/{network_code}/orders/{order}`
      *
-     * Generated from protobuf field <code>optional string order = 2 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>optional string order = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      */
     protected $order = null;
     /**
@@ -98,8 +98,8 @@ class LineItem extends \Google\Protobuf\Internal\Message
      *           Identifier. The resource name of the `LineItem`.
      *           Format: `networks/{network_code}/lineItems/{line_item_id}`
      *     @type string $order
-     *           Output only. The ID of the Order to which the LineItem belongs. This
-     *           attribute is required. Format: `networks/{network_code}/orders/{order}`
+     *           Required. Immutable. The ID of the Order to which the LineItem belongs.
+     *           Format: `networks/{network_code}/orders/{order}`
      *     @type string $display_name
      *           Required. The name of the line item. This attribute is required and has a
      *           maximum length of 255 characters.
@@ -160,10 +160,10 @@ class LineItem extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The ID of the Order to which the LineItem belongs. This
-     * attribute is required. Format: `networks/{network_code}/orders/{order}`
+     * Required. Immutable. The ID of the Order to which the LineItem belongs.
+     * Format: `networks/{network_code}/orders/{order}`
      *
-     * Generated from protobuf field <code>optional string order = 2 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>optional string order = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getOrder()
@@ -182,10 +182,10 @@ class LineItem extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The ID of the Order to which the LineItem belongs. This
-     * attribute is required. Format: `networks/{network_code}/orders/{order}`
+     * Required. Immutable. The ID of the Order to which the LineItem belongs.
+     * Format: `networks/{network_code}/orders/{order}`
      *
-     * Generated from protobuf field <code>optional string order = 2 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>optional string order = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

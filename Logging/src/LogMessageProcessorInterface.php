@@ -18,7 +18,9 @@
 namespace Google\Cloud\Logging;
 
 /**
- * Interface representing a Log Message Processor used by the {@see PsrLogger}
+ * Interface representing a Log Message Processor
+ *
+ * @see PsrLogger
  */
 interface LogMessageProcessorInterface
 {

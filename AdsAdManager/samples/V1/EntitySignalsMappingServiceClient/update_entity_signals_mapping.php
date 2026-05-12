@@ -27,7 +27,6 @@ use Google\Ads\AdManager\V1\Client\EntitySignalsMappingServiceClient;
 use Google\Ads\AdManager\V1\EntitySignalsMapping;
 use Google\Ads\AdManager\V1\UpdateEntitySignalsMappingRequest;
 use Google\ApiCore\ApiException;
-use Google\Protobuf\FieldMask;
 
 /**
  * API to update an `EntitySignalsMapping` object.
@@ -45,10 +44,8 @@ function update_entity_signals_mapping_sample(): void
 
     // Prepare the request message.
     $entitySignalsMapping = new EntitySignalsMapping();
-    $updateMask = new FieldMask();
     $request = (new UpdateEntitySignalsMappingRequest())
-        ->setEntitySignalsMapping($entitySignalsMapping)
-        ->setUpdateMask($updateMask);
+        ->setEntitySignalsMapping($entitySignalsMapping);
 
     // Call the API and handle any network failures.
     try {

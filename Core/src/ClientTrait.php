@@ -182,8 +182,7 @@ trait ClientTrait
             'projectId' => null,
             'projectIdRequired' => false,
             'hasEmulator' => false,
-            'preferNumericProjectId' => false,
-            'suppressKeyFileNotice' => false
+            'preferNumericProjectId' => false
         ];
 
         if ($config['projectId']) {
@@ -201,23 +200,6 @@ trait ClientTrait
         if (isset($config['keyFile'])) {
             if (isset($config['keyFile']['project_id'])) {
                 return $config['keyFile']['project_id'];
-            }
-
-            if ($config['suppressKeyFileNotice'] !== true) {
-                $serviceAccountUri = 'https://cloud.google.com/iam/docs/' .
-                    'creating-managing-service-account-keys#creating_service_account_keys';
-
-                trigger_error(
-                    sprintf(
-                        'A keyfile was given, but it does not contain a project ' .
-                        'ID. This can indicate an old and obsolete keyfile, ' .
-                        'in which case you should create a new one. To suppress ' .
-                        'this message, set `suppressKeyFileNotice` to `true` in your client configuration. ' .
-                        'To learn more about generating new keys, see this URL: %s',
-                        $serviceAccountUri
-                    ),
-                    E_USER_NOTICE
-                );
             }
         }
 

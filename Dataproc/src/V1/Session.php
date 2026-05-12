@@ -16,9 +16,9 @@ use Google\Protobuf\RepeatedField;
 class Session extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of the session.
+     * Identifier. The resource name of the session.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
@@ -122,7 +122,7 @@ class Session extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The resource name of the session.
+     *           Identifier. The resource name of the session.
      *     @type string $uuid
      *           Output only. A session UUID (Unique Universal Identifier). The service
      *           generates this value when it creates the session.
@@ -131,7 +131,7 @@ class Session extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dataproc\V1\JupyterConfig $jupyter_session
      *           Optional. Jupyter session config.
      *     @type \Google\Cloud\Dataproc\V1\SparkConnectConfig $spark_connect_session
-     *           Optional. Spark Connect session config.
+     *           Optional. Spark connect session config.
      *     @type \Google\Cloud\Dataproc\V1\RuntimeInfo $runtime_info
      *           Output only. Runtime information about session execution.
      *     @type int $state
@@ -175,9 +175,9 @@ class Session extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the session.
+     * Identifier. The resource name of the session.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -186,9 +186,9 @@ class Session extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the session.
+     * Identifier. The resource name of the session.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */
@@ -296,7 +296,7 @@ class Session extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Spark Connect session config.
+     * Optional. Spark connect session config.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.SparkConnectConfig spark_connect_session = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Dataproc\V1\SparkConnectConfig|null
@@ -312,7 +312,7 @@ class Session extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Spark Connect session config.
+     * Optional. Spark connect session config.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.SparkConnectConfig spark_connect_session = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Dataproc\V1\SparkConnectConfig $var

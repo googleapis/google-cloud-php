@@ -14,10 +14,11 @@ class LabelMessages
         if (static::$is_initialized == true) {
           return;
         }
+        \GPBMetadata\Google\Ads\Admanager\V1\LabelEnums::initOnce();
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
-            "\x0A\xAB\x03\x0A,google/ads/admanager/v1/label_messages.proto\x12\x17google.ads.admanager.v1\x1A\x19google/api/resource.proto\"v\x0A\x05Label\x12\x11\x0A\x04name\x18\x01 \x01(\x09B\x03\xE0A\x08:Z\xEAAW\x0A\x1Eadmanager.googleapis.com/Label\x12&networks/{network_code}/labels/{label}*\x06labels2\x05labelB\xC6\x01\x0A\x1Bcom.google.ads.admanager.v1B\x12LabelMessagesProtoP\x01Z@google.golang.org/genproto/googleapis/ads/admanager/v1;admanager\xAA\x02\x17Google.Ads.AdManager.V1\xCA\x02\x17Google\\Ads\\AdManager\\V1\xEA\x02\x1AGoogle::Ads::AdManager::V1b\x06proto3"
+            "\x0A\x9B\x05\x0A,google/ads/admanager/v1/label_messages.proto\x12\x17google.ads.admanager.v1\x1A\x1Fgoogle/api/field_behavior.proto\x1A\x19google/api/resource.proto\"\xC4\x02\x0A\x05Label\x12\x11\x0A\x04name\x18\x01 \x01(\x09B\x03\xE0A\x08\x12\x1E\x0A\x0Cdisplay_name\x18\x03 \x01(\x09B\x03\xE0A\x02H\x00\x88\x01\x01\x12\x1D\x0A\x0Bdescription\x18\x04 \x01(\x09B\x03\xE0A\x01H\x01\x88\x01\x01\x12\x18\x0A\x06active\x18\x05 \x01(\x08B\x03\xE0A\x03H\x02\x88\x01\x01\x12G\x0A\x05types\x18\x07 \x03(\x0E20.google.ads.admanager.v1.LabelTypeEnum.LabelTypeB\x06\xE0A\x02\xE0A\x06:Z\xEAAW\x0A\x1Eadmanager.googleapis.com/Label\x12&networks/{network_code}/labels/{label}*\x06labels2\x05labelB\x0F\x0A\x0D_display_nameB\x0E\x0A\x0C_descriptionB\x09\x0A\x07_activeB\xC6\x01\x0A\x1Bcom.google.ads.admanager.v1B\x12LabelMessagesProtoP\x01Z@google.golang.org/genproto/googleapis/ads/admanager/v1;admanager\xAA\x02\x17Google.Ads.AdManager.V1\xCA\x02\x17Google\\Ads\\AdManager\\V1\xEA\x02\x1AGoogle::Ads::AdManager::V1b\x06proto3"
         , true);
 
         static::$is_initialized = true;

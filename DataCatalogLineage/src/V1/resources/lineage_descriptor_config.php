@@ -92,6 +92,9 @@ return [
                         ],
                     ],
                 ],
+                'autoPopulatedFields' => [
+                    'requestId' => \Google\Api\FieldInfo\Format::UUID4,
+                ],
             ],
             'CreateProcess' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
@@ -104,6 +107,9 @@ return [
                         ],
                     ],
                 ],
+                'autoPopulatedFields' => [
+                    'requestId' => \Google\Api\FieldInfo\Format::UUID4,
+                ],
             ],
             'CreateRun' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
@@ -115,6 +121,9 @@ return [
                             'getParent',
                         ],
                     ],
+                ],
+                'autoPopulatedFields' => [
+                    'requestId' => \Google\Api\FieldInfo\Format::UUID4,
                 ],
             ],
             'DeleteLineageEvent' => [
@@ -236,6 +245,24 @@ return [
                         ],
                     ],
                 ],
+                'autoPopulatedFields' => [
+                    'requestId' => \Google\Api\FieldInfo\Format::UUID4,
+                ],
+            ],
+            'SearchLineageStreaming' => [
+                'grpcStreaming' => [
+                    'grpcStreamingType' => 'ServerStreaming',
+                ],
+                'callType' => \Google\ApiCore\Call::SERVER_STREAMING_CALL,
+                'responseType' => 'Google\Cloud\DataCatalog\Lineage\V1\SearchLineageStreamingResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
             ],
             'SearchLinks' => [
                 'pageStreaming' => [
@@ -268,6 +295,9 @@ return [
                             'getName',
                         ],
                     ],
+                ],
+                'autoPopulatedFields' => [
+                    'requestId' => \Google\Api\FieldInfo\Format::UUID4,
                 ],
             ],
             'UpdateRun' => [

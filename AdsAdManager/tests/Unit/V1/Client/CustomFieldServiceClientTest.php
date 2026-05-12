@@ -44,7 +44,6 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-use Google\Protobuf\FieldMask;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -610,8 +609,7 @@ class CustomFieldServiceClientTest extends GeneratedTest
         $customField->setDataType($customFieldDataType);
         $customFieldVisibility = CustomFieldVisibility::CUSTOM_FIELD_VISIBILITY_UNSPECIFIED;
         $customField->setVisibility($customFieldVisibility);
-        $updateMask = new FieldMask();
-        $request = (new UpdateCustomFieldRequest())->setCustomField($customField)->setUpdateMask($updateMask);
+        $request = (new UpdateCustomFieldRequest())->setCustomField($customField);
         $response = $gapicClient->updateCustomField($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -621,8 +619,6 @@ class CustomFieldServiceClientTest extends GeneratedTest
         $this->assertSame('/google.ads.admanager.v1.CustomFieldService/UpdateCustomField', $actualFuncCall);
         $actualValue = $actualRequestObject->getCustomField();
         $this->assertProtobufEquals($customField, $actualValue);
-        $actualValue = $actualRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -657,8 +653,7 @@ class CustomFieldServiceClientTest extends GeneratedTest
         $customField->setDataType($customFieldDataType);
         $customFieldVisibility = CustomFieldVisibility::CUSTOM_FIELD_VISIBILITY_UNSPECIFIED;
         $customField->setVisibility($customFieldVisibility);
-        $updateMask = new FieldMask();
-        $request = (new UpdateCustomFieldRequest())->setCustomField($customField)->setUpdateMask($updateMask);
+        $request = (new UpdateCustomFieldRequest())->setCustomField($customField);
         try {
             $gapicClient->updateCustomField($request);
             // If the $gapicClient method call did not throw, fail the test
