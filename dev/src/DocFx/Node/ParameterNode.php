@@ -108,19 +108,13 @@ class ParameterNode
             // Trim newline whitespace
             $description = preg_replace('/\s+/', ' ', $description);
 
-            $parameter = new ParameterNode(
+            $parameters[] = new ParameterNode(
                 $name,
                 $type,
                 $this->replaceSeeTag(trim($description)),
                 $this->namespace,
                 $this->className,
             );
-
-            if (isset($this->parentNode)) {
-                $parameter->setParentNode($this->parentNode);
-            }
-
-            $parameters[] = $parameter;
         }
 
         return $parameters;
