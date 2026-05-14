@@ -23,6 +23,17 @@
 return [
     'interfaces' => [
         'google.cloud.support.v2.CaseAttachmentService' => [
+            'GetAttachment' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{name=*/*/cases/*/attachments/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'ListAttachments' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{parent=projects/*/cases/*}/attachments',
