@@ -139,7 +139,7 @@ class ParameterNode
             $name = sprintf('array<%s>', substr($name, 0, -2));
         }
 
-        if (0 === strpos($name, 'array<\\')) {
+        if (0 === strpos($name, 'array<')) {
             return preg_replace_callback(
                 '/^array<([^ ]*)>$/',
                 function ($matches) {
