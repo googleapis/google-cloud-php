@@ -143,7 +143,7 @@ class ParameterNode
             return preg_replace_callback(
                 '/^array<([^ ]*)>$/',
                 function ($matches) {
-                    return $this->resolveNestedType($matches[1]);
+                    return sprintf('array<%s>', $this->resolveNestedType($matches[1]));
                 },
                 $name
             );
