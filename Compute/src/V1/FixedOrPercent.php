@@ -16,8 +16,7 @@ use Google\Protobuf\RepeatedField;
 class FixedOrPercent extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. [Output Only] Absolute value of VM instances calculated based on the
-     * specific mode.
+     * Output only. Absolute value of VM instances calculated based on the specific mode.
      *     - If the value is fixed, then the calculated
      *      value is equal to the fixed value.
      *     - If the value is a percent, then the
@@ -51,8 +50,7 @@ class FixedOrPercent extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $calculated
-     *           Output only. [Output Only] Absolute value of VM instances calculated based on the
-     *           specific mode.
+     *           Output only. Absolute value of VM instances calculated based on the specific mode.
      *               - If the value is fixed, then the calculated
      *                value is equal to the fixed value.
      *               - If the value is a percent, then the
@@ -74,8 +72,7 @@ class FixedOrPercent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. [Output Only] Absolute value of VM instances calculated based on the
-     * specific mode.
+     * Output only. Absolute value of VM instances calculated based on the specific mode.
      *     - If the value is fixed, then the calculated
      *      value is equal to the fixed value.
      *     - If the value is a percent, then the
@@ -104,8 +101,7 @@ class FixedOrPercent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. [Output Only] Absolute value of VM instances calculated based on the
-     * specific mode.
+     * Output only. Absolute value of VM instances calculated based on the specific mode.
      *     - If the value is fixed, then the calculated
      *      value is equal to the fixed value.
      *     - If the value is a percent, then the

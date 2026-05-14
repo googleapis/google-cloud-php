@@ -57,6 +57,40 @@ return [
                     ],
                 ],
             ],
+            'CancelRequestRemovePeering' => [
+                'longRunning' => [
+                    'additionalArgumentMethods' => [
+                        'getProject',
+                    ],
+                    'getOperationMethod' => 'get',
+                    'cancelOperationMethod' => null,
+                    'deleteOperationMethod' => 'delete',
+                    'operationErrorCodeMethod' => 'getHttpErrorStatusCode',
+                    'operationErrorMessageMethod' => 'getHttpErrorMessage',
+                    'operationNameMethod' => 'getName',
+                    'operationStatusMethod' => 'getStatus',
+                    'operationStatusDoneValue' => \Google\Cloud\Compute\V1\Operation\Status::DONE,
+                    'getOperationRequest' => '\Google\Cloud\Compute\V1\GetGlobalOperationRequest',
+                    'cancelOperationRequest' => null,
+                    'deleteOperationRequest' => '\Google\Cloud\Compute\V1\DeleteGlobalOperationRequest',
+                ],
+                'responseType' => 'Google\Cloud\Compute\V1\Operation',
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'network',
+                        'fieldAccessors' => [
+                            'getNetwork',
+                        ],
+                    ],
+                ],
+            ],
             'Delete' => [
                 'longRunning' => [
                     'additionalArgumentMethods' => [
