@@ -219,6 +219,7 @@ class RegionSslPoliciesClientTest extends GeneratedTest
         $kind = 'kind3292052';
         $minTlsVersion = 'minTlsVersion8155943';
         $name = 'name3373707';
+        $postQuantumKeyExchange = 'postQuantumKeyExchange1319288038';
         $profile = 'profile-309425751';
         $region2 = 'region2-690338393';
         $selfLink = 'selfLink-1691268851';
@@ -230,6 +231,7 @@ class RegionSslPoliciesClientTest extends GeneratedTest
         $expectedResponse->setKind($kind);
         $expectedResponse->setMinTlsVersion($minTlsVersion);
         $expectedResponse->setName($name);
+        $expectedResponse->setPostQuantumKeyExchange($postQuantumKeyExchange);
         $expectedResponse->setProfile($profile);
         $expectedResponse->setRegion($region2);
         $expectedResponse->setSelfLink($selfLink);

@@ -269,7 +269,7 @@ final class ZoneVmExtensionPoliciesClient
     }
 
     /**
-     * Deletes a specified zone VM extension policy.
+     * Deletes a specified zone VM extension policy within a project.
      *
      * The async variant is {@see ZoneVmExtensionPoliciesClient::deleteAsync()} .
      *
@@ -295,7 +295,7 @@ final class ZoneVmExtensionPoliciesClient
     }
 
     /**
-     * Retrieves details of a specific zone VM extension policy.
+     * Retrieves details of a specific zone VM extension policy within a project.
      *
      * The async variant is {@see ZoneVmExtensionPoliciesClient::getAsync()} .
      *
@@ -373,7 +373,7 @@ final class ZoneVmExtensionPoliciesClient
     }
 
     /**
-     * Modifies an existing zone VM extension policy.
+     * Modifies an existing zone VM extension policy within a project.
      *
      * The async variant is {@see ZoneVmExtensionPoliciesClient::updateAsync()} .
      *

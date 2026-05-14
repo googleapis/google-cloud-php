@@ -31,7 +31,7 @@ use Google\Cloud\Compute\V1\VmExtensionPolicy;
 use Google\Rpc\Status;
 
 /**
- * Modifies an existing zone VM extension policy.
+ * Modifies an existing zone VM extension policy within a project.
  *
  * @param string $project           Project ID for this request.
  * @param string $vmExtensionPolicy Name of the zone VM extension policy to update.

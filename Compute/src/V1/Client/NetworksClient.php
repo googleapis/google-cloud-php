@@ -35,6 +35,7 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Compute\V1\AddPeeringNetworkRequest;
+use Google\Cloud\Compute\V1\CancelRequestRemovePeeringNetworkRequest;
 use Google\Cloud\Compute\V1\DeleteNetworkRequest;
 use Google\Cloud\Compute\V1\GetEffectiveFirewallsNetworkRequest;
 use Google\Cloud\Compute\V1\GetNetworkRequest;
@@ -58,6 +59,7 @@ use Psr\Log\LoggerInterface;
  * calls that map to API methods.
  *
  * @method PromiseInterface<OperationResponse> addPeeringAsync(AddPeeringNetworkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> cancelRequestRemovePeeringAsync(CancelRequestRemovePeeringNetworkRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteAsync(DeleteNetworkRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Network> getAsync(GetNetworkRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<NetworksGetEffectiveFirewallsResponse> getEffectiveFirewallsAsync(GetEffectiveFirewallsNetworkRequest $request, array $optionalArgs = [])
@@ -306,6 +308,36 @@ final class NetworksClient
     public function addPeering(AddPeeringNetworkRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('AddPeering', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Cancel requests to remove a peering from the specified network. Applicable
+     * only for PeeringConnection with update_strategy=CONSENSUS.  Cancels a
+     * request to remove a peering from the specified network.
+     *
+     * The async variant is {@see NetworksClient::cancelRequestRemovePeeringAsync()} .
+     *
+     * @example samples/V1/NetworksClient/cancel_request_remove_peering.php
+     *
+     * @param CancelRequestRemovePeeringNetworkRequest $request     A request to house fields associated with the call.
+     * @param array                                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function cancelRequestRemovePeering(
+        CancelRequestRemovePeeringNetworkRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('CancelRequestRemovePeering', $request, $callOptions)->wait();
     }
 
     /**

@@ -980,6 +980,45 @@
                 }
             }
         },
+        "GlobalVmExtensionPolicies": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "GlobalVmExtensionPoliciesGapicClient",
+                    "rpcs": {
+                        "AggregatedList": {
+                            "methods": [
+                                "aggregatedList"
+                            ]
+                        },
+                        "Delete": {
+                            "methods": [
+                                "delete"
+                            ]
+                        },
+                        "Get": {
+                            "methods": [
+                                "get"
+                            ]
+                        },
+                        "Insert": {
+                            "methods": [
+                                "insert"
+                            ]
+                        },
+                        "List": {
+                            "methods": [
+                                "list"
+                            ]
+                        },
+                        "Update": {
+                            "methods": [
+                                "update"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "HealthChecks": {
             "clients": {
                 "grpc": {
@@ -2013,6 +2052,16 @@
                                 "get"
                             ]
                         },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
                         "TestIamPermissions": {
                             "methods": [
                                 "testIamPermissions"
@@ -2427,6 +2476,11 @@
                         "AddPeering": {
                             "methods": [
                                 "addPeering"
+                            ]
+                        },
+                        "CancelRequestRemovePeering": {
+                            "methods": [
+                                "cancelRequestRemovePeering"
                             ]
                         },
                         "Delete": {
@@ -4670,6 +4724,64 @@
                         "TestIamPermissions": {
                             "methods": [
                                 "testIamPermissions"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "RolloutPlans": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "RolloutPlansGapicClient",
+                    "rpcs": {
+                        "Delete": {
+                            "methods": [
+                                "delete"
+                            ]
+                        },
+                        "Get": {
+                            "methods": [
+                                "get"
+                            ]
+                        },
+                        "Insert": {
+                            "methods": [
+                                "insert"
+                            ]
+                        },
+                        "List": {
+                            "methods": [
+                                "list"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "Rollouts": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "RolloutsGapicClient",
+                    "rpcs": {
+                        "Cancel": {
+                            "methods": [
+                                "cancel"
+                            ]
+                        },
+                        "Delete": {
+                            "methods": [
+                                "delete"
+                            ]
+                        },
+                        "Get": {
+                            "methods": [
+                                "get"
+                            ]
+                        },
+                        "List": {
+                            "methods": [
+                                "list"
                             ]
                         }
                     }
