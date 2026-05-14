@@ -65,9 +65,9 @@ class PageTree
                 // only document classes and interfaces for now
                 continue;
             }
-
+            $filename = $this->componentPath . '/src/' . $file['path'];
             $node = isset($file->class[0])
-                ? new ClassNode($file->class[0], $this->componentPackages)
+                ? new ClassNode($file->class[0], $this->componentPackages, $filename)
                 : new InterfaceNode($file->interface[0], $this->componentPackages);
 
             if ($node instanceof InterfaceNode) {

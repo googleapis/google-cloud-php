@@ -39,7 +39,7 @@ class NodeTest extends TestCase
     public function testNestedParameters()
     {
         $nestedParamsXml = file_get_contents(__DIR__ . '/../../fixtures/phpdoc/nestedparams.xml');
-        $method = new MethodNode(new SimpleXMLElement($nestedParamsXml), '', []);
+        $method = new MethodNode(new SimpleXMLElement($nestedParamsXml), '', [], '');
 
         $params = $method->getParameters();
 
@@ -89,7 +89,7 @@ class NodeTest extends TestCase
     public function testProtoRefInParameters()
     {
         $nestedParamsXml = file_get_contents(__DIR__ . '/../../fixtures/phpdoc/nestedparams.xml');
-        $method = new MethodNode(new SimpleXMLElement($nestedParamsXml), '', []);
+        $method = new MethodNode(new SimpleXMLElement($nestedParamsXml), '', [], '');
 
         $params = $method->getParameters();
 
@@ -134,7 +134,7 @@ class NodeTest extends TestCase
 </docblock>
 </method>
 EOF;
-        $method = new MethodNode(new SimpleXMLElement($serviceXml), '', []);
+        $method = new MethodNode(new SimpleXMLElement($serviceXml), '', [], '');
 
         $content = $method->getContent();
         $this->assertStringContainsString(

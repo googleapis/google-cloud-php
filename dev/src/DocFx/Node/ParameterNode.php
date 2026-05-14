@@ -17,7 +17,8 @@
 
 namespace Google\Cloud\Dev\DocFx\Node;
 
-use SimpleXMLElement;
+use phpDocumentor\Reflection\Types\ContextFactory;
+use phpDocumentor\Reflection\FqsenResolver;
 
 /**
  * @internal
@@ -31,6 +32,7 @@ class ParameterNode
         private string $type,
         private string $description,
         private string $namespace,
+        private string $className,
     ) {}
 
     public function getName(): string
@@ -98,6 +100,7 @@ class ParameterNode
                 throw new \LogicException('unable to parse nested parameter "' . $param . '"');
             }
             list($_, $type, $name, $description) = $matches + [3 => ''];
+            $type = $this->resolveNestedType($type);
 
             // remove "$" prefix from parameter name and add "↳ " for UX to indicate it's nested.
             $name = '↳ ' . ltrim($name, '$');
@@ -105,14 +108,78 @@ class ParameterNode
             // Trim newline whitespace
             $description = preg_replace('/\s+/', ' ', $description);
 
-            $parameters[] = new ParameterNode(
+            $parameter = new ParameterNode(
                 $name,
                 $type,
                 $this->replaceSeeTag(trim($description)),
-                $this->namespace
+                $this->namespace,
+                $this->className,
             );
+
+            if (isset($this->parentNode)) {
+                $parameter->setParentNode($this->parentNode);
+            }
+
+            $parameters[] = $parameter;
         }
 
         return $parameters;
+    }
+
+    private function resolveNestedType(string $name): string
+    {
+        if (false !== strpos($name, '|')) {
+            return implode('|', array_map(
+                fn($type) => $this->resolveNestedType($type),
+                explode('|', $name)
+            ));
+        }
+
+        if ('[]' === substr($name, -2)) {
+            $name = sprintf('array<%s>', substr($name, 0, -2));
+        }
+
+        if (0 === strpos($name, 'array<\\')) {
+            return preg_replace_callback(
+                '/^array<([^ ]*)>$/',
+                function ($matches) {
+                    return $this->resolveNestedType($matches[1]);
+                },
+                $name
+            );
+        }
+
+        if (match ($name) {
+            'int', 'integer',
+            'float', 'double',
+            'string',
+            'bool', 'boolean',
+            'array',
+            'object',
+            'callable',
+            'iterable',
+            'void',
+            'null',
+            'mixed',
+            'never',
+            'false', 'true' => true,
+            default => false,
+        }) {
+            return $name;
+        }
+
+        // Fail silently for unresolvable types
+        if (!class_exists($this->className)) {
+            return $name;
+        }
+
+        // Automatically extract the namespace and imports from the target class
+        $context = (new ContextFactory())
+            ->createFromReflector(new \ReflectionClass($this->className));
+
+        // Resolve your raw string against that file's context
+        $resolver = new FqsenResolver();
+        $resolved = $resolver->resolve($name, $context);
+        return (string) $resolved;
     }
 }
