@@ -34,33 +34,35 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
-use Google\Cloud\Compute\V1\DeleteZoneVmExtensionPolicyRequest;
-use Google\Cloud\Compute\V1\GetZoneVmExtensionPolicyRequest;
-use Google\Cloud\Compute\V1\InsertZoneVmExtensionPolicyRequest;
-use Google\Cloud\Compute\V1\ListZoneVmExtensionPoliciesRequest;
-use Google\Cloud\Compute\V1\UpdateZoneVmExtensionPolicyRequest;
-use Google\Cloud\Compute\V1\VmExtensionPolicy;
+use Google\Cloud\Compute\V1\AggregatedListGlobalVmExtensionPoliciesRequest;
+use Google\Cloud\Compute\V1\DeleteGlobalVmExtensionPolicyRequest;
+use Google\Cloud\Compute\V1\GetGlobalVmExtensionPolicyRequest;
+use Google\Cloud\Compute\V1\GlobalVmExtensionPolicy;
+use Google\Cloud\Compute\V1\InsertGlobalVmExtensionPolicyRequest;
+use Google\Cloud\Compute\V1\ListGlobalVmExtensionPoliciesRequest;
+use Google\Cloud\Compute\V1\UpdateGlobalVmExtensionPolicyRequest;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
 
 /**
- * Service Description: The ZoneVmExtensionPolicies API.
+ * Service Description: The GlobalVmExtensionPolicies API.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface<OperationResponse> deleteAsync(DeleteZoneVmExtensionPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<VmExtensionPolicy> getAsync(GetZoneVmExtensionPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<OperationResponse> insertAsync(InsertZoneVmExtensionPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<PagedListResponse> listAsync(ListZoneVmExtensionPoliciesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<OperationResponse> updateAsync(UpdateZoneVmExtensionPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> aggregatedListAsync(AggregatedListGlobalVmExtensionPoliciesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteGlobalVmExtensionPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GlobalVmExtensionPolicy> getAsync(GetGlobalVmExtensionPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertGlobalVmExtensionPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListGlobalVmExtensionPoliciesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateAsync(UpdateGlobalVmExtensionPolicyRequest $request, array $optionalArgs = [])
  */
-final class ZoneVmExtensionPoliciesClient
+final class GlobalVmExtensionPoliciesClient
 {
     use GapicClientTrait;
 
     /** The name of the service. */
-    private const SERVICE_NAME = 'google.cloud.compute.v1.ZoneVmExtensionPolicies';
+    private const SERVICE_NAME = 'google.cloud.compute.v1.GlobalVmExtensionPolicies';
 
     /**
      * The default address of the service.
@@ -91,8 +93,8 @@ final class ZoneVmExtensionPoliciesClient
         return [
             'serviceName' => self::SERVICE_NAME,
             'apiEndpoint' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
-            'clientConfig' => __DIR__ . '/../resources/zone_vm_extension_policies_client_config.json',
-            'descriptorsConfigPath' => __DIR__ . '/../resources/zone_vm_extension_policies_descriptor_config.php',
+            'clientConfig' => __DIR__ . '/../resources/global_vm_extension_policies_client_config.json',
+            'descriptorsConfigPath' => __DIR__ . '/../resources/global_vm_extension_policies_descriptor_config.php',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
                 'useJwtAccessWithScope' => false,
@@ -100,7 +102,7 @@ final class ZoneVmExtensionPoliciesClient
             'transportConfig' => [
                 'rest' => [
                     'restClientConfigPath' =>
-                        __DIR__ . '/../resources/zone_vm_extension_policies_rest_client_config.php',
+                        __DIR__ . '/../resources/global_vm_extension_policies_rest_client_config.php',
                 ],
             ],
         ];
@@ -119,9 +121,9 @@ final class ZoneVmExtensionPoliciesClient
     }
 
     /**
-     * Return an ZoneOperationsClient object with the same endpoint as $this.
+     * Return an GlobalOperationsClient object with the same endpoint as $this.
      *
-     * @return ZoneOperationsClient
+     * @return GlobalOperationsClient
      */
     public function getOperationsClient()
     {
@@ -132,7 +134,7 @@ final class ZoneVmExtensionPoliciesClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => ['getProject', 'getZone'],
+            'additionalArgumentMethods' => ['getProject'],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -141,9 +143,9 @@ final class ZoneVmExtensionPoliciesClient
             'operationNameMethod' => 'getName',
             'operationStatusMethod' => 'getStatus',
             'operationStatusDoneValue' => \Google\Cloud\Compute\V1\Operation\Status::DONE,
-            'getOperationRequest' => '\Google\Cloud\Compute\V1\GetZoneOperationRequest',
+            'getOperationRequest' => '\Google\Cloud\Compute\V1\GetGlobalOperationRequest',
             'cancelOperationRequest' => null,
-            'deleteOperationRequest' => '\Google\Cloud\Compute\V1\DeleteZoneOperationRequest',
+            'deleteOperationRequest' => '\Google\Cloud\Compute\V1\DeleteGlobalOperationRequest',
         ];
     }
 
@@ -171,7 +173,7 @@ final class ZoneVmExtensionPoliciesClient
      *
      * @param array $options ClientOptions for the client.
      *
-     * @return ZoneOperationsClient
+     * @return GlobalOperationsClient
      */
     private function createOperationsClient(array $options)
     {
@@ -182,7 +184,7 @@ final class ZoneVmExtensionPoliciesClient
             return $options['operationsClient'];
         }
 
-        return new ZoneOperationsClient($options);
+        return new GlobalOperationsClient($options);
     }
 
     /**
@@ -205,9 +207,9 @@ final class ZoneVmExtensionPoliciesClient
      *           of your systems and data. It is recommended to create the credentials explicitly
      *           ```
      *           use Google\Auth\Credentials\ServiceAccountCredentials;
-     *           use Google\Cloud\Compute\V1\ZoneVmExtensionPoliciesClient;
+     *           use Google\Cloud\Compute\V1\GlobalVmExtensionPoliciesClient;
      *           $creds = new ServiceAccountCredentials($scopes, $json);
-     *           $options = new ZoneVmExtensionPoliciesClient(['credentials' => $creds]);
+     *           $options = new GlobalVmExtensionPoliciesClient(['credentials' => $creds]);
      *           ```
      *           {@see
      *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
@@ -269,92 +271,19 @@ final class ZoneVmExtensionPoliciesClient
     }
 
     /**
-     * Deletes a specified zone VM extension policy within a project.
+     * Retrieves the list of all VM Extension Policy resources
+     * available to the specified project.
      *
-     * The async variant is {@see ZoneVmExtensionPoliciesClient::deleteAsync()} .
+     * To prevent failure, it's recommended that you set the
+     * `returnPartialSuccess` parameter to `true`.
      *
-     * @example samples/V1/ZoneVmExtensionPoliciesClient/delete.php
+     * The async variant is
+     * {@see GlobalVmExtensionPoliciesClient::aggregatedListAsync()} .
      *
-     * @param DeleteZoneVmExtensionPolicyRequest $request     A request to house fields associated with the call.
-     * @param array                              $callOptions {
-     *     Optional.
+     * @example samples/V1/GlobalVmExtensionPoliciesClient/aggregated_list.php
      *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return OperationResponse
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function delete(DeleteZoneVmExtensionPolicyRequest $request, array $callOptions = []): OperationResponse
-    {
-        return $this->startApiCall('Delete', $request, $callOptions)->wait();
-    }
-
-    /**
-     * Retrieves details of a specific zone VM extension policy within a project.
-     *
-     * The async variant is {@see ZoneVmExtensionPoliciesClient::getAsync()} .
-     *
-     * @example samples/V1/ZoneVmExtensionPoliciesClient/get.php
-     *
-     * @param GetZoneVmExtensionPolicyRequest $request     A request to house fields associated with the call.
-     * @param array                           $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return VmExtensionPolicy
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function get(GetZoneVmExtensionPolicyRequest $request, array $callOptions = []): VmExtensionPolicy
-    {
-        return $this->startApiCall('Get', $request, $callOptions)->wait();
-    }
-
-    /**
-     * Creates a new zone-level VM extension policy within a project.
-     *
-     * The async variant is {@see ZoneVmExtensionPoliciesClient::insertAsync()} .
-     *
-     * @example samples/V1/ZoneVmExtensionPoliciesClient/insert.php
-     *
-     * @param InsertZoneVmExtensionPolicyRequest $request     A request to house fields associated with the call.
-     * @param array                              $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return OperationResponse
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function insert(InsertZoneVmExtensionPolicyRequest $request, array $callOptions = []): OperationResponse
-    {
-        return $this->startApiCall('Insert', $request, $callOptions)->wait();
-    }
-
-    /**
-     * Lists all VM extension policies within a specific zone for a project.
-     *
-     * The async variant is {@see ZoneVmExtensionPoliciesClient::listAsync()} .
-     *
-     * @example samples/V1/ZoneVmExtensionPoliciesClient/list.php
-     *
-     * @param ListZoneVmExtensionPoliciesRequest $request     A request to house fields associated with the call.
-     * @param array                              $callOptions {
+     * @param AggregatedListGlobalVmExtensionPoliciesRequest $request     A request to house fields associated with the call.
+     * @param array                                          $callOptions {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
@@ -367,20 +296,27 @@ final class ZoneVmExtensionPoliciesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function list(ListZoneVmExtensionPoliciesRequest $request, array $callOptions = []): PagedListResponse
-    {
-        return $this->startApiCall('List', $request, $callOptions);
+    public function aggregatedList(
+        AggregatedListGlobalVmExtensionPoliciesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('AggregatedList', $request, $callOptions);
     }
 
     /**
-     * Modifies an existing zone VM extension policy within a project.
+     * Purge scoped resources (zonal policies) from a global VM extension
+     * policy, and then delete the global VM extension policy. Purge of the scoped
+     * resources is a pre-condition of the global VM extension policy deletion.
+     * The deletion of the global VM extension policy happens after the purge
+     * rollout is done, so it's not a part of the LRO. It's an automatic process
+     * that triggers in the backend.
      *
-     * The async variant is {@see ZoneVmExtensionPoliciesClient::updateAsync()} .
+     * The async variant is {@see GlobalVmExtensionPoliciesClient::deleteAsync()} .
      *
-     * @example samples/V1/ZoneVmExtensionPoliciesClient/update.php
+     * @example samples/V1/GlobalVmExtensionPoliciesClient/delete.php
      *
-     * @param UpdateZoneVmExtensionPolicyRequest $request     A request to house fields associated with the call.
-     * @param array                              $callOptions {
+     * @param DeleteGlobalVmExtensionPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                                $callOptions {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
@@ -393,7 +329,111 @@ final class ZoneVmExtensionPoliciesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function update(UpdateZoneVmExtensionPolicyRequest $request, array $callOptions = []): OperationResponse
+    public function delete(DeleteGlobalVmExtensionPolicyRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('Delete', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets details of a global VM extension policy.
+     *
+     * The async variant is {@see GlobalVmExtensionPoliciesClient::getAsync()} .
+     *
+     * @example samples/V1/GlobalVmExtensionPoliciesClient/get.php
+     *
+     * @param GetGlobalVmExtensionPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return GlobalVmExtensionPolicy
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function get(GetGlobalVmExtensionPolicyRequest $request, array $callOptions = []): GlobalVmExtensionPolicy
+    {
+        return $this->startApiCall('Get', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates a new project level GlobalVmExtensionPolicy.
+     *
+     * The async variant is {@see GlobalVmExtensionPoliciesClient::insertAsync()} .
+     *
+     * @example samples/V1/GlobalVmExtensionPoliciesClient/insert.php
+     *
+     * @param InsertGlobalVmExtensionPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function insert(InsertGlobalVmExtensionPolicyRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('Insert', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Lists global VM extension policies.
+     *
+     * The async variant is {@see GlobalVmExtensionPoliciesClient::listAsync()} .
+     *
+     * @example samples/V1/GlobalVmExtensionPoliciesClient/list.php
+     *
+     * @param ListGlobalVmExtensionPoliciesRequest $request     A request to house fields associated with the call.
+     * @param array                                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function list(ListGlobalVmExtensionPoliciesRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('List', $request, $callOptions);
+    }
+
+    /**
+     * Updates a global VM extension policy.
+     *
+     * The async variant is {@see GlobalVmExtensionPoliciesClient::updateAsync()} .
+     *
+     * @example samples/V1/GlobalVmExtensionPoliciesClient/update.php
+     *
+     * @param UpdateGlobalVmExtensionPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function update(UpdateGlobalVmExtensionPolicyRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('Update', $request, $callOptions)->wait();
     }

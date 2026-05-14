@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,23 +26,22 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-use Google\Cloud\Compute\V1\AggregatedListSslPoliciesRequest;
+use Google\Cloud\Compute\V1\AggregatedListGlobalVmExtensionPoliciesRequest;
 use Google\Cloud\Compute\V1\Client\GlobalOperationsClient;
-use Google\Cloud\Compute\V1\Client\SslPoliciesClient;
-use Google\Cloud\Compute\V1\DeleteSslPolicyRequest;
+use Google\Cloud\Compute\V1\Client\GlobalVmExtensionPoliciesClient;
+use Google\Cloud\Compute\V1\DeleteGlobalVmExtensionPolicyRequest;
 use Google\Cloud\Compute\V1\GetGlobalOperationRequest;
-use Google\Cloud\Compute\V1\GetSslPolicyRequest;
-use Google\Cloud\Compute\V1\InsertSslPolicyRequest;
-use Google\Cloud\Compute\V1\ListAvailableFeaturesSslPoliciesRequest;
-use Google\Cloud\Compute\V1\ListSslPoliciesRequest;
+use Google\Cloud\Compute\V1\GetGlobalVmExtensionPolicyRequest;
+use Google\Cloud\Compute\V1\GlobalVmExtensionPolicy;
+use Google\Cloud\Compute\V1\GlobalVmExtensionPolicyList;
+use Google\Cloud\Compute\V1\GlobalVmExtensionPolicyRolloutOperationRolloutInput;
+use Google\Cloud\Compute\V1\InsertGlobalVmExtensionPolicyRequest;
+use Google\Cloud\Compute\V1\ListGlobalVmExtensionPoliciesRequest;
 use Google\Cloud\Compute\V1\Operation;
 use Google\Cloud\Compute\V1\Operation\Status;
-use Google\Cloud\Compute\V1\PatchSslPolicyRequest;
-use Google\Cloud\Compute\V1\SslPoliciesAggregatedList;
-use Google\Cloud\Compute\V1\SslPoliciesList;
-use Google\Cloud\Compute\V1\SslPoliciesListAvailableFeaturesResponse;
-use Google\Cloud\Compute\V1\SslPoliciesScopedList;
-use Google\Cloud\Compute\V1\SslPolicy;
+use Google\Cloud\Compute\V1\UpdateGlobalVmExtensionPolicyRequest;
+use Google\Cloud\Compute\V1\VmExtensionPoliciesScopedList;
+use Google\Cloud\Compute\V1\VmExtensionPolicyAggregatedListResponse;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -51,7 +50,7 @@ use stdClass;
  *
  * @group gapic
  */
-class SslPoliciesClientTest extends GeneratedTest
+class GlobalVmExtensionPoliciesClientTest extends GeneratedTest
 {
     /** @return TransportInterface */
     private function createTransport($deserialize = null)
@@ -67,13 +66,13 @@ class SslPoliciesClientTest extends GeneratedTest
             ->getMock();
     }
 
-    /** @return SslPoliciesClient */
+    /** @return GlobalVmExtensionPoliciesClient */
     private function createClient(array $options = [])
     {
         $options += [
             'credentials' => $this->createCredentials(),
         ];
-        return new SslPoliciesClient($options);
+        return new GlobalVmExtensionPoliciesClient($options);
     }
 
     /** @test */
@@ -91,9 +90,9 @@ class SslPoliciesClientTest extends GeneratedTest
         $nextPageToken = '';
         $selfLink = 'selfLink-1691268851';
         $items = [
-            'itemsKey' => new SslPoliciesScopedList(),
+            'itemsKey' => new VmExtensionPoliciesScopedList(),
         ];
-        $expectedResponse = new SslPoliciesAggregatedList();
+        $expectedResponse = new VmExtensionPolicyAggregatedListResponse();
         $expectedResponse->setEtag($etag);
         $expectedResponse->setId($id);
         $expectedResponse->setKind($kind);
@@ -103,7 +102,7 @@ class SslPoliciesClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $project = 'project-309310695';
-        $request = (new AggregatedListSslPoliciesRequest())->setProject($project);
+        $request = (new AggregatedListGlobalVmExtensionPoliciesRequest())->setProject($project);
         $response = $gapicClient->aggregatedList($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -115,7 +114,7 @@ class SslPoliciesClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.SslPolicies/AggregatedList', $actualFuncCall);
+        $this->assertSame('/google.cloud.compute.v1.GlobalVmExtensionPolicies/AggregatedList', $actualFuncCall);
         $actualValue = $actualRequestObject->getProject();
         $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -144,7 +143,7 @@ class SslPoliciesClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $project = 'project-309310695';
-        $request = (new AggregatedListSslPoliciesRequest())->setProject($project);
+        $request = (new AggregatedListGlobalVmExtensionPoliciesRequest())->setProject($project);
         try {
             $gapicClient->aggregatedList($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -184,9 +183,15 @@ class SslPoliciesClientTest extends GeneratedTest
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
+        $globalVmExtensionPolicy = 'globalVmExtensionPolicy545205022';
+        $globalVmExtensionPolicyRolloutOperationRolloutInputResource = new GlobalVmExtensionPolicyRolloutOperationRolloutInput();
         $project = 'project-309310695';
-        $sslPolicy = 'sslPolicy-1852293435';
-        $request = (new DeleteSslPolicyRequest())->setProject($project)->setSslPolicy($sslPolicy);
+        $request = (new DeleteGlobalVmExtensionPolicyRequest())
+            ->setGlobalVmExtensionPolicy($globalVmExtensionPolicy)
+            ->setGlobalVmExtensionPolicyRolloutOperationRolloutInputResource(
+                $globalVmExtensionPolicyRolloutOperationRolloutInputResource
+            )
+            ->setProject($project);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -195,11 +200,13 @@ class SslPoliciesClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.SslPolicies/Delete', $actualApiFuncCall);
+        $this->assertSame('/google.cloud.compute.v1.GlobalVmExtensionPolicies/Delete', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getGlobalVmExtensionPolicy();
+        $this->assertProtobufEquals($globalVmExtensionPolicy, $actualValue);
+        $actualValue = $actualApiRequestObject->getGlobalVmExtensionPolicyRolloutOperationRolloutInputResource();
+        $this->assertProtobufEquals($globalVmExtensionPolicyRolloutOperationRolloutInputResource, $actualValue);
         $actualValue = $actualApiRequestObject->getProject();
         $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getSslPolicy();
-        $this->assertProtobufEquals($sslPolicy, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
         $expectedOperationsRequestObject->setProject($project);
@@ -254,9 +261,15 @@ class SslPoliciesClientTest extends GeneratedTest
         );
         $operationsTransport->addResponse(null, $status);
         // Mock request
+        $globalVmExtensionPolicy = 'globalVmExtensionPolicy545205022';
+        $globalVmExtensionPolicyRolloutOperationRolloutInputResource = new GlobalVmExtensionPolicyRolloutOperationRolloutInput();
         $project = 'project-309310695';
-        $sslPolicy = 'sslPolicy-1852293435';
-        $request = (new DeleteSslPolicyRequest())->setProject($project)->setSslPolicy($sslPolicy);
+        $request = (new DeleteGlobalVmExtensionPolicyRequest())
+            ->setGlobalVmExtensionPolicy($globalVmExtensionPolicy)
+            ->setGlobalVmExtensionPolicyRolloutOperationRolloutInputResource(
+                $globalVmExtensionPolicyRolloutOperationRolloutInputResource
+            )
+            ->setProject($project);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -288,43 +301,43 @@ class SslPoliciesClientTest extends GeneratedTest
         // Mock response
         $creationTimestamp = 'creationTimestamp567396278';
         $description = 'description-1724546052';
-        $fingerprint = 'fingerprint-1375934236';
         $id = 3355;
         $kind = 'kind3292052';
-        $minTlsVersion = 'minTlsVersion8155943';
         $name = 'name3373707';
-        $postQuantumKeyExchange = 'postQuantumKeyExchange1319288038';
-        $profile = 'profile-309425751';
-        $region = 'region-934795532';
+        $priority = 1165461084;
+        $scopedResourceStatus = 'scopedResourceStatus-1428635756';
         $selfLink = 'selfLink-1691268851';
-        $expectedResponse = new SslPolicy();
+        $selfLinkWithId = 'selfLinkWithId-1029220862';
+        $updateTimestamp = 'updateTimestamp-415976160';
+        $expectedResponse = new GlobalVmExtensionPolicy();
         $expectedResponse->setCreationTimestamp($creationTimestamp);
         $expectedResponse->setDescription($description);
-        $expectedResponse->setFingerprint($fingerprint);
         $expectedResponse->setId($id);
         $expectedResponse->setKind($kind);
-        $expectedResponse->setMinTlsVersion($minTlsVersion);
         $expectedResponse->setName($name);
-        $expectedResponse->setPostQuantumKeyExchange($postQuantumKeyExchange);
-        $expectedResponse->setProfile($profile);
-        $expectedResponse->setRegion($region);
+        $expectedResponse->setPriority($priority);
+        $expectedResponse->setScopedResourceStatus($scopedResourceStatus);
         $expectedResponse->setSelfLink($selfLink);
+        $expectedResponse->setSelfLinkWithId($selfLinkWithId);
+        $expectedResponse->setUpdateTimestamp($updateTimestamp);
         $transport->addResponse($expectedResponse);
         // Mock request
+        $globalVmExtensionPolicy = 'globalVmExtensionPolicy545205022';
         $project = 'project-309310695';
-        $sslPolicy = 'sslPolicy-1852293435';
-        $request = (new GetSslPolicyRequest())->setProject($project)->setSslPolicy($sslPolicy);
+        $request = (new GetGlobalVmExtensionPolicyRequest())
+            ->setGlobalVmExtensionPolicy($globalVmExtensionPolicy)
+            ->setProject($project);
         $response = $gapicClient->get($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.SslPolicies/Get', $actualFuncCall);
+        $this->assertSame('/google.cloud.compute.v1.GlobalVmExtensionPolicies/Get', $actualFuncCall);
+        $actualValue = $actualRequestObject->getGlobalVmExtensionPolicy();
+        $this->assertProtobufEquals($globalVmExtensionPolicy, $actualValue);
         $actualValue = $actualRequestObject->getProject();
         $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getSslPolicy();
-        $this->assertProtobufEquals($sslPolicy, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -350,9 +363,11 @@ class SslPoliciesClientTest extends GeneratedTest
         );
         $transport->addResponse(null, $status);
         // Mock request
+        $globalVmExtensionPolicy = 'globalVmExtensionPolicy545205022';
         $project = 'project-309310695';
-        $sslPolicy = 'sslPolicy-1852293435';
-        $request = (new GetSslPolicyRequest())->setProject($project)->setSslPolicy($sslPolicy);
+        $request = (new GetGlobalVmExtensionPolicyRequest())
+            ->setGlobalVmExtensionPolicy($globalVmExtensionPolicy)
+            ->setProject($project);
         try {
             $gapicClient->get($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -392,9 +407,11 @@ class SslPoliciesClientTest extends GeneratedTest
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
+        $globalVmExtensionPolicyResource = new GlobalVmExtensionPolicy();
         $project = 'project-309310695';
-        $sslPolicyResource = new SslPolicy();
-        $request = (new InsertSslPolicyRequest())->setProject($project)->setSslPolicyResource($sslPolicyResource);
+        $request = (new InsertGlobalVmExtensionPolicyRequest())
+            ->setGlobalVmExtensionPolicyResource($globalVmExtensionPolicyResource)
+            ->setProject($project);
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -403,11 +420,11 @@ class SslPoliciesClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.SslPolicies/Insert', $actualApiFuncCall);
+        $this->assertSame('/google.cloud.compute.v1.GlobalVmExtensionPolicies/Insert', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getGlobalVmExtensionPolicyResource();
+        $this->assertProtobufEquals($globalVmExtensionPolicyResource, $actualValue);
         $actualValue = $actualApiRequestObject->getProject();
         $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getSslPolicyResource();
-        $this->assertProtobufEquals($sslPolicyResource, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
         $expectedOperationsRequestObject->setProject($project);
@@ -462,9 +479,11 @@ class SslPoliciesClientTest extends GeneratedTest
         );
         $operationsTransport->addResponse(null, $status);
         // Mock request
+        $globalVmExtensionPolicyResource = new GlobalVmExtensionPolicy();
         $project = 'project-309310695';
-        $sslPolicyResource = new SslPolicy();
-        $request = (new InsertSslPolicyRequest())->setProject($project)->setSslPolicyResource($sslPolicyResource);
+        $request = (new InsertGlobalVmExtensionPolicyRequest())
+            ->setGlobalVmExtensionPolicyResource($globalVmExtensionPolicyResource)
+            ->setProject($project);
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -494,13 +513,15 @@ class SslPoliciesClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
+        $etag = 'etag3123477';
         $id = 'id3355';
         $kind = 'kind3292052';
         $nextPageToken = '';
         $selfLink = 'selfLink-1691268851';
-        $itemsElement = new SslPolicy();
+        $itemsElement = new GlobalVmExtensionPolicy();
         $items = [$itemsElement];
-        $expectedResponse = new SslPoliciesList();
+        $expectedResponse = new GlobalVmExtensionPolicyList();
+        $expectedResponse->setEtag($etag);
         $expectedResponse->setId($id);
         $expectedResponse->setKind($kind);
         $expectedResponse->setNextPageToken($nextPageToken);
@@ -509,7 +530,7 @@ class SslPoliciesClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $project = 'project-309310695';
-        $request = (new ListSslPoliciesRequest())->setProject($project);
+        $request = (new ListGlobalVmExtensionPoliciesRequest())->setProject($project);
         $response = $gapicClient->list($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -519,7 +540,7 @@ class SslPoliciesClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.SslPolicies/List', $actualFuncCall);
+        $this->assertSame('/google.cloud.compute.v1.GlobalVmExtensionPolicies/List', $actualFuncCall);
         $actualValue = $actualRequestObject->getProject();
         $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -548,7 +569,7 @@ class SslPoliciesClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $project = 'project-309310695';
-        $request = (new ListSslPoliciesRequest())->setProject($project);
+        $request = (new ListGlobalVmExtensionPoliciesRequest())->setProject($project);
         try {
             $gapicClient->list($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -563,70 +584,7 @@ class SslPoliciesClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function listAvailableFeaturesTest()
-    {
-        $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        // Mock response
-        $expectedResponse = new SslPoliciesListAvailableFeaturesResponse();
-        $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $request = (new ListAvailableFeaturesSslPoliciesRequest())->setProject($project);
-        $response = $gapicClient->listAvailableFeatures($request);
-        $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.SslPolicies/ListAvailableFeatures', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /** @test */
-    public function listAvailableFeaturesExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode(
-            [
-                'message' => 'internal error',
-                'code' => Code::DATA_LOSS,
-                'status' => 'DATA_LOSS',
-                'details' => [],
-            ],
-            JSON_PRETTY_PRINT
-        );
-        $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $request = (new ListAvailableFeaturesSslPoliciesRequest())->setProject($project);
-        try {
-            $gapicClient->listAvailableFeatures($request);
-            // If the $gapicClient method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /** @test */
-    public function patchTest()
+    public function updateTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOperationsClient([
@@ -643,22 +601,22 @@ class SslPoliciesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
         $incompleteOperation = new Operation();
-        $incompleteOperation->setName('customOperations/patchTest');
+        $incompleteOperation->setName('customOperations/updateTest');
         $incompleteOperation->setStatus(Status::RUNNING);
         $transport->addResponse($incompleteOperation);
         $completeOperation = new Operation();
-        $completeOperation->setName('customOperations/patchTest');
+        $completeOperation->setName('customOperations/updateTest');
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
+        $globalVmExtensionPolicy = 'globalVmExtensionPolicy545205022';
+        $globalVmExtensionPolicyResource = new GlobalVmExtensionPolicy();
         $project = 'project-309310695';
-        $sslPolicy = 'sslPolicy-1852293435';
-        $sslPolicyResource = new SslPolicy();
-        $request = (new PatchSslPolicyRequest())
-            ->setProject($project)
-            ->setSslPolicy($sslPolicy)
-            ->setSslPolicyResource($sslPolicyResource);
-        $response = $gapicClient->patch($request);
+        $request = (new UpdateGlobalVmExtensionPolicyRequest())
+            ->setGlobalVmExtensionPolicy($globalVmExtensionPolicy)
+            ->setGlobalVmExtensionPolicyResource($globalVmExtensionPolicyResource)
+            ->setProject($project);
+        $response = $gapicClient->update($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -666,13 +624,13 @@ class SslPoliciesClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.SslPolicies/Patch', $actualApiFuncCall);
+        $this->assertSame('/google.cloud.compute.v1.GlobalVmExtensionPolicies/Update', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getGlobalVmExtensionPolicy();
+        $this->assertProtobufEquals($globalVmExtensionPolicy, $actualValue);
+        $actualValue = $actualApiRequestObject->getGlobalVmExtensionPolicyResource();
+        $this->assertProtobufEquals($globalVmExtensionPolicyResource, $actualValue);
         $actualValue = $actualApiRequestObject->getProject();
         $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getSslPolicy();
-        $this->assertProtobufEquals($sslPolicy, $actualValue);
-        $actualValue = $actualApiRequestObject->getSslPolicyResource();
-        $this->assertProtobufEquals($sslPolicyResource, $actualValue);
         $expectedOperationsRequestObject = new GetGlobalOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
         $expectedOperationsRequestObject->setProject($project);
@@ -693,7 +651,7 @@ class SslPoliciesClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function patchExceptionTest()
+    public function updateExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOperationsClient([
@@ -710,7 +668,7 @@ class SslPoliciesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
         $incompleteOperation = new Operation();
-        $incompleteOperation->setName('customOperations/patchExceptionTest');
+        $incompleteOperation->setName('customOperations/updateExceptionTest');
         $incompleteOperation->setStatus(Status::RUNNING);
         $transport->addResponse($incompleteOperation);
         $status = new stdClass();
@@ -727,14 +685,14 @@ class SslPoliciesClientTest extends GeneratedTest
         );
         $operationsTransport->addResponse(null, $status);
         // Mock request
+        $globalVmExtensionPolicy = 'globalVmExtensionPolicy545205022';
+        $globalVmExtensionPolicyResource = new GlobalVmExtensionPolicy();
         $project = 'project-309310695';
-        $sslPolicy = 'sslPolicy-1852293435';
-        $sslPolicyResource = new SslPolicy();
-        $request = (new PatchSslPolicyRequest())
-            ->setProject($project)
-            ->setSslPolicy($sslPolicy)
-            ->setSslPolicyResource($sslPolicyResource);
-        $response = $gapicClient->patch($request);
+        $request = (new UpdateGlobalVmExtensionPolicyRequest())
+            ->setGlobalVmExtensionPolicy($globalVmExtensionPolicy)
+            ->setGlobalVmExtensionPolicyResource($globalVmExtensionPolicyResource)
+            ->setProject($project);
+        $response = $gapicClient->update($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -769,9 +727,9 @@ class SslPoliciesClientTest extends GeneratedTest
         $nextPageToken = '';
         $selfLink = 'selfLink-1691268851';
         $items = [
-            'itemsKey' => new SslPoliciesScopedList(),
+            'itemsKey' => new VmExtensionPoliciesScopedList(),
         ];
-        $expectedResponse = new SslPoliciesAggregatedList();
+        $expectedResponse = new VmExtensionPolicyAggregatedListResponse();
         $expectedResponse->setEtag($etag);
         $expectedResponse->setId($id);
         $expectedResponse->setKind($kind);
@@ -781,7 +739,7 @@ class SslPoliciesClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $project = 'project-309310695';
-        $request = (new AggregatedListSslPoliciesRequest())->setProject($project);
+        $request = (new AggregatedListGlobalVmExtensionPoliciesRequest())->setProject($project);
         $response = $gapicClient->aggregatedListAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -793,7 +751,7 @@ class SslPoliciesClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.SslPolicies/AggregatedList', $actualFuncCall);
+        $this->assertSame('/google.cloud.compute.v1.GlobalVmExtensionPolicies/AggregatedList', $actualFuncCall);
         $actualValue = $actualRequestObject->getProject();
         $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());

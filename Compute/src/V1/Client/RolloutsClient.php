@@ -34,33 +34,31 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
-use Google\Cloud\Compute\V1\DeleteZoneVmExtensionPolicyRequest;
-use Google\Cloud\Compute\V1\GetZoneVmExtensionPolicyRequest;
-use Google\Cloud\Compute\V1\InsertZoneVmExtensionPolicyRequest;
-use Google\Cloud\Compute\V1\ListZoneVmExtensionPoliciesRequest;
-use Google\Cloud\Compute\V1\UpdateZoneVmExtensionPolicyRequest;
-use Google\Cloud\Compute\V1\VmExtensionPolicy;
+use Google\Cloud\Compute\V1\CancelRolloutRequest;
+use Google\Cloud\Compute\V1\DeleteRolloutRequest;
+use Google\Cloud\Compute\V1\GetRolloutRequest;
+use Google\Cloud\Compute\V1\ListRolloutsRequest;
+use Google\Cloud\Compute\V1\Rollout;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
 
 /**
- * Service Description: The ZoneVmExtensionPolicies API.
+ * Service Description: The Rollouts API.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface<OperationResponse> deleteAsync(DeleteZoneVmExtensionPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<VmExtensionPolicy> getAsync(GetZoneVmExtensionPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<OperationResponse> insertAsync(InsertZoneVmExtensionPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<PagedListResponse> listAsync(ListZoneVmExtensionPoliciesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<OperationResponse> updateAsync(UpdateZoneVmExtensionPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> cancelAsync(CancelRolloutRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteRolloutRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Rollout> getAsync(GetRolloutRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListRolloutsRequest $request, array $optionalArgs = [])
  */
-final class ZoneVmExtensionPoliciesClient
+final class RolloutsClient
 {
     use GapicClientTrait;
 
     /** The name of the service. */
-    private const SERVICE_NAME = 'google.cloud.compute.v1.ZoneVmExtensionPolicies';
+    private const SERVICE_NAME = 'google.cloud.compute.v1.Rollouts';
 
     /**
      * The default address of the service.
@@ -91,16 +89,15 @@ final class ZoneVmExtensionPoliciesClient
         return [
             'serviceName' => self::SERVICE_NAME,
             'apiEndpoint' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
-            'clientConfig' => __DIR__ . '/../resources/zone_vm_extension_policies_client_config.json',
-            'descriptorsConfigPath' => __DIR__ . '/../resources/zone_vm_extension_policies_descriptor_config.php',
+            'clientConfig' => __DIR__ . '/../resources/rollouts_client_config.json',
+            'descriptorsConfigPath' => __DIR__ . '/../resources/rollouts_descriptor_config.php',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
                 'useJwtAccessWithScope' => false,
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' =>
-                        __DIR__ . '/../resources/zone_vm_extension_policies_rest_client_config.php',
+                    'restClientConfigPath' => __DIR__ . '/../resources/rollouts_rest_client_config.php',
                 ],
             ],
         ];
@@ -119,9 +116,9 @@ final class ZoneVmExtensionPoliciesClient
     }
 
     /**
-     * Return an ZoneOperationsClient object with the same endpoint as $this.
+     * Return an GlobalOperationsClient object with the same endpoint as $this.
      *
-     * @return ZoneOperationsClient
+     * @return GlobalOperationsClient
      */
     public function getOperationsClient()
     {
@@ -132,7 +129,7 @@ final class ZoneVmExtensionPoliciesClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => ['getProject', 'getZone'],
+            'additionalArgumentMethods' => ['getProject'],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -141,9 +138,9 @@ final class ZoneVmExtensionPoliciesClient
             'operationNameMethod' => 'getName',
             'operationStatusMethod' => 'getStatus',
             'operationStatusDoneValue' => \Google\Cloud\Compute\V1\Operation\Status::DONE,
-            'getOperationRequest' => '\Google\Cloud\Compute\V1\GetZoneOperationRequest',
+            'getOperationRequest' => '\Google\Cloud\Compute\V1\GetGlobalOperationRequest',
             'cancelOperationRequest' => null,
-            'deleteOperationRequest' => '\Google\Cloud\Compute\V1\DeleteZoneOperationRequest',
+            'deleteOperationRequest' => '\Google\Cloud\Compute\V1\DeleteGlobalOperationRequest',
         ];
     }
 
@@ -171,7 +168,7 @@ final class ZoneVmExtensionPoliciesClient
      *
      * @param array $options ClientOptions for the client.
      *
-     * @return ZoneOperationsClient
+     * @return GlobalOperationsClient
      */
     private function createOperationsClient(array $options)
     {
@@ -182,7 +179,7 @@ final class ZoneVmExtensionPoliciesClient
             return $options['operationsClient'];
         }
 
-        return new ZoneOperationsClient($options);
+        return new GlobalOperationsClient($options);
     }
 
     /**
@@ -205,9 +202,9 @@ final class ZoneVmExtensionPoliciesClient
      *           of your systems and data. It is recommended to create the credentials explicitly
      *           ```
      *           use Google\Auth\Credentials\ServiceAccountCredentials;
-     *           use Google\Cloud\Compute\V1\ZoneVmExtensionPoliciesClient;
+     *           use Google\Cloud\Compute\V1\RolloutsClient;
      *           $creds = new ServiceAccountCredentials($scopes, $json);
-     *           $options = new ZoneVmExtensionPoliciesClient(['credentials' => $creds]);
+     *           $options = new RolloutsClient(['credentials' => $creds]);
      *           ```
      *           {@see
      *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
@@ -269,14 +266,14 @@ final class ZoneVmExtensionPoliciesClient
     }
 
     /**
-     * Deletes a specified zone VM extension policy within a project.
+     * Cancels a Rollout.
      *
-     * The async variant is {@see ZoneVmExtensionPoliciesClient::deleteAsync()} .
+     * The async variant is {@see RolloutsClient::cancelAsync()} .
      *
-     * @example samples/V1/ZoneVmExtensionPoliciesClient/delete.php
+     * @example samples/V1/RolloutsClient/cancel.php
      *
-     * @param DeleteZoneVmExtensionPolicyRequest $request     A request to house fields associated with the call.
-     * @param array                              $callOptions {
+     * @param CancelRolloutRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
@@ -289,20 +286,46 @@ final class ZoneVmExtensionPoliciesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function delete(DeleteZoneVmExtensionPolicyRequest $request, array $callOptions = []): OperationResponse
+    public function cancel(CancelRolloutRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('Cancel', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a Rollout.
+     *
+     * The async variant is {@see RolloutsClient::deleteAsync()} .
+     *
+     * @example samples/V1/RolloutsClient/delete.php
+     *
+     * @param DeleteRolloutRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function delete(DeleteRolloutRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('Delete', $request, $callOptions)->wait();
     }
 
     /**
-     * Retrieves details of a specific zone VM extension policy within a project.
+     * Gets details of a single project-scoped Rollout.
      *
-     * The async variant is {@see ZoneVmExtensionPoliciesClient::getAsync()} .
+     * The async variant is {@see RolloutsClient::getAsync()} .
      *
-     * @example samples/V1/ZoneVmExtensionPoliciesClient/get.php
+     * @example samples/V1/RolloutsClient/get.php
      *
-     * @param GetZoneVmExtensionPolicyRequest $request     A request to house fields associated with the call.
-     * @param array                           $callOptions {
+     * @param GetRolloutRequest $request     A request to house fields associated with the call.
+     * @param array             $callOptions {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
@@ -311,50 +334,24 @@ final class ZoneVmExtensionPoliciesClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return VmExtensionPolicy
+     * @return Rollout
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function get(GetZoneVmExtensionPolicyRequest $request, array $callOptions = []): VmExtensionPolicy
+    public function get(GetRolloutRequest $request, array $callOptions = []): Rollout
     {
         return $this->startApiCall('Get', $request, $callOptions)->wait();
     }
 
     /**
-     * Creates a new zone-level VM extension policy within a project.
+     * Lists Rollouts in a given project and location.
      *
-     * The async variant is {@see ZoneVmExtensionPoliciesClient::insertAsync()} .
+     * The async variant is {@see RolloutsClient::listAsync()} .
      *
-     * @example samples/V1/ZoneVmExtensionPoliciesClient/insert.php
+     * @example samples/V1/RolloutsClient/list.php
      *
-     * @param InsertZoneVmExtensionPolicyRequest $request     A request to house fields associated with the call.
-     * @param array                              $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return OperationResponse
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function insert(InsertZoneVmExtensionPolicyRequest $request, array $callOptions = []): OperationResponse
-    {
-        return $this->startApiCall('Insert', $request, $callOptions)->wait();
-    }
-
-    /**
-     * Lists all VM extension policies within a specific zone for a project.
-     *
-     * The async variant is {@see ZoneVmExtensionPoliciesClient::listAsync()} .
-     *
-     * @example samples/V1/ZoneVmExtensionPoliciesClient/list.php
-     *
-     * @param ListZoneVmExtensionPoliciesRequest $request     A request to house fields associated with the call.
-     * @param array                              $callOptions {
+     * @param ListRolloutsRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
@@ -367,34 +364,8 @@ final class ZoneVmExtensionPoliciesClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function list(ListZoneVmExtensionPoliciesRequest $request, array $callOptions = []): PagedListResponse
+    public function list(ListRolloutsRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('List', $request, $callOptions);
-    }
-
-    /**
-     * Modifies an existing zone VM extension policy within a project.
-     *
-     * The async variant is {@see ZoneVmExtensionPoliciesClient::updateAsync()} .
-     *
-     * @example samples/V1/ZoneVmExtensionPoliciesClient/update.php
-     *
-     * @param UpdateZoneVmExtensionPolicyRequest $request     A request to house fields associated with the call.
-     * @param array                              $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return OperationResponse
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function update(UpdateZoneVmExtensionPolicyRequest $request, array $callOptions = []): OperationResponse
-    {
-        return $this->startApiCall('Update', $request, $callOptions)->wait();
     }
 }

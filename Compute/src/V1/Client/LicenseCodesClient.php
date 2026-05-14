@@ -32,8 +32,11 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\Compute\V1\GetIamPolicyLicenseCodeRequest;
 use Google\Cloud\Compute\V1\GetLicenseCodeRequest;
 use Google\Cloud\Compute\V1\LicenseCode;
+use Google\Cloud\Compute\V1\Policy;
+use Google\Cloud\Compute\V1\SetIamPolicyLicenseCodeRequest;
 use Google\Cloud\Compute\V1\TestIamPermissionsLicenseCodeRequest;
 use Google\Cloud\Compute\V1\TestPermissionsResponse;
 use GuzzleHttp\Promise\PromiseInterface;
@@ -46,6 +49,8 @@ use Psr\Log\LoggerInterface;
  * calls that map to API methods.
  *
  * @method PromiseInterface<LicenseCode> getAsync(GetLicenseCodeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyLicenseCodeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyLicenseCodeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsLicenseCodeRequest $request, array $optionalArgs = [])
  */
 final class LicenseCodesClient
@@ -73,7 +78,6 @@ final class LicenseCodesClient
 
     /** The default scopes required by the service. */
     public static $serviceScopes = [
-        'https://www.googleapis.com/auth/compute.readonly',
         'https://www.googleapis.com/auth/compute',
         'https://www.googleapis.com/auth/cloud-platform',
     ];
@@ -219,6 +223,66 @@ final class LicenseCodesClient
     public function get(GetLicenseCodeRequest $request, array $callOptions = []): LicenseCode
     {
         return $this->startApiCall('Get', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets the access control policy for a resource. May be empty if no such
+     * policy or resource exists.
+     * *Caution* This resource is intended
+     * for use only by third-party partners who are creatingCloud Marketplace
+     * images.
+     *
+     * The async variant is {@see LicenseCodesClient::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/LicenseCodesClient/get_iam_policy.php
+     *
+     * @param GetIamPolicyLicenseCodeRequest $request     A request to house fields associated with the call.
+     * @param array                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Policy
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getIamPolicy(GetIamPolicyLicenseCodeRequest $request, array $callOptions = []): Policy
+    {
+        return $this->startApiCall('GetIamPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Sets the access control policy on the specified resource.
+     * Replaces any existing policy.
+     * *Caution* This resource is intended
+     * for use only by third-party partners who are creatingCloud Marketplace
+     * images.
+     *
+     * The async variant is {@see LicenseCodesClient::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/LicenseCodesClient/set_iam_policy.php
+     *
+     * @param SetIamPolicyLicenseCodeRequest $request     A request to house fields associated with the call.
+     * @param array                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Policy
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function setIamPolicy(SetIamPolicyLicenseCodeRequest $request, array $callOptions = []): Policy
+    {
+        return $this->startApiCall('SetIamPolicy', $request, $callOptions)->wait();
     }
 
     /**
