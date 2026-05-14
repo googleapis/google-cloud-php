@@ -129,14 +129,14 @@ class ParameterNode
             ));
         }
 
-        $altarray = '[]' === substr($name, -2);
-        if ($altarray || 0 === strpos($name, 'array<')) {
+        if ('[]' === substr($name, -2)) {
+            return $this->resolveNestedType(substr($name, 0, -2)) . '[]';
+        }
+
+        if (0 === strpos($name, 'array<')) {
             return preg_replace_callback(
                 '/^array<([^ ]*)>$/',
-                function ($matches) use ($altarray) {
-                    $type = $this->resolveNestedType($matches[1]);
-                    return $altarray ? $type . '[]' : sprintf('array<%s>', $type);
-                },
+                fn ($m) => sprintf('array<%s>', $this->resolveNestedType($m[1])),
                 $name
             );
         }
