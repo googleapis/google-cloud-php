@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Copyright 2022 Google Inc.
  *
