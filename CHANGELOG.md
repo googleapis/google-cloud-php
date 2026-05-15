@@ -1,5 +1,37 @@
 # Changelog
 
+## 0.330.0
+
+<details><summary>google/cloud-compute 2.10.0</summary>
+
+
+
+### Features
+
+* [Compute] Update Compute Engine v1 API to revision 20260422 ([#1193](https://github.com/googleapis/google-cloud-php/issues/1193)) ([#9190](https://github.com/googleapis/google-cloud-php/issues/9190)) ([6cf66f2](https://github.com/googleapis/google-cloud-php/commit/6cf66f2836b919e18c2adde025bf60baab53480c))
+
+</details>
+
+<details><summary>google/cloud-container 2.9.0</summary>
+
+
+
+### Features
+
+* [Container] add confidential instance type and hyperdisk support to GKE API ([#9185](https://github.com/googleapis/google-cloud-php/issues/9185)) ([d83775a](https://github.com/googleapis/google-cloud-php/commit/d83775acfa7b9951aecb458baa355f3c03e7ea1d))
+
+</details>
+
+<details><summary>google/cloud-support 1.6.0</summary>
+
+
+
+### Features
+
+* [Support] v2 version for `GetComment` and `GetAttachment` ([#9187](https://github.com/googleapis/google-cloud-php/issues/9187)) ([291f912](https://github.com/googleapis/google-cloud-php/commit/291f912577c51f251df354faaed11f9582c30a23))
+
+</details>
+
 ## 0.329.0
 
 <details><summary>googleads/ad-manager 0.7.0</summary>
