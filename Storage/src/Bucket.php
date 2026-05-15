@@ -247,6 +247,11 @@ class Bucket
      *           validation hash will be sent. Choose either `md5` or `crc32` to
      *           force a hash method regardless of performance implications.
      *           **Defaults to** `true`.
+     *     @type string $crc32c The base64 encoded CRC32C checksum of the object
+     *           data. If provided, this hash will be used for server-side
+     *           validation.
+     *     @type string $md5 The base64 encoded MD5 hash of the object data. If
+     *           provided, this hash will be used for server-side validation.
      *     @type int $chunkSize If provided the upload will be done in chunks.
      *           The size must be in multiples of 262144 bytes. With chunking
      *           you have increased reliability at the risk of higher overhead.
@@ -379,6 +384,11 @@ class Bucket
      *           validation hash will be sent. Choose either `md5` or `crc32` to
      *           force a hash method regardless of performance implications.
      *           **Defaults to** `true`.
+     *     @type string $crc32c The base64 encoded CRC32C checksum of the object
+     *           data. If provided, this hash will be used for server-side
+     *           validation.
+     *     @type string $md5 The base64 encoded MD5 hash of the object data. If
+     *           provided, this hash will be used for server-side validation.
      *     @type string $predefinedAcl Predefined ACL to apply to the object.
      *           Acceptable values include, `"authenticatedRead"`,
      *           `"bucketOwnerFullControl"`, `"bucketOwnerRead"`, `"private"`,
