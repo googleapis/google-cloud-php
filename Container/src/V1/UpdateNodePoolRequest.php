@@ -303,6 +303,12 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Duration consolidation_delay = 49;</code>
      */
     protected $consolidation_delay = null;
+    /**
+     * The taint configuration for the node pool.
+     *
+     * Generated from protobuf field <code>.google.container.v1.TaintConfig taint_config = 51;</code>
+     */
+    protected $taint_config = null;
 
     /**
      * Constructor.
@@ -446,6 +452,8 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
      *           Consolidation delay defines duration after which the Cluster Autoscaler can
      *           scale down underutilized nodes. If not set, nodes are scaled down by
      *           default behavior, i.e. according to the chosen autoscaling profile.
+     *     @type \Google\Cloud\Container\V1\TaintConfig $taint_config
+     *           The taint configuration for the node pool.
      * }
      */
     public function __construct($data = NULL) {
@@ -1789,6 +1797,42 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
         $this->consolidation_delay = $var;
+
+        return $this;
+    }
+
+    /**
+     * The taint configuration for the node pool.
+     *
+     * Generated from protobuf field <code>.google.container.v1.TaintConfig taint_config = 51;</code>
+     * @return \Google\Cloud\Container\V1\TaintConfig|null
+     */
+    public function getTaintConfig()
+    {
+        return $this->taint_config;
+    }
+
+    public function hasTaintConfig()
+    {
+        return isset($this->taint_config);
+    }
+
+    public function clearTaintConfig()
+    {
+        unset($this->taint_config);
+    }
+
+    /**
+     * The taint configuration for the node pool.
+     *
+     * Generated from protobuf field <code>.google.container.v1.TaintConfig taint_config = 51;</code>
+     * @param \Google\Cloud\Container\V1\TaintConfig $var
+     * @return $this
+     */
+    public function setTaintConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\TaintConfig::class);
+        $this->taint_config = $var;
 
         return $this;
     }

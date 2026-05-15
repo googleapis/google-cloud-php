@@ -22,11 +22,11 @@ class RegistryHostConfig extends \Google\Protobuf\Internal\Message
      * Defines the host name of the registry server, which will be used to
      * create configuration file as /etc/containerd/hosts.d/<server>/hosts.toml.
      * It supports fully qualified domain names (FQDN) and IP addresses:
-     * Specifying port is supported.
+     * Specifying port is supported, while scheme and path are NOT supported.
      * Wildcards are NOT supported.
      * Examples:
-     * - my.customdomain.com
-     * - 10.0.1.2:5000
+     * - `my.customdomain.com`
+     * - `10.0.1.2:5000`
      *
      * Generated from protobuf field <code>string server = 1;</code>
      */
@@ -50,11 +50,11 @@ class RegistryHostConfig extends \Google\Protobuf\Internal\Message
      *           Defines the host name of the registry server, which will be used to
      *           create configuration file as /etc/containerd/hosts.d/<server>/hosts.toml.
      *           It supports fully qualified domain names (FQDN) and IP addresses:
-     *           Specifying port is supported.
+     *           Specifying port is supported, while scheme and path are NOT supported.
      *           Wildcards are NOT supported.
      *           Examples:
-     *           - my.customdomain.com
-     *           - 10.0.1.2:5000
+     *           - `my.customdomain.com`
+     *           - `10.0.1.2:5000`
      *     @type \Google\Cloud\Container\V1\ContainerdConfig\RegistryHostConfig\HostConfig[] $hosts
      *           HostConfig configures a list of host-specific configurations for the
      *           server.
@@ -70,11 +70,11 @@ class RegistryHostConfig extends \Google\Protobuf\Internal\Message
      * Defines the host name of the registry server, which will be used to
      * create configuration file as /etc/containerd/hosts.d/<server>/hosts.toml.
      * It supports fully qualified domain names (FQDN) and IP addresses:
-     * Specifying port is supported.
+     * Specifying port is supported, while scheme and path are NOT supported.
      * Wildcards are NOT supported.
      * Examples:
-     * - my.customdomain.com
-     * - 10.0.1.2:5000
+     * - `my.customdomain.com`
+     * - `10.0.1.2:5000`
      *
      * Generated from protobuf field <code>string server = 1;</code>
      * @return string
@@ -88,11 +88,11 @@ class RegistryHostConfig extends \Google\Protobuf\Internal\Message
      * Defines the host name of the registry server, which will be used to
      * create configuration file as /etc/containerd/hosts.d/<server>/hosts.toml.
      * It supports fully qualified domain names (FQDN) and IP addresses:
-     * Specifying port is supported.
+     * Specifying port is supported, while scheme and path are NOT supported.
      * Wildcards are NOT supported.
      * Examples:
-     * - my.customdomain.com
-     * - 10.0.1.2:5000
+     * - `my.customdomain.com`
+     * - `10.0.1.2:5000`
      *
      * Generated from protobuf field <code>string server = 1;</code>
      * @param string $var

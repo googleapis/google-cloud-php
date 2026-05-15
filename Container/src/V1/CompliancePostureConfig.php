@@ -9,9 +9,13 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
+ * Deprecated: Compliance Posture is no longer supported.
+ * For more details, see
+ * https://cloud.google.com/kubernetes-engine/docs/deprecations/posture-management-deprecation.
  * CompliancePostureConfig defines the settings needed to enable/disable
  * features for the Compliance Posture.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.container.v1.CompliancePostureConfig</code>
  */
 class CompliancePostureConfig extends \Google\Protobuf\Internal\Message

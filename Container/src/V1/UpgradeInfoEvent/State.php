@@ -20,6 +20,12 @@ class State
      */
     const STATE_UNSPECIFIED = 0;
     /**
+     * SCHEDULED indicates the upgrade was scheduled.
+     *
+     * Generated from protobuf enum <code>SCHEDULED = 1;</code>
+     */
+    const SCHEDULED = 1;
+    /**
      * STARTED indicates the upgrade has started.
      *
      * Generated from protobuf enum <code>STARTED = 3;</code>
@@ -46,6 +52,7 @@ class State
 
     private static $valueToName = [
         self::STATE_UNSPECIFIED => 'STATE_UNSPECIFIED',
+        self::SCHEDULED => 'SCHEDULED',
         self::STARTED => 'STARTED',
         self::SUCCEEDED => 'SUCCEEDED',
         self::FAILED => 'FAILED',

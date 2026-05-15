@@ -442,9 +442,13 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      */
     protected $desired_secret_manager_config = null;
     /**
+     * Deprecated: Compliance Posture is no longer supported.
+     * For more details, see
+     * https://cloud.google.com/kubernetes-engine/docs/deprecations/posture-management-deprecation.
      * Enable/Disable Compliance Posture features for the cluster.
      *
-     * Generated from protobuf field <code>optional .google.container.v1.CompliancePostureConfig desired_compliance_posture_config = 140;</code>
+     * Generated from protobuf field <code>optional .google.container.v1.CompliancePostureConfig desired_compliance_posture_config = 140 [deprecated = true];</code>
+     * @deprecated
      */
     protected $desired_compliance_posture_config = null;
     /**
@@ -539,17 +543,47 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      */
     protected $desired_network_tier_config = null;
     /**
+     * Configuration for sync Secret Manager secrets as k8s secrets.
+     *
+     * Generated from protobuf field <code>.google.container.v1.SecretSyncConfig desired_secret_sync_config = 158;</code>
+     */
+    protected $desired_secret_sync_config = null;
+    /**
      * The desired privileged admission config for the cluster.
      *
      * Generated from protobuf field <code>.google.container.v1.PrivilegedAdmissionConfig desired_privileged_admission_config = 159;</code>
      */
     protected $desired_privileged_admission_config = null;
     /**
+     * The desired control plane egress control config for the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ControlPlaneEgress desired_control_plane_egress = 160;</code>
+     */
+    protected $desired_control_plane_egress = null;
+    /**
      * The desired managed open telemetry configuration.
      *
      * Generated from protobuf field <code>.google.container.v1.ManagedOpenTelemetryConfig desired_managed_opentelemetry_config = 163;</code>
      */
     protected $desired_managed_opentelemetry_config = null;
+    /**
+     * The desired autopilot cluster policies that to be enforced in the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ClusterPolicyConfig desired_autopilot_cluster_policy_config = 164;</code>
+     */
+    protected $desired_autopilot_cluster_policy_config = null;
+    /**
+     * The desired managed machine learning diagnostics configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ManagedMachineLearningDiagnosticsConfig desired_managed_machine_learning_diagnostics_config = 166;</code>
+     */
+    protected $desired_managed_machine_learning_diagnostics_config = null;
+    /**
+     * Optional. The desired NodeCreationConfig for the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodeCreationConfig desired_node_creation_config = 171 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $desired_node_creation_config = null;
 
     /**
      * Constructor.
@@ -747,6 +781,9 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Container\V1\SecretManagerConfig $desired_secret_manager_config
      *           Enable/Disable Secret Manager Config.
      *     @type \Google\Cloud\Container\V1\CompliancePostureConfig $desired_compliance_posture_config
+     *           Deprecated: Compliance Posture is no longer supported.
+     *           For more details, see
+     *           https://cloud.google.com/kubernetes-engine/docs/deprecations/posture-management-deprecation.
      *           Enable/Disable Compliance Posture features for the cluster.
      *     @type \Google\Cloud\Container\V1\NodeKubeletConfig $desired_node_kubelet_config
      *           The desired node kubelet config for the cluster.
@@ -785,10 +822,20 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      *           Configuration for GKE auto upgrade.
      *     @type \Google\Cloud\Container\V1\NetworkTierConfig $desired_network_tier_config
      *           The desired network tier configuration for the cluster.
+     *     @type \Google\Cloud\Container\V1\SecretSyncConfig $desired_secret_sync_config
+     *           Configuration for sync Secret Manager secrets as k8s secrets.
      *     @type \Google\Cloud\Container\V1\PrivilegedAdmissionConfig $desired_privileged_admission_config
      *           The desired privileged admission config for the cluster.
+     *     @type \Google\Cloud\Container\V1\ControlPlaneEgress $desired_control_plane_egress
+     *           The desired control plane egress control config for the cluster.
      *     @type \Google\Cloud\Container\V1\ManagedOpenTelemetryConfig $desired_managed_opentelemetry_config
      *           The desired managed open telemetry configuration.
+     *     @type \Google\Cloud\Container\V1\ClusterPolicyConfig $desired_autopilot_cluster_policy_config
+     *           The desired autopilot cluster policies that to be enforced in the cluster.
+     *     @type \Google\Cloud\Container\V1\ManagedMachineLearningDiagnosticsConfig $desired_managed_machine_learning_diagnostics_config
+     *           The desired managed machine learning diagnostics configuration.
+     *     @type \Google\Cloud\Container\V1\NodeCreationConfig $desired_node_creation_config
+     *           Optional. The desired NodeCreationConfig for the cluster.
      * }
      */
     public function __construct($data = NULL) {
@@ -2951,35 +2998,51 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Deprecated: Compliance Posture is no longer supported.
+     * For more details, see
+     * https://cloud.google.com/kubernetes-engine/docs/deprecations/posture-management-deprecation.
      * Enable/Disable Compliance Posture features for the cluster.
      *
-     * Generated from protobuf field <code>optional .google.container.v1.CompliancePostureConfig desired_compliance_posture_config = 140;</code>
+     * Generated from protobuf field <code>optional .google.container.v1.CompliancePostureConfig desired_compliance_posture_config = 140 [deprecated = true];</code>
      * @return \Google\Cloud\Container\V1\CompliancePostureConfig|null
+     * @deprecated
      */
     public function getDesiredCompliancePostureConfig()
     {
+        if (isset($this->desired_compliance_posture_config)) {
+            @trigger_error('desired_compliance_posture_config is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->desired_compliance_posture_config;
     }
 
     public function hasDesiredCompliancePostureConfig()
     {
+        if (isset($this->desired_compliance_posture_config)) {
+            @trigger_error('desired_compliance_posture_config is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->desired_compliance_posture_config);
     }
 
     public function clearDesiredCompliancePostureConfig()
     {
+        @trigger_error('desired_compliance_posture_config is deprecated.', E_USER_DEPRECATED);
         unset($this->desired_compliance_posture_config);
     }
 
     /**
+     * Deprecated: Compliance Posture is no longer supported.
+     * For more details, see
+     * https://cloud.google.com/kubernetes-engine/docs/deprecations/posture-management-deprecation.
      * Enable/Disable Compliance Posture features for the cluster.
      *
-     * Generated from protobuf field <code>optional .google.container.v1.CompliancePostureConfig desired_compliance_posture_config = 140;</code>
+     * Generated from protobuf field <code>optional .google.container.v1.CompliancePostureConfig desired_compliance_posture_config = 140 [deprecated = true];</code>
      * @param \Google\Cloud\Container\V1\CompliancePostureConfig $var
      * @return $this
+     * @deprecated
      */
     public function setDesiredCompliancePostureConfig($var)
     {
+        @trigger_error('desired_compliance_posture_config is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\CompliancePostureConfig::class);
         $this->desired_compliance_posture_config = $var;
 
@@ -3497,6 +3560,42 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Configuration for sync Secret Manager secrets as k8s secrets.
+     *
+     * Generated from protobuf field <code>.google.container.v1.SecretSyncConfig desired_secret_sync_config = 158;</code>
+     * @return \Google\Cloud\Container\V1\SecretSyncConfig|null
+     */
+    public function getDesiredSecretSyncConfig()
+    {
+        return $this->desired_secret_sync_config;
+    }
+
+    public function hasDesiredSecretSyncConfig()
+    {
+        return isset($this->desired_secret_sync_config);
+    }
+
+    public function clearDesiredSecretSyncConfig()
+    {
+        unset($this->desired_secret_sync_config);
+    }
+
+    /**
+     * Configuration for sync Secret Manager secrets as k8s secrets.
+     *
+     * Generated from protobuf field <code>.google.container.v1.SecretSyncConfig desired_secret_sync_config = 158;</code>
+     * @param \Google\Cloud\Container\V1\SecretSyncConfig $var
+     * @return $this
+     */
+    public function setDesiredSecretSyncConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\SecretSyncConfig::class);
+        $this->desired_secret_sync_config = $var;
+
+        return $this;
+    }
+
+    /**
      * The desired privileged admission config for the cluster.
      *
      * Generated from protobuf field <code>.google.container.v1.PrivilegedAdmissionConfig desired_privileged_admission_config = 159;</code>
@@ -3533,6 +3632,42 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * The desired control plane egress control config for the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ControlPlaneEgress desired_control_plane_egress = 160;</code>
+     * @return \Google\Cloud\Container\V1\ControlPlaneEgress|null
+     */
+    public function getDesiredControlPlaneEgress()
+    {
+        return $this->desired_control_plane_egress;
+    }
+
+    public function hasDesiredControlPlaneEgress()
+    {
+        return isset($this->desired_control_plane_egress);
+    }
+
+    public function clearDesiredControlPlaneEgress()
+    {
+        unset($this->desired_control_plane_egress);
+    }
+
+    /**
+     * The desired control plane egress control config for the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ControlPlaneEgress desired_control_plane_egress = 160;</code>
+     * @param \Google\Cloud\Container\V1\ControlPlaneEgress $var
+     * @return $this
+     */
+    public function setDesiredControlPlaneEgress($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\ControlPlaneEgress::class);
+        $this->desired_control_plane_egress = $var;
+
+        return $this;
+    }
+
+    /**
      * The desired managed open telemetry configuration.
      *
      * Generated from protobuf field <code>.google.container.v1.ManagedOpenTelemetryConfig desired_managed_opentelemetry_config = 163;</code>
@@ -3564,6 +3699,114 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\ManagedOpenTelemetryConfig::class);
         $this->desired_managed_opentelemetry_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * The desired autopilot cluster policies that to be enforced in the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ClusterPolicyConfig desired_autopilot_cluster_policy_config = 164;</code>
+     * @return \Google\Cloud\Container\V1\ClusterPolicyConfig|null
+     */
+    public function getDesiredAutopilotClusterPolicyConfig()
+    {
+        return $this->desired_autopilot_cluster_policy_config;
+    }
+
+    public function hasDesiredAutopilotClusterPolicyConfig()
+    {
+        return isset($this->desired_autopilot_cluster_policy_config);
+    }
+
+    public function clearDesiredAutopilotClusterPolicyConfig()
+    {
+        unset($this->desired_autopilot_cluster_policy_config);
+    }
+
+    /**
+     * The desired autopilot cluster policies that to be enforced in the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ClusterPolicyConfig desired_autopilot_cluster_policy_config = 164;</code>
+     * @param \Google\Cloud\Container\V1\ClusterPolicyConfig $var
+     * @return $this
+     */
+    public function setDesiredAutopilotClusterPolicyConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\ClusterPolicyConfig::class);
+        $this->desired_autopilot_cluster_policy_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * The desired managed machine learning diagnostics configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ManagedMachineLearningDiagnosticsConfig desired_managed_machine_learning_diagnostics_config = 166;</code>
+     * @return \Google\Cloud\Container\V1\ManagedMachineLearningDiagnosticsConfig|null
+     */
+    public function getDesiredManagedMachineLearningDiagnosticsConfig()
+    {
+        return $this->desired_managed_machine_learning_diagnostics_config;
+    }
+
+    public function hasDesiredManagedMachineLearningDiagnosticsConfig()
+    {
+        return isset($this->desired_managed_machine_learning_diagnostics_config);
+    }
+
+    public function clearDesiredManagedMachineLearningDiagnosticsConfig()
+    {
+        unset($this->desired_managed_machine_learning_diagnostics_config);
+    }
+
+    /**
+     * The desired managed machine learning diagnostics configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ManagedMachineLearningDiagnosticsConfig desired_managed_machine_learning_diagnostics_config = 166;</code>
+     * @param \Google\Cloud\Container\V1\ManagedMachineLearningDiagnosticsConfig $var
+     * @return $this
+     */
+    public function setDesiredManagedMachineLearningDiagnosticsConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\ManagedMachineLearningDiagnosticsConfig::class);
+        $this->desired_managed_machine_learning_diagnostics_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The desired NodeCreationConfig for the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodeCreationConfig desired_node_creation_config = 171 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Container\V1\NodeCreationConfig|null
+     */
+    public function getDesiredNodeCreationConfig()
+    {
+        return $this->desired_node_creation_config;
+    }
+
+    public function hasDesiredNodeCreationConfig()
+    {
+        return isset($this->desired_node_creation_config);
+    }
+
+    public function clearDesiredNodeCreationConfig()
+    {
+        unset($this->desired_node_creation_config);
+    }
+
+    /**
+     * Optional. The desired NodeCreationConfig for the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodeCreationConfig desired_node_creation_config = 171 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Container\V1\NodeCreationConfig $var
+     * @return $this
+     */
+    public function setDesiredNodeCreationConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\NodeCreationConfig::class);
+        $this->desired_node_creation_config = $var;
 
         return $this;
     }
