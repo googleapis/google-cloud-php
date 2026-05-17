@@ -7,6 +7,7 @@ BypassFinals::setWhitelist([
     '*/src/Admin/Database/V1/Client/*',
     '*/src/Admin/Instance/V1/Client/*',
     '*/src/V1/Client/*',
+    '*/vendor/google/cloud-monitoring/src/V3/Client/*'
 ]);
 
 BypassFinals::enable();

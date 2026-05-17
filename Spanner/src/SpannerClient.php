@@ -17,11 +17,14 @@
 
 namespace Google\Cloud\Spanner;
 
+use Exception;
 use Google\ApiCore\ClientOptionsTrait;
 use Google\ApiCore\Middleware\MiddlewareInterface;
 use Google\ApiCore\Options\CallOptions;
 use Google\ApiCore\ValidationException;
+use Google\Auth\Credentials\GCECredentials;
 use Google\Cloud\Core\ApiHelperTrait;
+use Google\Cloud\Core\Compute\Metadata;
 use Google\Cloud\Core\DetectProjectIdTrait;
 use Google\Cloud\Core\EmulatorTrait;
 use Google\Cloud\Core\Exception\GoogleException;
@@ -30,6 +33,7 @@ use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\LongRunning\LongRunningClientConnection;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\OptionsValidator;
+use Google\Cloud\Monitoring\V3\Client\MetricServiceClient;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig;
@@ -38,15 +42,24 @@ use Google\Cloud\Spanner\Admin\Instance\V1\ListInstanceConfigsRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\ListInstancesRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\ReplicaInfo;
 use Google\Cloud\Spanner\Batch\BatchClient;
+use Google\Cloud\Spanner\Middleware\MetricsAttemptMiddleware;
+use Google\Cloud\Spanner\Middleware\MetricsOperationMiddleware;
 use Google\Cloud\Spanner\Middleware\RequestIdHeaderMiddleware;
 use Google\Cloud\Spanner\Middleware\SpannerMiddleware;
+use Google\Cloud\Spanner\OpenTelemetry\MetricsExporter;
 use Google\Cloud\Spanner\V1\Client\SpannerClient as GapicSpannerClient;
 use Google\Cloud\Spanner\V1\TransactionOptions\IsolationLevel;
 use Google\Cloud\Spanner\V1\TransactionOptions\ReadWrite\ReadLockMode;
 use Google\LongRunning\Operation as OperationProto;
 use Google\Protobuf\Duration;
+use OpenTelemetry\API\Metrics\MeterInterface;
+use OpenTelemetry\API\Metrics\MeterProviderInterface;
+use OpenTelemetry\SDK\Common\Util\ShutdownHandler;
+use OpenTelemetry\SDK\Metrics\MeterProvider;
+use OpenTelemetry\SDK\Metrics\MetricReader\ExportingReader;
 use Psr\Cache\CacheItemPoolInterface;
 use Psr\Http\Message\StreamInterface;
+use Ramsey\Uuid\Uuid as RUUID;
 
 /**
  * Cloud Spanner is a highly scalable, transactional, managed, NewSQL
@@ -133,6 +146,8 @@ class SpannerClient
     private int $isolationLevel;
     private int $readLockMode;
     private CacheItemPoolInterface|null $cacheItemPool;
+    private MeterInterface $meter;
+    private MeterProviderInterface $meterProvider;
     private static array $activeChannels = [];
     private static int $totalActiveChannels = 0;
 
@@ -187,6 +202,12 @@ class SpannerClient
      *     @type int $isolationLevel The level of Isolation for the transactions executed by this Client's instance.
      *           **Defaults to** IsolationLevel::ISOLATION_LEVEL_UNSPECIFIED
      *     @type CacheItemPoolInterface $cacheItemPool
+     *     @type bool $disableBuiltInMetrics If true, built-in metrics collection will be disabled.
+     *           **Defaults to** false.
+     *     @type int $metricsTimeoutMillis The timeout in milliseconds for the internal
+     *           `MetricServiceClient` used to export metrics. **Defaults to** 100.
+     *     @type MetricServiceClient $metricServiceClient An explicit instance of
+     *           `MetricServiceClient` to use for exporting metrics.
      * }
      * @throws GoogleException If the gRPC extension is not enabled.
      */
@@ -206,7 +227,9 @@ class SpannerClient
             'isolationLevel' => IsolationLevel::ISOLATION_LEVEL_UNSPECIFIED,
             'readLockMode' => ReadLockMode::READ_LOCK_MODE_UNSPECIFIED,
             'routeToLeader' => true,
-            'cacheItemPool' => null
+            'cacheItemPool' => null,
+            'disableBuiltInMetrics' => false,
+            'metricsTimeoutMillis' => 100,
         ];
 
         $this->returnInt64AsObject = $options['returnInt64AsObject'];
@@ -275,6 +298,8 @@ class SpannerClient
         $this->spannerClient->addMiddleware($middleware);
         $this->instanceAdminClient->addMiddleware($middleware);
         $this->databaseAdminClient->addMiddleware($middleware);
+
+        $this->configureMetrics($options);
 
         $this->projectName = InstanceAdminClient::projectName($this->projectId);
         $this->cacheItemPool = $options['cacheItemPool'];
@@ -1026,5 +1051,125 @@ class SpannerClient
         ];
 
         return $config;
+    }
+
+    private function configureMetrics(array &$options): void
+    {
+        $metricsClient = $this->pluck('metricServiceClient', $options, false);
+        $timeoutMillis = $this->pluck('metricsTimeoutMillis', $options, false) ?? 100;
+        $location = $this->getLocation();
+
+        if ($this->pluck('disableBuiltInMetrics', $options, false)) {
+            return;
+        }
+
+        if (!$metricsClient) {
+            $metricsOptions = [
+                'projectId' => $this->projectId,
+                'keyFile' => $options['keyFile'] ?? null,
+                'keyFilePath' => $options['keyFilePath'] ?? null,
+                'credentials' => $options['credentials'] ?? null,
+                'credentialsConfig' => $options['credentialsConfig'] ?? null,
+                'universeDomain' => $options['universeDomain'] ?? null,
+                'transport' => $options['transport'] ?? null,
+                'transportConfig' => $options['transportConfig'] ?? null
+            ];
+
+            try {
+                $metricsClient = new MetricServiceClient(array_filter($metricsOptions));
+            } catch (ValidationException $e) {
+                // If we cannot instantiate the metrics client, we should not stop the execution
+                return;
+            }
+        }
+
+        if (!$metricsClient instanceof MetricServiceClient) {
+            throw new ValidationException('The "metricServiceClient" option must be a MetricServiceClient instance.');
+        }
+
+        $metricsClientId = RUUID::uuid4()->toString() . '-' . getmypid();
+        $exporter = new MetricsExporter($metricsClient, $this->projectId, $metricsClientId, $timeoutMillis);
+        $reader = new ExportingReader($exporter);
+        $this->meterProvider = MeterProvider::builder()
+            ->addReader($reader)
+            ->build();
+
+        $this->meter = $this->meterProvider->getMeter('google-cloud-spanner');
+        ShutdownHandler::register([$this->meterProvider, 'shutdown']);
+
+        $attemptMetricsMiddleware = function (MiddlewareInterface $handler) use ($metricsClientId, $location) {
+            return new MetricsAttemptMiddleware(
+                $handler,
+                $this->meter,
+                $metricsClientId,
+                $this->projectId,
+                $this->clientVersion(),
+                $location
+            );
+        };
+
+        $operationMetricsMiddleware = function (MiddlewareInterface $handler) use ($metricsClientId, $location) {
+            return new MetricsOperationMiddleware(
+                $handler,
+                $this->meter,
+                $metricsClientId,
+                $this->projectId,
+                $this->clientVersion(),
+                $location
+            );
+        };
+
+        $this->spannerClient->prependMiddleware($attemptMetricsMiddleware);
+        $this->spannerClient->addMiddleware($operationMetricsMiddleware);
+    }
+
+    /**
+     * Returns the current client version.
+     *
+     * @return string
+     */
+    private function clientVersion(): string
+    {
+        return trim(file_get_contents(__DIR__ . '/../VERSION'));
+    }
+
+    /**
+     * Gets the current location for the client for GCP or 'global' as a fallback.
+     *
+     * @return string
+     */
+    private function getLocation(): string
+    {
+        $location = 'global';
+        if (!GCECredentials::onGce()) {
+            return $location;
+        }
+
+        try {
+            $metadata = new Metadata();
+
+            $location = $metadata->get('instance/attributes/cluster-location');
+            if ($location) {
+                return $location;
+            }
+
+            $region = $metadata->get('instance/region');
+            if ($region) {
+                // Region is returned as "projects/[NUM]/regions/[REGION-NAME]"
+                return substr($region, strrpos($region, '/') + 1);
+            }
+
+            $zone = $metadata->get('instance/zone');
+            if ($zone) {
+                // Zone is "projects/[NUM]/zones/[ZONE-NAME]"
+                $zoneName = substr($zone, strrpos($zone, '/') + 1);
+                $lastHyphen = strrpos($zoneName, '-');
+                return ($lastHyphen !== false) ? substr($zoneName, 0, $lastHyphen) : $zoneName;
+            }
+        } catch (Exception $e) {
+            // avoid crashing the client in case of a metadata error
+        }
+
+        return $location;
     }
 }
