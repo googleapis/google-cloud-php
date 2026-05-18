@@ -1,5 +1,132 @@
 # Changelog
 
+## 0.329.0
+
+<details><summary>googleads/ad-manager 0.7.0</summary>
+
+
+
+### Features
+
+* [AdsAdManager] added new API dimension: CREATIVE_SSL_COMPLIANCE_OVERRIDE ([#9171](https://github.com/googleapis/google-cloud-php/issues/9171)) ([0ab7c80](https://github.com/googleapis/google-cloud-php/commit/0ab7c80b476cad558493f35ce7743538bbe6c76d))
+
+</details>
+
+<details><summary>google/cloud-ai-platform 1.60.0</summary>
+
+
+
+### Features
+
+* [AiPlatform] Release ReasoningEngineExecutionService.CancelAsyncQueryReasoningEngine v1 API ([#9172](https://github.com/googleapis/google-cloud-php/issues/9172)) ([de348c6](https://github.com/googleapis/google-cloud-php/commit/de348c624d1e3f2ad0dab0027590eac7600cfa25))
+
+</details>
+
+<details><summary>google/apps-chat 0.20.0</summary>
+
+
+
+### Features
+
+* [AppsChat] Support force notify and silent notification option for CreateMessage ([#9176](https://github.com/googleapis/google-cloud-php/issues/9176)) ([d2977c9](https://github.com/googleapis/google-cloud-php/commit/d2977c910ae6428c37732fc40b653b86c2f76a5c))
+
+</details>
+
+<details><summary>google/cloud-bigquery 1.37.0</summary>
+
+
+
+### Features
+
+* **BigQuery:** Add documentation and constants for the view option on table resources ([#9170](https://github.com/googleapis/google-cloud-php/issues/9170)) ([19c2147](https://github.com/googleapis/google-cloud-php/commit/19c21471b0748d6fc991aaef548ba8995e704cdd))
+
+</details>
+
+<details><summary>google/cloud-core 1.72.1</summary>
+
+
+
+### Bug Fixes
+
+* **Core:** Remove obsolete ADC keyfile check ([#9155](https://github.com/googleapis/google-cloud-php/issues/9155)) ([b6404c5](https://github.com/googleapis/google-cloud-php/commit/b6404c5cbbf02bcd5c9479e3d13335198ada8f07))
+
+</details>
+
+<details><summary>google/cloud-datacatalog-lineage 1.4.0</summary>
+
+
+
+### Features
+
+* [DataCatalogLineage] A new method SearchLineageStreaming is added ([#9175](https://github.com/googleapis/google-cloud-php/issues/9175)) ([5fe1150](https://github.com/googleapis/google-cloud-php/commit/5fe1150c16358a27e47256b1646ba479311502d9))
+* Added support for column level lineage information to be passed and returned from the Lineage service ([5fe1150](https://github.com/googleapis/google-cloud-php/commit/5fe1150c16358a27e47256b1646ba479311502d9))
+* SearchLinks can now accept multiple source and target entity references as search criteria ([5fe1150](https://github.com/googleapis/google-cloud-php/commit/5fe1150c16358a27e47256b1646ba479311502d9))
+
+
+### Documentation
+
+* Documentation for SearchLineageStreaming API was added ([5fe1150](https://github.com/googleapis/google-cloud-php/commit/5fe1150c16358a27e47256b1646ba479311502d9))
+
+</details>
+
+<details><summary>google/cloud-dataproc 2.11.0</summary>
+
+
+
+### Features
+
+* [Dataproc] add support for Cloud Resource Manager tags for Dataproc Serverless workloads ([#9167](https://github.com/googleapis/google-cloud-php/issues/9167)) ([7854a1d](https://github.com/googleapis/google-cloud-php/commit/7854a1d103be1606d6b9cf30b7f16b97d1d5e609))
+
+</details>
+
+<details><summary>google/cloud-language 1.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-logging 2.1.0</summary>
+
+
+
+### Features
+
+* **docs:** Publish interface refdocs along with the classes they implement ([#9124](https://github.com/googleapis/google-cloud-php/issues/9124)) ([346404a](https://github.com/googleapis/google-cloud-php/commit/346404ae06d1c6f9c5d24a869356ad4c7f8ebd26))
+
+</details>
+
+<details><summary>google/cloud-spanner 2.8.0</summary>
+
+
+
+### Features
+
+* **spanner:** [Spanner] add cache updates API ([#9166](https://github.com/googleapis/google-cloud-php/issues/9166)) ([225b13d](https://github.com/googleapis/google-cloud-php/commit/225b13d2e23bc5d1d2798efed86fdfb6adce63a9))
+
+</details>
+
+<details><summary>google/cloud-speech 2.5.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-storage 2.1.0</summary>
+
+
+
+### Features
+
+* **storage:** Support fopen modes x and xb ([#9159](https://github.com/googleapis/google-cloud-php/issues/9159)) ([563c2f9](https://github.com/googleapis/google-cloud-php/commit/563c2f917b76eecd5752ad2ee65c57f54386c6e3))
+
+</details>
+
+<details><summary>google/cloud-vision 2.2.1</summary>
+
+
+
+</details>
+
 ## 0.328.0
 
 <details><summary>google/cloud-ai-platform 1.59.0</summary>

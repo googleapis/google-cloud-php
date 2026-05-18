@@ -40,6 +40,23 @@ return [
                     ],
                 ],
             ],
+            'CancelRequestRemovePeering' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/global/networks/{network}/cancelRequestRemovePeering',
+                'body' => 'networks_cancel_request_remove_peering_request_resource',
+                'placeholders' => [
+                    'network' => [
+                        'getters' => [
+                            'getNetwork',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
             'Delete' => [
                 'method' => 'delete',
                 'uriTemplate' => '/compute/v1/projects/{project}/global/networks/{network}',

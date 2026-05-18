@@ -102,14 +102,20 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      */
     protected $image_type = '';
     /**
-     * The map of Kubernetes labels (key/value pairs) to be applied to each node.
-     * These will added in addition to any default label(s) that
-     * Kubernetes may apply to the node.
-     * In case of conflict in label keys, the applied set may differ depending on
-     * the Kubernetes version -- it's best to assume the behavior is undefined
-     * and conflicts should be avoided.
-     * For more information, including usage and the valid values, see:
-     * https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
+     * The Kubernetes labels (key/value pairs) to apply to each node. The values
+     * in this field are added to the set of default labels Kubernetes applies to
+     * nodes.
+     * This field has the following restrictions:
+     * * Labels must use a valid Kubernetes syntax and character set, as defined
+     *   in
+     *   https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#syntax-and-character-set.
+     * * This field supports up to 1,024 total characters in a single request.
+     * Depending on the Kubernetes version, keys in this field might conflict with
+     * the keys of the default labels, which might change which of your labels
+     * are applied to the nodes. Assume that the behavior is unpredictable and
+     * avoid label key conflicts. For more information about the default labels,
+     * see:
+     * https://kubernetes.io/docs/reference/labels-annotations-taints/
      *
      * Generated from protobuf field <code>map<string, string> labels = 6;</code>
      */
@@ -398,6 +404,12 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Duration consolidation_delay = 60;</code>
      */
     protected $consolidation_delay = null;
+    /**
+     * Optional. The taint configuration for the node pool.
+     *
+     * Generated from protobuf field <code>optional .google.container.v1.TaintConfig taint_config = 62 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $taint_config = null;
 
     /**
      * Constructor.
@@ -464,14 +476,20 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *           https://cloud.google.com/kubernetes-engine/docs/concepts/node-images
      *           for available image types.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
-     *           The map of Kubernetes labels (key/value pairs) to be applied to each node.
-     *           These will added in addition to any default label(s) that
-     *           Kubernetes may apply to the node.
-     *           In case of conflict in label keys, the applied set may differ depending on
-     *           the Kubernetes version -- it's best to assume the behavior is undefined
-     *           and conflicts should be avoided.
-     *           For more information, including usage and the valid values, see:
-     *           https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
+     *           The Kubernetes labels (key/value pairs) to apply to each node. The values
+     *           in this field are added to the set of default labels Kubernetes applies to
+     *           nodes.
+     *           This field has the following restrictions:
+     *           * Labels must use a valid Kubernetes syntax and character set, as defined
+     *             in
+     *             https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#syntax-and-character-set.
+     *           * This field supports up to 1,024 total characters in a single request.
+     *           Depending on the Kubernetes version, keys in this field might conflict with
+     *           the keys of the default labels, which might change which of your labels
+     *           are applied to the nodes. Assume that the behavior is unpredictable and
+     *           avoid label key conflicts. For more information about the default labels,
+     *           see:
+     *           https://kubernetes.io/docs/reference/labels-annotations-taints/
      *     @type int $local_ssd_count
      *           The number of local SSD disks to be attached to the node.
      *           The limit for this value is dependent upon the maximum number of
@@ -596,6 +614,8 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *           Consolidation delay defines duration after which the Cluster Autoscaler can
      *           scale down underutilized nodes. If not set, nodes are scaled down by
      *           default behavior, i.e. according to the chosen autoscaling profile.
+     *     @type \Google\Cloud\Container\V1\TaintConfig $taint_config
+     *           Optional. The taint configuration for the node pool.
      * }
      */
     public function __construct($data = NULL) {
@@ -852,14 +872,20 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The map of Kubernetes labels (key/value pairs) to be applied to each node.
-     * These will added in addition to any default label(s) that
-     * Kubernetes may apply to the node.
-     * In case of conflict in label keys, the applied set may differ depending on
-     * the Kubernetes version -- it's best to assume the behavior is undefined
-     * and conflicts should be avoided.
-     * For more information, including usage and the valid values, see:
-     * https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
+     * The Kubernetes labels (key/value pairs) to apply to each node. The values
+     * in this field are added to the set of default labels Kubernetes applies to
+     * nodes.
+     * This field has the following restrictions:
+     * * Labels must use a valid Kubernetes syntax and character set, as defined
+     *   in
+     *   https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#syntax-and-character-set.
+     * * This field supports up to 1,024 total characters in a single request.
+     * Depending on the Kubernetes version, keys in this field might conflict with
+     * the keys of the default labels, which might change which of your labels
+     * are applied to the nodes. Assume that the behavior is unpredictable and
+     * avoid label key conflicts. For more information about the default labels,
+     * see:
+     * https://kubernetes.io/docs/reference/labels-annotations-taints/
      *
      * Generated from protobuf field <code>map<string, string> labels = 6;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -870,14 +896,20 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The map of Kubernetes labels (key/value pairs) to be applied to each node.
-     * These will added in addition to any default label(s) that
-     * Kubernetes may apply to the node.
-     * In case of conflict in label keys, the applied set may differ depending on
-     * the Kubernetes version -- it's best to assume the behavior is undefined
-     * and conflicts should be avoided.
-     * For more information, including usage and the valid values, see:
-     * https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
+     * The Kubernetes labels (key/value pairs) to apply to each node. The values
+     * in this field are added to the set of default labels Kubernetes applies to
+     * nodes.
+     * This field has the following restrictions:
+     * * Labels must use a valid Kubernetes syntax and character set, as defined
+     *   in
+     *   https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#syntax-and-character-set.
+     * * This field supports up to 1,024 total characters in a single request.
+     * Depending on the Kubernetes version, keys in this field might conflict with
+     * the keys of the default labels, which might change which of your labels
+     * are applied to the nodes. Assume that the behavior is unpredictable and
+     * avoid label key conflicts. For more information about the default labels,
+     * see:
+     * https://kubernetes.io/docs/reference/labels-annotations-taints/
      *
      * Generated from protobuf field <code>map<string, string> labels = 6;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -2265,6 +2297,42 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
         $this->consolidation_delay = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The taint configuration for the node pool.
+     *
+     * Generated from protobuf field <code>optional .google.container.v1.TaintConfig taint_config = 62 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Container\V1\TaintConfig|null
+     */
+    public function getTaintConfig()
+    {
+        return $this->taint_config;
+    }
+
+    public function hasTaintConfig()
+    {
+        return isset($this->taint_config);
+    }
+
+    public function clearTaintConfig()
+    {
+        unset($this->taint_config);
+    }
+
+    /**
+     * Optional. The taint configuration for the node pool.
+     *
+     * Generated from protobuf field <code>optional .google.container.v1.TaintConfig taint_config = 62 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Container\V1\TaintConfig $var
+     * @return $this
+     */
+    public function setTaintConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\TaintConfig::class);
+        $this->taint_config = $var;
 
         return $this;
     }

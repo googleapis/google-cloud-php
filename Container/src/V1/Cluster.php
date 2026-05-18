@@ -551,9 +551,9 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     protected $fleet = null;
     /**
-     * Enable/Disable Security Posture API features for the cluster.
+     * Optional. Enable/Disable Security Posture API features for the cluster.
      *
-     * Generated from protobuf field <code>.google.container.v1.SecurityPostureConfig security_posture_config = 145;</code>
+     * Generated from protobuf field <code>.google.container.v1.SecurityPostureConfig security_posture_config = 145 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $security_posture_config = null;
     /**
@@ -584,9 +584,13 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     protected $secret_manager_config = null;
     /**
+     * Optional. Deprecated: Compliance Posture is no longer supported.
+     * For more details, see
+     * https://cloud.google.com/kubernetes-engine/docs/deprecations/posture-management-deprecation.
      * Enable/Disable Compliance Posture features for the cluster.
      *
-     * Generated from protobuf field <code>.google.container.v1.CompliancePostureConfig compliance_posture_config = 151;</code>
+     * Generated from protobuf field <code>.google.container.v1.CompliancePostureConfig compliance_posture_config = 151 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @deprecated
      */
     protected $compliance_posture_config = null;
     /**
@@ -628,11 +632,41 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     protected $anonymous_authentication_config = null;
     /**
+     * Optional. Configuration for scheduled upgrades.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ScheduleUpgradeConfig schedule_upgrade_config = 165 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $schedule_upgrade_config = null;
+    /**
+     * Configuration for sync Secret Manager secrets as k8s secrets.
+     *
+     * Generated from protobuf field <code>.google.container.v1.SecretSyncConfig secret_sync_config = 166;</code>
+     */
+    protected $secret_sync_config = null;
+    /**
      * Configuration for Managed OpenTelemetry pipeline.
      *
      * Generated from protobuf field <code>.google.container.v1.ManagedOpenTelemetryConfig managed_opentelemetry_config = 168;</code>
      */
     protected $managed_opentelemetry_config = null;
+    /**
+     * Configuration for control plane egress control.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ControlPlaneEgress control_plane_egress = 169;</code>
+     */
+    protected $control_plane_egress = null;
+    /**
+     * Configuration for Managed Machine Learning Diagnostics.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ManagedMachineLearningDiagnosticsConfig managed_machine_learning_diagnostics_config = 171;</code>
+     */
+    protected $managed_machine_learning_diagnostics_config = null;
+    /**
+     * Optional. Configuration for Node Creation Mode.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodeCreationConfig node_creation_config = 174 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $node_creation_config = null;
 
     /**
      * Constructor.
@@ -902,7 +936,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Container\V1\Fleet $fleet
      *           Fleet information for the cluster.
      *     @type \Google\Cloud\Container\V1\SecurityPostureConfig $security_posture_config
-     *           Enable/Disable Security Posture API features for the cluster.
+     *           Optional. Enable/Disable Security Posture API features for the cluster.
      *     @type \Google\Cloud\Container\V1\ControlPlaneEndpointsConfig $control_plane_endpoints_config
      *           Configuration for all cluster's control plane endpoints.
      *     @type \Google\Cloud\Container\V1\K8sBetaAPIConfig $enable_k8s_beta_apis
@@ -914,6 +948,9 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Container\V1\SecretManagerConfig $secret_manager_config
      *           Secret CSI driver configuration.
      *     @type \Google\Cloud\Container\V1\CompliancePostureConfig $compliance_posture_config
+     *           Optional. Deprecated: Compliance Posture is no longer supported.
+     *           For more details, see
+     *           https://cloud.google.com/kubernetes-engine/docs/deprecations/posture-management-deprecation.
      *           Enable/Disable Compliance Posture features for the cluster.
      *     @type bool $satisfies_pzs
      *           Output only. Reserved for future use.
@@ -929,8 +966,18 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Container\V1\AnonymousAuthenticationConfig $anonymous_authentication_config
      *           Configuration for limiting anonymous access to all endpoints except the
      *           health checks.
+     *     @type \Google\Cloud\Container\V1\ScheduleUpgradeConfig $schedule_upgrade_config
+     *           Optional. Configuration for scheduled upgrades.
+     *     @type \Google\Cloud\Container\V1\SecretSyncConfig $secret_sync_config
+     *           Configuration for sync Secret Manager secrets as k8s secrets.
      *     @type \Google\Cloud\Container\V1\ManagedOpenTelemetryConfig $managed_opentelemetry_config
      *           Configuration for Managed OpenTelemetry pipeline.
+     *     @type \Google\Cloud\Container\V1\ControlPlaneEgress $control_plane_egress
+     *           Configuration for control plane egress control.
+     *     @type \Google\Cloud\Container\V1\ManagedMachineLearningDiagnosticsConfig $managed_machine_learning_diagnostics_config
+     *           Configuration for Managed Machine Learning Diagnostics.
+     *     @type \Google\Cloud\Container\V1\NodeCreationConfig $node_creation_config
+     *           Optional. Configuration for Node Creation Mode.
      * }
      */
     public function __construct($data = NULL) {
@@ -3303,9 +3350,9 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Enable/Disable Security Posture API features for the cluster.
+     * Optional. Enable/Disable Security Posture API features for the cluster.
      *
-     * Generated from protobuf field <code>.google.container.v1.SecurityPostureConfig security_posture_config = 145;</code>
+     * Generated from protobuf field <code>.google.container.v1.SecurityPostureConfig security_posture_config = 145 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Container\V1\SecurityPostureConfig|null
      */
     public function getSecurityPostureConfig()
@@ -3324,9 +3371,9 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Enable/Disable Security Posture API features for the cluster.
+     * Optional. Enable/Disable Security Posture API features for the cluster.
      *
-     * Generated from protobuf field <code>.google.container.v1.SecurityPostureConfig security_posture_config = 145;</code>
+     * Generated from protobuf field <code>.google.container.v1.SecurityPostureConfig security_posture_config = 145 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Container\V1\SecurityPostureConfig $var
      * @return $this
      */
@@ -3497,35 +3544,51 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. Deprecated: Compliance Posture is no longer supported.
+     * For more details, see
+     * https://cloud.google.com/kubernetes-engine/docs/deprecations/posture-management-deprecation.
      * Enable/Disable Compliance Posture features for the cluster.
      *
-     * Generated from protobuf field <code>.google.container.v1.CompliancePostureConfig compliance_posture_config = 151;</code>
+     * Generated from protobuf field <code>.google.container.v1.CompliancePostureConfig compliance_posture_config = 151 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Container\V1\CompliancePostureConfig|null
+     * @deprecated
      */
     public function getCompliancePostureConfig()
     {
+        if (isset($this->compliance_posture_config)) {
+            @trigger_error('compliance_posture_config is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->compliance_posture_config;
     }
 
     public function hasCompliancePostureConfig()
     {
+        if (isset($this->compliance_posture_config)) {
+            @trigger_error('compliance_posture_config is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->compliance_posture_config);
     }
 
     public function clearCompliancePostureConfig()
     {
+        @trigger_error('compliance_posture_config is deprecated.', E_USER_DEPRECATED);
         unset($this->compliance_posture_config);
     }
 
     /**
+     * Optional. Deprecated: Compliance Posture is no longer supported.
+     * For more details, see
+     * https://cloud.google.com/kubernetes-engine/docs/deprecations/posture-management-deprecation.
      * Enable/Disable Compliance Posture features for the cluster.
      *
-     * Generated from protobuf field <code>.google.container.v1.CompliancePostureConfig compliance_posture_config = 151;</code>
+     * Generated from protobuf field <code>.google.container.v1.CompliancePostureConfig compliance_posture_config = 151 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Container\V1\CompliancePostureConfig $var
      * @return $this
+     * @deprecated
      */
     public function setCompliancePostureConfig($var)
     {
+        @trigger_error('compliance_posture_config is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\CompliancePostureConfig::class);
         $this->compliance_posture_config = $var;
 
@@ -3753,6 +3816,78 @@ class Cluster extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. Configuration for scheduled upgrades.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ScheduleUpgradeConfig schedule_upgrade_config = 165 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Container\V1\ScheduleUpgradeConfig|null
+     */
+    public function getScheduleUpgradeConfig()
+    {
+        return $this->schedule_upgrade_config;
+    }
+
+    public function hasScheduleUpgradeConfig()
+    {
+        return isset($this->schedule_upgrade_config);
+    }
+
+    public function clearScheduleUpgradeConfig()
+    {
+        unset($this->schedule_upgrade_config);
+    }
+
+    /**
+     * Optional. Configuration for scheduled upgrades.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ScheduleUpgradeConfig schedule_upgrade_config = 165 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Container\V1\ScheduleUpgradeConfig $var
+     * @return $this
+     */
+    public function setScheduleUpgradeConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\ScheduleUpgradeConfig::class);
+        $this->schedule_upgrade_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Configuration for sync Secret Manager secrets as k8s secrets.
+     *
+     * Generated from protobuf field <code>.google.container.v1.SecretSyncConfig secret_sync_config = 166;</code>
+     * @return \Google\Cloud\Container\V1\SecretSyncConfig|null
+     */
+    public function getSecretSyncConfig()
+    {
+        return $this->secret_sync_config;
+    }
+
+    public function hasSecretSyncConfig()
+    {
+        return isset($this->secret_sync_config);
+    }
+
+    public function clearSecretSyncConfig()
+    {
+        unset($this->secret_sync_config);
+    }
+
+    /**
+     * Configuration for sync Secret Manager secrets as k8s secrets.
+     *
+     * Generated from protobuf field <code>.google.container.v1.SecretSyncConfig secret_sync_config = 166;</code>
+     * @param \Google\Cloud\Container\V1\SecretSyncConfig $var
+     * @return $this
+     */
+    public function setSecretSyncConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\SecretSyncConfig::class);
+        $this->secret_sync_config = $var;
+
+        return $this;
+    }
+
+    /**
      * Configuration for Managed OpenTelemetry pipeline.
      *
      * Generated from protobuf field <code>.google.container.v1.ManagedOpenTelemetryConfig managed_opentelemetry_config = 168;</code>
@@ -3784,6 +3919,114 @@ class Cluster extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\ManagedOpenTelemetryConfig::class);
         $this->managed_opentelemetry_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Configuration for control plane egress control.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ControlPlaneEgress control_plane_egress = 169;</code>
+     * @return \Google\Cloud\Container\V1\ControlPlaneEgress|null
+     */
+    public function getControlPlaneEgress()
+    {
+        return $this->control_plane_egress;
+    }
+
+    public function hasControlPlaneEgress()
+    {
+        return isset($this->control_plane_egress);
+    }
+
+    public function clearControlPlaneEgress()
+    {
+        unset($this->control_plane_egress);
+    }
+
+    /**
+     * Configuration for control plane egress control.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ControlPlaneEgress control_plane_egress = 169;</code>
+     * @param \Google\Cloud\Container\V1\ControlPlaneEgress $var
+     * @return $this
+     */
+    public function setControlPlaneEgress($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\ControlPlaneEgress::class);
+        $this->control_plane_egress = $var;
+
+        return $this;
+    }
+
+    /**
+     * Configuration for Managed Machine Learning Diagnostics.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ManagedMachineLearningDiagnosticsConfig managed_machine_learning_diagnostics_config = 171;</code>
+     * @return \Google\Cloud\Container\V1\ManagedMachineLearningDiagnosticsConfig|null
+     */
+    public function getManagedMachineLearningDiagnosticsConfig()
+    {
+        return $this->managed_machine_learning_diagnostics_config;
+    }
+
+    public function hasManagedMachineLearningDiagnosticsConfig()
+    {
+        return isset($this->managed_machine_learning_diagnostics_config);
+    }
+
+    public function clearManagedMachineLearningDiagnosticsConfig()
+    {
+        unset($this->managed_machine_learning_diagnostics_config);
+    }
+
+    /**
+     * Configuration for Managed Machine Learning Diagnostics.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ManagedMachineLearningDiagnosticsConfig managed_machine_learning_diagnostics_config = 171;</code>
+     * @param \Google\Cloud\Container\V1\ManagedMachineLearningDiagnosticsConfig $var
+     * @return $this
+     */
+    public function setManagedMachineLearningDiagnosticsConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\ManagedMachineLearningDiagnosticsConfig::class);
+        $this->managed_machine_learning_diagnostics_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Configuration for Node Creation Mode.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodeCreationConfig node_creation_config = 174 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Container\V1\NodeCreationConfig|null
+     */
+    public function getNodeCreationConfig()
+    {
+        return $this->node_creation_config;
+    }
+
+    public function hasNodeCreationConfig()
+    {
+        return isset($this->node_creation_config);
+    }
+
+    public function clearNodeCreationConfig()
+    {
+        unset($this->node_creation_config);
+    }
+
+    /**
+     * Optional. Configuration for Node Creation Mode.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodeCreationConfig node_creation_config = 174 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Container\V1\NodeCreationConfig $var
+     * @return $this
+     */
+    public function setNodeCreationConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\NodeCreationConfig::class);
+        $this->node_creation_config = $var;
 
         return $this;
     }

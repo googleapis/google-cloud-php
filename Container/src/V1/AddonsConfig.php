@@ -126,11 +126,29 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
      */
     protected $lustre_csi_driver_config = null;
     /**
+     * Optional. Configuration for the Pod Snapshot feature.
+     *
+     * Generated from protobuf field <code>.google.container.v1.PodSnapshotConfig pod_snapshot_config = 24 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $pod_snapshot_config = null;
+    /**
+     * Configuration for the Slurm Operator.
+     *
+     * Generated from protobuf field <code>.google.container.v1.SlurmOperatorConfig slurm_operator_config = 25;</code>
+     */
+    protected $slurm_operator_config = null;
+    /**
      * Optional. Configuration for the slice controller add-on.
      *
      * Generated from protobuf field <code>.google.container.v1.SliceControllerConfig slice_controller_config = 26 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $slice_controller_config = null;
+    /**
+     * Optional. Configuration for NodeReadinessController add-on.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodeReadinessConfig node_readiness_config = 29 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $node_readiness_config = null;
 
     /**
      * Constructor.
@@ -182,8 +200,14 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
      *           Configuration for the High Scale Checkpointing add-on.
      *     @type \Google\Cloud\Container\V1\LustreCsiDriverConfig $lustre_csi_driver_config
      *           Configuration for the Lustre CSI driver.
+     *     @type \Google\Cloud\Container\V1\PodSnapshotConfig $pod_snapshot_config
+     *           Optional. Configuration for the Pod Snapshot feature.
+     *     @type \Google\Cloud\Container\V1\SlurmOperatorConfig $slurm_operator_config
+     *           Configuration for the Slurm Operator.
      *     @type \Google\Cloud\Container\V1\SliceControllerConfig $slice_controller_config
      *           Optional. Configuration for the slice controller add-on.
+     *     @type \Google\Cloud\Container\V1\NodeReadinessConfig $node_readiness_config
+     *           Optional. Configuration for NodeReadinessController add-on.
      * }
      */
     public function __construct($data = NULL) {
@@ -802,6 +826,78 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. Configuration for the Pod Snapshot feature.
+     *
+     * Generated from protobuf field <code>.google.container.v1.PodSnapshotConfig pod_snapshot_config = 24 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Container\V1\PodSnapshotConfig|null
+     */
+    public function getPodSnapshotConfig()
+    {
+        return $this->pod_snapshot_config;
+    }
+
+    public function hasPodSnapshotConfig()
+    {
+        return isset($this->pod_snapshot_config);
+    }
+
+    public function clearPodSnapshotConfig()
+    {
+        unset($this->pod_snapshot_config);
+    }
+
+    /**
+     * Optional. Configuration for the Pod Snapshot feature.
+     *
+     * Generated from protobuf field <code>.google.container.v1.PodSnapshotConfig pod_snapshot_config = 24 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Container\V1\PodSnapshotConfig $var
+     * @return $this
+     */
+    public function setPodSnapshotConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\PodSnapshotConfig::class);
+        $this->pod_snapshot_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Configuration for the Slurm Operator.
+     *
+     * Generated from protobuf field <code>.google.container.v1.SlurmOperatorConfig slurm_operator_config = 25;</code>
+     * @return \Google\Cloud\Container\V1\SlurmOperatorConfig|null
+     */
+    public function getSlurmOperatorConfig()
+    {
+        return $this->slurm_operator_config;
+    }
+
+    public function hasSlurmOperatorConfig()
+    {
+        return isset($this->slurm_operator_config);
+    }
+
+    public function clearSlurmOperatorConfig()
+    {
+        unset($this->slurm_operator_config);
+    }
+
+    /**
+     * Configuration for the Slurm Operator.
+     *
+     * Generated from protobuf field <code>.google.container.v1.SlurmOperatorConfig slurm_operator_config = 25;</code>
+     * @param \Google\Cloud\Container\V1\SlurmOperatorConfig $var
+     * @return $this
+     */
+    public function setSlurmOperatorConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\SlurmOperatorConfig::class);
+        $this->slurm_operator_config = $var;
+
+        return $this;
+    }
+
+    /**
      * Optional. Configuration for the slice controller add-on.
      *
      * Generated from protobuf field <code>.google.container.v1.SliceControllerConfig slice_controller_config = 26 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -833,6 +929,42 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\SliceControllerConfig::class);
         $this->slice_controller_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Configuration for NodeReadinessController add-on.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodeReadinessConfig node_readiness_config = 29 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Container\V1\NodeReadinessConfig|null
+     */
+    public function getNodeReadinessConfig()
+    {
+        return $this->node_readiness_config;
+    }
+
+    public function hasNodeReadinessConfig()
+    {
+        return isset($this->node_readiness_config);
+    }
+
+    public function clearNodeReadinessConfig()
+    {
+        unset($this->node_readiness_config);
+    }
+
+    /**
+     * Optional. Configuration for NodeReadinessController add-on.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodeReadinessConfig node_readiness_config = 29 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Container\V1\NodeReadinessConfig $var
+     * @return $this
+     */
+    public function setNodeReadinessConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\NodeReadinessConfig::class);
+        $this->node_readiness_config = $var;
 
         return $this;
     }

@@ -34,6 +34,8 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\Support\V2\Attachment;
+use Google\Cloud\Support\V2\GetAttachmentRequest;
 use Google\Cloud\Support\V2\ListAttachmentsRequest;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
@@ -49,6 +51,7 @@ use Psr\Log\LoggerInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
+ * @method PromiseInterface<Attachment> getAttachmentAsync(GetAttachmentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listAttachmentsAsync(ListAttachmentsRequest $request, array $optionalArgs = [])
  */
 final class CaseAttachmentServiceClient
@@ -98,6 +101,25 @@ final class CaseAttachmentServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a attachment
+     * resource.
+     *
+     * @param string $organization
+     * @param string $case
+     * @param string $attachmentId
+     *
+     * @return string The formatted attachment resource.
+     */
+    public static function attachmentName(string $organization, string $case, string $attachmentId): string
+    {
+        return self::getPathTemplate('attachment')->render([
+            'organization' => $organization,
+            'case' => $case,
+            'attachment_id' => $attachmentId,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a case
      * resource.
      *
@@ -132,6 +154,28 @@ final class CaseAttachmentServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * organization_case_attachment_id resource.
+     *
+     * @param string $organization
+     * @param string $case
+     * @param string $attachmentId
+     *
+     * @return string The formatted organization_case_attachment_id resource.
+     */
+    public static function organizationCaseAttachmentIdName(
+        string $organization,
+        string $case,
+        string $attachmentId
+    ): string {
+        return self::getPathTemplate('organizationCaseAttachmentId')->render([
+            'organization' => $organization,
+            'case' => $case,
+            'attachment_id' => $attachmentId,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a project_case
      * resource.
      *
@@ -149,12 +193,34 @@ final class CaseAttachmentServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_case_attachment_id resource.
+     *
+     * @param string $project
+     * @param string $case
+     * @param string $attachmentId
+     *
+     * @return string The formatted project_case_attachment_id resource.
+     */
+    public static function projectCaseAttachmentIdName(string $project, string $case, string $attachmentId): string
+    {
+        return self::getPathTemplate('projectCaseAttachmentId')->render([
+            'project' => $project,
+            'case' => $case,
+            'attachment_id' => $attachmentId,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - attachment: organizations/{organization}/cases/{case}/attachments/{attachment_id}
      * - case: organizations/{organization}/cases/{case}
      * - organizationCase: organizations/{organization}/cases/{case}
+     * - organizationCaseAttachmentId: organizations/{organization}/cases/{case}/attachments/{attachment_id}
      * - projectCase: projects/{project}/cases/{case}
+     * - projectCaseAttachmentId: projects/{project}/cases/{case}/attachments/{attachment_id}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -257,6 +323,62 @@ final class CaseAttachmentServiceClient
 
         array_unshift($args, substr($method, 0, -5));
         return call_user_func_array([$this, 'startAsyncCall'], $args);
+    }
+
+    /**
+     * Retrieve an attachment associated with a support case.
+     *
+     * EXAMPLES:
+     *
+     * cURL:
+     *
+     * ```shell
+     * attachment="projects/some-project/cases/23598314/attachments/0684M00000P3h1fQAB"
+     * curl \
+     * --header "Authorization: Bearer $(gcloud auth print-access-token)" \
+     * "https://cloudsupport.googleapis.com/v2/$attachment"
+     * ```
+     *
+     * Python:
+     *
+     * ```python
+     * import googleapiclient.discovery
+     *
+     * api_version = "v2"
+     * supportApiService = googleapiclient.discovery.build(
+     * serviceName="cloudsupport",
+     * version=api_version,
+     * discoveryServiceUrl=f"https://cloudsupport.googleapis.com/$discovery/rest?version={api_version}",
+     * )
+     * request = (
+     * supportApiService.cases()
+     * .attachments()
+     * .get(name="projects/some-project/cases/43595344/attachments/0684M00000P3h1fQAB")
+     * )
+     * print(request.execute())
+     * ```
+     *
+     * The async variant is {@see CaseAttachmentServiceClient::getAttachmentAsync()} .
+     *
+     * @example samples/V2/CaseAttachmentServiceClient/get_attachment.php
+     *
+     * @param GetAttachmentRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Attachment
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getAttachment(GetAttachmentRequest $request, array $callOptions = []): Attachment
+    {
+        return $this->startApiCall('GetAttachment', $request, $callOptions)->wait();
     }
 
     /**

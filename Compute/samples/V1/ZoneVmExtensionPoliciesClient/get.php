@@ -29,7 +29,7 @@ use Google\Cloud\Compute\V1\GetZoneVmExtensionPolicyRequest;
 use Google\Cloud\Compute\V1\VmExtensionPolicy;
 
 /**
- * Retrieves details of a specific zone VM extension policy.
+ * Retrieves details of a specific zone VM extension policy within a project.
  *
  * @param string $project           Project ID for this request.
  * @param string $vmExtensionPolicy Name of the VM extension policy resource to return.

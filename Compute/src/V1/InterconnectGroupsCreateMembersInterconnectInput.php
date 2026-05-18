@@ -9,7 +9,6 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * LINT.IfChange
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.InterconnectGroupsCreateMembersInterconnectInput</code>
  */

@@ -21,8 +21,8 @@ class CertificateAuthorityDomainConfig extends \Google\Protobuf\Internal\Message
      * Specifying port is supported.
      * Wildcards are NOT supported.
      * Examples:
-     * - my.customdomain.com
-     * - 10.0.1.2:5000
+     * - `my.customdomain.com`
+     * - `10.0.1.2:5000`
      *
      * Generated from protobuf field <code>repeated string fqdns = 1;</code>
      */
@@ -40,8 +40,8 @@ class CertificateAuthorityDomainConfig extends \Google\Protobuf\Internal\Message
      *           Specifying port is supported.
      *           Wildcards are NOT supported.
      *           Examples:
-     *           - my.customdomain.com
-     *           - 10.0.1.2:5000
+     *           - `my.customdomain.com`
+     *           - `10.0.1.2:5000`
      *     @type \Google\Cloud\Container\V1\ContainerdConfig\PrivateRegistryAccessConfig\CertificateAuthorityDomainConfig\GCPSecretManagerCertificateConfig $gcp_secret_manager_certificate_config
      *           Secret Manager certificate configuration.
      * }
@@ -56,8 +56,8 @@ class CertificateAuthorityDomainConfig extends \Google\Protobuf\Internal\Message
      * Specifying port is supported.
      * Wildcards are NOT supported.
      * Examples:
-     * - my.customdomain.com
-     * - 10.0.1.2:5000
+     * - `my.customdomain.com`
+     * - `10.0.1.2:5000`
      *
      * Generated from protobuf field <code>repeated string fqdns = 1;</code>
      * @return RepeatedField<string>
@@ -72,8 +72,8 @@ class CertificateAuthorityDomainConfig extends \Google\Protobuf\Internal\Message
      * Specifying port is supported.
      * Wildcards are NOT supported.
      * Examples:
-     * - my.customdomain.com
-     * - 10.0.1.2:5000
+     * - `my.customdomain.com`
+     * - `10.0.1.2:5000`
      *
      * Generated from protobuf field <code>repeated string fqdns = 1;</code>
      * @param string[] $var

@@ -10,12 +10,24 @@ use Google\Protobuf\RepeatedField;
 
 /**
  * NodeDrainConfig contains the node drain related configurations for this
- * nodepool.
+ * node pool.
  *
  * Generated from protobuf message <code>google.container.v1.NodePool.NodeDrainConfig</code>
  */
 class NodeDrainConfig extends \Google\Protobuf\Internal\Message
 {
+    /**
+     * The duration of the PDB timeout period for node drain.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.Duration pdb_timeout_duration = 1;</code>
+     */
+    protected $pdb_timeout_duration = null;
+    /**
+     * The duration of the grace termination period for node drain.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.Duration grace_termination_duration = 2;</code>
+     */
+    protected $grace_termination_duration = null;
     /**
      * Whether to respect PDB during node pool deletion.
      *
@@ -29,6 +41,10 @@ class NodeDrainConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type \Google\Protobuf\Duration $pdb_timeout_duration
+     *           The duration of the PDB timeout period for node drain.
+     *     @type \Google\Protobuf\Duration $grace_termination_duration
+     *           The duration of the grace termination period for node drain.
      *     @type bool $respect_pdb_during_node_pool_deletion
      *           Whether to respect PDB during node pool deletion.
      * }
@@ -36,6 +52,78 @@ class NodeDrainConfig extends \Google\Protobuf\Internal\Message
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Container\V1\ClusterService::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * The duration of the PDB timeout period for node drain.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.Duration pdb_timeout_duration = 1;</code>
+     * @return \Google\Protobuf\Duration|null
+     */
+    public function getPdbTimeoutDuration()
+    {
+        return $this->pdb_timeout_duration;
+    }
+
+    public function hasPdbTimeoutDuration()
+    {
+        return isset($this->pdb_timeout_duration);
+    }
+
+    public function clearPdbTimeoutDuration()
+    {
+        unset($this->pdb_timeout_duration);
+    }
+
+    /**
+     * The duration of the PDB timeout period for node drain.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.Duration pdb_timeout_duration = 1;</code>
+     * @param \Google\Protobuf\Duration $var
+     * @return $this
+     */
+    public function setPdbTimeoutDuration($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
+        $this->pdb_timeout_duration = $var;
+
+        return $this;
+    }
+
+    /**
+     * The duration of the grace termination period for node drain.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.Duration grace_termination_duration = 2;</code>
+     * @return \Google\Protobuf\Duration|null
+     */
+    public function getGraceTerminationDuration()
+    {
+        return $this->grace_termination_duration;
+    }
+
+    public function hasGraceTerminationDuration()
+    {
+        return isset($this->grace_termination_duration);
+    }
+
+    public function clearGraceTerminationDuration()
+    {
+        unset($this->grace_termination_duration);
+    }
+
+    /**
+     * The duration of the grace termination period for node drain.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.Duration grace_termination_duration = 2;</code>
+     * @param \Google\Protobuf\Duration $var
+     * @return $this
+     */
+    public function setGraceTerminationDuration($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
+        $this->grace_termination_duration = $var;
+
+        return $this;
     }
 
     /**

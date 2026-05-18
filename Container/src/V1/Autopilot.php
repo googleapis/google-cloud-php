@@ -34,6 +34,13 @@ class Autopilot extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.PrivilegedAdmissionConfig privileged_admission_config = 4;</code>
      */
     protected $privileged_admission_config = null;
+    /**
+     * ClusterPolicyConfig denotes cluster level policies that are enforced for
+     * the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ClusterPolicyConfig cluster_policy_config = 5;</code>
+     */
+    protected $cluster_policy_config = null;
 
     /**
      * Constructor.
@@ -48,6 +55,9 @@ class Autopilot extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Container\V1\PrivilegedAdmissionConfig $privileged_admission_config
      *           PrivilegedAdmissionConfig is the configuration related to privileged
      *           admission control.
+     *     @type \Google\Cloud\Container\V1\ClusterPolicyConfig $cluster_policy_config
+     *           ClusterPolicyConfig denotes cluster level policies that are enforced for
+     *           the cluster.
      * }
      */
     public function __construct($data = NULL) {
@@ -151,6 +161,44 @@ class Autopilot extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\PrivilegedAdmissionConfig::class);
         $this->privileged_admission_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * ClusterPolicyConfig denotes cluster level policies that are enforced for
+     * the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ClusterPolicyConfig cluster_policy_config = 5;</code>
+     * @return \Google\Cloud\Container\V1\ClusterPolicyConfig|null
+     */
+    public function getClusterPolicyConfig()
+    {
+        return $this->cluster_policy_config;
+    }
+
+    public function hasClusterPolicyConfig()
+    {
+        return isset($this->cluster_policy_config);
+    }
+
+    public function clearClusterPolicyConfig()
+    {
+        unset($this->cluster_policy_config);
+    }
+
+    /**
+     * ClusterPolicyConfig denotes cluster level policies that are enforced for
+     * the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ClusterPolicyConfig cluster_policy_config = 5;</code>
+     * @param \Google\Cloud\Container\V1\ClusterPolicyConfig $var
+     * @return $this
+     */
+    public function setClusterPolicyConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\ClusterPolicyConfig::class);
+        $this->cluster_policy_config = $var;
 
         return $this;
     }

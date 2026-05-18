@@ -27,8 +27,12 @@ use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Compute\V1\Client\LicenseCodesClient;
+use Google\Cloud\Compute\V1\GetIamPolicyLicenseCodeRequest;
 use Google\Cloud\Compute\V1\GetLicenseCodeRequest;
+use Google\Cloud\Compute\V1\GlobalSetPolicyRequest;
 use Google\Cloud\Compute\V1\LicenseCode;
+use Google\Cloud\Compute\V1\Policy;
+use Google\Cloud\Compute\V1\SetIamPolicyLicenseCodeRequest;
 use Google\Cloud\Compute\V1\TestIamPermissionsLicenseCodeRequest;
 use Google\Cloud\Compute\V1\TestPermissionsRequest;
 use Google\Cloud\Compute\V1\TestPermissionsResponse;
@@ -74,23 +78,35 @@ class LicenseCodesClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
+        $appendableToDisk = true;
         $creationTimestamp = 'creationTimestamp567396278';
         $description = 'description-1724546052';
         $id = 3355;
         $kind = 'kind3292052';
+        $multiTenantOnly = false;
         $name = 'name3373707';
+        $osLicense = true;
+        $removableFromDisk = true;
         $selfLink = 'selfLink-1691268851';
+        $soleTenantOnly = false;
         $state = 'state109757585';
         $transferable = false;
+        $updateTimestamp = 'updateTimestamp-415976160';
         $expectedResponse = new LicenseCode();
+        $expectedResponse->setAppendableToDisk($appendableToDisk);
         $expectedResponse->setCreationTimestamp($creationTimestamp);
         $expectedResponse->setDescription($description);
         $expectedResponse->setId($id);
         $expectedResponse->setKind($kind);
+        $expectedResponse->setMultiTenantOnly($multiTenantOnly);
         $expectedResponse->setName($name);
+        $expectedResponse->setOsLicense($osLicense);
+        $expectedResponse->setRemovableFromDisk($removableFromDisk);
         $expectedResponse->setSelfLink($selfLink);
+        $expectedResponse->setSoleTenantOnly($soleTenantOnly);
         $expectedResponse->setState($state);
         $expectedResponse->setTransferable($transferable);
+        $expectedResponse->setUpdateTimestamp($updateTimestamp);
         $transport->addResponse($expectedResponse);
         // Mock request
         $licenseCode = 'licenseCode1612079915';
@@ -137,6 +153,162 @@ class LicenseCodesClientTest extends GeneratedTest
         $request = (new GetLicenseCodeRequest())->setLicenseCode($licenseCode)->setProject($project);
         try {
             $gapicClient->get($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getIamPolicyTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $etag = 'etag3123477';
+        $iamOwned = false;
+        $version = 351608024;
+        $expectedResponse = new Policy();
+        $expectedResponse->setEtag($etag);
+        $expectedResponse->setIamOwned($iamOwned);
+        $expectedResponse->setVersion($version);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $project = 'project-309310695';
+        $resource = 'resource-341064690';
+        $request = (new GetIamPolicyLicenseCodeRequest())->setProject($project)->setResource($resource);
+        $response = $gapicClient->getIamPolicy($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.LicenseCodes/GetIamPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getIamPolicyExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $project = 'project-309310695';
+        $resource = 'resource-341064690';
+        $request = (new GetIamPolicyLicenseCodeRequest())->setProject($project)->setResource($resource);
+        try {
+            $gapicClient->getIamPolicy($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function setIamPolicyTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $etag = 'etag3123477';
+        $iamOwned = false;
+        $version = 351608024;
+        $expectedResponse = new Policy();
+        $expectedResponse->setEtag($etag);
+        $expectedResponse->setIamOwned($iamOwned);
+        $expectedResponse->setVersion($version);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $globalSetPolicyRequestResource = new GlobalSetPolicyRequest();
+        $project = 'project-309310695';
+        $resource = 'resource-341064690';
+        $request = (new SetIamPolicyLicenseCodeRequest())
+            ->setGlobalSetPolicyRequestResource($globalSetPolicyRequestResource)
+            ->setProject($project)
+            ->setResource($resource);
+        $response = $gapicClient->setIamPolicy($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.LicenseCodes/SetIamPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getGlobalSetPolicyRequestResource();
+        $this->assertProtobufEquals($globalSetPolicyRequestResource, $actualValue);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function setIamPolicyExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $globalSetPolicyRequestResource = new GlobalSetPolicyRequest();
+        $project = 'project-309310695';
+        $resource = 'resource-341064690';
+        $request = (new SetIamPolicyLicenseCodeRequest())
+            ->setGlobalSetPolicyRequestResource($globalSetPolicyRequestResource)
+            ->setProject($project)
+            ->setResource($resource);
+        try {
+            $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -234,23 +406,35 @@ class LicenseCodesClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
+        $appendableToDisk = true;
         $creationTimestamp = 'creationTimestamp567396278';
         $description = 'description-1724546052';
         $id = 3355;
         $kind = 'kind3292052';
+        $multiTenantOnly = false;
         $name = 'name3373707';
+        $osLicense = true;
+        $removableFromDisk = true;
         $selfLink = 'selfLink-1691268851';
+        $soleTenantOnly = false;
         $state = 'state109757585';
         $transferable = false;
+        $updateTimestamp = 'updateTimestamp-415976160';
         $expectedResponse = new LicenseCode();
+        $expectedResponse->setAppendableToDisk($appendableToDisk);
         $expectedResponse->setCreationTimestamp($creationTimestamp);
         $expectedResponse->setDescription($description);
         $expectedResponse->setId($id);
         $expectedResponse->setKind($kind);
+        $expectedResponse->setMultiTenantOnly($multiTenantOnly);
         $expectedResponse->setName($name);
+        $expectedResponse->setOsLicense($osLicense);
+        $expectedResponse->setRemovableFromDisk($removableFromDisk);
         $expectedResponse->setSelfLink($selfLink);
+        $expectedResponse->setSoleTenantOnly($soleTenantOnly);
         $expectedResponse->setState($state);
         $expectedResponse->setTransferable($transferable);
+        $expectedResponse->setUpdateTimestamp($updateTimestamp);
         $transport->addResponse($expectedResponse);
         // Mock request
         $licenseCode = 'licenseCode1612079915';
