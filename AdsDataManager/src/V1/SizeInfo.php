@@ -30,6 +30,18 @@ class SizeInfo extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int64 search_network_members_count = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $search_network_members_count = 0;
+    /**
+     * Output only. Estimated number of members in this user list on YouTube.
+     *
+     * Generated from protobuf field <code>int64 youtube_members_count = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $youtube_members_count = 0;
+    /**
+     * Output only. Estimated number of members in this user list on Gmail.
+     *
+     * Generated from protobuf field <code>int64 gmail_members_count = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $gmail_members_count = 0;
 
     /**
      * Constructor.
@@ -44,6 +56,10 @@ class SizeInfo extends \Google\Protobuf\Internal\Message
      *           Output only. Estimated number of members in this user list in the
      *           google.com domain. These are the members available for targeting in Search
      *           campaigns.
+     *     @type int|string $youtube_members_count
+     *           Output only. Estimated number of members in this user list on YouTube.
+     *     @type int|string $gmail_members_count
+     *           Output only. Estimated number of members in this user list on Gmail.
      * }
      */
     public function __construct($data = NULL) {
@@ -105,6 +121,58 @@ class SizeInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt64($var);
         $this->search_network_members_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Estimated number of members in this user list on YouTube.
+     *
+     * Generated from protobuf field <code>int64 youtube_members_count = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int|string
+     */
+    public function getYoutubeMembersCount()
+    {
+        return $this->youtube_members_count;
+    }
+
+    /**
+     * Output only. Estimated number of members in this user list on YouTube.
+     *
+     * Generated from protobuf field <code>int64 youtube_members_count = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setYoutubeMembersCount($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->youtube_members_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Estimated number of members in this user list on Gmail.
+     *
+     * Generated from protobuf field <code>int64 gmail_members_count = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int|string
+     */
+    public function getGmailMembersCount()
+    {
+        return $this->gmail_members_count;
+    }
+
+    /**
+     * Output only. Estimated number of members in this user list on Gmail.
+     *
+     * Generated from protobuf field <code>int64 gmail_members_count = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setGmailMembersCount($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->gmail_members_count = $var;
 
         return $this;
     }

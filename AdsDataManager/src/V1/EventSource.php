@@ -44,6 +44,12 @@ class EventSource
      */
     const PHONE = 4;
     /**
+     * The event was generated from a message.
+     *
+     * Generated from protobuf enum <code>MESSAGE = 6;</code>
+     */
+    const MESSAGE = 6;
+    /**
      * The event was generated from other sources.
      *
      * Generated from protobuf enum <code>OTHER = 5;</code>
@@ -56,6 +62,7 @@ class EventSource
         self::APP => 'APP',
         self::IN_STORE => 'IN_STORE',
         self::PHONE => 'PHONE',
+        self::MESSAGE => 'MESSAGE',
         self::OTHER => 'OTHER',
     ];
 

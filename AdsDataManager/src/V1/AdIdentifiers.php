@@ -49,6 +49,13 @@ class AdIdentifiers extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.ads.datamanager.v1.DeviceInfo landing_page_device_info = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $landing_page_device_info = null;
+    /**
+     * Optional. The mobile identifier for advertisers. This would be IDFA on iOS,
+     * AdID on Android, or other platforms’ identifiers for advertisers.
+     *
+     * Generated from protobuf field <code>string mobile_device_id = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $mobile_device_id = '';
 
     /**
      * Constructor.
@@ -69,6 +76,9 @@ class AdIdentifiers extends \Google\Protobuf\Internal\Message
      *     @type \Google\Ads\DataManager\V1\DeviceInfo $landing_page_device_info
      *           Optional. Information gathered about the device being used (if any) at the
      *           time of landing onto the advertiser’s site after interacting with the ad.
+     *     @type string $mobile_device_id
+     *           Optional. The mobile identifier for advertisers. This would be IDFA on iOS,
+     *           AdID on Android, or other platforms’ identifiers for advertisers.
      * }
      */
     public function __construct($data = NULL) {
@@ -218,6 +228,34 @@ class AdIdentifiers extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Ads\DataManager\V1\DeviceInfo::class);
         $this->landing_page_device_info = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The mobile identifier for advertisers. This would be IDFA on iOS,
+     * AdID on Android, or other platforms’ identifiers for advertisers.
+     *
+     * Generated from protobuf field <code>string mobile_device_id = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getMobileDeviceId()
+    {
+        return $this->mobile_device_id;
+    }
+
+    /**
+     * Optional. The mobile identifier for advertisers. This would be IDFA on iOS,
+     * AdID on Android, or other platforms’ identifiers for advertisers.
+     *
+     * Generated from protobuf field <code>string mobile_device_id = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setMobileDeviceId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->mobile_device_id = $var;
 
         return $this;
     }

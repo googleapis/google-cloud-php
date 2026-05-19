@@ -81,7 +81,10 @@ final class PartnerLinkServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/datamanager'];
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/datamanager',
+        'https://www.googleapis.com/auth/datamanager.partnerlink',
+    ];
 
     private static function getClientDefaults()
     {

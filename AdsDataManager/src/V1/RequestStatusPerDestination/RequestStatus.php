@@ -20,7 +20,10 @@ class RequestStatus
      */
     const REQUEST_STATUS_UNKNOWN = 0;
     /**
-     * The request succeeded.
+     * Processing succeeded for all records without any errors. However, there
+     * may be warnings in the
+     * [`warning_info`][google.ads.datamanager.v1.RequestStatusPerDestination.warning_info]
+     * field.
      *
      * Generated from protobuf enum <code>SUCCESS = 1;</code>
      */
@@ -32,13 +35,22 @@ class RequestStatus
      */
     const PROCESSING = 2;
     /**
-     * The request failed.
+     * Processing failed for all records. Check the
+     * [`error_info`][google.ads.datamanager.v1.RequestStatusPerDestination.error_info]
+     * field for error details, and check the
+     * [`warning_info`][google.ads.datamanager.v1.RequestStatusPerDestination.warning_info]
+     * field for warning details.
      *
      * Generated from protobuf enum <code>FAILED = 3;</code>
      */
     const FAILED = 3;
     /**
-     * The request partially succeeded.
+     * Processing completed successfully without errors for some records, but
+     * failed with errors for other records. Check the
+     * [`error_info`][google.ads.datamanager.v1.RequestStatusPerDestination.error_info]
+     * field for error details, and check the
+     * [`warning_info`][google.ads.datamanager.v1.RequestStatusPerDestination.warning_info]
+     * field for warning details.
      *
      * Generated from protobuf enum <code>PARTIAL_SUCCESS = 4;</code>
      */

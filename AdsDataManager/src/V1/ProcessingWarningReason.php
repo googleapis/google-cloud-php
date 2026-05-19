@@ -58,7 +58,7 @@ class ProcessingWarningReason
      */
     const PROCESSING_WARNING_REASON_INVALID_KEK = 6;
     /**
-     * Failed to decrypt th
+     * Failed to decrypt the
      * [UserIdentifier][google.ads.datamanager.v1.UserIdentifier] data using the
      * DEK.
      *
