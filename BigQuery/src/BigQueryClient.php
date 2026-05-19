@@ -438,13 +438,14 @@ class BigQueryClient
             $response = $this->connection->query($statelessArgs);
 
             if ($response['jobComplete'] ?? false) {
+                $jobId = $response['jobReference']['jobId'] ?? '';
                 return new QueryResults(
                     $this->connection,
-                    '',
+                    $jobId,
                     $this->projectId,
                     $response,
                     $this->mapper,
-                    $this->createJob([], ''), // create an empty job
+                    $this->createJob($response, $jobId),
                     $queryResultsOptions
                 );
             }

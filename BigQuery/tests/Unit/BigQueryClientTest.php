@@ -182,6 +182,56 @@ class BigQueryClientTest extends TestCase
         $this->assertTrue($queryResults->isComplete());
     }
 
+    public function testRunQueryStatelessWithPagination()
+    {
+        $client = $this->getClient();
+        $query = $client->query(self::QUERY_STRING);
+
+        $this->connection->query(Argument::allOf(
+            Argument::withEntry('projectId', self::PROJECT_ID),
+            Argument::withEntry('query', self::QUERY_STRING),
+            Argument::withEntry('jobCreationMode', 'JOB_CREATION_OPTIONAL')
+        ))
+            ->willReturn([
+                'jobComplete' => true,
+                'jobReference' => [
+                    'jobId' => self::JOB_ID,
+                    'projectId' => self::PROJECT_ID
+                ],
+                'schema' => [
+                    'fields' => [
+                        ['name' => 'col1', 'type' => 'STRING']
+                    ]
+                ],
+                'rows' => [
+                    ['f' => [['v' => 'val1']]]
+                ],
+                'pageToken' => 'next-page-token'
+            ])
+            ->shouldBeCalledTimes(1);
+
+        $this->connection->getQueryResults(Argument::allOf(
+            Argument::withEntry('projectId', self::PROJECT_ID),
+            Argument::withEntry('jobId', self::JOB_ID),
+            Argument::withEntry('pageToken', 'next-page-token')
+        ))
+            ->willReturn([
+                'jobComplete' => true,
+                'rows' => [
+                    ['f' => [['v' => 'val2']]]
+                ]
+            ])
+            ->shouldBeCalledTimes(1);
+
+        $client->___setProperty('connection', $this->connection->reveal());
+        $results = $client->runQuery($query);
+        $rows = iterator_to_array($results);
+
+        $this->assertCount(2, $rows);
+        $this->assertEquals('val1', $rows[0]['col1']);
+        $this->assertEquals('val2', $rows[1]['col1']);
+    }
+
     public function testRunQueryJobQueryEndpointReturnsAJob()
     {
         $client = $this->getClient();
