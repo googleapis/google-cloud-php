@@ -33,6 +33,7 @@ class Job
     use JobWaitTrait;
 
     const MAX_RETRIES = PHP_INT_MAX;
+    const DONE = 'DONE';
 
     /**
      * @var ConnectionInterface Represents a connection to BigQuery.
