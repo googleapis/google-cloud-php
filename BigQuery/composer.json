@@ -17,7 +17,8 @@
         "erusev/parsedown": "^1.6",
         "google/cloud-storage": "^2.0",
         "google/cloud-bigquery-reservation": "^2.0",
-        "nikic/php-parser": "^5.0"
+        "nikic/php-parser": "^5.0",
+        "google/cloud-bigquery-connection": "^2.1"
     },
     "suggest": {
         "google/cloud-storage": "Makes it easier to load data from Cloud Storage into BigQuery"
