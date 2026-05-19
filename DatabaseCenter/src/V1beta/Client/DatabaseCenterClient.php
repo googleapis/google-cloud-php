@@ -38,6 +38,7 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\DatabaseCenter\V1beta\AggregateFleetRequest;
 use Google\Cloud\DatabaseCenter\V1beta\AggregateIssueStatsRequest;
 use Google\Cloud\DatabaseCenter\V1beta\AggregateIssueStatsResponse;
+use Google\Cloud\DatabaseCenter\V1beta\AggregateQueryStatsRequest;
 use Google\Cloud\DatabaseCenter\V1beta\QueryDatabaseResourceGroupsRequest;
 use Google\Cloud\DatabaseCenter\V1beta\QueryIssuesRequest;
 use Google\Cloud\DatabaseCenter\V1beta\QueryProductsRequest;
@@ -54,6 +55,7 @@ use Psr\Log\LoggerInterface;
  *
  * @method PromiseInterface<PagedListResponse> aggregateFleetAsync(AggregateFleetRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<AggregateIssueStatsResponse> aggregateIssueStatsAsync(AggregateIssueStatsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> aggregateQueryStatsAsync(AggregateQueryStatsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> queryDatabaseResourceGroupsAsync(QueryDatabaseResourceGroupsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> queryIssuesAsync(QueryIssuesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> queryProductsAsync(QueryProductsRequest $request, array $optionalArgs = [])
@@ -247,6 +249,34 @@ final class DatabaseCenterClient
         array $callOptions = []
     ): AggregateIssueStatsResponse {
         return $this->startApiCall('AggregateIssueStats', $request, $callOptions)->wait();
+    }
+
+    /**
+     * AggregateQueryStats provides database resource query execution statistics.
+     *
+     * The async variant is {@see DatabaseCenterClient::aggregateQueryStatsAsync()} .
+     *
+     * @example samples/V1beta/DatabaseCenterClient/aggregate_query_stats.php
+     *
+     * @param AggregateQueryStatsRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function aggregateQueryStats(AggregateQueryStatsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('AggregateQueryStats', $request, $callOptions);
     }
 
     /**
