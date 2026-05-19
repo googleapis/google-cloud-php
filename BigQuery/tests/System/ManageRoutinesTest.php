@@ -17,9 +17,12 @@
 
 namespace Google\Cloud\BigQuery\Tests\System;
 
+use Google\Cloud\BigQuery\Connection\V1\Client\ConnectionServiceClient;
+use Google\Cloud\BigQuery\Connection\V1\CloudResourceProperties;
+use Google\Cloud\BigQuery\Connection\V1\Connection;
+use Google\Cloud\BigQuery\Connection\V1\CreateConnectionRequest;
+use Google\Cloud\BigQuery\Connection\V1\DeleteConnectionRequest;
 use Google\Cloud\BigQuery\Routine;
-use Google\Cloud\Core\RequestWrapper;
-use GuzzleHttp\Psr7\Request;
 
 /**
  * @group bigquery
@@ -178,45 +181,32 @@ class ManageRoutinesTest extends BigQueryTestCase
 
     private function createConnection($connectionId)
     {
-        // There is a BigQueryConnection client available in the PHP cloud
-        // but decided to create it here manually instead of adding it as a dependency just for testing.
         $projectId = self::$dataset->identity()['projectId'];
         $location = 'us';
         $parent = "projects/$projectId/locations/$location";
-        $uri = "https://bigqueryconnection.googleapis.com/v1/$parent/connections?connectionId=$connectionId";
 
-        $body = json_encode([
-            'friendlyName' => $connectionId,
-            'cloudResource' => new \stdClass()
-        ]);
+        $connectionClient = new ConnectionServiceClient();
 
-        $request = new Request(
-            'POST',
-            $uri,
-            ['Content-Type' => 'application/json'],
-            $body
-        );
+        $connection = new Connection();
+        $connection->setFriendlyName($connectionId);
+        $connection->setCloudResource(new CloudResourceProperties());
 
-        $requestWrapper = new RequestWrapper([
-            'keyFilePath' => getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH'),
-            'scopes' => ['https://www.googleapis.com/auth/cloud-platform']
-        ]);
+        $request = new CreateConnectionRequest();
+        $request->setParent($parent);
+        $request->setConnectionId($connectionId);
+        $request->setConnection($connection);
 
-        $response = $requestWrapper->send($request);
-        $data = json_decode($response->getBody(), true);
-        return $data['name'];
+        $response = $connectionClient->createConnection($request);
+        return $response->getName();
     }
 
     private function deleteConnection($name)
     {
-        $uri = "https://bigqueryconnection.googleapis.com/v1/$name";
-        $request = new Request('DELETE', $uri);
+        $connectionClient = new ConnectionServiceClient();
 
-        $requestWrapper = new RequestWrapper([
-            'keyFilePath' => getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH'),
-            'scopes' => ['https://www.googleapis.com/auth/cloud-platform']
-        ]);
+        $request = new DeleteConnectionRequest();
+        $request->setName($name);
 
-        $requestWrapper->send($request);
+        $connectionClient->deleteConnection($request);
     }
 }
