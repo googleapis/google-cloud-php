@@ -28,7 +28,7 @@
  */
 namespace GPBMetadata\Google\Cloud\Securitycenter\V1 {
 
-    class KubernetesDescriptorFix
+    class DescriptorFix
     {
         public static $is_initialized = false;
 
@@ -37,19 +37,18 @@ namespace GPBMetadata\Google\Cloud\Securitycenter\V1 {
                 return;
             }
 
-            // This is required to load the descriptor for PBObject
-            \GPBMetadata\Google\Cloud\Securitycenter\V1\Kubernetes::initOnce();
-
             $pool = \Google\Protobuf\Internal\DescriptorPool::getGeneratedPool();
-            $pool->addMessage(
-                'google.cloud.securitycenter.v1.Kubernetes.Object',
-                \Google\Cloud\SecurityCenter\V1\Kubernetes\PBObject::class
-            )->finalizeToPool();
+            if ($pool instanceof \Google\Protobuf\Internal\DescriptorPool) {
+                $pool->addMessage(
+                    'google.cloud.securitycenter.v1.Kubernetes.Object',
+                    \Google\Cloud\SecurityCenter\V1\Kubernetes\PBObject::class
+                )->finalizeToPool();
+            }
 
             static::$is_initialized = true;
         }
     }
 
-    KubernetesDescriptorFix::initOnce();
+    DescriptorFix::initOnce();
 }
 
