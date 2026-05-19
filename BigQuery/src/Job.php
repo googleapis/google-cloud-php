@@ -267,7 +267,7 @@ class Job
      */
     public function isComplete(array $options = [])
     {
-        return $this->info($options)['status']['state'] === 'DONE';
+        return $this->info($options)['status']['state'] === self::DONE;
     }
 
     /**

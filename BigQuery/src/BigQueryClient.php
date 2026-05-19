@@ -457,6 +457,7 @@ class BigQueryClient
                 );
             }
 
+            $jobInfo['status']['state'] = null;
             $job = $this->createJob($jobInfo, $jobId);
         } else {
             $job = $this->startQuery($query, $options);
