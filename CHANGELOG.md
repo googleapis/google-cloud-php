@@ -1,5 +1,92 @@
 # Changelog
 
+## 0.330.0
+
+<details><summary>google/cloud-bigquery 1.38.0</summary>
+
+
+
+### Features
+
+* (BigQuery) Add Remote Function support ([#9177](https://github.com/googleapis/google-cloud-php/issues/9177)) ([b1c7d34](https://github.com/googleapis/google-cloud-php/commit/b1c7d347f1f4167675c2fbde31bf15424ab675e3))
+
+
+### Bug Fixes
+
+* **BigQuery:** Fix 404 in stateless query pagination ([#9199](https://github.com/googleapis/google-cloud-php/issues/9199)) ([0e291fb](https://github.com/googleapis/google-cloud-php/commit/0e291fb69201decc8b55c5d0536c579d249fe683))
+
+</details>
+
+<details><summary>google/cloud-compute 2.10.0</summary>
+
+
+
+### Features
+
+* [Compute] Update Compute Engine v1 API to revision 20260422 ([#1193](https://github.com/googleapis/google-cloud-php/issues/1193)) ([#9190](https://github.com/googleapis/google-cloud-php/issues/9190)) ([6cf66f2](https://github.com/googleapis/google-cloud-php/commit/6cf66f2836b919e18c2adde025bf60baab53480c))
+
+</details>
+
+<details><summary>google/cloud-container 2.9.0</summary>
+
+
+
+### Features
+
+* [Container] add confidential instance type and hyperdisk support to GKE API ([#9185](https://github.com/googleapis/google-cloud-php/issues/9185)) ([d83775a](https://github.com/googleapis/google-cloud-php/commit/d83775acfa7b9951aecb458baa355f3c03e7ea1d))
+
+</details>
+
+<details><summary>google/cloud-databasecenter 0.7.0</summary>
+
+
+
+### Features
+
+* [DatabaseCenter] add a AggregateQueryStats  API ([#9200](https://github.com/googleapis/google-cloud-php/issues/9200)) ([f40cd90](https://github.com/googleapis/google-cloud-php/commit/f40cd908216b3611c763c93157a913ec6f405dcd))
+
+</details>
+
+<details><summary>google/cloud-hypercomputecluster 0.3.0</summary>
+
+
+
+### Features
+
+* **HypercomputeCluster:** Introduce V1  ([#9191](https://github.com/googleapis/google-cloud-php/issues/9191)) ([493b705](https://github.com/googleapis/google-cloud-php/commit/493b7058db9b99bc206be9de0f94e317b3e99eb0))
+
+</details>
+
+<details><summary>google/cloud-security-center 2.5.1</summary>
+
+
+
+### Bug Fixes
+
+* **SecurityCenter:** Rename class using reserved PHP "object" keyword ([#9194](https://github.com/googleapis/google-cloud-php/issues/9194)) ([89d96fe](https://github.com/googleapis/google-cloud-php/commit/89d96fefd430b70956814eb5175fec53c0351c01))
+
+</details>
+
+<details><summary>google/cloud-storage 2.2.0</summary>
+
+
+
+### Features
+
+* **Storage:** Support user-provided hash validation in uploads ([#9178](https://github.com/googleapis/google-cloud-php/issues/9178)) ([d2b2f3c](https://github.com/googleapis/google-cloud-php/commit/d2b2f3ceec2a4df83dcc4c521aab175dc0bc309b))
+
+</details>
+
+<details><summary>google/cloud-support 1.6.0</summary>
+
+
+
+### Features
+
+* [Support] v2 version for `GetComment` and `GetAttachment` ([#9187](https://github.com/googleapis/google-cloud-php/issues/9187)) ([291f912](https://github.com/googleapis/google-cloud-php/commit/291f912577c51f251df354faaed11f9582c30a23))
+
+</details>
+
 ## 0.329.0
 
 <details><summary>googleads/ad-manager 0.7.0</summary>
