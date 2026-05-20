@@ -100,7 +100,7 @@ class Kubernetes extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\SecurityCenter\V2\Kubernetes\AccessReview[] $access_reviews
      *           Provides information on any Kubernetes access reviews (privilege checks)
      *           relevant to the finding.
-     *     @type \Google\Cloud\SecurityCenter\V2\Kubernetes\Object[] $objects
+     *     @type \Google\Cloud\SecurityCenter\V2\Kubernetes\PBObject[] $objects
      *           Kubernetes objects related to the finding.
      * }
      */
@@ -293,7 +293,7 @@ class Kubernetes extends \Google\Protobuf\Internal\Message
      * Kubernetes objects related to the finding.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.Kubernetes.Object objects = 7;</code>
-     * @return RepeatedField<\Google\Cloud\SecurityCenter\V2\Kubernetes\Object>
+     * @return RepeatedField<\Google\Cloud\SecurityCenter\V2\Kubernetes\PBObject>
      */
     public function getObjects()
     {
@@ -304,12 +304,12 @@ class Kubernetes extends \Google\Protobuf\Internal\Message
      * Kubernetes objects related to the finding.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.Kubernetes.Object objects = 7;</code>
-     * @param \Google\Cloud\SecurityCenter\V2\Kubernetes\Object[] $var
+     * @param \Google\Cloud\SecurityCenter\V2\Kubernetes\PBObject[] $var
      * @return $this
      */
     public function setObjects($var)
     {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\SecurityCenter\V2\Kubernetes\Object::class);
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\SecurityCenter\V2\Kubernetes\PBObject::class);
         $this->objects = $arr;
 
         return $this;

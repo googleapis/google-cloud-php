@@ -15,7 +15,7 @@ use Google\Protobuf\RepeatedField;
  *
  * Generated from protobuf message <code>google.cloud.securitycenter.v2.Kubernetes.Object</code>
  */
-class Object extends \Google\Protobuf\Internal\Message
+class PBObject extends \Google\Protobuf\Internal\Message
 {
     /**
      * Kubernetes object group, such as "policy.k8s.io/v1".
