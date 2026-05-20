@@ -7,7 +7,7 @@ namespace Google\Cloud\Container\V1\LinuxNodeConfig\NodeKernelModuleLoading;
 use UnexpectedValueException;
 
 /**
- * Defines the kernel module loading policy for nodes in the nodepool.
+ * Defines the kernel module loading policy for nodes in the node pool.
  *
  * Protobuf type <code>google.container.v1.LinuxNodeConfig.NodeKernelModuleLoading.Policy</code>
  */

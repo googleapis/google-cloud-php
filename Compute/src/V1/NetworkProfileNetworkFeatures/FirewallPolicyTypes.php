@@ -23,6 +23,10 @@ class FirewallPolicyTypes
      */
     const RDMA_ROCE_POLICY = 148757145;
     /**
+     * Generated from protobuf enum <code>ULL_POLICY = 100494364;</code>
+     */
+    const ULL_POLICY = 100494364;
+    /**
      * Generated from protobuf enum <code>VPC_POLICY = 74319208;</code>
      */
     const VPC_POLICY = 74319208;
@@ -30,6 +34,7 @@ class FirewallPolicyTypes
     private static $valueToName = [
         self::UNDEFINED_FIREWALL_POLICY_TYPES => 'UNDEFINED_FIREWALL_POLICY_TYPES',
         self::RDMA_ROCE_POLICY => 'RDMA_ROCE_POLICY',
+        self::ULL_POLICY => 'ULL_POLICY',
         self::VPC_POLICY => 'VPC_POLICY',
     ];
 

@@ -8,7 +8,7 @@ use UnexpectedValueException;
 
 /**
  * Location policy specifies how zones are picked when scaling up the
- * nodepool.
+ * node pool.
  *
  * Protobuf type <code>google.container.v1.NodePoolAutoscaling.LocationPolicy</code>
  */

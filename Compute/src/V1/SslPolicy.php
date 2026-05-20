@@ -94,6 +94,19 @@ class SslPolicy extends \Google\Protobuf\Internal\Message
      */
     protected $name = null;
     /**
+     * One of DEFAULT, ENABLED, orDEFERRED. Controls whether the load balancer negotiates
+     * X25519MLKEM768 key exchange when clients advertise support for it. When set
+     * to DEFAULT, or if no SSL Policy is attached to the target
+     * proxy, the load balancer disallows X25519MLKEM768 key exchange before
+     * October 2026, and allows it afterward. When set to ENABLED,
+     * the load balancer allows X25519MLKEM768 key exchange. When set toDEFERRED, the load balancer disallows X25519MLKEM768 key
+     * exchange until October 2027, and allows it afterward.
+     * Check the PostQuantumKeyExchange enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string post_quantum_key_exchange = 245546214;</code>
+     */
+    protected $post_quantum_key_exchange = null;
+    /**
      * Profile specifies the set of SSL features that can be used by the load
      * balancer when negotiating SSL with clients. This can be one ofCOMPATIBLE, MODERN, RESTRICTED,FIPS_202205, or CUSTOM. If usingCUSTOM, the set of SSL features to enable must be specified in
      * the customFeatures field. If using FIPS_202205,
@@ -168,6 +181,15 @@ class SslPolicy extends \Google\Protobuf\Internal\Message
      *           must be a lowercase letter, and all following characters must be a dash,
      *           lowercase letter, or digit, except the last character, which cannot be a
      *           dash.
+     *     @type string $post_quantum_key_exchange
+     *           One of DEFAULT, ENABLED, orDEFERRED. Controls whether the load balancer negotiates
+     *           X25519MLKEM768 key exchange when clients advertise support for it. When set
+     *           to DEFAULT, or if no SSL Policy is attached to the target
+     *           proxy, the load balancer disallows X25519MLKEM768 key exchange before
+     *           October 2026, and allows it afterward. When set to ENABLED,
+     *           the load balancer allows X25519MLKEM768 key exchange. When set toDEFERRED, the load balancer disallows X25519MLKEM768 key
+     *           exchange until October 2027, and allows it afterward.
+     *           Check the PostQuantumKeyExchange enum for the list of possible values.
      *     @type string $profile
      *           Profile specifies the set of SSL features that can be used by the load
      *           balancer when negotiating SSL with clients. This can be one ofCOMPATIBLE, MODERN, RESTRICTED,FIPS_202205, or CUSTOM. If usingCUSTOM, the set of SSL features to enable must be specified in
@@ -529,6 +551,56 @@ class SslPolicy extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * One of DEFAULT, ENABLED, orDEFERRED. Controls whether the load balancer negotiates
+     * X25519MLKEM768 key exchange when clients advertise support for it. When set
+     * to DEFAULT, or if no SSL Policy is attached to the target
+     * proxy, the load balancer disallows X25519MLKEM768 key exchange before
+     * October 2026, and allows it afterward. When set to ENABLED,
+     * the load balancer allows X25519MLKEM768 key exchange. When set toDEFERRED, the load balancer disallows X25519MLKEM768 key
+     * exchange until October 2027, and allows it afterward.
+     * Check the PostQuantumKeyExchange enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string post_quantum_key_exchange = 245546214;</code>
+     * @return string
+     */
+    public function getPostQuantumKeyExchange()
+    {
+        return isset($this->post_quantum_key_exchange) ? $this->post_quantum_key_exchange : '';
+    }
+
+    public function hasPostQuantumKeyExchange()
+    {
+        return isset($this->post_quantum_key_exchange);
+    }
+
+    public function clearPostQuantumKeyExchange()
+    {
+        unset($this->post_quantum_key_exchange);
+    }
+
+    /**
+     * One of DEFAULT, ENABLED, orDEFERRED. Controls whether the load balancer negotiates
+     * X25519MLKEM768 key exchange when clients advertise support for it. When set
+     * to DEFAULT, or if no SSL Policy is attached to the target
+     * proxy, the load balancer disallows X25519MLKEM768 key exchange before
+     * October 2026, and allows it afterward. When set to ENABLED,
+     * the load balancer allows X25519MLKEM768 key exchange. When set toDEFERRED, the load balancer disallows X25519MLKEM768 key
+     * exchange until October 2027, and allows it afterward.
+     * Check the PostQuantumKeyExchange enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string post_quantum_key_exchange = 245546214;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPostQuantumKeyExchange($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->post_quantum_key_exchange = $var;
 
         return $this;
     }

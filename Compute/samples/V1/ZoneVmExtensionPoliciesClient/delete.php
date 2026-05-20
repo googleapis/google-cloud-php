@@ -30,7 +30,7 @@ use Google\Cloud\Compute\V1\DeleteZoneVmExtensionPolicyRequest;
 use Google\Rpc\Status;
 
 /**
- * Deletes a specified zone VM extension policy.
+ * Deletes a specified zone VM extension policy within a project.
  *
  * @param string $project           Project ID for this request.
  * @param string $vmExtensionPolicy Name of the zone VM extension policy to delete.

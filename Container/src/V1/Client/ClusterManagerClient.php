@@ -157,7 +157,11 @@ final class ClusterManagerClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/cloud-platform',
+        'https://www.googleapis.com/auth/container',
+        'https://www.googleapis.com/auth/container.read-only',
+    ];
 
     private static function getClientDefaults()
     {
@@ -634,7 +638,7 @@ final class ClusterManagerClient
     }
 
     /**
-     * Fetch upgrade information of a specific nodepool.
+     * Fetch upgrade information of a specific node pool.
      *
      * The async variant is
      * {@see ClusterManagerClient::fetchNodePoolUpgradeInfoAsync()} .

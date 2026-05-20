@@ -209,6 +209,41 @@ class RoutineTest extends TestCase
         $this->assertEquals($expected, $res);
     }
 
+    public function testUpdateRemoteFunctionOptions()
+    {
+        $old = [
+            'routineType' => 'SCALAR_FUNCTION',
+            'definitionBody' => '',
+            'language' => 'SQL'
+        ];
+
+        $new = [
+            'remoteFunctionOptions' => [
+                'endpoint' => 'https://us-east1-my_gcf_project.cloudfunctions.net/remote_add',
+                'connection' => 'projects/project-id/locations/us/connections/connection-id',
+                'maxBatchingRows' => '10',
+                'userDefinedContext' => [
+                    'key' => 'value'
+                ]
+            ]
+        ];
+
+        $expected = $old + $new;
+
+        $this->connection->getRoutine($this->identity)
+            ->willReturn($old)
+            ->shouldBeCalledTimes(1);
+
+        $this->connection->updateRoutine($this->identity + $expected + ['retries' => 0])
+            ->shouldBeCalledTimes(1)
+            ->willReturn($expected);
+
+        $this->routine->___setProperty('connection', $this->connection->reveal());
+        $res = $this->routine->update($new);
+
+        $this->assertEquals($expected, $res);
+    }
+
     public function testDelete()
     {
         $this->connection->deleteRoutine($this->identity + ['retries' => 0])

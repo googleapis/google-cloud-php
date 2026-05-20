@@ -178,6 +178,12 @@ class NodePool extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.NodePool.NodeDrainConfig node_drain_config = 116;</code>
      */
     protected $node_drain_config = null;
+    /**
+     * Optional. Specifies the maintenance policy for the node pool.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodePool.NodePoolMaintenancePolicy maintenance_policy = 118 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $maintenance_policy = null;
 
     /**
      * Constructor.
@@ -254,6 +260,8 @@ class NodePool extends \Google\Protobuf\Internal\Message
      *           Enable best effort provisioning for nodes
      *     @type \Google\Cloud\Container\V1\NodePool\NodeDrainConfig $node_drain_config
      *           Specifies the node drain configuration for this node pool.
+     *     @type \Google\Cloud\Container\V1\NodePool\NodePoolMaintenancePolicy $maintenance_policy
+     *           Optional. Specifies the maintenance policy for the node pool.
      * }
      */
     public function __construct($data = NULL) {
@@ -995,6 +1003,42 @@ class NodePool extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\NodePool\NodeDrainConfig::class);
         $this->node_drain_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies the maintenance policy for the node pool.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodePool.NodePoolMaintenancePolicy maintenance_policy = 118 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Container\V1\NodePool\NodePoolMaintenancePolicy|null
+     */
+    public function getMaintenancePolicy()
+    {
+        return $this->maintenance_policy;
+    }
+
+    public function hasMaintenancePolicy()
+    {
+        return isset($this->maintenance_policy);
+    }
+
+    public function clearMaintenancePolicy()
+    {
+        unset($this->maintenance_policy);
+    }
+
+    /**
+     * Optional. Specifies the maintenance policy for the node pool.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodePool.NodePoolMaintenancePolicy maintenance_policy = 118 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Container\V1\NodePool\NodePoolMaintenancePolicy $var
+     * @return $this
+     */
+    public function setMaintenancePolicy($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\NodePool\NodePoolMaintenancePolicy::class);
+        $this->maintenance_policy = $var;
 
         return $this;
     }

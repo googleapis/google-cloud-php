@@ -797,7 +797,8 @@
             "Grafeas\\": "Grafeas/src"
         },
         "files": [
-            "BigQueryStorage/metadata/descriptor_fix.php"
+            "BigQueryStorage/metadata/descriptor_fix.php",
+            "SecurityCenter/metadata/descriptor_fix.php"
         ]
     },
     "autoload-dev": {

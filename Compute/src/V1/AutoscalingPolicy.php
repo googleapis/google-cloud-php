@@ -96,6 +96,18 @@ class AutoscalingPolicy extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, .google.cloud.compute.v1.AutoscalingPolicyScalingSchedule> scaling_schedules = 355416580;</code>
      */
     private $scaling_schedules;
+    /**
+     * The number of seconds that autoscaler waits for load stabilization before
+     * making scale-in decisions. This is referred to as the
+     * [stabilization period](/compute/docs/autoscaler#stabilization_period).
+     * This might appear as a delay in scaling in but it is an important mechanism
+     * for your application to not have fluctuating size due to short term load
+     * fluctuations.
+     * The default stabilization period is 600 seconds.
+     *
+     * Generated from protobuf field <code>optional int32 stabilization_period_sec = 420200243;</code>
+     */
+    protected $stabilization_period_sec = null;
 
     /**
      * Constructor.
@@ -149,6 +161,14 @@ class AutoscalingPolicy extends \Google\Protobuf\Internal\Message
      *           can be set on an autoscaler, and they can overlap. During overlapping
      *           periods the greatest min_required_replicas of all scaling schedules is
      *           applied. Up to 128 scaling schedules are allowed.
+     *     @type int $stabilization_period_sec
+     *           The number of seconds that autoscaler waits for load stabilization before
+     *           making scale-in decisions. This is referred to as the
+     *           [stabilization period](/compute/docs/autoscaler#stabilization_period).
+     *           This might appear as a delay in scaling in but it is an important mechanism
+     *           for your application to not have fluctuating size due to short term load
+     *           fluctuations.
+     *           The default stabilization period is 600 seconds.
      * }
      */
     public function __construct($data = NULL) {
@@ -510,6 +530,54 @@ class AutoscalingPolicy extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Compute\V1\AutoscalingPolicyScalingSchedule::class);
         $this->scaling_schedules = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The number of seconds that autoscaler waits for load stabilization before
+     * making scale-in decisions. This is referred to as the
+     * [stabilization period](/compute/docs/autoscaler#stabilization_period).
+     * This might appear as a delay in scaling in but it is an important mechanism
+     * for your application to not have fluctuating size due to short term load
+     * fluctuations.
+     * The default stabilization period is 600 seconds.
+     *
+     * Generated from protobuf field <code>optional int32 stabilization_period_sec = 420200243;</code>
+     * @return int
+     */
+    public function getStabilizationPeriodSec()
+    {
+        return isset($this->stabilization_period_sec) ? $this->stabilization_period_sec : 0;
+    }
+
+    public function hasStabilizationPeriodSec()
+    {
+        return isset($this->stabilization_period_sec);
+    }
+
+    public function clearStabilizationPeriodSec()
+    {
+        unset($this->stabilization_period_sec);
+    }
+
+    /**
+     * The number of seconds that autoscaler waits for load stabilization before
+     * making scale-in decisions. This is referred to as the
+     * [stabilization period](/compute/docs/autoscaler#stabilization_period).
+     * This might appear as a delay in scaling in but it is an important mechanism
+     * for your application to not have fluctuating size due to short term load
+     * fluctuations.
+     * The default stabilization period is 600 seconds.
+     *
+     * Generated from protobuf field <code>optional int32 stabilization_period_sec = 420200243;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setStabilizationPeriodSec($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->stabilization_period_sec = $var;
 
         return $this;
     }

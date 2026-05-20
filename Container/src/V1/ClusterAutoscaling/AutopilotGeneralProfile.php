@@ -25,10 +25,17 @@ class AutopilotGeneralProfile
      * Generated from protobuf enum <code>NO_PERFORMANCE = 1;</code>
      */
     const NO_PERFORMANCE = 1;
+    /**
+     * Use default configuration.
+     *
+     * Generated from protobuf enum <code>NONE = 2;</code>
+     */
+    const NONE = 2;
 
     private static $valueToName = [
         self::AUTOPILOT_GENERAL_PROFILE_UNSPECIFIED => 'AUTOPILOT_GENERAL_PROFILE_UNSPECIFIED',
         self::NO_PERFORMANCE => 'NO_PERFORMANCE',
+        self::NONE => 'NONE',
     ];
 
     public static function name($value)
