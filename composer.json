@@ -863,6 +863,5 @@
     },
     "bin": [
         "Core/bin/google-cloud-batch"
-    ],
-    "minimum-stability": "RC"
+    ]
 }
