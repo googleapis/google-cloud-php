@@ -1,6 +1,6 @@
 {
-    "name": "google/developers-knowledge",
-    "description": "Google Developers Knowledge Client for PHP",
+    "name": "google/developer-knowledge",
+    "description": "Google Developer Knowledge Client for PHP",
     "license": "Apache-2.0",
     "minimum-stability": "stable",
     "autoload": {
@@ -11,9 +11,9 @@
     },
     "extra": {
         "component": {
-            "id": "developers-knowledge",
-            "path": "DevelopersKnowledge",
-            "target": "googleapis/php-developers-knowledge"
+            "id": "developer-knowledge",
+            "path": "DeveloperKnowledge",
+            "target": "googleapis/php-developer-knowledge"
         }
     },
     "require": {
