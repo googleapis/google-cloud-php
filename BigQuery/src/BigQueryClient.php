@@ -437,19 +437,28 @@ class BigQueryClient
 
             $response = $this->connection->query($statelessArgs);
 
+            $jobId = $response['jobReference']['jobId'] ?? '';
+            $jobInfo = ['jobReference' => $response['jobReference'] ?? []];
+            if (isset($response['statistics'])) {
+                $jobInfo['statistics'] = $response['statistics'];
+            }
+
             if ($response['jobComplete'] ?? false) {
+                // This is to keep it consistent with the response from a non stateless query
+                $jobInfo['status']['state'] = Job::DONE;
                 return new QueryResults(
                     $this->connection,
-                    '',
+                    $jobId,
                     $this->projectId,
                     $response,
                     $this->mapper,
-                    $this->createJob([], ''), // create an empty job
+                    $this->createJob($jobInfo, $jobId),
                     $queryResultsOptions
                 );
             }
 
-            $job = $this->createJob($response, $response['jobReference']['jobId']);
+            $jobInfo['status']['state'] = null;
+            $job = $this->createJob($jobInfo, $jobId);
         } else {
             $job = $this->startQuery($query, $options);
         }
