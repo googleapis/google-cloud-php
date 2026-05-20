@@ -56,7 +56,7 @@ items:
           description: 'The address of the API remote host. May optionally include the port, formatted as "<uri>:<port>". Default ''vision.googleapis.com:443''.'
         -
           id: '↳ credentials'
-          var_type: FetchAuthTokenInterface|CredentialsWrapper
+          var_type: '<xref uid="\Google\Auth\FetchAuthTokenInterface">Google\Auth\FetchAuthTokenInterface</xref>|<xref uid="\Google\ApiCore\CredentialsWrapper">Google\ApiCore\CredentialsWrapper</xref>'
           description: 'This option should only be used with a pre-constructed <xref uid="\Google\Auth\FetchAuthTokenInterface">Google\Auth\FetchAuthTokenInterface</xref> or <xref uid="\Google\ApiCore\CredentialsWrapper">Google\ApiCore\CredentialsWrapper</xref> object. Note that when one of these objects are provided, any settings in $credentialsConfig will be ignored. **Important**: If you are providing a path to a credentials file, or a decoded credentials file as a PHP array, this usage is now DEPRECATED. Providing an unvalidated credential configuration to Google APIs can compromise the security of your systems and data. It is recommended to create the credentials explicitly ``` use Google\Auth\Credentials\ServiceAccountCredentials; use Google\Cloud\Vision\V1\ImageAnnotatorClient; $creds = new ServiceAccountCredentials($scopes, $json); $options = new ImageAnnotatorClient([''credentials'' => $creds]); ``` <xref uid="https://cloud.google.com/docs/authentication/external/externally-sourced-credentials">https://cloud.google.com/docs/authentication/external/externally-sourced-credentials</xref>'
         -
           id: '↳ credentialsConfig'
@@ -72,7 +72,7 @@ items:
           description: 'Client method configuration, including retry settings. This option can be either a path to a JSON file, or a PHP array containing the decoded JSON data. By default this settings points to the default client config file, which is provided in the resources folder.'
         -
           id: '↳ transport'
-          var_type: string|TransportInterface
+          var_type: 'string|<xref uid="\Google\ApiCore\Transport\TransportInterface">Google\ApiCore\Transport\TransportInterface</xref>'
           description: 'The transport used for executing network requests. May be either the string `rest` or `grpc`. Defaults to `grpc` if gRPC support is detected on the system. *Advanced usage*: Additionally, it is possible to pass in an already instantiated <xref uid="\Google\ApiCore\Transport\TransportInterface">Google\ApiCore\Transport\TransportInterface</xref> object. Note that when this object is provided, any settings in $transportConfig, and any $apiEndpoint setting, will be ignored.'
         -
           id: '↳ transportConfig'
@@ -84,7 +84,7 @@ items:
           description: 'A callable which returns the client cert as a string. This can be used to provide a certificate and private key to the transport layer for mTLS.'
         -
           id: '↳ logger'
-          var_type: false|LoggerInterface
+          var_type: 'false|<xref uid="\Psr\Log\LoggerInterface">Psr\Log\LoggerInterface</xref>'
           description: "A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the 'GOOGLE_SDK_PHP_LOGGING' environment flag"
         -
           id: '↳ universeDomain'
@@ -166,7 +166,7 @@ items:
           description: Optional.
         -
           id: '↳ retrySettings'
-          var_type: RetrySettings|array
+          var_type: '<xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref>|array'
           description: 'Retry settings to use for this call. Can be a <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> object, or an associative array of retry settings parameters. See the documentation on <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> for example usage.'
       returns:
         -
@@ -251,7 +251,7 @@ items:
           description: Optional.
         -
           id: '↳ retrySettings'
-          var_type: RetrySettings|array
+          var_type: '<xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref>|array'
           description: 'Retry settings to use for this call. Can be a <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> object, or an associative array of retry settings parameters. See the documentation on <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> for example usage.'
       returns:
         -
@@ -320,7 +320,7 @@ items:
           description: Optional.
         -
           id: '↳ retrySettings'
-          var_type: RetrySettings|array
+          var_type: '<xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref>|array'
           description: 'Retry settings to use for this call. Can be a <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> object, or an associative array of retry settings parameters. See the documentation on <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> for example usage.'
       returns:
         -
@@ -382,7 +382,7 @@ items:
           description: Optional.
         -
           id: '↳ retrySettings'
-          var_type: RetrySettings|array
+          var_type: '<xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref>|array'
           description: 'Retry settings to use for this call. Can be a <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> object, or an associative array of retry settings parameters. See the documentation on <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> for example usage.'
       returns:
         -
