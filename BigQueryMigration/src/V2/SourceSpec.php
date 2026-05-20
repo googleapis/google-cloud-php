@@ -33,6 +33,8 @@ class SourceSpec extends \Google\Protobuf\Internal\Message
      *           The base URI for all files to be read in as sources for translation.
      *     @type \Google\Cloud\BigQuery\Migration\V2\Literal $literal
      *           Source literal.
+     *     @type string $gcs_file_path
+     *           The path to a single source file in Cloud Storage.
      *     @type string $encoding
      *           Optional. The optional field to specify the encoding of the sql bytes.
      * }
@@ -100,6 +102,37 @@ class SourceSpec extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\Migration\V2\Literal::class);
         $this->writeOneof(2, $var);
+
+        return $this;
+    }
+
+    /**
+     * The path to a single source file in Cloud Storage.
+     *
+     * Generated from protobuf field <code>string gcs_file_path = 4;</code>
+     * @return string
+     */
+    public function getGcsFilePath()
+    {
+        return $this->readOneof(4);
+    }
+
+    public function hasGcsFilePath()
+    {
+        return $this->hasOneof(4);
+    }
+
+    /**
+     * The path to a single source file in Cloud Storage.
+     *
+     * Generated from protobuf field <code>string gcs_file_path = 4;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setGcsFilePath($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->writeOneof(4, $var);
 
         return $this;
     }

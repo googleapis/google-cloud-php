@@ -38,7 +38,7 @@ class State
      */
     const RUNNING = 3;
     /**
-     * Tha task is paused. Assigned subtasks can continue, but no new subtasks
+     * The task is paused. Assigned subtasks can continue, but no new subtasks
      * will be scheduled.
      *
      * Generated from protobuf enum <code>PAUSED = 4;</code>
