@@ -62,7 +62,7 @@ class SignedUrlUploaderTest extends TestCase
                     return false;
                 }
 
-                if ($arg->getHeaderLine('Content-Length') != 0) {
+                if ($arg->getHeader('Content-Length') !== ['0']) {
                     return false;
                 }
 

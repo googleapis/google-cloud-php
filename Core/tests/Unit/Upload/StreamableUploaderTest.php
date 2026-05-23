@@ -160,7 +160,7 @@ class StreamableUploaderTest extends TestCase
 
         $this->requestWrapper->send(
             Argument::that(function ($request) {
-                return $request->getHeaderLine('Content-Length') == '10';
+                return $request->getHeader('Content-Length') === ['10'];
             }),
             Argument::type('array')
         )->willReturn($response)->shouldBeCalled();
