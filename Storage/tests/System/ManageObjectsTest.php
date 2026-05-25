@@ -832,6 +832,72 @@ class ManageObjectsTest extends StorageTestCase
         }
     }
 
+    public function testDownloadsWithDefaultCrc32cValidationSuccess()
+    {
+        $object = self::$bucket->upload('system-test-data', ['name' => uniqid(self::TESTING_PREFIX)]);
+        
+        // Automatic CRC32C validation runs under the hood
+        $content = $object->downloadAsString();
+        $this->assertEquals('system-test-data', $content);
+
+        $object->delete();
+    }
+
+    public function testDownloadsWithExplicitMd5ValidationSuccess()
+    {
+        $object = self::$bucket->upload('system-test-data', ['name' => uniqid(self::TESTING_PREFIX)]);
+        
+        // Explicitly opt-in to MD5 validation
+        $content = $object->downloadAsString(['validate' => 'md5']);
+        $this->assertEquals('system-test-data', $content);
+
+        $object->delete();
+    }
+
+    public function testDownloadsWithValidationDisabledSuccess()
+    {
+        $object = self::$bucket->upload('system-test-data', ['name' => uniqid(self::TESTING_PREFIX)]);
+        
+        // Explicitly disable validation
+        $content = $object->downloadAsString(['validate' => false]);
+        $this->assertEquals('system-test-data', $content);
+
+        $object->delete();
+    }
+
+    public function testDownloadsWithRangeBypassesValidation()
+    {
+        $data = 'system-test-range-data';
+        $object = self::$bucket->upload($data, ['name' => uniqid(self::TESTING_PREFIX)]);
+        
+        // Default validate is 'crc32', but we pass a Range header inside restOptions.
+        // This should successfully download the slice 'system' without throwing a mismatch exception.
+        $content = $object->downloadAsString([
+            'restOptions' => [
+                'headers' => [
+                    'Range' => 'bytes=0-5'
+                ]
+            ]
+        ]);
+        $this->assertEquals('system', $content);
+
+        $object->delete();
+    }
+
+    public function testDownloadToFileWithDefaultValidationSuccess()
+    {
+        $data = 'system-test-to-file-data';
+        $object = self::$bucket->upload($data, ['name' => uniqid(self::TESTING_PREFIX)]);
+        
+        $tempFile = tempnam(sys_get_temp_dir(), 'gcs-test');
+        $object->downloadToFile($tempFile);
+        
+        $this->assertEquals($data, file_get_contents($tempFile));
+        
+        unlink($tempFile);
+        $object->delete();
+    }
+
     /**
      * Asserts that a provided StorageObject exists.
      *

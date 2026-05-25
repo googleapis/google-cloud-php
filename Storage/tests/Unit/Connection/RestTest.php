@@ -239,6 +239,190 @@ class RestTest extends TestCase
         );
     }
 
+    public function testDownloadObjectWithTranscodedObjectValidationBypassed()
+    {
+        $body = 'test data';
+        $response = new Response(200, [
+            'X-Goog-Stored-Content-Encoding' => 'gzip',
+            'X-Goog-Hash' => 'crc32c=invalidcrc32c='
+        ], $body);
+
+        $this->requestWrapper->send(Argument::any(), Argument::any())->willReturn($response);
+
+        $rest = new Rest();
+        $rest->setRequestWrapper($this->requestWrapper->reveal());
+
+        // Should bypass validation entirely and succeed despite invalid hash
+        $stream = $rest->downloadObject(self::$downloadOptions);
+        $this->assertEquals($body, (string) $stream);
+    }
+
+    public function testDownloadObjectWithCapturedHashFailsOnMismatchEvenIfHeaderStripped()
+    {
+        $this->expectException(UnexpectedValueException::class);
+        $this->expectExceptionMessage('CRC32C checksum mismatch');
+
+        $body = 'test data';
+        // Final response missing the X-Goog-Hash header (mocking CDN/proxy stripping)
+        $response = new Response(200, [], $body);
+
+        // Set up custom callback to trigger on_headers with X-Goog-Hash
+        $this->requestWrapper->send(
+            Argument::any(),
+            Argument::type('array')
+        )->will(function ($args) use ($response) {
+            $requestOptions = $args[1];
+            if (isset($requestOptions['restOptions']['on_headers'])) {
+                $initialResponse = new Response(200, ['X-Goog-Hash' => 'crc32c=invalidcrc32c='], '');
+                $requestOptions['restOptions']['on_headers']($initialResponse);
+            }
+            return $response;
+        });
+
+        $rest = new Rest();
+        $rest->setRequestWrapper($this->requestWrapper->reveal());
+
+        $stream = $rest->downloadObject(self::$downloadOptions);
+        (string) $stream; // triggers validation
+    }
+
+    public function testDownloadObjectWithCrc32cValidationSuccess()
+    {
+        $body = 'test data';
+        $crc32c = base64_encode(hash('crc32c', $body, true));
+        $response = new Response(200, ['X-Goog-Hash' => 'crc32c=' . $crc32c], $body);
+
+        $this->requestWrapper->send(Argument::any(), Argument::any())->willReturn($response);
+
+        $rest = new Rest();
+        $rest->setRequestWrapper($this->requestWrapper->reveal());
+
+        $stream = $rest->downloadObject(self::$downloadOptions);
+        $this->assertEquals($body, (string) $stream);
+    }
+
+    public function testDownloadObjectWithCrc32cValidationFailure()
+    {
+        $this->expectException(UnexpectedValueException::class);
+        $this->expectExceptionMessage('CRC32C checksum mismatch');
+
+        $body = 'test data';
+        $response = new Response(200, ['X-Goog-Hash' => 'crc32c=invalidhash='], $body);
+
+        $this->requestWrapper->send(Argument::any(), Argument::any())->willReturn($response);
+
+        $rest = new Rest();
+        $rest->setRequestWrapper($this->requestWrapper->reveal());
+
+        $stream = $rest->downloadObject(self::$downloadOptions);
+        (string) $stream; // Consume the stream to trigger validation
+    }
+
+    public function testDownloadObjectWithMd5ValidationSuccess()
+    {
+        $body = 'test data';
+        $md5 = base64_encode(hash('md5', $body, true));
+        $response = new Response(200, ['X-Goog-Hash' => 'md5=' . $md5], $body);
+
+        $this->requestWrapper->send(Argument::any(), Argument::any())->willReturn($response);
+
+        $rest = new Rest();
+        $rest->setRequestWrapper($this->requestWrapper->reveal());
+
+        // Explicitly opt-in to md5 validation
+        $options = self::$downloadOptions + ['validate' => 'md5'];
+        $stream = $rest->downloadObject($options);
+        $this->assertEquals($body, (string) $stream);
+    }
+
+    public function testDownloadObjectValidationDisabled()
+    {
+        $body = 'test data';
+        $response = new Response(200, ['X-Goog-Hash' => 'crc32c=invalidhash='], $body);
+
+        $this->requestWrapper->send(Argument::any(), Argument::any())->willReturn($response);
+
+        $rest = new Rest();
+        $rest->setRequestWrapper($this->requestWrapper->reveal());
+
+        // Explicitly opt-out of validation
+        $options = self::$downloadOptions + ['validate' => false];
+        $stream = $rest->downloadObject($options);
+        $this->assertEquals($body, (string) $stream); // Should succeed despite invalid hash header
+    }
+
+    public function testDownloadObjectWithAutomaticCrc32cToMd5FallbackSuccess()
+    {
+        $body = 'test data';
+        $md5 = base64_encode(hash('md5', $body, true));
+        // GCS response has only md5 hash, no crc32c
+        $response = new Response(200, ['X-Goog-Hash' => 'md5=' . $md5], $body);
+
+        $this->requestWrapper->send(Argument::any(), Argument::any())->willReturn($response);
+
+        $rest = new Rest();
+        $rest->setRequestWrapper($this->requestWrapper->reveal());
+
+        // No validate option specified - defaults to 'crc32' (which should fallback to 'md5')
+        $stream = $rest->downloadObject(self::$downloadOptions);
+        $this->assertEquals($body, (string) $stream);
+    }
+
+    public function testDownloadObjectWithAutomaticCrc32cToMd5FallbackFailure()
+    {
+        $this->expectException(UnexpectedValueException::class);
+        $this->expectExceptionMessage('MD5 checksum mismatch');
+
+        $body = 'test data';
+        // GCS response has only md5 hash, no crc32c, and it is invalid
+        $response = new Response(200, ['X-Goog-Hash' => 'md5=invalidmd5hash=='], $body);
+
+        $this->requestWrapper->send(Argument::any(), Argument::any())->willReturn($response);
+
+        $rest = new Rest();
+        $rest->setRequestWrapper($this->requestWrapper->reveal());
+
+        // No validate option specified - defaults to 'crc32' (which should fallback to 'md5')
+        $stream = $rest->downloadObject(self::$downloadOptions);
+        (string) $stream;
+    }
+
+    public function testDownloadObjectAsyncWithCrc32cValidationSuccess()
+    {
+        $body = 'test data';
+        $crc32c = base64_encode(hash('crc32c', $body, true));
+        $response = new Response(200, ['X-Goog-Hash' => 'crc32c=' . $crc32c], $body);
+
+        $this->requestWrapper->sendAsync(Argument::any(), Argument::any())->willReturn(Create::promiseFor($response));
+
+        $rest = new Rest();
+        $rest->setRequestWrapper($this->requestWrapper->reveal());
+
+        $promise = $rest->downloadObjectAsync(self::$downloadOptions);
+        $this->assertInstanceOf(PromiseInterface::class, $promise);
+        $stream = $promise->wait();
+        $this->assertEquals($body, (string) $stream);
+    }
+
+    public function testDownloadObjectAsyncWithCrc32cValidationFailure()
+    {
+        $this->expectException(UnexpectedValueException::class);
+        $this->expectExceptionMessage('CRC32C checksum mismatch');
+
+        $body = 'test data';
+        $response = new Response(200, ['X-Goog-Hash' => 'crc32c=invalidhash='], $body);
+
+        $this->requestWrapper->sendAsync(Argument::any(), Argument::any())->willReturn(Create::promiseFor($response));
+
+        $rest = new Rest();
+        $rest->setRequestWrapper($this->requestWrapper->reveal());
+
+        $promise = $rest->downloadObjectAsync(self::$downloadOptions);
+        $this->assertInstanceOf(PromiseInterface::class, $promise);
+        $stream = $promise->wait();
+        (string) $stream; // Consume the stream to trigger validation
+    }
+
     /**
      * @dataProvider apiEndpointProvider
      */
