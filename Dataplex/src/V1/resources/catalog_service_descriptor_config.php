@@ -582,6 +582,18 @@ return [
                     ],
                 ],
             ],
+            'ModifyEntry' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Dataplex\V1\Entry',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'SearchEntries' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',

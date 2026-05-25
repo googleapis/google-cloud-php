@@ -82,6 +82,13 @@ class RuleType
      * Generated from protobuf enum <code>SQL_ASSERTION = 9;</code>
      */
     const SQL_ASSERTION = 9;
+    /**
+     * See
+     * [DataQualityRule.TemplateReference][google.cloud.dataplex.v1.DataQualityRule.TemplateReference].
+     *
+     * Generated from protobuf enum <code>TEMPLATE_REFERENCE = 10;</code>
+     */
+    const TEMPLATE_REFERENCE = 10;
 
     private static $valueToName = [
         self::RULE_TYPE_UNSPECIFIED => 'RULE_TYPE_UNSPECIFIED',
@@ -94,6 +101,7 @@ class RuleType
         self::TABLE_CONDITION_EXPECTATION => 'TABLE_CONDITION_EXPECTATION',
         self::UNIQUENESS_EXPECTATION => 'UNIQUENESS_EXPECTATION',
         self::SQL_ASSERTION => 'SQL_ASSERTION',
+        self::TEMPLATE_REFERENCE => 'TEMPLATE_REFERENCE',
     ];
 
     public static function name($value)
