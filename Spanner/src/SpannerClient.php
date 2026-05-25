@@ -202,7 +202,7 @@ class SpannerClient
      *     @type int $isolationLevel The level of Isolation for the transactions executed by this Client's instance.
      *           **Defaults to** IsolationLevel::ISOLATION_LEVEL_UNSPECIFIED
      *     @type CacheItemPoolInterface $cacheItemPool
-     *     @type bool $disableBuiltInMetrics If true, built-in metrics collection will be disabled.
+     *     @type bool $enableBuiltInMetrics If true, built-in metrics collection will be enabled.
      *           **Defaults to** false.
      *     @type int $metricsTimeoutMillis The timeout in milliseconds for the internal
      *           `MetricServiceClient` used to export metrics. **Defaults to** 100.
@@ -228,7 +228,7 @@ class SpannerClient
             'readLockMode' => ReadLockMode::READ_LOCK_MODE_UNSPECIFIED,
             'routeToLeader' => true,
             'cacheItemPool' => null,
-            'disableBuiltInMetrics' => false,
+            'enableBuiltInMetrics' => false,
             'metricsTimeoutMillis' => 100,
         ];
 
@@ -1059,7 +1059,7 @@ class SpannerClient
         $timeoutMillis = $this->pluck('metricsTimeoutMillis', $options, false) ?? 100;
         $location = $this->getLocation();
 
-        if ($this->pluck('disableBuiltInMetrics', $options, false)) {
+        if (!$this->pluck('enableBuiltInMetrics', $options, false)) {
             return;
         }
 

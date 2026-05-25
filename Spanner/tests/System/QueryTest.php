@@ -1266,7 +1266,8 @@ class QueryTest extends SystemTestCase
         $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
         $client = new SpannerClient([
             'keyFilePath' => $keyFilePath,
-            'disableBuiltInMetrics' => false
+            'enableBuiltInMetrics' => true,
+            'metricsTimeoutMillis' => 100000,
         ]);
 
         $db = $client->connect(self::INSTANCE_NAME, self::$dbName);

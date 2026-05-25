@@ -69,9 +69,8 @@ trait SystemTestCaseTrait
         ];
         $clientConfig = [
             'keyFilePath' => $keyFilePath,
-            // 'disableBuiltInMetrics' => true,
+            'enableBuiltInMetrics' => false, // Disabling the metrics for general tests
         ];
-
         $serviceAddress = getenv('SPANNER_SERVICE_ADDRESS');
         if ($serviceAddress) {
             $gapicConfig = [

@@ -870,13 +870,13 @@ class SpannerClientTest extends TestCase
         );
     }
 
-    public function testBuiltinMetricsEnabledByDefault()
+    public function testBuiltinMetricsDisabledByDefault()
     {
         $gapicSpannerClient = $this->prophesize(GapicSpannerClient::class);
         $gapicSpannerClient->prependMiddleware(Argument::any())
-            ->shouldBeCalledTimes(2);
+            ->shouldBeCalledTimes(1);
         $gapicSpannerClient->addMiddleware(Argument::any())
-            ->shouldBeCalledTimes(2);
+            ->shouldBeCalledTimes(1);
 
         new SpannerClient([
             'projectId' => self::PROJECT,
@@ -885,19 +885,19 @@ class SpannerClientTest extends TestCase
         ]);
     }
 
-    public function testBuiltinMetricsCanBeDisabled()
+    public function testBuiltinMetricsCanBeEnabled()
     {
         $gapicSpannerClient = $this->prophesize(GapicSpannerClient::class);
         $gapicSpannerClient->prependMiddleware(Argument::any())
-            ->shouldBeCalledTimes(1);
+            ->shouldBeCalledTimes(2);
         $gapicSpannerClient->addMiddleware(Argument::any())
-            ->shouldBeCalledTimes(1);
+            ->shouldBeCalledTimes(2);
 
         new SpannerClient([
             'projectId' => self::PROJECT,
             'credentials' => Fixtures::KEYFILE_STUB_FIXTURE(),
             'gapicSpannerClient' => $gapicSpannerClient->reveal(),
-            'disableBuiltInMetrics' => true,
+            'enableBuiltInMetrics' => true,
         ]);
     }
 }
