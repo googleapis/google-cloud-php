@@ -212,8 +212,13 @@ class MetricsAttemptMiddleware implements MiddlewareInterface
      *
      * @return void
      */
-    private function recordAttempt(float $startTime, int $code, string $method, array $options, bool $directPathUsed = false): void
-    {
+    private function recordAttempt(
+        float $startTime,
+        int $code,
+        string $method,
+        array $options,
+        bool $directPathUsed = false
+    ): void {
         $endTime = microtime(true);
         $duration = ($endTime - $startTime) * 1000; // Convert to MS
 
