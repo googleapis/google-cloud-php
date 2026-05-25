@@ -35,7 +35,7 @@ namespace Google\Cloud\Spanner\OpenTelemetry;
 use OpenTelemetry\API\Metrics\CounterInterface;
 use OpenTelemetry\API\Metrics\HistogramInterface;
 use OpenTelemetry\Context\Context;
-use OpenTelemetry\Context\ContextKey;
+use OpenTelemetry\Context\ContextKeyInterface;
 
 /**
  * MetricsContext holds state shared between Spanner client methods,
@@ -46,7 +46,7 @@ use OpenTelemetry\Context\ContextKey;
  */
 class MetricsContext
 {
-    private static ?ContextKey $contextKey = null;
+    private static ?ContextKeyInterface $contextKey = null;
 
     private string $operationId;
     private int $attemptCount = 0;
@@ -69,7 +69,7 @@ class MetricsContext
     /**
      * Returns the unique ContextKey for OTel propagation.
      */
-    public static function contextKey(): ContextKey
+    public static function contextKey(): ContextKeyInterface
     {
         if (self::$contextKey === null) {
             self::$contextKey = Context::createKey('spanner-metrics-context');
