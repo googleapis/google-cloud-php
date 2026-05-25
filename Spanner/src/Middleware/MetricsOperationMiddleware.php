@@ -36,11 +36,13 @@ use Exception;
 use Google\ApiCore\Call;
 use Google\ApiCore\Middleware\MiddlewareInterface;
 use Google\ApiCore\ServerStream;
+use Google\Cloud\Spanner\OpenTelemetry\MetricsContext;
 use Google\Rpc\Code;
 use GuzzleHttp\Promise\PromiseInterface;
 use OpenTelemetry\API\Metrics\CounterInterface;
 use OpenTelemetry\API\Metrics\HistogramInterface;
 use OpenTelemetry\API\Metrics\MeterInterface;
+use OpenTelemetry\Context\Context;
 
 /**
  * @internal
@@ -99,7 +101,35 @@ class MetricsOperationMiddleware implements MiddlewareInterface
     public function __invoke(Call $call, array $options)
     {
         $next = $this->nextHandler;
+
+        $metricsContext = Context::getCurrent()->get(
+            MetricsContext::contextKey()
+        );
+
+        if ($metricsContext) {
+            $metricsContext->setOperationInstruments(
+                $this->operationCountCounter,
+                $this->operationLatencyHistogram
+            );
+        }
+
+        if ($metricsContext && $metricsContext->isResume()) {
+            return $next($call, $options);
+        }
+
         $startTime = microtime(true);
+        $directPathUsed = false;
+
+        $originalCallback = $options['metadataCallback'] ?? null;
+        $options['metadataCallback'] = function ($metadata) use ($originalCallback, &$directPathUsed) {
+            $serverTiming = $metadata['server-timing'][0] ?? null;
+            if ($serverTiming && strpos($serverTiming, 'afe;') !== false) {
+                $directPathUsed = true;
+            }
+            if ($originalCallback) {
+                $originalCallback($metadata);
+            }
+        };
 
         try {
             $response = $next(
@@ -107,22 +137,22 @@ class MetricsOperationMiddleware implements MiddlewareInterface
                 $options
             );
         } catch (Exception $ex) {
-            $this->recordOperation($startTime, $ex->getCode(), $call->getMethod(), $options);
+            $this->recordOperation($startTime, $ex->getCode(), $call->getMethod(), $options, $directPathUsed);
             throw $ex;
         }
 
         if ($response instanceof ServerStream) {
-            $this->recordOperation($startTime, Code::OK, $call->getMethod(), $options);
+            // Let the stream iterator (Result.php) log the final operation metrics!
         }
 
         if ($response instanceof PromiseInterface) {
             return $response->then(
-                function ($response) use ($startTime, $options, $call) {
-                    $this->recordOperation($startTime, Code::OK, $call->getMethod(), $options);
+                function ($response) use ($startTime, $options, $call, &$directPathUsed) {
+                    $this->recordOperation($startTime, Code::OK, $call->getMethod(), $options, $directPathUsed);
                     return $response;
                 },
-                function ($e) use ($startTime, $options, $call) {
-                    $this->recordOperation($startTime, $e->getCode(), $call->getMethod(), $options);
+                function ($e) use ($startTime, $options, $call, &$directPathUsed) {
+                    $this->recordOperation($startTime, $e->getCode(), $call->getMethod(), $options, $directPathUsed);
                     throw $e;
                 }
             );
@@ -139,11 +169,17 @@ class MetricsOperationMiddleware implements MiddlewareInterface
      * @param int $code The resulting code of the operation
      * @param string $method The RPC name being called
      * @param array $options The options used for middleware communication
+     * @param bool $directPathUsed Whether DirectPath was used
      *
      * @return void
      */
-    private function recordOperation(float $startTime, int $code, string $method, array $options): void
-    {
+    private function recordOperation(
+        float $startTime,
+        int $code,
+        string $method,
+        array $options,
+        bool $directPathUsed = false
+    ): void {
         $endTime = microtime(true);
         $duration = ($endTime - $startTime) * 1000; // Convert seconds to ms
         $codeName = Code::name($code);
@@ -157,6 +193,8 @@ class MetricsOperationMiddleware implements MiddlewareInterface
             $databaseId = $matches[2];
         }
 
+        $directPathEnabled = filter_var(getenv('GOOGLE_SPANNER_ENABLE_DIRECT_ACCESS'), FILTER_VALIDATE_BOOLEAN);
+
         $labels = [
             'method' => $method,
             'status' => $codeName,
@@ -166,7 +204,9 @@ class MetricsOperationMiddleware implements MiddlewareInterface
             'client_uid' => $this->clientId,
             'client_name' => $this->clientName,
             'instance_config' => self::INSTANCE_CONFIG,
-            'location' => $this->location
+            'location' => $this->location,
+            'directpath_enabled' => $directPathEnabled ? 'true' : 'false',
+            'directpath_used' => $directPathUsed ? 'true' : 'false'
         ];
 
         $this->operationCountCounter->add(1, $labels);

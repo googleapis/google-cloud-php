@@ -98,7 +98,9 @@ class BuiltInMetricsOperationMiddlewareTest extends TestCase
             'client_uid' => $clientId,
             'client_name' => $expectedClientName,
             'instance_config' => 'unknown',
-            'location' => $location
+            'location' => $location,
+            'directpath_enabled' => 'false',
+            'directpath_used' => 'false'
         ];
 
         $this->counter->add(1, $expectedLabels)->shouldBeCalled();

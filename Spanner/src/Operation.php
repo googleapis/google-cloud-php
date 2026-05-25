@@ -28,6 +28,7 @@ use Google\Cloud\Core\OptionsValidator;
 use Google\Cloud\Core\RequestProcessorTrait;
 use Google\Cloud\Spanner\Batch\QueryPartition;
 use Google\Cloud\Spanner\Batch\ReadPartition;
+use Google\Cloud\Spanner\OpenTelemetry\MetricsContext;
 use Google\Cloud\Spanner\Session\SessionCache;
 use Google\Cloud\Spanner\V1\BeginTransactionRequest;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
@@ -50,6 +51,7 @@ use Google\Cloud\Spanner\V1\Type;
 use Google\Protobuf\RepeatedField;
 use Google\Rpc\Code;
 use InvalidArgumentException;
+use OpenTelemetry\Context\Context;
 
 /**
  * Common interface for running operations against Cloud Spanner. This class is
@@ -281,32 +283,94 @@ class Operation
         // @TODO potentially move to a `Spanner\CallOptions`
         $callOptions += $rtl;
 
-        // Initially with begin, transactionId will be null.
-        // Once transaction is generated, even in the case of stream failure,
-        // transaction will be passed to this callable by the Result class.
-        $call = function ($resumeToken = null, $transaction = null) use (
-            $session,
-            $executeSqlRequest,
-            $callOptions
-        ) {
-            if ($transaction && !empty($transaction->id())) {
-                $executeSqlRequest->setTransaction(new TransactionSelector(['id' => $transaction->id()]));
-            }
-            if ($resumeToken) {
-                $executeSqlRequest->setResumeToken($resumeToken);
-            }
+        $metricsContext = new MetricsContext();
+        $ctx = Context::getCurrent()->with(
+            MetricsContext::contextKey(),
+            $metricsContext
+        );
+        $scope = $ctx->activate();
 
-            if (!$this->routeToLeader) {
-                unset($callOptions['route-to-leader']);
-            }
+        try {
+            // Initially with begin, transactionId will be null.
+            // Once transaction is generated, even in the case of stream failure,
+            // transaction will be passed to this callable by the Result class.
+            $call = function ($resumeToken = null, $transaction = null) use (
+                $session,
+                $executeSqlRequest,
+                $callOptions
+            ) {
+                if ($transaction && !empty($transaction->id())) {
+                    $executeSqlRequest->setTransaction(new TransactionSelector(['id' => $transaction->id()]));
+                }
+                if ($resumeToken) {
+                    $executeSqlRequest->setResumeToken($resumeToken);
+                }
 
-            $stream = $this->spannerClient->executeStreamingSql($executeSqlRequest, $callOptions + [
-                'resource-prefix' => $this->getDatabaseNameFromSession($session),
-            ]);
+                if (!$this->routeToLeader) {
+                    unset($callOptions['route-to-leader']);
+                }
 
-            return $this->handleResultSetStream($stream, $transaction);
-        };
-        return new Result($this, $session, $call, $miscOptions['transactionContext'] ?? null, $this->mapper);
+                $stream = $this->spannerClient->executeStreamingSql($executeSqlRequest, $callOptions + [
+                    'resource-prefix' => $this->getDatabaseNameFromSession($session),
+                ]);
+
+                return $this->handleResultSetStream($stream, $transaction);
+            };
+
+            $wrappedCall = function ($resumeToken = null, $transaction = null) use ($call, $metricsContext) {
+                $generator = $call($resumeToken, $transaction);
+                $delegator = function () use ($generator, $metricsContext) {
+                    try {
+                        foreach ($generator as $result) {
+                            yield $result;
+                        }
+                        if ($metricsContext) {
+                            $attemptCounter = $metricsContext->getAttemptCountCounter();
+                            $attemptHistogram = $metricsContext->getAttemptLatencyHistogram();
+                            $opCounter = $metricsContext->getOperationCountCounter();
+                            $opHistogram = $metricsContext->getOperationLatencyHistogram();
+
+                            $labels = $metricsContext->getBaseLabels();
+                            $labels['status'] = Code::name(Code::OK);
+
+                            if ($attemptCounter && $attemptHistogram) {
+                                $attemptCounter->add(1, $labels);
+                                $duration = (microtime(true) - $metricsContext->getLastAttemptStartTime()) * 1000;
+                                $attemptHistogram->record($duration, $labels);
+                            }
+
+                            if ($opCounter && $opHistogram) {
+                                $opCounter->add(1, $labels);
+                                $duration = (microtime(true) - $metricsContext->getOperationStartTime()) * 1000;
+                                $opHistogram->record($duration, $labels);
+                            }
+                        }
+                    } catch (\Exception $ex) {
+                        if ($metricsContext) {
+                            $attemptCounter = $metricsContext->getAttemptCountCounter();
+                            $attemptHistogram = $metricsContext->getAttemptLatencyHistogram();
+
+                            $labels = $metricsContext->getBaseLabels();
+                            $labels['status'] = \Google\Rpc\Code::name($ex->getCode());
+
+                            if ($attemptCounter && $attemptHistogram) {
+                                $attemptCounter->add(1, $labels);
+                                $duration = (microtime(true) - $metricsContext->getLastAttemptStartTime()) * 1000;
+                                $attemptHistogram->record($duration, $labels);
+                            }
+
+                            $metricsContext->setIsResume(true);
+                        }
+                        throw $ex;
+                    }
+                };
+                return $delegator();
+            };
+
+            return new Result($this, $session, $wrappedCall, $miscOptions['transactionContext'] ?? null, $this->mapper);
+        } finally {
+            $scope->detach();
+        }
     }
 
     /**
@@ -502,38 +566,99 @@ class Operation
         // Spanner allows "route-to-leader" as a call option {@see Middleware\SpannerMiddleware}
         $callOptions += $rtl;
 
-        $call = function ($resumeToken = null, $transaction = null) use (
-            $table,
-            $session,
-            $columns,
-            $readRequest,
-            $callOptions
-        ) {
-            if ($transaction && !empty($transaction->id())) {
-                $readRequest->setTransaction(new TransactionSelector(['id' => $transaction->id()]));
-            }
-            if ($resumeToken) {
-                $readRequest->setResumeToken($resumeToken);
-            }
+        $metricsContext = new MetricsContext();
+        $ctx = Context::getCurrent()->with(
+            MetricsContext::contextKey(),
+            $metricsContext
+        );
+        $scope = $ctx->activate();
 
-            $readRequest
-                ->setTable($table)
-                ->setSession($session->name())
-                ->setColumns($columns);
+        try {
+            $call = function ($resumeToken = null, $transaction = null) use (
+                $table,
+                $session,
+                $columns,
+                $readRequest,
+                $callOptions
+            ) {
+                if ($transaction && !empty($transaction->id())) {
+                    $readRequest->setTransaction(new TransactionSelector(['id' => $transaction->id()]));
+                }
+                if ($resumeToken) {
+                    $readRequest->setResumeToken($resumeToken);
+                }
 
-            if (!$this->routeToLeader) {
-                unset($callOptions['route-to-leader']);
-            }
+                $readRequest
+                    ->setTable($table)
+                    ->setSession($session->name())
+                    ->setColumns($columns);
 
-            $stream = $this->spannerClient->streamingRead($readRequest, $callOptions + [
-                'resource-prefix' => $this->getDatabaseNameFromSession($session),
-            ]);
+                if (!$this->routeToLeader) {
+                    unset($callOptions['route-to-leader']);
+                }
 
-            // return the generator
-            return $this->handleResultSetStream($stream, $transaction);
-        };
+                $stream = $this->spannerClient->streamingRead($readRequest, $callOptions + [
+                    'resource-prefix' => $this->getDatabaseNameFromSession($session),
+                ]);
 
-        return new Result($this, $session, $call, $context, $this->mapper);
+                // return the generator
+                return $this->handleResultSetStream($stream, $transaction);
+            };
+
+            $wrappedCall = function ($resumeToken = null, $transaction = null) use ($call, $metricsContext) {
+                $generator = $call($resumeToken, $transaction);
+                $delegator = function () use ($generator, $metricsContext) {
+                    try {
+                        foreach ($generator as $result) {
+                            yield $result;
+                        }
+                        if ($metricsContext) {
+                            $attemptCounter = $metricsContext->getAttemptCountCounter();
+                            $attemptHistogram = $metricsContext->getAttemptLatencyHistogram();
+                            $opCounter = $metricsContext->getOperationCountCounter();
+                            $opHistogram = $metricsContext->getOperationLatencyHistogram();
+
+                            $labels = $metricsContext->getBaseLabels();
+                            $labels['status'] = \Google\Rpc\Code::name(\Google\Rpc\Code::OK);
+
+                            if ($attemptCounter && $attemptHistogram) {
+                                $attemptCounter->add(1, $labels);
+                                $duration = (microtime(true) - $metricsContext->getLastAttemptStartTime()) * 1000;
+                                $attemptHistogram->record($duration, $labels);
+                            }
+
+                            if ($opCounter && $opHistogram) {
+                                $opCounter->add(1, $labels);
+                                $duration = (microtime(true) - $metricsContext->getOperationStartTime()) * 1000;
+                                $opHistogram->record($duration, $labels);
+                            }
+                        }
+                    } catch (\Exception $ex) {
+                        if ($metricsContext) {
+                            $attemptCounter = $metricsContext->getAttemptCountCounter();
+                            $attemptHistogram = $metricsContext->getAttemptLatencyHistogram();
+
+                            $labels = $metricsContext->getBaseLabels();
+                            $labels['status'] = \Google\Rpc\Code::name($ex->getCode());
+
+                            if ($attemptCounter && $attemptHistogram) {
+                                $attemptCounter->add(1, $labels);
+                                $duration = (microtime(true) - $metricsContext->getLastAttemptStartTime()) * 1000;
+                                $attemptHistogram->record($duration, $labels);
+                            }
+
+                            $metricsContext->setIsResume(true);
+                        }
+                        throw $ex;
+                    }
+                };
+                return $delegator();
+            };
+
+            return new Result($this, $session, $wrappedCall, $context, $this->mapper);
+        } finally {
+            $scope->detach();
+        }
     }
 
     /**

@@ -37,11 +37,13 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\Call;
 use Google\ApiCore\Middleware\MiddlewareInterface;
 use Google\ApiCore\ServerStream;
+use Google\Cloud\Spanner\OpenTelemetry\MetricsContext;
 use Google\Rpc\Code;
 use GuzzleHttp\Promise\PromiseInterface;
 use OpenTelemetry\API\Metrics\CounterInterface;
 use OpenTelemetry\API\Metrics\HistogramInterface;
 use OpenTelemetry\API\Metrics\MeterInterface;
+use OpenTelemetry\Context\Context;
 
 /**
  * @internal
@@ -129,13 +131,35 @@ class MetricsAttemptMiddleware implements MiddlewareInterface
         $next = $this->nextHandler;
 
         $startTime = microtime(true);
+        $directPathUsed = false;
+
+        /** @var MetricsContext $metricsContext */
+        $metricsContext = Context::getCurrent()->get(
+            MetricsContext::contextKey()
+        );
+        if ($metricsContext) {
+            $metricsContext->setAttemptInstruments(
+                $this->attemptCountCounter,
+                $this->attemptLatencyHistogram
+            );
+            $baseLabels = $this->getMetricLabels($call->getMethod(), $options, Code::OK, $directPathUsed);
+            unset($baseLabels['status']);
+            $metricsContext->setBaseLabels($baseLabels);
+
+            $metricsContext->incrementAttemptCount();
+            $metricsContext->setLastAttemptStartTime($startTime);
+        }
 
         // In case that something else is using this callback,
         // we take the original one and call it later.
         $originalCallback = $options['metadataCallback'] ?? null;
 
         // This gets the metadata on an ok status meaning we can get the GFE latency header for unary calls
-        $options['metadataCallback'] = function ($metadata) use ($originalCallback, $call, $options) {
+        $options['metadataCallback'] = function ($metadata) use ($originalCallback, $call, $options, &$directPathUsed) {
+            $serverTiming = $metadata['server-timing'][0] ?? null;
+            if ($serverTiming && strpos($serverTiming, 'afe;') !== false) {
+                $directPathUsed = true;
+            }
             $this->recordGfeAndAfeLatency($metadata, $call, $options, Code::OK);
             if ($originalCallback) {
                 $originalCallback($metadata);
@@ -149,24 +173,25 @@ class MetricsAttemptMiddleware implements MiddlewareInterface
             );
         } catch (Exception $e) {
             // In case that the call is not a unary call and it is a streaming call error.
-            $this->recordAttempt($startTime, $e->getCode(), $call->getMethod(), $options);
+            $this->recordAttempt($startTime, $e->getCode(), $call->getMethod(), $options, $directPathUsed);
             $this->recordGfeAndAfeError($e, $call, $options);
             throw $e;
         }
 
         if ($response instanceof ServerStream) {
-            $this->recordAttempt($startTime, Code::OK, $call->getMethod(), $options);
-            $this->recordGfeAndAfeLatency($response->getServerStreamingCall()->getMetadata(), $call, $options, Code::OK);
+            $metadata = $response->getServerStreamingCall()->getMetadata();
+            $this->recordGfeAndAfeLatency($metadata, $call, $options, Code::OK);
+            // Attempt count and latency logging are bypassed (handled by generator wrapper)
         }
 
         if ($response instanceof PromiseInterface) {
             return $response->then(
-                function ($response) use ($startTime, $options, $call) {
-                    $this->recordAttempt($startTime, Code::OK, $call->getMethod(), $options);
+                function ($response) use ($startTime, $options, $call, &$directPathUsed) {
+                    $this->recordAttempt($startTime, Code::OK, $call->getMethod(), $options, $directPathUsed);
                     return $response;
                 },
-                function ($e) use ($startTime, $options, $call) {
-                    $this->recordAttempt($startTime, $e->getCode(), $call->getMethod(), $options);
+                function ($e) use ($startTime, $options, $call, &$directPathUsed) {
+                    $this->recordAttempt($startTime, $e->getCode(), $call->getMethod(), $options, $directPathUsed);
                     $this->recordGfeAndAfeError($e, $call, $options);
                     throw $e;
                 }
@@ -187,12 +212,12 @@ class MetricsAttemptMiddleware implements MiddlewareInterface
      *
      * @return void
      */
-    private function recordAttempt(float $startTime, int $code, string $method, array $options): void
+    private function recordAttempt(float $startTime, int $code, string $method, array $options, bool $directPathUsed = false): void
     {
         $endTime = microtime(true);
         $duration = ($endTime - $startTime) * 1000; // Convert to MS
 
-        $labels = $this->getMetricLabels($method, $options, $code);
+        $labels = $this->getMetricLabels($method, $options, $code, $directPathUsed);
 
         $this->attemptCountCounter->add(1, $labels);
         $this->attemptLatencyHistogram->record($duration, $labels);
@@ -223,18 +248,25 @@ class MetricsAttemptMiddleware implements MiddlewareInterface
             }
         }
 
-        $labels = $this->getMetricLabels($call->getMethod(), $options, $status);
+        $directPathUsed = ($serverTiming && strpos($serverTiming, 'afe;') !== false);
+        $labels = $this->getMetricLabels($call->getMethod(), $options, $status, $directPathUsed);
 
-        if (!is_null($gfeLatency)) {
-            $this->attemptGfeHistogram->record($gfeLatency, $labels);
+        if ($serverTiming) {
+            if (!is_null($gfeLatency)) {
+                $this->attemptGfeHistogram->record($gfeLatency, $labels);
+            }
+            if (!is_null($afeLatency)) {
+                $this->attemptAfeHistogram->record($afeLatency, $labels);
+            }
         } else {
-            $this->gfeConnectivityErrorCounter->add(1, $labels);
-        }
+            // The server-timing header is completely missing, indicating a connectivity error.
+            $directPathEnabled = filter_var(getenv('GOOGLE_SPANNER_ENABLE_DIRECT_ACCESS'), FILTER_VALIDATE_BOOLEAN);
 
-        if (!is_null($afeLatency)) {
-            $this->attemptAfeHistogram->record($afeLatency, $labels);
-        } else {
-            $this->afeConnectivityErrorCounter->add(1, $labels);
+            if ($directPathEnabled) {
+                $this->afeConnectivityErrorCounter->add(1, $labels);
+            } else {
+                $this->gfeConnectivityErrorCounter->add(1, $labels);
+            }
         }
     }
 
@@ -247,7 +279,7 @@ class MetricsAttemptMiddleware implements MiddlewareInterface
      *
      * @return array
      */
-    private function getMetricLabels(string $method, array $options, int $code): array
+    private function getMetricLabels(string $method, array $options, int $code, bool $directPathUsed = false): array
     {
         $codeName = Code::name($code);
 
@@ -260,6 +292,8 @@ class MetricsAttemptMiddleware implements MiddlewareInterface
             $databaseId = $matches[2];
         }
 
+        $directPathEnabled = filter_var(getenv('GOOGLE_SPANNER_ENABLE_DIRECT_ACCESS'), FILTER_VALIDATE_BOOLEAN);
+
         return [
             'method' => $method,
             'status' => $codeName,
@@ -269,7 +303,9 @@ class MetricsAttemptMiddleware implements MiddlewareInterface
             'client_uid' => $this->clientId,
             'client_name' => $this->clientName,
             'instance_config' => self::INSTANCE_CONFIG,
-            'location' => $this->location
+            'location' => $this->location,
+            'directpath_enabled' => $directPathEnabled ? 'true' : 'false',
+            'directpath_used' => $directPathUsed ? 'true' : 'false'
         ];
     }
 

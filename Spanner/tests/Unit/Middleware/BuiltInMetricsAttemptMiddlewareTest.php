@@ -140,7 +140,9 @@ class BuiltInMetricsAttemptMiddlewareTest extends TestCase
             'client_uid' => $clientId,
             'client_name' => $expectedClientName,
             'instance_config' => 'unknown',
-            'location' => $location
+            'location' => $location,
+            'directpath_enabled' => 'false',
+            'directpath_used' => 'true'
         ];
 
         $this->attemptCounter->add(1, $expectedLabels)->shouldBeCalled();
@@ -183,11 +185,12 @@ class BuiltInMetricsAttemptMiddlewareTest extends TestCase
             ]
         ];
 
-        // Expect GFE latency recording from the stream metadata
+        // Expect GFE latency recording from the stream metadata immediately
         $this->gfeHistogram->record(45.0, Argument::any())->shouldBeCalled();
-        $this->attemptCounter->add(1, Argument::any())->shouldBeCalled();
+        $this->attemptCounter->add(1, Argument::any())->shouldNotBeCalled();
 
-        $middleware($call->reveal(), $options);
+        $response = $middleware($call->reveal(), $options);
+        $this->assertInstanceOf(ServerStream::class, $response);
     }
 
     public function testRecordsGfeErrorOnMissingHeader()
