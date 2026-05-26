@@ -33,12 +33,12 @@ use Google\Cloud\Dataplex\V1\LookupContextResponse;
  *
  * @param string $name                      The project to which the request should be attributed in the
  *                                          following form: `projects/{project}/locations/{location}`.
- * @param string $formattedResourcesElement The entry names to lookup context for. The request should have
- *                                          max 10 of those.
+ * @param string $formattedResourcesElement The entry names to look up the context for. The maximum number of
+ *                                          resources for a request is limited to 10.
  *
  *                                          ## Examples:
  *
- *                                          projects/{project}/locations/{location}/entryGroups/{entry_group}/entries/{entry}
+ *                                          `projects/{project}/locations/{location}/entryGroups/{entry_group}/entries/{entry}`
  *                                          Please see {@see CatalogServiceClient::entryName()} for help formatting this field.
  */
 function lookup_context_sample(string $name, string $formattedResourcesElement): void

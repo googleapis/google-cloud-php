@@ -81,6 +81,18 @@ return [
                     ],
                 ],
             ],
+            'CancelDataScanJob' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Dataplex\V1\CancelDataScanJobResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GenerateDataQualityRules' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Dataplex\V1\GenerateDataQualityRulesResponse',
@@ -248,6 +260,7 @@ return [
                 'dataScanJob' => 'projects/{project}/locations/{location}/dataScans/{dataScan}/jobs/{job}',
                 'dataset' => 'projects/{project}/datasets/{dataset}',
                 'entity' => 'projects/{project}/locations/{location}/lakes/{lake}/zones/{zone}/entities/{entity}',
+                'entry' => 'projects/{project}/locations/{location}/entryGroups/{entry_group}/entries/{entry}',
                 'location' => 'projects/{project}/locations/{location}',
                 'project' => 'projects/{project}',
             ],
