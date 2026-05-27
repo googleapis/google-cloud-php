@@ -73,6 +73,7 @@ use Google\Cloud\Dataplex\V1\LookupEntryLinksRequest;
 use Google\Cloud\Dataplex\V1\LookupEntryRequest;
 use Google\Cloud\Dataplex\V1\MetadataFeed;
 use Google\Cloud\Dataplex\V1\MetadataJob;
+use Google\Cloud\Dataplex\V1\ModifyEntryRequest;
 use Google\Cloud\Dataplex\V1\SearchEntriesRequest;
 use Google\Cloud\Dataplex\V1\UpdateAspectTypeRequest;
 use Google\Cloud\Dataplex\V1\UpdateEntryGroupRequest;
@@ -138,6 +139,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<LookupContextResponse> lookupContextAsync(LookupContextRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Entry> lookupEntryAsync(LookupEntryRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> lookupEntryLinksAsync(LookupEntryLinksRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Entry> modifyEntryAsync(ModifyEntryRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> searchEntriesAsync(SearchEntriesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateAspectTypeAsync(UpdateAspectTypeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Entry> updateEntryAsync(UpdateEntryRequest $request, array $optionalArgs = [])
@@ -1348,6 +1350,32 @@ final class CatalogServiceClient
     }
 
     /**
+     * Modifies an entry using the permission on the source system.
+     *
+     * The async variant is {@see CatalogServiceClient::modifyEntryAsync()} .
+     *
+     * @example samples/V1/CatalogServiceClient/modify_entry.php
+     *
+     * @param ModifyEntryRequest $request     A request to house fields associated with the call.
+     * @param array              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Entry
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function modifyEntry(ModifyEntryRequest $request, array $callOptions = []): Entry
+    {
+        return $this->startApiCall('ModifyEntry', $request, $callOptions)->wait();
+    }
+
+    /**
      * Searches for Entries matching the given query and scope.
      *
      * The async variant is {@see CatalogServiceClient::searchEntriesAsync()} .
@@ -1557,13 +1585,21 @@ final class CatalogServiceClient
 
     /**
      * Lists information about the supported locations for this service.
-    This method can be called in two ways:
 
-    *   **List all public locations:** Use the path `GET /v1/locations`.
-    *   **List project-visible locations:** Use the path
-    `GET /v1/projects/{project_id}/locations`. This may include public
-    locations as well as private or other locations specifically visible
-    to the project.
+    This method lists locations based on the resource scope provided in
+    the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+    **Global locations**: If `name` is empty, the method lists the
+    public locations available to all projects. * **Project-specific
+    locations**: If `name` follows the format
+    `projects/{project}`, the method lists locations visible to that
+    specific project. This includes public, private, or other
+    project-specific locations enabled for the project.
+
+    For gRPC and client library implementations, the resource name is
+    passed as the `name` field. For direct service calls, the resource
+    name is
+    incorporated into the request path based on the specific service
+    implementation and version.
      *
      * The async variant is {@see CatalogServiceClient::listLocationsAsync()} .
      *

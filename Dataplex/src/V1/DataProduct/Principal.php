@@ -16,6 +16,13 @@ use Google\Protobuf\RepeatedField;
  */
 class Principal extends \Google\Protobuf\Internal\Message
 {
+    /**
+     * Optional. Specifies the email of the producer service account, as per
+     * https://cloud.google.com/iam/docs/principals-overview#service-account.
+     *
+     * Generated from protobuf field <code>optional string service_account = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $service_account = null;
     protected $type;
 
     /**
@@ -27,6 +34,9 @@ class Principal extends \Google\Protobuf\Internal\Message
      *     @type string $google_group
      *           Optional. Email of the Google Group, as per
      *           https://cloud.google.com/iam/docs/principals-overview#google-group.
+     *     @type string $service_account
+     *           Optional. Specifies the email of the producer service account, as per
+     *           https://cloud.google.com/iam/docs/principals-overview#service-account.
      * }
      */
     public function __construct($data = NULL) {
@@ -63,6 +73,44 @@ class Principal extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->writeOneof(1, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies the email of the producer service account, as per
+     * https://cloud.google.com/iam/docs/principals-overview#service-account.
+     *
+     * Generated from protobuf field <code>optional string service_account = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getServiceAccount()
+    {
+        return isset($this->service_account) ? $this->service_account : '';
+    }
+
+    public function hasServiceAccount()
+    {
+        return isset($this->service_account);
+    }
+
+    public function clearServiceAccount()
+    {
+        unset($this->service_account);
+    }
+
+    /**
+     * Optional. Specifies the email of the producer service account, as per
+     * https://cloud.google.com/iam/docs/principals-overview#service-account.
+     *
+     * Generated from protobuf field <code>optional string service_account = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setServiceAccount($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->service_account = $var;
 
         return $this;
     }
