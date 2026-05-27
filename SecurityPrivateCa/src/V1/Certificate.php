@@ -112,6 +112,24 @@ class Certificate extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, string> labels = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $labels;
+    /**
+     * Optional. The requested
+     * [not_before_time][google.cloud.security.privateca.v1.CertificateDescription.SubjectDescription.not_before_time]
+     * of this [Certificate][google.cloud.security.privateca.v1.Certificate]. This
+     * field may only be set if the
+     * [CaPool.IssuancePolicy.allow_requester_specified_not_before_time][google.cloud.security.privateca.v1.CaPool.IssuancePolicy.allow_requester_specified_not_before_time]
+     * field is set to true for the issuing
+     * [CaPool][google.cloud.security.privateca.v1.CaPool].
+     * If this field is specified, the certificate will be issued with this
+     * 'not_before_time'. If this is not specified, the 'not_before_time' will be
+     * set to the issuance time or issuance time minus
+     * [backdate_duration][google.cloud.security.privateca.v1.CaPool.IssuancePolicy.backdate_duration]
+     * depending on the [CaPool][google.cloud.security.privateca.v1.CaPool]
+     * configuration.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp requested_not_before_time = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $requested_not_before_time = null;
     protected $certificate_config;
 
     /**
@@ -172,6 +190,20 @@ class Certificate extends \Google\Protobuf\Internal\Message
      *           [Certificate][google.cloud.security.privateca.v1.Certificate] was updated.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Optional. Labels with user-defined metadata.
+     *     @type \Google\Protobuf\Timestamp $requested_not_before_time
+     *           Optional. The requested
+     *           [not_before_time][google.cloud.security.privateca.v1.CertificateDescription.SubjectDescription.not_before_time]
+     *           of this [Certificate][google.cloud.security.privateca.v1.Certificate]. This
+     *           field may only be set if the
+     *           [CaPool.IssuancePolicy.allow_requester_specified_not_before_time][google.cloud.security.privateca.v1.CaPool.IssuancePolicy.allow_requester_specified_not_before_time]
+     *           field is set to true for the issuing
+     *           [CaPool][google.cloud.security.privateca.v1.CaPool].
+     *           If this field is specified, the certificate will be issued with this
+     *           'not_before_time'. If this is not specified, the 'not_before_time' will be
+     *           set to the issuance time or issuance time minus
+     *           [backdate_duration][google.cloud.security.privateca.v1.CaPool.IssuancePolicy.backdate_duration]
+     *           depending on the [CaPool][google.cloud.security.privateca.v1.CaPool]
+     *           configuration.
      * }
      */
     public function __construct($data = NULL) {
@@ -647,6 +679,66 @@ class Certificate extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->labels = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The requested
+     * [not_before_time][google.cloud.security.privateca.v1.CertificateDescription.SubjectDescription.not_before_time]
+     * of this [Certificate][google.cloud.security.privateca.v1.Certificate]. This
+     * field may only be set if the
+     * [CaPool.IssuancePolicy.allow_requester_specified_not_before_time][google.cloud.security.privateca.v1.CaPool.IssuancePolicy.allow_requester_specified_not_before_time]
+     * field is set to true for the issuing
+     * [CaPool][google.cloud.security.privateca.v1.CaPool].
+     * If this field is specified, the certificate will be issued with this
+     * 'not_before_time'. If this is not specified, the 'not_before_time' will be
+     * set to the issuance time or issuance time minus
+     * [backdate_duration][google.cloud.security.privateca.v1.CaPool.IssuancePolicy.backdate_duration]
+     * depending on the [CaPool][google.cloud.security.privateca.v1.CaPool]
+     * configuration.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp requested_not_before_time = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getRequestedNotBeforeTime()
+    {
+        return $this->requested_not_before_time;
+    }
+
+    public function hasRequestedNotBeforeTime()
+    {
+        return isset($this->requested_not_before_time);
+    }
+
+    public function clearRequestedNotBeforeTime()
+    {
+        unset($this->requested_not_before_time);
+    }
+
+    /**
+     * Optional. The requested
+     * [not_before_time][google.cloud.security.privateca.v1.CertificateDescription.SubjectDescription.not_before_time]
+     * of this [Certificate][google.cloud.security.privateca.v1.Certificate]. This
+     * field may only be set if the
+     * [CaPool.IssuancePolicy.allow_requester_specified_not_before_time][google.cloud.security.privateca.v1.CaPool.IssuancePolicy.allow_requester_specified_not_before_time]
+     * field is set to true for the issuing
+     * [CaPool][google.cloud.security.privateca.v1.CaPool].
+     * If this field is specified, the certificate will be issued with this
+     * 'not_before_time'. If this is not specified, the 'not_before_time' will be
+     * set to the issuance time or issuance time minus
+     * [backdate_duration][google.cloud.security.privateca.v1.CaPool.IssuancePolicy.backdate_duration]
+     * depending on the [CaPool][google.cloud.security.privateca.v1.CaPool]
+     * configuration.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp requested_not_before_time = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setRequestedNotBeforeTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->requested_not_before_time = $var;
 
         return $this;
     }

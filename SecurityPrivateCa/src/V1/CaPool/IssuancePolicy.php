@@ -26,17 +26,36 @@ class IssuancePolicy extends \Google\Protobuf\Internal\Message
      */
     private $allowed_key_types;
     /**
-     * Optional. The duration to backdate all certificates issued from this
-     * [CaPool][google.cloud.security.privateca.v1.CaPool]. If not set, the
-     * certificates will be issued with a not_before_time of the issuance time
-     * (i.e. the current time). If set, the certificates will be issued with a
-     * not_before_time of the issuance time minus the backdate_duration. The
-     * not_after_time will be adjusted to preserve the requested lifetime. The
-     * backdate_duration must be less than or equal to 48 hours.
+     * Optional. If set, all certificates issued from this
+     * [CaPool][google.cloud.security.privateca.v1.CaPool] will be backdated by
+     * this duration. The 'not_before_time' will be the issuance time minus this
+     * [backdate_duration][google.cloud.security.privateca.v1.CaPool.IssuancePolicy.backdate_duration],
+     * and the 'not_after_time' will be adjusted to preserve the requested
+     * lifetime. The maximum duration that a certificate can be backdated with
+     * these options is 48 hours in the past.
+     * This option cannot be set if
+     * [allow_requester_specified_not_before_time][google.cloud.security.privateca.v1.CaPool.IssuancePolicy.allow_requester_specified_not_before_time]
+     * is set.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration backdate_duration = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $backdate_duration = null;
+    /**
+     * Optional. If set to true, allows requesters to specify the
+     * [requested_not_before_time][google.cloud.security.privateca.v1.Certificate.requested_not_before_time]
+     * field when creating a
+     * [Certificate][google.cloud.security.privateca.v1.Certificate].
+     * Certificates requested with this option enabled will have a
+     * 'not_before_time' equal to the value specified in the request. The
+     * 'not_after_time' will be adjusted to preserve the requested lifetime. The
+     * maximum time that a certificate can be backdated with these options is 48
+     * hours in the past. This option cannot be set if
+     * [backdate_duration][google.cloud.security.privateca.v1.CaPool.IssuancePolicy.backdate_duration]
+     * is set.
+     *
+     * Generated from protobuf field <code>bool allow_requester_specified_not_before_time = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $allow_requester_specified_not_before_time = false;
     /**
      * Optional. The maximum lifetime allowed for issued
      * [Certificates][google.cloud.security.privateca.v1.Certificate]. Note that
@@ -117,13 +136,28 @@ class IssuancePolicy extends \Google\Protobuf\Internal\Message
      *           is specified, then the certificate request's public key must match one of
      *           the key types listed here. Otherwise, any key may be used.
      *     @type \Google\Protobuf\Duration $backdate_duration
-     *           Optional. The duration to backdate all certificates issued from this
-     *           [CaPool][google.cloud.security.privateca.v1.CaPool]. If not set, the
-     *           certificates will be issued with a not_before_time of the issuance time
-     *           (i.e. the current time). If set, the certificates will be issued with a
-     *           not_before_time of the issuance time minus the backdate_duration. The
-     *           not_after_time will be adjusted to preserve the requested lifetime. The
-     *           backdate_duration must be less than or equal to 48 hours.
+     *           Optional. If set, all certificates issued from this
+     *           [CaPool][google.cloud.security.privateca.v1.CaPool] will be backdated by
+     *           this duration. The 'not_before_time' will be the issuance time minus this
+     *           [backdate_duration][google.cloud.security.privateca.v1.CaPool.IssuancePolicy.backdate_duration],
+     *           and the 'not_after_time' will be adjusted to preserve the requested
+     *           lifetime. The maximum duration that a certificate can be backdated with
+     *           these options is 48 hours in the past.
+     *           This option cannot be set if
+     *           [allow_requester_specified_not_before_time][google.cloud.security.privateca.v1.CaPool.IssuancePolicy.allow_requester_specified_not_before_time]
+     *           is set.
+     *     @type bool $allow_requester_specified_not_before_time
+     *           Optional. If set to true, allows requesters to specify the
+     *           [requested_not_before_time][google.cloud.security.privateca.v1.Certificate.requested_not_before_time]
+     *           field when creating a
+     *           [Certificate][google.cloud.security.privateca.v1.Certificate].
+     *           Certificates requested with this option enabled will have a
+     *           'not_before_time' equal to the value specified in the request. The
+     *           'not_after_time' will be adjusted to preserve the requested lifetime. The
+     *           maximum time that a certificate can be backdated with these options is 48
+     *           hours in the past. This option cannot be set if
+     *           [backdate_duration][google.cloud.security.privateca.v1.CaPool.IssuancePolicy.backdate_duration]
+     *           is set.
      *     @type \Google\Protobuf\Duration $maximum_lifetime
      *           Optional. The maximum lifetime allowed for issued
      *           [Certificates][google.cloud.security.privateca.v1.Certificate]. Note that
@@ -211,13 +245,16 @@ class IssuancePolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The duration to backdate all certificates issued from this
-     * [CaPool][google.cloud.security.privateca.v1.CaPool]. If not set, the
-     * certificates will be issued with a not_before_time of the issuance time
-     * (i.e. the current time). If set, the certificates will be issued with a
-     * not_before_time of the issuance time minus the backdate_duration. The
-     * not_after_time will be adjusted to preserve the requested lifetime. The
-     * backdate_duration must be less than or equal to 48 hours.
+     * Optional. If set, all certificates issued from this
+     * [CaPool][google.cloud.security.privateca.v1.CaPool] will be backdated by
+     * this duration. The 'not_before_time' will be the issuance time minus this
+     * [backdate_duration][google.cloud.security.privateca.v1.CaPool.IssuancePolicy.backdate_duration],
+     * and the 'not_after_time' will be adjusted to preserve the requested
+     * lifetime. The maximum duration that a certificate can be backdated with
+     * these options is 48 hours in the past.
+     * This option cannot be set if
+     * [allow_requester_specified_not_before_time][google.cloud.security.privateca.v1.CaPool.IssuancePolicy.allow_requester_specified_not_before_time]
+     * is set.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration backdate_duration = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Duration|null
@@ -238,13 +275,16 @@ class IssuancePolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The duration to backdate all certificates issued from this
-     * [CaPool][google.cloud.security.privateca.v1.CaPool]. If not set, the
-     * certificates will be issued with a not_before_time of the issuance time
-     * (i.e. the current time). If set, the certificates will be issued with a
-     * not_before_time of the issuance time minus the backdate_duration. The
-     * not_after_time will be adjusted to preserve the requested lifetime. The
-     * backdate_duration must be less than or equal to 48 hours.
+     * Optional. If set, all certificates issued from this
+     * [CaPool][google.cloud.security.privateca.v1.CaPool] will be backdated by
+     * this duration. The 'not_before_time' will be the issuance time minus this
+     * [backdate_duration][google.cloud.security.privateca.v1.CaPool.IssuancePolicy.backdate_duration],
+     * and the 'not_after_time' will be adjusted to preserve the requested
+     * lifetime. The maximum duration that a certificate can be backdated with
+     * these options is 48 hours in the past.
+     * This option cannot be set if
+     * [allow_requester_specified_not_before_time][google.cloud.security.privateca.v1.CaPool.IssuancePolicy.allow_requester_specified_not_before_time]
+     * is set.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration backdate_duration = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\Duration $var
@@ -254,6 +294,52 @@ class IssuancePolicy extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
         $this->backdate_duration = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If set to true, allows requesters to specify the
+     * [requested_not_before_time][google.cloud.security.privateca.v1.Certificate.requested_not_before_time]
+     * field when creating a
+     * [Certificate][google.cloud.security.privateca.v1.Certificate].
+     * Certificates requested with this option enabled will have a
+     * 'not_before_time' equal to the value specified in the request. The
+     * 'not_after_time' will be adjusted to preserve the requested lifetime. The
+     * maximum time that a certificate can be backdated with these options is 48
+     * hours in the past. This option cannot be set if
+     * [backdate_duration][google.cloud.security.privateca.v1.CaPool.IssuancePolicy.backdate_duration]
+     * is set.
+     *
+     * Generated from protobuf field <code>bool allow_requester_specified_not_before_time = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getAllowRequesterSpecifiedNotBeforeTime()
+    {
+        return $this->allow_requester_specified_not_before_time;
+    }
+
+    /**
+     * Optional. If set to true, allows requesters to specify the
+     * [requested_not_before_time][google.cloud.security.privateca.v1.Certificate.requested_not_before_time]
+     * field when creating a
+     * [Certificate][google.cloud.security.privateca.v1.Certificate].
+     * Certificates requested with this option enabled will have a
+     * 'not_before_time' equal to the value specified in the request. The
+     * 'not_after_time' will be adjusted to preserve the requested lifetime. The
+     * maximum time that a certificate can be backdated with these options is 48
+     * hours in the past. This option cannot be set if
+     * [backdate_duration][google.cloud.security.privateca.v1.CaPool.IssuancePolicy.backdate_duration]
+     * is set.
+     *
+     * Generated from protobuf field <code>bool allow_requester_specified_not_before_time = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setAllowRequesterSpecifiedNotBeforeTime($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->allow_requester_specified_not_before_time = $var;
 
         return $this;
     }

@@ -59,6 +59,16 @@ class CaPool extends \Google\Protobuf\Internal\Message
      */
     protected $publishing_options = null;
     /**
+     * Optional. When
+     * [EncryptionSpec][google.cloud.security.privateca.v1.EncryptionSpec] is
+     * provided, the [Subject][google.cloud.security.privateca.v1.Subject],
+     * [SubjectAltNames][google.cloud.security.privateca.v1.SubjectAltNames], and
+     * the PEM-encoded certificate fields will be encrypted at rest.
+     *
+     * Generated from protobuf field <code>.google.cloud.security.privateca.v1.EncryptionSpec encryption_spec = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $encryption_spec = null;
+    /**
      * Optional. Labels with user-defined metadata.
      *
      * Generated from protobuf field <code>map<string, string> labels = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -92,6 +102,12 @@ class CaPool extends \Google\Protobuf\Internal\Message
      *           [Certificates][google.cloud.security.privateca.v1.Certificate] from any
      *           [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
      *           in this [CaPool][google.cloud.security.privateca.v1.CaPool].
+     *     @type \Google\Cloud\Security\PrivateCA\V1\EncryptionSpec $encryption_spec
+     *           Optional. When
+     *           [EncryptionSpec][google.cloud.security.privateca.v1.EncryptionSpec] is
+     *           provided, the [Subject][google.cloud.security.privateca.v1.Subject],
+     *           [SubjectAltNames][google.cloud.security.privateca.v1.SubjectAltNames], and
+     *           the PEM-encoded certificate fields will be encrypted at rest.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Optional. Labels with user-defined metadata.
      * }
@@ -247,6 +263,50 @@ class CaPool extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Security\PrivateCA\V1\CaPool\PublishingOptions::class);
         $this->publishing_options = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. When
+     * [EncryptionSpec][google.cloud.security.privateca.v1.EncryptionSpec] is
+     * provided, the [Subject][google.cloud.security.privateca.v1.Subject],
+     * [SubjectAltNames][google.cloud.security.privateca.v1.SubjectAltNames], and
+     * the PEM-encoded certificate fields will be encrypted at rest.
+     *
+     * Generated from protobuf field <code>.google.cloud.security.privateca.v1.EncryptionSpec encryption_spec = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Security\PrivateCA\V1\EncryptionSpec|null
+     */
+    public function getEncryptionSpec()
+    {
+        return $this->encryption_spec;
+    }
+
+    public function hasEncryptionSpec()
+    {
+        return isset($this->encryption_spec);
+    }
+
+    public function clearEncryptionSpec()
+    {
+        unset($this->encryption_spec);
+    }
+
+    /**
+     * Optional. When
+     * [EncryptionSpec][google.cloud.security.privateca.v1.EncryptionSpec] is
+     * provided, the [Subject][google.cloud.security.privateca.v1.Subject],
+     * [SubjectAltNames][google.cloud.security.privateca.v1.SubjectAltNames], and
+     * the PEM-encoded certificate fields will be encrypted at rest.
+     *
+     * Generated from protobuf field <code>.google.cloud.security.privateca.v1.EncryptionSpec encryption_spec = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Security\PrivateCA\V1\EncryptionSpec $var
+     * @return $this
+     */
+    public function setEncryptionSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Security\PrivateCA\V1\EncryptionSpec::class);
+        $this->encryption_spec = $var;
 
         return $this;
     }
