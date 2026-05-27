@@ -268,6 +268,30 @@ return [
                     ],
                 ],
             ],
+            'GetIntelligenceFinding' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Storage\Control\V2\IntelligenceFinding',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetIntelligenceFindingRevision' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Storage\Control\V2\IntelligenceFindingRevision',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetManagedFolder' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Storage\Control\V2\ManagedFolder',
@@ -371,6 +395,46 @@ return [
                     ],
                 ],
             ],
+            'ListIntelligenceFindingRevisions' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getIntelligenceFindingRevisions',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Storage\Control\V2\ListIntelligenceFindingRevisionsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListIntelligenceFindings' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getIntelligenceFindings',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Storage\Control\V2\ListIntelligenceFindingsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListManagedFolders' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
@@ -445,6 +509,26 @@ return [
                     ],
                 ],
             ],
+            'SummarizeIntelligenceFindings' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getFindingSummaries',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Storage\Control\V2\SummarizeIntelligenceFindingsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'TestIamPermissions' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Iam\V1\TestIamPermissionsResponse',
@@ -506,6 +590,9 @@ return [
                 'folder' => 'projects/{project}/buckets/{bucket}/folders/{folder=**}',
                 'folderLocationIntelligenceConfig' => 'folders/{folder}/locations/{location}/intelligenceConfig',
                 'intelligenceConfig' => 'folders/{folder}/locations/{location}/intelligenceConfig',
+                'intelligenceFinding' => 'projects/{project}/locations/{location}/intelligenceFindings/{intelligence_finding}',
+                'intelligenceFindingRevision' => 'projects/{project}/locations/{location}/intelligenceFindings/{intelligence_finding}/revisions/{revision}',
+                'location' => 'projects/{project}/locations/{location}',
                 'managedFolder' => 'projects/{project}/buckets/{bucket}/managedFolders/{managed_folder=**}',
                 'orgLocationIntelligenceConfig' => 'organizations/{org}/locations/{location}/intelligenceConfig',
                 'projectLocationIntelligenceConfig' => 'projects/{project}/locations/{location}/intelligenceConfig',
