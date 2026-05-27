@@ -24,13 +24,19 @@ class MigrationTask extends \Google\Protobuf\Internal\Message
      */
     protected $id = '';
     /**
-     * The type of the task. This must be one of the supported task types:
-     * Translation_Teradata2BQ, Translation_Redshift2BQ, Translation_Bteq2BQ,
-     * Translation_Oracle2BQ, Translation_HiveQL2BQ, Translation_SparkSQL2BQ,
-     * Translation_Snowflake2BQ, Translation_Netezza2BQ,
-     * Translation_AzureSynapse2BQ, Translation_Vertica2BQ,
-     * Translation_SQLServer2BQ, Translation_Presto2BQ, Translation_MySQL2BQ,
-     * Translation_Postgresql2BQ, Translation_SQLite2BQ, Translation_Greenplum2BQ.
+     * The type of the task. This must be one of the supported task types.
+     * Assessment:
+     * - `Assessment_Hive` - Assessment for Hive.
+     * - `Assessment_Redshift` - Assessment for Redshift.
+     * - `Assessment_Snowflake` - Assessment for Snowflake.
+     * - `Assessment_Teradata_v2` - Assessment for Teradata.
+     * - `Assessment_Oracle` - Assessment for Oracle.
+     * - `Assessment_Hadoop` - Assessment for Hadoop.
+     * - `Assessment_Informatica` - Assessment for Informatica.
+     * Translation:
+     * See [Supported Task
+     * Types](https://docs.cloud.google.com/bigquery/docs/api-sql-translator#supported_task_types)
+     * for a list of supported task types.
      *
      * Generated from protobuf field <code>string type = 2;</code>
      */
@@ -49,15 +55,15 @@ class MigrationTask extends \Google\Protobuf\Internal\Message
      */
     protected $processing_error = null;
     /**
-     * Time when the task was created.
+     * Output only. Time when the task was created.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 6;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $create_time = null;
     /**
-     * Time when the task was last updated.
+     * Output only. Time when the task was last updated.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp last_update_time = 7;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp last_update_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $last_update_time = null;
     /**
@@ -69,18 +75,18 @@ class MigrationTask extends \Google\Protobuf\Internal\Message
      */
     private $resource_error_details;
     /**
-     * The number or resources with errors. Note: This is not the total
-     * number of errors as each resource can have more than one error.
-     * This is used to indicate truncation by having a `resource_error_count`
-     * that is higher than the size of `resource_error_details`.
+     * Output only. The number or resources with errors. Note: This is not the
+     * total number of errors as each resource can have more than one error. This
+     * is used to indicate truncation by having a `resource_error_count` that is
+     * higher than the size of `resource_error_details`.
      *
-     * Generated from protobuf field <code>int32 resource_error_count = 18;</code>
+     * Generated from protobuf field <code>int32 resource_error_count = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $resource_error_count = 0;
     /**
-     * The metrics for the task.
+     * Output only. The metrics for the task.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.bigquery.migration.v2.TimeSeries metrics = 19;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.bigquery.migration.v2.TimeSeries metrics = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $metrics;
     /**
@@ -90,15 +96,17 @@ class MigrationTask extends \Google\Protobuf\Internal\Message
      */
     protected $task_result = null;
     /**
-     * Count of all the processing errors in this task and its subtasks.
+     * Output only. Count of all the processing errors in this task and its
+     * subtasks.
      *
-     * Generated from protobuf field <code>int32 total_processing_error_count = 21;</code>
+     * Generated from protobuf field <code>int32 total_processing_error_count = 21 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $total_processing_error_count = 0;
     /**
-     * Count of all the resource errors in this task and its subtasks.
+     * Output only. Count of all the resource errors in this task and its
+     * subtasks.
      *
-     * Generated from protobuf field <code>int32 total_resource_error_count = 22;</code>
+     * Generated from protobuf field <code>int32 total_resource_error_count = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $total_resource_error_count = 0;
     protected $task_details;
@@ -109,6 +117,8 @@ class MigrationTask extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type \Google\Cloud\BigQuery\Migration\V2\AssessmentTaskDetails $assessment_task_details
+     *           Task configuration for Assessment.
      *     @type \Google\Cloud\BigQuery\Migration\V2\TranslationConfigDetails $translation_config_details
      *           Task configuration for CW Batch/Offline SQL Translation.
      *     @type \Google\Cloud\BigQuery\Migration\V2\TranslationDetails $translation_details
@@ -117,44 +127,83 @@ class MigrationTask extends \Google\Protobuf\Internal\Message
      *           Output only. Immutable. The unique identifier for the migration task. The
      *           ID is server-generated.
      *     @type string $type
-     *           The type of the task. This must be one of the supported task types:
-     *           Translation_Teradata2BQ, Translation_Redshift2BQ, Translation_Bteq2BQ,
-     *           Translation_Oracle2BQ, Translation_HiveQL2BQ, Translation_SparkSQL2BQ,
-     *           Translation_Snowflake2BQ, Translation_Netezza2BQ,
-     *           Translation_AzureSynapse2BQ, Translation_Vertica2BQ,
-     *           Translation_SQLServer2BQ, Translation_Presto2BQ, Translation_MySQL2BQ,
-     *           Translation_Postgresql2BQ, Translation_SQLite2BQ, Translation_Greenplum2BQ.
+     *           The type of the task. This must be one of the supported task types.
+     *           Assessment:
+     *           - `Assessment_Hive` - Assessment for Hive.
+     *           - `Assessment_Redshift` - Assessment for Redshift.
+     *           - `Assessment_Snowflake` - Assessment for Snowflake.
+     *           - `Assessment_Teradata_v2` - Assessment for Teradata.
+     *           - `Assessment_Oracle` - Assessment for Oracle.
+     *           - `Assessment_Hadoop` - Assessment for Hadoop.
+     *           - `Assessment_Informatica` - Assessment for Informatica.
+     *           Translation:
+     *           See [Supported Task
+     *           Types](https://docs.cloud.google.com/bigquery/docs/api-sql-translator#supported_task_types)
+     *           for a list of supported task types.
      *     @type int $state
      *           Output only. The current state of the task.
      *     @type \Google\Rpc\ErrorInfo $processing_error
      *           Output only. An explanation that may be populated when the task is in
      *           FAILED state.
      *     @type \Google\Protobuf\Timestamp $create_time
-     *           Time when the task was created.
+     *           Output only. Time when the task was created.
      *     @type \Google\Protobuf\Timestamp $last_update_time
-     *           Time when the task was last updated.
+     *           Output only. Time when the task was last updated.
      *     @type \Google\Cloud\BigQuery\Migration\V2\ResourceErrorDetail[] $resource_error_details
      *           Output only. Provides details to errors and issues encountered while
      *           processing the task. Presence of error details does not mean that the task
      *           failed.
      *     @type int $resource_error_count
-     *           The number or resources with errors. Note: This is not the total
-     *           number of errors as each resource can have more than one error.
-     *           This is used to indicate truncation by having a `resource_error_count`
-     *           that is higher than the size of `resource_error_details`.
+     *           Output only. The number or resources with errors. Note: This is not the
+     *           total number of errors as each resource can have more than one error. This
+     *           is used to indicate truncation by having a `resource_error_count` that is
+     *           higher than the size of `resource_error_details`.
      *     @type \Google\Cloud\BigQuery\Migration\V2\TimeSeries[] $metrics
-     *           The metrics for the task.
+     *           Output only. The metrics for the task.
      *     @type \Google\Cloud\BigQuery\Migration\V2\MigrationTaskResult $task_result
      *           Output only. The result of the task.
      *     @type int $total_processing_error_count
-     *           Count of all the processing errors in this task and its subtasks.
+     *           Output only. Count of all the processing errors in this task and its
+     *           subtasks.
      *     @type int $total_resource_error_count
-     *           Count of all the resource errors in this task and its subtasks.
+     *           Output only. Count of all the resource errors in this task and its
+     *           subtasks.
      * }
      */
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Bigquery\Migration\V2\MigrationEntities::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Task configuration for Assessment.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.migration.v2.AssessmentTaskDetails assessment_task_details = 12;</code>
+     * @return \Google\Cloud\BigQuery\Migration\V2\AssessmentTaskDetails|null
+     */
+    public function getAssessmentTaskDetails()
+    {
+        return $this->readOneof(12);
+    }
+
+    public function hasAssessmentTaskDetails()
+    {
+        return $this->hasOneof(12);
+    }
+
+    /**
+     * Task configuration for Assessment.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.migration.v2.AssessmentTaskDetails assessment_task_details = 12;</code>
+     * @param \Google\Cloud\BigQuery\Migration\V2\AssessmentTaskDetails $var
+     * @return $this
+     */
+    public function setAssessmentTaskDetails($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\Migration\V2\AssessmentTaskDetails::class);
+        $this->writeOneof(12, $var);
+
+        return $this;
     }
 
     /**
@@ -248,13 +297,19 @@ class MigrationTask extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The type of the task. This must be one of the supported task types:
-     * Translation_Teradata2BQ, Translation_Redshift2BQ, Translation_Bteq2BQ,
-     * Translation_Oracle2BQ, Translation_HiveQL2BQ, Translation_SparkSQL2BQ,
-     * Translation_Snowflake2BQ, Translation_Netezza2BQ,
-     * Translation_AzureSynapse2BQ, Translation_Vertica2BQ,
-     * Translation_SQLServer2BQ, Translation_Presto2BQ, Translation_MySQL2BQ,
-     * Translation_Postgresql2BQ, Translation_SQLite2BQ, Translation_Greenplum2BQ.
+     * The type of the task. This must be one of the supported task types.
+     * Assessment:
+     * - `Assessment_Hive` - Assessment for Hive.
+     * - `Assessment_Redshift` - Assessment for Redshift.
+     * - `Assessment_Snowflake` - Assessment for Snowflake.
+     * - `Assessment_Teradata_v2` - Assessment for Teradata.
+     * - `Assessment_Oracle` - Assessment for Oracle.
+     * - `Assessment_Hadoop` - Assessment for Hadoop.
+     * - `Assessment_Informatica` - Assessment for Informatica.
+     * Translation:
+     * See [Supported Task
+     * Types](https://docs.cloud.google.com/bigquery/docs/api-sql-translator#supported_task_types)
+     * for a list of supported task types.
      *
      * Generated from protobuf field <code>string type = 2;</code>
      * @return string
@@ -265,13 +320,19 @@ class MigrationTask extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The type of the task. This must be one of the supported task types:
-     * Translation_Teradata2BQ, Translation_Redshift2BQ, Translation_Bteq2BQ,
-     * Translation_Oracle2BQ, Translation_HiveQL2BQ, Translation_SparkSQL2BQ,
-     * Translation_Snowflake2BQ, Translation_Netezza2BQ,
-     * Translation_AzureSynapse2BQ, Translation_Vertica2BQ,
-     * Translation_SQLServer2BQ, Translation_Presto2BQ, Translation_MySQL2BQ,
-     * Translation_Postgresql2BQ, Translation_SQLite2BQ, Translation_Greenplum2BQ.
+     * The type of the task. This must be one of the supported task types.
+     * Assessment:
+     * - `Assessment_Hive` - Assessment for Hive.
+     * - `Assessment_Redshift` - Assessment for Redshift.
+     * - `Assessment_Snowflake` - Assessment for Snowflake.
+     * - `Assessment_Teradata_v2` - Assessment for Teradata.
+     * - `Assessment_Oracle` - Assessment for Oracle.
+     * - `Assessment_Hadoop` - Assessment for Hadoop.
+     * - `Assessment_Informatica` - Assessment for Informatica.
+     * Translation:
+     * See [Supported Task
+     * Types](https://docs.cloud.google.com/bigquery/docs/api-sql-translator#supported_task_types)
+     * for a list of supported task types.
      *
      * Generated from protobuf field <code>string type = 2;</code>
      * @param string $var
@@ -350,9 +411,9 @@ class MigrationTask extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Time when the task was created.
+     * Output only. Time when the task was created.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 6;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
@@ -371,9 +432,9 @@ class MigrationTask extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Time when the task was created.
+     * Output only. Time when the task was created.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 6;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -386,9 +447,9 @@ class MigrationTask extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Time when the task was last updated.
+     * Output only. Time when the task was last updated.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp last_update_time = 7;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp last_update_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
      */
     public function getLastUpdateTime()
@@ -407,9 +468,9 @@ class MigrationTask extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Time when the task was last updated.
+     * Output only. Time when the task was last updated.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp last_update_time = 7;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp last_update_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -452,12 +513,12 @@ class MigrationTask extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The number or resources with errors. Note: This is not the total
-     * number of errors as each resource can have more than one error.
-     * This is used to indicate truncation by having a `resource_error_count`
-     * that is higher than the size of `resource_error_details`.
+     * Output only. The number or resources with errors. Note: This is not the
+     * total number of errors as each resource can have more than one error. This
+     * is used to indicate truncation by having a `resource_error_count` that is
+     * higher than the size of `resource_error_details`.
      *
-     * Generated from protobuf field <code>int32 resource_error_count = 18;</code>
+     * Generated from protobuf field <code>int32 resource_error_count = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
      */
     public function getResourceErrorCount()
@@ -466,12 +527,12 @@ class MigrationTask extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The number or resources with errors. Note: This is not the total
-     * number of errors as each resource can have more than one error.
-     * This is used to indicate truncation by having a `resource_error_count`
-     * that is higher than the size of `resource_error_details`.
+     * Output only. The number or resources with errors. Note: This is not the
+     * total number of errors as each resource can have more than one error. This
+     * is used to indicate truncation by having a `resource_error_count` that is
+     * higher than the size of `resource_error_details`.
      *
-     * Generated from protobuf field <code>int32 resource_error_count = 18;</code>
+     * Generated from protobuf field <code>int32 resource_error_count = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
      * @return $this
      */
@@ -484,9 +545,9 @@ class MigrationTask extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The metrics for the task.
+     * Output only. The metrics for the task.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.bigquery.migration.v2.TimeSeries metrics = 19;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.bigquery.migration.v2.TimeSeries metrics = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return RepeatedField<\Google\Cloud\BigQuery\Migration\V2\TimeSeries>
      */
     public function getMetrics()
@@ -495,9 +556,9 @@ class MigrationTask extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The metrics for the task.
+     * Output only. The metrics for the task.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.bigquery.migration.v2.TimeSeries metrics = 19;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.bigquery.migration.v2.TimeSeries metrics = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\BigQuery\Migration\V2\TimeSeries[] $var
      * @return $this
      */
@@ -546,9 +607,10 @@ class MigrationTask extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Count of all the processing errors in this task and its subtasks.
+     * Output only. Count of all the processing errors in this task and its
+     * subtasks.
      *
-     * Generated from protobuf field <code>int32 total_processing_error_count = 21;</code>
+     * Generated from protobuf field <code>int32 total_processing_error_count = 21 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
      */
     public function getTotalProcessingErrorCount()
@@ -557,9 +619,10 @@ class MigrationTask extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Count of all the processing errors in this task and its subtasks.
+     * Output only. Count of all the processing errors in this task and its
+     * subtasks.
      *
-     * Generated from protobuf field <code>int32 total_processing_error_count = 21;</code>
+     * Generated from protobuf field <code>int32 total_processing_error_count = 21 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
      * @return $this
      */
@@ -572,9 +635,10 @@ class MigrationTask extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Count of all the resource errors in this task and its subtasks.
+     * Output only. Count of all the resource errors in this task and its
+     * subtasks.
      *
-     * Generated from protobuf field <code>int32 total_resource_error_count = 22;</code>
+     * Generated from protobuf field <code>int32 total_resource_error_count = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
      */
     public function getTotalResourceErrorCount()
@@ -583,9 +647,10 @@ class MigrationTask extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Count of all the resource errors in this task and its subtasks.
+     * Output only. Count of all the resource errors in this task and its
+     * subtasks.
      *
-     * Generated from protobuf field <code>int32 total_resource_error_count = 22;</code>
+     * Generated from protobuf field <code>int32 total_resource_error_count = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
      * @return $this
      */
