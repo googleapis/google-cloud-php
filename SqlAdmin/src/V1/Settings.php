@@ -318,6 +318,13 @@ class Settings extends \Google\Protobuf\Internal\Message
      */
     protected $read_pool_auto_scale_config = null;
     /**
+     * Optional. Whether the replica is in accelerated mode. This feature is in
+     * private preview and requires allowlisting to take effect.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue accelerated_replica_mode = 49 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $accelerated_replica_mode = null;
+    /**
      * Optional. Cloud SQL for MySQL auto-upgrade configuration. When this
      * parameter is set to true, auto-upgrade is enabled for MySQL 8.0 minor
      * versions. The MySQL version must be 8.0.35 or higher.
@@ -487,6 +494,9 @@ class Settings extends \Google\Protobuf\Internal\Message
      *           Optional. The final backup configuration for the instance.
      *     @type \Google\Cloud\Sql\V1\ReadPoolAutoScaleConfig $read_pool_auto_scale_config
      *           Optional. The read pool auto-scale configuration for the instance.
+     *     @type \Google\Protobuf\BoolValue $accelerated_replica_mode
+     *           Optional. Whether the replica is in accelerated mode. This feature is in
+     *           private preview and requires allowlisting to take effect.
      *     @type bool $auto_upgrade_enabled
      *           Optional. Cloud SQL for MySQL auto-upgrade configuration. When this
      *           parameter is set to true, auto-upgrade is enabled for MySQL 8.0 minor
@@ -2297,6 +2307,73 @@ class Settings extends \Google\Protobuf\Internal\Message
 
         return $this;
     }
+
+    /**
+     * Optional. Whether the replica is in accelerated mode. This feature is in
+     * private preview and requires allowlisting to take effect.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue accelerated_replica_mode = 49 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\BoolValue|null
+     */
+    public function getAcceleratedReplicaMode()
+    {
+        return $this->accelerated_replica_mode;
+    }
+
+    public function hasAcceleratedReplicaMode()
+    {
+        return isset($this->accelerated_replica_mode);
+    }
+
+    public function clearAcceleratedReplicaMode()
+    {
+        unset($this->accelerated_replica_mode);
+    }
+
+    /**
+     * Returns the unboxed value from <code>getAcceleratedReplicaMode()</code>
+
+     * Optional. Whether the replica is in accelerated mode. This feature is in
+     * private preview and requires allowlisting to take effect.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue accelerated_replica_mode = 49 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool|null
+     */
+    public function getAcceleratedReplicaModeUnwrapped()
+    {
+        return $this->readWrapperValue("accelerated_replica_mode");
+    }
+
+    /**
+     * Optional. Whether the replica is in accelerated mode. This feature is in
+     * private preview and requires allowlisting to take effect.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue accelerated_replica_mode = 49 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\BoolValue $var
+     * @return $this
+     */
+    public function setAcceleratedReplicaMode($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\BoolValue::class);
+        $this->accelerated_replica_mode = $var;
+
+        return $this;
+    }
+
+    /**
+     * Sets the field by wrapping a primitive type in a Google\Protobuf\BoolValue object.
+
+     * Optional. Whether the replica is in accelerated mode. This feature is in
+     * private preview and requires allowlisting to take effect.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue accelerated_replica_mode = 49 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool|null $var
+     * @return $this
+     */
+    public function setAcceleratedReplicaModeUnwrapped($var)
+    {
+        $this->writeWrapperValue("accelerated_replica_mode", $var);
+        return $this;}
 
     /**
      * Optional. Cloud SQL for MySQL auto-upgrade configuration. When this

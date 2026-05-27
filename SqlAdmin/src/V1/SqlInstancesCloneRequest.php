@@ -23,7 +23,7 @@ class SqlInstancesCloneRequest extends \Google\Protobuf\Internal\Message
      */
     protected $instance = '';
     /**
-     * Required. Project ID of the source as well as the clone Cloud SQL instance.
+     * Required. Project ID of the source Cloud SQL instance.
      *
      * Generated from protobuf field <code>string project = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -43,7 +43,7 @@ class SqlInstancesCloneRequest extends \Google\Protobuf\Internal\Message
      *           Required. The ID of the Cloud SQL instance to be cloned (source). This does
      *           not include the project ID.
      *     @type string $project
-     *           Required. Project ID of the source as well as the clone Cloud SQL instance.
+     *           Required. Project ID of the source Cloud SQL instance.
      *     @type \Google\Cloud\Sql\V1\InstancesCloneRequest $body
      * }
      */
@@ -81,7 +81,7 @@ class SqlInstancesCloneRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Project ID of the source as well as the clone Cloud SQL instance.
+     * Required. Project ID of the source Cloud SQL instance.
      *
      * Generated from protobuf field <code>string project = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -92,7 +92,7 @@ class SqlInstancesCloneRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Project ID of the source as well as the clone Cloud SQL instance.
+     * Required. Project ID of the source Cloud SQL instance.
      *
      * Generated from protobuf field <code>string project = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

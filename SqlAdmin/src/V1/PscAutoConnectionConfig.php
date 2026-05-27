@@ -19,7 +19,7 @@ class PscAutoConnectionConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. This is the project ID of consumer service project of this
      * consumer endpoint.
-     * Optional. This is only applicable if consumer_network is a shared vpc
+     * This is only applicable if `consumer_network` is a shared VPC
      * network.
      *
      * Generated from protobuf field <code>string consumer_project = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -63,7 +63,7 @@ class PscAutoConnectionConfig extends \Google\Protobuf\Internal\Message
      *     @type string $consumer_project
      *           Optional. This is the project ID of consumer service project of this
      *           consumer endpoint.
-     *           Optional. This is only applicable if consumer_network is a shared vpc
+     *           This is only applicable if `consumer_network` is a shared VPC
      *           network.
      *     @type string $consumer_network
      *           Optional. The consumer network of this consumer endpoint. This must be a
@@ -87,7 +87,7 @@ class PscAutoConnectionConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. This is the project ID of consumer service project of this
      * consumer endpoint.
-     * Optional. This is only applicable if consumer_network is a shared vpc
+     * This is only applicable if `consumer_network` is a shared VPC
      * network.
      *
      * Generated from protobuf field <code>string consumer_project = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -101,7 +101,7 @@ class PscAutoConnectionConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. This is the project ID of consumer service project of this
      * consumer endpoint.
-     * Optional. This is only applicable if consumer_network is a shared vpc
+     * This is only applicable if `consumer_network` is a shared VPC
      * network.
      *
      * Generated from protobuf field <code>string consumer_project = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
