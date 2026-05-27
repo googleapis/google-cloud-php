@@ -52,19 +52,26 @@ use Google\Cloud\Storage\Control\V2\Folder;
 use Google\Cloud\Storage\Control\V2\GetAnywhereCacheRequest;
 use Google\Cloud\Storage\Control\V2\GetFolderIntelligenceConfigRequest;
 use Google\Cloud\Storage\Control\V2\GetFolderRequest;
+use Google\Cloud\Storage\Control\V2\GetIntelligenceFindingRequest;
+use Google\Cloud\Storage\Control\V2\GetIntelligenceFindingRevisionRequest;
 use Google\Cloud\Storage\Control\V2\GetManagedFolderRequest;
 use Google\Cloud\Storage\Control\V2\GetOrganizationIntelligenceConfigRequest;
 use Google\Cloud\Storage\Control\V2\GetProjectIntelligenceConfigRequest;
 use Google\Cloud\Storage\Control\V2\GetStorageLayoutRequest;
 use Google\Cloud\Storage\Control\V2\IntelligenceConfig;
+use Google\Cloud\Storage\Control\V2\IntelligenceFinding;
+use Google\Cloud\Storage\Control\V2\IntelligenceFindingRevision;
 use Google\Cloud\Storage\Control\V2\ListAnywhereCachesRequest;
 use Google\Cloud\Storage\Control\V2\ListFoldersRequest;
+use Google\Cloud\Storage\Control\V2\ListIntelligenceFindingRevisionsRequest;
+use Google\Cloud\Storage\Control\V2\ListIntelligenceFindingsRequest;
 use Google\Cloud\Storage\Control\V2\ListManagedFoldersRequest;
 use Google\Cloud\Storage\Control\V2\ManagedFolder;
 use Google\Cloud\Storage\Control\V2\PauseAnywhereCacheRequest;
 use Google\Cloud\Storage\Control\V2\RenameFolderRequest;
 use Google\Cloud\Storage\Control\V2\ResumeAnywhereCacheRequest;
 use Google\Cloud\Storage\Control\V2\StorageLayout;
+use Google\Cloud\Storage\Control\V2\SummarizeIntelligenceFindingsRequest;
 use Google\Cloud\Storage\Control\V2\UpdateAnywhereCacheRequest;
 use Google\Cloud\Storage\Control\V2\UpdateFolderIntelligenceConfigRequest;
 use Google\Cloud\Storage\Control\V2\UpdateOrganizationIntelligenceConfigRequest;
@@ -96,17 +103,22 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<Folder> getFolderAsync(GetFolderRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<IntelligenceConfig> getFolderIntelligenceConfigAsync(GetFolderIntelligenceConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<IntelligenceFinding> getIntelligenceFindingAsync(GetIntelligenceFindingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<IntelligenceFindingRevision> getIntelligenceFindingRevisionAsync(GetIntelligenceFindingRevisionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ManagedFolder> getManagedFolderAsync(GetManagedFolderRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<IntelligenceConfig> getOrganizationIntelligenceConfigAsync(GetOrganizationIntelligenceConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<IntelligenceConfig> getProjectIntelligenceConfigAsync(GetProjectIntelligenceConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<StorageLayout> getStorageLayoutAsync(GetStorageLayoutRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listAnywhereCachesAsync(ListAnywhereCachesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listFoldersAsync(ListFoldersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listIntelligenceFindingRevisionsAsync(ListIntelligenceFindingRevisionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listIntelligenceFindingsAsync(ListIntelligenceFindingsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listManagedFoldersAsync(ListManagedFoldersRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<AnywhereCache> pauseAnywhereCacheAsync(PauseAnywhereCacheRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> renameFolderAsync(RenameFolderRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<AnywhereCache> resumeAnywhereCacheAsync(ResumeAnywhereCacheRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> summarizeIntelligenceFindingsAsync(SummarizeIntelligenceFindingsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateAnywhereCacheAsync(UpdateAnywhereCacheRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<IntelligenceConfig> updateFolderIntelligenceConfigAsync(UpdateFolderIntelligenceConfigRequest $request, array $optionalArgs = [])
@@ -306,6 +318,70 @@ final class StorageControlClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * intelligence_finding resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $intelligenceFinding
+     *
+     * @return string The formatted intelligence_finding resource.
+     */
+    public static function intelligenceFindingName(
+        string $project,
+        string $location,
+        string $intelligenceFinding
+    ): string {
+        return self::getPathTemplate('intelligenceFinding')->render([
+            'project' => $project,
+            'location' => $location,
+            'intelligence_finding' => $intelligenceFinding,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * intelligence_finding_revision resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $intelligenceFinding
+     * @param string $revision
+     *
+     * @return string The formatted intelligence_finding_revision resource.
+     */
+    public static function intelligenceFindingRevisionName(
+        string $project,
+        string $location,
+        string $intelligenceFinding,
+        string $revision
+    ): string {
+        return self::getPathTemplate('intelligenceFindingRevision')->render([
+            'project' => $project,
+            'location' => $location,
+            'intelligence_finding' => $intelligenceFinding,
+            'revision' => $revision,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a location
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     *
+     * @return string The formatted location resource.
+     */
+    public static function locationName(string $project, string $location): string
+    {
+        return self::getPathTemplate('location')->render([
+            'project' => $project,
+            'location' => $location,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * managed_folder resource.
      *
      * @param string $project
@@ -383,6 +459,9 @@ final class StorageControlClient
      * - folder: projects/{project}/buckets/{bucket}/folders/{folder=**}
      * - folderLocationIntelligenceConfig: folders/{folder}/locations/{location}/intelligenceConfig
      * - intelligenceConfig: folders/{folder}/locations/{location}/intelligenceConfig
+     * - intelligenceFinding: projects/{project}/locations/{location}/intelligenceFindings/{intelligence_finding}
+     * - intelligenceFindingRevision: projects/{project}/locations/{location}/intelligenceFindings/{intelligence_finding}/revisions/{revision}
+     * - location: projects/{project}/locations/{location}
      * - managedFolder: projects/{project}/buckets/{bucket}/managedFolders/{managed_folder=**}
      * - orgLocationIntelligenceConfig: organizations/{org}/locations/{location}/intelligenceConfig
      * - projectLocationIntelligenceConfig: projects/{project}/locations/{location}/intelligenceConfig
@@ -791,6 +870,64 @@ final class StorageControlClient
     }
 
     /**
+     * Gets the `IntelligenceFinding` for a project.
+     *
+     * The async variant is {@see StorageControlClient::getIntelligenceFindingAsync()}
+     * .
+     *
+     * @example samples/V2/StorageControlClient/get_intelligence_finding.php
+     *
+     * @param GetIntelligenceFindingRequest $request     A request to house fields associated with the call.
+     * @param array                         $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return IntelligenceFinding
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getIntelligenceFinding(
+        GetIntelligenceFindingRequest $request,
+        array $callOptions = []
+    ): IntelligenceFinding {
+        return $this->startApiCall('GetIntelligenceFinding', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets the `IntelligenceFindingRevision` resource.
+     *
+     * The async variant is
+     * {@see StorageControlClient::getIntelligenceFindingRevisionAsync()} .
+     *
+     * @example samples/V2/StorageControlClient/get_intelligence_finding_revision.php
+     *
+     * @param GetIntelligenceFindingRevisionRequest $request     A request to house fields associated with the call.
+     * @param array                                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return IntelligenceFindingRevision
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getIntelligenceFindingRevision(
+        GetIntelligenceFindingRevisionRequest $request,
+        array $callOptions = []
+    ): IntelligenceFindingRevision {
+        return $this->startApiCall('GetIntelligenceFindingRevision', $request, $callOptions)->wait();
+    }
+
+    /**
      * Returns metadata for the specified managed folder.
      *
      * The async variant is {@see StorageControlClient::getManagedFolderAsync()} .
@@ -954,6 +1091,64 @@ final class StorageControlClient
     }
 
     /**
+     * Lists all the revisions of an `IntelligenceFinding` resource.
+     *
+     * The async variant is
+     * {@see StorageControlClient::listIntelligenceFindingRevisionsAsync()} .
+     *
+     * @example samples/V2/StorageControlClient/list_intelligence_finding_revisions.php
+     *
+     * @param ListIntelligenceFindingRevisionsRequest $request     A request to house fields associated with the call.
+     * @param array                                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listIntelligenceFindingRevisions(
+        ListIntelligenceFindingRevisionsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('ListIntelligenceFindingRevisions', $request, $callOptions);
+    }
+
+    /**
+     * Lists the `IntelligenceFinding` resources for the specified project.
+     *
+     * The async variant is
+     * {@see StorageControlClient::listIntelligenceFindingsAsync()} .
+     *
+     * @example samples/V2/StorageControlClient/list_intelligence_findings.php
+     *
+     * @param ListIntelligenceFindingsRequest $request     A request to house fields associated with the call.
+     * @param array                           $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listIntelligenceFindings(
+        ListIntelligenceFindingsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('ListIntelligenceFindings', $request, $callOptions);
+    }
+
+    /**
      * Retrieves a list of managed folders for a given bucket.
      *
      * The async variant is {@see StorageControlClient::listManagedFoldersAsync()} .
@@ -1088,6 +1283,36 @@ final class StorageControlClient
     public function setIamPolicy(SetIamPolicyRequest $request, array $callOptions = []): Policy
     {
         return $this->startApiCall('SetIamPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Summarize the intelligence findings for the specified scope(org, folder or
+     * project).
+     *
+     * The async variant is
+     * {@see StorageControlClient::summarizeIntelligenceFindingsAsync()} .
+     *
+     * @example samples/V2/StorageControlClient/summarize_intelligence_findings.php
+     *
+     * @param SummarizeIntelligenceFindingsRequest $request     A request to house fields associated with the call.
+     * @param array                                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function summarizeIntelligenceFindings(
+        SummarizeIntelligenceFindingsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('SummarizeIntelligenceFindings', $request, $callOptions);
     }
 
     /**

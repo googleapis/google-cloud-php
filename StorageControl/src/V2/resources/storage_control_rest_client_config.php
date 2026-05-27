@@ -34,6 +34,28 @@ return [
                     ],
                 ],
             ],
+            'GetIntelligenceFinding' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{name=projects/*/locations/*/intelligenceFindings/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetIntelligenceFindingRevision' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{name=projects/*/locations/*/intelligenceFindings/*/revisions/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetOrganizationIntelligenceConfig' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{name=organizations/*/locations/*/intelligenceConfig}',
@@ -52,6 +74,49 @@ return [
                     'name' => [
                         'getters' => [
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListIntelligenceFindingRevisions' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{parent=projects/*/locations/*/intelligenceFindings/*}/revisions',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListIntelligenceFindings' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{parent=projects/*/locations/*}/intelligenceFindings',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'SummarizeIntelligenceFindings' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{parent=projects/*/locations/*}/intelligenceFindings:summarize',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{parent=folders/*/locations/*}/intelligenceFindings:summarize',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v2/{parent=organizations/*/locations/*}/intelligenceFindings:summarize',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
                         ],
                     ],
                 ],
