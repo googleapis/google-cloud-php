@@ -9,48 +9,49 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * Performance Capture configuration.
+ * Performance capture configuration.
  *
  * Generated from protobuf message <code>google.cloud.sql.v1.PerformanceCaptureConfig</code>
  */
 class PerformanceCaptureConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. Enable or disable the Performance Capture feature.
+     * Optional. Enables or disables the performance capture feature.
      *
      * Generated from protobuf field <code>optional bool enabled = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $enabled = null;
     /**
-     * Optional. The time interval in seconds between any two probes.
+     * Optional. Specifies the interval in seconds between consecutive probes that
+     * check if any trigger condition thresholds have been reached.
      *
      * Generated from protobuf field <code>optional int32 probing_interval_seconds = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $probing_interval_seconds = null;
     /**
-     * Optional. The minimum number of consecutive readings above threshold that
-     * triggers instance state capture.
+     * Optional. Specifies the minimum number of consecutive probe threshold that
+     * triggers performance capture.
      *
      * Generated from protobuf field <code>optional int32 probe_threshold = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $probe_threshold = null;
     /**
-     * Optional. The minimum number of server threads running to trigger the
-     * capture on primary.
+     * Optional. Specifies the minimum number of MySQL `Threads_running` to
+     * trigger the performance capture on the primary instance.
      *
      * Generated from protobuf field <code>optional int32 running_threads_threshold = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $running_threads_threshold = null;
     /**
-     * Optional. The minimum number of seconds replica must be lagging behind
-     * primary to trigger capture on replica.
+     * Optional. Specifies the minimum number of seconds replica must be lagging
+     * behind primary instance to trigger the performance capture on replica.
      *
      * Generated from protobuf field <code>optional int32 seconds_behind_source_threshold = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $seconds_behind_source_threshold = null;
     /**
-     * Optional. The amount of time in seconds that a transaction needs to have
-     * been open before the watcher starts recording it.
+     * Optional. Specifies the amount of time in seconds that a transaction needs
+     * to have been open before the watcher starts recording it.
      *
      * Generated from protobuf field <code>optional int32 transaction_duration_threshold = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -63,21 +64,22 @@ class PerformanceCaptureConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $enabled
-     *           Optional. Enable or disable the Performance Capture feature.
+     *           Optional. Enables or disables the performance capture feature.
      *     @type int $probing_interval_seconds
-     *           Optional. The time interval in seconds between any two probes.
+     *           Optional. Specifies the interval in seconds between consecutive probes that
+     *           check if any trigger condition thresholds have been reached.
      *     @type int $probe_threshold
-     *           Optional. The minimum number of consecutive readings above threshold that
-     *           triggers instance state capture.
+     *           Optional. Specifies the minimum number of consecutive probe threshold that
+     *           triggers performance capture.
      *     @type int $running_threads_threshold
-     *           Optional. The minimum number of server threads running to trigger the
-     *           capture on primary.
+     *           Optional. Specifies the minimum number of MySQL `Threads_running` to
+     *           trigger the performance capture on the primary instance.
      *     @type int $seconds_behind_source_threshold
-     *           Optional. The minimum number of seconds replica must be lagging behind
-     *           primary to trigger capture on replica.
+     *           Optional. Specifies the minimum number of seconds replica must be lagging
+     *           behind primary instance to trigger the performance capture on replica.
      *     @type int $transaction_duration_threshold
-     *           Optional. The amount of time in seconds that a transaction needs to have
-     *           been open before the watcher starts recording it.
+     *           Optional. Specifies the amount of time in seconds that a transaction needs
+     *           to have been open before the watcher starts recording it.
      * }
      */
     public function __construct($data = NULL) {
@@ -86,7 +88,7 @@ class PerformanceCaptureConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Enable or disable the Performance Capture feature.
+     * Optional. Enables or disables the performance capture feature.
      *
      * Generated from protobuf field <code>optional bool enabled = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -107,7 +109,7 @@ class PerformanceCaptureConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Enable or disable the Performance Capture feature.
+     * Optional. Enables or disables the performance capture feature.
      *
      * Generated from protobuf field <code>optional bool enabled = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
@@ -122,7 +124,8 @@ class PerformanceCaptureConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The time interval in seconds between any two probes.
+     * Optional. Specifies the interval in seconds between consecutive probes that
+     * check if any trigger condition thresholds have been reached.
      *
      * Generated from protobuf field <code>optional int32 probing_interval_seconds = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -143,7 +146,8 @@ class PerformanceCaptureConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The time interval in seconds between any two probes.
+     * Optional. Specifies the interval in seconds between consecutive probes that
+     * check if any trigger condition thresholds have been reached.
      *
      * Generated from protobuf field <code>optional int32 probing_interval_seconds = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -158,8 +162,8 @@ class PerformanceCaptureConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The minimum number of consecutive readings above threshold that
-     * triggers instance state capture.
+     * Optional. Specifies the minimum number of consecutive probe threshold that
+     * triggers performance capture.
      *
      * Generated from protobuf field <code>optional int32 probe_threshold = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -180,8 +184,8 @@ class PerformanceCaptureConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The minimum number of consecutive readings above threshold that
-     * triggers instance state capture.
+     * Optional. Specifies the minimum number of consecutive probe threshold that
+     * triggers performance capture.
      *
      * Generated from protobuf field <code>optional int32 probe_threshold = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -196,8 +200,8 @@ class PerformanceCaptureConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The minimum number of server threads running to trigger the
-     * capture on primary.
+     * Optional. Specifies the minimum number of MySQL `Threads_running` to
+     * trigger the performance capture on the primary instance.
      *
      * Generated from protobuf field <code>optional int32 running_threads_threshold = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -218,8 +222,8 @@ class PerformanceCaptureConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The minimum number of server threads running to trigger the
-     * capture on primary.
+     * Optional. Specifies the minimum number of MySQL `Threads_running` to
+     * trigger the performance capture on the primary instance.
      *
      * Generated from protobuf field <code>optional int32 running_threads_threshold = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -234,8 +238,8 @@ class PerformanceCaptureConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The minimum number of seconds replica must be lagging behind
-     * primary to trigger capture on replica.
+     * Optional. Specifies the minimum number of seconds replica must be lagging
+     * behind primary instance to trigger the performance capture on replica.
      *
      * Generated from protobuf field <code>optional int32 seconds_behind_source_threshold = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -256,8 +260,8 @@ class PerformanceCaptureConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The minimum number of seconds replica must be lagging behind
-     * primary to trigger capture on replica.
+     * Optional. Specifies the minimum number of seconds replica must be lagging
+     * behind primary instance to trigger the performance capture on replica.
      *
      * Generated from protobuf field <code>optional int32 seconds_behind_source_threshold = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -272,8 +276,8 @@ class PerformanceCaptureConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The amount of time in seconds that a transaction needs to have
-     * been open before the watcher starts recording it.
+     * Optional. Specifies the amount of time in seconds that a transaction needs
+     * to have been open before the watcher starts recording it.
      *
      * Generated from protobuf field <code>optional int32 transaction_duration_threshold = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -294,8 +298,8 @@ class PerformanceCaptureConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The amount of time in seconds that a transaction needs to have
-     * been open before the watcher starts recording it.
+     * Optional. Specifies the amount of time in seconds that a transaction needs
+     * to have been open before the watcher starts recording it.
      *
      * Generated from protobuf field <code>optional int32 transaction_duration_threshold = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
