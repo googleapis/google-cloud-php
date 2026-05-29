@@ -419,6 +419,86 @@ class BucketTest extends TestCase
         $this->assertEquals($destinationObject, $object->name());
     }
 
+    public function testComposeWithDeleteSourceObjects()
+    {
+        $acl = 'private';
+        $destinationObject = 'combined-files.txt';
+        $this->connection->composeObject([
+                'destinationBucket' => self::BUCKET_NAME,
+                'destinationObject' => $destinationObject,
+                'destinationPredefinedAcl' => $acl,
+                'destination' => ['contentType' => 'text/plain'],
+                'sourceObjects' => [['name' => 'file1.txt'], ['name' => 'file2.txt']],
+                'deleteSourceObjects' => true,
+            ])
+            ->willReturn([
+                'name' => $destinationObject,
+                'generation' => 1
+            ])
+            ->shouldBeCalledTimes(1);
+
+        $bucket = $this->getBucket();
+
+        $object = $bucket->compose(['file1.txt', 'file2.txt'], $destinationObject, [
+            'predefinedAcl' => $acl,
+            'deleteSourceObjects' => true
+        ]);
+
+        $this->assertEquals($destinationObject, $object->name());
+    }
+
+    public function testComposeWithDeleteSourceObjectsFalse()
+    {
+        $acl = 'private';
+        $destinationObject = 'combined-files.txt';
+        $this->connection->composeObject([
+                'destinationBucket' => self::BUCKET_NAME,
+                'destinationObject' => $destinationObject,
+                'destinationPredefinedAcl' => $acl,
+                'destination' => ['contentType' => 'text/plain'],
+                'sourceObjects' => [['name' => 'file1.txt'], ['name' => 'file2.txt']],
+            ])
+            ->willReturn([
+                'name' => $destinationObject,
+                'generation' => 1
+            ])
+            ->shouldBeCalledTimes(1);
+        $bucket = $this->getBucket();
+
+        $object = $bucket->compose(['file1.txt', 'file2.txt'], $destinationObject, [
+            'predefinedAcl' => $acl,
+            'deleteSourceObjects' => false
+        ]);
+
+        $this->assertEquals($destinationObject, $object->name());
+    }
+
+    public function testComposeWithDeleteSourceObjectsNull()
+    {
+        $acl = 'private';
+        $destinationObject = 'combined-files.txt';
+        $this->connection->composeObject([
+                'destinationBucket' => self::BUCKET_NAME,
+                'destinationObject' => $destinationObject,
+                'destinationPredefinedAcl' => $acl,
+                'destination' => ['contentType' => 'text/plain'],
+                'sourceObjects' => [['name' => 'file1.txt'], ['name' => 'file2.txt']],
+            ])
+            ->willReturn([
+                'name' => $destinationObject,
+                'generation' => 1
+            ])
+            ->shouldBeCalledTimes(1);
+        $bucket = $this->getBucket();
+
+        $object = $bucket->compose(['file1.txt', 'file2.txt'], $destinationObject, [
+            'predefinedAcl' => $acl,
+            'deleteSourceObjects' => null
+        ]);
+
+        $this->assertEquals($destinationObject, $object->name());
+    }
+
     public function composeProvider()
     {
         $object1 = $this->prophesize(StorageObject::class);
