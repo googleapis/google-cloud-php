@@ -62,7 +62,7 @@ $PROJECT_DIR/dev/google-cloud docfx \
 
 # Add protobuf
 PROTOBUF_DIR=$PROJECT_DIR/dev/vendor/google/protobuf
-PROTOBUF_VERSION=$(composer info google/protobuf -f json | jq .versions[0])
+PROTOBUF_VERSION=$(composer info google/protobuf -f json -d $PROJECT_DIR/dev | jq .versions[0])
 $PROJECT_DIR/dev/google-cloud docfx \
     --path $PROTOBUF_DIR \
     --out protobuf-out \
