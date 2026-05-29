@@ -310,7 +310,7 @@ class Rest implements ConnectionInterface
      * @param array $args
      * @return array
      */
-    public function headObject(array $args = [])
+    public function headObject(array $args = []): array
     {
         $args += [
             'prettyPrint' => false,
@@ -345,7 +345,8 @@ class Rest implements ConnectionInterface
         $request = $this->requestBuilder->build('objects', 'get', $args);
         $request = $request->withMethod('HEAD');
 
-        return $this->requestWrapper->send($request, $requestOptions);
+        $response = $this->requestWrapper->send($request, $requestOptions);
+        return $response->getHeaders();
     }
 
     /**

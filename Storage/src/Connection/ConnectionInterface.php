@@ -134,7 +134,7 @@ interface ConnectionInterface
      * @param array $args
      * @return array
      */
-    public function headObject(array $args = []);
+    public function headObject(array $args = []): array;
 
     /**
      * @param array $args
