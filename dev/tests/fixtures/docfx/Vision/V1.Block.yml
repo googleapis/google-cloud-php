@@ -202,7 +202,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<xref uid="\Google\Protobuf\Internal\RepeatedField">Google\Protobuf\Internal\RepeatedField</xref>'
+          var_type: '<xref uid="\Google\Protobuf\RepeatedField">Google\Protobuf\RepeatedField</xref>&lt;<xref uid="\Google\Cloud\Vision\V1\Paragraph">Paragraph</xref>&gt;'
   -
     uid: '\Google\Cloud\Vision\V1\Block::setParagraphs()'
     name: setParagraphs

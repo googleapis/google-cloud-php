@@ -147,7 +147,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<xref uid="\Google\Protobuf\Internal\RepeatedField">Google\Protobuf\Internal\RepeatedField</xref>'
+          var_type: '<xref uid="\Google\Protobuf\RepeatedField">Google\Protobuf\RepeatedField</xref>&lt;<xref uid="\Google\Cloud\Vision\V1\BoundingPoly">BoundingPoly</xref>&gt;'
   -
     uid: '\Google\Cloud\Vision\V1\ReferenceImage::setBoundingPolys()'
     name: setBoundingPolys
