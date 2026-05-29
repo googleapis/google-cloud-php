@@ -897,6 +897,10 @@
                     "$ref": "Object",
                     "description": "Properties of the resulting object."
                 },
+                "deleteSourceObjects": {
+                    "type": "boolean",
+                    "description": "If true, the source objects will be deleted after a successful compose operation."
+                },
                 "kind": {
                     "type": "string",
                     "description": "The kind of item this is.",
