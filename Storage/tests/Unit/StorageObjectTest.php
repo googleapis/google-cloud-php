@@ -82,7 +82,7 @@ class StorageObjectTest extends TestCase
 
     public function testDoesExistTrue()
     {
-        $this->connection->getObject(Argument::any())->willReturn(['name' => self::OBJECT]);
+        $this->connection->headObject(Argument::any())->willReturn([]);
         $object = new StorageObject($this->connection->reveal(), self::OBJECT, self::BUCKET);
 
         $this->assertTrue($object->exists());
@@ -90,7 +90,7 @@ class StorageObjectTest extends TestCase
 
     public function testDoesExistFalse()
     {
-        $this->connection->getObject(Argument::any())->willThrow(new NotFoundException(null));
+        $this->connection->headObject(Argument::any())->willThrow(new NotFoundException(null));
         $object = new StorageObject($this->connection->reveal(), self::OBJECT, self::BUCKET);
 
         $this->assertFalse($object->exists());
