@@ -322,17 +322,29 @@ class ErrorReason
      */
     const MULTIPLE_DESTINATIONS_FOR_GOOGLE_ANALYTICS_EVENT = 49;
     /**
-     * The field value is too long.
+     * Length of the field value is too long.
      *
      * Generated from protobuf enum <code>FIELD_VALUE_TOO_LONG = 50;</code>
      */
     const FIELD_VALUE_TOO_LONG = 50;
+    /**
+     * Length of the field value is too short.
+     *
+     * Generated from protobuf enum <code>FIELD_VALUE_TOO_SHORT = 106;</code>
+     */
+    const FIELD_VALUE_TOO_SHORT = 106;
     /**
      * Too many elements in a list in the request.
      *
      * Generated from protobuf enum <code>TOO_MANY_ELEMENTS = 51;</code>
      */
     const TOO_MANY_ELEMENTS = 51;
+    /**
+     * Too few elements in a list in the request.
+     *
+     * Generated from protobuf enum <code>TOO_FEW_ELEMENTS = 105;</code>
+     */
+    const TOO_FEW_ELEMENTS = 105;
     /**
      * The resource already exists.
      *
@@ -744,6 +756,21 @@ class ErrorReason
      * Generated from protobuf enum <code>CUSTOM_VARIABLE_NOT_FOUND = 120;</code>
      */
     const CUSTOM_VARIABLE_NOT_FOUND = 120;
+    /**
+     * The
+     * [location_auto_detection_enabled][google.ads.datamanager.v1.Baseline.location_auto_detection_enabled]
+     * field of the request was set to `true`, but auto detection of baseline
+     * location failed.
+     *
+     * Generated from protobuf enum <code>BASELINE_LOCATION_AUTO_DETECTION_FAILED = 122;</code>
+     */
+    const BASELINE_LOCATION_AUTO_DETECTION_FAILED = 122;
+    /**
+     * Insights missing for this dimension.
+     *
+     * Generated from protobuf enum <code>INSIGHTS_MISSING_FOR_DIMENSION = 123;</code>
+     */
+    const INSIGHTS_MISSING_FOR_DIMENSION = 123;
 
     private static $valueToName = [
         self::ERROR_REASON_UNSPECIFIED => 'ERROR_REASON_UNSPECIFIED',
@@ -797,7 +824,9 @@ class ErrorReason
         self::INVALID_REQUEST_ID => 'INVALID_REQUEST_ID',
         self::MULTIPLE_DESTINATIONS_FOR_GOOGLE_ANALYTICS_EVENT => 'MULTIPLE_DESTINATIONS_FOR_GOOGLE_ANALYTICS_EVENT',
         self::FIELD_VALUE_TOO_LONG => 'FIELD_VALUE_TOO_LONG',
+        self::FIELD_VALUE_TOO_SHORT => 'FIELD_VALUE_TOO_SHORT',
         self::TOO_MANY_ELEMENTS => 'TOO_MANY_ELEMENTS',
+        self::TOO_FEW_ELEMENTS => 'TOO_FEW_ELEMENTS',
         self::ALREADY_EXISTS => 'ALREADY_EXISTS',
         self::IMMUTABLE_FIELD_FOR_UPDATE => 'IMMUTABLE_FIELD_FOR_UPDATE',
         self::INVALID_RESOURCE_NAME => 'INVALID_RESOURCE_NAME',
@@ -865,6 +894,8 @@ class ErrorReason
         self::CUSTOM_VARIABLE_NOT_ENABLED => 'CUSTOM_VARIABLE_NOT_ENABLED',
         self::INVALID_CUSTOM_VARIABLE_VALUE => 'INVALID_CUSTOM_VARIABLE_VALUE',
         self::CUSTOM_VARIABLE_NOT_FOUND => 'CUSTOM_VARIABLE_NOT_FOUND',
+        self::BASELINE_LOCATION_AUTO_DETECTION_FAILED => 'BASELINE_LOCATION_AUTO_DETECTION_FAILED',
+        self::INSIGHTS_MISSING_FOR_DIMENSION => 'INSIGHTS_MISSING_FOR_DIMENSION',
     ];
 
     public static function name($value)

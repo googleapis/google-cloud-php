@@ -56,6 +56,12 @@ class AccountType
      * Generated from protobuf enum <code>GOOGLE_AD_MANAGER_AUDIENCE_LINK = 6;</code>
      */
     const GOOGLE_AD_MANAGER_AUDIENCE_LINK = 6;
+    /**
+     * Floodlight configuration.
+     *
+     * Generated from protobuf enum <code>FLOODLIGHT_CONFIG = 7;</code>
+     */
+    const FLOODLIGHT_CONFIG = 7;
 
     private static $valueToName = [
         self::ACCOUNT_TYPE_UNSPECIFIED => 'ACCOUNT_TYPE_UNSPECIFIED',
@@ -65,6 +71,7 @@ class AccountType
         self::DATA_PARTNER => 'DATA_PARTNER',
         self::GOOGLE_ANALYTICS_PROPERTY => 'GOOGLE_ANALYTICS_PROPERTY',
         self::GOOGLE_AD_MANAGER_AUDIENCE_LINK => 'GOOGLE_AD_MANAGER_AUDIENCE_LINK',
+        self::FLOODLIGHT_CONFIG => 'FLOODLIGHT_CONFIG',
     ];
 
     public static function name($value)

@@ -33,6 +33,8 @@ class IngestAudienceMembersStatus extends \Google\Protobuf\Internal\Message
      *           The status of the user id data ingestion to the destination.
      *     @type \Google\Ads\DataManager\V1\RequestStatusPerDestination\IngestPpidDataStatus $ppid_data_ingestion_status
      *           The status of the ppid data ingestion to the destination.
+     *     @type \Google\Ads\DataManager\V1\RequestStatusPerDestination\IngestCompositeDataStatus $composite_data_ingestion_status
+     *           The status of the composite data ingestion to the destination.
      * }
      */
     public function __construct($data = NULL) {
@@ -191,6 +193,37 @@ class IngestAudienceMembersStatus extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Ads\DataManager\V1\RequestStatusPerDestination\IngestPpidDataStatus::class);
         $this->writeOneof(5, $var);
+
+        return $this;
+    }
+
+    /**
+     * The status of the composite data ingestion to the destination.
+     *
+     * Generated from protobuf field <code>.google.ads.datamanager.v1.RequestStatusPerDestination.IngestCompositeDataStatus composite_data_ingestion_status = 6;</code>
+     * @return \Google\Ads\DataManager\V1\RequestStatusPerDestination\IngestCompositeDataStatus|null
+     */
+    public function getCompositeDataIngestionStatus()
+    {
+        return $this->readOneof(6);
+    }
+
+    public function hasCompositeDataIngestionStatus()
+    {
+        return $this->hasOneof(6);
+    }
+
+    /**
+     * The status of the composite data ingestion to the destination.
+     *
+     * Generated from protobuf field <code>.google.ads.datamanager.v1.RequestStatusPerDestination.IngestCompositeDataStatus composite_data_ingestion_status = 6;</code>
+     * @param \Google\Ads\DataManager\V1\RequestStatusPerDestination\IngestCompositeDataStatus $var
+     * @return $this
+     */
+    public function setCompositeDataIngestionStatus($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Ads\DataManager\V1\RequestStatusPerDestination\IngestCompositeDataStatus::class);
+        $this->writeOneof(6, $var);
 
         return $this;
     }

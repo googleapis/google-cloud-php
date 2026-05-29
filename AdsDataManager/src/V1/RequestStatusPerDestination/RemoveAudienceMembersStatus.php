@@ -33,6 +33,8 @@ class RemoveAudienceMembersStatus extends \Google\Protobuf\Internal\Message
      *           The status of the user id data removal from the destination.
      *     @type \Google\Ads\DataManager\V1\RequestStatusPerDestination\RemovePpidDataStatus $ppid_data_removal_status
      *           The status of the ppid data removal from the destination.
+     *     @type \Google\Ads\DataManager\V1\RequestStatusPerDestination\RemoveCompositeDataStatus $composite_data_removal_status
+     *           The status of the composite data removal from the destination.
      * }
      */
     public function __construct($data = NULL) {
@@ -191,6 +193,37 @@ class RemoveAudienceMembersStatus extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Ads\DataManager\V1\RequestStatusPerDestination\RemovePpidDataStatus::class);
         $this->writeOneof(5, $var);
+
+        return $this;
+    }
+
+    /**
+     * The status of the composite data removal from the destination.
+     *
+     * Generated from protobuf field <code>.google.ads.datamanager.v1.RequestStatusPerDestination.RemoveCompositeDataStatus composite_data_removal_status = 6;</code>
+     * @return \Google\Ads\DataManager\V1\RequestStatusPerDestination\RemoveCompositeDataStatus|null
+     */
+    public function getCompositeDataRemovalStatus()
+    {
+        return $this->readOneof(6);
+    }
+
+    public function hasCompositeDataRemovalStatus()
+    {
+        return $this->hasOneof(6);
+    }
+
+    /**
+     * The status of the composite data removal from the destination.
+     *
+     * Generated from protobuf field <code>.google.ads.datamanager.v1.RequestStatusPerDestination.RemoveCompositeDataStatus composite_data_removal_status = 6;</code>
+     * @param \Google\Ads\DataManager\V1\RequestStatusPerDestination\RemoveCompositeDataStatus $var
+     * @return $this
+     */
+    public function setCompositeDataRemovalStatus($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Ads\DataManager\V1\RequestStatusPerDestination\RemoveCompositeDataStatus::class);
+        $this->writeOneof(6, $var);
 
         return $this;
     }

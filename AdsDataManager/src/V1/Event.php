@@ -79,6 +79,13 @@ class Event extends \Google\Protobuf\Internal\Message
      */
     protected $conversion_value = null;
     /**
+     * Optional. The conversion quantity associated with the event, for
+     * counting-based conversions.
+     *
+     * Generated from protobuf field <code>optional double conversion_count = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $conversion_count = null;
+    /**
      * Optional. Signal for where the event happened (web, app, in-store, etc.).
      *
      * Generated from protobuf field <code>.google.ads.datamanager.v1.EventSource event_source = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -203,6 +210,9 @@ class Event extends \Google\Protobuf\Internal\Message
      *     @type float $conversion_value
      *           Optional. The conversion value associated with the event, for value-based
      *           conversions.
+     *     @type float $conversion_count
+     *           Optional. The conversion quantity associated with the event, for
+     *           counting-based conversions.
      *     @type int $event_source
      *           Optional. Signal for where the event happened (web, app, in-store, etc.).
      *     @type \Google\Ads\DataManager\V1\DeviceInfo $event_device_info
@@ -557,6 +567,44 @@ class Event extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkDouble($var);
         $this->conversion_value = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The conversion quantity associated with the event, for
+     * counting-based conversions.
+     *
+     * Generated from protobuf field <code>optional double conversion_count = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return float
+     */
+    public function getConversionCount()
+    {
+        return isset($this->conversion_count) ? $this->conversion_count : 0.0;
+    }
+
+    public function hasConversionCount()
+    {
+        return isset($this->conversion_count);
+    }
+
+    public function clearConversionCount()
+    {
+        unset($this->conversion_count);
+    }
+
+    /**
+     * Optional. The conversion quantity associated with the event, for
+     * counting-based conversions.
+     *
+     * Generated from protobuf field <code>optional double conversion_count = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setConversionCount($var)
+    {
+        GPBUtil::checkDouble($var);
+        $this->conversion_count = $var;
 
         return $this;
     }
