@@ -387,7 +387,6 @@ class BucketTest extends TestCase
         $bucket->compose(['file1.txt', 'file2.txt'], 'combined-files.abc');
     }
 
-
     /**
      * @dataProvider composeProvider
      */
