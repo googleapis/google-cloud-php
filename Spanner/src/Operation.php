@@ -1005,8 +1005,12 @@ class Operation
         $parameters = $args['parameters'] ?? [];
         $types = $args['types'] ?? [];
 
-        $paramsAndParamTypes = $this->mapper->formatParamsForExecuteSql($parameters, $types);
-        return $this->formatSqlParams($paramsAndParamTypes);
+        /** @var array{params: array, paramTypes: array} $paramsAndParamTypes */
+        $paramsAndParamTypes = $this->formatSqlParams(
+            $this->mapper->formatParamsForExecuteSql($parameters, $types)
+        );
+
+        return $paramsAndParamTypes;
     }
 
     /**
