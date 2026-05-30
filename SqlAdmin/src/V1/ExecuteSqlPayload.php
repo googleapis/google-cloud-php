@@ -76,7 +76,7 @@ class ExecuteSqlPayload extends \Google\Protobuf\Internal\Message
      *     @type string $database
      *           Optional. Name of the database on which the statement will be executed.
      *     @type bool $auto_iam_authn
-     *           Optional. When set to true, the API caller identity associated with the
+     *           Optional. When set to `true`, the API caller identity associated with the
      *           request is used for database authentication. The API caller must be an
      *           IAM user in the database.
      *     @type int|string $row_limit
@@ -181,7 +181,7 @@ class ExecuteSqlPayload extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. When set to true, the API caller identity associated with the
+     * Optional. When set to `true`, the API caller identity associated with the
      * request is used for database authentication. The API caller must be an
      * IAM user in the database.
      *
@@ -199,7 +199,7 @@ class ExecuteSqlPayload extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. When set to true, the API caller identity associated with the
+     * Optional. When set to `true`, the API caller identity associated with the
      * request is used for database authentication. The API caller must be an
      * IAM user in the database.
      *

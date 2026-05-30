@@ -597,6 +597,84 @@ class ManageObjectsTest extends StorageTestCase
         return $composedObject;
     }
 
+    public function testComposeObjectsWithDeleteSourceObjects()
+    {
+        $source1 = self::$bucket->upload('content1', ['name' => uniqid(self::TESTING_PREFIX) . '-s1.txt']);
+        $source2 = self::$bucket->upload('content2', ['name' => uniqid(self::TESTING_PREFIX) . '-s2.txt']);
+
+        $this->assertTrue($source1->exists());
+        $this->assertTrue($source2->exists());
+
+        $name = uniqid(self::TESTING_PREFIX) . '-composed.txt';
+        $composedObject = self::$bucket->compose(
+            [$source1, $source2],
+            $name,
+            ['deleteSourceObjects' => true]
+        );
+
+        $this->assertEquals($name, $composedObject->name());
+        $this->assertEquals('content1content2', $composedObject->downloadAsString());
+
+        $this->assertFalse($source1->exists());
+        $this->assertFalse($source2->exists());
+
+        $composedObject->delete();
+    }
+
+    public function testComposeObjectsWithDeleteSourceObjectsFalse()
+    {
+        $source1 = self::$bucket->upload('content1', ['name' => uniqid(self::TESTING_PREFIX) . '-s1.txt']);
+        $source2 = self::$bucket->upload('content2', ['name' => uniqid(self::TESTING_PREFIX) . '-s2.txt']);
+
+        $this->assertTrue($source1->exists());
+        $this->assertTrue($source2->exists());
+
+        $name = uniqid(self::TESTING_PREFIX) . '-composed.txt';
+        $composedObject = self::$bucket->compose(
+            [$source1, $source2],
+            $name,
+            ['deleteSourceObjects' => false]
+        );
+
+        $this->assertEquals($name, $composedObject->name());
+        $this->assertEquals('content1content2', $composedObject->downloadAsString());
+
+        // Source objects should still exist because deleteSourceObjects is false
+        $this->assertTrue($source1->exists());
+        $this->assertTrue($source2->exists());
+
+        $source1->delete();
+        $source2->delete();
+        $composedObject->delete();
+    }
+
+    public function testComposeObjectsWithDeleteSourceObjectsNull()
+    {
+        $source1 = self::$bucket->upload('content1', ['name' => uniqid(self::TESTING_PREFIX) . '-s1.txt']);
+        $source2 = self::$bucket->upload('content2', ['name' => uniqid(self::TESTING_PREFIX) . '-s2.txt']);
+
+        $this->assertTrue($source1->exists());
+        $this->assertTrue($source2->exists());
+
+        $name = uniqid(self::TESTING_PREFIX) . '-composed.txt';
+        $composedObject = self::$bucket->compose(
+            [$source1, $source2],
+            $name,
+            ['deleteSourceObjects' => null]
+        );
+
+        $this->assertEquals($name, $composedObject->name());
+        $this->assertEquals('content1content2', $composedObject->downloadAsString());
+
+        // Source objects should still exist because deleteSourceObjects is null
+        $this->assertTrue($source1->exists());
+        $this->assertTrue($source2->exists());
+
+        $source1->delete();
+        $source2->delete();
+        $composedObject->delete();
+    }
+
     public function testSoftDeleteObject()
     {
         $softDeleteBucketName = "soft-delete-bucket-" . uniqid();

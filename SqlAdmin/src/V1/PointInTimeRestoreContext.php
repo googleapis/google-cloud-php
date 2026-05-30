@@ -72,6 +72,27 @@ class PointInTimeRestoreContext extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string preferred_secondary_zone = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $preferred_secondary_zone = null;
+    /**
+     * Optional. Specifies the instance settings that will be overridden from the
+     * source instance. This field is only applicable for cross project PITRs.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.DatabaseInstance target_instance_settings = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $target_instance_settings = null;
+    /**
+     * Optional. Specifies the instance settings that will be cleared from the
+     * source instance. This field is only applicable for cross project PITRs.
+     *
+     * Generated from protobuf field <code>repeated string target_instance_clear_settings_field_names = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $target_instance_clear_settings_field_names;
+    /**
+     * Optional. The region of the target instance where the datasource will be
+     * restored. For example: "us-central1".
+     *
+     * Generated from protobuf field <code>optional string region = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $region = null;
 
     /**
      * Constructor.
@@ -107,6 +128,15 @@ class PointInTimeRestoreContext extends \Google\Protobuf\Internal\Message
      *           Optional. Point-in-time recovery of a regional instance in the specified
      *           zones. If not specified, clone to the same secondary zone as the source
      *           instance. This value cannot be the same as the preferred_zone field.
+     *     @type \Google\Cloud\Sql\V1\DatabaseInstance $target_instance_settings
+     *           Optional. Specifies the instance settings that will be overridden from the
+     *           source instance. This field is only applicable for cross project PITRs.
+     *     @type string[] $target_instance_clear_settings_field_names
+     *           Optional. Specifies the instance settings that will be cleared from the
+     *           source instance. This field is only applicable for cross project PITRs.
+     *     @type string $region
+     *           Optional. The region of the target instance where the datasource will be
+     *           restored. For example: "us-central1".
      * }
      */
     public function __construct($data = NULL) {
@@ -390,6 +420,110 @@ class PointInTimeRestoreContext extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->preferred_secondary_zone = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies the instance settings that will be overridden from the
+     * source instance. This field is only applicable for cross project PITRs.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.DatabaseInstance target_instance_settings = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Sql\V1\DatabaseInstance|null
+     */
+    public function getTargetInstanceSettings()
+    {
+        return $this->target_instance_settings;
+    }
+
+    public function hasTargetInstanceSettings()
+    {
+        return isset($this->target_instance_settings);
+    }
+
+    public function clearTargetInstanceSettings()
+    {
+        unset($this->target_instance_settings);
+    }
+
+    /**
+     * Optional. Specifies the instance settings that will be overridden from the
+     * source instance. This field is only applicable for cross project PITRs.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1.DatabaseInstance target_instance_settings = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Sql\V1\DatabaseInstance $var
+     * @return $this
+     */
+    public function setTargetInstanceSettings($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Sql\V1\DatabaseInstance::class);
+        $this->target_instance_settings = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies the instance settings that will be cleared from the
+     * source instance. This field is only applicable for cross project PITRs.
+     *
+     * Generated from protobuf field <code>repeated string target_instance_clear_settings_field_names = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return RepeatedField<string>
+     */
+    public function getTargetInstanceClearSettingsFieldNames()
+    {
+        return $this->target_instance_clear_settings_field_names;
+    }
+
+    /**
+     * Optional. Specifies the instance settings that will be cleared from the
+     * source instance. This field is only applicable for cross project PITRs.
+     *
+     * Generated from protobuf field <code>repeated string target_instance_clear_settings_field_names = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string[] $var
+     * @return $this
+     */
+    public function setTargetInstanceClearSettingsFieldNames($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->target_instance_clear_settings_field_names = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The region of the target instance where the datasource will be
+     * restored. For example: "us-central1".
+     *
+     * Generated from protobuf field <code>optional string region = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getRegion()
+    {
+        return isset($this->region) ? $this->region : '';
+    }
+
+    public function hasRegion()
+    {
+        return isset($this->region);
+    }
+
+    public function clearRegion()
+    {
+        unset($this->region);
+    }
+
+    /**
+     * Optional. The region of the target instance where the datasource will be
+     * restored. For example: "us-central1".
+     *
+     * Generated from protobuf field <code>optional string region = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRegion($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->region = $var;
 
         return $this;
     }
