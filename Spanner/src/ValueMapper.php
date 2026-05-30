@@ -137,7 +137,7 @@ class ValueMapper
      *
      * @param array $parameters The key/value parameters.
      * @param array $types The types of values.
-     * @return array An associative array containing params and paramTypes.
+     * @return array{params: array, paramTypes: array}
      */
     public function formatParamsForExecuteSql(array $parameters, array $types = []): array
     {
@@ -836,8 +836,7 @@ class ValueMapper
      * @param int $typeAnnotation The type annotation code
      * @param array $nestedDefinition [optional] A nested definition, to define
      *        the structure of an array or struct type.
-     * @param string $nestedDefinitionType [optional] Either `arrayElementType`
-     *        or `structType`.
+     * @param 'arrayElementType'|'structType'|null $nestedDefinitionType
      * @return array{
      *     code?: int,
      *     arrayElementType?: array,
