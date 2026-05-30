@@ -132,6 +132,12 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      */
     protected $default_enable_private_nodes = null;
     /**
+     * Optional. DataplaneV2Config specifies the DPv2 configuration.
+     *
+     * Generated from protobuf field <code>optional .google.container.v1.DataplaneV2Config dataplane_v2_config = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $dataplane_v2_config = null;
+    /**
      * Disable L4 load balancer VPC firewalls to enable firewall policies.
      *
      * Generated from protobuf field <code>optional bool disable_l4_lb_firewall_reconciliation = 24;</code>
@@ -196,6 +202,8 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      *           and this field at the same time.
      *           To update the default setting, use
      *           [ClusterUpdate.desired_default_enable_private_nodes][google.container.v1.ClusterUpdate.desired_default_enable_private_nodes]
+     *     @type \Google\Cloud\Container\V1\DataplaneV2Config $dataplane_v2_config
+     *           Optional. DataplaneV2Config specifies the DPv2 configuration.
      *     @type bool $disable_l4_lb_firewall_reconciliation
      *           Disable L4 load balancer VPC firewalls to enable firewall policies.
      * }
@@ -747,6 +755,42 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->default_enable_private_nodes = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. DataplaneV2Config specifies the DPv2 configuration.
+     *
+     * Generated from protobuf field <code>optional .google.container.v1.DataplaneV2Config dataplane_v2_config = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Container\V1\DataplaneV2Config|null
+     */
+    public function getDataplaneV2Config()
+    {
+        return $this->dataplane_v2_config;
+    }
+
+    public function hasDataplaneV2Config()
+    {
+        return isset($this->dataplane_v2_config);
+    }
+
+    public function clearDataplaneV2Config()
+    {
+        unset($this->dataplane_v2_config);
+    }
+
+    /**
+     * Optional. DataplaneV2Config specifies the DPv2 configuration.
+     *
+     * Generated from protobuf field <code>optional .google.container.v1.DataplaneV2Config dataplane_v2_config = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Container\V1\DataplaneV2Config $var
+     * @return $this
+     */
+    public function setDataplaneV2Config($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\DataplaneV2Config::class);
+        $this->dataplane_v2_config = $var;
 
         return $this;
     }
