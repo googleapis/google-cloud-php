@@ -3,7 +3,7 @@
     "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
     "language": "php",
     "protoPackage": "google.developers.knowledge.v1",
-    "libraryPackage": "Google\\Developers\\Knowledge\\V1",
+    "libraryPackage": "Google\\Developers\\DeveloperKnowledge\\V1",
     "services": {
         "DeveloperKnowledge": {
             "clients": {

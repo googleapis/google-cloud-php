@@ -24,9 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START developerknowledge_v1_generated_DeveloperKnowledge_GetDocument_sync]
 use Google\ApiCore\ApiException;
-use Google\Developers\Knowledge\V1\Client\DeveloperKnowledgeClient;
-use Google\Developers\Knowledge\V1\Document;
-use Google\Developers\Knowledge\V1\GetDocumentRequest;
+use Google\Developers\DeveloperKnowledge\V1\Client\DeveloperKnowledgeClient;
+use Google\Developers\DeveloperKnowledge\V1\Document;
+use Google\Developers\DeveloperKnowledge\V1\GetDocumentRequest;
 
 /**
  * Retrieves a single document with its full Markdown content.

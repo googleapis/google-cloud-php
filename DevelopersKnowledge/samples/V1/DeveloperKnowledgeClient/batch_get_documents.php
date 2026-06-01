@@ -24,9 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START developerknowledge_v1_generated_DeveloperKnowledge_BatchGetDocuments_sync]
 use Google\ApiCore\ApiException;
-use Google\Developers\Knowledge\V1\BatchGetDocumentsRequest;
-use Google\Developers\Knowledge\V1\BatchGetDocumentsResponse;
-use Google\Developers\Knowledge\V1\Client\DeveloperKnowledgeClient;
+use Google\Developers\DeveloperKnowledge\V1\BatchGetDocumentsRequest;
+use Google\Developers\DeveloperKnowledge\V1\BatchGetDocumentsResponse;
+use Google\Developers\DeveloperKnowledge\V1\Client\DeveloperKnowledgeClient;
 
 /**
  * Retrieves multiple documents, each with its full Markdown content.
