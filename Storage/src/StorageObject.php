@@ -146,7 +146,7 @@ class StorageObject
     public function exists(array $options = [])
     {
         try {
-            $this->connection->getObject($this->identity + $options + ['fields' => 'name']);
+            $this->connection->headObject($this->identity + $options);
         } catch (NotFoundException $ex) {
             return false;
         }
