@@ -41,7 +41,7 @@ class CreateSecurityProfileRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string                                           $parent            Required. The parent resource of the SecurityProfile. Must be in the format
      *                                                                            `projects|organizations/&#42;/locations/{location}`. Please see
-     *                                                                            {@see OrganizationSecurityProfileGroupServiceClient::organizationLocationName()} for help formatting this field.
+     *                                                                            {@see SecurityProfileGroupServiceClient::organizationLocationName()} for help formatting this field.
      * @param \Google\Cloud\NetworkSecurity\V1\SecurityProfile $securityProfile   Required. SecurityProfile resource to be created.
      * @param string                                           $securityProfileId Required. Short name of the SecurityProfile resource to be created. This
      *                                                                            value should be 1-63 characters long, containing only letters, numbers,

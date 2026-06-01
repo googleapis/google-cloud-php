@@ -37,6 +37,10 @@ class ContentItem extends \Google\Protobuf\Internal\Message
      *           to learn more.
      *     @type \Google\Cloud\Dlp\V2\ByteContentItem $byte_item
      *           Content data to inspect or redact. Replaces `type` and `data`.
+     *     @type \Google\Cloud\Dlp\V2\Conversation $conversation
+     *           Represents a conversation (either complete or a slice).
+     *           It is assumed that all included messages are contiguous and ordered in
+     *           chronological order.
      *     @type \Google\Cloud\Dlp\V2\ContentMetadata $content_metadata
      *           User provided metadata for the content.
      * }
@@ -139,6 +143,41 @@ class ContentItem extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\ByteContentItem::class);
         $this->writeOneof(5, $var);
+
+        return $this;
+    }
+
+    /**
+     * Represents a conversation (either complete or a slice).
+     * It is assumed that all included messages are contiguous and ordered in
+     * chronological order.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.Conversation conversation = 7;</code>
+     * @return \Google\Cloud\Dlp\V2\Conversation|null
+     */
+    public function getConversation()
+    {
+        return $this->readOneof(7);
+    }
+
+    public function hasConversation()
+    {
+        return $this->hasOneof(7);
+    }
+
+    /**
+     * Represents a conversation (either complete or a slice).
+     * It is assumed that all included messages are contiguous and ordered in
+     * chronological order.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.Conversation conversation = 7;</code>
+     * @param \Google\Cloud\Dlp\V2\Conversation $var
+     * @return $this
+     */
+    public function setConversation($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\Conversation::class);
+        $this->writeOneof(7, $var);
 
         return $this;
     }

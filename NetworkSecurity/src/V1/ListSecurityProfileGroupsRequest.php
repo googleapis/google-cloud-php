@@ -43,7 +43,7 @@ class ListSecurityProfileGroupsRequest extends \Google\Protobuf\Internal\Message
      * @param string $parent Required. The project or organization and location from which the
      *                       SecurityProfileGroups should be listed, specified in the format
      *                       `projects|organizations/&#42;/locations/{location}`. Please see
-     *                       {@see OrganizationSecurityProfileGroupServiceClient::organizationLocationName()} for help formatting this field.
+     *                       {@see SecurityProfileGroupServiceClient::organizationLocationName()} for help formatting this field.
      *
      * @return \Google\Cloud\NetworkSecurity\V1\ListSecurityProfileGroupsRequest
      *
