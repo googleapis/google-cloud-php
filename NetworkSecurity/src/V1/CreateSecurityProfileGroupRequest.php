@@ -41,7 +41,7 @@ class CreateSecurityProfileGroupRequest extends \Google\Protobuf\Internal\Messag
     /**
      * @param string                                                $parent                 Required. The parent resource of the SecurityProfileGroup. Must be in the
      *                                                                                      format `projects|organizations/&#42;/locations/{location}`. Please see
-     *                                                                                      {@see OrganizationSecurityProfileGroupServiceClient::organizationLocationName()} for help formatting this field.
+     *                                                                                      {@see SecurityProfileGroupServiceClient::organizationLocationName()} for help formatting this field.
      * @param \Google\Cloud\NetworkSecurity\V1\SecurityProfileGroup $securityProfileGroup   Required. SecurityProfileGroup resource to be created.
      * @param string                                                $securityProfileGroupId Required. Short name of the SecurityProfileGroup resource to be created.
      *                                                                                      This value should be 1-63 characters long, containing only

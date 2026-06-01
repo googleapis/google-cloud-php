@@ -35,21 +35,21 @@ use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\ListLocationsResponse;
 use Google\Cloud\Location\Location;
-use Google\Cloud\NetworkSecurity\V1\Client\FirewallActivationClient;
-use Google\Cloud\NetworkSecurity\V1\CreateFirewallEndpointAssociationRequest;
-use Google\Cloud\NetworkSecurity\V1\CreateFirewallEndpointRequest;
-use Google\Cloud\NetworkSecurity\V1\DeleteFirewallEndpointAssociationRequest;
-use Google\Cloud\NetworkSecurity\V1\DeleteFirewallEndpointRequest;
-use Google\Cloud\NetworkSecurity\V1\FirewallEndpoint;
-use Google\Cloud\NetworkSecurity\V1\FirewallEndpointAssociation;
-use Google\Cloud\NetworkSecurity\V1\GetFirewallEndpointAssociationRequest;
-use Google\Cloud\NetworkSecurity\V1\GetFirewallEndpointRequest;
-use Google\Cloud\NetworkSecurity\V1\ListFirewallEndpointAssociationsRequest;
-use Google\Cloud\NetworkSecurity\V1\ListFirewallEndpointAssociationsResponse;
-use Google\Cloud\NetworkSecurity\V1\ListFirewallEndpointsRequest;
-use Google\Cloud\NetworkSecurity\V1\ListFirewallEndpointsResponse;
-use Google\Cloud\NetworkSecurity\V1\UpdateFirewallEndpointAssociationRequest;
-use Google\Cloud\NetworkSecurity\V1\UpdateFirewallEndpointRequest;
+use Google\Cloud\NetworkSecurity\V1\Client\SecurityProfileGroupServiceClient;
+use Google\Cloud\NetworkSecurity\V1\CreateSecurityProfileGroupRequest;
+use Google\Cloud\NetworkSecurity\V1\CreateSecurityProfileRequest;
+use Google\Cloud\NetworkSecurity\V1\DeleteSecurityProfileGroupRequest;
+use Google\Cloud\NetworkSecurity\V1\DeleteSecurityProfileRequest;
+use Google\Cloud\NetworkSecurity\V1\GetSecurityProfileGroupRequest;
+use Google\Cloud\NetworkSecurity\V1\GetSecurityProfileRequest;
+use Google\Cloud\NetworkSecurity\V1\ListSecurityProfileGroupsRequest;
+use Google\Cloud\NetworkSecurity\V1\ListSecurityProfileGroupsResponse;
+use Google\Cloud\NetworkSecurity\V1\ListSecurityProfilesRequest;
+use Google\Cloud\NetworkSecurity\V1\ListSecurityProfilesResponse;
+use Google\Cloud\NetworkSecurity\V1\SecurityProfile;
+use Google\Cloud\NetworkSecurity\V1\SecurityProfileGroup;
+use Google\Cloud\NetworkSecurity\V1\UpdateSecurityProfileGroupRequest;
+use Google\Cloud\NetworkSecurity\V1\UpdateSecurityProfileRequest;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
@@ -64,7 +64,7 @@ use stdClass;
  *
  * @group gapic
  */
-class FirewallActivationClientTest extends GeneratedTest
+class SecurityProfileGroupServiceClientTest extends GeneratedTest
 {
     /** @return TransportInterface */
     private function createTransport($deserialize = null)
@@ -80,17 +80,17 @@ class FirewallActivationClientTest extends GeneratedTest
             ->getMock();
     }
 
-    /** @return FirewallActivationClient */
+    /** @return SecurityProfileGroupServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
             'credentials' => $this->createCredentials(),
         ];
-        return new FirewallActivationClient($options);
+        return new SecurityProfileGroupServiceClient($options);
     }
 
     /** @test */
-    public function createFirewallEndpointTest()
+    public function createSecurityProfileTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
@@ -107,38 +107,32 @@ class FirewallActivationClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
         $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/createFirewallEndpointTest');
+        $incompleteOperation->setName('operations/createSecurityProfileTest');
         $incompleteOperation->setDone(false);
         $transport->addResponse($incompleteOperation);
         $name = 'name3373707';
         $description = 'description-1724546052';
-        $reconciling = false;
-        $satisfiesPzs = false;
-        $satisfiesPzi = false;
-        $billingProjectId = 'billingProjectId1808796741';
-        $expectedResponse = new FirewallEndpoint();
+        $etag = 'etag3123477';
+        $expectedResponse = new SecurityProfile();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
-        $expectedResponse->setReconciling($reconciling);
-        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
-        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
-        $expectedResponse->setBillingProjectId($billingProjectId);
+        $expectedResponse->setEtag($etag);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
-        $completeOperation->setName('operations/createFirewallEndpointTest');
+        $completeOperation->setName('operations/createSecurityProfileTest');
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
-        $firewallEndpointId = 'firewallEndpointId1750813510';
-        $firewallEndpoint = new FirewallEndpoint();
-        $request = (new CreateFirewallEndpointRequest())
+        $securityProfileId = 'securityProfileId-1751387696';
+        $securityProfile = new SecurityProfile();
+        $request = (new CreateSecurityProfileRequest())
             ->setParent($formattedParent)
-            ->setFirewallEndpointId($firewallEndpointId)
-            ->setFirewallEndpoint($firewallEndpoint);
-        $response = $gapicClient->createFirewallEndpoint($request);
+            ->setSecurityProfileId($securityProfileId)
+            ->setSecurityProfile($securityProfile);
+        $response = $gapicClient->createSecurityProfile($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -148,17 +142,17 @@ class FirewallActivationClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame(
-            '/google.cloud.networksecurity.v1.FirewallActivation/CreateFirewallEndpoint',
+            '/google.cloud.networksecurity.v1.SecurityProfileGroupService/CreateSecurityProfile',
             $actualApiFuncCall
         );
         $actualValue = $actualApiRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getFirewallEndpointId();
-        $this->assertProtobufEquals($firewallEndpointId, $actualValue);
-        $actualValue = $actualApiRequestObject->getFirewallEndpoint();
-        $this->assertProtobufEquals($firewallEndpoint, $actualValue);
+        $actualValue = $actualApiRequestObject->getSecurityProfileId();
+        $this->assertProtobufEquals($securityProfileId, $actualValue);
+        $actualValue = $actualApiRequestObject->getSecurityProfile();
+        $this->assertProtobufEquals($securityProfile, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
-        $expectedOperationsRequestObject->setName('operations/createFirewallEndpointTest');
+        $expectedOperationsRequestObject->setName('operations/createSecurityProfileTest');
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -177,7 +171,7 @@ class FirewallActivationClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function createFirewallEndpointExceptionTest()
+    public function createSecurityProfileExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
@@ -194,7 +188,7 @@ class FirewallActivationClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
         $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/createFirewallEndpointTest');
+        $incompleteOperation->setName('operations/createSecurityProfileTest');
         $incompleteOperation->setDone(false);
         $transport->addResponse($incompleteOperation);
         $status = new stdClass();
@@ -212,17 +206,17 @@ class FirewallActivationClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
-        $firewallEndpointId = 'firewallEndpointId1750813510';
-        $firewallEndpoint = new FirewallEndpoint();
-        $request = (new CreateFirewallEndpointRequest())
+        $securityProfileId = 'securityProfileId-1751387696';
+        $securityProfile = new SecurityProfile();
+        $request = (new CreateSecurityProfileRequest())
             ->setParent($formattedParent)
-            ->setFirewallEndpointId($firewallEndpointId)
-            ->setFirewallEndpoint($firewallEndpoint);
-        $response = $gapicClient->createFirewallEndpoint($request);
+            ->setSecurityProfileId($securityProfileId)
+            ->setSecurityProfile($securityProfile);
+        $response = $gapicClient->createSecurityProfile($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
-        $expectedOperationsRequestObject->setName('operations/createFirewallEndpointTest');
+        $expectedOperationsRequestObject->setName('operations/createSecurityProfileTest');
         try {
             $response->pollUntilComplete([
                 'initialPollDelayMillis' => 1,
@@ -241,7 +235,7 @@ class FirewallActivationClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function createFirewallEndpointAssociationTest()
+    public function createSecurityProfileGroupTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
@@ -258,191 +252,42 @@ class FirewallActivationClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
         $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/createFirewallEndpointAssociationTest');
-        $incompleteOperation->setDone(false);
-        $transport->addResponse($incompleteOperation);
-        $name = 'name3373707';
-        $network = 'network1843485230';
-        $firewallEndpoint = 'firewallEndpoint-560762380';
-        $tlsInspectionPolicy = 'tlsInspectionPolicy77909017';
-        $reconciling = false;
-        $disabled = true;
-        $expectedResponse = new FirewallEndpointAssociation();
-        $expectedResponse->setName($name);
-        $expectedResponse->setNetwork($network);
-        $expectedResponse->setFirewallEndpoint($firewallEndpoint);
-        $expectedResponse->setTlsInspectionPolicy($tlsInspectionPolicy);
-        $expectedResponse->setReconciling($reconciling);
-        $expectedResponse->setDisabled($disabled);
-        $anyResponse = new Any();
-        $anyResponse->setValue($expectedResponse->serializeToString());
-        $completeOperation = new Operation();
-        $completeOperation->setName('operations/createFirewallEndpointAssociationTest');
-        $completeOperation->setDone(true);
-        $completeOperation->setResponse($anyResponse);
-        $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $firewallEndpointAssociation = new FirewallEndpointAssociation();
-        $firewallEndpointAssociationNetwork = 'firewallEndpointAssociationNetwork-207975934';
-        $firewallEndpointAssociation->setNetwork($firewallEndpointAssociationNetwork);
-        $firewallEndpointAssociationFirewallEndpoint = 'firewallEndpointAssociationFirewallEndpoint306666849';
-        $firewallEndpointAssociation->setFirewallEndpoint($firewallEndpointAssociationFirewallEndpoint);
-        $request = (new CreateFirewallEndpointAssociationRequest())
-            ->setParent($formattedParent)
-            ->setFirewallEndpointAssociation($firewallEndpointAssociation);
-        $response = $gapicClient->createFirewallEndpointAssociation($request);
-        $this->assertFalse($response->isDone());
-        $this->assertNull($response->getResult());
-        $apiRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($apiRequests));
-        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
-        $this->assertSame(0, count($operationsRequestsEmpty));
-        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
-        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame(
-            '/google.cloud.networksecurity.v1.FirewallActivation/CreateFirewallEndpointAssociation',
-            $actualApiFuncCall
-        );
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getFirewallEndpointAssociation();
-        $this->assertProtobufEquals($firewallEndpointAssociation, $actualValue);
-        $expectedOperationsRequestObject = new GetOperationRequest();
-        $expectedOperationsRequestObject->setName('operations/createFirewallEndpointAssociationTest');
-        $response->pollUntilComplete([
-            'initialPollDelayMillis' => 1,
-        ]);
-        $this->assertTrue($response->isDone());
-        $this->assertEquals($expectedResponse, $response->getResult());
-        $apiRequestsEmpty = $transport->popReceivedCalls();
-        $this->assertSame(0, count($apiRequestsEmpty));
-        $operationsRequests = $operationsTransport->popReceivedCalls();
-        $this->assertSame(1, count($operationsRequests));
-        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
-        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
-        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
-        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
-        $this->assertTrue($transport->isExhausted());
-        $this->assertTrue($operationsTransport->isExhausted());
-    }
-
-    /** @test */
-    public function createFirewallEndpointAssociationExceptionTest()
-    {
-        $operationsTransport = $this->createTransport();
-        $operationsClient = new OperationsClient([
-            'apiEndpoint' => '',
-            'transport' => $operationsTransport,
-            'credentials' => $this->createCredentials(),
-        ]);
-        $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
-            'transport' => $transport,
-            'operationsClient' => $operationsClient,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        $this->assertTrue($operationsTransport->isExhausted());
-        // Mock response
-        $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/createFirewallEndpointAssociationTest');
-        $incompleteOperation->setDone(false);
-        $transport->addResponse($incompleteOperation);
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode(
-            [
-                'message' => 'internal error',
-                'code' => Code::DATA_LOSS,
-                'status' => 'DATA_LOSS',
-                'details' => [],
-            ],
-            JSON_PRETTY_PRINT
-        );
-        $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $firewallEndpointAssociation = new FirewallEndpointAssociation();
-        $firewallEndpointAssociationNetwork = 'firewallEndpointAssociationNetwork-207975934';
-        $firewallEndpointAssociation->setNetwork($firewallEndpointAssociationNetwork);
-        $firewallEndpointAssociationFirewallEndpoint = 'firewallEndpointAssociationFirewallEndpoint306666849';
-        $firewallEndpointAssociation->setFirewallEndpoint($firewallEndpointAssociationFirewallEndpoint);
-        $request = (new CreateFirewallEndpointAssociationRequest())
-            ->setParent($formattedParent)
-            ->setFirewallEndpointAssociation($firewallEndpointAssociation);
-        $response = $gapicClient->createFirewallEndpointAssociation($request);
-        $this->assertFalse($response->isDone());
-        $this->assertNull($response->getResult());
-        $expectedOperationsRequestObject = new GetOperationRequest();
-        $expectedOperationsRequestObject->setName('operations/createFirewallEndpointAssociationTest');
-        try {
-            $response->pollUntilComplete([
-                'initialPollDelayMillis' => 1,
-            ]);
-            // If the pollUntilComplete() method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-        // Call popReceivedCalls to ensure the stubs are exhausted
-        $transport->popReceivedCalls();
-        $operationsTransport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-        $this->assertTrue($operationsTransport->isExhausted());
-    }
-
-    /** @test */
-    public function createProjectFirewallEndpointTest()
-    {
-        $operationsTransport = $this->createTransport();
-        $operationsClient = new OperationsClient([
-            'apiEndpoint' => '',
-            'transport' => $operationsTransport,
-            'credentials' => $this->createCredentials(),
-        ]);
-        $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
-            'transport' => $transport,
-            'operationsClient' => $operationsClient,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        $this->assertTrue($operationsTransport->isExhausted());
-        // Mock response
-        $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/createProjectFirewallEndpointTest');
+        $incompleteOperation->setName('operations/createSecurityProfileGroupTest');
         $incompleteOperation->setDone(false);
         $transport->addResponse($incompleteOperation);
         $name = 'name3373707';
         $description = 'description-1724546052';
-        $reconciling = false;
-        $satisfiesPzs = false;
-        $satisfiesPzi = false;
-        $billingProjectId = 'billingProjectId1808796741';
-        $expectedResponse = new FirewallEndpoint();
+        $etag = 'etag3123477';
+        $dataPathId = 1465603104;
+        $threatPreventionProfile = 'threatPreventionProfile142676447';
+        $customMirroringProfile = 'customMirroringProfile-334448673';
+        $customInterceptProfile = 'customInterceptProfile-1051702818';
+        $urlFilteringProfile = 'urlFilteringProfile962621700';
+        $expectedResponse = new SecurityProfileGroup();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
-        $expectedResponse->setReconciling($reconciling);
-        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
-        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
-        $expectedResponse->setBillingProjectId($billingProjectId);
+        $expectedResponse->setEtag($etag);
+        $expectedResponse->setDataPathId($dataPathId);
+        $expectedResponse->setThreatPreventionProfile($threatPreventionProfile);
+        $expectedResponse->setCustomMirroringProfile($customMirroringProfile);
+        $expectedResponse->setCustomInterceptProfile($customInterceptProfile);
+        $expectedResponse->setUrlFilteringProfile($urlFilteringProfile);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
-        $completeOperation->setName('operations/createProjectFirewallEndpointTest');
+        $completeOperation->setName('operations/createSecurityProfileGroupTest');
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
-        $firewallEndpointId = 'firewallEndpointId1750813510';
-        $firewallEndpoint = new FirewallEndpoint();
-        $request = (new CreateFirewallEndpointRequest())
+        $securityProfileGroupId = 'securityProfileGroupId-921223216';
+        $securityProfileGroup = new SecurityProfileGroup();
+        $request = (new CreateSecurityProfileGroupRequest())
             ->setParent($formattedParent)
-            ->setFirewallEndpointId($firewallEndpointId)
-            ->setFirewallEndpoint($firewallEndpoint);
-        $response = $gapicClient->createProjectFirewallEndpoint($request);
+            ->setSecurityProfileGroupId($securityProfileGroupId)
+            ->setSecurityProfileGroup($securityProfileGroup);
+        $response = $gapicClient->createSecurityProfileGroup($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -452,17 +297,17 @@ class FirewallActivationClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame(
-            '/google.cloud.networksecurity.v1.FirewallActivation/CreateProjectFirewallEndpoint',
+            '/google.cloud.networksecurity.v1.SecurityProfileGroupService/CreateSecurityProfileGroup',
             $actualApiFuncCall
         );
         $actualValue = $actualApiRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getFirewallEndpointId();
-        $this->assertProtobufEquals($firewallEndpointId, $actualValue);
-        $actualValue = $actualApiRequestObject->getFirewallEndpoint();
-        $this->assertProtobufEquals($firewallEndpoint, $actualValue);
+        $actualValue = $actualApiRequestObject->getSecurityProfileGroupId();
+        $this->assertProtobufEquals($securityProfileGroupId, $actualValue);
+        $actualValue = $actualApiRequestObject->getSecurityProfileGroup();
+        $this->assertProtobufEquals($securityProfileGroup, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
-        $expectedOperationsRequestObject->setName('operations/createProjectFirewallEndpointTest');
+        $expectedOperationsRequestObject->setName('operations/createSecurityProfileGroupTest');
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -481,7 +326,7 @@ class FirewallActivationClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function createProjectFirewallEndpointExceptionTest()
+    public function createSecurityProfileGroupExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
@@ -498,7 +343,7 @@ class FirewallActivationClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
         $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/createProjectFirewallEndpointTest');
+        $incompleteOperation->setName('operations/createSecurityProfileGroupTest');
         $incompleteOperation->setDone(false);
         $transport->addResponse($incompleteOperation);
         $status = new stdClass();
@@ -516,17 +361,17 @@ class FirewallActivationClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
-        $firewallEndpointId = 'firewallEndpointId1750813510';
-        $firewallEndpoint = new FirewallEndpoint();
-        $request = (new CreateFirewallEndpointRequest())
+        $securityProfileGroupId = 'securityProfileGroupId-921223216';
+        $securityProfileGroup = new SecurityProfileGroup();
+        $request = (new CreateSecurityProfileGroupRequest())
             ->setParent($formattedParent)
-            ->setFirewallEndpointId($firewallEndpointId)
-            ->setFirewallEndpoint($firewallEndpoint);
-        $response = $gapicClient->createProjectFirewallEndpoint($request);
+            ->setSecurityProfileGroupId($securityProfileGroupId)
+            ->setSecurityProfileGroup($securityProfileGroup);
+        $response = $gapicClient->createSecurityProfileGroup($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
-        $expectedOperationsRequestObject->setName('operations/createProjectFirewallEndpointTest');
+        $expectedOperationsRequestObject->setName('operations/createSecurityProfileGroupTest');
         try {
             $response->pollUntilComplete([
                 'initialPollDelayMillis' => 1,
@@ -545,7 +390,7 @@ class FirewallActivationClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function deleteFirewallEndpointTest()
+    public function deleteSecurityProfileTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
@@ -562,21 +407,21 @@ class FirewallActivationClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
         $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/deleteFirewallEndpointTest');
+        $incompleteOperation->setName('operations/deleteSecurityProfileTest');
         $incompleteOperation->setDone(false);
         $transport->addResponse($incompleteOperation);
         $expectedResponse = new GPBEmpty();
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
-        $completeOperation->setName('operations/deleteFirewallEndpointTest');
+        $completeOperation->setName('operations/deleteSecurityProfileTest');
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $gapicClient->firewallEndpointName('[ORGANIZATION]', '[LOCATION]', '[FIREWALL_ENDPOINT]');
-        $request = (new DeleteFirewallEndpointRequest())->setName($formattedName);
-        $response = $gapicClient->deleteFirewallEndpoint($request);
+        $formattedName = $gapicClient->securityProfileName('[ORGANIZATION]', '[LOCATION]', '[SECURITY_PROFILE]');
+        $request = (new DeleteSecurityProfileRequest())->setName($formattedName);
+        $response = $gapicClient->deleteSecurityProfile($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -586,13 +431,13 @@ class FirewallActivationClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame(
-            '/google.cloud.networksecurity.v1.FirewallActivation/DeleteFirewallEndpoint',
+            '/google.cloud.networksecurity.v1.SecurityProfileGroupService/DeleteSecurityProfile',
             $actualApiFuncCall
         );
         $actualValue = $actualApiRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
-        $expectedOperationsRequestObject->setName('operations/deleteFirewallEndpointTest');
+        $expectedOperationsRequestObject->setName('operations/deleteSecurityProfileTest');
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -611,7 +456,7 @@ class FirewallActivationClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function deleteFirewallEndpointExceptionTest()
+    public function deleteSecurityProfileExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
@@ -628,7 +473,7 @@ class FirewallActivationClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
         $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/deleteFirewallEndpointTest');
+        $incompleteOperation->setName('operations/deleteSecurityProfileTest');
         $incompleteOperation->setDone(false);
         $transport->addResponse($incompleteOperation);
         $status = new stdClass();
@@ -645,13 +490,13 @@ class FirewallActivationClientTest extends GeneratedTest
         );
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->firewallEndpointName('[ORGANIZATION]', '[LOCATION]', '[FIREWALL_ENDPOINT]');
-        $request = (new DeleteFirewallEndpointRequest())->setName($formattedName);
-        $response = $gapicClient->deleteFirewallEndpoint($request);
+        $formattedName = $gapicClient->securityProfileName('[ORGANIZATION]', '[LOCATION]', '[SECURITY_PROFILE]');
+        $request = (new DeleteSecurityProfileRequest())->setName($formattedName);
+        $response = $gapicClient->deleteSecurityProfile($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
-        $expectedOperationsRequestObject->setName('operations/deleteFirewallEndpointTest');
+        $expectedOperationsRequestObject->setName('operations/deleteSecurityProfileTest');
         try {
             $response->pollUntilComplete([
                 'initialPollDelayMillis' => 1,
@@ -670,7 +515,7 @@ class FirewallActivationClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function deleteFirewallEndpointAssociationTest()
+    public function deleteSecurityProfileGroupTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
@@ -687,25 +532,25 @@ class FirewallActivationClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
         $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/deleteFirewallEndpointAssociationTest');
+        $incompleteOperation->setName('operations/deleteSecurityProfileGroupTest');
         $incompleteOperation->setDone(false);
         $transport->addResponse($incompleteOperation);
         $expectedResponse = new GPBEmpty();
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
-        $completeOperation->setName('operations/deleteFirewallEndpointAssociationTest');
+        $completeOperation->setName('operations/deleteSecurityProfileGroupTest');
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $gapicClient->firewallEndpointAssociationName(
-            '[PROJECT]',
+        $formattedName = $gapicClient->securityProfileGroupName(
+            '[ORGANIZATION]',
             '[LOCATION]',
-            '[FIREWALL_ENDPOINT_ASSOCIATION]'
+            '[SECURITY_PROFILE_GROUP]'
         );
-        $request = (new DeleteFirewallEndpointAssociationRequest())->setName($formattedName);
-        $response = $gapicClient->deleteFirewallEndpointAssociation($request);
+        $request = (new DeleteSecurityProfileGroupRequest())->setName($formattedName);
+        $response = $gapicClient->deleteSecurityProfileGroup($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -715,13 +560,13 @@ class FirewallActivationClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame(
-            '/google.cloud.networksecurity.v1.FirewallActivation/DeleteFirewallEndpointAssociation',
+            '/google.cloud.networksecurity.v1.SecurityProfileGroupService/DeleteSecurityProfileGroup',
             $actualApiFuncCall
         );
         $actualValue = $actualApiRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
-        $expectedOperationsRequestObject->setName('operations/deleteFirewallEndpointAssociationTest');
+        $expectedOperationsRequestObject->setName('operations/deleteSecurityProfileGroupTest');
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -740,7 +585,7 @@ class FirewallActivationClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function deleteFirewallEndpointAssociationExceptionTest()
+    public function deleteSecurityProfileGroupExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
@@ -757,7 +602,7 @@ class FirewallActivationClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
         $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/deleteFirewallEndpointAssociationTest');
+        $incompleteOperation->setName('operations/deleteSecurityProfileGroupTest');
         $incompleteOperation->setDone(false);
         $transport->addResponse($incompleteOperation);
         $status = new stdClass();
@@ -774,17 +619,17 @@ class FirewallActivationClientTest extends GeneratedTest
         );
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->firewallEndpointAssociationName(
-            '[PROJECT]',
+        $formattedName = $gapicClient->securityProfileGroupName(
+            '[ORGANIZATION]',
             '[LOCATION]',
-            '[FIREWALL_ENDPOINT_ASSOCIATION]'
+            '[SECURITY_PROFILE_GROUP]'
         );
-        $request = (new DeleteFirewallEndpointAssociationRequest())->setName($formattedName);
-        $response = $gapicClient->deleteFirewallEndpointAssociation($request);
+        $request = (new DeleteSecurityProfileGroupRequest())->setName($formattedName);
+        $response = $gapicClient->deleteSecurityProfileGroup($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
-        $expectedOperationsRequestObject->setName('operations/deleteFirewallEndpointAssociationTest');
+        $expectedOperationsRequestObject->setName('operations/deleteSecurityProfileGroupTest');
         try {
             $response->pollUntilComplete([
                 'initialPollDelayMillis' => 1,
@@ -803,132 +648,7 @@ class FirewallActivationClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function deleteProjectFirewallEndpointTest()
-    {
-        $operationsTransport = $this->createTransport();
-        $operationsClient = new OperationsClient([
-            'apiEndpoint' => '',
-            'transport' => $operationsTransport,
-            'credentials' => $this->createCredentials(),
-        ]);
-        $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
-            'transport' => $transport,
-            'operationsClient' => $operationsClient,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        $this->assertTrue($operationsTransport->isExhausted());
-        // Mock response
-        $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/deleteProjectFirewallEndpointTest');
-        $incompleteOperation->setDone(false);
-        $transport->addResponse($incompleteOperation);
-        $expectedResponse = new GPBEmpty();
-        $anyResponse = new Any();
-        $anyResponse->setValue($expectedResponse->serializeToString());
-        $completeOperation = new Operation();
-        $completeOperation->setName('operations/deleteProjectFirewallEndpointTest');
-        $completeOperation->setDone(true);
-        $completeOperation->setResponse($anyResponse);
-        $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $formattedName = $gapicClient->firewallEndpointName('[ORGANIZATION]', '[LOCATION]', '[FIREWALL_ENDPOINT]');
-        $request = (new DeleteFirewallEndpointRequest())->setName($formattedName);
-        $response = $gapicClient->deleteProjectFirewallEndpoint($request);
-        $this->assertFalse($response->isDone());
-        $this->assertNull($response->getResult());
-        $apiRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($apiRequests));
-        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
-        $this->assertSame(0, count($operationsRequestsEmpty));
-        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
-        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame(
-            '/google.cloud.networksecurity.v1.FirewallActivation/DeleteProjectFirewallEndpoint',
-            $actualApiFuncCall
-        );
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $expectedOperationsRequestObject = new GetOperationRequest();
-        $expectedOperationsRequestObject->setName('operations/deleteProjectFirewallEndpointTest');
-        $response->pollUntilComplete([
-            'initialPollDelayMillis' => 1,
-        ]);
-        $this->assertTrue($response->isDone());
-        $this->assertEquals($expectedResponse, $response->getResult());
-        $apiRequestsEmpty = $transport->popReceivedCalls();
-        $this->assertSame(0, count($apiRequestsEmpty));
-        $operationsRequests = $operationsTransport->popReceivedCalls();
-        $this->assertSame(1, count($operationsRequests));
-        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
-        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
-        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
-        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
-        $this->assertTrue($transport->isExhausted());
-        $this->assertTrue($operationsTransport->isExhausted());
-    }
-
-    /** @test */
-    public function deleteProjectFirewallEndpointExceptionTest()
-    {
-        $operationsTransport = $this->createTransport();
-        $operationsClient = new OperationsClient([
-            'apiEndpoint' => '',
-            'transport' => $operationsTransport,
-            'credentials' => $this->createCredentials(),
-        ]);
-        $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
-            'transport' => $transport,
-            'operationsClient' => $operationsClient,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        $this->assertTrue($operationsTransport->isExhausted());
-        // Mock response
-        $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/deleteProjectFirewallEndpointTest');
-        $incompleteOperation->setDone(false);
-        $transport->addResponse($incompleteOperation);
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode(
-            [
-                'message' => 'internal error',
-                'code' => Code::DATA_LOSS,
-                'status' => 'DATA_LOSS',
-                'details' => [],
-            ],
-            JSON_PRETTY_PRINT
-        );
-        $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->firewallEndpointName('[ORGANIZATION]', '[LOCATION]', '[FIREWALL_ENDPOINT]');
-        $request = (new DeleteFirewallEndpointRequest())->setName($formattedName);
-        $response = $gapicClient->deleteProjectFirewallEndpoint($request);
-        $this->assertFalse($response->isDone());
-        $this->assertNull($response->getResult());
-        $expectedOperationsRequestObject = new GetOperationRequest();
-        $expectedOperationsRequestObject->setName('operations/deleteProjectFirewallEndpointTest');
-        try {
-            $response->pollUntilComplete([
-                'initialPollDelayMillis' => 1,
-            ]);
-            // If the pollUntilComplete() method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-        // Call popReceivedCalls to ensure the stubs are exhausted
-        $transport->popReceivedCalls();
-        $operationsTransport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-        $this->assertTrue($operationsTransport->isExhausted());
-    }
-
-    /** @test */
-    public function getFirewallEndpointTest()
+    public function getSecurityProfileTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -938,108 +658,23 @@ class FirewallActivationClientTest extends GeneratedTest
         // Mock response
         $name2 = 'name2-1052831874';
         $description = 'description-1724546052';
-        $reconciling = false;
-        $satisfiesPzs = false;
-        $satisfiesPzi = false;
-        $billingProjectId = 'billingProjectId1808796741';
-        $expectedResponse = new FirewallEndpoint();
+        $etag = 'etag3123477';
+        $expectedResponse = new SecurityProfile();
         $expectedResponse->setName($name2);
         $expectedResponse->setDescription($description);
-        $expectedResponse->setReconciling($reconciling);
-        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
-        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
-        $expectedResponse->setBillingProjectId($billingProjectId);
+        $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->firewallEndpointName('[ORGANIZATION]', '[LOCATION]', '[FIREWALL_ENDPOINT]');
-        $request = (new GetFirewallEndpointRequest())->setName($formattedName);
-        $response = $gapicClient->getFirewallEndpoint($request);
-        $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.networksecurity.v1.FirewallActivation/GetFirewallEndpoint', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /** @test */
-    public function getFirewallEndpointExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode(
-            [
-                'message' => 'internal error',
-                'code' => Code::DATA_LOSS,
-                'status' => 'DATA_LOSS',
-                'details' => [],
-            ],
-            JSON_PRETTY_PRINT
-        );
-        $transport->addResponse(null, $status);
-        // Mock request
-        $formattedName = $gapicClient->firewallEndpointName('[ORGANIZATION]', '[LOCATION]', '[FIREWALL_ENDPOINT]');
-        $request = (new GetFirewallEndpointRequest())->setName($formattedName);
-        try {
-            $gapicClient->getFirewallEndpoint($request);
-            // If the $gapicClient method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /** @test */
-    public function getFirewallEndpointAssociationTest()
-    {
-        $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        // Mock response
-        $name2 = 'name2-1052831874';
-        $network = 'network1843485230';
-        $firewallEndpoint = 'firewallEndpoint-560762380';
-        $tlsInspectionPolicy = 'tlsInspectionPolicy77909017';
-        $reconciling = false;
-        $disabled = true;
-        $expectedResponse = new FirewallEndpointAssociation();
-        $expectedResponse->setName($name2);
-        $expectedResponse->setNetwork($network);
-        $expectedResponse->setFirewallEndpoint($firewallEndpoint);
-        $expectedResponse->setTlsInspectionPolicy($tlsInspectionPolicy);
-        $expectedResponse->setReconciling($reconciling);
-        $expectedResponse->setDisabled($disabled);
-        $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedName = $gapicClient->firewallEndpointAssociationName(
-            '[PROJECT]',
-            '[LOCATION]',
-            '[FIREWALL_ENDPOINT_ASSOCIATION]'
-        );
-        $request = (new GetFirewallEndpointAssociationRequest())->setName($formattedName);
-        $response = $gapicClient->getFirewallEndpointAssociation($request);
+        $formattedName = $gapicClient->securityProfileName('[ORGANIZATION]', '[LOCATION]', '[SECURITY_PROFILE]');
+        $request = (new GetSecurityProfileRequest())->setName($formattedName);
+        $response = $gapicClient->getSecurityProfile($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame(
-            '/google.cloud.networksecurity.v1.FirewallActivation/GetFirewallEndpointAssociation',
+            '/google.cloud.networksecurity.v1.SecurityProfileGroupService/GetSecurityProfile',
             $actualFuncCall
         );
         $actualValue = $actualRequestObject->getName();
@@ -1048,7 +683,7 @@ class FirewallActivationClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function getFirewallEndpointAssociationExceptionTest()
+    public function getSecurityProfileExceptionTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -1069,14 +704,10 @@ class FirewallActivationClientTest extends GeneratedTest
         );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->firewallEndpointAssociationName(
-            '[PROJECT]',
-            '[LOCATION]',
-            '[FIREWALL_ENDPOINT_ASSOCIATION]'
-        );
-        $request = (new GetFirewallEndpointAssociationRequest())->setName($formattedName);
+        $formattedName = $gapicClient->securityProfileName('[ORGANIZATION]', '[LOCATION]', '[SECURITY_PROFILE]');
+        $request = (new GetSecurityProfileRequest())->setName($formattedName);
         try {
-            $gapicClient->getFirewallEndpointAssociation($request);
+            $gapicClient->getSecurityProfile($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1089,7 +720,7 @@ class FirewallActivationClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function getProjectFirewallEndpointTest()
+    public function getSecurityProfileGroupTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -1099,29 +730,37 @@ class FirewallActivationClientTest extends GeneratedTest
         // Mock response
         $name2 = 'name2-1052831874';
         $description = 'description-1724546052';
-        $reconciling = false;
-        $satisfiesPzs = false;
-        $satisfiesPzi = false;
-        $billingProjectId = 'billingProjectId1808796741';
-        $expectedResponse = new FirewallEndpoint();
+        $etag = 'etag3123477';
+        $dataPathId = 1465603104;
+        $threatPreventionProfile = 'threatPreventionProfile142676447';
+        $customMirroringProfile = 'customMirroringProfile-334448673';
+        $customInterceptProfile = 'customInterceptProfile-1051702818';
+        $urlFilteringProfile = 'urlFilteringProfile962621700';
+        $expectedResponse = new SecurityProfileGroup();
         $expectedResponse->setName($name2);
         $expectedResponse->setDescription($description);
-        $expectedResponse->setReconciling($reconciling);
-        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
-        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
-        $expectedResponse->setBillingProjectId($billingProjectId);
+        $expectedResponse->setEtag($etag);
+        $expectedResponse->setDataPathId($dataPathId);
+        $expectedResponse->setThreatPreventionProfile($threatPreventionProfile);
+        $expectedResponse->setCustomMirroringProfile($customMirroringProfile);
+        $expectedResponse->setCustomInterceptProfile($customInterceptProfile);
+        $expectedResponse->setUrlFilteringProfile($urlFilteringProfile);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->firewallEndpointName('[ORGANIZATION]', '[LOCATION]', '[FIREWALL_ENDPOINT]');
-        $request = (new GetFirewallEndpointRequest())->setName($formattedName);
-        $response = $gapicClient->getProjectFirewallEndpoint($request);
+        $formattedName = $gapicClient->securityProfileGroupName(
+            '[ORGANIZATION]',
+            '[LOCATION]',
+            '[SECURITY_PROFILE_GROUP]'
+        );
+        $request = (new GetSecurityProfileGroupRequest())->setName($formattedName);
+        $response = $gapicClient->getSecurityProfileGroup($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame(
-            '/google.cloud.networksecurity.v1.FirewallActivation/GetProjectFirewallEndpoint',
+            '/google.cloud.networksecurity.v1.SecurityProfileGroupService/GetSecurityProfileGroup',
             $actualFuncCall
         );
         $actualValue = $actualRequestObject->getName();
@@ -1130,7 +769,7 @@ class FirewallActivationClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function getProjectFirewallEndpointExceptionTest()
+    public function getSecurityProfileGroupExceptionTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -1151,10 +790,14 @@ class FirewallActivationClientTest extends GeneratedTest
         );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->firewallEndpointName('[ORGANIZATION]', '[LOCATION]', '[FIREWALL_ENDPOINT]');
-        $request = (new GetFirewallEndpointRequest())->setName($formattedName);
+        $formattedName = $gapicClient->securityProfileGroupName(
+            '[ORGANIZATION]',
+            '[LOCATION]',
+            '[SECURITY_PROFILE_GROUP]'
+        );
+        $request = (new GetSecurityProfileGroupRequest())->setName($formattedName);
         try {
-            $gapicClient->getProjectFirewallEndpoint($request);
+            $gapicClient->getSecurityProfileGroup($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1167,7 +810,7 @@ class FirewallActivationClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function listFirewallEndpointAssociationsTest()
+    public function listSecurityProfileGroupsTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -1176,26 +819,26 @@ class FirewallActivationClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $nextPageToken = '';
-        $firewallEndpointAssociationsElement = new FirewallEndpointAssociation();
-        $firewallEndpointAssociations = [$firewallEndpointAssociationsElement];
-        $expectedResponse = new ListFirewallEndpointAssociationsResponse();
+        $securityProfileGroupsElement = new SecurityProfileGroup();
+        $securityProfileGroups = [$securityProfileGroupsElement];
+        $expectedResponse = new ListSecurityProfileGroupsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
-        $expectedResponse->setFirewallEndpointAssociations($firewallEndpointAssociations);
+        $expectedResponse->setSecurityProfileGroups($securityProfileGroups);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListFirewallEndpointAssociationsRequest())->setParent($formattedParent);
-        $response = $gapicClient->listFirewallEndpointAssociations($request);
+        $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
+        $request = (new ListSecurityProfileGroupsRequest())->setParent($formattedParent);
+        $response = $gapicClient->listSecurityProfileGroups($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
-        $this->assertEquals($expectedResponse->getFirewallEndpointAssociations()[0], $resources[0]);
+        $this->assertEquals($expectedResponse->getSecurityProfileGroups()[0], $resources[0]);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame(
-            '/google.cloud.networksecurity.v1.FirewallActivation/ListFirewallEndpointAssociations',
+            '/google.cloud.networksecurity.v1.SecurityProfileGroupService/ListSecurityProfileGroups',
             $actualFuncCall
         );
         $actualValue = $actualRequestObject->getParent();
@@ -1204,78 +847,7 @@ class FirewallActivationClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function listFirewallEndpointAssociationsExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode(
-            [
-                'message' => 'internal error',
-                'code' => Code::DATA_LOSS,
-                'status' => 'DATA_LOSS',
-                'details' => [],
-            ],
-            JSON_PRETTY_PRINT
-        );
-        $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListFirewallEndpointAssociationsRequest())->setParent($formattedParent);
-        try {
-            $gapicClient->listFirewallEndpointAssociations($request);
-            // If the $gapicClient method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /** @test */
-    public function listFirewallEndpointsTest()
-    {
-        $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        // Mock response
-        $nextPageToken = '';
-        $firewallEndpointsElement = new FirewallEndpoint();
-        $firewallEndpoints = [$firewallEndpointsElement];
-        $expectedResponse = new ListFirewallEndpointsResponse();
-        $expectedResponse->setNextPageToken($nextPageToken);
-        $expectedResponse->setFirewallEndpoints($firewallEndpoints);
-        $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
-        $request = (new ListFirewallEndpointsRequest())->setParent($formattedParent);
-        $response = $gapicClient->listFirewallEndpoints($request);
-        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
-        $resources = iterator_to_array($response->iterateAllElements());
-        $this->assertSame(1, count($resources));
-        $this->assertEquals($expectedResponse->getFirewallEndpoints()[0], $resources[0]);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.networksecurity.v1.FirewallActivation/ListFirewallEndpoints', $actualFuncCall);
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /** @test */
-    public function listFirewallEndpointsExceptionTest()
+    public function listSecurityProfileGroupsExceptionTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -1297,9 +869,9 @@ class FirewallActivationClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
-        $request = (new ListFirewallEndpointsRequest())->setParent($formattedParent);
+        $request = (new ListSecurityProfileGroupsRequest())->setParent($formattedParent);
         try {
-            $gapicClient->listFirewallEndpoints($request);
+            $gapicClient->listSecurityProfileGroups($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1312,7 +884,7 @@ class FirewallActivationClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function listProjectFirewallEndpointsTest()
+    public function listSecurityProfilesTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -1321,26 +893,26 @@ class FirewallActivationClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $nextPageToken = '';
-        $firewallEndpointsElement = new FirewallEndpoint();
-        $firewallEndpoints = [$firewallEndpointsElement];
-        $expectedResponse = new ListFirewallEndpointsResponse();
+        $securityProfilesElement = new SecurityProfile();
+        $securityProfiles = [$securityProfilesElement];
+        $expectedResponse = new ListSecurityProfilesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
-        $expectedResponse->setFirewallEndpoints($firewallEndpoints);
+        $expectedResponse->setSecurityProfiles($securityProfiles);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
-        $request = (new ListFirewallEndpointsRequest())->setParent($formattedParent);
-        $response = $gapicClient->listProjectFirewallEndpoints($request);
+        $request = (new ListSecurityProfilesRequest())->setParent($formattedParent);
+        $response = $gapicClient->listSecurityProfiles($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
-        $this->assertEquals($expectedResponse->getFirewallEndpoints()[0], $resources[0]);
+        $this->assertEquals($expectedResponse->getSecurityProfiles()[0], $resources[0]);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame(
-            '/google.cloud.networksecurity.v1.FirewallActivation/ListProjectFirewallEndpoints',
+            '/google.cloud.networksecurity.v1.SecurityProfileGroupService/ListSecurityProfiles',
             $actualFuncCall
         );
         $actualValue = $actualRequestObject->getParent();
@@ -1349,7 +921,7 @@ class FirewallActivationClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function listProjectFirewallEndpointsExceptionTest()
+    public function listSecurityProfilesExceptionTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -1371,9 +943,9 @@ class FirewallActivationClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
-        $request = (new ListFirewallEndpointsRequest())->setParent($formattedParent);
+        $request = (new ListSecurityProfilesRequest())->setParent($formattedParent);
         try {
-            $gapicClient->listProjectFirewallEndpoints($request);
+            $gapicClient->listSecurityProfiles($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1386,7 +958,7 @@ class FirewallActivationClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function updateFirewallEndpointTest()
+    public function updateSecurityProfileTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
@@ -1403,36 +975,30 @@ class FirewallActivationClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
         $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/updateFirewallEndpointTest');
+        $incompleteOperation->setName('operations/updateSecurityProfileTest');
         $incompleteOperation->setDone(false);
         $transport->addResponse($incompleteOperation);
         $name = 'name3373707';
         $description = 'description-1724546052';
-        $reconciling = false;
-        $satisfiesPzs = false;
-        $satisfiesPzi = false;
-        $billingProjectId = 'billingProjectId1808796741';
-        $expectedResponse = new FirewallEndpoint();
+        $etag = 'etag3123477';
+        $expectedResponse = new SecurityProfile();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
-        $expectedResponse->setReconciling($reconciling);
-        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
-        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
-        $expectedResponse->setBillingProjectId($billingProjectId);
+        $expectedResponse->setEtag($etag);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
-        $completeOperation->setName('operations/updateFirewallEndpointTest');
+        $completeOperation->setName('operations/updateSecurityProfileTest');
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $updateMask = new FieldMask();
-        $firewallEndpoint = new FirewallEndpoint();
-        $request = (new UpdateFirewallEndpointRequest())
+        $securityProfile = new SecurityProfile();
+        $request = (new UpdateSecurityProfileRequest())
             ->setUpdateMask($updateMask)
-            ->setFirewallEndpoint($firewallEndpoint);
-        $response = $gapicClient->updateFirewallEndpoint($request);
+            ->setSecurityProfile($securityProfile);
+        $response = $gapicClient->updateSecurityProfile($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1442,15 +1008,15 @@ class FirewallActivationClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame(
-            '/google.cloud.networksecurity.v1.FirewallActivation/UpdateFirewallEndpoint',
+            '/google.cloud.networksecurity.v1.SecurityProfileGroupService/UpdateSecurityProfile',
             $actualApiFuncCall
         );
         $actualValue = $actualApiRequestObject->getUpdateMask();
         $this->assertProtobufEquals($updateMask, $actualValue);
-        $actualValue = $actualApiRequestObject->getFirewallEndpoint();
-        $this->assertProtobufEquals($firewallEndpoint, $actualValue);
+        $actualValue = $actualApiRequestObject->getSecurityProfile();
+        $this->assertProtobufEquals($securityProfile, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
-        $expectedOperationsRequestObject->setName('operations/updateFirewallEndpointTest');
+        $expectedOperationsRequestObject->setName('operations/updateSecurityProfileTest');
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -1469,7 +1035,7 @@ class FirewallActivationClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function updateFirewallEndpointExceptionTest()
+    public function updateSecurityProfileExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
@@ -1486,7 +1052,7 @@ class FirewallActivationClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
         $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/updateFirewallEndpointTest');
+        $incompleteOperation->setName('operations/updateSecurityProfileTest');
         $incompleteOperation->setDone(false);
         $transport->addResponse($incompleteOperation);
         $status = new stdClass();
@@ -1504,15 +1070,15 @@ class FirewallActivationClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $updateMask = new FieldMask();
-        $firewallEndpoint = new FirewallEndpoint();
-        $request = (new UpdateFirewallEndpointRequest())
+        $securityProfile = new SecurityProfile();
+        $request = (new UpdateSecurityProfileRequest())
             ->setUpdateMask($updateMask)
-            ->setFirewallEndpoint($firewallEndpoint);
-        $response = $gapicClient->updateFirewallEndpoint($request);
+            ->setSecurityProfile($securityProfile);
+        $response = $gapicClient->updateSecurityProfile($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
-        $expectedOperationsRequestObject->setName('operations/updateFirewallEndpointTest');
+        $expectedOperationsRequestObject->setName('operations/updateSecurityProfileTest');
         try {
             $response->pollUntilComplete([
                 'initialPollDelayMillis' => 1,
@@ -1531,7 +1097,7 @@ class FirewallActivationClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function updateFirewallEndpointAssociationTest()
+    public function updateSecurityProfileGroupTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
@@ -1548,189 +1114,40 @@ class FirewallActivationClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
         $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/updateFirewallEndpointAssociationTest');
-        $incompleteOperation->setDone(false);
-        $transport->addResponse($incompleteOperation);
-        $name = 'name3373707';
-        $network = 'network1843485230';
-        $firewallEndpoint = 'firewallEndpoint-560762380';
-        $tlsInspectionPolicy = 'tlsInspectionPolicy77909017';
-        $reconciling = false;
-        $disabled = true;
-        $expectedResponse = new FirewallEndpointAssociation();
-        $expectedResponse->setName($name);
-        $expectedResponse->setNetwork($network);
-        $expectedResponse->setFirewallEndpoint($firewallEndpoint);
-        $expectedResponse->setTlsInspectionPolicy($tlsInspectionPolicy);
-        $expectedResponse->setReconciling($reconciling);
-        $expectedResponse->setDisabled($disabled);
-        $anyResponse = new Any();
-        $anyResponse->setValue($expectedResponse->serializeToString());
-        $completeOperation = new Operation();
-        $completeOperation->setName('operations/updateFirewallEndpointAssociationTest');
-        $completeOperation->setDone(true);
-        $completeOperation->setResponse($anyResponse);
-        $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $updateMask = new FieldMask();
-        $firewallEndpointAssociation = new FirewallEndpointAssociation();
-        $firewallEndpointAssociationNetwork = 'firewallEndpointAssociationNetwork-207975934';
-        $firewallEndpointAssociation->setNetwork($firewallEndpointAssociationNetwork);
-        $firewallEndpointAssociationFirewallEndpoint = 'firewallEndpointAssociationFirewallEndpoint306666849';
-        $firewallEndpointAssociation->setFirewallEndpoint($firewallEndpointAssociationFirewallEndpoint);
-        $request = (new UpdateFirewallEndpointAssociationRequest())
-            ->setUpdateMask($updateMask)
-            ->setFirewallEndpointAssociation($firewallEndpointAssociation);
-        $response = $gapicClient->updateFirewallEndpointAssociation($request);
-        $this->assertFalse($response->isDone());
-        $this->assertNull($response->getResult());
-        $apiRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($apiRequests));
-        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
-        $this->assertSame(0, count($operationsRequestsEmpty));
-        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
-        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame(
-            '/google.cloud.networksecurity.v1.FirewallActivation/UpdateFirewallEndpointAssociation',
-            $actualApiFuncCall
-        );
-        $actualValue = $actualApiRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
-        $actualValue = $actualApiRequestObject->getFirewallEndpointAssociation();
-        $this->assertProtobufEquals($firewallEndpointAssociation, $actualValue);
-        $expectedOperationsRequestObject = new GetOperationRequest();
-        $expectedOperationsRequestObject->setName('operations/updateFirewallEndpointAssociationTest');
-        $response->pollUntilComplete([
-            'initialPollDelayMillis' => 1,
-        ]);
-        $this->assertTrue($response->isDone());
-        $this->assertEquals($expectedResponse, $response->getResult());
-        $apiRequestsEmpty = $transport->popReceivedCalls();
-        $this->assertSame(0, count($apiRequestsEmpty));
-        $operationsRequests = $operationsTransport->popReceivedCalls();
-        $this->assertSame(1, count($operationsRequests));
-        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
-        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
-        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
-        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
-        $this->assertTrue($transport->isExhausted());
-        $this->assertTrue($operationsTransport->isExhausted());
-    }
-
-    /** @test */
-    public function updateFirewallEndpointAssociationExceptionTest()
-    {
-        $operationsTransport = $this->createTransport();
-        $operationsClient = new OperationsClient([
-            'apiEndpoint' => '',
-            'transport' => $operationsTransport,
-            'credentials' => $this->createCredentials(),
-        ]);
-        $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
-            'transport' => $transport,
-            'operationsClient' => $operationsClient,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        $this->assertTrue($operationsTransport->isExhausted());
-        // Mock response
-        $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/updateFirewallEndpointAssociationTest');
-        $incompleteOperation->setDone(false);
-        $transport->addResponse($incompleteOperation);
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode(
-            [
-                'message' => 'internal error',
-                'code' => Code::DATA_LOSS,
-                'status' => 'DATA_LOSS',
-                'details' => [],
-            ],
-            JSON_PRETTY_PRINT
-        );
-        $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $updateMask = new FieldMask();
-        $firewallEndpointAssociation = new FirewallEndpointAssociation();
-        $firewallEndpointAssociationNetwork = 'firewallEndpointAssociationNetwork-207975934';
-        $firewallEndpointAssociation->setNetwork($firewallEndpointAssociationNetwork);
-        $firewallEndpointAssociationFirewallEndpoint = 'firewallEndpointAssociationFirewallEndpoint306666849';
-        $firewallEndpointAssociation->setFirewallEndpoint($firewallEndpointAssociationFirewallEndpoint);
-        $request = (new UpdateFirewallEndpointAssociationRequest())
-            ->setUpdateMask($updateMask)
-            ->setFirewallEndpointAssociation($firewallEndpointAssociation);
-        $response = $gapicClient->updateFirewallEndpointAssociation($request);
-        $this->assertFalse($response->isDone());
-        $this->assertNull($response->getResult());
-        $expectedOperationsRequestObject = new GetOperationRequest();
-        $expectedOperationsRequestObject->setName('operations/updateFirewallEndpointAssociationTest');
-        try {
-            $response->pollUntilComplete([
-                'initialPollDelayMillis' => 1,
-            ]);
-            // If the pollUntilComplete() method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-        // Call popReceivedCalls to ensure the stubs are exhausted
-        $transport->popReceivedCalls();
-        $operationsTransport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-        $this->assertTrue($operationsTransport->isExhausted());
-    }
-
-    /** @test */
-    public function updateProjectFirewallEndpointTest()
-    {
-        $operationsTransport = $this->createTransport();
-        $operationsClient = new OperationsClient([
-            'apiEndpoint' => '',
-            'transport' => $operationsTransport,
-            'credentials' => $this->createCredentials(),
-        ]);
-        $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
-            'transport' => $transport,
-            'operationsClient' => $operationsClient,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        $this->assertTrue($operationsTransport->isExhausted());
-        // Mock response
-        $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/updateProjectFirewallEndpointTest');
+        $incompleteOperation->setName('operations/updateSecurityProfileGroupTest');
         $incompleteOperation->setDone(false);
         $transport->addResponse($incompleteOperation);
         $name = 'name3373707';
         $description = 'description-1724546052';
-        $reconciling = false;
-        $satisfiesPzs = false;
-        $satisfiesPzi = false;
-        $billingProjectId = 'billingProjectId1808796741';
-        $expectedResponse = new FirewallEndpoint();
+        $etag = 'etag3123477';
+        $dataPathId = 1465603104;
+        $threatPreventionProfile = 'threatPreventionProfile142676447';
+        $customMirroringProfile = 'customMirroringProfile-334448673';
+        $customInterceptProfile = 'customInterceptProfile-1051702818';
+        $urlFilteringProfile = 'urlFilteringProfile962621700';
+        $expectedResponse = new SecurityProfileGroup();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
-        $expectedResponse->setReconciling($reconciling);
-        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
-        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
-        $expectedResponse->setBillingProjectId($billingProjectId);
+        $expectedResponse->setEtag($etag);
+        $expectedResponse->setDataPathId($dataPathId);
+        $expectedResponse->setThreatPreventionProfile($threatPreventionProfile);
+        $expectedResponse->setCustomMirroringProfile($customMirroringProfile);
+        $expectedResponse->setCustomInterceptProfile($customInterceptProfile);
+        $expectedResponse->setUrlFilteringProfile($urlFilteringProfile);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
-        $completeOperation->setName('operations/updateProjectFirewallEndpointTest');
+        $completeOperation->setName('operations/updateSecurityProfileGroupTest');
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $updateMask = new FieldMask();
-        $firewallEndpoint = new FirewallEndpoint();
-        $request = (new UpdateFirewallEndpointRequest())
+        $securityProfileGroup = new SecurityProfileGroup();
+        $request = (new UpdateSecurityProfileGroupRequest())
             ->setUpdateMask($updateMask)
-            ->setFirewallEndpoint($firewallEndpoint);
-        $response = $gapicClient->updateProjectFirewallEndpoint($request);
+            ->setSecurityProfileGroup($securityProfileGroup);
+        $response = $gapicClient->updateSecurityProfileGroup($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1740,15 +1157,15 @@ class FirewallActivationClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame(
-            '/google.cloud.networksecurity.v1.FirewallActivation/UpdateProjectFirewallEndpoint',
+            '/google.cloud.networksecurity.v1.SecurityProfileGroupService/UpdateSecurityProfileGroup',
             $actualApiFuncCall
         );
         $actualValue = $actualApiRequestObject->getUpdateMask();
         $this->assertProtobufEquals($updateMask, $actualValue);
-        $actualValue = $actualApiRequestObject->getFirewallEndpoint();
-        $this->assertProtobufEquals($firewallEndpoint, $actualValue);
+        $actualValue = $actualApiRequestObject->getSecurityProfileGroup();
+        $this->assertProtobufEquals($securityProfileGroup, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
-        $expectedOperationsRequestObject->setName('operations/updateProjectFirewallEndpointTest');
+        $expectedOperationsRequestObject->setName('operations/updateSecurityProfileGroupTest');
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -1767,7 +1184,7 @@ class FirewallActivationClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function updateProjectFirewallEndpointExceptionTest()
+    public function updateSecurityProfileGroupExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
@@ -1784,7 +1201,7 @@ class FirewallActivationClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
         $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/updateProjectFirewallEndpointTest');
+        $incompleteOperation->setName('operations/updateSecurityProfileGroupTest');
         $incompleteOperation->setDone(false);
         $transport->addResponse($incompleteOperation);
         $status = new stdClass();
@@ -1802,15 +1219,15 @@ class FirewallActivationClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $updateMask = new FieldMask();
-        $firewallEndpoint = new FirewallEndpoint();
-        $request = (new UpdateFirewallEndpointRequest())
+        $securityProfileGroup = new SecurityProfileGroup();
+        $request = (new UpdateSecurityProfileGroupRequest())
             ->setUpdateMask($updateMask)
-            ->setFirewallEndpoint($firewallEndpoint);
-        $response = $gapicClient->updateProjectFirewallEndpoint($request);
+            ->setSecurityProfileGroup($securityProfileGroup);
+        $response = $gapicClient->updateSecurityProfileGroup($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
-        $expectedOperationsRequestObject->setName('operations/updateProjectFirewallEndpointTest');
+        $expectedOperationsRequestObject->setName('operations/updateSecurityProfileGroupTest');
         try {
             $response->pollUntilComplete([
                 'initialPollDelayMillis' => 1,
@@ -2162,7 +1579,7 @@ class FirewallActivationClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function createFirewallEndpointAsyncTest()
+    public function createSecurityProfileAsyncTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
@@ -2179,38 +1596,32 @@ class FirewallActivationClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
         $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/createFirewallEndpointTest');
+        $incompleteOperation->setName('operations/createSecurityProfileTest');
         $incompleteOperation->setDone(false);
         $transport->addResponse($incompleteOperation);
         $name = 'name3373707';
         $description = 'description-1724546052';
-        $reconciling = false;
-        $satisfiesPzs = false;
-        $satisfiesPzi = false;
-        $billingProjectId = 'billingProjectId1808796741';
-        $expectedResponse = new FirewallEndpoint();
+        $etag = 'etag3123477';
+        $expectedResponse = new SecurityProfile();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
-        $expectedResponse->setReconciling($reconciling);
-        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
-        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
-        $expectedResponse->setBillingProjectId($billingProjectId);
+        $expectedResponse->setEtag($etag);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
-        $completeOperation->setName('operations/createFirewallEndpointTest');
+        $completeOperation->setName('operations/createSecurityProfileTest');
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
-        $firewallEndpointId = 'firewallEndpointId1750813510';
-        $firewallEndpoint = new FirewallEndpoint();
-        $request = (new CreateFirewallEndpointRequest())
+        $securityProfileId = 'securityProfileId-1751387696';
+        $securityProfile = new SecurityProfile();
+        $request = (new CreateSecurityProfileRequest())
             ->setParent($formattedParent)
-            ->setFirewallEndpointId($firewallEndpointId)
-            ->setFirewallEndpoint($firewallEndpoint);
-        $response = $gapicClient->createFirewallEndpointAsync($request)->wait();
+            ->setSecurityProfileId($securityProfileId)
+            ->setSecurityProfile($securityProfile);
+        $response = $gapicClient->createSecurityProfileAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -2220,17 +1631,17 @@ class FirewallActivationClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame(
-            '/google.cloud.networksecurity.v1.FirewallActivation/CreateFirewallEndpoint',
+            '/google.cloud.networksecurity.v1.SecurityProfileGroupService/CreateSecurityProfile',
             $actualApiFuncCall
         );
         $actualValue = $actualApiRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getFirewallEndpointId();
-        $this->assertProtobufEquals($firewallEndpointId, $actualValue);
-        $actualValue = $actualApiRequestObject->getFirewallEndpoint();
-        $this->assertProtobufEquals($firewallEndpoint, $actualValue);
+        $actualValue = $actualApiRequestObject->getSecurityProfileId();
+        $this->assertProtobufEquals($securityProfileId, $actualValue);
+        $actualValue = $actualApiRequestObject->getSecurityProfile();
+        $this->assertProtobufEquals($securityProfile, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
-        $expectedOperationsRequestObject->setName('operations/createFirewallEndpointTest');
+        $expectedOperationsRequestObject->setName('operations/createSecurityProfileTest');
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
