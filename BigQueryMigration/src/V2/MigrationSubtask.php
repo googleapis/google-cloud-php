@@ -62,30 +62,30 @@ class MigrationSubtask extends \Google\Protobuf\Internal\Message
      */
     private $resource_error_details;
     /**
-     * The number or resources with errors. Note: This is not the total
-     * number of errors as each resource can have more than one error.
-     * This is used to indicate truncation by having a `resource_error_count`
-     * that is higher than the size of `resource_error_details`.
+     * Output only. The number or resources with errors. Note: This is not the
+     * total number of errors as each resource can have more than one error. This
+     * is used to indicate truncation by having a `resource_error_count` that is
+     * higher than the size of `resource_error_details`.
      *
-     * Generated from protobuf field <code>int32 resource_error_count = 13;</code>
+     * Generated from protobuf field <code>int32 resource_error_count = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $resource_error_count = 0;
     /**
-     * Time when the subtask was created.
+     * Output only. Time when the subtask was created.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $create_time = null;
     /**
-     * Time when the subtask was last updated.
+     * Output only. Time when the subtask was last updated.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp last_update_time = 8;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp last_update_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $last_update_time = null;
     /**
-     * The metrics for the subtask.
+     * Output only. The metrics for the subtask.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.bigquery.migration.v2.TimeSeries metrics = 11;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.bigquery.migration.v2.TimeSeries metrics = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $metrics;
 
@@ -116,16 +116,16 @@ class MigrationSubtask extends \Google\Protobuf\Internal\Message
      *           processing the subtask. Presence of error details does not mean that the
      *           subtask failed.
      *     @type int $resource_error_count
-     *           The number or resources with errors. Note: This is not the total
-     *           number of errors as each resource can have more than one error.
-     *           This is used to indicate truncation by having a `resource_error_count`
-     *           that is higher than the size of `resource_error_details`.
+     *           Output only. The number or resources with errors. Note: This is not the
+     *           total number of errors as each resource can have more than one error. This
+     *           is used to indicate truncation by having a `resource_error_count` that is
+     *           higher than the size of `resource_error_details`.
      *     @type \Google\Protobuf\Timestamp $create_time
-     *           Time when the subtask was created.
+     *           Output only. Time when the subtask was created.
      *     @type \Google\Protobuf\Timestamp $last_update_time
-     *           Time when the subtask was last updated.
+     *           Output only. Time when the subtask was last updated.
      *     @type \Google\Cloud\BigQuery\Migration\V2\TimeSeries[] $metrics
-     *           The metrics for the subtask.
+     *           Output only. The metrics for the subtask.
      * }
      */
     public function __construct($data = NULL) {
@@ -316,12 +316,12 @@ class MigrationSubtask extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The number or resources with errors. Note: This is not the total
-     * number of errors as each resource can have more than one error.
-     * This is used to indicate truncation by having a `resource_error_count`
-     * that is higher than the size of `resource_error_details`.
+     * Output only. The number or resources with errors. Note: This is not the
+     * total number of errors as each resource can have more than one error. This
+     * is used to indicate truncation by having a `resource_error_count` that is
+     * higher than the size of `resource_error_details`.
      *
-     * Generated from protobuf field <code>int32 resource_error_count = 13;</code>
+     * Generated from protobuf field <code>int32 resource_error_count = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
      */
     public function getResourceErrorCount()
@@ -330,12 +330,12 @@ class MigrationSubtask extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The number or resources with errors. Note: This is not the total
-     * number of errors as each resource can have more than one error.
-     * This is used to indicate truncation by having a `resource_error_count`
-     * that is higher than the size of `resource_error_details`.
+     * Output only. The number or resources with errors. Note: This is not the
+     * total number of errors as each resource can have more than one error. This
+     * is used to indicate truncation by having a `resource_error_count` that is
+     * higher than the size of `resource_error_details`.
      *
-     * Generated from protobuf field <code>int32 resource_error_count = 13;</code>
+     * Generated from protobuf field <code>int32 resource_error_count = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
      * @return $this
      */
@@ -348,9 +348,9 @@ class MigrationSubtask extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Time when the subtask was created.
+     * Output only. Time when the subtask was created.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
@@ -369,9 +369,9 @@ class MigrationSubtask extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Time when the subtask was created.
+     * Output only. Time when the subtask was created.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -384,9 +384,9 @@ class MigrationSubtask extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Time when the subtask was last updated.
+     * Output only. Time when the subtask was last updated.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp last_update_time = 8;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp last_update_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
      */
     public function getLastUpdateTime()
@@ -405,9 +405,9 @@ class MigrationSubtask extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Time when the subtask was last updated.
+     * Output only. Time when the subtask was last updated.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp last_update_time = 8;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp last_update_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -420,9 +420,9 @@ class MigrationSubtask extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The metrics for the subtask.
+     * Output only. The metrics for the subtask.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.bigquery.migration.v2.TimeSeries metrics = 11;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.bigquery.migration.v2.TimeSeries metrics = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return RepeatedField<\Google\Cloud\BigQuery\Migration\V2\TimeSeries>
      */
     public function getMetrics()
@@ -431,9 +431,9 @@ class MigrationSubtask extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The metrics for the subtask.
+     * Output only. The metrics for the subtask.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.bigquery.migration.v2.TimeSeries metrics = 11;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.bigquery.migration.v2.TimeSeries metrics = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\BigQuery\Migration\V2\TimeSeries[] $var
      * @return $this
      */

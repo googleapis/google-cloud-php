@@ -38,6 +38,12 @@ class DataScanJob extends \Google\Protobuf\Internal\Message
      */
     protected $create_time = null;
     /**
+     * Output only. A message indicating partial failure details.
+     *
+     * Generated from protobuf field <code>string partial_failure_message = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $partial_failure_message = '';
+    /**
      * Output only. The time when the DataScanJob was started.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -86,6 +92,8 @@ class DataScanJob extends \Google\Protobuf\Internal\Message
      *           Output only. System generated globally unique ID for the DataScanJob.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The time when the DataScanJob was created.
+     *     @type string $partial_failure_message
+     *           Output only. A message indicating partial failure details.
      *     @type \Google\Protobuf\Timestamp $start_time
      *           Output only. The time when the DataScanJob was started.
      *     @type \Google\Protobuf\Timestamp $end_time
@@ -211,6 +219,32 @@ class DataScanJob extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->create_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. A message indicating partial failure details.
+     *
+     * Generated from protobuf field <code>string partial_failure_message = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getPartialFailureMessage()
+    {
+        return $this->partial_failure_message;
+    }
+
+    /**
+     * Output only. A message indicating partial failure details.
+     *
+     * Generated from protobuf field <code>string partial_failure_message = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPartialFailureMessage($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->partial_failure_message = $var;
 
         return $this;
     }

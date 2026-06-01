@@ -36,7 +36,7 @@ use Google\Cloud\Sql\V1\SqlInstancesCloneRequest;
  *
  * @param string $instance                                The ID of the Cloud SQL instance to be cloned (source). This does
  *                                                        not include the project ID.
- * @param string $project                                 Project ID of the source as well as the clone Cloud SQL instance.
+ * @param string $project                                 Project ID of the source Cloud SQL instance.
  * @param string $bodyCloneContextDestinationInstanceName Name of the Cloud SQL instance to be created as a clone.
  */
 function clone_sample(

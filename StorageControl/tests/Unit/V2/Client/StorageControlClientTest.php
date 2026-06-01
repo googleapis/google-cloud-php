@@ -40,19 +40,28 @@ use Google\Cloud\Storage\Control\V2\DeleteFolderRecursiveRequest;
 use Google\Cloud\Storage\Control\V2\DeleteFolderRequest;
 use Google\Cloud\Storage\Control\V2\DeleteManagedFolderRequest;
 use Google\Cloud\Storage\Control\V2\DisableAnywhereCacheRequest;
+use Google\Cloud\Storage\Control\V2\FindingSummary;
 use Google\Cloud\Storage\Control\V2\Folder;
 use Google\Cloud\Storage\Control\V2\GetAnywhereCacheRequest;
 use Google\Cloud\Storage\Control\V2\GetFolderIntelligenceConfigRequest;
 use Google\Cloud\Storage\Control\V2\GetFolderRequest;
+use Google\Cloud\Storage\Control\V2\GetIntelligenceFindingRequest;
+use Google\Cloud\Storage\Control\V2\GetIntelligenceFindingRevisionRequest;
 use Google\Cloud\Storage\Control\V2\GetManagedFolderRequest;
 use Google\Cloud\Storage\Control\V2\GetOrganizationIntelligenceConfigRequest;
 use Google\Cloud\Storage\Control\V2\GetProjectIntelligenceConfigRequest;
 use Google\Cloud\Storage\Control\V2\GetStorageLayoutRequest;
 use Google\Cloud\Storage\Control\V2\IntelligenceConfig;
+use Google\Cloud\Storage\Control\V2\IntelligenceFinding;
+use Google\Cloud\Storage\Control\V2\IntelligenceFindingRevision;
 use Google\Cloud\Storage\Control\V2\ListAnywhereCachesRequest;
 use Google\Cloud\Storage\Control\V2\ListAnywhereCachesResponse;
 use Google\Cloud\Storage\Control\V2\ListFoldersRequest;
 use Google\Cloud\Storage\Control\V2\ListFoldersResponse;
+use Google\Cloud\Storage\Control\V2\ListIntelligenceFindingRevisionsRequest;
+use Google\Cloud\Storage\Control\V2\ListIntelligenceFindingRevisionsResponse;
+use Google\Cloud\Storage\Control\V2\ListIntelligenceFindingsRequest;
+use Google\Cloud\Storage\Control\V2\ListIntelligenceFindingsResponse;
 use Google\Cloud\Storage\Control\V2\ListManagedFoldersRequest;
 use Google\Cloud\Storage\Control\V2\ListManagedFoldersResponse;
 use Google\Cloud\Storage\Control\V2\ManagedFolder;
@@ -60,6 +69,8 @@ use Google\Cloud\Storage\Control\V2\PauseAnywhereCacheRequest;
 use Google\Cloud\Storage\Control\V2\RenameFolderRequest;
 use Google\Cloud\Storage\Control\V2\ResumeAnywhereCacheRequest;
 use Google\Cloud\Storage\Control\V2\StorageLayout;
+use Google\Cloud\Storage\Control\V2\SummarizeIntelligenceFindingsRequest;
+use Google\Cloud\Storage\Control\V2\SummarizeIntelligenceFindingsResponse;
 use Google\Cloud\Storage\Control\V2\UpdateAnywhereCacheRequest;
 use Google\Cloud\Storage\Control\V2\UpdateFolderIntelligenceConfigRequest;
 use Google\Cloud\Storage\Control\V2\UpdateOrganizationIntelligenceConfigRequest;
@@ -993,6 +1004,150 @@ class StorageControlClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function getIntelligenceFindingTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $description = 'description-1724546052';
+        $targetResource = 'targetResource-69552388';
+        $expectedResponse = new IntelligenceFinding();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setTargetResource($targetResource);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->intelligenceFindingName('[PROJECT]', '[LOCATION]', '[INTELLIGENCE_FINDING]');
+        $request = (new GetIntelligenceFindingRequest())->setName($formattedName);
+        $response = $gapicClient->getIntelligenceFinding($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.storage.control.v2.StorageControl/GetIntelligenceFinding', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getIntelligenceFindingExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->intelligenceFindingName('[PROJECT]', '[LOCATION]', '[INTELLIGENCE_FINDING]');
+        $request = (new GetIntelligenceFindingRequest())->setName($formattedName);
+        try {
+            $gapicClient->getIntelligenceFinding($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getIntelligenceFindingRevisionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $expectedResponse = new IntelligenceFindingRevision();
+        $expectedResponse->setName($name2);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->intelligenceFindingRevisionName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[INTELLIGENCE_FINDING]',
+            '[REVISION]'
+        );
+        $request = (new GetIntelligenceFindingRevisionRequest())->setName($formattedName);
+        $response = $gapicClient->getIntelligenceFindingRevision($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.storage.control.v2.StorageControl/GetIntelligenceFindingRevision', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getIntelligenceFindingRevisionExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->intelligenceFindingRevisionName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[INTELLIGENCE_FINDING]',
+            '[REVISION]'
+        );
+        $request = (new GetIntelligenceFindingRevisionRequest())->setName($formattedName);
+        try {
+            $gapicClient->getIntelligenceFindingRevision($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function getManagedFolderTest()
     {
         $transport = $this->createTransport();
@@ -1392,6 +1547,151 @@ class StorageControlClientTest extends GeneratedTest
         $request = (new ListFoldersRequest())->setParent($formattedParent);
         try {
             $gapicClient->listFolders($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listIntelligenceFindingRevisionsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $intelligenceFindingRevisionsElement = new IntelligenceFindingRevision();
+        $intelligenceFindingRevisions = [$intelligenceFindingRevisionsElement];
+        $expectedResponse = new ListIntelligenceFindingRevisionsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setIntelligenceFindingRevisions($intelligenceFindingRevisions);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->intelligenceFindingName('[PROJECT]', '[LOCATION]', '[INTELLIGENCE_FINDING]');
+        $request = (new ListIntelligenceFindingRevisionsRequest())->setParent($formattedParent);
+        $response = $gapicClient->listIntelligenceFindingRevisions($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getIntelligenceFindingRevisions()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.storage.control.v2.StorageControl/ListIntelligenceFindingRevisions',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listIntelligenceFindingRevisionsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->intelligenceFindingName('[PROJECT]', '[LOCATION]', '[INTELLIGENCE_FINDING]');
+        $request = (new ListIntelligenceFindingRevisionsRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->listIntelligenceFindingRevisions($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listIntelligenceFindingsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $intelligenceFindingsElement = new IntelligenceFinding();
+        $intelligenceFindings = [$intelligenceFindingsElement];
+        $expectedResponse = new ListIntelligenceFindingsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setIntelligenceFindings($intelligenceFindings);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListIntelligenceFindingsRequest())->setParent($formattedParent);
+        $response = $gapicClient->listIntelligenceFindings($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getIntelligenceFindings()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.storage.control.v2.StorageControl/ListIntelligenceFindings', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listIntelligenceFindingsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListIntelligenceFindingsRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->listIntelligenceFindings($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1810,6 +2110,77 @@ class StorageControlClientTest extends GeneratedTest
         $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         try {
             $gapicClient->setIamPolicy($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function summarizeIntelligenceFindingsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $findingSummariesElement = new FindingSummary();
+        $findingSummaries = [$findingSummariesElement];
+        $expectedResponse = new SummarizeIntelligenceFindingsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setFindingSummaries($findingSummaries);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $parent = 'parent-995424086';
+        $request = (new SummarizeIntelligenceFindingsRequest())->setParent($parent);
+        $response = $gapicClient->summarizeIntelligenceFindings($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getFindingSummaries()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.storage.control.v2.StorageControl/SummarizeIntelligenceFindings', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($parent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function summarizeIntelligenceFindingsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $parent = 'parent-995424086';
+        $request = (new SummarizeIntelligenceFindingsRequest())->setParent($parent);
+        try {
+            $gapicClient->summarizeIntelligenceFindings($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

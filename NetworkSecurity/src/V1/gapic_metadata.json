@@ -237,6 +237,11 @@
                                 "createFirewallEndpointAssociation"
                             ]
                         },
+                        "CreateProjectFirewallEndpoint": {
+                            "methods": [
+                                "createProjectFirewallEndpoint"
+                            ]
+                        },
                         "DeleteFirewallEndpoint": {
                             "methods": [
                                 "deleteFirewallEndpoint"
@@ -245,6 +250,11 @@
                         "DeleteFirewallEndpointAssociation": {
                             "methods": [
                                 "deleteFirewallEndpointAssociation"
+                            ]
+                        },
+                        "DeleteProjectFirewallEndpoint": {
+                            "methods": [
+                                "deleteProjectFirewallEndpoint"
                             ]
                         },
                         "GetFirewallEndpoint": {
@@ -257,6 +267,11 @@
                                 "getFirewallEndpointAssociation"
                             ]
                         },
+                        "GetProjectFirewallEndpoint": {
+                            "methods": [
+                                "getProjectFirewallEndpoint"
+                            ]
+                        },
                         "ListFirewallEndpointAssociations": {
                             "methods": [
                                 "listFirewallEndpointAssociations"
@@ -267,6 +282,11 @@
                                 "listFirewallEndpoints"
                             ]
                         },
+                        "ListProjectFirewallEndpoints": {
+                            "methods": [
+                                "listProjectFirewallEndpoints"
+                            ]
+                        },
                         "UpdateFirewallEndpoint": {
                             "methods": [
                                 "updateFirewallEndpoint"
@@ -275,6 +295,11 @@
                         "UpdateFirewallEndpointAssociation": {
                             "methods": [
                                 "updateFirewallEndpointAssociation"
+                            ]
+                        },
+                        "UpdateProjectFirewallEndpoint": {
+                            "methods": [
+                                "updateProjectFirewallEndpoint"
                             ]
                         },
                         "GetLocation": {
@@ -833,6 +858,90 @@
                 }
             }
         },
+        "SecurityProfileGroupService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "SecurityProfileGroupServiceGapicClient",
+                    "rpcs": {
+                        "CreateSecurityProfile": {
+                            "methods": [
+                                "createSecurityProfile"
+                            ]
+                        },
+                        "CreateSecurityProfileGroup": {
+                            "methods": [
+                                "createSecurityProfileGroup"
+                            ]
+                        },
+                        "DeleteSecurityProfile": {
+                            "methods": [
+                                "deleteSecurityProfile"
+                            ]
+                        },
+                        "DeleteSecurityProfileGroup": {
+                            "methods": [
+                                "deleteSecurityProfileGroup"
+                            ]
+                        },
+                        "GetSecurityProfile": {
+                            "methods": [
+                                "getSecurityProfile"
+                            ]
+                        },
+                        "GetSecurityProfileGroup": {
+                            "methods": [
+                                "getSecurityProfileGroup"
+                            ]
+                        },
+                        "ListSecurityProfileGroups": {
+                            "methods": [
+                                "listSecurityProfileGroups"
+                            ]
+                        },
+                        "ListSecurityProfiles": {
+                            "methods": [
+                                "listSecurityProfiles"
+                            ]
+                        },
+                        "UpdateSecurityProfile": {
+                            "methods": [
+                                "updateSecurityProfile"
+                            ]
+                        },
+                        "UpdateSecurityProfileGroup": {
+                            "methods": [
+                                "updateSecurityProfileGroup"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "OrganizationSecurityProfileGroupService": {
             "clients": {
                 "grpc": {
@@ -886,6 +995,80 @@
                         "UpdateSecurityProfileGroup": {
                             "methods": [
                                 "updateSecurityProfileGroup"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "SSERealmService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "SSERealmServiceGapicClient",
+                    "rpcs": {
+                        "CreateSACAttachment": {
+                            "methods": [
+                                "createSACAttachment"
+                            ]
+                        },
+                        "CreateSACRealm": {
+                            "methods": [
+                                "createSACRealm"
+                            ]
+                        },
+                        "DeleteSACAttachment": {
+                            "methods": [
+                                "deleteSACAttachment"
+                            ]
+                        },
+                        "DeleteSACRealm": {
+                            "methods": [
+                                "deleteSACRealm"
+                            ]
+                        },
+                        "GetSACAttachment": {
+                            "methods": [
+                                "getSACAttachment"
+                            ]
+                        },
+                        "GetSACRealm": {
+                            "methods": [
+                                "getSACRealm"
+                            ]
+                        },
+                        "ListSACAttachments": {
+                            "methods": [
+                                "listSACAttachments"
+                            ]
+                        },
+                        "ListSACRealms": {
+                            "methods": [
+                                "listSACRealms"
                             ]
                         },
                         "GetLocation": {

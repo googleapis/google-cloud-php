@@ -70,6 +70,8 @@ class ContentLocation extends \Google\Protobuf\Internal\Message
      *           Location data for document files.
      *     @type \Google\Cloud\Dlp\V2\MetadataLocation $metadata_location
      *           Location within the metadata for inspected content.
+     *     @type \Google\Cloud\Dlp\V2\ConversationLocation $conversation_location
+     *           Location within a conversation.
      *     @type \Google\Protobuf\Timestamp $container_timestamp
      *           Finding container modification timestamp, if applicable. For Cloud Storage,
      *           this field contains the last file modification timestamp. For a BigQuery
@@ -245,6 +247,37 @@ class ContentLocation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\MetadataLocation::class);
         $this->writeOneof(8, $var);
+
+        return $this;
+    }
+
+    /**
+     * Location within a conversation.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.ConversationLocation conversation_location = 10;</code>
+     * @return \Google\Cloud\Dlp\V2\ConversationLocation|null
+     */
+    public function getConversationLocation()
+    {
+        return $this->readOneof(10);
+    }
+
+    public function hasConversationLocation()
+    {
+        return $this->hasOneof(10);
+    }
+
+    /**
+     * Location within a conversation.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.ConversationLocation conversation_location = 10;</code>
+     * @param \Google\Cloud\Dlp\V2\ConversationLocation $var
+     * @return $this
+     */
+    public function setConversationLocation($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\ConversationLocation::class);
+        $this->writeOneof(10, $var);
 
         return $this;
     }

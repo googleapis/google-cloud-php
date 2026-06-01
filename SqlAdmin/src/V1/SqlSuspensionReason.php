@@ -46,6 +46,12 @@ class SqlSuspensionReason
      * Generated from protobuf enum <code>KMS_KEY_ISSUE = 5;</code>
      */
     const KMS_KEY_ISSUE = 5;
+    /**
+     * The project is suspended due to abuse detected by Ares.
+     *
+     * Generated from protobuf enum <code>PROJECT_ABUSE = 8;</code>
+     */
+    const PROJECT_ABUSE = 8;
 
     private static $valueToName = [
         self::SQL_SUSPENSION_REASON_UNSPECIFIED => 'SQL_SUSPENSION_REASON_UNSPECIFIED',
@@ -53,6 +59,7 @@ class SqlSuspensionReason
         self::LEGAL_ISSUE => 'LEGAL_ISSUE',
         self::OPERATIONAL_ISSUE => 'OPERATIONAL_ISSUE',
         self::KMS_KEY_ISSUE => 'KMS_KEY_ISSUE',
+        self::PROJECT_ABUSE => 'PROJECT_ABUSE',
     ];
 
     public static function name($value)

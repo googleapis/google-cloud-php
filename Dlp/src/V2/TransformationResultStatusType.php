@@ -22,22 +22,21 @@ class TransformationResultStatusType
      */
     const STATE_TYPE_UNSPECIFIED = 0;
     /**
-     * This will be set when a finding could not be transformed (i.e. outside user
+     * This is set when a finding cannot be transformed (i.e. outside user
      * set bucket range).
      *
      * Generated from protobuf enum <code>INVALID_TRANSFORM = 1;</code>
      */
     const INVALID_TRANSFORM = 1;
     /**
-     * This will be set when a BigQuery transformation was successful but could
-     * not be stored back in BigQuery because the transformed row exceeds
-     * BigQuery's max row size.
+     * This is set when a transformation is successful but cannot be stored in
+     * BigQuery because the transformed row exceeds BigQuery's max row size.
      *
      * Generated from protobuf enum <code>BIGQUERY_MAX_ROW_SIZE_EXCEEDED = 2;</code>
      */
     const BIGQUERY_MAX_ROW_SIZE_EXCEEDED = 2;
     /**
-     * This will be set when there is a finding in the custom metadata of a file,
+     * This is set when there is a finding in the custom metadata of a file,
      * but at the write time of the transformed file, this key / value pair is
      * unretrievable.
      *
@@ -45,7 +44,7 @@ class TransformationResultStatusType
      */
     const METADATA_UNRETRIEVABLE = 3;
     /**
-     * This will be set when the transformation and storing of it is successful.
+     * This is set when the transformation and its storage are successful.
      *
      * Generated from protobuf enum <code>SUCCESS = 4;</code>
      */

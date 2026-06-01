@@ -597,6 +597,84 @@ class ManageObjectsTest extends StorageTestCase
         return $composedObject;
     }
 
+    public function testComposeObjectsWithDeleteSourceObjects()
+    {
+        $source1 = self::$bucket->upload('content1', ['name' => uniqid(self::TESTING_PREFIX) . '-s1.txt']);
+        $source2 = self::$bucket->upload('content2', ['name' => uniqid(self::TESTING_PREFIX) . '-s2.txt']);
+
+        $this->assertTrue($source1->exists());
+        $this->assertTrue($source2->exists());
+
+        $name = uniqid(self::TESTING_PREFIX) . '-composed.txt';
+        $composedObject = self::$bucket->compose(
+            [$source1, $source2],
+            $name,
+            ['deleteSourceObjects' => true]
+        );
+
+        $this->assertEquals($name, $composedObject->name());
+        $this->assertEquals('content1content2', $composedObject->downloadAsString());
+
+        $this->assertFalse($source1->exists());
+        $this->assertFalse($source2->exists());
+
+        $composedObject->delete();
+    }
+
+    public function testComposeObjectsWithDeleteSourceObjectsFalse()
+    {
+        $source1 = self::$bucket->upload('content1', ['name' => uniqid(self::TESTING_PREFIX) . '-s1.txt']);
+        $source2 = self::$bucket->upload('content2', ['name' => uniqid(self::TESTING_PREFIX) . '-s2.txt']);
+
+        $this->assertTrue($source1->exists());
+        $this->assertTrue($source2->exists());
+
+        $name = uniqid(self::TESTING_PREFIX) . '-composed.txt';
+        $composedObject = self::$bucket->compose(
+            [$source1, $source2],
+            $name,
+            ['deleteSourceObjects' => false]
+        );
+
+        $this->assertEquals($name, $composedObject->name());
+        $this->assertEquals('content1content2', $composedObject->downloadAsString());
+
+        // Source objects should still exist because deleteSourceObjects is false
+        $this->assertTrue($source1->exists());
+        $this->assertTrue($source2->exists());
+
+        $source1->delete();
+        $source2->delete();
+        $composedObject->delete();
+    }
+
+    public function testComposeObjectsWithDeleteSourceObjectsNull()
+    {
+        $source1 = self::$bucket->upload('content1', ['name' => uniqid(self::TESTING_PREFIX) . '-s1.txt']);
+        $source2 = self::$bucket->upload('content2', ['name' => uniqid(self::TESTING_PREFIX) . '-s2.txt']);
+
+        $this->assertTrue($source1->exists());
+        $this->assertTrue($source2->exists());
+
+        $name = uniqid(self::TESTING_PREFIX) . '-composed.txt';
+        $composedObject = self::$bucket->compose(
+            [$source1, $source2],
+            $name,
+            ['deleteSourceObjects' => null]
+        );
+
+        $this->assertEquals($name, $composedObject->name());
+        $this->assertEquals('content1content2', $composedObject->downloadAsString());
+
+        // Source objects should still exist because deleteSourceObjects is null
+        $this->assertTrue($source1->exists());
+        $this->assertTrue($source2->exists());
+
+        $source1->delete();
+        $source2->delete();
+        $composedObject->delete();
+    }
+
     public function testSoftDeleteObject()
     {
         $softDeleteBucketName = "soft-delete-bucket-" . uniqid();
@@ -830,6 +908,72 @@ class ManageObjectsTest extends StorageTestCase
 
             $this->assertSame($expectedContent, $actualContent);
         }
+    }
+
+    public function testDownloadsWithDefaultCrc32cValidationSuccess()
+    {
+        $object = self::$bucket->upload('system-test-data', ['name' => uniqid(self::TESTING_PREFIX)]);
+        
+        // Automatic CRC32C validation runs under the hood
+        $content = $object->downloadAsString();
+        $this->assertEquals('system-test-data', $content);
+
+        $object->delete();
+    }
+
+    public function testDownloadsWithExplicitMd5ValidationSuccess()
+    {
+        $object = self::$bucket->upload('system-test-data', ['name' => uniqid(self::TESTING_PREFIX)]);
+        
+        // Explicitly opt-in to MD5 validation
+        $content = $object->downloadAsString(['validate' => 'md5']);
+        $this->assertEquals('system-test-data', $content);
+
+        $object->delete();
+    }
+
+    public function testDownloadsWithValidationDisabledSuccess()
+    {
+        $object = self::$bucket->upload('system-test-data', ['name' => uniqid(self::TESTING_PREFIX)]);
+        
+        // Explicitly disable validation
+        $content = $object->downloadAsString(['validate' => false]);
+        $this->assertEquals('system-test-data', $content);
+
+        $object->delete();
+    }
+
+    public function testDownloadsWithRangeBypassesValidation()
+    {
+        $data = 'system-test-range-data';
+        $object = self::$bucket->upload($data, ['name' => uniqid(self::TESTING_PREFIX)]);
+        
+        // Default validate is 'crc32', but we pass a Range header inside restOptions.
+        // This should successfully download the slice 'system' without throwing a mismatch exception.
+        $content = $object->downloadAsString([
+            'restOptions' => [
+                'headers' => [
+                    'Range' => 'bytes=0-5'
+                ]
+            ]
+        ]);
+        $this->assertEquals('system', $content);
+
+        $object->delete();
+    }
+
+    public function testDownloadToFileWithDefaultValidationSuccess()
+    {
+        $data = 'system-test-to-file-data';
+        $object = self::$bucket->upload($data, ['name' => uniqid(self::TESTING_PREFIX)]);
+        
+        $tempFile = tempnam(sys_get_temp_dir(), 'gcs-test');
+        $object->downloadToFile($tempFile);
+        
+        $this->assertEquals($data, file_get_contents($tempFile));
+        
+        unlink($tempFile);
+        $object->delete();
     }
 
     /**

@@ -46,15 +46,15 @@ class MigrationWorkflow extends \Google\Protobuf\Internal\Message
      */
     protected $state = 0;
     /**
-     * Time when the workflow was created.
+     * Output only. Time when the workflow was created.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $create_time = null;
     /**
-     * Time when the workflow was last updated.
+     * Output only. Time when the workflow was last updated.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp last_update_time = 5;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp last_update_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $last_update_time = null;
 
@@ -78,9 +78,9 @@ class MigrationWorkflow extends \Google\Protobuf\Internal\Message
      *     @type int $state
      *           Output only. That status of the workflow.
      *     @type \Google\Protobuf\Timestamp $create_time
-     *           Time when the workflow was created.
+     *           Output only. Time when the workflow was created.
      *     @type \Google\Protobuf\Timestamp $last_update_time
-     *           Time when the workflow was last updated.
+     *           Output only. Time when the workflow was last updated.
      * }
      */
     public function __construct($data = NULL) {
@@ -203,9 +203,9 @@ class MigrationWorkflow extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Time when the workflow was created.
+     * Output only. Time when the workflow was created.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
@@ -224,9 +224,9 @@ class MigrationWorkflow extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Time when the workflow was created.
+     * Output only. Time when the workflow was created.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -239,9 +239,9 @@ class MigrationWorkflow extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Time when the workflow was last updated.
+     * Output only. Time when the workflow was last updated.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp last_update_time = 5;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp last_update_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
      */
     public function getLastUpdateTime()
@@ -260,9 +260,9 @@ class MigrationWorkflow extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Time when the workflow was last updated.
+     * Output only. Time when the workflow was last updated.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp last_update_time = 5;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp last_update_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
