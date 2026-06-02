@@ -25,9 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START developerknowledge_v1_generated_DeveloperKnowledge_SearchDocumentChunks_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Developers\Knowledge\V1\Client\DeveloperKnowledgeClient;
-use Google\Developers\Knowledge\V1\DocumentChunk;
-use Google\Developers\Knowledge\V1\SearchDocumentChunksRequest;
+use Google\Developers\DeveloperKnowledge\V1\Client\DeveloperKnowledgeClient;
+use Google\Developers\DeveloperKnowledge\V1\DocumentChunk;
+use Google\Developers\DeveloperKnowledge\V1\SearchDocumentChunksRequest;
 
 /**
  * Searches for developer knowledge across Google's developer documentation.

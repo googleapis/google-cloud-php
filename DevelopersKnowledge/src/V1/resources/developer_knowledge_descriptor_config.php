@@ -25,11 +25,11 @@ return [
         'google.developers.knowledge.v1.DeveloperKnowledge' => [
             'BatchGetDocuments' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
-                'responseType' => 'Google\Developers\Knowledge\V1\BatchGetDocumentsResponse',
+                'responseType' => 'Google\Developers\DeveloperKnowledge\V1\BatchGetDocumentsResponse',
             ],
             'GetDocument' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
-                'responseType' => 'Google\Developers\Knowledge\V1\Document',
+                'responseType' => 'Google\Developers\DeveloperKnowledge\V1\Document',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -49,7 +49,7 @@ return [
                     'resourcesGetMethod' => 'getResults',
                 ],
                 'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
-                'responseType' => 'Google\Developers\Knowledge\V1\SearchDocumentChunksResponse',
+                'responseType' => 'Google\Developers\DeveloperKnowledge\V1\SearchDocumentChunksResponse',
             ],
             'templateMap' => [
                 'document' => 'documents/{document}',

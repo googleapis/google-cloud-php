@@ -22,7 +22,7 @@
  * Updates to the above are reflected here through a refresh process.
  */
 
-namespace Google\Developers\Knowledge\V1\Client;
+namespace Google\Developers\DeveloperKnowledge\V1\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
@@ -34,11 +34,11 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
-use Google\Developers\Knowledge\V1\BatchGetDocumentsRequest;
-use Google\Developers\Knowledge\V1\BatchGetDocumentsResponse;
-use Google\Developers\Knowledge\V1\Document;
-use Google\Developers\Knowledge\V1\GetDocumentRequest;
-use Google\Developers\Knowledge\V1\SearchDocumentChunksRequest;
+use Google\Developers\DeveloperKnowledge\V1\BatchGetDocumentsRequest;
+use Google\Developers\DeveloperKnowledge\V1\BatchGetDocumentsResponse;
+use Google\Developers\DeveloperKnowledge\V1\Document;
+use Google\Developers\DeveloperKnowledge\V1\GetDocumentRequest;
+use Google\Developers\DeveloperKnowledge\V1\SearchDocumentChunksRequest;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
 
@@ -177,7 +177,7 @@ final class DeveloperKnowledgeClient
      *           of your systems and data. It is recommended to create the credentials explicitly
      *           ```
      *           use Google\Auth\Credentials\ServiceAccountCredentials;
-     *           use Google\Developers\Knowledge\V1\DeveloperKnowledgeClient;
+     *           use Google\Developers\DeveloperKnowledge\V1\DeveloperKnowledgeClient;
      *           $creds = new ServiceAccountCredentials($scopes, $json);
      *           $options = new DeveloperKnowledgeClient(['credentials' => $creds]);
      *           ```
