@@ -1,10 +1,10 @@
-# Google Developers Knowledge for PHP
+# Google Developer Knowledge for PHP
 
-> Idiomatic PHP client for [Google Developers Knowledge](https://developers.google.com/knowledge).
+> Idiomatic PHP client for [Google Developer Knowledge](https://developers.google.com/knowledge).
 
-[![Latest Stable Version](https://poser.pugx.org/google/developers-knowledge/v/stable)](https://packagist.org/packages/google/developers-knowledge) [![Packagist](https://img.shields.io/packagist/dm/google/developers-knowledge.svg)](https://packagist.org/packages/google/developers-knowledge)
+[![Latest Stable Version](https://poser.pugx.org/google/developer-knowledge/v/stable)](https://packagist.org/packages/google/developer-knowledge) [![Packagist](https://img.shields.io/packagist/dm/google/developer-knowledge.svg)](https://packagist.org/packages/google/developer-knowledge)
 
-* [API documentation](https://cloud.google.com/php/docs/reference/developers-knowledge/latest)
+* [API documentation](https://cloud.google.com/php/docs/reference/developer-knowledge/latest)
 
 **NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to
@@ -17,7 +17,7 @@ To begin, install the preferred dependency manager for PHP, [Composer](https://g
 Now, install this component:
 
 ```sh
-$ composer require google/developers-knowledge
+$ composer require google/developer-knowledge
 ```
 
 > Browse the complete list of [Google Cloud APIs](https://cloud.google.com/php/docs/reference)
@@ -36,9 +36,9 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 
 ```php
 use Google\ApiCore\ApiException;
-use Google\Developers\Knowledge\V1\Client\DeveloperKnowledgeClient;
-use Google\Developers\Knowledge\V1\Document;
-use Google\Developers\Knowledge\V1\GetDocumentRequest;
+use Google\Developers\DeveloperKnowledge\V1\Client\DeveloperKnowledgeClient;
+use Google\Developers\DeveloperKnowledge\V1\Document;
+use Google\Developers\DeveloperKnowledge\V1\GetDocumentRequest;
 
 // Create a client.
 $developerKnowledgeClient = new DeveloperKnowledgeClient();
@@ -57,7 +57,7 @@ try {
 }
 ```
 
-See the [samples directory](https://github.com/googleapis/php-developers-knowledge/tree/main/samples) for a canonical list of samples.
+See the [samples directory](https://github.com/googleapis/php-developer-knowledge/tree/main/samples) for a canonical list of samples.
 
 ### Debugging
 

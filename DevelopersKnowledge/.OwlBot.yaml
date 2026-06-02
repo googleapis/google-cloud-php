@@ -1,4 +1,0 @@
-deep-copy-regex:
-    - source: /google/developers/knowledge/(v1)/.*-php/(.*)
-      dest: /owl-bot-staging/DevelopersKnowledge/$1/$2
-api-name: DevelopersKnowledge
