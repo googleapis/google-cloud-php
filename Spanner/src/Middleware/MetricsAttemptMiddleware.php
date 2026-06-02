@@ -43,7 +43,6 @@ use GuzzleHttp\Promise\PromiseInterface;
 use OpenTelemetry\API\Metrics\CounterInterface;
 use OpenTelemetry\API\Metrics\HistogramInterface;
 use OpenTelemetry\API\Metrics\MeterInterface;
-use OpenTelemetry\Context\Context;
 
 /**
  * @internal
@@ -68,6 +67,7 @@ class MetricsAttemptMiddleware implements MiddlewareInterface
     private string $clientId;
     private string $clientName;
     private string $location;
+    private bool $directPathEnabled;
 
     private const INSTANCE_CONFIG = 'unknown';
 
@@ -124,6 +124,10 @@ class MetricsAttemptMiddleware implements MiddlewareInterface
         $this->projectId = $projectId;
         $this->clientName = 'spanner-php/' . $clientName;
         $this->location = $location;
+        $this->directPathEnabled = filter_var(
+            getenv('GOOGLE_SPANNER_ENABLE_DIRECT_ACCESS'),
+            FILTER_VALIDATE_BOOLEAN
+        );
     }
 
     public function __invoke(Call $call, array $options)
@@ -133,10 +137,8 @@ class MetricsAttemptMiddleware implements MiddlewareInterface
         $startTime = microtime(true);
         $directPathUsed = false;
 
-        /** @var MetricsContext $metricsContext */
-        $metricsContext = Context::getCurrent()->get(
-            MetricsContext::contextKey()
-        );
+        /** @var MetricsContext|null $metricsContext */
+        $metricsContext = $options['metricsContext'] ?? null;
         if ($metricsContext) {
             $metricsContext->setAttemptInstruments(
                 $this->attemptCountCounter,
@@ -178,12 +180,6 @@ class MetricsAttemptMiddleware implements MiddlewareInterface
             throw $e;
         }
 
-        if ($response instanceof ServerStream) {
-            $metadata = $response->getServerStreamingCall()->getMetadata();
-            $this->recordGfeAndAfeLatency($metadata, $call, $options, Code::OK);
-            // Attempt count and latency logging are bypassed (handled by generator wrapper)
-        }
-
         if ($response instanceof PromiseInterface) {
             return $response->then(
                 function ($response) use ($startTime, $options, $call, &$directPathUsed) {
@@ -196,6 +192,11 @@ class MetricsAttemptMiddleware implements MiddlewareInterface
                     throw $e;
                 }
             );
+        }
+
+        if ($response instanceof ServerStream) {
+            $metadata = $response->getServerStreamingCall()->getMetadata();
+            $this->recordGfeAndAfeLatency($metadata, $call, $options, Code::OK);
         }
 
         // The response can be a stream
@@ -237,7 +238,7 @@ class MetricsAttemptMiddleware implements MiddlewareInterface
      *
      * @return void
      */
-    private function recordGfeAndAfeLatency($metadata, Call $call, array $options, int $status): void
+    private function recordGfeAndAfeLatency(mixed $metadata, Call $call, array $options, int $status): void
     {
         $serverTiming = $metadata['server-timing'][0] ?? null;
         $gfeLatency = null;
@@ -264,10 +265,7 @@ class MetricsAttemptMiddleware implements MiddlewareInterface
                 $this->attemptAfeHistogram->record($afeLatency, $labels);
             }
         } else {
-            // The server-timing header is completely missing, indicating a connectivity error.
-            $directPathEnabled = filter_var(getenv('GOOGLE_SPANNER_ENABLE_DIRECT_ACCESS'), FILTER_VALIDATE_BOOLEAN);
-
-            if ($directPathEnabled) {
+            if ($this->directPathEnabled) {
                 $this->afeConnectivityErrorCounter->add(1, $labels);
             } else {
                 $this->gfeConnectivityErrorCounter->add(1, $labels);
@@ -293,11 +291,8 @@ class MetricsAttemptMiddleware implements MiddlewareInterface
         $prefix = urldecode($params);
 
         if (preg_match('/instances\/([^\/]+)\/databases\/([^\/]+)/', $prefix, $matches)) {
-            $instanceId = $matches[1];
-            $databaseId = $matches[2];
+            [$_, $instanceId, $databaseId] = $matches;
         }
-
-        $directPathEnabled = filter_var(getenv('GOOGLE_SPANNER_ENABLE_DIRECT_ACCESS'), FILTER_VALIDATE_BOOLEAN);
 
         return [
             'method' => $method,
@@ -309,7 +304,7 @@ class MetricsAttemptMiddleware implements MiddlewareInterface
             'client_name' => $this->clientName,
             'instance_config' => self::INSTANCE_CONFIG,
             'location' => $this->location,
-            'directpath_enabled' => $directPathEnabled ? 'true' : 'false',
+            'directpath_enabled' => $this->directPathEnabled ? 'true' : 'false',
             'directpath_used' => $directPathUsed ? 'true' : 'false'
         ];
     }

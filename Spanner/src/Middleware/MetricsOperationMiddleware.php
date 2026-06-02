@@ -42,7 +42,6 @@ use GuzzleHttp\Promise\PromiseInterface;
 use OpenTelemetry\API\Metrics\CounterInterface;
 use OpenTelemetry\API\Metrics\HistogramInterface;
 use OpenTelemetry\API\Metrics\MeterInterface;
-use OpenTelemetry\Context\Context;
 
 /**
  * @internal
@@ -61,6 +60,7 @@ class MetricsOperationMiddleware implements MiddlewareInterface
     private string $clientId;
     private string $clientName;
     private string $location;
+    private bool $directPathEnabled;
 
     private const INSTANCE_CONFIG = 'unknown';
 
@@ -96,15 +96,18 @@ class MetricsOperationMiddleware implements MiddlewareInterface
         $this->projectId = $projectId;
         $this->clientName = 'spanner-php/' . $clientName;
         $this->location = $location;
+        $this->directPathEnabled = filter_var(
+            getenv('GOOGLE_SPANNER_ENABLE_DIRECT_ACCESS'),
+            FILTER_VALIDATE_BOOLEAN
+        );
     }
 
     public function __invoke(Call $call, array $options)
     {
         $next = $this->nextHandler;
 
-        $metricsContext = Context::getCurrent()->get(
-            MetricsContext::contextKey()
-        );
+        /** @var MetricsContext|null $metricsContext */
+        $metricsContext = $options['metricsContext'] ?? null;
 
         if ($metricsContext) {
             $metricsContext->setOperationInstruments(
@@ -193,8 +196,6 @@ class MetricsOperationMiddleware implements MiddlewareInterface
             $databaseId = $matches[2];
         }
 
-        $directPathEnabled = filter_var(getenv('GOOGLE_SPANNER_ENABLE_DIRECT_ACCESS'), FILTER_VALIDATE_BOOLEAN);
-
         $labels = [
             'method' => $method,
             'status' => $codeName,
@@ -205,7 +206,7 @@ class MetricsOperationMiddleware implements MiddlewareInterface
             'client_name' => $this->clientName,
             'instance_config' => self::INSTANCE_CONFIG,
             'location' => $this->location,
-            'directpath_enabled' => $directPathEnabled ? 'true' : 'false',
+            'directpath_enabled' => $this->directPathEnabled ? 'true' : 'false',
             'directpath_used' => $directPathUsed ? 'true' : 'false'
         ];
 
