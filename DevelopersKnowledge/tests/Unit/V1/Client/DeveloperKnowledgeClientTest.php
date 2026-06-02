@@ -20,25 +20,25 @@
  * This file was automatically generated - do not edit!
  */
 
-namespace Google\Developers\Knowledge\Tests\Unit\V1\Client;
+namespace Google\Developers\DeveloperKnowledge\Tests\Unit\V1\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-use Google\Developers\Knowledge\V1\BatchGetDocumentsRequest;
-use Google\Developers\Knowledge\V1\BatchGetDocumentsResponse;
-use Google\Developers\Knowledge\V1\Client\DeveloperKnowledgeClient;
-use Google\Developers\Knowledge\V1\Document;
-use Google\Developers\Knowledge\V1\DocumentChunk;
-use Google\Developers\Knowledge\V1\GetDocumentRequest;
-use Google\Developers\Knowledge\V1\SearchDocumentChunksRequest;
-use Google\Developers\Knowledge\V1\SearchDocumentChunksResponse;
+use Google\Developers\DeveloperKnowledge\V1\BatchGetDocumentsRequest;
+use Google\Developers\DeveloperKnowledge\V1\BatchGetDocumentsResponse;
+use Google\Developers\DeveloperKnowledge\V1\Client\DeveloperKnowledgeClient;
+use Google\Developers\DeveloperKnowledge\V1\Document;
+use Google\Developers\DeveloperKnowledge\V1\DocumentChunk;
+use Google\Developers\DeveloperKnowledge\V1\GetDocumentRequest;
+use Google\Developers\DeveloperKnowledge\V1\SearchDocumentChunksRequest;
+use Google\Developers\DeveloperKnowledge\V1\SearchDocumentChunksResponse;
 use Google\Rpc\Code;
 use stdClass;
 
 /**
- * @group knowledge
+ * @group developerknowledge
  *
  * @group gapic
  */

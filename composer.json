@@ -769,7 +769,7 @@
             "Google\\Cloud\\WebSecurityScanner\\": "WebSecurityScanner/src",
             "Google\\Cloud\\Workflows\\": "Workflows/src",
             "Google\\Cloud\\WorkloadManager\\": "WorkloadManager/src",
-            "Google\\Developers\\Knowledge\\": "DevelopersKnowledge/src",
+            "Google\\Developers\\DeveloperKnowledge\\": "DevelopersKnowledge/src",
             "Google\\Geo\\": "GeoCommonProtos/src",
             "Google\\Iam\\": "CommonProtos/src/Iam",
             "Google\\Identity\\AccessContextManager\\": "AccessContextManager/src",

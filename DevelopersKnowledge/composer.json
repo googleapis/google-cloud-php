@@ -5,7 +5,7 @@
     "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
-            "Google\\Developers\\Knowledge\\": "src",
+            "Google\\Developers\\DeveloperKnowledge\\": "src",
             "GPBMetadata\\Google\\Developers\\Knowledge\\": "metadata"
         }
     },
