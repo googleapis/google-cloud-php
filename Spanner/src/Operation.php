@@ -283,7 +283,7 @@ class Operation
         $callOptions += $rtl;
 
         $metricsContext = new MetricsContext();
-        $callOptions['metricsContext'] = $metricsContext;
+        $callOptions['middlewareOptions']['metricsContext'] = $metricsContext;
 
         // Initially with begin, transactionId will be null.
         // Once transaction is generated, even in the case of stream failure,
@@ -564,7 +564,7 @@ class Operation
         $callOptions += $rtl;
 
         $metricsContext = new MetricsContext();
-        $callOptions['metricsContext'] = $metricsContext;
+        $callOptions['middlewareOptions']['metricsContext'] = $metricsContext;
 
         $call = function ($resumeToken = null, $transaction = null) use (
             $table,

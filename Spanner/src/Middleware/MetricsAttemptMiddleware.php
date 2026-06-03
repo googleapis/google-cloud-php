@@ -138,7 +138,7 @@ class MetricsAttemptMiddleware implements MiddlewareInterface
         $directPathUsed = false;
 
         /** @var MetricsContext|null $metricsContext */
-        $metricsContext = $options['metricsContext'] ?? null;
+        $metricsContext = $options['middlewareOptions']['metricsContext'] ?? null;
         if ($metricsContext) {
             $metricsContext->setAttemptInstruments(
                 $this->attemptCountCounter,

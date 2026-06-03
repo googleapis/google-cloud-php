@@ -107,7 +107,7 @@ class MetricsOperationMiddleware implements MiddlewareInterface
         $next = $this->nextHandler;
 
         /** @var MetricsContext|null $metricsContext */
-        $metricsContext = $options['metricsContext'] ?? null;
+        $metricsContext = $options['middlewareOptions']['metricsContext'] ?? null;
 
         if ($metricsContext) {
             $metricsContext->setOperationInstruments(
