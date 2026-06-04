@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.43.0](https://github.com/googleapis/gax-php/compare/v1.42.5...v1.43.0) (2026-06-04)
+
+
+### Features
+
+* Add a new filter option to the OptionsFilterMiddleware ([#674](https://github.com/googleapis/gax-php/issues/674)) ([c5d8de6](https://github.com/googleapis/gax-php/commit/c5d8de6ead18cabea2d8eac634a5b9063bee9326))
+
 ## [1.42.5](https://github.com/googleapis/gax-php/compare/v1.42.4...v1.42.5) (2026-06-01)
 
 
