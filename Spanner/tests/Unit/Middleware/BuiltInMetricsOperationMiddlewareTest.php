@@ -48,6 +48,7 @@ class BuiltInMetricsOperationMiddlewareTest extends TestCase
         $this->meter->createHistogram(
             'operation_latencies',
             'ms',
+            Argument::any(),
             Argument::any()
         )->willReturn($this->histogram->reveal());
 

@@ -126,10 +126,8 @@ class MetricsExporter implements PushMetricExporterInterface, AggregationTempora
                 $this->client->createServiceTimeSeries($request, [
                     'timeoutMillis' => $this->timeoutMillis
                 ]);
-                print('Exported!' . "\n");
             } catch (\Exception $e) {
                 // Fail silently during shutdown to avoid user-visible errors.
-                print('Failed to export!' . "\n");
             }
         }
 

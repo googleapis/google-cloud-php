@@ -60,6 +60,7 @@ class BuiltInMetricsAttemptMiddlewareTest extends TestCase
         $this->meter->createHistogram(
             'attempt_latencies',
             'ms',
+            Argument::any(),
             Argument::any()
         )->willReturn($this->attemptHistogram->reveal());
 
@@ -72,6 +73,7 @@ class BuiltInMetricsAttemptMiddlewareTest extends TestCase
         $this->meter->createHistogram(
             'gfe_latencies',
             'ms',
+            Argument::any(),
             Argument::any()
         )->willReturn($this->gfeHistogram->reveal());
 
@@ -84,6 +86,7 @@ class BuiltInMetricsAttemptMiddlewareTest extends TestCase
         $this->meter->createHistogram(
             'afe_latencies',
             'ms',
+            Argument::any(),
             Argument::any()
         )->willReturn($this->afeHistogram->reveal());
 

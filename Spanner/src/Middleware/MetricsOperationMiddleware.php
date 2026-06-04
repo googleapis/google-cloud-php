@@ -64,6 +64,15 @@ class MetricsOperationMiddleware implements MiddlewareInterface
 
     private const INSTANCE_CONFIG = 'unknown';
 
+    private const BUCKET_BOUNDS = [
+        0.0, 0.5, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0,
+        11.0, 12.0, 13.0, 14.0, 15.0, 16.0, 17.0, 18.0, 19.0, 20.0,
+        25.0, 30.0, 40.0, 50.0, 65.0, 80.0, 100.0, 130.0, 160.0, 200.0,
+        250.0, 300.0, 400.0, 500.0, 650.0, 800.0, 1000.0, 2000.0, 5000.0,
+        10000.0, 20000.0, 50000.0, 100000.0, 200000.0, 400000.0, 800000.0,
+        1600000.0, 3200000.0
+    ];
+
     /**
      * Creates a middleware that handles an entire operation for an RPC call
      *
@@ -82,10 +91,12 @@ class MetricsOperationMiddleware implements MiddlewareInterface
         string $location
     ) {
         $this->nextHandler = $nextHandler;
+        $advisory = ['ExplicitBucketBoundaries' => self::BUCKET_BOUNDS];
         $this->operationLatencyHistogram = $meter->createHistogram(
             'operation_latencies',
             'ms',
-            'The latency of an RPC operations'
+            'The latency of an RPC operations',
+            $advisory
         );
         $this->operationCountCounter = $meter->createCounter(
             'operation_count',
@@ -187,20 +198,32 @@ class MetricsOperationMiddleware implements MiddlewareInterface
         $duration = ($endTime - $startTime) * 1000; // Convert seconds to ms
         $codeName = Code::name($code);
 
+        // Format method name to match the Go/spec format (e.g. Spanner.Commit)
+        $methodName = $method;
+        if (strpos($methodName, '/') === 0) {
+            $methodName = substr($methodName, 1);
+        }
+        if (strpos($methodName, 'google.spanner.v1.') === 0) {
+            $methodName = substr($methodName, strlen('google.spanner.v1.'));
+        }
+        $methodName = str_replace('/', '.', $methodName);
+
         // Extract resource information from the GAX routing header.
         $params = $options['headers']['x-goog-request-params'][0] ?? '';
         $prefix = urldecode($params);
 
+        $instanceId = '';
+        $databaseId = '';
         if (preg_match('/instances\/([^\/]+)\/databases\/([^\/]+)/', $prefix, $matches)) {
             $instanceId = $matches[1];
             $databaseId = $matches[2];
         }
 
         $labels = [
-            'method' => $method,
+            'method' => $methodName,
             'status' => $codeName,
-            'instance_id' => $instanceId ?? '',
-            'database' => $databaseId ?? '',
+            'instance_id' => $instanceId,
+            'database' => $databaseId,
             'project_id' => $this->projectId,
             'client_uid' => $this->clientId,
             'client_name' => $this->clientName,
