@@ -135,6 +135,69 @@ class GapicClientTraitTest extends TestCase
         );
     }
 
+    public function testMiddlewareOptionsIsPreservedByFilterAndVisibleToMiddlewares()
+    {
+        $unaryDescriptors = [
+            'callType' => Call::UNARY_CALL,
+            'responseType' => 'decodeType'
+        ];
+        $request = new MockRequestBody([]);
+        $transport = $this->prophesize(TransportInterface::class);
+
+        $middlewareOptions = ['myCustomKey' => 'myCustomValue'];
+
+        $transport->startUnaryCall(
+            Argument::type(Call::class),
+            Argument::that(function ($options) use ($middlewareOptions) {
+                return isset($options['middlewareOptions'])
+                    && $options['middlewareOptions'] === $middlewareOptions;
+            })
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($this->prophesize(PromiseInterface::class)->reveal());
+
+        $credentialsWrapper = CredentialsWrapper::build([
+            'keyFile' => __DIR__ . '/testdata/json-key-file.json'
+        ]);
+
+        $client = new StubGapicClient();
+        $client->set('agentHeader', []);
+        $client->set(
+            'retrySettings',
+            ['method' => $this->prophesize(RetrySettings::class)->reveal()]
+        );
+        $client->set('transport', $transport->reveal());
+        $client->set('credentialsWrapper', $credentialsWrapper);
+        $client->set('descriptors', ['method' => $unaryDescriptors]);
+
+        $appendedCalled = false;
+        $client->addMiddleware(function (callable $handler) use (&$appendedCalled, $middlewareOptions) {
+            return function (Call $call, array $options) use ($handler, &$appendedCalled, $middlewareOptions) {
+                $appendedCalled = true;
+                $this->assertEquals($middlewareOptions, $options['middlewareOptions'] ?? null);
+                return $handler($call, $options);
+            };
+        });
+
+        $prependedCalled = false;
+        $client->prependMiddleware(function (callable $handler) use (&$prependedCalled, $middlewareOptions) {
+            return function (Call $call, array $options) use ($handler, &$prependedCalled, $middlewareOptions) {
+                $prependedCalled = true;
+                $this->assertEquals($middlewareOptions, $options['middlewareOptions'] ?? null);
+                return $handler($call, $options);
+            };
+        });
+
+        $client->startApiCall(
+            'method',
+            $request,
+            ['middlewareOptions' => $middlewareOptions]
+        );
+
+        $this->assertTrue($appendedCalled, 'Appended middleware should have been called');
+        $this->assertTrue($prependedCalled, 'Prepended middleware should have been called');
+    }
+
     public function testVersionedHeadersOverwriteBehavior()
     {
         $unaryDescriptors = [
