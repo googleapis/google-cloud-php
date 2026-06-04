@@ -81,6 +81,15 @@ class DataAgent extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp purge_time = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $purge_time = null;
+    /**
+     * Optional. Customer managed encryption key (CMEK) to use for encrypting the
+     * DataAgent resources. Cloud KMS CryptoKeys must reside in the same location
+     * as the DataAgent. The expected format is
+     * `projects/{@*}locations/{@*}keyRings/{@*}cryptoKeys/*`.
+     *
+     * Generated from protobuf field <code>optional string kms_key = 14 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     */
+    protected $kms_key = null;
     protected $type;
 
     /**
@@ -125,6 +134,11 @@ class DataAgent extends \Google\Protobuf\Internal\Message
      *           Output only. Timestamp in UTC of when this data agent is considered
      *           expired. This is *always* provided on output, regardless of what was sent
      *           on input.
+     *     @type string $kms_key
+     *           Optional. Customer managed encryption key (CMEK) to use for encrypting the
+     *           DataAgent resources. Cloud KMS CryptoKeys must reside in the same location
+     *           as the DataAgent. The expected format is
+     *           `projects/{@*}locations/{@*}keyRings/{@*}cryptoKeys/*`.
      * }
      */
     public function __construct($data = NULL) {
@@ -443,6 +457,48 @@ class DataAgent extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->purge_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Customer managed encryption key (CMEK) to use for encrypting the
+     * DataAgent resources. Cloud KMS CryptoKeys must reside in the same location
+     * as the DataAgent. The expected format is
+     * `projects/{@*}locations/{@*}keyRings/{@*}cryptoKeys/*`.
+     *
+     * Generated from protobuf field <code>optional string kms_key = 14 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getKmsKey()
+    {
+        return isset($this->kms_key) ? $this->kms_key : '';
+    }
+
+    public function hasKmsKey()
+    {
+        return isset($this->kms_key);
+    }
+
+    public function clearKmsKey()
+    {
+        unset($this->kms_key);
+    }
+
+    /**
+     * Optional. Customer managed encryption key (CMEK) to use for encrypting the
+     * DataAgent resources. Cloud KMS CryptoKeys must reside in the same location
+     * as the DataAgent. The expected format is
+     * `projects/{@*}locations/{@*}keyRings/{@*}cryptoKeys/*`.
+     *
+     * Generated from protobuf field <code>optional string kms_key = 14 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setKmsKey($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->kms_key = $var;
 
         return $this;
     }

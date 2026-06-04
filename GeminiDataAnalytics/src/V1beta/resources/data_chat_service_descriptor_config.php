@@ -162,6 +162,7 @@ return [
             ],
             'templateMap' => [
                 'conversation' => 'projects/{project}/locations/{location}/conversations/{conversation}',
+                'cryptoKey' => 'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}',
                 'dataAgent' => 'projects/{project}/locations/{location}/dataAgents/{data_agent}',
                 'location' => 'projects/{project}/locations/{location}',
                 'project' => 'projects/{project}',

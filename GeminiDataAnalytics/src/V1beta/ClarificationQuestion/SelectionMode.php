@@ -7,6 +7,8 @@ namespace Google\Cloud\GeminiDataAnalytics\V1beta\ClarificationQuestion;
 use UnexpectedValueException;
 
 /**
+ * @deprecated
+ * Deprecated: The parent message is deprecated.
  * The selection mode for the clarification question.
  *
  * Protobuf type <code>google.cloud.geminidataanalytics.v1beta.ClarificationQuestion.SelectionMode</code>
@@ -14,21 +16,24 @@ use UnexpectedValueException;
 class SelectionMode
 {
     /**
+     * Deprecated: The parent message is deprecated.
      * Unspecified selection mode.
      *
-     * Generated from protobuf enum <code>SELECTION_MODE_UNSPECIFIED = 0;</code>
+     * Generated from protobuf enum <code>SELECTION_MODE_UNSPECIFIED = 0 [deprecated = true];</code>
      */
     const SELECTION_MODE_UNSPECIFIED = 0;
     /**
+     * Deprecated: The parent message is deprecated.
      * The user can select only one option.
      *
-     * Generated from protobuf enum <code>SINGLE_SELECT = 1;</code>
+     * Generated from protobuf enum <code>SINGLE_SELECT = 1 [deprecated = true];</code>
      */
     const SINGLE_SELECT = 1;
     /**
+     * Deprecated: The parent message is deprecated.
      * The user can select multiple options.
      *
-     * Generated from protobuf enum <code>MULTI_SELECT = 2;</code>
+     * Generated from protobuf enum <code>MULTI_SELECT = 2 [deprecated = true];</code>
      */
     const MULTI_SELECT = 2;
 

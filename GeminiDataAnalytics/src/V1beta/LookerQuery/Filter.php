@@ -22,11 +22,13 @@ class Filter extends \Google\Protobuf\Internal\Message
      */
     protected $field = '';
     /**
-     * Required. The value for the field to filter on.
+     * Optional. The value for the field to filter on.
+     * Optional so we can preserve the default value as an empty
+     * string, important to get a valid and working Looker Explore url.
      *
-     * Generated from protobuf field <code>string value = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>optional string value = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $value = '';
+    protected $value = null;
 
     /**
      * Constructor.
@@ -37,7 +39,9 @@ class Filter extends \Google\Protobuf\Internal\Message
      *     @type string $field
      *           Required. The field to filter on.
      *     @type string $value
-     *           Required. The value for the field to filter on.
+     *           Optional. The value for the field to filter on.
+     *           Optional so we can preserve the default value as an empty
+     *           string, important to get a valid and working Looker Explore url.
      * }
      */
     public function __construct($data = NULL) {
@@ -72,20 +76,34 @@ class Filter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The value for the field to filter on.
+     * Optional. The value for the field to filter on.
+     * Optional so we can preserve the default value as an empty
+     * string, important to get a valid and working Looker Explore url.
      *
-     * Generated from protobuf field <code>string value = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>optional string value = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getValue()
     {
-        return $this->value;
+        return isset($this->value) ? $this->value : '';
+    }
+
+    public function hasValue()
+    {
+        return isset($this->value);
+    }
+
+    public function clearValue()
+    {
+        unset($this->value);
     }
 
     /**
-     * Required. The value for the field to filter on.
+     * Optional. The value for the field to filter on.
+     * Optional so we can preserve the default value as an empty
+     * string, important to get a valid and working Looker Explore url.
      *
-     * Generated from protobuf field <code>string value = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>optional string value = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

@@ -229,6 +229,7 @@ return [
                 'interfaceOverride' => 'google.cloud.location.Locations',
             ],
             'templateMap' => [
+                'cryptoKey' => 'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}',
                 'dataAgent' => 'projects/{project}/locations/{location}/dataAgents/{data_agent}',
                 'location' => 'projects/{project}/locations/{location}',
             ],

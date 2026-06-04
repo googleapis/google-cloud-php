@@ -176,8 +176,12 @@ class DataChatServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name = 'name3373707';
+        $kmsKey = 'kmsKey-591635343';
+        $memoryPaused = true;
         $expectedResponse = new Conversation();
         $expectedResponse->setName($name);
+        $expectedResponse->setKmsKey($kmsKey);
+        $expectedResponse->setMemoryPaused($memoryPaused);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -317,8 +321,12 @@ class DataChatServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name2 = 'name2-1052831874';
+        $kmsKey = 'kmsKey-591635343';
+        $memoryPaused = true;
         $expectedResponse = new Conversation();
         $expectedResponse->setName($name2);
+        $expectedResponse->setKmsKey($kmsKey);
+        $expectedResponse->setMemoryPaused($memoryPaused);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->conversationName('[PROJECT]', '[LOCATION]', '[CONVERSATION]');
@@ -742,8 +750,12 @@ class DataChatServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name = 'name3373707';
+        $kmsKey = 'kmsKey-591635343';
+        $memoryPaused = true;
         $expectedResponse = new Conversation();
         $expectedResponse->setName($name);
+        $expectedResponse->setKmsKey($kmsKey);
+        $expectedResponse->setMemoryPaused($memoryPaused);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');

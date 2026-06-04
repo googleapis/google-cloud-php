@@ -9,17 +9,21 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
+ * Deprecated: Use TextMessage with TextType.FINAL_RESPONSE instead.
  * A message of questions to help clarify the user's query. This is returned
  * when the system cannot confidently answer the user's question.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.geminidataanalytics.v1beta.ClarificationMessage</code>
  */
 class ClarificationMessage extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. A batch of clarification questions to ask the user.
+     * Required. Deprecated: The parent message is deprecated.
+     * A batch of clarification questions to ask the user.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.ClarificationQuestion questions = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.ClarificationQuestion questions = 1 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
+     * @deprecated
      */
     private $questions;
 
@@ -30,7 +34,8 @@ class ClarificationMessage extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\ClarificationQuestion[] $questions
-     *           Required. A batch of clarification questions to ask the user.
+     *           Required. Deprecated: The parent message is deprecated.
+     *           A batch of clarification questions to ask the user.
      * }
      */
     public function __construct($data = NULL) {
@@ -39,26 +44,36 @@ class ClarificationMessage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A batch of clarification questions to ask the user.
+     * Required. Deprecated: The parent message is deprecated.
+     * A batch of clarification questions to ask the user.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.ClarificationQuestion questions = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.ClarificationQuestion questions = 1 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      * @return RepeatedField<\Google\Cloud\GeminiDataAnalytics\V1beta\ClarificationQuestion>
+     * @deprecated
      */
     public function getQuestions()
     {
+        if ($this->questions->count() !== 0) {
+            @trigger_error('questions is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->questions;
     }
 
     /**
-     * Required. A batch of clarification questions to ask the user.
+     * Required. Deprecated: The parent message is deprecated.
+     * A batch of clarification questions to ask the user.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.ClarificationQuestion questions = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.ClarificationQuestion questions = 1 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\GeminiDataAnalytics\V1beta\ClarificationQuestion[] $var
      * @return $this
+     * @deprecated
      */
     public function setQuestions($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\GeminiDataAnalytics\V1beta\ClarificationQuestion::class);
+        if ($arr->count() !== 0) {
+            @trigger_error('questions is deprecated.', E_USER_DEPRECATED);
+        }
         $this->questions = $arr;
 
         return $this;
