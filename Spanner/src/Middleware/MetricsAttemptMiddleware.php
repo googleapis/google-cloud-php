@@ -313,10 +313,11 @@ class MetricsAttemptMiddleware implements MiddlewareInterface
         $params = $options['headers']['x-goog-request-params'][0] ?? '';
         $prefix = urldecode($params);
 
-        $instanceId = '';
-        $databaseId = '';
+        $instanceId = 'unknown';
+        $databaseId = 'unknown';
         if (preg_match('/instances\/([^\/]+)\/databases\/([^\/]+)/', $prefix, $matches)) {
-            [$_, $instanceId, $databaseId] = $matches;
+            $instanceId = $matches[1];
+            $databaseId = $matches[2];
         }
 
         return [

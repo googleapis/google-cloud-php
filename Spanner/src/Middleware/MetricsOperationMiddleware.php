@@ -212,8 +212,8 @@ class MetricsOperationMiddleware implements MiddlewareInterface
         $params = $options['headers']['x-goog-request-params'][0] ?? '';
         $prefix = urldecode($params);
 
-        $instanceId = '';
-        $databaseId = '';
+        $instanceId = 'unknown';
+        $databaseId = 'unknown';
         if (preg_match('/instances\/([^\/]+)\/databases\/([^\/]+)/', $prefix, $matches)) {
             $instanceId = $matches[1];
             $databaseId = $matches[2];
