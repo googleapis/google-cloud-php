@@ -125,10 +125,10 @@ class MetricsOperationMiddleware implements MiddlewareInterface
                 $this->operationCountCounter,
                 $this->operationLatencyHistogram
             );
-        }
 
-        if ($metricsContext && $metricsContext->isResume()) {
-            return $next($call, $options);
+            if ($metricsContext->isResume()) {
+                return $next($call, $options);
+            }
         }
 
         $startTime = microtime(true);

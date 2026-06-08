@@ -318,43 +318,39 @@ class Operation
                     foreach ($generator as $result) {
                         yield $result;
                     }
-                    if ($metricsContext) {
-                        $attemptCounter = $metricsContext->getAttemptCountCounter();
-                        $attemptHistogram = $metricsContext->getAttemptLatencyHistogram();
-                        $opCounter = $metricsContext->getOperationCountCounter();
-                        $opHistogram = $metricsContext->getOperationLatencyHistogram();
+                    $attemptCounter = $metricsContext->getAttemptCountCounter();
+                    $attemptHistogram = $metricsContext->getAttemptLatencyHistogram();
+                    $opCounter = $metricsContext->getOperationCountCounter();
+                    $opHistogram = $metricsContext->getOperationLatencyHistogram();
 
-                        $labels = $metricsContext->getBaseLabels();
-                        $labels['status'] = Code::name(Code::OK);
+                    $labels = $metricsContext->getBaseLabels();
+                    $labels['status'] = Code::name(Code::OK);
 
-                        if ($attemptCounter && $attemptHistogram) {
-                            $attemptCounter->add(1, $labels);
-                            $duration = (microtime(true) - $metricsContext->getLastAttemptStartTime()) * 1000;
-                            $attemptHistogram->record($duration, $labels);
-                        }
+                    if ($attemptCounter && $attemptHistogram) {
+                        $attemptCounter->add(1, $labels);
+                        $duration = (microtime(true) - $metricsContext->getLastAttemptStartTime()) * 1000;
+                        $attemptHistogram->record($duration, $labels);
+                    }
 
-                        if ($opCounter && $opHistogram) {
-                            $opCounter->add(1, $labels);
-                            $duration = (microtime(true) - $metricsContext->getOperationStartTime()) * 1000;
-                            $opHistogram->record($duration, $labels);
-                        }
+                    if ($opCounter && $opHistogram) {
+                        $opCounter->add(1, $labels);
+                        $duration = (microtime(true) - $metricsContext->getOperationStartTime()) * 1000;
+                        $opHistogram->record($duration, $labels);
                     }
                 } catch (\Exception $ex) {
-                    if ($metricsContext) {
-                        $attemptCounter = $metricsContext->getAttemptCountCounter();
-                        $attemptHistogram = $metricsContext->getAttemptLatencyHistogram();
+                    $attemptCounter = $metricsContext->getAttemptCountCounter();
+                    $attemptHistogram = $metricsContext->getAttemptLatencyHistogram();
 
-                        $labels = $metricsContext->getBaseLabels();
-                        $labels['status'] = Code::name($ex->getCode());
+                    $labels = $metricsContext->getBaseLabels();
+                    $labels['status'] = Code::name($ex->getCode());
 
-                        if ($attemptCounter && $attemptHistogram) {
-                            $attemptCounter->add(1, $labels);
-                            $duration = (microtime(true) - $metricsContext->getLastAttemptStartTime()) * 1000;
-                            $attemptHistogram->record($duration, $labels);
-                        }
-
-                        $metricsContext->setIsResume(true);
+                    if ($attemptCounter && $attemptHistogram) {
+                        $attemptCounter->add(1, $labels);
+                        $duration = (microtime(true) - $metricsContext->getLastAttemptStartTime()) * 1000;
+                        $attemptHistogram->record($duration, $labels);
                     }
+
+                    $metricsContext->setIsResume(true);
                     throw $ex;
                 }
             };
@@ -604,43 +600,39 @@ class Operation
                     foreach ($generator as $result) {
                         yield $result;
                     }
-                    if ($metricsContext) {
-                        $attemptCounter = $metricsContext->getAttemptCountCounter();
-                        $attemptHistogram = $metricsContext->getAttemptLatencyHistogram();
-                        $opCounter = $metricsContext->getOperationCountCounter();
-                        $opHistogram = $metricsContext->getOperationLatencyHistogram();
+                    $attemptCounter = $metricsContext->getAttemptCountCounter();
+                    $attemptHistogram = $metricsContext->getAttemptLatencyHistogram();
+                    $opCounter = $metricsContext->getOperationCountCounter();
+                    $opHistogram = $metricsContext->getOperationLatencyHistogram();
 
-                        $labels = $metricsContext->getBaseLabels();
-                        $labels['status'] = Code::name(Code::OK);
+                    $labels = $metricsContext->getBaseLabels();
+                    $labels['status'] = Code::name(Code::OK);
 
-                        if ($attemptCounter && $attemptHistogram) {
-                            $attemptCounter->add(1, $labels);
-                            $duration = (microtime(true) - $metricsContext->getLastAttemptStartTime()) * 1000;
-                            $attemptHistogram->record($duration, $labels);
-                        }
+                    if ($attemptCounter && $attemptHistogram) {
+                        $attemptCounter->add(1, $labels);
+                        $duration = (microtime(true) - $metricsContext->getLastAttemptStartTime()) * 1000;
+                        $attemptHistogram->record($duration, $labels);
+                    }
 
-                        if ($opCounter && $opHistogram) {
-                            $opCounter->add(1, $labels);
-                            $duration = (microtime(true) - $metricsContext->getOperationStartTime()) * 1000;
-                            $opHistogram->record($duration, $labels);
-                        }
+                    if ($opCounter && $opHistogram) {
+                        $opCounter->add(1, $labels);
+                        $duration = (microtime(true) - $metricsContext->getOperationStartTime()) * 1000;
+                        $opHistogram->record($duration, $labels);
                     }
                 } catch (\Exception $ex) {
-                    if ($metricsContext) {
-                        $attemptCounter = $metricsContext->getAttemptCountCounter();
-                        $attemptHistogram = $metricsContext->getAttemptLatencyHistogram();
+                    $attemptCounter = $metricsContext->getAttemptCountCounter();
+                    $attemptHistogram = $metricsContext->getAttemptLatencyHistogram();
 
-                        $labels = $metricsContext->getBaseLabels();
-                        $labels['status'] = Code::name($ex->getCode());
+                    $labels = $metricsContext->getBaseLabels();
+                    $labels['status'] = Code::name($ex->getCode());
 
-                        if ($attemptCounter && $attemptHistogram) {
-                            $attemptCounter->add(1, $labels);
-                            $duration = (microtime(true) - $metricsContext->getLastAttemptStartTime()) * 1000;
-                            $attemptHistogram->record($duration, $labels);
-                        }
-
-                        $metricsContext->setIsResume(true);
+                    if ($attemptCounter && $attemptHistogram) {
+                        $attemptCounter->add(1, $labels);
+                        $duration = (microtime(true) - $metricsContext->getLastAttemptStartTime()) * 1000;
+                        $attemptHistogram->record($duration, $labels);
                     }
+
+                    $metricsContext->setIsResume(true);
                     throw $ex;
                 }
             };

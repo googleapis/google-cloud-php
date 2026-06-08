@@ -1053,7 +1053,7 @@ class SpannerClient
         return $config;
     }
 
-    private function configureMetrics(array &$options): void
+    private function configureMetrics(array $options): void
     {
         $metricsClient = $this->pluck('metricServiceClient', $options, false);
         $timeoutMillis = $this->pluck('metricsTimeoutMillis', $options, false) ?? 100;
