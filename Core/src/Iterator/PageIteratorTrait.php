@@ -84,6 +84,11 @@ trait PageIteratorTrait
     private $initialResultToken;
 
     /**
+     * @var bool
+     */
+    private $isInitialized = false;
+
+    /**
      * @param callable $resultMapper Maps a result.
      * @param callable $call The call to execute.
      * @param array $callOptions Options to use with the call.
@@ -142,15 +147,13 @@ trait PageIteratorTrait
     }
 
     /**
-     * Rewind the iterator.
-     *
-     * @return null
+     * Set up the initial pagination state and tokens.
      */
-    #[\ReturnTypeWillChange]
-    public function rewind()
+    private function initialize()
     {
-        $this->itemCount = 0;
-        $this->position = 0;
+        if ($this->isInitialized) {
+            return;
+        }
 
         if ($this->config['firstPage']) {
             list($this->page, $shouldContinue) = $this->mapResults($this->config['firstPage']);
@@ -163,6 +166,23 @@ trait PageIteratorTrait
         if ($nextResultToken) {
             $this->set($this->resultTokenPath, $this->callOptions, $nextResultToken);
         }
+
+        $this->isInitialized = true;
+    }
+
+    /**
+     * Rewind the iterator.
+     *
+     * @return null
+     */
+    #[\ReturnTypeWillChange]
+    public function rewind()
+    {
+        $this->isInitialized = false;
+        $this->initialize();
+
+        $this->itemCount = 0;
+        $this->position = 0;
     }
 
     /**
@@ -173,6 +193,10 @@ trait PageIteratorTrait
     #[\ReturnTypeWillChange]
     public function current()
     {
+        if (!$this->isInitialized) {
+            $this->initialize();
+        }
+
         if ($this->page === null) {
             $this->page = $this->executeCall();
         }
