@@ -50,6 +50,7 @@ use Grpc\BaseStub;
 use Grpc\CallInvoker;
 use Grpc\ChannelCredentials;
 use Grpc\ClientStreamingCall;
+use Grpc\Interceptor;
 use Grpc\ServerStreamingCall;
 use Grpc\UnaryCall;
 use GuzzleHttp\Promise\Promise;
@@ -443,7 +444,7 @@ class GrpcTransportTest extends TestCase
     public function testClientCertSourceOptionValid()
     {
         $mockClientCertSource = function () {
-            return 'MOCK_CERT_SOURCE';
+            return ['MOCK_KEY', 'MOCK_CERT'];
         };
         $transport = GrpcTransport::build(
             'address.com:123',
@@ -455,8 +456,6 @@ class GrpcTransportTest extends TestCase
 
     public function testClientCertSourceOptionInvalid()
     {
-        self::requiresPhp7();
-
         $mockClientCertSource = 'foo';
 
         $this->expectException(TypeError::class);
@@ -544,6 +543,48 @@ class GrpcTransportTest extends TestCase
      */
     public function testExperimentalInterceptors($callType, $interceptor)
     {
+        $mockCallInvoker = new class($this->buildMockCallForInterceptor($callType)) {
+            private $called = false;
+            private $mockCall;
+
+            public function __construct($mockCall)
+            {
+                $this->mockCall = $mockCall;
+            }
+
+            public function createChannelFactory($hostname, $opts)
+            {
+                // no-op
+            }
+
+            public function UnaryCall($channel, $method, $deserialize, $options)
+            {
+                $this->called = true;
+                return $this->mockCall;
+            }
+
+            public function ServerStreamingCall($channel, $method, $deserialize, $options)
+            {
+                $this->called = true;
+                return $this->mockCall;
+            }
+
+            public function ClientStreamingCall($channel, $method, $deserialize, $options)
+            {
+                // no-op
+            }
+
+            public function BidiStreamingCall($channel, $method, $deserialize, $options)
+            {
+                // no-op
+            }
+
+            public function wasCalled()
+            {
+                return $this->called;
+            }
+        };
+
         $transport = new GrpcTransport(
             'example.com',
             [
@@ -552,8 +593,6 @@ class GrpcTransportTest extends TestCase
             null,
             [$interceptor]
         );
-
-        $mockCallInvoker = new MockCallInvoker($this->buildMockCallForInterceptor($callType));
 
         $r = new \ReflectionProperty(BaseStub::class, 'call_invoker');
         $r->setValue(
@@ -577,18 +616,28 @@ class GrpcTransportTest extends TestCase
 
     public function interceptorDataProvider()
     {
+        $this->autoloadTestdata('mocks', __NAMESPACE__);
+
+        $deprecatedInterceptors = (new \ReflectionClass(Interceptor::class))
+            ->getMethod('interceptUnaryUnary')
+            ->getParameters()[3]
+            ->getName() === 'metadata';
+
+        $interceptor = $deprecatedInterceptors ? new DeprecatedTestInterceptor(): new TestInterceptor();
+        $unaryInterceptor = $deprecatedInterceptors ? new DeprecatedTestUnaryInterceptor(): new TestUnaryInterceptor();
+
         return [
             [
                 UnaryCall::class,
-                new TestUnaryInterceptor()
+                $unaryInterceptor
             ],
             [
                 UnaryCall::class,
-                new TestInterceptor()
+                $interceptor
             ],
             [
                 ServerStreamingCall::class,
-                new TestInterceptor()
+                $interceptor
             ]
         ];
     }
@@ -614,48 +663,5 @@ class GrpcTransportTest extends TestCase
         }
 
         return $mockCall->reveal();
-    }
-}
-
-class MockCallInvoker implements CallInvoker
-{
-    private $called = false;
-    private $mockCall;
-
-    public function __construct($mockCall)
-    {
-        $this->mockCall = $mockCall;
-    }
-
-    public function createChannelFactory($hostname, $opts)
-    {
-        // no-op
-    }
-
-    public function UnaryCall($channel, $method, $deserialize, $options)
-    {
-        $this->called = true;
-        return $this->mockCall;
-    }
-
-    public function ServerStreamingCall($channel, $method, $deserialize, $options)
-    {
-        $this->called = true;
-        return $this->mockCall;
-    }
-
-    public function ClientStreamingCall($channel, $method, $deserialize, $options)
-    {
-        // no-op
-    }
-
-    public function BidiStreamingCall($channel, $method, $deserialize, $options)
-    {
-        // no-op
-    }
-
-    public function wasCalled()
-    {
-        return $this->called;
     }
 }

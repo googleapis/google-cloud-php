@@ -115,7 +115,9 @@ class JsonStreamDecoderTest extends TestCase
             ]),
         ];
 
-        $stream = function ($data) {return $this->messagesToStream($data);};
+        $stream = function ($data) {
+            return $this->messagesToStream($data);
+        };
         return [
             [$operations, Operation::class, $stream($operations), /*readChunkSizeBytes*/ 10],
             [$operations, Operation::class, $stream($operations), /*readChunkSizeBytes*/ 1024],
@@ -178,7 +180,6 @@ class JsonStreamDecoderTest extends TestCase
         try {
             // Just iterating the stream will throw the exception
             foreach ($decoder->decode() as $op) {
-
             }
         } finally {
             $stream->close();

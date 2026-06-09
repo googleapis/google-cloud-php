@@ -41,13 +41,13 @@ class RetrySettingsTest extends TestCase
 
     private static function buildInputConfig()
     {
-        $contents = file_get_contents(__DIR__ . '/testdata/test_service_client_config.json');
+        $contents = file_get_contents(__DIR__ . '/testdata/resources/test_service_client_config.json');
         return json_decode($contents, true);
     }
 
     private static function buildInvalidInputConfig()
     {
-        $contents = file_get_contents(__DIR__ . '/testdata/test_service_invalid_client_config.json');
+        $contents = file_get_contents(__DIR__ . '/testdata/resources/test_service_invalid_client_config.json');
         return json_decode($contents, true);
     }
 
@@ -274,10 +274,14 @@ class RetrySettingsTest extends TestCase
             [
                 // Test with a custom retry function
                 [
-                    'retryFunction' => function ($ex, $options) {return true;}
+                    'retryFunction' => function ($ex, $options) {
+                        return true;
+                    }
                 ] + $defaultSettings,
                 [
-                    'retryFunction' => function ($ex, $options) {return true;}
+                    'retryFunction' => function ($ex, $options) {
+                        return true;
+                    }
                 ] + $defaultExpectedValues
             ],
             [
@@ -369,10 +373,14 @@ class RetrySettingsTest extends TestCase
                 // Test with a custom retry function
                 $defaultSettings,
                 [
-                    'retryFunction' => function ($ex, $options) {return true;}
+                    'retryFunction' => function ($ex, $options) {
+                        return true;
+                    }
                 ],
                 [
-                    'retryFunction' => function ($ex, $options) {return true;}
+                    'retryFunction' => function ($ex, $options) {
+                        return true;
+                    }
                 ] + $defaultExpectedValues
             ],
             [

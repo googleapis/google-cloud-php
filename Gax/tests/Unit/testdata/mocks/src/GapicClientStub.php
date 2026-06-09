@@ -30,14 +30,16 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+namespace Google\ApiCore\Tests\Unit;
+
 use Google\ApiCore\GapicClientTrait;
 
 /**
  * This class is intended to test the look up of a VERSION file. The following
  * directory structure is important to retain for this test:
  *
- * - testdata/src/GapicClientStub.php
- * - testdata/VERSION
+ * - testdata/mocks/src/Client/GapicClientStub.php
+ * - testdata/mocks/VERSION
  */
 class GapicClientStub
 {

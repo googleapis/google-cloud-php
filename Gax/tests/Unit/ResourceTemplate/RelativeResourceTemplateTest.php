@@ -205,19 +205,29 @@ class RelativeResourceTemplateTest extends TestCase
                 ['$0' => '{}!@#$%^&*()+=[]\|`~-_'],
             ],
             [
-              'foos/{foo}_{oof}',
-              'foos/imafoo_thisisanoof',
-              ['foo' => 'imafoo', 'oof' => 'thisisanoof'],
+                'foos/{foo}_{oof}',
+                'foos/imafoo_thisisanoof',
+                ['foo' => 'imafoo', 'oof' => 'thisisanoof'],
             ],
             [
-              'foos/{foo}.{oof}_{bar}.{car}',
-              'foos/food.doof_mars.porsche',
-              ['foo' => 'food', 'oof' => 'doof', 'bar' => 'mars', 'car' => 'porsche'],
+                'foos/{foo}.{oof}_{bar}.{car}',
+                'foos/food.doof_mars.porsche',
+                ['foo' => 'food', 'oof' => 'doof', 'bar' => 'mars', 'car' => 'porsche'],
             ],
             [
-              'foos/{foo}_{oof}-{bar}.{baz}~{car}/projects/{project}/locations/{state}~{city}.{cell}',
-              'foos/food_doof-mars.bazz~porsche/projects/someProject/locations/wa~sea.fre3',
-              ['foo' => 'food', 'oof' => 'doof', 'bar' => 'mars', 'baz' => 'bazz', 'car' => 'porsche', 'project' => 'someProject', 'state' => 'wa', 'city' => 'sea', 'cell' => 'fre3'],
+                'foos/{foo}_{oof}-{bar}.{baz}~{car}/projects/{project}/locations/{state}~{city}.{cell}',
+                'foos/food_doof-mars.bazz~porsche/projects/someProject/locations/wa~sea.fre3',
+                [
+                    'foo' => 'food',
+                    'oof' => 'doof',
+                    'bar' => 'mars',
+                    'baz' => 'bazz',
+                    'car' => 'porsche',
+                    'project' => 'someProject',
+                    'state' => 'wa',
+                    'city' => 'sea',
+                    'cell' => 'fre3'
+                ],
             ],
         ];
     }
@@ -325,8 +335,8 @@ class RelativeResourceTemplateTest extends TestCase
             [
                 'buckets/{hello=*}',
                 ['hello' => ''], // Invalid binding
-                "Error rendering 'buckets/{hello=*}': expected binding 'hello' to match segment '{hello=*}', instead got ''\n" .
-                "Provided bindings: Array\n" .
+                "Error rendering 'buckets/{hello=*}': expected binding 'hello' to match segment '{hello=*}', instead " .
+                "got ''\nProvided bindings: Array\n" .
                 "(\n" .
                 "    [hello] => \n" .
                 ")\n",
@@ -334,8 +344,8 @@ class RelativeResourceTemplateTest extends TestCase
             [
                 'buckets/{hello=*}',
                 ['hello' => null], // Invalid binding
-                "Error rendering 'buckets/{hello=*}': expected binding 'hello' to match segment '{hello=*}', instead got null\n" .
-                "Provided bindings: Array\n" .
+                "Error rendering 'buckets/{hello=*}': expected binding 'hello' to match segment '{hello=*}', instead " .
+                "got null\nProvided bindings: Array\n" .
                 "(\n" .
                 "    [hello] => \n" .
                 ")\n",
@@ -343,8 +353,8 @@ class RelativeResourceTemplateTest extends TestCase
             [
                 'buckets/*/objects/**',
                 ['$0' => 'foo', '$1' => ''],  // Invalid binding
-                "Error rendering 'buckets/*/objects/**': expected binding '$1' to match segment '**', instead got ''\n" .
-                "Provided bindings: Array\n" .
+                "Error rendering 'buckets/*/objects/**': expected binding '$1' to match segment '**', instead got " .
+                "''\nProvided bindings: Array\n" .
                 "(\n" .
                 "    [$0] => foo\n" .
                 "    [$1] => \n" .
@@ -353,8 +363,8 @@ class RelativeResourceTemplateTest extends TestCase
             [
                 'buckets/*/objects/**',
                 ['$0' => 'foo', '$1' => null],  // Invalid binding
-                "Error rendering 'buckets/*/objects/**': expected binding '$1' to match segment '**', instead got null\n" .
-                "Provided bindings: Array\n" .
+                "Error rendering 'buckets/*/objects/**': expected binding '$1' to match segment '**', instead got " .
+                "null\nProvided bindings: Array\n" .
                 "(\n" .
                 "    [$0] => foo\n" .
                 "    [$1] => \n" .
