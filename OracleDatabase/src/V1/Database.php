@@ -38,17 +38,40 @@ class Database extends \Google\Protobuf\Internal\Message
      */
     protected $db_unique_name = '';
     /**
-     * Required. The password for the default ADMIN user.
+     * Optional. The password for the default ADMIN user.
+     * Note: Only one of `admin_password_secret_version` or `admin_password` can
+     * be populated.
      *
-     * Generated from protobuf field <code>string admin_password = 4 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string admin_password = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $admin_password = '';
     /**
+     * Optional. The resource name of a secret version in Secret Manager which
+     * contains the database admin user's password. Format:
+     * projects/{project}/secrets/{secret}/versions/{version}. Note: Only one of
+     * `admin_password_secret_version` or `admin_password` can be populated.
+     *
+     * Generated from protobuf field <code>string admin_password_secret_version = 17 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     */
+    protected $admin_password_secret_version = '';
+    /**
      * Optional. The TDE wallet password for the database.
+     * Note: Only one of `tde_wallet_password_secret_version` or
+     * `tde_wallet_password` can be populated.
      *
      * Generated from protobuf field <code>string tde_wallet_password = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $tde_wallet_password = '';
+    /**
+     * Optional. The resource name of a secret version in Secret Manager which
+     * contains the TDE wallet password for the database. Format:
+     * projects/{project}/secrets/{secret}/versions/{version}. Note: Only one of
+     * `tde_wallet_password_secret_version` or `tde_wallet_password` can be
+     * populated.
+     *
+     * Generated from protobuf field <code>string tde_wallet_password_secret_version = 18 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     */
+    protected $tde_wallet_password_secret_version = '';
     /**
      * Optional. The character set for the database. The default is AL32UTF8.
      *
@@ -105,6 +128,21 @@ class Database extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.Database.OperationsInsightsStatus ops_insights_status = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $ops_insights_status = 0;
+    /**
+     * Optional. The ID of the pluggable database associated with the Database.
+     * The ID must be unique within the project and location.
+     *
+     * Generated from protobuf field <code>string pluggable_database_id = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $pluggable_database_id = '';
+    /**
+     * Optional. The pluggable database associated with the Database. The name
+     * must begin with an alphabetic character and can contain a maximum of thirty
+     * alphanumeric characters.
+     *
+     * Generated from protobuf field <code>string pluggable_database_name = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $pluggable_database_name = '';
 
     /**
      * Constructor.
@@ -122,9 +160,24 @@ class Database extends \Google\Protobuf\Internal\Message
      *     @type string $db_unique_name
      *           Optional. The DB_UNIQUE_NAME of the Oracle Database being backed up.
      *     @type string $admin_password
-     *           Required. The password for the default ADMIN user.
+     *           Optional. The password for the default ADMIN user.
+     *           Note: Only one of `admin_password_secret_version` or `admin_password` can
+     *           be populated.
+     *     @type string $admin_password_secret_version
+     *           Optional. The resource name of a secret version in Secret Manager which
+     *           contains the database admin user's password. Format:
+     *           projects/{project}/secrets/{secret}/versions/{version}. Note: Only one of
+     *           `admin_password_secret_version` or `admin_password` can be populated.
      *     @type string $tde_wallet_password
      *           Optional. The TDE wallet password for the database.
+     *           Note: Only one of `tde_wallet_password_secret_version` or
+     *           `tde_wallet_password` can be populated.
+     *     @type string $tde_wallet_password_secret_version
+     *           Optional. The resource name of a secret version in Secret Manager which
+     *           contains the TDE wallet password for the database. Format:
+     *           projects/{project}/secrets/{secret}/versions/{version}. Note: Only one of
+     *           `tde_wallet_password_secret_version` or `tde_wallet_password` can be
+     *           populated.
      *     @type string $character_set
      *           Optional. The character set for the database. The default is AL32UTF8.
      *     @type string $ncharacter_set
@@ -145,6 +198,13 @@ class Database extends \Google\Protobuf\Internal\Message
      *           Output only. The GCP Oracle zone where the Database is created.
      *     @type int $ops_insights_status
      *           Output only. The Status of Operations Insights for this Database.
+     *     @type string $pluggable_database_id
+     *           Optional. The ID of the pluggable database associated with the Database.
+     *           The ID must be unique within the project and location.
+     *     @type string $pluggable_database_name
+     *           Optional. The pluggable database associated with the Database. The name
+     *           must begin with an alphabetic character and can contain a maximum of thirty
+     *           alphanumeric characters.
      * }
      */
     public function __construct($data = NULL) {
@@ -237,9 +297,11 @@ class Database extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The password for the default ADMIN user.
+     * Optional. The password for the default ADMIN user.
+     * Note: Only one of `admin_password_secret_version` or `admin_password` can
+     * be populated.
      *
-     * Generated from protobuf field <code>string admin_password = 4 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string admin_password = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getAdminPassword()
@@ -248,9 +310,11 @@ class Database extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The password for the default ADMIN user.
+     * Optional. The password for the default ADMIN user.
+     * Note: Only one of `admin_password_secret_version` or `admin_password` can
+     * be populated.
      *
-     * Generated from protobuf field <code>string admin_password = 4 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string admin_password = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -263,7 +327,41 @@ class Database extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. The resource name of a secret version in Secret Manager which
+     * contains the database admin user's password. Format:
+     * projects/{project}/secrets/{secret}/versions/{version}. Note: Only one of
+     * `admin_password_secret_version` or `admin_password` can be populated.
+     *
+     * Generated from protobuf field <code>string admin_password_secret_version = 17 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getAdminPasswordSecretVersion()
+    {
+        return $this->admin_password_secret_version;
+    }
+
+    /**
+     * Optional. The resource name of a secret version in Secret Manager which
+     * contains the database admin user's password. Format:
+     * projects/{project}/secrets/{secret}/versions/{version}. Note: Only one of
+     * `admin_password_secret_version` or `admin_password` can be populated.
+     *
+     * Generated from protobuf field <code>string admin_password_secret_version = 17 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAdminPasswordSecretVersion($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->admin_password_secret_version = $var;
+
+        return $this;
+    }
+
+    /**
      * Optional. The TDE wallet password for the database.
+     * Note: Only one of `tde_wallet_password_secret_version` or
+     * `tde_wallet_password` can be populated.
      *
      * Generated from protobuf field <code>string tde_wallet_password = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -275,6 +373,8 @@ class Database extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The TDE wallet password for the database.
+     * Note: Only one of `tde_wallet_password_secret_version` or
+     * `tde_wallet_password` can be populated.
      *
      * Generated from protobuf field <code>string tde_wallet_password = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -284,6 +384,40 @@ class Database extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->tde_wallet_password = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The resource name of a secret version in Secret Manager which
+     * contains the TDE wallet password for the database. Format:
+     * projects/{project}/secrets/{secret}/versions/{version}. Note: Only one of
+     * `tde_wallet_password_secret_version` or `tde_wallet_password` can be
+     * populated.
+     *
+     * Generated from protobuf field <code>string tde_wallet_password_secret_version = 18 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getTdeWalletPasswordSecretVersion()
+    {
+        return $this->tde_wallet_password_secret_version;
+    }
+
+    /**
+     * Optional. The resource name of a secret version in Secret Manager which
+     * contains the TDE wallet password for the database. Format:
+     * projects/{project}/secrets/{secret}/versions/{version}. Note: Only one of
+     * `tde_wallet_password_secret_version` or `tde_wallet_password` can be
+     * populated.
+     *
+     * Generated from protobuf field <code>string tde_wallet_password_secret_version = 18 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setTdeWalletPasswordSecretVersion($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->tde_wallet_password_secret_version = $var;
 
         return $this;
     }
@@ -542,6 +676,64 @@ class Database extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\OracleDatabase\V1\Database\OperationsInsightsStatus::class);
         $this->ops_insights_status = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The ID of the pluggable database associated with the Database.
+     * The ID must be unique within the project and location.
+     *
+     * Generated from protobuf field <code>string pluggable_database_id = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getPluggableDatabaseId()
+    {
+        return $this->pluggable_database_id;
+    }
+
+    /**
+     * Optional. The ID of the pluggable database associated with the Database.
+     * The ID must be unique within the project and location.
+     *
+     * Generated from protobuf field <code>string pluggable_database_id = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPluggableDatabaseId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->pluggable_database_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The pluggable database associated with the Database. The name
+     * must begin with an alphabetic character and can contain a maximum of thirty
+     * alphanumeric characters.
+     *
+     * Generated from protobuf field <code>string pluggable_database_name = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getPluggableDatabaseName()
+    {
+        return $this->pluggable_database_name;
+    }
+
+    /**
+     * Optional. The pluggable database associated with the Database. The name
+     * must begin with an alphabetic character and can contain a maximum of thirty
+     * alphanumeric characters.
+     *
+     * Generated from protobuf field <code>string pluggable_database_name = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPluggableDatabaseName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->pluggable_database_name = $var;
 
         return $this;
     }

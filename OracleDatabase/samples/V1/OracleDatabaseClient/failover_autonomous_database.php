@@ -34,23 +34,18 @@ use Google\Rpc\Status;
  * Initiates a failover to target autonomous database from the associated
  * primary database.
  *
- * @param string $formattedName                   The name of the Autonomous Database in the following format:
- *                                                projects/{project}/locations/{location}/autonomousDatabases/{autonomous_database}. Please see
- *                                                {@see OracleDatabaseClient::autonomousDatabaseName()} for help formatting this field.
- * @param string $formattedPeerAutonomousDatabase The peer database name to fail over to. Please see
- *                                                {@see OracleDatabaseClient::autonomousDatabaseName()} for help formatting this field.
+ * @param string $formattedName The name of the Autonomous Database in the following format:
+ *                              projects/{project}/locations/{location}/autonomousDatabases/{autonomous_database}. Please see
+ *                              {@see OracleDatabaseClient::autonomousDatabaseName()} for help formatting this field.
  */
-function failover_autonomous_database_sample(
-    string $formattedName,
-    string $formattedPeerAutonomousDatabase
-): void {
+function failover_autonomous_database_sample(string $formattedName): void
+{
     // Create a client.
     $oracleDatabaseClient = new OracleDatabaseClient();
 
     // Prepare the request message.
     $request = (new FailoverAutonomousDatabaseRequest())
-        ->setName($formattedName)
-        ->setPeerAutonomousDatabase($formattedPeerAutonomousDatabase);
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -88,12 +83,7 @@ function callSample(): void
         '[LOCATION]',
         '[AUTONOMOUS_DATABASE]'
     );
-    $formattedPeerAutonomousDatabase = OracleDatabaseClient::autonomousDatabaseName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[AUTONOMOUS_DATABASE]'
-    );
 
-    failover_autonomous_database_sample($formattedName, $formattedPeerAutonomousDatabase);
+    failover_autonomous_database_sample($formattedName);
 }
 // [END oracledatabase_v1_generated_OracleDatabase_FailoverAutonomousDatabase_sync]

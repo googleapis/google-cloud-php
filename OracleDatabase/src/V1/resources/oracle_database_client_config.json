@@ -69,6 +69,21 @@
                     "retry_codes_name": "no_retry_1_codes",
                     "retry_params_name": "no_retry_1_params"
                 },
+                "CreateGoldengateConnection": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
+                },
+                "CreateGoldengateConnectionAssignment": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
+                },
+                "CreateGoldengateDeployment": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
+                },
                 "CreateOdbNetwork": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "no_retry_1_codes",
@@ -105,6 +120,21 @@
                     "retry_params_name": "no_retry_1_params"
                 },
                 "DeleteExascaleDbStorageVault": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
+                },
+                "DeleteGoldengateConnection": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
+                },
+                "DeleteGoldengateConnectionAssignment": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
+                },
+                "DeleteGoldengateDeployment": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "no_retry_1_codes",
                     "retry_params_name": "no_retry_1_params"
@@ -163,6 +193,41 @@
                     "timeout_millis": 60000,
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
+                },
+                "GetGoldengateConnection": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "GetGoldengateConnectionAssignment": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "GetGoldengateConnectionType": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
+                },
+                "GetGoldengateDeployment": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "GetGoldengateDeploymentEnvironment": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
+                },
+                "GetGoldengateDeploymentType": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
+                },
+                "GetGoldengateDeploymentVersion": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
                 },
                 "GetOdbNetwork": {
                     "timeout_millis": 60000,
@@ -269,6 +334,41 @@
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
                 },
+                "ListGoldengateConnectionAssignments": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "ListGoldengateConnectionTypes": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "ListGoldengateConnections": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "ListGoldengateDeploymentEnvironments": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "ListGoldengateDeploymentTypes": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "ListGoldengateDeploymentVersions": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "ListGoldengateDeployments": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
                 "ListMinorVersions": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "retry_policy_1_codes",
@@ -309,12 +409,27 @@
                     "retry_codes_name": "no_retry_1_codes",
                     "retry_params_name": "no_retry_1_params"
                 },
+                "StartGoldengateDeployment": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
+                },
                 "StopAutonomousDatabase": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "no_retry_1_codes",
                     "retry_params_name": "no_retry_1_params"
                 },
+                "StopGoldengateDeployment": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
+                },
                 "SwitchoverAutonomousDatabase": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
+                },
+                "TestGoldengateConnectionAssignment": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "no_retry_1_codes",
                     "retry_params_name": "no_retry_1_params"

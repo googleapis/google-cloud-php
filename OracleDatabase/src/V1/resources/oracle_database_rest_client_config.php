@@ -137,6 +137,51 @@ return [
                     'exascale_db_storage_vault_id',
                 ],
             ],
+            'CreateGoldengateConnection' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/goldengateConnections',
+                'body' => 'goldengate_connection',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'goldengate_connection_id',
+                ],
+            ],
+            'CreateGoldengateConnectionAssignment' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/goldengateConnectionAssignments',
+                'body' => 'goldengate_connection_assignment',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'goldengate_connection_assignment_id',
+                ],
+            ],
+            'CreateGoldengateDeployment' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/goldengateDeployments',
+                'body' => 'goldengate_deployment',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'goldengate_deployment_id',
+                ],
+            ],
             'CreateOdbNetwork' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/odbNetworks',
@@ -225,6 +270,39 @@ return [
             'DeleteExascaleDbStorageVault' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/exascaleDbStorageVaults/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteGoldengateConnection' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/goldengateConnections/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteGoldengateConnectionAssignment' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/goldengateConnectionAssignments/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteGoldengateDeployment' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/goldengateDeployments/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -348,6 +426,83 @@ return [
             'GetExascaleDbStorageVault' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/exascaleDbStorageVaults/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetGoldengateConnection' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/goldengateConnections/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetGoldengateConnectionAssignment' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/goldengateConnectionAssignments/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetGoldengateConnectionType' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/goldengateConnectionTypes/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetGoldengateDeployment' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/goldengateDeployments/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetGoldengateDeploymentEnvironment' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/goldengateDeploymentEnvironments/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetGoldengateDeploymentType' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/goldengateDeploymentTypes/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetGoldengateDeploymentVersion' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/goldengateDeploymentVersions/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -593,6 +748,83 @@ return [
                     ],
                 ],
             ],
+            'ListGoldengateConnectionAssignments' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/goldengateConnectionAssignments',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListGoldengateConnectionTypes' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/goldengateConnectionTypes',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListGoldengateConnections' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/goldengateConnections',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListGoldengateDeploymentEnvironments' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/goldengateDeploymentEnvironments',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListGoldengateDeploymentTypes' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/goldengateDeploymentTypes',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListGoldengateDeploymentVersions' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/goldengateDeploymentVersions',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListGoldengateDeployments' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/goldengateDeployments',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListMinorVersions' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*/giVersions/*}/minorVersions',
@@ -685,6 +917,18 @@ return [
                     ],
                 ],
             ],
+            'StartGoldengateDeployment' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/goldengateDeployments/*}:start',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'StopAutonomousDatabase' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/autonomousDatabases/*}:stop',
@@ -697,9 +941,33 @@ return [
                     ],
                 ],
             ],
+            'StopGoldengateDeployment' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/goldengateDeployments/*}:stop',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'SwitchoverAutonomousDatabase' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/autonomousDatabases/*}:switchover',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'TestGoldengateConnectionAssignment' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/goldengateConnectionAssignments/*}:test',
                 'body' => '*',
                 'placeholders' => [
                     'name' => [
