@@ -48,6 +48,8 @@ class RetryMiddleware implements MiddlewareInterface
     private $nextHandler;
     private RetrySettings $retrySettings;
     private ?float $deadlineMs;
+    /** @var callable */
+    private $delayHandler;
 
     /*
      * The number of retries that have already been attempted.
@@ -59,12 +61,14 @@ class RetryMiddleware implements MiddlewareInterface
         callable $nextHandler,
         RetrySettings $retrySettings,
         $deadlineMs = null,
-        $retryAttempts = 0
+        $retryAttempts = 0,
+        ?callable $delayHandler = null
     ) {
         $this->nextHandler = $nextHandler;
         $this->retrySettings = $retrySettings;
         $this->deadlineMs = $deadlineMs;
         $this->retryAttempts = $retryAttempts;
+        $this->delayHandler = ($delayHandler ?? [$this, 'sleepMillis']);
     }
 
     /**
@@ -147,7 +151,7 @@ class RetryMiddleware implements MiddlewareInterface
             );
         }
 
-        $delayMs = min($delayMs * $delayMult, $maxDelayMs);
+        $nextDelayMs = min($delayMs * $delayMult, $maxDelayMs);
         $timeoutMs = (int) min(
             $timeoutMs * $timeoutMult,
             $maxTimeoutMs,
@@ -157,14 +161,18 @@ class RetryMiddleware implements MiddlewareInterface
         $nextHandler = new RetryMiddleware(
             $this->nextHandler,
             $this->retrySettings->with([
-                'initialRetryDelayMillis' => $delayMs,
+                'initialRetryDelayMillis' => $nextDelayMs,
             ]),
             $deadlineMs,
-            $this->retryAttempts + 1
+            $this->retryAttempts + 1,
+            $this->delayHandler,
         );
 
         // Set the timeout for the call
         $options['timeoutMillis'] = $timeoutMs;
+
+        // Sleep for the length of the delay
+        ($this->delayHandler)($delayMs);
 
         return $nextHandler(
             $call,
@@ -197,5 +205,13 @@ class RetryMiddleware implements MiddlewareInterface
 
                 return true;
             };
+    }
+
+    /**
+     * @param int $millis
+     */
+    private function sleepMillis(int $millis)
+    {
+        usleep($millis * 1000);
     }
 }
