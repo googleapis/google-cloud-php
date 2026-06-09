@@ -101,7 +101,7 @@ class OperationResponse
      * OperationResponse constructor.
      *
      * @param string $operationName
-     * @param object $operationsClient
+     * @param object|null $operationsClient
      * @param array $options {
      *                       Optional. Options for configuring the operation response object.
      *

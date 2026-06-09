@@ -98,7 +98,7 @@ class ApiExceptionTest extends TestCase
         $this->assertSame(Code::OK, $apiException->getCode());
         $this->assertSame($expectedMessageWithoutErrorDetails, $apiException->getMessage());
         $this->assertSame($metadata, $apiException->getMetadata());
-        $this->assertCount($unserializedErrorsCount ,$apiException->getErrorDetails());
+        $this->assertCount($unserializedErrorsCount, $apiException->getErrorDetails());
     }
 
     /**
@@ -123,7 +123,7 @@ class ApiExceptionTest extends TestCase
         $this->assertSame(Code::OK, $apiException->getCode());
         $this->assertSame($expectedMessage, $apiException->getMessage());
         $this->assertSame($metadata, $apiException->getMetadata());
-        $this->assertCount($unserializedErrorsCount ,$apiException->getErrorDetails());
+        $this->assertCount($unserializedErrorsCount, $apiException->getErrorDetails());
     }
 
     public function getMetadata()
@@ -242,7 +242,7 @@ class ApiExceptionTest extends TestCase
             'code' => Code::OK,
             'status' => 'OK',
             'details' => $metadataArray,
-        ],
+            ],
             JSON_PRETTY_PRINT
         );
 

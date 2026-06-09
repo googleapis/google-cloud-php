@@ -46,7 +46,7 @@ class OptionsTraitTest extends TestCase
 
     public function testDefaultOptionsExistAndUnrecognizedOptionsAreIgnored()
     {
-        $options = new OptionsTraitStub([
+        $options = $this->newStub([
             'option3' => 'foo',
             'option4' => 'bar',
         ]);
@@ -60,13 +60,9 @@ class OptionsTraitTest extends TestCase
     public function testInvalidTypesThrowException()
     {
         $this->expectException(TypeError::class);
-        $this->expectExceptionMessage(
-            PHP_MAJOR_VERSION < 8
-            ? 'Google\ApiCore\Tests\Unit\Options\OptionsTraitStub::$option2 must be int or null, string used'
-            : 'Cannot assign string to property Google\ApiCore\Tests\Unit\Options\OptionsTraitStub::$option2 of type ?int'
-        );
+        $this->expectExceptionMessage('Cannot assign string to property ArrayAccess@anonymous::$option2 of type ?int');
 
-        $options = new OptionsTraitStub([
+        $this->newStub([
             'option1' => 123,   // this is okay because it is cast to a string
             'option2' => 'bar', // this will throw an exception
         ]);
@@ -74,13 +70,13 @@ class OptionsTraitTest extends TestCase
 
     public function testArrayGet()
     {
-        $options = new OptionsTraitStub(['option1' => 'abc']);
+        $options = $this->newStub(['option1' => 'abc']);
         $this->assertEquals('abc', $options['option1']);
     }
 
     public function testArrayIsset()
     {
-        $options = new OptionsTraitStub(['option1' => 'abc']);
+        $options = $this->newStub(['option1' => 'abc']);
         $this->assertTrue(isset($options['option1']));
         $this->assertFalse(isset($options['option2'])); // valid option
         $this->assertFalse(isset($options['option3'])); // invalid option
@@ -89,14 +85,14 @@ class OptionsTraitTest extends TestCase
     public function testArraySetThrowsException()
     {
         $this->expectException(BadMethodCallException::class);
-        $options = new OptionsTraitStub([]);
+        $options = $this->newStub([]);
         $options['option1'] = 'abc';
     }
 
     public function testArrayUnsetThrowsException()
     {
         $this->expectException(BadMethodCallException::class);
-        $options = new OptionsTraitStub([]);
+        $options = $this->newStub([]);
         unset($options['option1']);
     }
 
@@ -104,36 +100,38 @@ class OptionsTraitTest extends TestCase
     {
         $this->expectException(ValidationException::class);
         $this->expectExceptionMessage('Could not find specified file: does/not/exist.php');
-        new OptionsTraitStub(['file' => 'does/not/exist.php']);
+        $this->newStub(['file' => 'does/not/exist.php']);
     }
 
     public function testValidateFileExists()
     {
-        $options = new OptionsTraitStub(['option1' => 'foo', 'file' => __FILE__]);
+        $options = $this->newStub(['option1' => 'foo', 'file' => __FILE__]);
         $this->assertEquals(__FILE__, $options['file']);
     }
-}
 
-class OptionsTraitStub implements ArrayAccess
-{
-    use OptionsTrait;
-
-    private ?string $option1;
-    private ?int $option2;
-    private ?string $file;
-
-    public function __construct(array $options)
+    private function newStub(array $options)
     {
-        $this->option1 = $options['option1'] ?? null;
-        $this->option2 = $options['option2'] ?? null;
-        $this->setFile($options['file'] ?? null);
-    }
+        return new class($options) implements ArrayAccess {
+            use OptionsTrait;
 
-    private function setFile(?string $file)
-    {
-        if (!is_null($file)) {
-            self::validateFileExists($file);
-        }
-        $this->file = $file;
+            private ?string $option1;
+            private ?int $option2;
+            private ?string $file;
+
+            public function __construct(array $options)
+            {
+                $this->option1 = $options['option1'] ?? null;
+                $this->option2 = $options['option2'] ?? null;
+                $this->setFile($options['file'] ?? null);
+            }
+
+            private function setFile(?string $file)
+            {
+                if (!is_null($file)) {
+                    self::validateFileExists($file);
+                }
+                $this->file = $file;
+            }
+        };
     }
 }

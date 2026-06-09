@@ -230,6 +230,7 @@ class ServerStreamTest extends TestCase
         $stream = new ServerStream($call, logger: $logger->reveal());
 
         // Loop to read the responses
-        foreach ($stream->readAll() as $response) {}
+        foreach ($stream->readAll() as $response) {
+        }
     }
 }

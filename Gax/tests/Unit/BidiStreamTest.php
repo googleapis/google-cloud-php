@@ -373,6 +373,7 @@ class BidiStreamTest extends TestCase
 
         $stream->writeAll($requests);
 
-        foreach ($stream->closeWriteAndReadAll() as $_) {}
+        foreach ($stream->closeWriteAndReadAll() as $_) {
+        }
     }
 }
