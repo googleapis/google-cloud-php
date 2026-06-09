@@ -36,6 +36,67 @@ class DeviceInfo extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string ip_address = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $ip_address = '';
+    /**
+     * Optional. The category of device. For example, “desktop”, “tablet”,
+     * “mobile”, “smart TV”.
+     *
+     * Generated from protobuf field <code>string category = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $category = '';
+    /**
+     * Optional. The language the device uses in ISO 639-1 format.
+     *
+     * Generated from protobuf field <code>string language_code = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $language_code = '';
+    /**
+     * Optional. The height of the screen in pixels.
+     *
+     * Generated from protobuf field <code>int32 screen_height = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $screen_height = 0;
+    /**
+     * Optional. The width of the screen in pixels.
+     *
+     * Generated from protobuf field <code>int32 screen_width = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $screen_width = 0;
+    /**
+     * Optional. The operating system or platform of the device.
+     *
+     * Generated from protobuf field <code>string operating_system = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $operating_system = '';
+    /**
+     * Optional. The version of the operating system or platform.
+     *
+     * Generated from protobuf field <code>string operating_system_version = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $operating_system_version = '';
+    /**
+     * Optional. The model of the device.
+     *
+     * Generated from protobuf field <code>string model = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $model = '';
+    /**
+     * Optional. The brand of the device.
+     *
+     * Generated from protobuf field <code>string brand = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $brand = '';
+    /**
+     * Optional. The brand or type of the browser.
+     *
+     * Generated from protobuf field <code>string browser = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $browser = '';
+    /**
+     * Optional. The version of the browser.
+     *
+     * Generated from protobuf field <code>string browser_version = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $browser_version = '';
 
     /**
      * Constructor.
@@ -56,6 +117,27 @@ class DeviceInfo extends \Google\Protobuf\Internal\Message
      *           applicable Google policies. See the [About offline conversion
      *           imports](https://support.google.com/google-ads/answer/2998031) page for
      *           more details.
+     *     @type string $category
+     *           Optional. The category of device. For example, “desktop”, “tablet”,
+     *           “mobile”, “smart TV”.
+     *     @type string $language_code
+     *           Optional. The language the device uses in ISO 639-1 format.
+     *     @type int $screen_height
+     *           Optional. The height of the screen in pixels.
+     *     @type int $screen_width
+     *           Optional. The width of the screen in pixels.
+     *     @type string $operating_system
+     *           Optional. The operating system or platform of the device.
+     *     @type string $operating_system_version
+     *           Optional. The version of the operating system or platform.
+     *     @type string $model
+     *           Optional. The model of the device.
+     *     @type string $brand
+     *           Optional. The brand of the device.
+     *     @type string $browser
+     *           Optional. The brand or type of the browser.
+     *     @type string $browser_version
+     *           Optional. The version of the browser.
      * }
      */
     public function __construct($data = NULL) {
@@ -129,6 +211,268 @@ class DeviceInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->ip_address = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The category of device. For example, “desktop”, “tablet”,
+     * “mobile”, “smart TV”.
+     *
+     * Generated from protobuf field <code>string category = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * Optional. The category of device. For example, “desktop”, “tablet”,
+     * “mobile”, “smart TV”.
+     *
+     * Generated from protobuf field <code>string category = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCategory($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->category = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The language the device uses in ISO 639-1 format.
+     *
+     * Generated from protobuf field <code>string language_code = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getLanguageCode()
+    {
+        return $this->language_code;
+    }
+
+    /**
+     * Optional. The language the device uses in ISO 639-1 format.
+     *
+     * Generated from protobuf field <code>string language_code = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setLanguageCode($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->language_code = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The height of the screen in pixels.
+     *
+     * Generated from protobuf field <code>int32 screen_height = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getScreenHeight()
+    {
+        return $this->screen_height;
+    }
+
+    /**
+     * Optional. The height of the screen in pixels.
+     *
+     * Generated from protobuf field <code>int32 screen_height = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setScreenHeight($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->screen_height = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The width of the screen in pixels.
+     *
+     * Generated from protobuf field <code>int32 screen_width = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getScreenWidth()
+    {
+        return $this->screen_width;
+    }
+
+    /**
+     * Optional. The width of the screen in pixels.
+     *
+     * Generated from protobuf field <code>int32 screen_width = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setScreenWidth($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->screen_width = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The operating system or platform of the device.
+     *
+     * Generated from protobuf field <code>string operating_system = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getOperatingSystem()
+    {
+        return $this->operating_system;
+    }
+
+    /**
+     * Optional. The operating system or platform of the device.
+     *
+     * Generated from protobuf field <code>string operating_system = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setOperatingSystem($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->operating_system = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The version of the operating system or platform.
+     *
+     * Generated from protobuf field <code>string operating_system_version = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getOperatingSystemVersion()
+    {
+        return $this->operating_system_version;
+    }
+
+    /**
+     * Optional. The version of the operating system or platform.
+     *
+     * Generated from protobuf field <code>string operating_system_version = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setOperatingSystemVersion($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->operating_system_version = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The model of the device.
+     *
+     * Generated from protobuf field <code>string model = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getModel()
+    {
+        return $this->model;
+    }
+
+    /**
+     * Optional. The model of the device.
+     *
+     * Generated from protobuf field <code>string model = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setModel($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->model = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The brand of the device.
+     *
+     * Generated from protobuf field <code>string brand = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getBrand()
+    {
+        return $this->brand;
+    }
+
+    /**
+     * Optional. The brand of the device.
+     *
+     * Generated from protobuf field <code>string brand = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setBrand($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->brand = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The brand or type of the browser.
+     *
+     * Generated from protobuf field <code>string browser = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getBrowser()
+    {
+        return $this->browser;
+    }
+
+    /**
+     * Optional. The brand or type of the browser.
+     *
+     * Generated from protobuf field <code>string browser = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setBrowser($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->browser = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The version of the browser.
+     *
+     * Generated from protobuf field <code>string browser_version = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getBrowserVersion()
+    {
+        return $this->browser_version;
+    }
+
+    /**
+     * Optional. The version of the browser.
+     *
+     * Generated from protobuf field <code>string browser_version = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setBrowserVersion($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->browser_version = $var;
 
         return $this;
     }

@@ -29,14 +29,26 @@ class RequestStatusPerDestination extends \Google\Protobuf\Internal\Message
     protected $request_status = 0;
     /**
      * An error info error containing the error reason and error counts related to
-     * the upload.
+     * the upload. Only populated if the
+     * [`request_status`][google.ads.datamanager.v1.RequestStatusPerDestination.request_status]
+     * is
+     * [`FAILED`][google.ads.datamanager.v1.RequestStatusPerDestination.RequestStatus.FAILED]
+     * or
+     * [`PARTIAL_SUCCESS`][google.ads.datamanager.v1.RequestStatusPerDestination.RequestStatus.PARTIAL_SUCCESS].
+     * This field isn't populated while the request has
+     * [`request_status`][google.ads.datamanager.v1.RequestStatusPerDestination.request_status]
+     * of
+     * [`PROCESSING`][google.ads.datamanager.v1.RequestStatusPerDestination.RequestStatus.PROCESSING].
      *
      * Generated from protobuf field <code>.google.ads.datamanager.v1.ErrorInfo error_info = 3;</code>
      */
     protected $error_info = null;
     /**
      * A warning info containing the warning reason and warning counts related to
-     * the upload.
+     * the upload. This field isn't populated while the request has
+     * [`request_status`][google.ads.datamanager.v1.RequestStatusPerDestination.request_status]
+     * of
+     * [`PROCESSING`][google.ads.datamanager.v1.RequestStatusPerDestination.RequestStatus.PROCESSING].
      *
      * Generated from protobuf field <code>.google.ads.datamanager.v1.WarningInfo warning_info = 7;</code>
      */
@@ -55,10 +67,22 @@ class RequestStatusPerDestination extends \Google\Protobuf\Internal\Message
      *           The request status of the destination.
      *     @type \Google\Ads\DataManager\V1\ErrorInfo $error_info
      *           An error info error containing the error reason and error counts related to
-     *           the upload.
+     *           the upload. Only populated if the
+     *           [`request_status`][google.ads.datamanager.v1.RequestStatusPerDestination.request_status]
+     *           is
+     *           [`FAILED`][google.ads.datamanager.v1.RequestStatusPerDestination.RequestStatus.FAILED]
+     *           or
+     *           [`PARTIAL_SUCCESS`][google.ads.datamanager.v1.RequestStatusPerDestination.RequestStatus.PARTIAL_SUCCESS].
+     *           This field isn't populated while the request has
+     *           [`request_status`][google.ads.datamanager.v1.RequestStatusPerDestination.request_status]
+     *           of
+     *           [`PROCESSING`][google.ads.datamanager.v1.RequestStatusPerDestination.RequestStatus.PROCESSING].
      *     @type \Google\Ads\DataManager\V1\WarningInfo $warning_info
      *           A warning info containing the warning reason and warning counts related to
-     *           the upload.
+     *           the upload. This field isn't populated while the request has
+     *           [`request_status`][google.ads.datamanager.v1.RequestStatusPerDestination.request_status]
+     *           of
+     *           [`PROCESSING`][google.ads.datamanager.v1.RequestStatusPerDestination.RequestStatus.PROCESSING].
      *     @type \Google\Ads\DataManager\V1\RequestStatusPerDestination\IngestAudienceMembersStatus $audience_members_ingestion_status
      *           The status of the ingest audience members request.
      *     @type \Google\Ads\DataManager\V1\RequestStatusPerDestination\IngestEventsStatus $events_ingestion_status
@@ -136,7 +160,16 @@ class RequestStatusPerDestination extends \Google\Protobuf\Internal\Message
 
     /**
      * An error info error containing the error reason and error counts related to
-     * the upload.
+     * the upload. Only populated if the
+     * [`request_status`][google.ads.datamanager.v1.RequestStatusPerDestination.request_status]
+     * is
+     * [`FAILED`][google.ads.datamanager.v1.RequestStatusPerDestination.RequestStatus.FAILED]
+     * or
+     * [`PARTIAL_SUCCESS`][google.ads.datamanager.v1.RequestStatusPerDestination.RequestStatus.PARTIAL_SUCCESS].
+     * This field isn't populated while the request has
+     * [`request_status`][google.ads.datamanager.v1.RequestStatusPerDestination.request_status]
+     * of
+     * [`PROCESSING`][google.ads.datamanager.v1.RequestStatusPerDestination.RequestStatus.PROCESSING].
      *
      * Generated from protobuf field <code>.google.ads.datamanager.v1.ErrorInfo error_info = 3;</code>
      * @return \Google\Ads\DataManager\V1\ErrorInfo|null
@@ -158,7 +191,16 @@ class RequestStatusPerDestination extends \Google\Protobuf\Internal\Message
 
     /**
      * An error info error containing the error reason and error counts related to
-     * the upload.
+     * the upload. Only populated if the
+     * [`request_status`][google.ads.datamanager.v1.RequestStatusPerDestination.request_status]
+     * is
+     * [`FAILED`][google.ads.datamanager.v1.RequestStatusPerDestination.RequestStatus.FAILED]
+     * or
+     * [`PARTIAL_SUCCESS`][google.ads.datamanager.v1.RequestStatusPerDestination.RequestStatus.PARTIAL_SUCCESS].
+     * This field isn't populated while the request has
+     * [`request_status`][google.ads.datamanager.v1.RequestStatusPerDestination.request_status]
+     * of
+     * [`PROCESSING`][google.ads.datamanager.v1.RequestStatusPerDestination.RequestStatus.PROCESSING].
      *
      * Generated from protobuf field <code>.google.ads.datamanager.v1.ErrorInfo error_info = 3;</code>
      * @param \Google\Ads\DataManager\V1\ErrorInfo $var
@@ -174,7 +216,10 @@ class RequestStatusPerDestination extends \Google\Protobuf\Internal\Message
 
     /**
      * A warning info containing the warning reason and warning counts related to
-     * the upload.
+     * the upload. This field isn't populated while the request has
+     * [`request_status`][google.ads.datamanager.v1.RequestStatusPerDestination.request_status]
+     * of
+     * [`PROCESSING`][google.ads.datamanager.v1.RequestStatusPerDestination.RequestStatus.PROCESSING].
      *
      * Generated from protobuf field <code>.google.ads.datamanager.v1.WarningInfo warning_info = 7;</code>
      * @return \Google\Ads\DataManager\V1\WarningInfo|null
@@ -196,7 +241,10 @@ class RequestStatusPerDestination extends \Google\Protobuf\Internal\Message
 
     /**
      * A warning info containing the warning reason and warning counts related to
-     * the upload.
+     * the upload. This field isn't populated while the request has
+     * [`request_status`][google.ads.datamanager.v1.RequestStatusPerDestination.request_status]
+     * of
+     * [`PROCESSING`][google.ads.datamanager.v1.RequestStatusPerDestination.RequestStatus.PROCESSING].
      *
      * Generated from protobuf field <code>.google.ads.datamanager.v1.WarningInfo warning_info = 7;</code>
      * @param \Google\Ads\DataManager\V1\WarningInfo $var
