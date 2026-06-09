@@ -1145,6 +1145,8 @@ class Bucket
      *           matches the given value.
      *     @type string $ifMetagenerationMatch Makes the operation conditional on whether the object's current
      *           metageneration matches the given value.
+     *     @type bool $deleteSourceObjects If true, the source objects will be
+     *           deleted after a successful compose operation.
      * }
      * @return StorageObject
      * @throws \InvalidArgumentException

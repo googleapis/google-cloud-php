@@ -438,6 +438,11 @@
                                 "lookupEntryLinks"
                             ]
                         },
+                        "ModifyEntry": {
+                            "methods": [
+                                "modifyEntry"
+                            ]
+                        },
                         "SearchEntries": {
                             "methods": [
                                 "searchEntries"
@@ -640,6 +645,11 @@
                                 "listDataProducts"
                             ]
                         },
+                        "RequestDataProductAccess": {
+                            "methods": [
+                                "requestDataProductAccess"
+                            ]
+                        },
                         "UpdateDataAsset": {
                             "methods": [
                                 "updateDataAsset"
@@ -793,6 +803,11 @@
                 "grpc": {
                     "libraryClient": "DataScanServiceGapicClient",
                     "rpcs": {
+                        "CancelDataScanJob": {
+                            "methods": [
+                                "cancelDataScanJob"
+                            ]
+                        },
                         "CreateDataScan": {
                             "methods": [
                                 "createDataScan"

@@ -81,7 +81,7 @@ class StorageObjectTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(StorageObject::class, 'exists');
         $snippet->addLocal('object', $this->object);
 
-        $this->connection->getObject(Argument::any())
+        $this->connection->headObject(Argument::any())
             ->shouldBeCalled()
             ->willReturn([]);
 

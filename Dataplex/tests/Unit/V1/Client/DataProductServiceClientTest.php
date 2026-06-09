@@ -26,6 +26,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
+use Google\Cloud\Dataplex\V1\ChangeRequest;
 use Google\Cloud\Dataplex\V1\Client\DataProductServiceClient;
 use Google\Cloud\Dataplex\V1\CreateDataAssetRequest;
 use Google\Cloud\Dataplex\V1\CreateDataProductRequest;
@@ -39,6 +40,8 @@ use Google\Cloud\Dataplex\V1\ListDataAssetsRequest;
 use Google\Cloud\Dataplex\V1\ListDataAssetsResponse;
 use Google\Cloud\Dataplex\V1\ListDataProductsRequest;
 use Google\Cloud\Dataplex\V1\ListDataProductsResponse;
+use Google\Cloud\Dataplex\V1\RequestDataProductAccessRequest;
+use Google\Cloud\Dataplex\V1\RequestDataProductAccessResponse;
 use Google\Cloud\Dataplex\V1\UpdateDataAssetRequest;
 use Google\Cloud\Dataplex\V1\UpdateDataProductRequest;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
@@ -897,6 +900,79 @@ class DataProductServiceClientTest extends GeneratedTest
         $request = (new ListDataProductsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listDataProducts($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function requestDataProductAccessTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $changeRequestName = 'changeRequestName-180005270';
+        $expectedResponse = new RequestDataProductAccessResponse();
+        $expectedResponse->setChangeRequestName($changeRequestName);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->dataProductName('[PROJECT]', '[LOCATION]', '[DATA_PRODUCT]');
+        $changeRequest = new ChangeRequest();
+        $request = (new RequestDataProductAccessRequest())
+            ->setParent($formattedParent)
+            ->setChangeRequest($changeRequest);
+        $response = $gapicClient->requestDataProductAccess($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.dataplex.v1.DataProductService/RequestDataProductAccess', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getChangeRequest();
+        $this->assertProtobufEquals($changeRequest, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function requestDataProductAccessExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->dataProductName('[PROJECT]', '[LOCATION]', '[DATA_PRODUCT]');
+        $changeRequest = new ChangeRequest();
+        $request = (new RequestDataProductAccessRequest())
+            ->setParent($formattedParent)
+            ->setChangeRequest($changeRequest);
+        try {
+            $gapicClient->requestDataProductAccess($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

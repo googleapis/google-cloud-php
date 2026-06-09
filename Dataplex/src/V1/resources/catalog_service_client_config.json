@@ -97,8 +97,8 @@
                 },
                 "CreateEntryLink": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "no_retry_codes",
-                    "retry_params_name": "no_retry_params"
+                    "retry_codes_name": "no_retry_4_codes",
+                    "retry_params_name": "no_retry_4_params"
                 },
                 "CreateEntryType": {
                     "timeout_millis": 60000,
@@ -132,8 +132,8 @@
                 },
                 "DeleteEntryLink": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "no_retry_codes",
-                    "retry_params_name": "no_retry_params"
+                    "retry_codes_name": "no_retry_4_codes",
+                    "retry_params_name": "no_retry_4_params"
                 },
                 "DeleteEntryType": {
                     "timeout_millis": 60000,
@@ -161,9 +161,9 @@
                     "retry_params_name": "retry_policy_9_params"
                 },
                 "GetEntryLink": {
-                    "timeout_millis": 60000,
-                    "retry_codes_name": "no_retry_codes",
-                    "retry_params_name": "no_retry_params"
+                    "timeout_millis": 20000,
+                    "retry_codes_name": "retry_policy_7_codes",
+                    "retry_params_name": "retry_policy_7_params"
                 },
                 "GetEntryType": {
                     "timeout_millis": 60000,
@@ -221,6 +221,11 @@
                     "retry_params_name": "retry_policy_7_params"
                 },
                 "LookupEntryLinks": {
+                    "timeout_millis": 20000,
+                    "retry_codes_name": "retry_policy_7_codes",
+                    "retry_params_name": "retry_policy_7_params"
+                },
+                "ModifyEntry": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "no_retry_codes",
                     "retry_params_name": "no_retry_params"
@@ -247,8 +252,8 @@
                 },
                 "UpdateEntryLink": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "no_retry_codes",
-                    "retry_params_name": "no_retry_params"
+                    "retry_codes_name": "retry_policy_8_codes",
+                    "retry_params_name": "retry_policy_8_params"
                 },
                 "UpdateEntryType": {
                     "timeout_millis": 60000,

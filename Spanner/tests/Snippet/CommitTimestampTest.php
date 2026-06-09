@@ -57,10 +57,13 @@ class CommitTimestampTest extends SnippetTestCase
     {
         $id = 'abc';
 
+        // One add for the SpannerMiddleware and one for the Metrics middleware
         $this->spannerClient->addMiddleware(Argument::type('callable'))
-            ->shouldBeCalledOnce();
+            ->shouldBeCalled(2);
+
+        // One prepend for the Spanner Header Id and one for the Metrics middleware
         $this->spannerClient->prependMiddleware(Argument::type('callable'))
-            ->shouldBeCalledOnce();
+            ->shouldBeCalled(2);
 
         // ensure cache hit
         $cacheItem = $this->prophesize(CacheItemInterface::class);

@@ -16,11 +16,11 @@ use Google\Protobuf\RepeatedField;
 class InsightTypeConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Name of insight type config.
+     * Identifier. Name of insight type config.
      * Eg,
      * projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
@@ -79,7 +79,7 @@ class InsightTypeConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Name of insight type config.
+     *           Identifier. Name of insight type config.
      *           Eg,
      *           projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config
      *     @type \Google\Cloud\Recommender\V1\InsightTypeGenerationConfig $insight_type_generation_config
@@ -114,11 +114,11 @@ class InsightTypeConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of insight type config.
+     * Identifier. Name of insight type config.
      * Eg,
      * projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -127,11 +127,11 @@ class InsightTypeConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of insight type config.
+     * Identifier. Name of insight type config.
      * Eg,
      * projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]/config
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */

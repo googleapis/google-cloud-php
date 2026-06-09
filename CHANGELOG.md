@@ -1,5 +1,222 @@
 # Changelog
 
+## 0.331.0
+
+<details><summary>google/cloud-bigquery-migration 1.3.0</summary>
+
+
+
+### Features
+
+* [BigQueryMigration] add support for assessment tasks in BigQuery Migration API ([#9204](https://github.com/googleapis/google-cloud-php/issues/9204)) ([474203e](https://github.com/googleapis/google-cloud-php/commit/474203ee9e73c69b94c9f8217fa290ef9cc08371))
+
+</details>
+
+<details><summary>google/cloud-core 1.72.2</summary>
+
+
+
+### Bug Fixes
+
+* Cast Core upload header values to strings ([#9208](https://github.com/googleapis/google-cloud-php/issues/9208)) ([5a95b9e](https://github.com/googleapis/google-cloud-php/commit/5a95b9e9858c143edf3503f4b33949a6bc09221e))
+
+</details>
+
+<details><summary>google/cloud-dataplex 1.14.0</summary>
+
+
+
+### Features
+
+* **dataplex:** [Dataplex] Add `RequestDataProductAccess` method to request access to `DataAssets` with in a `DataProduct` ([#9209](https://github.com/googleapis/google-cloud-php/issues/9209)) ([f4098d9](https://github.com/googleapis/google-cloud-php/commit/f4098d91528d6ff8fad8e67696731a7fa16aa7ac))
+
+</details>
+
+<details><summary>google/developer-knowledge 0.1.0</summary>
+
+
+
+### Bug Fixes
+
+* Rename DevelopersKnowledge to DeveloperKnowledge ([#9222](https://github.com/googleapis/google-cloud-php/issues/9222)) ([f4f8ca9](https://github.com/googleapis/google-cloud-php/commit/f4f8ca9a8caa4fb5ce47e92b54de650476c084a5))
+
+</details>
+
+<details><summary>google/cloud-dlp 2.12.0</summary>
+
+
+
+### Features
+
+* [Dlp] Supporting Conversation Content Type ([#9218](https://github.com/googleapis/google-cloud-php/issues/9218)) ([41b77b6](https://github.com/googleapis/google-cloud-php/commit/41b77b616ad104735fd88b75f1bd829d79dda98e))
+
+</details>
+
+<details><summary>google/cloud-geminidataanalytics 0.10.0</summary>
+
+
+
+### Features
+
+* Introduce GeminiDataAnalytics V1 ([#9214](https://github.com/googleapis/google-cloud-php/issues/9214)) ([70f8b83](https://github.com/googleapis/google-cloud-php/commit/70f8b83b200a1758c907982fa5c64c46fadd4e73))
+
+</details>
+
+<details><summary>google/cloud-network-security 1.4.0</summary>
+
+
+
+### Features
+
+* [NetworkSecurity] add networksecurity v1 client library ([#9206](https://github.com/googleapis/google-cloud-php/issues/9206)) ([13adc9b](https://github.com/googleapis/google-cloud-php/commit/13adc9b596f3479570e65d21bb276a2ca4751f06))
+
+</details>
+
+<details><summary>google/cloud-recommender 2.2.0</summary>
+
+
+
+### Features
+
+* [Recommender] Support utilization insights and cloud hub ([#9220](https://github.com/googleapis/google-cloud-php/issues/9220)) ([3cb6a22](https://github.com/googleapis/google-cloud-php/commit/3cb6a22585f23e2dd25bccf0f72cfb0c1b9eab3c))
+
+</details>
+
+<details><summary>google/cloud-security-private-ca 2.4.0</summary>
+
+
+
+### Features
+
+* [SecurityPrivateCa] add allow_requester_specified_not_before_time and requested_not_before_time fields to PrivateCA v1 API ([#9215](https://github.com/googleapis/google-cloud-php/issues/9215)) ([fb908b8](https://github.com/googleapis/google-cloud-php/commit/fb908b860a8a0fb89232dda7d9fed18201071d59))
+
+</details>
+
+<details><summary>google/cloud-spanner 2.8.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-sql-admin 1.9.0</summary>
+
+
+
+### Features
+
+* [SqlAdmin] A new field `target_instance_settings` is added to message `.google.cloud.sql.v1.PointInTimeRestoreContext` ([#9216](https://github.com/googleapis/google-cloud-php/issues/9216)) ([b6a6b3e](https://github.com/googleapis/google-cloud-php/commit/b6a6b3eb44481d0813d1a77a784167fcbc2b7c70))
+
+</details>
+
+<details><summary>google/cloud-storage 2.3.0</summary>
+
+
+
+### Features
+
+* **storage:** Add deleteSourceObjects option to Bucket::compose() ([#9211](https://github.com/googleapis/google-cloud-php/issues/9211)) ([cc0d5a2](https://github.com/googleapis/google-cloud-php/commit/cc0d5a2451972cc41fcd2ac4f62580b7bbfbd66f))
+* **storage:** Enable default CRC32C checksum validation for object downloads ([#9210](https://github.com/googleapis/google-cloud-php/issues/9210)) ([9ad4f21](https://github.com/googleapis/google-cloud-php/commit/9ad4f21de17300fa98999fdd1b07d0c4c4f2ac02))
+* **Storage:** Update StorageObject::exists to use HEAD request instead of GET ([#9196](https://github.com/googleapis/google-cloud-php/issues/9196)) ([34a5663](https://github.com/googleapis/google-cloud-php/commit/34a56637b619bc65e8ee0137185c079bce08f56f))
+
+</details>
+
+<details><summary>google/cloud-storage-control 1.9.0</summary>
+
+
+
+### Features
+
+* [StorageControl] add support for GCS Storage Control Intelligence Finding APIs ([#9217](https://github.com/googleapis/google-cloud-php/issues/9217)) ([8925a0d](https://github.com/googleapis/google-cloud-php/commit/8925a0d9d06f4a7f6a57bbddce0791e33811e116))
+
+</details>
+
+## 0.330.0
+
+<details><summary>google/cloud-bigquery 1.38.0</summary>
+
+
+
+### Features
+
+* (BigQuery) Add Remote Function support ([#9177](https://github.com/googleapis/google-cloud-php/issues/9177)) ([b1c7d34](https://github.com/googleapis/google-cloud-php/commit/b1c7d347f1f4167675c2fbde31bf15424ab675e3))
+
+
+### Bug Fixes
+
+* **BigQuery:** Fix 404 in stateless query pagination ([#9199](https://github.com/googleapis/google-cloud-php/issues/9199)) ([0e291fb](https://github.com/googleapis/google-cloud-php/commit/0e291fb69201decc8b55c5d0536c579d249fe683))
+
+</details>
+
+<details><summary>google/cloud-compute 2.10.0</summary>
+
+
+
+### Features
+
+* [Compute] Update Compute Engine v1 API to revision 20260422 ([#1193](https://github.com/googleapis/google-cloud-php/issues/1193)) ([#9190](https://github.com/googleapis/google-cloud-php/issues/9190)) ([6cf66f2](https://github.com/googleapis/google-cloud-php/commit/6cf66f2836b919e18c2adde025bf60baab53480c))
+
+</details>
+
+<details><summary>google/cloud-container 2.9.0</summary>
+
+
+
+### Features
+
+* [Container] add confidential instance type and hyperdisk support to GKE API ([#9185](https://github.com/googleapis/google-cloud-php/issues/9185)) ([d83775a](https://github.com/googleapis/google-cloud-php/commit/d83775acfa7b9951aecb458baa355f3c03e7ea1d))
+
+</details>
+
+<details><summary>google/cloud-databasecenter 0.7.0</summary>
+
+
+
+### Features
+
+* [DatabaseCenter] add a AggregateQueryStats  API ([#9200](https://github.com/googleapis/google-cloud-php/issues/9200)) ([f40cd90](https://github.com/googleapis/google-cloud-php/commit/f40cd908216b3611c763c93157a913ec6f405dcd))
+
+</details>
+
+<details><summary>google/cloud-hypercomputecluster 0.3.0</summary>
+
+
+
+### Features
+
+* **HypercomputeCluster:** Introduce V1  ([#9191](https://github.com/googleapis/google-cloud-php/issues/9191)) ([493b705](https://github.com/googleapis/google-cloud-php/commit/493b7058db9b99bc206be9de0f94e317b3e99eb0))
+
+</details>
+
+<details><summary>google/cloud-security-center 2.5.1</summary>
+
+
+
+### Bug Fixes
+
+* **SecurityCenter:** Rename class using reserved PHP "object" keyword ([#9194](https://github.com/googleapis/google-cloud-php/issues/9194)) ([89d96fe](https://github.com/googleapis/google-cloud-php/commit/89d96fefd430b70956814eb5175fec53c0351c01))
+
+</details>
+
+<details><summary>google/cloud-storage 2.2.0</summary>
+
+
+
+### Features
+
+* **Storage:** Support user-provided hash validation in uploads ([#9178](https://github.com/googleapis/google-cloud-php/issues/9178)) ([d2b2f3c](https://github.com/googleapis/google-cloud-php/commit/d2b2f3ceec2a4df83dcc4c521aab175dc0bc309b))
+
+</details>
+
+<details><summary>google/cloud-support 1.6.0</summary>
+
+
+
+### Features
+
+* [Support] v2 version for `GetComment` and `GetAttachment` ([#9187](https://github.com/googleapis/google-cloud-php/issues/9187)) ([291f912](https://github.com/googleapis/google-cloud-php/commit/291f912577c51f251df354faaed11f9582c30a23))
+
+</details>
+
 ## 0.329.0
 
 <details><summary>googleads/ad-manager 0.7.0</summary>

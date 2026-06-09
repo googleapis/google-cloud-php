@@ -15,6 +15,7 @@
 """This script is used to synthesize generated parts of this library."""
 
 import logging
+import os
 from pathlib import Path
 import subprocess
 
@@ -31,6 +32,26 @@ dest = Path().resolve()
 _tracked_paths.add(src)
 
 php.owlbot_main(src=src, dest=dest)
+
+# Rename "Object" to "PBObject" because "Object" is a reserved word in PHP
+for version in ["V1", "V2"]:
+    path = f'src/{version}/Kubernetes/Object.php'
+    if Path(path).exists():
+        s.replace(
+            path,
+            r'class Object',
+            r'class PBObject'
+        )
+        s.move(path, f'src/{version}/Kubernetes/PBObject.php')
+        if Path(path).exists():
+            os.remove(path)
+
+# Update typehints
+s.replace(
+    'src/**/*.php',
+    r'Kubernetes\\Object',
+    r'Kubernetes\\PBObject'
+)
 
 # format generated clients
 subprocess.run([
