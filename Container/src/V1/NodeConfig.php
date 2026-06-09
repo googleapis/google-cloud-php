@@ -102,6 +102,13 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      */
     protected $image_type = '';
     /**
+     * The node image configuration to use for this node pool.  Note that this is
+     * only applicable for node pools using image_type=CUSTOM.
+     *
+     * Generated from protobuf field <code>.google.container.v1.CustomImageConfig node_image_config = 90;</code>
+     */
+    protected $node_image_config = null;
+    /**
      * The Kubernetes labels (key/value pairs) to apply to each node. The values
      * in this field are added to the set of default labels Kubernetes applies to
      * nodes.
@@ -475,6 +482,9 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *           the latest version of it will be used. Please see
      *           https://cloud.google.com/kubernetes-engine/docs/concepts/node-images
      *           for available image types.
+     *     @type \Google\Cloud\Container\V1\CustomImageConfig $node_image_config
+     *           The node image configuration to use for this node pool.  Note that this is
+     *           only applicable for node pools using image_type=CUSTOM.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           The Kubernetes labels (key/value pairs) to apply to each node. The values
      *           in this field are added to the set of default labels Kubernetes applies to
@@ -867,6 +877,44 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->image_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * The node image configuration to use for this node pool.  Note that this is
+     * only applicable for node pools using image_type=CUSTOM.
+     *
+     * Generated from protobuf field <code>.google.container.v1.CustomImageConfig node_image_config = 90;</code>
+     * @return \Google\Cloud\Container\V1\CustomImageConfig|null
+     */
+    public function getNodeImageConfig()
+    {
+        return $this->node_image_config;
+    }
+
+    public function hasNodeImageConfig()
+    {
+        return isset($this->node_image_config);
+    }
+
+    public function clearNodeImageConfig()
+    {
+        unset($this->node_image_config);
+    }
+
+    /**
+     * The node image configuration to use for this node pool.  Note that this is
+     * only applicable for node pools using image_type=CUSTOM.
+     *
+     * Generated from protobuf field <code>.google.container.v1.CustomImageConfig node_image_config = 90;</code>
+     * @param \Google\Cloud\Container\V1\CustomImageConfig $var
+     * @return $this
+     */
+    public function setNodeImageConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\CustomImageConfig::class);
+        $this->node_image_config = $var;
 
         return $this;
     }

@@ -144,6 +144,12 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
      */
     protected $slice_controller_config = null;
     /**
+     * Optional. Configuration for the AgentSandbox addon.
+     *
+     * Generated from protobuf field <code>.google.container.v1.AgentSandboxConfig agent_sandbox_config = 28 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $agent_sandbox_config = null;
+    /**
      * Optional. Configuration for NodeReadinessController add-on.
      *
      * Generated from protobuf field <code>.google.container.v1.NodeReadinessConfig node_readiness_config = 29 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -206,6 +212,8 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
      *           Configuration for the Slurm Operator.
      *     @type \Google\Cloud\Container\V1\SliceControllerConfig $slice_controller_config
      *           Optional. Configuration for the slice controller add-on.
+     *     @type \Google\Cloud\Container\V1\AgentSandboxConfig $agent_sandbox_config
+     *           Optional. Configuration for the AgentSandbox addon.
      *     @type \Google\Cloud\Container\V1\NodeReadinessConfig $node_readiness_config
      *           Optional. Configuration for NodeReadinessController add-on.
      * }
@@ -929,6 +937,42 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\SliceControllerConfig::class);
         $this->slice_controller_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Configuration for the AgentSandbox addon.
+     *
+     * Generated from protobuf field <code>.google.container.v1.AgentSandboxConfig agent_sandbox_config = 28 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Container\V1\AgentSandboxConfig|null
+     */
+    public function getAgentSandboxConfig()
+    {
+        return $this->agent_sandbox_config;
+    }
+
+    public function hasAgentSandboxConfig()
+    {
+        return isset($this->agent_sandbox_config);
+    }
+
+    public function clearAgentSandboxConfig()
+    {
+        unset($this->agent_sandbox_config);
+    }
+
+    /**
+     * Optional. Configuration for the AgentSandbox addon.
+     *
+     * Generated from protobuf field <code>.google.container.v1.AgentSandboxConfig agent_sandbox_config = 28 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Container\V1\AgentSandboxConfig $var
+     * @return $this
+     */
+    public function setAgentSandboxConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\AgentSandboxConfig::class);
+        $this->agent_sandbox_config = $var;
 
         return $this;
     }

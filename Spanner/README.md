@@ -167,6 +167,34 @@ $database = $spanner
 [lock-interface]: https://github.com/googleapis/google-cloud-php/blob/main/Core/src/Lock/LockInterface.php
 [symfony-lock]: https://symfony.com/doc/current/components/lock.html
 
+### Client-Side Metrics
+
+The Cloud Spanner client library supports exporting built-in client-side metrics to Google Cloud Monitoring using OpenTelemetry. These metrics provide detailed observability into operations, RPC attempts, and Google Front End (GFE) or Spanner API Frontend (AFE) latencies.
+
+To enable client-side metrics:
+
+```php
+use Google\Cloud\Spanner\SpannerClient;
+
+$spanner = new SpannerClient([
+    'enableBuiltInMetrics' => true,
+    // optional: timeout in milliseconds for metric export calls
+    'metricsTimeoutMillis' => 100 
+]);
+```
+
+All captured metrics are aggregated in-memory and exported synchronously during the PHP process shutdown phase.
+
+> [!WARNING]
+> **Performance Caveat**: Because PHP has a share-nothing architecture, exporting metrics synchronously at shutdown will add to the total request execution latency of the PHP process. For this reason, it is advised to enable built-in metrics primarily for debugging and active performance monitoring. 
+> 
+> To minimize this performance overhead, installing the PECL [`ext-opentelemetry`](https://pecl.php.net/package/opentelemetry) extension is **highly recommended**.
+
+#### Prerequisites
+
+1. **IAM Permissions**: The credentials used by your application require `monitoring.timeSeries.create` permission to publish metrics. Predefined Spanner roles (such as `roles/spanner.databaseAdmin`, `roles/spanner.databaseUser`, and `roles/spanner.databaseReader`) already include this permission by default. If you are using a custom IAM role, ensure this permission is added.
+2. **OpenTelemetry Extension**: Installing the [`ext-opentelemetry`](https://pecl.php.net/package/opentelemetry) PHP extension is highly advised to optimize metrics collection and export performance.
+
 ### Debugging
 
 Please see our [Debugging guide](https://github.com/googleapis/google-cloud-php/blob/main/DEBUG.md)
