@@ -42,6 +42,8 @@
           Ensure special chars are decoded, such as alice&#64;example.com.
     @type string $escapedType
           Ensure @ is escaped, such as in \@type.
+    @type string $obsoleteParam
+          Optional. [DEPRECATED]. This parameter has been deprecated
 }"
             variable="data"
             type="array"

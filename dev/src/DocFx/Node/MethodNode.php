@@ -24,6 +24,7 @@ use SimpleXMLElement;
  */
 class MethodNode
 {
+    use DeprecatedTrait;
     use DocblockTrait {
         getContent as getDocblockContent;
     }
