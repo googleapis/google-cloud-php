@@ -1,0 +1,212 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.developerconnect.v1",
+    "libraryPackage": "Google\\Cloud\\DeveloperConnect\\V1",
+    "services": {
+        "DeveloperConnect": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "DeveloperConnectGapicClient",
+                    "rpcs": {
+                        "CreateAccountConnector": {
+                            "methods": [
+                                "createAccountConnector"
+                            ]
+                        },
+                        "CreateConnection": {
+                            "methods": [
+                                "createConnection"
+                            ]
+                        },
+                        "CreateGitRepositoryLink": {
+                            "methods": [
+                                "createGitRepositoryLink"
+                            ]
+                        },
+                        "DeleteAccountConnector": {
+                            "methods": [
+                                "deleteAccountConnector"
+                            ]
+                        },
+                        "DeleteConnection": {
+                            "methods": [
+                                "deleteConnection"
+                            ]
+                        },
+                        "DeleteGitRepositoryLink": {
+                            "methods": [
+                                "deleteGitRepositoryLink"
+                            ]
+                        },
+                        "DeleteSelf": {
+                            "methods": [
+                                "deleteSelf"
+                            ]
+                        },
+                        "DeleteUser": {
+                            "methods": [
+                                "deleteUser"
+                            ]
+                        },
+                        "FetchAccessToken": {
+                            "methods": [
+                                "fetchAccessToken"
+                            ]
+                        },
+                        "FetchGitHubInstallations": {
+                            "methods": [
+                                "fetchGitHubInstallations"
+                            ]
+                        },
+                        "FetchGitRefs": {
+                            "methods": [
+                                "fetchGitRefs"
+                            ]
+                        },
+                        "FetchLinkableGitRepositories": {
+                            "methods": [
+                                "fetchLinkableGitRepositories"
+                            ]
+                        },
+                        "FetchReadToken": {
+                            "methods": [
+                                "fetchReadToken"
+                            ]
+                        },
+                        "FetchReadWriteToken": {
+                            "methods": [
+                                "fetchReadWriteToken"
+                            ]
+                        },
+                        "FetchSelf": {
+                            "methods": [
+                                "fetchSelf"
+                            ]
+                        },
+                        "FinishOAuth": {
+                            "methods": [
+                                "finishOAuth"
+                            ]
+                        },
+                        "GetAccountConnector": {
+                            "methods": [
+                                "getAccountConnector"
+                            ]
+                        },
+                        "GetConnection": {
+                            "methods": [
+                                "getConnection"
+                            ]
+                        },
+                        "GetGitRepositoryLink": {
+                            "methods": [
+                                "getGitRepositoryLink"
+                            ]
+                        },
+                        "ListAccountConnectors": {
+                            "methods": [
+                                "listAccountConnectors"
+                            ]
+                        },
+                        "ListConnections": {
+                            "methods": [
+                                "listConnections"
+                            ]
+                        },
+                        "ListGitRepositoryLinks": {
+                            "methods": [
+                                "listGitRepositoryLinks"
+                            ]
+                        },
+                        "ListUsers": {
+                            "methods": [
+                                "listUsers"
+                            ]
+                        },
+                        "StartOAuth": {
+                            "methods": [
+                                "startOAuth"
+                            ]
+                        },
+                        "UpdateAccountConnector": {
+                            "methods": [
+                                "updateAccountConnector"
+                            ]
+                        },
+                        "UpdateConnection": {
+                            "methods": [
+                                "updateConnection"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "InsightsConfigService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "InsightsConfigServiceGapicClient",
+                    "rpcs": {
+                        "CreateInsightsConfig": {
+                            "methods": [
+                                "createInsightsConfig"
+                            ]
+                        },
+                        "DeleteInsightsConfig": {
+                            "methods": [
+                                "deleteInsightsConfig"
+                            ]
+                        },
+                        "GetDeploymentEvent": {
+                            "methods": [
+                                "getDeploymentEvent"
+                            ]
+                        },
+                        "GetInsightsConfig": {
+                            "methods": [
+                                "getInsightsConfig"
+                            ]
+                        },
+                        "ListDeploymentEvents": {
+                            "methods": [
+                                "listDeploymentEvents"
+                            ]
+                        },
+                        "ListInsightsConfigs": {
+                            "methods": [
+                                "listInsightsConfigs"
+                            ]
+                        },
+                        "UpdateInsightsConfig": {
+                            "methods": [
+                                "updateInsightsConfig"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
