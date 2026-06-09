@@ -124,15 +124,15 @@ class CloudVmClusterProperties extends \Google\Protobuf\Internal\Message
      */
     protected $state = 0;
     /**
-     * Output only. SCAN listener port - TCP
+     * Optional. SCAN listener port - TCP
      *
-     * Generated from protobuf field <code>int32 scan_listener_port_tcp = 21 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>int32 scan_listener_port_tcp = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $scan_listener_port_tcp = 0;
     /**
-     * Output only. SCAN listener port - TLS
+     * Optional. SCAN listener port - TLS
      *
-     * Generated from protobuf field <code>int32 scan_listener_port_tcp_ssl = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>int32 scan_listener_port_tcp_ssl = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $scan_listener_port_tcp_ssl = 0;
     /**
@@ -261,9 +261,9 @@ class CloudVmClusterProperties extends \Google\Protobuf\Internal\Message
      *     @type int $state
      *           Output only. State of the cluster.
      *     @type int $scan_listener_port_tcp
-     *           Output only. SCAN listener port - TCP
+     *           Optional. SCAN listener port - TCP
      *     @type int $scan_listener_port_tcp_ssl
-     *           Output only. SCAN listener port - TLS
+     *           Optional. SCAN listener port - TLS
      *     @type string $domain
      *           Output only. Parent DNS domain where SCAN DNS and hosts names are
      *           qualified. ex: ocispdelegated.ocisp10jvnet.oraclevcn.com
@@ -790,9 +790,9 @@ class CloudVmClusterProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. SCAN listener port - TCP
+     * Optional. SCAN listener port - TCP
      *
-     * Generated from protobuf field <code>int32 scan_listener_port_tcp = 21 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>int32 scan_listener_port_tcp = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getScanListenerPortTcp()
@@ -801,9 +801,9 @@ class CloudVmClusterProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. SCAN listener port - TCP
+     * Optional. SCAN listener port - TCP
      *
-     * Generated from protobuf field <code>int32 scan_listener_port_tcp = 21 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>int32 scan_listener_port_tcp = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -816,9 +816,9 @@ class CloudVmClusterProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. SCAN listener port - TLS
+     * Optional. SCAN listener port - TLS
      *
-     * Generated from protobuf field <code>int32 scan_listener_port_tcp_ssl = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>int32 scan_listener_port_tcp_ssl = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getScanListenerPortTcpSsl()
@@ -827,9 +827,9 @@ class CloudVmClusterProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. SCAN listener port - TLS
+     * Optional. SCAN listener port - TLS
      *
-     * Generated from protobuf field <code>int32 scan_listener_port_tcp_ssl = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>int32 scan_listener_port_tcp_ssl = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */

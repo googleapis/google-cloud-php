@@ -23,130 +23,138 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
      */
     protected $ocid = '';
     /**
-     * Optional. The number of compute servers for the Autonomous Database.
+     * Optional. Immutable. The number of compute servers for the Autonomous
+     * Database.
      *
-     * Generated from protobuf field <code>float compute_count = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>float compute_count = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     protected $compute_count = 0.0;
     /**
-     * Optional. The number of CPU cores to be made available to the database.
+     * Optional. Immutable. The number of CPU cores to be made available to the
+     * database.
      *
-     * Generated from protobuf field <code>int32 cpu_core_count = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>int32 cpu_core_count = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     protected $cpu_core_count = 0;
     /**
-     * Optional. The size of the data stored in the database, in terabytes.
+     * Optional. Immutable. The size of the data stored in the database, in
+     * terabytes.
      *
-     * Generated from protobuf field <code>int32 data_storage_size_tb = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>int32 data_storage_size_tb = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     protected $data_storage_size_tb = 0;
     /**
-     * Optional. The size of the data stored in the database, in gigabytes.
+     * Optional. Immutable. The size of the data stored in the database, in
+     * gigabytes.
      *
-     * Generated from protobuf field <code>int32 data_storage_size_gb = 63 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>int32 data_storage_size_gb = 63 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     protected $data_storage_size_gb = 0;
     /**
-     * Required. The workload type of the Autonomous Database.
+     * Required. Immutable. The workload type of the Autonomous Database.
      *
-     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.DBWorkload db_workload = 5 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.DBWorkload db_workload = 5 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     protected $db_workload = 0;
     /**
-     * Optional. The edition of the Autonomous Databases.
+     * Optional. Immutable. The edition of the Autonomous Databases.
      *
-     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.AutonomousDatabaseProperties.DatabaseEdition db_edition = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.AutonomousDatabaseProperties.DatabaseEdition db_edition = 6 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     protected $db_edition = 0;
     /**
-     * Optional. The character set for the Autonomous Database. The default is
-     * AL32UTF8.
+     * Optional. Immutable. The character set for the Autonomous Database. The
+     * default is AL32UTF8.
      *
-     * Generated from protobuf field <code>string character_set = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string character_set = 8 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     protected $character_set = '';
     /**
-     * Optional. The national character set for the Autonomous Database. The
-     * default is AL16UTF16.
+     * Optional. Immutable. The national character set for the Autonomous
+     * Database. The default is AL16UTF16.
      *
-     * Generated from protobuf field <code>string n_character_set = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string n_character_set = 9 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     protected $n_character_set = '';
     /**
-     * Optional. The private endpoint IP address for the Autonomous Database.
+     * Optional. Immutable. The private endpoint IP address for the Autonomous
+     * Database.
      *
-     * Generated from protobuf field <code>string private_endpoint_ip = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string private_endpoint_ip = 10 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     protected $private_endpoint_ip = '';
     /**
-     * Optional. The private endpoint label for the Autonomous Database.
+     * Optional. Immutable. The private endpoint label for the Autonomous
+     * Database.
      *
-     * Generated from protobuf field <code>string private_endpoint_label = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string private_endpoint_label = 11 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     protected $private_endpoint_label = '';
     /**
-     * Optional. The Oracle Database version for the Autonomous Database.
+     * Optional. Immutable. The Oracle Database version for the Autonomous
+     * Database.
      *
-     * Generated from protobuf field <code>string db_version = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string db_version = 12 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     protected $db_version = '';
     /**
-     * Optional. This field indicates if auto scaling is enabled for the
-     * Autonomous Database CPU core count.
+     * Optional. Immutable. This field indicates if auto scaling is enabled for
+     * the Autonomous Database CPU core count.
      *
-     * Generated from protobuf field <code>bool is_auto_scaling_enabled = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bool is_auto_scaling_enabled = 14 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     protected $is_auto_scaling_enabled = false;
     /**
-     * Optional. This field indicates if auto scaling is enabled for the
-     * Autonomous Database storage.
+     * Optional. Immutable. This field indicates if auto scaling is enabled for
+     * the Autonomous Database storage.
      *
-     * Generated from protobuf field <code>bool is_storage_auto_scaling_enabled = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bool is_storage_auto_scaling_enabled = 15 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     protected $is_storage_auto_scaling_enabled = false;
     /**
-     * Required. The license type used for the Autonomous Database.
+     * Required. Immutable. The license type used for the Autonomous Database.
      *
-     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.AutonomousDatabaseProperties.LicenseType license_type = 16 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.AutonomousDatabaseProperties.LicenseType license_type = 16 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     protected $license_type = 0;
     /**
-     * Optional. The list of customer contacts.
+     * Optional. Immutable. The list of customer contacts.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.oracledatabase.v1.CustomerContact customer_contacts = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>repeated .google.cloud.oracledatabase.v1.CustomerContact customer_contacts = 17 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     private $customer_contacts;
     /**
-     * Optional. The ID of the Oracle Cloud Infrastructure vault secret.
+     * Optional. Immutable. The ID of the Oracle Cloud Infrastructure vault
+     * secret.
      *
-     * Generated from protobuf field <code>string secret_id = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string secret_id = 18 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     protected $secret_id = '';
     /**
-     * Optional. The ID of the Oracle Cloud Infrastructure vault.
+     * Optional. Immutable. The ID of the Oracle Cloud Infrastructure vault.
      *
-     * Generated from protobuf field <code>string vault_id = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string vault_id = 19 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     protected $vault_id = '';
     /**
-     * Optional. The maintenance schedule of the Autonomous Database.
+     * Optional. Immutable. The maintenance schedule of the Autonomous Database.
      *
-     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.AutonomousDatabaseProperties.MaintenanceScheduleType maintenance_schedule_type = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.AutonomousDatabaseProperties.MaintenanceScheduleType maintenance_schedule_type = 20 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     protected $maintenance_schedule_type = 0;
     /**
-     * Optional. This field specifies if the Autonomous Database requires mTLS
-     * connections.
+     * Optional. Immutable. This field specifies if the Autonomous Database
+     * requires mTLS connections.
      *
-     * Generated from protobuf field <code>bool mtls_connection_required = 34 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bool mtls_connection_required = 34 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     protected $mtls_connection_required = false;
     /**
-     * Optional. The retention period for the Autonomous Database. This field is
-     * specified in days, can range from 1 day to 60 days, and has a default value
-     * of 60 days.
+     * Optional. Immutable. The retention period for the Autonomous Database. This
+     * field is specified in days, can range from 1 day to 60 days, and has a
+     * default value of 60 days.
      *
-     * Generated from protobuf field <code>int32 backup_retention_period_days = 57 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>int32 backup_retention_period_days = 57 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     protected $backup_retention_period_days = 0;
     /**
@@ -236,17 +244,22 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
      */
     protected $memory_table_gbs = 0;
     /**
-     * Output only. This field indicates whether the Autonomous Database has local
-     * (in-region) Data Guard enabled.
+     * Output only. Deprecated: Please use `local_data_guard_enabled` instead.
+     * This field indicates whether the Autonomous Database has local (in-region)
+     * Data Guard enabled.
      *
-     * Generated from protobuf field <code>bool is_local_data_guard_enabled = 33 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>bool is_local_data_guard_enabled = 33 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @deprecated
      */
     protected $is_local_data_guard_enabled = false;
     /**
-     * Output only. This field indicates the maximum data loss limit for an
-     * Autonomous Database, in seconds.
+     * Output only. Deprecated: Please use
+     * `local_adg_auto_failover_max_data_loss_limit_duration` instead.
+     * This field indicates the maximum data loss limit for an Autonomous
+     * Database, in seconds.
      *
-     * Generated from protobuf field <code>int32 local_adg_auto_failover_max_data_loss_limit = 35 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>int32 local_adg_auto_failover_max_data_loss_limit = 35 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @deprecated
      */
     protected $local_adg_auto_failover_max_data_loss_limit = 0;
     /**
@@ -406,9 +419,10 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
      */
     protected $maintenance_end_time = null;
     /**
-     * Optional. The list of allowlisted IP addresses for the Autonomous Database.
+     * Optional. Immutable. The list of allowlisted IP addresses for the
+     * Autonomous Database.
      *
-     * Generated from protobuf field <code>repeated string allowlisted_ips = 67 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>repeated string allowlisted_ips = 67 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     private $allowlisted_ips;
     /**
@@ -433,6 +447,21 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string service_agent_email = 70 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $service_agent_email = '';
+    /**
+     * Optional. Indicates whether the Autonomous Database has a local (in-region)
+     * standby database. Not applicable to cross-region Data Guard or dedicated
+     * Exadata infrastructure.
+     *
+     * Generated from protobuf field <code>optional bool local_data_guard_enabled = 71 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $local_data_guard_enabled = null;
+    /**
+     * Optional. This field indicates the maximum data loss limit for an
+     * Autonomous Database, in seconds.
+     *
+     * Generated from protobuf field <code>optional int32 local_adg_auto_failover_max_data_loss_limit_duration = 72 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $local_adg_auto_failover_max_data_loss_limit_duration = null;
 
     /**
      * Constructor.
@@ -444,52 +473,60 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
      *           Output only. OCID of the Autonomous Database.
      *           https://docs.oracle.com/en-us/iaas/Content/General/Concepts/identifiers.htm#Oracle
      *     @type float $compute_count
-     *           Optional. The number of compute servers for the Autonomous Database.
+     *           Optional. Immutable. The number of compute servers for the Autonomous
+     *           Database.
      *     @type int $cpu_core_count
-     *           Optional. The number of CPU cores to be made available to the database.
+     *           Optional. Immutable. The number of CPU cores to be made available to the
+     *           database.
      *     @type int $data_storage_size_tb
-     *           Optional. The size of the data stored in the database, in terabytes.
+     *           Optional. Immutable. The size of the data stored in the database, in
+     *           terabytes.
      *     @type int $data_storage_size_gb
-     *           Optional. The size of the data stored in the database, in gigabytes.
+     *           Optional. Immutable. The size of the data stored in the database, in
+     *           gigabytes.
      *     @type int $db_workload
-     *           Required. The workload type of the Autonomous Database.
+     *           Required. Immutable. The workload type of the Autonomous Database.
      *     @type int $db_edition
-     *           Optional. The edition of the Autonomous Databases.
+     *           Optional. Immutable. The edition of the Autonomous Databases.
      *     @type string $character_set
-     *           Optional. The character set for the Autonomous Database. The default is
-     *           AL32UTF8.
+     *           Optional. Immutable. The character set for the Autonomous Database. The
+     *           default is AL32UTF8.
      *     @type string $n_character_set
-     *           Optional. The national character set for the Autonomous Database. The
-     *           default is AL16UTF16.
+     *           Optional. Immutable. The national character set for the Autonomous
+     *           Database. The default is AL16UTF16.
      *     @type string $private_endpoint_ip
-     *           Optional. The private endpoint IP address for the Autonomous Database.
+     *           Optional. Immutable. The private endpoint IP address for the Autonomous
+     *           Database.
      *     @type string $private_endpoint_label
-     *           Optional. The private endpoint label for the Autonomous Database.
+     *           Optional. Immutable. The private endpoint label for the Autonomous
+     *           Database.
      *     @type string $db_version
-     *           Optional. The Oracle Database version for the Autonomous Database.
+     *           Optional. Immutable. The Oracle Database version for the Autonomous
+     *           Database.
      *     @type bool $is_auto_scaling_enabled
-     *           Optional. This field indicates if auto scaling is enabled for the
-     *           Autonomous Database CPU core count.
+     *           Optional. Immutable. This field indicates if auto scaling is enabled for
+     *           the Autonomous Database CPU core count.
      *     @type bool $is_storage_auto_scaling_enabled
-     *           Optional. This field indicates if auto scaling is enabled for the
-     *           Autonomous Database storage.
+     *           Optional. Immutable. This field indicates if auto scaling is enabled for
+     *           the Autonomous Database storage.
      *     @type int $license_type
-     *           Required. The license type used for the Autonomous Database.
+     *           Required. Immutable. The license type used for the Autonomous Database.
      *     @type \Google\Cloud\OracleDatabase\V1\CustomerContact[] $customer_contacts
-     *           Optional. The list of customer contacts.
+     *           Optional. Immutable. The list of customer contacts.
      *     @type string $secret_id
-     *           Optional. The ID of the Oracle Cloud Infrastructure vault secret.
+     *           Optional. Immutable. The ID of the Oracle Cloud Infrastructure vault
+     *           secret.
      *     @type string $vault_id
-     *           Optional. The ID of the Oracle Cloud Infrastructure vault.
+     *           Optional. Immutable. The ID of the Oracle Cloud Infrastructure vault.
      *     @type int $maintenance_schedule_type
-     *           Optional. The maintenance schedule of the Autonomous Database.
+     *           Optional. Immutable. The maintenance schedule of the Autonomous Database.
      *     @type bool $mtls_connection_required
-     *           Optional. This field specifies if the Autonomous Database requires mTLS
-     *           connections.
+     *           Optional. Immutable. This field specifies if the Autonomous Database
+     *           requires mTLS connections.
      *     @type int $backup_retention_period_days
-     *           Optional. The retention period for the Autonomous Database. This field is
-     *           specified in days, can range from 1 day to 60 days, and has a default value
-     *           of 60 days.
+     *           Optional. Immutable. The retention period for the Autonomous Database. This
+     *           field is specified in days, can range from 1 day to 60 days, and has a
+     *           default value of 60 days.
      *     @type float $actual_used_data_storage_size_tb
      *           Output only. The amount of storage currently being used for user and system
      *           data, in terabytes.
@@ -529,11 +566,14 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
      *           Output only. The memory assigned to in-memory tables in an Autonomous
      *           Database.
      *     @type bool $is_local_data_guard_enabled
-     *           Output only. This field indicates whether the Autonomous Database has local
-     *           (in-region) Data Guard enabled.
+     *           Output only. Deprecated: Please use `local_data_guard_enabled` instead.
+     *           This field indicates whether the Autonomous Database has local (in-region)
+     *           Data Guard enabled.
      *     @type int $local_adg_auto_failover_max_data_loss_limit
-     *           Output only. This field indicates the maximum data loss limit for an
-     *           Autonomous Database, in seconds.
+     *           Output only. Deprecated: Please use
+     *           `local_adg_auto_failover_max_data_loss_limit_duration` instead.
+     *           This field indicates the maximum data loss limit for an Autonomous
+     *           Database, in seconds.
      *     @type \Google\Cloud\OracleDatabase\V1\AutonomousDatabaseStandbySummary $local_standby_db
      *           Output only. The details of the Autonomous Data Guard standby database.
      *     @type int $memory_per_oracle_compute_unit_gbs
@@ -595,7 +635,8 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $maintenance_end_time
      *           Output only. The date and time when maintenance will end.
      *     @type string[] $allowlisted_ips
-     *           Optional. The list of allowlisted IP addresses for the Autonomous Database.
+     *           Optional. Immutable. The list of allowlisted IP addresses for the
+     *           Autonomous Database.
      *     @type \Google\Cloud\OracleDatabase\V1\EncryptionKey $encryption_key
      *           Optional. The encryption key used to encrypt the Autonomous Database.
      *           Updating this field will add a new entry in the
@@ -606,6 +647,13 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
      *     @type string $service_agent_email
      *           Output only. An Oracle-managed Google Cloud service account on which
      *           customers can grant roles to access resources in the customer project.
+     *     @type bool $local_data_guard_enabled
+     *           Optional. Indicates whether the Autonomous Database has a local (in-region)
+     *           standby database. Not applicable to cross-region Data Guard or dedicated
+     *           Exadata infrastructure.
+     *     @type int $local_adg_auto_failover_max_data_loss_limit_duration
+     *           Optional. This field indicates the maximum data loss limit for an
+     *           Autonomous Database, in seconds.
      * }
      */
     public function __construct($data = NULL) {
@@ -642,9 +690,10 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The number of compute servers for the Autonomous Database.
+     * Optional. Immutable. The number of compute servers for the Autonomous
+     * Database.
      *
-     * Generated from protobuf field <code>float compute_count = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>float compute_count = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return float
      */
     public function getComputeCount()
@@ -653,9 +702,10 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The number of compute servers for the Autonomous Database.
+     * Optional. Immutable. The number of compute servers for the Autonomous
+     * Database.
      *
-     * Generated from protobuf field <code>float compute_count = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>float compute_count = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param float $var
      * @return $this
      */
@@ -668,9 +718,10 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The number of CPU cores to be made available to the database.
+     * Optional. Immutable. The number of CPU cores to be made available to the
+     * database.
      *
-     * Generated from protobuf field <code>int32 cpu_core_count = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>int32 cpu_core_count = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return int
      */
     public function getCpuCoreCount()
@@ -679,9 +730,10 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The number of CPU cores to be made available to the database.
+     * Optional. Immutable. The number of CPU cores to be made available to the
+     * database.
      *
-     * Generated from protobuf field <code>int32 cpu_core_count = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>int32 cpu_core_count = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param int $var
      * @return $this
      */
@@ -694,9 +746,10 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The size of the data stored in the database, in terabytes.
+     * Optional. Immutable. The size of the data stored in the database, in
+     * terabytes.
      *
-     * Generated from protobuf field <code>int32 data_storage_size_tb = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>int32 data_storage_size_tb = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return int
      */
     public function getDataStorageSizeTb()
@@ -705,9 +758,10 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The size of the data stored in the database, in terabytes.
+     * Optional. Immutable. The size of the data stored in the database, in
+     * terabytes.
      *
-     * Generated from protobuf field <code>int32 data_storage_size_tb = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>int32 data_storage_size_tb = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param int $var
      * @return $this
      */
@@ -720,9 +774,10 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The size of the data stored in the database, in gigabytes.
+     * Optional. Immutable. The size of the data stored in the database, in
+     * gigabytes.
      *
-     * Generated from protobuf field <code>int32 data_storage_size_gb = 63 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>int32 data_storage_size_gb = 63 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return int
      */
     public function getDataStorageSizeGb()
@@ -731,9 +786,10 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The size of the data stored in the database, in gigabytes.
+     * Optional. Immutable. The size of the data stored in the database, in
+     * gigabytes.
      *
-     * Generated from protobuf field <code>int32 data_storage_size_gb = 63 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>int32 data_storage_size_gb = 63 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param int $var
      * @return $this
      */
@@ -746,9 +802,9 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The workload type of the Autonomous Database.
+     * Required. Immutable. The workload type of the Autonomous Database.
      *
-     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.DBWorkload db_workload = 5 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.DBWorkload db_workload = 5 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return int
      */
     public function getDbWorkload()
@@ -757,9 +813,9 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The workload type of the Autonomous Database.
+     * Required. Immutable. The workload type of the Autonomous Database.
      *
-     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.DBWorkload db_workload = 5 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.DBWorkload db_workload = 5 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param int $var
      * @return $this
      */
@@ -772,9 +828,9 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The edition of the Autonomous Databases.
+     * Optional. Immutable. The edition of the Autonomous Databases.
      *
-     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.AutonomousDatabaseProperties.DatabaseEdition db_edition = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.AutonomousDatabaseProperties.DatabaseEdition db_edition = 6 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return int
      */
     public function getDbEdition()
@@ -783,9 +839,9 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The edition of the Autonomous Databases.
+     * Optional. Immutable. The edition of the Autonomous Databases.
      *
-     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.AutonomousDatabaseProperties.DatabaseEdition db_edition = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.AutonomousDatabaseProperties.DatabaseEdition db_edition = 6 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param int $var
      * @return $this
      */
@@ -798,10 +854,10 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The character set for the Autonomous Database. The default is
-     * AL32UTF8.
+     * Optional. Immutable. The character set for the Autonomous Database. The
+     * default is AL32UTF8.
      *
-     * Generated from protobuf field <code>string character_set = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string character_set = 8 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
      */
     public function getCharacterSet()
@@ -810,10 +866,10 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The character set for the Autonomous Database. The default is
-     * AL32UTF8.
+     * Optional. Immutable. The character set for the Autonomous Database. The
+     * default is AL32UTF8.
      *
-     * Generated from protobuf field <code>string character_set = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string character_set = 8 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var
      * @return $this
      */
@@ -826,10 +882,10 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The national character set for the Autonomous Database. The
-     * default is AL16UTF16.
+     * Optional. Immutable. The national character set for the Autonomous
+     * Database. The default is AL16UTF16.
      *
-     * Generated from protobuf field <code>string n_character_set = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string n_character_set = 9 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
      */
     public function getNCharacterSet()
@@ -838,10 +894,10 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The national character set for the Autonomous Database. The
-     * default is AL16UTF16.
+     * Optional. Immutable. The national character set for the Autonomous
+     * Database. The default is AL16UTF16.
      *
-     * Generated from protobuf field <code>string n_character_set = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string n_character_set = 9 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var
      * @return $this
      */
@@ -854,9 +910,10 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The private endpoint IP address for the Autonomous Database.
+     * Optional. Immutable. The private endpoint IP address for the Autonomous
+     * Database.
      *
-     * Generated from protobuf field <code>string private_endpoint_ip = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string private_endpoint_ip = 10 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
      */
     public function getPrivateEndpointIp()
@@ -865,9 +922,10 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The private endpoint IP address for the Autonomous Database.
+     * Optional. Immutable. The private endpoint IP address for the Autonomous
+     * Database.
      *
-     * Generated from protobuf field <code>string private_endpoint_ip = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string private_endpoint_ip = 10 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var
      * @return $this
      */
@@ -880,9 +938,10 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The private endpoint label for the Autonomous Database.
+     * Optional. Immutable. The private endpoint label for the Autonomous
+     * Database.
      *
-     * Generated from protobuf field <code>string private_endpoint_label = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string private_endpoint_label = 11 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
      */
     public function getPrivateEndpointLabel()
@@ -891,9 +950,10 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The private endpoint label for the Autonomous Database.
+     * Optional. Immutable. The private endpoint label for the Autonomous
+     * Database.
      *
-     * Generated from protobuf field <code>string private_endpoint_label = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string private_endpoint_label = 11 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var
      * @return $this
      */
@@ -906,9 +966,10 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The Oracle Database version for the Autonomous Database.
+     * Optional. Immutable. The Oracle Database version for the Autonomous
+     * Database.
      *
-     * Generated from protobuf field <code>string db_version = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string db_version = 12 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
      */
     public function getDbVersion()
@@ -917,9 +978,10 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The Oracle Database version for the Autonomous Database.
+     * Optional. Immutable. The Oracle Database version for the Autonomous
+     * Database.
      *
-     * Generated from protobuf field <code>string db_version = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string db_version = 12 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var
      * @return $this
      */
@@ -932,10 +994,10 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. This field indicates if auto scaling is enabled for the
-     * Autonomous Database CPU core count.
+     * Optional. Immutable. This field indicates if auto scaling is enabled for
+     * the Autonomous Database CPU core count.
      *
-     * Generated from protobuf field <code>bool is_auto_scaling_enabled = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bool is_auto_scaling_enabled = 14 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return bool
      */
     public function getIsAutoScalingEnabled()
@@ -944,10 +1006,10 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. This field indicates if auto scaling is enabled for the
-     * Autonomous Database CPU core count.
+     * Optional. Immutable. This field indicates if auto scaling is enabled for
+     * the Autonomous Database CPU core count.
      *
-     * Generated from protobuf field <code>bool is_auto_scaling_enabled = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bool is_auto_scaling_enabled = 14 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param bool $var
      * @return $this
      */
@@ -960,10 +1022,10 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. This field indicates if auto scaling is enabled for the
-     * Autonomous Database storage.
+     * Optional. Immutable. This field indicates if auto scaling is enabled for
+     * the Autonomous Database storage.
      *
-     * Generated from protobuf field <code>bool is_storage_auto_scaling_enabled = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bool is_storage_auto_scaling_enabled = 15 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return bool
      */
     public function getIsStorageAutoScalingEnabled()
@@ -972,10 +1034,10 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. This field indicates if auto scaling is enabled for the
-     * Autonomous Database storage.
+     * Optional. Immutable. This field indicates if auto scaling is enabled for
+     * the Autonomous Database storage.
      *
-     * Generated from protobuf field <code>bool is_storage_auto_scaling_enabled = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bool is_storage_auto_scaling_enabled = 15 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param bool $var
      * @return $this
      */
@@ -988,9 +1050,9 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The license type used for the Autonomous Database.
+     * Required. Immutable. The license type used for the Autonomous Database.
      *
-     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.AutonomousDatabaseProperties.LicenseType license_type = 16 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.AutonomousDatabaseProperties.LicenseType license_type = 16 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return int
      */
     public function getLicenseType()
@@ -999,9 +1061,9 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The license type used for the Autonomous Database.
+     * Required. Immutable. The license type used for the Autonomous Database.
      *
-     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.AutonomousDatabaseProperties.LicenseType license_type = 16 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.AutonomousDatabaseProperties.LicenseType license_type = 16 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param int $var
      * @return $this
      */
@@ -1014,9 +1076,9 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The list of customer contacts.
+     * Optional. Immutable. The list of customer contacts.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.oracledatabase.v1.CustomerContact customer_contacts = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>repeated .google.cloud.oracledatabase.v1.CustomerContact customer_contacts = 17 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return RepeatedField<\Google\Cloud\OracleDatabase\V1\CustomerContact>
      */
     public function getCustomerContacts()
@@ -1025,9 +1087,9 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The list of customer contacts.
+     * Optional. Immutable. The list of customer contacts.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.oracledatabase.v1.CustomerContact customer_contacts = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>repeated .google.cloud.oracledatabase.v1.CustomerContact customer_contacts = 17 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param \Google\Cloud\OracleDatabase\V1\CustomerContact[] $var
      * @return $this
      */
@@ -1040,9 +1102,10 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The ID of the Oracle Cloud Infrastructure vault secret.
+     * Optional. Immutable. The ID of the Oracle Cloud Infrastructure vault
+     * secret.
      *
-     * Generated from protobuf field <code>string secret_id = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string secret_id = 18 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
      */
     public function getSecretId()
@@ -1051,9 +1114,10 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The ID of the Oracle Cloud Infrastructure vault secret.
+     * Optional. Immutable. The ID of the Oracle Cloud Infrastructure vault
+     * secret.
      *
-     * Generated from protobuf field <code>string secret_id = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string secret_id = 18 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var
      * @return $this
      */
@@ -1066,9 +1130,9 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The ID of the Oracle Cloud Infrastructure vault.
+     * Optional. Immutable. The ID of the Oracle Cloud Infrastructure vault.
      *
-     * Generated from protobuf field <code>string vault_id = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string vault_id = 19 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
      */
     public function getVaultId()
@@ -1077,9 +1141,9 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The ID of the Oracle Cloud Infrastructure vault.
+     * Optional. Immutable. The ID of the Oracle Cloud Infrastructure vault.
      *
-     * Generated from protobuf field <code>string vault_id = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string vault_id = 19 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var
      * @return $this
      */
@@ -1092,9 +1156,9 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maintenance schedule of the Autonomous Database.
+     * Optional. Immutable. The maintenance schedule of the Autonomous Database.
      *
-     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.AutonomousDatabaseProperties.MaintenanceScheduleType maintenance_schedule_type = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.AutonomousDatabaseProperties.MaintenanceScheduleType maintenance_schedule_type = 20 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return int
      */
     public function getMaintenanceScheduleType()
@@ -1103,9 +1167,9 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maintenance schedule of the Autonomous Database.
+     * Optional. Immutable. The maintenance schedule of the Autonomous Database.
      *
-     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.AutonomousDatabaseProperties.MaintenanceScheduleType maintenance_schedule_type = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.AutonomousDatabaseProperties.MaintenanceScheduleType maintenance_schedule_type = 20 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param int $var
      * @return $this
      */
@@ -1118,10 +1182,10 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. This field specifies if the Autonomous Database requires mTLS
-     * connections.
+     * Optional. Immutable. This field specifies if the Autonomous Database
+     * requires mTLS connections.
      *
-     * Generated from protobuf field <code>bool mtls_connection_required = 34 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bool mtls_connection_required = 34 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return bool
      */
     public function getMtlsConnectionRequired()
@@ -1130,10 +1194,10 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. This field specifies if the Autonomous Database requires mTLS
-     * connections.
+     * Optional. Immutable. This field specifies if the Autonomous Database
+     * requires mTLS connections.
      *
-     * Generated from protobuf field <code>bool mtls_connection_required = 34 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bool mtls_connection_required = 34 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param bool $var
      * @return $this
      */
@@ -1146,11 +1210,11 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The retention period for the Autonomous Database. This field is
-     * specified in days, can range from 1 day to 60 days, and has a default value
-     * of 60 days.
+     * Optional. Immutable. The retention period for the Autonomous Database. This
+     * field is specified in days, can range from 1 day to 60 days, and has a
+     * default value of 60 days.
      *
-     * Generated from protobuf field <code>int32 backup_retention_period_days = 57 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>int32 backup_retention_period_days = 57 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return int
      */
     public function getBackupRetentionPeriodDays()
@@ -1159,11 +1223,11 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The retention period for the Autonomous Database. This field is
-     * specified in days, can range from 1 day to 60 days, and has a default value
-     * of 60 days.
+     * Optional. Immutable. The retention period for the Autonomous Database. This
+     * field is specified in days, can range from 1 day to 60 days, and has a
+     * default value of 60 days.
      *
-     * Generated from protobuf field <code>int32 backup_retention_period_days = 57 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>int32 backup_retention_period_days = 57 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param int $var
      * @return $this
      */
@@ -1566,27 +1630,35 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. This field indicates whether the Autonomous Database has local
-     * (in-region) Data Guard enabled.
+     * Output only. Deprecated: Please use `local_data_guard_enabled` instead.
+     * This field indicates whether the Autonomous Database has local (in-region)
+     * Data Guard enabled.
      *
-     * Generated from protobuf field <code>bool is_local_data_guard_enabled = 33 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>bool is_local_data_guard_enabled = 33 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return bool
+     * @deprecated
      */
     public function getIsLocalDataGuardEnabled()
     {
+        if ($this->is_local_data_guard_enabled !== false) {
+            @trigger_error('is_local_data_guard_enabled is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->is_local_data_guard_enabled;
     }
 
     /**
-     * Output only. This field indicates whether the Autonomous Database has local
-     * (in-region) Data Guard enabled.
+     * Output only. Deprecated: Please use `local_data_guard_enabled` instead.
+     * This field indicates whether the Autonomous Database has local (in-region)
+     * Data Guard enabled.
      *
-     * Generated from protobuf field <code>bool is_local_data_guard_enabled = 33 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>bool is_local_data_guard_enabled = 33 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param bool $var
      * @return $this
+     * @deprecated
      */
     public function setIsLocalDataGuardEnabled($var)
     {
+        @trigger_error('is_local_data_guard_enabled is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkBool($var);
         $this->is_local_data_guard_enabled = $var;
 
@@ -1594,27 +1666,37 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. This field indicates the maximum data loss limit for an
-     * Autonomous Database, in seconds.
+     * Output only. Deprecated: Please use
+     * `local_adg_auto_failover_max_data_loss_limit_duration` instead.
+     * This field indicates the maximum data loss limit for an Autonomous
+     * Database, in seconds.
      *
-     * Generated from protobuf field <code>int32 local_adg_auto_failover_max_data_loss_limit = 35 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>int32 local_adg_auto_failover_max_data_loss_limit = 35 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
+     * @deprecated
      */
     public function getLocalAdgAutoFailoverMaxDataLossLimit()
     {
+        if ($this->local_adg_auto_failover_max_data_loss_limit !== 0) {
+            @trigger_error('local_adg_auto_failover_max_data_loss_limit is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->local_adg_auto_failover_max_data_loss_limit;
     }
 
     /**
-     * Output only. This field indicates the maximum data loss limit for an
-     * Autonomous Database, in seconds.
+     * Output only. Deprecated: Please use
+     * `local_adg_auto_failover_max_data_loss_limit_duration` instead.
+     * This field indicates the maximum data loss limit for an Autonomous
+     * Database, in seconds.
      *
-     * Generated from protobuf field <code>int32 local_adg_auto_failover_max_data_loss_limit = 35 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>int32 local_adg_auto_failover_max_data_loss_limit = 35 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
      * @return $this
+     * @deprecated
      */
     public function setLocalAdgAutoFailoverMaxDataLossLimit($var)
     {
+        @trigger_error('local_adg_auto_failover_max_data_loss_limit is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkInt32($var);
         $this->local_adg_auto_failover_max_data_loss_limit = $var;
 
@@ -2330,9 +2412,10 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The list of allowlisted IP addresses for the Autonomous Database.
+     * Optional. Immutable. The list of allowlisted IP addresses for the
+     * Autonomous Database.
      *
-     * Generated from protobuf field <code>repeated string allowlisted_ips = 67 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>repeated string allowlisted_ips = 67 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return RepeatedField<string>
      */
     public function getAllowlistedIps()
@@ -2341,9 +2424,10 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The list of allowlisted IP addresses for the Autonomous Database.
+     * Optional. Immutable. The list of allowlisted IP addresses for the
+     * Autonomous Database.
      *
-     * Generated from protobuf field <code>repeated string allowlisted_ips = 67 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>repeated string allowlisted_ips = 67 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string[] $var
      * @return $this
      */
@@ -2447,6 +2531,84 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->service_agent_email = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Indicates whether the Autonomous Database has a local (in-region)
+     * standby database. Not applicable to cross-region Data Guard or dedicated
+     * Exadata infrastructure.
+     *
+     * Generated from protobuf field <code>optional bool local_data_guard_enabled = 71 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getLocalDataGuardEnabled()
+    {
+        return isset($this->local_data_guard_enabled) ? $this->local_data_guard_enabled : false;
+    }
+
+    public function hasLocalDataGuardEnabled()
+    {
+        return isset($this->local_data_guard_enabled);
+    }
+
+    public function clearLocalDataGuardEnabled()
+    {
+        unset($this->local_data_guard_enabled);
+    }
+
+    /**
+     * Optional. Indicates whether the Autonomous Database has a local (in-region)
+     * standby database. Not applicable to cross-region Data Guard or dedicated
+     * Exadata infrastructure.
+     *
+     * Generated from protobuf field <code>optional bool local_data_guard_enabled = 71 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setLocalDataGuardEnabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->local_data_guard_enabled = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. This field indicates the maximum data loss limit for an
+     * Autonomous Database, in seconds.
+     *
+     * Generated from protobuf field <code>optional int32 local_adg_auto_failover_max_data_loss_limit_duration = 72 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getLocalAdgAutoFailoverMaxDataLossLimitDuration()
+    {
+        return isset($this->local_adg_auto_failover_max_data_loss_limit_duration) ? $this->local_adg_auto_failover_max_data_loss_limit_duration : 0;
+    }
+
+    public function hasLocalAdgAutoFailoverMaxDataLossLimitDuration()
+    {
+        return isset($this->local_adg_auto_failover_max_data_loss_limit_duration);
+    }
+
+    public function clearLocalAdgAutoFailoverMaxDataLossLimitDuration()
+    {
+        unset($this->local_adg_auto_failover_max_data_loss_limit_duration);
+    }
+
+    /**
+     * Optional. This field indicates the maximum data loss limit for an
+     * Autonomous Database, in seconds.
+     *
+     * Generated from protobuf field <code>optional int32 local_adg_auto_failover_max_data_loss_limit_duration = 72 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setLocalAdgAutoFailoverMaxDataLossLimitDuration($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->local_adg_auto_failover_max_data_loss_limit_duration = $var;
 
         return $this;
     }

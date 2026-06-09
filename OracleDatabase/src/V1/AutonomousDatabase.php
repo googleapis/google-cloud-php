@@ -25,18 +25,18 @@ class AutonomousDatabase extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
-     * Optional. The name of the Autonomous Database. The database name must be
-     * unique in the project. The name must begin with a letter and can contain a
-     * maximum of 30 alphanumeric characters.
+     * Optional. Immutable. The name of the Autonomous Database. The database name
+     * must be unique in the project. The name must begin with a letter and can
+     * contain a maximum of 30 alphanumeric characters.
      *
-     * Generated from protobuf field <code>string database = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string database = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     protected $database = '';
     /**
-     * Optional. The display name for the Autonomous Database. The name does not
-     * have to be unique within your project.
+     * Optional. Immutable. The display name for the Autonomous Database. The name
+     * does not have to be unique within your project.
      *
-     * Generated from protobuf field <code>string display_name = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string display_name = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     protected $display_name = '';
     /**
@@ -47,11 +47,22 @@ class AutonomousDatabase extends \Google\Protobuf\Internal\Message
      */
     protected $entitlement_id = '';
     /**
-     * Optional. The password for the default ADMIN user.
+     * Optional. Immutable. The password for the default ADMIN user.
+     * Note: Only one of `admin_password_secret_version` or `admin_password` can
+     * be populated.
      *
-     * Generated from protobuf field <code>string admin_password = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string admin_password = 6 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     protected $admin_password = '';
+    /**
+     * Optional. Immutable. The resource name of a secret version in Secret
+     * Manager which contains the database admin user's password. Format:
+     * projects/{project}/secrets/{secret}/versions/{version}. Note: Only one of
+     * `admin_password_secret_version` or `admin_password` can be populated.
+     *
+     * Generated from protobuf field <code>string admin_password_secret_version = 18 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
+     */
+    protected $admin_password_secret_version = '';
     /**
      * Optional. The properties of the Autonomous Database.
      *
@@ -65,42 +76,44 @@ class AutonomousDatabase extends \Google\Protobuf\Internal\Message
      */
     private $labels;
     /**
-     * Optional. The name of the VPC network used by the Autonomous Database in
-     * the following format: projects/{project}/global/networks/{network}
+     * Optional. Immutable. The name of the VPC network used by the Autonomous
+     * Database in the following format:
+     * projects/{project}/global/networks/{network}
      *
-     * Generated from protobuf field <code>string network = 9 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string network = 9 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      */
     protected $network = '';
     /**
-     * Optional. The subnet CIDR range for the Autonomous Database.
+     * Optional. Immutable. The subnet CIDR range for the Autonomous Database.
      *
-     * Generated from protobuf field <code>string cidr = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string cidr = 10 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     protected $cidr = '';
     /**
-     * Optional. The name of the OdbNetwork associated with the Autonomous
-     * Database. Format:
+     * Optional. Immutable. The name of the OdbNetwork associated with the
+     * Autonomous Database. Format:
      * projects/{project}/locations/{location}/odbNetworks/{odb_network} It is
      * optional but if specified, this should match the parent ODBNetwork of the
      * OdbSubnet.
      *
-     * Generated from protobuf field <code>string odb_network = 16 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string odb_network = 16 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      */
     protected $odb_network = '';
     /**
-     * Optional. The name of the OdbSubnet associated with the Autonomous
-     * Database. Format:
+     * Optional. Immutable. The name of the OdbSubnet associated with the
+     * Autonomous Database. Format:
      * projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbSubnets/{odb_subnet}
      *
-     * Generated from protobuf field <code>string odb_subnet = 17 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string odb_subnet = 17 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      */
     protected $odb_subnet = '';
     /**
-     * Optional. The source Autonomous Database configuration for the standby
-     * Autonomous Database. The source Autonomous Database is configured while
-     * creating the Peer Autonomous Database and can't be updated after creation.
+     * Optional. Immutable. The source Autonomous Database configuration for the
+     * standby Autonomous Database. The source Autonomous Database is configured
+     * while creating the Peer Autonomous Database and can't be updated after
+     * creation.
      *
-     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.SourceConfig source_config = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.SourceConfig source_config = 11 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     protected $source_config = null;
     /**
@@ -135,40 +148,49 @@ class AutonomousDatabase extends \Google\Protobuf\Internal\Message
      *           format:
      *           projects/{project}/locations/{region}/autonomousDatabases/{autonomous_database}
      *     @type string $database
-     *           Optional. The name of the Autonomous Database. The database name must be
-     *           unique in the project. The name must begin with a letter and can contain a
-     *           maximum of 30 alphanumeric characters.
+     *           Optional. Immutable. The name of the Autonomous Database. The database name
+     *           must be unique in the project. The name must begin with a letter and can
+     *           contain a maximum of 30 alphanumeric characters.
      *     @type string $display_name
-     *           Optional. The display name for the Autonomous Database. The name does not
-     *           have to be unique within your project.
+     *           Optional. Immutable. The display name for the Autonomous Database. The name
+     *           does not have to be unique within your project.
      *     @type string $entitlement_id
      *           Output only. The ID of the subscription entitlement associated with the
      *           Autonomous Database.
      *     @type string $admin_password
-     *           Optional. The password for the default ADMIN user.
+     *           Optional. Immutable. The password for the default ADMIN user.
+     *           Note: Only one of `admin_password_secret_version` or `admin_password` can
+     *           be populated.
+     *     @type string $admin_password_secret_version
+     *           Optional. Immutable. The resource name of a secret version in Secret
+     *           Manager which contains the database admin user's password. Format:
+     *           projects/{project}/secrets/{secret}/versions/{version}. Note: Only one of
+     *           `admin_password_secret_version` or `admin_password` can be populated.
      *     @type \Google\Cloud\OracleDatabase\V1\AutonomousDatabaseProperties $properties
      *           Optional. The properties of the Autonomous Database.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Optional. The labels or tags associated with the Autonomous Database.
      *     @type string $network
-     *           Optional. The name of the VPC network used by the Autonomous Database in
-     *           the following format: projects/{project}/global/networks/{network}
+     *           Optional. Immutable. The name of the VPC network used by the Autonomous
+     *           Database in the following format:
+     *           projects/{project}/global/networks/{network}
      *     @type string $cidr
-     *           Optional. The subnet CIDR range for the Autonomous Database.
+     *           Optional. Immutable. The subnet CIDR range for the Autonomous Database.
      *     @type string $odb_network
-     *           Optional. The name of the OdbNetwork associated with the Autonomous
-     *           Database. Format:
+     *           Optional. Immutable. The name of the OdbNetwork associated with the
+     *           Autonomous Database. Format:
      *           projects/{project}/locations/{location}/odbNetworks/{odb_network} It is
      *           optional but if specified, this should match the parent ODBNetwork of the
      *           OdbSubnet.
      *     @type string $odb_subnet
-     *           Optional. The name of the OdbSubnet associated with the Autonomous
-     *           Database. Format:
+     *           Optional. Immutable. The name of the OdbSubnet associated with the
+     *           Autonomous Database. Format:
      *           projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbSubnets/{odb_subnet}
      *     @type \Google\Cloud\OracleDatabase\V1\SourceConfig $source_config
-     *           Optional. The source Autonomous Database configuration for the standby
-     *           Autonomous Database. The source Autonomous Database is configured while
-     *           creating the Peer Autonomous Database and can't be updated after creation.
+     *           Optional. Immutable. The source Autonomous Database configuration for the
+     *           standby Autonomous Database. The source Autonomous Database is configured
+     *           while creating the Peer Autonomous Database and can't be updated after
+     *           creation.
      *     @type string[] $peer_autonomous_databases
      *           Output only. The peer Autonomous Database names of the given Autonomous
      *           Database.
@@ -215,11 +237,11 @@ class AutonomousDatabase extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The name of the Autonomous Database. The database name must be
-     * unique in the project. The name must begin with a letter and can contain a
-     * maximum of 30 alphanumeric characters.
+     * Optional. Immutable. The name of the Autonomous Database. The database name
+     * must be unique in the project. The name must begin with a letter and can
+     * contain a maximum of 30 alphanumeric characters.
      *
-     * Generated from protobuf field <code>string database = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string database = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
      */
     public function getDatabase()
@@ -228,11 +250,11 @@ class AutonomousDatabase extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The name of the Autonomous Database. The database name must be
-     * unique in the project. The name must begin with a letter and can contain a
-     * maximum of 30 alphanumeric characters.
+     * Optional. Immutable. The name of the Autonomous Database. The database name
+     * must be unique in the project. The name must begin with a letter and can
+     * contain a maximum of 30 alphanumeric characters.
      *
-     * Generated from protobuf field <code>string database = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string database = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var
      * @return $this
      */
@@ -245,10 +267,10 @@ class AutonomousDatabase extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The display name for the Autonomous Database. The name does not
-     * have to be unique within your project.
+     * Optional. Immutable. The display name for the Autonomous Database. The name
+     * does not have to be unique within your project.
      *
-     * Generated from protobuf field <code>string display_name = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string display_name = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
      */
     public function getDisplayName()
@@ -257,10 +279,10 @@ class AutonomousDatabase extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The display name for the Autonomous Database. The name does not
-     * have to be unique within your project.
+     * Optional. Immutable. The display name for the Autonomous Database. The name
+     * does not have to be unique within your project.
      *
-     * Generated from protobuf field <code>string display_name = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string display_name = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var
      * @return $this
      */
@@ -301,9 +323,11 @@ class AutonomousDatabase extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The password for the default ADMIN user.
+     * Optional. Immutable. The password for the default ADMIN user.
+     * Note: Only one of `admin_password_secret_version` or `admin_password` can
+     * be populated.
      *
-     * Generated from protobuf field <code>string admin_password = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string admin_password = 6 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
      */
     public function getAdminPassword()
@@ -312,9 +336,11 @@ class AutonomousDatabase extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The password for the default ADMIN user.
+     * Optional. Immutable. The password for the default ADMIN user.
+     * Note: Only one of `admin_password_secret_version` or `admin_password` can
+     * be populated.
      *
-     * Generated from protobuf field <code>string admin_password = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string admin_password = 6 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var
      * @return $this
      */
@@ -322,6 +348,38 @@ class AutonomousDatabase extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->admin_password = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Immutable. The resource name of a secret version in Secret
+     * Manager which contains the database admin user's password. Format:
+     * projects/{project}/secrets/{secret}/versions/{version}. Note: Only one of
+     * `admin_password_secret_version` or `admin_password` can be populated.
+     *
+     * Generated from protobuf field <code>string admin_password_secret_version = 18 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getAdminPasswordSecretVersion()
+    {
+        return $this->admin_password_secret_version;
+    }
+
+    /**
+     * Optional. Immutable. The resource name of a secret version in Secret
+     * Manager which contains the database admin user's password. Format:
+     * projects/{project}/secrets/{secret}/versions/{version}. Note: Only one of
+     * `admin_password_secret_version` or `admin_password` can be populated.
+     *
+     * Generated from protobuf field <code>string admin_password_secret_version = 18 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAdminPasswordSecretVersion($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->admin_password_secret_version = $var;
 
         return $this;
     }
@@ -389,10 +447,11 @@ class AutonomousDatabase extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The name of the VPC network used by the Autonomous Database in
-     * the following format: projects/{project}/global/networks/{network}
+     * Optional. Immutable. The name of the VPC network used by the Autonomous
+     * Database in the following format:
+     * projects/{project}/global/networks/{network}
      *
-     * Generated from protobuf field <code>string network = 9 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string network = 9 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getNetwork()
@@ -401,10 +460,11 @@ class AutonomousDatabase extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The name of the VPC network used by the Autonomous Database in
-     * the following format: projects/{project}/global/networks/{network}
+     * Optional. Immutable. The name of the VPC network used by the Autonomous
+     * Database in the following format:
+     * projects/{project}/global/networks/{network}
      *
-     * Generated from protobuf field <code>string network = 9 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string network = 9 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -417,9 +477,9 @@ class AutonomousDatabase extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The subnet CIDR range for the Autonomous Database.
+     * Optional. Immutable. The subnet CIDR range for the Autonomous Database.
      *
-     * Generated from protobuf field <code>string cidr = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string cidr = 10 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
      */
     public function getCidr()
@@ -428,9 +488,9 @@ class AutonomousDatabase extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The subnet CIDR range for the Autonomous Database.
+     * Optional. Immutable. The subnet CIDR range for the Autonomous Database.
      *
-     * Generated from protobuf field <code>string cidr = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string cidr = 10 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var
      * @return $this
      */
@@ -443,13 +503,13 @@ class AutonomousDatabase extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The name of the OdbNetwork associated with the Autonomous
-     * Database. Format:
+     * Optional. Immutable. The name of the OdbNetwork associated with the
+     * Autonomous Database. Format:
      * projects/{project}/locations/{location}/odbNetworks/{odb_network} It is
      * optional but if specified, this should match the parent ODBNetwork of the
      * OdbSubnet.
      *
-     * Generated from protobuf field <code>string odb_network = 16 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string odb_network = 16 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getOdbNetwork()
@@ -458,13 +518,13 @@ class AutonomousDatabase extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The name of the OdbNetwork associated with the Autonomous
-     * Database. Format:
+     * Optional. Immutable. The name of the OdbNetwork associated with the
+     * Autonomous Database. Format:
      * projects/{project}/locations/{location}/odbNetworks/{odb_network} It is
      * optional but if specified, this should match the parent ODBNetwork of the
      * OdbSubnet.
      *
-     * Generated from protobuf field <code>string odb_network = 16 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string odb_network = 16 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -477,11 +537,11 @@ class AutonomousDatabase extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The name of the OdbSubnet associated with the Autonomous
-     * Database. Format:
+     * Optional. Immutable. The name of the OdbSubnet associated with the
+     * Autonomous Database. Format:
      * projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbSubnets/{odb_subnet}
      *
-     * Generated from protobuf field <code>string odb_subnet = 17 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string odb_subnet = 17 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getOdbSubnet()
@@ -490,11 +550,11 @@ class AutonomousDatabase extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The name of the OdbSubnet associated with the Autonomous
-     * Database. Format:
+     * Optional. Immutable. The name of the OdbSubnet associated with the
+     * Autonomous Database. Format:
      * projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbSubnets/{odb_subnet}
      *
-     * Generated from protobuf field <code>string odb_subnet = 17 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string odb_subnet = 17 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -507,11 +567,12 @@ class AutonomousDatabase extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The source Autonomous Database configuration for the standby
-     * Autonomous Database. The source Autonomous Database is configured while
-     * creating the Peer Autonomous Database and can't be updated after creation.
+     * Optional. Immutable. The source Autonomous Database configuration for the
+     * standby Autonomous Database. The source Autonomous Database is configured
+     * while creating the Peer Autonomous Database and can't be updated after
+     * creation.
      *
-     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.SourceConfig source_config = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.SourceConfig source_config = 11 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return \Google\Cloud\OracleDatabase\V1\SourceConfig|null
      */
     public function getSourceConfig()
@@ -530,11 +591,12 @@ class AutonomousDatabase extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The source Autonomous Database configuration for the standby
-     * Autonomous Database. The source Autonomous Database is configured while
-     * creating the Peer Autonomous Database and can't be updated after creation.
+     * Optional. Immutable. The source Autonomous Database configuration for the
+     * standby Autonomous Database. The source Autonomous Database is configured
+     * while creating the Peer Autonomous Database and can't be updated after
+     * creation.
      *
-     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.SourceConfig source_config = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.SourceConfig source_config = 11 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param \Google\Cloud\OracleDatabase\V1\SourceConfig $var
      * @return $this
      */
