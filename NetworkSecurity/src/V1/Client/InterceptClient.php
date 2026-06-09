@@ -1083,21 +1083,21 @@ final class InterceptClient
 
     /**
      * Lists information about the supported locations for this service.
-
-    This method lists locations based on the resource scope provided in
-    the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
-    **Global locations**: If `name` is empty, the method lists the
-    public locations available to all projects. * **Project-specific
-    locations**: If `name` follows the format
-    `projects/{project}`, the method lists locations visible to that
-    specific project. This includes public, private, or other
-    project-specific locations enabled for the project.
-
-    For gRPC and client library implementations, the resource name is
-    passed as the `name` field. For direct service calls, the resource
-    name is
-    incorporated into the request path based on the specific service
-    implementation and version.
+     *
+     * This method lists locations based on the resource scope provided in
+     * the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+     * **Global locations**: If `name` is empty, the method lists the
+     * public locations available to all projects. * **Project-specific
+     * locations**: If `name` follows the format
+     * `projects/{project}`, the method lists locations visible to that
+     * specific project. This includes public, private, or other
+     * project-specific locations enabled for the project.
+     *
+     * For gRPC and client library implementations, the resource name is
+     * passed as the `name` field. For direct service calls, the resource
+     * name is
+     * incorporated into the request path based on the specific service
+     * implementation and version.
      *
      * The async variant is {@see InterceptClient::listLocationsAsync()} .
      *
@@ -1124,7 +1124,7 @@ final class InterceptClient
 
     /**
      * Gets the access control policy for a resource. Returns an empty policy
-    if the resource exists and does not have a policy set.
+     * if the resource exists and does not have a policy set.
      *
      * The async variant is {@see InterceptClient::getIamPolicyAsync()} .
      *
@@ -1151,10 +1151,10 @@ final class InterceptClient
 
     /**
      * Sets the access control policy on the specified resource. Replaces
-    any existing policy.
-
-    Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
-    errors.
+     * any existing policy.
+     *
+     * Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+     * errors.
      *
      * The async variant is {@see InterceptClient::setIamPolicyAsync()} .
      *
@@ -1181,12 +1181,12 @@ final class InterceptClient
 
     /**
      * Returns permissions that a caller has on the specified resource. If the
-    resource does not exist, this will return an empty set of
-    permissions, not a `NOT_FOUND` error.
-
-    Note: This operation is designed to be used for building
-    permission-aware UIs and command-line tools, not for authorization
-    checking. This operation may "fail open" without warning.
+     * resource does not exist, this will return an empty set of
+     * permissions, not a `NOT_FOUND` error.
+     *
+     * Note: This operation is designed to be used for building
+     * permission-aware UIs and command-line tools, not for authorization
+     * checking. This operation may "fail open" without warning.
      *
      * The async variant is {@see InterceptClient::testIamPermissionsAsync()} .
      *
