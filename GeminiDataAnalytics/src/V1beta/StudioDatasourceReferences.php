@@ -16,9 +16,9 @@ use Google\Protobuf\RepeatedField;
 class StudioDatasourceReferences extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The references to the studio datasources.
+     * Optional. The references to the studio datasources.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.StudioDatasourceReference studio_references = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.StudioDatasourceReference studio_references = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $studio_references;
 
@@ -29,7 +29,7 @@ class StudioDatasourceReferences extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\StudioDatasourceReference[] $studio_references
-     *           The references to the studio datasources.
+     *           Optional. The references to the studio datasources.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,9 +38,9 @@ class StudioDatasourceReferences extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The references to the studio datasources.
+     * Optional. The references to the studio datasources.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.StudioDatasourceReference studio_references = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.StudioDatasourceReference studio_references = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return RepeatedField<\Google\Cloud\GeminiDataAnalytics\V1beta\StudioDatasourceReference>
      */
     public function getStudioReferences()
@@ -49,9 +49,9 @@ class StudioDatasourceReferences extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The references to the studio datasources.
+     * Optional. The references to the studio datasources.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.StudioDatasourceReference studio_references = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.StudioDatasourceReference studio_references = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\GeminiDataAnalytics\V1beta\StudioDatasourceReference[] $var
      * @return $this
      */

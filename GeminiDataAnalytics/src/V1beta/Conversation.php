@@ -59,6 +59,22 @@ class Conversation extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, string> labels = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $labels;
+    /**
+     * Optional. Customer managed encryption key (CMEK) to use for encrypting the
+     * Conversation resources. Encryption will happen at Titan layer, we will pass
+     * the KMS key to Titan.
+     * Format:
+     * projects/{project_id}/locations/{location}/keyRings/{key_ring_name}/cryptoKeys/{key_name}.
+     *
+     * Generated from protobuf field <code>optional string kms_key = 10 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     */
+    protected $kms_key = null;
+    /**
+     * Optional. Whether memory is paused for this conversation.
+     *
+     * Generated from protobuf field <code>optional bool memory_paused = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $memory_paused = null;
 
     /**
      * Constructor.
@@ -90,6 +106,14 @@ class Conversation extends \Google\Protobuf\Internal\Message
      *           Optional. Open-ended and user-defined labels that can be set by the client
      *           to tag a conversation (e.g. to filter conversations for specific
      *           surfaces/products).
+     *     @type string $kms_key
+     *           Optional. Customer managed encryption key (CMEK) to use for encrypting the
+     *           Conversation resources. Encryption will happen at Titan layer, we will pass
+     *           the KMS key to Titan.
+     *           Format:
+     *           projects/{project_id}/locations/{location}/keyRings/{key_ring_name}/cryptoKeys/{key_name}.
+     *     @type bool $memory_paused
+     *           Optional. Whether memory is paused for this conversation.
      * }
      */
     public function __construct($data = NULL) {
@@ -271,6 +295,86 @@ class Conversation extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->labels = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Customer managed encryption key (CMEK) to use for encrypting the
+     * Conversation resources. Encryption will happen at Titan layer, we will pass
+     * the KMS key to Titan.
+     * Format:
+     * projects/{project_id}/locations/{location}/keyRings/{key_ring_name}/cryptoKeys/{key_name}.
+     *
+     * Generated from protobuf field <code>optional string kms_key = 10 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getKmsKey()
+    {
+        return isset($this->kms_key) ? $this->kms_key : '';
+    }
+
+    public function hasKmsKey()
+    {
+        return isset($this->kms_key);
+    }
+
+    public function clearKmsKey()
+    {
+        unset($this->kms_key);
+    }
+
+    /**
+     * Optional. Customer managed encryption key (CMEK) to use for encrypting the
+     * Conversation resources. Encryption will happen at Titan layer, we will pass
+     * the KMS key to Titan.
+     * Format:
+     * projects/{project_id}/locations/{location}/keyRings/{key_ring_name}/cryptoKeys/{key_name}.
+     *
+     * Generated from protobuf field <code>optional string kms_key = 10 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setKmsKey($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->kms_key = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Whether memory is paused for this conversation.
+     *
+     * Generated from protobuf field <code>optional bool memory_paused = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getMemoryPaused()
+    {
+        return isset($this->memory_paused) ? $this->memory_paused : false;
+    }
+
+    public function hasMemoryPaused()
+    {
+        return isset($this->memory_paused);
+    }
+
+    public function clearMemoryPaused()
+    {
+        unset($this->memory_paused);
+    }
+
+    /**
+     * Optional. Whether memory is paused for this conversation.
+     *
+     * Generated from protobuf field <code>optional bool memory_paused = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setMemoryPaused($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->memory_paused = $var;
 
         return $this;
     }

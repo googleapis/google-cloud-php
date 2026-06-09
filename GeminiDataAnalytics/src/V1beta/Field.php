@@ -69,8 +69,6 @@ class Field extends \Google\Protobuf\Internal\Message
     private $subfields;
     /**
      * Optional. Field category, not required, currently only useful for Looker.
-     * We are using a string to avoid depending on an external package and keep
-     * this package self-contained.
      *
      * Generated from protobuf field <code>string category = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -112,8 +110,6 @@ class Field extends \Google\Protobuf\Internal\Message
      *           Optional. Recursive property for nested schema structures.
      *     @type string $category
      *           Optional. Field category, not required, currently only useful for Looker.
-     *           We are using a string to avoid depending on an external package and keep
-     *           this package self-contained.
      *     @type string $value_format
      *           Optional. Looker only. Value format of the field.
      *           Ref:
@@ -343,8 +339,6 @@ class Field extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Field category, not required, currently only useful for Looker.
-     * We are using a string to avoid depending on an external package and keep
-     * this package self-contained.
      *
      * Generated from protobuf field <code>string category = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -356,8 +350,6 @@ class Field extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Field category, not required, currently only useful for Looker.
-     * We are using a string to avoid depending on an external package and keep
-     * this package self-contained.
      *
      * Generated from protobuf field <code>string category = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

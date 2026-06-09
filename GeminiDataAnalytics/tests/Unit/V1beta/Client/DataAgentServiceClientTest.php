@@ -105,10 +105,12 @@ class DataAgentServiceClientTest extends GeneratedTest
         $name = 'name3373707';
         $displayName = 'displayName1615086568';
         $description = 'description-1724546052';
+        $kmsKey = 'kmsKey-591635343';
         $expectedResponse = new DataAgent();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDescription($description);
+        $expectedResponse->setKmsKey($kmsKey);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -228,10 +230,12 @@ class DataAgentServiceClientTest extends GeneratedTest
         $name = 'name3373707';
         $displayName = 'displayName1615086568';
         $description = 'description-1724546052';
+        $kmsKey = 'kmsKey-591635343';
         $expectedResponse = new DataAgent();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDescription($description);
+        $expectedResponse->setKmsKey($kmsKey);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -494,10 +498,12 @@ class DataAgentServiceClientTest extends GeneratedTest
         $name2 = 'name2-1052831874';
         $displayName = 'displayName1615086568';
         $description = 'description-1724546052';
+        $kmsKey = 'kmsKey-591635343';
         $expectedResponse = new DataAgent();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDescription($description);
+        $expectedResponse->setKmsKey($kmsKey);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->dataAgentName('[PROJECT]', '[LOCATION]', '[DATA_AGENT]');
@@ -858,10 +864,12 @@ class DataAgentServiceClientTest extends GeneratedTest
         $name = 'name3373707';
         $displayName = 'displayName1615086568';
         $description = 'description-1724546052';
+        $kmsKey = 'kmsKey-591635343';
         $expectedResponse = new DataAgent();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDescription($description);
+        $expectedResponse->setKmsKey($kmsKey);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -977,10 +985,12 @@ class DataAgentServiceClientTest extends GeneratedTest
         $name = 'name3373707';
         $displayName = 'displayName1615086568';
         $description = 'description-1724546052';
+        $kmsKey = 'kmsKey-591635343';
         $expectedResponse = new DataAgent();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDescription($description);
+        $expectedResponse->setKmsKey($kmsKey);
         $transport->addResponse($expectedResponse);
         // Mock request
         $dataAgent = new DataAgent();
@@ -1189,10 +1199,12 @@ class DataAgentServiceClientTest extends GeneratedTest
         $name = 'name3373707';
         $displayName = 'displayName1615086568';
         $description = 'description-1724546052';
+        $kmsKey = 'kmsKey-591635343';
         $expectedResponse = new DataAgent();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDescription($description);
+        $expectedResponse->setKmsKey($kmsKey);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
