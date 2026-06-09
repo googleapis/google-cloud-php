@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.43.1](https://github.com/googleapis/gax-php/compare/v1.43.0...v1.43.1) (2026-06-09)
+
+
+### Bug Fixes
+
+* RetryMiddleware should sleep on retry ([#676](https://github.com/googleapis/gax-php/issues/676)) ([5d3d6da](https://github.com/googleapis/gax-php/commit/5d3d6da4b3eb3f1146b13b67f4e05569855f543f))
+
 ## [1.43.0](https://github.com/googleapis/gax-php/compare/v1.42.5...v1.43.0) (2026-06-04)
 
 
