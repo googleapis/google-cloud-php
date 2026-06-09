@@ -49,6 +49,13 @@ class RetryMiddlewareTest extends TestCase
 {
     use ProphecyTrait;
 
+    private $noOpDelay;
+
+    public function setUp(): void
+    {
+        $this->noOpDelay = function(int $delayMs) {};
+    }
+
     public function testRetryNoRetryableCode()
     {
         $call = $this->prophesize(Call::class);
@@ -63,7 +70,7 @@ class RetryMiddlewareTest extends TestCase
                 throw new ApiException('Call Count: ' . $callCount += 1, 0, '');
             });
         };
-        $middleware = new RetryMiddleware($handler, $retrySettings);
+        $middleware = new RetryMiddleware($handler, $retrySettings, delayHandler: $this->noOpDelay);
 
         $this->expectException(ApiException::class);
         $this->expectExceptionMessage('Call Count: 1');
@@ -89,7 +96,7 @@ class RetryMiddlewareTest extends TestCase
                 $promise->resolve('Ok!');
             });
         };
-        $middleware = new RetryMiddleware($handler, $retrySettings);
+        $middleware = new RetryMiddleware($handler, $retrySettings, delayHandler: $this->noOpDelay);
         $response = $middleware(
             $call->reveal(),
             []
@@ -113,7 +120,7 @@ class RetryMiddlewareTest extends TestCase
                 throw new ApiException('Cancelled!', Code::CANCELLED, ApiStatus::CANCELLED);
             });
         };
-        $middleware = new RetryMiddleware($handler, $retrySettings);
+        $middleware = new RetryMiddleware($handler, $retrySettings, delayHandler: $this->noOpDelay);
 
         $this->expectException(ApiException::class);
         $this->expectExceptionMessage('Retry total timeout exceeded.');
@@ -140,7 +147,7 @@ class RetryMiddlewareTest extends TestCase
                 throw new ApiException('Cancelled!', Code::CANCELLED, ApiStatus::CANCELLED);
             });
         };
-        $middleware = new RetryMiddleware($handler, $retrySettings);
+        $middleware = new RetryMiddleware($handler, $retrySettings, delayHandler: $this->noOpDelay);
 
         $this->expectException(ApiException::class);
         $this->expectExceptionMessage('Retry total timeout exceeded.');
@@ -170,7 +177,7 @@ class RetryMiddlewareTest extends TestCase
                 $promise->resolve('Ok!');
             });
         };
-        $middleware = new RetryMiddleware($handler, $retrySettings);
+        $middleware = new RetryMiddleware($handler, $retrySettings, delayHandler: $this->noOpDelay);
         $middleware($call->reveal(), [])->wait();
 
         $this->assertCount(2, $observedTimeouts, 'Expect 2 attempts');
@@ -194,7 +201,7 @@ class RetryMiddlewareTest extends TestCase
                 'retriesEnabled' => true,
                 'retryableCodes' => [ApiStatus::CANCELLED],
             ]);
-        $middleware = new RetryMiddleware($handler, $retrySettings);
+        $middleware = new RetryMiddleware($handler, $retrySettings, delayHandler: $this->noOpDelay);
 
         $call = $this->prophesize(Call::class);
         $options = ['timeoutMillis' => $timeout];
@@ -227,7 +234,7 @@ class RetryMiddlewareTest extends TestCase
                 $promise->resolve('Ok!');
             });
         };
-        $middleware = new RetryMiddleware($handler, $retrySettings);
+        $middleware = new RetryMiddleware($handler, $retrySettings, delayHandler: $this->noOpDelay);
         $response = $middleware(
             $call->reveal(),
             []
@@ -255,7 +262,7 @@ class RetryMiddlewareTest extends TestCase
                 $promise->resolve('Ok!');
             });
         };
-        $middleware = new RetryMiddleware($handler, $retrySettings);
+        $middleware = new RetryMiddleware($handler, $retrySettings, delayHandler: $this->noOpDelay);
         $response = $middleware(
             $call->reveal(),
             []
@@ -290,7 +297,7 @@ class RetryMiddlewareTest extends TestCase
                 throw new ApiException('Call Count: ' . $callCount, 0, '');
             });
         };
-        $middleware = new RetryMiddleware($handler, $retrySettings);
+        $middleware = new RetryMiddleware($handler, $retrySettings, delayHandler: $this->noOpDelay);
 
         $this->expectException(ApiException::class);
         // test if the custom retry func threw an exception after $maxAttempts
@@ -318,7 +325,7 @@ class RetryMiddlewareTest extends TestCase
                 throw new ApiException('Exception msg', 0, '');
             });
         };
-        $middleware = new RetryMiddleware($handler, $retrySettings);
+        $middleware = new RetryMiddleware($handler, $retrySettings, delayHandler: $this->noOpDelay);
 
         $this->expectException(ApiException::class);
         $middleware($call->reveal(), [])->wait();
@@ -345,7 +352,7 @@ class RetryMiddlewareTest extends TestCase
                 throw new ApiException('Call count: ' . $callCount, 0, '');
             });
         };
-        $middleware = new RetryMiddleware($handler, $retrySettings);
+        $middleware = new RetryMiddleware($handler, $retrySettings, delayHandler: $this->noOpDelay);
 
         try {
             $middleware($call->reveal(), [])->wait();
@@ -376,7 +383,7 @@ class RetryMiddlewareTest extends TestCase
                 throw new ApiException('Call Count: ' . $callCount, 0, ApiStatus::CANCELLED);
             });
         };
-        $middleware = new RetryMiddleware($handler, $retrySettings);
+        $middleware = new RetryMiddleware($handler, $retrySettings, delayHandler: $this->noOpDelay);
 
         $this->expectException(ApiException::class);
         // test if the custom retry func threw an exception after $maxRetries + 1 calls
@@ -416,7 +423,7 @@ class RetryMiddlewareTest extends TestCase
             return $promise;
         };
 
-        $middleware = new RetryMiddleware($handler, $retrySettings);
+        $middleware = new RetryMiddleware($handler, $retrySettings, delayHandler: $this->noOpDelay);
         $middleware($call, [])->wait();
 
         $this->assertEquals($callCount, $reportedRetries);
@@ -447,7 +454,7 @@ class RetryMiddlewareTest extends TestCase
                 throw new ApiException('Call Count: ' . $callCount, 0, ApiStatus::CANCELLED);
             });
         };
-        $middleware = new RetryMiddleware($handler, $retrySettings);
+        $middleware = new RetryMiddleware($handler, $retrySettings, delayHandler: $this->noOpDelay);
 
         $this->expectException(ApiException::class);
         // Even though our custom retry function wants 4 retries
@@ -483,7 +490,7 @@ class RetryMiddlewareTest extends TestCase
                 throw new ApiException('Call Count: ' . $callCount, 0, ApiStatus::CANCELLED);
             });
         };
-        $middleware = new RetryMiddleware($handler, $retrySettings);
+        $middleware = new RetryMiddleware($handler, $retrySettings, delayHandler: $this->noOpDelay);
 
         $this->expectException(ApiException::class);
         // Even though our maxRetries hasn't reached
@@ -516,7 +523,8 @@ class RetryMiddlewareTest extends TestCase
                 throw new ApiException('Call Count: ' . $callCount, 0, ApiStatus::CANCELLED);
             });
         };
-        $middleware = new RetryMiddleware($handler, $retrySettings);
+
+        $middleware = new RetryMiddleware($handler, $retrySettings, delayHandler: $this->noOpDelay);
 
         $this->expectException(ApiException::class);
         // Since the maxRetries is set to 0(unlimited),
@@ -525,5 +533,36 @@ class RetryMiddlewareTest extends TestCase
         $this->expectExceptionMessage('Call Count: ' . ($customRetryMaxCalls));
 
         $middleware($call->reveal(), [])->wait();
+    }
+
+    public function testDelayCount()
+    {
+        $call = $this->prophesize(Call::class);
+        $callCount = 0;
+        $delays = [];
+        $retrySettings = RetrySettings::constructDefault()
+            ->with([
+                'retriesEnabled' => true,
+                'retryableCodes' => [ApiStatus::CANCELLED],
+            ]);
+        $handler = function () use (&$callCount) {
+            return $promise = new Promise(function () use (&$callCount, &$promise) {
+                if (++$callCount < 4) {
+                    throw new ApiException('Call Count: ' . $callCount, 0, ApiStatus::CANCELLED);
+                }
+                // The 4th call succeeds
+                $promise->resolve('Ok!');
+            });
+        };
+        $delayHandler = function (int $delayMs) use (&$delays) {
+            $delays[] = $delayMs;
+        };
+
+        $middleware = new RetryMiddleware($handler, $retrySettings, delayHandler: $delayHandler);
+        $middleware($call->reveal(), [])->wait();
+
+        // 4 calls results in 3 retries, therefore 3 delays
+        $this->assertCount(3, $delays);
+        $this->assertEquals([100, 130, 169], $delays);
     }
 }
