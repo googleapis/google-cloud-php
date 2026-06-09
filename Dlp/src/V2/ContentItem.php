@@ -41,6 +41,8 @@ class ContentItem extends \Google\Protobuf\Internal\Message
      *           Represents a conversation (either complete or a slice).
      *           It is assumed that all included messages are contiguous and ordered in
      *           chronological order.
+     *     @type \Google\Cloud\Dlp\V2\BatchContentItem $batch_content_item
+     *           Represents a batch of items to inspect.
      *     @type \Google\Cloud\Dlp\V2\ContentMetadata $content_metadata
      *           User provided metadata for the content.
      * }
@@ -178,6 +180,37 @@ class ContentItem extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\Conversation::class);
         $this->writeOneof(7, $var);
+
+        return $this;
+    }
+
+    /**
+     * Represents a batch of items to inspect.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.BatchContentItem batch_content_item = 8;</code>
+     * @return \Google\Cloud\Dlp\V2\BatchContentItem|null
+     */
+    public function getBatchContentItem()
+    {
+        return $this->readOneof(8);
+    }
+
+    public function hasBatchContentItem()
+    {
+        return $this->hasOneof(8);
+    }
+
+    /**
+     * Represents a batch of items to inspect.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.BatchContentItem batch_content_item = 8;</code>
+     * @param \Google\Cloud\Dlp\V2\BatchContentItem $var
+     * @return $this
+     */
+    public function setBatchContentItem($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\BatchContentItem::class);
+        $this->writeOneof(8, $var);
 
         return $this;
     }
