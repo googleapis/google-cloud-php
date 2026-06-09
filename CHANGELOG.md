@@ -1,5 +1,81 @@
 # Changelog
 
+## 0.332.0
+
+<details><summary>googleads/data-manager 0.5.0</summary>
+
+
+
+### Features
+
+* [AdsDataManager] add encrypted_user_id.proto and the EncryptedUserId resource ([#9192](https://github.com/googleapis/google-cloud-php/issues/9192)) ([bab5404](https://github.com/googleapis/google-cloud-php/commit/bab540478dba8b0ca1da01f315d6f6f36a336e7f))
+
+</details>
+
+<details><summary>google/cloud-bigtable 2.25.0</summary>
+
+
+
+### Features
+
+* [Bigtable] add support for filtering SampleRowKeys to a specific row_range ([#9232](https://github.com/googleapis/google-cloud-php/issues/9232)) ([f50f8b1](https://github.com/googleapis/google-cloud-php/commit/f50f8b171fc8a55a1b2fbecd20468112feb72840))
+
+</details>
+
+<details><summary>google/cloud-container 2.10.0</summary>
+
+
+
+### Features
+
+* [Container] add custom node image configuration ([#9225](https://github.com/googleapis/google-cloud-php/issues/9225)) ([38ec694](https://github.com/googleapis/google-cloud-php/commit/38ec694c732294a83f65487138f1528207a1c93d))
+
+</details>
+
+<details><summary>google/cloud-dataproc 2.12.0</summary>
+
+
+
+### Features
+
+* [Dataproc] Add vcore_seconds and memory_mb_seconds to YarnApplication in Dataproc v1 ([#9227](https://github.com/googleapis/google-cloud-php/issues/9227)) ([7019386](https://github.com/googleapis/google-cloud-php/commit/7019386063dcba2ac62dd503d9851c7cb8409bb5))
+
+</details>
+
+<details><summary>google/cloud-dlp 2.13.0</summary>
+
+
+
+### Features
+
+* [Dlp] Supporting SDP Batch Content ([#9234](https://github.com/googleapis/google-cloud-php/issues/9234)) ([d5c061e](https://github.com/googleapis/google-cloud-php/commit/d5c061e2deb56bc4910cef9b96609d92e119a7b3))
+
+</details>
+
+<details><summary>google/cloud-geminidataanalytics 0.11.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* [GeminiDataAnalytics] Changed proto3 optional flag of an existing field `value` in message `.google.cloud.geminidataanalytics.v1beta.LookerQuery` ([#9233](https://github.com/googleapis/google-cloud-php/issues/9233))
+
+### Bug Fixes
+
+* [GeminiDataAnalytics] Changed proto3 optional flag of an existing field `value` in message `.google.cloud.geminidataanalytics.v1beta.LookerQuery` ([#9233](https://github.com/googleapis/google-cloud-php/issues/9233)) ([6452082](https://github.com/googleapis/google-cloud-php/commit/64520820718d7ad598ba68f9ed1b292450883b83))
+
+</details>
+
+<details><summary>google/cloud-spanner 2.9.0</summary>
+
+
+
+### Features
+
+* **Spanner:** Add the built in metrics feature ([#9055](https://github.com/googleapis/google-cloud-php/issues/9055)) ([6ae0728](https://github.com/googleapis/google-cloud-php/commit/6ae0728d502debda570369059f1f0758660b7267))
+
+</details>
+
 ## 0.331.0
 
 <details><summary>google/cloud-bigquery-migration 1.3.0</summary>
