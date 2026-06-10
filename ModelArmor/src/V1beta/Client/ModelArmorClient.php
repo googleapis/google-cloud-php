@@ -27,6 +27,7 @@
 namespace Google\Cloud\ModelArmor\V1beta\Client;
 
 use Google\ApiCore\ApiException;
+use Google\ApiCore\BidiStream;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\Options\ClientOptions;
@@ -559,6 +560,52 @@ final class ModelArmorClient
     }
 
     /**
+     * Streaming version of Sanitizes Model Response.
+     *
+     * @example samples/V1beta/ModelArmorClient/stream_sanitize_model_response.php
+     *
+     * @param array $callOptions {
+     *     Optional.
+     *
+     *     @type int $timeoutMillis
+     *           Timeout to use for this call.
+     * }
+     *
+     * @return BidiStream
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function streamSanitizeModelResponse(array $callOptions = []): BidiStream
+    {
+        return $this->startApiCall('StreamSanitizeModelResponse', null, $callOptions);
+    }
+
+    /**
+     * Streaming version of Sanitize User Prompt.
+     *
+     * @example samples/V1beta/ModelArmorClient/stream_sanitize_user_prompt.php
+     *
+     * @param array $callOptions {
+     *     Optional.
+     *
+     *     @type int $timeoutMillis
+     *           Timeout to use for this call.
+     * }
+     *
+     * @return BidiStream
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function streamSanitizeUserPrompt(array $callOptions = []): BidiStream
+    {
+        return $this->startApiCall('StreamSanitizeUserPrompt', null, $callOptions);
+    }
+
+    /**
      * Updates the parameters of a single floor setting of a project
      *
      * The async variant is {@see ModelArmorClient::updateFloorSettingAsync()} .
@@ -644,6 +691,21 @@ final class ModelArmorClient
 
     /**
      * Lists information about the supported locations for this service.
+
+    This method lists locations based on the resource scope provided in
+    the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+    **Global locations**: If `name` is empty, the method lists the
+    public locations available to all projects. * **Project-specific
+    locations**: If `name` follows the format
+    `projects/{project}`, the method lists locations visible to that
+    specific project. This includes public, private, or other
+    project-specific locations enabled for the project.
+
+    For gRPC and client library implementations, the resource name is
+    passed as the `name` field. For direct service calls, the resource
+    name is
+    incorporated into the request path based on the specific service
+    implementation and version.
      *
      * The async variant is {@see ModelArmorClient::listLocationsAsync()} .
      *

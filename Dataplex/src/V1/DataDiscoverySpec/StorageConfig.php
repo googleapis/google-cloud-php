@@ -48,6 +48,12 @@ class StorageConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataDiscoverySpec.StorageConfig.JsonOptions json_options = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $json_options = null;
+    /**
+     * Optional. Specifies configuration for unstructured data discovery.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataDiscoverySpec.StorageConfig.UnstructuredDataOptions unstructured_data_options = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $unstructured_data_options = null;
 
     /**
      * Constructor.
@@ -72,6 +78,8 @@ class StorageConfig extends \Google\Protobuf\Internal\Message
      *           Optional. Configuration for CSV data.
      *     @type \Google\Cloud\Dataplex\V1\DataDiscoverySpec\StorageConfig\JsonOptions $json_options
      *           Optional. Configuration for JSON data.
+     *     @type \Google\Cloud\Dataplex\V1\DataDiscoverySpec\StorageConfig\UnstructuredDataOptions $unstructured_data_options
+     *           Optional. Specifies configuration for unstructured data discovery.
      * }
      */
     public function __construct($data = NULL) {
@@ -217,6 +225,42 @@ class StorageConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dataplex\V1\DataDiscoverySpec\StorageConfig\JsonOptions::class);
         $this->json_options = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies configuration for unstructured data discovery.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataDiscoverySpec.StorageConfig.UnstructuredDataOptions unstructured_data_options = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dataplex\V1\DataDiscoverySpec\StorageConfig\UnstructuredDataOptions|null
+     */
+    public function getUnstructuredDataOptions()
+    {
+        return $this->unstructured_data_options;
+    }
+
+    public function hasUnstructuredDataOptions()
+    {
+        return isset($this->unstructured_data_options);
+    }
+
+    public function clearUnstructuredDataOptions()
+    {
+        unset($this->unstructured_data_options);
+    }
+
+    /**
+     * Optional. Specifies configuration for unstructured data discovery.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataDiscoverySpec.StorageConfig.UnstructuredDataOptions unstructured_data_options = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dataplex\V1\DataDiscoverySpec\StorageConfig\UnstructuredDataOptions $var
+     * @return $this
+     */
+    public function setUnstructuredDataOptions($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataplex\V1\DataDiscoverySpec\StorageConfig\UnstructuredDataOptions::class);
+        $this->unstructured_data_options = $var;
 
         return $this;
     }

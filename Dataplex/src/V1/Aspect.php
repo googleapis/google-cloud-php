@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * An aspect is a single piece of metadata describing an entry.
+ * Represents a single piece of metadata describing an entry or entry link.
  *
  * Generated from protobuf message <code>google.cloud.dataplex.v1.Aspect</code>
  */

@@ -33,7 +33,7 @@ use Google\Cloud\Dataproc\V1\SessionTemplate;
  *
  * @param string $formattedParent     The parent resource where this session template will be created. Please see
  *                                    {@see SessionTemplateControllerClient::locationName()} for help formatting this field.
- * @param string $sessionTemplateName The resource name of the session template.
+ * @param string $sessionTemplateName Identifier. The resource name of the session template.
  */
 function create_session_template_sample(
     string $formattedParent,

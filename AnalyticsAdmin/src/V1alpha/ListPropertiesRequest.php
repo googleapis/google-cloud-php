@@ -36,21 +36,21 @@ class ListPropertiesRequest extends \Google\Protobuf\Internal\Message
      */
     protected $filter = '';
     /**
-     * The maximum number of resources to return. The service may return
+     * Optional. The maximum number of resources to return. The service may return
      * fewer than this value, even if there are additional pages.
      * If unspecified, at most 50 resources will be returned.
      * The maximum value is 200; (higher values will be coerced to the maximum)
      *
-     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $page_size = 0;
     /**
-     * A page token, received from a previous `ListProperties` call.
+     * Optional. A page token, received from a previous `ListProperties` call.
      * Provide this to retrieve the subsequent page.
      * When paginating, all other parameters provided to `ListProperties` must
      * match the call that provided the page token.
      *
-     * Generated from protobuf field <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $page_token = '';
     /**
@@ -85,12 +85,12 @@ class ListPropertiesRequest extends \Google\Protobuf\Internal\Message
      *           | firebase_project:123        | The firebase project with number: 123.    |
      *           ```
      *     @type int $page_size
-     *           The maximum number of resources to return. The service may return
+     *           Optional. The maximum number of resources to return. The service may return
      *           fewer than this value, even if there are additional pages.
      *           If unspecified, at most 50 resources will be returned.
      *           The maximum value is 200; (higher values will be coerced to the maximum)
      *     @type string $page_token
-     *           A page token, received from a previous `ListProperties` call.
+     *           Optional. A page token, received from a previous `ListProperties` call.
      *           Provide this to retrieve the subsequent page.
      *           When paginating, all other parameters provided to `ListProperties` must
      *           match the call that provided the page token.
@@ -160,12 +160,12 @@ class ListPropertiesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of resources to return. The service may return
+     * Optional. The maximum number of resources to return. The service may return
      * fewer than this value, even if there are additional pages.
      * If unspecified, at most 50 resources will be returned.
      * The maximum value is 200; (higher values will be coerced to the maximum)
      *
-     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getPageSize()
@@ -174,12 +174,12 @@ class ListPropertiesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of resources to return. The service may return
+     * Optional. The maximum number of resources to return. The service may return
      * fewer than this value, even if there are additional pages.
      * If unspecified, at most 50 resources will be returned.
      * The maximum value is 200; (higher values will be coerced to the maximum)
      *
-     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -192,12 +192,12 @@ class ListPropertiesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A page token, received from a previous `ListProperties` call.
+     * Optional. A page token, received from a previous `ListProperties` call.
      * Provide this to retrieve the subsequent page.
      * When paginating, all other parameters provided to `ListProperties` must
      * match the call that provided the page token.
      *
-     * Generated from protobuf field <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getPageToken()
@@ -206,12 +206,12 @@ class ListPropertiesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A page token, received from a previous `ListProperties` call.
+     * Optional. A page token, received from a previous `ListProperties` call.
      * Provide this to retrieve the subsequent page.
      * When paginating, all other parameters provided to `ListProperties` must
      * match the call that provided the page token.
      *
-     * Generated from protobuf field <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

@@ -81,6 +81,20 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
+     * The desired name of the image name to use for this node.
+     * This is used to create clusters using a custom image.
+     *
+     * Generated from protobuf field <code>string image = 10;</code>
+     */
+    protected $image = '';
+    /**
+     * The project containing the desired image to use for this node pool.
+     * This is used to create clusters using a custom image.
+     *
+     * Generated from protobuf field <code>string image_project = 11;</code>
+     */
+    protected $image_project = '';
+    /**
      * The desired list of Google Compute Engine
      * [zones](https://cloud.google.com/compute/docs/zones#available)
      * in which the node pool's nodes should be located. Changing the locations
@@ -303,6 +317,12 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Duration consolidation_delay = 49;</code>
      */
     protected $consolidation_delay = null;
+    /**
+     * The taint configuration for the node pool.
+     *
+     * Generated from protobuf field <code>.google.container.v1.TaintConfig taint_config = 51;</code>
+     */
+    protected $taint_config = null;
 
     /**
      * Constructor.
@@ -343,6 +363,12 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
      *           The name (project, location, cluster, node pool) of the node pool to
      *           update. Specified in the format
      *           `projects/{@*}locations/{@*}clusters/{@*}nodePools/*`.
+     *     @type string $image
+     *           The desired name of the image name to use for this node.
+     *           This is used to create clusters using a custom image.
+     *     @type string $image_project
+     *           The project containing the desired image to use for this node pool.
+     *           This is used to create clusters using a custom image.
      *     @type string[] $locations
      *           The desired list of Google Compute Engine
      *           [zones](https://cloud.google.com/compute/docs/zones#available)
@@ -446,6 +472,8 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
      *           Consolidation delay defines duration after which the Cluster Autoscaler can
      *           scale down underutilized nodes. If not set, nodes are scaled down by
      *           default behavior, i.e. according to the chosen autoscaling profile.
+     *     @type \Google\Cloud\Container\V1\TaintConfig $taint_config
+     *           The taint configuration for the node pool.
      * }
      */
     public function __construct($data = NULL) {
@@ -693,6 +721,62 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * The desired name of the image name to use for this node.
+     * This is used to create clusters using a custom image.
+     *
+     * Generated from protobuf field <code>string image = 10;</code>
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * The desired name of the image name to use for this node.
+     * This is used to create clusters using a custom image.
+     *
+     * Generated from protobuf field <code>string image = 10;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setImage($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->image = $var;
+
+        return $this;
+    }
+
+    /**
+     * The project containing the desired image to use for this node pool.
+     * This is used to create clusters using a custom image.
+     *
+     * Generated from protobuf field <code>string image_project = 11;</code>
+     * @return string
+     */
+    public function getImageProject()
+    {
+        return $this->image_project;
+    }
+
+    /**
+     * The project containing the desired image to use for this node pool.
+     * This is used to create clusters using a custom image.
+     *
+     * Generated from protobuf field <code>string image_project = 11;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setImageProject($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->image_project = $var;
 
         return $this;
     }
@@ -1789,6 +1873,42 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
         $this->consolidation_delay = $var;
+
+        return $this;
+    }
+
+    /**
+     * The taint configuration for the node pool.
+     *
+     * Generated from protobuf field <code>.google.container.v1.TaintConfig taint_config = 51;</code>
+     * @return \Google\Cloud\Container\V1\TaintConfig|null
+     */
+    public function getTaintConfig()
+    {
+        return $this->taint_config;
+    }
+
+    public function hasTaintConfig()
+    {
+        return isset($this->taint_config);
+    }
+
+    public function clearTaintConfig()
+    {
+        unset($this->taint_config);
+    }
+
+    /**
+     * The taint configuration for the node pool.
+     *
+     * Generated from protobuf field <code>.google.container.v1.TaintConfig taint_config = 51;</code>
+     * @param \Google\Cloud\Container\V1\TaintConfig $var
+     * @return $this
+     */
+    public function setTaintConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\TaintConfig::class);
+        $this->taint_config = $var;
 
         return $this;
     }

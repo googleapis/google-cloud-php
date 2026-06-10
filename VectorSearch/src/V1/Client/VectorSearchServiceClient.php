@@ -53,6 +53,7 @@ use Google\Cloud\VectorSearch\V1\Index;
 use Google\Cloud\VectorSearch\V1\ListCollectionsRequest;
 use Google\Cloud\VectorSearch\V1\ListIndexesRequest;
 use Google\Cloud\VectorSearch\V1\UpdateCollectionRequest;
+use Google\Cloud\VectorSearch\V1\UpdateIndexRequest;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
@@ -84,6 +85,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<PagedListResponse> listCollectionsAsync(ListCollectionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listIndexesAsync(ListIndexesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateCollectionAsync(UpdateCollectionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateIndexAsync(UpdateIndexRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
@@ -203,6 +205,27 @@ final class VectorSearchServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a crypto_key
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $keyRing
+     * @param string $cryptoKey
+     *
+     * @return string The formatted crypto_key resource.
+     */
+    public static function cryptoKeyName(string $project, string $location, string $keyRing, string $cryptoKey): string
+    {
+        return self::getPathTemplate('cryptoKey')->render([
+            'project' => $project,
+            'location' => $location,
+            'key_ring' => $keyRing,
+            'crypto_key' => $cryptoKey,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a index
      * resource.
      *
@@ -245,6 +268,7 @@ final class VectorSearchServiceClient
      * The following name formats are supported:
      * Template: Pattern
      * - collection: projects/{project}/locations/{location}/collections/{collection}
+     * - cryptoKey: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}
      * - index: projects/{project}/locations/{location}/collections/{collection}/indexes/{index}
      * - location: projects/{project}/locations/{location}
      *
@@ -641,6 +665,32 @@ final class VectorSearchServiceClient
     }
 
     /**
+     * Updates the parameters of a single Index.
+     *
+     * The async variant is {@see VectorSearchServiceClient::updateIndexAsync()} .
+     *
+     * @example samples/V1/VectorSearchServiceClient/update_index.php
+     *
+     * @param UpdateIndexRequest $request     A request to house fields associated with the call.
+     * @param array              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<Index>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateIndex(UpdateIndexRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('UpdateIndex', $request, $callOptions)->wait();
+    }
+
+    /**
      * Gets information about a location.
      *
      * The async variant is {@see VectorSearchServiceClient::getLocationAsync()} .
@@ -668,13 +718,22 @@ final class VectorSearchServiceClient
 
     /**
      * Lists information about the supported locations for this service.
-    This method can be called in two ways:
 
-    *   **List all public locations:** Use the path `GET /v1/locations`.
-    *   **List project-visible locations:** Use the path
-    `GET /v1/projects/{project_id}/locations`. This may include public
-    locations as well as private or other locations specifically visible
-    to the project.
+    This method lists locations based on the resource scope provided in
+    the [ListLocationsRequest.name] field:
+
+    * **Global locations**: If `name` is empty, the method lists the
+    public locations available to all projects. * **Project-specific
+    locations**: If `name` follows the format
+    `projects/{project}`, the method lists locations visible to that
+    specific project. This includes public, private, or other
+    project-specific locations enabled for the project.
+
+    For gRPC and client library implementations, the resource name is
+    passed as the `name` field. For direct service calls, the resource
+    name is
+    incorporated into the request path based on the specific service
+    implementation and version.
      *
      * The async variant is {@see VectorSearchServiceClient::listLocationsAsync()} .
      *

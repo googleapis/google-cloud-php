@@ -41,12 +41,20 @@ class TextType
      * Generated from protobuf enum <code>PROGRESS = 3;</code>
      */
     const PROGRESS = 3;
+    /**
+     * The text is a list of follow-up questions suggested.
+     * Each item in parts is a follow-up question.
+     *
+     * Generated from protobuf enum <code>FOLLOWUP_QUESTIONS = 4;</code>
+     */
+    const FOLLOWUP_QUESTIONS = 4;
 
     private static $valueToName = [
         self::TEXT_TYPE_UNSPECIFIED => 'TEXT_TYPE_UNSPECIFIED',
         self::FINAL_RESPONSE => 'FINAL_RESPONSE',
         self::THOUGHT => 'THOUGHT',
         self::PROGRESS => 'PROGRESS',
+        self::FOLLOWUP_QUESTIONS => 'FOLLOWUP_QUESTIONS',
     ];
 
     public static function name($value)

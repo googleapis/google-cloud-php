@@ -16,7 +16,7 @@ use Google\Protobuf\RepeatedField;
 class QueuedProvisioning extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Denotes that this nodepool is QRM specific, meaning nodes can be only
+     * Denotes that this node pool is QRM specific, meaning nodes can be only
      * obtained through queuing via the Cluster Autoscaler ProvisioningRequest
      * API.
      *
@@ -31,7 +31,7 @@ class QueuedProvisioning extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $enabled
-     *           Denotes that this nodepool is QRM specific, meaning nodes can be only
+     *           Denotes that this node pool is QRM specific, meaning nodes can be only
      *           obtained through queuing via the Cluster Autoscaler ProvisioningRequest
      *           API.
      * }
@@ -42,7 +42,7 @@ class QueuedProvisioning extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Denotes that this nodepool is QRM specific, meaning nodes can be only
+     * Denotes that this node pool is QRM specific, meaning nodes can be only
      * obtained through queuing via the Cluster Autoscaler ProvisioningRequest
      * API.
      *
@@ -55,7 +55,7 @@ class QueuedProvisioning extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Denotes that this nodepool is QRM specific, meaning nodes can be only
+     * Denotes that this node pool is QRM specific, meaning nodes can be only
      * obtained through queuing via the Cluster Autoscaler ProvisioningRequest
      * API.
      *

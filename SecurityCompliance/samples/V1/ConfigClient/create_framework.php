@@ -33,14 +33,20 @@ use Google\Cloud\CloudSecurityCompliance\V1\Framework;
  * You can't create built-in frameworks because those are managed by
  * Google.
  *
- * @param string $formattedParent The parent resource name, in the format
- *                                `organizations/{organization}/locations/{location}`.
+ * @param string $formattedParent The parent resource name, in one of the following formats:
+ *                                - `organizations/{organization}/locations/{location}`
+ *                                - `projects/{project}/locations/{location}`.
+ *
  *                                The only supported location is `global`. Please see
  *                                {@see ConfigClient::organizationLocationName()} for help formatting this field.
  * @param string $frameworkId     The identifier (ID) of the framework. The ID is not the full name
  *                                of the framework; it's the last part of the full name of the framework.
- * @param string $frameworkName   Identifier. The name of the framework, in the format
- *                                `organizations/{organization}/locations/{location}/frameworks/{framework_id}`.
+ * @param string $frameworkName   Identifier. The name of the framework, in one of the following
+ *                                formats:
+ *                                `organizations/{organization}/locations/{location}/frameworks/{framework}`
+ *                                or
+ *                                `projects/{project}/locations/{location}/frameworks/{framework}`.
+ *
  *                                The only supported location is `global`.
  */
 function create_framework_sample(

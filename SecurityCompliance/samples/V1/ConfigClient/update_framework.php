@@ -42,8 +42,12 @@ use Google\Cloud\CloudSecurityCompliance\V1\UpdateFrameworkRequest;
  * You can only update frameworks with the `CUSTOM` type.
  * A successful update creates a new version of the framework.
  *
- * @param string $frameworkName Identifier. The name of the framework, in the format
- *                              `organizations/{organization}/locations/{location}/frameworks/{framework_id}`.
+ * @param string $frameworkName Identifier. The name of the framework, in one of the following
+ *                              formats:
+ *                              `organizations/{organization}/locations/{location}/frameworks/{framework}`
+ *                              or
+ *                              `projects/{project}/locations/{location}/frameworks/{framework}`.
+ *
  *                              The only supported location is `global`.
  */
 function update_framework_sample(string $frameworkName): void

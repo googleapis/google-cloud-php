@@ -120,8 +120,6 @@ class SessionControllerClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $session = new Session();
-        $sessionName = 'sessionName-22661567';
-        $session->setName($sessionName);
         $sessionId = 'sessionId1661853540';
         $request = (new CreateSessionRequest())
             ->setParent($formattedParent)
@@ -199,8 +197,6 @@ class SessionControllerClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $session = new Session();
-        $sessionName = 'sessionName-22661567';
-        $session->setName($sessionName);
         $sessionId = 'sessionId1661853540';
         $request = (new CreateSessionRequest())
             ->setParent($formattedParent)
@@ -891,8 +887,6 @@ class SessionControllerClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $session = new Session();
-        $sessionName = 'sessionName-22661567';
-        $session->setName($sessionName);
         $sessionId = 'sessionId1661853540';
         $request = (new CreateSessionRequest())
             ->setParent($formattedParent)

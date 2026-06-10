@@ -86,6 +86,18 @@ class UnitType
      * Generated from protobuf enum <code>IN_TARGET_IMPRESSIONS = 7;</code>
      */
     const IN_TARGET_IMPRESSIONS = 7;
+    /**
+     * The number of completed views reported by creatives associated with the
+     * line item. A completed view is defined as having watched the entirety of
+     * the in-stream video ad and is only supported for standard reservation
+     * video line items. The
+     * [LineItem.line_item_type][google.ads.admanager.v1.LineItem.line_item_type]
+     * must be
+     * [LineItemTypeEnum.LineItemType.STANDARD][google.ads.admanager.v1.LineItemTypeEnum.LineItemType.STANDARD].
+     *
+     * Generated from protobuf enum <code>COMPLETED_VIEWS = 8;</code>
+     */
+    const COMPLETED_VIEWS = 8;
 
     private static $valueToName = [
         self::UNIT_TYPE_UNSPECIFIED => 'UNIT_TYPE_UNSPECIFIED',
@@ -96,6 +108,7 @@ class UnitType
         self::TOTAL_CPA_CONVERSIONS => 'TOTAL_CPA_CONVERSIONS',
         self::VIEWABLE_IMPRESSIONS => 'VIEWABLE_IMPRESSIONS',
         self::IN_TARGET_IMPRESSIONS => 'IN_TARGET_IMPRESSIONS',
+        self::COMPLETED_VIEWS => 'COMPLETED_VIEWS',
     ];
 
     public static function name($value)

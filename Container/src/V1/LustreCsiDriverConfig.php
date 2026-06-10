@@ -38,6 +38,16 @@ class LustreCsiDriverConfig extends \Google\Protobuf\Internal\Message
      * @deprecated
      */
     protected $enable_legacy_lustre_port = false;
+    /**
+     * When set to true, this disables multi-NIC support for the Lustre CSI
+     * driver.
+     * By default, GKE enables multi-NIC support, which allows the Lustre
+     * CSI driver to automatically detect and configure all suitable network
+     * interfaces on a node to maximize I/O performance for demanding workloads.
+     *
+     * Generated from protobuf field <code>bool disable_multi_nic = 4;</code>
+     */
+    protected $disable_multi_nic = false;
 
     /**
      * Constructor.
@@ -59,6 +69,12 @@ class LustreCsiDriverConfig extends \Google\Protobuf\Internal\Message
      *           Deprecated: This flag is no longer required as of GKE node version
      *           1.33.2-gke.4655000, unless you are connecting to a Lustre instance
      *           that has the `gke-support-enabled` flag.
+     *     @type bool $disable_multi_nic
+     *           When set to true, this disables multi-NIC support for the Lustre CSI
+     *           driver.
+     *           By default, GKE enables multi-NIC support, which allows the Lustre
+     *           CSI driver to automatically detect and configure all suitable network
+     *           interfaces on a node to maximize I/O performance for demanding workloads.
      * }
      */
     public function __construct($data = NULL) {
@@ -140,6 +156,40 @@ class LustreCsiDriverConfig extends \Google\Protobuf\Internal\Message
         @trigger_error('enable_legacy_lustre_port is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkBool($var);
         $this->enable_legacy_lustre_port = $var;
+
+        return $this;
+    }
+
+    /**
+     * When set to true, this disables multi-NIC support for the Lustre CSI
+     * driver.
+     * By default, GKE enables multi-NIC support, which allows the Lustre
+     * CSI driver to automatically detect and configure all suitable network
+     * interfaces on a node to maximize I/O performance for demanding workloads.
+     *
+     * Generated from protobuf field <code>bool disable_multi_nic = 4;</code>
+     * @return bool
+     */
+    public function getDisableMultiNic()
+    {
+        return $this->disable_multi_nic;
+    }
+
+    /**
+     * When set to true, this disables multi-NIC support for the Lustre CSI
+     * driver.
+     * By default, GKE enables multi-NIC support, which allows the Lustre
+     * CSI driver to automatically detect and configure all suitable network
+     * interfaces on a node to maximize I/O performance for demanding workloads.
+     *
+     * Generated from protobuf field <code>bool disable_multi_nic = 4;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDisableMultiNic($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->disable_multi_nic = $var;
 
         return $this;
     }

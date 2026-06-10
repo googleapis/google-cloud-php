@@ -42,8 +42,12 @@ use Google\Cloud\CloudSecurityCompliance\V1\UpdateCloudControlRequest;
  * You can only update cloud controls with the `CUSTOM` type.
  * A successful update creates a new version of the cloud control.
  *
- * @param string $cloudControlName Identifier. The name of the cloud control, in the format
- *                                 `organizations/{organization}/locations/{location}/cloudControls/{cloud_control_id}`.
+ * @param string $cloudControlName Identifier. The name of the cloud control, in either of the
+ *                                 formats:
+ *                                 `organizations/{organization}/locations/{location}/cloudControls/{cloud_control}`
+ *                                 or
+ *                                 `projects/{project}/locations/{location}/cloudControls/{cloud_control}`.
+ *
  *                                 The only supported location is `global`.
  */
 function update_cloud_control_sample(string $cloudControlName): void

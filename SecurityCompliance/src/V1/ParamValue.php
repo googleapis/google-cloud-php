@@ -24,15 +24,15 @@ class ParamValue extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $string_value
-     *           A string value.
+     *           Optional. A string value.
      *     @type bool $bool_value
-     *           A boolean value.
+     *           Optional. A boolean value.
      *     @type \Google\Cloud\CloudSecurityCompliance\V1\StringList $string_list_value
-     *           A repeated string.
+     *           Optional. A repeated string.
      *     @type float $number_value
-     *           A double value.
+     *           Optional. A double value.
      *     @type \Google\Cloud\CloudSecurityCompliance\V1\Parameter $oneof_value
-     *           Sub-parameter values.
+     *           Optional. Sub-parameter values.
      * }
      */
     public function __construct($data = NULL) {
@@ -41,9 +41,9 @@ class ParamValue extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A string value.
+     * Optional. A string value.
      *
-     * Generated from protobuf field <code>string string_value = 3;</code>
+     * Generated from protobuf field <code>string string_value = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getStringValue()
@@ -57,9 +57,9 @@ class ParamValue extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A string value.
+     * Optional. A string value.
      *
-     * Generated from protobuf field <code>string string_value = 3;</code>
+     * Generated from protobuf field <code>string string_value = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -72,9 +72,9 @@ class ParamValue extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A boolean value.
+     * Optional. A boolean value.
      *
-     * Generated from protobuf field <code>bool bool_value = 4;</code>
+     * Generated from protobuf field <code>bool bool_value = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getBoolValue()
@@ -88,9 +88,9 @@ class ParamValue extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A boolean value.
+     * Optional. A boolean value.
      *
-     * Generated from protobuf field <code>bool bool_value = 4;</code>
+     * Generated from protobuf field <code>bool bool_value = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */
@@ -103,9 +103,9 @@ class ParamValue extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A repeated string.
+     * Optional. A repeated string.
      *
-     * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.StringList string_list_value = 5;</code>
+     * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.StringList string_list_value = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\CloudSecurityCompliance\V1\StringList|null
      */
     public function getStringListValue()
@@ -119,9 +119,9 @@ class ParamValue extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A repeated string.
+     * Optional. A repeated string.
      *
-     * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.StringList string_list_value = 5;</code>
+     * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.StringList string_list_value = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\CloudSecurityCompliance\V1\StringList $var
      * @return $this
      */
@@ -134,9 +134,9 @@ class ParamValue extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A double value.
+     * Optional. A double value.
      *
-     * Generated from protobuf field <code>double number_value = 6;</code>
+     * Generated from protobuf field <code>double number_value = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return float
      */
     public function getNumberValue()
@@ -150,9 +150,9 @@ class ParamValue extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A double value.
+     * Optional. A double value.
      *
-     * Generated from protobuf field <code>double number_value = 6;</code>
+     * Generated from protobuf field <code>double number_value = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param float $var
      * @return $this
      */
@@ -165,9 +165,9 @@ class ParamValue extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Sub-parameter values.
+     * Optional. Sub-parameter values.
      *
-     * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.Parameter oneof_value = 7;</code>
+     * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.Parameter oneof_value = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\CloudSecurityCompliance\V1\Parameter|null
      */
     public function getOneofValue()
@@ -181,9 +181,9 @@ class ParamValue extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Sub-parameter values.
+     * Optional. Sub-parameter values.
      *
-     * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.Parameter oneof_value = 7;</code>
+     * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.Parameter oneof_value = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\CloudSecurityCompliance\V1\Parameter $var
      * @return $this
      */

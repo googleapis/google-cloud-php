@@ -42,20 +42,26 @@ use Google\Rpc\Status;
  * those resources using the framework's cloud controls.
  *
  * @param string $formattedParent                                                           The parent resource of the framework deployment in the format
- *                                                                                          `organizations/{organization}/locations/{location}`.
+ *                                                                                          `organizations/{organization}/locations/{location}`
+ *                                                                                          or
+ *                                                                                          `projects/{project}/locations/{location}`.
  *                                                                                          Only the global location is supported. Please see
  *                                                                                          {@see DeploymentClient::organizationLocationName()} for help formatting this field.
- * @param string $frameworkDeploymentFrameworkFramework                                     The major version of the framework. If not specified, the version
- *                                                                                          corresponds to the latest version of the framework.
- * @param string $frameworkDeploymentCloudControlMetadataCloudControlDetailsName            The name of the cloud control, in the format
- *                                                                                          `organizations/{organization}/locations/{location}/cloudControls/{cloud-control}`.
+ * @param string $formattedFrameworkDeploymentFrameworkFramework                            The major version of the framework. If not specified, the version
+ *                                                                                          corresponds to the latest version of the framework. Please see
+ *                                                                                          {@see DeploymentClient::frameworkName()} for help formatting this field.
+ * @param string $frameworkDeploymentCloudControlMetadataCloudControlDetailsName            The name of the cloud control, in one of the following formats:
+ *                                                                                          `organizations/{organization}/locations/{location}/cloudControls/{cloud_control}`
+ *                                                                                          or
+ *                                                                                          `projects/{project}/locations/{location}/cloudControls/{cloud_control}`.
+ *
  *                                                                                          The only supported location is `global`.
  * @param int    $frameworkDeploymentCloudControlMetadataCloudControlDetailsMajorRevisionId The major version of the cloud control.
  * @param int    $frameworkDeploymentCloudControlMetadataEnforcementMode                    The enforcement mode of the cloud control.
  */
 function create_framework_deployment_sample(
     string $formattedParent,
-    string $frameworkDeploymentFrameworkFramework,
+    string $formattedFrameworkDeploymentFrameworkFramework,
     string $frameworkDeploymentCloudControlMetadataCloudControlDetailsName,
     int $frameworkDeploymentCloudControlMetadataCloudControlDetailsMajorRevisionId,
     int $frameworkDeploymentCloudControlMetadataEnforcementMode
@@ -66,7 +72,7 @@ function create_framework_deployment_sample(
     // Prepare the request message.
     $frameworkDeploymentTargetResourceConfig = new TargetResourceConfig();
     $frameworkDeploymentFramework = (new FrameworkReference())
-        ->setFramework($frameworkDeploymentFrameworkFramework);
+        ->setFramework($formattedFrameworkDeploymentFrameworkFramework);
     $frameworkDeploymentCloudControlMetadataCloudControlDetails = (new CloudControlDetails())
         ->setName($frameworkDeploymentCloudControlMetadataCloudControlDetailsName)
         ->setMajorRevisionId($frameworkDeploymentCloudControlMetadataCloudControlDetailsMajorRevisionId);
@@ -114,14 +120,18 @@ function create_framework_deployment_sample(
 function callSample(): void
 {
     $formattedParent = DeploymentClient::organizationLocationName('[ORGANIZATION]', '[LOCATION]');
-    $frameworkDeploymentFrameworkFramework = '[FRAMEWORK]';
+    $formattedFrameworkDeploymentFrameworkFramework = DeploymentClient::frameworkName(
+        '[ORGANIZATION]',
+        '[LOCATION]',
+        '[FRAMEWORK]'
+    );
     $frameworkDeploymentCloudControlMetadataCloudControlDetailsName = '[NAME]';
     $frameworkDeploymentCloudControlMetadataCloudControlDetailsMajorRevisionId = 0;
     $frameworkDeploymentCloudControlMetadataEnforcementMode = EnforcementMode::ENFORCEMENT_MODE_UNSPECIFIED;
 
     create_framework_deployment_sample(
         $formattedParent,
-        $frameworkDeploymentFrameworkFramework,
+        $formattedFrameworkDeploymentFrameworkFramework,
         $frameworkDeploymentCloudControlMetadataCloudControlDetailsName,
         $frameworkDeploymentCloudControlMetadataCloudControlDetailsMajorRevisionId,
         $frameworkDeploymentCloudControlMetadataEnforcementMode

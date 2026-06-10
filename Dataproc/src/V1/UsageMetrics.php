@@ -32,19 +32,25 @@ class UsageMetrics extends \Google\Protobuf\Internal\Message
      */
     protected $shuffle_storage_gb_seconds = 0;
     /**
-     * Optional. Accelerator usage in (`milliAccelerator` x `seconds`) (see
-     * [Dataproc Serverless pricing]
+     * Optional. [DEPRECATED] Accelerator usage in (`milliAccelerator` x
+     * `seconds`) (see [Dataproc Serverless pricing]
      * (https://cloud.google.com/dataproc-serverless/pricing)).
      *
      * Generated from protobuf field <code>int64 milli_accelerator_seconds = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $milli_accelerator_seconds = 0;
     /**
-     * Optional. Accelerator type being used, if any
+     * Optional. [DEPRECATED] Accelerator type being used, if any
      *
      * Generated from protobuf field <code>string accelerator_type = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $accelerator_type = '';
+    /**
+     * Optional. The timestamp of the usage metrics.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $update_time = null;
 
     /**
      * Constructor.
@@ -61,11 +67,13 @@ class UsageMetrics extends \Google\Protobuf\Internal\Message
      *           [Dataproc Serverless pricing]
      *           (https://cloud.google.com/dataproc-serverless/pricing)).
      *     @type int|string $milli_accelerator_seconds
-     *           Optional. Accelerator usage in (`milliAccelerator` x `seconds`) (see
-     *           [Dataproc Serverless pricing]
+     *           Optional. [DEPRECATED] Accelerator usage in (`milliAccelerator` x
+     *           `seconds`) (see [Dataproc Serverless pricing]
      *           (https://cloud.google.com/dataproc-serverless/pricing)).
      *     @type string $accelerator_type
-     *           Optional. Accelerator type being used, if any
+     *           Optional. [DEPRECATED] Accelerator type being used, if any
+     *     @type \Google\Protobuf\Timestamp $update_time
+     *           Optional. The timestamp of the usage metrics.
      * }
      */
     public function __construct($data = NULL) {
@@ -134,8 +142,8 @@ class UsageMetrics extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Accelerator usage in (`milliAccelerator` x `seconds`) (see
-     * [Dataproc Serverless pricing]
+     * Optional. [DEPRECATED] Accelerator usage in (`milliAccelerator` x
+     * `seconds`) (see [Dataproc Serverless pricing]
      * (https://cloud.google.com/dataproc-serverless/pricing)).
      *
      * Generated from protobuf field <code>int64 milli_accelerator_seconds = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -147,8 +155,8 @@ class UsageMetrics extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Accelerator usage in (`milliAccelerator` x `seconds`) (see
-     * [Dataproc Serverless pricing]
+     * Optional. [DEPRECATED] Accelerator usage in (`milliAccelerator` x
+     * `seconds`) (see [Dataproc Serverless pricing]
      * (https://cloud.google.com/dataproc-serverless/pricing)).
      *
      * Generated from protobuf field <code>int64 milli_accelerator_seconds = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -164,7 +172,7 @@ class UsageMetrics extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Accelerator type being used, if any
+     * Optional. [DEPRECATED] Accelerator type being used, if any
      *
      * Generated from protobuf field <code>string accelerator_type = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -175,7 +183,7 @@ class UsageMetrics extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Accelerator type being used, if any
+     * Optional. [DEPRECATED] Accelerator type being used, if any
      *
      * Generated from protobuf field <code>string accelerator_type = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -185,6 +193,42 @@ class UsageMetrics extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->accelerator_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The timestamp of the usage metrics.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getUpdateTime()
+    {
+        return $this->update_time;
+    }
+
+    public function hasUpdateTime()
+    {
+        return isset($this->update_time);
+    }
+
+    public function clearUpdateTime()
+    {
+        unset($this->update_time);
+    }
+
+    /**
+     * Optional. The timestamp of the usage metrics.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setUpdateTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->update_time = $var;
 
         return $this;
     }

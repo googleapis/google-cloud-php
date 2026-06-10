@@ -152,6 +152,7 @@ return [
                 'interfaceOverride' => 'google.iam.v1.IAMPolicy',
             ],
             'templateMap' => [
+                'cryptoKey' => 'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}',
                 'location' => 'projects/{project}/locations/{location}',
                 'service' => 'projects/{project}/locations/{location}/services/{service}',
                 'session' => 'projects/{project}/locations/{location}/sessions/{session}',

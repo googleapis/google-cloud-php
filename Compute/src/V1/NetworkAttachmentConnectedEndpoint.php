@@ -43,6 +43,13 @@ class NetworkAttachmentConnectedEndpoint extends \Google\Protobuf\Internal\Messa
      */
     private $secondary_ip_cidr_ranges;
     /**
+     * The service class id of the producer service to which the IP was
+     * assigned.
+     *
+     * Generated from protobuf field <code>optional string service_class_id = 422763404;</code>
+     */
+    protected $service_class_id = null;
+    /**
      * The status of a connected endpoint to this network attachment.
      * Check the Status enum for the list of possible values.
      *
@@ -81,6 +88,9 @@ class NetworkAttachmentConnectedEndpoint extends \Google\Protobuf\Internal\Messa
      *           The project id or number of the interface to which the IP was assigned.
      *     @type string[] $secondary_ip_cidr_ranges
      *           Alias IP ranges from the same subnetwork.
+     *     @type string $service_class_id
+     *           The service class id of the producer service to which the IP was
+     *           assigned.
      *     @type string $status
      *           The status of a connected endpoint to this network attachment.
      *           Check the Status enum for the list of possible values.
@@ -233,6 +243,44 @@ class NetworkAttachmentConnectedEndpoint extends \Google\Protobuf\Internal\Messa
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->secondary_ip_cidr_ranges = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The service class id of the producer service to which the IP was
+     * assigned.
+     *
+     * Generated from protobuf field <code>optional string service_class_id = 422763404;</code>
+     * @return string
+     */
+    public function getServiceClassId()
+    {
+        return isset($this->service_class_id) ? $this->service_class_id : '';
+    }
+
+    public function hasServiceClassId()
+    {
+        return isset($this->service_class_id);
+    }
+
+    public function clearServiceClassId()
+    {
+        unset($this->service_class_id);
+    }
+
+    /**
+     * The service class id of the producer service to which the IP was
+     * assigned.
+     *
+     * Generated from protobuf field <code>optional string service_class_id = 422763404;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setServiceClassId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->service_class_id = $var;
 
         return $this;
     }

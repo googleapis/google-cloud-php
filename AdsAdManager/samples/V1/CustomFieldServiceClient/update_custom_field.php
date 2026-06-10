@@ -30,7 +30,6 @@ use Google\Ads\AdManager\V1\CustomFieldEntityTypeEnum\CustomFieldEntityType;
 use Google\Ads\AdManager\V1\CustomFieldVisibilityEnum\CustomFieldVisibility;
 use Google\Ads\AdManager\V1\UpdateCustomFieldRequest;
 use Google\ApiCore\ApiException;
-use Google\Protobuf\FieldMask;
 
 /**
  * API to update a `CustomField` object.
@@ -55,10 +54,8 @@ function update_custom_field_sample(
         ->setEntityType($customFieldEntityType)
         ->setDataType($customFieldDataType)
         ->setVisibility($customFieldVisibility);
-    $updateMask = new FieldMask();
     $request = (new UpdateCustomFieldRequest())
-        ->setCustomField($customField)
-        ->setUpdateMask($updateMask);
+        ->setCustomField($customField);
 
     // Call the API and handle any network failures.
     try {

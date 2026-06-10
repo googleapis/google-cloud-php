@@ -274,7 +274,9 @@ class GitHub
 
             return json_decode((string) $res->getBody(), true);
         } catch (\Exception $e) {
-            $this->logException($e);
+            if ($e->getCode() !== 404) {
+                $this->logException($e);
+            }
             return null;
         }
     }
@@ -405,6 +407,9 @@ class GitHub
 
             return $res->getStatusCode() === 201;
         } catch (\Exception $e) {
+            if (422 === $e->getCode()) {
+                return true; // webhook already exists!
+            }
             $this->logException($e);
             return false;
         }

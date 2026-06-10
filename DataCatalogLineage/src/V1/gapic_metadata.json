@@ -80,6 +80,11 @@
                                 "processOpenLineageRunEvent"
                             ]
                         },
+                        "SearchLineageStreaming": {
+                            "methods": [
+                                "searchLineageStreaming"
+                            ]
+                        },
                         "SearchLinks": {
                             "methods": [
                                 "searchLinks"

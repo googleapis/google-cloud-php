@@ -28,7 +28,6 @@ use Google\Ads\AdManager\V1\Client\AdBreakServiceClient;
 use Google\Ads\AdManager\V1\UpdateAdBreakRequest;
 use Google\ApiCore\ApiException;
 use Google\Protobuf\Duration;
-use Google\Protobuf\FieldMask;
 
 /**
  * API to update an `AdBreak` object.
@@ -51,10 +50,8 @@ function update_ad_break_sample(): void
     $adBreakDuration = new Duration();
     $adBreak = (new AdBreak())
         ->setDuration($adBreakDuration);
-    $updateMask = new FieldMask();
     $request = (new UpdateAdBreakRequest())
-        ->setAdBreak($adBreak)
-        ->setUpdateMask($updateMask);
+        ->setAdBreak($adBreak);
 
     // Call the API and handle any network failures.
     try {

@@ -31,6 +31,12 @@ class MaintenancePolicy extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string resource_version = 3;</code>
      */
     protected $resource_version = '';
+    /**
+     * Optional. The upgrade disruption budget for the cluster control plane.
+     *
+     * Generated from protobuf field <code>.google.container.v1.DisruptionBudget disruption_budget = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $disruption_budget = null;
 
     /**
      * Constructor.
@@ -46,6 +52,8 @@ class MaintenancePolicy extends \Google\Protobuf\Internal\Message
      *           of the API unaware of some fields won't accidentally remove other fields).
      *           Make a `get()` request to the cluster to get the current
      *           resource version and include it with requests to set the policy.
+     *     @type \Google\Cloud\Container\V1\DisruptionBudget $disruption_budget
+     *           Optional. The upgrade disruption budget for the cluster control plane.
      * }
      */
     public function __construct($data = NULL) {
@@ -119,6 +127,42 @@ class MaintenancePolicy extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->resource_version = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The upgrade disruption budget for the cluster control plane.
+     *
+     * Generated from protobuf field <code>.google.container.v1.DisruptionBudget disruption_budget = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Container\V1\DisruptionBudget|null
+     */
+    public function getDisruptionBudget()
+    {
+        return $this->disruption_budget;
+    }
+
+    public function hasDisruptionBudget()
+    {
+        return isset($this->disruption_budget);
+    }
+
+    public function clearDisruptionBudget()
+    {
+        unset($this->disruption_budget);
+    }
+
+    /**
+     * Optional. The upgrade disruption budget for the cluster control plane.
+     *
+     * Generated from protobuf field <code>.google.container.v1.DisruptionBudget disruption_budget = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Container\V1\DisruptionBudget $var
+     * @return $this
+     */
+    public function setDisruptionBudget($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\DisruptionBudget::class);
+        $this->disruption_budget = $var;
 
         return $this;
     }

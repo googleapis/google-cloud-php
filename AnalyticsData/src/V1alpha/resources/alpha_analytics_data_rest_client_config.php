@@ -70,6 +70,17 @@ return [
                     ],
                 ],
             ],
+            'GetMetadata' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{name=properties/*/metadata}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetPropertyQuotasSnapshot' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{name=properties/*/propertyQuotasSnapshot}',
@@ -172,14 +183,14 @@ return [
                     ],
                 ],
             ],
-            'SheetExportAudienceList' => [
+            'RunReport' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1alpha/{name=properties/*/audienceLists/*}:exportSheet',
+                'uriTemplate' => '/v1alpha/{property=properties/*}:runReport',
                 'body' => '*',
                 'placeholders' => [
-                    'name' => [
+                    'property' => [
                         'getters' => [
-                            'getName',
+                            'getProperty',
                         ],
                     ],
                 ],

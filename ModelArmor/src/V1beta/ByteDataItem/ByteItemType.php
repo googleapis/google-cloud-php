@@ -61,6 +61,12 @@ class ByteItemType
      * Generated from protobuf enum <code>CSV = 7;</code>
      */
     const CSV = 7;
+    /**
+     * ZIP
+     *
+     * Generated from protobuf enum <code>ZIP = 9;</code>
+     */
+    const ZIP = 9;
 
     private static $valueToName = [
         self::BYTE_ITEM_TYPE_UNSPECIFIED => 'BYTE_ITEM_TYPE_UNSPECIFIED',
@@ -71,6 +77,7 @@ class ByteItemType
         self::POWERPOINT_DOCUMENT => 'POWERPOINT_DOCUMENT',
         self::TXT => 'TXT',
         self::CSV => 'CSV',
+        self::ZIP => 'ZIP',
     ];
 
     public static function name($value)

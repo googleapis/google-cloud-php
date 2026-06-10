@@ -75,6 +75,18 @@ class FrameworkComplianceSummary extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.TargetResourceDetails target_resource_details = 10;</code>
      */
     private $target_resource_details;
+    /**
+     * Output only. The count of the findings generated against the framework.
+     *
+     * Generated from protobuf field <code>int64 finding_count = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $finding_count = 0;
+    /**
+     * Output only. The trend of controls that are passing for the given duration.
+     *
+     * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.Trend controls_passing_trend = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $controls_passing_trend = null;
 
     /**
      * Constructor.
@@ -102,6 +114,10 @@ class FrameworkComplianceSummary extends \Google\Protobuf\Internal\Message
      *           The minor revision ID of the framework.
      *     @type \Google\Cloud\CloudSecurityCompliance\V1\TargetResourceDetails[] $target_resource_details
      *           The target resource details for the framework.
+     *     @type int|string $finding_count
+     *           Output only. The count of the findings generated against the framework.
+     *     @type \Google\Cloud\CloudSecurityCompliance\V1\Trend $controls_passing_trend
+     *           Output only. The trend of controls that are passing for the given duration.
      * }
      */
     public function __construct($data = NULL) {
@@ -375,6 +391,68 @@ class FrameworkComplianceSummary extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\CloudSecurityCompliance\V1\TargetResourceDetails::class);
         $this->target_resource_details = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The count of the findings generated against the framework.
+     *
+     * Generated from protobuf field <code>int64 finding_count = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int|string
+     */
+    public function getFindingCount()
+    {
+        return $this->finding_count;
+    }
+
+    /**
+     * Output only. The count of the findings generated against the framework.
+     *
+     * Generated from protobuf field <code>int64 finding_count = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setFindingCount($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->finding_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The trend of controls that are passing for the given duration.
+     *
+     * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.Trend controls_passing_trend = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\CloudSecurityCompliance\V1\Trend|null
+     */
+    public function getControlsPassingTrend()
+    {
+        return $this->controls_passing_trend;
+    }
+
+    public function hasControlsPassingTrend()
+    {
+        return isset($this->controls_passing_trend);
+    }
+
+    public function clearControlsPassingTrend()
+    {
+        unset($this->controls_passing_trend);
+    }
+
+    /**
+     * Output only. The trend of controls that are passing for the given duration.
+     *
+     * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.Trend controls_passing_trend = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\CloudSecurityCompliance\V1\Trend $var
+     * @return $this
+     */
+    public function setControlsPassingTrend($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\CloudSecurityCompliance\V1\Trend::class);
+        $this->controls_passing_trend = $var;
 
         return $this;
     }

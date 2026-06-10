@@ -33,7 +33,6 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-use Google\Protobuf\FieldMask;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -319,8 +318,7 @@ class PrivateAuctionServiceClientTest extends GeneratedTest
         $privateAuction = new PrivateAuction();
         $privateAuctionDisplayName = 'privateAuctionDisplayName1032179469';
         $privateAuction->setDisplayName($privateAuctionDisplayName);
-        $updateMask = new FieldMask();
-        $request = (new UpdatePrivateAuctionRequest())->setPrivateAuction($privateAuction)->setUpdateMask($updateMask);
+        $request = (new UpdatePrivateAuctionRequest())->setPrivateAuction($privateAuction);
         $response = $gapicClient->updatePrivateAuction($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -330,8 +328,6 @@ class PrivateAuctionServiceClientTest extends GeneratedTest
         $this->assertSame('/google.ads.admanager.v1.PrivateAuctionService/UpdatePrivateAuction', $actualFuncCall);
         $actualValue = $actualRequestObject->getPrivateAuction();
         $this->assertProtobufEquals($privateAuction, $actualValue);
-        $actualValue = $actualRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -360,8 +356,7 @@ class PrivateAuctionServiceClientTest extends GeneratedTest
         $privateAuction = new PrivateAuction();
         $privateAuctionDisplayName = 'privateAuctionDisplayName1032179469';
         $privateAuction->setDisplayName($privateAuctionDisplayName);
-        $updateMask = new FieldMask();
-        $request = (new UpdatePrivateAuctionRequest())->setPrivateAuction($privateAuction)->setUpdateMask($updateMask);
+        $request = (new UpdatePrivateAuctionRequest())->setPrivateAuction($privateAuction);
         try {
             $gapicClient->updatePrivateAuction($request);
             // If the $gapicClient method call did not throw, fail the test

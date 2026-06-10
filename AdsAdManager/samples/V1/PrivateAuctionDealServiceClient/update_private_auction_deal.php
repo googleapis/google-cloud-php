@@ -27,7 +27,6 @@ use Google\Ads\AdManager\V1\Client\PrivateAuctionDealServiceClient;
 use Google\Ads\AdManager\V1\PrivateAuctionDeal;
 use Google\Ads\AdManager\V1\UpdatePrivateAuctionDealRequest;
 use Google\ApiCore\ApiException;
-use Google\Protobuf\FieldMask;
 use Google\Type\Money;
 
 /**
@@ -48,10 +47,8 @@ function update_private_auction_deal_sample(): void
     $privateAuctionDealFloorPrice = new Money();
     $privateAuctionDeal = (new PrivateAuctionDeal())
         ->setFloorPrice($privateAuctionDealFloorPrice);
-    $updateMask = new FieldMask();
     $request = (new UpdatePrivateAuctionDealRequest())
-        ->setPrivateAuctionDeal($privateAuctionDeal)
-        ->setUpdateMask($updateMask);
+        ->setPrivateAuctionDeal($privateAuctionDeal);
 
     // Call the API and handle any network failures.
     try {

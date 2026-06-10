@@ -9,117 +9,130 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * The `Company` resource.
+ * The [Company][google.ads.admanager.v1.Company] resource.
  *
  * Generated from protobuf message <code>google.ads.admanager.v1.Company</code>
  */
 class Company extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Identifier. The resource name of the `Company`.
-     * Format: `networks/{network_code}/companies/{company_id}`
+     * Identifier. The resource name of the
+     * [Company][google.ads.admanager.v1.Company]. Format:
+     * `networks/{network_code}/companies/{company_id}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
-     * Output only. `Company` ID.
+     * Output only. Deprecated: [Company][google.ads.admanager.v1.Company] ID.
      *
-     * Generated from protobuf field <code>optional int64 company_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional int64 company_id = 2 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @deprecated
      */
     protected $company_id = null;
     /**
-     * Required. The display name of the `Company`.
+     * Required. The display name of the
+     * [Company][google.ads.admanager.v1.Company].
      * This value has a maximum length of 127 characters.
      *
      * Generated from protobuf field <code>optional string display_name = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $display_name = null;
     /**
-     * Required. The type of the `Company`.
+     * Required. The type of the [Company][google.ads.admanager.v1.Company].
      *
      * Generated from protobuf field <code>optional .google.ads.admanager.v1.CompanyTypeEnum.CompanyType type = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $type = null;
     /**
-     * Optional. The address for the `Company`.
+     * Optional. The address for the [Company][google.ads.admanager.v1.Company].
      * This value has a maximum length of 1024 characters.
      *
      * Generated from protobuf field <code>optional string address = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $address = null;
     /**
-     * Optional. The email for the `Company`.
+     * Optional. The email for the [Company][google.ads.admanager.v1.Company].
      * This value has a maximum length of 128 characters.
      *
      * Generated from protobuf field <code>optional string email = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $email = null;
     /**
-     * Optional. The fax number for the `Company`.
+     * Optional. The fax number for the
+     * [Company][google.ads.admanager.v1.Company].
      * This value has a maximum length of 63 characters.
      *
      * Generated from protobuf field <code>optional string fax = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $fax = null;
     /**
-     * Optional. The phone number for the `Company`.
+     * Optional. The phone number for the
+     * [Company][google.ads.admanager.v1.Company].
      * This value has a maximum length of 63 characters.
      *
      * Generated from protobuf field <code>optional string phone = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $phone = null;
     /**
-     * Optional. The external ID for the `Company`.
+     * Optional. The external ID for the
+     * [Company][google.ads.admanager.v1.Company].
      * This value has a maximum length of 255 characters.
      *
      * Generated from protobuf field <code>optional string external_id = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $external_id = null;
     /**
-     * Optional. Comments about the `Company`.
+     * Optional. Comments about the [Company][google.ads.admanager.v1.Company].
      * This value has a maximum length of 1024 characters.
      *
      * Generated from protobuf field <code>optional string comment = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $comment = null;
     /**
-     * Optional. The credit status of the `Company`.
-     * This attribute defaults to `ACTIVE` if basic settings are enabled and
-     * `ON_HOLD` if advance settings are enabled.
+     * Optional. The credit status of the
+     * [Company][google.ads.admanager.v1.Company].
+     * This attribute defaults to [CompanyCreditStatus.ACTIVE][] if basic
+     * settings are enabled and [CompanyCreditStatus.ON_HOLD][] if advance
+     * settings are enabled.
      *
      * Generated from protobuf field <code>optional .google.ads.admanager.v1.CompanyCreditStatusEnum.CompanyCreditStatus credit_status = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $credit_status = null;
     /**
-     * Optional. The labels that are directly applied to the `Company`.
+     * Optional. The labels that are directly applied to the
+     * [Company][google.ads.admanager.v1.Company].
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.AppliedLabel applied_labels = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $applied_labels;
     /**
-     * Optional. The resource names of primary Contact of the `Company`.
-     * Format: "networks/{network_code}/contacts/{contact_id}"
+     * Optional. The resource names of primary
+     * [Contact][google.ads.admanager.v1.Contact] of the
+     * [Company][google.ads.admanager.v1.Company]. Format:
+     * "networks/{network_code}/contacts/{contact_id}"
      *
      * Generated from protobuf field <code>optional string primary_contact = 13 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
     protected $primary_contact = null;
     /**
      * Optional. The resource names of Teams that are directly associated with the
-     * `Company`. Format: "networks/{network_code}/teams/{team_id}"
+     * [Company][google.ads.admanager.v1.Company]. Format:
+     * "networks/{network_code}/teams/{team_id}"
      *
      * Generated from protobuf field <code>repeated string applied_teams = 14 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
     private $applied_teams;
     /**
      * Optional. The ID of the Google-recognized canonicalized form of the
-     * `Company`.
+     * [Company][google.ads.admanager.v1.Company].
      *
      * Generated from protobuf field <code>optional int64 third_party_company_id = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $third_party_company_id = null;
     /**
-     * Output only. The time the `Company` was last modified.
+     * Output only. The time the [Company][google.ads.admanager.v1.Company] was
+     * last modified.
      *
      * Generated from protobuf field <code>optional .google.protobuf.Timestamp update_time = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -132,50 +145,62 @@ class Company extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Identifier. The resource name of the `Company`.
-     *           Format: `networks/{network_code}/companies/{company_id}`
+     *           Identifier. The resource name of the
+     *           [Company][google.ads.admanager.v1.Company]. Format:
+     *           `networks/{network_code}/companies/{company_id}`
      *     @type int|string $company_id
-     *           Output only. `Company` ID.
+     *           Output only. Deprecated: [Company][google.ads.admanager.v1.Company] ID.
      *     @type string $display_name
-     *           Required. The display name of the `Company`.
+     *           Required. The display name of the
+     *           [Company][google.ads.admanager.v1.Company].
      *           This value has a maximum length of 127 characters.
      *     @type int $type
-     *           Required. The type of the `Company`.
+     *           Required. The type of the [Company][google.ads.admanager.v1.Company].
      *     @type string $address
-     *           Optional. The address for the `Company`.
+     *           Optional. The address for the [Company][google.ads.admanager.v1.Company].
      *           This value has a maximum length of 1024 characters.
      *     @type string $email
-     *           Optional. The email for the `Company`.
+     *           Optional. The email for the [Company][google.ads.admanager.v1.Company].
      *           This value has a maximum length of 128 characters.
      *     @type string $fax
-     *           Optional. The fax number for the `Company`.
+     *           Optional. The fax number for the
+     *           [Company][google.ads.admanager.v1.Company].
      *           This value has a maximum length of 63 characters.
      *     @type string $phone
-     *           Optional. The phone number for the `Company`.
+     *           Optional. The phone number for the
+     *           [Company][google.ads.admanager.v1.Company].
      *           This value has a maximum length of 63 characters.
      *     @type string $external_id
-     *           Optional. The external ID for the `Company`.
+     *           Optional. The external ID for the
+     *           [Company][google.ads.admanager.v1.Company].
      *           This value has a maximum length of 255 characters.
      *     @type string $comment
-     *           Optional. Comments about the `Company`.
+     *           Optional. Comments about the [Company][google.ads.admanager.v1.Company].
      *           This value has a maximum length of 1024 characters.
      *     @type int $credit_status
-     *           Optional. The credit status of the `Company`.
-     *           This attribute defaults to `ACTIVE` if basic settings are enabled and
-     *           `ON_HOLD` if advance settings are enabled.
+     *           Optional. The credit status of the
+     *           [Company][google.ads.admanager.v1.Company].
+     *           This attribute defaults to [CompanyCreditStatus.ACTIVE][] if basic
+     *           settings are enabled and [CompanyCreditStatus.ON_HOLD][] if advance
+     *           settings are enabled.
      *     @type \Google\Ads\AdManager\V1\AppliedLabel[] $applied_labels
-     *           Optional. The labels that are directly applied to the `Company`.
+     *           Optional. The labels that are directly applied to the
+     *           [Company][google.ads.admanager.v1.Company].
      *     @type string $primary_contact
-     *           Optional. The resource names of primary Contact of the `Company`.
-     *           Format: "networks/{network_code}/contacts/{contact_id}"
+     *           Optional. The resource names of primary
+     *           [Contact][google.ads.admanager.v1.Contact] of the
+     *           [Company][google.ads.admanager.v1.Company]. Format:
+     *           "networks/{network_code}/contacts/{contact_id}"
      *     @type string[] $applied_teams
      *           Optional. The resource names of Teams that are directly associated with the
-     *           `Company`. Format: "networks/{network_code}/teams/{team_id}"
+     *           [Company][google.ads.admanager.v1.Company]. Format:
+     *           "networks/{network_code}/teams/{team_id}"
      *     @type int|string $third_party_company_id
      *           Optional. The ID of the Google-recognized canonicalized form of the
-     *           `Company`.
+     *           [Company][google.ads.admanager.v1.Company].
      *     @type \Google\Protobuf\Timestamp $update_time
-     *           Output only. The time the `Company` was last modified.
+     *           Output only. The time the [Company][google.ads.admanager.v1.Company] was
+     *           last modified.
      * }
      */
     public function __construct($data = NULL) {
@@ -184,8 +209,9 @@ class Company extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Identifier. The resource name of the `Company`.
-     * Format: `networks/{network_code}/companies/{company_id}`
+     * Identifier. The resource name of the
+     * [Company][google.ads.admanager.v1.Company]. Format:
+     * `networks/{network_code}/companies/{company_id}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
@@ -196,8 +222,9 @@ class Company extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Identifier. The resource name of the `Company`.
-     * Format: `networks/{network_code}/companies/{company_id}`
+     * Identifier. The resource name of the
+     * [Company][google.ads.admanager.v1.Company]. Format:
+     * `networks/{network_code}/companies/{company_id}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
@@ -212,35 +239,45 @@ class Company extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. `Company` ID.
+     * Output only. Deprecated: [Company][google.ads.admanager.v1.Company] ID.
      *
-     * Generated from protobuf field <code>optional int64 company_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional int64 company_id = 2 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int|string
+     * @deprecated
      */
     public function getCompanyId()
     {
+        if (isset($this->company_id)) {
+            @trigger_error('company_id is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->company_id) ? $this->company_id : 0;
     }
 
     public function hasCompanyId()
     {
+        if (isset($this->company_id)) {
+            @trigger_error('company_id is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->company_id);
     }
 
     public function clearCompanyId()
     {
+        @trigger_error('company_id is deprecated.', E_USER_DEPRECATED);
         unset($this->company_id);
     }
 
     /**
-     * Output only. `Company` ID.
+     * Output only. Deprecated: [Company][google.ads.admanager.v1.Company] ID.
      *
-     * Generated from protobuf field <code>optional int64 company_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional int64 company_id = 2 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int|string $var
      * @return $this
+     * @deprecated
      */
     public function setCompanyId($var)
     {
+        @trigger_error('company_id is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkInt64($var);
         $this->company_id = $var;
 
@@ -248,7 +285,8 @@ class Company extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The display name of the `Company`.
+     * Required. The display name of the
+     * [Company][google.ads.admanager.v1.Company].
      * This value has a maximum length of 127 characters.
      *
      * Generated from protobuf field <code>optional string display_name = 3 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -270,7 +308,8 @@ class Company extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The display name of the `Company`.
+     * Required. The display name of the
+     * [Company][google.ads.admanager.v1.Company].
      * This value has a maximum length of 127 characters.
      *
      * Generated from protobuf field <code>optional string display_name = 3 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -286,7 +325,7 @@ class Company extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The type of the `Company`.
+     * Required. The type of the [Company][google.ads.admanager.v1.Company].
      *
      * Generated from protobuf field <code>optional .google.ads.admanager.v1.CompanyTypeEnum.CompanyType type = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
@@ -307,7 +346,7 @@ class Company extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The type of the `Company`.
+     * Required. The type of the [Company][google.ads.admanager.v1.Company].
      *
      * Generated from protobuf field <code>optional .google.ads.admanager.v1.CompanyTypeEnum.CompanyType type = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
@@ -322,7 +361,7 @@ class Company extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The address for the `Company`.
+     * Optional. The address for the [Company][google.ads.admanager.v1.Company].
      * This value has a maximum length of 1024 characters.
      *
      * Generated from protobuf field <code>optional string address = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -344,7 +383,7 @@ class Company extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The address for the `Company`.
+     * Optional. The address for the [Company][google.ads.admanager.v1.Company].
      * This value has a maximum length of 1024 characters.
      *
      * Generated from protobuf field <code>optional string address = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -360,7 +399,7 @@ class Company extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The email for the `Company`.
+     * Optional. The email for the [Company][google.ads.admanager.v1.Company].
      * This value has a maximum length of 128 characters.
      *
      * Generated from protobuf field <code>optional string email = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -382,7 +421,7 @@ class Company extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The email for the `Company`.
+     * Optional. The email for the [Company][google.ads.admanager.v1.Company].
      * This value has a maximum length of 128 characters.
      *
      * Generated from protobuf field <code>optional string email = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -398,7 +437,8 @@ class Company extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The fax number for the `Company`.
+     * Optional. The fax number for the
+     * [Company][google.ads.admanager.v1.Company].
      * This value has a maximum length of 63 characters.
      *
      * Generated from protobuf field <code>optional string fax = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -420,7 +460,8 @@ class Company extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The fax number for the `Company`.
+     * Optional. The fax number for the
+     * [Company][google.ads.admanager.v1.Company].
      * This value has a maximum length of 63 characters.
      *
      * Generated from protobuf field <code>optional string fax = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -436,7 +477,8 @@ class Company extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The phone number for the `Company`.
+     * Optional. The phone number for the
+     * [Company][google.ads.admanager.v1.Company].
      * This value has a maximum length of 63 characters.
      *
      * Generated from protobuf field <code>optional string phone = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -458,7 +500,8 @@ class Company extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The phone number for the `Company`.
+     * Optional. The phone number for the
+     * [Company][google.ads.admanager.v1.Company].
      * This value has a maximum length of 63 characters.
      *
      * Generated from protobuf field <code>optional string phone = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -474,7 +517,8 @@ class Company extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The external ID for the `Company`.
+     * Optional. The external ID for the
+     * [Company][google.ads.admanager.v1.Company].
      * This value has a maximum length of 255 characters.
      *
      * Generated from protobuf field <code>optional string external_id = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -496,7 +540,8 @@ class Company extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The external ID for the `Company`.
+     * Optional. The external ID for the
+     * [Company][google.ads.admanager.v1.Company].
      * This value has a maximum length of 255 characters.
      *
      * Generated from protobuf field <code>optional string external_id = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -512,7 +557,7 @@ class Company extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Comments about the `Company`.
+     * Optional. Comments about the [Company][google.ads.admanager.v1.Company].
      * This value has a maximum length of 1024 characters.
      *
      * Generated from protobuf field <code>optional string comment = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -534,7 +579,7 @@ class Company extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Comments about the `Company`.
+     * Optional. Comments about the [Company][google.ads.admanager.v1.Company].
      * This value has a maximum length of 1024 characters.
      *
      * Generated from protobuf field <code>optional string comment = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -550,9 +595,11 @@ class Company extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The credit status of the `Company`.
-     * This attribute defaults to `ACTIVE` if basic settings are enabled and
-     * `ON_HOLD` if advance settings are enabled.
+     * Optional. The credit status of the
+     * [Company][google.ads.admanager.v1.Company].
+     * This attribute defaults to [CompanyCreditStatus.ACTIVE][] if basic
+     * settings are enabled and [CompanyCreditStatus.ON_HOLD][] if advance
+     * settings are enabled.
      *
      * Generated from protobuf field <code>optional .google.ads.admanager.v1.CompanyCreditStatusEnum.CompanyCreditStatus credit_status = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -573,9 +620,11 @@ class Company extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The credit status of the `Company`.
-     * This attribute defaults to `ACTIVE` if basic settings are enabled and
-     * `ON_HOLD` if advance settings are enabled.
+     * Optional. The credit status of the
+     * [Company][google.ads.admanager.v1.Company].
+     * This attribute defaults to [CompanyCreditStatus.ACTIVE][] if basic
+     * settings are enabled and [CompanyCreditStatus.ON_HOLD][] if advance
+     * settings are enabled.
      *
      * Generated from protobuf field <code>optional .google.ads.admanager.v1.CompanyCreditStatusEnum.CompanyCreditStatus credit_status = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -590,7 +639,8 @@ class Company extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The labels that are directly applied to the `Company`.
+     * Optional. The labels that are directly applied to the
+     * [Company][google.ads.admanager.v1.Company].
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.AppliedLabel applied_labels = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return RepeatedField<\Google\Ads\AdManager\V1\AppliedLabel>
@@ -601,7 +651,8 @@ class Company extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The labels that are directly applied to the `Company`.
+     * Optional. The labels that are directly applied to the
+     * [Company][google.ads.admanager.v1.Company].
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.AppliedLabel applied_labels = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Ads\AdManager\V1\AppliedLabel[] $var
@@ -616,8 +667,10 @@ class Company extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The resource names of primary Contact of the `Company`.
-     * Format: "networks/{network_code}/contacts/{contact_id}"
+     * Optional. The resource names of primary
+     * [Contact][google.ads.admanager.v1.Contact] of the
+     * [Company][google.ads.admanager.v1.Company]. Format:
+     * "networks/{network_code}/contacts/{contact_id}"
      *
      * Generated from protobuf field <code>optional string primary_contact = 13 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
@@ -638,8 +691,10 @@ class Company extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The resource names of primary Contact of the `Company`.
-     * Format: "networks/{network_code}/contacts/{contact_id}"
+     * Optional. The resource names of primary
+     * [Contact][google.ads.admanager.v1.Contact] of the
+     * [Company][google.ads.admanager.v1.Company]. Format:
+     * "networks/{network_code}/contacts/{contact_id}"
      *
      * Generated from protobuf field <code>optional string primary_contact = 13 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -655,7 +710,8 @@ class Company extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The resource names of Teams that are directly associated with the
-     * `Company`. Format: "networks/{network_code}/teams/{team_id}"
+     * [Company][google.ads.admanager.v1.Company]. Format:
+     * "networks/{network_code}/teams/{team_id}"
      *
      * Generated from protobuf field <code>repeated string applied_teams = 14 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return RepeatedField<string>
@@ -667,7 +723,8 @@ class Company extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The resource names of Teams that are directly associated with the
-     * `Company`. Format: "networks/{network_code}/teams/{team_id}"
+     * [Company][google.ads.admanager.v1.Company]. Format:
+     * "networks/{network_code}/teams/{team_id}"
      *
      * Generated from protobuf field <code>repeated string applied_teams = 14 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string[] $var
@@ -683,7 +740,7 @@ class Company extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The ID of the Google-recognized canonicalized form of the
-     * `Company`.
+     * [Company][google.ads.admanager.v1.Company].
      *
      * Generated from protobuf field <code>optional int64 third_party_company_id = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int|string
@@ -705,7 +762,7 @@ class Company extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The ID of the Google-recognized canonicalized form of the
-     * `Company`.
+     * [Company][google.ads.admanager.v1.Company].
      *
      * Generated from protobuf field <code>optional int64 third_party_company_id = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int|string $var
@@ -720,7 +777,8 @@ class Company extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The time the `Company` was last modified.
+     * Output only. The time the [Company][google.ads.admanager.v1.Company] was
+     * last modified.
      *
      * Generated from protobuf field <code>optional .google.protobuf.Timestamp update_time = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -741,7 +799,8 @@ class Company extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The time the `Company` was last modified.
+     * Output only. The time the [Company][google.ads.admanager.v1.Company] was
+     * last modified.
      *
      * Generated from protobuf field <code>optional .google.protobuf.Timestamp update_time = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var

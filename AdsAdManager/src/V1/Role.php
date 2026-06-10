@@ -23,9 +23,10 @@ class Role extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
-     * Output only. `Role` ID.
+     * Output only. Deprecated: `Role` ID.
      *
-     * Generated from protobuf field <code>optional int64 role_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional int64 role_id = 2 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @deprecated
      */
     protected $role_id = null;
     /**
@@ -63,7 +64,7 @@ class Role extends \Google\Protobuf\Internal\Message
      *           Identifier. The resource name of the `Role`.
      *           Format: `networks/{network_code}/roles/{role_id}`
      *     @type int|string $role_id
-     *           Output only. `Role` ID.
+     *           Output only. Deprecated: `Role` ID.
      *     @type string $display_name
      *           Required. The display name of the `Role`.
      *     @type string $description
@@ -108,35 +109,45 @@ class Role extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. `Role` ID.
+     * Output only. Deprecated: `Role` ID.
      *
-     * Generated from protobuf field <code>optional int64 role_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional int64 role_id = 2 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int|string
+     * @deprecated
      */
     public function getRoleId()
     {
+        if (isset($this->role_id)) {
+            @trigger_error('role_id is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->role_id) ? $this->role_id : 0;
     }
 
     public function hasRoleId()
     {
+        if (isset($this->role_id)) {
+            @trigger_error('role_id is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->role_id);
     }
 
     public function clearRoleId()
     {
+        @trigger_error('role_id is deprecated.', E_USER_DEPRECATED);
         unset($this->role_id);
     }
 
     /**
-     * Output only. `Role` ID.
+     * Output only. Deprecated: `Role` ID.
      *
-     * Generated from protobuf field <code>optional int64 role_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional int64 role_id = 2 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int|string $var
      * @return $this
+     * @deprecated
      */
     public function setRoleId($var)
     {
+        @trigger_error('role_id is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkInt64($var);
         $this->role_id = $var;
 

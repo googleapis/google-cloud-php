@@ -59,6 +59,13 @@ class FutureReservation extends \Google\Protobuf\Internal\Message
      */
     protected $commitment_info = null;
     /**
+     * 
+     * Check the ConfidentialComputeType enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string confidential_compute_type = 386447257;</code>
+     */
+    protected $confidential_compute_type = null;
+    /**
      * Output only. [Output Only] The creation timestamp for this future reservation inRFC3339
      * text format.
      *
@@ -120,6 +127,13 @@ class FutureReservation extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string name_prefix = 236409542;</code>
      */
     protected $name_prefix = null;
+    /**
+     * Input only. Additional params passed with the request, but not persisted
+     * as part of resource payload.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.FutureReservationParams params = 78313862;</code>
+     */
+    protected $params = null;
     /**
      * Planning state before being submitted for evaluation
      * Check the PlanningStatus enum for the list of possible values.
@@ -234,6 +248,9 @@ class FutureReservation extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Compute\V1\FutureReservationCommitmentInfo $commitment_info
      *           If not present, then FR will not deliver a new commitment or update an
      *           existing commitment.
+     *     @type string $confidential_compute_type
+     *           
+     *           Check the ConfidentialComputeType enum for the list of possible values.
      *     @type string $creation_timestamp
      *           Output only. [Output Only] The creation timestamp for this future reservation inRFC3339
      *           text format.
@@ -264,6 +281,9 @@ class FutureReservation extends \Google\Protobuf\Internal\Message
      *           delivery. The name prefix must comply with RFC1035.
      *           Maximum allowed length for name prefix is 20. Automatically created
      *           reservations name format will be -date-####.
+     *     @type \Google\Cloud\Compute\V1\FutureReservationParams $params
+     *           Input only. Additional params passed with the request, but not persisted
+     *           as part of resource payload.
      *     @type string $planning_status
      *           Planning state before being submitted for evaluation
      *           Check the PlanningStatus enum for the list of possible values.
@@ -510,6 +530,44 @@ class FutureReservation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\FutureReservationCommitmentInfo::class);
         $this->commitment_info = $var;
+
+        return $this;
+    }
+
+    /**
+     * 
+     * Check the ConfidentialComputeType enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string confidential_compute_type = 386447257;</code>
+     * @return string
+     */
+    public function getConfidentialComputeType()
+    {
+        return isset($this->confidential_compute_type) ? $this->confidential_compute_type : '';
+    }
+
+    public function hasConfidentialComputeType()
+    {
+        return isset($this->confidential_compute_type);
+    }
+
+    public function clearConfidentialComputeType()
+    {
+        unset($this->confidential_compute_type);
+    }
+
+    /**
+     * 
+     * Check the ConfidentialComputeType enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string confidential_compute_type = 386447257;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setConfidentialComputeType($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->confidential_compute_type = $var;
 
         return $this;
     }
@@ -826,6 +884,44 @@ class FutureReservation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name_prefix = $var;
+
+        return $this;
+    }
+
+    /**
+     * Input only. Additional params passed with the request, but not persisted
+     * as part of resource payload.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.FutureReservationParams params = 78313862;</code>
+     * @return \Google\Cloud\Compute\V1\FutureReservationParams|null
+     */
+    public function getParams()
+    {
+        return $this->params;
+    }
+
+    public function hasParams()
+    {
+        return isset($this->params);
+    }
+
+    public function clearParams()
+    {
+        unset($this->params);
+    }
+
+    /**
+     * Input only. Additional params passed with the request, but not persisted
+     * as part of resource payload.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.FutureReservationParams params = 78313862;</code>
+     * @param \Google\Cloud\Compute\V1\FutureReservationParams $var
+     * @return $this
+     */
+    public function setParams($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\FutureReservationParams::class);
+        $this->params = $var;
 
         return $this;
     }

@@ -16,11 +16,11 @@ use Google\Protobuf\RepeatedField;
 class DataStream extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. Resource name of this Data Stream.
+     * Identifier. Resource name of this Data Stream.
      * Format: properties/{property_id}/dataStreams/{stream_id}
      * Example: "properties/1000/dataStreams/2000"
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
@@ -67,7 +67,7 @@ class DataStream extends \Google\Protobuf\Internal\Message
      *           Data specific to iOS app streams. Must be populated if type is
      *           IOS_APP_DATA_STREAM.
      *     @type string $name
-     *           Output only. Resource name of this Data Stream.
+     *           Identifier. Resource name of this Data Stream.
      *           Format: properties/{property_id}/dataStreams/{stream_id}
      *           Example: "properties/1000/dataStreams/2000"
      *     @type int $type
@@ -187,11 +187,11 @@ class DataStream extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Resource name of this Data Stream.
+     * Identifier. Resource name of this Data Stream.
      * Format: properties/{property_id}/dataStreams/{stream_id}
      * Example: "properties/1000/dataStreams/2000"
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -200,11 +200,11 @@ class DataStream extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Resource name of this Data Stream.
+     * Identifier. Resource name of this Data Stream.
      * Format: properties/{property_id}/dataStreams/{stream_id}
      * Example: "properties/1000/dataStreams/2000"
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */

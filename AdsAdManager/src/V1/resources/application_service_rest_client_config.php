@@ -23,6 +23,66 @@
 return [
     'interfaces' => [
         'google.ads.admanager.v1.ApplicationService' => [
+            'BatchArchiveApplications' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/applications:batchArchive',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchCreateApplications' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/applications:batchCreate',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchUnarchiveApplications' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/applications:batchUnarchive',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchUpdateApplications' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/applications:batchUpdate',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateApplication' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/applications',
+                'body' => 'application',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'GetApplication' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=networks/*/applications/*}',
@@ -45,8 +105,32 @@ return [
                     ],
                 ],
             ],
+            'UpdateApplication' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{application.name=networks/*/applications/*}',
+                'body' => 'application',
+                'placeholders' => [
+                    'application.name' => [
+                        'getters' => [
+                            'getApplication',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
         ],
         'google.longrunning.Operations' => [
+            'CancelOperation' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=networks/*/operations/reports/runs/*}:cancel',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetOperation' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=networks/*/operations/reports/runs/*}',

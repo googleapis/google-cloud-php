@@ -34,6 +34,12 @@ class SanitizeUserPromptRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.modelarmor.v1beta.MultiLanguageDetectionMetadata multi_language_detection_metadata = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $multi_language_detection_metadata = null;
+    /**
+     * Optional. Streaming Mode for StreamSanitize* API.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.modelarmor.v1beta.StreamingMode streaming_mode = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $streaming_mode = null;
 
     /**
      * Constructor.
@@ -48,6 +54,8 @@ class SanitizeUserPromptRequest extends \Google\Protobuf\Internal\Message
      *           Required. User prompt data to sanitize.
      *     @type \Google\Cloud\ModelArmor\V1beta\MultiLanguageDetectionMetadata $multi_language_detection_metadata
      *           Optional. Metadata related to Multi Language Detection.
+     *     @type int $streaming_mode
+     *           Optional. Streaming Mode for StreamSanitize* API.
      * }
      */
     public function __construct($data = NULL) {
@@ -151,6 +159,42 @@ class SanitizeUserPromptRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\ModelArmor\V1beta\MultiLanguageDetectionMetadata::class);
         $this->multi_language_detection_metadata = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Streaming Mode for StreamSanitize* API.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.modelarmor.v1beta.StreamingMode streaming_mode = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getStreamingMode()
+    {
+        return isset($this->streaming_mode) ? $this->streaming_mode : 0;
+    }
+
+    public function hasStreamingMode()
+    {
+        return isset($this->streaming_mode);
+    }
+
+    public function clearStreamingMode()
+    {
+        unset($this->streaming_mode);
+    }
+
+    /**
+     * Optional. Streaming Mode for StreamSanitize* API.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.modelarmor.v1beta.StreamingMode streaming_mode = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setStreamingMode($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\ModelArmor\V1beta\StreamingMode::class);
+        $this->streaming_mode = $var;
 
         return $this;
     }

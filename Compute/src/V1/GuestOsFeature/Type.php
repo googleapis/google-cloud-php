@@ -21,6 +21,7 @@ use UnexpectedValueException;
  *    - TDX_CAPABLE
  *    - IDPF
  *    - SNP_SVSM_CAPABLE
+ *    - CCA_CAPABLE
  * For more information, see
  * Enabling guest operating system features.
  *

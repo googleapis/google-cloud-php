@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * NodePoolLoggingConfig specifies logging configuration for nodepools.
+ * NodePoolLoggingConfig specifies logging configuration for node pools.
  *
  * Generated from protobuf message <code>google.container.v1.NodePoolLoggingConfig</code>
  */

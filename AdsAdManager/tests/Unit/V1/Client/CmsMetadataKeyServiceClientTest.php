@@ -22,6 +22,10 @@
 
 namespace Google\Ads\AdManager\Tests\Unit\V1\Client;
 
+use Google\Ads\AdManager\V1\BatchActivateCmsMetadataKeysRequest;
+use Google\Ads\AdManager\V1\BatchActivateCmsMetadataKeysResponse;
+use Google\Ads\AdManager\V1\BatchDeactivateCmsMetadataKeysRequest;
+use Google\Ads\AdManager\V1\BatchDeactivateCmsMetadataKeysResponse;
 use Google\Ads\AdManager\V1\Client\CmsMetadataKeyServiceClient;
 use Google\Ads\AdManager\V1\CmsMetadataKey;
 use Google\Ads\AdManager\V1\GetCmsMetadataKeyRequest;
@@ -62,6 +66,150 @@ class CmsMetadataKeyServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ];
         return new CmsMetadataKeyServiceClient($options);
+    }
+
+    /** @test */
+    public function batchActivateCmsMetadataKeysTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new BatchActivateCmsMetadataKeysResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
+        $formattedNames = [$gapicClient->cmsMetadataKeyName('[NETWORK_CODE]', '[CMS_METADATA_KEY]')];
+        $request = (new BatchActivateCmsMetadataKeysRequest())->setParent($formattedParent)->setNames($formattedNames);
+        $response = $gapicClient->batchActivateCmsMetadataKeys($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.ads.admanager.v1.CmsMetadataKeyService/BatchActivateCmsMetadataKeys',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getNames();
+        $this->assertProtobufEquals($formattedNames, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function batchActivateCmsMetadataKeysExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
+        $formattedNames = [$gapicClient->cmsMetadataKeyName('[NETWORK_CODE]', '[CMS_METADATA_KEY]')];
+        $request = (new BatchActivateCmsMetadataKeysRequest())->setParent($formattedParent)->setNames($formattedNames);
+        try {
+            $gapicClient->batchActivateCmsMetadataKeys($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function batchDeactivateCmsMetadataKeysTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new BatchDeactivateCmsMetadataKeysResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
+        $formattedNames = [$gapicClient->cmsMetadataKeyName('[NETWORK_CODE]', '[CMS_METADATA_KEY]')];
+        $request = (new BatchDeactivateCmsMetadataKeysRequest())
+            ->setParent($formattedParent)
+            ->setNames($formattedNames);
+        $response = $gapicClient->batchDeactivateCmsMetadataKeys($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.ads.admanager.v1.CmsMetadataKeyService/BatchDeactivateCmsMetadataKeys',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getNames();
+        $this->assertProtobufEquals($formattedNames, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function batchDeactivateCmsMetadataKeysExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
+        $formattedNames = [$gapicClient->cmsMetadataKeyName('[NETWORK_CODE]', '[CMS_METADATA_KEY]')];
+        $request = (new BatchDeactivateCmsMetadataKeysRequest())
+            ->setParent($formattedParent)
+            ->setNames($formattedNames);
+        try {
+            $gapicClient->batchDeactivateCmsMetadataKeys($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
@@ -205,7 +353,7 @@ class CmsMetadataKeyServiceClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function getCmsMetadataKeyAsyncTest()
+    public function batchActivateCmsMetadataKeysAsyncTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -213,24 +361,26 @@ class CmsMetadataKeyServiceClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
-        $name2 = 'name2-1052831874';
-        $displayName = 'displayName1615086568';
-        $expectedResponse = new CmsMetadataKey();
-        $expectedResponse->setName($name2);
-        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse = new BatchActivateCmsMetadataKeysResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->cmsMetadataKeyName('[NETWORK_CODE]', '[CMS_METADATA_KEY]');
-        $request = (new GetCmsMetadataKeyRequest())->setName($formattedName);
-        $response = $gapicClient->getCmsMetadataKeyAsync($request)->wait();
+        $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
+        $formattedNames = [$gapicClient->cmsMetadataKeyName('[NETWORK_CODE]', '[CMS_METADATA_KEY]')];
+        $request = (new BatchActivateCmsMetadataKeysRequest())->setParent($formattedParent)->setNames($formattedNames);
+        $response = $gapicClient->batchActivateCmsMetadataKeysAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.ads.admanager.v1.CmsMetadataKeyService/GetCmsMetadataKey', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertSame(
+            '/google.ads.admanager.v1.CmsMetadataKeyService/BatchActivateCmsMetadataKeys',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getNames();
+        $this->assertProtobufEquals($formattedNames, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

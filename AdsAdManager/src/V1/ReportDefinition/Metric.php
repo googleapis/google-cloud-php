@@ -1022,6 +1022,15 @@ class Metric
      */
     const AD_SERVER_ACTIVE_VIEW_NON_VIEWABLE_IMPRESSIONS_DISTRIBUTION = 334;
     /**
+     * Revenue generated from Ad Server Active View impressions.
+     * Corresponds to "Ad server Active View revenue" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `MONEY`
+     *
+     * Generated from protobuf enum <code>AD_SERVER_ACTIVE_VIEW_REVENUE = 704;</code>
+     */
+    const AD_SERVER_ACTIVE_VIEW_REVENUE = 704;
+    /**
      * The fraction of non-eligible impressions among eligible impressions from
      *  Ad Server in Active View reporting."
      * Corresponds to "Ad server Active View undetermined impression
@@ -1416,7 +1425,7 @@ class Metric
      * Number of ads that Ad Manager failed to render in the Ads traffic
      *  navigator report.
      * Corresponds to "Ads failed to render" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>ATN_ADS_FAILED_TO_RENDER = 430;</code>
@@ -1426,7 +1435,7 @@ class Metric
      * Number of line items that matched an ad request in the Ads traffic
      *  navigator report.
      * Corresponds to "Eligible line items" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>ATN_ELIGIBLE_LINE_ITEMS = 342;</code>
@@ -1437,7 +1446,7 @@ class Metric
      *  the Ads traffic navigator report.
      * Corresponds to "Ad requests with eligible line items" in the Ad Manager
      * UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>ATN_ELIGIBLE_LINE_ITEMS_AD_REQUESTS = 343;</code>
@@ -1448,7 +1457,7 @@ class Metric
      *  Ads traffic navigator report.
      * Corresponds to "Ad requests allowing header bidding trafficking" in the
      * Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>ATN_HBT_ALLOWED_AD_REQUESTS = 344;</code>
@@ -1459,7 +1468,7 @@ class Metric
      *  request and enter the auction in the Ads traffic navigator report.
      * Corresponds to "Competing header bidding trafficking bids" in the Ad
      * Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>ATN_HBT_BIDS_IN_AUCTION = 345;</code>
@@ -1470,7 +1479,7 @@ class Metric
      *  the Ads traffic navigator report.
      * Corresponds to "Ad requests with competing header bidding trafficking
      * bids" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>ATN_HBT_BIDS_IN_AUCTION_AD_REQUESTS = 346;</code>
@@ -1480,7 +1489,7 @@ class Metric
      * Number of header bidding trafficking candidate bids that match an ad
      *  request in the Ads traffic navigator report.
      * Corresponds to "Header bidding trafficking bids" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>ATN_HBT_CANDIDATE_BIDS = 347;</code>
@@ -1491,7 +1500,7 @@ class Metric
      *  traffic navigator report.
      * Corresponds to "Invalid ad requests allowing header bidding trafficking"
      * in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>ATN_HBT_INVALID_AD_REQUESTS = 348;</code>
@@ -1502,7 +1511,7 @@ class Metric
      *  traffic navigator report.
      * Corresponds to "Ad requests with no header bidding trafficking bids" in
      * the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>ATN_HBT_NO_BIDS_AD_REQUESTS = 472;</code>
@@ -1513,7 +1522,7 @@ class Metric
      *  request in the Ads traffic navigator report.
      * Corresponds to "Rejected header bidding trafficking bids" in the Ad
      * Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>ATN_HBT_REJECTED_BIDS = 349;</code>
@@ -1524,7 +1533,7 @@ class Metric
      *  valid in the Ads traffic navigator report.
      * Corresponds to "Valid header bidding trafficking ad requests" in the Ad
      * Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>ATN_HBT_VALID_AD_REQUESTS = 350;</code>
@@ -1535,7 +1544,7 @@ class Metric
      *  traffic navigator report.
      * Corresponds to "Ad requests with header bidding trafficking bids" in the
      * Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>ATN_HBT_WITH_BIDS_AD_REQUESTS = 473;</code>
@@ -1544,7 +1553,7 @@ class Metric
     /**
      * Ad requests that are not valid in the Ads traffic navigator report.
      * Corresponds to "Invalid ad requests" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>ATN_INVALID_AD_REQUESTS = 351;</code>
@@ -1555,7 +1564,7 @@ class Metric
      *  traffic navigator report.
      * Corresponds to "Line items with no creative retrieved" in the Ad Manager
      * UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>ATN_LINE_ITEMS_CREATIVE_NOT_RETRIEVED = 476;</code>
@@ -1565,7 +1574,7 @@ class Metric
      * Number of line items that matched an ad request and entered in auction in
      *  the Ads traffic navigator report.
      * Corresponds to "Competing line items" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>ATN_LINE_ITEMS_IN_AUCTION = 352;</code>
@@ -1575,7 +1584,7 @@ class Metric
      * Number of line items that were ranked but did not compete in auction in
      *  the Ads traffic navigator report.
      * Corresponds to "Non-competing line items" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>ATN_LINE_ITEMS_NOT_COMPETING = 515;</code>
@@ -1585,7 +1594,7 @@ class Metric
      * Number of line items that matched an ad request but were not selected to
      *  compete in the auction in the Ads traffic navigator report.
      * Corresponds to "Line items not selected to compete" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>ATN_LINE_ITEMS_NOT_SELECTED = 353;</code>
@@ -1596,7 +1605,7 @@ class Metric
      *  report.
      * Corresponds to "Ad requests with competing line items" in the Ad Manager
      * UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>ATN_LINE_ITEM_IN_AUCTION_AD_REQUESTS = 354;</code>
@@ -1607,7 +1616,7 @@ class Metric
      *  report.
      * Corresponds to "Ad requests with targeted line items" in the Ad Manager
      * UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>ATN_LINE_ITEM_TARGETED_AD_REQUESTS = 355;</code>
@@ -1617,7 +1626,7 @@ class Metric
      * Number of ad requests with the mediation demand in the Ads traffic
      *  navigator report.
      * Corresponds to "Ad requests allowing mediation" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>ATN_MEDIATION_ALLOWED_AD_REQUESTS = 356;</code>
@@ -1628,7 +1637,7 @@ class Metric
      *  report.
      * Corresponds to "Invalid ad requests allowing mediation" in the Ad Manager
      * UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>ATN_MEDIATION_INVALID_AD_REQUESTS = 357;</code>
@@ -1638,7 +1647,7 @@ class Metric
      * Number of times the Yield Partner's ad was loaded in the Ads traffic
      *  navigator report.
      * Corresponds to "Loaded ads from chains" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>ATN_MEDIATION_LOADED_ADS_FROM_CHAINS = 358;</code>
@@ -1649,7 +1658,7 @@ class Metric
      *  traffic navigator report.
      * Corresponds to "Ad requests with no targeted mediation partners" in the
      * Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>ATN_MEDIATION_NO_PARTNER_AD_REQUESTS = 474;</code>
@@ -1659,7 +1668,7 @@ class Metric
      * Number of mediation yield partners in auction in the Ads traffic
      *  navigator report.
      * Corresponds to "Competing mediation partners" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>ATN_MEDIATION_PARTNERS_IN_AUCTION = 359;</code>
@@ -1670,7 +1679,7 @@ class Metric
      *  traffic navigator report.
      * Corresponds to "Ad requests with competing mediation partners" in the Ad
      * Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>ATN_MEDIATION_PARTNERS_IN_AUCTION_AD_REQUESTS = 360;</code>
@@ -1680,7 +1689,7 @@ class Metric
      * Number of mediation partners that didn't match an ad request in the Ads
      *  traffic navigator report.
      * Corresponds to "Rejected partners" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>ATN_MEDIATION_REJECTED_PARTNERS = 361;</code>
@@ -1690,27 +1699,26 @@ class Metric
      * Number of mediation partners that have targeted an ad request and are
      *  able to match it in the Ads traffic navigator report.
      * Corresponds to "Targeted mediation partners" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>ATN_MEDIATION_TARGETED_PARTNERS = 362;</code>
      */
     const ATN_MEDIATION_TARGETED_PARTNERS = 362;
     /**
-     * Number of partners on served mediation chains in the Ads traffic
-     *  navigator report.
-     * Corresponds to "Total yield partners" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Number of ads in mediation chains in the Ads traffic navigator report.
+     * Corresponds to "Total ads in chains" in the Ad Manager UI.
+     * Compatible with the following report types: `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `INTEGER`
      *
-     * Generated from protobuf enum <code>ATN_MEDIATION_TOTAL_YIELD_PARTNERS = 442;</code>
+     * Generated from protobuf enum <code>ATN_MEDIATION_TOTAL_ADS_IN_CHAINS = 703;</code>
      */
-    const ATN_MEDIATION_TOTAL_YIELD_PARTNERS = 442;
+    const ATN_MEDIATION_TOTAL_ADS_IN_CHAINS = 703;
     /**
      * Number of ads from mediation chains that Ad Manager won't serve in the
      *  Ads traffic navigator report.
      * Corresponds to "Unloaded ads from chains" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>ATN_MEDIATION_UNLOADED_ADS_FROM_CHAINS = 363;</code>
@@ -1720,7 +1728,7 @@ class Metric
      * Number of times the Yield Partner's mediation chain ad was not reached
      *  in the Ads traffic navigator report.
      * Corresponds to "Unused bids or partners" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>ATN_MEDIATION_UNUSED_BIDS_OR_PARTNERS = 364;</code>
@@ -1730,7 +1738,7 @@ class Metric
      * Number of ad requests that have mediation demand in the Ads traffic
      *  navigator report.
      * Corresponds to "Valid mediation ad requests" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>ATN_MEDIATION_VALID_AD_REQUESTS = 365;</code>
@@ -1741,7 +1749,7 @@ class Metric
      *  traffic navigator report.
      * Corresponds to "Ad requests with targeted mediation partners" in the Ad
      * Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>ATN_MEDIATION_WITH_PARTNERS_AD_REQUESTS = 475;</code>
@@ -1751,7 +1759,7 @@ class Metric
      * Number of ad requests with programmatic demand that have received a bid
      *  in the Ads traffic navigator report.
      * Corresponds to "Ad requests with bids" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>ATN_PROGRAMMATIC_AD_REQUESTS_WITH_BIDS = 366;</code>
@@ -1761,7 +1769,7 @@ class Metric
      * Number of ad requests with programmatic demand that have sent a bid to at
      *  least one buyer in the Ads traffic navigator report.
      * Corresponds to "Ad requests with bid requests sent" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>ATN_PROGRAMMATIC_AD_REQUESTS_WITH_BID_REQUESTS_SENT = 367;</code>
@@ -1771,7 +1779,7 @@ class Metric
      * Number of ad requests with programmatic demand in the Ads traffic
      *  navigator report.
      * Corresponds to "Ad requests allowing programmatic" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>ATN_PROGRAMMATIC_ALLOWED_AD_REQUESTS = 368;</code>
@@ -1781,7 +1789,7 @@ class Metric
      * Number of ads with programmatic bids that entered the auction
      *  in the Ads traffic navigator report.
      * Corresponds to "Competing programmatic bids" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>ATN_PROGRAMMATIC_BIDS_IN_AUCTION = 369;</code>
@@ -1792,7 +1800,7 @@ class Metric
      *  compete in the auction in the Ads traffic navigator report.
      * Corresponds to "Ad requests with competing programmatic bids" in the Ad
      * Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>ATN_PROGRAMMATIC_BID_IN_AUCTION_AD_REQUESTS = 370;</code>
@@ -1802,7 +1810,7 @@ class Metric
      * Number of programmatic callout bid requests sent to buyers in the Ads
      *  traffic navigator report.
      * Corresponds to "Bid requests sent" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>ATN_PROGRAMMATIC_BID_REQUESTS_SENT = 371;</code>
@@ -1812,7 +1820,7 @@ class Metric
      * Number of programmatic callout bid requests that resulted with a response
      *  in the Ads traffic navigator report.
      * Corresponds to "Bid requests with response" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>ATN_PROGRAMMATIC_BID_REQUESTS_WITH_RESPONSE = 372;</code>
@@ -1822,7 +1830,7 @@ class Metric
      * All buyers that Ad Manager could potentially send a programmatic bid
      *  request to in the Ads traffic navigator report.
      * Corresponds to "Bid request candidates" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>ATN_PROGRAMMATIC_BID_REQUEST_CANDIDATES = 373;</code>
@@ -1832,7 +1840,7 @@ class Metric
      * Number of programmatic callout bid requests with errors in the Ads
      *  traffic navigator report.
      * Corresponds to "Bid request errors" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>ATN_PROGRAMMATIC_BID_REQUEST_ERRORS = 374;</code>
@@ -1843,7 +1851,7 @@ class Metric
      *  traffic navigator report.
      * Corresponds to "Invalid ad requests allowing programmatic" in the Ad
      * Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>ATN_PROGRAMMATIC_INELIGIBLE_AD_REQUESTS = 375;</code>
@@ -1853,7 +1861,7 @@ class Metric
      * Number of programmatic callout bids rejected in the Ads traffic navigator
      *  report.
      * Corresponds to "Rejected bids" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>ATN_PROGRAMMATIC_REJECTED_BIDS = 376;</code>
@@ -1863,7 +1871,7 @@ class Metric
      * Number of programmatic callout bid requests Ad Manager won't send to
      *  buyers in the Ads traffic navigator report.
      * Corresponds to "Skipped bid requests" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>ATN_PROGRAMMATIC_SKIPPED_BID_REQUESTS = 377;</code>
@@ -1873,7 +1881,7 @@ class Metric
      * Number of programmatic bids that Ad Manager received from buyers in the
      *  Ads traffic navigator report.
      * Corresponds to "Total programmatic bids" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>ATN_PROGRAMMATIC_TOTAL_BIDS = 378;</code>
@@ -1884,7 +1892,7 @@ class Metric
      *  navigator report.
      * Corresponds to "Valid ad requests allowing programmatic" in the Ad
      * Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>ATN_PROGRAMMATIC_VALID_AD_REQUESTS = 379;</code>
@@ -1894,7 +1902,7 @@ class Metric
      * Number of line items targeted that didn't match an ad request in the Ads
      *  traffic navigator report.
      * Corresponds to "Rejected line items" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>ATN_REJECTED_LINE_ITEMS = 380;</code>
@@ -1904,7 +1912,7 @@ class Metric
      * Number of mediation chains Ad Manager serves in the Ads traffic navigator
      *  report.
      * Corresponds to "Served mediation chains" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>ATN_SERVED_MEDIATION_CHAINS = 381;</code>
@@ -1913,7 +1921,7 @@ class Metric
     /**
      * Number of single ads served in the Ads traffic navigator report.
      * Corresponds to "Served single ads" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>ATN_SERVED_SINGLE_ADS = 382;</code>
@@ -1923,7 +1931,7 @@ class Metric
      * Number of line items with targeting that matches an ad request in the Ads
      *  traffic navigator report.
      * Corresponds to "Targeted line items" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>ATN_TARGETED_LINE_ITEMS = 383;</code>
@@ -1934,25 +1942,16 @@ class Metric
      *  single request in the Ads traffic navigator report.
      * Corresponds to "Total ad requests (Ads traffic navigator)" in the Ad
      * Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>ATN_TOTAL_AD_REQUESTS = 384;</code>
      */
     const ATN_TOTAL_AD_REQUESTS = 384;
     /**
-     * Number of competing ads in auction in the Ads traffic navigator report.
-     * Corresponds to "Total competing ads" in the Ad Manager UI.
-     * Compatible with the following report types:
-     * Data format: `INTEGER`
-     *
-     * Generated from protobuf enum <code>ATN_TOTAL_COMPETING_ADS_IN_AUCTION = 385;</code>
-     */
-    const ATN_TOTAL_COMPETING_ADS_IN_AUCTION = 385;
-    /**
      * Total number of ads loaded in the Ads traffic navigator report.
      * Corresponds to "Total loaded ads" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>ATN_TOTAL_LOADED_ADS = 387;</code>
@@ -1961,7 +1960,7 @@ class Metric
     /**
      * Ad requests that are valid in the Ads traffic navigator report.
      * Corresponds to "Valid ad requests" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>ATN_VALID_AD_REQUESTS = 389;</code>
@@ -1971,7 +1970,7 @@ class Metric
      * Number of times the Yield Partner passed-back on a Mediation chain ad in
      *  the Ads traffic navigator report.
      * Corresponds to "Yield group mediation passbacks" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>ATN_YIELD_GROUP_MEDIATION_PASSBACKS = 390;</code>
@@ -2092,7 +2091,8 @@ class Metric
     /**
      * The number of times a user clicked on an ad.
      * Corresponds to "Total clicks" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `ADS_TRAFFIC_NAVIGATOR`, `AD_SPEED`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>CLICKS = 2;</code>
@@ -2102,7 +2102,8 @@ class Metric
      * The total number of times that the code for an ad is served by the ad
      *  server including dynamic allocation.
      * Corresponds to "Total code served count" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>CODE_SERVED_COUNT = 44;</code>
@@ -2111,7 +2112,7 @@ class Metric
     /**
      * Total amount of CPC revenue.
      * Corresponds to "CPC revenue" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `MONEY`
      *
      * Generated from protobuf enum <code>CPC_REVENUE = 440;</code>
@@ -2120,7 +2121,7 @@ class Metric
     /**
      * Total amount of CPM revenue.
      * Corresponds to "CPM revenue" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `MONEY`
      *
      * Generated from protobuf enum <code>CPM_REVENUE = 441;</code>
@@ -2511,7 +2512,7 @@ class Metric
      * The number of coviewed impressions sold by Google in partner sales.
      * Corresponds to "Google-sold auction impressions (co-viewed)" in the Ad
      * Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `YOUTUBE_CONSOLIDATED`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>GOOGLE_SOLD_AUCTION_COVIEWED_IMPRESSIONS = 129;</code>
@@ -2520,7 +2521,7 @@ class Metric
     /**
      * The number of auction impressions sold by Google in partner sales.
      * Corresponds to "Google-sold auction impressions" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `YOUTUBE_CONSOLIDATED`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>GOOGLE_SOLD_AUCTION_IMPRESSIONS = 128;</code>
@@ -2530,7 +2531,7 @@ class Metric
      * The number of coviewed impressions sold by Google in partner sales.
      * Corresponds to "Google-sold impressions (co-viewed)" in the Ad Manager
      * UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `YOUTUBE_CONSOLIDATED`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>GOOGLE_SOLD_COVIEWED_IMPRESSIONS = 131;</code>
@@ -2539,7 +2540,7 @@ class Metric
     /**
      * The number of impressions sold by Google in partner sales.
      * Corresponds to "Google-sold impressions" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `YOUTUBE_CONSOLIDATED`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>GOOGLE_SOLD_IMPRESSIONS = 130;</code>
@@ -2549,7 +2550,7 @@ class Metric
      * The number of coviewed impressions sold by Google in partner sales.
      * Corresponds to "Google-sold reservation impressions (co-viewed)" in the
      * Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `YOUTUBE_CONSOLIDATED`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>GOOGLE_SOLD_RESERVATION_COVIEWED_IMPRESSIONS = 127;</code>
@@ -2559,7 +2560,7 @@ class Metric
      * The number of reservation impressions sold by Google in partner sales.
      * Corresponds to "Google-sold reservation impressions" in the Ad Manager
      * UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `YOUTUBE_CONSOLIDATED`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>GOOGLE_SOLD_RESERVATION_IMPRESSIONS = 126;</code>
@@ -2569,7 +2570,8 @@ class Metric
      * Total impressions from the Google Ad Manager server, AdSense,
      *  Ad Exchange, and yield group partners.
      * Corresponds to "Total impressions" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `ADS_TRAFFIC_NAVIGATOR`, `AD_SPEED`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>IMPRESSIONS = 1;</code>
@@ -2653,6 +2655,253 @@ class Metric
      * Generated from protobuf enum <code>MUTE_ELIGIBLE_IMPRESSIONS = 409;</code>
      */
     const MUTE_ELIGIBLE_IMPRESSIONS = 409;
+    /**
+     * Nielsen: The relative unique audience in the demographic compared with
+     *  its share of the overall population.
+     * Corresponds to "Audience index" in the Ad Manager UI.
+     * Compatible with the following report types: `REACH`
+     * Data format: `PERCENT`
+     *
+     * Generated from protobuf enum <code>NIELSEN_AUDIENCE_INDEX = 568;</code>
+     */
+    const NIELSEN_AUDIENCE_INDEX = 568;
+    /**
+     * Nielsen: The average number of times that a person within the target
+     *  audience sees an advertisement.
+     * Corresponds to "Average frequency" in the Ad Manager UI.
+     * Compatible with the following report types: `REACH`
+     * Data format: `DOUBLE`
+     *
+     * Generated from protobuf enum <code>NIELSEN_AVERAGE_FREQUENCY = 569;</code>
+     */
+    const NIELSEN_AVERAGE_FREQUENCY = 569;
+    /**
+     * Nielsen: The average number of viewers.
+     * Corresponds to "Average number of viewers" in the Ad Manager UI.
+     * Compatible with the following report types: `REACH`
+     * Data format: `DOUBLE`
+     *
+     * Generated from protobuf enum <code>NIELSEN_AVERAGE_NUMBER_OF_VIEWERS = 570;</code>
+     */
+    const NIELSEN_AVERAGE_NUMBER_OF_VIEWERS = 570;
+    /**
+     * Nielsen: The unit of audience volume, based on the percentage of the
+     *  reached target audience population multiplied by the average frequency.
+     * Corresponds to "Gross rating points" in the Ad Manager UI.
+     * Compatible with the following report types: `REACH`
+     * Data format: `PERCENT`
+     *
+     * Generated from protobuf enum <code>NIELSEN_GROSS_RATING_POINTS = 571;</code>
+     */
+    const NIELSEN_GROSS_RATING_POINTS = 571;
+    /**
+     * Nielsen: The total number of impressions tracked for Nielsen Digital Ad
+     *  Ratings measurement.
+     * Corresponds to "Impressions" in the Ad Manager UI.
+     * Compatible with the following report types: `REACH`
+     * Data format: `INTEGER`
+     *
+     * Generated from protobuf enum <code>NIELSEN_IMPRESSIONS = 572;</code>
+     */
+    const NIELSEN_IMPRESSIONS = 572;
+    /**
+     * Nielsen: The relative impressions per person in the demographic compared
+     *  with the impressions per person for the overall population.
+     * Corresponds to "Impressions index" in the Ad Manager UI.
+     * Compatible with the following report types: `REACH`
+     * Data format: `PERCENT`
+     *
+     * Generated from protobuf enum <code>NIELSEN_IMPRESSIONS_INDEX = 573;</code>
+     */
+    const NIELSEN_IMPRESSIONS_INDEX = 573;
+    /**
+     * Nielsen: The adjusted in-target impression share used for pacing and
+     *  billing.
+     * Corresponds to "Processed Nielsen in-target rate" in the Ad Manager UI.
+     * Compatible with the following report types: `REACH`
+     * Data format: `PERCENT`
+     *
+     * Generated from protobuf enum <code>NIELSEN_IN_TARGET_RATIO = 576;</code>
+     */
+    const NIELSEN_IN_TARGET_RATIO = 576;
+    /**
+     * Nielsen: The unique audience reached as a percentage of the population
+     *  base.
+     * Corresponds to "% audience reach" in the Ad Manager UI.
+     * Compatible with the following report types: `REACH`
+     * Data format: `PERCENT`
+     *
+     * Generated from protobuf enum <code>NIELSEN_PERCENT_AUDIENCE_REACH = 578;</code>
+     */
+    const NIELSEN_PERCENT_AUDIENCE_REACH = 578;
+    /**
+     * Nielsen: The share of the unique audience in the demographic.
+     * Corresponds to "% audience share" in the Ad Manager UI.
+     * Compatible with the following report types: `REACH`
+     * Data format: `PERCENT`
+     *
+     * Generated from protobuf enum <code>NIELSEN_PERCENT_AUDIENCE_SHARE = 579;</code>
+     */
+    const NIELSEN_PERCENT_AUDIENCE_SHARE = 579;
+    /**
+     * Nielsen: The share of impressions that reached the target demographic.
+     * Corresponds to "% impression share" in the Ad Manager UI.
+     * Compatible with the following report types: `REACH`
+     * Data format: `PERCENT`
+     *
+     * Generated from protobuf enum <code>NIELSEN_PERCENT_IMPRESSIONS_SHARE = 580;</code>
+     */
+    const NIELSEN_PERCENT_IMPRESSIONS_SHARE = 580;
+    /**
+     * Nielsen: The share of the total population represented by the population
+     *  base.
+     * Corresponds to "% population share" in the Ad Manager UI.
+     * Compatible with the following report types: `REACH`
+     * Data format: `PERCENT`
+     *
+     * Generated from protobuf enum <code>NIELSEN_PERCENT_POPULATION_SHARE = 581;</code>
+     */
+    const NIELSEN_PERCENT_POPULATION_SHARE = 581;
+    /**
+     * Nielsen: The population in the demographic.
+     * Corresponds to "Population base" in the Ad Manager UI.
+     * Compatible with the following report types: `REACH`
+     * Data format: `INTEGER`
+     *
+     * Generated from protobuf enum <code>NIELSEN_POPULATION_BASE = 582;</code>
+     */
+    const NIELSEN_POPULATION_BASE = 582;
+    /**
+     * Nielsen: The total number of different people within the selected
+     *  demographic who were reached.
+     * Corresponds to "Unique audience" in the Ad Manager UI.
+     * Compatible with the following report types: `REACH`
+     * Data format: `INTEGER`
+     *
+     * Generated from protobuf enum <code>NIELSEN_UNIQUE_AUDIENCE = 583;</code>
+     */
+    const NIELSEN_UNIQUE_AUDIENCE = 583;
+    /**
+     * The total number of cross publisher impressions that were sampled and
+     *  measured by active view.
+     * Corresponds to "Off-property Active View measurable impressions" in the
+     * Ad Manager UI.
+     * Compatible with the following report types: `OFF_PROPERTY_CAMPAIGNS`
+     * Data format: `INTEGER`
+     *
+     * Generated from protobuf enum <code>OFF_PROPERTY_ACTIVE_VIEW_MEASURABLE_IMPRESSIONS = 395;</code>
+     */
+    const OFF_PROPERTY_ACTIVE_VIEW_MEASURABLE_IMPRESSIONS = 395;
+    /**
+     * The total number of cross publisher impressions viewed on the user's
+     *  screen.
+     * Corresponds to "Off-property Active View viewable impressions" in the Ad
+     * Manager UI.
+     * Compatible with the following report types: `OFF_PROPERTY_CAMPAIGNS`
+     * Data format: `INTEGER`
+     *
+     * Generated from protobuf enum <code>OFF_PROPERTY_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS = 396;</code>
+     */
+    const OFF_PROPERTY_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS = 396;
+    /**
+     * The percentage of total cross publisher impressions viewed on the user's
+     *  screen (out of the total impressions measurable by active view).
+     * Corresponds to "Off-property Active View % viewable impressions" in the
+     * Ad Manager UI.
+     * Compatible with the following report types: `OFF_PROPERTY_CAMPAIGNS`
+     * Data format: `PERCENT`
+     *
+     * Generated from protobuf enum <code>OFF_PROPERTY_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE = 397;</code>
+     */
+    const OFF_PROPERTY_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE = 397;
+    /**
+     * The total number of cross publisher clicks.
+     * Corresponds to "Off-property clicks" in the Ad Manager UI.
+     * Compatible with the following report types: `OFF_PROPERTY_CAMPAIGNS`
+     * Data format: `INTEGER`
+     *
+     * Generated from protobuf enum <code>OFF_PROPERTY_CLICKS = 398;</code>
+     */
+    const OFF_PROPERTY_CLICKS = 398;
+    /**
+     * The ratio of cross publisher impressions that resulted in users clicking
+     *  on an ad. Cross publisher CTR is calculated as:
+     *  (Cross publisher clicks / Cross publisher impressions).
+     * Corresponds to "Off-property CTR" in the Ad Manager UI.
+     * Compatible with the following report types: `OFF_PROPERTY_CAMPAIGNS`
+     * Data format: `PERCENT`
+     *
+     * Generated from protobuf enum <code>OFF_PROPERTY_CTR = 399;</code>
+     */
+    const OFF_PROPERTY_CTR = 399;
+    /**
+     * The total number of cross publisher impressions.
+     * Corresponds to "Off-property impressions" in the Ad Manager UI.
+     * Compatible with the following report types: `OFF_PROPERTY_CAMPAIGNS`
+     * Data format: `INTEGER`
+     *
+     * Generated from protobuf enum <code>OFF_PROPERTY_IMPRESSIONS = 400;</code>
+     */
+    const OFF_PROPERTY_IMPRESSIONS = 400;
+    /**
+     * The total cross publisher revenue from line item and works with the
+     *  currency code from the same line item.
+     * Corresponds to "Off-property revenue" in the Ad Manager UI.
+     * Compatible with the following report types: `OFF_PROPERTY_CAMPAIGNS`
+     * Data format: `MONEY`
+     *
+     * Generated from protobuf enum <code>OFF_PROPERTY_REVENUE = 401;</code>
+     */
+    const OFF_PROPERTY_REVENUE = 401;
+    /**
+     * The total cross publisher spend and works with the billing currency code
+     *  of the this network.
+     * Corresponds to "Off-property spend" in the Ad Manager UI.
+     * Compatible with the following report types: `OFF_PROPERTY_CAMPAIGNS`
+     * Data format: `MONEY`
+     *
+     * Generated from protobuf enum <code>OFF_PROPERTY_SPEND = 402;</code>
+     */
+    const OFF_PROPERTY_SPEND = 402;
+    /**
+     * The average effective cost-per-thousand-impressions earned from the ads
+     *  delivered from cross publisher traffic.
+     * Corresponds to "Off-property spend eCPM" in the Ad Manager UI.
+     * Compatible with the following report types: `OFF_PROPERTY_CAMPAIGNS`
+     * Data format: `MONEY`
+     *
+     * Generated from protobuf enum <code>OFF_PROPERTY_SPEND_ECPM = 403;</code>
+     */
+    const OFF_PROPERTY_SPEND_ECPM = 403;
+    /**
+     * Average effective cost-per-thousand-impressions earned from the mediation
+     *  on-platform multiple call, excluding CPD value.
+     * Corresponds to "On-platform multiple call eCPM" in the Ad Manager UI.
+     * Compatible with the following report types: `ON_PLATFORM_MULTICALL`
+     * Data format: `MONEY`
+     *
+     * Generated from protobuf enum <code>ON_PLATFORM_MULTIPLE_CALL_ECPM = 678;</code>
+     */
+    const ON_PLATFORM_MULTIPLE_CALL_ECPM = 678;
+    /**
+     * Total impressions delivered by the mediation on-platform multiple call.
+     * Corresponds to "On-platform multiple call impressions" in the Ad Manager
+     * UI.
+     * Compatible with the following report types: `ON_PLATFORM_MULTICALL`
+     * Data format: `INTEGER`
+     *
+     * Generated from protobuf enum <code>ON_PLATFORM_MULTIPLE_CALL_IMPRESSIONS = 676;</code>
+     */
+    const ON_PLATFORM_MULTIPLE_CALL_IMPRESSIONS = 676;
+    /**
+     * Total revenue from the mediation on-platform multiple call.
+     * Corresponds to "On-platform multiple call revenue" in the Ad Manager UI.
+     * Compatible with the following report types: `ON_PLATFORM_MULTICALL`
+     * Data format: `MONEY`
+     *
+     * Generated from protobuf enum <code>ON_PLATFORM_MULTIPLE_CALL_REVENUE = 677;</code>
+     */
+    const ON_PLATFORM_MULTIPLE_CALL_REVENUE = 677;
     /**
      * The total number of opportunities from impressions and errors.
      * Corresponds to "Total opportunities" in the Ad Manager UI.
@@ -2815,7 +3064,7 @@ class Metric
      * The number of filled pod requests (filled by partner or Google) in
      *  partner sales.
      * Corresponds to "Filled pod requests" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `YOUTUBE_CONSOLIDATED`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>PARTNER_SALES_FILLED_POD_REQUESTS = 135;</code>
@@ -2825,7 +3074,7 @@ class Metric
      * The percent of filled requests to total ad requests in
      *  partner sales.
      * Corresponds to "Fill rate" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `YOUTUBE_CONSOLIDATED`
      * Data format: `PERCENT`
      *
      * Generated from protobuf enum <code>PARTNER_SALES_FILL_RATE = 136;</code>
@@ -2835,7 +3084,7 @@ class Metric
      * The percent of partner filled requests to total ad requests
      *  in partner sales.
      * Corresponds to "Partner match rate" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `YOUTUBE_CONSOLIDATED`
      * Data format: `PERCENT`
      *
      * Generated from protobuf enum <code>PARTNER_SALES_PARTNER_MATCH_RATE = 137;</code>
@@ -2844,7 +3093,7 @@ class Metric
     /**
      * The number of queries eligible for partner sales.
      * Corresponds to "Total partner sales ad requests" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `YOUTUBE_CONSOLIDATED`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>PARTNER_SALES_QUERIES = 132;</code>
@@ -2855,7 +3104,7 @@ class Metric
      *  If a pod request is not filled by partner but filled by Google, this
      *  metric will still count 1.
      * Corresponds to "Partner unfilled impressions" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `YOUTUBE_CONSOLIDATED`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>PARTNER_SALES_UNFILLED_IMPRESSIONS = 133;</code>
@@ -2866,7 +3115,7 @@ class Metric
      *  If an ad request is not filled by partner but filled by Google, this
      *  metric will still count 1.
      * Corresponds to "Partner unmatched ad requests" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `YOUTUBE_CONSOLIDATED`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>PARTNER_SALES_UNMATCHED_QUERIES = 134;</code>
@@ -2875,7 +3124,7 @@ class Metric
     /**
      * The number of code served sold by partner in partner sales.
      * Corresponds to "Partner-sold code served count" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `YOUTUBE_CONSOLIDATED`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>PARTNER_SOLD_CODE_SERVED = 125;</code>
@@ -2885,7 +3134,7 @@ class Metric
      * The number of coviewed impressions sold by partner in partner sales.
      * Corresponds to "Partner-sold impressions (co-viewed)" in the Ad Manager
      * UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `YOUTUBE_CONSOLIDATED`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>PARTNER_SOLD_COVIEWED_IMPRESSIONS = 124;</code>
@@ -2894,7 +3143,7 @@ class Metric
     /**
      * The number of impressions sold by partner in partner sales.
      * Corresponds to "Partner-sold impressions" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `YOUTUBE_CONSOLIDATED`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>PARTNER_SOLD_IMPRESSIONS = 123;</code>
@@ -3036,7 +3285,8 @@ class Metric
      *  served by the Google Ad Manager server, AdSense, Ad Exchange, and
      *  third-party Mediation networks.
      * Corresponds to "Total CPM and CPC revenue" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `MONEY`
      *
      * Generated from protobuf enum <code>REVENUE_WITHOUT_CPD = 4;</code>
@@ -3301,7 +3551,7 @@ class Metric
     /**
      * The number of forecasted impressions not reserved by any line item.
      * Corresponds to "Available impressions" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `FUTURE_SELL_THROUGH`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>SELL_THROUGH_AVAILABLE_IMPRESSIONS = 477;</code>
@@ -3310,7 +3560,7 @@ class Metric
     /**
      * The total number of forecasted impressions.
      * Corresponds to "Forecasted impressions" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `FUTURE_SELL_THROUGH`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>SELL_THROUGH_FORECASTED_IMPRESSIONS = 478;</code>
@@ -3319,7 +3569,7 @@ class Metric
     /**
      * The number of forecasted impressions reserved by line items.
      * Corresponds to "Reserved impressions" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `FUTURE_SELL_THROUGH`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>SELL_THROUGH_RESERVED_IMPRESSIONS = 479;</code>
@@ -3328,7 +3578,7 @@ class Metric
     /**
      * The fraction of forecasted impressions reserved by line items.
      * Corresponds to "Sell-through rate" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `FUTURE_SELL_THROUGH`
      * Data format: `PERCENT`
      *
      * Generated from protobuf enum <code>SELL_THROUGH_SELL_THROUGH_RATE = 480;</code>
@@ -4191,7 +4441,7 @@ class Metric
     /**
      * The number of total creative serves in video realtime reporting.
      * Corresponds to "Total creative serves" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `REAL_TIME_VIDEO`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>VIDEO_REAL_TIME_CREATIVE_SERVES = 139;</code>
@@ -4200,7 +4450,7 @@ class Metric
     /**
      * The number of errors of type 100 in video realtime reporting.
      * Corresponds to "VAST error 100 count" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `REAL_TIME_VIDEO`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>VIDEO_REAL_TIME_ERROR_100_COUNT = 143;</code>
@@ -4209,7 +4459,7 @@ class Metric
     /**
      * The number of errors of type 101 in video realtime reporting.
      * Corresponds to "VAST error 101 count" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `REAL_TIME_VIDEO`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>VIDEO_REAL_TIME_ERROR_101_COUNT = 144;</code>
@@ -4218,7 +4468,7 @@ class Metric
     /**
      * The number of errors of type 102 in video realtime reporting.
      * Corresponds to "VAST error 102 count" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `REAL_TIME_VIDEO`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>VIDEO_REAL_TIME_ERROR_102_COUNT = 145;</code>
@@ -4227,7 +4477,7 @@ class Metric
     /**
      * The number of errors of type 200 in video realtime reporting.
      * Corresponds to "VAST error 200 count" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `REAL_TIME_VIDEO`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>VIDEO_REAL_TIME_ERROR_200_COUNT = 146;</code>
@@ -4236,7 +4486,7 @@ class Metric
     /**
      * The number of errors of type 201 in video realtime reporting.
      * Corresponds to "VAST error 201 count" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `REAL_TIME_VIDEO`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>VIDEO_REAL_TIME_ERROR_201_COUNT = 147;</code>
@@ -4245,7 +4495,7 @@ class Metric
     /**
      * The number of errors of type 202 in video realtime reporting.
      * Corresponds to "VAST error 202 count" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `REAL_TIME_VIDEO`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>VIDEO_REAL_TIME_ERROR_202_COUNT = 148;</code>
@@ -4254,7 +4504,7 @@ class Metric
     /**
      * The number of errors of type 203 in video realtime reporting.
      * Corresponds to "VAST error 203 count" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `REAL_TIME_VIDEO`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>VIDEO_REAL_TIME_ERROR_203_COUNT = 149;</code>
@@ -4263,7 +4513,7 @@ class Metric
     /**
      * The number of errors of type 300 in video realtime reporting.
      * Corresponds to "VAST error 300 count" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `REAL_TIME_VIDEO`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>VIDEO_REAL_TIME_ERROR_300_COUNT = 150;</code>
@@ -4272,7 +4522,7 @@ class Metric
     /**
      * The number of errors of type 301 in video realtime reporting.
      * Corresponds to "VAST error 301 count" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `REAL_TIME_VIDEO`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>VIDEO_REAL_TIME_ERROR_301_COUNT = 151;</code>
@@ -4281,7 +4531,7 @@ class Metric
     /**
      * The number of errors of type 302 in video realtime reporting.
      * Corresponds to "VAST error 302 count" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `REAL_TIME_VIDEO`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>VIDEO_REAL_TIME_ERROR_302_COUNT = 152;</code>
@@ -4290,7 +4540,7 @@ class Metric
     /**
      * The number of errors of type 303 in video realtime reporting.
      * Corresponds to "VAST error 303 count" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `REAL_TIME_VIDEO`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>VIDEO_REAL_TIME_ERROR_303_COUNT = 153;</code>
@@ -4299,7 +4549,7 @@ class Metric
     /**
      * The number of errors of type 400 in video realtime reporting.
      * Corresponds to "VAST error 400 count" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `REAL_TIME_VIDEO`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>VIDEO_REAL_TIME_ERROR_400_COUNT = 154;</code>
@@ -4308,7 +4558,7 @@ class Metric
     /**
      * The number of errors of type 401 in video realtime reporting.
      * Corresponds to "VAST error 401 count" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `REAL_TIME_VIDEO`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>VIDEO_REAL_TIME_ERROR_401_COUNT = 155;</code>
@@ -4317,7 +4567,7 @@ class Metric
     /**
      * The number of errors of type 402 in video realtime reporting.
      * Corresponds to "VAST error 402 count" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `REAL_TIME_VIDEO`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>VIDEO_REAL_TIME_ERROR_402_COUNT = 156;</code>
@@ -4326,7 +4576,7 @@ class Metric
     /**
      * The number of errors of type 403 in video realtime reporting.
      * Corresponds to "VAST error 403 count" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `REAL_TIME_VIDEO`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>VIDEO_REAL_TIME_ERROR_403_COUNT = 157;</code>
@@ -4335,7 +4585,7 @@ class Metric
     /**
      * The number of errors of type 405 in video realtime reporting.
      * Corresponds to "VAST error 405 count" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `REAL_TIME_VIDEO`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>VIDEO_REAL_TIME_ERROR_405_COUNT = 158;</code>
@@ -4344,7 +4594,7 @@ class Metric
     /**
      * The number of errors of type 406 in video realtime reporting.
      * Corresponds to "VAST error 406 count" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `REAL_TIME_VIDEO`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>VIDEO_REAL_TIME_ERROR_406_COUNT = 159;</code>
@@ -4353,7 +4603,7 @@ class Metric
     /**
      * The number of errors of type 407 in video realtime reporting.
      * Corresponds to "VAST error 407 count" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `REAL_TIME_VIDEO`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>VIDEO_REAL_TIME_ERROR_407_COUNT = 160;</code>
@@ -4362,7 +4612,7 @@ class Metric
     /**
      * The number of errors of type 408 in video realtime reporting.
      * Corresponds to "VAST error 408 count" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `REAL_TIME_VIDEO`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>VIDEO_REAL_TIME_ERROR_408_COUNT = 161;</code>
@@ -4371,7 +4621,7 @@ class Metric
     /**
      * The number of errors of type 409 in video realtime reporting.
      * Corresponds to "VAST error 409 count" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `REAL_TIME_VIDEO`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>VIDEO_REAL_TIME_ERROR_409_COUNT = 162;</code>
@@ -4380,7 +4630,7 @@ class Metric
     /**
      * The number of errors of type 410 in video realtime reporting.
      * Corresponds to "VAST error 410 count" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `REAL_TIME_VIDEO`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>VIDEO_REAL_TIME_ERROR_410_COUNT = 163;</code>
@@ -4389,7 +4639,7 @@ class Metric
     /**
      * The number of errors of type 500 in video realtime reporting.
      * Corresponds to "VAST error 500 count" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `REAL_TIME_VIDEO`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>VIDEO_REAL_TIME_ERROR_500_COUNT = 164;</code>
@@ -4398,7 +4648,7 @@ class Metric
     /**
      * The number of errors of type 501 in video realtime reporting.
      * Corresponds to "VAST error 501 count" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `REAL_TIME_VIDEO`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>VIDEO_REAL_TIME_ERROR_501_COUNT = 165;</code>
@@ -4407,7 +4657,7 @@ class Metric
     /**
      * The number of errors of type 502 in video realtime reporting.
      * Corresponds to "VAST error 502 count" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `REAL_TIME_VIDEO`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>VIDEO_REAL_TIME_ERROR_502_COUNT = 166;</code>
@@ -4416,7 +4666,7 @@ class Metric
     /**
      * The number of errors of type 503 in video realtime reporting.
      * Corresponds to "VAST error 503 count" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `REAL_TIME_VIDEO`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>VIDEO_REAL_TIME_ERROR_503_COUNT = 167;</code>
@@ -4425,7 +4675,7 @@ class Metric
     /**
      * The number of errors of type 600 in video realtime reporting.
      * Corresponds to "VAST error 600 count" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `REAL_TIME_VIDEO`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>VIDEO_REAL_TIME_ERROR_600_COUNT = 168;</code>
@@ -4434,7 +4684,7 @@ class Metric
     /**
      * The number of errors of type 601 in video realtime reporting.
      * Corresponds to "VAST error 601 count" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `REAL_TIME_VIDEO`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>VIDEO_REAL_TIME_ERROR_601_COUNT = 169;</code>
@@ -4443,7 +4693,7 @@ class Metric
     /**
      * The number of errors of type 602 in video realtime reporting.
      * Corresponds to "VAST error 602 count" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `REAL_TIME_VIDEO`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>VIDEO_REAL_TIME_ERROR_602_COUNT = 170;</code>
@@ -4452,7 +4702,7 @@ class Metric
     /**
      * The number of errors of type 603 in video realtime reporting.
      * Corresponds to "VAST error 603 count" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `REAL_TIME_VIDEO`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>VIDEO_REAL_TIME_ERROR_603_COUNT = 171;</code>
@@ -4461,7 +4711,7 @@ class Metric
     /**
      * The number of errors of type 604 in video realtime reporting.
      * Corresponds to "VAST error 604 count" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `REAL_TIME_VIDEO`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>VIDEO_REAL_TIME_ERROR_604_COUNT = 172;</code>
@@ -4470,7 +4720,7 @@ class Metric
     /**
      * The number of errors of type 900 in video realtime reporting.
      * Corresponds to "VAST error 900 count" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `REAL_TIME_VIDEO`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>VIDEO_REAL_TIME_ERROR_900_COUNT = 173;</code>
@@ -4479,7 +4729,7 @@ class Metric
     /**
      * The number of errors of type 901 in video realtime reporting.
      * Corresponds to "VAST error 901 count" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `REAL_TIME_VIDEO`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>VIDEO_REAL_TIME_ERROR_901_COUNT = 174;</code>
@@ -4488,7 +4738,7 @@ class Metric
     /**
      * The number of total impressions in video realtime reporting.
      * Corresponds to "Total impressions" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `REAL_TIME_VIDEO`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>VIDEO_REAL_TIME_IMPRESSIONS = 138;</code>
@@ -4497,7 +4747,7 @@ class Metric
     /**
      * The number of matched queries in video realtime reporting.
      * Corresponds to "Total responses served" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `REAL_TIME_VIDEO`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>VIDEO_REAL_TIME_MATCHED_QUERIES = 140;</code>
@@ -4506,7 +4756,7 @@ class Metric
     /**
      * The number of all errors in video realtime reporting.
      * Corresponds to "Total error count" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `REAL_TIME_VIDEO`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>VIDEO_REAL_TIME_TOTAL_ERROR_COUNT = 175;</code>
@@ -4515,7 +4765,7 @@ class Metric
     /**
      * The number of total queries in video realtime reporting.
      * Corresponds to "Total ad requests" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `REAL_TIME_VIDEO`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>VIDEO_REAL_TIME_TOTAL_QUERIES = 142;</code>
@@ -4524,7 +4774,7 @@ class Metric
     /**
      * The number of unmatched queries in video realtime reporting.
      * Corresponds to "Total unmatched ad requests" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `REAL_TIME_VIDEO`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>VIDEO_REAL_TIME_UNMATCHED_QUERIES = 141;</code>
@@ -4561,6 +4811,16 @@ class Metric
      */
     const VIDEO_TRUE_OPPORTUNITIES_TOTAL_CAPPED_OPPORTUNITIES_ADBREAK = 281;
     /**
+     * The number of video ad opportunities reached by a user (rounded down, or
+     *  capped based on your max ads setting, whichever is less).
+     * Corresponds to "Capped opportunities (subpod)" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `INTEGER`
+     *
+     * Generated from protobuf enum <code>VIDEO_TRUE_OPPORTUNITIES_TOTAL_CAPPED_OPPORTUNITIES_SUBPOD = 282;</code>
+     */
+    const VIDEO_TRUE_OPPORTUNITIES_TOTAL_CAPPED_OPPORTUNITIES_SUBPOD = 282;
+    /**
      * The total number of seconds available to be filled.
      * Corresponds to "Total duration (adbreak)" in the Ad Manager UI.
      * Compatible with the following report types: `HISTORICAL`
@@ -4569,6 +4829,15 @@ class Metric
      * Generated from protobuf enum <code>VIDEO_TRUE_OPPORTUNITIES_TOTAL_DURATION_ADBREAK = 283;</code>
      */
     const VIDEO_TRUE_OPPORTUNITIES_TOTAL_DURATION_ADBREAK = 283;
+    /**
+     * The total number of seconds available to be filled.
+     * Corresponds to "Total duration (subpod)" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `INTEGER`
+     *
+     * Generated from protobuf enum <code>VIDEO_TRUE_OPPORTUNITIES_TOTAL_DURATION_SUBPOD = 284;</code>
+     */
+    const VIDEO_TRUE_OPPORTUNITIES_TOTAL_DURATION_SUBPOD = 284;
     /**
      * The total number of seconds filled.
      * Corresponds to "Matched duration (adbreak)" in the Ad Manager UI.
@@ -4579,6 +4848,15 @@ class Metric
      */
     const VIDEO_TRUE_OPPORTUNITIES_TOTAL_MATCHED_DURATION_ADBREAK = 285;
     /**
+     * The total number of seconds filled.
+     * Corresponds to "Matched duration (subpod)" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `INTEGER`
+     *
+     * Generated from protobuf enum <code>VIDEO_TRUE_OPPORTUNITIES_TOTAL_MATCHED_DURATION_SUBPOD = 286;</code>
+     */
+    const VIDEO_TRUE_OPPORTUNITIES_TOTAL_MATCHED_DURATION_SUBPOD = 286;
+    /**
      * The total matched opportunities in video true opportunities reporting.
      * Corresponds to "Matched opportunities (adbreak)" in the Ad Manager UI.
      * Compatible with the following report types: `HISTORICAL`
@@ -4588,6 +4866,15 @@ class Metric
      */
     const VIDEO_TRUE_OPPORTUNITIES_TOTAL_MATCHED_OPPORTUNITIES_ADBREAK = 287;
     /**
+     * The total matched opportunities in video true opportunities reporting.
+     * Corresponds to "Matched opportunities (subpod)" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `INTEGER`
+     *
+     * Generated from protobuf enum <code>VIDEO_TRUE_OPPORTUNITIES_TOTAL_MATCHED_OPPORTUNITIES_SUBPOD = 288;</code>
+     */
+    const VIDEO_TRUE_OPPORTUNITIES_TOTAL_MATCHED_OPPORTUNITIES_SUBPOD = 288;
+    /**
      * The number of video ad opportunities reached by a user (rounded down).
      * Corresponds to "Viewed opportunities (adbreak)" in the Ad Manager UI.
      * Compatible with the following report types: `HISTORICAL`
@@ -4596,6 +4883,15 @@ class Metric
      * Generated from protobuf enum <code>VIDEO_TRUE_OPPORTUNITIES_TOTAL_VIEWED_OPPORTUNITIES_ADBREAK = 289;</code>
      */
     const VIDEO_TRUE_OPPORTUNITIES_TOTAL_VIEWED_OPPORTUNITIES_ADBREAK = 289;
+    /**
+     * The number of video ad opportunities reached by a user (rounded down).
+     * Corresponds to "Viewed opportunities (subpod)" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `INTEGER`
+     *
+     * Generated from protobuf enum <code>VIDEO_TRUE_OPPORTUNITIES_TOTAL_VIEWED_OPPORTUNITIES_SUBPOD = 290;</code>
+     */
+    const VIDEO_TRUE_OPPORTUNITIES_TOTAL_VIEWED_OPPORTUNITIES_SUBPOD = 290;
     /**
      * The number of TrueView ad impressions viewed.
      * Corresponds to "True views" in the Ad Manager UI.
@@ -5004,6 +5300,7 @@ class Metric
         self::AD_SERVER_ACTIVE_VIEW_NON_MEASURABLE_IMPRESSIONS => 'AD_SERVER_ACTIVE_VIEW_NON_MEASURABLE_IMPRESSIONS',
         self::AD_SERVER_ACTIVE_VIEW_NON_VIEWABLE_IMPRESSIONS => 'AD_SERVER_ACTIVE_VIEW_NON_VIEWABLE_IMPRESSIONS',
         self::AD_SERVER_ACTIVE_VIEW_NON_VIEWABLE_IMPRESSIONS_DISTRIBUTION => 'AD_SERVER_ACTIVE_VIEW_NON_VIEWABLE_IMPRESSIONS_DISTRIBUTION',
+        self::AD_SERVER_ACTIVE_VIEW_REVENUE => 'AD_SERVER_ACTIVE_VIEW_REVENUE',
         self::AD_SERVER_ACTIVE_VIEW_UNDETERMINED_IMPRESSIONS_DISTRIBUTION => 'AD_SERVER_ACTIVE_VIEW_UNDETERMINED_IMPRESSIONS_DISTRIBUTION',
         self::AD_SERVER_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS => 'AD_SERVER_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS',
         self::AD_SERVER_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_DISTRIBUTION => 'AD_SERVER_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_DISTRIBUTION',
@@ -5068,7 +5365,7 @@ class Metric
         self::ATN_MEDIATION_PARTNERS_IN_AUCTION_AD_REQUESTS => 'ATN_MEDIATION_PARTNERS_IN_AUCTION_AD_REQUESTS',
         self::ATN_MEDIATION_REJECTED_PARTNERS => 'ATN_MEDIATION_REJECTED_PARTNERS',
         self::ATN_MEDIATION_TARGETED_PARTNERS => 'ATN_MEDIATION_TARGETED_PARTNERS',
-        self::ATN_MEDIATION_TOTAL_YIELD_PARTNERS => 'ATN_MEDIATION_TOTAL_YIELD_PARTNERS',
+        self::ATN_MEDIATION_TOTAL_ADS_IN_CHAINS => 'ATN_MEDIATION_TOTAL_ADS_IN_CHAINS',
         self::ATN_MEDIATION_UNLOADED_ADS_FROM_CHAINS => 'ATN_MEDIATION_UNLOADED_ADS_FROM_CHAINS',
         self::ATN_MEDIATION_UNUSED_BIDS_OR_PARTNERS => 'ATN_MEDIATION_UNUSED_BIDS_OR_PARTNERS',
         self::ATN_MEDIATION_VALID_AD_REQUESTS => 'ATN_MEDIATION_VALID_AD_REQUESTS',
@@ -5092,7 +5389,6 @@ class Metric
         self::ATN_SERVED_SINGLE_ADS => 'ATN_SERVED_SINGLE_ADS',
         self::ATN_TARGETED_LINE_ITEMS => 'ATN_TARGETED_LINE_ITEMS',
         self::ATN_TOTAL_AD_REQUESTS => 'ATN_TOTAL_AD_REQUESTS',
-        self::ATN_TOTAL_COMPETING_ADS_IN_AUCTION => 'ATN_TOTAL_COMPETING_ADS_IN_AUCTION',
         self::ATN_TOTAL_LOADED_ADS => 'ATN_TOTAL_LOADED_ADS',
         self::ATN_VALID_AD_REQUESTS => 'ATN_VALID_AD_REQUESTS',
         self::ATN_YIELD_GROUP_MEDIATION_PASSBACKS => 'ATN_YIELD_GROUP_MEDIATION_PASSBACKS',
@@ -5167,6 +5463,31 @@ class Metric
         self::MEDIATION_CHAINS_FILLED => 'MEDIATION_CHAINS_FILLED',
         self::MUTED_IMPRESSIONS => 'MUTED_IMPRESSIONS',
         self::MUTE_ELIGIBLE_IMPRESSIONS => 'MUTE_ELIGIBLE_IMPRESSIONS',
+        self::NIELSEN_AUDIENCE_INDEX => 'NIELSEN_AUDIENCE_INDEX',
+        self::NIELSEN_AVERAGE_FREQUENCY => 'NIELSEN_AVERAGE_FREQUENCY',
+        self::NIELSEN_AVERAGE_NUMBER_OF_VIEWERS => 'NIELSEN_AVERAGE_NUMBER_OF_VIEWERS',
+        self::NIELSEN_GROSS_RATING_POINTS => 'NIELSEN_GROSS_RATING_POINTS',
+        self::NIELSEN_IMPRESSIONS => 'NIELSEN_IMPRESSIONS',
+        self::NIELSEN_IMPRESSIONS_INDEX => 'NIELSEN_IMPRESSIONS_INDEX',
+        self::NIELSEN_IN_TARGET_RATIO => 'NIELSEN_IN_TARGET_RATIO',
+        self::NIELSEN_PERCENT_AUDIENCE_REACH => 'NIELSEN_PERCENT_AUDIENCE_REACH',
+        self::NIELSEN_PERCENT_AUDIENCE_SHARE => 'NIELSEN_PERCENT_AUDIENCE_SHARE',
+        self::NIELSEN_PERCENT_IMPRESSIONS_SHARE => 'NIELSEN_PERCENT_IMPRESSIONS_SHARE',
+        self::NIELSEN_PERCENT_POPULATION_SHARE => 'NIELSEN_PERCENT_POPULATION_SHARE',
+        self::NIELSEN_POPULATION_BASE => 'NIELSEN_POPULATION_BASE',
+        self::NIELSEN_UNIQUE_AUDIENCE => 'NIELSEN_UNIQUE_AUDIENCE',
+        self::OFF_PROPERTY_ACTIVE_VIEW_MEASURABLE_IMPRESSIONS => 'OFF_PROPERTY_ACTIVE_VIEW_MEASURABLE_IMPRESSIONS',
+        self::OFF_PROPERTY_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS => 'OFF_PROPERTY_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS',
+        self::OFF_PROPERTY_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE => 'OFF_PROPERTY_ACTIVE_VIEW_VIEWABLE_IMPRESSIONS_RATE',
+        self::OFF_PROPERTY_CLICKS => 'OFF_PROPERTY_CLICKS',
+        self::OFF_PROPERTY_CTR => 'OFF_PROPERTY_CTR',
+        self::OFF_PROPERTY_IMPRESSIONS => 'OFF_PROPERTY_IMPRESSIONS',
+        self::OFF_PROPERTY_REVENUE => 'OFF_PROPERTY_REVENUE',
+        self::OFF_PROPERTY_SPEND => 'OFF_PROPERTY_SPEND',
+        self::OFF_PROPERTY_SPEND_ECPM => 'OFF_PROPERTY_SPEND_ECPM',
+        self::ON_PLATFORM_MULTIPLE_CALL_ECPM => 'ON_PLATFORM_MULTIPLE_CALL_ECPM',
+        self::ON_PLATFORM_MULTIPLE_CALL_IMPRESSIONS => 'ON_PLATFORM_MULTIPLE_CALL_IMPRESSIONS',
+        self::ON_PLATFORM_MULTIPLE_CALL_REVENUE => 'ON_PLATFORM_MULTIPLE_CALL_REVENUE',
         self::OPPORTUNITIES => 'OPPORTUNITIES',
         self::OVERDELIVERED_IMPRESSIONS => 'OVERDELIVERED_IMPRESSIONS',
         self::PARTNER_FINANCE_GROSS_REVENUE => 'PARTNER_FINANCE_GROSS_REVENUE',
@@ -5368,10 +5689,15 @@ class Metric
         self::VIDEO_TRUE_OPPORTUNITIES_TOTAL_BREAK_END => 'VIDEO_TRUE_OPPORTUNITIES_TOTAL_BREAK_END',
         self::VIDEO_TRUE_OPPORTUNITIES_TOTAL_BREAK_START => 'VIDEO_TRUE_OPPORTUNITIES_TOTAL_BREAK_START',
         self::VIDEO_TRUE_OPPORTUNITIES_TOTAL_CAPPED_OPPORTUNITIES_ADBREAK => 'VIDEO_TRUE_OPPORTUNITIES_TOTAL_CAPPED_OPPORTUNITIES_ADBREAK',
+        self::VIDEO_TRUE_OPPORTUNITIES_TOTAL_CAPPED_OPPORTUNITIES_SUBPOD => 'VIDEO_TRUE_OPPORTUNITIES_TOTAL_CAPPED_OPPORTUNITIES_SUBPOD',
         self::VIDEO_TRUE_OPPORTUNITIES_TOTAL_DURATION_ADBREAK => 'VIDEO_TRUE_OPPORTUNITIES_TOTAL_DURATION_ADBREAK',
+        self::VIDEO_TRUE_OPPORTUNITIES_TOTAL_DURATION_SUBPOD => 'VIDEO_TRUE_OPPORTUNITIES_TOTAL_DURATION_SUBPOD',
         self::VIDEO_TRUE_OPPORTUNITIES_TOTAL_MATCHED_DURATION_ADBREAK => 'VIDEO_TRUE_OPPORTUNITIES_TOTAL_MATCHED_DURATION_ADBREAK',
+        self::VIDEO_TRUE_OPPORTUNITIES_TOTAL_MATCHED_DURATION_SUBPOD => 'VIDEO_TRUE_OPPORTUNITIES_TOTAL_MATCHED_DURATION_SUBPOD',
         self::VIDEO_TRUE_OPPORTUNITIES_TOTAL_MATCHED_OPPORTUNITIES_ADBREAK => 'VIDEO_TRUE_OPPORTUNITIES_TOTAL_MATCHED_OPPORTUNITIES_ADBREAK',
+        self::VIDEO_TRUE_OPPORTUNITIES_TOTAL_MATCHED_OPPORTUNITIES_SUBPOD => 'VIDEO_TRUE_OPPORTUNITIES_TOTAL_MATCHED_OPPORTUNITIES_SUBPOD',
         self::VIDEO_TRUE_OPPORTUNITIES_TOTAL_VIEWED_OPPORTUNITIES_ADBREAK => 'VIDEO_TRUE_OPPORTUNITIES_TOTAL_VIEWED_OPPORTUNITIES_ADBREAK',
+        self::VIDEO_TRUE_OPPORTUNITIES_TOTAL_VIEWED_OPPORTUNITIES_SUBPOD => 'VIDEO_TRUE_OPPORTUNITIES_TOTAL_VIEWED_OPPORTUNITIES_SUBPOD',
         self::VIDEO_TRUE_VIEWS => 'VIDEO_TRUE_VIEWS',
         self::VIDEO_TRUE_VIEW_SKIP_RATE => 'VIDEO_TRUE_VIEW_SKIP_RATE',
         self::VIDEO_TRUE_VIEW_VIEW_THROUGH_RATE => 'VIDEO_TRUE_VIEW_VIEW_THROUGH_RATE',

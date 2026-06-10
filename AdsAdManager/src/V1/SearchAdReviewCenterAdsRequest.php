@@ -46,12 +46,6 @@ class SearchAdReviewCenterAdsRequest extends \Google\Protobuf\Internal\Message
      */
     protected $page_token = '';
     /**
-     * Optional. Only return ads with the given status.
-     *
-     * Generated from protobuf field <code>.google.ads.admanager.v1.AdReviewCenterAdStatusEnum.AdReviewCenterAdStatus status = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     */
-    protected $status = 0;
-    /**
      * Optional. Only return ads with the given AdReviewCenterAd IDs. If provided,
      * no other filter can be set (other than page size and page token).
      *
@@ -61,7 +55,8 @@ class SearchAdReviewCenterAdsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. If provided, only return ads that served within the given date
      * range (inclusive). The  date range must be within the last 30 days. If not
-     * provided, the date range will be the last 30 days.
+     * provided, the date range will be the last 30 days. This filter does not
+     * apply to the PENDING manual review status.
      *
      * Generated from protobuf field <code>.google.type.Interval date_time_range = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -79,11 +74,12 @@ class SearchAdReviewCenterAdsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. If provided, restrict the search to creatives belonging to one of
      * the given Adx buyer account IDs. Only applicable to RTB creatives. Adx
-     * buyer account IDs can be found via the ProgrammaticBuyerService.
+     * buyer account IDs can be found using the `ProgrammaticBuyerService`.
      *
      * Generated from protobuf field <code>repeated int64 buyer_account_id = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $buyer_account_id;
+    protected $ad_review_status;
 
     /**
      * @param string $parent Required. The parent, which owns this collection of AdReviewCenterAds.
@@ -118,6 +114,13 @@ class SearchAdReviewCenterAdsRequest extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type int $status
+     *           Optional. Only return ads with the given status.
+     *     @type int $manual_review_status
+     *           Optional. Only return ads with the given manual review status. Only
+     *           available for networks with Manual Creative Review enabled. For more
+     *           information, see
+     *           https://support.google.com/admanager/answer/2586531#manual-creative-review.
      *     @type string $parent
      *           Required. The parent, which owns this collection of AdReviewCenterAds.
      *           Format: networks/{network_code}/webProperties/{web_property_code}
@@ -136,15 +139,14 @@ class SearchAdReviewCenterAdsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $page_token
      *           Optional. The page token to fetch the next page of AdReviewCenterAds. This
      *           is the value returned from a previous Search request, or empty.
-     *     @type int $status
-     *           Optional. Only return ads with the given status.
      *     @type string[] $ad_review_center_ad_id
      *           Optional. Only return ads with the given AdReviewCenterAd IDs. If provided,
      *           no other filter can be set (other than page size and page token).
      *     @type \Google\Type\Interval $date_time_range
      *           Optional. If provided, only return ads that served within the given date
      *           range (inclusive). The  date range must be within the last 30 days. If not
-     *           provided, the date range will be the last 30 days.
+     *           provided, the date range will be the last 30 days. This filter does not
+     *           apply to the PENDING manual review status.
      *     @type string[] $search_text
      *           Optional. If provided, restrict the search to AdReviewCenterAds associated
      *           with the text (including any text on the ad or in the destination URL). If
@@ -154,12 +156,80 @@ class SearchAdReviewCenterAdsRequest extends \Google\Protobuf\Internal\Message
      *     @type int[]|string[] $buyer_account_id
      *           Optional. If provided, restrict the search to creatives belonging to one of
      *           the given Adx buyer account IDs. Only applicable to RTB creatives. Adx
-     *           buyer account IDs can be found via the ProgrammaticBuyerService.
+     *           buyer account IDs can be found using the `ProgrammaticBuyerService`.
      * }
      */
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Ads\Admanager\V1\AdReviewCenterAdService::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Optional. Only return ads with the given status.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.AdReviewCenterAdStatusEnum.AdReviewCenterAdStatus status = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getStatus()
+    {
+        return $this->readOneof(4);
+    }
+
+    public function hasStatus()
+    {
+        return $this->hasOneof(4);
+    }
+
+    /**
+     * Optional. Only return ads with the given status.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.AdReviewCenterAdStatusEnum.AdReviewCenterAdStatus status = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setStatus($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Ads\AdManager\V1\AdReviewCenterAdStatusEnum\AdReviewCenterAdStatus::class);
+        $this->writeOneof(4, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. Only return ads with the given manual review status. Only
+     * available for networks with Manual Creative Review enabled. For more
+     * information, see
+     * https://support.google.com/admanager/answer/2586531#manual-creative-review.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.ManualAdReviewCenterAdStatusEnum.ManualAdReviewCenterAdStatus manual_review_status = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getManualReviewStatus()
+    {
+        return $this->readOneof(9);
+    }
+
+    public function hasManualReviewStatus()
+    {
+        return $this->hasOneof(9);
+    }
+
+    /**
+     * Optional. Only return ads with the given manual review status. Only
+     * available for networks with Manual Creative Review enabled. For more
+     * information, see
+     * https://support.google.com/admanager/answer/2586531#manual-creative-review.
+     *
+     * Generated from protobuf field <code>.google.ads.admanager.v1.ManualAdReviewCenterAdStatusEnum.ManualAdReviewCenterAdStatus manual_review_status = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setManualReviewStatus($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Ads\AdManager\V1\ManualAdReviewCenterAdStatusEnum\ManualAdReviewCenterAdStatus::class);
+        $this->writeOneof(9, $var);
+
+        return $this;
     }
 
     /**
@@ -265,32 +335,6 @@ class SearchAdReviewCenterAdsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Only return ads with the given status.
-     *
-     * Generated from protobuf field <code>.google.ads.admanager.v1.AdReviewCenterAdStatusEnum.AdReviewCenterAdStatus status = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return int
-     */
-    public function getStatus()
-    {
-        return $this->status;
-    }
-
-    /**
-     * Optional. Only return ads with the given status.
-     *
-     * Generated from protobuf field <code>.google.ads.admanager.v1.AdReviewCenterAdStatusEnum.AdReviewCenterAdStatus status = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param int $var
-     * @return $this
-     */
-    public function setStatus($var)
-    {
-        GPBUtil::checkEnum($var, \Google\Ads\AdManager\V1\AdReviewCenterAdStatusEnum\AdReviewCenterAdStatus::class);
-        $this->status = $var;
-
-        return $this;
-    }
-
-    /**
      * Optional. Only return ads with the given AdReviewCenterAd IDs. If provided,
      * no other filter can be set (other than page size and page token).
      *
@@ -321,7 +365,8 @@ class SearchAdReviewCenterAdsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. If provided, only return ads that served within the given date
      * range (inclusive). The  date range must be within the last 30 days. If not
-     * provided, the date range will be the last 30 days.
+     * provided, the date range will be the last 30 days. This filter does not
+     * apply to the PENDING manual review status.
      *
      * Generated from protobuf field <code>.google.type.Interval date_time_range = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Type\Interval|null
@@ -344,7 +389,8 @@ class SearchAdReviewCenterAdsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. If provided, only return ads that served within the given date
      * range (inclusive). The  date range must be within the last 30 days. If not
-     * provided, the date range will be the last 30 days.
+     * provided, the date range will be the last 30 days. This filter does not
+     * apply to the PENDING manual review status.
      *
      * Generated from protobuf field <code>.google.type.Interval date_time_range = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Type\Interval $var
@@ -395,7 +441,7 @@ class SearchAdReviewCenterAdsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. If provided, restrict the search to creatives belonging to one of
      * the given Adx buyer account IDs. Only applicable to RTB creatives. Adx
-     * buyer account IDs can be found via the ProgrammaticBuyerService.
+     * buyer account IDs can be found using the `ProgrammaticBuyerService`.
      *
      * Generated from protobuf field <code>repeated int64 buyer_account_id = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return RepeatedField<int>|RepeatedField<string>
@@ -408,7 +454,7 @@ class SearchAdReviewCenterAdsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. If provided, restrict the search to creatives belonging to one of
      * the given Adx buyer account IDs. Only applicable to RTB creatives. Adx
-     * buyer account IDs can be found via the ProgrammaticBuyerService.
+     * buyer account IDs can be found using the `ProgrammaticBuyerService`.
      *
      * Generated from protobuf field <code>repeated int64 buyer_account_id = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int[]|string[] $var
@@ -420,6 +466,14 @@ class SearchAdReviewCenterAdsRequest extends \Google\Protobuf\Internal\Message
         $this->buyer_account_id = $arr;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAdReviewStatus()
+    {
+        return $this->whichOneof("ad_review_status");
     }
 
 }

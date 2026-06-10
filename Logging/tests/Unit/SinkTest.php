@@ -20,6 +20,10 @@ namespace Google\Cloud\Logging\Tests\Unit;
 use Google\ApiCore\ApiException;
 use Google\Cloud\Logging\Sink;
 use Google\Cloud\Logging\Connection\Gapic;
+use Google\Cloud\Logging\V2\Client\ConfigServiceV2Client;
+use Google\Cloud\Logging\V2\GetSinkRequest;
+use Google\Cloud\Logging\V2\LogSink;
+use Google\Cloud\Logging\V2\UpdateSinkRequest;
 use Google\Rpc\Code;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
@@ -116,6 +120,62 @@ class SinkTest extends TestCase
         $sink->update($this->sinkData);
 
         $this->assertEquals($this->sinkData['destination'], $sink->info()['destination']);
+    }
+
+    public function testUpdate()
+    {
+        $updatedSink = new LogSink([
+            'destination' => 'a new destination',
+            'filter' => 'name=filteredname',
+        ]);
+        $updateRequest = new UpdateSinkRequest([
+            'sink_name' => $this->formattedName,
+            'sink' => $updatedSink,
+        ]);
+        $configClient = $this->prophesize(ConfigServiceV2Client::class);
+        $configClient->updateSink($updateRequest, [])
+            ->willReturn($updatedSink)
+            ->shouldBeCalledOnce();
+        $getRequest = new GetSinkRequest([
+            'sink_name' => $this->formattedName,
+        ]);
+        $configClient->getSink($getRequest, [])
+            ->willReturn($updatedSink)
+            ->shouldBeCalledOnce();
+
+        $connection = new Gapic(['configGapicClient' => $configClient->reveal()]);
+        $sink = new Sink($connection, $this->sinkName, $this->projectId);
+
+        $sink->update(['destination' => 'a new destination', 'filter' => 'name=filteredname']);
+
+        $this->assertEquals('a new destination', $sink->info()['destination']);
+        $this->assertEquals('name=filteredname', $sink->info()['filter']);
+    }
+
+    public function testUpdateWithInfoDoesNotMakeGetRequest()
+    {
+        $updatedSink = new LogSink([
+            'destination' => 'a new destination',
+            'filter' => 'name=filteredname',
+        ]);
+        $request = new UpdateSinkRequest([
+            'sink_name' => $this->formattedName,
+            'sink' => $updatedSink,
+        ]);
+        $configClient = $this->prophesize(ConfigServiceV2Client::class);
+        $configClient->updateSink($request, [])
+            ->willReturn($updatedSink)
+            ->shouldBeCalledOnce();
+        $configClient->getSink(Argument::type(GetSinkRequest::class), [])
+            ->shouldNotBeCalled();
+
+        $connection = new Gapic(['configGapicClient' => $configClient->reveal()]);
+        $sink = new Sink($connection, $this->sinkName, $this->projectId, ['destination' => 'previous destination']);
+
+        $sink->update(['destination' => 'a new destination', 'filter' => 'name=filteredname']);
+
+        $this->assertEquals('a new destination', $sink->info()['destination']);
+        $this->assertEquals('name=filteredname', $sink->info()['filter']);
     }
 
     public function testGetsInfo()

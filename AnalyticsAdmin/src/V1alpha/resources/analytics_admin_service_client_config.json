@@ -499,6 +499,11 @@
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
                 },
+                "GetUserProvidedDataSettings": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
                 "ListAccessBindings": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "retry_policy_1_codes",

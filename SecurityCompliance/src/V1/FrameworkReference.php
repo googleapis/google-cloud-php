@@ -9,8 +9,9 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * The reference of a framework, in the format
- * `organizations/{organization}/locations/{location}/frameworks/{framework}`.
+ * The reference of a framework, in one of the following formats:
+ * - `organizations/{organization}/locations/{location}/frameworks/{framework}`
+ * - `projects/{project}/locations/{location}/frameworks/{framework}`.
  * The only supported location is `global`.
  *
  * Generated from protobuf message <code>google.cloud.cloudsecuritycompliance.v1.FrameworkReference</code>
@@ -21,7 +22,7 @@ class FrameworkReference extends \Google\Protobuf\Internal\Message
      * Required. The major version of the framework. If not specified, the version
      * corresponds to the latest version of the framework.
      *
-     * Generated from protobuf field <code>string framework = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string framework = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $framework = '';
     /**
@@ -55,7 +56,7 @@ class FrameworkReference extends \Google\Protobuf\Internal\Message
      * Required. The major version of the framework. If not specified, the version
      * corresponds to the latest version of the framework.
      *
-     * Generated from protobuf field <code>string framework = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string framework = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getFramework()
@@ -67,7 +68,7 @@ class FrameworkReference extends \Google\Protobuf\Internal\Message
      * Required. The major version of the framework. If not specified, the version
      * corresponds to the latest version of the framework.
      *
-     * Generated from protobuf field <code>string framework = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string framework = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

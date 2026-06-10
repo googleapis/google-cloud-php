@@ -37,7 +37,6 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-use Google\Protobuf\FieldMask;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -493,8 +492,7 @@ class ContactServiceClientTest extends GeneratedTest
         $contact->setDisplayName($contactDisplayName);
         $contactCompany = $gapicClient->companyName('[NETWORK_CODE]', '[COMPANY]');
         $contact->setCompany($contactCompany);
-        $updateMask = new FieldMask();
-        $request = (new UpdateContactRequest())->setContact($contact)->setUpdateMask($updateMask);
+        $request = (new UpdateContactRequest())->setContact($contact);
         $response = $gapicClient->updateContact($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -504,8 +502,6 @@ class ContactServiceClientTest extends GeneratedTest
         $this->assertSame('/google.ads.admanager.v1.ContactService/UpdateContact', $actualFuncCall);
         $actualValue = $actualRequestObject->getContact();
         $this->assertProtobufEquals($contact, $actualValue);
-        $actualValue = $actualRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -536,8 +532,7 @@ class ContactServiceClientTest extends GeneratedTest
         $contact->setDisplayName($contactDisplayName);
         $contactCompany = $gapicClient->companyName('[NETWORK_CODE]', '[COMPANY]');
         $contact->setCompany($contactCompany);
-        $updateMask = new FieldMask();
-        $request = (new UpdateContactRequest())->setContact($contact)->setUpdateMask($updateMask);
+        $request = (new UpdateContactRequest())->setContact($contact);
         try {
             $gapicClient->updateContact($request);
             // If the $gapicClient method call did not throw, fail the test

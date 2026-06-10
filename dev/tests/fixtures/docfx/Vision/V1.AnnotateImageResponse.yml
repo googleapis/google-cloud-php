@@ -142,7 +142,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Internal/RepeatedField">Google\Protobuf\Internal\RepeatedField</a>'
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/RepeatedField">Google\Protobuf\RepeatedField</a>&lt;<xref uid="\Google\Cloud\Vision\V1\FaceAnnotation">FaceAnnotation</xref>&gt;'
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateImageResponse::setFaceAnnotations()'
     name: setFaceAnnotations
@@ -173,7 +173,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Internal/RepeatedField">Google\Protobuf\Internal\RepeatedField</a>'
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/RepeatedField">Google\Protobuf\RepeatedField</a>&lt;<xref uid="\Google\Cloud\Vision\V1\EntityAnnotation">EntityAnnotation</xref>&gt;'
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateImageResponse::setLandmarkAnnotations()'
     name: setLandmarkAnnotations
@@ -204,7 +204,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Internal/RepeatedField">Google\Protobuf\Internal\RepeatedField</a>'
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/RepeatedField">Google\Protobuf\RepeatedField</a>&lt;<xref uid="\Google\Cloud\Vision\V1\EntityAnnotation">EntityAnnotation</xref>&gt;'
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateImageResponse::setLogoAnnotations()'
     name: setLogoAnnotations
@@ -235,7 +235,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Internal/RepeatedField">Google\Protobuf\Internal\RepeatedField</a>'
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/RepeatedField">Google\Protobuf\RepeatedField</a>&lt;<xref uid="\Google\Cloud\Vision\V1\EntityAnnotation">EntityAnnotation</xref>&gt;'
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateImageResponse::setLabelAnnotations()'
     name: setLabelAnnotations
@@ -269,7 +269,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Internal/RepeatedField">Google\Protobuf\Internal\RepeatedField</a>'
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/RepeatedField">Google\Protobuf\RepeatedField</a>&lt;<xref uid="\Google\Cloud\Vision\V1\LocalizedObjectAnnotation">LocalizedObjectAnnotation</xref>&gt;'
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateImageResponse::setLocalizedObjectAnnotations()'
     name: setLocalizedObjectAnnotations
@@ -303,7 +303,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Internal/RepeatedField">Google\Protobuf\Internal\RepeatedField</a>'
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/RepeatedField">Google\Protobuf\RepeatedField</a>&lt;<xref uid="\Google\Cloud\Vision\V1\EntityAnnotation">EntityAnnotation</xref>&gt;'
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateImageResponse::setTextAnnotations()'
     name: setTextAnnotations

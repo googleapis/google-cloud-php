@@ -10,7 +10,7 @@ use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
- * [ListProcesses][google.cloud.datacatalog.lineage.v1.ListProcesses].
+ * [ListProcesses][google.cloud.datacatalog.lineage.v1.Lineage.ListProcesses].
  *
  * Generated from protobuf message <code>google.cloud.datacatalog.lineage.v1.ListProcessesRequest</code>
  */
@@ -24,21 +24,21 @@ class ListProcessesRequest extends \Google\Protobuf\Internal\Message
      */
     protected $parent = '';
     /**
-     * The maximum number of processes to return. The service may return
+     * Optional. The maximum number of processes to return. The service may return
      * fewer than this value. If unspecified, at most 50 processes are
      * returned. The maximum value is 100; values greater than 100 are cut to
      * 100.
      *
-     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $page_size = 0;
     /**
-     * The page token received from a previous `ListProcesses` call. Specify
-     * it to get the next page.
+     * Optional. The page token received from a previous `ListProcesses` call.
+     * Specify it to get the next page.
      * When paginating, all other parameters specified in this call must
      * match the parameters of the call that provided the page token.
      *
-     * Generated from protobuf field <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $page_token = '';
 
@@ -67,13 +67,13 @@ class ListProcessesRequest extends \Google\Protobuf\Internal\Message
      *           Required. The name of the project and its location that owns this
      *           collection of processes.
      *     @type int $page_size
-     *           The maximum number of processes to return. The service may return
+     *           Optional. The maximum number of processes to return. The service may return
      *           fewer than this value. If unspecified, at most 50 processes are
      *           returned. The maximum value is 100; values greater than 100 are cut to
      *           100.
      *     @type string $page_token
-     *           The page token received from a previous `ListProcesses` call. Specify
-     *           it to get the next page.
+     *           Optional. The page token received from a previous `ListProcesses` call.
+     *           Specify it to get the next page.
      *           When paginating, all other parameters specified in this call must
      *           match the parameters of the call that provided the page token.
      * }
@@ -112,12 +112,12 @@ class ListProcessesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of processes to return. The service may return
+     * Optional. The maximum number of processes to return. The service may return
      * fewer than this value. If unspecified, at most 50 processes are
      * returned. The maximum value is 100; values greater than 100 are cut to
      * 100.
      *
-     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getPageSize()
@@ -126,12 +126,12 @@ class ListProcessesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of processes to return. The service may return
+     * Optional. The maximum number of processes to return. The service may return
      * fewer than this value. If unspecified, at most 50 processes are
      * returned. The maximum value is 100; values greater than 100 are cut to
      * 100.
      *
-     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -144,12 +144,12 @@ class ListProcessesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The page token received from a previous `ListProcesses` call. Specify
-     * it to get the next page.
+     * Optional. The page token received from a previous `ListProcesses` call.
+     * Specify it to get the next page.
      * When paginating, all other parameters specified in this call must
      * match the parameters of the call that provided the page token.
      *
-     * Generated from protobuf field <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getPageToken()
@@ -158,12 +158,12 @@ class ListProcessesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The page token received from a previous `ListProcesses` call. Specify
-     * it to get the next page.
+     * Optional. The page token received from a previous `ListProcesses` call.
+     * Specify it to get the next page.
      * When paginating, all other parameters specified in this call must
      * match the parameters of the call that provided the page token.
      *
-     * Generated from protobuf field <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

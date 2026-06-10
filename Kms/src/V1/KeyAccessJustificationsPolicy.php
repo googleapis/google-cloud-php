@@ -13,7 +13,9 @@ use Google\Protobuf\RepeatedField;
  * [KeyAccessJustificationsPolicy][google.cloud.kms.v1.KeyAccessJustificationsPolicy]
  * specifies zero or more allowed
  * [AccessReason][google.cloud.kms.v1.AccessReason] values for encrypt, decrypt,
- * and sign operations on a [CryptoKey][google.cloud.kms.v1.CryptoKey].
+ * and sign operations on a [CryptoKey][google.cloud.kms.v1.CryptoKey] or
+ * [KeyAccessJustificationsPolicyConfig][google.cloud.kms.v1.KeyAccessJustificationsPolicyConfig]
+ * (the default Key Access Justifications policy).
  *
  * Generated from protobuf message <code>google.cloud.kms.v1.KeyAccessJustificationsPolicy</code>
  */
@@ -21,10 +23,12 @@ class KeyAccessJustificationsPolicy extends \Google\Protobuf\Internal\Message
 {
     /**
      * The list of allowed reasons for access to a
-     * [CryptoKey][google.cloud.kms.v1.CryptoKey]. Zero allowed access reasons
-     * means all encrypt, decrypt, and sign operations for the
-     * [CryptoKey][google.cloud.kms.v1.CryptoKey] associated with this policy will
-     * fail.
+     * [CryptoKey][google.cloud.kms.v1.CryptoKey]. Note that empty
+     * allowed_access_reasons has a different meaning depending on where this
+     * message appears. If this is under
+     * [KeyAccessJustificationsPolicyConfig][google.cloud.kms.v1.KeyAccessJustificationsPolicyConfig],
+     * it means allow-all. If this is under
+     * [CryptoKey][google.cloud.kms.v1.CryptoKey], it means deny-all.
      *
      * Generated from protobuf field <code>repeated .google.cloud.kms.v1.AccessReason allowed_access_reasons = 1;</code>
      */
@@ -38,10 +42,12 @@ class KeyAccessJustificationsPolicy extends \Google\Protobuf\Internal\Message
      *
      *     @type int[] $allowed_access_reasons
      *           The list of allowed reasons for access to a
-     *           [CryptoKey][google.cloud.kms.v1.CryptoKey]. Zero allowed access reasons
-     *           means all encrypt, decrypt, and sign operations for the
-     *           [CryptoKey][google.cloud.kms.v1.CryptoKey] associated with this policy will
-     *           fail.
+     *           [CryptoKey][google.cloud.kms.v1.CryptoKey]. Note that empty
+     *           allowed_access_reasons has a different meaning depending on where this
+     *           message appears. If this is under
+     *           [KeyAccessJustificationsPolicyConfig][google.cloud.kms.v1.KeyAccessJustificationsPolicyConfig],
+     *           it means allow-all. If this is under
+     *           [CryptoKey][google.cloud.kms.v1.CryptoKey], it means deny-all.
      * }
      */
     public function __construct($data = NULL) {
@@ -51,10 +57,12 @@ class KeyAccessJustificationsPolicy extends \Google\Protobuf\Internal\Message
 
     /**
      * The list of allowed reasons for access to a
-     * [CryptoKey][google.cloud.kms.v1.CryptoKey]. Zero allowed access reasons
-     * means all encrypt, decrypt, and sign operations for the
-     * [CryptoKey][google.cloud.kms.v1.CryptoKey] associated with this policy will
-     * fail.
+     * [CryptoKey][google.cloud.kms.v1.CryptoKey]. Note that empty
+     * allowed_access_reasons has a different meaning depending on where this
+     * message appears. If this is under
+     * [KeyAccessJustificationsPolicyConfig][google.cloud.kms.v1.KeyAccessJustificationsPolicyConfig],
+     * it means allow-all. If this is under
+     * [CryptoKey][google.cloud.kms.v1.CryptoKey], it means deny-all.
      *
      * Generated from protobuf field <code>repeated .google.cloud.kms.v1.AccessReason allowed_access_reasons = 1;</code>
      * @return RepeatedField<int>
@@ -66,10 +74,12 @@ class KeyAccessJustificationsPolicy extends \Google\Protobuf\Internal\Message
 
     /**
      * The list of allowed reasons for access to a
-     * [CryptoKey][google.cloud.kms.v1.CryptoKey]. Zero allowed access reasons
-     * means all encrypt, decrypt, and sign operations for the
-     * [CryptoKey][google.cloud.kms.v1.CryptoKey] associated with this policy will
-     * fail.
+     * [CryptoKey][google.cloud.kms.v1.CryptoKey]. Note that empty
+     * allowed_access_reasons has a different meaning depending on where this
+     * message appears. If this is under
+     * [KeyAccessJustificationsPolicyConfig][google.cloud.kms.v1.KeyAccessJustificationsPolicyConfig],
+     * it means allow-all. If this is under
+     * [CryptoKey][google.cloud.kms.v1.CryptoKey], it means deny-all.
      *
      * Generated from protobuf field <code>repeated .google.cloud.kms.v1.AccessReason allowed_access_reasons = 1;</code>
      * @param int[] $var

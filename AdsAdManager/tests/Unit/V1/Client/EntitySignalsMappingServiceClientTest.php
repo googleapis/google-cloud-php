@@ -37,7 +37,6 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-use Google\Protobuf\FieldMask;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -458,10 +457,7 @@ class EntitySignalsMappingServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $entitySignalsMapping = new EntitySignalsMapping();
-        $updateMask = new FieldMask();
-        $request = (new UpdateEntitySignalsMappingRequest())
-            ->setEntitySignalsMapping($entitySignalsMapping)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateEntitySignalsMappingRequest())->setEntitySignalsMapping($entitySignalsMapping);
         $response = $gapicClient->updateEntitySignalsMapping($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -474,8 +470,6 @@ class EntitySignalsMappingServiceClientTest extends GeneratedTest
         );
         $actualValue = $actualRequestObject->getEntitySignalsMapping();
         $this->assertProtobufEquals($entitySignalsMapping, $actualValue);
-        $actualValue = $actualRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -502,10 +496,7 @@ class EntitySignalsMappingServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $entitySignalsMapping = new EntitySignalsMapping();
-        $updateMask = new FieldMask();
-        $request = (new UpdateEntitySignalsMappingRequest())
-            ->setEntitySignalsMapping($entitySignalsMapping)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateEntitySignalsMappingRequest())->setEntitySignalsMapping($entitySignalsMapping);
         try {
             $gapicClient->updateEntitySignalsMapping($request);
             // If the $gapicClient method call did not throw, fail the test

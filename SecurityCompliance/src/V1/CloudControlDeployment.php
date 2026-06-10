@@ -20,7 +20,9 @@ class CloudControlDeployment extends \Google\Protobuf\Internal\Message
 {
     /**
      * Identifier. The name for the cloud control deployment, in the format
-     * `organizations/{organization}/locations/{location}/cloudControlDeployments/{cloud_control_deployment_id}`.
+     * `organizations/{organization}/locations/{location}/cloudControlDeployments/{cloud_control_deployment}`
+     * or
+     * `projects/{project}/locations/{location}/cloudControlDeployments/{cloud_control_deployment}`.
      * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
@@ -112,7 +114,9 @@ class CloudControlDeployment extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Identifier. The name for the cloud control deployment, in the format
-     *           `organizations/{organization}/locations/{location}/cloudControlDeployments/{cloud_control_deployment_id}`.
+     *           `organizations/{organization}/locations/{location}/cloudControlDeployments/{cloud_control_deployment}`
+     *           or
+     *           `projects/{project}/locations/{location}/cloudControlDeployments/{cloud_control_deployment}`.
      *           The only supported location is `global`.
      *     @type \Google\Cloud\CloudSecurityCompliance\V1\TargetResourceConfig $target_resource_config
      *           Required. The details of the target resource that the cloud control is
@@ -156,7 +160,9 @@ class CloudControlDeployment extends \Google\Protobuf\Internal\Message
 
     /**
      * Identifier. The name for the cloud control deployment, in the format
-     * `organizations/{organization}/locations/{location}/cloudControlDeployments/{cloud_control_deployment_id}`.
+     * `organizations/{organization}/locations/{location}/cloudControlDeployments/{cloud_control_deployment}`
+     * or
+     * `projects/{project}/locations/{location}/cloudControlDeployments/{cloud_control_deployment}`.
      * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
@@ -169,7 +175,9 @@ class CloudControlDeployment extends \Google\Protobuf\Internal\Message
 
     /**
      * Identifier. The name for the cloud control deployment, in the format
-     * `organizations/{organization}/locations/{location}/cloudControlDeployments/{cloud_control_deployment_id}`.
+     * `organizations/{organization}/locations/{location}/cloudControlDeployments/{cloud_control_deployment}`
+     * or
+     * `projects/{project}/locations/{location}/cloudControlDeployments/{cloud_control_deployment}`.
      * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>

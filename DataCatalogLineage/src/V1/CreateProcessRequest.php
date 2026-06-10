@@ -10,7 +10,7 @@ use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
- * [CreateProcess][google.cloud.datacatalog.lineage.v1.CreateProcess].
+ * [CreateProcess][google.cloud.datacatalog.lineage.v1.Lineage.CreateProcess].
  *
  * Generated from protobuf message <code>google.cloud.datacatalog.lineage.v1.CreateProcessRequest</code>
  */
@@ -30,11 +30,11 @@ class CreateProcessRequest extends \Google\Protobuf\Internal\Message
      */
     protected $process = null;
     /**
-     * A unique identifier for this request. Restricted to 36 ASCII characters.
-     * A random UUID is recommended. This request is idempotent only if a
-     * `request_id` is provided.
+     * Optional. A unique identifier for this request. Restricted to 36 ASCII
+     * characters. A random UUID is recommended. This request is idempotent only
+     * if a `request_id` is provided.
      *
-     * Generated from protobuf field <code>string request_id = 3;</code>
+     * Generated from protobuf field <code>string request_id = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
      */
     protected $request_id = '';
 
@@ -67,9 +67,9 @@ class CreateProcessRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\DataCatalog\Lineage\V1\Process $process
      *           Required. The process to create.
      *     @type string $request_id
-     *           A unique identifier for this request. Restricted to 36 ASCII characters.
-     *           A random UUID is recommended. This request is idempotent only if a
-     *           `request_id` is provided.
+     *           Optional. A unique identifier for this request. Restricted to 36 ASCII
+     *           characters. A random UUID is recommended. This request is idempotent only
+     *           if a `request_id` is provided.
      * }
      */
     public function __construct($data = NULL) {
@@ -142,11 +142,11 @@ class CreateProcessRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A unique identifier for this request. Restricted to 36 ASCII characters.
-     * A random UUID is recommended. This request is idempotent only if a
-     * `request_id` is provided.
+     * Optional. A unique identifier for this request. Restricted to 36 ASCII
+     * characters. A random UUID is recommended. This request is idempotent only
+     * if a `request_id` is provided.
      *
-     * Generated from protobuf field <code>string request_id = 3;</code>
+     * Generated from protobuf field <code>string request_id = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
      * @return string
      */
     public function getRequestId()
@@ -155,11 +155,11 @@ class CreateProcessRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A unique identifier for this request. Restricted to 36 ASCII characters.
-     * A random UUID is recommended. This request is idempotent only if a
-     * `request_id` is provided.
+     * Optional. A unique identifier for this request. Restricted to 36 ASCII
+     * characters. A random UUID is recommended. This request is idempotent only
+     * if a `request_id` is provided.
      *
-     * Generated from protobuf field <code>string request_id = 3;</code>
+     * Generated from protobuf field <code>string request_id = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
      * @param string $var
      * @return $this
      */

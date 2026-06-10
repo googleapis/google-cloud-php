@@ -17,11 +17,11 @@ use Google\Protobuf\RepeatedField;
 class DataSharingSettings extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. Resource name.
+     * Identifier. Resource name.
      * Format: accounts/{account}/dataSharingSettings
      * Example: "accounts/1000/dataSharingSettings"
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
@@ -82,7 +82,7 @@ class DataSharingSettings extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Output only. Resource name.
+     *           Identifier. Resource name.
      *           Format: accounts/{account}/dataSharingSettings
      *           Example: "accounts/1000/dataSharingSettings"
      *     @type bool $sharing_with_google_support_enabled
@@ -122,11 +122,11 @@ class DataSharingSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Resource name.
+     * Identifier. Resource name.
      * Format: accounts/{account}/dataSharingSettings
      * Example: "accounts/1000/dataSharingSettings"
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -135,11 +135,11 @@ class DataSharingSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Resource name.
+     * Identifier. Resource name.
      * Format: accounts/{account}/dataSharingSettings
      * Example: "accounts/1000/dataSharingSettings"
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */

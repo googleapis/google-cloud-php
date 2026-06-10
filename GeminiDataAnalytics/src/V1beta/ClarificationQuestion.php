@@ -9,35 +9,45 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
+ * Deprecated: Use TextMessage with TextType.FINAL_RESPONSE instead.
  * Represents a single question to the user to help clarify their query.
  *
+ * @deprecated
  * Generated from protobuf message <code>google.cloud.geminidataanalytics.v1beta.ClarificationQuestion</code>
  */
 class ClarificationQuestion extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The natural language question to ask the user.
+     * Required. Deprecated: The parent message is deprecated.
+     * The natural language question to ask the user.
      *
-     * Generated from protobuf field <code>string question = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string question = 1 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
+     * @deprecated
      */
     protected $question = '';
     /**
-     * Required. The selection mode for this question.
+     * Required. Deprecated: The parent message is deprecated.
+     * The selection mode for this question.
      *
-     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.ClarificationQuestion.SelectionMode selection_mode = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.ClarificationQuestion.SelectionMode selection_mode = 2 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
+     * @deprecated
      */
     protected $selection_mode = 0;
     /**
-     * Required. A list of distinct options for the user to choose from.
+     * Required. Deprecated: The parent message is deprecated.
+     * A list of distinct options for the user to choose from.
      * The number of options is limited to a maximum of 5.
      *
-     * Generated from protobuf field <code>repeated string options = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>repeated string options = 3 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
+     * @deprecated
      */
     private $options;
     /**
-     * Optional. The type of clarification question.
+     * Optional. Deprecated: The parent message is deprecated.
+     * The type of clarification question.
      *
-     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.ClarificationQuestion.ClarificationQuestionType clarification_question_type = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.ClarificationQuestion.ClarificationQuestionType clarification_question_type = 4 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @deprecated
      */
     protected $clarification_question_type = 0;
 
@@ -48,14 +58,18 @@ class ClarificationQuestion extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $question
-     *           Required. The natural language question to ask the user.
+     *           Required. Deprecated: The parent message is deprecated.
+     *           The natural language question to ask the user.
      *     @type int $selection_mode
-     *           Required. The selection mode for this question.
+     *           Required. Deprecated: The parent message is deprecated.
+     *           The selection mode for this question.
      *     @type string[] $options
-     *           Required. A list of distinct options for the user to choose from.
+     *           Required. Deprecated: The parent message is deprecated.
+     *           A list of distinct options for the user to choose from.
      *           The number of options is limited to a maximum of 5.
      *     @type int $clarification_question_type
-     *           Optional. The type of clarification question.
+     *           Optional. Deprecated: The parent message is deprecated.
+     *           The type of clarification question.
      * }
      */
     public function __construct($data = NULL) {
@@ -64,25 +78,33 @@ class ClarificationQuestion extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The natural language question to ask the user.
+     * Required. Deprecated: The parent message is deprecated.
+     * The natural language question to ask the user.
      *
-     * Generated from protobuf field <code>string question = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string question = 1 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      * @return string
+     * @deprecated
      */
     public function getQuestion()
     {
+        if ($this->question !== '') {
+            @trigger_error('question is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->question;
     }
 
     /**
-     * Required. The natural language question to ask the user.
+     * Required. Deprecated: The parent message is deprecated.
+     * The natural language question to ask the user.
      *
-     * Generated from protobuf field <code>string question = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string question = 1 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
+     * @deprecated
      */
     public function setQuestion($var)
     {
+        @trigger_error('question is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkString($var, True);
         $this->question = $var;
 
@@ -90,25 +112,33 @@ class ClarificationQuestion extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The selection mode for this question.
+     * Required. Deprecated: The parent message is deprecated.
+     * The selection mode for this question.
      *
-     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.ClarificationQuestion.SelectionMode selection_mode = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.ClarificationQuestion.SelectionMode selection_mode = 2 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      * @return int
+     * @deprecated
      */
     public function getSelectionMode()
     {
+        if ($this->selection_mode !== 0) {
+            @trigger_error('selection_mode is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->selection_mode;
     }
 
     /**
-     * Required. The selection mode for this question.
+     * Required. Deprecated: The parent message is deprecated.
+     * The selection mode for this question.
      *
-     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.ClarificationQuestion.SelectionMode selection_mode = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.ClarificationQuestion.SelectionMode selection_mode = 2 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
      * @return $this
+     * @deprecated
      */
     public function setSelectionMode($var)
     {
+        @trigger_error('selection_mode is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkEnum($var, \Google\Cloud\GeminiDataAnalytics\V1beta\ClarificationQuestion\SelectionMode::class);
         $this->selection_mode = $var;
 
@@ -116,53 +146,71 @@ class ClarificationQuestion extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A list of distinct options for the user to choose from.
+     * Required. Deprecated: The parent message is deprecated.
+     * A list of distinct options for the user to choose from.
      * The number of options is limited to a maximum of 5.
      *
-     * Generated from protobuf field <code>repeated string options = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>repeated string options = 3 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      * @return RepeatedField<string>
+     * @deprecated
      */
     public function getOptions()
     {
+        if ($this->options->count() !== 0) {
+            @trigger_error('options is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->options;
     }
 
     /**
-     * Required. A list of distinct options for the user to choose from.
+     * Required. Deprecated: The parent message is deprecated.
+     * A list of distinct options for the user to choose from.
      * The number of options is limited to a maximum of 5.
      *
-     * Generated from protobuf field <code>repeated string options = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>repeated string options = 3 [deprecated = true, (.google.api.field_behavior) = REQUIRED];</code>
      * @param string[] $var
      * @return $this
+     * @deprecated
      */
     public function setOptions($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        if ($arr->count() !== 0) {
+            @trigger_error('options is deprecated.', E_USER_DEPRECATED);
+        }
         $this->options = $arr;
 
         return $this;
     }
 
     /**
-     * Optional. The type of clarification question.
+     * Optional. Deprecated: The parent message is deprecated.
+     * The type of clarification question.
      *
-     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.ClarificationQuestion.ClarificationQuestionType clarification_question_type = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.ClarificationQuestion.ClarificationQuestionType clarification_question_type = 4 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
+     * @deprecated
      */
     public function getClarificationQuestionType()
     {
+        if ($this->clarification_question_type !== 0) {
+            @trigger_error('clarification_question_type is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->clarification_question_type;
     }
 
     /**
-     * Optional. The type of clarification question.
+     * Optional. Deprecated: The parent message is deprecated.
+     * The type of clarification question.
      *
-     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.ClarificationQuestion.ClarificationQuestionType clarification_question_type = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.ClarificationQuestion.ClarificationQuestionType clarification_question_type = 4 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
+     * @deprecated
      */
     public function setClarificationQuestionType($var)
     {
+        @trigger_error('clarification_question_type is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkEnum($var, \Google\Cloud\GeminiDataAnalytics\V1beta\ClarificationQuestion\ClarificationQuestionType::class);
         $this->clarification_question_type = $var;
 

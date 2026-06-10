@@ -10,7 +10,7 @@ use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
- * [UpdateProcess][google.cloud.datacatalog.lineage.v1.UpdateProcess].
+ * [UpdateProcess][google.cloud.datacatalog.lineage.v1.Lineage.UpdateProcess].
  *
  * Generated from protobuf message <code>google.cloud.datacatalog.lineage.v1.UpdateProcessRequest</code>
  */
@@ -24,25 +24,34 @@ class UpdateProcessRequest extends \Google\Protobuf\Internal\Message
      */
     protected $process = null;
     /**
-     * The list of fields to update. Currently not used. The whole message is
-     * updated.
+     * Optional. The list of fields to update. Currently not used. The whole
+     * message is updated.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $update_mask = null;
     /**
-     * If set to true and the process is not found, the request inserts it.
+     * Optional. If set to true and the process is not found, the request inserts
+     * it.
      *
-     * Generated from protobuf field <code>bool allow_missing = 3;</code>
+     * Generated from protobuf field <code>bool allow_missing = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $allow_missing = false;
+    /**
+     * Optional. A unique identifier for this request. Restricted to 36 ASCII
+     * characters. A random UUID is recommended. This request is idempotent only
+     * if a `request_id` is provided.
+     *
+     * Generated from protobuf field <code>string request_id = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
+     */
+    protected $request_id = '';
 
     /**
      * @param \Google\Cloud\DataCatalog\Lineage\V1\Process $process    Required. The lineage process to update.
      *
      *                                                                 The process's `name` field is used to identify the process to update.
-     * @param \Google\Protobuf\FieldMask                   $updateMask The list of fields to update. Currently not used. The whole message is
-     *                                                                 updated.
+     * @param \Google\Protobuf\FieldMask                   $updateMask Optional. The list of fields to update. Currently not used. The whole
+     *                                                                 message is updated.
      *
      * @return \Google\Cloud\DataCatalog\Lineage\V1\UpdateProcessRequest
      *
@@ -65,10 +74,15 @@ class UpdateProcessRequest extends \Google\Protobuf\Internal\Message
      *           Required. The lineage process to update.
      *           The process's `name` field is used to identify the process to update.
      *     @type \Google\Protobuf\FieldMask $update_mask
-     *           The list of fields to update. Currently not used. The whole message is
-     *           updated.
+     *           Optional. The list of fields to update. Currently not used. The whole
+     *           message is updated.
      *     @type bool $allow_missing
-     *           If set to true and the process is not found, the request inserts it.
+     *           Optional. If set to true and the process is not found, the request inserts
+     *           it.
+     *     @type string $request_id
+     *           Optional. A unique identifier for this request. Restricted to 36 ASCII
+     *           characters. A random UUID is recommended. This request is idempotent only
+     *           if a `request_id` is provided.
      * }
      */
     public function __construct($data = NULL) {
@@ -115,10 +129,10 @@ class UpdateProcessRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The list of fields to update. Currently not used. The whole message is
-     * updated.
+     * Optional. The list of fields to update. Currently not used. The whole
+     * message is updated.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
@@ -137,10 +151,10 @@ class UpdateProcessRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The list of fields to update. Currently not used. The whole message is
-     * updated.
+     * Optional. The list of fields to update. Currently not used. The whole
+     * message is updated.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\FieldMask $var
      * @return $this
      */
@@ -153,9 +167,10 @@ class UpdateProcessRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If set to true and the process is not found, the request inserts it.
+     * Optional. If set to true and the process is not found, the request inserts
+     * it.
      *
-     * Generated from protobuf field <code>bool allow_missing = 3;</code>
+     * Generated from protobuf field <code>bool allow_missing = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getAllowMissing()
@@ -164,9 +179,10 @@ class UpdateProcessRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If set to true and the process is not found, the request inserts it.
+     * Optional. If set to true and the process is not found, the request inserts
+     * it.
      *
-     * Generated from protobuf field <code>bool allow_missing = 3;</code>
+     * Generated from protobuf field <code>bool allow_missing = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */
@@ -174,6 +190,36 @@ class UpdateProcessRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->allow_missing = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. A unique identifier for this request. Restricted to 36 ASCII
+     * characters. A random UUID is recommended. This request is idempotent only
+     * if a `request_id` is provided.
+     *
+     * Generated from protobuf field <code>string request_id = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
+     * @return string
+     */
+    public function getRequestId()
+    {
+        return $this->request_id;
+    }
+
+    /**
+     * Optional. A unique identifier for this request. Restricted to 36 ASCII
+     * characters. A random UUID is recommended. This request is idempotent only
+     * if a `request_id` is provided.
+     *
+     * Generated from protobuf field <code>string request_id = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRequestId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->request_id = $var;
 
         return $this;
     }

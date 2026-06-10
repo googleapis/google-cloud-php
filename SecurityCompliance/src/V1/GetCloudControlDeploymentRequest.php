@@ -17,7 +17,9 @@ class GetCloudControlDeploymentRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The name for the cloud control deployment, in the format
-     * `organizations/{organization}/locations/{location}/cloudControlDeployments/{cloud_control_deployment_id}`.
+     * `organizations/{organization}/locations/{location}/cloudControlDeployments/{cloud_control_deployment}`
+     * or
+     * `projects/{project}/locations/{location}/cloudControlDeployments/{cloud_control_deployment}`.
      * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -26,7 +28,9 @@ class GetCloudControlDeploymentRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $name Required. The name for the cloud control deployment, in the format
-     *                     `organizations/{organization}/locations/{location}/cloudControlDeployments/{cloud_control_deployment_id}`.
+     *                     `organizations/{organization}/locations/{location}/cloudControlDeployments/{cloud_control_deployment}`
+     *                     or
+     *                     `projects/{project}/locations/{location}/cloudControlDeployments/{cloud_control_deployment}`.
      *                     The only supported location is `global`. Please see
      *                     {@see DeploymentClient::cloudControlDeploymentName()} for help formatting this field.
      *
@@ -48,7 +52,9 @@ class GetCloudControlDeploymentRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. The name for the cloud control deployment, in the format
-     *           `organizations/{organization}/locations/{location}/cloudControlDeployments/{cloud_control_deployment_id}`.
+     *           `organizations/{organization}/locations/{location}/cloudControlDeployments/{cloud_control_deployment}`
+     *           or
+     *           `projects/{project}/locations/{location}/cloudControlDeployments/{cloud_control_deployment}`.
      *           The only supported location is `global`.
      * }
      */
@@ -59,7 +65,9 @@ class GetCloudControlDeploymentRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name for the cloud control deployment, in the format
-     * `organizations/{organization}/locations/{location}/cloudControlDeployments/{cloud_control_deployment_id}`.
+     * `organizations/{organization}/locations/{location}/cloudControlDeployments/{cloud_control_deployment}`
+     * or
+     * `projects/{project}/locations/{location}/cloudControlDeployments/{cloud_control_deployment}`.
      * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -72,7 +80,9 @@ class GetCloudControlDeploymentRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name for the cloud control deployment, in the format
-     * `organizations/{organization}/locations/{location}/cloudControlDeployments/{cloud_control_deployment_id}`.
+     * `organizations/{organization}/locations/{location}/cloudControlDeployments/{cloud_control_deployment}`
+     * or
+     * `projects/{project}/locations/{location}/cloudControlDeployments/{cloud_control_deployment}`.
      * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>

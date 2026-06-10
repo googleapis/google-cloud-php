@@ -56,7 +56,7 @@ items:
           description: 'Additional context that may accompany the image(s) in the file.'
         -
           id: '↳ pages'
-          var_type: array<int>
+          var_type: 'int[]'
           description: 'Pages of the file to perform image annotation. Pages starts from 1, we assume the first page of the file is page 1. At most 5 pages are supported per request. Pages can be negative. Page 1 means the first page. Page 2 means the second page. Page -1 means the last page. Page -2 means the second to the last page. If the file is GIF instead of PDF or TIFF, page refers to GIF frames. If this field is empty, by default the service performs image annotation for the first 5 pages of the file.'
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateFileRequest::getInputConfig()'
@@ -117,7 +117,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Internal/RepeatedField">Google\Protobuf\Internal\RepeatedField</a>'
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/RepeatedField">Google\Protobuf\RepeatedField</a>&lt;<xref uid="\Google\Cloud\Vision\V1\Feature">Feature</xref>&gt;'
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateFileRequest::setFeatures()'
     name: setFeatures
@@ -206,7 +206,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Internal/RepeatedField">Google\Protobuf\Internal\RepeatedField</a>'
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/RepeatedField">Google\Protobuf\RepeatedField</a>&lt;<xref uid="int">int</xref>&gt;'
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateFileRequest::setPages()'
     name: setPages

@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * BootDisk specifies the boot disk configuration for nodepools.
+ * BootDisk specifies the boot disk configuration for node pools.
  *
  * Generated from protobuf message <code>google.container.v1.BootDisk</code>
  */

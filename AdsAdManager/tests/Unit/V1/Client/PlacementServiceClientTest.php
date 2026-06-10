@@ -43,7 +43,6 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-use Google\Protobuf\FieldMask;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -664,8 +663,7 @@ class PlacementServiceClientTest extends GeneratedTest
         $placement = new Placement();
         $placementDisplayName = 'placementDisplayName-410969528';
         $placement->setDisplayName($placementDisplayName);
-        $updateMask = new FieldMask();
-        $request = (new UpdatePlacementRequest())->setPlacement($placement)->setUpdateMask($updateMask);
+        $request = (new UpdatePlacementRequest())->setPlacement($placement);
         $response = $gapicClient->updatePlacement($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -675,8 +673,6 @@ class PlacementServiceClientTest extends GeneratedTest
         $this->assertSame('/google.ads.admanager.v1.PlacementService/UpdatePlacement', $actualFuncCall);
         $actualValue = $actualRequestObject->getPlacement();
         $this->assertProtobufEquals($placement, $actualValue);
-        $actualValue = $actualRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -705,8 +701,7 @@ class PlacementServiceClientTest extends GeneratedTest
         $placement = new Placement();
         $placementDisplayName = 'placementDisplayName-410969528';
         $placement->setDisplayName($placementDisplayName);
-        $updateMask = new FieldMask();
-        $request = (new UpdatePlacementRequest())->setPlacement($placement)->setUpdateMask($updateMask);
+        $request = (new UpdatePlacementRequest())->setPlacement($placement);
         try {
             $gapicClient->updatePlacement($request);
             // If the $gapicClient method call did not throw, fail the test

@@ -27,7 +27,6 @@ use Google\Ads\AdManager\V1\Client\TeamServiceClient;
 use Google\Ads\AdManager\V1\Team;
 use Google\Ads\AdManager\V1\UpdateTeamRequest;
 use Google\ApiCore\ApiException;
-use Google\Protobuf\FieldMask;
 
 /**
  * API to update a `Team` object.
@@ -43,10 +42,8 @@ function update_team_sample(string $teamDisplayName): void
     // Prepare the request message.
     $team = (new Team())
         ->setDisplayName($teamDisplayName);
-    $updateMask = new FieldMask();
     $request = (new UpdateTeamRequest())
-        ->setTeam($team)
-        ->setUpdateMask($updateMask);
+        ->setTeam($team);
 
     // Call the API and handle any network failures.
     try {

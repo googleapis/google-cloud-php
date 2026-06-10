@@ -65,6 +65,24 @@ class Assignment extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.SchedulingPolicy scheduling_policy = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $scheduling_policy = null;
+    /**
+     * Optional. Represents the principal for this assignment. If not empty, jobs
+     * run by this principal will utilize the associated reservation. Otherwise,
+     * jobs will fall back to using the reservation assigned to the project,
+     * folder, or organization (in that order). If no reservation is assigned at
+     * any of these levels, on-demand capacity will be used.
+     * The supported formats are:
+     * * `principal://goog/subject/USER_EMAIL_ADDRESS` for users,
+     * * `principal://iam.googleapis.com/projects/-/serviceAccounts/SA_EMAIL_ADDRESS`
+     *   for service accounts,
+     * * `principal://iam.googleapis.com/projects/PROJECT_NUMBER/locations/global/workloadIdentityPools/POOL_ID/subject/SUBJECT_ID`
+     *   for workload identity pool identities.
+     * * The special value `unknown_or_deleted_user` represents principals which
+     *   cannot be read from the user info service, for example deleted users.
+     *
+     * Generated from protobuf field <code>string principal = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $principal = '';
 
     /**
      * Constructor.
@@ -96,6 +114,20 @@ class Assignment extends \Google\Protobuf\Internal\Message
      *           policy controls how the reservation's resources are distributed. This
      *           overrides the default scheduling policy specified on the reservation.
      *           This feature is not yet generally available.
+     *     @type string $principal
+     *           Optional. Represents the principal for this assignment. If not empty, jobs
+     *           run by this principal will utilize the associated reservation. Otherwise,
+     *           jobs will fall back to using the reservation assigned to the project,
+     *           folder, or organization (in that order). If no reservation is assigned at
+     *           any of these levels, on-demand capacity will be used.
+     *           The supported formats are:
+     *           * `principal://goog/subject/USER_EMAIL_ADDRESS` for users,
+     *           * `principal://iam.googleapis.com/projects/-/serviceAccounts/SA_EMAIL_ADDRESS`
+     *             for service accounts,
+     *           * `principal://iam.googleapis.com/projects/PROJECT_NUMBER/locations/global/workloadIdentityPools/POOL_ID/subject/SUBJECT_ID`
+     *             for workload identity pool identities.
+     *           * The special value `unknown_or_deleted_user` represents principals which
+     *             cannot be read from the user info service, for example deleted users.
      * }
      */
     public function __construct($data = NULL) {
@@ -295,6 +327,56 @@ class Assignment extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\Reservation\V1\SchedulingPolicy::class);
         $this->scheduling_policy = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Represents the principal for this assignment. If not empty, jobs
+     * run by this principal will utilize the associated reservation. Otherwise,
+     * jobs will fall back to using the reservation assigned to the project,
+     * folder, or organization (in that order). If no reservation is assigned at
+     * any of these levels, on-demand capacity will be used.
+     * The supported formats are:
+     * * `principal://goog/subject/USER_EMAIL_ADDRESS` for users,
+     * * `principal://iam.googleapis.com/projects/-/serviceAccounts/SA_EMAIL_ADDRESS`
+     *   for service accounts,
+     * * `principal://iam.googleapis.com/projects/PROJECT_NUMBER/locations/global/workloadIdentityPools/POOL_ID/subject/SUBJECT_ID`
+     *   for workload identity pool identities.
+     * * The special value `unknown_or_deleted_user` represents principals which
+     *   cannot be read from the user info service, for example deleted users.
+     *
+     * Generated from protobuf field <code>string principal = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getPrincipal()
+    {
+        return $this->principal;
+    }
+
+    /**
+     * Optional. Represents the principal for this assignment. If not empty, jobs
+     * run by this principal will utilize the associated reservation. Otherwise,
+     * jobs will fall back to using the reservation assigned to the project,
+     * folder, or organization (in that order). If no reservation is assigned at
+     * any of these levels, on-demand capacity will be used.
+     * The supported formats are:
+     * * `principal://goog/subject/USER_EMAIL_ADDRESS` for users,
+     * * `principal://iam.googleapis.com/projects/-/serviceAccounts/SA_EMAIL_ADDRESS`
+     *   for service accounts,
+     * * `principal://iam.googleapis.com/projects/PROJECT_NUMBER/locations/global/workloadIdentityPools/POOL_ID/subject/SUBJECT_ID`
+     *   for workload identity pool identities.
+     * * The special value `unknown_or_deleted_user` represents principals which
+     *   cannot be read from the user info service, for example deleted users.
+     *
+     * Generated from protobuf field <code>string principal = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPrincipal($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->principal = $var;
 
         return $this;
     }

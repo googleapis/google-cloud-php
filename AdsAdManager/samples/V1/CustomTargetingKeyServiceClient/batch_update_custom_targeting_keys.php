@@ -31,7 +31,6 @@ use Google\Ads\AdManager\V1\CustomTargetingKeyReportableTypeEnum\CustomTargeting
 use Google\Ads\AdManager\V1\CustomTargetingKeyTypeEnum\CustomTargetingKeyType;
 use Google\Ads\AdManager\V1\UpdateCustomTargetingKeyRequest;
 use Google\ApiCore\ApiException;
-use Google\Protobuf\FieldMask;
 
 /**
  * API to batch update `CustomTargetingKey` objects.
@@ -58,10 +57,8 @@ function batch_update_custom_targeting_keys_sample(
     $requestsCustomTargetingKey = (new CustomTargetingKey())
         ->setType($requestsCustomTargetingKeyType)
         ->setReportableType($requestsCustomTargetingKeyReportableType);
-    $requestsUpdateMask = new FieldMask();
     $updateCustomTargetingKeyRequest = (new UpdateCustomTargetingKeyRequest())
-        ->setCustomTargetingKey($requestsCustomTargetingKey)
-        ->setUpdateMask($requestsUpdateMask);
+        ->setCustomTargetingKey($requestsCustomTargetingKey);
     $requests = [$updateCustomTargetingKeyRequest,];
     $request = (new BatchUpdateCustomTargetingKeysRequest())
         ->setParent($formattedParent)

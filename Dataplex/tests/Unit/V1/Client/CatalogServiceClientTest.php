@@ -75,6 +75,7 @@ use Google\Cloud\Dataplex\V1\MetadataFeed;
 use Google\Cloud\Dataplex\V1\MetadataFeed\Scope;
 use Google\Cloud\Dataplex\V1\MetadataJob;
 use Google\Cloud\Dataplex\V1\MetadataJob\Type;
+use Google\Cloud\Dataplex\V1\ModifyEntryRequest;
 use Google\Cloud\Dataplex\V1\SearchEntriesRequest;
 use Google\Cloud\Dataplex\V1\SearchEntriesResponse;
 use Google\Cloud\Dataplex\V1\SearchEntriesResult;
@@ -2654,9 +2655,9 @@ class CatalogServiceClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
-        $context = 'context951530927';
+        $context2 = 'context2-406810206';
         $expectedResponse = new LookupContextResponse();
-        $expectedResponse->setContext($context);
+        $expectedResponse->setContext($context2);
         $transport->addResponse($expectedResponse);
         // Mock request
         $name = 'name3373707';
@@ -2853,6 +2854,85 @@ class CatalogServiceClientTest extends GeneratedTest
         $request = (new LookupEntryLinksRequest())->setName($name)->setEntry($formattedEntry);
         try {
             $gapicClient->lookupEntryLinks($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function modifyEntryTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $entryType = 'entryType-1965312281';
+        $parentEntry = 'parentEntry1393020061';
+        $fullyQualifiedName = 'fullyQualifiedName338146659';
+        $expectedResponse = new Entry();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setEntryType($entryType);
+        $expectedResponse->setParentEntry($parentEntry);
+        $expectedResponse->setFullyQualifiedName($fullyQualifiedName);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $name = 'name3373707';
+        $entry = new Entry();
+        $entryEntryType = 'entryEntryType884603514';
+        $entry->setEntryType($entryEntryType);
+        $request = (new ModifyEntryRequest())->setName($name)->setEntry($entry);
+        $response = $gapicClient->modifyEntry($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.dataplex.v1.CatalogService/ModifyEntry', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($name, $actualValue);
+        $actualValue = $actualRequestObject->getEntry();
+        $this->assertProtobufEquals($entry, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function modifyEntryExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $name = 'name3373707';
+        $entry = new Entry();
+        $entryEntryType = 'entryEntryType884603514';
+        $entry->setEntryType($entryEntryType);
+        $request = (new ModifyEntryRequest())->setName($name)->setEntry($entry);
+        try {
+            $gapicClient->modifyEntry($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

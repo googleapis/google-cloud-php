@@ -28,7 +28,7 @@ class Run extends \Google\Protobuf\Internal\Message
     protected $name = '';
     /**
      * Optional. A human-readable name you can set to display in a user interface.
-     * Must be not longer than 1024 characters and only contain UTF-8 letters
+     * Must be not longer than 200 characters and only contain UTF-8 letters
      * or numbers, spaces or characters like `_-:&.`
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -75,7 +75,7 @@ class Run extends \Google\Protobuf\Internal\Message
      *           contain characters in a set: `a-zA-Z0-9_-:.`
      *     @type string $display_name
      *           Optional. A human-readable name you can set to display in a user interface.
-     *           Must be not longer than 1024 characters and only contain UTF-8 letters
+     *           Must be not longer than 200 characters and only contain UTF-8 letters
      *           or numbers, spaces or characters like `_-:&.`
      *     @type array|\Google\Protobuf\Internal\MapField $attributes
      *           Optional. The attributes of the run. Should only be used for the purpose of
@@ -130,7 +130,7 @@ class Run extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. A human-readable name you can set to display in a user interface.
-     * Must be not longer than 1024 characters and only contain UTF-8 letters
+     * Must be not longer than 200 characters and only contain UTF-8 letters
      * or numbers, spaces or characters like `_-:&.`
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -143,7 +143,7 @@ class Run extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. A human-readable name you can set to display in a user interface.
-     * Must be not longer than 1024 characters and only contain UTF-8 letters
+     * Must be not longer than 200 characters and only contain UTF-8 letters
      * or numbers, spaces or characters like `_-:&.`
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = OPTIONAL];</code>

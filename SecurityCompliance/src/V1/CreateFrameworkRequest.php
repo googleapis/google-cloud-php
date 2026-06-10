@@ -16,8 +16,9 @@ use Google\Protobuf\RepeatedField;
 class CreateFrameworkRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The parent resource name, in the format
-     * `organizations/{organization}/locations/{location}`.
+     * Required. The parent resource name, in one of the following formats:
+     * - `organizations/{organization}/locations/{location}`
+     * - `projects/{project}/locations/{location}`.
      * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -38,8 +39,10 @@ class CreateFrameworkRequest extends \Google\Protobuf\Internal\Message
     protected $framework = null;
 
     /**
-     * @param string                                             $parent      Required. The parent resource name, in the format
-     *                                                                        `organizations/{organization}/locations/{location}`.
+     * @param string                                             $parent      Required. The parent resource name, in one of the following formats:
+     *                                                                        - `organizations/{organization}/locations/{location}`
+     *                                                                        - `projects/{project}/locations/{location}`.
+     *
      *                                                                        The only supported location is `global`. Please see
      *                                                                        {@see ConfigClient::organizationLocationName()} for help formatting this field.
      * @param \Google\Cloud\CloudSecurityCompliance\V1\Framework $framework   Required. The resource being created.
@@ -65,8 +68,9 @@ class CreateFrameworkRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The parent resource name, in the format
-     *           `organizations/{organization}/locations/{location}`.
+     *           Required. The parent resource name, in one of the following formats:
+     *           - `organizations/{organization}/locations/{location}`
+     *           - `projects/{project}/locations/{location}`.
      *           The only supported location is `global`.
      *     @type string $framework_id
      *           Required. The identifier (ID) of the framework. The ID is not the full name
@@ -81,8 +85,9 @@ class CreateFrameworkRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent resource name, in the format
-     * `organizations/{organization}/locations/{location}`.
+     * Required. The parent resource name, in one of the following formats:
+     * - `organizations/{organization}/locations/{location}`
+     * - `projects/{project}/locations/{location}`.
      * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -94,8 +99,9 @@ class CreateFrameworkRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent resource name, in the format
-     * `organizations/{organization}/locations/{location}`.
+     * Required. The parent resource name, in one of the following formats:
+     * - `organizations/{organization}/locations/{location}`
+     * - `projects/{project}/locations/{location}`.
      * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>

@@ -27,7 +27,6 @@ use Google\Ads\AdManager\V1\AdUnit;
 use Google\Ads\AdManager\V1\Client\AdUnitServiceClient;
 use Google\Ads\AdManager\V1\UpdateAdUnitRequest;
 use Google\ApiCore\ApiException;
-use Google\Protobuf\FieldMask;
 
 /**
  * API to update an `AdUnit` object.
@@ -50,10 +49,8 @@ function update_ad_unit_sample(
     $adUnit = (new AdUnit())
         ->setParentAdUnit($formattedAdUnitParentAdUnit)
         ->setDisplayName($adUnitDisplayName);
-    $updateMask = new FieldMask();
     $request = (new UpdateAdUnitRequest())
-        ->setAdUnit($adUnit)
-        ->setUpdateMask($updateMask);
+        ->setAdUnit($adUnit);
 
     // Call the API and handle any network failures.
     try {

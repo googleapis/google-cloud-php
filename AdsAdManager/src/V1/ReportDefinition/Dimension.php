@@ -42,8 +42,8 @@ class Dimension
      * Advertiser credit status ENUM
      * Corresponds to "Advertiser credit status value" in the Ad Manager UI
      * (when showing API fields).
-     * Compatible with the following report types: `HISTORICAL`, `REACH`,
-     * `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `REACH`, `AD_SPEED`
      * Data format: `ENUM`
      *
      * Generated from protobuf enum <code>ADVERTISER_CREDIT_STATUS = 475;</code>
@@ -52,8 +52,8 @@ class Dimension
     /**
      * Advertiser credit status localized name
      * Corresponds to "Advertiser credit status" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `REACH`,
-     * `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `REACH`, `AD_SPEED`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>ADVERTISER_CREDIT_STATUS_NAME = 476;</code>
@@ -80,8 +80,8 @@ class Dimension
     /**
      * The ID of an advertiser company assigned to an order
      * Corresponds to "Advertiser ID" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `REACH`,
-     * `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `REACH`, `AD_SPEED`
      * Data format: `IDENTIFIER`
      *
      * Generated from protobuf enum <code>ADVERTISER_ID = 131;</code>
@@ -110,8 +110,8 @@ class Dimension
     /**
      * The name of an advertiser company assigned to an order
      * Corresponds to "Advertiser" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `REACH`,
-     * `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `REACH`, `AD_SPEED`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>ADVERTISER_NAME = 132;</code>
@@ -149,8 +149,8 @@ class Dimension
      * Advertiser type ENUM
      * Corresponds to "Advertiser type value" in the Ad Manager UI (when showing
      * API fields).
-     * Compatible with the following report types: `HISTORICAL`, `REACH`,
-     * `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `REACH`, `AD_SPEED`
      * Data format: `ENUM`
      *
      * Generated from protobuf enum <code>ADVERTISER_TYPE = 473;</code>
@@ -159,8 +159,8 @@ class Dimension
     /**
      * Advertiser type localized name
      * Corresponds to "Advertiser type" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `REACH`,
-     * `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `REACH`, `AD_SPEED`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>ADVERTISER_TYPE_NAME = 474;</code>
@@ -241,7 +241,7 @@ class Dimension
     /**
      * Multi-size inventory in an ad request.
      * Corresponds to "Ad request sizes" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `FUTURE_SELL_THROUGH`
      * Data format: `STRING_LIST`
      *
      * Generated from protobuf enum <code>AD_REQUEST_SIZES = 541;</code>
@@ -296,8 +296,8 @@ class Dimension
     /**
      * The code of the ad unit where the ad was requested.
      * Corresponds to "Ad unit code" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`,
-     * `REACH`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `AD_SPEED`, `REAL_TIME_VIDEO`, `REACH`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>AD_UNIT_CODE = 64;</code>
@@ -307,7 +307,8 @@ class Dimension
      * The code of the first level ad unit of the ad unit where the ad was
      *  requested.
      * Corresponds to "Ad unit code level 1" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `AD_SPEED`, `REAL_TIME_VIDEO`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>AD_UNIT_CODE_LEVEL_1 = 65;</code>
@@ -317,7 +318,8 @@ class Dimension
      * The code of the tenth level ad unit of the ad unit where the ad was
      *  requested.
      * Corresponds to "Ad unit code level 10" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `AD_SPEED`, `REAL_TIME_VIDEO`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>AD_UNIT_CODE_LEVEL_10 = 74;</code>
@@ -327,7 +329,8 @@ class Dimension
      * The code of the eleventh level ad unit of the ad unit where the ad was
      *  requested.
      * Corresponds to "Ad unit code level 11" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `AD_SPEED`, `REAL_TIME_VIDEO`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>AD_UNIT_CODE_LEVEL_11 = 75;</code>
@@ -337,7 +340,8 @@ class Dimension
      * The code of the twelfth level ad unit of the ad unit where the ad was
      *  requested.
      * Corresponds to "Ad unit code level 12" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `AD_SPEED`, `REAL_TIME_VIDEO`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>AD_UNIT_CODE_LEVEL_12 = 76;</code>
@@ -347,7 +351,8 @@ class Dimension
      * The code of the thirteenth level ad unit of the ad unit where the ad was
      *  requested.
      * Corresponds to "Ad unit code level 13" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `AD_SPEED`, `REAL_TIME_VIDEO`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>AD_UNIT_CODE_LEVEL_13 = 77;</code>
@@ -357,7 +362,8 @@ class Dimension
      * The code of the fourteenth level ad unit of the ad unit where the ad was
      *  requested.
      * Corresponds to "Ad unit code level 14" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `AD_SPEED`, `REAL_TIME_VIDEO`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>AD_UNIT_CODE_LEVEL_14 = 78;</code>
@@ -367,7 +373,8 @@ class Dimension
      * The code of the fifteenth level ad unit of the ad unit where the ad was
      *  requested.
      * Corresponds to "Ad unit code level 15" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `AD_SPEED`, `REAL_TIME_VIDEO`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>AD_UNIT_CODE_LEVEL_15 = 79;</code>
@@ -377,7 +384,8 @@ class Dimension
      * The code of the sixteenth level ad unit of the ad unit where the ad was
      *  requested.
      * Corresponds to "Ad unit code level 16" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `AD_SPEED`, `REAL_TIME_VIDEO`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>AD_UNIT_CODE_LEVEL_16 = 80;</code>
@@ -387,7 +395,8 @@ class Dimension
      * The code of the second level ad unit of the ad unit where the ad was
      *  requested.
      * Corresponds to "Ad unit code level 2" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `AD_SPEED`, `REAL_TIME_VIDEO`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>AD_UNIT_CODE_LEVEL_2 = 66;</code>
@@ -397,7 +406,8 @@ class Dimension
      * The code of the third level ad unit of the ad unit where the ad was
      *  requested.
      * Corresponds to "Ad unit code level 3" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `AD_SPEED`, `REAL_TIME_VIDEO`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>AD_UNIT_CODE_LEVEL_3 = 67;</code>
@@ -407,7 +417,8 @@ class Dimension
      * The code of the fourth level ad unit of the ad unit where the ad was
      *  requested.
      * Corresponds to "Ad unit code level 4" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `AD_SPEED`, `REAL_TIME_VIDEO`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>AD_UNIT_CODE_LEVEL_4 = 68;</code>
@@ -417,7 +428,8 @@ class Dimension
      * The code of the fifth level ad unit of the ad unit where the ad was
      *  requested.
      * Corresponds to "Ad unit code level 5" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `AD_SPEED`, `REAL_TIME_VIDEO`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>AD_UNIT_CODE_LEVEL_5 = 69;</code>
@@ -427,7 +439,8 @@ class Dimension
      * The code of the sixth level ad unit of the ad unit where the ad was
      *  requested.
      * Corresponds to "Ad unit code level 6" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `AD_SPEED`, `REAL_TIME_VIDEO`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>AD_UNIT_CODE_LEVEL_6 = 70;</code>
@@ -437,7 +450,8 @@ class Dimension
      * The code of the seventh level ad unit of the ad unit where the ad was
      *  requested.
      * Corresponds to "Ad unit code level 7" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `AD_SPEED`, `REAL_TIME_VIDEO`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>AD_UNIT_CODE_LEVEL_7 = 71;</code>
@@ -447,7 +461,8 @@ class Dimension
      * The code of the eighth level ad unit of the ad unit where the ad was
      *  requested.
      * Corresponds to "Ad unit code level 8" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `AD_SPEED`, `REAL_TIME_VIDEO`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>AD_UNIT_CODE_LEVEL_8 = 72;</code>
@@ -457,7 +472,8 @@ class Dimension
      * The code of the ninth level ad unit of the ad unit where the ad was
      *  requested.
      * Corresponds to "Ad unit code level 9" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `AD_SPEED`, `REAL_TIME_VIDEO`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>AD_UNIT_CODE_LEVEL_9 = 73;</code>
@@ -466,8 +482,9 @@ class Dimension
     /**
      * The ID of the ad unit where the ad was requested.
      * Corresponds to "Ad unit ID" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`,
-     * `REACH`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `AD_SPEED`, `REAL_TIME_VIDEO`, `REACH`,
+     * `ADS_TRAFFIC_NAVIGATOR`, `ON_PLATFORM_MULTICALL`
      * Data format: `IDENTIFIER`
      *
      * Generated from protobuf enum <code>AD_UNIT_ID = 25;</code>
@@ -477,8 +494,9 @@ class Dimension
      * The full hierarchy of ad unit IDs where the ad was requested, from
      *  root to leaf, excluding the root ad unit ID.
      * Corresponds to "Ad unit ID (all levels)" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`,
-     * `REACH`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `AD_SPEED`, `REAL_TIME_VIDEO`, `REACH`,
+     * `ADS_TRAFFIC_NAVIGATOR`, `ON_PLATFORM_MULTICALL`
      * Data format: `IDENTIFIER_LIST`
      *
      * Generated from protobuf enum <code>AD_UNIT_ID_ALL_LEVEL = 27;</code>
@@ -487,7 +505,8 @@ class Dimension
     /**
      * The first level ad unit ID of the ad unit where the ad was requested.
      * Corresponds to "Ad unit ID level 1" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `AD_SPEED`, `REAL_TIME_VIDEO`
      * Data format: `IDENTIFIER`
      *
      * Generated from protobuf enum <code>AD_UNIT_ID_LEVEL_1 = 30;</code>
@@ -496,7 +515,8 @@ class Dimension
     /**
      * The tenth level ad unit ID of the ad unit where the ad was requested.
      * Corresponds to "Ad unit ID level 10" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `AD_SPEED`, `REAL_TIME_VIDEO`
      * Data format: `IDENTIFIER`
      *
      * Generated from protobuf enum <code>AD_UNIT_ID_LEVEL_10 = 48;</code>
@@ -505,7 +525,8 @@ class Dimension
     /**
      * The eleventh level ad unit ID of the ad unit where the ad was requested.
      * Corresponds to "Ad unit ID level 11" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `AD_SPEED`, `REAL_TIME_VIDEO`
      * Data format: `IDENTIFIER`
      *
      * Generated from protobuf enum <code>AD_UNIT_ID_LEVEL_11 = 50;</code>
@@ -514,7 +535,8 @@ class Dimension
     /**
      * The twelfth level ad unit ID of the ad unit where the ad was requested.
      * Corresponds to "Ad unit ID level 12" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `AD_SPEED`, `REAL_TIME_VIDEO`
      * Data format: `IDENTIFIER`
      *
      * Generated from protobuf enum <code>AD_UNIT_ID_LEVEL_12 = 52;</code>
@@ -524,7 +546,8 @@ class Dimension
      * The thirteenth level ad unit ID of the ad unit where the ad was
      *  requested.
      * Corresponds to "Ad unit ID level 13" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `AD_SPEED`, `REAL_TIME_VIDEO`
      * Data format: `IDENTIFIER`
      *
      * Generated from protobuf enum <code>AD_UNIT_ID_LEVEL_13 = 54;</code>
@@ -534,7 +557,8 @@ class Dimension
      * The fourteenth level ad unit ID of the ad unit where the ad was
      *  requested.
      * Corresponds to "Ad unit ID level 14" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `AD_SPEED`, `REAL_TIME_VIDEO`
      * Data format: `IDENTIFIER`
      *
      * Generated from protobuf enum <code>AD_UNIT_ID_LEVEL_14 = 56;</code>
@@ -543,7 +567,8 @@ class Dimension
     /**
      * The fifteenth level ad unit ID of the ad unit where the ad was requested.
      * Corresponds to "Ad unit ID level 15" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `AD_SPEED`, `REAL_TIME_VIDEO`
      * Data format: `IDENTIFIER`
      *
      * Generated from protobuf enum <code>AD_UNIT_ID_LEVEL_15 = 58;</code>
@@ -552,7 +577,8 @@ class Dimension
     /**
      * The sixteenth level ad unit ID of the ad unit where the ad was requested.
      * Corresponds to "Ad unit ID level 16" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `AD_SPEED`, `REAL_TIME_VIDEO`
      * Data format: `IDENTIFIER`
      *
      * Generated from protobuf enum <code>AD_UNIT_ID_LEVEL_16 = 60;</code>
@@ -561,7 +587,8 @@ class Dimension
     /**
      * The second level ad unit ID of the ad unit where the ad was requested.
      * Corresponds to "Ad unit ID level 2" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `AD_SPEED`, `REAL_TIME_VIDEO`
      * Data format: `IDENTIFIER`
      *
      * Generated from protobuf enum <code>AD_UNIT_ID_LEVEL_2 = 32;</code>
@@ -570,7 +597,8 @@ class Dimension
     /**
      * The third level ad unit ID of the ad unit where the ad was requested.
      * Corresponds to "Ad unit ID level 3" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `AD_SPEED`, `REAL_TIME_VIDEO`
      * Data format: `IDENTIFIER`
      *
      * Generated from protobuf enum <code>AD_UNIT_ID_LEVEL_3 = 34;</code>
@@ -579,7 +607,8 @@ class Dimension
     /**
      * The fourth level ad unit ID of the ad unit where the ad was requested.
      * Corresponds to "Ad unit ID level 4" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `AD_SPEED`, `REAL_TIME_VIDEO`
      * Data format: `IDENTIFIER`
      *
      * Generated from protobuf enum <code>AD_UNIT_ID_LEVEL_4 = 36;</code>
@@ -588,7 +617,8 @@ class Dimension
     /**
      * The fifth level ad unit ID of the ad unit where the ad was requested.
      * Corresponds to "Ad unit ID level 5" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `AD_SPEED`, `REAL_TIME_VIDEO`
      * Data format: `IDENTIFIER`
      *
      * Generated from protobuf enum <code>AD_UNIT_ID_LEVEL_5 = 38;</code>
@@ -597,7 +627,8 @@ class Dimension
     /**
      * The sixth level ad unit ID of the ad unit where the ad was requested.
      * Corresponds to "Ad unit ID level 6" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `AD_SPEED`, `REAL_TIME_VIDEO`
      * Data format: `IDENTIFIER`
      *
      * Generated from protobuf enum <code>AD_UNIT_ID_LEVEL_6 = 40;</code>
@@ -606,7 +637,8 @@ class Dimension
     /**
      * The seventh level ad unit ID of the ad unit where the ad was requested.
      * Corresponds to "Ad unit ID level 7" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `AD_SPEED`, `REAL_TIME_VIDEO`
      * Data format: `IDENTIFIER`
      *
      * Generated from protobuf enum <code>AD_UNIT_ID_LEVEL_7 = 42;</code>
@@ -615,7 +647,8 @@ class Dimension
     /**
      * The eighth level ad unit ID of the ad unit where the ad was requested.
      * Corresponds to "Ad unit ID level 8" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `AD_SPEED`, `REAL_TIME_VIDEO`
      * Data format: `IDENTIFIER`
      *
      * Generated from protobuf enum <code>AD_UNIT_ID_LEVEL_8 = 44;</code>
@@ -624,7 +657,8 @@ class Dimension
     /**
      * The ninth level ad unit ID of the ad unit where the ad was requested.
      * Corresponds to "Ad unit ID level 9" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `AD_SPEED`, `REAL_TIME_VIDEO`
      * Data format: `IDENTIFIER`
      *
      * Generated from protobuf enum <code>AD_UNIT_ID_LEVEL_9 = 46;</code>
@@ -633,7 +667,9 @@ class Dimension
     /**
      * The top-level ad unit ID of the ad unit where the ad was requested.
      * Corresponds to "Ad unit ID (top level)" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `AD_SPEED`, `REAL_TIME_VIDEO`,
+     * `ADS_TRAFFIC_NAVIGATOR`, `ON_PLATFORM_MULTICALL`
      * Data format: `IDENTIFIER`
      *
      * Generated from protobuf enum <code>AD_UNIT_ID_TOP_LEVEL = 142;</code>
@@ -642,8 +678,9 @@ class Dimension
     /**
      * The name of the ad unit where the ad was requested.
      * Corresponds to "Ad unit" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`,
-     * `REACH`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `AD_SPEED`, `REAL_TIME_VIDEO`, `REACH`,
+     * `ADS_TRAFFIC_NAVIGATOR`, `ON_PLATFORM_MULTICALL`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>AD_UNIT_NAME = 26;</code>
@@ -653,8 +690,9 @@ class Dimension
      * The full hierarchy of ad unit names where the ad was requested, from
      *  root to leaf, excluding the root ad unit name.
      * Corresponds to "Ad unit (all levels)" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`,
-     * `REACH`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `AD_SPEED`, `REAL_TIME_VIDEO`, `REACH`,
+     * `ADS_TRAFFIC_NAVIGATOR`, `ON_PLATFORM_MULTICALL`
      * Data format: `STRING_LIST`
      *
      * Generated from protobuf enum <code>AD_UNIT_NAME_ALL_LEVEL = 29;</code>
@@ -663,7 +701,8 @@ class Dimension
     /**
      * The first level ad unit name of the ad unit where the ad was requested.
      * Corresponds to "Ad unit level 1" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `AD_SPEED`, `REAL_TIME_VIDEO`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>AD_UNIT_NAME_LEVEL_1 = 31;</code>
@@ -672,7 +711,8 @@ class Dimension
     /**
      * The tenth level ad unit name of the ad unit where the ad was requested.
      * Corresponds to "Ad unit level 10" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `AD_SPEED`, `REAL_TIME_VIDEO`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>AD_UNIT_NAME_LEVEL_10 = 49;</code>
@@ -682,7 +722,8 @@ class Dimension
      * The eleventh level ad unit name of the ad unit where the ad was
      *  requested.
      * Corresponds to "Ad unit level 11" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `AD_SPEED`, `REAL_TIME_VIDEO`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>AD_UNIT_NAME_LEVEL_11 = 51;</code>
@@ -691,7 +732,8 @@ class Dimension
     /**
      * The twelfth level ad unit name of the ad unit where the ad was requested.
      * Corresponds to "Ad unit level 12" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `AD_SPEED`, `REAL_TIME_VIDEO`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>AD_UNIT_NAME_LEVEL_12 = 53;</code>
@@ -701,7 +743,8 @@ class Dimension
      * The thirteenth level ad unit name of the ad unit where the ad was
      *  requested.
      * Corresponds to "Ad unit level 13" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `AD_SPEED`, `REAL_TIME_VIDEO`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>AD_UNIT_NAME_LEVEL_13 = 55;</code>
@@ -711,7 +754,8 @@ class Dimension
      * The fourteenth level ad unit name of the ad unit where the ad was
      *  requested.
      * Corresponds to "Ad unit level 14" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `AD_SPEED`, `REAL_TIME_VIDEO`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>AD_UNIT_NAME_LEVEL_14 = 57;</code>
@@ -721,7 +765,8 @@ class Dimension
      * The fifteenth level ad unit name of the ad unit where the ad was
      *  requested.
      * Corresponds to "Ad unit level 15" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `AD_SPEED`, `REAL_TIME_VIDEO`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>AD_UNIT_NAME_LEVEL_15 = 59;</code>
@@ -731,7 +776,8 @@ class Dimension
      * The sixteenth level ad unit name of the ad unit where the ad was
      *  requested.
      * Corresponds to "Ad unit level 16" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `AD_SPEED`, `REAL_TIME_VIDEO`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>AD_UNIT_NAME_LEVEL_16 = 61;</code>
@@ -740,7 +786,8 @@ class Dimension
     /**
      * The second level ad unit name of the ad unit where the ad was requested.
      * Corresponds to "Ad unit level 2" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `AD_SPEED`, `REAL_TIME_VIDEO`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>AD_UNIT_NAME_LEVEL_2 = 33;</code>
@@ -749,7 +796,8 @@ class Dimension
     /**
      * The third level ad unit name of the ad unit where the ad was requested.
      * Corresponds to "Ad unit level 3" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `AD_SPEED`, `REAL_TIME_VIDEO`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>AD_UNIT_NAME_LEVEL_3 = 35;</code>
@@ -758,7 +806,8 @@ class Dimension
     /**
      * The fourth level ad unit name of the ad unit where the ad was requested.
      * Corresponds to "Ad unit level 4" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `AD_SPEED`, `REAL_TIME_VIDEO`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>AD_UNIT_NAME_LEVEL_4 = 37;</code>
@@ -767,7 +816,8 @@ class Dimension
     /**
      * The fifth level ad unit name of the ad unit where the ad was requested.
      * Corresponds to "Ad unit level 5" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `AD_SPEED`, `REAL_TIME_VIDEO`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>AD_UNIT_NAME_LEVEL_5 = 39;</code>
@@ -776,7 +826,8 @@ class Dimension
     /**
      * The sixth level ad unit name of the ad unit where the ad was requested.
      * Corresponds to "Ad unit level 6" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `AD_SPEED`, `REAL_TIME_VIDEO`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>AD_UNIT_NAME_LEVEL_6 = 41;</code>
@@ -785,7 +836,8 @@ class Dimension
     /**
      * The seventh level ad unit name of the ad unit where the ad was requested.
      * Corresponds to "Ad unit level 7" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `AD_SPEED`, `REAL_TIME_VIDEO`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>AD_UNIT_NAME_LEVEL_7 = 43;</code>
@@ -794,7 +846,8 @@ class Dimension
     /**
      * The eighth level ad unit name of the ad unit where the ad was requested.
      * Corresponds to "Ad unit level 8" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `AD_SPEED`, `REAL_TIME_VIDEO`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>AD_UNIT_NAME_LEVEL_8 = 45;</code>
@@ -803,7 +856,8 @@ class Dimension
     /**
      * The ninth level ad unit name of the ad unit where the ad was requested.
      * Corresponds to "Ad unit level 9" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `AD_SPEED`, `REAL_TIME_VIDEO`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>AD_UNIT_NAME_LEVEL_9 = 47;</code>
@@ -812,7 +866,9 @@ class Dimension
     /**
      * The top-level ad unit name of the ad unit where the ad was requested.
      * Corresponds to "Ad unit (top level)" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `AD_SPEED`, `REAL_TIME_VIDEO`,
+     * `ADS_TRAFFIC_NAVIGATOR`, `ON_PLATFORM_MULTICALL`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>AD_UNIT_NAME_TOP_LEVEL = 143;</code>
@@ -842,8 +898,11 @@ class Dimension
      * The status of the ad unit
      * Corresponds to "Ad unit status value" in the Ad Manager UI (when showing
      * API fields).
-     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `AD_SPEED`, `REAL_TIME_VIDEO`
      * Data format: `ENUM`
+     * Values:
+     * [AdUnitStatus][google.ads.admanager.v1.AdUnitStatusEnum.AdUnitStatus]
      *
      * Generated from protobuf enum <code>AD_UNIT_STATUS = 206;</code>
      */
@@ -851,7 +910,8 @@ class Dimension
     /**
      * The name of the status of the ad unit
      * Corresponds to "Ad unit status" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `AD_SPEED`, `REAL_TIME_VIDEO`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>AD_UNIT_STATUS_NAME = 207;</code>
@@ -1036,7 +1096,8 @@ class Dimension
      * ID of targeted audience segment, including all first-party and
      *  third-party segments that matched the user on the winning line item.
      * Corresponds to "Audience segment ID (targeted)" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `OFF_PROPERTY_CAMPAIGNS`
      * Data format: `IDENTIFIER`
      *
      * Generated from protobuf enum <code>AUDIENCE_SEGMENT_ID_TARGETED = 584;</code>
@@ -1046,7 +1107,8 @@ class Dimension
      * Name of targeted audience segment, including all first-party and
      *  third-party segments that matched the user on the winning line item.
      * Corresponds to "Audience segment (targeted)" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `OFF_PROPERTY_CAMPAIGNS`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>AUDIENCE_SEGMENT_TARGETED = 585;</code>
@@ -1056,7 +1118,8 @@ class Dimension
      * Number of AdID identifiers in the audience segment.
      * Corresponds to "Audience segment (targeted) AdID size" in the Ad Manager
      * UI.
-     * Compatible with the following report types: `HISTORICAL`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `OFF_PROPERTY_CAMPAIGNS`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>AUDIENCE_SEGMENT_TARGETED_AD_ID_USER_SIZE = 605;</code>
@@ -1066,7 +1129,8 @@ class Dimension
      * Number of Amazon Fire identifiers in the audience segment.
      * Corresponds to "Audience segment (targeted) Amazon Fire size" in the Ad
      * Manager UI.
-     * Compatible with the following report types: `HISTORICAL`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `OFF_PROPERTY_CAMPAIGNS`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>AUDIENCE_SEGMENT_TARGETED_AMAZON_FIRE_USER_SIZE = 606;</code>
@@ -1076,7 +1140,8 @@ class Dimension
      * Number of Android TV identifiers in the audience segment.
      * Corresponds to "Audience segment (targeted) Android TV size" in the Ad
      * Manager UI.
-     * Compatible with the following report types: `HISTORICAL`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `OFF_PROPERTY_CAMPAIGNS`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>AUDIENCE_SEGMENT_TARGETED_ANDROID_TV_USER_SIZE = 607;</code>
@@ -1086,7 +1151,8 @@ class Dimension
      * Number of Apple TV identifiers in the audience segment.
      * Corresponds to "Audience segment (targeted) Apple TV size" in the Ad
      * Manager UI.
-     * Compatible with the following report types: `HISTORICAL`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `OFF_PROPERTY_CAMPAIGNS`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>AUDIENCE_SEGMENT_TARGETED_APPLE_TV_USER_SIZE = 608;</code>
@@ -1096,7 +1162,8 @@ class Dimension
      * Number of IDFA identifiers in the audience segment.
      * Corresponds to "Audience segment (targeted) IDFA size" in the Ad Manager
      * UI.
-     * Compatible with the following report types: `HISTORICAL`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `OFF_PROPERTY_CAMPAIGNS`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>AUDIENCE_SEGMENT_TARGETED_IDFA_USER_SIZE = 609;</code>
@@ -1106,7 +1173,8 @@ class Dimension
      * Number of mobile web identifiers in the audience segment.
      * Corresponds to "Audience segment (targeted) mobile web size" in the Ad
      * Manager UI.
-     * Compatible with the following report types: `HISTORICAL`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `OFF_PROPERTY_CAMPAIGNS`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>AUDIENCE_SEGMENT_TARGETED_MOBILE_WEB_USER_SIZE = 610;</code>
@@ -1116,7 +1184,8 @@ class Dimension
      * Number of PlayStation identifiers in the audience segment.
      * Corresponds to "Audience segment (targeted) PlayStation size" in the Ad
      * Manager UI.
-     * Compatible with the following report types: `HISTORICAL`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `OFF_PROPERTY_CAMPAIGNS`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>AUDIENCE_SEGMENT_TARGETED_PLAYSTATION_USER_SIZE = 611;</code>
@@ -1126,7 +1195,8 @@ class Dimension
      * Number of PPID identifiers in the audience segment.
      * Corresponds to "Audience segment (targeted) PPID size" in the Ad Manager
      * UI.
-     * Compatible with the following report types: `HISTORICAL`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `OFF_PROPERTY_CAMPAIGNS`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>AUDIENCE_SEGMENT_TARGETED_PPID_USER_SIZE = 612;</code>
@@ -1136,7 +1206,8 @@ class Dimension
      * Number of Roku identifiers in the audience segment.
      * Corresponds to "Audience segment (targeted) Roku size" in the Ad Manager
      * UI.
-     * Compatible with the following report types: `HISTORICAL`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `OFF_PROPERTY_CAMPAIGNS`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>AUDIENCE_SEGMENT_TARGETED_ROKU_USER_SIZE = 615;</code>
@@ -1146,7 +1217,8 @@ class Dimension
      * Number of Samsung TV identifiers in the audience segment.
      * Corresponds to "Audience segment (targeted) Samsung TV size" in the Ad
      * Manager UI.
-     * Compatible with the following report types: `HISTORICAL`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `OFF_PROPERTY_CAMPAIGNS`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>AUDIENCE_SEGMENT_TARGETED_SAMSUNG_TV_USER_SIZE = 616;</code>
@@ -1155,7 +1227,8 @@ class Dimension
     /**
      * Number of identifiers in the audience segment.
      * Corresponds to "Audience segment (targeted) size" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `OFF_PROPERTY_CAMPAIGNS`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>AUDIENCE_SEGMENT_TARGETED_SIZE = 618;</code>
@@ -1165,7 +1238,8 @@ class Dimension
      * Status of the audience segment.
      * Corresponds to "Audience segment (targeted) status value" in the Ad
      * Manager UI (when showing API fields).
-     * Compatible with the following report types: `HISTORICAL`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `OFF_PROPERTY_CAMPAIGNS`
      * Data format: `ENUM`
      *
      * Generated from protobuf enum <code>AUDIENCE_SEGMENT_TARGETED_STATUS = 628;</code>
@@ -1174,7 +1248,8 @@ class Dimension
     /**
      * Name of the status of the audience segment.
      * Corresponds to "Audience segment (targeted) status" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `OFF_PROPERTY_CAMPAIGNS`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>AUDIENCE_SEGMENT_TARGETED_STATUS_NAME = 617;</code>
@@ -1184,7 +1259,8 @@ class Dimension
      * Number of Xbox identifiers in the audience segment.
      * Corresponds to "Audience segment (targeted) Xbox size" in the Ad Manager
      * UI.
-     * Compatible with the following report types: `HISTORICAL`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `OFF_PROPERTY_CAMPAIGNS`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>AUDIENCE_SEGMENT_TARGETED_XBOX_USER_SIZE = 619;</code>
@@ -1213,7 +1289,7 @@ class Dimension
      * The encrypted version of BIDDER_ID.
      * Corresponds to "Bidder encrypted ID" in the Ad Manager UI.
      * Compatible with the following report types: `HISTORICAL`,
-     * `REVENUE_VERIFICATION`
+     * `REVENUE_VERIFICATION`, `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>BIDDER_ENCRYPTED_ID = 493;</code>
@@ -1223,7 +1299,7 @@ class Dimension
      * The name of the bidder.
      * Corresponds to "Bidder" in the Ad Manager UI.
      * Compatible with the following report types: `HISTORICAL`,
-     * `REVENUE_VERIFICATION`
+     * `REVENUE_VERIFICATION`, `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>BIDDER_NAME = 494;</code>
@@ -1282,7 +1358,8 @@ class Dimension
      * Browser category.
      * Corresponds to "Browser category value" in the Ad Manager UI (when
      * showing API fields).
-     * Compatible with the following report types: `HISTORICAL`, `REACH`
+     * Compatible with the following report types: `HISTORICAL`, `REACH`,
+     * `OFF_PROPERTY_CAMPAIGNS`, `ON_PLATFORM_MULTICALL`
      * Data format: `ENUM`
      *
      * Generated from protobuf enum <code>BROWSER_CATEGORY = 119;</code>
@@ -1291,7 +1368,8 @@ class Dimension
     /**
      * Browser category name.
      * Corresponds to "Browser category" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `REACH`
+     * Compatible with the following report types: `HISTORICAL`, `REACH`,
+     * `OFF_PROPERTY_CAMPAIGNS`, `ON_PLATFORM_MULTICALL`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>BROWSER_CATEGORY_NAME = 120;</code>
@@ -1300,7 +1378,8 @@ class Dimension
     /**
      * The ID of the browser.
      * Corresponds to "Browser ID" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `OFF_PROPERTY_CAMPAIGNS`, `ON_PLATFORM_MULTICALL`
      * Data format: `IDENTIFIER`
      *
      * Generated from protobuf enum <code>BROWSER_ID = 235;</code>
@@ -1309,7 +1388,8 @@ class Dimension
     /**
      * The name of the browser.
      * Corresponds to "Browser" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `OFF_PROPERTY_CAMPAIGNS`, `ON_PLATFORM_MULTICALL`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>BROWSER_NAME = 236;</code>
@@ -1334,19 +1414,9 @@ class Dimension
      */
     const BUYER_NETWORK_NAME = 449;
     /**
-     * The callout status category in the Ads traffic navigator report.
-     * Corresponds to "Callout status category value" in the Ad Manager UI (when
-     * showing API fields).
-     * Compatible with the following report types:
-     * Data format: `ENUM`
-     *
-     * Generated from protobuf enum <code>CALLOUT_STATUS_CATEGORY = 588;</code>
-     */
-    const CALLOUT_STATUS_CATEGORY = 588;
-    /**
      * The callout status category name in the Ads traffic navigator report.
      * Corresponds to "Callout status category" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>CALLOUT_STATUS_CATEGORY_NAME = 589;</code>
@@ -1465,7 +1535,8 @@ class Dimension
     /**
      * ID of the video content bundle served.
      * Corresponds to "Content bundle ID" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `YOUTUBE_CONSOLIDATED`
      * Data format: `IDENTIFIER`
      *
      * Generated from protobuf enum <code>CONTENT_BUNDLE_ID = 460;</code>
@@ -1474,7 +1545,8 @@ class Dimension
     /**
      * Name of the video content bundle served.
      * Corresponds to "Content bundle" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `YOUTUBE_CONSOLIDATED`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>CONTENT_BUNDLE_NAME = 461;</code>
@@ -1483,7 +1555,8 @@ class Dimension
     /**
      * ID of the video content metadata namespace served.
      * Corresponds to "CMS metadata key ID" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `YOUTUBE_CONSOLIDATED`
      * Data format: `IDENTIFIER`
      *
      * Generated from protobuf enum <code>CONTENT_CMS_METADATA_KV_NAMESPACE_ID = 462;</code>
@@ -1492,7 +1565,8 @@ class Dimension
     /**
      * Name of the video content metadata namespace served.
      * Corresponds to "CMS metadata key" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `YOUTUBE_CONSOLIDATED`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>CONTENT_CMS_METADATA_KV_NAMESPACE_NAME = 463;</code>
@@ -1501,7 +1575,8 @@ class Dimension
     /**
      * The display name of the CMS content.
      * Corresponds to "Content source name" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `YOUTUBE_CONSOLIDATED`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>CONTENT_CMS_NAME = 643;</code>
@@ -1511,7 +1586,8 @@ class Dimension
      * The CMS content ID of the video content.
      * Corresponds to "ID of the video in the content source" in the Ad Manager
      * UI.
-     * Compatible with the following report types: `HISTORICAL`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `YOUTUBE_CONSOLIDATED`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>CONTENT_CMS_VIDEO_ID = 644;</code>
@@ -1520,7 +1596,8 @@ class Dimension
     /**
      * ID of the video content served.
      * Corresponds to "Content ID" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `YOUTUBE_CONSOLIDATED`
      * Data format: `IDENTIFIER`
      *
      * Generated from protobuf enum <code>CONTENT_ID = 246;</code>
@@ -1548,7 +1625,8 @@ class Dimension
     /**
      * Name of the video content served.
      * Corresponds to "Content" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `YOUTUBE_CONSOLIDATED`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>CONTENT_NAME = 247;</code>
@@ -1576,8 +1654,9 @@ class Dimension
     /**
      * The ISO code of the country in which the ad served.
      * Corresponds to "Country code" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `REACH`,
-     * `PRIVACY_AND_MESSAGING`, `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `REACH`, `PRIVACY_AND_MESSAGING`, `AD_SPEED`,
+     * `YOUTUBE_CONSOLIDATED`, `ON_PLATFORM_MULTICALL`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>COUNTRY_CODE = 466;</code>
@@ -1586,8 +1665,10 @@ class Dimension
     /**
      * The criteria ID of the country in which the ad served.
      * Corresponds to "Country ID" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `REACH`,
-     * `PRIVACY_AND_MESSAGING`, `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `REACH`, `PRIVACY_AND_MESSAGING`, `AD_SPEED`,
+     * `YOUTUBE_CONSOLIDATED`, `OFF_PROPERTY_CAMPAIGNS`,
+     * `ADS_TRAFFIC_NAVIGATOR`, `ON_PLATFORM_MULTICALL`
      * Data format: `IDENTIFIER`
      *
      * Generated from protobuf enum <code>COUNTRY_ID = 11;</code>
@@ -1596,8 +1677,10 @@ class Dimension
     /**
      * The name of the country in which the ad served.
      * Corresponds to "Country" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `REACH`,
-     * `PRIVACY_AND_MESSAGING`, `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `REACH`, `PRIVACY_AND_MESSAGING`, `AD_SPEED`,
+     * `YOUTUBE_CONSOLIDATED`, `OFF_PROPERTY_CAMPAIGNS`,
+     * `ADS_TRAFFIC_NAVIGATOR`, `ON_PLATFORM_MULTICALL`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>COUNTRY_NAME = 12;</code>
@@ -1634,7 +1717,8 @@ class Dimension
     /**
      * The ID of a creative
      * Corresponds to "Creative ID" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`,
+     * `REAL_TIME_VIDEO`, `OFF_PROPERTY_CAMPAIGNS`
      * Data format: `IDENTIFIER`
      *
      * Generated from protobuf enum <code>CREATIVE_ID = 138;</code>
@@ -1643,12 +1727,34 @@ class Dimension
     /**
      * Creative name
      * Corresponds to "Creative" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`,
+     * `REAL_TIME_VIDEO`, `OFF_PROPERTY_CAMPAIGNS`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>CREATIVE_NAME = 139;</code>
      */
     const CREATIVE_NAME = 139;
+    /**
+     * ENUM describing whether the creative is part of a creative set or a
+     *  normal creative.
+     * Corresponds to "Creative or creative set value" in the Ad Manager UI
+     * (when showing API fields).
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `ENUM`
+     *
+     * Generated from protobuf enum <code>CREATIVE_OR_CREATIVE_SET = 682;</code>
+     */
+    const CREATIVE_OR_CREATIVE_SET = 682;
+    /**
+     * Localized string name of whether the creative is part of a creative set
+     *  or a normal creative.
+     * Corresponds to "Creative or creative set" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `STRING`
+     *
+     * Generated from protobuf enum <code>CREATIVE_OR_CREATIVE_SET_NAME = 683;</code>
+     */
+    const CREATIVE_OR_CREATIVE_SET_NAME = 683;
     /**
      * Creative Policies filtering.
      * Corresponds to "Creative policies filtering value" in the Ad Manager UI
@@ -1708,6 +1814,56 @@ class Dimension
      * Generated from protobuf enum <code>CREATIVE_SET_ROLE_TYPE_NAME = 687;</code>
      */
     const CREATIVE_SET_ROLE_TYPE_NAME = 687;
+    /**
+     * Whether the creative has an SSL compliance override, and how the override
+     *  has been set.
+     * Corresponds to "Creative SSL compliance override value" in the Ad Manager
+     * UI (when showing API fields).
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `ENUM`
+     *
+     * Generated from protobuf enum <code>CREATIVE_SSL_COMPLIANCE_OVERRIDE = 784;</code>
+     */
+    const CREATIVE_SSL_COMPLIANCE_OVERRIDE = 784;
+    /**
+     * Localized name of the creative SSL compliance override.
+     * Corresponds to "Creative SSL compliance override" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `STRING`
+     *
+     * Generated from protobuf enum <code>CREATIVE_SSL_COMPLIANCE_OVERRIDE_NAME = 786;</code>
+     */
+    const CREATIVE_SSL_COMPLIANCE_OVERRIDE_NAME = 786;
+    /**
+     * The result of an Ad Manager scan of the creative.
+     * Corresponds to "Creative SSL scan result value" in the Ad Manager UI
+     * (when showing API fields).
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `ENUM`
+     *
+     * Generated from protobuf enum <code>CREATIVE_SSL_SCAN_RESULT = 785;</code>
+     */
+    const CREATIVE_SSL_SCAN_RESULT = 785;
+    /**
+     * Localized name of the creative SSL scan result.
+     * Corresponds to "Creative SSL scan result" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `STRING`
+     *
+     * Generated from protobuf enum <code>CREATIVE_SSL_SCAN_RESULT_NAME = 787;</code>
+     */
+    const CREATIVE_SSL_SCAN_RESULT_NAME = 787;
+    /**
+     * The size of the ad unit that the creative is intended to occupy, such as
+     *  "468 x 60".
+     * Corresponds to "Creative target ad unit size" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`,
+     * `REAL_TIME_VIDEO`, `OFF_PROPERTY_CAMPAIGNS`
+     * Data format: `STRING`
+     *
+     * Generated from protobuf enum <code>CREATIVE_TARGET_AD_UNIT_SIZE = 770;</code>
+     */
+    const CREATIVE_TARGET_AD_UNIT_SIZE = 770;
     /**
      * Creative technology ENUM
      * Corresponds to "Creative technology value" in the Ad Manager UI (when
@@ -1862,8 +2018,11 @@ class Dimension
     /**
      * Breaks down reporting data by date.
      * Corresponds to "Date" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `REACH`,
-     * `PRIVACY_AND_MESSAGING`, `REVENUE_VERIFICATION`, `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `REACH`, `PRIVACY_AND_MESSAGING`,
+     * `REVENUE_VERIFICATION`, `AD_SPEED`, `REAL_TIME_VIDEO`,
+     * `YOUTUBE_CONSOLIDATED`, `OFF_PROPERTY_CAMPAIGNS`,
+     * `ADS_TRAFFIC_NAVIGATOR`, `ON_PLATFORM_MULTICALL`
      * Data format: `DATE`
      *
      * Generated from protobuf enum <code>DATE = 3;</code>
@@ -1873,8 +2032,9 @@ class Dimension
      * Breaks down reporting data by day of the week. Monday is 1 and 7 is
      *  Sunday.
      * Corresponds to "Day of week" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `REACH`,
-     * `PRIVACY_AND_MESSAGING`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `REACH`, `PRIVACY_AND_MESSAGING`,
+     * `YOUTUBE_CONSOLIDATED`, `OFF_PROPERTY_CAMPAIGNS`, `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>DAY_OF_WEEK = 4;</code>
@@ -1901,16 +2061,27 @@ class Dimension
     /**
      * Deal ID
      * Corresponds to "Deal ID" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>DEAL_ID = 436;</code>
      */
     const DEAL_ID = 436;
     /**
+     * List of deal IDs found in a callout.
+     * Corresponds to "Deal ID (all)" in the Ad Manager UI.
+     * Compatible with the following report types: `ADS_TRAFFIC_NAVIGATOR`
+     * Data format: `STRING_LIST`
+     *
+     * Generated from protobuf enum <code>DEAL_ID_ALL = 781;</code>
+     */
+    const DEAL_ID_ALL = 781;
+    /**
      * Deal name
      * Corresponds to "Deal" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>DEAL_NAME = 437;</code>
@@ -1961,16 +2132,25 @@ class Dimension
      * Demand source.
      * Corresponds to "Demand source value" in the Ad Manager UI (when showing
      * API fields).
-     * Compatible with the following report types:
+     * Compatible with the following report types: `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `ENUM`
      *
      * Generated from protobuf enum <code>DEMAND_SOURCE = 592;</code>
      */
     const DEMAND_SOURCE = 592;
     /**
+     * List of demand sources found in a callout.
+     * Corresponds to "Demand source (all)" in the Ad Manager UI.
+     * Compatible with the following report types: `ADS_TRAFFIC_NAVIGATOR`
+     * Data format: `STRING_LIST`
+     *
+     * Generated from protobuf enum <code>DEMAND_SOURCE_ALL = 782;</code>
+     */
+    const DEMAND_SOURCE_ALL = 782;
+    /**
      * Demand source name.
      * Corresponds to "Demand source" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>DEMAND_SOURCE_NAME = 593;</code>
@@ -2010,7 +2190,8 @@ class Dimension
      * Corresponds to "Device category value" in the Ad Manager UI (when showing
      * API fields).
      * Compatible with the following report types: `HISTORICAL`,
-     * `PRIVACY_AND_MESSAGING`, `AD_SPEED`
+     * `PRIVACY_AND_MESSAGING`, `AD_SPEED`, `REAL_TIME_VIDEO`,
+     * `OFF_PROPERTY_CAMPAIGNS`, `ON_PLATFORM_MULTICALL`
      * Data format: `ENUM`
      *
      * Generated from protobuf enum <code>DEVICE_CATEGORY = 15;</code>
@@ -2021,7 +2202,8 @@ class Dimension
      *  desktop) to which an ad is being targeted.
      * Corresponds to "Device category" in the Ad Manager UI.
      * Compatible with the following report types: `HISTORICAL`,
-     * `PRIVACY_AND_MESSAGING`, `AD_SPEED`
+     * `PRIVACY_AND_MESSAGING`, `AD_SPEED`, `REAL_TIME_VIDEO`,
+     * `OFF_PROPERTY_CAMPAIGNS`, `ON_PLATFORM_MULTICALL`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>DEVICE_CATEGORY_NAME = 16;</code>
@@ -2269,7 +2451,7 @@ class Dimension
      * The ID of the header bidding trafficking yield partner.
      * Corresponds to "Yield partner ID (header bidding trafficking)" in the Ad
      * Manager UI (when showing API fields).
-     * Compatible with the following report types:
+     * Compatible with the following report types: `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `IDENTIFIER`
      *
      * Generated from protobuf enum <code>HBT_YIELD_PARTNER_ID = 659;</code>
@@ -2279,7 +2461,7 @@ class Dimension
      * The name of the header bidding trafficking yield partner.
      * Corresponds to "Yield partner (header bidding trafficking)" in the Ad
      * Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>HBT_YIELD_PARTNER_NAME = 660;</code>
@@ -2307,7 +2489,9 @@ class Dimension
     /**
      * Breaks down reporting data by hour in one day.
      * Corresponds to "Hour" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `REAL_TIME_VIDEO`, `OFF_PROPERTY_CAMPAIGNS`, `ADS_TRAFFIC_NAVIGATOR`,
+     * `ON_PLATFORM_MULTICALL`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>HOUR = 100;</code>
@@ -2470,7 +2654,8 @@ class Dimension
      *  The kind of web page or device where the ad was requested.
      * Corresponds to "Inventory type (expanded) value" in the Ad Manager UI
      * (when showing API fields).
-     * Compatible with the following report types: `HISTORICAL`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `OFF_PROPERTY_CAMPAIGNS`, `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `ENUM`
      *
      * Generated from protobuf enum <code>INVENTORY_TYPE = 19;</code>
@@ -2480,7 +2665,8 @@ class Dimension
      * Inventory type name.
      *  The kind of web page or device where the ad was requested.
      * Corresponds to "Inventory type (expanded)" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `OFF_PROPERTY_CAMPAIGNS`, `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>INVENTORY_TYPE_NAME = 20;</code>
@@ -2543,7 +2729,7 @@ class Dimension
     /**
      * The custom criteria key-values specified in ad requests.
      * Corresponds to "Key-values" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `FUTURE_SELL_THROUGH`
      * Data format: `STRING_LIST`
      *
      * Generated from protobuf enum <code>KEY_VALUES_SET = 713;</code>
@@ -2568,11 +2754,22 @@ class Dimension
      */
     const LINE_ITEM_ARCHIVED = 188;
     /**
+     * The average number of viewers for the line item.
+     * Corresponds to "Nielsen average number of viewers" in the Ad Manager UI.
+     * Compatible with the following report types: `REACH`
+     * Data format: `DOUBLE`
+     *
+     * Generated from protobuf enum <code>LINE_ITEM_AVERAGE_NUMBER_OF_VIEWERS = 694;</code>
+     */
+    const LINE_ITEM_AVERAGE_NUMBER_OF_VIEWERS = 694;
+    /**
      * Line item companion delivery option ENUM value.
      * Corresponds to "Line item companion delivery option value" in the Ad
      * Manager UI (when showing API fields).
      * Compatible with the following report types: `HISTORICAL`, `REACH`
      * Data format: `ENUM`
+     * Values:
+     * [LineItemCompanionDeliveryType][google.ads.admanager.v1.LineItemCompanionDeliveryTypeEnum.LineItemCompanionDeliveryType]
      *
      * Generated from protobuf enum <code>LINE_ITEM_COMPANION_DELIVERY_OPTION = 204;</code>
      */
@@ -2591,9 +2788,11 @@ class Dimension
      * The computed status of the LineItem.
      * Corresponds to "Line item computed status value" in the Ad Manager UI
      * (when showing API fields).
-     * Compatible with the following report types: `HISTORICAL`, `REACH`,
-     * `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `REACH`, `AD_SPEED`, `REAL_TIME_VIDEO`
      * Data format: `ENUM`
+     * Values:
+     * [LineItemComputedStatus][google.ads.admanager.v1.LineItemComputedStatusEnum.LineItemComputedStatus]
      *
      * Generated from protobuf enum <code>LINE_ITEM_COMPUTED_STATUS = 250;</code>
      */
@@ -2601,8 +2800,8 @@ class Dimension
     /**
      * The localized name of the computed status of the LineItem.
      * Corresponds to "Line item computed status" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `REACH`,
-     * `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `REACH`, `AD_SPEED`, `REAL_TIME_VIDEO`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>LINE_ITEM_COMPUTED_STATUS_NAME = 251;</code>
@@ -2620,8 +2819,8 @@ class Dimension
     /**
      * The cost per unit of the Line item.
      * Corresponds to "Line item rate" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `REACH`,
-     * `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `REACH`, `AD_SPEED`, `REAL_TIME_VIDEO`
      * Data format: `MONEY`
      *
      * Generated from protobuf enum <code>LINE_ITEM_COST_PER_UNIT = 85;</code>
@@ -2631,9 +2830,11 @@ class Dimension
      * Line item cost type ENUM value.
      * Corresponds to "Line item cost type value" in the Ad Manager UI (when
      * showing API fields).
-     * Compatible with the following report types: `HISTORICAL`, `REACH`,
-     * `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `REACH`, `AD_SPEED`, `REAL_TIME_VIDEO`
      * Data format: `ENUM`
+     * Values:
+     * [LineItemCostType][google.ads.admanager.v1.LineItemCostTypeEnum.LineItemCostType]
      *
      * Generated from protobuf enum <code>LINE_ITEM_COST_TYPE = 212;</code>
      */
@@ -2641,8 +2842,8 @@ class Dimension
     /**
      * Localized line item cost type name.
      * Corresponds to "Line item cost type" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `REACH`,
-     * `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `REACH`, `AD_SPEED`, `REAL_TIME_VIDEO`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>LINE_ITEM_COST_TYPE_NAME = 213;</code>
@@ -2663,6 +2864,8 @@ class Dimension
      * UI (when showing API fields).
      * Compatible with the following report types: `HISTORICAL`, `REACH`
      * Data format: `ENUM`
+     * Values:
+     * [CreativeRotationType][google.ads.admanager.v1.CreativeRotationTypeEnum.CreativeRotationType]
      *
      * Generated from protobuf enum <code>LINE_ITEM_CREATIVE_ROTATION_TYPE = 189;</code>
      */
@@ -2688,8 +2891,8 @@ class Dimension
     /**
      * The 3 letter currency code of the Line Item
      * Corresponds to "Line item currency code" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `REACH`,
-     * `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `REACH`, `AD_SPEED`, `REAL_TIME_VIDEO`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>LINE_ITEM_CURRENCY_CODE = 180;</code>
@@ -2698,7 +2901,8 @@ class Dimension
     /**
      * The progress made for the delivery of the Line item.
      * Corresponds to "Line item delivery indicator" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `REACH`
+     * Compatible with the following report types: `HISTORICAL`, `REACH`,
+     * `REAL_TIME_VIDEO`
      * Data format: `PERCENT`
      *
      * Generated from protobuf enum <code>LINE_ITEM_DELIVERY_INDICATOR = 87;</code>
@@ -2708,9 +2912,11 @@ class Dimension
      * The delivery rate type of the LineItem.
      * Corresponds to "Line item delivery rate type value" in the Ad Manager UI
      * (when showing API fields).
-     * Compatible with the following report types: `HISTORICAL`, `REACH`,
-     * `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `REACH`, `AD_SPEED`, `REAL_TIME_VIDEO`
      * Data format: `ENUM`
+     * Values:
+     * [LineItemDeliveryRateType][google.ads.admanager.v1.LineItemDeliveryRateTypeEnum.LineItemDeliveryRateType]
      *
      * Generated from protobuf enum <code>LINE_ITEM_DELIVERY_RATE_TYPE = 191;</code>
      */
@@ -2718,8 +2924,8 @@ class Dimension
     /**
      * The localized name of the delivery rate type of the LineItem.
      * Corresponds to "Line item delivery rate type" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `REACH`,
-     * `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `REACH`, `AD_SPEED`, `REAL_TIME_VIDEO`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>LINE_ITEM_DELIVERY_RATE_TYPE_NAME = 192;</code>
@@ -2747,8 +2953,8 @@ class Dimension
     /**
      * The end date of the Line item.
      * Corresponds to "Line item end date" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `REACH`,
-     * `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `REACH`, `AD_SPEED`, `REAL_TIME_VIDEO`
      * Data format: `DATE`
      *
      * Generated from protobuf enum <code>LINE_ITEM_END_DATE = 81;</code>
@@ -2757,8 +2963,8 @@ class Dimension
     /**
      * The end date and time of the Line item.
      * Corresponds to "Line item end time" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `REACH`,
-     * `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `REACH`, `AD_SPEED`, `REAL_TIME_VIDEO`
      * Data format: `TIMESTAMP`
      *
      * Generated from protobuf enum <code>LINE_ITEM_END_DATE_TIME = 83;</code>
@@ -2770,6 +2976,8 @@ class Dimension
      * (when showing API fields).
      * Compatible with the following report types: `HISTORICAL`, `REACH`
      * Data format: `ENUM`
+     * Values:
+     * [EnvironmentType][google.ads.admanager.v1.EnvironmentTypeEnum.EnvironmentType]
      *
      * Generated from protobuf enum <code>LINE_ITEM_ENVIRONMENT_TYPE = 201;</code>
      */
@@ -2813,8 +3021,9 @@ class Dimension
     /**
      * Line item ID.
      * Corresponds to "Line item ID" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `REACH`,
-     * `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `REACH`, `AD_SPEED`, `REAL_TIME_VIDEO`,
+     * `OFF_PROPERTY_CAMPAIGNS`, `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `IDENTIFIER`
      *
      * Generated from protobuf enum <code>LINE_ITEM_ID = 1;</code>
@@ -2850,8 +3059,8 @@ class Dimension
     /**
      * The total number of clicks delivered of the lifetime of the Line item.
      * Corresponds to "Line item lifetime clicks" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `REACH`,
-     * `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `REACH`, `AD_SPEED`, `REAL_TIME_VIDEO`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>LINE_ITEM_LIFETIME_CLICKS = 95;</code>
@@ -2861,8 +3070,8 @@ class Dimension
      * The total number of impressions delivered over the lifetime of the
      *  Line item.
      * Corresponds to "Line item lifetime impressions" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `REACH`,
-     * `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `REACH`, `AD_SPEED`, `REAL_TIME_VIDEO`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>LINE_ITEM_LIFETIME_IMPRESSIONS = 94;</code>
@@ -2873,8 +3082,8 @@ class Dimension
      *  the Line item.
      * Corresponds to "Line item lifetime viewable impressions" in the Ad
      * Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `REACH`,
-     * `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `REACH`, `AD_SPEED`, `REAL_TIME_VIDEO`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>LINE_ITEM_LIFETIME_VIEWABLE_IMPRESSIONS = 96;</code>
@@ -2894,8 +3103,9 @@ class Dimension
     /**
      * Line item Name.
      * Corresponds to "Line item" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `REACH`,
-     * `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `REACH`, `AD_SPEED`, `REAL_TIME_VIDEO`,
+     * `OFF_PROPERTY_CAMPAIGNS`, `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>LINE_ITEM_NAME = 2;</code>
@@ -2923,8 +3133,8 @@ class Dimension
     /**
      * The PO number of the order associated with the line item.
      * Corresponds to "Line item PO number" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `REACH`,
-     * `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `REACH`, `AD_SPEED`, `REAL_TIME_VIDEO`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>LINE_ITEM_PO_NUMBER = 669;</code>
@@ -2936,6 +3146,7 @@ class Dimension
      * (when showing API fields).
      * Compatible with the following report types: `HISTORICAL`, `REACH`
      * Data format: `ENUM`
+     * Values: [GoalType][google.ads.admanager.v1.GoalTypeEnum.GoalType]
      *
      * Generated from protobuf enum <code>LINE_ITEM_PRIMARY_GOAL_TYPE = 210;</code>
      */
@@ -2958,8 +3169,8 @@ class Dimension
      *  reached.
      * Corresponds to "Line item primary goal units (absolute)" in the Ad
      * Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `REACH`,
-     * `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `REACH`, `AD_SPEED`, `REAL_TIME_VIDEO`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>LINE_ITEM_PRIMARY_GOAL_UNITS_ABSOLUTE = 93;</code>
@@ -2973,8 +3184,8 @@ class Dimension
      *  impressions reserved.
      * Corresponds to "Line item primary goal units (percentage)" in the Ad
      * Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `REACH`,
-     * `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `REACH`, `AD_SPEED`, `REAL_TIME_VIDEO`
      * Data format: `WHOLE_PERCENT`
      *
      * Generated from protobuf enum <code>LINE_ITEM_PRIMARY_GOAL_UNITS_PERCENTAGE = 396;</code>
@@ -2986,6 +3197,7 @@ class Dimension
      * UI (when showing API fields).
      * Compatible with the following report types: `HISTORICAL`, `REACH`
      * Data format: `ENUM`
+     * Values: [UnitType][google.ads.admanager.v1.UnitTypeEnum.UnitType]
      *
      * Generated from protobuf enum <code>LINE_ITEM_PRIMARY_GOAL_UNIT_TYPE = 208;</code>
      */
@@ -3004,8 +3216,8 @@ class Dimension
      *  In general, a lower priority means more serving priority for the
      *  Line item.
      * Corresponds to "Line item priority" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `REACH`,
-     * `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `REACH`, `AD_SPEED`, `REAL_TIME_VIDEO`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>LINE_ITEM_PRIORITY = 24;</code>
@@ -3018,6 +3230,8 @@ class Dimension
      * (when showing API fields).
      * Compatible with the following report types: `HISTORICAL`, `REACH`
      * Data format: `ENUM`
+     * Values:
+     * [LineItemReservationStatus][google.ads.admanager.v1.LineItemReservationStatusEnum.LineItemReservationStatus]
      *
      * Generated from protobuf enum <code>LINE_ITEM_RESERVATION_STATUS = 304;</code>
      */
@@ -3062,8 +3276,8 @@ class Dimension
     /**
      * The start date of the Line item.
      * Corresponds to "Line item start date" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `REACH`,
-     * `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `REACH`, `AD_SPEED`, `REAL_TIME_VIDEO`
      * Data format: `DATE`
      *
      * Generated from protobuf enum <code>LINE_ITEM_START_DATE = 82;</code>
@@ -3072,8 +3286,8 @@ class Dimension
     /**
      * The start date and time of the Line item.
      * Corresponds to "Line item start time" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `REACH`,
-     * `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `REACH`, `AD_SPEED`, `REAL_TIME_VIDEO`
      * Data format: `TIMESTAMP`
      *
      * Generated from protobuf enum <code>LINE_ITEM_START_DATE_TIME = 84;</code>
@@ -3092,9 +3306,11 @@ class Dimension
      * Line item type ENUM value.
      * Corresponds to "Line item type value" in the Ad Manager UI (when showing
      * API fields).
-     * Compatible with the following report types: `HISTORICAL`, `REACH`,
-     * `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `REACH`, `AD_SPEED`, `REAL_TIME_VIDEO`
      * Data format: `ENUM`
+     * Values:
+     * [LineItemType][google.ads.admanager.v1.LineItemTypeEnum.LineItemType]
      *
      * Generated from protobuf enum <code>LINE_ITEM_TYPE = 193;</code>
      */
@@ -3102,8 +3318,8 @@ class Dimension
     /**
      * Localized line item type name.
      * Corresponds to "Line item type" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `REACH`,
-     * `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `REACH`, `AD_SPEED`, `REAL_TIME_VIDEO`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>LINE_ITEM_TYPE_NAME = 194;</code>
@@ -3114,7 +3330,8 @@ class Dimension
      *  end.
      * Corresponds to "Line item is unlimited end time" in the Ad Manager UI
      * (when showing API fields).
-     * Compatible with the following report types: `HISTORICAL`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `REACH`, `AD_SPEED`, `REAL_TIME_VIDEO`
      * Data format: `BOOLEAN`
      *
      * Generated from protobuf enum <code>LINE_ITEM_UNLIMITED_END = 187;</code>
@@ -3182,7 +3399,7 @@ class Dimension
      * The ID of the yield partner for Mediation.
      * Corresponds to "Yield partner ID (mediation)" in the Ad Manager UI (when
      * showing API fields).
-     * Compatible with the following report types:
+     * Compatible with the following report types: `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `IDENTIFIER`
      *
      * Generated from protobuf enum <code>MEDIATION_YIELD_PARTNER_ID = 661;</code>
@@ -3191,7 +3408,7 @@ class Dimension
     /**
      * The name of the yield partner for Mediation.
      * Corresponds to "Yield partner (mediation)" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>MEDIATION_YIELD_PARTNER_NAME = 662;</code>
@@ -3239,7 +3456,7 @@ class Dimension
      * The ID of the Mobile App.
      * Corresponds to "App ID" in the Ad Manager UI.
      * Compatible with the following report types: `HISTORICAL`,
-     * `PRIVACY_AND_MESSAGING`
+     * `PRIVACY_AND_MESSAGING`, `OFF_PROPERTY_CAMPAIGNS`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>MOBILE_APP_ID = 123;</code>
@@ -3249,7 +3466,7 @@ class Dimension
      * The name of the mobile app.
      * Corresponds to "App" in the Ad Manager UI.
      * Compatible with the following report types: `HISTORICAL`,
-     * `PRIVACY_AND_MESSAGING`
+     * `PRIVACY_AND_MESSAGING`, `OFF_PROPERTY_CAMPAIGNS`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>MOBILE_APP_NAME = 127;</code>
@@ -3304,7 +3521,7 @@ class Dimension
      * Corresponds to "Inventory type value" in the Ad Manager UI (when showing
      * API fields).
      * Compatible with the following report types: `HISTORICAL`,
-     * `PRIVACY_AND_MESSAGING`, `AD_SPEED`
+     * `PRIVACY_AND_MESSAGING`, `AD_SPEED`, `OFF_PROPERTY_CAMPAIGNS`
      * Data format: `ENUM`
      *
      * Generated from protobuf enum <code>MOBILE_INVENTORY_TYPE = 99;</code>
@@ -3316,7 +3533,7 @@ class Dimension
      *  page, or a mobile app.
      * Corresponds to "Inventory type" in the Ad Manager UI.
      * Compatible with the following report types: `HISTORICAL`,
-     * `PRIVACY_AND_MESSAGING`, `AD_SPEED`
+     * `PRIVACY_AND_MESSAGING`, `AD_SPEED`, `OFF_PROPERTY_CAMPAIGNS`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>MOBILE_INVENTORY_TYPE_NAME = 21;</code>
@@ -3373,8 +3590,10 @@ class Dimension
     /**
      * Breaks down reporting data by month and year.
      * Corresponds to "Month and year" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `REACH`,
-     * `PRIVACY_AND_MESSAGING`, `REVENUE_VERIFICATION`, `PARTNER_FINANCE`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `REACH`, `PRIVACY_AND_MESSAGING`,
+     * `REVENUE_VERIFICATION`, `PARTNER_FINANCE`, `YOUTUBE_CONSOLIDATED`,
+     * `OFF_PROPERTY_CAMPAIGNS`, `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>MONTH_YEAR = 6;</code>
@@ -3417,19 +3636,85 @@ class Dimension
      */
     const NATIVE_STYLE_NAME = 252;
     /**
-     * No fill reason category in the Ads traffic navigator report.
-     * Corresponds to "No fill reason category value" in the Ad Manager UI (when
-     * showing API fields).
-     * Compatible with the following report types:
+     * Nielsen demographics (gender and age group).
+     * Corresponds to "Nielsen Digital Ad Ratings demographics value" in the Ad
+     * Manager UI (when showing API fields).
+     * Compatible with the following report types: `REACH`
      * Data format: `ENUM`
      *
-     * Generated from protobuf enum <code>NO_FILL_REASON_CATEGORY = 586;</code>
+     * Generated from protobuf enum <code>NIELSEN_DEMOGRAPHICS = 695;</code>
      */
-    const NO_FILL_REASON_CATEGORY = 586;
+    const NIELSEN_DEMOGRAPHICS = 695;
+    /**
+     * Name of the Nielsen demographics (gender and age group).
+     * Corresponds to "Nielsen Digital Ad Ratings demographics" in the Ad
+     * Manager UI.
+     * Compatible with the following report types: `REACH`
+     * Data format: `STRING`
+     *
+     * Generated from protobuf enum <code>NIELSEN_DEMOGRAPHICS_NAME = 768;</code>
+     */
+    const NIELSEN_DEMOGRAPHICS_NAME = 768;
+    /**
+     * Nielsen device.
+     * Corresponds to "Nielsen Digital Ad Ratings device value" in the Ad
+     * Manager UI (when showing API fields).
+     * Compatible with the following report types: `REACH`
+     * Data format: `ENUM`
+     *
+     * Generated from protobuf enum <code>NIELSEN_DEVICE = 696;</code>
+     */
+    const NIELSEN_DEVICE = 696;
+    /**
+     * Name of the Nielsen device.
+     * Corresponds to "Nielsen Digital Ad Ratings device" in the Ad Manager UI.
+     * Compatible with the following report types: `REACH`
+     * Data format: `STRING`
+     *
+     * Generated from protobuf enum <code>NIELSEN_DEVICE_NAME = 697;</code>
+     */
+    const NIELSEN_DEVICE_NAME = 697;
+    /**
+     * Nielsen in target
+     * Corresponds to "Nielsen in-target" in the Ad Manager UI.
+     * Compatible with the following report types: `REACH`
+     * Data format: `BOOLEAN`
+     *
+     * Generated from protobuf enum <code>NIELSEN_IN_TARGET = 769;</code>
+     */
+    const NIELSEN_IN_TARGET = 769;
+    /**
+     * Data restatement date of Nielsen Digital Ad Ratings data.
+     * Corresponds to "Nielsen Digital Ad Ratings restatement date" in the Ad
+     * Manager UI.
+     * Compatible with the following report types: `REACH`
+     * Data format: `DATE`
+     *
+     * Generated from protobuf enum <code>NIELSEN_RESTATEMENT_DATE = 698;</code>
+     */
+    const NIELSEN_RESTATEMENT_DATE = 698;
+    /**
+     * Campaign date segment of Nielsen Digital Ad Ratings reporting.
+     * Corresponds to "Nielsen Digital Ad Ratings segment" in the Ad Manager UI.
+     * Compatible with the following report types: `REACH`
+     * Data format: `DATE_RANGE`
+     *
+     * Generated from protobuf enum <code>NIELSEN_SEGMENT = 699;</code>
+     */
+    const NIELSEN_SEGMENT = 699;
+    /**
+     * Site URL of Nielsen Digital Ad Ratings data.
+     * Corresponds to "Nielsen Site URL" in the Ad Manager UI.
+     * Compatible with the following report types: `REACH`
+     * Data format: `STRING`
+     *
+     * Generated from protobuf enum <code>NIELSEN_SITE_URL = 700;</code>
+     */
+    const NIELSEN_SITE_URL = 700;
     /**
      * No fill reason category name in the Ads traffic navigator report.
      * Corresponds to "No fill reason category" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>NO_FILL_REASON_CATEGORY_NAME = 587;</code>
@@ -3533,6 +3818,8 @@ class Dimension
      * showing API fields).
      * Compatible with the following report types: `HISTORICAL`
      * Data format: `ENUM`
+     * Values:
+     * [OrderDeliveryStatus][google.ads.admanager.v1.OrderDeliveryStatusEnum.OrderDeliveryStatus]
      *
      * Generated from protobuf enum <code>ORDER_DELIVERY_STATUS = 231;</code>
      */
@@ -3549,8 +3836,8 @@ class Dimension
     /**
      * Order end date.
      * Corresponds to "Order end date" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `REACH`,
-     * `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `REACH`, `AD_SPEED`
      * Data format: `DATE`
      *
      * Generated from protobuf enum <code>ORDER_END_DATE = 154;</code>
@@ -3559,8 +3846,8 @@ class Dimension
     /**
      * Order end date and time.
      * Corresponds to "Order end time" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `REACH`,
-     * `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `REACH`, `AD_SPEED`
      * Data format: `TIMESTAMP`
      *
      * Generated from protobuf enum <code>ORDER_END_DATE_TIME = 155;</code>
@@ -3578,8 +3865,8 @@ class Dimension
     /**
      * Order ID.
      * Corresponds to "Order ID" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `REACH`,
-     * `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `REACH`, `AD_SPEED`, `OFF_PROPERTY_CAMPAIGNS`
      * Data format: `IDENTIFIER`
      *
      * Generated from protobuf enum <code>ORDER_ID = 7;</code>
@@ -3606,8 +3893,8 @@ class Dimension
     /**
      * Order lifetime clicks.
      * Corresponds to "Order lifetime clicks" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `REACH`,
-     * `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `REACH`, `AD_SPEED`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>ORDER_LIFETIME_CLICKS = 158;</code>
@@ -3616,8 +3903,8 @@ class Dimension
     /**
      * Order lifetime impressions.
      * Corresponds to "Order lifetime impressions" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `REACH`,
-     * `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `REACH`, `AD_SPEED`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>ORDER_LIFETIME_IMPRESSIONS = 159;</code>
@@ -3626,8 +3913,8 @@ class Dimension
     /**
      * Order name.
      * Corresponds to "Order" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `REACH`,
-     * `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `REACH`, `AD_SPEED`, `OFF_PROPERTY_CAMPAIGNS`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>ORDER_NAME = 8;</code>
@@ -3636,8 +3923,8 @@ class Dimension
     /**
      * Order PO number.
      * Corresponds to "Order PO number" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `REACH`,
-     * `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `REACH`, `AD_SPEED`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>ORDER_PO_NUMBER = 160;</code>
@@ -3655,7 +3942,8 @@ class Dimension
     /**
      * Order sales person.
      * Corresponds to "Order salesperson" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `REACH`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `REACH`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>ORDER_SALESPERSON = 161;</code>
@@ -3664,7 +3952,8 @@ class Dimension
     /**
      * Order sales person ID.
      * Corresponds to "Order salesperson ID" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `REACH`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `REACH`
      * Data format: `IDENTIFIER`
      *
      * Generated from protobuf enum <code>ORDER_SALESPERSON_ID = 629;</code>
@@ -3709,8 +3998,8 @@ class Dimension
     /**
      * Order start date.
      * Corresponds to "Order start date" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `REACH`,
-     * `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `REACH`, `AD_SPEED`
      * Data format: `DATE`
      *
      * Generated from protobuf enum <code>ORDER_START_DATE = 168;</code>
@@ -3719,8 +4008,8 @@ class Dimension
     /**
      * Order start date and time.
      * Corresponds to "Order start time" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `REACH`,
-     * `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `REACH`, `AD_SPEED`
      * Data format: `TIMESTAMP`
      *
      * Generated from protobuf enum <code>ORDER_START_DATE_TIME = 169;</code>
@@ -3749,7 +4038,8 @@ class Dimension
      *  end.
      * Corresponds to "Order is unlimited end time" in the Ad Manager UI (when
      * showing API fields).
-     * Compatible with the following report types: `HISTORICAL`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `REACH`, `AD_SPEED`
      * Data format: `BOOLEAN`
      *
      * Generated from protobuf enum <code>ORDER_UNLIMITED_END = 203;</code>
@@ -3827,7 +4117,8 @@ class Dimension
     /**
      * Placement ID
      * Corresponds to "Placement ID" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `REACH`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `REACH`, `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `IDENTIFIER`
      *
      * Generated from protobuf enum <code>PLACEMENT_ID = 113;</code>
@@ -3836,7 +4127,8 @@ class Dimension
     /**
      * The full list of placement IDs associated with the ad unit.
      * Corresponds to "Placement ID (all)" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `REACH`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `REACH`, `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `IDENTIFIER_LIST`
      *
      * Generated from protobuf enum <code>PLACEMENT_ID_ALL = 144;</code>
@@ -3845,7 +4137,8 @@ class Dimension
     /**
      * Placement name
      * Corresponds to "Placement" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `REACH`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `REACH`, `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>PLACEMENT_NAME = 114;</code>
@@ -3854,7 +4147,8 @@ class Dimension
     /**
      * The full list of placement names associated with the ad unit.
      * Corresponds to "Placement (all)" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `REACH`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `REACH`, `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `STRING_LIST`
      *
      * Generated from protobuf enum <code>PLACEMENT_NAME_ALL = 145;</code>
@@ -3864,8 +4158,11 @@ class Dimension
      * Placement status ENUM value
      * Corresponds to "Placement status value" in the Ad Manager UI (when
      * showing API fields).
-     * Compatible with the following report types: `HISTORICAL`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`
      * Data format: `ENUM`
+     * Values:
+     * [PlacementStatus][google.ads.admanager.v1.PlacementStatusEnum.PlacementStatus]
      *
      * Generated from protobuf enum <code>PLACEMENT_STATUS = 362;</code>
      */
@@ -3873,7 +4170,8 @@ class Dimension
     /**
      * Localized placement status name.
      * Corresponds to "Placement status" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>PLACEMENT_STATUS_NAME = 364;</code>
@@ -3883,7 +4181,8 @@ class Dimension
      * The full list of localized placement status names associated with the ad
      *  unit.
      * Corresponds to "Placement status (all)" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`
      * Data format: `STRING_LIST`
      *
      * Generated from protobuf enum <code>PLACEMENT_STATUS_NAME_ALL = 365;</code>
@@ -3966,6 +4265,24 @@ class Dimension
      */
     const PRESENTED_SECURE_SIGNAL_NAME = 496;
     /**
+     * Pricing rule ID dimension
+     * Corresponds to "Pricing rule ID" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `IDENTIFIER`
+     *
+     * Generated from protobuf enum <code>PRICING_RULE_ID = 393;</code>
+     */
+    const PRICING_RULE_ID = 393;
+    /**
+     * Pricing rule name dimension
+     * Corresponds to "Pricing rule" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `STRING`
+     *
+     * Generated from protobuf enum <code>PRICING_RULE_NAME = 394;</code>
+     */
+    const PRICING_RULE_NAME = 394;
+    /**
      * The ID type selected for personalization.
      * Corresponds to "Primary personalization ID type value" in the Ad Manager
      * UI (when showing API fields).
@@ -3984,24 +4301,6 @@ class Dimension
      * Generated from protobuf enum <code>PRIMARY_PERSONALIZATION_ID_TYPE_NAME = 409;</code>
      */
     const PRIMARY_PERSONALIZATION_ID_TYPE_NAME = 409;
-    /**
-     * Deprecated. Dimension has been renamed to `DEAL_BUYER_ID`.
-     * The server will normalize any requests using this value to
-     * `DEAL_BUYER_ID`.
-     * This value will be removed on or after October 10, 2025.
-     *
-     * Generated from protobuf enum <code>PROGRAMMATIC_BUYER_ID = 240 [deprecated = true];</code>
-     */
-    const PROGRAMMATIC_BUYER_ID = 240;
-    /**
-     * Deprecated. Dimension has been renamed to `DEAL_BUYER_NAME`.
-     * The server will normalize any requests using this value to
-     * `DEAL_BUYER_NAME`.
-     * This value will be removed on or after October 10, 2025.
-     *
-     * Generated from protobuf enum <code>PROGRAMMATIC_BUYER_NAME = 241 [deprecated = true];</code>
-     */
-    const PROGRAMMATIC_BUYER_NAME = 241;
     /**
      * Programmatic channel.
      *  The type of transaction that occurred in Ad Exchange.
@@ -4218,19 +4517,9 @@ class Dimension
      */
     const REGION_NAME = 458;
     /**
-     * The rejection class category in the Ads traffic navigator report.
-     * Corresponds to "Rejection class category value" in the Ad Manager UI
-     * (when showing API fields).
-     * Compatible with the following report types:
-     * Data format: `ENUM`
-     *
-     * Generated from protobuf enum <code>REJECTION_CLASS_CATEGORY = 590;</code>
-     */
-    const REJECTION_CLASS_CATEGORY = 590;
-    /**
      * The rejection class category name in the Ads traffic navigator report.
      * Corresponds to "Rejection class category" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>REJECTION_CLASS_CATEGORY_NAME = 591;</code>
@@ -4240,7 +4529,8 @@ class Dimension
      * The size of a rendered creative, It can differ with the creative's size
      *  if a creative is shown in an ad slot of a different size.
      * Corresponds to "Rendered creative size" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`,
+     * `OFF_PROPERTY_CAMPAIGNS`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>RENDERED_CREATIVE_SIZE = 343;</code>
@@ -4362,6 +4652,16 @@ class Dimension
      */
     const TARGETING_TYPE_NAME = 386;
     /**
+     * Targets customer matching list. Whether the query is siloed customer
+     *  match attributed.
+     * Corresponds to "Targets customer matching list" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `BOOLEAN`
+     *
+     * Generated from protobuf enum <code>TARGETS_CUSTOMER_MATCHING_LIST = 789;</code>
+     */
+    const TARGETS_CUSTOMER_MATCHING_LIST = 789;
+    /**
      * Whether a third-party cookie or device ID was present on a given ad
      *  request.
      * Corresponds to "Third-party ID status value" in the Ad Manager UI (when
@@ -4405,7 +4705,7 @@ class Dimension
      * Inventory top private domain dimension
      * Corresponds to "Domain" in the Ad Manager UI.
      * Compatible with the following report types: `HISTORICAL`,
-     * `PRIVACY_AND_MESSAGING`
+     * `OFF_PROPERTY_CAMPAIGNS`, `PRIVACY_AND_MESSAGING`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>TOP_PRIVATE_DOMAIN = 444;</code>
@@ -4430,24 +4730,6 @@ class Dimension
      * Generated from protobuf enum <code>TRAFFIC_SOURCE_NAME = 389;</code>
      */
     const TRAFFIC_SOURCE_NAME = 389;
-    /**
-     * Unified pricing rule ID dimension
-     * Corresponds to "Unified pricing rule ID" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`
-     * Data format: `IDENTIFIER`
-     *
-     * Generated from protobuf enum <code>UNIFIED_PRICING_RULE_ID = 393;</code>
-     */
-    const UNIFIED_PRICING_RULE_ID = 393;
-    /**
-     * Unified pricing rule name dimension
-     * Corresponds to "Unified pricing rule" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`
-     * Data format: `STRING`
-     *
-     * Generated from protobuf enum <code>UNIFIED_PRICING_RULE_NAME = 394;</code>
-     */
-    const UNIFIED_PRICING_RULE_NAME = 394;
     /**
      * A URL defined under a publisher's inventory.
      * Corresponds to "URL" in the Ad Manager UI.
@@ -4623,7 +4905,8 @@ class Dimension
      * The video ad request source enum.
      * Corresponds to "Ad request source value" in the Ad Manager UI (when
      * showing API fields).
-     * Compatible with the following report types: `HISTORICAL`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `REAL_TIME_VIDEO`
      * Data format: `ENUM`
      *
      * Generated from protobuf enum <code>VIDEO_AD_REQUEST_SOURCE = 438;</code>
@@ -4632,7 +4915,8 @@ class Dimension
     /**
      * The localized name of the video ad request source.
      * Corresponds to "Ad request source" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `REAL_TIME_VIDEO`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>VIDEO_AD_REQUEST_SOURCE_NAME = 439;</code>
@@ -4697,7 +4981,8 @@ class Dimension
     /**
      * The ID of the ad break in a live stream event.
      * Corresponds to "Live stream ad break ID" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `REAL_TIME_VIDEO`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>VIDEO_LIVE_STREAM_EVENT_AD_BREAK_ID = 548;</code>
@@ -4706,7 +4991,8 @@ class Dimension
     /**
      * The name of the ad break in a live stream event.
      * Corresponds to "Live stream ad break" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `REAL_TIME_VIDEO`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>VIDEO_LIVE_STREAM_EVENT_AD_BREAK_NAME = 549;</code>
@@ -4725,7 +5011,8 @@ class Dimension
     /**
      * The ID of the live stream event.
      * Corresponds to "Live stream ID" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `REAL_TIME_VIDEO`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>VIDEO_LIVE_STREAM_EVENT_ID = 551;</code>
@@ -4734,7 +5021,8 @@ class Dimension
     /**
      * The name of the live stream event.
      * Corresponds to "Live stream" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `REAL_TIME_VIDEO`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>VIDEO_LIVE_STREAM_EVENT_NAME = 552;</code>
@@ -4761,8 +5049,8 @@ class Dimension
     const VIDEO_MEASUREMENT_SOURCE_NAME = 602;
     /**
      * The video placement enum as defined by ADCOM 1.0-202303.
-     * Corresponds to "Video placement value (new)" in the Ad Manager UI (when
-     * showing API fields).
+     * Corresponds to "Video placement value" in the Ad Manager UI (when showing
+     * API fields).
      * Compatible with the following report types: `HISTORICAL`
      * Data format: `ENUM`
      *
@@ -4771,7 +5059,7 @@ class Dimension
     const VIDEO_PLCMT = 172;
     /**
      * The localized name of the video placement as defined by ADCOM 1.0-202303.
-     * Corresponds to "Video placement (new)" in the Ad Manager UI.
+     * Corresponds to "Video placement" in the Ad Manager UI.
      * Compatible with the following report types: `HISTORICAL`
      * Data format: `STRING`
      *
@@ -4791,7 +5079,8 @@ class Dimension
      * The position of the pod in the video stream. For example pre-roll,
      *  mid-roll, post-roll.
      * Corresponds to "Position of pod" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `REAL_TIME_VIDEO`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>VIDEO_POSITION_OF_POD = 539;</code>
@@ -4801,7 +5090,8 @@ class Dimension
      * The video SDK version enum.
      * Corresponds to "Video SDK version value" in the Ad Manager UI (when
      * showing API fields).
-     * Compatible with the following report types: `HISTORICAL`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `REAL_TIME_VIDEO`
      * Data format: `ENUM`
      *
      * Generated from protobuf enum <code>VIDEO_SDK_VERSION = 440;</code>
@@ -4810,7 +5100,8 @@ class Dimension
     /**
      * The localized name of the video SDK version.
      * Corresponds to "Video SDK version" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `REAL_TIME_VIDEO`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>VIDEO_SDK_VERSION_NAME = 441;</code>
@@ -4847,8 +5138,9 @@ class Dimension
     /**
      * Breaks down reporting data by week of the year.
      * Corresponds to "Week" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `REACH`,
-     * `PRIVACY_AND_MESSAGING`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`, `REACH`, `PRIVACY_AND_MESSAGING`,
+     * `YOUTUBE_CONSOLIDATED`, `OFF_PROPERTY_CAMPAIGNS`, `ADS_TRAFFIC_NAVIGATOR`
      * Data format: `INTEGER`
      *
      * Generated from protobuf enum <code>WEEK = 5;</code>
@@ -4896,7 +5188,7 @@ class Dimension
      * YouTube instream ad duration bucket.
      * Corresponds to "Ad duration value" in the Ad Manager UI (when showing API
      * fields).
-     * Compatible with the following report types:
+     * Compatible with the following report types: `YOUTUBE_CONSOLIDATED`
      * Data format: `ENUM`
      *
      * Generated from protobuf enum <code>YOUTUBE_AD_DURATION_BUCKET = 430;</code>
@@ -4905,7 +5197,7 @@ class Dimension
     /**
      * YouTube instream ad duration bucket name.
      * Corresponds to "Ad duration" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `YOUTUBE_CONSOLIDATED`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>YOUTUBE_AD_DURATION_BUCKET_NAME = 431;</code>
@@ -4915,7 +5207,7 @@ class Dimension
      * YouTube instream Ad Type.
      * Corresponds to "YouTube ad type ID" in the Ad Manager UI (when showing
      * API fields).
-     * Compatible with the following report types:
+     * Compatible with the following report types: `YOUTUBE_CONSOLIDATED`
      * Data format: `ENUM`
      *
      * Generated from protobuf enum <code>YOUTUBE_AD_TYPE = 399;</code>
@@ -4924,7 +5216,7 @@ class Dimension
     /**
      * YouTube instream Ad Type localized name.
      * Corresponds to "YouTube ad type" in the Ad Manager UI.
-     * Compatible with the following report types:
+     * Compatible with the following report types: `YOUTUBE_CONSOLIDATED`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>YOUTUBE_AD_TYPE_NAME = 400;</code>
@@ -5171,6 +5463,276 @@ class Dimension
      */
     const LINE_ITEM_CUSTOM_FIELD_14_VALUE = 11014;
     /**
+     * Custom field value for Line Item with custom field ID equal to the ID
+     * in index 0 of `ReportDefinition.line_item_custom_field_ids`. Treats the
+     * value as double. Can only be used if the custom field at index 0 is of
+     * type DOUBLE.
+     *
+     * Generated from protobuf enum <code>LINE_ITEM_CUSTOM_FIELD_0_VALUE_DOUBLE = 11015;</code>
+     */
+    const LINE_ITEM_CUSTOM_FIELD_0_VALUE_DOUBLE = 11015;
+    /**
+     * Custom field value for Line Item with custom field ID equal to the ID
+     * in index 1 of `ReportDefinition.line_item_custom_field_ids`. Treats the
+     * value as double. Can only be used if the custom field at index 1 is of
+     * type DOUBLE.
+     *
+     * Generated from protobuf enum <code>LINE_ITEM_CUSTOM_FIELD_1_VALUE_DOUBLE = 11016;</code>
+     */
+    const LINE_ITEM_CUSTOM_FIELD_1_VALUE_DOUBLE = 11016;
+    /**
+     * Custom field value for Line Item with custom field ID equal to the ID
+     * in index 2 of `ReportDefinition.line_item_custom_field_ids`. Treats the
+     * value as double. Can only be used if the custom field at index 2 is of
+     * type DOUBLE.
+     *
+     * Generated from protobuf enum <code>LINE_ITEM_CUSTOM_FIELD_2_VALUE_DOUBLE = 11017;</code>
+     */
+    const LINE_ITEM_CUSTOM_FIELD_2_VALUE_DOUBLE = 11017;
+    /**
+     * Custom field value for Line Item with custom field ID equal to the ID
+     * in index 3 of `ReportDefinition.line_item_custom_field_ids`. Treats the
+     * value as double. Can only be used if the custom field at index 3 is of
+     * type DOUBLE.
+     *
+     * Generated from protobuf enum <code>LINE_ITEM_CUSTOM_FIELD_3_VALUE_DOUBLE = 11018;</code>
+     */
+    const LINE_ITEM_CUSTOM_FIELD_3_VALUE_DOUBLE = 11018;
+    /**
+     * Custom field value for Line Item with custom field ID equal to the ID
+     * in index 4 of `ReportDefinition.line_item_custom_field_ids`. Treats the
+     * value as double. Can only be used if the custom field at index 4 is of
+     * type DOUBLE.
+     *
+     * Generated from protobuf enum <code>LINE_ITEM_CUSTOM_FIELD_4_VALUE_DOUBLE = 11019;</code>
+     */
+    const LINE_ITEM_CUSTOM_FIELD_4_VALUE_DOUBLE = 11019;
+    /**
+     * Custom field value for Line Item with custom field ID equal to the ID
+     * in index 5 of `ReportDefinition.line_item_custom_field_ids`. Treats the
+     * value as double. Can only be used if the custom field at index 5 is of
+     * type DOUBLE.
+     *
+     * Generated from protobuf enum <code>LINE_ITEM_CUSTOM_FIELD_5_VALUE_DOUBLE = 11020;</code>
+     */
+    const LINE_ITEM_CUSTOM_FIELD_5_VALUE_DOUBLE = 11020;
+    /**
+     * Custom field value for Line Item with custom field ID equal to the ID
+     * in index 6 of `ReportDefinition.line_item_custom_field_ids`. Treats the
+     * value as double. Can only be used if the custom field at index 6 is of
+     * type DOUBLE.
+     *
+     * Generated from protobuf enum <code>LINE_ITEM_CUSTOM_FIELD_6_VALUE_DOUBLE = 11021;</code>
+     */
+    const LINE_ITEM_CUSTOM_FIELD_6_VALUE_DOUBLE = 11021;
+    /**
+     * Custom field value for Line Item with custom field ID equal to the ID
+     * in index 7 of `ReportDefinition.line_item_custom_field_ids`. Treats the
+     * value as double. Can only be used if the custom field at index 7 is of
+     * type DOUBLE.
+     *
+     * Generated from protobuf enum <code>LINE_ITEM_CUSTOM_FIELD_7_VALUE_DOUBLE = 11022;</code>
+     */
+    const LINE_ITEM_CUSTOM_FIELD_7_VALUE_DOUBLE = 11022;
+    /**
+     * Custom field value for Line Item with custom field ID equal to the ID
+     * in index 8 of `ReportDefinition.line_item_custom_field_ids`. Treats the
+     * value as double. Can only be used if the custom field at index 8 is of
+     * type DOUBLE.
+     *
+     * Generated from protobuf enum <code>LINE_ITEM_CUSTOM_FIELD_8_VALUE_DOUBLE = 11023;</code>
+     */
+    const LINE_ITEM_CUSTOM_FIELD_8_VALUE_DOUBLE = 11023;
+    /**
+     * Custom field value for Line Item with custom field ID equal to the ID
+     * in index 9 of `ReportDefinition.line_item_custom_field_ids`. Treats the
+     * value as double. Can only be used if the custom field at index 9 is of
+     * type DOUBLE.
+     *
+     * Generated from protobuf enum <code>LINE_ITEM_CUSTOM_FIELD_9_VALUE_DOUBLE = 11024;</code>
+     */
+    const LINE_ITEM_CUSTOM_FIELD_9_VALUE_DOUBLE = 11024;
+    /**
+     * Custom field value for Line Item with custom field ID equal to the ID
+     * in index 10 of `ReportDefinition.line_item_custom_field_ids`. Treats the
+     * value as double. Can only be used if the custom field at index 10 is of
+     * type DOUBLE.
+     *
+     * Generated from protobuf enum <code>LINE_ITEM_CUSTOM_FIELD_10_VALUE_DOUBLE = 11025;</code>
+     */
+    const LINE_ITEM_CUSTOM_FIELD_10_VALUE_DOUBLE = 11025;
+    /**
+     * Custom field value for Line Item with custom field ID equal to the ID
+     * in index 11 of `ReportDefinition.line_item_custom_field_ids`. Treats the
+     * value as double. Can only be used if the custom field at index 11 is of
+     * type DOUBLE.
+     *
+     * Generated from protobuf enum <code>LINE_ITEM_CUSTOM_FIELD_11_VALUE_DOUBLE = 11026;</code>
+     */
+    const LINE_ITEM_CUSTOM_FIELD_11_VALUE_DOUBLE = 11026;
+    /**
+     * Custom field value for Line Item with custom field ID equal to the ID
+     * in index 12 of `ReportDefinition.line_item_custom_field_ids`. Treats the
+     * value as double. Can only be used if the custom field at index 12 is of
+     * type DOUBLE.
+     *
+     * Generated from protobuf enum <code>LINE_ITEM_CUSTOM_FIELD_12_VALUE_DOUBLE = 11027;</code>
+     */
+    const LINE_ITEM_CUSTOM_FIELD_12_VALUE_DOUBLE = 11027;
+    /**
+     * Custom field value for Line Item with custom field ID equal to the ID
+     * in index 13 of `ReportDefinition.line_item_custom_field_ids`. Treats the
+     * value as double. Can only be used if the custom field at index 13 is of
+     * type DOUBLE.
+     *
+     * Generated from protobuf enum <code>LINE_ITEM_CUSTOM_FIELD_13_VALUE_DOUBLE = 11028;</code>
+     */
+    const LINE_ITEM_CUSTOM_FIELD_13_VALUE_DOUBLE = 11028;
+    /**
+     * Custom field value for Line Item with custom field ID equal to the ID
+     * in index 14 of `ReportDefinition.line_item_custom_field_ids`. Treats the
+     * value as double. Can only be used if the custom field at index 14 is of
+     * type DOUBLE.
+     *
+     * Generated from protobuf enum <code>LINE_ITEM_CUSTOM_FIELD_14_VALUE_DOUBLE = 11029;</code>
+     */
+    const LINE_ITEM_CUSTOM_FIELD_14_VALUE_DOUBLE = 11029;
+    /**
+     * Custom field value for Line Item with custom field ID equal to the ID
+     * in index 0 of `ReportDefinition.line_item_custom_field_ids`. Treats the
+     * value as boolean. Can only be used if the custom field at index 0 is of
+     * type BOOLEAN.
+     *
+     * Generated from protobuf enum <code>LINE_ITEM_CUSTOM_FIELD_0_VALUE_BOOL = 11030;</code>
+     */
+    const LINE_ITEM_CUSTOM_FIELD_0_VALUE_BOOL = 11030;
+    /**
+     * Custom field value for Line Item with custom field ID equal to the ID
+     * in index 1 of `ReportDefinition.line_item_custom_field_ids`. Treats the
+     * value as boolean. Can only be used if the custom field at index 1 is of
+     * type BOOLEAN.
+     *
+     * Generated from protobuf enum <code>LINE_ITEM_CUSTOM_FIELD_1_VALUE_BOOL = 11031;</code>
+     */
+    const LINE_ITEM_CUSTOM_FIELD_1_VALUE_BOOL = 11031;
+    /**
+     * Custom field value for Line Item with custom field ID equal to the ID
+     * in index 2 of `ReportDefinition.line_item_custom_field_ids`. Treats the
+     * value as boolean. Can only be used if the custom field at index 2 is of
+     * type BOOLEAN.
+     *
+     * Generated from protobuf enum <code>LINE_ITEM_CUSTOM_FIELD_2_VALUE_BOOL = 11032;</code>
+     */
+    const LINE_ITEM_CUSTOM_FIELD_2_VALUE_BOOL = 11032;
+    /**
+     * Custom field value for Line Item with custom field ID equal to the ID
+     * in index 3 of `ReportDefinition.line_item_custom_field_ids`. Treats the
+     * value as boolean. Can only be used if the custom field at index 3 is of
+     * type BOOLEAN.
+     *
+     * Generated from protobuf enum <code>LINE_ITEM_CUSTOM_FIELD_3_VALUE_BOOL = 11033;</code>
+     */
+    const LINE_ITEM_CUSTOM_FIELD_3_VALUE_BOOL = 11033;
+    /**
+     * Custom field value for Line Item with custom field ID equal to the ID
+     * in index 4 of `ReportDefinition.line_item_custom_field_ids`. Treats the
+     * value as boolean. Can only be used if the custom field at index 4 is of
+     * type BOOLEAN.
+     *
+     * Generated from protobuf enum <code>LINE_ITEM_CUSTOM_FIELD_4_VALUE_BOOL = 11034;</code>
+     */
+    const LINE_ITEM_CUSTOM_FIELD_4_VALUE_BOOL = 11034;
+    /**
+     * Custom field value for Line Item with custom field ID equal to the ID
+     * in index 5 of `ReportDefinition.line_item_custom_field_ids`. Treats the
+     * value as boolean. Can only be used if the custom field at index 5 is of
+     * type BOOLEAN.
+     *
+     * Generated from protobuf enum <code>LINE_ITEM_CUSTOM_FIELD_5_VALUE_BOOL = 11035;</code>
+     */
+    const LINE_ITEM_CUSTOM_FIELD_5_VALUE_BOOL = 11035;
+    /**
+     * Custom field value for Line Item with custom field ID equal to the ID
+     * in index 6 of `ReportDefinition.line_item_custom_field_ids`. Treats the
+     * value as boolean. Can only be used if the custom field at index 6 is of
+     * type BOOLEAN.
+     *
+     * Generated from protobuf enum <code>LINE_ITEM_CUSTOM_FIELD_6_VALUE_BOOL = 11036;</code>
+     */
+    const LINE_ITEM_CUSTOM_FIELD_6_VALUE_BOOL = 11036;
+    /**
+     * Custom field value for Line Item with custom field ID equal to the ID
+     * in index 7 of `ReportDefinition.line_item_custom_field_ids`. Treats the
+     * value as boolean. Can only be used if the custom field at index 7 is of
+     * type BOOLEAN.
+     *
+     * Generated from protobuf enum <code>LINE_ITEM_CUSTOM_FIELD_7_VALUE_BOOL = 11037;</code>
+     */
+    const LINE_ITEM_CUSTOM_FIELD_7_VALUE_BOOL = 11037;
+    /**
+     * Custom field value for Line Item with custom field ID equal to the ID
+     * in index 8 of `ReportDefinition.line_item_custom_field_ids`. Treats the
+     * value as boolean. Can only be used if the custom field at index 8 is of
+     * type BOOLEAN.
+     *
+     * Generated from protobuf enum <code>LINE_ITEM_CUSTOM_FIELD_8_VALUE_BOOL = 11038;</code>
+     */
+    const LINE_ITEM_CUSTOM_FIELD_8_VALUE_BOOL = 11038;
+    /**
+     * Custom field value for Line Item with custom field ID equal to the ID
+     * in index 9 of `ReportDefinition.line_item_custom_field_ids`. Treats the
+     * value as boolean. Can only be used if the custom field at index 9 is of
+     * type BOOLEAN.
+     *
+     * Generated from protobuf enum <code>LINE_ITEM_CUSTOM_FIELD_9_VALUE_BOOL = 11039;</code>
+     */
+    const LINE_ITEM_CUSTOM_FIELD_9_VALUE_BOOL = 11039;
+    /**
+     * Custom field value for Line Item with custom field ID equal to the ID
+     * in index 10 of `ReportDefinition.line_item_custom_field_ids`. Treats the
+     * value as boolean. Can only be used if the custom field at index 10 is of
+     * type BOOLEAN.
+     *
+     * Generated from protobuf enum <code>LINE_ITEM_CUSTOM_FIELD_10_VALUE_BOOL = 11040;</code>
+     */
+    const LINE_ITEM_CUSTOM_FIELD_10_VALUE_BOOL = 11040;
+    /**
+     * Custom field value for Line Item with custom field ID equal to the ID
+     * in index 11 of `ReportDefinition.line_item_custom_field_ids`. Treats the
+     * value as boolean. Can only be used if the custom field at index 11 is of
+     * type BOOLEAN.
+     *
+     * Generated from protobuf enum <code>LINE_ITEM_CUSTOM_FIELD_11_VALUE_BOOL = 11041;</code>
+     */
+    const LINE_ITEM_CUSTOM_FIELD_11_VALUE_BOOL = 11041;
+    /**
+     * Custom field value for Line Item with custom field ID equal to the ID
+     * in index 12 of `ReportDefinition.line_item_custom_field_ids`. Treats the
+     * value as boolean. Can only be used if the custom field at index 12 is of
+     * type BOOLEAN.
+     *
+     * Generated from protobuf enum <code>LINE_ITEM_CUSTOM_FIELD_12_VALUE_BOOL = 11042;</code>
+     */
+    const LINE_ITEM_CUSTOM_FIELD_12_VALUE_BOOL = 11042;
+    /**
+     * Custom field value for Line Item with custom field ID equal to the ID
+     * in index 13 of `ReportDefinition.line_item_custom_field_ids`. Treats the
+     * value as boolean. Can only be used if the custom field at index 13 is of
+     * type BOOLEAN.
+     *
+     * Generated from protobuf enum <code>LINE_ITEM_CUSTOM_FIELD_13_VALUE_BOOL = 11043;</code>
+     */
+    const LINE_ITEM_CUSTOM_FIELD_13_VALUE_BOOL = 11043;
+    /**
+     * Custom field value for Line Item with custom field ID equal to the ID
+     * in index 14 of `ReportDefinition.line_item_custom_field_ids`. Treats the
+     * value as boolean. Can only be used if the custom field at index 14 is of
+     * type BOOLEAN.
+     *
+     * Generated from protobuf enum <code>LINE_ITEM_CUSTOM_FIELD_14_VALUE_BOOL = 11044;</code>
+     */
+    const LINE_ITEM_CUSTOM_FIELD_14_VALUE_BOOL = 11044;
+    /**
      * Custom field option ID for Order with custom field ID equal to the ID
      * in index 0 of `ReportDefinition.order_custom_field_ids`.
      *
@@ -5410,6 +5972,276 @@ class Dimension
      * Generated from protobuf enum <code>ORDER_CUSTOM_FIELD_14_VALUE = 13014;</code>
      */
     const ORDER_CUSTOM_FIELD_14_VALUE = 13014;
+    /**
+     * Custom field value for Order with custom field ID equal to the ID
+     * in index 0 of `ReportDefinition.order_custom_field_ids`. Treats the
+     * value as double. Can only be used if the custom field at index 0 is of
+     * type DOUBLE.
+     *
+     * Generated from protobuf enum <code>ORDER_CUSTOM_FIELD_0_VALUE_DOUBLE = 13015;</code>
+     */
+    const ORDER_CUSTOM_FIELD_0_VALUE_DOUBLE = 13015;
+    /**
+     * Custom field value for Order with custom field ID equal to the ID
+     * in index 1 of `ReportDefinition.order_custom_field_ids`. Treats the
+     * value as double. Can only be used if the custom field at index 1 is of
+     * type DOUBLE.
+     *
+     * Generated from protobuf enum <code>ORDER_CUSTOM_FIELD_1_VALUE_DOUBLE = 13016;</code>
+     */
+    const ORDER_CUSTOM_FIELD_1_VALUE_DOUBLE = 13016;
+    /**
+     * Custom field value for Order with custom field ID equal to the ID
+     * in index 2 of `ReportDefinition.order_custom_field_ids`. Treats the
+     * value as double. Can only be used if the custom field at index 2 is of
+     * type DOUBLE.
+     *
+     * Generated from protobuf enum <code>ORDER_CUSTOM_FIELD_2_VALUE_DOUBLE = 13017;</code>
+     */
+    const ORDER_CUSTOM_FIELD_2_VALUE_DOUBLE = 13017;
+    /**
+     * Custom field value for Order with custom field ID equal to the ID
+     * in index 3 of `ReportDefinition.order_custom_field_ids`. Treats the
+     * value as double. Can only be used if the custom field at index 3 is of
+     * type DOUBLE.
+     *
+     * Generated from protobuf enum <code>ORDER_CUSTOM_FIELD_3_VALUE_DOUBLE = 13018;</code>
+     */
+    const ORDER_CUSTOM_FIELD_3_VALUE_DOUBLE = 13018;
+    /**
+     * Custom field value for Order with custom field ID equal to the ID
+     * in index 4 of `ReportDefinition.order_custom_field_ids`. Treats the
+     * value as double. Can only be used if the custom field at index 4 is of
+     * type DOUBLE.
+     *
+     * Generated from protobuf enum <code>ORDER_CUSTOM_FIELD_4_VALUE_DOUBLE = 13019;</code>
+     */
+    const ORDER_CUSTOM_FIELD_4_VALUE_DOUBLE = 13019;
+    /**
+     * Custom field value for Order with custom field ID equal to the ID
+     * in index 5 of `ReportDefinition.order_custom_field_ids`. Treats the
+     * value as double. Can only be used if the custom field at index 5 is of
+     * type DOUBLE.
+     *
+     * Generated from protobuf enum <code>ORDER_CUSTOM_FIELD_5_VALUE_DOUBLE = 13020;</code>
+     */
+    const ORDER_CUSTOM_FIELD_5_VALUE_DOUBLE = 13020;
+    /**
+     * Custom field value for Order with custom field ID equal to the ID
+     * in index 6 of `ReportDefinition.order_custom_field_ids`. Treats the
+     * value as double. Can only be used if the custom field at index 6 is of
+     * type DOUBLE.
+     *
+     * Generated from protobuf enum <code>ORDER_CUSTOM_FIELD_6_VALUE_DOUBLE = 13021;</code>
+     */
+    const ORDER_CUSTOM_FIELD_6_VALUE_DOUBLE = 13021;
+    /**
+     * Custom field value for Order with custom field ID equal to the ID
+     * in index 7 of `ReportDefinition.order_custom_field_ids`. Treats the
+     * value as double. Can only be used if the custom field at index 7 is of
+     * type DOUBLE.
+     *
+     * Generated from protobuf enum <code>ORDER_CUSTOM_FIELD_7_VALUE_DOUBLE = 13022;</code>
+     */
+    const ORDER_CUSTOM_FIELD_7_VALUE_DOUBLE = 13022;
+    /**
+     * Custom field value for Order with custom field ID equal to the ID
+     * in index 8 of `ReportDefinition.order_custom_field_ids`. Treats the
+     * value as double. Can only be used if the custom field at index 8 is of
+     * type DOUBLE.
+     *
+     * Generated from protobuf enum <code>ORDER_CUSTOM_FIELD_8_VALUE_DOUBLE = 13023;</code>
+     */
+    const ORDER_CUSTOM_FIELD_8_VALUE_DOUBLE = 13023;
+    /**
+     * Custom field value for Order with custom field ID equal to the ID
+     * in index 9 of `ReportDefinition.order_custom_field_ids`. Treats the
+     * value as double. Can only be used if the custom field at index 9 is of
+     * type DOUBLE.
+     *
+     * Generated from protobuf enum <code>ORDER_CUSTOM_FIELD_9_VALUE_DOUBLE = 13024;</code>
+     */
+    const ORDER_CUSTOM_FIELD_9_VALUE_DOUBLE = 13024;
+    /**
+     * Custom field value for Order with custom field ID equal to the ID
+     * in index 10 of `ReportDefinition.order_custom_field_ids`. Treats the
+     * value as double. Can only be used if the custom field at index 10 is of
+     * type DOUBLE.
+     *
+     * Generated from protobuf enum <code>ORDER_CUSTOM_FIELD_10_VALUE_DOUBLE = 13025;</code>
+     */
+    const ORDER_CUSTOM_FIELD_10_VALUE_DOUBLE = 13025;
+    /**
+     * Custom field value for Order with custom field ID equal to the ID
+     * in index 11 of `ReportDefinition.order_custom_field_ids`. Treats the
+     * value as double. Can only be used if the custom field at index 11 is of
+     * type DOUBLE.
+     *
+     * Generated from protobuf enum <code>ORDER_CUSTOM_FIELD_11_VALUE_DOUBLE = 13026;</code>
+     */
+    const ORDER_CUSTOM_FIELD_11_VALUE_DOUBLE = 13026;
+    /**
+     * Custom field value for Order with custom field ID equal to the ID
+     * in index 12 of `ReportDefinition.order_custom_field_ids`. Treats the
+     * value as double. Can only be used if the custom field at index 12 is of
+     * type DOUBLE.
+     *
+     * Generated from protobuf enum <code>ORDER_CUSTOM_FIELD_12_VALUE_DOUBLE = 13027;</code>
+     */
+    const ORDER_CUSTOM_FIELD_12_VALUE_DOUBLE = 13027;
+    /**
+     * Custom field value for Order with custom field ID equal to the ID
+     * in index 13 of `ReportDefinition.order_custom_field_ids`. Treats the
+     * value as double. Can only be used if the custom field at index 13 is of
+     * type DOUBLE.
+     *
+     * Generated from protobuf enum <code>ORDER_CUSTOM_FIELD_13_VALUE_DOUBLE = 13028;</code>
+     */
+    const ORDER_CUSTOM_FIELD_13_VALUE_DOUBLE = 13028;
+    /**
+     * Custom field value for Order with custom field ID equal to the ID
+     * in index 14 of `ReportDefinition.order_custom_field_ids`. Treats the
+     * value as double. Can only be used if the custom field at index 14 is of
+     * type DOUBLE.
+     *
+     * Generated from protobuf enum <code>ORDER_CUSTOM_FIELD_14_VALUE_DOUBLE = 13029;</code>
+     */
+    const ORDER_CUSTOM_FIELD_14_VALUE_DOUBLE = 13029;
+    /**
+     * Custom field value for Order with custom field ID equal to the ID
+     * in index 0 of `ReportDefinition.order_custom_field_ids`. Treats the
+     * value as boolean. Can only be used if the custom field at index 0 is of
+     * type BOOLEAN.
+     *
+     * Generated from protobuf enum <code>ORDER_CUSTOM_FIELD_0_VALUE_BOOL = 13030;</code>
+     */
+    const ORDER_CUSTOM_FIELD_0_VALUE_BOOL = 13030;
+    /**
+     * Custom field value for Order with custom field ID equal to the ID
+     * in index 1 of `ReportDefinition.order_custom_field_ids`. Treats the
+     * value as boolean. Can only be used if the custom field at index 1 is of
+     * type BOOLEAN.
+     *
+     * Generated from protobuf enum <code>ORDER_CUSTOM_FIELD_1_VALUE_BOOL = 13031;</code>
+     */
+    const ORDER_CUSTOM_FIELD_1_VALUE_BOOL = 13031;
+    /**
+     * Custom field value for Order with custom field ID equal to the ID
+     * in index 2 of `ReportDefinition.order_custom_field_ids`. Treats the
+     * value as boolean. Can only be used if the custom field at index 2 is of
+     * type BOOLEAN.
+     *
+     * Generated from protobuf enum <code>ORDER_CUSTOM_FIELD_2_VALUE_BOOL = 13032;</code>
+     */
+    const ORDER_CUSTOM_FIELD_2_VALUE_BOOL = 13032;
+    /**
+     * Custom field value for Order with custom field ID equal to the ID
+     * in index 3 of `ReportDefinition.order_custom_field_ids`. Treats the
+     * value as boolean. Can only be used if the custom field at index 3 is of
+     * type BOOLEAN.
+     *
+     * Generated from protobuf enum <code>ORDER_CUSTOM_FIELD_3_VALUE_BOOL = 13033;</code>
+     */
+    const ORDER_CUSTOM_FIELD_3_VALUE_BOOL = 13033;
+    /**
+     * Custom field value for Order with custom field ID equal to the ID
+     * in index 4 of `ReportDefinition.order_custom_field_ids`. Treats the
+     * value as boolean. Can only be used if the custom field at index 4 is of
+     * type BOOLEAN.
+     *
+     * Generated from protobuf enum <code>ORDER_CUSTOM_FIELD_4_VALUE_BOOL = 13034;</code>
+     */
+    const ORDER_CUSTOM_FIELD_4_VALUE_BOOL = 13034;
+    /**
+     * Custom field value for Order with custom field ID equal to the ID
+     * in index 5 of `ReportDefinition.order_custom_field_ids`. Treats the
+     * value as boolean. Can only be used if the custom field at index 5 is of
+     * type BOOLEAN.
+     *
+     * Generated from protobuf enum <code>ORDER_CUSTOM_FIELD_5_VALUE_BOOL = 13035;</code>
+     */
+    const ORDER_CUSTOM_FIELD_5_VALUE_BOOL = 13035;
+    /**
+     * Custom field value for Order with custom field ID equal to the ID
+     * in index 6 of `ReportDefinition.order_custom_field_ids`. Treats the
+     * value as boolean. Can only be used if the custom field at index 6 is of
+     * type BOOLEAN.
+     *
+     * Generated from protobuf enum <code>ORDER_CUSTOM_FIELD_6_VALUE_BOOL = 13036;</code>
+     */
+    const ORDER_CUSTOM_FIELD_6_VALUE_BOOL = 13036;
+    /**
+     * Custom field value for Order with custom field ID equal to the ID
+     * in index 7 of `ReportDefinition.order_custom_field_ids`. Treats the
+     * value as boolean. Can only be used if the custom field at index 7 is of
+     * type BOOLEAN.
+     *
+     * Generated from protobuf enum <code>ORDER_CUSTOM_FIELD_7_VALUE_BOOL = 13037;</code>
+     */
+    const ORDER_CUSTOM_FIELD_7_VALUE_BOOL = 13037;
+    /**
+     * Custom field value for Order with custom field ID equal to the ID
+     * in index 8 of `ReportDefinition.order_custom_field_ids`. Treats the
+     * value as boolean. Can only be used if the custom field at index 8 is of
+     * type BOOLEAN.
+     *
+     * Generated from protobuf enum <code>ORDER_CUSTOM_FIELD_8_VALUE_BOOL = 13038;</code>
+     */
+    const ORDER_CUSTOM_FIELD_8_VALUE_BOOL = 13038;
+    /**
+     * Custom field value for Order with custom field ID equal to the ID
+     * in index 9 of `ReportDefinition.order_custom_field_ids`. Treats the
+     * value as boolean. Can only be used if the custom field at index 9 is of
+     * type BOOLEAN.
+     *
+     * Generated from protobuf enum <code>ORDER_CUSTOM_FIELD_9_VALUE_BOOL = 13039;</code>
+     */
+    const ORDER_CUSTOM_FIELD_9_VALUE_BOOL = 13039;
+    /**
+     * Custom field value for Order with custom field ID equal to the ID
+     * in index 10 of `ReportDefinition.order_custom_field_ids`. Treats the
+     * value as boolean. Can only be used if the custom field at index 10 is of
+     * type BOOLEAN.
+     *
+     * Generated from protobuf enum <code>ORDER_CUSTOM_FIELD_10_VALUE_BOOL = 13040;</code>
+     */
+    const ORDER_CUSTOM_FIELD_10_VALUE_BOOL = 13040;
+    /**
+     * Custom field value for Order with custom field ID equal to the ID
+     * in index 11 of `ReportDefinition.order_custom_field_ids`. Treats the
+     * value as boolean. Can only be used if the custom field at index 11 is of
+     * type BOOLEAN.
+     *
+     * Generated from protobuf enum <code>ORDER_CUSTOM_FIELD_11_VALUE_BOOL = 13041;</code>
+     */
+    const ORDER_CUSTOM_FIELD_11_VALUE_BOOL = 13041;
+    /**
+     * Custom field value for Order with custom field ID equal to the ID
+     * in index 12 of `ReportDefinition.order_custom_field_ids`. Treats the
+     * value as boolean. Can only be used if the custom field at index 12 is of
+     * type BOOLEAN.
+     *
+     * Generated from protobuf enum <code>ORDER_CUSTOM_FIELD_12_VALUE_BOOL = 13042;</code>
+     */
+    const ORDER_CUSTOM_FIELD_12_VALUE_BOOL = 13042;
+    /**
+     * Custom field value for Order with custom field ID equal to the ID
+     * in index 13 of `ReportDefinition.order_custom_field_ids`. Treats the
+     * value as boolean. Can only be used if the custom field at index 13 is of
+     * type BOOLEAN.
+     *
+     * Generated from protobuf enum <code>ORDER_CUSTOM_FIELD_13_VALUE_BOOL = 13043;</code>
+     */
+    const ORDER_CUSTOM_FIELD_13_VALUE_BOOL = 13043;
+    /**
+     * Custom field value for Order with custom field ID equal to the ID
+     * in index 14 of `ReportDefinition.order_custom_field_ids`. Treats the
+     * value as boolean. Can only be used if the custom field at index 14 is of
+     * type BOOLEAN.
+     *
+     * Generated from protobuf enum <code>ORDER_CUSTOM_FIELD_14_VALUE_BOOL = 13044;</code>
+     */
+    const ORDER_CUSTOM_FIELD_14_VALUE_BOOL = 13044;
     /**
      * Custom field option ID for Creative with custom field ID equal to the ID
      * in index 0 of `ReportDefinition.creative_custom_field_ids`.
@@ -5651,727 +6483,435 @@ class Dimension
      */
     const CREATIVE_CUSTOM_FIELD_14_VALUE = 15014;
     /**
-     * Custom field option ID for Backfill line item with custom field ID equal
-     * to the ID in index 0 of `ReportDefinition.line_item_custom_field_ids`.
-     *
-     * Generated from protobuf enum <code>BACKFILL_LINE_ITEM_CUSTOM_FIELD_0_OPTION_ID = 16000;</code>
-     */
-    const BACKFILL_LINE_ITEM_CUSTOM_FIELD_0_OPTION_ID = 16000;
-    /**
-     * Custom field option ID for Backfill line item with custom field ID equal
-     * to the ID in index 1 of `ReportDefinition.line_item_custom_field_ids`.
-     *
-     * Generated from protobuf enum <code>BACKFILL_LINE_ITEM_CUSTOM_FIELD_1_OPTION_ID = 16001;</code>
-     */
-    const BACKFILL_LINE_ITEM_CUSTOM_FIELD_1_OPTION_ID = 16001;
-    /**
-     * Custom field option ID for Backfill line item with custom field ID equal
-     * to the ID in index 2 of `ReportDefinition.line_item_custom_field_ids`.
-     *
-     * Generated from protobuf enum <code>BACKFILL_LINE_ITEM_CUSTOM_FIELD_2_OPTION_ID = 16002;</code>
-     */
-    const BACKFILL_LINE_ITEM_CUSTOM_FIELD_2_OPTION_ID = 16002;
-    /**
-     * Custom field option ID for Backfill line item with custom field ID equal
-     * to the ID in index 3 of `ReportDefinition.line_item_custom_field_ids`.
-     *
-     * Generated from protobuf enum <code>BACKFILL_LINE_ITEM_CUSTOM_FIELD_3_OPTION_ID = 16003;</code>
-     */
-    const BACKFILL_LINE_ITEM_CUSTOM_FIELD_3_OPTION_ID = 16003;
-    /**
-     * Custom field option ID for Backfill line item with custom field ID equal
-     * to the ID in index 4 of `ReportDefinition.line_item_custom_field_ids`.
-     *
-     * Generated from protobuf enum <code>BACKFILL_LINE_ITEM_CUSTOM_FIELD_4_OPTION_ID = 16004;</code>
-     */
-    const BACKFILL_LINE_ITEM_CUSTOM_FIELD_4_OPTION_ID = 16004;
-    /**
-     * Custom field option ID for Backfill line item with custom field ID equal
-     * to the ID in index 5 of `ReportDefinition.line_item_custom_field_ids`.
-     *
-     * Generated from protobuf enum <code>BACKFILL_LINE_ITEM_CUSTOM_FIELD_5_OPTION_ID = 16005;</code>
-     */
-    const BACKFILL_LINE_ITEM_CUSTOM_FIELD_5_OPTION_ID = 16005;
-    /**
-     * Custom field option ID for Backfill line item with custom field ID equal
-     * to the ID in index 6 of `ReportDefinition.line_item_custom_field_ids`.
-     *
-     * Generated from protobuf enum <code>BACKFILL_LINE_ITEM_CUSTOM_FIELD_6_OPTION_ID = 16006;</code>
-     */
-    const BACKFILL_LINE_ITEM_CUSTOM_FIELD_6_OPTION_ID = 16006;
-    /**
-     * Custom field option ID for Backfill line item with custom field ID equal
-     * to the ID in index 7 of `ReportDefinition.line_item_custom_field_ids`.
-     *
-     * Generated from protobuf enum <code>BACKFILL_LINE_ITEM_CUSTOM_FIELD_7_OPTION_ID = 16007;</code>
-     */
-    const BACKFILL_LINE_ITEM_CUSTOM_FIELD_7_OPTION_ID = 16007;
-    /**
-     * Custom field option ID for Backfill line item with custom field ID equal
-     * to the ID in index 8 of `ReportDefinition.line_item_custom_field_ids`.
-     *
-     * Generated from protobuf enum <code>BACKFILL_LINE_ITEM_CUSTOM_FIELD_8_OPTION_ID = 16008;</code>
-     */
-    const BACKFILL_LINE_ITEM_CUSTOM_FIELD_8_OPTION_ID = 16008;
-    /**
-     * Custom field option ID for Backfill line item with custom field ID equal
-     * to the ID in index 9 of `ReportDefinition.line_item_custom_field_ids`.
-     *
-     * Generated from protobuf enum <code>BACKFILL_LINE_ITEM_CUSTOM_FIELD_9_OPTION_ID = 16009;</code>
-     */
-    const BACKFILL_LINE_ITEM_CUSTOM_FIELD_9_OPTION_ID = 16009;
-    /**
-     * Custom field option ID for Backfill line item with custom field ID equal
-     * to the ID in index 10 of `ReportDefinition.line_item_custom_field_ids`.
-     *
-     * Generated from protobuf enum <code>BACKFILL_LINE_ITEM_CUSTOM_FIELD_10_OPTION_ID = 16010;</code>
-     */
-    const BACKFILL_LINE_ITEM_CUSTOM_FIELD_10_OPTION_ID = 16010;
-    /**
-     * Custom field option ID for Backfill line item with custom field ID equal
-     * to the ID in index 11 of `ReportDefinition.line_item_custom_field_ids`.
-     *
-     * Generated from protobuf enum <code>BACKFILL_LINE_ITEM_CUSTOM_FIELD_11_OPTION_ID = 16011;</code>
-     */
-    const BACKFILL_LINE_ITEM_CUSTOM_FIELD_11_OPTION_ID = 16011;
-    /**
-     * Custom field option ID for Backfill line item with custom field ID equal
-     * to the ID in index 12 of `ReportDefinition.line_item_custom_field_ids`.
-     *
-     * Generated from protobuf enum <code>BACKFILL_LINE_ITEM_CUSTOM_FIELD_12_OPTION_ID = 16012;</code>
-     */
-    const BACKFILL_LINE_ITEM_CUSTOM_FIELD_12_OPTION_ID = 16012;
-    /**
-     * Custom field option ID for Backfill line item with custom field ID equal
-     * to the ID in index 13 of `ReportDefinition.line_item_custom_field_ids`.
-     *
-     * Generated from protobuf enum <code>BACKFILL_LINE_ITEM_CUSTOM_FIELD_13_OPTION_ID = 16013;</code>
-     */
-    const BACKFILL_LINE_ITEM_CUSTOM_FIELD_13_OPTION_ID = 16013;
-    /**
-     * Custom field option ID for Backfill line item with custom field ID equal
-     * to the ID in index 14 of `ReportDefinition.line_item_custom_field_ids`.
-     *
-     * Generated from protobuf enum <code>BACKFILL_LINE_ITEM_CUSTOM_FIELD_14_OPTION_ID = 16014;</code>
-     */
-    const BACKFILL_LINE_ITEM_CUSTOM_FIELD_14_OPTION_ID = 16014;
-    /**
-     * Custom field value for Backfill line item with custom field ID equal to
-     * the ID in index 0 of `ReportDefinition.line_item_custom_field_ids`.
-     * Treats the value as a string. Can only be used if the custom field at
-     * index 0 is of type `STRING` or `DROPDOWN`.
-     *
-     * Generated from protobuf enum <code>BACKFILL_LINE_ITEM_CUSTOM_FIELD_0_VALUE = 17000;</code>
-     */
-    const BACKFILL_LINE_ITEM_CUSTOM_FIELD_0_VALUE = 17000;
-    /**
-     * Custom field value for Backfill line item with custom field ID equal to
-     * the ID in index 1 of `ReportDefinition.line_item_custom_field_ids`.
-     * Treats the value as a string. Can only be used if the custom field at
-     * index 1 is of type `STRING` or `DROPDOWN`.
-     *
-     * Generated from protobuf enum <code>BACKFILL_LINE_ITEM_CUSTOM_FIELD_1_VALUE = 17001;</code>
-     */
-    const BACKFILL_LINE_ITEM_CUSTOM_FIELD_1_VALUE = 17001;
-    /**
-     * Custom field value for Backfill line item with custom field ID equal to
-     * the ID in index 2 of `ReportDefinition.line_item_custom_field_ids`.
-     * Treats the value as a string. Can only be used if the custom field at
-     * index 2 is of type `STRING` or `DROPDOWN`.
-     *
-     * Generated from protobuf enum <code>BACKFILL_LINE_ITEM_CUSTOM_FIELD_2_VALUE = 17002;</code>
-     */
-    const BACKFILL_LINE_ITEM_CUSTOM_FIELD_2_VALUE = 17002;
-    /**
-     * Custom field value for Backfill line item with custom field ID equal to
-     * the ID in index 3 of `ReportDefinition.line_item_custom_field_ids`.
-     * Treats the value as a string. Can only be used if the custom field at
-     * index 3 is of type `STRING` or `DROPDOWN`.
-     *
-     * Generated from protobuf enum <code>BACKFILL_LINE_ITEM_CUSTOM_FIELD_3_VALUE = 17003;</code>
-     */
-    const BACKFILL_LINE_ITEM_CUSTOM_FIELD_3_VALUE = 17003;
-    /**
-     * Custom field value for Backfill line item with custom field ID equal to
-     * the ID in index 4 of `ReportDefinition.line_item_custom_field_ids`.
-     * Treats the value as a string. Can only be used if the custom field at
-     * index 4 is of type `STRING` or `DROPDOWN`.
-     *
-     * Generated from protobuf enum <code>BACKFILL_LINE_ITEM_CUSTOM_FIELD_4_VALUE = 17004;</code>
-     */
-    const BACKFILL_LINE_ITEM_CUSTOM_FIELD_4_VALUE = 17004;
-    /**
-     * Custom field value for Backfill line item with custom field ID equal to
-     * the ID in index 5 of `ReportDefinition.line_item_custom_field_ids`.
-     * Treats the value as a string. Can only be used if the custom field at
-     * index 5 is of type `STRING` or `DROPDOWN`.
-     *
-     * Generated from protobuf enum <code>BACKFILL_LINE_ITEM_CUSTOM_FIELD_5_VALUE = 17005;</code>
-     */
-    const BACKFILL_LINE_ITEM_CUSTOM_FIELD_5_VALUE = 17005;
-    /**
-     * Custom field value for Backfill line item with custom field ID equal to
-     * the ID in index 6 of `ReportDefinition.line_item_custom_field_ids`.
-     * Treats the value as a string. Can only be used if the custom field at
-     * index 6 is of type `STRING` or `DROPDOWN`.
-     *
-     * Generated from protobuf enum <code>BACKFILL_LINE_ITEM_CUSTOM_FIELD_6_VALUE = 17006;</code>
-     */
-    const BACKFILL_LINE_ITEM_CUSTOM_FIELD_6_VALUE = 17006;
-    /**
-     * Custom field value for Backfill line item with custom field ID equal to
-     * the ID in index 7 of `ReportDefinition.line_item_custom_field_ids`.
-     * Treats the value as a string. Can only be used if the custom field at
-     * index 7 is of type `STRING` or `DROPDOWN`.
-     *
-     * Generated from protobuf enum <code>BACKFILL_LINE_ITEM_CUSTOM_FIELD_7_VALUE = 17007;</code>
-     */
-    const BACKFILL_LINE_ITEM_CUSTOM_FIELD_7_VALUE = 17007;
-    /**
-     * Custom field value for Backfill line item with custom field ID equal to
-     * the ID in index 8 of `ReportDefinition.line_item_custom_field_ids`.
-     * Treats the value as a string. Can only be used if the custom field at
-     * index 8 is of type `STRING` or `DROPDOWN`.
-     *
-     * Generated from protobuf enum <code>BACKFILL_LINE_ITEM_CUSTOM_FIELD_8_VALUE = 17008;</code>
-     */
-    const BACKFILL_LINE_ITEM_CUSTOM_FIELD_8_VALUE = 17008;
-    /**
-     * Custom field value for Backfill line item with custom field ID equal to
-     * the ID in index 9 of `ReportDefinition.line_item_custom_field_ids`.
-     * Treats the value as a string. Can only be used if the custom field at
-     * index 9 is of type `STRING` or `DROPDOWN`.
-     *
-     * Generated from protobuf enum <code>BACKFILL_LINE_ITEM_CUSTOM_FIELD_9_VALUE = 17009;</code>
-     */
-    const BACKFILL_LINE_ITEM_CUSTOM_FIELD_9_VALUE = 17009;
-    /**
-     * Custom field value for Backfill line item with custom field ID equal to
-     * the ID in index 10 of `ReportDefinition.line_item_custom_field_ids`.
-     * Treats the value as a string. Can only be used if the custom field at
-     * index 10 is of type `STRING` or `DROPDOWN`.
-     *
-     * Generated from protobuf enum <code>BACKFILL_LINE_ITEM_CUSTOM_FIELD_10_VALUE = 17010;</code>
-     */
-    const BACKFILL_LINE_ITEM_CUSTOM_FIELD_10_VALUE = 17010;
-    /**
-     * Custom field value for Backfill line item with custom field ID equal to
-     * the ID in index 11 of `ReportDefinition.line_item_custom_field_ids`.
-     * Treats the value as a string. Can only be used if the custom field at
-     * index 11 is of type `STRING` or `DROPDOWN`.
-     *
-     * Generated from protobuf enum <code>BACKFILL_LINE_ITEM_CUSTOM_FIELD_11_VALUE = 17011;</code>
-     */
-    const BACKFILL_LINE_ITEM_CUSTOM_FIELD_11_VALUE = 17011;
-    /**
-     * Custom field value for Backfill line item with custom field ID equal to
-     * the ID in index 12 of `ReportDefinition.line_item_custom_field_ids`.
-     * Treats the value as a string. Can only be used if the custom field at
-     * index 12 is of type `STRING` or `DROPDOWN`.
-     *
-     * Generated from protobuf enum <code>BACKFILL_LINE_ITEM_CUSTOM_FIELD_12_VALUE = 17012;</code>
-     */
-    const BACKFILL_LINE_ITEM_CUSTOM_FIELD_12_VALUE = 17012;
-    /**
-     * Custom field value for Backfill line item with custom field ID equal to
-     * the ID in index 13 of `ReportDefinition.line_item_custom_field_ids`.
-     * Treats the value as a string. Can only be used if the custom field at
-     * index 13 is of type `STRING` or `DROPDOWN`.
-     *
-     * Generated from protobuf enum <code>BACKFILL_LINE_ITEM_CUSTOM_FIELD_13_VALUE = 17013;</code>
-     */
-    const BACKFILL_LINE_ITEM_CUSTOM_FIELD_13_VALUE = 17013;
-    /**
-     * Custom field value for Backfill line item with custom field ID equal to
-     * the ID in index 14 of `ReportDefinition.line_item_custom_field_ids`.
-     * Treats the value as a string. Can only be used if the custom field at
-     * index 14 is of type `STRING` or `DROPDOWN`.
-     *
-     * Generated from protobuf enum <code>BACKFILL_LINE_ITEM_CUSTOM_FIELD_14_VALUE = 17014;</code>
-     */
-    const BACKFILL_LINE_ITEM_CUSTOM_FIELD_14_VALUE = 17014;
-    /**
-     * Custom field option ID for Backfill order with custom field ID equal to
-     * the ID in index 0 of `ReportDefinition.order_custom_field_ids`.
-     *
-     * Generated from protobuf enum <code>BACKFILL_ORDER_CUSTOM_FIELD_0_OPTION_ID = 18000;</code>
-     */
-    const BACKFILL_ORDER_CUSTOM_FIELD_0_OPTION_ID = 18000;
-    /**
-     * Custom field option ID for Backfill order with custom field ID equal to
-     * the ID in index 1 of `ReportDefinition.order_custom_field_ids`.
-     *
-     * Generated from protobuf enum <code>BACKFILL_ORDER_CUSTOM_FIELD_1_OPTION_ID = 18001;</code>
-     */
-    const BACKFILL_ORDER_CUSTOM_FIELD_1_OPTION_ID = 18001;
-    /**
-     * Custom field option ID for Backfill order with custom field ID equal to
-     * the ID in index 2 of `ReportDefinition.order_custom_field_ids`.
-     *
-     * Generated from protobuf enum <code>BACKFILL_ORDER_CUSTOM_FIELD_2_OPTION_ID = 18002;</code>
-     */
-    const BACKFILL_ORDER_CUSTOM_FIELD_2_OPTION_ID = 18002;
-    /**
-     * Custom field option ID for Backfill order with custom field ID equal to
-     * the ID in index 3 of `ReportDefinition.order_custom_field_ids`.
-     *
-     * Generated from protobuf enum <code>BACKFILL_ORDER_CUSTOM_FIELD_3_OPTION_ID = 18003;</code>
-     */
-    const BACKFILL_ORDER_CUSTOM_FIELD_3_OPTION_ID = 18003;
-    /**
-     * Custom field option ID for Backfill order with custom field ID equal to
-     * the ID in index 4 of `ReportDefinition.order_custom_field_ids`.
-     *
-     * Generated from protobuf enum <code>BACKFILL_ORDER_CUSTOM_FIELD_4_OPTION_ID = 18004;</code>
-     */
-    const BACKFILL_ORDER_CUSTOM_FIELD_4_OPTION_ID = 18004;
-    /**
-     * Custom field option ID for Backfill order with custom field ID equal to
-     * the ID in index 5 of `ReportDefinition.order_custom_field_ids`.
-     *
-     * Generated from protobuf enum <code>BACKFILL_ORDER_CUSTOM_FIELD_5_OPTION_ID = 18005;</code>
-     */
-    const BACKFILL_ORDER_CUSTOM_FIELD_5_OPTION_ID = 18005;
-    /**
-     * Custom field option ID for Backfill order with custom field ID equal to
-     * the ID in index 6 of `ReportDefinition.order_custom_field_ids`.
-     *
-     * Generated from protobuf enum <code>BACKFILL_ORDER_CUSTOM_FIELD_6_OPTION_ID = 18006;</code>
-     */
-    const BACKFILL_ORDER_CUSTOM_FIELD_6_OPTION_ID = 18006;
-    /**
-     * Custom field option ID for Backfill order with custom field ID equal to
-     * the ID in index 7 of `ReportDefinition.order_custom_field_ids`.
-     *
-     * Generated from protobuf enum <code>BACKFILL_ORDER_CUSTOM_FIELD_7_OPTION_ID = 18007;</code>
-     */
-    const BACKFILL_ORDER_CUSTOM_FIELD_7_OPTION_ID = 18007;
-    /**
-     * Custom field option ID for Backfill order with custom field ID equal to
-     * the ID in index 8 of `ReportDefinition.order_custom_field_ids`.
-     *
-     * Generated from protobuf enum <code>BACKFILL_ORDER_CUSTOM_FIELD_8_OPTION_ID = 18008;</code>
-     */
-    const BACKFILL_ORDER_CUSTOM_FIELD_8_OPTION_ID = 18008;
-    /**
-     * Custom field option ID for Backfill order with custom field ID equal to
-     * the ID in index 9 of `ReportDefinition.order_custom_field_ids`.
-     *
-     * Generated from protobuf enum <code>BACKFILL_ORDER_CUSTOM_FIELD_9_OPTION_ID = 18009;</code>
-     */
-    const BACKFILL_ORDER_CUSTOM_FIELD_9_OPTION_ID = 18009;
-    /**
-     * Custom field option ID for Backfill order with custom field ID equal to
-     * the ID in index 10 of `ReportDefinition.order_custom_field_ids`.
-     *
-     * Generated from protobuf enum <code>BACKFILL_ORDER_CUSTOM_FIELD_10_OPTION_ID = 18010;</code>
-     */
-    const BACKFILL_ORDER_CUSTOM_FIELD_10_OPTION_ID = 18010;
-    /**
-     * Custom field option ID for Backfill order with custom field ID equal to
-     * the ID in index 11 of `ReportDefinition.order_custom_field_ids`.
-     *
-     * Generated from protobuf enum <code>BACKFILL_ORDER_CUSTOM_FIELD_11_OPTION_ID = 18011;</code>
-     */
-    const BACKFILL_ORDER_CUSTOM_FIELD_11_OPTION_ID = 18011;
-    /**
-     * Custom field option ID for Backfill order with custom field ID equal to
-     * the ID in index 12 of `ReportDefinition.order_custom_field_ids`.
-     *
-     * Generated from protobuf enum <code>BACKFILL_ORDER_CUSTOM_FIELD_12_OPTION_ID = 18012;</code>
-     */
-    const BACKFILL_ORDER_CUSTOM_FIELD_12_OPTION_ID = 18012;
-    /**
-     * Custom field option ID for Backfill order with custom field ID equal to
-     * the ID in index 13 of `ReportDefinition.order_custom_field_ids`.
-     *
-     * Generated from protobuf enum <code>BACKFILL_ORDER_CUSTOM_FIELD_13_OPTION_ID = 18013;</code>
-     */
-    const BACKFILL_ORDER_CUSTOM_FIELD_13_OPTION_ID = 18013;
-    /**
-     * Custom field option ID for Backfill order with custom field ID equal to
-     * the ID in index 14 of `ReportDefinition.order_custom_field_ids`.
-     *
-     * Generated from protobuf enum <code>BACKFILL_ORDER_CUSTOM_FIELD_14_OPTION_ID = 18014;</code>
-     */
-    const BACKFILL_ORDER_CUSTOM_FIELD_14_OPTION_ID = 18014;
-    /**
-     * Custom field value for Backfill order with custom field ID equal to the
-     * ID
-     * in index 0 of `ReportDefinition.order_custom_field_ids`. Treats the
-     * value as a string. Can only be used if the custom field at index 0 is of
-     * type `STRING` or `DROPDOWN`.
-     *
-     * Generated from protobuf enum <code>BACKFILL_ORDER_CUSTOM_FIELD_0_VALUE = 19000;</code>
-     */
-    const BACKFILL_ORDER_CUSTOM_FIELD_0_VALUE = 19000;
-    /**
-     * Custom field value for Backfill order with custom field ID equal to the
-     * ID in index 1 of `ReportDefinition.order_custom_field_ids`. Treats the
-     * value as a string. Can only be used if the custom field at index 1 is of
-     * type `STRING` or `DROPDOWN`.
-     *
-     * Generated from protobuf enum <code>BACKFILL_ORDER_CUSTOM_FIELD_1_VALUE = 19001;</code>
-     */
-    const BACKFILL_ORDER_CUSTOM_FIELD_1_VALUE = 19001;
-    /**
-     * Custom field value for Backfill order with custom field ID equal to the
-     * ID in index 2 of `ReportDefinition.order_custom_field_ids`. Treats the
-     * value as a string. Can only be used if the custom field at index 2 is of
-     * type `STRING` or `DROPDOWN`.
-     *
-     * Generated from protobuf enum <code>BACKFILL_ORDER_CUSTOM_FIELD_2_VALUE = 19002;</code>
-     */
-    const BACKFILL_ORDER_CUSTOM_FIELD_2_VALUE = 19002;
-    /**
-     * Custom field value for Backfill order with custom field ID equal to the
-     * ID in index 3 of `ReportDefinition.order_custom_field_ids`. Treats the
-     * value as a string. Can only be used if the custom field at index 3 is of
-     * type `STRING` or `DROPDOWN`.
-     *
-     * Generated from protobuf enum <code>BACKFILL_ORDER_CUSTOM_FIELD_3_VALUE = 19003;</code>
-     */
-    const BACKFILL_ORDER_CUSTOM_FIELD_3_VALUE = 19003;
-    /**
-     * Custom field value for Backfill order with custom field ID equal to the
-     * ID in index 4 of `ReportDefinition.order_custom_field_ids`. Treats the
-     * value as a string. Can only be used if the custom field at index 4 is of
-     * type `STRING` or `DROPDOWN`.
-     *
-     * Generated from protobuf enum <code>BACKFILL_ORDER_CUSTOM_FIELD_4_VALUE = 19004;</code>
-     */
-    const BACKFILL_ORDER_CUSTOM_FIELD_4_VALUE = 19004;
-    /**
-     * Custom field value for Backfill order with custom field ID equal to the
-     * ID in index 5 of `ReportDefinition.order_custom_field_ids`. Treats the
-     * value as a string. Can only be used if the custom field at index 5 is of
-     * type `STRING` or `DROPDOWN`.
-     *
-     * Generated from protobuf enum <code>BACKFILL_ORDER_CUSTOM_FIELD_5_VALUE = 19005;</code>
-     */
-    const BACKFILL_ORDER_CUSTOM_FIELD_5_VALUE = 19005;
-    /**
-     * Custom field value for Backfill order with custom field ID equal to the
-     * ID in index 6 of `ReportDefinition.order_custom_field_ids`. Treats the
-     * value as a string. Can only be used if the custom field at index 6 is of
-     * type `STRING` or `DROPDOWN`.
-     *
-     * Generated from protobuf enum <code>BACKFILL_ORDER_CUSTOM_FIELD_6_VALUE = 19006;</code>
-     */
-    const BACKFILL_ORDER_CUSTOM_FIELD_6_VALUE = 19006;
-    /**
-     * Custom field value for Backfill order with custom field ID equal to the
-     * ID in index 7 of `ReportDefinition.order_custom_field_ids`. Treats the
-     * value as a string. Can only be used if the custom field at index 7 is of
-     * type `STRING` or `DROPDOWN`.
-     *
-     * Generated from protobuf enum <code>BACKFILL_ORDER_CUSTOM_FIELD_7_VALUE = 19007;</code>
-     */
-    const BACKFILL_ORDER_CUSTOM_FIELD_7_VALUE = 19007;
-    /**
-     * Custom field value for Backfill order with custom field ID equal to the
-     * ID in index 8 of `ReportDefinition.order_custom_field_ids`. Treats the
-     * value as a string. Can only be used if the custom field at index 8 is of
-     * type `STRING` or `DROPDOWN`.
-     *
-     * Generated from protobuf enum <code>BACKFILL_ORDER_CUSTOM_FIELD_8_VALUE = 19008;</code>
-     */
-    const BACKFILL_ORDER_CUSTOM_FIELD_8_VALUE = 19008;
-    /**
-     * Custom field value for Backfill order with custom field ID equal to the
-     * ID in index 9 of `ReportDefinition.order_custom_field_ids`. Treats the
-     * value as a string. Can only be used if the custom field at index 9 is of
-     * type `STRING` or `DROPDOWN`.
-     *
-     * Generated from protobuf enum <code>BACKFILL_ORDER_CUSTOM_FIELD_9_VALUE = 19009;</code>
-     */
-    const BACKFILL_ORDER_CUSTOM_FIELD_9_VALUE = 19009;
-    /**
-     * Custom field value for Backfill order with custom field ID equal to the
-     * ID in index 10 of `ReportDefinition.order_custom_field_ids`. Treats the
-     * value as a string. Can only be used if the custom field at index 10 is of
-     * type `STRING` or `DROPDOWN`.
-     *
-     * Generated from protobuf enum <code>BACKFILL_ORDER_CUSTOM_FIELD_10_VALUE = 19010;</code>
-     */
-    const BACKFILL_ORDER_CUSTOM_FIELD_10_VALUE = 19010;
-    /**
-     * Custom field value for Backfill order with custom field ID equal to the
-     * ID in index 11 of `ReportDefinition.order_custom_field_ids`. Treats the
-     * value as a string. Can only be used if the custom field at index 11 is of
-     * type `STRING` or `DROPDOWN`.
-     *
-     * Generated from protobuf enum <code>BACKFILL_ORDER_CUSTOM_FIELD_11_VALUE = 19011;</code>
-     */
-    const BACKFILL_ORDER_CUSTOM_FIELD_11_VALUE = 19011;
-    /**
-     * Custom field value for Backfill order with custom field ID equal to the
-     * ID in index 12 of `ReportDefinition.order_custom_field_ids`. Treats the
-     * value as a string. Can only be used if the custom field at index 12 is of
-     * type `STRING` or `DROPDOWN`.
-     *
-     * Generated from protobuf enum <code>BACKFILL_ORDER_CUSTOM_FIELD_12_VALUE = 19012;</code>
-     */
-    const BACKFILL_ORDER_CUSTOM_FIELD_12_VALUE = 19012;
-    /**
-     * Custom field value for Backfill order with custom field ID equal to the
-     * ID in index 13 of `ReportDefinition.order_custom_field_ids`. Treats the
-     * value as a string. Can only be used if the custom field at index 13 is of
-     * type `STRING` or `DROPDOWN`.
-     *
-     * Generated from protobuf enum <code>BACKFILL_ORDER_CUSTOM_FIELD_13_VALUE = 19013;</code>
-     */
-    const BACKFILL_ORDER_CUSTOM_FIELD_13_VALUE = 19013;
-    /**
-     * Custom field value for Backfill order with custom field ID equal to the
-     * ID in index 14 of `ReportDefinition.order_custom_field_ids`. Treats the
-     * value as a string. Can only be used if the custom field at index 14 is of
-     * type `STRING` or `DROPDOWN`.
-     *
-     * Generated from protobuf enum <code>BACKFILL_ORDER_CUSTOM_FIELD_14_VALUE = 19014;</code>
-     */
-    const BACKFILL_ORDER_CUSTOM_FIELD_14_VALUE = 19014;
-    /**
-     * Custom field option ID for Backfill creative with custom field ID equal
-     * to the ID in index 0 of `ReportDefinition.creative_custom_field_ids`.
-     *
-     * Generated from protobuf enum <code>BACKFILL_CREATIVE_CUSTOM_FIELD_0_OPTION_ID = 20000;</code>
-     */
-    const BACKFILL_CREATIVE_CUSTOM_FIELD_0_OPTION_ID = 20000;
-    /**
-     * Custom field option ID for Backfill creative with custom field ID equal
-     * to the ID in index 1 of `ReportDefinition.creative_custom_field_ids`.
-     *
-     * Generated from protobuf enum <code>BACKFILL_CREATIVE_CUSTOM_FIELD_1_OPTION_ID = 20001;</code>
-     */
-    const BACKFILL_CREATIVE_CUSTOM_FIELD_1_OPTION_ID = 20001;
-    /**
-     * Custom field option ID for Backfill creative with custom field ID equal
-     * to the ID in index 2 of `ReportDefinition.creative_custom_field_ids`.
-     *
-     * Generated from protobuf enum <code>BACKFILL_CREATIVE_CUSTOM_FIELD_2_OPTION_ID = 20002;</code>
-     */
-    const BACKFILL_CREATIVE_CUSTOM_FIELD_2_OPTION_ID = 20002;
-    /**
-     * Custom field option ID for Backfill creative with custom field ID equal
-     * to the ID in index 3 of `ReportDefinition.creative_custom_field_ids`.
-     *
-     * Generated from protobuf enum <code>BACKFILL_CREATIVE_CUSTOM_FIELD_3_OPTION_ID = 20003;</code>
-     */
-    const BACKFILL_CREATIVE_CUSTOM_FIELD_3_OPTION_ID = 20003;
-    /**
-     * Custom field option ID for Backfill creative with custom field ID equal
-     * to the ID in index 4 of `ReportDefinition.creative_custom_field_ids`.
-     *
-     * Generated from protobuf enum <code>BACKFILL_CREATIVE_CUSTOM_FIELD_4_OPTION_ID = 20004;</code>
-     */
-    const BACKFILL_CREATIVE_CUSTOM_FIELD_4_OPTION_ID = 20004;
-    /**
-     * Custom field option ID for Backfill creative with custom field ID equal
-     * to the ID in index 5 of `ReportDefinition.creative_custom_field_ids`.
-     *
-     * Generated from protobuf enum <code>BACKFILL_CREATIVE_CUSTOM_FIELD_5_OPTION_ID = 20005;</code>
-     */
-    const BACKFILL_CREATIVE_CUSTOM_FIELD_5_OPTION_ID = 20005;
-    /**
-     * Custom field option ID for Backfill creative with custom field ID equal
-     * to the ID in index 6 of `ReportDefinition.creative_custom_field_ids`.
-     *
-     * Generated from protobuf enum <code>BACKFILL_CREATIVE_CUSTOM_FIELD_6_OPTION_ID = 20006;</code>
-     */
-    const BACKFILL_CREATIVE_CUSTOM_FIELD_6_OPTION_ID = 20006;
-    /**
-     * Custom field option ID for Backfill creative with custom field ID equal
-     * to the ID in index 7 of `ReportDefinition.creative_custom_field_ids`.
-     *
-     * Generated from protobuf enum <code>BACKFILL_CREATIVE_CUSTOM_FIELD_7_OPTION_ID = 20007;</code>
-     */
-    const BACKFILL_CREATIVE_CUSTOM_FIELD_7_OPTION_ID = 20007;
-    /**
-     * Custom field option ID for Backfill creative with custom field ID equal
-     * to the ID in index 8 of `ReportDefinition.creative_custom_field_ids`.
-     *
-     * Generated from protobuf enum <code>BACKFILL_CREATIVE_CUSTOM_FIELD_8_OPTION_ID = 20008;</code>
-     */
-    const BACKFILL_CREATIVE_CUSTOM_FIELD_8_OPTION_ID = 20008;
-    /**
-     * Custom field option ID for Backfill creative with custom field ID equal
-     * to the ID in index 9 of `ReportDefinition.creative_custom_field_ids`.
-     *
-     * Generated from protobuf enum <code>BACKFILL_CREATIVE_CUSTOM_FIELD_9_OPTION_ID = 20009;</code>
-     */
-    const BACKFILL_CREATIVE_CUSTOM_FIELD_9_OPTION_ID = 20009;
-    /**
-     * Custom field option ID for Backfill creative with custom field ID equal
-     * to the ID in index 10 of `ReportDefinition.creative_custom_field_ids`.
-     *
-     * Generated from protobuf enum <code>BACKFILL_CREATIVE_CUSTOM_FIELD_10_OPTION_ID = 20010;</code>
-     */
-    const BACKFILL_CREATIVE_CUSTOM_FIELD_10_OPTION_ID = 20010;
-    /**
-     * Custom field option ID for Backfill creative with custom field ID equal
-     * to the ID in index 11 of `ReportDefinition.creative_custom_field_ids`.
-     *
-     * Generated from protobuf enum <code>BACKFILL_CREATIVE_CUSTOM_FIELD_11_OPTION_ID = 20011;</code>
-     */
-    const BACKFILL_CREATIVE_CUSTOM_FIELD_11_OPTION_ID = 20011;
-    /**
-     * Custom field option ID for Backfill creative with custom field ID equal
-     * to the ID in index 12 of `ReportDefinition.creative_custom_field_ids`.
-     *
-     * Generated from protobuf enum <code>BACKFILL_CREATIVE_CUSTOM_FIELD_12_OPTION_ID = 20012;</code>
-     */
-    const BACKFILL_CREATIVE_CUSTOM_FIELD_12_OPTION_ID = 20012;
-    /**
-     * Custom field option ID for Backfill creative with custom field ID equal
-     * to the ID in index 13 of `ReportDefinition.creative_custom_field_ids`.
-     *
-     * Generated from protobuf enum <code>BACKFILL_CREATIVE_CUSTOM_FIELD_13_OPTION_ID = 20013;</code>
-     */
-    const BACKFILL_CREATIVE_CUSTOM_FIELD_13_OPTION_ID = 20013;
-    /**
-     * Custom field option ID for Backfill creative with custom field ID equal
-     * to the ID in index 14 of `ReportDefinition.creative_custom_field_ids`.
-     *
-     * Generated from protobuf enum <code>BACKFILL_CREATIVE_CUSTOM_FIELD_14_OPTION_ID = 20014;</code>
-     */
-    const BACKFILL_CREATIVE_CUSTOM_FIELD_14_OPTION_ID = 20014;
-    /**
-     * Custom field value for Backfill creative with custom field ID equal to
-     * the ID
+     * Custom field value for Creative with custom field ID equal to the ID
      * in index 0 of `ReportDefinition.creative_custom_field_ids`. Treats the
-     * value as a string. Can only be used if the custom field at index 0 is of
-     * type `STRING` or `DROPDOWN`.
+     * value as double. Can only be used if the custom field at index 0 is of
+     * type DOUBLE.
      *
-     * Generated from protobuf enum <code>BACKFILL_CREATIVE_CUSTOM_FIELD_0_VALUE = 21000;</code>
+     * Generated from protobuf enum <code>CREATIVE_CUSTOM_FIELD_0_VALUE_DOUBLE = 15015;</code>
      */
-    const BACKFILL_CREATIVE_CUSTOM_FIELD_0_VALUE = 21000;
+    const CREATIVE_CUSTOM_FIELD_0_VALUE_DOUBLE = 15015;
     /**
-     * Custom field value for Backfill creative with custom field ID equal to
-     * the ID in index 1 of `ReportDefinition.creative_custom_field_ids`. Treats
-     * the value as a string. Can only be used if the custom field at index 1 is
-     * of type `STRING` or `DROPDOWN`.
+     * Custom field value for Creative with custom field ID equal to the ID
+     * in index 1 of `ReportDefinition.creative_custom_field_ids`. Treats the
+     * value as double. Can only be used if the custom field at index 1 is of
+     * type DOUBLE.
      *
-     * Generated from protobuf enum <code>BACKFILL_CREATIVE_CUSTOM_FIELD_1_VALUE = 21001;</code>
+     * Generated from protobuf enum <code>CREATIVE_CUSTOM_FIELD_1_VALUE_DOUBLE = 15016;</code>
      */
-    const BACKFILL_CREATIVE_CUSTOM_FIELD_1_VALUE = 21001;
+    const CREATIVE_CUSTOM_FIELD_1_VALUE_DOUBLE = 15016;
     /**
-     * Custom field value for Backfill creative with custom field ID equal to
-     * the ID in index 2 of `ReportDefinition.creative_custom_field_ids`. Treats
-     * the value as a string. Can only be used if the custom field at index 2 is
-     * of type `STRING` or `DROPDOWN`.
+     * Custom field value for Creative with custom field ID equal to the ID
+     * in index 2 of `ReportDefinition.creative_custom_field_ids`. Treats the
+     * value as double. Can only be used if the custom field at index 2 is of
+     * type DOUBLE.
      *
-     * Generated from protobuf enum <code>BACKFILL_CREATIVE_CUSTOM_FIELD_2_VALUE = 21002;</code>
+     * Generated from protobuf enum <code>CREATIVE_CUSTOM_FIELD_2_VALUE_DOUBLE = 15017;</code>
      */
-    const BACKFILL_CREATIVE_CUSTOM_FIELD_2_VALUE = 21002;
+    const CREATIVE_CUSTOM_FIELD_2_VALUE_DOUBLE = 15017;
     /**
-     * Custom field value for Backfill creative with custom field ID equal to
-     * the ID in index 3 of `ReportDefinition.creative_custom_field_ids`. Treats
-     * the value as a string. Can only be used if the custom field at index 3 is
-     * of type `STRING` or `DROPDOWN`.
+     * Custom field value for Creative with custom field ID equal to the ID
+     * in index 3 of `ReportDefinition.creative_custom_field_ids`. Treats the
+     * value as double. Can only be used if the custom field at index 3 is of
+     * type DOUBLE.
      *
-     * Generated from protobuf enum <code>BACKFILL_CREATIVE_CUSTOM_FIELD_3_VALUE = 21003;</code>
+     * Generated from protobuf enum <code>CREATIVE_CUSTOM_FIELD_3_VALUE_DOUBLE = 15018;</code>
      */
-    const BACKFILL_CREATIVE_CUSTOM_FIELD_3_VALUE = 21003;
+    const CREATIVE_CUSTOM_FIELD_3_VALUE_DOUBLE = 15018;
     /**
-     * Custom field value for Backfill creative with custom field ID equal to
-     * the ID in index 4 of `ReportDefinition.creative_custom_field_ids`. Treats
-     * the value as a string. Can only be used if the custom field at index 4 is
-     * of type `STRING` or `DROPDOWN`.
+     * Custom field value for Creative with custom field ID equal to the ID
+     * in index 4 of `ReportDefinition.creative_custom_field_ids`. Treats the
+     * value as double. Can only be used if the custom field at index 4 is of
+     * type DOUBLE.
      *
-     * Generated from protobuf enum <code>BACKFILL_CREATIVE_CUSTOM_FIELD_4_VALUE = 21004;</code>
+     * Generated from protobuf enum <code>CREATIVE_CUSTOM_FIELD_4_VALUE_DOUBLE = 15019;</code>
      */
-    const BACKFILL_CREATIVE_CUSTOM_FIELD_4_VALUE = 21004;
+    const CREATIVE_CUSTOM_FIELD_4_VALUE_DOUBLE = 15019;
     /**
-     * Custom field value for Backfill creative with custom field ID equal to
-     * the ID in index 5 of `ReportDefinition.creative_custom_field_ids`. Treats
-     * the value as a string. Can only be used if the custom field at index 5 is
-     * of type `STRING` or `DROPDOWN`.
+     * Custom field value for Creative with custom field ID equal to the ID
+     * in index 5 of `ReportDefinition.creative_custom_field_ids`. Treats the
+     * value as double. Can only be used if the custom field at index 5 is of
+     * type DOUBLE.
      *
-     * Generated from protobuf enum <code>BACKFILL_CREATIVE_CUSTOM_FIELD_5_VALUE = 21005;</code>
+     * Generated from protobuf enum <code>CREATIVE_CUSTOM_FIELD_5_VALUE_DOUBLE = 15020;</code>
      */
-    const BACKFILL_CREATIVE_CUSTOM_FIELD_5_VALUE = 21005;
+    const CREATIVE_CUSTOM_FIELD_5_VALUE_DOUBLE = 15020;
     /**
-     * Custom field value for Backfill creative with custom field ID equal to
-     * the ID in index 6 of `ReportDefinition.creative_custom_field_ids`. Treats
-     * the value as a string. Can only be used if the custom field at index 6 is
-     * of type `STRING` or `DROPDOWN`.
+     * Custom field value for Creative with custom field ID equal to the ID
+     * in index 6 of `ReportDefinition.creative_custom_field_ids`. Treats the
+     * value as double. Can only be used if the custom field at index 6 is of
+     * type DOUBLE.
      *
-     * Generated from protobuf enum <code>BACKFILL_CREATIVE_CUSTOM_FIELD_6_VALUE = 21006;</code>
+     * Generated from protobuf enum <code>CREATIVE_CUSTOM_FIELD_6_VALUE_DOUBLE = 15021;</code>
      */
-    const BACKFILL_CREATIVE_CUSTOM_FIELD_6_VALUE = 21006;
+    const CREATIVE_CUSTOM_FIELD_6_VALUE_DOUBLE = 15021;
     /**
-     * Custom field value for Backfill creative with custom field ID equal to
-     * the ID in index 7 of `ReportDefinition.creative_custom_field_ids`. Treats
-     * the value as a string. Can only be used if the custom field at index 7 is
-     * of type `STRING` or `DROPDOWN`.
+     * Custom field value for Creative with custom field ID equal to the ID
+     * in index 7 of `ReportDefinition.creative_custom_field_ids`. Treats the
+     * value as double. Can only be used if the custom field at index 7 is of
+     * type DOUBLE.
      *
-     * Generated from protobuf enum <code>BACKFILL_CREATIVE_CUSTOM_FIELD_7_VALUE = 21007;</code>
+     * Generated from protobuf enum <code>CREATIVE_CUSTOM_FIELD_7_VALUE_DOUBLE = 15022;</code>
      */
-    const BACKFILL_CREATIVE_CUSTOM_FIELD_7_VALUE = 21007;
+    const CREATIVE_CUSTOM_FIELD_7_VALUE_DOUBLE = 15022;
     /**
-     * Custom field value for Backfill creative with custom field ID equal to
-     * the ID in index 8 of `ReportDefinition.creative_custom_field_ids`. Treats
-     * the value as a string. Can only be used if the custom field at index 8 is
-     * of type `STRING` or `DROPDOWN`.
+     * Custom field value for Creative with custom field ID equal to the ID
+     * in index 8 of `ReportDefinition.creative_custom_field_ids`. Treats the
+     * value as double. Can only be used if the custom field at index 8 is of
+     * type DOUBLE.
      *
-     * Generated from protobuf enum <code>BACKFILL_CREATIVE_CUSTOM_FIELD_8_VALUE = 21008;</code>
+     * Generated from protobuf enum <code>CREATIVE_CUSTOM_FIELD_8_VALUE_DOUBLE = 15023;</code>
      */
-    const BACKFILL_CREATIVE_CUSTOM_FIELD_8_VALUE = 21008;
+    const CREATIVE_CUSTOM_FIELD_8_VALUE_DOUBLE = 15023;
     /**
-     * Custom field value for Backfill creative with custom field ID equal to
-     * the ID in index 9 of `ReportDefinition.creative_custom_field_ids`. Treats
-     * the value as a string. Can only be used if the custom field at index 9 is
-     * of type `STRING` or `DROPDOWN`.
+     * Custom field value for Creative with custom field ID equal to the ID
+     * in index 9 of `ReportDefinition.creative_custom_field_ids`. Treats the
+     * value as double. Can only be used if the custom field at index 9 is of
+     * type DOUBLE.
      *
-     * Generated from protobuf enum <code>BACKFILL_CREATIVE_CUSTOM_FIELD_9_VALUE = 21009;</code>
+     * Generated from protobuf enum <code>CREATIVE_CUSTOM_FIELD_9_VALUE_DOUBLE = 15024;</code>
      */
-    const BACKFILL_CREATIVE_CUSTOM_FIELD_9_VALUE = 21009;
+    const CREATIVE_CUSTOM_FIELD_9_VALUE_DOUBLE = 15024;
     /**
-     * Custom field value for Backfill creative with custom field ID equal to
-     * the ID in index 10 of `ReportDefinition.creative_custom_field_ids`.
-     * Treats the value as a string. Can only be used if the custom field at
-     * index 10 is of type `STRING` or `DROPDOWN`.
+     * Custom field value for Creative with custom field ID equal to the ID
+     * in index 10 of `ReportDefinition.creative_custom_field_ids`. Treats the
+     * value as double. Can only be used if the custom field at index 10 is of
+     * type DOUBLE.
      *
-     * Generated from protobuf enum <code>BACKFILL_CREATIVE_CUSTOM_FIELD_10_VALUE = 21010;</code>
+     * Generated from protobuf enum <code>CREATIVE_CUSTOM_FIELD_10_VALUE_DOUBLE = 15025;</code>
      */
-    const BACKFILL_CREATIVE_CUSTOM_FIELD_10_VALUE = 21010;
+    const CREATIVE_CUSTOM_FIELD_10_VALUE_DOUBLE = 15025;
     /**
-     * Custom field value for Backfill creative with custom field ID equal to
-     * the ID in index 11 of `ReportDefinition.creative_custom_field_ids`.
-     * Treats the value as a string. Can only be used if the custom field at
-     * index 11 is of type `STRING` or `DROPDOWN`.
+     * Custom field value for Creative with custom field ID equal to the ID
+     * in index 11 of `ReportDefinition.creative_custom_field_ids`. Treats the
+     * value as double. Can only be used if the custom field at index 11 is of
+     * type DOUBLE.
      *
-     * Generated from protobuf enum <code>BACKFILL_CREATIVE_CUSTOM_FIELD_11_VALUE = 21011;</code>
+     * Generated from protobuf enum <code>CREATIVE_CUSTOM_FIELD_11_VALUE_DOUBLE = 15026;</code>
      */
-    const BACKFILL_CREATIVE_CUSTOM_FIELD_11_VALUE = 21011;
+    const CREATIVE_CUSTOM_FIELD_11_VALUE_DOUBLE = 15026;
     /**
-     * Custom field value for Backfill creative with custom field ID equal to
-     * the ID in index 12 of `ReportDefinition.creative_custom_field_ids`.
-     * Treats the value as a string. Can only be used if the custom field at
-     * index 12 is of type `STRING` or `DROPDOWN`.
+     * Custom field value for Creative with custom field ID equal to the ID
+     * in index 12 of `ReportDefinition.creative_custom_field_ids`. Treats the
+     * value as double. Can only be used if the custom field at index 12 is of
+     * type DOUBLE.
      *
-     * Generated from protobuf enum <code>BACKFILL_CREATIVE_CUSTOM_FIELD_12_VALUE = 21012;</code>
+     * Generated from protobuf enum <code>CREATIVE_CUSTOM_FIELD_12_VALUE_DOUBLE = 15027;</code>
      */
-    const BACKFILL_CREATIVE_CUSTOM_FIELD_12_VALUE = 21012;
+    const CREATIVE_CUSTOM_FIELD_12_VALUE_DOUBLE = 15027;
     /**
-     * Custom field value for Backfill creative with custom field ID equal to
-     * the ID in index 13 of `ReportDefinition.creative_custom_field_ids`.
-     * Treats the value as a string. Can only be used if the custom field at
-     * index 13 is of type `STRING` or `DROPDOWN`.
+     * Custom field value for Creative with custom field ID equal to the ID
+     * in index 13 of `ReportDefinition.creative_custom_field_ids`. Treats the
+     * value as double. Can only be used if the custom field at index 13 is of
+     * type DOUBLE.
      *
-     * Generated from protobuf enum <code>BACKFILL_CREATIVE_CUSTOM_FIELD_13_VALUE = 21013;</code>
+     * Generated from protobuf enum <code>CREATIVE_CUSTOM_FIELD_13_VALUE_DOUBLE = 15028;</code>
      */
-    const BACKFILL_CREATIVE_CUSTOM_FIELD_13_VALUE = 21013;
+    const CREATIVE_CUSTOM_FIELD_13_VALUE_DOUBLE = 15028;
     /**
-     * Custom field value for Backfill creative with custom field ID equal to
-     * the ID in index 14 of `ReportDefinition.creative_custom_field_ids`.
-     * Treats the value as a string. Can only be used if the custom field at
-     * index 14 is of type `STRING` or `DROPDOWN`.
+     * Custom field value for Creative with custom field ID equal to the ID
+     * in index 14 of `ReportDefinition.creative_custom_field_ids`. Treats the
+     * value as double. Can only be used if the custom field at index 14 is of
+     * type DOUBLE.
      *
-     * Generated from protobuf enum <code>BACKFILL_CREATIVE_CUSTOM_FIELD_14_VALUE = 21014;</code>
+     * Generated from protobuf enum <code>CREATIVE_CUSTOM_FIELD_14_VALUE_DOUBLE = 15029;</code>
      */
-    const BACKFILL_CREATIVE_CUSTOM_FIELD_14_VALUE = 21014;
+    const CREATIVE_CUSTOM_FIELD_14_VALUE_DOUBLE = 15029;
+    /**
+     * Custom field value for Creative with custom field ID equal to the ID
+     * in index 0 of `ReportDefinition.creative_custom_field_ids`. Treats the
+     * value as boolean. Can only be used if the custom field at index 0 is of
+     * type BOOLEAN.
+     *
+     * Generated from protobuf enum <code>CREATIVE_CUSTOM_FIELD_0_VALUE_BOOL = 15030;</code>
+     */
+    const CREATIVE_CUSTOM_FIELD_0_VALUE_BOOL = 15030;
+    /**
+     * Custom field value for Creative with custom field ID equal to the ID
+     * in index 1 of `ReportDefinition.creative_custom_field_ids`. Treats the
+     * value as boolean. Can only be used if the custom field at index 1 is of
+     * type BOOLEAN.
+     *
+     * Generated from protobuf enum <code>CREATIVE_CUSTOM_FIELD_1_VALUE_BOOL = 15031;</code>
+     */
+    const CREATIVE_CUSTOM_FIELD_1_VALUE_BOOL = 15031;
+    /**
+     * Custom field value for Creative with custom field ID equal to the ID
+     * in index 2 of `ReportDefinition.creative_custom_field_ids`. Treats the
+     * value as boolean. Can only be used if the custom field at index 2 is of
+     * type BOOLEAN.
+     *
+     * Generated from protobuf enum <code>CREATIVE_CUSTOM_FIELD_2_VALUE_BOOL = 15032;</code>
+     */
+    const CREATIVE_CUSTOM_FIELD_2_VALUE_BOOL = 15032;
+    /**
+     * Custom field value for Creative with custom field ID equal to the ID
+     * in index 3 of `ReportDefinition.creative_custom_field_ids`. Treats the
+     * value as boolean. Can only be used if the custom field at index 3 is of
+     * type BOOLEAN.
+     *
+     * Generated from protobuf enum <code>CREATIVE_CUSTOM_FIELD_3_VALUE_BOOL = 15033;</code>
+     */
+    const CREATIVE_CUSTOM_FIELD_3_VALUE_BOOL = 15033;
+    /**
+     * Custom field value for Creative with custom field ID equal to the ID
+     * in index 4 of `ReportDefinition.creative_custom_field_ids`. Treats the
+     * value as boolean. Can only be used if the custom field at index 4 is of
+     * type BOOLEAN.
+     *
+     * Generated from protobuf enum <code>CREATIVE_CUSTOM_FIELD_4_VALUE_BOOL = 15034;</code>
+     */
+    const CREATIVE_CUSTOM_FIELD_4_VALUE_BOOL = 15034;
+    /**
+     * Custom field value for Creative with custom field ID equal to the ID
+     * in index 5 of `ReportDefinition.creative_custom_field_ids`. Treats the
+     * value as boolean. Can only be used if the custom field at index 5 is of
+     * type BOOLEAN.
+     *
+     * Generated from protobuf enum <code>CREATIVE_CUSTOM_FIELD_5_VALUE_BOOL = 15035;</code>
+     */
+    const CREATIVE_CUSTOM_FIELD_5_VALUE_BOOL = 15035;
+    /**
+     * Custom field value for Creative with custom field ID equal to the ID
+     * in index 6 of `ReportDefinition.creative_custom_field_ids`. Treats the
+     * value as boolean. Can only be used if the custom field at index 6 is of
+     * type BOOLEAN.
+     *
+     * Generated from protobuf enum <code>CREATIVE_CUSTOM_FIELD_6_VALUE_BOOL = 15036;</code>
+     */
+    const CREATIVE_CUSTOM_FIELD_6_VALUE_BOOL = 15036;
+    /**
+     * Custom field value for Creative with custom field ID equal to the ID
+     * in index 7 of `ReportDefinition.creative_custom_field_ids`. Treats the
+     * value as boolean. Can only be used if the custom field at index 7 is of
+     * type BOOLEAN.
+     *
+     * Generated from protobuf enum <code>CREATIVE_CUSTOM_FIELD_7_VALUE_BOOL = 15037;</code>
+     */
+    const CREATIVE_CUSTOM_FIELD_7_VALUE_BOOL = 15037;
+    /**
+     * Custom field value for Creative with custom field ID equal to the ID
+     * in index 8 of `ReportDefinition.creative_custom_field_ids`. Treats the
+     * value as boolean. Can only be used if the custom field at index 8 is of
+     * type BOOLEAN.
+     *
+     * Generated from protobuf enum <code>CREATIVE_CUSTOM_FIELD_8_VALUE_BOOL = 15038;</code>
+     */
+    const CREATIVE_CUSTOM_FIELD_8_VALUE_BOOL = 15038;
+    /**
+     * Custom field value for Creative with custom field ID equal to the ID
+     * in index 9 of `ReportDefinition.creative_custom_field_ids`. Treats the
+     * value as boolean. Can only be used if the custom field at index 9 is of
+     * type BOOLEAN.
+     *
+     * Generated from protobuf enum <code>CREATIVE_CUSTOM_FIELD_9_VALUE_BOOL = 15039;</code>
+     */
+    const CREATIVE_CUSTOM_FIELD_9_VALUE_BOOL = 15039;
+    /**
+     * Custom field value for Creative with custom field ID equal to the ID
+     * in index 10 of `ReportDefinition.creative_custom_field_ids`. Treats the
+     * value as boolean. Can only be used if the custom field at index 10 is of
+     * type BOOLEAN.
+     *
+     * Generated from protobuf enum <code>CREATIVE_CUSTOM_FIELD_10_VALUE_BOOL = 15040;</code>
+     */
+    const CREATIVE_CUSTOM_FIELD_10_VALUE_BOOL = 15040;
+    /**
+     * Custom field value for Creative with custom field ID equal to the ID
+     * in index 11 of `ReportDefinition.creative_custom_field_ids`. Treats the
+     * value as boolean. Can only be used if the custom field at index 11 is of
+     * type BOOLEAN.
+     *
+     * Generated from protobuf enum <code>CREATIVE_CUSTOM_FIELD_11_VALUE_BOOL = 15041;</code>
+     */
+    const CREATIVE_CUSTOM_FIELD_11_VALUE_BOOL = 15041;
+    /**
+     * Custom field value for Creative with custom field ID equal to the ID
+     * in index 12 of `ReportDefinition.creative_custom_field_ids`. Treats the
+     * value as boolean. Can only be used if the custom field at index 12 is of
+     * type BOOLEAN.
+     *
+     * Generated from protobuf enum <code>CREATIVE_CUSTOM_FIELD_12_VALUE_BOOL = 15042;</code>
+     */
+    const CREATIVE_CUSTOM_FIELD_12_VALUE_BOOL = 15042;
+    /**
+     * Custom field value for Creative with custom field ID equal to the ID
+     * in index 13 of `ReportDefinition.creative_custom_field_ids`. Treats the
+     * value as boolean. Can only be used if the custom field at index 13 is of
+     * type BOOLEAN.
+     *
+     * Generated from protobuf enum <code>CREATIVE_CUSTOM_FIELD_13_VALUE_BOOL = 15043;</code>
+     */
+    const CREATIVE_CUSTOM_FIELD_13_VALUE_BOOL = 15043;
+    /**
+     * Custom field value for Creative with custom field ID equal to the ID
+     * in index 14 of `ReportDefinition.creative_custom_field_ids`. Treats the
+     * value as boolean. Can only be used if the custom field at index 14 is of
+     * type BOOLEAN.
+     *
+     * Generated from protobuf enum <code>CREATIVE_CUSTOM_FIELD_14_VALUE_BOOL = 15044;</code>
+     */
+    const CREATIVE_CUSTOM_FIELD_14_VALUE_BOOL = 15044;
+    /**
+     * CMS Metadata Dimension Value ID for CMS Metadata Dimension with key equal
+     * to the key in index 0 of
+     * `ReportDefinition.cms_metadata_dimension_key_ids`.
+     *
+     * Generated from protobuf enum <code>CMS_METADATA_DIMENSION_0_VALUE_ID = 102000;</code>
+     */
+    const CMS_METADATA_DIMENSION_0_VALUE_ID = 102000;
+    /**
+     * CMS Metadata Dimension Value ID for CMS Metadata Dimension with key equal
+     * to the key in index 1 of
+     * `ReportDefinition.cms_metadata_dimension_key_ids`.
+     *
+     * Generated from protobuf enum <code>CMS_METADATA_DIMENSION_1_VALUE_ID = 102001;</code>
+     */
+    const CMS_METADATA_DIMENSION_1_VALUE_ID = 102001;
+    /**
+     * CMS Metadata Dimension Value ID for CMS Metadata Dimension with key equal
+     * to the key in index 2 of
+     * `ReportDefinition.cms_metadata_dimension_key_ids`.
+     *
+     * Generated from protobuf enum <code>CMS_METADATA_DIMENSION_2_VALUE_ID = 102002;</code>
+     */
+    const CMS_METADATA_DIMENSION_2_VALUE_ID = 102002;
+    /**
+     * CMS Metadata Dimension Value ID for CMS Metadata Dimension with key equal
+     * to the key in index 3 of
+     * `ReportDefinition.cms_metadata_dimension_key_ids`.
+     *
+     * Generated from protobuf enum <code>CMS_METADATA_DIMENSION_3_VALUE_ID = 102003;</code>
+     */
+    const CMS_METADATA_DIMENSION_3_VALUE_ID = 102003;
+    /**
+     * CMS Metadata Dimension Value ID for CMS Metadata Dimension with key equal
+     * to the key in index 4 of
+     * `ReportDefinition.cms_metadata_dimension_key_ids`.
+     *
+     * Generated from protobuf enum <code>CMS_METADATA_DIMENSION_4_VALUE_ID = 102004;</code>
+     */
+    const CMS_METADATA_DIMENSION_4_VALUE_ID = 102004;
+    /**
+     * CMS Metadata Dimension Value ID for CMS Metadata Dimension with key equal
+     * to the key in index 5 of
+     * `ReportDefinition.cms_metadata_dimension_key_ids`.
+     *
+     * Generated from protobuf enum <code>CMS_METADATA_DIMENSION_5_VALUE_ID = 102005;</code>
+     */
+    const CMS_METADATA_DIMENSION_5_VALUE_ID = 102005;
+    /**
+     * CMS Metadata Dimension Value ID for CMS Metadata Dimension with key equal
+     * to the key in index 6 of
+     * `ReportDefinition.cms_metadata_dimension_key_ids`.
+     *
+     * Generated from protobuf enum <code>CMS_METADATA_DIMENSION_6_VALUE_ID = 102006;</code>
+     */
+    const CMS_METADATA_DIMENSION_6_VALUE_ID = 102006;
+    /**
+     * CMS Metadata Dimension Value ID for CMS Metadata Dimension with key equal
+     * to the key in index 7 of
+     * `ReportDefinition.cms_metadata_dimension_key_ids`.
+     *
+     * Generated from protobuf enum <code>CMS_METADATA_DIMENSION_7_VALUE_ID = 102007;</code>
+     */
+    const CMS_METADATA_DIMENSION_7_VALUE_ID = 102007;
+    /**
+     * CMS Metadata Dimension Value ID for CMS Metadata Dimension with key equal
+     * to the key in index 8 of
+     * `ReportDefinition.cms_metadata_dimension_key_ids`.
+     *
+     * Generated from protobuf enum <code>CMS_METADATA_DIMENSION_8_VALUE_ID = 102008;</code>
+     */
+    const CMS_METADATA_DIMENSION_8_VALUE_ID = 102008;
+    /**
+     * CMS Metadata Dimension Value ID for CMS Metadata Dimension with key equal
+     * to the key in index 9 of
+     * `ReportDefinition.cms_metadata_dimension_key_ids`.
+     *
+     * Generated from protobuf enum <code>CMS_METADATA_DIMENSION_9_VALUE_ID = 102009;</code>
+     */
+    const CMS_METADATA_DIMENSION_9_VALUE_ID = 102009;
+    /**
+     * CMS Metadata Dimension Value Name for CMS Metadata Dimension with key
+     * equal to the key in index 9 of
+     * `ReportDefinition.cms_metadata_dimension_key_ids`.
+     *
+     * Generated from protobuf enum <code>CMS_METADATA_DIMENSION_0_VALUE = 103000;</code>
+     */
+    const CMS_METADATA_DIMENSION_0_VALUE = 103000;
+    /**
+     * CMS Metadata Dimension Value Name for CMS Metadata Dimension with key
+     * equal to the key in index 1 of
+     * `ReportDefinition.cms_metadata_dimension_key_ids`.
+     *
+     * Generated from protobuf enum <code>CMS_METADATA_DIMENSION_1_VALUE = 103001;</code>
+     */
+    const CMS_METADATA_DIMENSION_1_VALUE = 103001;
+    /**
+     * CMS Metadata Dimension Value Name for CMS Metadata Dimension with key
+     * equal to the key in index 2 of
+     * `ReportDefinition.cms_metadata_dimension_key_ids`.
+     *
+     * Generated from protobuf enum <code>CMS_METADATA_DIMENSION_2_VALUE = 103002;</code>
+     */
+    const CMS_METADATA_DIMENSION_2_VALUE = 103002;
+    /**
+     * CMS Metadata Dimension Value Name for CMS Metadata Dimension with key
+     * equal to the key in index 3 of
+     * `ReportDefinition.cms_metadata_dimension_key_ids`.
+     *
+     * Generated from protobuf enum <code>CMS_METADATA_DIMENSION_3_VALUE = 103003;</code>
+     */
+    const CMS_METADATA_DIMENSION_3_VALUE = 103003;
+    /**
+     * CMS Metadata Dimension Value Name for CMS Metadata Dimension with key
+     * equal to the key in index 4 of
+     * `ReportDefinition.cms_metadata_dimension_key_ids`.
+     *
+     * Generated from protobuf enum <code>CMS_METADATA_DIMENSION_4_VALUE = 103004;</code>
+     */
+    const CMS_METADATA_DIMENSION_4_VALUE = 103004;
+    /**
+     * CMS Metadata Dimension Value Name for CMS Metadata Dimension with key
+     * equal to the key in index 5 of
+     * `ReportDefinition.cms_metadata_dimension_key_ids`.
+     *
+     * Generated from protobuf enum <code>CMS_METADATA_DIMENSION_5_VALUE = 103005;</code>
+     */
+    const CMS_METADATA_DIMENSION_5_VALUE = 103005;
+    /**
+     * CMS Metadata Dimension Value Name for CMS Metadata Dimension with key
+     * equal to the key in index 6 of
+     * `ReportDefinition.cms_metadata_dimension_key_ids`.
+     *
+     * Generated from protobuf enum <code>CMS_METADATA_DIMENSION_6_VALUE = 103006;</code>
+     */
+    const CMS_METADATA_DIMENSION_6_VALUE = 103006;
+    /**
+     * CMS Metadata Dimension Value Name for CMS Metadata Dimension with key
+     * equal to the key in index 7 of
+     * `ReportDefinition.cms_metadata_dimension_key_ids`.
+     *
+     * Generated from protobuf enum <code>CMS_METADATA_DIMENSION_7_VALUE = 103007;</code>
+     */
+    const CMS_METADATA_DIMENSION_7_VALUE = 103007;
+    /**
+     * CMS Metadata Dimension Value Name for CMS Metadata Dimension with key
+     * equal to the key in index 8 of
+     * `ReportDefinition.cms_metadata_dimension_key_ids`.
+     *
+     * Generated from protobuf enum <code>CMS_METADATA_DIMENSION_8_VALUE = 103008;</code>
+     */
+    const CMS_METADATA_DIMENSION_8_VALUE = 103008;
+    /**
+     * CMS Metadata Dimension Value Name for CMS Metadata Dimension with key
+     * equal to the key in index 9 of
+     * `ReportDefinition.cms_metadata_dimension_key_ids`.
+     *
+     * Generated from protobuf enum <code>CMS_METADATA_DIMENSION_9_VALUE = 103009;</code>
+     */
+    const CMS_METADATA_DIMENSION_9_VALUE = 103009;
     /**
      * Custom Dimension Value ID for Custom Dimension with key equal to the key
      * in index 0 of `ReportDefinition.custom_dimension_key_ids`.
@@ -6512,6 +7052,146 @@ class Dimension
      * Generated from protobuf enum <code>CUSTOM_DIMENSION_9_VALUE = 101009;</code>
      */
     const CUSTOM_DIMENSION_9_VALUE = 101009;
+    /**
+     * Enhanced Key-values Dimension Value ID for EKV Dimension with key equal
+     * to the key in index 0 of `ReportDefinition.ekv_dimension_key_ids`.
+     *
+     * Generated from protobuf enum <code>EKV_DIMENSION_0_VALUE_ID = 105000;</code>
+     */
+    const EKV_DIMENSION_0_VALUE_ID = 105000;
+    /**
+     * Enhanced Key-values Dimension Value ID for EKV Dimension with key equal
+     * to the key in index 1 of `ReportDefinition.ekv_dimension_key_ids`.
+     *
+     * Generated from protobuf enum <code>EKV_DIMENSION_1_VALUE_ID = 105001;</code>
+     */
+    const EKV_DIMENSION_1_VALUE_ID = 105001;
+    /**
+     * Enhanced Key-values Dimension Value ID for EKV Dimension with key equal
+     * to the key in index 2 of `ReportDefinition.ekv_dimension_key_ids`.
+     *
+     * Generated from protobuf enum <code>EKV_DIMENSION_2_VALUE_ID = 105002;</code>
+     */
+    const EKV_DIMENSION_2_VALUE_ID = 105002;
+    /**
+     * Enhanced Key-values Dimension Value ID for EKV Dimension with key equal
+     * to the key in index 3 of `ReportDefinition.ekv_dimension_key_ids`.
+     *
+     * Generated from protobuf enum <code>EKV_DIMENSION_3_VALUE_ID = 105003;</code>
+     */
+    const EKV_DIMENSION_3_VALUE_ID = 105003;
+    /**
+     * Enhanced Key-values Dimension Value ID for EKV Dimension with key equal
+     * to the key in index 4 of `ReportDefinition.ekv_dimension_key_ids`.
+     *
+     * Generated from protobuf enum <code>EKV_DIMENSION_4_VALUE_ID = 105004;</code>
+     */
+    const EKV_DIMENSION_4_VALUE_ID = 105004;
+    /**
+     * Enhanced Key-values Dimension Value ID for EKV Dimension with key equal
+     * to the key in index 5 of `ReportDefinition.ekv_dimension_key_ids`.
+     *
+     * Generated from protobuf enum <code>EKV_DIMENSION_5_VALUE_ID = 105005;</code>
+     */
+    const EKV_DIMENSION_5_VALUE_ID = 105005;
+    /**
+     * Enhanced Key-values Dimension Value ID for EKV Dimension with key equal
+     * to the key in index 6 of `ReportDefinition.ekv_dimension_key_ids`.
+     *
+     * Generated from protobuf enum <code>EKV_DIMENSION_6_VALUE_ID = 105006;</code>
+     */
+    const EKV_DIMENSION_6_VALUE_ID = 105006;
+    /**
+     * Enhanced Key-values Dimension Value ID for EKV Dimension with key equal
+     * to the key in index 9 of `ReportDefinition.ekv_dimension_key_ids`.
+     *
+     * Generated from protobuf enum <code>EKV_DIMENSION_7_VALUE_ID = 105007;</code>
+     */
+    const EKV_DIMENSION_7_VALUE_ID = 105007;
+    /**
+     * Enhanced Key-values Dimension Value ID for EKV Dimension with key equal
+     * to the key in index 8 of `ReportDefinition.ekv_dimension_key_ids`.
+     *
+     * Generated from protobuf enum <code>EKV_DIMENSION_8_VALUE_ID = 105008;</code>
+     */
+    const EKV_DIMENSION_8_VALUE_ID = 105008;
+    /**
+     * Enhanced Key-values Dimension Value ID for EKV Dimension with key equal
+     * to the key in index 9 of `ReportDefinition.ekv_dimension_key_ids`.
+     *
+     * Generated from protobuf enum <code>EKV_DIMENSION_9_VALUE_ID = 105009;</code>
+     */
+    const EKV_DIMENSION_9_VALUE_ID = 105009;
+    /**
+     * Enhanced Key-values Dimension Value name for EKV Dimension with key equal
+     * to the ID in index 0 of `ReportDefinition.ekv_dimension_key_ids`.
+     *
+     * Generated from protobuf enum <code>EKV_DIMENSION_0_VALUE = 106000;</code>
+     */
+    const EKV_DIMENSION_0_VALUE = 106000;
+    /**
+     * Enhanced Key-values Dimension Value name for EKV Dimension with key equal
+     * to the ID in index 1 of `ReportDefinition.ekv_dimension_key_ids`.
+     *
+     * Generated from protobuf enum <code>EKV_DIMENSION_1_VALUE = 106001;</code>
+     */
+    const EKV_DIMENSION_1_VALUE = 106001;
+    /**
+     * Enhanced Key-values Dimension Value name for EKV Dimension with key equal
+     * to the ID in index 2 of `ReportDefinition.ekv_dimension_key_ids`.
+     *
+     * Generated from protobuf enum <code>EKV_DIMENSION_2_VALUE = 106002;</code>
+     */
+    const EKV_DIMENSION_2_VALUE = 106002;
+    /**
+     * Enhanced Key-values Dimension Value name for EKV Dimension with key equal
+     * to the ID in index 3 of `ReportDefinition.ekv_dimension_key_ids`.
+     *
+     * Generated from protobuf enum <code>EKV_DIMENSION_3_VALUE = 106003;</code>
+     */
+    const EKV_DIMENSION_3_VALUE = 106003;
+    /**
+     * Enhanced Key-values Dimension Value name for EKV Dimension with key equal
+     * to the ID in index 4 of `ReportDefinition.ekv_dimension_key_ids`.
+     *
+     * Generated from protobuf enum <code>EKV_DIMENSION_4_VALUE = 106004;</code>
+     */
+    const EKV_DIMENSION_4_VALUE = 106004;
+    /**
+     * Enhanced Key-values Dimension Value name for EKV Dimension with key equal
+     * to the ID in index 5 of `ReportDefinition.ekv_dimension_key_ids`.
+     *
+     * Generated from protobuf enum <code>EKV_DIMENSION_5_VALUE = 106005;</code>
+     */
+    const EKV_DIMENSION_5_VALUE = 106005;
+    /**
+     * Enhanced Key-values Dimension Value name for EKV Dimension with key equal
+     * to the ID in index 6 of `ReportDefinition.ekv_dimension_key_ids`.
+     *
+     * Generated from protobuf enum <code>EKV_DIMENSION_6_VALUE = 106006;</code>
+     */
+    const EKV_DIMENSION_6_VALUE = 106006;
+    /**
+     * Enhanced Key-values Dimension Value name for EKV Dimension with key equal
+     * to the ID in index 7 of `ReportDefinition.ekv_dimension_key_ids`.
+     *
+     * Generated from protobuf enum <code>EKV_DIMENSION_7_VALUE = 106007;</code>
+     */
+    const EKV_DIMENSION_7_VALUE = 106007;
+    /**
+     * Enhanced Key-values Dimension Value name for EKV Dimension with key equal
+     * to the ID in index 8 of `ReportDefinition.ekv_dimension_key_ids`.
+     *
+     * Generated from protobuf enum <code>EKV_DIMENSION_8_VALUE = 106008;</code>
+     */
+    const EKV_DIMENSION_8_VALUE = 106008;
+    /**
+     * Enhanced Key-values Dimension Value name for EKV Dimension with key equal
+     * to the ID in index 9 of `ReportDefinition.ekv_dimension_key_ids`.
+     *
+     * Generated from protobuf enum <code>EKV_DIMENSION_9_VALUE = 106009;</code>
+     */
+    const EKV_DIMENSION_9_VALUE = 106009;
 
     private static $valueToName = [
         self::DIMENSION_UNSPECIFIED => 'DIMENSION_UNSPECIFIED',
@@ -6652,7 +7332,6 @@ class Dimension
         self::BROWSER_NAME => 'BROWSER_NAME',
         self::BUYER_NETWORK_ID => 'BUYER_NETWORK_ID',
         self::BUYER_NETWORK_NAME => 'BUYER_NETWORK_NAME',
-        self::CALLOUT_STATUS_CATEGORY => 'CALLOUT_STATUS_CATEGORY',
         self::CALLOUT_STATUS_CATEGORY_NAME => 'CALLOUT_STATUS_CATEGORY_NAME',
         self::CARRIER_ID => 'CARRIER_ID',
         self::CARRIER_NAME => 'CARRIER_NAME',
@@ -6686,12 +7365,19 @@ class Dimension
         self::CREATIVE_CLICK_THROUGH_URL => 'CREATIVE_CLICK_THROUGH_URL',
         self::CREATIVE_ID => 'CREATIVE_ID',
         self::CREATIVE_NAME => 'CREATIVE_NAME',
+        self::CREATIVE_OR_CREATIVE_SET => 'CREATIVE_OR_CREATIVE_SET',
+        self::CREATIVE_OR_CREATIVE_SET_NAME => 'CREATIVE_OR_CREATIVE_SET_NAME',
         self::CREATIVE_POLICIES_FILTERING => 'CREATIVE_POLICIES_FILTERING',
         self::CREATIVE_POLICIES_FILTERING_NAME => 'CREATIVE_POLICIES_FILTERING_NAME',
         self::CREATIVE_PROTECTIONS_FILTERING => 'CREATIVE_PROTECTIONS_FILTERING',
         self::CREATIVE_PROTECTIONS_FILTERING_NAME => 'CREATIVE_PROTECTIONS_FILTERING_NAME',
         self::CREATIVE_SET_ROLE_TYPE => 'CREATIVE_SET_ROLE_TYPE',
         self::CREATIVE_SET_ROLE_TYPE_NAME => 'CREATIVE_SET_ROLE_TYPE_NAME',
+        self::CREATIVE_SSL_COMPLIANCE_OVERRIDE => 'CREATIVE_SSL_COMPLIANCE_OVERRIDE',
+        self::CREATIVE_SSL_COMPLIANCE_OVERRIDE_NAME => 'CREATIVE_SSL_COMPLIANCE_OVERRIDE_NAME',
+        self::CREATIVE_SSL_SCAN_RESULT => 'CREATIVE_SSL_SCAN_RESULT',
+        self::CREATIVE_SSL_SCAN_RESULT_NAME => 'CREATIVE_SSL_SCAN_RESULT_NAME',
+        self::CREATIVE_TARGET_AD_UNIT_SIZE => 'CREATIVE_TARGET_AD_UNIT_SIZE',
         self::CREATIVE_TECHNOLOGY => 'CREATIVE_TECHNOLOGY',
         self::CREATIVE_TECHNOLOGY_NAME => 'CREATIVE_TECHNOLOGY_NAME',
         self::CREATIVE_THIRD_PARTY_VENDOR => 'CREATIVE_THIRD_PARTY_VENDOR',
@@ -6713,12 +7399,14 @@ class Dimension
         self::DEAL_BUYER_ID => 'DEAL_BUYER_ID',
         self::DEAL_BUYER_NAME => 'DEAL_BUYER_NAME',
         self::DEAL_ID => 'DEAL_ID',
+        self::DEAL_ID_ALL => 'DEAL_ID_ALL',
         self::DEAL_NAME => 'DEAL_NAME',
         self::DELIVERED_SECURE_SIGNAL_ID => 'DELIVERED_SECURE_SIGNAL_ID',
         self::DELIVERED_SECURE_SIGNAL_NAME => 'DELIVERED_SECURE_SIGNAL_NAME',
         self::DEMAND_CHANNEL => 'DEMAND_CHANNEL',
         self::DEMAND_CHANNEL_NAME => 'DEMAND_CHANNEL_NAME',
         self::DEMAND_SOURCE => 'DEMAND_SOURCE',
+        self::DEMAND_SOURCE_ALL => 'DEMAND_SOURCE_ALL',
         self::DEMAND_SOURCE_NAME => 'DEMAND_SOURCE_NAME',
         self::DEMAND_SUBCHANNEL => 'DEMAND_SUBCHANNEL',
         self::DEMAND_SUBCHANNEL_NAME => 'DEMAND_SUBCHANNEL_NAME',
@@ -6782,6 +7470,7 @@ class Dimension
         self::KEY_VALUES_SET => 'KEY_VALUES_SET',
         self::LINE_ITEM_AGENCY => 'LINE_ITEM_AGENCY',
         self::LINE_ITEM_ARCHIVED => 'LINE_ITEM_ARCHIVED',
+        self::LINE_ITEM_AVERAGE_NUMBER_OF_VIEWERS => 'LINE_ITEM_AVERAGE_NUMBER_OF_VIEWERS',
         self::LINE_ITEM_COMPANION_DELIVERY_OPTION => 'LINE_ITEM_COMPANION_DELIVERY_OPTION',
         self::LINE_ITEM_COMPANION_DELIVERY_OPTION_NAME => 'LINE_ITEM_COMPANION_DELIVERY_OPTION_NAME',
         self::LINE_ITEM_COMPUTED_STATUS => 'LINE_ITEM_COMPUTED_STATUS',
@@ -6867,7 +7556,14 @@ class Dimension
         self::NATIVE_AD_FORMAT_NAME => 'NATIVE_AD_FORMAT_NAME',
         self::NATIVE_STYLE_ID => 'NATIVE_STYLE_ID',
         self::NATIVE_STYLE_NAME => 'NATIVE_STYLE_NAME',
-        self::NO_FILL_REASON_CATEGORY => 'NO_FILL_REASON_CATEGORY',
+        self::NIELSEN_DEMOGRAPHICS => 'NIELSEN_DEMOGRAPHICS',
+        self::NIELSEN_DEMOGRAPHICS_NAME => 'NIELSEN_DEMOGRAPHICS_NAME',
+        self::NIELSEN_DEVICE => 'NIELSEN_DEVICE',
+        self::NIELSEN_DEVICE_NAME => 'NIELSEN_DEVICE_NAME',
+        self::NIELSEN_IN_TARGET => 'NIELSEN_IN_TARGET',
+        self::NIELSEN_RESTATEMENT_DATE => 'NIELSEN_RESTATEMENT_DATE',
+        self::NIELSEN_SEGMENT => 'NIELSEN_SEGMENT',
+        self::NIELSEN_SITE_URL => 'NIELSEN_SITE_URL',
         self::NO_FILL_REASON_CATEGORY_NAME => 'NO_FILL_REASON_CATEGORY_NAME',
         self::OPERATING_SYSTEM_CATEGORY => 'OPERATING_SYSTEM_CATEGORY',
         self::OPERATING_SYSTEM_CATEGORY_NAME => 'OPERATING_SYSTEM_CATEGORY_NAME',
@@ -6925,10 +7621,10 @@ class Dimension
         self::PREDICTED_VIEWABILITY_BUCKET_NAME => 'PREDICTED_VIEWABILITY_BUCKET_NAME',
         self::PRESENTED_SECURE_SIGNAL_ID => 'PRESENTED_SECURE_SIGNAL_ID',
         self::PRESENTED_SECURE_SIGNAL_NAME => 'PRESENTED_SECURE_SIGNAL_NAME',
+        self::PRICING_RULE_ID => 'PRICING_RULE_ID',
+        self::PRICING_RULE_NAME => 'PRICING_RULE_NAME',
         self::PRIMARY_PERSONALIZATION_ID_TYPE => 'PRIMARY_PERSONALIZATION_ID_TYPE',
         self::PRIMARY_PERSONALIZATION_ID_TYPE_NAME => 'PRIMARY_PERSONALIZATION_ID_TYPE_NAME',
-        self::PROGRAMMATIC_BUYER_ID => 'PROGRAMMATIC_BUYER_ID',
-        self::PROGRAMMATIC_BUYER_NAME => 'PROGRAMMATIC_BUYER_NAME',
         self::PROGRAMMATIC_CHANNEL => 'PROGRAMMATIC_CHANNEL',
         self::PROGRAMMATIC_CHANNEL_NAME => 'PROGRAMMATIC_CHANNEL_NAME',
         self::PUBLISHER_PROVIDED_SIGNALS_ALL_LEVELS_EXTERNAL_CODE => 'PUBLISHER_PROVIDED_SIGNALS_ALL_LEVELS_EXTERNAL_CODE',
@@ -6950,7 +7646,6 @@ class Dimension
         self::PUBLISHER_PROVIDED_SIGNAL_DATA_PROVIDER_NAME => 'PUBLISHER_PROVIDED_SIGNAL_DATA_PROVIDER_NAME',
         self::REGION_ID => 'REGION_ID',
         self::REGION_NAME => 'REGION_NAME',
-        self::REJECTION_CLASS_CATEGORY => 'REJECTION_CLASS_CATEGORY',
         self::REJECTION_CLASS_CATEGORY_NAME => 'REJECTION_CLASS_CATEGORY_NAME',
         self::RENDERED_CREATIVE_SIZE => 'RENDERED_CREATIVE_SIZE',
         self::REQUESTED_AD_SIZES => 'REQUESTED_AD_SIZES',
@@ -6965,6 +7660,7 @@ class Dimension
         self::TARGETING_NAME => 'TARGETING_NAME',
         self::TARGETING_TYPE => 'TARGETING_TYPE',
         self::TARGETING_TYPE_NAME => 'TARGETING_TYPE_NAME',
+        self::TARGETS_CUSTOMER_MATCHING_LIST => 'TARGETS_CUSTOMER_MATCHING_LIST',
         self::THIRD_PARTY_ID_STATUS => 'THIRD_PARTY_ID_STATUS',
         self::THIRD_PARTY_ID_STATUS_NAME => 'THIRD_PARTY_ID_STATUS_NAME',
         self::TOPICS_STATUS => 'TOPICS_STATUS',
@@ -6972,8 +7668,6 @@ class Dimension
         self::TOP_PRIVATE_DOMAIN => 'TOP_PRIVATE_DOMAIN',
         self::TRAFFIC_SOURCE => 'TRAFFIC_SOURCE',
         self::TRAFFIC_SOURCE_NAME => 'TRAFFIC_SOURCE_NAME',
-        self::UNIFIED_PRICING_RULE_ID => 'UNIFIED_PRICING_RULE_ID',
-        self::UNIFIED_PRICING_RULE_NAME => 'UNIFIED_PRICING_RULE_NAME',
         self::URL => 'URL',
         self::URL_ID => 'URL_ID',
         self::USER_MESSAGES_CHOICE => 'USER_MESSAGES_CHOICE',
@@ -7055,6 +7749,36 @@ class Dimension
         self::LINE_ITEM_CUSTOM_FIELD_12_VALUE => 'LINE_ITEM_CUSTOM_FIELD_12_VALUE',
         self::LINE_ITEM_CUSTOM_FIELD_13_VALUE => 'LINE_ITEM_CUSTOM_FIELD_13_VALUE',
         self::LINE_ITEM_CUSTOM_FIELD_14_VALUE => 'LINE_ITEM_CUSTOM_FIELD_14_VALUE',
+        self::LINE_ITEM_CUSTOM_FIELD_0_VALUE_DOUBLE => 'LINE_ITEM_CUSTOM_FIELD_0_VALUE_DOUBLE',
+        self::LINE_ITEM_CUSTOM_FIELD_1_VALUE_DOUBLE => 'LINE_ITEM_CUSTOM_FIELD_1_VALUE_DOUBLE',
+        self::LINE_ITEM_CUSTOM_FIELD_2_VALUE_DOUBLE => 'LINE_ITEM_CUSTOM_FIELD_2_VALUE_DOUBLE',
+        self::LINE_ITEM_CUSTOM_FIELD_3_VALUE_DOUBLE => 'LINE_ITEM_CUSTOM_FIELD_3_VALUE_DOUBLE',
+        self::LINE_ITEM_CUSTOM_FIELD_4_VALUE_DOUBLE => 'LINE_ITEM_CUSTOM_FIELD_4_VALUE_DOUBLE',
+        self::LINE_ITEM_CUSTOM_FIELD_5_VALUE_DOUBLE => 'LINE_ITEM_CUSTOM_FIELD_5_VALUE_DOUBLE',
+        self::LINE_ITEM_CUSTOM_FIELD_6_VALUE_DOUBLE => 'LINE_ITEM_CUSTOM_FIELD_6_VALUE_DOUBLE',
+        self::LINE_ITEM_CUSTOM_FIELD_7_VALUE_DOUBLE => 'LINE_ITEM_CUSTOM_FIELD_7_VALUE_DOUBLE',
+        self::LINE_ITEM_CUSTOM_FIELD_8_VALUE_DOUBLE => 'LINE_ITEM_CUSTOM_FIELD_8_VALUE_DOUBLE',
+        self::LINE_ITEM_CUSTOM_FIELD_9_VALUE_DOUBLE => 'LINE_ITEM_CUSTOM_FIELD_9_VALUE_DOUBLE',
+        self::LINE_ITEM_CUSTOM_FIELD_10_VALUE_DOUBLE => 'LINE_ITEM_CUSTOM_FIELD_10_VALUE_DOUBLE',
+        self::LINE_ITEM_CUSTOM_FIELD_11_VALUE_DOUBLE => 'LINE_ITEM_CUSTOM_FIELD_11_VALUE_DOUBLE',
+        self::LINE_ITEM_CUSTOM_FIELD_12_VALUE_DOUBLE => 'LINE_ITEM_CUSTOM_FIELD_12_VALUE_DOUBLE',
+        self::LINE_ITEM_CUSTOM_FIELD_13_VALUE_DOUBLE => 'LINE_ITEM_CUSTOM_FIELD_13_VALUE_DOUBLE',
+        self::LINE_ITEM_CUSTOM_FIELD_14_VALUE_DOUBLE => 'LINE_ITEM_CUSTOM_FIELD_14_VALUE_DOUBLE',
+        self::LINE_ITEM_CUSTOM_FIELD_0_VALUE_BOOL => 'LINE_ITEM_CUSTOM_FIELD_0_VALUE_BOOL',
+        self::LINE_ITEM_CUSTOM_FIELD_1_VALUE_BOOL => 'LINE_ITEM_CUSTOM_FIELD_1_VALUE_BOOL',
+        self::LINE_ITEM_CUSTOM_FIELD_2_VALUE_BOOL => 'LINE_ITEM_CUSTOM_FIELD_2_VALUE_BOOL',
+        self::LINE_ITEM_CUSTOM_FIELD_3_VALUE_BOOL => 'LINE_ITEM_CUSTOM_FIELD_3_VALUE_BOOL',
+        self::LINE_ITEM_CUSTOM_FIELD_4_VALUE_BOOL => 'LINE_ITEM_CUSTOM_FIELD_4_VALUE_BOOL',
+        self::LINE_ITEM_CUSTOM_FIELD_5_VALUE_BOOL => 'LINE_ITEM_CUSTOM_FIELD_5_VALUE_BOOL',
+        self::LINE_ITEM_CUSTOM_FIELD_6_VALUE_BOOL => 'LINE_ITEM_CUSTOM_FIELD_6_VALUE_BOOL',
+        self::LINE_ITEM_CUSTOM_FIELD_7_VALUE_BOOL => 'LINE_ITEM_CUSTOM_FIELD_7_VALUE_BOOL',
+        self::LINE_ITEM_CUSTOM_FIELD_8_VALUE_BOOL => 'LINE_ITEM_CUSTOM_FIELD_8_VALUE_BOOL',
+        self::LINE_ITEM_CUSTOM_FIELD_9_VALUE_BOOL => 'LINE_ITEM_CUSTOM_FIELD_9_VALUE_BOOL',
+        self::LINE_ITEM_CUSTOM_FIELD_10_VALUE_BOOL => 'LINE_ITEM_CUSTOM_FIELD_10_VALUE_BOOL',
+        self::LINE_ITEM_CUSTOM_FIELD_11_VALUE_BOOL => 'LINE_ITEM_CUSTOM_FIELD_11_VALUE_BOOL',
+        self::LINE_ITEM_CUSTOM_FIELD_12_VALUE_BOOL => 'LINE_ITEM_CUSTOM_FIELD_12_VALUE_BOOL',
+        self::LINE_ITEM_CUSTOM_FIELD_13_VALUE_BOOL => 'LINE_ITEM_CUSTOM_FIELD_13_VALUE_BOOL',
+        self::LINE_ITEM_CUSTOM_FIELD_14_VALUE_BOOL => 'LINE_ITEM_CUSTOM_FIELD_14_VALUE_BOOL',
         self::ORDER_CUSTOM_FIELD_0_OPTION_ID => 'ORDER_CUSTOM_FIELD_0_OPTION_ID',
         self::ORDER_CUSTOM_FIELD_1_OPTION_ID => 'ORDER_CUSTOM_FIELD_1_OPTION_ID',
         self::ORDER_CUSTOM_FIELD_2_OPTION_ID => 'ORDER_CUSTOM_FIELD_2_OPTION_ID',
@@ -7085,6 +7809,36 @@ class Dimension
         self::ORDER_CUSTOM_FIELD_12_VALUE => 'ORDER_CUSTOM_FIELD_12_VALUE',
         self::ORDER_CUSTOM_FIELD_13_VALUE => 'ORDER_CUSTOM_FIELD_13_VALUE',
         self::ORDER_CUSTOM_FIELD_14_VALUE => 'ORDER_CUSTOM_FIELD_14_VALUE',
+        self::ORDER_CUSTOM_FIELD_0_VALUE_DOUBLE => 'ORDER_CUSTOM_FIELD_0_VALUE_DOUBLE',
+        self::ORDER_CUSTOM_FIELD_1_VALUE_DOUBLE => 'ORDER_CUSTOM_FIELD_1_VALUE_DOUBLE',
+        self::ORDER_CUSTOM_FIELD_2_VALUE_DOUBLE => 'ORDER_CUSTOM_FIELD_2_VALUE_DOUBLE',
+        self::ORDER_CUSTOM_FIELD_3_VALUE_DOUBLE => 'ORDER_CUSTOM_FIELD_3_VALUE_DOUBLE',
+        self::ORDER_CUSTOM_FIELD_4_VALUE_DOUBLE => 'ORDER_CUSTOM_FIELD_4_VALUE_DOUBLE',
+        self::ORDER_CUSTOM_FIELD_5_VALUE_DOUBLE => 'ORDER_CUSTOM_FIELD_5_VALUE_DOUBLE',
+        self::ORDER_CUSTOM_FIELD_6_VALUE_DOUBLE => 'ORDER_CUSTOM_FIELD_6_VALUE_DOUBLE',
+        self::ORDER_CUSTOM_FIELD_7_VALUE_DOUBLE => 'ORDER_CUSTOM_FIELD_7_VALUE_DOUBLE',
+        self::ORDER_CUSTOM_FIELD_8_VALUE_DOUBLE => 'ORDER_CUSTOM_FIELD_8_VALUE_DOUBLE',
+        self::ORDER_CUSTOM_FIELD_9_VALUE_DOUBLE => 'ORDER_CUSTOM_FIELD_9_VALUE_DOUBLE',
+        self::ORDER_CUSTOM_FIELD_10_VALUE_DOUBLE => 'ORDER_CUSTOM_FIELD_10_VALUE_DOUBLE',
+        self::ORDER_CUSTOM_FIELD_11_VALUE_DOUBLE => 'ORDER_CUSTOM_FIELD_11_VALUE_DOUBLE',
+        self::ORDER_CUSTOM_FIELD_12_VALUE_DOUBLE => 'ORDER_CUSTOM_FIELD_12_VALUE_DOUBLE',
+        self::ORDER_CUSTOM_FIELD_13_VALUE_DOUBLE => 'ORDER_CUSTOM_FIELD_13_VALUE_DOUBLE',
+        self::ORDER_CUSTOM_FIELD_14_VALUE_DOUBLE => 'ORDER_CUSTOM_FIELD_14_VALUE_DOUBLE',
+        self::ORDER_CUSTOM_FIELD_0_VALUE_BOOL => 'ORDER_CUSTOM_FIELD_0_VALUE_BOOL',
+        self::ORDER_CUSTOM_FIELD_1_VALUE_BOOL => 'ORDER_CUSTOM_FIELD_1_VALUE_BOOL',
+        self::ORDER_CUSTOM_FIELD_2_VALUE_BOOL => 'ORDER_CUSTOM_FIELD_2_VALUE_BOOL',
+        self::ORDER_CUSTOM_FIELD_3_VALUE_BOOL => 'ORDER_CUSTOM_FIELD_3_VALUE_BOOL',
+        self::ORDER_CUSTOM_FIELD_4_VALUE_BOOL => 'ORDER_CUSTOM_FIELD_4_VALUE_BOOL',
+        self::ORDER_CUSTOM_FIELD_5_VALUE_BOOL => 'ORDER_CUSTOM_FIELD_5_VALUE_BOOL',
+        self::ORDER_CUSTOM_FIELD_6_VALUE_BOOL => 'ORDER_CUSTOM_FIELD_6_VALUE_BOOL',
+        self::ORDER_CUSTOM_FIELD_7_VALUE_BOOL => 'ORDER_CUSTOM_FIELD_7_VALUE_BOOL',
+        self::ORDER_CUSTOM_FIELD_8_VALUE_BOOL => 'ORDER_CUSTOM_FIELD_8_VALUE_BOOL',
+        self::ORDER_CUSTOM_FIELD_9_VALUE_BOOL => 'ORDER_CUSTOM_FIELD_9_VALUE_BOOL',
+        self::ORDER_CUSTOM_FIELD_10_VALUE_BOOL => 'ORDER_CUSTOM_FIELD_10_VALUE_BOOL',
+        self::ORDER_CUSTOM_FIELD_11_VALUE_BOOL => 'ORDER_CUSTOM_FIELD_11_VALUE_BOOL',
+        self::ORDER_CUSTOM_FIELD_12_VALUE_BOOL => 'ORDER_CUSTOM_FIELD_12_VALUE_BOOL',
+        self::ORDER_CUSTOM_FIELD_13_VALUE_BOOL => 'ORDER_CUSTOM_FIELD_13_VALUE_BOOL',
+        self::ORDER_CUSTOM_FIELD_14_VALUE_BOOL => 'ORDER_CUSTOM_FIELD_14_VALUE_BOOL',
         self::CREATIVE_CUSTOM_FIELD_0_OPTION_ID => 'CREATIVE_CUSTOM_FIELD_0_OPTION_ID',
         self::CREATIVE_CUSTOM_FIELD_1_OPTION_ID => 'CREATIVE_CUSTOM_FIELD_1_OPTION_ID',
         self::CREATIVE_CUSTOM_FIELD_2_OPTION_ID => 'CREATIVE_CUSTOM_FIELD_2_OPTION_ID',
@@ -7115,96 +7869,56 @@ class Dimension
         self::CREATIVE_CUSTOM_FIELD_12_VALUE => 'CREATIVE_CUSTOM_FIELD_12_VALUE',
         self::CREATIVE_CUSTOM_FIELD_13_VALUE => 'CREATIVE_CUSTOM_FIELD_13_VALUE',
         self::CREATIVE_CUSTOM_FIELD_14_VALUE => 'CREATIVE_CUSTOM_FIELD_14_VALUE',
-        self::BACKFILL_LINE_ITEM_CUSTOM_FIELD_0_OPTION_ID => 'BACKFILL_LINE_ITEM_CUSTOM_FIELD_0_OPTION_ID',
-        self::BACKFILL_LINE_ITEM_CUSTOM_FIELD_1_OPTION_ID => 'BACKFILL_LINE_ITEM_CUSTOM_FIELD_1_OPTION_ID',
-        self::BACKFILL_LINE_ITEM_CUSTOM_FIELD_2_OPTION_ID => 'BACKFILL_LINE_ITEM_CUSTOM_FIELD_2_OPTION_ID',
-        self::BACKFILL_LINE_ITEM_CUSTOM_FIELD_3_OPTION_ID => 'BACKFILL_LINE_ITEM_CUSTOM_FIELD_3_OPTION_ID',
-        self::BACKFILL_LINE_ITEM_CUSTOM_FIELD_4_OPTION_ID => 'BACKFILL_LINE_ITEM_CUSTOM_FIELD_4_OPTION_ID',
-        self::BACKFILL_LINE_ITEM_CUSTOM_FIELD_5_OPTION_ID => 'BACKFILL_LINE_ITEM_CUSTOM_FIELD_5_OPTION_ID',
-        self::BACKFILL_LINE_ITEM_CUSTOM_FIELD_6_OPTION_ID => 'BACKFILL_LINE_ITEM_CUSTOM_FIELD_6_OPTION_ID',
-        self::BACKFILL_LINE_ITEM_CUSTOM_FIELD_7_OPTION_ID => 'BACKFILL_LINE_ITEM_CUSTOM_FIELD_7_OPTION_ID',
-        self::BACKFILL_LINE_ITEM_CUSTOM_FIELD_8_OPTION_ID => 'BACKFILL_LINE_ITEM_CUSTOM_FIELD_8_OPTION_ID',
-        self::BACKFILL_LINE_ITEM_CUSTOM_FIELD_9_OPTION_ID => 'BACKFILL_LINE_ITEM_CUSTOM_FIELD_9_OPTION_ID',
-        self::BACKFILL_LINE_ITEM_CUSTOM_FIELD_10_OPTION_ID => 'BACKFILL_LINE_ITEM_CUSTOM_FIELD_10_OPTION_ID',
-        self::BACKFILL_LINE_ITEM_CUSTOM_FIELD_11_OPTION_ID => 'BACKFILL_LINE_ITEM_CUSTOM_FIELD_11_OPTION_ID',
-        self::BACKFILL_LINE_ITEM_CUSTOM_FIELD_12_OPTION_ID => 'BACKFILL_LINE_ITEM_CUSTOM_FIELD_12_OPTION_ID',
-        self::BACKFILL_LINE_ITEM_CUSTOM_FIELD_13_OPTION_ID => 'BACKFILL_LINE_ITEM_CUSTOM_FIELD_13_OPTION_ID',
-        self::BACKFILL_LINE_ITEM_CUSTOM_FIELD_14_OPTION_ID => 'BACKFILL_LINE_ITEM_CUSTOM_FIELD_14_OPTION_ID',
-        self::BACKFILL_LINE_ITEM_CUSTOM_FIELD_0_VALUE => 'BACKFILL_LINE_ITEM_CUSTOM_FIELD_0_VALUE',
-        self::BACKFILL_LINE_ITEM_CUSTOM_FIELD_1_VALUE => 'BACKFILL_LINE_ITEM_CUSTOM_FIELD_1_VALUE',
-        self::BACKFILL_LINE_ITEM_CUSTOM_FIELD_2_VALUE => 'BACKFILL_LINE_ITEM_CUSTOM_FIELD_2_VALUE',
-        self::BACKFILL_LINE_ITEM_CUSTOM_FIELD_3_VALUE => 'BACKFILL_LINE_ITEM_CUSTOM_FIELD_3_VALUE',
-        self::BACKFILL_LINE_ITEM_CUSTOM_FIELD_4_VALUE => 'BACKFILL_LINE_ITEM_CUSTOM_FIELD_4_VALUE',
-        self::BACKFILL_LINE_ITEM_CUSTOM_FIELD_5_VALUE => 'BACKFILL_LINE_ITEM_CUSTOM_FIELD_5_VALUE',
-        self::BACKFILL_LINE_ITEM_CUSTOM_FIELD_6_VALUE => 'BACKFILL_LINE_ITEM_CUSTOM_FIELD_6_VALUE',
-        self::BACKFILL_LINE_ITEM_CUSTOM_FIELD_7_VALUE => 'BACKFILL_LINE_ITEM_CUSTOM_FIELD_7_VALUE',
-        self::BACKFILL_LINE_ITEM_CUSTOM_FIELD_8_VALUE => 'BACKFILL_LINE_ITEM_CUSTOM_FIELD_8_VALUE',
-        self::BACKFILL_LINE_ITEM_CUSTOM_FIELD_9_VALUE => 'BACKFILL_LINE_ITEM_CUSTOM_FIELD_9_VALUE',
-        self::BACKFILL_LINE_ITEM_CUSTOM_FIELD_10_VALUE => 'BACKFILL_LINE_ITEM_CUSTOM_FIELD_10_VALUE',
-        self::BACKFILL_LINE_ITEM_CUSTOM_FIELD_11_VALUE => 'BACKFILL_LINE_ITEM_CUSTOM_FIELD_11_VALUE',
-        self::BACKFILL_LINE_ITEM_CUSTOM_FIELD_12_VALUE => 'BACKFILL_LINE_ITEM_CUSTOM_FIELD_12_VALUE',
-        self::BACKFILL_LINE_ITEM_CUSTOM_FIELD_13_VALUE => 'BACKFILL_LINE_ITEM_CUSTOM_FIELD_13_VALUE',
-        self::BACKFILL_LINE_ITEM_CUSTOM_FIELD_14_VALUE => 'BACKFILL_LINE_ITEM_CUSTOM_FIELD_14_VALUE',
-        self::BACKFILL_ORDER_CUSTOM_FIELD_0_OPTION_ID => 'BACKFILL_ORDER_CUSTOM_FIELD_0_OPTION_ID',
-        self::BACKFILL_ORDER_CUSTOM_FIELD_1_OPTION_ID => 'BACKFILL_ORDER_CUSTOM_FIELD_1_OPTION_ID',
-        self::BACKFILL_ORDER_CUSTOM_FIELD_2_OPTION_ID => 'BACKFILL_ORDER_CUSTOM_FIELD_2_OPTION_ID',
-        self::BACKFILL_ORDER_CUSTOM_FIELD_3_OPTION_ID => 'BACKFILL_ORDER_CUSTOM_FIELD_3_OPTION_ID',
-        self::BACKFILL_ORDER_CUSTOM_FIELD_4_OPTION_ID => 'BACKFILL_ORDER_CUSTOM_FIELD_4_OPTION_ID',
-        self::BACKFILL_ORDER_CUSTOM_FIELD_5_OPTION_ID => 'BACKFILL_ORDER_CUSTOM_FIELD_5_OPTION_ID',
-        self::BACKFILL_ORDER_CUSTOM_FIELD_6_OPTION_ID => 'BACKFILL_ORDER_CUSTOM_FIELD_6_OPTION_ID',
-        self::BACKFILL_ORDER_CUSTOM_FIELD_7_OPTION_ID => 'BACKFILL_ORDER_CUSTOM_FIELD_7_OPTION_ID',
-        self::BACKFILL_ORDER_CUSTOM_FIELD_8_OPTION_ID => 'BACKFILL_ORDER_CUSTOM_FIELD_8_OPTION_ID',
-        self::BACKFILL_ORDER_CUSTOM_FIELD_9_OPTION_ID => 'BACKFILL_ORDER_CUSTOM_FIELD_9_OPTION_ID',
-        self::BACKFILL_ORDER_CUSTOM_FIELD_10_OPTION_ID => 'BACKFILL_ORDER_CUSTOM_FIELD_10_OPTION_ID',
-        self::BACKFILL_ORDER_CUSTOM_FIELD_11_OPTION_ID => 'BACKFILL_ORDER_CUSTOM_FIELD_11_OPTION_ID',
-        self::BACKFILL_ORDER_CUSTOM_FIELD_12_OPTION_ID => 'BACKFILL_ORDER_CUSTOM_FIELD_12_OPTION_ID',
-        self::BACKFILL_ORDER_CUSTOM_FIELD_13_OPTION_ID => 'BACKFILL_ORDER_CUSTOM_FIELD_13_OPTION_ID',
-        self::BACKFILL_ORDER_CUSTOM_FIELD_14_OPTION_ID => 'BACKFILL_ORDER_CUSTOM_FIELD_14_OPTION_ID',
-        self::BACKFILL_ORDER_CUSTOM_FIELD_0_VALUE => 'BACKFILL_ORDER_CUSTOM_FIELD_0_VALUE',
-        self::BACKFILL_ORDER_CUSTOM_FIELD_1_VALUE => 'BACKFILL_ORDER_CUSTOM_FIELD_1_VALUE',
-        self::BACKFILL_ORDER_CUSTOM_FIELD_2_VALUE => 'BACKFILL_ORDER_CUSTOM_FIELD_2_VALUE',
-        self::BACKFILL_ORDER_CUSTOM_FIELD_3_VALUE => 'BACKFILL_ORDER_CUSTOM_FIELD_3_VALUE',
-        self::BACKFILL_ORDER_CUSTOM_FIELD_4_VALUE => 'BACKFILL_ORDER_CUSTOM_FIELD_4_VALUE',
-        self::BACKFILL_ORDER_CUSTOM_FIELD_5_VALUE => 'BACKFILL_ORDER_CUSTOM_FIELD_5_VALUE',
-        self::BACKFILL_ORDER_CUSTOM_FIELD_6_VALUE => 'BACKFILL_ORDER_CUSTOM_FIELD_6_VALUE',
-        self::BACKFILL_ORDER_CUSTOM_FIELD_7_VALUE => 'BACKFILL_ORDER_CUSTOM_FIELD_7_VALUE',
-        self::BACKFILL_ORDER_CUSTOM_FIELD_8_VALUE => 'BACKFILL_ORDER_CUSTOM_FIELD_8_VALUE',
-        self::BACKFILL_ORDER_CUSTOM_FIELD_9_VALUE => 'BACKFILL_ORDER_CUSTOM_FIELD_9_VALUE',
-        self::BACKFILL_ORDER_CUSTOM_FIELD_10_VALUE => 'BACKFILL_ORDER_CUSTOM_FIELD_10_VALUE',
-        self::BACKFILL_ORDER_CUSTOM_FIELD_11_VALUE => 'BACKFILL_ORDER_CUSTOM_FIELD_11_VALUE',
-        self::BACKFILL_ORDER_CUSTOM_FIELD_12_VALUE => 'BACKFILL_ORDER_CUSTOM_FIELD_12_VALUE',
-        self::BACKFILL_ORDER_CUSTOM_FIELD_13_VALUE => 'BACKFILL_ORDER_CUSTOM_FIELD_13_VALUE',
-        self::BACKFILL_ORDER_CUSTOM_FIELD_14_VALUE => 'BACKFILL_ORDER_CUSTOM_FIELD_14_VALUE',
-        self::BACKFILL_CREATIVE_CUSTOM_FIELD_0_OPTION_ID => 'BACKFILL_CREATIVE_CUSTOM_FIELD_0_OPTION_ID',
-        self::BACKFILL_CREATIVE_CUSTOM_FIELD_1_OPTION_ID => 'BACKFILL_CREATIVE_CUSTOM_FIELD_1_OPTION_ID',
-        self::BACKFILL_CREATIVE_CUSTOM_FIELD_2_OPTION_ID => 'BACKFILL_CREATIVE_CUSTOM_FIELD_2_OPTION_ID',
-        self::BACKFILL_CREATIVE_CUSTOM_FIELD_3_OPTION_ID => 'BACKFILL_CREATIVE_CUSTOM_FIELD_3_OPTION_ID',
-        self::BACKFILL_CREATIVE_CUSTOM_FIELD_4_OPTION_ID => 'BACKFILL_CREATIVE_CUSTOM_FIELD_4_OPTION_ID',
-        self::BACKFILL_CREATIVE_CUSTOM_FIELD_5_OPTION_ID => 'BACKFILL_CREATIVE_CUSTOM_FIELD_5_OPTION_ID',
-        self::BACKFILL_CREATIVE_CUSTOM_FIELD_6_OPTION_ID => 'BACKFILL_CREATIVE_CUSTOM_FIELD_6_OPTION_ID',
-        self::BACKFILL_CREATIVE_CUSTOM_FIELD_7_OPTION_ID => 'BACKFILL_CREATIVE_CUSTOM_FIELD_7_OPTION_ID',
-        self::BACKFILL_CREATIVE_CUSTOM_FIELD_8_OPTION_ID => 'BACKFILL_CREATIVE_CUSTOM_FIELD_8_OPTION_ID',
-        self::BACKFILL_CREATIVE_CUSTOM_FIELD_9_OPTION_ID => 'BACKFILL_CREATIVE_CUSTOM_FIELD_9_OPTION_ID',
-        self::BACKFILL_CREATIVE_CUSTOM_FIELD_10_OPTION_ID => 'BACKFILL_CREATIVE_CUSTOM_FIELD_10_OPTION_ID',
-        self::BACKFILL_CREATIVE_CUSTOM_FIELD_11_OPTION_ID => 'BACKFILL_CREATIVE_CUSTOM_FIELD_11_OPTION_ID',
-        self::BACKFILL_CREATIVE_CUSTOM_FIELD_12_OPTION_ID => 'BACKFILL_CREATIVE_CUSTOM_FIELD_12_OPTION_ID',
-        self::BACKFILL_CREATIVE_CUSTOM_FIELD_13_OPTION_ID => 'BACKFILL_CREATIVE_CUSTOM_FIELD_13_OPTION_ID',
-        self::BACKFILL_CREATIVE_CUSTOM_FIELD_14_OPTION_ID => 'BACKFILL_CREATIVE_CUSTOM_FIELD_14_OPTION_ID',
-        self::BACKFILL_CREATIVE_CUSTOM_FIELD_0_VALUE => 'BACKFILL_CREATIVE_CUSTOM_FIELD_0_VALUE',
-        self::BACKFILL_CREATIVE_CUSTOM_FIELD_1_VALUE => 'BACKFILL_CREATIVE_CUSTOM_FIELD_1_VALUE',
-        self::BACKFILL_CREATIVE_CUSTOM_FIELD_2_VALUE => 'BACKFILL_CREATIVE_CUSTOM_FIELD_2_VALUE',
-        self::BACKFILL_CREATIVE_CUSTOM_FIELD_3_VALUE => 'BACKFILL_CREATIVE_CUSTOM_FIELD_3_VALUE',
-        self::BACKFILL_CREATIVE_CUSTOM_FIELD_4_VALUE => 'BACKFILL_CREATIVE_CUSTOM_FIELD_4_VALUE',
-        self::BACKFILL_CREATIVE_CUSTOM_FIELD_5_VALUE => 'BACKFILL_CREATIVE_CUSTOM_FIELD_5_VALUE',
-        self::BACKFILL_CREATIVE_CUSTOM_FIELD_6_VALUE => 'BACKFILL_CREATIVE_CUSTOM_FIELD_6_VALUE',
-        self::BACKFILL_CREATIVE_CUSTOM_FIELD_7_VALUE => 'BACKFILL_CREATIVE_CUSTOM_FIELD_7_VALUE',
-        self::BACKFILL_CREATIVE_CUSTOM_FIELD_8_VALUE => 'BACKFILL_CREATIVE_CUSTOM_FIELD_8_VALUE',
-        self::BACKFILL_CREATIVE_CUSTOM_FIELD_9_VALUE => 'BACKFILL_CREATIVE_CUSTOM_FIELD_9_VALUE',
-        self::BACKFILL_CREATIVE_CUSTOM_FIELD_10_VALUE => 'BACKFILL_CREATIVE_CUSTOM_FIELD_10_VALUE',
-        self::BACKFILL_CREATIVE_CUSTOM_FIELD_11_VALUE => 'BACKFILL_CREATIVE_CUSTOM_FIELD_11_VALUE',
-        self::BACKFILL_CREATIVE_CUSTOM_FIELD_12_VALUE => 'BACKFILL_CREATIVE_CUSTOM_FIELD_12_VALUE',
-        self::BACKFILL_CREATIVE_CUSTOM_FIELD_13_VALUE => 'BACKFILL_CREATIVE_CUSTOM_FIELD_13_VALUE',
-        self::BACKFILL_CREATIVE_CUSTOM_FIELD_14_VALUE => 'BACKFILL_CREATIVE_CUSTOM_FIELD_14_VALUE',
+        self::CREATIVE_CUSTOM_FIELD_0_VALUE_DOUBLE => 'CREATIVE_CUSTOM_FIELD_0_VALUE_DOUBLE',
+        self::CREATIVE_CUSTOM_FIELD_1_VALUE_DOUBLE => 'CREATIVE_CUSTOM_FIELD_1_VALUE_DOUBLE',
+        self::CREATIVE_CUSTOM_FIELD_2_VALUE_DOUBLE => 'CREATIVE_CUSTOM_FIELD_2_VALUE_DOUBLE',
+        self::CREATIVE_CUSTOM_FIELD_3_VALUE_DOUBLE => 'CREATIVE_CUSTOM_FIELD_3_VALUE_DOUBLE',
+        self::CREATIVE_CUSTOM_FIELD_4_VALUE_DOUBLE => 'CREATIVE_CUSTOM_FIELD_4_VALUE_DOUBLE',
+        self::CREATIVE_CUSTOM_FIELD_5_VALUE_DOUBLE => 'CREATIVE_CUSTOM_FIELD_5_VALUE_DOUBLE',
+        self::CREATIVE_CUSTOM_FIELD_6_VALUE_DOUBLE => 'CREATIVE_CUSTOM_FIELD_6_VALUE_DOUBLE',
+        self::CREATIVE_CUSTOM_FIELD_7_VALUE_DOUBLE => 'CREATIVE_CUSTOM_FIELD_7_VALUE_DOUBLE',
+        self::CREATIVE_CUSTOM_FIELD_8_VALUE_DOUBLE => 'CREATIVE_CUSTOM_FIELD_8_VALUE_DOUBLE',
+        self::CREATIVE_CUSTOM_FIELD_9_VALUE_DOUBLE => 'CREATIVE_CUSTOM_FIELD_9_VALUE_DOUBLE',
+        self::CREATIVE_CUSTOM_FIELD_10_VALUE_DOUBLE => 'CREATIVE_CUSTOM_FIELD_10_VALUE_DOUBLE',
+        self::CREATIVE_CUSTOM_FIELD_11_VALUE_DOUBLE => 'CREATIVE_CUSTOM_FIELD_11_VALUE_DOUBLE',
+        self::CREATIVE_CUSTOM_FIELD_12_VALUE_DOUBLE => 'CREATIVE_CUSTOM_FIELD_12_VALUE_DOUBLE',
+        self::CREATIVE_CUSTOM_FIELD_13_VALUE_DOUBLE => 'CREATIVE_CUSTOM_FIELD_13_VALUE_DOUBLE',
+        self::CREATIVE_CUSTOM_FIELD_14_VALUE_DOUBLE => 'CREATIVE_CUSTOM_FIELD_14_VALUE_DOUBLE',
+        self::CREATIVE_CUSTOM_FIELD_0_VALUE_BOOL => 'CREATIVE_CUSTOM_FIELD_0_VALUE_BOOL',
+        self::CREATIVE_CUSTOM_FIELD_1_VALUE_BOOL => 'CREATIVE_CUSTOM_FIELD_1_VALUE_BOOL',
+        self::CREATIVE_CUSTOM_FIELD_2_VALUE_BOOL => 'CREATIVE_CUSTOM_FIELD_2_VALUE_BOOL',
+        self::CREATIVE_CUSTOM_FIELD_3_VALUE_BOOL => 'CREATIVE_CUSTOM_FIELD_3_VALUE_BOOL',
+        self::CREATIVE_CUSTOM_FIELD_4_VALUE_BOOL => 'CREATIVE_CUSTOM_FIELD_4_VALUE_BOOL',
+        self::CREATIVE_CUSTOM_FIELD_5_VALUE_BOOL => 'CREATIVE_CUSTOM_FIELD_5_VALUE_BOOL',
+        self::CREATIVE_CUSTOM_FIELD_6_VALUE_BOOL => 'CREATIVE_CUSTOM_FIELD_6_VALUE_BOOL',
+        self::CREATIVE_CUSTOM_FIELD_7_VALUE_BOOL => 'CREATIVE_CUSTOM_FIELD_7_VALUE_BOOL',
+        self::CREATIVE_CUSTOM_FIELD_8_VALUE_BOOL => 'CREATIVE_CUSTOM_FIELD_8_VALUE_BOOL',
+        self::CREATIVE_CUSTOM_FIELD_9_VALUE_BOOL => 'CREATIVE_CUSTOM_FIELD_9_VALUE_BOOL',
+        self::CREATIVE_CUSTOM_FIELD_10_VALUE_BOOL => 'CREATIVE_CUSTOM_FIELD_10_VALUE_BOOL',
+        self::CREATIVE_CUSTOM_FIELD_11_VALUE_BOOL => 'CREATIVE_CUSTOM_FIELD_11_VALUE_BOOL',
+        self::CREATIVE_CUSTOM_FIELD_12_VALUE_BOOL => 'CREATIVE_CUSTOM_FIELD_12_VALUE_BOOL',
+        self::CREATIVE_CUSTOM_FIELD_13_VALUE_BOOL => 'CREATIVE_CUSTOM_FIELD_13_VALUE_BOOL',
+        self::CREATIVE_CUSTOM_FIELD_14_VALUE_BOOL => 'CREATIVE_CUSTOM_FIELD_14_VALUE_BOOL',
+        self::CMS_METADATA_DIMENSION_0_VALUE_ID => 'CMS_METADATA_DIMENSION_0_VALUE_ID',
+        self::CMS_METADATA_DIMENSION_1_VALUE_ID => 'CMS_METADATA_DIMENSION_1_VALUE_ID',
+        self::CMS_METADATA_DIMENSION_2_VALUE_ID => 'CMS_METADATA_DIMENSION_2_VALUE_ID',
+        self::CMS_METADATA_DIMENSION_3_VALUE_ID => 'CMS_METADATA_DIMENSION_3_VALUE_ID',
+        self::CMS_METADATA_DIMENSION_4_VALUE_ID => 'CMS_METADATA_DIMENSION_4_VALUE_ID',
+        self::CMS_METADATA_DIMENSION_5_VALUE_ID => 'CMS_METADATA_DIMENSION_5_VALUE_ID',
+        self::CMS_METADATA_DIMENSION_6_VALUE_ID => 'CMS_METADATA_DIMENSION_6_VALUE_ID',
+        self::CMS_METADATA_DIMENSION_7_VALUE_ID => 'CMS_METADATA_DIMENSION_7_VALUE_ID',
+        self::CMS_METADATA_DIMENSION_8_VALUE_ID => 'CMS_METADATA_DIMENSION_8_VALUE_ID',
+        self::CMS_METADATA_DIMENSION_9_VALUE_ID => 'CMS_METADATA_DIMENSION_9_VALUE_ID',
+        self::CMS_METADATA_DIMENSION_0_VALUE => 'CMS_METADATA_DIMENSION_0_VALUE',
+        self::CMS_METADATA_DIMENSION_1_VALUE => 'CMS_METADATA_DIMENSION_1_VALUE',
+        self::CMS_METADATA_DIMENSION_2_VALUE => 'CMS_METADATA_DIMENSION_2_VALUE',
+        self::CMS_METADATA_DIMENSION_3_VALUE => 'CMS_METADATA_DIMENSION_3_VALUE',
+        self::CMS_METADATA_DIMENSION_4_VALUE => 'CMS_METADATA_DIMENSION_4_VALUE',
+        self::CMS_METADATA_DIMENSION_5_VALUE => 'CMS_METADATA_DIMENSION_5_VALUE',
+        self::CMS_METADATA_DIMENSION_6_VALUE => 'CMS_METADATA_DIMENSION_6_VALUE',
+        self::CMS_METADATA_DIMENSION_7_VALUE => 'CMS_METADATA_DIMENSION_7_VALUE',
+        self::CMS_METADATA_DIMENSION_8_VALUE => 'CMS_METADATA_DIMENSION_8_VALUE',
+        self::CMS_METADATA_DIMENSION_9_VALUE => 'CMS_METADATA_DIMENSION_9_VALUE',
         self::CUSTOM_DIMENSION_0_VALUE_ID => 'CUSTOM_DIMENSION_0_VALUE_ID',
         self::CUSTOM_DIMENSION_1_VALUE_ID => 'CUSTOM_DIMENSION_1_VALUE_ID',
         self::CUSTOM_DIMENSION_2_VALUE_ID => 'CUSTOM_DIMENSION_2_VALUE_ID',
@@ -7225,6 +7939,26 @@ class Dimension
         self::CUSTOM_DIMENSION_7_VALUE => 'CUSTOM_DIMENSION_7_VALUE',
         self::CUSTOM_DIMENSION_8_VALUE => 'CUSTOM_DIMENSION_8_VALUE',
         self::CUSTOM_DIMENSION_9_VALUE => 'CUSTOM_DIMENSION_9_VALUE',
+        self::EKV_DIMENSION_0_VALUE_ID => 'EKV_DIMENSION_0_VALUE_ID',
+        self::EKV_DIMENSION_1_VALUE_ID => 'EKV_DIMENSION_1_VALUE_ID',
+        self::EKV_DIMENSION_2_VALUE_ID => 'EKV_DIMENSION_2_VALUE_ID',
+        self::EKV_DIMENSION_3_VALUE_ID => 'EKV_DIMENSION_3_VALUE_ID',
+        self::EKV_DIMENSION_4_VALUE_ID => 'EKV_DIMENSION_4_VALUE_ID',
+        self::EKV_DIMENSION_5_VALUE_ID => 'EKV_DIMENSION_5_VALUE_ID',
+        self::EKV_DIMENSION_6_VALUE_ID => 'EKV_DIMENSION_6_VALUE_ID',
+        self::EKV_DIMENSION_7_VALUE_ID => 'EKV_DIMENSION_7_VALUE_ID',
+        self::EKV_DIMENSION_8_VALUE_ID => 'EKV_DIMENSION_8_VALUE_ID',
+        self::EKV_DIMENSION_9_VALUE_ID => 'EKV_DIMENSION_9_VALUE_ID',
+        self::EKV_DIMENSION_0_VALUE => 'EKV_DIMENSION_0_VALUE',
+        self::EKV_DIMENSION_1_VALUE => 'EKV_DIMENSION_1_VALUE',
+        self::EKV_DIMENSION_2_VALUE => 'EKV_DIMENSION_2_VALUE',
+        self::EKV_DIMENSION_3_VALUE => 'EKV_DIMENSION_3_VALUE',
+        self::EKV_DIMENSION_4_VALUE => 'EKV_DIMENSION_4_VALUE',
+        self::EKV_DIMENSION_5_VALUE => 'EKV_DIMENSION_5_VALUE',
+        self::EKV_DIMENSION_6_VALUE => 'EKV_DIMENSION_6_VALUE',
+        self::EKV_DIMENSION_7_VALUE => 'EKV_DIMENSION_7_VALUE',
+        self::EKV_DIMENSION_8_VALUE => 'EKV_DIMENSION_8_VALUE',
+        self::EKV_DIMENSION_9_VALUE => 'EKV_DIMENSION_9_VALUE',
     ];
 
     public static function name($value)

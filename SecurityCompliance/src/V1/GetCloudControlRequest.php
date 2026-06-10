@@ -16,8 +16,11 @@ use Google\Protobuf\RepeatedField;
 class GetCloudControlRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of the cloud control to retrieve, in the format
-     * `organizations/{organization}/locations/{location}/cloudControls/{cloud_control}`.
+     * Required. The name of the cloud control to retrieve, in one of the
+     * following formats:
+     * `organizations/{organization}/locations/{location}/cloudControls/{cloud_control}`
+     * or
+     * `projects/{project}/locations/{location}/cloudControls/{cloud_control}`.
      * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -32,8 +35,12 @@ class GetCloudControlRequest extends \Google\Protobuf\Internal\Message
     protected $major_revision_id = 0;
 
     /**
-     * @param string $name Required. The name of the cloud control to retrieve, in the format
-     *                     `organizations/{organization}/locations/{location}/cloudControls/{cloud_control}`.
+     * @param string $name Required. The name of the cloud control to retrieve, in one of the
+     *                     following formats:
+     *                     `organizations/{organization}/locations/{location}/cloudControls/{cloud_control}`
+     *                     or
+     *                     `projects/{project}/locations/{location}/cloudControls/{cloud_control}`.
+     *
      *                     The only supported location is `global`. Please see
      *                     {@see ConfigClient::cloudControlName()} for help formatting this field.
      *
@@ -54,8 +61,11 @@ class GetCloudControlRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The name of the cloud control to retrieve, in the format
-     *           `organizations/{organization}/locations/{location}/cloudControls/{cloud_control}`.
+     *           Required. The name of the cloud control to retrieve, in one of the
+     *           following formats:
+     *           `organizations/{organization}/locations/{location}/cloudControls/{cloud_control}`
+     *           or
+     *           `projects/{project}/locations/{location}/cloudControls/{cloud_control}`.
      *           The only supported location is `global`.
      *     @type int|string $major_revision_id
      *           Optional. The major version of the cloud control to retrieve. If not
@@ -68,8 +78,11 @@ class GetCloudControlRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the cloud control to retrieve, in the format
-     * `organizations/{organization}/locations/{location}/cloudControls/{cloud_control}`.
+     * Required. The name of the cloud control to retrieve, in one of the
+     * following formats:
+     * `organizations/{organization}/locations/{location}/cloudControls/{cloud_control}`
+     * or
+     * `projects/{project}/locations/{location}/cloudControls/{cloud_control}`.
      * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -81,8 +94,11 @@ class GetCloudControlRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the cloud control to retrieve, in the format
-     * `organizations/{organization}/locations/{location}/cloudControls/{cloud_control}`.
+     * Required. The name of the cloud control to retrieve, in one of the
+     * following formats:
+     * `organizations/{organization}/locations/{location}/cloudControls/{cloud_control}`
+     * or
+     * `projects/{project}/locations/{location}/cloudControls/{cloud_control}`.
      * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>

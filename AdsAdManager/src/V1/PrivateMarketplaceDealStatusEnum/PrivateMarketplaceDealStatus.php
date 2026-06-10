@@ -49,6 +49,12 @@ class PrivateMarketplaceDealStatus
      * Generated from protobuf enum <code>BUYER_PAUSED = 5;</code>
      */
     const BUYER_PAUSED = 5;
+    /**
+     * The deal is past its end date.
+     *
+     * Generated from protobuf enum <code>COMPLETED = 6;</code>
+     */
+    const COMPLETED = 6;
 
     private static $valueToName = [
         self::PRIVATE_MARKETPLACE_DEAL_STATUS_UNSPECIFIED => 'PRIVATE_MARKETPLACE_DEAL_STATUS_UNSPECIFIED',
@@ -57,6 +63,7 @@ class PrivateMarketplaceDealStatus
         self::CANCELED => 'CANCELED',
         self::SELLER_PAUSED => 'SELLER_PAUSED',
         self::BUYER_PAUSED => 'BUYER_PAUSED',
+        self::COMPLETED => 'COMPLETED',
     ];
 
     public static function name($value)

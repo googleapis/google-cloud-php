@@ -46,7 +46,6 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-use Google\Protobuf\FieldMask;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -782,8 +781,7 @@ class AdUnitServiceClientTest extends GeneratedTest
         $adUnit->setParentAdUnit($adUnitParentAdUnit);
         $adUnitDisplayName = 'adUnitDisplayName-1437545562';
         $adUnit->setDisplayName($adUnitDisplayName);
-        $updateMask = new FieldMask();
-        $request = (new UpdateAdUnitRequest())->setAdUnit($adUnit)->setUpdateMask($updateMask);
+        $request = (new UpdateAdUnitRequest())->setAdUnit($adUnit);
         $response = $gapicClient->updateAdUnit($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -793,8 +791,6 @@ class AdUnitServiceClientTest extends GeneratedTest
         $this->assertSame('/google.ads.admanager.v1.AdUnitService/UpdateAdUnit', $actualFuncCall);
         $actualValue = $actualRequestObject->getAdUnit();
         $this->assertProtobufEquals($adUnit, $actualValue);
-        $actualValue = $actualRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -825,8 +821,7 @@ class AdUnitServiceClientTest extends GeneratedTest
         $adUnit->setParentAdUnit($adUnitParentAdUnit);
         $adUnitDisplayName = 'adUnitDisplayName-1437545562';
         $adUnit->setDisplayName($adUnitDisplayName);
-        $updateMask = new FieldMask();
-        $request = (new UpdateAdUnitRequest())->setAdUnit($adUnit)->setUpdateMask($updateMask);
+        $request = (new UpdateAdUnitRequest())->setAdUnit($adUnit);
         try {
             $gapicClient->updateAdUnit($request);
             // If the $gapicClient method call did not throw, fail the test

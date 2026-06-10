@@ -18,7 +18,9 @@ class DeleteFrameworkDeploymentRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the framework deployment that you want to delete,
      * in the format
-     * `organizations/{organization}/locations/{location}/frameworkDeployments/{framework_deployment_id}`.
+     * `organizations/{organization}/locations/{location}/frameworkDeployments/{framework_deployment}`
+     * or
+     * `projects/{project}/locations/{location}/frameworkDeployments/{framework_deployment}`.
      * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -39,7 +41,9 @@ class DeleteFrameworkDeploymentRequest extends \Google\Protobuf\Internal\Message
     /**
      * @param string $name Required. The name of the framework deployment that you want to delete,
      *                     in the format
-     *                     `organizations/{organization}/locations/{location}/frameworkDeployments/{framework_deployment_id}`.
+     *                     `organizations/{organization}/locations/{location}/frameworkDeployments/{framework_deployment}`
+     *                     or
+     *                     `projects/{project}/locations/{location}/frameworkDeployments/{framework_deployment}`.
      *                     The only supported location is `global`. Please see
      *                     {@see DeploymentClient::frameworkDeploymentName()} for help formatting this field.
      *
@@ -62,7 +66,9 @@ class DeleteFrameworkDeploymentRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. The name of the framework deployment that you want to delete,
      *           in the format
-     *           `organizations/{organization}/locations/{location}/frameworkDeployments/{framework_deployment_id}`.
+     *           `organizations/{organization}/locations/{location}/frameworkDeployments/{framework_deployment}`
+     *           or
+     *           `projects/{project}/locations/{location}/frameworkDeployments/{framework_deployment}`.
      *           The only supported location is `global`.
      *     @type string $etag
      *           Optional. An opaque identifier for the current version of the resource.
@@ -81,7 +87,9 @@ class DeleteFrameworkDeploymentRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the framework deployment that you want to delete,
      * in the format
-     * `organizations/{organization}/locations/{location}/frameworkDeployments/{framework_deployment_id}`.
+     * `organizations/{organization}/locations/{location}/frameworkDeployments/{framework_deployment}`
+     * or
+     * `projects/{project}/locations/{location}/frameworkDeployments/{framework_deployment}`.
      * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -95,7 +103,9 @@ class DeleteFrameworkDeploymentRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the framework deployment that you want to delete,
      * in the format
-     * `organizations/{organization}/locations/{location}/frameworkDeployments/{framework_deployment_id}`.
+     * `organizations/{organization}/locations/{location}/frameworkDeployments/{framework_deployment}`
+     * or
+     * `projects/{project}/locations/{location}/frameworkDeployments/{framework_deployment}`.
      * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>

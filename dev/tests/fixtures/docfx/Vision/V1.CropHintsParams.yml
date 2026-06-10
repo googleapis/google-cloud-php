@@ -34,7 +34,7 @@ items:
           description: 'Optional. Data for populating the Message object.'
         -
           id: '↳ aspect_ratios'
-          var_type: array<float>
+          var_type: 'float[]'
           description: 'Aspect ratios in floats, representing the ratio of the width to the height of the image. For example, if the desired aspect ratio is 4/3, the corresponding float value should be 1.33333. If not specified, the best possible crop is returned. The number of provided aspect ratios is limited to a maximum of 16; any aspect ratios provided after the 16th are ignored.'
   -
     uid: '\Google\Cloud\Vision\V1\CropHintsParams::getAspectRatios()'
@@ -54,7 +54,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Internal/RepeatedField">Google\Protobuf\Internal\RepeatedField</a>'
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/RepeatedField">Google\Protobuf\RepeatedField</a>&lt;<xref uid="float">float</xref>&gt;'
   -
     uid: '\Google\Cloud\Vision\V1\CropHintsParams::setAspectRatios()'
     name: setAspectRatios

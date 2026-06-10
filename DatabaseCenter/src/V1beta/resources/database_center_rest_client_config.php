@@ -32,6 +32,30 @@ return [
                 'uriTemplate' => '/v1beta:aggregateIssueStats',
                 'body' => '*',
             ],
+            'AggregateQueryStats' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta/{parent=organizations/*}:aggregateQueryStats',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1beta/{parent=folders/*}:aggregateQueryStats',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1beta/{parent=projects/*}:aggregateQueryStats',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'QueryDatabaseResourceGroups' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1beta:queryDatabaseResourceGroups',

@@ -99,7 +99,8 @@ class FirewallPolicy extends \Google\Protobuf\Internal\Message
      */
     protected $parent = null;
     /**
-     * The type of the firewall policy. This field can be eitherVPC_POLICY or RDMA_ROCE_POLICY.
+     * The type of the firewall policy. This field can be one of
+     * VPC_POLICY, RDMA_ROCE_POLICY or ULL_POLICY.
      * Note: if not specified then VPC_POLICY will be used.
      * Check the PolicyType enum for the list of possible values.
      *
@@ -209,7 +210,8 @@ class FirewallPolicy extends \Google\Protobuf\Internal\Message
      *           Output only. [Output Only] The parent of the firewall policy.
      *           This field is not applicable to network firewall policies.
      *     @type string $policy_type
-     *           The type of the firewall policy. This field can be eitherVPC_POLICY or RDMA_ROCE_POLICY.
+     *           The type of the firewall policy. This field can be one of
+     *           VPC_POLICY, RDMA_ROCE_POLICY or ULL_POLICY.
      *           Note: if not specified then VPC_POLICY will be used.
      *           Check the PolicyType enum for the list of possible values.
      *     @type string $region
@@ -634,7 +636,8 @@ class FirewallPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The type of the firewall policy. This field can be eitherVPC_POLICY or RDMA_ROCE_POLICY.
+     * The type of the firewall policy. This field can be one of
+     * VPC_POLICY, RDMA_ROCE_POLICY or ULL_POLICY.
      * Note: if not specified then VPC_POLICY will be used.
      * Check the PolicyType enum for the list of possible values.
      *
@@ -657,7 +660,8 @@ class FirewallPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The type of the firewall policy. This field can be eitherVPC_POLICY or RDMA_ROCE_POLICY.
+     * The type of the firewall policy. This field can be one of
+     * VPC_POLICY, RDMA_ROCE_POLICY or ULL_POLICY.
      * Note: if not specified then VPC_POLICY will be used.
      * Check the PolicyType enum for the list of possible values.
      *

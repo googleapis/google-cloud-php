@@ -373,7 +373,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Internal/RepeatedField">Google\Protobuf\Internal\RepeatedField</a>'
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/RepeatedField">Google\Protobuf\RepeatedField</a>&lt;<xref uid="\Google\Cloud\Vision\V1\LocationInfo">LocationInfo</xref>&gt;'
   -
     uid: '\Google\Cloud\Vision\V1\EntityAnnotation::setLocations()'
     name: setLocations
@@ -412,7 +412,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Internal/RepeatedField">Google\Protobuf\Internal\RepeatedField</a>'
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/RepeatedField">Google\Protobuf\RepeatedField</a>&lt;<xref uid="\Google\Cloud\Vision\V1\Property">Property</xref>&gt;'
   -
     uid: '\Google\Cloud\Vision\V1\EntityAnnotation::setProperties()'
     name: setProperties

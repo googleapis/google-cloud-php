@@ -198,8 +198,10 @@ class HsmManagementClientTest extends GeneratedTest
         $incompleteOperation->setDone(false);
         $transport->addResponse($incompleteOperation);
         $name = 'name3373707';
+        $keyPortabilityEnabled = false;
         $expectedResponse = new SingleTenantHsmInstance();
         $expectedResponse->setName($name);
+        $expectedResponse->setKeyPortabilityEnabled($keyPortabilityEnabled);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -678,8 +680,10 @@ class HsmManagementClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name2 = 'name2-1052831874';
+        $keyPortabilityEnabled = false;
         $expectedResponse = new SingleTenantHsmInstance();
         $expectedResponse->setName($name2);
+        $expectedResponse->setKeyPortabilityEnabled($keyPortabilityEnabled);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->singleTenantHsmInstanceName(

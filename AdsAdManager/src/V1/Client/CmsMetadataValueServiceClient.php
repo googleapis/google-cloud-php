@@ -24,6 +24,10 @@
 
 namespace Google\Ads\AdManager\V1\Client;
 
+use Google\Ads\AdManager\V1\BatchActivateCmsMetadataValuesRequest;
+use Google\Ads\AdManager\V1\BatchActivateCmsMetadataValuesResponse;
+use Google\Ads\AdManager\V1\BatchDeactivateCmsMetadataValuesRequest;
+use Google\Ads\AdManager\V1\BatchDeactivateCmsMetadataValuesResponse;
 use Google\Ads\AdManager\V1\CmsMetadataValue;
 use Google\Ads\AdManager\V1\GetCmsMetadataValueRequest;
 use Google\Ads\AdManager\V1\ListCmsMetadataValuesRequest;
@@ -51,6 +55,8 @@ use Psr\Log\LoggerInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
+ * @method PromiseInterface<BatchActivateCmsMetadataValuesResponse> batchActivateCmsMetadataValuesAsync(BatchActivateCmsMetadataValuesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchDeactivateCmsMetadataValuesResponse> batchDeactivateCmsMetadataValuesAsync(BatchDeactivateCmsMetadataValuesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<CmsMetadataValue> getCmsMetadataValueAsync(GetCmsMetadataValueRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listCmsMetadataValuesAsync(ListCmsMetadataValuesRequest $request, array $optionalArgs = [])
  */
@@ -79,7 +85,10 @@ final class CmsMetadataValueServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/admanager'];
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/admanager',
+        'https://www.googleapis.com/auth/admanager.readonly',
+    ];
 
     private static function getClientDefaults()
     {
@@ -250,6 +259,64 @@ final class CmsMetadataValueServiceClient
 
         array_unshift($args, substr($method, 0, -5));
         return call_user_func_array([$this, 'startAsyncCall'], $args);
+    }
+
+    /**
+     * API to activate a list of `CmsMetadataValue` objects.
+     *
+     * The async variant is
+     * {@see CmsMetadataValueServiceClient::batchActivateCmsMetadataValuesAsync()} .
+     *
+     * @example samples/V1/CmsMetadataValueServiceClient/batch_activate_cms_metadata_values.php
+     *
+     * @param BatchActivateCmsMetadataValuesRequest $request     A request to house fields associated with the call.
+     * @param array                                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchActivateCmsMetadataValuesResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchActivateCmsMetadataValues(
+        BatchActivateCmsMetadataValuesRequest $request,
+        array $callOptions = []
+    ): BatchActivateCmsMetadataValuesResponse {
+        return $this->startApiCall('BatchActivateCmsMetadataValues', $request, $callOptions)->wait();
+    }
+
+    /**
+     * API to deactivate a list of `CmsMetadataValue` objects.
+     *
+     * The async variant is
+     * {@see CmsMetadataValueServiceClient::batchDeactivateCmsMetadataValuesAsync()} .
+     *
+     * @example samples/V1/CmsMetadataValueServiceClient/batch_deactivate_cms_metadata_values.php
+     *
+     * @param BatchDeactivateCmsMetadataValuesRequest $request     A request to house fields associated with the call.
+     * @param array                                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchDeactivateCmsMetadataValuesResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchDeactivateCmsMetadataValues(
+        BatchDeactivateCmsMetadataValuesRequest $request,
+        array $callOptions = []
+    ): BatchDeactivateCmsMetadataValuesResponse {
+        return $this->startApiCall('BatchDeactivateCmsMetadataValues', $request, $callOptions)->wait();
     }
 
     /**

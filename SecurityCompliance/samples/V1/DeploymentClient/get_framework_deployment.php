@@ -32,7 +32,9 @@ use Google\Cloud\CloudSecurityCompliance\V1\GetFrameworkDeploymentRequest;
  * Gets details about a framework deployment.
  *
  * @param string $formattedName The name of the framework deployment, in the format
- *                              `organizations/{organization}/locations/{location}/frameworkDeployments/{framework_deployment_id}`.
+ *                              `organizations/{organization}/locations/{location}/frameworkDeployments/{framework_deployment}`
+ *                              or
+ *                              `projects/{project}/locations/{location}/frameworkDeployments/{framework_deployment}`.
  *                              The only supported location is `global`. Please see
  *                              {@see DeploymentClient::frameworkDeploymentName()} for help formatting this field.
  */

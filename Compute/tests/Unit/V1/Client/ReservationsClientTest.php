@@ -305,6 +305,7 @@ class ReservationsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $commitment = 'commitment1019005717';
+        $confidentialComputeType = 'confidentialComputeType-1761036391';
         $creationTimestamp = 'creationTimestamp567396278';
         $deleteAtTime = 'deleteAtTime-453576507';
         $deploymentType = 'deploymentType2007335028';
@@ -323,6 +324,7 @@ class ReservationsClientTest extends GeneratedTest
         $zone2 = 'zone2-696322977';
         $expectedResponse = new Reservation();
         $expectedResponse->setCommitment($commitment);
+        $expectedResponse->setConfidentialComputeType($confidentialComputeType);
         $expectedResponse->setCreationTimestamp($creationTimestamp);
         $expectedResponse->setDeleteAtTime($deleteAtTime);
         $expectedResponse->setDeploymentType($deploymentType);

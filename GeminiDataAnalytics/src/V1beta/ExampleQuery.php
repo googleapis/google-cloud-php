@@ -24,6 +24,15 @@ class ExampleQuery extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string natural_language_question = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $natural_language_question = '';
+    /**
+     * Optional. The list of query parameters.
+     * Example: The parameterized SQL query
+     * "SELECT * FROM my_table WHERE id = \@id" can be matched with any value of
+     * id.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.QueryParameter parameters = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $parameters;
     protected $query;
 
     /**
@@ -39,6 +48,11 @@ class ExampleQuery extends \Google\Protobuf\Internal\Message
      *     @type string $natural_language_question
      *           Optional. A natural language question that a user might ask.
      *           For example: "How many orders were placed last month?"
+     *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\QueryParameter[] $parameters
+     *           Optional. The list of query parameters.
+     *           Example: The parameterized SQL query
+     *           "SELECT * FROM my_table WHERE id = \@id" can be matched with any value of
+     *           id.
      * }
      */
     public function __construct($data = NULL) {
@@ -105,6 +119,38 @@ class ExampleQuery extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->natural_language_question = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The list of query parameters.
+     * Example: The parameterized SQL query
+     * "SELECT * FROM my_table WHERE id = \@id" can be matched with any value of
+     * id.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.QueryParameter parameters = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return RepeatedField<\Google\Cloud\GeminiDataAnalytics\V1beta\QueryParameter>
+     */
+    public function getParameters()
+    {
+        return $this->parameters;
+    }
+
+    /**
+     * Optional. The list of query parameters.
+     * Example: The parameterized SQL query
+     * "SELECT * FROM my_table WHERE id = \@id" can be matched with any value of
+     * id.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.QueryParameter parameters = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\GeminiDataAnalytics\V1beta\QueryParameter[] $var
+     * @return $this
+     */
+    public function setParameters($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\GeminiDataAnalytics\V1beta\QueryParameter::class);
+        $this->parameters = $arr;
 
         return $this;
     }

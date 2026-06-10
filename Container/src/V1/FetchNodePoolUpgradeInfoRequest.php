@@ -10,14 +10,14 @@ use Google\Protobuf\RepeatedField;
 
 /**
  * FetchNodePoolUpgradeInfoRequest fetches the upgrade information of a
- * nodepool.
+ * node pool.
  *
  * Generated from protobuf message <code>google.container.v1.FetchNodePoolUpgradeInfoRequest</code>
  */
 class FetchNodePoolUpgradeInfoRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name (project, location, cluster, nodepool) of the nodepool
+     * Required. The name (project, location, cluster, node pool) of the node pool
      * to get. Specified in the format
      * `projects/{@*}locations/{@*}clusters/{@*}nodePools/*` or
      * `projects/{@*}zones/{@*}clusters/{@*}nodePools/*`.
@@ -33,7 +33,7 @@ class FetchNodePoolUpgradeInfoRequest extends \Google\Protobuf\Internal\Message
     protected $version = '';
 
     /**
-     * @param string $name Required. The name (project, location, cluster, nodepool) of the nodepool
+     * @param string $name Required. The name (project, location, cluster, node pool) of the node pool
      *                     to get. Specified in the format
      *                     `projects/&#42;/locations/&#42;/clusters/&#42;/nodePools/*` or
      *                     `projects/&#42;/zones/&#42;/clusters/&#42;/nodePools/*`.
@@ -55,7 +55,7 @@ class FetchNodePoolUpgradeInfoRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The name (project, location, cluster, nodepool) of the nodepool
+     *           Required. The name (project, location, cluster, node pool) of the node pool
      *           to get. Specified in the format
      *           `projects/{@*}locations/{@*}clusters/{@*}nodePools/*` or
      *           `projects/{@*}zones/{@*}clusters/{@*}nodePools/*`.
@@ -69,7 +69,7 @@ class FetchNodePoolUpgradeInfoRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name (project, location, cluster, nodepool) of the nodepool
+     * Required. The name (project, location, cluster, node pool) of the node pool
      * to get. Specified in the format
      * `projects/{@*}locations/{@*}clusters/{@*}nodePools/*` or
      * `projects/{@*}zones/{@*}clusters/{@*}nodePools/*`.
@@ -83,7 +83,7 @@ class FetchNodePoolUpgradeInfoRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name (project, location, cluster, nodepool) of the nodepool
+     * Required. The name (project, location, cluster, node pool) of the node pool
      * to get. Specified in the format
      * `projects/{@*}locations/{@*}clusters/{@*}nodePools/*` or
      * `projects/{@*}zones/{@*}clusters/{@*}nodePools/*`.

@@ -32,6 +32,7 @@ use Google\Cloud\Spanner\V1\BatchCreateSessionsResponse;
 use Google\Cloud\Spanner\V1\BatchWriteRequest;
 use Google\Cloud\Spanner\V1\BatchWriteResponse;
 use Google\Cloud\Spanner\V1\BeginTransactionRequest;
+use Google\Cloud\Spanner\V1\CacheUpdate;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
 use Google\Cloud\Spanner\V1\CommitRequest;
 use Google\Cloud\Spanner\V1\CommitResponse;
@@ -40,6 +41,7 @@ use Google\Cloud\Spanner\V1\DeleteSessionRequest;
 use Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest;
 use Google\Cloud\Spanner\V1\ExecuteBatchDmlResponse;
 use Google\Cloud\Spanner\V1\ExecuteSqlRequest;
+use Google\Cloud\Spanner\V1\FetchCacheUpdateRequest;
 use Google\Cloud\Spanner\V1\GetSessionRequest;
 use Google\Cloud\Spanner\V1\KeySet;
 use Google\Cloud\Spanner\V1\ListSessionsRequest;
@@ -734,6 +736,86 @@ class SpannerClientTest extends GeneratedTest
             ->setSession($formattedSession)
             ->setSql($sql);
         $serverStream = $gapicClient->executeStreamingSql($request);
+        $results = $serverStream->readAll();
+        try {
+            iterator_to_array($results);
+            // If the close stream method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function fetchCacheUpdateTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $databaseId = 816491103;
+        $expectedResponse = new CacheUpdate();
+        $expectedResponse->setDatabaseId($databaseId);
+        $transport->addResponse($expectedResponse);
+        $databaseId2 = 1331062190;
+        $expectedResponse2 = new CacheUpdate();
+        $expectedResponse2->setDatabaseId($databaseId2);
+        $transport->addResponse($expectedResponse2);
+        $databaseId3 = 1331062189;
+        $expectedResponse3 = new CacheUpdate();
+        $expectedResponse3->setDatabaseId($databaseId3);
+        $transport->addResponse($expectedResponse3);
+        // Mock request
+        $formattedDatabase = $gapicClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
+        $request = (new FetchCacheUpdateRequest())
+            ->setDatabase($formattedDatabase);
+        $serverStream = $gapicClient->fetchCacheUpdate($request);
+        $this->assertInstanceOf(ServerStream::class, $serverStream);
+        $responses = iterator_to_array($serverStream->readAll());
+        $expectedResponses = [];
+        $expectedResponses[] = $expectedResponse;
+        $expectedResponses[] = $expectedResponse2;
+        $expectedResponses[] = $expectedResponse3;
+        $this->assertEquals($expectedResponses, $responses);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.spanner.v1.Spanner/FetchCacheUpdate', $actualFuncCall);
+        $actualValue = $actualRequestObject->getDatabase();
+        $this->assertProtobufEquals($formattedDatabase, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function fetchCacheUpdateExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->setStreamingStatus($status);
+        $this->assertTrue($transport->isExhausted());
+        // Mock request
+        $formattedDatabase = $gapicClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
+        $request = (new FetchCacheUpdateRequest())
+            ->setDatabase($formattedDatabase);
+        $serverStream = $gapicClient->fetchCacheUpdate($request);
         $results = $serverStream->readAll();
         try {
             iterator_to_array($results);

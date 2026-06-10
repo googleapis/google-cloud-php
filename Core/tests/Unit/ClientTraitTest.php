@@ -358,33 +358,6 @@ class ClientTraitTest extends TestCase
 
         $this->assertEquals($projectId, $res);
     }
-
-    public function testDetectProjectIdWithKeyfileMissingProjectId()
-    {
-        set_error_handler(static function (int $errno, string $errstr): never {
-            throw new Exception($errstr, $errno);
-        }, E_USER_NOTICE);
-        $this->expectException(Exception::class);
-        $this->expectExceptionMessage('A keyfile was given');
-
-        $trait = TestHelpers::impl(ClientTrait::class);
-
-        $res = $trait->call('detectProjectId', [[
-            'keyFile' => []
-        ]]);
-    }
-
-    public function testDetectProjectIdWithKeyfileMissingProjectIdSuppressNotice()
-    {
-        $trait = TestHelpers::impl(ClientTraitStubOnGceReturnsFalse::class);
-
-        $res = $trait->call('detectProjectId', [[
-            'keyFile' => [],
-            'suppressKeyFileNotice' => true
-        ]]);
-
-        $this->assertTrue(true);
-    }
 }
 
 //@codingStandardsIgnoreStart

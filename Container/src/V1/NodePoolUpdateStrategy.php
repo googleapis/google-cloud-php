@@ -35,8 +35,8 @@ class NodePoolUpdateStrategy
     const SURGE = 3;
     /**
      * SHORT_LIVED is the dedicated upgrade strategy for
-     * QueuedProvisioning and flex start nodepools scaled up only by enqueueing to
-     * the Dynamic Workload Scheduler (DWS).
+     * QueuedProvisioning and flex start node pools scaled up only by enqueueing
+     * to the Dynamic Workload Scheduler (DWS).
      *
      * Generated from protobuf enum <code>SHORT_LIVED = 5;</code>
      */

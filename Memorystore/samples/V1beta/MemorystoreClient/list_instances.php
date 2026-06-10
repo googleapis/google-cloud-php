@@ -26,6 +26,7 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Memorystore\V1beta\Client\MemorystoreClient;
+use Google\Cloud\Memorystore\V1beta\Instance;
 use Google\Cloud\Memorystore\V1beta\ListInstancesRequest;
 
 /**
@@ -49,6 +50,7 @@ function list_instances_sample(string $formattedParent): void
         /** @var PagedListResponse $response */
         $response = $memorystoreClient->listInstances($request);
 
+        /** @var Instance $element */
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
         }

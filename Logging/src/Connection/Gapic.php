@@ -63,31 +63,32 @@ class Gapic
      */
     public function __construct(private array $config = [])
     {
-        $this->serializer = new Serializer([
-            'timestamp' => function ($v) {
-                return $this->formatTimestampFromApi($v);
-            },
-            'severity' => function ($v) {
-                return Logger::getLogLevelMap()[$v];
-            },
-            'json_payload' => function ($v) {
-                return $this->unpackStructFromApi($v);
-            }
-        ], [], [
-            'json_payload' => function ($v) {
-                return $this->formatStructForApi($v);
-            },
-            'severity' => function ($v) {
-                return array_flip(Logger::getLogLevelMap())[strtoupper($v)];
-            }
-        ], [
-            'google.protobuf.Duration' => function ($v) {
-                return $this->formatDurationForApi($v);
-            },
-            'google.protobuf.Timestamp' => function ($v) {
-                return $this->formatTimestampForApi($v);
-            }
-        ]);
+        $this->serializer = new Serializer(
+            fieldTransformers: [
+                'timestamp' => function ($v) {
+                    return $this->formatTimestampFromApi($v);
+                },
+                'severity' => function ($v) {
+                    return Logger::getLogLevelMap()[$v];
+                },
+                'json_payload' => function ($v) {
+                    return $this->unpackStructFromApi($v);
+                }
+            ],
+            decodeFieldTransformers: [
+                'json_payload' => function ($v) {
+                    return $this->formatStructForApi($v);
+                },
+            ],
+            decodeMessageTypeTransformers: [
+                'google.protobuf.Duration' => function ($v) {
+                    return $this->formatDurationForApi($v);
+                },
+                'google.protobuf.Timestamp' => function ($v) {
+                    return $this->formatTimestampForApi($v);
+                }
+            ]
+        );
         $this->optionsValidator = new OptionsValidator($this->serializer);
     }
 
@@ -186,11 +187,13 @@ class Gapic
     {
         /**
          * @var GetSinkRequest $getSinkRequest
+         * @var LogSink $_logSink
          * @var array $callOptions
          */
-        [$getSinkRequest, $callOptions] = $this->validateOptions(
+        [$getSinkRequest, $_sink, $callOptions] = $this->validateOptions(
             $args,
             new GetSinkRequest(),
+            new LogSink(), // unused, for backwards compatibility
             CallOptions::class
         );
         return $this->handleResponse(

@@ -27,6 +27,12 @@ class TranslationTaskResult extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.migration.v2.GcsReportLogMessage report_log_messages = 2;</code>
      */
     private $report_log_messages;
+    /**
+     * The Cloud Console URI for the migration workflow.
+     *
+     * Generated from protobuf field <code>string console_uri = 3;</code>
+     */
+    protected $console_uri = '';
 
     /**
      * Constructor.
@@ -38,6 +44,8 @@ class TranslationTaskResult extends \Google\Protobuf\Internal\Message
      *           The list of the translated literals.
      *     @type \Google\Cloud\BigQuery\Migration\V2\GcsReportLogMessage[] $report_log_messages
      *           The records from the aggregate CSV report for a migration workflow.
+     *     @type string $console_uri
+     *           The Cloud Console URI for the migration workflow.
      * }
      */
     public function __construct($data = NULL) {
@@ -93,6 +101,32 @@ class TranslationTaskResult extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\BigQuery\Migration\V2\GcsReportLogMessage::class);
         $this->report_log_messages = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The Cloud Console URI for the migration workflow.
+     *
+     * Generated from protobuf field <code>string console_uri = 3;</code>
+     * @return string
+     */
+    public function getConsoleUri()
+    {
+        return $this->console_uri;
+    }
+
+    /**
+     * The Cloud Console URI for the migration workflow.
+     *
+     * Generated from protobuf field <code>string console_uri = 3;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setConsoleUri($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->console_uri = $var;
 
         return $this;
     }

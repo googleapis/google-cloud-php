@@ -56,6 +56,7 @@ use Google\Cloud\Compute\V1\StopGroupAsyncReplicationDiskRequest;
 use Google\Cloud\Compute\V1\TestIamPermissionsDiskRequest;
 use Google\Cloud\Compute\V1\TestPermissionsResponse;
 use Google\Cloud\Compute\V1\UpdateDiskRequest;
+use Google\Cloud\Compute\V1\UpdateKmsKeyDiskRequest;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
 
@@ -84,6 +85,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<OperationResponse> stopGroupAsyncReplicationAsync(StopGroupAsyncReplicationDiskRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsDiskRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateAsync(UpdateDiskRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateKmsKeyAsync(UpdateKmsKeyDiskRequest $request, array $optionalArgs = [])
  */
 final class DisksClient
 {
@@ -828,5 +830,32 @@ final class DisksClient
     public function update(UpdateDiskRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('Update', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Rotates the customer-managed
+     * encryption key to the latest version for the specified persistent disk.
+     *
+     * The async variant is {@see DisksClient::updateKmsKeyAsync()} .
+     *
+     * @example samples/V1/DisksClient/update_kms_key.php
+     *
+     * @param UpdateKmsKeyDiskRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateKmsKey(UpdateKmsKeyDiskRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('UpdateKmsKey', $request, $callOptions)->wait();
     }
 }

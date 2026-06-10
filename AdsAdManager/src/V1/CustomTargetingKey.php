@@ -24,9 +24,10 @@ class CustomTargetingKey extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
-     * Output only. `CustomTargetingKey` ID.
+     * Output only. Deprecated: `CustomTargetingKey` ID.
      *
-     * Generated from protobuf field <code>optional int64 custom_targeting_key_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional int64 custom_targeting_key_id = 2 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @deprecated
      */
     protected $custom_targeting_key_id = null;
     /**
@@ -75,7 +76,7 @@ class CustomTargetingKey extends \Google\Protobuf\Internal\Message
      *           Format:
      *           `networks/{network_code}/customTargetingKeys/{custom_targeting_key_id}`
      *     @type int|string $custom_targeting_key_id
-     *           Output only. `CustomTargetingKey` ID.
+     *           Output only. Deprecated: `CustomTargetingKey` ID.
      *     @type string $ad_tag_name
      *           Immutable. Name of the key. Keys can contain up to 10 characters each. You
      *           can use alphanumeric characters and symbols other than the following:
@@ -128,35 +129,45 @@ class CustomTargetingKey extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. `CustomTargetingKey` ID.
+     * Output only. Deprecated: `CustomTargetingKey` ID.
      *
-     * Generated from protobuf field <code>optional int64 custom_targeting_key_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional int64 custom_targeting_key_id = 2 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int|string
+     * @deprecated
      */
     public function getCustomTargetingKeyId()
     {
+        if (isset($this->custom_targeting_key_id)) {
+            @trigger_error('custom_targeting_key_id is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->custom_targeting_key_id) ? $this->custom_targeting_key_id : 0;
     }
 
     public function hasCustomTargetingKeyId()
     {
+        if (isset($this->custom_targeting_key_id)) {
+            @trigger_error('custom_targeting_key_id is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->custom_targeting_key_id);
     }
 
     public function clearCustomTargetingKeyId()
     {
+        @trigger_error('custom_targeting_key_id is deprecated.', E_USER_DEPRECATED);
         unset($this->custom_targeting_key_id);
     }
 
     /**
-     * Output only. `CustomTargetingKey` ID.
+     * Output only. Deprecated: `CustomTargetingKey` ID.
      *
-     * Generated from protobuf field <code>optional int64 custom_targeting_key_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional int64 custom_targeting_key_id = 2 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int|string $var
      * @return $this
+     * @deprecated
      */
     public function setCustomTargetingKeyId($var)
     {
+        @trigger_error('custom_targeting_key_id is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkInt64($var);
         $this->custom_targeting_key_id = $var;
 

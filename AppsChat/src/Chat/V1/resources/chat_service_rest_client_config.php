@@ -163,6 +163,10 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/v1/spaces:findDirectMessage',
             ],
+            'FindGroupChats' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/spaces:findGroupChats',
+            ],
             'GetAttachment' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=spaces/*/messages/*/attachments/*}',

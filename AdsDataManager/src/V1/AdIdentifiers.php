@@ -49,6 +49,37 @@ class AdIdentifiers extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.ads.datamanager.v1.DeviceInfo landing_page_device_info = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $landing_page_device_info = null;
+    /**
+     * Optional. The mobile identifier for advertisers. This would be IDFA on iOS,
+     * AdID on Android, or other platforms’ identifiers for advertisers.
+     *
+     * Generated from protobuf field <code>string mobile_device_id = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $mobile_device_id = '';
+    /**
+     * Optional. The display click ID associated with this event.
+     *
+     * Generated from protobuf field <code>string dclid = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $dclid = '';
+    /**
+     * Optional. The impression ID associated with this event.
+     *
+     * Generated from protobuf field <code>string impression_id = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $impression_id = '';
+    /**
+     * Optional. The match ID field used to join this event with a previous event.
+     *
+     * Generated from protobuf field <code>string match_id = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $match_id = '';
+    /**
+     * Optional. Any number of encrypted user IDs.
+     *
+     * Generated from protobuf field <code>repeated .google.ads.datamanager.v1.EncryptedUserId encrypted_user_ids = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $encrypted_user_ids;
 
     /**
      * Constructor.
@@ -69,6 +100,17 @@ class AdIdentifiers extends \Google\Protobuf\Internal\Message
      *     @type \Google\Ads\DataManager\V1\DeviceInfo $landing_page_device_info
      *           Optional. Information gathered about the device being used (if any) at the
      *           time of landing onto the advertiser’s site after interacting with the ad.
+     *     @type string $mobile_device_id
+     *           Optional. The mobile identifier for advertisers. This would be IDFA on iOS,
+     *           AdID on Android, or other platforms’ identifiers for advertisers.
+     *     @type string $dclid
+     *           Optional. The display click ID associated with this event.
+     *     @type string $impression_id
+     *           Optional. The impression ID associated with this event.
+     *     @type string $match_id
+     *           Optional. The match ID field used to join this event with a previous event.
+     *     @type \Google\Ads\DataManager\V1\EncryptedUserId[] $encrypted_user_ids
+     *           Optional. Any number of encrypted user IDs.
      * }
      */
     public function __construct($data = NULL) {
@@ -218,6 +260,138 @@ class AdIdentifiers extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Ads\DataManager\V1\DeviceInfo::class);
         $this->landing_page_device_info = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The mobile identifier for advertisers. This would be IDFA on iOS,
+     * AdID on Android, or other platforms’ identifiers for advertisers.
+     *
+     * Generated from protobuf field <code>string mobile_device_id = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getMobileDeviceId()
+    {
+        return $this->mobile_device_id;
+    }
+
+    /**
+     * Optional. The mobile identifier for advertisers. This would be IDFA on iOS,
+     * AdID on Android, or other platforms’ identifiers for advertisers.
+     *
+     * Generated from protobuf field <code>string mobile_device_id = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setMobileDeviceId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->mobile_device_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The display click ID associated with this event.
+     *
+     * Generated from protobuf field <code>string dclid = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getDclid()
+    {
+        return $this->dclid;
+    }
+
+    /**
+     * Optional. The display click ID associated with this event.
+     *
+     * Generated from protobuf field <code>string dclid = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDclid($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->dclid = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The impression ID associated with this event.
+     *
+     * Generated from protobuf field <code>string impression_id = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getImpressionId()
+    {
+        return $this->impression_id;
+    }
+
+    /**
+     * Optional. The impression ID associated with this event.
+     *
+     * Generated from protobuf field <code>string impression_id = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setImpressionId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->impression_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The match ID field used to join this event with a previous event.
+     *
+     * Generated from protobuf field <code>string match_id = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getMatchId()
+    {
+        return $this->match_id;
+    }
+
+    /**
+     * Optional. The match ID field used to join this event with a previous event.
+     *
+     * Generated from protobuf field <code>string match_id = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setMatchId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->match_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Any number of encrypted user IDs.
+     *
+     * Generated from protobuf field <code>repeated .google.ads.datamanager.v1.EncryptedUserId encrypted_user_ids = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return RepeatedField<\Google\Ads\DataManager\V1\EncryptedUserId>
+     */
+    public function getEncryptedUserIds()
+    {
+        return $this->encrypted_user_ids;
+    }
+
+    /**
+     * Optional. Any number of encrypted user IDs.
+     *
+     * Generated from protobuf field <code>repeated .google.ads.datamanager.v1.EncryptedUserId encrypted_user_ids = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Ads\DataManager\V1\EncryptedUserId[] $var
+     * @return $this
+     */
+    public function setEncryptedUserIds($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Ads\DataManager\V1\EncryptedUserId::class);
+        $this->encrypted_user_ids = $arr;
 
         return $this;
     }

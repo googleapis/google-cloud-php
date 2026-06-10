@@ -184,6 +184,30 @@ return [
                     ],
                 ],
             ],
+            'GetHealth' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Compute\V1\CompositeHealthCheckHealth',
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'region',
+                        'fieldAccessors' => [
+                            'getRegion',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'composite_health_check',
+                        'fieldAccessors' => [
+                            'getCompositeHealthCheck',
+                        ],
+                    ],
+                ],
+            ],
             'List' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',

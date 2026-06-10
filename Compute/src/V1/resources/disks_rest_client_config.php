@@ -400,6 +400,28 @@ return [
                     ],
                 ],
             ],
+            'UpdateKmsKey' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/disks/{disk}/updateKmsKey',
+                'body' => 'disk_update_kms_key_request_resource',
+                'placeholders' => [
+                    'disk' => [
+                        'getters' => [
+                            'getDisk',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
+                        ],
+                    ],
+                ],
+            ],
         ],
         'google.cloud.compute.v1.ZoneOperations' => [
             'Delete' => [

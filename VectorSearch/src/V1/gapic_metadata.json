@@ -158,6 +158,11 @@
                                 "updateCollection"
                             ]
                         },
+                        "UpdateIndex": {
+                            "methods": [
+                                "updateIndex"
+                            ]
+                        },
                         "GetLocation": {
                             "methods": [
                                 "getLocation"

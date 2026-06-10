@@ -28,12 +28,6 @@ class SpannerDatabaseReference extends \Google\Protobuf\Internal\Message
      */
     protected $project_id = '';
     /**
-     * Required. The region of the instance.
-     *
-     * Generated from protobuf field <code>string region = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     */
-    protected $region = '';
-    /**
      * Required. The instance id.
      *
      * Generated from protobuf field <code>string instance_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -51,6 +45,31 @@ class SpannerDatabaseReference extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string table_ids = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $table_ids;
+    /**
+     * Optional. References to tables within the database. Each reference
+     * specifies a table and can optionally include the table's schema to provide
+     * context for the query.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.DatabaseTableReference database_table_references = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $database_table_references;
+    /**
+     * Optional. Priority for the queries to Spanner. Should be a value supported
+     * by Cloud Spanner e.g.: LOW, MEDIUM, HIGH. Unsupported values will be
+     * ignored. See
+     * https://docs.cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions#Priority
+     * for complete list.
+     *
+     * Generated from protobuf field <code>string priority = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $priority = '';
+    /**
+     * Tag to be attached to all queries to Spanner. Allows to identify and
+     * monitor queries sent to Spanner by the GDA service.
+     *
+     * Generated from protobuf field <code>string request_tag = 9;</code>
+     */
+    protected $request_tag = '';
 
     /**
      * Constructor.
@@ -62,14 +81,25 @@ class SpannerDatabaseReference extends \Google\Protobuf\Internal\Message
      *           Required. The engine of the Spanner instance.
      *     @type string $project_id
      *           Required. The project the instance belongs to.
-     *     @type string $region
-     *           Required. The region of the instance.
      *     @type string $instance_id
      *           Required. The instance id.
      *     @type string $database_id
      *           Required. The database id.
      *     @type string[] $table_ids
      *           Optional. The table ids. Denotes all tables if unset.
+     *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\DatabaseTableReference[] $database_table_references
+     *           Optional. References to tables within the database. Each reference
+     *           specifies a table and can optionally include the table's schema to provide
+     *           context for the query.
+     *     @type string $priority
+     *           Optional. Priority for the queries to Spanner. Should be a value supported
+     *           by Cloud Spanner e.g.: LOW, MEDIUM, HIGH. Unsupported values will be
+     *           ignored. See
+     *           https://docs.cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions#Priority
+     *           for complete list.
+     *     @type string $request_tag
+     *           Tag to be attached to all queries to Spanner. Allows to identify and
+     *           monitor queries sent to Spanner by the GDA service.
      * }
      */
     public function __construct($data = NULL) {
@@ -125,32 +155,6 @@ class SpannerDatabaseReference extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->project_id = $var;
-
-        return $this;
-    }
-
-    /**
-     * Required. The region of the instance.
-     *
-     * Generated from protobuf field <code>string region = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return string
-     */
-    public function getRegion()
-    {
-        return $this->region;
-    }
-
-    /**
-     * Required. The region of the instance.
-     *
-     * Generated from protobuf field <code>string region = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setRegion($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->region = $var;
 
         return $this;
     }
@@ -229,6 +233,98 @@ class SpannerDatabaseReference extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->table_ids = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. References to tables within the database. Each reference
+     * specifies a table and can optionally include the table's schema to provide
+     * context for the query.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.DatabaseTableReference database_table_references = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return RepeatedField<\Google\Cloud\GeminiDataAnalytics\V1beta\DatabaseTableReference>
+     */
+    public function getDatabaseTableReferences()
+    {
+        return $this->database_table_references;
+    }
+
+    /**
+     * Optional. References to tables within the database. Each reference
+     * specifies a table and can optionally include the table's schema to provide
+     * context for the query.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.DatabaseTableReference database_table_references = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\GeminiDataAnalytics\V1beta\DatabaseTableReference[] $var
+     * @return $this
+     */
+    public function setDatabaseTableReferences($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\GeminiDataAnalytics\V1beta\DatabaseTableReference::class);
+        $this->database_table_references = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Priority for the queries to Spanner. Should be a value supported
+     * by Cloud Spanner e.g.: LOW, MEDIUM, HIGH. Unsupported values will be
+     * ignored. See
+     * https://docs.cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions#Priority
+     * for complete list.
+     *
+     * Generated from protobuf field <code>string priority = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getPriority()
+    {
+        return $this->priority;
+    }
+
+    /**
+     * Optional. Priority for the queries to Spanner. Should be a value supported
+     * by Cloud Spanner e.g.: LOW, MEDIUM, HIGH. Unsupported values will be
+     * ignored. See
+     * https://docs.cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions#Priority
+     * for complete list.
+     *
+     * Generated from protobuf field <code>string priority = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPriority($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->priority = $var;
+
+        return $this;
+    }
+
+    /**
+     * Tag to be attached to all queries to Spanner. Allows to identify and
+     * monitor queries sent to Spanner by the GDA service.
+     *
+     * Generated from protobuf field <code>string request_tag = 9;</code>
+     * @return string
+     */
+    public function getRequestTag()
+    {
+        return $this->request_tag;
+    }
+
+    /**
+     * Tag to be attached to all queries to Spanner. Allows to identify and
+     * monitor queries sent to Spanner by the GDA service.
+     *
+     * Generated from protobuf field <code>string request_tag = 9;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRequestTag($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->request_tag = $var;
 
         return $this;
     }

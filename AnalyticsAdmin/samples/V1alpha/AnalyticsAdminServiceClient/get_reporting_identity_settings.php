@@ -29,7 +29,7 @@ use Google\Analytics\Admin\V1alpha\ReportingIdentitySettings;
 use Google\ApiCore\ApiException;
 
 /**
- * Returns the singleton data retention settings for this property.
+ * Returns the reporting identity settings for this property.
  *
  * @param string $formattedName The name of the settings to lookup.
  *                              Format:

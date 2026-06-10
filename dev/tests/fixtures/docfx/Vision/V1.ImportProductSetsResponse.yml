@@ -60,7 +60,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Internal/RepeatedField">Google\Protobuf\Internal\RepeatedField</a>'
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/RepeatedField">Google\Protobuf\RepeatedField</a>&lt;<xref uid="\Google\Cloud\Vision\V1\ReferenceImage">ReferenceImage</xref>&gt;'
   -
     uid: '\Google\Cloud\Vision\V1\ImportProductSetsResponse::setReferenceImages()'
     name: setReferenceImages
@@ -97,7 +97,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Internal/RepeatedField">Google\Protobuf\Internal\RepeatedField</a>'
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/RepeatedField">Google\Protobuf\RepeatedField</a>&lt;<xref uid="\Google\Rpc\Status">Google\Rpc\Status</xref>&gt;'
   -
     uid: '\Google\Cloud\Vision\V1\ImportProductSetsResponse::setStatuses()'
     name: setStatuses

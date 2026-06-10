@@ -31,11 +31,25 @@ class DeleteStatus
      */
     const DELETE_STATUS_UNSPECIFIED = 395396446;
     /**
+     * The local network admin requested to cancel their delete request
+     * after DELETE_ACKNOWLEDGED.
+     *
+     * Generated from protobuf enum <code>LOCAL_CANCEL_REQUESTED = 169545277;</code>
+     */
+    const LOCAL_CANCEL_REQUESTED = 169545277;
+    /**
      * Network admin has requested deletion of this peering connection.
      *
      * Generated from protobuf enum <code>LOCAL_DELETE_REQUESTED = 227335214;</code>
      */
     const LOCAL_DELETE_REQUESTED = 227335214;
+    /**
+     * The peer network admin requested to cancel their delete request after
+     * DELETE_ACKNOWLEDGED.
+     *
+     * Generated from protobuf enum <code>PEER_CANCEL_REQUESTED = 140057862;</code>
+     */
+    const PEER_CANCEL_REQUESTED = 140057862;
     /**
      * The peer network admin has requested deletion of this peering
      * connection.
@@ -48,7 +62,9 @@ class DeleteStatus
         self::UNDEFINED_DELETE_STATUS => 'UNDEFINED_DELETE_STATUS',
         self::DELETE_ACKNOWLEDGED => 'DELETE_ACKNOWLEDGED',
         self::DELETE_STATUS_UNSPECIFIED => 'DELETE_STATUS_UNSPECIFIED',
+        self::LOCAL_CANCEL_REQUESTED => 'LOCAL_CANCEL_REQUESTED',
         self::LOCAL_DELETE_REQUESTED => 'LOCAL_DELETE_REQUESTED',
+        self::PEER_CANCEL_REQUESTED => 'PEER_CANCEL_REQUESTED',
         self::PEER_DELETE_REQUESTED => 'PEER_DELETE_REQUESTED',
     ];
 

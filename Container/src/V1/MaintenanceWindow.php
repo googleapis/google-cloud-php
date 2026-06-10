@@ -36,6 +36,11 @@ class MaintenanceWindow extends \Google\Protobuf\Internal\Message
      *           RecurringWindow specifies some number of recurring time periods for
      *           maintenance to occur. The time windows may be overlapping. If no
      *           maintenance windows are set, maintenance can occur at any time.
+     *     @type \Google\Cloud\Container\V1\RecurringMaintenanceWindow $recurring_maintenance_window
+     *           RecurringMaintenanceWindow specifies some number of recurring time
+     *           periods for maintenance to occur. The time windows may be overlapping.
+     *           If no maintenance windows are set, maintenance can occur at any time.
+     *           Alternative to RecurringWindow, with renamed fields.
      *     @type array|\Google\Protobuf\Internal\MapField $maintenance_exclusions
      *           Exceptions to maintenance window. Non-emergency maintenance should not
      *           occur in these windows.
@@ -108,6 +113,43 @@ class MaintenanceWindow extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\RecurringTimeWindow::class);
         $this->writeOneof(3, $var);
+
+        return $this;
+    }
+
+    /**
+     * RecurringMaintenanceWindow specifies some number of recurring time
+     * periods for maintenance to occur. The time windows may be overlapping.
+     * If no maintenance windows are set, maintenance can occur at any time.
+     * Alternative to RecurringWindow, with renamed fields.
+     *
+     * Generated from protobuf field <code>.google.container.v1.RecurringMaintenanceWindow recurring_maintenance_window = 5;</code>
+     * @return \Google\Cloud\Container\V1\RecurringMaintenanceWindow|null
+     */
+    public function getRecurringMaintenanceWindow()
+    {
+        return $this->readOneof(5);
+    }
+
+    public function hasRecurringMaintenanceWindow()
+    {
+        return $this->hasOneof(5);
+    }
+
+    /**
+     * RecurringMaintenanceWindow specifies some number of recurring time
+     * periods for maintenance to occur. The time windows may be overlapping.
+     * If no maintenance windows are set, maintenance can occur at any time.
+     * Alternative to RecurringWindow, with renamed fields.
+     *
+     * Generated from protobuf field <code>.google.container.v1.RecurringMaintenanceWindow recurring_maintenance_window = 5;</code>
+     * @param \Google\Cloud\Container\V1\RecurringMaintenanceWindow $var
+     * @return $this
+     */
+    public function setRecurringMaintenanceWindow($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\RecurringMaintenanceWindow::class);
+        $this->writeOneof(5, $var);
 
         return $this;
     }

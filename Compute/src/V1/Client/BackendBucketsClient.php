@@ -35,6 +35,7 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Compute\V1\AddSignedUrlKeyBackendBucketRequest;
+use Google\Cloud\Compute\V1\AggregatedListBackendBucketsRequest;
 use Google\Cloud\Compute\V1\BackendBucket;
 use Google\Cloud\Compute\V1\DeleteBackendBucketRequest;
 use Google\Cloud\Compute\V1\DeleteSignedUrlKeyBackendBucketRequest;
@@ -42,6 +43,7 @@ use Google\Cloud\Compute\V1\GetBackendBucketRequest;
 use Google\Cloud\Compute\V1\GetIamPolicyBackendBucketRequest;
 use Google\Cloud\Compute\V1\InsertBackendBucketRequest;
 use Google\Cloud\Compute\V1\ListBackendBucketsRequest;
+use Google\Cloud\Compute\V1\ListUsableBackendBucketsRequest;
 use Google\Cloud\Compute\V1\PatchBackendBucketRequest;
 use Google\Cloud\Compute\V1\Policy;
 use Google\Cloud\Compute\V1\SetEdgeSecurityPolicyBackendBucketRequest;
@@ -59,12 +61,14 @@ use Psr\Log\LoggerInterface;
  * calls that map to API methods.
  *
  * @method PromiseInterface<OperationResponse> addSignedUrlKeyAsync(AddSignedUrlKeyBackendBucketRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> aggregatedListAsync(AggregatedListBackendBucketsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteAsync(DeleteBackendBucketRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteSignedUrlKeyAsync(DeleteSignedUrlKeyBackendBucketRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<BackendBucket> getAsync(GetBackendBucketRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyBackendBucketRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> insertAsync(InsertBackendBucketRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listAsync(ListBackendBucketsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listUsableAsync(ListUsableBackendBucketsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> patchAsync(PatchBackendBucketRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> setEdgeSecurityPolicyAsync(SetEdgeSecurityPolicyBackendBucketRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyBackendBucketRequest $request, array $optionalArgs = [])
@@ -313,6 +317,38 @@ final class BackendBucketsClient
     }
 
     /**
+     * Retrieves the list of all BackendBucket resources, regional and global,
+     * available to the specified project.
+     *
+     * To prevent failure, it is recommended that you set the
+     * `returnPartialSuccess` parameter to `true`.
+     *
+     * The async variant is {@see BackendBucketsClient::aggregatedListAsync()} .
+     *
+     * @example samples/V1/BackendBucketsClient/aggregated_list.php
+     *
+     * @param AggregatedListBackendBucketsRequest $request     A request to house fields associated with the call.
+     * @param array                               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function aggregatedList(
+        AggregatedListBackendBucketsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('AggregatedList', $request, $callOptions);
+    }
+
+    /**
      * Deletes the specified BackendBucket resource.
      *
      * The async variant is {@see BackendBucketsClient::deleteAsync()} .
@@ -472,6 +508,32 @@ final class BackendBucketsClient
     public function list(ListBackendBucketsRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('List', $request, $callOptions);
+    }
+
+    /**
+     * Retrieves a list of all usable backend buckets in the specified project.
+     *
+     * The async variant is {@see BackendBucketsClient::listUsableAsync()} .
+     *
+     * @example samples/V1/BackendBucketsClient/list_usable.php
+     *
+     * @param ListUsableBackendBucketsRequest $request     A request to house fields associated with the call.
+     * @param array                           $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listUsable(ListUsableBackendBucketsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListUsable', $request, $callOptions);
     }
 
     /**

@@ -111,7 +111,9 @@ class ResumableUploaderTest extends TestCase
         $response = new Response(200, ['Location' => $resumeUri]);
 
         $this->requestWrapper->send(
-            Argument::type(RequestInterface::class),
+            Argument::that(function (RequestInterface $request) {
+                return $request->getHeader('X-Upload-Content-Length') === ['4'];
+            }),
             Argument::type('array')
         )->willReturn($response);
 
@@ -282,6 +284,7 @@ class ResumableUploaderTest extends TestCase
         $this->requestWrapper->send(
             Argument::that(function (RequestInterface $request) {
                 return $request->getHeaderLine('Content-Range') === 'bytes 0-1/4'
+                    && $request->getHeader('Content-Length') === ['2']
                     && !$request->hasHeader('X-Goog-Hash');
             }),
             Argument::type('array')

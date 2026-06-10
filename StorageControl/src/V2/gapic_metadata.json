@@ -65,6 +65,16 @@
                                 "getIamPolicy"
                             ]
                         },
+                        "GetIntelligenceFinding": {
+                            "methods": [
+                                "getIntelligenceFinding"
+                            ]
+                        },
+                        "GetIntelligenceFindingRevision": {
+                            "methods": [
+                                "getIntelligenceFindingRevision"
+                            ]
+                        },
                         "GetManagedFolder": {
                             "methods": [
                                 "getManagedFolder"
@@ -95,6 +105,16 @@
                                 "listFolders"
                             ]
                         },
+                        "ListIntelligenceFindingRevisions": {
+                            "methods": [
+                                "listIntelligenceFindingRevisions"
+                            ]
+                        },
+                        "ListIntelligenceFindings": {
+                            "methods": [
+                                "listIntelligenceFindings"
+                            ]
+                        },
                         "ListManagedFolders": {
                             "methods": [
                                 "listManagedFolders"
@@ -118,6 +138,11 @@
                         "SetIamPolicy": {
                             "methods": [
                                 "setIamPolicy"
+                            ]
+                        },
+                        "SummarizeIntelligenceFindings": {
+                            "methods": [
+                                "summarizeIntelligenceFindings"
                             ]
                         },
                         "TestIamPermissions": {

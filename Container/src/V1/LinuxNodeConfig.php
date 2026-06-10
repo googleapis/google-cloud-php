@@ -28,6 +28,9 @@ class LinuxNodeConfig extends \Google\Protobuf\Internal\Message
      * net.core.wmem_max
      * net.core.optmem_max
      * net.core.somaxconn
+     * net.ipv4.neigh.default.gc_thresh1
+     * net.ipv4.neigh.default.gc_thresh2
+     * net.ipv4.neigh.default.gc_thresh3
      * net.ipv4.tcp_rmem
      * net.ipv4.tcp_wmem
      * net.ipv4.tcp_tw_reuse
@@ -43,6 +46,8 @@ class LinuxNodeConfig extends \Google\Protobuf\Internal\Message
      * net.netfilter.nf_conntrack_tcp_timeout_time_wait
      * net.netfilter.nf_conntrack_tcp_timeout_established
      * net.netfilter.nf_conntrack_acct
+     * kernel.keys.maxkeys
+     * kernel.keys.maxbytes
      * kernel.shmmni
      * kernel.shmmax
      * kernel.shmall
@@ -110,6 +115,13 @@ class LinuxNodeConfig extends \Google\Protobuf\Internal\Message
      */
     protected $transparent_hugepage_defrag = 0;
     /**
+     * Optional. Allow users to run arbitrary bash script or container on the
+     * node.
+     *
+     * Generated from protobuf field <code>.google.container.v1.LinuxNodeConfig.CustomNodeInit custom_node_init = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $custom_node_init = null;
+    /**
      * Optional. Enables and configures swap space on nodes.
      * If omitted, swap is disabled.
      *
@@ -124,6 +136,12 @@ class LinuxNodeConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.LinuxNodeConfig.NodeKernelModuleLoading node_kernel_module_loading = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $node_kernel_module_loading = null;
+    /**
+     * Optional. The accurate time configuration for the node pool.
+     *
+     * Generated from protobuf field <code>optional .google.container.v1.LinuxNodeConfig.AccurateTimeConfig accurate_time_config = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $accurate_time_config = null;
 
     /**
      * Constructor.
@@ -144,6 +162,9 @@ class LinuxNodeConfig extends \Google\Protobuf\Internal\Message
      *           net.core.wmem_max
      *           net.core.optmem_max
      *           net.core.somaxconn
+     *           net.ipv4.neigh.default.gc_thresh1
+     *           net.ipv4.neigh.default.gc_thresh2
+     *           net.ipv4.neigh.default.gc_thresh3
      *           net.ipv4.tcp_rmem
      *           net.ipv4.tcp_wmem
      *           net.ipv4.tcp_tw_reuse
@@ -159,6 +180,8 @@ class LinuxNodeConfig extends \Google\Protobuf\Internal\Message
      *           net.netfilter.nf_conntrack_tcp_timeout_time_wait
      *           net.netfilter.nf_conntrack_tcp_timeout_established
      *           net.netfilter.nf_conntrack_acct
+     *           kernel.keys.maxkeys
+     *           kernel.keys.maxbytes
      *           kernel.shmmni
      *           kernel.shmmax
      *           kernel.shmall
@@ -205,6 +228,9 @@ class LinuxNodeConfig extends \Google\Protobuf\Internal\Message
      *           immediate allocation only.
      *           See https://docs.kernel.org/admin-guide/mm/transhuge.html
      *           for more details.
+     *     @type \Google\Cloud\Container\V1\LinuxNodeConfig\CustomNodeInit $custom_node_init
+     *           Optional. Allow users to run arbitrary bash script or container on the
+     *           node.
      *     @type \Google\Cloud\Container\V1\LinuxNodeConfig\SwapConfig $swap_config
      *           Optional. Enables and configures swap space on nodes.
      *           If omitted, swap is disabled.
@@ -212,6 +238,8 @@ class LinuxNodeConfig extends \Google\Protobuf\Internal\Message
      *           Optional. Configuration for kernel module loading on nodes.
      *           When enabled, the node pool will be provisioned with a Container-Optimized
      *           OS image that enforces kernel module signature verification.
+     *     @type \Google\Cloud\Container\V1\LinuxNodeConfig\AccurateTimeConfig $accurate_time_config
+     *           Optional. The accurate time configuration for the node pool.
      * }
      */
     public function __construct($data = NULL) {
@@ -232,6 +260,9 @@ class LinuxNodeConfig extends \Google\Protobuf\Internal\Message
      * net.core.wmem_max
      * net.core.optmem_max
      * net.core.somaxconn
+     * net.ipv4.neigh.default.gc_thresh1
+     * net.ipv4.neigh.default.gc_thresh2
+     * net.ipv4.neigh.default.gc_thresh3
      * net.ipv4.tcp_rmem
      * net.ipv4.tcp_wmem
      * net.ipv4.tcp_tw_reuse
@@ -247,6 +278,8 @@ class LinuxNodeConfig extends \Google\Protobuf\Internal\Message
      * net.netfilter.nf_conntrack_tcp_timeout_time_wait
      * net.netfilter.nf_conntrack_tcp_timeout_established
      * net.netfilter.nf_conntrack_acct
+     * kernel.keys.maxkeys
+     * kernel.keys.maxbytes
      * kernel.shmmni
      * kernel.shmmax
      * kernel.shmall
@@ -297,6 +330,9 @@ class LinuxNodeConfig extends \Google\Protobuf\Internal\Message
      * net.core.wmem_max
      * net.core.optmem_max
      * net.core.somaxconn
+     * net.ipv4.neigh.default.gc_thresh1
+     * net.ipv4.neigh.default.gc_thresh2
+     * net.ipv4.neigh.default.gc_thresh3
      * net.ipv4.tcp_rmem
      * net.ipv4.tcp_wmem
      * net.ipv4.tcp_tw_reuse
@@ -312,6 +348,8 @@ class LinuxNodeConfig extends \Google\Protobuf\Internal\Message
      * net.netfilter.nf_conntrack_tcp_timeout_time_wait
      * net.netfilter.nf_conntrack_tcp_timeout_established
      * net.netfilter.nf_conntrack_acct
+     * kernel.keys.maxkeys
+     * kernel.keys.maxbytes
      * kernel.shmmni
      * kernel.shmmax
      * kernel.shmall
@@ -488,6 +526,44 @@ class LinuxNodeConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. Allow users to run arbitrary bash script or container on the
+     * node.
+     *
+     * Generated from protobuf field <code>.google.container.v1.LinuxNodeConfig.CustomNodeInit custom_node_init = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Container\V1\LinuxNodeConfig\CustomNodeInit|null
+     */
+    public function getCustomNodeInit()
+    {
+        return $this->custom_node_init;
+    }
+
+    public function hasCustomNodeInit()
+    {
+        return isset($this->custom_node_init);
+    }
+
+    public function clearCustomNodeInit()
+    {
+        unset($this->custom_node_init);
+    }
+
+    /**
+     * Optional. Allow users to run arbitrary bash script or container on the
+     * node.
+     *
+     * Generated from protobuf field <code>.google.container.v1.LinuxNodeConfig.CustomNodeInit custom_node_init = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Container\V1\LinuxNodeConfig\CustomNodeInit $var
+     * @return $this
+     */
+    public function setCustomNodeInit($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\LinuxNodeConfig\CustomNodeInit::class);
+        $this->custom_node_init = $var;
+
+        return $this;
+    }
+
+    /**
      * Optional. Enables and configures swap space on nodes.
      * If omitted, swap is disabled.
      *
@@ -561,6 +637,42 @@ class LinuxNodeConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\LinuxNodeConfig\NodeKernelModuleLoading::class);
         $this->node_kernel_module_loading = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The accurate time configuration for the node pool.
+     *
+     * Generated from protobuf field <code>optional .google.container.v1.LinuxNodeConfig.AccurateTimeConfig accurate_time_config = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Container\V1\LinuxNodeConfig\AccurateTimeConfig|null
+     */
+    public function getAccurateTimeConfig()
+    {
+        return $this->accurate_time_config;
+    }
+
+    public function hasAccurateTimeConfig()
+    {
+        return isset($this->accurate_time_config);
+    }
+
+    public function clearAccurateTimeConfig()
+    {
+        unset($this->accurate_time_config);
+    }
+
+    /**
+     * Optional. The accurate time configuration for the node pool.
+     *
+     * Generated from protobuf field <code>optional .google.container.v1.LinuxNodeConfig.AccurateTimeConfig accurate_time_config = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Container\V1\LinuxNodeConfig\AccurateTimeConfig $var
+     * @return $this
+     */
+    public function setAccurateTimeConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\LinuxNodeConfig\AccurateTimeConfig::class);
+        $this->accurate_time_config = $var;
 
         return $this;
     }

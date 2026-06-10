@@ -45,6 +45,8 @@ use Google\Apps\Chat\V1\DeleteSectionRequest;
 use Google\Apps\Chat\V1\DeleteSpaceRequest;
 use Google\Apps\Chat\V1\Emoji;
 use Google\Apps\Chat\V1\FindDirectMessageRequest;
+use Google\Apps\Chat\V1\FindGroupChatsRequest;
+use Google\Apps\Chat\V1\FindGroupChatsResponse;
 use Google\Apps\Chat\V1\GetAttachmentRequest;
 use Google\Apps\Chat\V1\GetCustomEmojiRequest;
 use Google\Apps\Chat\V1\GetMembershipRequest;
@@ -349,6 +351,7 @@ class ChatServiceClientTest extends GeneratedTest
         $fallbackText = 'fallbackText563106922';
         $argumentText = 'argumentText-39826065';
         $threadReply = false;
+        $silent = false;
         $clientAssignedMessageId = 'clientAssignedMessageId-1116632848';
         $expectedResponse = new Message();
         $expectedResponse->setName($name);
@@ -357,6 +360,7 @@ class ChatServiceClientTest extends GeneratedTest
         $expectedResponse->setFallbackText($fallbackText);
         $expectedResponse->setArgumentText($argumentText);
         $expectedResponse->setThreadReply($threadReply);
+        $expectedResponse->setSilent($silent);
         $expectedResponse->setClientAssignedMessageId($clientAssignedMessageId);
         $transport->addResponse($expectedResponse);
         // Mock request
@@ -1103,6 +1107,71 @@ class ChatServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function findGroupChatsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $spacesElement = new Space();
+        $spaces = [$spacesElement];
+        $expectedResponse = new FindGroupChatsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setSpaces($spaces);
+        $transport->addResponse($expectedResponse);
+        $request = new FindGroupChatsRequest();
+        $response = $gapicClient->findGroupChats($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getSpaces()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.chat.v1.ChatService/FindGroupChats', $actualFuncCall);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function findGroupChatsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        $request = new FindGroupChatsRequest();
+        try {
+            $gapicClient->findGroupChats($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function getAttachmentTest()
     {
         $transport = $this->createTransport();
@@ -1326,6 +1395,7 @@ class ChatServiceClientTest extends GeneratedTest
         $fallbackText = 'fallbackText563106922';
         $argumentText = 'argumentText-39826065';
         $threadReply = false;
+        $silent = false;
         $clientAssignedMessageId = 'clientAssignedMessageId-1116632848';
         $expectedResponse = new Message();
         $expectedResponse->setName($name2);
@@ -1334,6 +1404,7 @@ class ChatServiceClientTest extends GeneratedTest
         $expectedResponse->setFallbackText($fallbackText);
         $expectedResponse->setArgumentText($argumentText);
         $expectedResponse->setThreadReply($threadReply);
+        $expectedResponse->setSilent($silent);
         $expectedResponse->setClientAssignedMessageId($clientAssignedMessageId);
         $transport->addResponse($expectedResponse);
         // Mock request
@@ -2659,6 +2730,7 @@ class ChatServiceClientTest extends GeneratedTest
         $fallbackText = 'fallbackText563106922';
         $argumentText = 'argumentText-39826065';
         $threadReply = false;
+        $silent = false;
         $clientAssignedMessageId = 'clientAssignedMessageId-1116632848';
         $expectedResponse = new Message();
         $expectedResponse->setName($name);
@@ -2667,6 +2739,7 @@ class ChatServiceClientTest extends GeneratedTest
         $expectedResponse->setFallbackText($fallbackText);
         $expectedResponse->setArgumentText($argumentText);
         $expectedResponse->setThreadReply($threadReply);
+        $expectedResponse->setSilent($silent);
         $expectedResponse->setClientAssignedMessageId($clientAssignedMessageId);
         $transport->addResponse($expectedResponse);
         // Mock request

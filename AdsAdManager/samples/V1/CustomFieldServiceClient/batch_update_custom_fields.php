@@ -32,7 +32,6 @@ use Google\Ads\AdManager\V1\CustomFieldEntityTypeEnum\CustomFieldEntityType;
 use Google\Ads\AdManager\V1\CustomFieldVisibilityEnum\CustomFieldVisibility;
 use Google\Ads\AdManager\V1\UpdateCustomFieldRequest;
 use Google\ApiCore\ApiException;
-use Google\Protobuf\FieldMask;
 
 /**
  * API to batch update `CustomField` objects.
@@ -63,10 +62,8 @@ function batch_update_custom_fields_sample(
         ->setEntityType($requestsCustomFieldEntityType)
         ->setDataType($requestsCustomFieldDataType)
         ->setVisibility($requestsCustomFieldVisibility);
-    $requestsUpdateMask = new FieldMask();
     $updateCustomFieldRequest = (new UpdateCustomFieldRequest())
-        ->setCustomField($requestsCustomField)
-        ->setUpdateMask($requestsUpdateMask);
+        ->setCustomField($requestsCustomField);
     $requests = [$updateCustomFieldRequest,];
     $request = (new BatchUpdateCustomFieldsRequest())
         ->setParent($formattedParent)

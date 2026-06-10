@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * NodePoolUpgradeInfo contains the upgrade information of a nodepool.
+ * NodePoolUpgradeInfo contains the upgrade information of a node pool.
  *
  * Generated from protobuf message <code>google.container.v1.NodePoolUpgradeInfo</code>
  */
@@ -46,13 +46,13 @@ class NodePoolUpgradeInfo extends \Google\Protobuf\Internal\Message
      */
     private $upgrade_details;
     /**
-     * The nodepool's current minor version's end of standard support timestamp.
+     * The node pool's current minor version's end of standard support timestamp.
      *
      * Generated from protobuf field <code>optional string end_of_standard_support_timestamp = 6;</code>
      */
     protected $end_of_standard_support_timestamp = null;
     /**
-     * The nodepool's current minor version's end of extended support timestamp.
+     * The node pool's current minor version's end of extended support timestamp.
      *
      * Generated from protobuf field <code>optional string end_of_extended_support_timestamp = 7;</code>
      */
@@ -75,9 +75,9 @@ class NodePoolUpgradeInfo extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Container\V1\UpgradeDetails[] $upgrade_details
      *           The list of past auto upgrades.
      *     @type string $end_of_standard_support_timestamp
-     *           The nodepool's current minor version's end of standard support timestamp.
+     *           The node pool's current minor version's end of standard support timestamp.
      *     @type string $end_of_extended_support_timestamp
-     *           The nodepool's current minor version's end of extended support timestamp.
+     *           The node pool's current minor version's end of extended support timestamp.
      * }
      */
     public function __construct($data = NULL) {
@@ -236,7 +236,7 @@ class NodePoolUpgradeInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The nodepool's current minor version's end of standard support timestamp.
+     * The node pool's current minor version's end of standard support timestamp.
      *
      * Generated from protobuf field <code>optional string end_of_standard_support_timestamp = 6;</code>
      * @return string
@@ -257,7 +257,7 @@ class NodePoolUpgradeInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The nodepool's current minor version's end of standard support timestamp.
+     * The node pool's current minor version's end of standard support timestamp.
      *
      * Generated from protobuf field <code>optional string end_of_standard_support_timestamp = 6;</code>
      * @param string $var
@@ -272,7 +272,7 @@ class NodePoolUpgradeInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The nodepool's current minor version's end of extended support timestamp.
+     * The node pool's current minor version's end of extended support timestamp.
      *
      * Generated from protobuf field <code>optional string end_of_extended_support_timestamp = 7;</code>
      * @return string
@@ -293,7 +293,7 @@ class NodePoolUpgradeInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The nodepool's current minor version's end of extended support timestamp.
+     * The node pool's current minor version's end of extended support timestamp.
      *
      * Generated from protobuf field <code>optional string end_of_extended_support_timestamp = 7;</code>
      * @param string $var

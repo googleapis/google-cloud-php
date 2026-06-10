@@ -1105,6 +1105,17 @@ return [
                     ],
                 ],
             ],
+            'GetUserProvidedDataSettings' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{name=properties/*/userProvidedDataSettings}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'ListAccessBindings' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{parent=accounts/*}/accessBindings',

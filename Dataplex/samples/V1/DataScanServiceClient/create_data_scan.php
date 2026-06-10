@@ -39,15 +39,8 @@ use Google\Rpc\Status;
  *                                where `project` refers to a *project_id* or *project_number* and
  *                                `location_id` refers to a Google Cloud region. Please see
  *                                {@see DataScanServiceClient::locationName()} for help formatting this field.
- * @param string $dataScanId      DataScan identifier.
- *
- *                                * Must contain only lowercase letters, numbers and hyphens.
- *                                * Must start with a letter.
- *                                * Must end with a number or a letter.
- *                                * Must be between 1-63 characters.
- *                                * Must be unique within the customer project / location.
  */
-function create_data_scan_sample(string $formattedParent, string $dataScanId): void
+function create_data_scan_sample(string $formattedParent): void
 {
     // Create a client.
     $dataScanServiceClient = new DataScanServiceClient();
@@ -58,8 +51,7 @@ function create_data_scan_sample(string $formattedParent, string $dataScanId): v
         ->setData($dataScanData);
     $request = (new CreateDataScanRequest())
         ->setParent($formattedParent)
-        ->setDataScan($dataScan)
-        ->setDataScanId($dataScanId);
+        ->setDataScan($dataScan);
 
     // Call the API and handle any network failures.
     try {
@@ -93,8 +85,7 @@ function create_data_scan_sample(string $formattedParent, string $dataScanId): v
 function callSample(): void
 {
     $formattedParent = DataScanServiceClient::locationName('[PROJECT]', '[LOCATION]');
-    $dataScanId = '[DATA_SCAN_ID]';
 
-    create_data_scan_sample($formattedParent, $dataScanId);
+    create_data_scan_sample($formattedParent);
 }
 // [END dataplex_v1_generated_DataScanService_CreateDataScan_sync]

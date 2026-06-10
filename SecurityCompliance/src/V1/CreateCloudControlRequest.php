@@ -16,8 +16,9 @@ use Google\Protobuf\RepeatedField;
 class CreateCloudControlRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The parent resource name, in the format
-     * `organizations/{organization}/locations/{location}`.
+     * Required. The parent resource name, in one of the following formats:
+     * - `organizations/{organization}/locations/{location}`.
+     * - `projects/{project}/locations/{location}`.
      * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -39,8 +40,10 @@ class CreateCloudControlRequest extends \Google\Protobuf\Internal\Message
     protected $cloud_control = null;
 
     /**
-     * @param string                                                $parent         Required. The parent resource name, in the format
-     *                                                                              `organizations/{organization}/locations/{location}`.
+     * @param string                                                $parent         Required. The parent resource name, in one of the following formats:
+     *                                                                              - `organizations/{organization}/locations/{location}`.
+     *                                                                              - `projects/{project}/locations/{location}`.
+     *
      *                                                                              The only supported location is `global`. Please see
      *                                                                              {@see ConfigClient::organizationLocationName()} for help formatting this field.
      * @param \Google\Cloud\CloudSecurityCompliance\V1\CloudControl $cloudControl   Required. The cloud control that's being created.
@@ -67,8 +70,9 @@ class CreateCloudControlRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The parent resource name, in the format
-     *           `organizations/{organization}/locations/{location}`.
+     *           Required. The parent resource name, in one of the following formats:
+     *           - `organizations/{organization}/locations/{location}`.
+     *           - `projects/{project}/locations/{location}`.
      *           The only supported location is `global`.
      *     @type string $cloud_control_id
      *           Required. The identifier for the cloud control, which is the last segment
@@ -84,8 +88,9 @@ class CreateCloudControlRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent resource name, in the format
-     * `organizations/{organization}/locations/{location}`.
+     * Required. The parent resource name, in one of the following formats:
+     * - `organizations/{organization}/locations/{location}`.
+     * - `projects/{project}/locations/{location}`.
      * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -97,8 +102,9 @@ class CreateCloudControlRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent resource name, in the format
-     * `organizations/{organization}/locations/{location}`.
+     * Required. The parent resource name, in one of the following formats:
+     * - `organizations/{organization}/locations/{location}`.
+     * - `projects/{project}/locations/{location}`.
      * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>

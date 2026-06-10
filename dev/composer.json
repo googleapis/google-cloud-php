@@ -12,7 +12,8 @@
         "twig/twig": "^3.5",
         "phpstan/phpstan": "^2.0",
         "symfony/finder": "^6.2",
-        "nikic/php-parser": "v5.7.0"
+        "nikic/php-parser": "v5.7.0",
+        "kcs/class-finder": "^0.6.1"
     },
     "autoload": {
         "psr-4": {

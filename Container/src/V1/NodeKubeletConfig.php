@@ -227,6 +227,13 @@ class NodeKubeletConfig extends \Google\Protobuf\Internal\Message
      */
     protected $single_process_oom_kill = null;
     /**
+     * Optional. Contains configuration options to modify node-level parameters
+     * for container restart behavior.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodeKubeletConfig.CrashLoopBackOffConfig crash_loop_back_off = 24 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $crash_loop_back_off = null;
+    /**
      * Optional. shutdown_grace_period_seconds is the maximum allowed grace period
      * (in seconds) the total duration that the node should delay the shutdown
      * during a graceful shutdown. This is the total grace period for pod
@@ -388,6 +395,9 @@ class NodeKubeletConfig extends \Google\Protobuf\Internal\Message
      *           If true, will prevent the memory.oom.group flag from being set for
      *           container cgroups in cgroups v2. This causes processes in the container to
      *           be OOM killed individually instead of as a group.
+     *     @type \Google\Cloud\Container\V1\NodeKubeletConfig\CrashLoopBackOffConfig $crash_loop_back_off
+     *           Optional. Contains configuration options to modify node-level parameters
+     *           for container restart behavior.
      *     @type int $shutdown_grace_period_seconds
      *           Optional. shutdown_grace_period_seconds is the maximum allowed grace period
      *           (in seconds) the total duration that the node should delay the shutdown
@@ -1230,6 +1240,44 @@ class NodeKubeletConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->single_process_oom_kill = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Contains configuration options to modify node-level parameters
+     * for container restart behavior.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodeKubeletConfig.CrashLoopBackOffConfig crash_loop_back_off = 24 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Container\V1\NodeKubeletConfig\CrashLoopBackOffConfig|null
+     */
+    public function getCrashLoopBackOff()
+    {
+        return $this->crash_loop_back_off;
+    }
+
+    public function hasCrashLoopBackOff()
+    {
+        return isset($this->crash_loop_back_off);
+    }
+
+    public function clearCrashLoopBackOff()
+    {
+        unset($this->crash_loop_back_off);
+    }
+
+    /**
+     * Optional. Contains configuration options to modify node-level parameters
+     * for container restart behavior.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodeKubeletConfig.CrashLoopBackOffConfig crash_loop_back_off = 24 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Container\V1\NodeKubeletConfig\CrashLoopBackOffConfig $var
+     * @return $this
+     */
+    public function setCrashLoopBackOff($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\NodeKubeletConfig\CrashLoopBackOffConfig::class);
+        $this->crash_loop_back_off = $var;
 
         return $this;
     }

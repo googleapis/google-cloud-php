@@ -17,12 +17,14 @@ class HostConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * Host configures the registry host/mirror.
-     * It supports fully qualified domain names (FQDN) and IP addresses:
-     * Specifying port is supported.
+     * It supports fully qualified domain names (FQDNs) and IP addresses.
+     * Specifying scheme, port or path is supported. Scheme can only be http
+     * or https.
      * Wildcards are NOT supported.
      * Examples:
-     * - my.customdomain.com
-     * - 10.0.1.2:5000
+     * - `my.customdomain.com`
+     * - `https://my.customdomain.com/path`
+     * - `10.0.1.2:5000`
      *
      * Generated from protobuf field <code>string host = 1;</code>
      */
@@ -82,12 +84,14 @@ class HostConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type string $host
      *           Host configures the registry host/mirror.
-     *           It supports fully qualified domain names (FQDN) and IP addresses:
-     *           Specifying port is supported.
+     *           It supports fully qualified domain names (FQDNs) and IP addresses.
+     *           Specifying scheme, port or path is supported. Scheme can only be http
+     *           or https.
      *           Wildcards are NOT supported.
      *           Examples:
-     *           - my.customdomain.com
-     *           - 10.0.1.2:5000
+     *           - `my.customdomain.com`
+     *           - `https://my.customdomain.com/path`
+     *           - `10.0.1.2:5000`
      *     @type int[] $capabilities
      *           Capabilities represent the capabilities of the registry host,
      *           specifying what operations a host is capable of performing.
@@ -119,12 +123,14 @@ class HostConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Host configures the registry host/mirror.
-     * It supports fully qualified domain names (FQDN) and IP addresses:
-     * Specifying port is supported.
+     * It supports fully qualified domain names (FQDNs) and IP addresses.
+     * Specifying scheme, port or path is supported. Scheme can only be http
+     * or https.
      * Wildcards are NOT supported.
      * Examples:
-     * - my.customdomain.com
-     * - 10.0.1.2:5000
+     * - `my.customdomain.com`
+     * - `https://my.customdomain.com/path`
+     * - `10.0.1.2:5000`
      *
      * Generated from protobuf field <code>string host = 1;</code>
      * @return string
@@ -136,12 +142,14 @@ class HostConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Host configures the registry host/mirror.
-     * It supports fully qualified domain names (FQDN) and IP addresses:
-     * Specifying port is supported.
+     * It supports fully qualified domain names (FQDNs) and IP addresses.
+     * Specifying scheme, port or path is supported. Scheme can only be http
+     * or https.
      * Wildcards are NOT supported.
      * Examples:
-     * - my.customdomain.com
-     * - 10.0.1.2:5000
+     * - `my.customdomain.com`
+     * - `https://my.customdomain.com/path`
+     * - `10.0.1.2:5000`
      *
      * Generated from protobuf field <code>string host = 1;</code>
      * @param string $var

@@ -15,6 +15,15 @@ use Google\Protobuf\RepeatedField;
 class HttpRouteAction extends \Google\Protobuf\Internal\Message
 {
     /**
+     * Specifies the cache policy configuration for matched traffic. Available
+     * only for Global `EXTERNAL_MANAGED` load balancer schemes. At least one
+     * property must be specified. This policy cannot be specified if any target
+     * backend has Identity-Aware Proxy enabled.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.CachePolicy cache_policy = 457366671;</code>
+     */
+    protected $cache_policy = null;
+    /**
      * The specification for allowing client-side cross-origin requests. For more
      * information about the W3C recommendation for cross-origin resource sharing
      * (CORS), see Fetch API Living
@@ -119,6 +128,11 @@ class HttpRouteAction extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type \Google\Cloud\Compute\V1\CachePolicy $cache_policy
+     *           Specifies the cache policy configuration for matched traffic. Available
+     *           only for Global `EXTERNAL_MANAGED` load balancer schemes. At least one
+     *           property must be specified. This policy cannot be specified if any target
+     *           backend has Identity-Aware Proxy enabled.
      *     @type \Google\Cloud\Compute\V1\CorsPolicy $cors_policy
      *           The specification for allowing client-side cross-origin requests. For more
      *           information about the W3C recommendation for cross-origin resource sharing
@@ -190,6 +204,48 @@ class HttpRouteAction extends \Google\Protobuf\Internal\Message
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Compute\V1\Compute::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Specifies the cache policy configuration for matched traffic. Available
+     * only for Global `EXTERNAL_MANAGED` load balancer schemes. At least one
+     * property must be specified. This policy cannot be specified if any target
+     * backend has Identity-Aware Proxy enabled.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.CachePolicy cache_policy = 457366671;</code>
+     * @return \Google\Cloud\Compute\V1\CachePolicy|null
+     */
+    public function getCachePolicy()
+    {
+        return $this->cache_policy;
+    }
+
+    public function hasCachePolicy()
+    {
+        return isset($this->cache_policy);
+    }
+
+    public function clearCachePolicy()
+    {
+        unset($this->cache_policy);
+    }
+
+    /**
+     * Specifies the cache policy configuration for matched traffic. Available
+     * only for Global `EXTERNAL_MANAGED` load balancer schemes. At least one
+     * property must be specified. This policy cannot be specified if any target
+     * backend has Identity-Aware Proxy enabled.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.CachePolicy cache_policy = 457366671;</code>
+     * @param \Google\Cloud\Compute\V1\CachePolicy $var
+     * @return $this
+     */
+    public function setCachePolicy($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\CachePolicy::class);
+        $this->cache_policy = $var;
+
+        return $this;
     }
 
     /**

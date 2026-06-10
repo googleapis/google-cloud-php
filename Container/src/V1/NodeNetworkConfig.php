@@ -70,7 +70,7 @@ class NodeNetworkConfig extends \Google\Protobuf\Internal\Message
     protected $network_performance_config = null;
     /**
      * [PRIVATE FIELD]
-     * Pod CIDR size overprovisioning config for the nodepool.
+     * Pod CIDR size overprovisioning config for the node pool.
      * Pod CIDR size per node depends on max_pods_per_node. By default, the value
      * of max_pods_per_node is rounded off to next power of 2 and we then double
      * that to get the size of pod CIDR block per node.
@@ -110,11 +110,14 @@ class NodeNetworkConfig extends \Google\Protobuf\Internal\Message
      * Format: projects/{project}/regions/{region}/subnetworks/{subnetwork}
      * If the cluster is associated with multiple subnetworks, the subnetwork can
      * be either:
-     * 1. A user supplied subnetwork name/full path during node pool creation.
-     *    Example1: my-subnet
-     *    Example2: projects/gke-project/regions/us-central1/subnetworks/my-subnet
-     * 2. A subnetwork path picked based on the IP utilization during node pool
-     *    creation and is immutable.
+     * - A user supplied subnetwork name during node pool creation (e.g.,
+     * `my-subnet`). The name must be between 1 and 63 characters long, start
+     * with a letter, contain only letters, numbers, and hyphens, and end with a
+     * letter or a number.
+     * - A full subnetwork path during node pool creation, such as
+     * `projects/gke-project/regions/us-central1/subnetworks/my-subnet`
+     * - A subnetwork path picked based on the IP utilization during node pool
+     * creation and is immutable.
      *
      * Generated from protobuf field <code>string subnetwork = 19 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
@@ -127,6 +130,15 @@ class NodeNetworkConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.NetworkTierConfig network_tier_config = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $network_tier_config = null;
+    /**
+     * Immutable. The accelerator network profile for the node pool. For now the
+     * only valid value is "auto". If specified, the network configuration of the
+     * nodes in this node pool will be managed by this profile for the supported
+     * machine types, zone, etc.
+     *
+     * Generated from protobuf field <code>string accelerator_network_profile = 21 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     */
+    protected $accelerator_network_profile = '';
 
     /**
      * Constructor.
@@ -169,7 +181,7 @@ class NodeNetworkConfig extends \Google\Protobuf\Internal\Message
      *           Network bandwidth tier configuration.
      *     @type \Google\Cloud\Container\V1\PodCIDROverprovisionConfig $pod_cidr_overprovision_config
      *           [PRIVATE FIELD]
-     *           Pod CIDR size overprovisioning config for the nodepool.
+     *           Pod CIDR size overprovisioning config for the node pool.
      *           Pod CIDR size per node depends on max_pods_per_node. By default, the value
      *           of max_pods_per_node is rounded off to next power of 2 and we then double
      *           that to get the size of pod CIDR block per node.
@@ -193,15 +205,23 @@ class NodeNetworkConfig extends \Google\Protobuf\Internal\Message
      *           Format: projects/{project}/regions/{region}/subnetworks/{subnetwork}
      *           If the cluster is associated with multiple subnetworks, the subnetwork can
      *           be either:
-     *           1. A user supplied subnetwork name/full path during node pool creation.
-     *              Example1: my-subnet
-     *              Example2: projects/gke-project/regions/us-central1/subnetworks/my-subnet
-     *           2. A subnetwork path picked based on the IP utilization during node pool
-     *              creation and is immutable.
+     *           - A user supplied subnetwork name during node pool creation (e.g.,
+     *           `my-subnet`). The name must be between 1 and 63 characters long, start
+     *           with a letter, contain only letters, numbers, and hyphens, and end with a
+     *           letter or a number.
+     *           - A full subnetwork path during node pool creation, such as
+     *           `projects/gke-project/regions/us-central1/subnetworks/my-subnet`
+     *           - A subnetwork path picked based on the IP utilization during node pool
+     *           creation and is immutable.
      *     @type \Google\Cloud\Container\V1\NetworkTierConfig $network_tier_config
      *           Output only. The network tier configuration for the node pool inherits from
      *           the cluster-level configuration and remains immutable throughout the node
      *           pool's lifecycle, including during upgrades.
+     *     @type string $accelerator_network_profile
+     *           Immutable. The accelerator network profile for the node pool. For now the
+     *           only valid value is "auto". If specified, the network configuration of the
+     *           nodes in this node pool will be managed by this profile for the supported
+     *           machine types, zone, etc.
      * }
      */
     public function __construct($data = NULL) {
@@ -407,7 +427,7 @@ class NodeNetworkConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * [PRIVATE FIELD]
-     * Pod CIDR size overprovisioning config for the nodepool.
+     * Pod CIDR size overprovisioning config for the node pool.
      * Pod CIDR size per node depends on max_pods_per_node. By default, the value
      * of max_pods_per_node is rounded off to next power of 2 and we then double
      * that to get the size of pod CIDR block per node.
@@ -437,7 +457,7 @@ class NodeNetworkConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * [PRIVATE FIELD]
-     * Pod CIDR size overprovisioning config for the nodepool.
+     * Pod CIDR size overprovisioning config for the node pool.
      * Pod CIDR size per node depends on max_pods_per_node. By default, the value
      * of max_pods_per_node is rounded off to next power of 2 and we then double
      * that to get the size of pod CIDR block per node.
@@ -550,11 +570,14 @@ class NodeNetworkConfig extends \Google\Protobuf\Internal\Message
      * Format: projects/{project}/regions/{region}/subnetworks/{subnetwork}
      * If the cluster is associated with multiple subnetworks, the subnetwork can
      * be either:
-     * 1. A user supplied subnetwork name/full path during node pool creation.
-     *    Example1: my-subnet
-     *    Example2: projects/gke-project/regions/us-central1/subnetworks/my-subnet
-     * 2. A subnetwork path picked based on the IP utilization during node pool
-     *    creation and is immutable.
+     * - A user supplied subnetwork name during node pool creation (e.g.,
+     * `my-subnet`). The name must be between 1 and 63 characters long, start
+     * with a letter, contain only letters, numbers, and hyphens, and end with a
+     * letter or a number.
+     * - A full subnetwork path during node pool creation, such as
+     * `projects/gke-project/regions/us-central1/subnetworks/my-subnet`
+     * - A subnetwork path picked based on the IP utilization during node pool
+     * creation and is immutable.
      *
      * Generated from protobuf field <code>string subnetwork = 19 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
@@ -569,11 +592,14 @@ class NodeNetworkConfig extends \Google\Protobuf\Internal\Message
      * Format: projects/{project}/regions/{region}/subnetworks/{subnetwork}
      * If the cluster is associated with multiple subnetworks, the subnetwork can
      * be either:
-     * 1. A user supplied subnetwork name/full path during node pool creation.
-     *    Example1: my-subnet
-     *    Example2: projects/gke-project/regions/us-central1/subnetworks/my-subnet
-     * 2. A subnetwork path picked based on the IP utilization during node pool
-     *    creation and is immutable.
+     * - A user supplied subnetwork name during node pool creation (e.g.,
+     * `my-subnet`). The name must be between 1 and 63 characters long, start
+     * with a letter, contain only letters, numbers, and hyphens, and end with a
+     * letter or a number.
+     * - A full subnetwork path during node pool creation, such as
+     * `projects/gke-project/regions/us-central1/subnetworks/my-subnet`
+     * - A subnetwork path picked based on the IP utilization during node pool
+     * creation and is immutable.
      *
      * Generated from protobuf field <code>string subnetwork = 19 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -623,6 +649,38 @@ class NodeNetworkConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\NetworkTierConfig::class);
         $this->network_tier_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Immutable. The accelerator network profile for the node pool. For now the
+     * only valid value is "auto". If specified, the network configuration of the
+     * nodes in this node pool will be managed by this profile for the supported
+     * machine types, zone, etc.
+     *
+     * Generated from protobuf field <code>string accelerator_network_profile = 21 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @return string
+     */
+    public function getAcceleratorNetworkProfile()
+    {
+        return $this->accelerator_network_profile;
+    }
+
+    /**
+     * Immutable. The accelerator network profile for the node pool. For now the
+     * only valid value is "auto". If specified, the network configuration of the
+     * nodes in this node pool will be managed by this profile for the supported
+     * machine types, zone, etc.
+     *
+     * Generated from protobuf field <code>string accelerator_network_profile = 21 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAcceleratorNetworkProfile($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->accelerator_network_profile = $var;
 
         return $this;
     }

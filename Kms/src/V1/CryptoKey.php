@@ -138,6 +138,10 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
      * justification codes.
      * https://cloud.google.com/assured-workloads/key-access-justifications/docs/justification-codes
      * By default, this field is absent, and all justification codes are allowed.
+     * If the
+     * `key_access_justifications_policy.allowed_access_reasons`
+     * is empty (zero allowed justification code), all encrypt, decrypt, and sign
+     * operations will fail.
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.KeyAccessJustificationsPolicy key_access_justifications_policy = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -240,6 +244,10 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
      *           justification codes.
      *           https://cloud.google.com/assured-workloads/key-access-justifications/docs/justification-codes
      *           By default, this field is absent, and all justification codes are allowed.
+     *           If the
+     *           `key_access_justifications_policy.allowed_access_reasons`
+     *           is empty (zero allowed justification code), all encrypt, decrypt, and sign
+     *           operations will fail.
      * }
      */
     public function __construct($data = NULL) {
@@ -715,6 +723,10 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
      * justification codes.
      * https://cloud.google.com/assured-workloads/key-access-justifications/docs/justification-codes
      * By default, this field is absent, and all justification codes are allowed.
+     * If the
+     * `key_access_justifications_policy.allowed_access_reasons`
+     * is empty (zero allowed justification code), all encrypt, decrypt, and sign
+     * operations will fail.
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.KeyAccessJustificationsPolicy key_access_justifications_policy = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Kms\V1\KeyAccessJustificationsPolicy|null
@@ -743,6 +755,10 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
      * justification codes.
      * https://cloud.google.com/assured-workloads/key-access-justifications/docs/justification-codes
      * By default, this field is absent, and all justification codes are allowed.
+     * If the
+     * `key_access_justifications_policy.allowed_access_reasons`
+     * is empty (zero allowed justification code), all encrypt, decrypt, and sign
+     * operations will fail.
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.KeyAccessJustificationsPolicy key_access_justifications_policy = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Kms\V1\KeyAccessJustificationsPolicy $var

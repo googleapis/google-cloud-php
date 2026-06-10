@@ -20,6 +20,10 @@ class Backup extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The unique resource name of the Backup.
      * Format is `projects/{project}/locations/{location}/backups/{backup}`.
+     * The location in the name will be the Standard Managed Multi-Region (SMMR)
+     * location (e.g. `us`) if the backup was created with an SMMR location, or
+     * the Google Managed Multi-Region (GMMR) location (e.g. `nam5`) if the backup
+     * was created with a GMMR location.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -75,6 +79,10 @@ class Backup extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Output only. The unique resource name of the Backup.
      *           Format is `projects/{project}/locations/{location}/backups/{backup}`.
+     *           The location in the name will be the Standard Managed Multi-Region (SMMR)
+     *           location (e.g. `us`) if the backup was created with an SMMR location, or
+     *           the Google Managed Multi-Region (GMMR) location (e.g. `nam5`) if the backup
+     *           was created with a GMMR location.
      *     @type string $database
      *           Output only. Name of the Firestore database that the backup is from.
      *           Format is `projects/{project}/databases/{database}`.
@@ -102,6 +110,10 @@ class Backup extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The unique resource name of the Backup.
      * Format is `projects/{project}/locations/{location}/backups/{backup}`.
+     * The location in the name will be the Standard Managed Multi-Region (SMMR)
+     * location (e.g. `us`) if the backup was created with an SMMR location, or
+     * the Google Managed Multi-Region (GMMR) location (e.g. `nam5`) if the backup
+     * was created with a GMMR location.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -114,6 +126,10 @@ class Backup extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The unique resource name of the Backup.
      * Format is `projects/{project}/locations/{location}/backups/{backup}`.
+     * The location in the name will be the Standard Managed Multi-Region (SMMR)
+     * location (e.g. `us`) if the backup was created with an SMMR location, or
+     * the Google Managed Multi-Region (GMMR) location (e.g. `nam5`) if the backup
+     * was created with a GMMR location.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

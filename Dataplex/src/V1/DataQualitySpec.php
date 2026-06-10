@@ -56,6 +56,34 @@ class DataQualitySpec extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool catalog_publishing_enabled = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $catalog_publishing_enabled = false;
+    /**
+     * Optional. If enabled, the data scan will retrieve rules defined in the
+     * dataplex-types.global.data-rules aspect on all paths of the catalog entry
+     * corresponding to the BigQuery table resource and all attached glossary
+     * terms. The path that data-rules aspect is attached on the table entry
+     * defines the column that the rule will be evaluated against. For glossary
+     * terms, the path that the terms are attached on the table entry defines the
+     * column that the rule will be evaluated against. At the start of scan
+     * execution, the rules reflect the latest state retrieved from the catalog
+     * entry and any updates on the rules thereafter are ignored for that
+     * execution. The updates will be reflected from the next execution. Rules
+     * defined in the datascan must be empty if this field is enabled.
+     *
+     * Generated from protobuf field <code>bool enable_catalog_based_rules = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $enable_catalog_based_rules = false;
+    /**
+     * Optional. Filter for selectively running a subset of rules. You can filter
+     * the request by the name or attribute key-value pairs defined on the rule.
+     * If not specified, all rules are run. The filter is applicable to both, the
+     * rules retrieved from catalog and explicitly defined rules in the scan.
+     * Please see [filter
+     * syntax](https://docs.cloud.google.com/dataplex/docs/auto-data-quality-overview#rule-filtering)
+     * for more details.
+     *
+     * Generated from protobuf field <code>string filter = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $filter = '';
 
     /**
      * Constructor.
@@ -84,6 +112,26 @@ class DataQualitySpec extends \Google\Protobuf\Internal\Message
      *     @type bool $catalog_publishing_enabled
      *           Optional. If set, the latest DataScan job result will be published as
      *           Dataplex Universal Catalog metadata.
+     *     @type bool $enable_catalog_based_rules
+     *           Optional. If enabled, the data scan will retrieve rules defined in the
+     *           dataplex-types.global.data-rules aspect on all paths of the catalog entry
+     *           corresponding to the BigQuery table resource and all attached glossary
+     *           terms. The path that data-rules aspect is attached on the table entry
+     *           defines the column that the rule will be evaluated against. For glossary
+     *           terms, the path that the terms are attached on the table entry defines the
+     *           column that the rule will be evaluated against. At the start of scan
+     *           execution, the rules reflect the latest state retrieved from the catalog
+     *           entry and any updates on the rules thereafter are ignored for that
+     *           execution. The updates will be reflected from the next execution. Rules
+     *           defined in the datascan must be empty if this field is enabled.
+     *     @type string $filter
+     *           Optional. Filter for selectively running a subset of rules. You can filter
+     *           the request by the name or attribute key-value pairs defined on the rule.
+     *           If not specified, all rules are run. The filter is applicable to both, the
+     *           rules retrieved from catalog and explicitly defined rules in the scan.
+     *           Please see [filter
+     *           syntax](https://docs.cloud.google.com/dataplex/docs/auto-data-quality-overview#rule-filtering)
+     *           for more details.
      * }
      */
     public function __construct($data = NULL) {
@@ -249,6 +297,90 @@ class DataQualitySpec extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->catalog_publishing_enabled = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If enabled, the data scan will retrieve rules defined in the
+     * dataplex-types.global.data-rules aspect on all paths of the catalog entry
+     * corresponding to the BigQuery table resource and all attached glossary
+     * terms. The path that data-rules aspect is attached on the table entry
+     * defines the column that the rule will be evaluated against. For glossary
+     * terms, the path that the terms are attached on the table entry defines the
+     * column that the rule will be evaluated against. At the start of scan
+     * execution, the rules reflect the latest state retrieved from the catalog
+     * entry and any updates on the rules thereafter are ignored for that
+     * execution. The updates will be reflected from the next execution. Rules
+     * defined in the datascan must be empty if this field is enabled.
+     *
+     * Generated from protobuf field <code>bool enable_catalog_based_rules = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getEnableCatalogBasedRules()
+    {
+        return $this->enable_catalog_based_rules;
+    }
+
+    /**
+     * Optional. If enabled, the data scan will retrieve rules defined in the
+     * dataplex-types.global.data-rules aspect on all paths of the catalog entry
+     * corresponding to the BigQuery table resource and all attached glossary
+     * terms. The path that data-rules aspect is attached on the table entry
+     * defines the column that the rule will be evaluated against. For glossary
+     * terms, the path that the terms are attached on the table entry defines the
+     * column that the rule will be evaluated against. At the start of scan
+     * execution, the rules reflect the latest state retrieved from the catalog
+     * entry and any updates on the rules thereafter are ignored for that
+     * execution. The updates will be reflected from the next execution. Rules
+     * defined in the datascan must be empty if this field is enabled.
+     *
+     * Generated from protobuf field <code>bool enable_catalog_based_rules = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableCatalogBasedRules($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_catalog_based_rules = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Filter for selectively running a subset of rules. You can filter
+     * the request by the name or attribute key-value pairs defined on the rule.
+     * If not specified, all rules are run. The filter is applicable to both, the
+     * rules retrieved from catalog and explicitly defined rules in the scan.
+     * Please see [filter
+     * syntax](https://docs.cloud.google.com/dataplex/docs/auto-data-quality-overview#rule-filtering)
+     * for more details.
+     *
+     * Generated from protobuf field <code>string filter = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getFilter()
+    {
+        return $this->filter;
+    }
+
+    /**
+     * Optional. Filter for selectively running a subset of rules. You can filter
+     * the request by the name or attribute key-value pairs defined on the rule.
+     * If not specified, all rules are run. The filter is applicable to both, the
+     * rules retrieved from catalog and explicitly defined rules in the scan.
+     * Please see [filter
+     * syntax](https://docs.cloud.google.com/dataplex/docs/auto-data-quality-overview#rule-filtering)
+     * for more details.
+     *
+     * Generated from protobuf field <code>string filter = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setFilter($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->filter = $var;
 
         return $this;
     }

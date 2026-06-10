@@ -145,6 +145,23 @@ return [
                     ],
                 ],
             ],
+            'UpdateKmsKey' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/global/snapshots/{snapshot}/updateKmsKey',
+                'body' => 'snapshot_update_kms_key_request_resource',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'snapshot' => [
+                        'getters' => [
+                            'getSnapshot',
+                        ],
+                    ],
+                ],
+            ],
         ],
         'google.cloud.compute.v1.GlobalOperations' => [
             'AggregatedList' => [

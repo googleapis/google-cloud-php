@@ -16,9 +16,9 @@ use Google\Protobuf\RepeatedField;
 class SessionTemplate extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of the session template.
+     * Required. Identifier. The resource name of the session template.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
@@ -85,7 +85,7 @@ class SessionTemplate extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The resource name of the session template.
+     *           Required. Identifier. The resource name of the session template.
      *     @type string $description
      *           Optional. Brief description of the template.
      *     @type \Google\Protobuf\Timestamp $create_time
@@ -93,7 +93,7 @@ class SessionTemplate extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dataproc\V1\JupyterConfig $jupyter_session
      *           Optional. Jupyter session config.
      *     @type \Google\Cloud\Dataproc\V1\SparkConnectConfig $spark_connect_session
-     *           Optional. Spark Connect session config.
+     *           Optional. Spark connect session config.
      *     @type string $creator
      *           Output only. The email address of the user who created the template.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
@@ -121,9 +121,9 @@ class SessionTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the session template.
+     * Required. Identifier. The resource name of the session template.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -132,9 +132,9 @@ class SessionTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the session template.
+     * Required. Identifier. The resource name of the session template.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */
@@ -240,7 +240,7 @@ class SessionTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Spark Connect session config.
+     * Optional. Spark connect session config.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.SparkConnectConfig spark_connect_session = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Dataproc\V1\SparkConnectConfig|null
@@ -256,7 +256,7 @@ class SessionTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Spark Connect session config.
+     * Optional. Spark connect session config.
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.SparkConnectConfig spark_connect_session = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Dataproc\V1\SparkConnectConfig $var

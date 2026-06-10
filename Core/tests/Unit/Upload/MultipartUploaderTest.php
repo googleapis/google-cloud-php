@@ -137,6 +137,11 @@ class MultipartUploaderTest extends TestCase
             Argument::that(
                 function (RequestInterface $request) use ($shouldContentLengthExist) {
                     $this->assertEquals($request->hasHeader('Content-Length'), $shouldContentLengthExist);
+
+                    foreach ($request->getHeader('Content-Length') as $value) {
+                        $this->assertIsString($value);
+                    }
+
                     return true;
                 }
             ),

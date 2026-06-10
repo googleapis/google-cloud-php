@@ -17,8 +17,17 @@ class MultiLanguageDetectionMetadata extends \Google\Protobuf\Internal\Message
 {
     /**
      * Optional. Optional Source language of the user prompt.
-     * If multi-language detection is enabled but language is not set in that case
-     * we would automatically detect the source language.
+     * If multi-language detection is enabled and this field is not set, the
+     * source language will be automatically detected. When a source language is
+     * provided, Model Armor uses it to sanitize the input. In that case the
+     * system does not perform auto-detection and relies solely on the specified
+     * language.
+     * This string field accepts a language code from the ISO-639 standard.
+     * For a list of languages supported by Model Armor, see
+     * [Model Armor supported languages]
+     * (https://cloud.google.com/security-command-center/docs/model-armor-overview#languages-supported).
+     * For a comprehensive list of language codes, see
+     * [ISO-639](https://cloud.google.com/translate/docs/languages#nmt).
      *
      * Generated from protobuf field <code>string source_language = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -38,8 +47,17 @@ class MultiLanguageDetectionMetadata extends \Google\Protobuf\Internal\Message
      *
      *     @type string $source_language
      *           Optional. Optional Source language of the user prompt.
-     *           If multi-language detection is enabled but language is not set in that case
-     *           we would automatically detect the source language.
+     *           If multi-language detection is enabled and this field is not set, the
+     *           source language will be automatically detected. When a source language is
+     *           provided, Model Armor uses it to sanitize the input. In that case the
+     *           system does not perform auto-detection and relies solely on the specified
+     *           language.
+     *           This string field accepts a language code from the ISO-639 standard.
+     *           For a list of languages supported by Model Armor, see
+     *           [Model Armor supported languages]
+     *           (https://cloud.google.com/security-command-center/docs/model-armor-overview#languages-supported).
+     *           For a comprehensive list of language codes, see
+     *           [ISO-639](https://cloud.google.com/translate/docs/languages#nmt).
      *     @type bool $enable_multi_language_detection
      *           Optional. Enable detection of multi-language prompts and responses.
      * }
@@ -51,8 +69,17 @@ class MultiLanguageDetectionMetadata extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Optional Source language of the user prompt.
-     * If multi-language detection is enabled but language is not set in that case
-     * we would automatically detect the source language.
+     * If multi-language detection is enabled and this field is not set, the
+     * source language will be automatically detected. When a source language is
+     * provided, Model Armor uses it to sanitize the input. In that case the
+     * system does not perform auto-detection and relies solely on the specified
+     * language.
+     * This string field accepts a language code from the ISO-639 standard.
+     * For a list of languages supported by Model Armor, see
+     * [Model Armor supported languages]
+     * (https://cloud.google.com/security-command-center/docs/model-armor-overview#languages-supported).
+     * For a comprehensive list of language codes, see
+     * [ISO-639](https://cloud.google.com/translate/docs/languages#nmt).
      *
      * Generated from protobuf field <code>string source_language = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -64,8 +91,17 @@ class MultiLanguageDetectionMetadata extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Optional Source language of the user prompt.
-     * If multi-language detection is enabled but language is not set in that case
-     * we would automatically detect the source language.
+     * If multi-language detection is enabled and this field is not set, the
+     * source language will be automatically detected. When a source language is
+     * provided, Model Armor uses it to sanitize the input. In that case the
+     * system does not perform auto-detection and relies solely on the specified
+     * language.
+     * This string field accepts a language code from the ISO-639 standard.
+     * For a list of languages supported by Model Armor, see
+     * [Model Armor supported languages]
+     * (https://cloud.google.com/security-command-center/docs/model-armor-overview#languages-supported).
+     * For a comprehensive list of language codes, see
+     * [ISO-639](https://cloud.google.com/translate/docs/languages#nmt).
      *
      * Generated from protobuf field <code>string source_language = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

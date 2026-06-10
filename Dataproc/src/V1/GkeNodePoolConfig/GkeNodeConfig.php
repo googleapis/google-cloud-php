@@ -68,9 +68,9 @@ class GkeNodeConfig extends \Google\Protobuf\Internal\Message
      * (https://cloud.google.com/kubernetes-engine/docs/how-to/using-cmek)
      * used to encrypt the boot disk attached to each node in the node pool.
      * Specify the key using the following format:
-     * <code>projects/<var>KEY_PROJECT_ID</var>/locations/<var>LOCATION</var>/keyRings/<var>RING_NAME</var>/cryptoKeys/<var>KEY_NAME</var></code>.
+     * `projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}`
      *
-     * Generated from protobuf field <code>string boot_disk_kms_key = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string boot_disk_kms_key = 23 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
     protected $boot_disk_kms_key = '';
     /**
@@ -128,7 +128,7 @@ class GkeNodeConfig extends \Google\Protobuf\Internal\Message
      *           (https://cloud.google.com/kubernetes-engine/docs/how-to/using-cmek)
      *           used to encrypt the boot disk attached to each node in the node pool.
      *           Specify the key using the following format:
-     *           <code>projects/<var>KEY_PROJECT_ID</var>/locations/<var>LOCATION</var>/keyRings/<var>RING_NAME</var>/cryptoKeys/<var>KEY_NAME</var></code>.
+     *           `projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}`
      *     @type bool $spot
      *           Optional. Whether the nodes are created as [Spot VM instances]
      *           (https://cloud.google.com/compute/docs/instances/spot).
@@ -318,9 +318,9 @@ class GkeNodeConfig extends \Google\Protobuf\Internal\Message
      * (https://cloud.google.com/kubernetes-engine/docs/how-to/using-cmek)
      * used to encrypt the boot disk attached to each node in the node pool.
      * Specify the key using the following format:
-     * <code>projects/<var>KEY_PROJECT_ID</var>/locations/<var>LOCATION</var>/keyRings/<var>RING_NAME</var>/cryptoKeys/<var>KEY_NAME</var></code>.
+     * `projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}`
      *
-     * Generated from protobuf field <code>string boot_disk_kms_key = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string boot_disk_kms_key = 23 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getBootDiskKmsKey()
@@ -333,9 +333,9 @@ class GkeNodeConfig extends \Google\Protobuf\Internal\Message
      * (https://cloud.google.com/kubernetes-engine/docs/how-to/using-cmek)
      * used to encrypt the boot disk attached to each node in the node pool.
      * Specify the key using the following format:
-     * <code>projects/<var>KEY_PROJECT_ID</var>/locations/<var>LOCATION</var>/keyRings/<var>RING_NAME</var>/cryptoKeys/<var>KEY_NAME</var></code>.
+     * `projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}`
      *
-     * Generated from protobuf field <code>string boot_disk_kms_key = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string boot_disk_kms_key = 23 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

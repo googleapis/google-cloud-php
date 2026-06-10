@@ -85,6 +85,18 @@ return [
                     ],
                 ],
             ],
+            'GetMetadata' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Analytics\Data\V1alpha\Metadata',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetPropertyQuotasSnapshot' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Analytics\Data\V1alpha\PropertyQuotasSnapshot',
@@ -217,20 +229,21 @@ return [
                     ],
                 ],
             ],
-            'SheetExportAudienceList' => [
+            'RunReport' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
-                'responseType' => 'Google\Analytics\Data\V1alpha\SheetExportAudienceListResponse',
+                'responseType' => 'Google\Analytics\Data\V1alpha\RunReportResponse',
                 'headerParams' => [
                     [
-                        'keyName' => 'name',
+                        'keyName' => 'property',
                         'fieldAccessors' => [
-                            'getName',
+                            'getProperty',
                         ],
                     ],
                 ],
             ],
             'templateMap' => [
                 'audienceList' => 'properties/{property}/audienceLists/{audience_list}',
+                'metadata' => 'properties/{property}/metadata',
                 'property' => 'properties/{property}',
                 'propertyQuotasSnapshot' => 'properties/{property}/propertyQuotasSnapshot',
                 'recurringAudienceList' => 'properties/{property}/recurringAudienceLists/{recurring_audience_list}',

@@ -15,6 +15,13 @@ use Google\Protobuf\RepeatedField;
 class SnapshotSettings extends \Google\Protobuf\Internal\Message
 {
     /**
+     * (Regional snapshots use only)Policy of which location is allowed to access
+     * snapshot.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SnapshotSettingsAccessLocation access_location = 18410544;</code>
+     */
+    protected $access_location = null;
+    /**
      * Policy of which storage location is going to be resolved, and additional
      * data that particularizes how the policy is going to be carried out.
      *
@@ -28,6 +35,9 @@ class SnapshotSettings extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type \Google\Cloud\Compute\V1\SnapshotSettingsAccessLocation $access_location
+     *           (Regional snapshots use only)Policy of which location is allowed to access
+     *           snapshot.
      *     @type \Google\Cloud\Compute\V1\SnapshotSettingsStorageLocationSettings $storage_location
      *           Policy of which storage location is going to be resolved, and additional
      *           data that particularizes how the policy is going to be carried out.
@@ -36,6 +46,44 @@ class SnapshotSettings extends \Google\Protobuf\Internal\Message
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Compute\V1\Compute::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * (Regional snapshots use only)Policy of which location is allowed to access
+     * snapshot.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SnapshotSettingsAccessLocation access_location = 18410544;</code>
+     * @return \Google\Cloud\Compute\V1\SnapshotSettingsAccessLocation|null
+     */
+    public function getAccessLocation()
+    {
+        return $this->access_location;
+    }
+
+    public function hasAccessLocation()
+    {
+        return isset($this->access_location);
+    }
+
+    public function clearAccessLocation()
+    {
+        unset($this->access_location);
+    }
+
+    /**
+     * (Regional snapshots use only)Policy of which location is allowed to access
+     * snapshot.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SnapshotSettingsAccessLocation access_location = 18410544;</code>
+     * @param \Google\Cloud\Compute\V1\SnapshotSettingsAccessLocation $var
+     * @return $this
+     */
+    public function setAccessLocation($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\SnapshotSettingsAccessLocation::class);
+        $this->access_location = $var;
+
+        return $this;
     }
 
     /**

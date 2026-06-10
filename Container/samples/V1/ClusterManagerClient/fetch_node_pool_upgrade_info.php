@@ -29,9 +29,9 @@ use Google\Cloud\Container\V1\FetchNodePoolUpgradeInfoRequest;
 use Google\Cloud\Container\V1\NodePoolUpgradeInfo;
 
 /**
- * Fetch upgrade information of a specific nodepool.
+ * Fetch upgrade information of a specific node pool.
  *
- * @param string $name The name (project, location, cluster, nodepool) of the nodepool
+ * @param string $name The name (project, location, cluster, node pool) of the node pool
  *                     to get. Specified in the format
  *                     `projects/&#42;/locations/&#42;/clusters/&#42;/nodePools/*` or
  *                     `projects/&#42;/zones/&#42;/clusters/&#42;/nodePools/*`.

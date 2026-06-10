@@ -43,7 +43,7 @@ class NodePoolAutoscaling extends \Google\Protobuf\Internal\Message
      */
     protected $autoprovisioned = false;
     /**
-     * Location policy used when scaling up a nodepool.
+     * Location policy used when scaling up a node pool.
      *
      * Generated from protobuf field <code>.google.container.v1.NodePoolAutoscaling.LocationPolicy location_policy = 5;</code>
      */
@@ -84,7 +84,7 @@ class NodePoolAutoscaling extends \Google\Protobuf\Internal\Message
      *     @type bool $autoprovisioned
      *           Can this node pool be deleted automatically.
      *     @type int $location_policy
-     *           Location policy used when scaling up a nodepool.
+     *           Location policy used when scaling up a node pool.
      *     @type int $total_min_node_count
      *           Minimum number of nodes in the node pool. Must be greater than or equal
      *           to 0 and less than or equal to total_max_node_count.
@@ -211,7 +211,7 @@ class NodePoolAutoscaling extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Location policy used when scaling up a nodepool.
+     * Location policy used when scaling up a node pool.
      *
      * Generated from protobuf field <code>.google.container.v1.NodePoolAutoscaling.LocationPolicy location_policy = 5;</code>
      * @return int
@@ -222,7 +222,7 @@ class NodePoolAutoscaling extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Location policy used when scaling up a nodepool.
+     * Location policy used when scaling up a node pool.
      *
      * Generated from protobuf field <code>.google.container.v1.NodePoolAutoscaling.LocationPolicy location_policy = 5;</code>
      * @param int $var

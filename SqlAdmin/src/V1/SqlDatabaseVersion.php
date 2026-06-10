@@ -272,6 +272,12 @@ class SqlDatabaseVersion
      */
     const POSTGRES_18 = 557;
     /**
+     * The database version is PostgreSQL 19.
+     *
+     * Generated from protobuf enum <code>POSTGRES_19 = 684;</code>
+     */
+    const POSTGRES_19 = 684;
+    /**
      * The database version is SQL Server 2019 Standard.
      *
      * Generated from protobuf enum <code>SQLSERVER_2019_STANDARD = 26;</code>
@@ -319,6 +325,24 @@ class SqlDatabaseVersion
      * Generated from protobuf enum <code>SQLSERVER_2022_WEB = 202;</code>
      */
     const SQLSERVER_2022_WEB = 202;
+    /**
+     * The database version is SQL Server 2025 Standard.
+     *
+     * Generated from protobuf enum <code>SQLSERVER_2025_STANDARD = 549;</code>
+     */
+    const SQLSERVER_2025_STANDARD = 549;
+    /**
+     * The database version is SQL Server 2025 Enterprise.
+     *
+     * Generated from protobuf enum <code>SQLSERVER_2025_ENTERPRISE = 550;</code>
+     */
+    const SQLSERVER_2025_ENTERPRISE = 550;
+    /**
+     * The database version is SQL Server 2025 Express.
+     *
+     * Generated from protobuf enum <code>SQLSERVER_2025_EXPRESS = 551;</code>
+     */
+    const SQLSERVER_2025_EXPRESS = 551;
 
     private static $valueToName = [
         self::SQL_DATABASE_VERSION_UNSPECIFIED => 'SQL_DATABASE_VERSION_UNSPECIFIED',
@@ -364,6 +388,7 @@ class SqlDatabaseVersion
         self::POSTGRES_16 => 'POSTGRES_16',
         self::POSTGRES_17 => 'POSTGRES_17',
         self::POSTGRES_18 => 'POSTGRES_18',
+        self::POSTGRES_19 => 'POSTGRES_19',
         self::SQLSERVER_2019_STANDARD => 'SQLSERVER_2019_STANDARD',
         self::SQLSERVER_2019_ENTERPRISE => 'SQLSERVER_2019_ENTERPRISE',
         self::SQLSERVER_2019_EXPRESS => 'SQLSERVER_2019_EXPRESS',
@@ -372,6 +397,9 @@ class SqlDatabaseVersion
         self::SQLSERVER_2022_ENTERPRISE => 'SQLSERVER_2022_ENTERPRISE',
         self::SQLSERVER_2022_EXPRESS => 'SQLSERVER_2022_EXPRESS',
         self::SQLSERVER_2022_WEB => 'SQLSERVER_2022_WEB',
+        self::SQLSERVER_2025_STANDARD => 'SQLSERVER_2025_STANDARD',
+        self::SQLSERVER_2025_ENTERPRISE => 'SQLSERVER_2025_ENTERPRISE',
+        self::SQLSERVER_2025_EXPRESS => 'SQLSERVER_2025_EXPRESS',
     ];
 
     public static function name($value)

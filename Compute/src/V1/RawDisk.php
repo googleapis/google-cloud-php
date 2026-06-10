@@ -32,11 +32,13 @@ class RawDisk extends \Google\Protobuf\Internal\Message
      */
     protected $sha1_checksum = null;
     /**
-     * The full Google Cloud Storage URL where the raw disk image archive is
-     * stored.
-     * The following are valid formats for the URL:
+     * The full Google Cloud Storage URL or Artifact Registry path where the raw
+     * disk image archive is stored.
+     * The following are valid formats:
      *    - https://storage.googleapis.com/bucket_name/image_archive_name
      *    - https://storage.googleapis.com/bucket_name/folder_name/image_archive_name
+     *    - projects/project/locations/location/repositories/repo/packages/package/versions/version_id
+     *    - projects/project/locations/location/repositories/repo/packages/package/versions/version_id\@dirsum_sha256:hex_value
      * In order to create an image, you must provide the full or partial URL of
      * one of the following:
      *    - The rawDisk.source URL
@@ -63,11 +65,13 @@ class RawDisk extends \Google\Protobuf\Internal\Message
      *           An optional SHA1 checksum of the disk image before unpackaging provided
      *           by the client when the disk image is created.
      *     @type string $source
-     *           The full Google Cloud Storage URL where the raw disk image archive is
-     *           stored.
-     *           The following are valid formats for the URL:
+     *           The full Google Cloud Storage URL or Artifact Registry path where the raw
+     *           disk image archive is stored.
+     *           The following are valid formats:
      *              - https://storage.googleapis.com/bucket_name/image_archive_name
      *              - https://storage.googleapis.com/bucket_name/folder_name/image_archive_name
+     *              - projects/project/locations/location/repositories/repo/packages/package/versions/version_id
+     *              - projects/project/locations/location/repositories/repo/packages/package/versions/version_id\@dirsum_sha256:hex_value
      *           In order to create an image, you must provide the full or partial URL of
      *           one of the following:
      *              - The rawDisk.source URL
@@ -162,11 +166,13 @@ class RawDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The full Google Cloud Storage URL where the raw disk image archive is
-     * stored.
-     * The following are valid formats for the URL:
+     * The full Google Cloud Storage URL or Artifact Registry path where the raw
+     * disk image archive is stored.
+     * The following are valid formats:
      *    - https://storage.googleapis.com/bucket_name/image_archive_name
      *    - https://storage.googleapis.com/bucket_name/folder_name/image_archive_name
+     *    - projects/project/locations/location/repositories/repo/packages/package/versions/version_id
+     *    - projects/project/locations/location/repositories/repo/packages/package/versions/version_id\@dirsum_sha256:hex_value
      * In order to create an image, you must provide the full or partial URL of
      * one of the following:
      *    - The rawDisk.source URL
@@ -193,11 +199,13 @@ class RawDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The full Google Cloud Storage URL where the raw disk image archive is
-     * stored.
-     * The following are valid formats for the URL:
+     * The full Google Cloud Storage URL or Artifact Registry path where the raw
+     * disk image archive is stored.
+     * The following are valid formats:
      *    - https://storage.googleapis.com/bucket_name/image_archive_name
      *    - https://storage.googleapis.com/bucket_name/folder_name/image_archive_name
+     *    - projects/project/locations/location/repositories/repo/packages/package/versions/version_id
+     *    - projects/project/locations/location/repositories/repo/packages/package/versions/version_id\@dirsum_sha256:hex_value
      * In order to create an image, you must provide the full or partial URL of
      * one of the following:
      *    - The rawDisk.source URL

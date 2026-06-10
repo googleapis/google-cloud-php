@@ -20,6 +20,11 @@
                                 "aggregateIssueStats"
                             ]
                         },
+                        "AggregateQueryStats": {
+                            "methods": [
+                                "aggregateQueryStats"
+                            ]
+                        },
                         "QueryDatabaseResourceGroups": {
                             "methods": [
                                 "queryDatabaseResourceGroups"

@@ -32,9 +32,12 @@ class Mode
      */
     const BASIC = 2;
     /**
+     * Deprecated: Security Posture Enterprise features are no longer supported.
+     * For more details, see
+     * https://cloud.google.com/kubernetes-engine/docs/deprecations/posture-management-deprecation.
      * Applies the Security Posture off cluster Enterprise level features.
      *
-     * Generated from protobuf enum <code>ENTERPRISE = 3;</code>
+     * Generated from protobuf enum <code>ENTERPRISE = 3 [deprecated = true];</code>
      */
     const ENTERPRISE = 3;
 

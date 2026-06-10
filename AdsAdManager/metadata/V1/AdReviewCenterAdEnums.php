@@ -15,7 +15,7 @@ class AdReviewCenterAdEnums
           return;
         }
         $pool->internalAddGeneratedFile(
-            "\x0A\xBA\x03\x0A7google/ads/admanager/v1/ad_review_center_ad_enums.proto\x12\x17google.ads.admanager.v1\"\x8C\x01\x0A\x1AAdReviewCenterAdStatusEnum\"n\x0A\x16AdReviewCenterAdStatus\x12*\x0A&AD_REVIEW_CENTER_AD_STATUS_UNSPECIFIED\x10\x00\x12\x0B\x0A\x07ALLOWED\x10\x01\x12\x0B\x0A\x07BLOCKED\x10\x02\x12\x0E\x0A\x0AUNREVIEWED\x10\x03B\xCE\x01\x0A\x1Bcom.google.ads.admanager.v1B\x1AAdReviewCenterAdEnumsProtoP\x01Z@google.golang.org/genproto/googleapis/ads/admanager/v1;admanager\xAA\x02\x17Google.Ads.AdManager.V1\xCA\x02\x17Google\\Ads\\AdManager\\V1\xEA\x02\x1AGoogle::Ads::AdManager::V1b\x06proto3"
+            "\x0A\xF5\x04\x0A7google/ads/admanager/v1/ad_review_center_ad_enums.proto\x12\x17google.ads.admanager.v1\"\x8C\x01\x0A\x1AAdReviewCenterAdStatusEnum\"n\x0A\x16AdReviewCenterAdStatus\x12*\x0A&AD_REVIEW_CENTER_AD_STATUS_UNSPECIFIED\x10\x00\x12\x0B\x0A\x07ALLOWED\x10\x01\x12\x0B\x0A\x07BLOCKED\x10\x02\x12\x0E\x0A\x0AUNREVIEWED\x10\x03\"\xB8\x01\x0A ManualAdReviewCenterAdStatusEnum\"\x93\x01\x0A\x1CManualAdReviewCenterAdStatus\x121\x0A-MANUAL_AD_REVIEW_CENTER_AD_STATUS_UNSPECIFIED\x10\x00\x12\x0B\x0A\x07ALLOWED\x10\x01\x12\x0B\x0A\x07BLOCKED\x10\x02\x12\x0C\x0A\x08ARCHIVED\x10\x03\x12\x0B\x0A\x07PENDING\x10\x04\x12\x0B\x0A\x07SERVING\x10\x05B\xCE\x01\x0A\x1Bcom.google.ads.admanager.v1B\x1AAdReviewCenterAdEnumsProtoP\x01Z@google.golang.org/genproto/googleapis/ads/admanager/v1;admanager\xAA\x02\x17Google.Ads.AdManager.V1\xCA\x02\x17Google\\Ads\\AdManager\\V1\xEA\x02\x1AGoogle::Ads::AdManager::V1b\x06proto3"
         , true);
 
         static::$is_initialized = true;

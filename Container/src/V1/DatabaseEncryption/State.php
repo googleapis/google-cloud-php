@@ -32,11 +32,20 @@ class State
      * Generated from protobuf enum <code>DECRYPTED = 2;</code>
      */
     const DECRYPTED = 2;
+    /**
+     * Encryption of all objects in the storage is enabled. There is no
+     * guarantee that all objects in the storage are encrypted, but eventually
+     * they will be.
+     *
+     * Generated from protobuf enum <code>ALL_OBJECTS_ENCRYPTION_ENABLED = 3;</code>
+     */
+    const ALL_OBJECTS_ENCRYPTION_ENABLED = 3;
 
     private static $valueToName = [
         self::UNKNOWN => 'UNKNOWN',
         self::ENCRYPTED => 'ENCRYPTED',
         self::DECRYPTED => 'DECRYPTED',
+        self::ALL_OBJECTS_ENCRYPTION_ENABLED => 'ALL_OBJECTS_ENCRYPTION_ENABLED',
     ];
 
     public static function name($value)

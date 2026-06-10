@@ -8,6 +8,7 @@ use UnexpectedValueException;
 
 /**
  * The processing error reason.
+ * New reasons may be added in the future.
  *
  * Protobuf type <code>google.ads.datamanager.v1.ProcessingErrorReason</code>
  */
@@ -190,6 +191,105 @@ class ProcessingErrorReason
      * Generated from protobuf enum <code>PROCESSING_ERROR_OPERATING_ACCOUNT_MISMATCH_FOR_AD_IDENTIFIER = 26;</code>
      */
     const PROCESSING_ERROR_OPERATING_ACCOUNT_MISMATCH_FOR_AD_IDENTIFIER = 26;
+    /**
+     * One-per-click conversion actions cannot be used with BRAIDs.
+     *
+     * Generated from protobuf enum <code>PROCESSING_ERROR_REASON_ONE_PER_CLICK_CONVERSION_ACTION_NOT_PERMITTED_WITH_BRAID = 28;</code>
+     */
+    const PROCESSING_ERROR_REASON_ONE_PER_CLICK_CONVERSION_ACTION_NOT_PERMITTED_WITH_BRAID = 28;
+    /**
+     * The match ID can not be found.
+     *
+     * Generated from protobuf enum <code>PROCESSING_ERROR_REASON_MATCH_ID_NOT_FOUND = 29;</code>
+     */
+    const PROCESSING_ERROR_REASON_MATCH_ID_NOT_FOUND = 29;
+    /**
+     * The user ID can not be found for the match ID.
+     *
+     * Generated from protobuf enum <code>PROCESSING_ERROR_REASON_USER_ID_NOT_FOUND_FOR_MATCH_ID = 30;</code>
+     */
+    const PROCESSING_ERROR_REASON_USER_ID_NOT_FOUND_FOR_MATCH_ID = 30;
+    /**
+     * The user ID can not be found for the GCLID.
+     *
+     * Generated from protobuf enum <code>PROCESSING_ERROR_REASON_USER_ID_NOT_FOUND_FOR_GCLID = 31;</code>
+     */
+    const PROCESSING_ERROR_REASON_USER_ID_NOT_FOUND_FOR_GCLID = 31;
+    /**
+     * The user ID can not be found for the DCLID.
+     *
+     * Generated from protobuf enum <code>PROCESSING_ERROR_REASON_USER_ID_NOT_FOUND_FOR_DCLID = 32;</code>
+     */
+    const PROCESSING_ERROR_REASON_USER_ID_NOT_FOUND_FOR_DCLID = 32;
+    /**
+     * There are ad identifiers that are invalid.
+     *
+     * Generated from protobuf enum <code>PROCESSING_ERROR_REASON_INVALID_AD_IDENTIFIERS = 33;</code>
+     */
+    const PROCESSING_ERROR_REASON_INVALID_AD_IDENTIFIERS = 33;
+    /**
+     * The mobile ID format is invalid.
+     *
+     * Generated from protobuf enum <code>PROCESSING_ERROR_REASON_INVALID_MOBILE_ID_FORMAT = 34;</code>
+     */
+    const PROCESSING_ERROR_REASON_INVALID_MOBILE_ID_FORMAT = 34;
+    /**
+     * The original conversions can't be found.
+     *
+     * Generated from protobuf enum <code>PROCESSING_ERROR_REASON_ORIGINAL_CONVERSIONS_NOT_FOUND = 35;</code>
+     */
+    const PROCESSING_ERROR_REASON_ORIGINAL_CONVERSIONS_NOT_FOUND = 35;
+    /**
+     * The event ID (dclid or impression ID) cannot be decoded.
+     *
+     * Generated from protobuf enum <code>PROCESSING_ERROR_REASON_EVENT_ID_DECODE_ERROR = 36;</code>
+     */
+    const PROCESSING_ERROR_REASON_EVENT_ID_DECODE_ERROR = 36;
+    /**
+     * The user ID cannot be found for the given impression ID.
+     *
+     * Generated from protobuf enum <code>PROCESSING_ERROR_REASON_USER_ID_NOT_FOUND_FOR_IMPRESSION_ID = 37;</code>
+     */
+    const PROCESSING_ERROR_REASON_USER_ID_NOT_FOUND_FOR_IMPRESSION_ID = 37;
+    /**
+     * The user ID cannot be found.
+     *
+     * Generated from protobuf enum <code>PROCESSING_ERROR_REASON_USER_ID_NOT_FOUND = 38;</code>
+     */
+    const PROCESSING_ERROR_REASON_USER_ID_NOT_FOUND = 38;
+    /**
+     * The event timestamp on the event was earlier than the associated click.
+     *
+     * Generated from protobuf enum <code>PROCESSING_ERROR_REASON_CONVERSION_PRECEDES_CLICK = 39;</code>
+     */
+    const PROCESSING_ERROR_REASON_CONVERSION_PRECEDES_CLICK = 39;
+    /**
+     * The click occurred too recently.
+     *
+     * Generated from protobuf enum <code>PROCESSING_ERROR_REASON_TOO_RECENT_CLICK = 40;</code>
+     */
+    const PROCESSING_ERROR_REASON_TOO_RECENT_CLICK = 40;
+    /**
+     * The event can't be attributed to a click (GCLID). This may be because the
+     * click did not come from a Google Ads campaign, for example.
+     *
+     * Generated from protobuf enum <code>PROCESSING_ERROR_REASON_INVALID_CLICK = 41;</code>
+     */
+    const PROCESSING_ERROR_REASON_INVALID_CLICK = 41;
+    /**
+     * The click from the event isn't associated with the
+     * [`operating_account`][google.ads.datamanager.v1.Destination.operating_account]
+     * of the destination.
+     *
+     * Generated from protobuf enum <code>PROCESSING_ERROR_REASON_INVALID_OPERATING_ACCOUNT_FOR_CLICK = 42;</code>
+     */
+    const PROCESSING_ERROR_REASON_INVALID_OPERATING_ACCOUNT_FOR_CLICK = 42;
+    /**
+     * A corresponding click can't be found that matches the provided attributes.
+     *
+     * Generated from protobuf enum <code>PROCESSING_ERROR_REASON_CLICK_NOT_FOUND = 43;</code>
+     */
+    const PROCESSING_ERROR_REASON_CLICK_NOT_FOUND = 43;
 
     private static $valueToName = [
         self::PROCESSING_ERROR_REASON_UNSPECIFIED => 'PROCESSING_ERROR_REASON_UNSPECIFIED',
@@ -220,6 +320,22 @@ class ProcessingErrorReason
         self::PROCESSING_ERROR_REASON_AWS_AUTH_FAILED => 'PROCESSING_ERROR_REASON_AWS_AUTH_FAILED',
         self::PROCESSING_ERROR_REASON_USER_IDENTIFIER_DECRYPTION_ERROR => 'PROCESSING_ERROR_REASON_USER_IDENTIFIER_DECRYPTION_ERROR',
         self::PROCESSING_ERROR_OPERATING_ACCOUNT_MISMATCH_FOR_AD_IDENTIFIER => 'PROCESSING_ERROR_OPERATING_ACCOUNT_MISMATCH_FOR_AD_IDENTIFIER',
+        self::PROCESSING_ERROR_REASON_ONE_PER_CLICK_CONVERSION_ACTION_NOT_PERMITTED_WITH_BRAID => 'PROCESSING_ERROR_REASON_ONE_PER_CLICK_CONVERSION_ACTION_NOT_PERMITTED_WITH_BRAID',
+        self::PROCESSING_ERROR_REASON_MATCH_ID_NOT_FOUND => 'PROCESSING_ERROR_REASON_MATCH_ID_NOT_FOUND',
+        self::PROCESSING_ERROR_REASON_USER_ID_NOT_FOUND_FOR_MATCH_ID => 'PROCESSING_ERROR_REASON_USER_ID_NOT_FOUND_FOR_MATCH_ID',
+        self::PROCESSING_ERROR_REASON_USER_ID_NOT_FOUND_FOR_GCLID => 'PROCESSING_ERROR_REASON_USER_ID_NOT_FOUND_FOR_GCLID',
+        self::PROCESSING_ERROR_REASON_USER_ID_NOT_FOUND_FOR_DCLID => 'PROCESSING_ERROR_REASON_USER_ID_NOT_FOUND_FOR_DCLID',
+        self::PROCESSING_ERROR_REASON_INVALID_AD_IDENTIFIERS => 'PROCESSING_ERROR_REASON_INVALID_AD_IDENTIFIERS',
+        self::PROCESSING_ERROR_REASON_INVALID_MOBILE_ID_FORMAT => 'PROCESSING_ERROR_REASON_INVALID_MOBILE_ID_FORMAT',
+        self::PROCESSING_ERROR_REASON_ORIGINAL_CONVERSIONS_NOT_FOUND => 'PROCESSING_ERROR_REASON_ORIGINAL_CONVERSIONS_NOT_FOUND',
+        self::PROCESSING_ERROR_REASON_EVENT_ID_DECODE_ERROR => 'PROCESSING_ERROR_REASON_EVENT_ID_DECODE_ERROR',
+        self::PROCESSING_ERROR_REASON_USER_ID_NOT_FOUND_FOR_IMPRESSION_ID => 'PROCESSING_ERROR_REASON_USER_ID_NOT_FOUND_FOR_IMPRESSION_ID',
+        self::PROCESSING_ERROR_REASON_USER_ID_NOT_FOUND => 'PROCESSING_ERROR_REASON_USER_ID_NOT_FOUND',
+        self::PROCESSING_ERROR_REASON_CONVERSION_PRECEDES_CLICK => 'PROCESSING_ERROR_REASON_CONVERSION_PRECEDES_CLICK',
+        self::PROCESSING_ERROR_REASON_TOO_RECENT_CLICK => 'PROCESSING_ERROR_REASON_TOO_RECENT_CLICK',
+        self::PROCESSING_ERROR_REASON_INVALID_CLICK => 'PROCESSING_ERROR_REASON_INVALID_CLICK',
+        self::PROCESSING_ERROR_REASON_INVALID_OPERATING_ACCOUNT_FOR_CLICK => 'PROCESSING_ERROR_REASON_INVALID_OPERATING_ACCOUNT_FOR_CLICK',
+        self::PROCESSING_ERROR_REASON_CLICK_NOT_FOUND => 'PROCESSING_ERROR_REASON_CLICK_NOT_FOUND',
     ];
 
     public static function name($value)

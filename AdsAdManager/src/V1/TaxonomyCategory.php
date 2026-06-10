@@ -23,9 +23,10 @@ class TaxonomyCategory extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
-     * Output only. `TaxonomyCategory` ID.
+     * Output only. Deprecated: `TaxonomyCategory` ID.
      *
-     * Generated from protobuf field <code>optional int64 taxonomy_category_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional int64 taxonomy_category_id = 2 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @deprecated
      */
     protected $taxonomy_category_id = null;
     /**
@@ -77,7 +78,7 @@ class TaxonomyCategory extends \Google\Protobuf\Internal\Message
      *           Identifier. The resource name of the `TaxonomyCategory`.
      *           Format: `networks/{network_code}/taxonomyCategories/{taxonomy_category_id}`
      *     @type int|string $taxonomy_category_id
-     *           Output only. `TaxonomyCategory` ID.
+     *           Output only. Deprecated: `TaxonomyCategory` ID.
      *     @type string $display_name
      *           Output only. Display name of the `TaxonomyCategory`.
      *     @type bool $grouping_only
@@ -128,35 +129,45 @@ class TaxonomyCategory extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. `TaxonomyCategory` ID.
+     * Output only. Deprecated: `TaxonomyCategory` ID.
      *
-     * Generated from protobuf field <code>optional int64 taxonomy_category_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional int64 taxonomy_category_id = 2 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int|string
+     * @deprecated
      */
     public function getTaxonomyCategoryId()
     {
+        if (isset($this->taxonomy_category_id)) {
+            @trigger_error('taxonomy_category_id is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->taxonomy_category_id) ? $this->taxonomy_category_id : 0;
     }
 
     public function hasTaxonomyCategoryId()
     {
+        if (isset($this->taxonomy_category_id)) {
+            @trigger_error('taxonomy_category_id is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->taxonomy_category_id);
     }
 
     public function clearTaxonomyCategoryId()
     {
+        @trigger_error('taxonomy_category_id is deprecated.', E_USER_DEPRECATED);
         unset($this->taxonomy_category_id);
     }
 
     /**
-     * Output only. `TaxonomyCategory` ID.
+     * Output only. Deprecated: `TaxonomyCategory` ID.
      *
-     * Generated from protobuf field <code>optional int64 taxonomy_category_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>optional int64 taxonomy_category_id = 2 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int|string $var
      * @return $this
+     * @deprecated
      */
     public function setTaxonomyCategoryId($var)
     {
+        @trigger_error('taxonomy_category_id is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkInt64($var);
         $this->taxonomy_category_id = $var;
 

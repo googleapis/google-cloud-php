@@ -30,6 +30,11 @@
                                 "getAudienceList"
                             ]
                         },
+                        "GetMetadata": {
+                            "methods": [
+                                "getMetadata"
+                            ]
+                        },
                         "GetPropertyQuotasSnapshot": {
                             "methods": [
                                 "getPropertyQuotasSnapshot"
@@ -75,9 +80,9 @@
                                 "runFunnelReport"
                             ]
                         },
-                        "SheetExportAudienceList": {
+                        "RunReport": {
                             "methods": [
-                                "sheetExportAudienceList"
+                                "runReport"
                             ]
                         }
                     }

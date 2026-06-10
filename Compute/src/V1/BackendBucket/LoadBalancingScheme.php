@@ -24,6 +24,13 @@ class LoadBalancingScheme
      */
     const UNDEFINED_LOAD_BALANCING_SCHEME = 0;
     /**
+     * Signifies that this will be used for regional external Application Load
+     * Balancers.
+     *
+     * Generated from protobuf enum <code>EXTERNAL_MANAGED = 512006923;</code>
+     */
+    const EXTERNAL_MANAGED = 512006923;
+    /**
      * Signifies that this will be used for internal Application Load Balancers.
      *
      * Generated from protobuf enum <code>INTERNAL_MANAGED = 37350397;</code>
@@ -32,6 +39,7 @@ class LoadBalancingScheme
 
     private static $valueToName = [
         self::UNDEFINED_LOAD_BALANCING_SCHEME => 'UNDEFINED_LOAD_BALANCING_SCHEME',
+        self::EXTERNAL_MANAGED => 'EXTERNAL_MANAGED',
         self::INTERNAL_MANAGED => 'INTERNAL_MANAGED',
     ];
 

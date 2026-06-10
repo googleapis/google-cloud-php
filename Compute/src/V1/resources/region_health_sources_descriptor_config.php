@@ -184,6 +184,30 @@ return [
                     ],
                 ],
             ],
+            'GetHealth' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Compute\V1\HealthSourceHealth',
+                'headerParams' => [
+                    [
+                        'keyName' => 'project',
+                        'fieldAccessors' => [
+                            'getProject',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'region',
+                        'fieldAccessors' => [
+                            'getRegion',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'health_source',
+                        'fieldAccessors' => [
+                            'getHealthSource',
+                        ],
+                    ],
+                ],
+            ],
             'List' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',

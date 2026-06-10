@@ -36,6 +36,7 @@ use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Support\V2\Comment;
 use Google\Cloud\Support\V2\CreateCommentRequest;
+use Google\Cloud\Support\V2\GetCommentRequest;
 use Google\Cloud\Support\V2\ListCommentsRequest;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
@@ -52,6 +53,7 @@ use Psr\Log\LoggerInterface;
  * contained within formatted names that are returned by the API.
  *
  * @method PromiseInterface<Comment> createCommentAsync(CreateCommentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Comment> getCommentAsync(GetCommentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listCommentsAsync(ListCommentsRequest $request, array $optionalArgs = [])
  */
 final class CommentServiceClient
@@ -348,6 +350,61 @@ final class CommentServiceClient
     public function createComment(CreateCommentRequest $request, array $callOptions = []): Comment
     {
         return $this->startApiCall('CreateComment', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Retrieve a comment.
+     *
+     * EXAMPLES:
+     *
+     * cURL:
+     *
+     * ```shell
+     * comment="projects/some-project/cases/43595344/comments/234567890"
+     * curl \
+     * --header "Authorization: Bearer $(gcloud auth print-access-token)" \
+     * "https://cloudsupport.googleapis.com/v2/$comment"
+     * ```
+     *
+     * Python:
+     *
+     * ```python
+     * import googleapiclient.discovery
+     *
+     * api_version = "v2"
+     * supportApiService = googleapiclient.discovery.build(
+     * serviceName="cloudsupport",
+     * version=api_version,
+     * discoveryServiceUrl=f"https://cloudsupport.googleapis.com/$discovery/rest?version={api_version}",
+     * )
+     *
+     * request = supportApiService.cases().comments().get(
+     * name="projects/some-project/cases/43595344/comments/234567890",
+     * )
+     * print(request.execute())
+     * ```
+     *
+     * The async variant is {@see CommentServiceClient::getCommentAsync()} .
+     *
+     * @example samples/V2/CommentServiceClient/get_comment.php
+     *
+     * @param GetCommentRequest $request     A request to house fields associated with the call.
+     * @param array             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Comment
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getComment(GetCommentRequest $request, array $callOptions = []): Comment
+    {
+        return $this->startApiCall('GetComment', $request, $callOptions)->wait();
     }
 
     /**

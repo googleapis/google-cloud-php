@@ -17,12 +17,12 @@ use Google\Protobuf\RepeatedField;
 class DisplayVideo360AdvertiserLink extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The resource name for this DisplayVideo360AdvertiserLink
+     * Identifier. The resource name for this DisplayVideo360AdvertiserLink
      * resource. Format:
      * properties/{propertyId}/displayVideo360AdvertiserLinks/{linkId}
      * Note: linkId is not the Display & Video 360 Advertiser ID
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
@@ -71,7 +71,7 @@ class DisplayVideo360AdvertiserLink extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Output only. The resource name for this DisplayVideo360AdvertiserLink
+     *           Identifier. The resource name for this DisplayVideo360AdvertiserLink
      *           resource. Format:
      *           properties/{propertyId}/displayVideo360AdvertiserLinks/{linkId}
      *           Note: linkId is not the Display & Video 360 Advertiser ID
@@ -101,12 +101,12 @@ class DisplayVideo360AdvertiserLink extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name for this DisplayVideo360AdvertiserLink
+     * Identifier. The resource name for this DisplayVideo360AdvertiserLink
      * resource. Format:
      * properties/{propertyId}/displayVideo360AdvertiserLinks/{linkId}
      * Note: linkId is not the Display & Video 360 Advertiser ID
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -115,12 +115,12 @@ class DisplayVideo360AdvertiserLink extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The resource name for this DisplayVideo360AdvertiserLink
+     * Identifier. The resource name for this DisplayVideo360AdvertiserLink
      * resource. Format:
      * properties/{propertyId}/displayVideo360AdvertiserLinks/{linkId}
      * Note: linkId is not the Display & Video 360 Advertiser ID
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */

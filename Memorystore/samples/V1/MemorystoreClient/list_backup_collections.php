@@ -25,6 +25,7 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START memorystore_v1_generated_Memorystore_ListBackupCollections_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Memorystore\V1\BackupCollection;
 use Google\Cloud\Memorystore\V1\Client\MemorystoreClient;
 use Google\Cloud\Memorystore\V1\ListBackupCollectionsRequest;
 
@@ -55,6 +56,7 @@ function list_backup_collections_sample(string $formattedParent): void
         /** @var PagedListResponse $response */
         $response = $memorystoreClient->listBackupCollections($request);
 
+        /** @var BackupCollection $element */
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
         }

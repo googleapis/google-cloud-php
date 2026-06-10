@@ -691,6 +691,9 @@ final class BigtableClient
      * which can be used to break up the data for distributed tasks like
      * mapreduces.
      *
+     * If a `row_range` is provided in the request, the returned samples will be
+     * restricted to the specified range.
+     *
      * @example samples/V2/BigtableClient/sample_row_keys.php
      *
      * @param SampleRowKeysRequest $request     A request to house fields associated with the call.

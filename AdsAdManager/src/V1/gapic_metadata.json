@@ -127,6 +127,31 @@
                 "grpc": {
                     "libraryClient": "ApplicationServiceGapicClient",
                     "rpcs": {
+                        "BatchArchiveApplications": {
+                            "methods": [
+                                "batchArchiveApplications"
+                            ]
+                        },
+                        "BatchCreateApplications": {
+                            "methods": [
+                                "batchCreateApplications"
+                            ]
+                        },
+                        "BatchUnarchiveApplications": {
+                            "methods": [
+                                "batchUnarchiveApplications"
+                            ]
+                        },
+                        "BatchUpdateApplications": {
+                            "methods": [
+                                "batchUpdateApplications"
+                            ]
+                        },
+                        "CreateApplication": {
+                            "methods": [
+                                "createApplication"
+                            ]
+                        },
                         "GetApplication": {
                             "methods": [
                                 "getApplication"
@@ -135,6 +160,11 @@
                         "ListApplications": {
                             "methods": [
                                 "listApplications"
+                            ]
+                        },
+                        "UpdateApplication": {
+                            "methods": [
+                                "updateApplication"
                             ]
                         }
                     }
@@ -222,6 +252,16 @@
                 "grpc": {
                     "libraryClient": "CmsMetadataKeyServiceGapicClient",
                     "rpcs": {
+                        "BatchActivateCmsMetadataKeys": {
+                            "methods": [
+                                "batchActivateCmsMetadataKeys"
+                            ]
+                        },
+                        "BatchDeactivateCmsMetadataKeys": {
+                            "methods": [
+                                "batchDeactivateCmsMetadataKeys"
+                            ]
+                        },
                         "GetCmsMetadataKey": {
                             "methods": [
                                 "getCmsMetadataKey"
@@ -241,6 +281,16 @@
                 "grpc": {
                     "libraryClient": "CmsMetadataValueServiceGapicClient",
                     "rpcs": {
+                        "BatchActivateCmsMetadataValues": {
+                            "methods": [
+                                "batchActivateCmsMetadataValues"
+                            ]
+                        },
+                        "BatchDeactivateCmsMetadataValues": {
+                            "methods": [
+                                "batchDeactivateCmsMetadataValues"
+                            ]
+                        },
                         "GetCmsMetadataValue": {
                             "methods": [
                                 "getCmsMetadataValue"
@@ -621,6 +671,55 @@
                 }
             }
         },
+        "LabelService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "LabelServiceGapicClient",
+                    "rpcs": {
+                        "BatchActivateLabels": {
+                            "methods": [
+                                "batchActivateLabels"
+                            ]
+                        },
+                        "BatchCreateLabels": {
+                            "methods": [
+                                "batchCreateLabels"
+                            ]
+                        },
+                        "BatchDeactivateLabels": {
+                            "methods": [
+                                "batchDeactivateLabels"
+                            ]
+                        },
+                        "BatchUpdateLabels": {
+                            "methods": [
+                                "batchUpdateLabels"
+                            ]
+                        },
+                        "CreateLabel": {
+                            "methods": [
+                                "createLabel"
+                            ]
+                        },
+                        "GetLabel": {
+                            "methods": [
+                                "getLabel"
+                            ]
+                        },
+                        "ListLabels": {
+                            "methods": [
+                                "listLabels"
+                            ]
+                        },
+                        "UpdateLabel": {
+                            "methods": [
+                                "updateLabel"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "LineItemService": {
             "clients": {
                 "grpc": {
@@ -634,6 +733,39 @@
                         "ListLineItems": {
                             "methods": [
                                 "listLineItems"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "LinkedDeviceService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "LinkedDeviceServiceGapicClient",
+                    "rpcs": {
+                        "GetLinkedDevice": {
+                            "methods": [
+                                "getLinkedDevice"
+                            ]
+                        },
+                        "ListLinkedDevices": {
+                            "methods": [
+                                "listLinkedDevices"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "McmEarningsService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "McmEarningsServiceGapicClient",
+                    "rpcs": {
+                        "FetchMcmEarnings": {
+                            "methods": [
+                                "fetchMcmEarnings"
                             ]
                         }
                     }
@@ -937,6 +1069,25 @@
                         "UpdateReport": {
                             "methods": [
                                 "updateReport"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "RichMediaAdsCompanyService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "RichMediaAdsCompanyServiceGapicClient",
+                    "rpcs": {
+                        "GetRichMediaAdsCompany": {
+                            "methods": [
+                                "getRichMediaAdsCompany"
+                            ]
+                        },
+                        "ListRichMediaAdsCompanies": {
+                            "methods": [
+                                "listRichMediaAdsCompanies"
                             ]
                         }
                     }

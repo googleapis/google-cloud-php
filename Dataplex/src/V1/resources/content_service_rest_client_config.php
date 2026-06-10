@@ -65,10 +65,6 @@ return [
                     ],
                     [
                         'method' => 'get',
-                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/lakes/*/environments/*}:getIamPolicy',
-                    ],
-                    [
-                        'method' => 'get',
                         'uriTemplate' => '/v1/{resource=projects/*/locations/*/dataScans/*}:getIamPolicy',
                     ],
                     [
@@ -127,6 +123,10 @@ return [
                         'method' => 'get',
                         'uriTemplate' => '/v1/{resource=organizations/*/locations/*/encryptionConfigs/*}:getIamPolicy',
                     ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/dataDomains/*}:getIamPolicy',
+                    ],
                 ],
                 'placeholders' => [
                     'resource' => [
@@ -154,11 +154,6 @@ return [
                     [
                         'method' => 'post',
                         'uriTemplate' => '/v1/{resource=projects/*/locations/*/lakes/*/tasks/*}:setIamPolicy',
-                        'body' => '*',
-                    ],
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/lakes/*/environments/*}:setIamPolicy',
                         'body' => '*',
                     ],
                     [
@@ -236,6 +231,11 @@ return [
                         'uriTemplate' => '/v1/{resource=projects/*/locations/*/dataProducts/*}:setIamPolicy',
                         'body' => '*',
                     ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/dataDomains/*}:setIamPolicy',
+                        'body' => '*',
+                    ],
                 ],
                 'placeholders' => [
                     'resource' => [
@@ -263,11 +263,6 @@ return [
                     [
                         'method' => 'post',
                         'uriTemplate' => '/v1/{resource=projects/*/locations/*/lakes/*/tasks/*}:testIamPermissions',
-                        'body' => '*',
-                    ],
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/lakes/*/environments/*}:testIamPermissions',
                         'body' => '*',
                     ],
                     [
@@ -343,6 +338,11 @@ return [
                     [
                         'method' => 'post',
                         'uriTemplate' => '/v1/{resource=projects/*/locations/*/dataProducts/*}:testIamPermissions',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/dataDomains/*}:testIamPermissions',
                         'body' => '*',
                     ],
                 ],

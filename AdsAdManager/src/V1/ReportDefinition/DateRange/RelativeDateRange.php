@@ -39,12 +39,19 @@ class RelativeDateRange
      */
     const THIS_WEEK = 3;
     /**
-     * From the beginning of the calendar week (Monday to Sunday) in which the
+     * From the beginning of the calendar week in which the
      * up to and including the day the report is run.
      *
      * Generated from protobuf enum <code>THIS_WEEK_TO_DATE = 29;</code>
      */
     const THIS_WEEK_TO_DATE = 29;
+    /**
+     * From the beginning of the calendar week in which the
+     * report is run, up to and including the day before the report is run.
+     *
+     * Generated from protobuf enum <code>THIS_WEEK_TO_YESTERDAY = 40;</code>
+     */
+    const THIS_WEEK_TO_YESTERDAY = 40;
     /**
      * The full month in which this report is run. Could include dates in
      * the future.
@@ -60,6 +67,13 @@ class RelativeDateRange
      */
     const THIS_MONTH_TO_DATE = 26;
     /**
+     * From the beginning of the calendar month in which the report is run,
+     * up to and including the day before the report is run.
+     *
+     * Generated from protobuf enum <code>THIS_MONTH_TO_YESTERDAY = 41;</code>
+     */
+    const THIS_MONTH_TO_YESTERDAY = 41;
+    /**
      * The full quarter in which this report is run. Could include dates
      * in the future.
      *
@@ -74,6 +88,13 @@ class RelativeDateRange
      */
     const THIS_QUARTER_TO_DATE = 27;
     /**
+     * From the beginning of the calendar quarter in which the report is run,
+     * up to and including the day before the report is run.
+     *
+     * Generated from protobuf enum <code>THIS_QUARTER_TO_YESTERDAY = 42;</code>
+     */
+    const THIS_QUARTER_TO_YESTERDAY = 42;
+    /**
      * The full year in which this report is run. Could include dates in
      * the future.
      *
@@ -87,6 +108,13 @@ class RelativeDateRange
      * Generated from protobuf enum <code>THIS_YEAR_TO_DATE = 28;</code>
      */
     const THIS_YEAR_TO_DATE = 28;
+    /**
+     * From the beginning of the calendar year in which the report is run, to
+     * up to and including the day before the report is run.
+     *
+     * Generated from protobuf enum <code>THIS_YEAR_TO_YESTERDAY = 43;</code>
+     */
+    const THIS_YEAR_TO_YESTERDAY = 43;
     /**
      * The entire previous calendar week, Monday to Sunday (inclusive),
      * preceding the calendar week the report is run.
@@ -294,12 +322,16 @@ class RelativeDateRange
         self::YESTERDAY => 'YESTERDAY',
         self::THIS_WEEK => 'THIS_WEEK',
         self::THIS_WEEK_TO_DATE => 'THIS_WEEK_TO_DATE',
+        self::THIS_WEEK_TO_YESTERDAY => 'THIS_WEEK_TO_YESTERDAY',
         self::THIS_MONTH => 'THIS_MONTH',
         self::THIS_MONTH_TO_DATE => 'THIS_MONTH_TO_DATE',
+        self::THIS_MONTH_TO_YESTERDAY => 'THIS_MONTH_TO_YESTERDAY',
         self::THIS_QUARTER => 'THIS_QUARTER',
         self::THIS_QUARTER_TO_DATE => 'THIS_QUARTER_TO_DATE',
+        self::THIS_QUARTER_TO_YESTERDAY => 'THIS_QUARTER_TO_YESTERDAY',
         self::THIS_YEAR => 'THIS_YEAR',
         self::THIS_YEAR_TO_DATE => 'THIS_YEAR_TO_DATE',
+        self::THIS_YEAR_TO_YESTERDAY => 'THIS_YEAR_TO_YESTERDAY',
         self::LAST_WEEK => 'LAST_WEEK',
         self::LAST_WEEK_STARTING_SUNDAY => 'LAST_WEEK_STARTING_SUNDAY',
         self::LAST_MONTH => 'LAST_MONTH',

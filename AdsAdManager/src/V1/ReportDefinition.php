@@ -72,6 +72,16 @@ class ReportDefinition extends \Google\Protobuf\Internal\Message
      */
     protected $comparison_date_range = null;
     /**
+     * Optional. CMS Metadata Dimension keys that represent
+     * CMS_METADATA_DIMENSION_* dimensions. The index of this repeated field
+     * corresponds to the index on each dimension. For example,
+     * cms_metadata_dimension_key_ids[0] describes
+     * CMS_METADATA_DIMENSION_0_VALUE_ID and CMS_METADATA_DIMENSION_0_VALUE.
+     *
+     * Generated from protobuf field <code>repeated int64 cms_metadata_dimension_key_ids = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $cms_metadata_dimension_key_ids;
+    /**
      * Optional. Custom Dimension keys that represent CUSTOM_DIMENSION_*
      * dimensions. The index of this repeated field corresponds to the index on
      * each dimension. For example, custom_dimension_key_ids[0] describes
@@ -80,6 +90,15 @@ class ReportDefinition extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated int64 custom_dimension_key_ids = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $custom_dimension_key_ids;
+    /**
+     * Optional. Enhanced Key-values Dimension keys that represent EKV_DIMENSION_*
+     * dimensions. The index of this repeated field corresponds to the index on
+     * each dimension.  For example, ekv_dimension_key_ids[0] describes
+     * EKV_DIMENSION_0_VALUE_ID and EKV_DIMENSION_0_VALUE.
+     *
+     * Generated from protobuf field <code>repeated int64 ekv_dimension_key_ids = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $ekv_dimension_key_ids;
     /**
      * Optional. Custom field IDs that represent LINE_ITEM_CUSTOM_FIELD_*
      * dimensions. The index of this repeated field corresponds to the index on
@@ -137,6 +156,21 @@ class ReportDefinition extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.ReportDefinition.Sort sorts = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $sorts;
+    /**
+     * Optional. Whether to use expanded compatibility for this report.
+     * If true, this setting enables certain combinations of dimensions and
+     * metrics for this report that would otherwise be incompatible. Enabling this
+     * will collapse reservation data into a single row even if the report's
+     * dimensions would normally result in multiple rows for reservation data.
+     * This impacts dimensions related to line items, orders, creatives, and
+     * advertisers.
+     * This is equivalent to the "Access more dimension and metric combinations"
+     * setting in the Interactive Reports UI. For more details, see:
+     * https://support.google.com/admanager/answer/16865393#combinations
+     *
+     * Generated from protobuf field <code>bool expanded_compatibility = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $expanded_compatibility = false;
 
     /**
      * Constructor.
@@ -168,11 +202,22 @@ class ReportDefinition extends \Google\Protobuf\Internal\Message
      *     @type \Google\Ads\AdManager\V1\ReportDefinition\DateRange $comparison_date_range
      *           Optional. The comparison date range of this report. If unspecified, the
      *           report won't have any comparison metrics.
+     *     @type int[]|string[] $cms_metadata_dimension_key_ids
+     *           Optional. CMS Metadata Dimension keys that represent
+     *           CMS_METADATA_DIMENSION_* dimensions. The index of this repeated field
+     *           corresponds to the index on each dimension. For example,
+     *           cms_metadata_dimension_key_ids[0] describes
+     *           CMS_METADATA_DIMENSION_0_VALUE_ID and CMS_METADATA_DIMENSION_0_VALUE.
      *     @type int[]|string[] $custom_dimension_key_ids
      *           Optional. Custom Dimension keys that represent CUSTOM_DIMENSION_*
      *           dimensions. The index of this repeated field corresponds to the index on
      *           each dimension. For example, custom_dimension_key_ids[0] describes
      *           CUSTOM_DIMENSION_0_VALUE_ID and CUSTOM_DIMENSION_0_VALUE.
+     *     @type int[]|string[] $ekv_dimension_key_ids
+     *           Optional. Enhanced Key-values Dimension keys that represent EKV_DIMENSION_*
+     *           dimensions. The index of this repeated field corresponds to the index on
+     *           each dimension.  For example, ekv_dimension_key_ids[0] describes
+     *           EKV_DIMENSION_0_VALUE_ID and EKV_DIMENSION_0_VALUE.
      *     @type int[]|string[] $line_item_custom_field_ids
      *           Optional. Custom field IDs that represent LINE_ITEM_CUSTOM_FIELD_*
      *           dimensions. The index of this repeated field corresponds to the index on
@@ -202,6 +247,17 @@ class ReportDefinition extends \Google\Protobuf\Internal\Message
      *           based on a set of defined filters.
      *     @type \Google\Ads\AdManager\V1\ReportDefinition\Sort[] $sorts
      *           Optional. Default sorts to apply to this report.
+     *     @type bool $expanded_compatibility
+     *           Optional. Whether to use expanded compatibility for this report.
+     *           If true, this setting enables certain combinations of dimensions and
+     *           metrics for this report that would otherwise be incompatible. Enabling this
+     *           will collapse reservation data into a single row even if the report's
+     *           dimensions would normally result in multiple rows for reservation data.
+     *           This impacts dimensions related to line items, orders, creatives, and
+     *           advertisers.
+     *           This is equivalent to the "Access more dimension and metric combinations"
+     *           setting in the Interactive Reports UI. For more details, see:
+     *           https://support.google.com/admanager/answer/16865393#combinations
      * }
      */
     public function __construct($data = NULL) {
@@ -454,6 +510,40 @@ class ReportDefinition extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. CMS Metadata Dimension keys that represent
+     * CMS_METADATA_DIMENSION_* dimensions. The index of this repeated field
+     * corresponds to the index on each dimension. For example,
+     * cms_metadata_dimension_key_ids[0] describes
+     * CMS_METADATA_DIMENSION_0_VALUE_ID and CMS_METADATA_DIMENSION_0_VALUE.
+     *
+     * Generated from protobuf field <code>repeated int64 cms_metadata_dimension_key_ids = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return RepeatedField<int>|RepeatedField<string>
+     */
+    public function getCmsMetadataDimensionKeyIds()
+    {
+        return $this->cms_metadata_dimension_key_ids;
+    }
+
+    /**
+     * Optional. CMS Metadata Dimension keys that represent
+     * CMS_METADATA_DIMENSION_* dimensions. The index of this repeated field
+     * corresponds to the index on each dimension. For example,
+     * cms_metadata_dimension_key_ids[0] describes
+     * CMS_METADATA_DIMENSION_0_VALUE_ID and CMS_METADATA_DIMENSION_0_VALUE.
+     *
+     * Generated from protobuf field <code>repeated int64 cms_metadata_dimension_key_ids = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int[]|string[] $var
+     * @return $this
+     */
+    public function setCmsMetadataDimensionKeyIds($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::INT64);
+        $this->cms_metadata_dimension_key_ids = $arr;
+
+        return $this;
+    }
+
+    /**
      * Optional. Custom Dimension keys that represent CUSTOM_DIMENSION_*
      * dimensions. The index of this repeated field corresponds to the index on
      * each dimension. For example, custom_dimension_key_ids[0] describes
@@ -481,6 +571,38 @@ class ReportDefinition extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::INT64);
         $this->custom_dimension_key_ids = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Enhanced Key-values Dimension keys that represent EKV_DIMENSION_*
+     * dimensions. The index of this repeated field corresponds to the index on
+     * each dimension.  For example, ekv_dimension_key_ids[0] describes
+     * EKV_DIMENSION_0_VALUE_ID and EKV_DIMENSION_0_VALUE.
+     *
+     * Generated from protobuf field <code>repeated int64 ekv_dimension_key_ids = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return RepeatedField<int>|RepeatedField<string>
+     */
+    public function getEkvDimensionKeyIds()
+    {
+        return $this->ekv_dimension_key_ids;
+    }
+
+    /**
+     * Optional. Enhanced Key-values Dimension keys that represent EKV_DIMENSION_*
+     * dimensions. The index of this repeated field corresponds to the index on
+     * each dimension.  For example, ekv_dimension_key_ids[0] describes
+     * EKV_DIMENSION_0_VALUE_ID and EKV_DIMENSION_0_VALUE.
+     *
+     * Generated from protobuf field <code>repeated int64 ekv_dimension_key_ids = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int[]|string[] $var
+     * @return $this
+     */
+    public function setEkvDimensionKeyIds($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::INT64);
+        $this->ekv_dimension_key_ids = $arr;
 
         return $this;
     }
@@ -693,6 +815,50 @@ class ReportDefinition extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Ads\AdManager\V1\ReportDefinition\Sort::class);
         $this->sorts = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Whether to use expanded compatibility for this report.
+     * If true, this setting enables certain combinations of dimensions and
+     * metrics for this report that would otherwise be incompatible. Enabling this
+     * will collapse reservation data into a single row even if the report's
+     * dimensions would normally result in multiple rows for reservation data.
+     * This impacts dimensions related to line items, orders, creatives, and
+     * advertisers.
+     * This is equivalent to the "Access more dimension and metric combinations"
+     * setting in the Interactive Reports UI. For more details, see:
+     * https://support.google.com/admanager/answer/16865393#combinations
+     *
+     * Generated from protobuf field <code>bool expanded_compatibility = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getExpandedCompatibility()
+    {
+        return $this->expanded_compatibility;
+    }
+
+    /**
+     * Optional. Whether to use expanded compatibility for this report.
+     * If true, this setting enables certain combinations of dimensions and
+     * metrics for this report that would otherwise be incompatible. Enabling this
+     * will collapse reservation data into a single row even if the report's
+     * dimensions would normally result in multiple rows for reservation data.
+     * This impacts dimensions related to line items, orders, creatives, and
+     * advertisers.
+     * This is equivalent to the "Access more dimension and metric combinations"
+     * setting in the Interactive Reports UI. For more details, see:
+     * https://support.google.com/admanager/answer/16865393#combinations
+     *
+     * Generated from protobuf field <code>bool expanded_compatibility = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setExpandedCompatibility($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->expanded_compatibility = $var;
 
         return $this;
     }

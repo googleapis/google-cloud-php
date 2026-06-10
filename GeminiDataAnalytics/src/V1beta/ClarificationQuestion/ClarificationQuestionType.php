@@ -7,6 +7,8 @@ namespace Google\Cloud\GeminiDataAnalytics\V1beta\ClarificationQuestion;
 use UnexpectedValueException;
 
 /**
+ * @deprecated
+ * Deprecated: The parent message is deprecated.
  * The type of clarification question.
  * This enum may be extended with new values in the future.
  *
@@ -15,23 +17,26 @@ use UnexpectedValueException;
 class ClarificationQuestionType
 {
     /**
+     * Deprecated: The parent message is deprecated.
      * Unspecified clarification question type.
      *
-     * Generated from protobuf enum <code>CLARIFICATION_QUESTION_TYPE_UNSPECIFIED = 0;</code>
+     * Generated from protobuf enum <code>CLARIFICATION_QUESTION_TYPE_UNSPECIFIED = 0 [deprecated = true];</code>
      */
     const CLARIFICATION_QUESTION_TYPE_UNSPECIFIED = 0;
     /**
+     * Deprecated: The parent message is deprecated.
      * The clarification question is for filter values.
      *
-     * Generated from protobuf enum <code>FILTER_VALUES = 1;</code>
+     * Generated from protobuf enum <code>FILTER_VALUES = 1 [deprecated = true];</code>
      */
     const FILTER_VALUES = 1;
     /**
+     * Deprecated: The parent message is deprecated.
      * The clarification question is for data fields. This is a generic term
      * encompassing SQL columns, Looker fields (dimensions/measures), or
      * nested data structure properties.
      *
-     * Generated from protobuf enum <code>FIELDS = 2;</code>
+     * Generated from protobuf enum <code>FIELDS = 2 [deprecated = true];</code>
      */
     const FIELDS = 2;
 

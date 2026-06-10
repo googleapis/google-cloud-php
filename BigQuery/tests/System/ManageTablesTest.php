@@ -19,6 +19,7 @@ namespace Google\Cloud\BigQuery\Tests\System;
 
 use Google\Cloud\BigQuery\BigQueryClient;
 use Google\Cloud\BigQuery\Table;
+use Google\Cloud\BigQuery\TableMetadataView;
 use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\Core\Exception\FailedPreconditionException;
 
@@ -453,5 +454,34 @@ class ManageTablesTest extends BigQueryTestCase
                 'AVRO'
             ],
         ];
+    }
+
+    public function testTableView()
+    {
+        $id = uniqid(self::TESTING_PREFIX);
+        $table = self::$dataset->createTable($id, [
+            'schema' => [
+                'fields' => [
+                    ['name' => 'column', 'type' => 'STRING']
+                ]
+            ]
+        ]);
+
+        $this->runJob($table->load('{"column": "test"}' . PHP_EOL, [
+            'configuration' => [
+                'load' => [
+                    'sourceFormat' => 'NEWLINE_DELIMITED_JSON'
+                ]
+            ]
+        ]));
+
+        // BASIC view should not include storage statistics
+        $info = $table->reload(['view' => TableMetadataView::BASIC]);
+        $this->assertArrayNotHasKey('numRows', $info);
+
+        // FULL view should include storage statistics
+        $info = $table->reload(['view' => TableMetadataView::FULL]);
+        $this->assertArrayHasKey('numRows', $info);
+        $this->assertEquals(1, $info['numRows']);
     }
 }

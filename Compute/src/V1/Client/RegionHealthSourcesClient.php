@@ -36,8 +36,10 @@ use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Compute\V1\AggregatedListRegionHealthSourcesRequest;
 use Google\Cloud\Compute\V1\DeleteRegionHealthSourceRequest;
+use Google\Cloud\Compute\V1\GetHealthRegionHealthSourceRequest;
 use Google\Cloud\Compute\V1\GetRegionHealthSourceRequest;
 use Google\Cloud\Compute\V1\HealthSource;
+use Google\Cloud\Compute\V1\HealthSourceHealth;
 use Google\Cloud\Compute\V1\InsertRegionHealthSourceRequest;
 use Google\Cloud\Compute\V1\ListRegionHealthSourcesRequest;
 use Google\Cloud\Compute\V1\PatchRegionHealthSourceRequest;
@@ -55,6 +57,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<PagedListResponse> aggregatedListAsync(AggregatedListRegionHealthSourcesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteAsync(DeleteRegionHealthSourceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<HealthSource> getAsync(GetRegionHealthSourceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<HealthSourceHealth> getHealthAsync(GetHealthRegionHealthSourceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> insertAsync(InsertRegionHealthSourceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listAsync(ListRegionHealthSourcesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> patchAsync(PatchRegionHealthSourceRequest $request, array $optionalArgs = [])
@@ -354,6 +357,33 @@ final class RegionHealthSourcesClient
     public function get(GetRegionHealthSourceRequest $request, array $callOptions = []): HealthSource
     {
         return $this->startApiCall('Get', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets the most recent health check results for this
+     * regional HealthSource.
+     *
+     * The async variant is {@see RegionHealthSourcesClient::getHealthAsync()} .
+     *
+     * @example samples/V1/RegionHealthSourcesClient/get_health.php
+     *
+     * @param GetHealthRegionHealthSourceRequest $request     A request to house fields associated with the call.
+     * @param array                              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return HealthSourceHealth
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getHealth(GetHealthRegionHealthSourceRequest $request, array $callOptions = []): HealthSourceHealth
+    {
+        return $this->startApiCall('GetHealth', $request, $callOptions)->wait();
     }
 
     /**

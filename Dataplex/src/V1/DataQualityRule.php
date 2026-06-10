@@ -77,6 +77,21 @@ class DataQualityRule extends \Google\Protobuf\Internal\Message
      */
     protected $suspended = false;
     /**
+     * Optional. Map of attribute name and value linked to the rule. The rules to
+     * evaluate can be filtered based on attributes provided here and a filter
+     * expression provided in the DataQualitySpec.filter field.
+     *
+     * Generated from protobuf field <code>map<string, string> attributes = 507 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $attributes;
+    /**
+     * Output only. Contains information about the source of the rule and its
+     * relationship with the BigQuery table, where applicable.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataQualityRule.RuleSource rule_source = 508 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $rule_source = null;
+    /**
      * Optional. Specifies the debug queries for this rule.
      * Currently, only one query is supported, but this may be expanded in the
      * future.
@@ -117,6 +132,10 @@ class DataQualityRule extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dataplex\V1\DataQualityRule\SqlAssertion $sql_assertion
      *           Aggregate rule which evaluates the number of rows returned for the
      *           provided statement. If any rows are returned, this rule fails.
+     *     @type \Google\Cloud\Dataplex\V1\DataQualityRule\TemplateReference $template_reference
+     *           Aggregate rule which references a rule template and provides the
+     *           parameters to be substituted in the template. If any rows are returned,
+     *           this rule fails.
      *     @type string $column
      *           Optional. The unnested column which this rule is evaluated against.
      *     @type bool $ignore_null
@@ -150,6 +169,13 @@ class DataQualityRule extends \Google\Protobuf\Internal\Message
      *     @type bool $suspended
      *           Optional. Whether the Rule is active or suspended.
      *           Default is false.
+     *     @type array|\Google\Protobuf\Internal\MapField $attributes
+     *           Optional. Map of attribute name and value linked to the rule. The rules to
+     *           evaluate can be filtered based on attributes provided here and a filter
+     *           expression provided in the DataQualitySpec.filter field.
+     *     @type \Google\Cloud\Dataplex\V1\DataQualityRule\RuleSource $rule_source
+     *           Output only. Contains information about the source of the rule and its
+     *           relationship with the BigQuery table, where applicable.
      *     @type \Google\Cloud\Dataplex\V1\DataQualityRule\DebugQuery[] $debug_queries
      *           Optional. Specifies the debug queries for this rule.
      *           Currently, only one query is supported, but this may be expanded in the
@@ -455,6 +481,41 @@ class DataQualityRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Aggregate rule which references a rule template and provides the
+     * parameters to be substituted in the template. If any rows are returned,
+     * this rule fails.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataQualityRule.TemplateReference template_reference = 5;</code>
+     * @return \Google\Cloud\Dataplex\V1\DataQualityRule\TemplateReference|null
+     */
+    public function getTemplateReference()
+    {
+        return $this->readOneof(5);
+    }
+
+    public function hasTemplateReference()
+    {
+        return $this->hasOneof(5);
+    }
+
+    /**
+     * Aggregate rule which references a rule template and provides the
+     * parameters to be substituted in the template. If any rows are returned,
+     * this rule fails.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataQualityRule.TemplateReference template_reference = 5;</code>
+     * @param \Google\Cloud\Dataplex\V1\DataQualityRule\TemplateReference $var
+     * @return $this
+     */
+    public function setTemplateReference($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataplex\V1\DataQualityRule\TemplateReference::class);
+        $this->writeOneof(5, $var);
+
+        return $this;
+    }
+
+    /**
      * Optional. The unnested column which this rule is evaluated against.
      *
      * Generated from protobuf field <code>string column = 500 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -670,6 +731,74 @@ class DataQualityRule extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->suspended = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Map of attribute name and value linked to the rule. The rules to
+     * evaluate can be filtered based on attributes provided here and a filter
+     * expression provided in the DataQualitySpec.filter field.
+     *
+     * Generated from protobuf field <code>map<string, string> attributes = 507 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getAttributes()
+    {
+        return $this->attributes;
+    }
+
+    /**
+     * Optional. Map of attribute name and value linked to the rule. The rules to
+     * evaluate can be filtered based on attributes provided here and a filter
+     * expression provided in the DataQualitySpec.filter field.
+     *
+     * Generated from protobuf field <code>map<string, string> attributes = 507 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setAttributes($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->attributes = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Contains information about the source of the rule and its
+     * relationship with the BigQuery table, where applicable.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataQualityRule.RuleSource rule_source = 508 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Dataplex\V1\DataQualityRule\RuleSource|null
+     */
+    public function getRuleSource()
+    {
+        return $this->rule_source;
+    }
+
+    public function hasRuleSource()
+    {
+        return isset($this->rule_source);
+    }
+
+    public function clearRuleSource()
+    {
+        unset($this->rule_source);
+    }
+
+    /**
+     * Output only. Contains information about the source of the rule and its
+     * relationship with the BigQuery table, where applicable.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataQualityRule.RuleSource rule_source = 508 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Dataplex\V1\DataQualityRule\RuleSource $var
+     * @return $this
+     */
+    public function setRuleSource($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataplex\V1\DataQualityRule\RuleSource::class);
+        $this->rule_source = $var;
 
         return $this;
     }

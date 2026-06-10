@@ -8,6 +8,8 @@ use UnexpectedValueException;
 
 /**
  * Status of the product aggregated for all reporting contexts.
+ * Reporting contexts included in the computation of the aggregated status can
+ * be restricted using a filter on the `reporting_context` field.
  * Here's an example of how the aggregated status is computed:
  * Free listings | Shopping ads | Status
  * --------------|--------------|------------------------------
@@ -28,25 +30,27 @@ class AggregatedReportingContextStatus
      */
     const AGGREGATED_REPORTING_CONTEXT_STATUS_UNSPECIFIED = 0;
     /**
-     * Product is not eligible or is disapproved for all reporting contexts.
+     * Product is not eligible or is disapproved for all reporting contexts and
+     * countries.
      *
      * Generated from protobuf enum <code>NOT_ELIGIBLE_OR_DISAPPROVED = 1;</code>
      */
     const NOT_ELIGIBLE_OR_DISAPPROVED = 1;
     /**
-     * Product's status is pending in all reporting contexts.
+     * Product's status is pending in all reporting contexts and countries.
      *
      * Generated from protobuf enum <code>PENDING = 2;</code>
      */
     const PENDING = 2;
     /**
-     * Product is eligible for some (but not all) reporting contexts.
+     * Product is eligible for some (but not all) reporting contexts and
+     * countries.
      *
      * Generated from protobuf enum <code>ELIGIBLE_LIMITED = 3;</code>
      */
     const ELIGIBLE_LIMITED = 3;
     /**
-     * Product is eligible for all reporting contexts.
+     * Product is eligible for all reporting contexts and countries.
      *
      * Generated from protobuf enum <code>ELIGIBLE = 4;</code>
      */

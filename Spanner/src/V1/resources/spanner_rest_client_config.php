@@ -264,6 +264,18 @@ return [
                     ],
                 ],
             ],
+            'FetchCacheUpdate' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{database=projects/*/instances/*/databases/*}:cacheUpdate',
+                'body' => '*',
+                'placeholders' => [
+                    'database' => [
+                        'getters' => [
+                            'getDatabase',
+                        ],
+                    ],
+                ],
+            ],
             'GetSession' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/instances/*/databases/*/sessions/*}',

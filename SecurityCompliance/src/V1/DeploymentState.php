@@ -38,6 +38,12 @@ class DeploymentState
      */
     const DEPLOYMENT_STATE_DELETING = 3;
     /**
+     * Deployment is being updated.
+     *
+     * Generated from protobuf enum <code>DEPLOYMENT_STATE_UPDATING = 8;</code>
+     */
+    const DEPLOYMENT_STATE_UPDATING = 8;
+    /**
      * Deployment has failed. All the changes made by the deployment were
      * successfully rolled back. You can retry or delete a deployment that's
      * in this state.
@@ -73,6 +79,7 @@ class DeploymentState
         self::DEPLOYMENT_STATE_VALIDATING => 'DEPLOYMENT_STATE_VALIDATING',
         self::DEPLOYMENT_STATE_CREATING => 'DEPLOYMENT_STATE_CREATING',
         self::DEPLOYMENT_STATE_DELETING => 'DEPLOYMENT_STATE_DELETING',
+        self::DEPLOYMENT_STATE_UPDATING => 'DEPLOYMENT_STATE_UPDATING',
         self::DEPLOYMENT_STATE_FAILED => 'DEPLOYMENT_STATE_FAILED',
         self::DEPLOYMENT_STATE_READY => 'DEPLOYMENT_STATE_READY',
         self::DEPLOYMENT_STATE_PARTIALLY_DEPLOYED => 'DEPLOYMENT_STATE_PARTIALLY_DEPLOYED',

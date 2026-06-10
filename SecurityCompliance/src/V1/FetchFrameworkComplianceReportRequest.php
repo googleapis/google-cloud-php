@@ -27,6 +27,12 @@ class FetchFrameworkComplianceReportRequest extends \Google\Protobuf\Internal\Me
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $end_time = null;
+    /**
+     * Optional. The filtering results.
+     *
+     * Generated from protobuf field <code>string filter = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $filter = '';
 
     /**
      * @param string $name Required. The name of the framework compliance report to retrieve. Please see
@@ -52,6 +58,8 @@ class FetchFrameworkComplianceReportRequest extends \Google\Protobuf\Internal\Me
      *           Required. The name of the framework compliance report to retrieve.
      *     @type \Google\Protobuf\Timestamp $end_time
      *           Optional. The end time of the report.
+     *     @type string $filter
+     *           Optional. The filtering results.
      * }
      */
     public function __construct($data = NULL) {
@@ -117,6 +125,32 @@ class FetchFrameworkComplianceReportRequest extends \Google\Protobuf\Internal\Me
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->end_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The filtering results.
+     *
+     * Generated from protobuf field <code>string filter = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getFilter()
+    {
+        return $this->filter;
+    }
+
+    /**
+     * Optional. The filtering results.
+     *
+     * Generated from protobuf field <code>string filter = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setFilter($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->filter = $var;
 
         return $this;
     }

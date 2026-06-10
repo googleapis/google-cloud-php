@@ -17,12 +17,17 @@ class ItemIssueSeverity extends \Google\Protobuf\Internal\Message
 {
     /**
      * Issue severity per reporting context.
+     * Reporting contexts included in this list can be restricted using a
+     * filter on the `reporting_context` field.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.reports.v1.ProductView.ItemIssue.ItemIssueSeverity.IssueSeverityPerReportingContext severity_per_reporting_context = 1;</code>
      */
     private $severity_per_reporting_context;
     /**
      * Aggregated severity of the issue for all reporting contexts it affects.
+     * Reporting contexts included in the computation of the aggregated
+     * severity can be restricted using a filter on the `reporting_context`
+     * field.
      * **This field can be used for filtering the results.**
      *
      * Generated from protobuf field <code>optional .google.shopping.merchant.reports.v1.ProductView.ItemIssue.ItemIssueSeverity.AggregatedIssueSeverity aggregated_severity = 2;</code>
@@ -37,8 +42,13 @@ class ItemIssueSeverity extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Shopping\Merchant\Reports\V1\ProductView\ItemIssue\ItemIssueSeverity\IssueSeverityPerReportingContext[] $severity_per_reporting_context
      *           Issue severity per reporting context.
+     *           Reporting contexts included in this list can be restricted using a
+     *           filter on the `reporting_context` field.
      *     @type int $aggregated_severity
      *           Aggregated severity of the issue for all reporting contexts it affects.
+     *           Reporting contexts included in the computation of the aggregated
+     *           severity can be restricted using a filter on the `reporting_context`
+     *           field.
      *           **This field can be used for filtering the results.**
      * }
      */
@@ -49,6 +59,8 @@ class ItemIssueSeverity extends \Google\Protobuf\Internal\Message
 
     /**
      * Issue severity per reporting context.
+     * Reporting contexts included in this list can be restricted using a
+     * filter on the `reporting_context` field.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.reports.v1.ProductView.ItemIssue.ItemIssueSeverity.IssueSeverityPerReportingContext severity_per_reporting_context = 1;</code>
      * @return RepeatedField<\Google\Shopping\Merchant\Reports\V1\ProductView\ItemIssue\ItemIssueSeverity\IssueSeverityPerReportingContext>
@@ -60,6 +72,8 @@ class ItemIssueSeverity extends \Google\Protobuf\Internal\Message
 
     /**
      * Issue severity per reporting context.
+     * Reporting contexts included in this list can be restricted using a
+     * filter on the `reporting_context` field.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.reports.v1.ProductView.ItemIssue.ItemIssueSeverity.IssueSeverityPerReportingContext severity_per_reporting_context = 1;</code>
      * @param \Google\Shopping\Merchant\Reports\V1\ProductView\ItemIssue\ItemIssueSeverity\IssueSeverityPerReportingContext[] $var
@@ -75,6 +89,9 @@ class ItemIssueSeverity extends \Google\Protobuf\Internal\Message
 
     /**
      * Aggregated severity of the issue for all reporting contexts it affects.
+     * Reporting contexts included in the computation of the aggregated
+     * severity can be restricted using a filter on the `reporting_context`
+     * field.
      * **This field can be used for filtering the results.**
      *
      * Generated from protobuf field <code>optional .google.shopping.merchant.reports.v1.ProductView.ItemIssue.ItemIssueSeverity.AggregatedIssueSeverity aggregated_severity = 2;</code>
@@ -97,6 +114,9 @@ class ItemIssueSeverity extends \Google\Protobuf\Internal\Message
 
     /**
      * Aggregated severity of the issue for all reporting contexts it affects.
+     * Reporting contexts included in the computation of the aggregated
+     * severity can be restricted using a filter on the `reporting_context`
+     * field.
      * **This field can be used for filtering the results.**
      *
      * Generated from protobuf field <code>optional .google.shopping.merchant.reports.v1.ProductView.ItemIssue.ItemIssueSeverity.AggregatedIssueSeverity aggregated_severity = 2;</code>

@@ -42,8 +42,18 @@ class ListTeamsRequest extends \Google\Protobuf\Internal\Message
     protected $page_token = '';
     /**
      * Optional. Expression to filter the response.
-     * See syntax details at
-     * https://developers.google.com/ad-manager/api/beta/filters
+     *  See syntax details at
+     *  https://developers.google.com/ad-manager/api/beta/filters
+     * <b>Filterable fields:</b>
+     * <ul style="list-style-type:none">
+     *   <li><code>accessType</code></li>
+     *   <li><code>allCompaniesAccess</code></li>
+     *   <li><code>allInventoryAccess</code></li>
+     *   <li><code>description</code></li>
+     *   <li><code>displayName</code></li>
+     *   <li><code>name</code></li>
+     *   <li><code>status</code></li>
+     * </ul>
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -99,8 +109,18 @@ class ListTeamsRequest extends \Google\Protobuf\Internal\Message
      *           the call that provided the page token.
      *     @type string $filter
      *           Optional. Expression to filter the response.
-     *           See syntax details at
-     *           https://developers.google.com/ad-manager/api/beta/filters
+     *            See syntax details at
+     *            https://developers.google.com/ad-manager/api/beta/filters
+     *           <b>Filterable fields:</b>
+     *           <ul style="list-style-type:none">
+     *             <li><code>accessType</code></li>
+     *             <li><code>allCompaniesAccess</code></li>
+     *             <li><code>allInventoryAccess</code></li>
+     *             <li><code>description</code></li>
+     *             <li><code>displayName</code></li>
+     *             <li><code>name</code></li>
+     *             <li><code>status</code></li>
+     *           </ul>
      *     @type string $order_by
      *           Optional. Expression to specify sorting order.
      *           See syntax details at
@@ -208,8 +228,18 @@ class ListTeamsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Expression to filter the response.
-     * See syntax details at
-     * https://developers.google.com/ad-manager/api/beta/filters
+     *  See syntax details at
+     *  https://developers.google.com/ad-manager/api/beta/filters
+     * <b>Filterable fields:</b>
+     * <ul style="list-style-type:none">
+     *   <li><code>accessType</code></li>
+     *   <li><code>allCompaniesAccess</code></li>
+     *   <li><code>allInventoryAccess</code></li>
+     *   <li><code>description</code></li>
+     *   <li><code>displayName</code></li>
+     *   <li><code>name</code></li>
+     *   <li><code>status</code></li>
+     * </ul>
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -221,8 +251,18 @@ class ListTeamsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Expression to filter the response.
-     * See syntax details at
-     * https://developers.google.com/ad-manager/api/beta/filters
+     *  See syntax details at
+     *  https://developers.google.com/ad-manager/api/beta/filters
+     * <b>Filterable fields:</b>
+     * <ul style="list-style-type:none">
+     *   <li><code>accessType</code></li>
+     *   <li><code>allCompaniesAccess</code></li>
+     *   <li><code>allInventoryAccess</code></li>
+     *   <li><code>description</code></li>
+     *   <li><code>displayName</code></li>
+     *   <li><code>name</code></li>
+     *   <li><code>status</code></li>
+     * </ul>
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

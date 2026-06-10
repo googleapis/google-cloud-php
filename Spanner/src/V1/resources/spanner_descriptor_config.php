@@ -137,6 +137,21 @@ return [
                     ],
                 ],
             ],
+            'FetchCacheUpdate' => [
+                'grpcStreaming' => [
+                    'grpcStreamingType' => 'ServerStreaming',
+                ],
+                'callType' => \Google\ApiCore\Call::SERVER_STREAMING_CALL,
+                'responseType' => 'Google\Cloud\Spanner\V1\CacheUpdate',
+                'headerParams' => [
+                    [
+                        'keyName' => 'database',
+                        'fieldAccessors' => [
+                            'getDatabase',
+                        ],
+                    ],
+                ],
+            ],
             'GetSession' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Spanner\V1\Session',

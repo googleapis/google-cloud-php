@@ -39,6 +39,39 @@ return [
                     ],
                 ],
             ],
+            'GetIamPolicy' => [
+                'method' => 'get',
+                'uriTemplate' => '/compute/v1/projects/{project}/global/licenseCodes/{resource}/getIamPolicy',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
+                        ],
+                    ],
+                ],
+            ],
+            'SetIamPolicy' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/global/licenseCodes/{resource}/setIamPolicy',
+                'body' => 'global_set_policy_request_resource',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
+                        ],
+                    ],
+                ],
+            ],
             'TestIamPermissions' => [
                 'method' => 'post',
                 'uriTemplate' => '/compute/v1/projects/{project}/global/licenseCodes/{resource}/testIamPermissions',

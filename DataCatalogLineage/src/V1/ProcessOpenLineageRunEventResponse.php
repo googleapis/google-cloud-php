@@ -10,7 +10,7 @@ use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
- * [ProcessOpenLineageRunEvent][google.cloud.datacatalog.lineage.v1.ProcessOpenLineageRunEvent].
+ * [ProcessOpenLineageRunEvent][google.cloud.datacatalog.lineage.v1.Lineage.ProcessOpenLineageRunEvent].
  *
  * Generated from protobuf message <code>google.cloud.datacatalog.lineage.v1.ProcessOpenLineageRunEventResponse</code>
  */
