@@ -34,23 +34,18 @@ use Google\Rpc\Status;
  * Initiates a switchover of specified autonomous database to the associated
  * peer database.
  *
- * @param string $formattedName                   The name of the Autonomous Database in the following format:
- *                                                projects/{project}/locations/{location}/autonomousDatabases/{autonomous_database}. Please see
- *                                                {@see OracleDatabaseClient::autonomousDatabaseName()} for help formatting this field.
- * @param string $formattedPeerAutonomousDatabase The peer database name to switch over to. Please see
- *                                                {@see OracleDatabaseClient::autonomousDatabaseName()} for help formatting this field.
+ * @param string $formattedName The name of the Autonomous Database in the following format:
+ *                              projects/{project}/locations/{location}/autonomousDatabases/{autonomous_database}. Please see
+ *                              {@see OracleDatabaseClient::autonomousDatabaseName()} for help formatting this field.
  */
-function switchover_autonomous_database_sample(
-    string $formattedName,
-    string $formattedPeerAutonomousDatabase
-): void {
+function switchover_autonomous_database_sample(string $formattedName): void
+{
     // Create a client.
     $oracleDatabaseClient = new OracleDatabaseClient();
 
     // Prepare the request message.
     $request = (new SwitchoverAutonomousDatabaseRequest())
-        ->setName($formattedName)
-        ->setPeerAutonomousDatabase($formattedPeerAutonomousDatabase);
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
@@ -88,12 +83,7 @@ function callSample(): void
         '[LOCATION]',
         '[AUTONOMOUS_DATABASE]'
     );
-    $formattedPeerAutonomousDatabase = OracleDatabaseClient::autonomousDatabaseName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[AUTONOMOUS_DATABASE]'
-    );
 
-    switchover_autonomous_database_sample($formattedName, $formattedPeerAutonomousDatabase);
+    switchover_autonomous_database_sample($formattedName);
 }
 // [END oracledatabase_v1_generated_OracleDatabase_SwitchoverAutonomousDatabase_sync]
