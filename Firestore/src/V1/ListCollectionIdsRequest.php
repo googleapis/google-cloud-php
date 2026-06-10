@@ -21,6 +21,8 @@ class ListCollectionIdsRequest extends \Google\Protobuf\Internal\Message
      * `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
      * For example:
      * `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
+     * Use `projects/{project_id}/databases/{database_id}/documents` to list
+     * top-level collections.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -46,6 +48,9 @@ class ListCollectionIdsRequest extends \Google\Protobuf\Internal\Message
      *                       For example:
      *                       `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
      *
+     *                       Use `projects/{project_id}/databases/{database_id}/documents` to list
+     *                       top-level collections.
+     *
      * @return \Google\Cloud\Firestore\V1\ListCollectionIdsRequest
      *
      * @experimental
@@ -67,6 +72,8 @@ class ListCollectionIdsRequest extends \Google\Protobuf\Internal\Message
      *           `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
      *           For example:
      *           `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
+     *           Use `projects/{project_id}/databases/{database_id}/documents` to list
+     *           top-level collections.
      *     @type int $page_size
      *           The maximum number of results to return.
      *     @type string $page_token
@@ -89,6 +96,8 @@ class ListCollectionIdsRequest extends \Google\Protobuf\Internal\Message
      * `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
      * For example:
      * `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
+     * Use `projects/{project_id}/databases/{database_id}/documents` to list
+     * top-level collections.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -103,6 +112,8 @@ class ListCollectionIdsRequest extends \Google\Protobuf\Internal\Message
      * `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
      * For example:
      * `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
+     * Use `projects/{project_id}/databases/{database_id}/documents` to list
+     * top-level collections.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
