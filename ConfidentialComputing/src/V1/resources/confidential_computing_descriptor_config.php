@@ -107,6 +107,7 @@ return [
             ],
             'templateMap' => [
                 'challenge' => 'projects/{project}/locations/{location}/challenges/{uuid}',
+                'instance' => 'projects/{project}/zones/{zone}/instances/{instance}',
                 'location' => 'projects/{project}/locations/{location}',
             ],
         ],

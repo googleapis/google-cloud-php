@@ -58,6 +58,14 @@ class VerifyAttestationRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string attester = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $attester = '';
+    /**
+     * Optional. Optional resource link of the Compute Engine instance.
+     * Format:
+     * `projects/{project_number}/zones/{zone}/instances/{instance_id}`
+     *
+     * Generated from protobuf field <code>string instance = 10 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     */
+    protected $instance = '';
     protected $tee_attestation;
     protected $device_attestation;
 
@@ -91,6 +99,10 @@ class VerifyAttestationRequest extends \Google\Protobuf\Internal\Message
      *     @type string $attester
      *           Optional. An optional indicator of the attester, only applies to certain
      *           products.
+     *     @type string $instance
+     *           Optional. Optional resource link of the Compute Engine instance.
+     *           Format:
+     *           `projects/{project_number}/zones/{zone}/instances/{instance_id}`
      * }
      */
     public function __construct($data = NULL) {
@@ -395,6 +407,36 @@ class VerifyAttestationRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->attester = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Optional resource link of the Compute Engine instance.
+     * Format:
+     * `projects/{project_number}/zones/{zone}/instances/{instance_id}`
+     *
+     * Generated from protobuf field <code>string instance = 10 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getInstance()
+    {
+        return $this->instance;
+    }
+
+    /**
+     * Optional. Optional resource link of the Compute Engine instance.
+     * Format:
+     * `projects/{project_number}/zones/{zone}/instances/{instance_id}`
+     *
+     * Generated from protobuf field <code>string instance = 10 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setInstance($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->instance = $var;
 
         return $this;
     }
