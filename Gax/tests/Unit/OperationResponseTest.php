@@ -62,11 +62,6 @@ class OperationResponseTest extends TestCase
         self::autoloadTestdata('mocks', 'Google');
     }
 
-    public static function tearDownAfterClass(): void
-    {
-        putenv('GOOGLE_APPLICATION_CREDENTIALS=');
-    }
-
     /**
      * @dataProvider provideOperationsClients
      */
@@ -81,9 +76,6 @@ class OperationResponseTest extends TestCase
 
     public function provideOperationsClients()
     {
-        $keyFilePath = __DIR__ . '/testdata/creds/json-key-file.json';
-        putenv('GOOGLE_APPLICATION_CREDENTIALS=' . $keyFilePath);
-
         return [
             [$this->createOperationsClient()],
             [$this->prophesize(LROOperationsClient::class)->reveal()],

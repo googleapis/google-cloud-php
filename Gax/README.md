@@ -73,21 +73,13 @@ be found for Mac or Windows.
 3.  Run tests.
 
     ```sh
-    > composer test
+    > vendor/bin/phpunit
     ```
 
-4.  Updating dependencies after changing `composer.json`:
+4.  Run static analysis tools
 
     ```sh
-    > composer update
-    `
-    ```
-
-5.  Formatting source:
-
-    ```sh
-    > composer cs-lint
-    > composer cs-fix
+    > phpstan -c phpstan.neon.dist
     ```
 
 ## License

@@ -117,7 +117,7 @@ class RequestBuilder
                 $uri = $this->buildUri($pathTemplate, $queryParams);
 
                 return new Request(
-                    $config['method'],
+                    strtoupper($config['method']),
                     $uri,
                     ['Content-Type' => 'application/json'] + $headers,
                     $body

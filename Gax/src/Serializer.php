@@ -274,7 +274,7 @@ class Serializer
                 /** @var Message $unpacked */
                 $unpacked = $any->unpack();
                 $results[] = self::serializeToPhpArray($unpacked);
-            } catch (\Exception $ex) {
+            } catch (\Throwable $ex) {
                 // failed to unpack the $any object - show as unknown binary data
                 $results[] = [
                     'typeUrl' => $any->getTypeUrl(),
@@ -489,14 +489,14 @@ class Serializer
      */
     private function checkFieldRepeated(FieldDescriptor $field): bool
     {
-        // @phpstan-ignore function.alreadyNarrowedType
+        /** @phpstan-ignore-next-line **/
         if (method_exists($field, 'isRepeated')) {
             return $field->isRepeated();
         }
         if (method_exists($field, 'getLabel')) {
             return $field->getLabel() === GPBLabel::REPEATED;
         }
-        throw new \LogicException('unable to check field repeated');
+        throw new \Exception('No field repeated method avaialble');
     }
 
     /**

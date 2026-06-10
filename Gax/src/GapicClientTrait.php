@@ -718,7 +718,8 @@ trait GapicClientTrait
             'transportOptions',
             'metadataCallback',
             'audience',
-            'metadataReturnType'
+            'metadataReturnType',
+            'middlewareOptions'
         ]);
 
         foreach (\array_reverse($this->middlewareCallables) as $fn) {

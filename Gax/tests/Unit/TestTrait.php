@@ -31,7 +31,8 @@
  */
 namespace Google\ApiCore\Tests\Unit;
 
-use Google\ApiCore\LongRunning\OperationsClient;
+use Google\ApiCore\InsecureCredentialsWrapper;
+use Google\LongRunning\Client\OperationsClient;
 use Google\ApiCore\Testing\MockRequest;
 use Google\ApiCore\Testing\MockResponse;
 use Google\Protobuf\Any;
@@ -88,6 +89,7 @@ trait TestTrait
             'apiEndpoint' => '',
             'scopes' => [],
             'transport' => $transport,
+            'credentials' => new InsecureCredentialsWrapper(),
         ]);
 
         return $client;

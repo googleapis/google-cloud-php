@@ -63,6 +63,7 @@ class RequestBuilderTest extends TestCase
         $uri = $request->getUri();
 
         $this->assertSame('https', $uri->getScheme());
+        $this->assertSame('GET', $request->getMethod());
         $this->assertEmpty($uri->getQuery());
         $this->assertEmpty((string) $request->getBody());
         $this->assertSame('/v1/message/foo', $uri->getPath());
@@ -80,6 +81,7 @@ class RequestBuilderTest extends TestCase
         $uri = $request->getUri();
 
         $this->assertSame('https', $uri->getScheme());
+        $this->assertSame('POST', $request->getMethod());
         $this->assertEmpty($uri->getQuery());
         $this->assertSame('/v1/message/foo', $uri->getPath());
         $this->assertEquals(
