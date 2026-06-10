@@ -321,7 +321,6 @@
     },
     "autoload": {
         "psr-4": {
-            "GPBMetadata\\ApiCore\\": "Gax/metadata/ApiCore",
             "GPBMetadata\\Google\\Ads\\Admanager\\": "AdsAdManager/metadata",
             "GPBMetadata\\Google\\Ads\\Datamanager\\": "AdsDataManager/metadata",
             "GPBMetadata\\Google\\Analytics\\Admin\\": "AnalyticsAdmin/metadata",
@@ -812,6 +811,7 @@
     "autoload-dev": {
         "psr-4": {
             "Google\\ApiCore\\Tests\\": "Gax/tests",
+            "Google\\ApiCore\\Testing\\": "Gax/tests/Unit/testdata/generated",
             "Google\\Analytics\\Admin\\Tests\\": "AnalyticsAdmin/tests",
             "Google\\Analytics\\Data\\Tests\\": "AnalyticsData/tests",
             "Google\\Cloud\\AIPlatform\\Tests\\": "AiPlatform/tests",
@@ -863,6 +863,7 @@
             "Google\\Identity\\AccessContextManager\\Tests\\": "AccessContextManager/tests",
             "Grafeas\\Tests\\": "Grafeas/tests",
             "Testing\\Data\\": "Spanner/tests/data/generated/Testing/Data",
+	    "GPBMetadata\\ApiCore\\Testing\\": "Gax/tests/Unit/testdata/metadata",
             "GPBMetadata\\Data\\": "Spanner/tests/data/generated/GPBMetadata/Data"
         },
         "files": [
@@ -872,5 +873,11 @@
     },
     "bin": [
         "Core/bin/google-cloud-batch"
-    ]
+    ],
+    "config": {
+        "allow-plugins": {
+            "php-http/discovery": true,
+            "tbachert/spi": true
+        }
+    }
 }

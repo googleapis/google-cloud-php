@@ -33,7 +33,8 @@ class MockRequest extends \Google\Protobuf\Internal\Message
      *     @type int|string $page_size
      * }
      */
-    public function __construct($data = NULL) {
+    public function __construct($data = null)
+    {
         \GPBMetadata\ApiCore\Testing\Mocks::initOnce();
         parent::__construct($data);
     }
@@ -81,6 +82,4 @@ class MockRequest extends \Google\Protobuf\Internal\Message
 
         return $this;
     }
-
 }
-
