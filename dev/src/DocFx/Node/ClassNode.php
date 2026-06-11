@@ -24,6 +24,7 @@ use SimpleXMLElement;
  */
 class ClassNode
 {
+    use DeprecatedTrait;
     use DocblockTrait;
     use NameTrait;
 
@@ -115,9 +116,6 @@ class ClassNode
     {
         if ($this->xmlNode->docblock) {
             foreach ($this->xmlNode->docblock->tag as $tag) {
-                if ((string) $tag['name'] === 'deprecated') {
-                    return 'deprecated';
-                }
                 if ((string) $tag['name'] === 'experimental') {
                     return 'beta';
                 }
@@ -268,7 +266,7 @@ class ClassNode
         }
 
         // Skip deprecated classes
-        if ('deprecated' === $this->getStatus()) {
+        if ($this->isDeprecated()) {
             return true;
         }
 

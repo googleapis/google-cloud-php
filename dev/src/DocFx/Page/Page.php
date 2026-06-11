@@ -183,11 +183,16 @@ class Page
         if ($parameters = $method->getParameters()) {
             $methodItem['syntax']['parameters'] = [];
             foreach ($parameters as $parameter) {
-                $methodItem['syntax']['parameters'][] = [
+                $param = [
                     'id' => $parameter->getName(),
                     'var_type' => $parameter->getType(),
                     'description' => $parameter->getDescription(),
                 ];
+                if ($parameter->isDeprecated()) {
+                    $param['notice_type'] = 'deprecated';
+                }
+
+                $methodItem['syntax']['parameters'][] = $param;
             }
         }
         if ($returnType = $method->getReturnType()) {
@@ -196,6 +201,10 @@ class Page
                 'var_type' => $returnType,
                 'description' => $method->getReturnDescription(),
             ]);
+        }
+        if ($method->isDeprecated()) {
+            $methodItem['notice_type'] = 'deprecated';
+            $methodItem['notice_content'] = $method->getDeprecatedDescription();
         }
         return $methodItem;
     }
@@ -216,6 +225,8 @@ class Page
                 'syntax' => [
                     'content' => 'Value: ' . $constant->getValue(),
                 ],
+                'notice_type' => $constant->isDeprecated() ? 'deprecated' : null,
+                'notice_content' => $constant->getDeprecatedDescription(),
             ]);
 
             $constants[$constantItem['uid']] = $constantItem;
