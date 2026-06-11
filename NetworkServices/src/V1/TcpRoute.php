@@ -18,7 +18,7 @@ class TcpRoute extends \Google\Protobuf\Internal\Message
 {
     /**
      * Identifier. Name of the TcpRoute resource. It matches pattern
-     * `projects/{@*}locations/global/tcpRoutes/tcp_route_name>`.
+     * `projects/{@*}locations/{@*}tcpRoutes/tcp_route_name>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
@@ -60,7 +60,7 @@ class TcpRoute extends \Google\Protobuf\Internal\Message
      * Optional. Meshes defines a list of meshes this TcpRoute is attached to, as
      * one of the routing rules to route the requests served by the mesh.
      * Each mesh reference should match the pattern:
-     * `projects/{@*}locations/global/meshes/<mesh_name>`
+     * `projects/{@*}locations/{@*}meshes/<mesh_name>`
      * The attached Mesh should be of a type SIDECAR
      *
      * Generated from protobuf field <code>repeated string meshes = 8 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
@@ -70,7 +70,7 @@ class TcpRoute extends \Google\Protobuf\Internal\Message
      * Optional. Gateways defines a list of gateways this TcpRoute is attached to,
      * as one of the routing rules to route the requests served by the gateway.
      * Each gateway reference should match the pattern:
-     * `projects/{@*}locations/global/gateways/<gateway_name>`
+     * `projects/{@*}locations/{@*}gateways/<gateway_name>`
      *
      * Generated from protobuf field <code>repeated string gateways = 9 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
@@ -90,7 +90,7 @@ class TcpRoute extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Identifier. Name of the TcpRoute resource. It matches pattern
-     *           `projects/{@*}locations/global/tcpRoutes/tcp_route_name>`.
+     *           `projects/{@*}locations/{@*}tcpRoutes/tcp_route_name>`.
      *     @type string $self_link
      *           Output only. Server-defined URL of this resource
      *     @type \Google\Protobuf\Timestamp $create_time
@@ -108,13 +108,13 @@ class TcpRoute extends \Google\Protobuf\Internal\Message
      *           Optional. Meshes defines a list of meshes this TcpRoute is attached to, as
      *           one of the routing rules to route the requests served by the mesh.
      *           Each mesh reference should match the pattern:
-     *           `projects/{@*}locations/global/meshes/<mesh_name>`
+     *           `projects/{@*}locations/{@*}meshes/<mesh_name>`
      *           The attached Mesh should be of a type SIDECAR
      *     @type string[] $gateways
      *           Optional. Gateways defines a list of gateways this TcpRoute is attached to,
      *           as one of the routing rules to route the requests served by the gateway.
      *           Each gateway reference should match the pattern:
-     *           `projects/{@*}locations/global/gateways/<gateway_name>`
+     *           `projects/{@*}locations/{@*}gateways/<gateway_name>`
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Optional. Set of label tags associated with the TcpRoute resource.
      * }
@@ -126,7 +126,7 @@ class TcpRoute extends \Google\Protobuf\Internal\Message
 
     /**
      * Identifier. Name of the TcpRoute resource. It matches pattern
-     * `projects/{@*}locations/global/tcpRoutes/tcp_route_name>`.
+     * `projects/{@*}locations/{@*}tcpRoutes/tcp_route_name>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
@@ -138,7 +138,7 @@ class TcpRoute extends \Google\Protobuf\Internal\Message
 
     /**
      * Identifier. Name of the TcpRoute resource. It matches pattern
-     * `projects/{@*}locations/global/tcpRoutes/tcp_route_name>`.
+     * `projects/{@*}locations/{@*}tcpRoutes/tcp_route_name>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
@@ -312,7 +312,7 @@ class TcpRoute extends \Google\Protobuf\Internal\Message
      * Optional. Meshes defines a list of meshes this TcpRoute is attached to, as
      * one of the routing rules to route the requests served by the mesh.
      * Each mesh reference should match the pattern:
-     * `projects/{@*}locations/global/meshes/<mesh_name>`
+     * `projects/{@*}locations/{@*}meshes/<mesh_name>`
      * The attached Mesh should be of a type SIDECAR
      *
      * Generated from protobuf field <code>repeated string meshes = 8 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
@@ -327,7 +327,7 @@ class TcpRoute extends \Google\Protobuf\Internal\Message
      * Optional. Meshes defines a list of meshes this TcpRoute is attached to, as
      * one of the routing rules to route the requests served by the mesh.
      * Each mesh reference should match the pattern:
-     * `projects/{@*}locations/global/meshes/<mesh_name>`
+     * `projects/{@*}locations/{@*}meshes/<mesh_name>`
      * The attached Mesh should be of a type SIDECAR
      *
      * Generated from protobuf field <code>repeated string meshes = 8 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
@@ -346,7 +346,7 @@ class TcpRoute extends \Google\Protobuf\Internal\Message
      * Optional. Gateways defines a list of gateways this TcpRoute is attached to,
      * as one of the routing rules to route the requests served by the gateway.
      * Each gateway reference should match the pattern:
-     * `projects/{@*}locations/global/gateways/<gateway_name>`
+     * `projects/{@*}locations/{@*}gateways/<gateway_name>`
      *
      * Generated from protobuf field <code>repeated string gateways = 9 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return RepeatedField<string>
@@ -360,7 +360,7 @@ class TcpRoute extends \Google\Protobuf\Internal\Message
      * Optional. Gateways defines a list of gateways this TcpRoute is attached to,
      * as one of the routing rules to route the requests served by the gateway.
      * Each gateway reference should match the pattern:
-     * `projects/{@*}locations/global/gateways/<gateway_name>`
+     * `projects/{@*}locations/{@*}gateways/<gateway_name>`
      *
      * Generated from protobuf field <code>repeated string gateways = 9 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string[] $var

@@ -36,7 +36,7 @@ use Google\Rpc\Status;
  * Creates a new TcpRoute in a given project and location.
  *
  * @param string $formattedParent The parent resource of the TcpRoute. Must be in the
- *                                format `projects/&#42;/locations/global`. Please see
+ *                                format `projects/&#42;/locations/*`. Please see
  *                                {@see NetworkServicesClient::locationName()} for help formatting this field.
  * @param string $tcpRouteId      Short name of the TcpRoute resource to be created.
  */

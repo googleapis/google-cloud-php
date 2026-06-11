@@ -18,7 +18,7 @@ class GrpcRoute extends \Google\Protobuf\Internal\Message
 {
     /**
      * Identifier. Name of the GrpcRoute resource. It matches pattern
-     * `projects/{@*}locations/global/grpcRoutes/<grpc_route_name>`
+     * `projects/{@*}locations/{@*}grpcRoutes/<grpc_route_name>`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
@@ -87,7 +87,7 @@ class GrpcRoute extends \Google\Protobuf\Internal\Message
      * Optional. Meshes defines a list of meshes this GrpcRoute is attached to, as
      * one of the routing rules to route the requests served by the mesh.
      * Each mesh reference should match the pattern:
-     * `projects/{@*}locations/global/meshes/<mesh_name>`
+     * `projects/{@*}locations/{@*}meshes/<mesh_name>`
      *
      * Generated from protobuf field <code>repeated string meshes = 9 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
@@ -97,7 +97,7 @@ class GrpcRoute extends \Google\Protobuf\Internal\Message
      * to, as one of the routing rules to route the requests served by the
      * gateway.
      * Each gateway reference should match the pattern:
-     * `projects/{@*}locations/global/gateways/<gateway_name>`
+     * `projects/{@*}locations/{@*}gateways/<gateway_name>`
      *
      * Generated from protobuf field <code>repeated string gateways = 10 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
@@ -120,7 +120,7 @@ class GrpcRoute extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Identifier. Name of the GrpcRoute resource. It matches pattern
-     *           `projects/{@*}locations/global/grpcRoutes/<grpc_route_name>`
+     *           `projects/{@*}locations/{@*}grpcRoutes/<grpc_route_name>`
      *     @type string $self_link
      *           Output only. Server-defined URL of this resource
      *     @type \Google\Protobuf\Timestamp $create_time
@@ -161,13 +161,13 @@ class GrpcRoute extends \Google\Protobuf\Internal\Message
      *           Optional. Meshes defines a list of meshes this GrpcRoute is attached to, as
      *           one of the routing rules to route the requests served by the mesh.
      *           Each mesh reference should match the pattern:
-     *           `projects/{@*}locations/global/meshes/<mesh_name>`
+     *           `projects/{@*}locations/{@*}meshes/<mesh_name>`
      *     @type string[] $gateways
      *           Optional. Gateways defines a list of gateways this GrpcRoute is attached
      *           to, as one of the routing rules to route the requests served by the
      *           gateway.
      *           Each gateway reference should match the pattern:
-     *           `projects/{@*}locations/global/gateways/<gateway_name>`
+     *           `projects/{@*}locations/{@*}gateways/<gateway_name>`
      *     @type \Google\Cloud\NetworkServices\V1\GrpcRoute\RouteRule[] $rules
      *           Required. A list of detailed rules defining how to route traffic.
      *           Within a single GrpcRoute, the GrpcRoute.RouteAction associated with the
@@ -182,7 +182,7 @@ class GrpcRoute extends \Google\Protobuf\Internal\Message
 
     /**
      * Identifier. Name of the GrpcRoute resource. It matches pattern
-     * `projects/{@*}locations/global/grpcRoutes/<grpc_route_name>`
+     * `projects/{@*}locations/{@*}grpcRoutes/<grpc_route_name>`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
@@ -194,7 +194,7 @@ class GrpcRoute extends \Google\Protobuf\Internal\Message
 
     /**
      * Identifier. Name of the GrpcRoute resource. It matches pattern
-     * `projects/{@*}locations/global/grpcRoutes/<grpc_route_name>`
+     * `projects/{@*}locations/{@*}grpcRoutes/<grpc_route_name>`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
@@ -436,7 +436,7 @@ class GrpcRoute extends \Google\Protobuf\Internal\Message
      * Optional. Meshes defines a list of meshes this GrpcRoute is attached to, as
      * one of the routing rules to route the requests served by the mesh.
      * Each mesh reference should match the pattern:
-     * `projects/{@*}locations/global/meshes/<mesh_name>`
+     * `projects/{@*}locations/{@*}meshes/<mesh_name>`
      *
      * Generated from protobuf field <code>repeated string meshes = 9 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return RepeatedField<string>
@@ -450,7 +450,7 @@ class GrpcRoute extends \Google\Protobuf\Internal\Message
      * Optional. Meshes defines a list of meshes this GrpcRoute is attached to, as
      * one of the routing rules to route the requests served by the mesh.
      * Each mesh reference should match the pattern:
-     * `projects/{@*}locations/global/meshes/<mesh_name>`
+     * `projects/{@*}locations/{@*}meshes/<mesh_name>`
      *
      * Generated from protobuf field <code>repeated string meshes = 9 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string[] $var
@@ -469,7 +469,7 @@ class GrpcRoute extends \Google\Protobuf\Internal\Message
      * to, as one of the routing rules to route the requests served by the
      * gateway.
      * Each gateway reference should match the pattern:
-     * `projects/{@*}locations/global/gateways/<gateway_name>`
+     * `projects/{@*}locations/{@*}gateways/<gateway_name>`
      *
      * Generated from protobuf field <code>repeated string gateways = 10 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return RepeatedField<string>
@@ -484,7 +484,7 @@ class GrpcRoute extends \Google\Protobuf\Internal\Message
      * to, as one of the routing rules to route the requests served by the
      * gateway.
      * Each gateway reference should match the pattern:
-     * `projects/{@*}locations/global/gateways/<gateway_name>`
+     * `projects/{@*}locations/{@*}gateways/<gateway_name>`
      *
      * Generated from protobuf field <code>repeated string gateways = 10 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string[] $var

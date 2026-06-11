@@ -17,7 +17,7 @@ class ListHttpRoutesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The project and location from which the HttpRoutes should be
-     * listed, specified in the format `projects/{@*}locations/global`.
+     * listed, specified in the format `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -44,10 +44,16 @@ class ListHttpRoutesRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool return_partial_success = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $return_partial_success = false;
+    /**
+     * Optional. Filter expression to restrict the list.
+     *
+     * Generated from protobuf field <code>string filter = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $filter = '';
 
     /**
      * @param string $parent Required. The project and location from which the HttpRoutes should be
-     *                       listed, specified in the format `projects/&#42;/locations/global`. Please see
+     *                       listed, specified in the format `projects/&#42;/locations/*`. Please see
      *                       {@see NetworkServicesClient::locationName()} for help formatting this field.
      *
      * @return \Google\Cloud\NetworkServices\V1\ListHttpRoutesRequest
@@ -68,7 +74,7 @@ class ListHttpRoutesRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The project and location from which the HttpRoutes should be
-     *           listed, specified in the format `projects/{@*}locations/global`.
+     *           listed, specified in the format `projects/{@*}locations/*`.
      *     @type int $page_size
      *           Maximum number of HttpRoutes to return per call.
      *     @type string $page_token
@@ -79,6 +85,8 @@ class ListHttpRoutesRequest extends \Google\Protobuf\Internal\Message
      *           Optional. If true, allow partial responses for multi-regional Aggregated
      *           List requests. Otherwise if one of the locations is down or unreachable,
      *           the Aggregated List request will fail.
+     *     @type string $filter
+     *           Optional. Filter expression to restrict the list.
      * }
      */
     public function __construct($data = NULL) {
@@ -88,7 +96,7 @@ class ListHttpRoutesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The project and location from which the HttpRoutes should be
-     * listed, specified in the format `projects/{@*}locations/global`.
+     * listed, specified in the format `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -100,7 +108,7 @@ class ListHttpRoutesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The project and location from which the HttpRoutes should be
-     * listed, specified in the format `projects/{@*}locations/global`.
+     * listed, specified in the format `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -196,6 +204,32 @@ class ListHttpRoutesRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->return_partial_success = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Filter expression to restrict the list.
+     *
+     * Generated from protobuf field <code>string filter = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getFilter()
+    {
+        return $this->filter;
+    }
+
+    /**
+     * Optional. Filter expression to restrict the list.
+     *
+     * Generated from protobuf field <code>string filter = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setFilter($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->filter = $var;
 
         return $this;
     }

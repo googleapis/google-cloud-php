@@ -27,7 +27,6 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\NetworkServices\V1\AuthzExtension;
 use Google\Cloud\NetworkServices\V1\Client\DepServiceClient;
-use Google\Cloud\NetworkServices\V1\LoadBalancingScheme;
 use Google\Cloud\NetworkServices\V1\UpdateAuthzExtensionRequest;
 use Google\Protobuf\Duration;
 use Google\Protobuf\FieldMask;
@@ -37,31 +36,22 @@ use Google\Rpc\Status;
  * Updates the parameters of the specified `AuthzExtension`
  * resource.
  *
- * @param string $authzExtensionName                Identifier. Name of the `AuthzExtension` resource in the
- *                                                  following format:
- *                                                  `projects/{project}/locations/{location}/authzExtensions/{authz_extension}`.
- * @param int    $authzExtensionLoadBalancingScheme All backend services and forwarding rules referenced by this
- *                                                  extension must share the same load balancing scheme. Supported values:
- *                                                  `INTERNAL_MANAGED`, `EXTERNAL_MANAGED`. For more information, refer to
- *                                                  [Backend services
- *                                                  overview](https://cloud.google.com/load-balancing/docs/backend-service).
- * @param string $authzExtensionAuthority           The `:authority` header in the gRPC request sent from Envoy
- *                                                  to the extension service.
- * @param string $authzExtensionService             The reference to the service that runs the extension.
+ * @param string $authzExtensionName    Identifier. Name of the `AuthzExtension` resource in the
+ *                                      following format:
+ *                                      `projects/{project}/locations/{location}/authzExtensions/{authz_extension}`.
+ * @param string $authzExtensionService The reference to the service that runs the extension.
  *
- *                                                  To configure a callout extension, `service` must be a fully-qualified
- *                                                  reference
- *                                                  to a [backend
- *                                                  service](https://cloud.google.com/compute/docs/reference/rest/v1/backendServices)
- *                                                  in the format:
- *                                                  `https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/backendServices/{backendService}`
- *                                                  or
- *                                                  `https://www.googleapis.com/compute/v1/projects/{project}/global/backendServices/{backendService}`.
+ *                                      To configure a callout extension, `service` must be a fully-qualified
+ *                                      reference
+ *                                      to a [backend
+ *                                      service](https://cloud.google.com/compute/docs/reference/rest/v1/backendServices)
+ *                                      in the format:
+ *                                      `https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/backendServices/{backendService}`
+ *                                      or
+ *                                      `https://www.googleapis.com/compute/v1/projects/{project}/global/backendServices/{backendService}`.
  */
 function update_authz_extension_sample(
     string $authzExtensionName,
-    int $authzExtensionLoadBalancingScheme,
-    string $authzExtensionAuthority,
     string $authzExtensionService
 ): void {
     // Create a client.
@@ -72,8 +62,6 @@ function update_authz_extension_sample(
     $authzExtensionTimeout = new Duration();
     $authzExtension = (new AuthzExtension())
         ->setName($authzExtensionName)
-        ->setLoadBalancingScheme($authzExtensionLoadBalancingScheme)
-        ->setAuthority($authzExtensionAuthority)
         ->setService($authzExtensionService)
         ->setTimeout($authzExtensionTimeout);
     $request = (new UpdateAuthzExtensionRequest())
@@ -112,15 +100,8 @@ function update_authz_extension_sample(
 function callSample(): void
 {
     $authzExtensionName = '[NAME]';
-    $authzExtensionLoadBalancingScheme = LoadBalancingScheme::LOAD_BALANCING_SCHEME_UNSPECIFIED;
-    $authzExtensionAuthority = '[AUTHORITY]';
     $authzExtensionService = '[SERVICE]';
 
-    update_authz_extension_sample(
-        $authzExtensionName,
-        $authzExtensionLoadBalancingScheme,
-        $authzExtensionAuthority,
-        $authzExtensionService
-    );
+    update_authz_extension_sample($authzExtensionName, $authzExtensionService);
 }
 // [END networkservices_v1_generated_DepService_UpdateAuthzExtension_sync]

@@ -28,7 +28,6 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\NetworkServices\V1\AuthzExtension;
 use Google\Cloud\NetworkServices\V1\Client\DepServiceClient;
 use Google\Cloud\NetworkServices\V1\CreateAuthzExtensionRequest;
-use Google\Cloud\NetworkServices\V1\LoadBalancingScheme;
 use Google\Protobuf\Duration;
 use Google\Rpc\Status;
 
@@ -36,38 +35,29 @@ use Google\Rpc\Status;
  * Creates a new `AuthzExtension` resource in a given project
  * and location.
  *
- * @param string $formattedParent                   The parent resource of the `AuthzExtension` resource. Must
- *                                                  be in the format `projects/{project}/locations/{location}`. Please see
- *                                                  {@see DepServiceClient::locationName()} for help formatting this field.
- * @param string $authzExtensionId                  User-provided ID of the `AuthzExtension` resource to be
- *                                                  created.
- * @param string $authzExtensionName                Identifier. Name of the `AuthzExtension` resource in the
- *                                                  following format:
- *                                                  `projects/{project}/locations/{location}/authzExtensions/{authz_extension}`.
- * @param int    $authzExtensionLoadBalancingScheme All backend services and forwarding rules referenced by this
- *                                                  extension must share the same load balancing scheme. Supported values:
- *                                                  `INTERNAL_MANAGED`, `EXTERNAL_MANAGED`. For more information, refer to
- *                                                  [Backend services
- *                                                  overview](https://cloud.google.com/load-balancing/docs/backend-service).
- * @param string $authzExtensionAuthority           The `:authority` header in the gRPC request sent from Envoy
- *                                                  to the extension service.
- * @param string $authzExtensionService             The reference to the service that runs the extension.
+ * @param string $formattedParent       The parent resource of the `AuthzExtension` resource. Must
+ *                                      be in the format `projects/{project}/locations/{location}`. Please see
+ *                                      {@see DepServiceClient::locationName()} for help formatting this field.
+ * @param string $authzExtensionId      User-provided ID of the `AuthzExtension` resource to be
+ *                                      created.
+ * @param string $authzExtensionName    Identifier. Name of the `AuthzExtension` resource in the
+ *                                      following format:
+ *                                      `projects/{project}/locations/{location}/authzExtensions/{authz_extension}`.
+ * @param string $authzExtensionService The reference to the service that runs the extension.
  *
- *                                                  To configure a callout extension, `service` must be a fully-qualified
- *                                                  reference
- *                                                  to a [backend
- *                                                  service](https://cloud.google.com/compute/docs/reference/rest/v1/backendServices)
- *                                                  in the format:
- *                                                  `https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/backendServices/{backendService}`
- *                                                  or
- *                                                  `https://www.googleapis.com/compute/v1/projects/{project}/global/backendServices/{backendService}`.
+ *                                      To configure a callout extension, `service` must be a fully-qualified
+ *                                      reference
+ *                                      to a [backend
+ *                                      service](https://cloud.google.com/compute/docs/reference/rest/v1/backendServices)
+ *                                      in the format:
+ *                                      `https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/backendServices/{backendService}`
+ *                                      or
+ *                                      `https://www.googleapis.com/compute/v1/projects/{project}/global/backendServices/{backendService}`.
  */
 function create_authz_extension_sample(
     string $formattedParent,
     string $authzExtensionId,
     string $authzExtensionName,
-    int $authzExtensionLoadBalancingScheme,
-    string $authzExtensionAuthority,
     string $authzExtensionService
 ): void {
     // Create a client.
@@ -77,8 +67,6 @@ function create_authz_extension_sample(
     $authzExtensionTimeout = new Duration();
     $authzExtension = (new AuthzExtension())
         ->setName($authzExtensionName)
-        ->setLoadBalancingScheme($authzExtensionLoadBalancingScheme)
-        ->setAuthority($authzExtensionAuthority)
         ->setService($authzExtensionService)
         ->setTimeout($authzExtensionTimeout);
     $request = (new CreateAuthzExtensionRequest())
@@ -120,16 +108,12 @@ function callSample(): void
     $formattedParent = DepServiceClient::locationName('[PROJECT]', '[LOCATION]');
     $authzExtensionId = '[AUTHZ_EXTENSION_ID]';
     $authzExtensionName = '[NAME]';
-    $authzExtensionLoadBalancingScheme = LoadBalancingScheme::LOAD_BALANCING_SCHEME_UNSPECIFIED;
-    $authzExtensionAuthority = '[AUTHORITY]';
     $authzExtensionService = '[SERVICE]';
 
     create_authz_extension_sample(
         $formattedParent,
         $authzExtensionId,
         $authzExtensionName,
-        $authzExtensionLoadBalancingScheme,
-        $authzExtensionAuthority,
         $authzExtensionService
     );
 }

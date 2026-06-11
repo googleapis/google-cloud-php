@@ -32,7 +32,7 @@ use Google\Cloud\NetworkServices\V1\HttpRoute;
  * Gets details of a single HttpRoute.
  *
  * @param string $formattedName A name of the HttpRoute to get. Must be in the format
- *                              `projects/&#42;/locations/global/httpRoutes/*`. Please see
+ *                              `projects/&#42;/locations/&#42;/httpRoutes/*`. Please see
  *                              {@see NetworkServicesClient::httpRouteName()} for help formatting this field.
  */
 function get_http_route_sample(string $formattedName): void

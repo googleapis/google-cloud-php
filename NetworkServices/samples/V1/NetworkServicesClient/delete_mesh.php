@@ -33,7 +33,7 @@ use Google\Rpc\Status;
  * Deletes a single Mesh.
  *
  * @param string $formattedName A name of the Mesh to delete. Must be in the format
- *                              `projects/&#42;/locations/global/meshes/*`. Please see
+ *                              `projects/&#42;/locations/&#42;/meshes/*`. Please see
  *                              {@see NetworkServicesClient::meshName()} for help formatting this field.
  */
 function delete_mesh_sample(string $formattedName): void
