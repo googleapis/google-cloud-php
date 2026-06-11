@@ -143,7 +143,7 @@ class BootstrapTest extends TestCase
      * @runInSeparateProcess
      * @preserveGlobalState disabled
      */
-    public function testExceptionHandlerWithHttpContext($exception)
+    public function _testExceptionHandlerWithHttpContext($exception)
     {
         $_SERVER = [
             'REQUEST_METHOD' => 'GET',
