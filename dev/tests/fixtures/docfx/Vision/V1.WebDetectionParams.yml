@@ -49,6 +49,8 @@ items:
       returns:
         -
           var_type: bool
+    notice_type: deprecated
+    notice_content: ''
   -
     uid: '\Google\Cloud\Vision\V1\WebDetectionParams::setIncludeGeoResults()'
     name: setIncludeGeoResults
@@ -67,3 +69,5 @@ items:
       returns:
         -
           var_type: $this
+    notice_type: deprecated
+    notice_content: ''

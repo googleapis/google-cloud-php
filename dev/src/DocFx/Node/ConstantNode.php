@@ -24,6 +24,7 @@ use SimpleXMLElement;
  */
 class ConstantNode
 {
+    use DeprecatedTrait;
     use DocblockTrait;
     use ParentNodeTrait;
     use VisibilityTrait;

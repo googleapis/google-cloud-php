@@ -72,6 +72,8 @@ class ContentLocation extends \Google\Protobuf\Internal\Message
      *           Location within the metadata for inspected content.
      *     @type \Google\Cloud\Dlp\V2\ConversationLocation $conversation_location
      *           Location within a conversation.
+     *     @type \Google\Cloud\Dlp\V2\BatchContentLocation $batch_content_location
+     *           Location within a batch of content.
      *     @type \Google\Protobuf\Timestamp $container_timestamp
      *           Finding container modification timestamp, if applicable. For Cloud Storage,
      *           this field contains the last file modification timestamp. For a BigQuery
@@ -278,6 +280,37 @@ class ContentLocation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\ConversationLocation::class);
         $this->writeOneof(10, $var);
+
+        return $this;
+    }
+
+    /**
+     * Location within a batch of content.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.BatchContentLocation batch_content_location = 11;</code>
+     * @return \Google\Cloud\Dlp\V2\BatchContentLocation|null
+     */
+    public function getBatchContentLocation()
+    {
+        return $this->readOneof(11);
+    }
+
+    public function hasBatchContentLocation()
+    {
+        return $this->hasOneof(11);
+    }
+
+    /**
+     * Location within a batch of content.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.BatchContentLocation batch_content_location = 11;</code>
+     * @param \Google\Cloud\Dlp\V2\BatchContentLocation $var
+     * @return $this
+     */
+    public function setBatchContentLocation($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\BatchContentLocation::class);
+        $this->writeOneof(11, $var);
 
         return $this;
     }

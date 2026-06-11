@@ -51,6 +51,8 @@ class Datasource extends \Google\Protobuf\Internal\Message
      *           A reference to a Spanner database.
      *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\CloudSqlReference $cloud_sql_reference
      *           A reference to a CloudSQL database.
+     *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\BigQueryPropertyGraphReference $bigquery_property_graph_reference
+     *           A reference to a BigQuery property graph.
      *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\Schema $schema
      *           Optional. The schema of the datasource.
      *     @type \Google\Protobuf\Struct $struct_schema
@@ -248,6 +250,37 @@ class Datasource extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\GeminiDataAnalytics\V1beta\CloudSqlReference::class);
         $this->writeOneof(14, $var);
+
+        return $this;
+    }
+
+    /**
+     * A reference to a BigQuery property graph.
+     *
+     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.BigQueryPropertyGraphReference bigquery_property_graph_reference = 16;</code>
+     * @return \Google\Cloud\GeminiDataAnalytics\V1beta\BigQueryPropertyGraphReference|null
+     */
+    public function getBigqueryPropertyGraphReference()
+    {
+        return $this->readOneof(16);
+    }
+
+    public function hasBigqueryPropertyGraphReference()
+    {
+        return $this->hasOneof(16);
+    }
+
+    /**
+     * A reference to a BigQuery property graph.
+     *
+     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.BigQueryPropertyGraphReference bigquery_property_graph_reference = 16;</code>
+     * @param \Google\Cloud\GeminiDataAnalytics\V1beta\BigQueryPropertyGraphReference $var
+     * @return $this
+     */
+    public function setBigqueryPropertyGraphReference($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\GeminiDataAnalytics\V1beta\BigQueryPropertyGraphReference::class);
+        $this->writeOneof(16, $var);
 
         return $this;
     }

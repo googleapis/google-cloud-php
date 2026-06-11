@@ -55,6 +55,8 @@ class AudienceMember extends \Google\Protobuf\Internal\Message
      *     @type \Google\Ads\DataManager\V1\PpidData $ppid_data
      *           Data related to publisher provided identifiers.
      *           This feature is only available to data partners.
+     *     @type \Google\Ads\DataManager\V1\CompositeData $composite_data
+     *           Group of multiple identifier types.
      *     @type \Google\Ads\DataManager\V1\Consent $consent
      *           Optional. The consent setting for the user.
      * }
@@ -253,6 +255,37 @@ class AudienceMember extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Ads\DataManager\V1\PpidData::class);
         $this->writeOneof(7, $var);
+
+        return $this;
+    }
+
+    /**
+     * Group of multiple identifier types.
+     *
+     * Generated from protobuf field <code>.google.ads.datamanager.v1.CompositeData composite_data = 8;</code>
+     * @return \Google\Ads\DataManager\V1\CompositeData|null
+     */
+    public function getCompositeData()
+    {
+        return $this->readOneof(8);
+    }
+
+    public function hasCompositeData()
+    {
+        return $this->hasOneof(8);
+    }
+
+    /**
+     * Group of multiple identifier types.
+     *
+     * Generated from protobuf field <code>.google.ads.datamanager.v1.CompositeData composite_data = 8;</code>
+     * @param \Google\Ads\DataManager\V1\CompositeData $var
+     * @return $this
+     */
+    public function setCompositeData($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Ads\DataManager\V1\CompositeData::class);
+        $this->writeOneof(8, $var);
 
         return $this;
     }

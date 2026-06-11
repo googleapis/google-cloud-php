@@ -35,6 +35,9 @@ use Google\Cloud\Firestore\V1\ListCollectionIdsRequest;
  *                       `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
  *                       For example:
  *                       `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
+ *
+ *                       Use `projects/{project_id}/databases/{database_id}/documents` to list
+ *                       top-level collections.
  */
 function list_collection_ids_sample(string $parent): void
 {

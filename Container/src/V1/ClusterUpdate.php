@@ -68,6 +68,22 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      */
     protected $desired_image_type = '';
     /**
+     * The desired name of the image to use for this node.
+     * This is used to create clusters using a custom image.
+     * NOTE: Set the "desired_node_pool" field as well.
+     *
+     * Generated from protobuf field <code>string desired_image = 44;</code>
+     */
+    protected $desired_image = '';
+    /**
+     * The project containing the desired image to use for this node.
+     * This is used to create clusters using a custom image.
+     * NOTE: Set the "desired_node_pool" field as well.
+     *
+     * Generated from protobuf field <code>string desired_image_project = 45;</code>
+     */
+    protected $desired_image_project = '';
+    /**
      * Configuration of etcd encryption.
      *
      * Generated from protobuf field <code>.google.container.v1.DatabaseEncryption desired_database_encryption = 46;</code>
@@ -621,6 +637,14 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      *     @type string $desired_image_type
      *           The desired image type for the node pool.
      *           NOTE: Set the "desired_node_pool" field as well.
+     *     @type string $desired_image
+     *           The desired name of the image to use for this node.
+     *           This is used to create clusters using a custom image.
+     *           NOTE: Set the "desired_node_pool" field as well.
+     *     @type string $desired_image_project
+     *           The project containing the desired image to use for this node.
+     *           This is used to create clusters using a custom image.
+     *           NOTE: Set the "desired_node_pool" field as well.
      *     @type \Google\Cloud\Container\V1\DatabaseEncryption $desired_database_encryption
      *           Configuration of etcd encryption.
      *     @type \Google\Cloud\Container\V1\WorkloadIdentityConfig $desired_workload_identity_config
@@ -1019,6 +1043,66 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->desired_image_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * The desired name of the image to use for this node.
+     * This is used to create clusters using a custom image.
+     * NOTE: Set the "desired_node_pool" field as well.
+     *
+     * Generated from protobuf field <code>string desired_image = 44;</code>
+     * @return string
+     */
+    public function getDesiredImage()
+    {
+        return $this->desired_image;
+    }
+
+    /**
+     * The desired name of the image to use for this node.
+     * This is used to create clusters using a custom image.
+     * NOTE: Set the "desired_node_pool" field as well.
+     *
+     * Generated from protobuf field <code>string desired_image = 44;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDesiredImage($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->desired_image = $var;
+
+        return $this;
+    }
+
+    /**
+     * The project containing the desired image to use for this node.
+     * This is used to create clusters using a custom image.
+     * NOTE: Set the "desired_node_pool" field as well.
+     *
+     * Generated from protobuf field <code>string desired_image_project = 45;</code>
+     * @return string
+     */
+    public function getDesiredImageProject()
+    {
+        return $this->desired_image_project;
+    }
+
+    /**
+     * The project containing the desired image to use for this node.
+     * This is used to create clusters using a custom image.
+     * NOTE: Set the "desired_node_pool" field as well.
+     *
+     * Generated from protobuf field <code>string desired_image_project = 45;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDesiredImageProject($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->desired_image_project = $var;
 
         return $this;
     }

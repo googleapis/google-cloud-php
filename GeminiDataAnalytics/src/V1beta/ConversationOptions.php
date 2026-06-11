@@ -33,6 +33,12 @@ class ConversationOptions extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.DatasourceOptions datasource = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $datasource = null;
+    /**
+     * Optional. The model to use for the agent loop.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.geminidataanalytics.v1beta.ConversationOptions.Model model = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $model = null;
 
     /**
      * Constructor.
@@ -46,6 +52,8 @@ class ConversationOptions extends \Google\Protobuf\Internal\Message
      *           Optional. Options for analysis.
      *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\DatasourceOptions $datasource
      *           Optional. Options for datasources.
+     *     @type int $model
+     *           Optional. The model to use for the agent loop.
      * }
      */
     public function __construct($data = NULL) {
@@ -157,6 +165,42 @@ class ConversationOptions extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\GeminiDataAnalytics\V1beta\DatasourceOptions::class);
         $this->datasource = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The model to use for the agent loop.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.geminidataanalytics.v1beta.ConversationOptions.Model model = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getModel()
+    {
+        return isset($this->model) ? $this->model : 0;
+    }
+
+    public function hasModel()
+    {
+        return isset($this->model);
+    }
+
+    public function clearModel()
+    {
+        unset($this->model);
+    }
+
+    /**
+     * Optional. The model to use for the agent loop.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.geminidataanalytics.v1beta.ConversationOptions.Model model = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setModel($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\GeminiDataAnalytics\V1beta\ConversationOptions\Model::class);
+        $this->model = $var;
 
         return $this;
     }

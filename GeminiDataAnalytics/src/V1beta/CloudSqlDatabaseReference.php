@@ -51,6 +51,14 @@ class CloudSqlDatabaseReference extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string table_ids = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $table_ids;
+    /**
+     * Optional. References to tables within the database. Each reference
+     * specifies a table and can optionally include the table's schema to provide
+     * context for the query.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.DatabaseTableReference database_table_references = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $database_table_references;
 
     /**
      * Constructor.
@@ -70,6 +78,10 @@ class CloudSqlDatabaseReference extends \Google\Protobuf\Internal\Message
      *           Required. The database id.
      *     @type string[] $table_ids
      *           Optional. The table ids. Denotes all tables if unset.
+     *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\DatabaseTableReference[] $database_table_references
+     *           Optional. References to tables within the database. Each reference
+     *           specifies a table and can optionally include the table's schema to provide
+     *           context for the query.
      * }
      */
     public function __construct($data = NULL) {
@@ -229,6 +241,36 @@ class CloudSqlDatabaseReference extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->table_ids = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. References to tables within the database. Each reference
+     * specifies a table and can optionally include the table's schema to provide
+     * context for the query.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.DatabaseTableReference database_table_references = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return RepeatedField<\Google\Cloud\GeminiDataAnalytics\V1beta\DatabaseTableReference>
+     */
+    public function getDatabaseTableReferences()
+    {
+        return $this->database_table_references;
+    }
+
+    /**
+     * Optional. References to tables within the database. Each reference
+     * specifies a table and can optionally include the table's schema to provide
+     * context for the query.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.DatabaseTableReference database_table_references = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\GeminiDataAnalytics\V1beta\DatabaseTableReference[] $var
+     * @return $this
+     */
+    public function setDatabaseTableReferences($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\GeminiDataAnalytics\V1beta\DatabaseTableReference::class);
+        $this->database_table_references = $arr;
 
         return $this;
     }

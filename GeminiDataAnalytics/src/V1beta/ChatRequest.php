@@ -16,7 +16,8 @@ use Google\Protobuf\RepeatedField;
 class ChatRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. The Google Cloud project to be used for quota and billing.
+     * Optional. Deprecated: Use `parent` field instead.
+     * The Google Cloud project to be used for quota and billing.
      *
      * Generated from protobuf field <code>string project = 1 [deprecated = true, (.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @deprecated
@@ -36,13 +37,33 @@ class ChatRequest extends \Google\Protobuf\Internal\Message
      */
     private $messages;
     /**
+     * Optional. The credentials to use when calling the data source(s) specified
+     * in the context.
+     * This field can be used to provide credentials for various data sources.
+     * For example, when connecting to Looker, it currently supports both OAuth
+     * token and API key-based credentials, as described in
+     * [Authentication with an
+     * SDK](https://cloud.google.com/looker/docs/api-auth#authentication_with_an_sdk).
+     *
+     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.Credentials credentials = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $credentials = null;
+    /**
      * Optional. The thinking mode to use for the agent loop.
      * Defaults to THINKING_MODE_UNSPECIFIED if not specified.
      *
      * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.ChatRequest.ThinkingMode thinking_mode = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $thinking_mode = 0;
+    /**
+     * Optional. The model to use for the agent loop when processing the request.
+     * This setting only has an effect when context.options.model is not set.
+     *
+     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.ChatRequest.Model model = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $model = 0;
     protected $context_provider;
+    protected $datasource_settings;
 
     /**
      * Constructor.
@@ -65,16 +86,30 @@ class ChatRequest extends \Google\Protobuf\Internal\Message
      *           Some clients may not use GDA managed resources including
      *           conversations and agents, instead they create and manage their own
      *           conversations and agents resources.
+     *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\LookerSettings $looker_settings
+     *           Optional. Looker specific settings.
      *     @type string $project
-     *           Optional. The Google Cloud project to be used for quota and billing.
+     *           Optional. Deprecated: Use `parent` field instead.
+     *           The Google Cloud project to be used for quota and billing.
      *     @type string $parent
      *           Required. The parent value for chat request.
      *           Pattern: `projects/{project}/locations/{location}`
      *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\Message[] $messages
      *           Required. Content of current conversation.
+     *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\Credentials $credentials
+     *           Optional. The credentials to use when calling the data source(s) specified
+     *           in the context.
+     *           This field can be used to provide credentials for various data sources.
+     *           For example, when connecting to Looker, it currently supports both OAuth
+     *           token and API key-based credentials, as described in
+     *           [Authentication with an
+     *           SDK](https://cloud.google.com/looker/docs/api-auth#authentication_with_an_sdk).
      *     @type int $thinking_mode
      *           Optional. The thinking mode to use for the agent loop.
      *           Defaults to THINKING_MODE_UNSPECIFIED if not specified.
+     *     @type int $model
+     *           Optional. The model to use for the agent loop when processing the request.
+     *           This setting only has an effect when context.options.model is not set.
      * }
      */
     public function __construct($data = NULL) {
@@ -221,7 +256,39 @@ class ChatRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The Google Cloud project to be used for quota and billing.
+     * Optional. Looker specific settings.
+     *
+     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.LookerSettings looker_settings = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\GeminiDataAnalytics\V1beta\LookerSettings|null
+     */
+    public function getLookerSettings()
+    {
+        return $this->readOneof(13);
+    }
+
+    public function hasLookerSettings()
+    {
+        return $this->hasOneof(13);
+    }
+
+    /**
+     * Optional. Looker specific settings.
+     *
+     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.LookerSettings looker_settings = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\GeminiDataAnalytics\V1beta\LookerSettings $var
+     * @return $this
+     */
+    public function setLookerSettings($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\GeminiDataAnalytics\V1beta\LookerSettings::class);
+        $this->writeOneof(13, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. Deprecated: Use `parent` field instead.
+     * The Google Cloud project to be used for quota and billing.
      *
      * Generated from protobuf field <code>string project = 1 [deprecated = true, (.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
@@ -236,7 +303,8 @@ class ChatRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The Google Cloud project to be used for quota and billing.
+     * Optional. Deprecated: Use `parent` field instead.
+     * The Google Cloud project to be used for quota and billing.
      *
      * Generated from protobuf field <code>string project = 1 [deprecated = true, (.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -307,6 +375,54 @@ class ChatRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. The credentials to use when calling the data source(s) specified
+     * in the context.
+     * This field can be used to provide credentials for various data sources.
+     * For example, when connecting to Looker, it currently supports both OAuth
+     * token and API key-based credentials, as described in
+     * [Authentication with an
+     * SDK](https://cloud.google.com/looker/docs/api-auth#authentication_with_an_sdk).
+     *
+     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.Credentials credentials = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\GeminiDataAnalytics\V1beta\Credentials|null
+     */
+    public function getCredentials()
+    {
+        return $this->credentials;
+    }
+
+    public function hasCredentials()
+    {
+        return isset($this->credentials);
+    }
+
+    public function clearCredentials()
+    {
+        unset($this->credentials);
+    }
+
+    /**
+     * Optional. The credentials to use when calling the data source(s) specified
+     * in the context.
+     * This field can be used to provide credentials for various data sources.
+     * For example, when connecting to Looker, it currently supports both OAuth
+     * token and API key-based credentials, as described in
+     * [Authentication with an
+     * SDK](https://cloud.google.com/looker/docs/api-auth#authentication_with_an_sdk).
+     *
+     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.Credentials credentials = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\GeminiDataAnalytics\V1beta\Credentials $var
+     * @return $this
+     */
+    public function setCredentials($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\GeminiDataAnalytics\V1beta\Credentials::class);
+        $this->credentials = $var;
+
+        return $this;
+    }
+
+    /**
      * Optional. The thinking mode to use for the agent loop.
      * Defaults to THINKING_MODE_UNSPECIFIED if not specified.
      *
@@ -335,11 +451,47 @@ class ChatRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. The model to use for the agent loop when processing the request.
+     * This setting only has an effect when context.options.model is not set.
+     *
+     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.ChatRequest.Model model = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getModel()
+    {
+        return $this->model;
+    }
+
+    /**
+     * Optional. The model to use for the agent loop when processing the request.
+     * This setting only has an effect when context.options.model is not set.
+     *
+     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.ChatRequest.Model model = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setModel($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\GeminiDataAnalytics\V1beta\ChatRequest\Model::class);
+        $this->model = $var;
+
+        return $this;
+    }
+
+    /**
      * @return string
      */
     public function getContextProvider()
     {
         return $this->whichOneof("context_provider");
+    }
+
+    /**
+     * @return string
+     */
+    public function getDatasourceSettings()
+    {
+        return $this->whichOneof("datasource_settings");
     }
 
 }

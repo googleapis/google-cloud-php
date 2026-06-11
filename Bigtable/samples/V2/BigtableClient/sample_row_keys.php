@@ -35,6 +35,9 @@ use Google\Cloud\Bigtable\V2\SampleRowKeysResponse;
  * which can be used to break up the data for distributed tasks like
  * mapreduces.
  *
+ * If a `row_range` is provided in the request, the returned samples will be
+ * restricted to the specified range.
+ *
  * @param string $formattedTableName Optional. The unique name of the table from which to sample row keys.
  *
  *                                   Values are of the form

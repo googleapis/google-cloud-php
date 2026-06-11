@@ -20,7 +20,8 @@ class StorageManagement
      */
     const STORAGE_MANAGEMENT_UNSPECIFIED = 0;
     /**
-     * Automatic storage management.
+     * Automatic storage management. This option is not supported. Only LVM is
+     * supported.
      *
      * Generated from protobuf enum <code>ASM = 1;</code>
      */

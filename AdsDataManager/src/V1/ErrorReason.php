@@ -322,17 +322,29 @@ class ErrorReason
      */
     const MULTIPLE_DESTINATIONS_FOR_GOOGLE_ANALYTICS_EVENT = 49;
     /**
-     * The field value is too long.
+     * Length of the field value is too long.
      *
      * Generated from protobuf enum <code>FIELD_VALUE_TOO_LONG = 50;</code>
      */
     const FIELD_VALUE_TOO_LONG = 50;
+    /**
+     * Length of the field value is too short.
+     *
+     * Generated from protobuf enum <code>FIELD_VALUE_TOO_SHORT = 106;</code>
+     */
+    const FIELD_VALUE_TOO_SHORT = 106;
     /**
      * Too many elements in a list in the request.
      *
      * Generated from protobuf enum <code>TOO_MANY_ELEMENTS = 51;</code>
      */
     const TOO_MANY_ELEMENTS = 51;
+    /**
+     * Too few elements in a list in the request.
+     *
+     * Generated from protobuf enum <code>TOO_FEW_ELEMENTS = 105;</code>
+     */
+    const TOO_FEW_ELEMENTS = 105;
     /**
      * The resource already exists.
      *
@@ -640,6 +652,125 @@ class ErrorReason
      * Generated from protobuf enum <code>EU_POLITICAL_ADVERTISING_DECLARATION_REQUIRED = 101;</code>
      */
     const EU_POLITICAL_ADVERTISING_DECLARATION_REQUIRED = 101;
+    /**
+     * Account is not eligible for Store Sales.
+     *
+     * Generated from protobuf enum <code>ACCOUNT_INELIGIBLE_FOR_STORE_SALES = 102;</code>
+     */
+    const ACCOUNT_INELIGIBLE_FOR_STORE_SALES = 102;
+    /**
+     * The merchant feed language code is not valid.
+     *
+     * Generated from protobuf enum <code>INVALID_MERCHANT_FEED_LANGUAGE_CODE = 103;</code>
+     */
+    const INVALID_MERCHANT_FEED_LANGUAGE_CODE = 103;
+    /**
+     * The region code is not valid.
+     *
+     * Generated from protobuf enum <code>INVALID_REGION_CODE = 104;</code>
+     */
+    const INVALID_REGION_CODE = 104;
+    /**
+     * The subdivision code is not valid.
+     *
+     * Generated from protobuf enum <code>INVALID_SUBDIVISION_CODE = 107;</code>
+     */
+    const INVALID_SUBDIVISION_CODE = 107;
+    /**
+     * The subcontinent code is not valid.
+     *
+     * Generated from protobuf enum <code>INVALID_SUBCONTINENT_CODE = 108;</code>
+     */
+    const INVALID_SUBCONTINENT_CODE = 108;
+    /**
+     * The continent code is not valid.
+     *
+     * Generated from protobuf enum <code>INVALID_CONTINENT_CODE = 109;</code>
+     */
+    const INVALID_CONTINENT_CODE = 109;
+    /**
+     * The device category is not valid.
+     *
+     * Generated from protobuf enum <code>INVALID_DEVICE_CATEGORY = 110;</code>
+     */
+    const INVALID_DEVICE_CATEGORY = 110;
+    /**
+     * Both app_instance_id and client_id are set.
+     *
+     * Generated from protobuf enum <code>BOTH_CLIENT_ID_AND_APP_INSTANCE_ID_NOT_ALLOWED = 111;</code>
+     */
+    const BOTH_CLIENT_ID_AND_APP_INSTANCE_ID_NOT_ALLOWED = 111;
+    /**
+     * The Google Analytics property is a subproperty or rollup property.
+     *
+     * Generated from protobuf enum <code>GOOGLE_ANALYTICS_SUBPROPERTY_OR_ROLLUP_PROPERTY_NOT_ALLOWED = 112;</code>
+     */
+    const GOOGLE_ANALYTICS_SUBPROPERTY_OR_ROLLUP_PROPERTY_NOT_ALLOWED = 112;
+    /**
+     * Third party user data can only be set by data partners.
+     *
+     * Generated from protobuf enum <code>THIRD_PARTY_USER_DATA_NOT_ALLOWED = 113;</code>
+     */
+    const THIRD_PARTY_USER_DATA_NOT_ALLOWED = 113;
+    /**
+     * The coupon code is not valid.
+     *
+     * Generated from protobuf enum <code>INVALID_COUPON_CODE = 114;</code>
+     */
+    const INVALID_COUPON_CODE = 114;
+    /**
+     * The event source type does not match the destination type.
+     *
+     * Generated from protobuf enum <code>EVENT_SOURCE_AND_DESTINATION_MISMATCH = 115;</code>
+     */
+    const EVENT_SOURCE_AND_DESTINATION_MISMATCH = 115;
+    /**
+     * The destination account type does not match the specified account id.
+     *
+     * Generated from protobuf enum <code>DESTINATION_ACCOUNT_TYPE_MISMATCH = 116;</code>
+     */
+    const DESTINATION_ACCOUNT_TYPE_MISMATCH = 116;
+    /**
+     * The custom variable value contains personally identifiable information
+     * (PII).
+     *
+     * Generated from protobuf enum <code>CUSTOM_VARIABLE_VALUE_CONTAINS_PII = 117;</code>
+     */
+    const CUSTOM_VARIABLE_VALUE_CONTAINS_PII = 117;
+    /**
+     * The custom variable is not enabled.
+     *
+     * Generated from protobuf enum <code>CUSTOM_VARIABLE_NOT_ENABLED = 118;</code>
+     */
+    const CUSTOM_VARIABLE_NOT_ENABLED = 118;
+    /**
+     * The custom variable's value is invalid.
+     *
+     * Generated from protobuf enum <code>INVALID_CUSTOM_VARIABLE_VALUE = 119;</code>
+     */
+    const INVALID_CUSTOM_VARIABLE_VALUE = 119;
+    /**
+     * The destination does not have a custom variable with a name that matches
+     * the specified `variable`.
+     *
+     * Generated from protobuf enum <code>CUSTOM_VARIABLE_NOT_FOUND = 120;</code>
+     */
+    const CUSTOM_VARIABLE_NOT_FOUND = 120;
+    /**
+     * The
+     * [location_auto_detection_enabled][google.ads.datamanager.v1.Baseline.location_auto_detection_enabled]
+     * field of the request was set to `true`, but auto detection of baseline
+     * location failed.
+     *
+     * Generated from protobuf enum <code>BASELINE_LOCATION_AUTO_DETECTION_FAILED = 122;</code>
+     */
+    const BASELINE_LOCATION_AUTO_DETECTION_FAILED = 122;
+    /**
+     * Insights missing for this dimension.
+     *
+     * Generated from protobuf enum <code>INSIGHTS_MISSING_FOR_DIMENSION = 123;</code>
+     */
+    const INSIGHTS_MISSING_FOR_DIMENSION = 123;
 
     private static $valueToName = [
         self::ERROR_REASON_UNSPECIFIED => 'ERROR_REASON_UNSPECIFIED',
@@ -693,7 +824,9 @@ class ErrorReason
         self::INVALID_REQUEST_ID => 'INVALID_REQUEST_ID',
         self::MULTIPLE_DESTINATIONS_FOR_GOOGLE_ANALYTICS_EVENT => 'MULTIPLE_DESTINATIONS_FOR_GOOGLE_ANALYTICS_EVENT',
         self::FIELD_VALUE_TOO_LONG => 'FIELD_VALUE_TOO_LONG',
+        self::FIELD_VALUE_TOO_SHORT => 'FIELD_VALUE_TOO_SHORT',
         self::TOO_MANY_ELEMENTS => 'TOO_MANY_ELEMENTS',
+        self::TOO_FEW_ELEMENTS => 'TOO_FEW_ELEMENTS',
         self::ALREADY_EXISTS => 'ALREADY_EXISTS',
         self::IMMUTABLE_FIELD_FOR_UPDATE => 'IMMUTABLE_FIELD_FOR_UPDATE',
         self::INVALID_RESOURCE_NAME => 'INVALID_RESOURCE_NAME',
@@ -744,6 +877,25 @@ class ErrorReason
         self::MEMBERSHIP_DURATION_TOO_LONG => 'MEMBERSHIP_DURATION_TOO_LONG',
         self::INVALID_MERCHANT_ID => 'INVALID_MERCHANT_ID',
         self::EU_POLITICAL_ADVERTISING_DECLARATION_REQUIRED => 'EU_POLITICAL_ADVERTISING_DECLARATION_REQUIRED',
+        self::ACCOUNT_INELIGIBLE_FOR_STORE_SALES => 'ACCOUNT_INELIGIBLE_FOR_STORE_SALES',
+        self::INVALID_MERCHANT_FEED_LANGUAGE_CODE => 'INVALID_MERCHANT_FEED_LANGUAGE_CODE',
+        self::INVALID_REGION_CODE => 'INVALID_REGION_CODE',
+        self::INVALID_SUBDIVISION_CODE => 'INVALID_SUBDIVISION_CODE',
+        self::INVALID_SUBCONTINENT_CODE => 'INVALID_SUBCONTINENT_CODE',
+        self::INVALID_CONTINENT_CODE => 'INVALID_CONTINENT_CODE',
+        self::INVALID_DEVICE_CATEGORY => 'INVALID_DEVICE_CATEGORY',
+        self::BOTH_CLIENT_ID_AND_APP_INSTANCE_ID_NOT_ALLOWED => 'BOTH_CLIENT_ID_AND_APP_INSTANCE_ID_NOT_ALLOWED',
+        self::GOOGLE_ANALYTICS_SUBPROPERTY_OR_ROLLUP_PROPERTY_NOT_ALLOWED => 'GOOGLE_ANALYTICS_SUBPROPERTY_OR_ROLLUP_PROPERTY_NOT_ALLOWED',
+        self::THIRD_PARTY_USER_DATA_NOT_ALLOWED => 'THIRD_PARTY_USER_DATA_NOT_ALLOWED',
+        self::INVALID_COUPON_CODE => 'INVALID_COUPON_CODE',
+        self::EVENT_SOURCE_AND_DESTINATION_MISMATCH => 'EVENT_SOURCE_AND_DESTINATION_MISMATCH',
+        self::DESTINATION_ACCOUNT_TYPE_MISMATCH => 'DESTINATION_ACCOUNT_TYPE_MISMATCH',
+        self::CUSTOM_VARIABLE_VALUE_CONTAINS_PII => 'CUSTOM_VARIABLE_VALUE_CONTAINS_PII',
+        self::CUSTOM_VARIABLE_NOT_ENABLED => 'CUSTOM_VARIABLE_NOT_ENABLED',
+        self::INVALID_CUSTOM_VARIABLE_VALUE => 'INVALID_CUSTOM_VARIABLE_VALUE',
+        self::CUSTOM_VARIABLE_NOT_FOUND => 'CUSTOM_VARIABLE_NOT_FOUND',
+        self::BASELINE_LOCATION_AUTO_DETECTION_FAILED => 'BASELINE_LOCATION_AUTO_DETECTION_FAILED',
+        self::INSIGHTS_MISSING_FOR_DIMENSION => 'INSIGHTS_MISSING_FOR_DIMENSION',
     ];
 
     public static function name($value)

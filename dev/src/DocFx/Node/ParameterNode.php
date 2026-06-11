@@ -174,4 +174,9 @@ class ParameterNode
         $resolved = $resolver->resolve($name, $context);
         return (string) $resolved;
     }
+
+    public function isDeprecated()
+    {
+        return false !== strpos($this->getDescription(), '[DEPRECATED]');
+    }
 }

@@ -23,6 +23,14 @@ class ExecutePipelineRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string database = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $database = '';
+    /**
+     * Optional. Automatically commits the transaction after the pipeline has been
+     * executed. Only permitted in combination with `transaction` or
+     * `new_transaction`.
+     *
+     * Generated from protobuf field <code>bool auto_commit_transaction = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $auto_commit_transaction = false;
     protected $pipeline_type;
     protected $consistency_selector;
 
@@ -49,6 +57,10 @@ class ExecutePipelineRequest extends \Google\Protobuf\Internal\Message
      *           This must be a microsecond precision timestamp within the past one hour,
      *           or if Point-in-Time Recovery is enabled, can additionally be a whole
      *           minute timestamp within the past 7 days.
+     *     @type bool $auto_commit_transaction
+     *           Optional. Automatically commits the transaction after the pipeline has been
+     *           executed. Only permitted in combination with `transaction` or
+     *           `new_transaction`.
      * }
      */
     public function __construct($data = NULL) {
@@ -216,6 +228,36 @@ class ExecutePipelineRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->writeOneof(7, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. Automatically commits the transaction after the pipeline has been
+     * executed. Only permitted in combination with `transaction` or
+     * `new_transaction`.
+     *
+     * Generated from protobuf field <code>bool auto_commit_transaction = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getAutoCommitTransaction()
+    {
+        return $this->auto_commit_transaction;
+    }
+
+    /**
+     * Optional. Automatically commits the transaction after the pipeline has been
+     * executed. Only permitted in combination with `transaction` or
+     * `new_transaction`.
+     *
+     * Generated from protobuf field <code>bool auto_commit_transaction = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setAutoCommitTransaction($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->auto_commit_transaction = $var;
 
         return $this;
     }
