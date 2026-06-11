@@ -34,7 +34,7 @@ use Google\Rpc\Status;
  * Creates a new Mesh in a given project and location.
  *
  * @param string $formattedParent The parent resource of the Mesh. Must be in the
- *                                format `projects/&#42;/locations/global`. Please see
+ *                                format `projects/&#42;/locations/*`. Please see
  *                                {@see NetworkServicesClient::locationName()} for help formatting this field.
  * @param string $meshId          Short name of the Mesh resource to be created.
  */

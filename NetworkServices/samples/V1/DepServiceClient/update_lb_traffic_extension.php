@@ -51,12 +51,6 @@ use Google\Rpc\Status;
  *
  *                                                                             For more information, see [CEL matcher language
  *                                                                             reference](https://cloud.google.com/service-extensions/docs/cel-matcher-language-reference).
- * @param string $lbTrafficExtensionExtensionChainsExtensionsName              The name for this extension.
- *                                                                             The name is logged as part of the HTTP request logs.
- *                                                                             The name must conform with RFC-1034, is restricted to lower-cased
- *                                                                             letters, numbers and hyphens, and can have a maximum length of 63
- *                                                                             characters. Additionally, the first character must be a letter and the
- *                                                                             last a letter or a number.
  * @param string $lbTrafficExtensionExtensionChainsExtensionsService           The reference to the service that runs the extension.
  *
  *                                                                             To configure a callout extension, `service` must be a fully-qualified
@@ -89,7 +83,6 @@ function update_lb_traffic_extension_sample(
     string $lbTrafficExtensionName,
     string $lbTrafficExtensionExtensionChainsName,
     string $lbTrafficExtensionExtensionChainsMatchConditionCelExpression,
-    string $lbTrafficExtensionExtensionChainsExtensionsName,
     string $lbTrafficExtensionExtensionChainsExtensionsService,
     int $lbTrafficExtensionLoadBalancingScheme
 ): void {
@@ -100,7 +93,6 @@ function update_lb_traffic_extension_sample(
     $lbTrafficExtensionExtensionChainsMatchCondition = (new MatchCondition())
         ->setCelExpression($lbTrafficExtensionExtensionChainsMatchConditionCelExpression);
     $extension = (new Extension())
-        ->setName($lbTrafficExtensionExtensionChainsExtensionsName)
         ->setService($lbTrafficExtensionExtensionChainsExtensionsService);
     $lbTrafficExtensionExtensionChainsExtensions = [$extension,];
     $extensionChain = (new ExtensionChain())
@@ -149,7 +141,6 @@ function callSample(): void
     $lbTrafficExtensionName = '[NAME]';
     $lbTrafficExtensionExtensionChainsName = '[NAME]';
     $lbTrafficExtensionExtensionChainsMatchConditionCelExpression = '[CEL_EXPRESSION]';
-    $lbTrafficExtensionExtensionChainsExtensionsName = '[NAME]';
     $lbTrafficExtensionExtensionChainsExtensionsService = '[SERVICE]';
     $lbTrafficExtensionLoadBalancingScheme = LoadBalancingScheme::LOAD_BALANCING_SCHEME_UNSPECIFIED;
 
@@ -157,7 +148,6 @@ function callSample(): void
         $lbTrafficExtensionName,
         $lbTrafficExtensionExtensionChainsName,
         $lbTrafficExtensionExtensionChainsMatchConditionCelExpression,
-        $lbTrafficExtensionExtensionChainsExtensionsName,
         $lbTrafficExtensionExtensionChainsExtensionsService,
         $lbTrafficExtensionLoadBalancingScheme
     );

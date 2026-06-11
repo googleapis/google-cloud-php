@@ -47,6 +47,21 @@ return [
             ],
         ],
         'google.cloud.networkservices.v1.NetworkServices' => [
+            'CreateAgentGateway' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/agentGateways',
+                'body' => 'agent_gateway',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'agent_gateway_id',
+                ],
+            ],
             'CreateEndpointPolicy' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/endpointPolicies',
@@ -212,6 +227,17 @@ return [
                     'wasm_plugin_version_id',
                 ],
             ],
+            'DeleteAgentGateway' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/agentGateways/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteEndpointPolicy' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/endpointPolicies/*}',
@@ -325,6 +351,17 @@ return [
             'DeleteWasmPluginVersion' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/wasmPlugins/*/versions/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetAgentGateway' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/agentGateways/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -476,6 +513,17 @@ return [
                     ],
                 ],
             ],
+            'ListAgentGateways' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/agentGateways',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListEndpointPolicies' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/endpointPolicies',
@@ -615,6 +663,19 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateAgentGateway' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{agent_gateway.name=projects/*/locations/*/agentGateways/*}',
+                'body' => 'agent_gateway',
+                'placeholders' => [
+                    'agent_gateway.name' => [
+                        'getters' => [
+                            'getAgentGateway',
+                            'getName',
                         ],
                     ],
                 ],

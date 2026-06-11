@@ -43,6 +43,8 @@ use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
+use Google\Cloud\NetworkServices\V1\AgentGateway;
+use Google\Cloud\NetworkServices\V1\CreateAgentGatewayRequest;
 use Google\Cloud\NetworkServices\V1\CreateEndpointPolicyRequest;
 use Google\Cloud\NetworkServices\V1\CreateGatewayRequest;
 use Google\Cloud\NetworkServices\V1\CreateGrpcRouteRequest;
@@ -54,6 +56,7 @@ use Google\Cloud\NetworkServices\V1\CreateTcpRouteRequest;
 use Google\Cloud\NetworkServices\V1\CreateTlsRouteRequest;
 use Google\Cloud\NetworkServices\V1\CreateWasmPluginRequest;
 use Google\Cloud\NetworkServices\V1\CreateWasmPluginVersionRequest;
+use Google\Cloud\NetworkServices\V1\DeleteAgentGatewayRequest;
 use Google\Cloud\NetworkServices\V1\DeleteEndpointPolicyRequest;
 use Google\Cloud\NetworkServices\V1\DeleteGatewayRequest;
 use Google\Cloud\NetworkServices\V1\DeleteGrpcRouteRequest;
@@ -68,6 +71,7 @@ use Google\Cloud\NetworkServices\V1\DeleteWasmPluginVersionRequest;
 use Google\Cloud\NetworkServices\V1\EndpointPolicy;
 use Google\Cloud\NetworkServices\V1\Gateway;
 use Google\Cloud\NetworkServices\V1\GatewayRouteView;
+use Google\Cloud\NetworkServices\V1\GetAgentGatewayRequest;
 use Google\Cloud\NetworkServices\V1\GetEndpointPolicyRequest;
 use Google\Cloud\NetworkServices\V1\GetGatewayRequest;
 use Google\Cloud\NetworkServices\V1\GetGatewayRouteViewRequest;
@@ -83,6 +87,7 @@ use Google\Cloud\NetworkServices\V1\GetWasmPluginRequest;
 use Google\Cloud\NetworkServices\V1\GetWasmPluginVersionRequest;
 use Google\Cloud\NetworkServices\V1\GrpcRoute;
 use Google\Cloud\NetworkServices\V1\HttpRoute;
+use Google\Cloud\NetworkServices\V1\ListAgentGatewaysRequest;
 use Google\Cloud\NetworkServices\V1\ListEndpointPoliciesRequest;
 use Google\Cloud\NetworkServices\V1\ListGatewayRouteViewsRequest;
 use Google\Cloud\NetworkServices\V1\ListGatewaysRequest;
@@ -102,6 +107,7 @@ use Google\Cloud\NetworkServices\V1\ServiceBinding;
 use Google\Cloud\NetworkServices\V1\ServiceLbPolicy;
 use Google\Cloud\NetworkServices\V1\TcpRoute;
 use Google\Cloud\NetworkServices\V1\TlsRoute;
+use Google\Cloud\NetworkServices\V1\UpdateAgentGatewayRequest;
 use Google\Cloud\NetworkServices\V1\UpdateEndpointPolicyRequest;
 use Google\Cloud\NetworkServices\V1\UpdateGatewayRequest;
 use Google\Cloud\NetworkServices\V1\UpdateGrpcRouteRequest;
@@ -130,6 +136,7 @@ use Psr\Log\LoggerInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
+ * @method PromiseInterface<OperationResponse> createAgentGatewayAsync(CreateAgentGatewayRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createEndpointPolicyAsync(CreateEndpointPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createGatewayAsync(CreateGatewayRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createGrpcRouteAsync(CreateGrpcRouteRequest $request, array $optionalArgs = [])
@@ -141,6 +148,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<OperationResponse> createTlsRouteAsync(CreateTlsRouteRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createWasmPluginAsync(CreateWasmPluginRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createWasmPluginVersionAsync(CreateWasmPluginVersionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAgentGatewayAsync(DeleteAgentGatewayRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteEndpointPolicyAsync(DeleteEndpointPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteGatewayAsync(DeleteGatewayRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteGrpcRouteAsync(DeleteGrpcRouteRequest $request, array $optionalArgs = [])
@@ -152,6 +160,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<OperationResponse> deleteTlsRouteAsync(DeleteTlsRouteRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteWasmPluginAsync(DeleteWasmPluginRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteWasmPluginVersionAsync(DeleteWasmPluginVersionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AgentGateway> getAgentGatewayAsync(GetAgentGatewayRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<EndpointPolicy> getEndpointPolicyAsync(GetEndpointPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Gateway> getGatewayAsync(GetGatewayRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<GatewayRouteView> getGatewayRouteViewAsync(GetGatewayRouteViewRequest $request, array $optionalArgs = [])
@@ -165,6 +174,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<TlsRoute> getTlsRouteAsync(GetTlsRouteRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<WasmPlugin> getWasmPluginAsync(GetWasmPluginRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<WasmPluginVersion> getWasmPluginVersionAsync(GetWasmPluginVersionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAgentGatewaysAsync(ListAgentGatewaysRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listEndpointPoliciesAsync(ListEndpointPoliciesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listGatewayRouteViewsAsync(ListGatewayRouteViewsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listGatewaysAsync(ListGatewaysRequest $request, array $optionalArgs = [])
@@ -178,6 +188,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<PagedListResponse> listTlsRoutesAsync(ListTlsRoutesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listWasmPluginVersionsAsync(ListWasmPluginVersionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listWasmPluginsAsync(ListWasmPluginsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateAgentGatewayAsync(UpdateAgentGatewayRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateEndpointPolicyAsync(UpdateEndpointPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateGatewayAsync(UpdateGatewayRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateGrpcRouteAsync(UpdateGrpcRouteRequest $request, array $optionalArgs = [])
@@ -306,6 +317,25 @@ final class NetworkServicesClient
             'project' => $project,
             'region' => $region,
             'address' => $address,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * agent_gateway resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $agentGateway
+     *
+     * @return string The formatted agent_gateway resource.
+     */
+    public static function agentGatewayName(string $project, string $location, string $agentGateway): string
+    {
+        return self::getPathTemplate('agentGateway')->render([
+            'project' => $project,
+            'location' => $location,
+            'agent_gateway' => $agentGateway,
         ]);
     }
 
@@ -683,6 +713,25 @@ final class NetworkServicesClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * target_tcp_proxy resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $targetTcpProxy
+     *
+     * @return string The formatted target_tcp_proxy resource.
+     */
+    public static function targetTcpProxyName(string $project, string $location, string $targetTcpProxy): string
+    {
+        return self::getPathTemplate('targetTcpProxy')->render([
+            'project' => $project,
+            'location' => $location,
+            'target_tcp_proxy' => $targetTcpProxy,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a tcp_route
      * resource.
      *
@@ -769,6 +818,7 @@ final class NetworkServicesClient
      * The following name formats are supported:
      * Template: Pattern
      * - address: projects/{project}/regions/{region}/addresses/{address}
+     * - agentGateway: projects/{project}/locations/{location}/agentGateways/{agent_gateway}
      * - authorizationPolicy: projects/{project}/locations/{location}/authorizationPolicies/{authorization_policy}
      * - backendService: projects/{project}/locations/{location}/backendServices/{backend_service}
      * - certificate: projects/{project}/locations/{location}/certificates/{certificate}
@@ -788,6 +838,7 @@ final class NetworkServicesClient
      * - serviceBinding: projects/{project}/locations/{location}/serviceBindings/{service_binding}
      * - serviceLbPolicy: projects/{project}/locations/{location}/serviceLbPolicies/{service_lb_policy}
      * - subnetwork: projects/{project}/regions/{region}/subnetworks/{subnetwork}
+     * - targetTcpProxy: projects/{project}/locations/{location}/targetTcpProxies/{target_tcp_proxy}
      * - tcpRoute: projects/{project}/locations/{location}/tcpRoutes/{tcp_route}
      * - tlsRoute: projects/{project}/locations/{location}/tlsRoutes/{tls_route}
      * - wasmPlugin: projects/{project}/locations/{location}/wasmPlugins/{wasm_plugin}
@@ -895,6 +946,32 @@ final class NetworkServicesClient
 
         array_unshift($args, substr($method, 0, -5));
         return call_user_func_array([$this, 'startAsyncCall'], $args);
+    }
+
+    /**
+     * Creates a new AgentGateway in a given project and location.
+     *
+     * The async variant is {@see NetworkServicesClient::createAgentGatewayAsync()} .
+     *
+     * @example samples/V1/NetworkServicesClient/create_agent_gateway.php
+     *
+     * @param CreateAgentGatewayRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<AgentGateway>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createAgentGateway(CreateAgentGatewayRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('CreateAgentGateway', $request, $callOptions)->wait();
     }
 
     /**
@@ -1196,6 +1273,32 @@ final class NetworkServicesClient
     }
 
     /**
+     * Deletes a single AgentGateway.
+     *
+     * The async variant is {@see NetworkServicesClient::deleteAgentGatewayAsync()} .
+     *
+     * @example samples/V1/NetworkServicesClient/delete_agent_gateway.php
+     *
+     * @param DeleteAgentGatewayRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<null>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteAgentGateway(DeleteAgentGatewayRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DeleteAgentGateway', $request, $callOptions)->wait();
+    }
+
+    /**
      * Deletes a single EndpointPolicy.
      *
      * The async variant is {@see NetworkServicesClient::deleteEndpointPolicyAsync()} .
@@ -1489,6 +1592,32 @@ final class NetworkServicesClient
         array $callOptions = []
     ): OperationResponse {
         return $this->startApiCall('DeleteWasmPluginVersion', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets details of a single AgentGateway.
+     *
+     * The async variant is {@see NetworkServicesClient::getAgentGatewayAsync()} .
+     *
+     * @example samples/V1/NetworkServicesClient/get_agent_gateway.php
+     *
+     * @param GetAgentGatewayRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return AgentGateway
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getAgentGateway(GetAgentGatewayRequest $request, array $callOptions = []): AgentGateway
+    {
+        return $this->startApiCall('GetAgentGateway', $request, $callOptions)->wait();
     }
 
     /**
@@ -1829,6 +1958,32 @@ final class NetworkServicesClient
         array $callOptions = []
     ): WasmPluginVersion {
         return $this->startApiCall('GetWasmPluginVersion', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Lists AgentGateways in a given project and location.
+     *
+     * The async variant is {@see NetworkServicesClient::listAgentGatewaysAsync()} .
+     *
+     * @example samples/V1/NetworkServicesClient/list_agent_gateways.php
+     *
+     * @param ListAgentGatewaysRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listAgentGateways(ListAgentGatewaysRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListAgentGateways', $request, $callOptions);
     }
 
     /**
@@ -2183,6 +2338,32 @@ final class NetworkServicesClient
     }
 
     /**
+     * Updates the parameters of a single AgentGateway.
+     *
+     * The async variant is {@see NetworkServicesClient::updateAgentGatewayAsync()} .
+     *
+     * @example samples/V1/NetworkServicesClient/update_agent_gateway.php
+     *
+     * @param UpdateAgentGatewayRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<AgentGateway>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateAgentGateway(UpdateAgentGatewayRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('UpdateAgentGateway', $request, $callOptions)->wait();
+    }
+
+    /**
      * Updates the parameters of a single EndpointPolicy.
      *
      * The async variant is {@see NetworkServicesClient::updateEndpointPolicyAsync()} .
@@ -2503,7 +2684,7 @@ final class NetworkServicesClient
 
     /**
      * Gets the access control policy for a resource. Returns an empty policy
-    if the resource exists and does not have a policy set.
+     * if the resource exists and does not have a policy set.
      *
      * The async variant is {@see NetworkServicesClient::getIamPolicyAsync()} .
      *
@@ -2530,10 +2711,10 @@ final class NetworkServicesClient
 
     /**
      * Sets the access control policy on the specified resource. Replaces
-    any existing policy.
-
-    Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
-    errors.
+     * any existing policy.
+     *
+     * Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+     * errors.
      *
      * The async variant is {@see NetworkServicesClient::setIamPolicyAsync()} .
      *
@@ -2560,12 +2741,12 @@ final class NetworkServicesClient
 
     /**
      * Returns permissions that a caller has on the specified resource. If the
-    resource does not exist, this will return an empty set of
-    permissions, not a `NOT_FOUND` error.
-
-    Note: This operation is designed to be used for building
-    permission-aware UIs and command-line tools, not for authorization
-    checking. This operation may "fail open" without warning.
+     * resource does not exist, this will return an empty set of
+     * permissions, not a `NOT_FOUND` error.
+     *
+     * Note: This operation is designed to be used for building
+     * permission-aware UIs and command-line tools, not for authorization
+     * checking. This operation may "fail open" without warning.
      *
      * The async variant is {@see NetworkServicesClient::testIamPermissionsAsync()} .
      *

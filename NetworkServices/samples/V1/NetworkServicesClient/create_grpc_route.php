@@ -36,7 +36,7 @@ use Google\Rpc\Status;
  * Creates a new GrpcRoute in a given project and location.
  *
  * @param string $formattedParent           The parent resource of the GrpcRoute. Must be in the
- *                                          format `projects/&#42;/locations/global`. Please see
+ *                                          format `projects/&#42;/locations/*`. Please see
  *                                          {@see NetworkServicesClient::locationName()} for help formatting this field.
  * @param string $grpcRouteId               Short name of the GrpcRoute resource to be created.
  * @param string $grpcRouteHostnamesElement Service hostnames with an optional port for which this route

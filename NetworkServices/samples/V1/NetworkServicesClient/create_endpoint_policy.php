@@ -36,7 +36,7 @@ use Google\Rpc\Status;
  * Creates a new EndpointPolicy in a given project and location.
  *
  * @param string $formattedParent    The parent resource of the EndpointPolicy. Must be in the
- *                                   format `projects/&#42;/locations/global`. Please see
+ *                                   format `projects/&#42;/locations/*`. Please see
  *                                   {@see NetworkServicesClient::locationName()} for help formatting this field.
  * @param string $endpointPolicyId   Short name of the EndpointPolicy resource to be created.
  *                                   E.g. "CustomECS".

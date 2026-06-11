@@ -33,7 +33,7 @@ use Google\Rpc\Status;
  * Deletes a single GrpcRoute.
  *
  * @param string $formattedName A name of the GrpcRoute to delete. Must be in the format
- *                              `projects/&#42;/locations/global/grpcRoutes/*`. Please see
+ *                              `projects/&#42;/locations/&#42;/grpcRoutes/*`. Please see
  *                              {@see NetworkServicesClient::grpcRouteName()} for help formatting this field.
  */
 function delete_grpc_route_sample(string $formattedName): void
