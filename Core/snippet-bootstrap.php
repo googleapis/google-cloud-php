@@ -12,3 +12,12 @@ date_default_timezone_set('UTC');
 if (class_exists(BypassFinals::class)) {
     BypassFinals::enable();
 }
+
+// Prevent gRPC extension from segfaulting at process shutdown on CI
+if (extension_loaded('grpc') && getenv('CI')) {
+    register_shutdown_function(function () {
+        // Frees up standard buffers and exits immediately, bypassing the extension unload race
+        posix_kill(posix_getpid(), SIGKILL);
+    });
+}
+
