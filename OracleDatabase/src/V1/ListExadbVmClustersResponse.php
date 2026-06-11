@@ -27,6 +27,13 @@ class ListExadbVmClustersResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
     protected $next_page_token = '';
+    /**
+     * Unreachable locations when listing resources across all locations using
+     * wildcard location '-'.
+     *
+     * Generated from protobuf field <code>repeated string unreachable = 3;</code>
+     */
+    private $unreachable;
 
     /**
      * Constructor.
@@ -38,6 +45,9 @@ class ListExadbVmClustersResponse extends \Google\Protobuf\Internal\Message
      *           The list of ExadbVmClusters.
      *     @type string $next_page_token
      *           A token identifying a page of results the server should return.
+     *     @type string[] $unreachable
+     *           Unreachable locations when listing resources across all locations using
+     *           wildcard location '-'.
      * }
      */
     public function __construct($data = NULL) {
@@ -93,6 +103,34 @@ class ListExadbVmClustersResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->next_page_token = $var;
+
+        return $this;
+    }
+
+    /**
+     * Unreachable locations when listing resources across all locations using
+     * wildcard location '-'.
+     *
+     * Generated from protobuf field <code>repeated string unreachable = 3;</code>
+     * @return RepeatedField<string>
+     */
+    public function getUnreachable()
+    {
+        return $this->unreachable;
+    }
+
+    /**
+     * Unreachable locations when listing resources across all locations using
+     * wildcard location '-'.
+     *
+     * Generated from protobuf field <code>repeated string unreachable = 3;</code>
+     * @param string[] $var
+     * @return $this
+     */
+    public function setUnreachable($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->unreachable = $arr;
 
         return $this;
     }

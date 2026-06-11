@@ -44,7 +44,7 @@ class NodeTest extends TestCase
         $params = $method->getParameters();
 
         // Assert the parameters have been parsed
-        $this->assertCount(9, $params);
+        $this->assertCount(10, $params);
 
         // Assert parent option parameter
         $this->assertEquals('data', $params[1]->getName());
