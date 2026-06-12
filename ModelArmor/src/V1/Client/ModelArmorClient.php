@@ -25,6 +25,7 @@
 namespace Google\Cloud\ModelArmor\V1\Client;
 
 use Google\ApiCore\ApiException;
+use Google\ApiCore\BidiStream;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\Options\ClientOptions;
@@ -522,6 +523,48 @@ final class ModelArmorClient
         array $callOptions = []
     ): SanitizeUserPromptResponse {
         return $this->startApiCall('SanitizeUserPrompt', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Streaming version of Sanitizes Model Response.
+     *
+     * @example samples/V1/ModelArmorClient/stream_sanitize_model_response.php
+     *
+     * @param array $callOptions {
+     *     Optional.
+     *
+     *     @type int $timeoutMillis
+     *           Timeout to use for this call.
+     * }
+     *
+     * @return BidiStream
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function streamSanitizeModelResponse(array $callOptions = []): BidiStream
+    {
+        return $this->startApiCall('StreamSanitizeModelResponse', null, $callOptions);
+    }
+
+    /**
+     * Streaming version of Sanitize User Prompt.
+     *
+     * @example samples/V1/ModelArmorClient/stream_sanitize_user_prompt.php
+     *
+     * @param array $callOptions {
+     *     Optional.
+     *
+     *     @type int $timeoutMillis
+     *           Timeout to use for this call.
+     * }
+     *
+     * @return BidiStream
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function streamSanitizeUserPrompt(array $callOptions = []): BidiStream
+    {
+        return $this->startApiCall('StreamSanitizeUserPrompt', null, $callOptions);
     }
 
     /**
