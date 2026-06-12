@@ -1,0 +1,22 @@
+.DS_Store
+phpunit.xml
+composer.phar
+doctum.phar
+composer.lock
+composer-test.lock
+vendor/
+build/artifacts/
+artifacts/
+.idea
+.metadata
+.phpunit.result.cache
+coverage.xml
+src/Jison/Parser.js
+*.iml
+
+# Vim
+*.sw*
+*.vim
+
+# VS Code
+.vscode
