@@ -23,6 +23,14 @@
         "phpstan/phpstan": "^2.0",
         "google/cloud-tools": "^0.16.1"
     },
+    "extra": {
+        "component": {
+            "id": "gax",
+            "target": "googleapis/gax-php.git",
+            "path": "Gax",
+            "entry": "README.md"
+        }
+    },
     "conflict": {
         "ext-protobuf": "<4.31.0"
     },
