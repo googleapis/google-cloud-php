@@ -254,12 +254,9 @@ class Component
                 $this->componentDependencies[] = new Component($componentName);
             }
         }
-        // add gax if it's required
+        // GAX depend on google/common-protos
         if (isset($composerJson['require']['google/gax'])) {
-            $this->componentDependencies[] = new Component('gax', self::ROOT_DIR . '/dev/vendor/google/gax');
-            if (!isset($composerJson['require']['google/common-protos'])) {
-                $this->componentDependencies[] = new Component('CommonProtos');
-            }
+            $this->componentDependencies[] = new Component('CommonProtos');
         }
     }
 

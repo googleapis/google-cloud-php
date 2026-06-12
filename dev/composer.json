@@ -38,5 +38,11 @@
                 }
             }
         }
+    },
+    "config": {
+        "allow-plugins": {
+            "php-http/discovery": true,
+            "tbachert/spi": true
+        }
     }
 }

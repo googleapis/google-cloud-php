@@ -60,12 +60,15 @@
         "rize/uri-template": "~0.3",
         "guzzlehttp/guzzle": "^7.4.5",
         "guzzlehttp/psr7": "^2.6",
+        "guzzlehttp/promises": "^2.0",
         "monolog/monolog": "^2.9||^3.0",
         "psr/http-message": "^1.0|^2.0",
-        "ramsey/uuid": "^4.0",
-        "google/common-protos": "^4.4",
-        "google/gax": "^1.40.0",
+        "grpc/grpc": "^1.13",
         "google/auth": "^1.42",
+        "google/common-protos": "^4.4",
+        "google/protobuf": "^4.31||^5.34",
+        "google/grpc-gcp": "^0.4",
+        "ramsey/uuid": "^4.0",
         "open-telemetry/sdk": "^1.13"
     },
     "require-dev": {
@@ -284,6 +287,7 @@
         "google/cloud-workflows": "1.3.0",
         "google/cloud-workloadmanager": "0.2.0",
         "google/common-protos": "4.14.0",
+        "google/gax": "1.42.1",
         "google/developers-knowledge": "0.0.0",
         "google/geo-common-protos": "0.2.4",
         "google/grafeas": "1.7.0",
@@ -565,6 +569,7 @@
             "Google\\Ads\\MarketingPlatform\\Admin\\": "AdsMarketingPlatformAdmin/src",
             "Google\\Analytics\\Admin\\": "AnalyticsAdmin/src",
             "Google\\Analytics\\Data\\": "AnalyticsData/src",
+            "Google\\ApiCore\\": "Gax/src",
             "Google\\ApiCore\\LongRunning\\": "LongRunning/src/ApiCore/LongRunning",
             "Google\\Api\\": "CommonProtos/src/Api",
             "Google\\Apps\\Card\\": "AppsChat/src/Card",
@@ -805,6 +810,8 @@
     },
     "autoload-dev": {
         "psr-4": {
+            "Google\\ApiCore\\Tests\\": "Gax/tests",
+            "Google\\ApiCore\\Testing\\": "Gax/tests/Unit/testdata/generated",
             "Google\\Analytics\\Admin\\Tests\\": "AnalyticsAdmin/tests",
             "Google\\Analytics\\Data\\Tests\\": "AnalyticsData/tests",
             "Google\\Cloud\\AIPlatform\\Tests\\": "AiPlatform/tests",
@@ -856,6 +863,7 @@
             "Google\\Identity\\AccessContextManager\\Tests\\": "AccessContextManager/tests",
             "Grafeas\\Tests\\": "Grafeas/tests",
             "Testing\\Data\\": "Spanner/tests/data/generated/Testing/Data",
+	    "GPBMetadata\\ApiCore\\Testing\\": "Gax/tests/Unit/testdata/metadata",
             "GPBMetadata\\Data\\": "Spanner/tests/data/generated/GPBMetadata/Data"
         },
         "files": [
@@ -865,5 +873,11 @@
     },
     "bin": [
         "Core/bin/google-cloud-batch"
-    ]
+    ],
+    "config": {
+        "allow-plugins": {
+            "php-http/discovery": true,
+            "tbachert/spi": true
+        }
+    }
 }
