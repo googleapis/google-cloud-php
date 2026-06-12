@@ -41,6 +41,31 @@ class PartnerLink extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.ads.datamanager.v1.ProductAccount partner_account = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $partner_account = null;
+    /**
+     * Optional. Immutable. The set of features supported for the partner link.
+     * If not specified, the system behavior defaults to
+     * [FEATURE_SET_AUDIENCE_AND_EVENT_MANAGEMENT][google.ads.datamanager.v1.FeatureSet.FEATURE_SET_AUDIENCE_AND_EVENT_MANAGEMENT].
+     *
+     * Generated from protobuf field <code>.google.ads.datamanager.v1.FeatureSet feature_set = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
+     */
+    protected $feature_set = 0;
+    /**
+     * Optional. The customer account in the partner system.
+     * This is required for partner links with the
+     * [FEATURE_SET_AD_EVENT_MANAGEMENT][google.ads.datamanager.v1.FeatureSet.FEATURE_SET_AD_EVENT_MANAGEMENT]
+     * feature set.
+     *
+     * Generated from protobuf field <code>.google.ads.datamanager.v1.PartnerCustomerAccount partner_customer_account = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $partner_customer_account = null;
+    /**
+     * Optional. Metadata associated with the partner link.
+     * This is optional and only accepted for partner links with the
+     * [FEATURE_SET_AD_EVENT_MANAGEMENT][google.ads.datamanager.v1.FeatureSet.FEATURE_SET_AD_EVENT_MANAGEMENT].
+     *
+     * Generated from protobuf field <code>.google.ads.datamanager.v1.PartnerLinkMetadata partner_link_metadata = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $partner_link_metadata = null;
 
     /**
      * Constructor.
@@ -58,6 +83,19 @@ class PartnerLink extends \Google\Protobuf\Internal\Message
      *           Required. The owning account granting access to the partner account.
      *     @type \Google\Ads\DataManager\V1\ProductAccount $partner_account
      *           Required. The partner account granted access by the owning account.
+     *     @type int $feature_set
+     *           Optional. Immutable. The set of features supported for the partner link.
+     *           If not specified, the system behavior defaults to
+     *           [FEATURE_SET_AUDIENCE_AND_EVENT_MANAGEMENT][google.ads.datamanager.v1.FeatureSet.FEATURE_SET_AUDIENCE_AND_EVENT_MANAGEMENT].
+     *     @type \Google\Ads\DataManager\V1\PartnerCustomerAccount $partner_customer_account
+     *           Optional. The customer account in the partner system.
+     *           This is required for partner links with the
+     *           [FEATURE_SET_AD_EVENT_MANAGEMENT][google.ads.datamanager.v1.FeatureSet.FEATURE_SET_AD_EVENT_MANAGEMENT]
+     *           feature set.
+     *     @type \Google\Ads\DataManager\V1\PartnerLinkMetadata $partner_link_metadata
+     *           Optional. Metadata associated with the partner link.
+     *           This is optional and only accepted for partner links with the
+     *           [FEATURE_SET_AD_EVENT_MANAGEMENT][google.ads.datamanager.v1.FeatureSet.FEATURE_SET_AD_EVENT_MANAGEMENT].
      * }
      */
     public function __construct($data = NULL) {
@@ -189,6 +227,118 @@ class PartnerLink extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Ads\DataManager\V1\ProductAccount::class);
         $this->partner_account = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Immutable. The set of features supported for the partner link.
+     * If not specified, the system behavior defaults to
+     * [FEATURE_SET_AUDIENCE_AND_EVENT_MANAGEMENT][google.ads.datamanager.v1.FeatureSet.FEATURE_SET_AUDIENCE_AND_EVENT_MANAGEMENT].
+     *
+     * Generated from protobuf field <code>.google.ads.datamanager.v1.FeatureSet feature_set = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * @return int
+     */
+    public function getFeatureSet()
+    {
+        return $this->feature_set;
+    }
+
+    /**
+     * Optional. Immutable. The set of features supported for the partner link.
+     * If not specified, the system behavior defaults to
+     * [FEATURE_SET_AUDIENCE_AND_EVENT_MANAGEMENT][google.ads.datamanager.v1.FeatureSet.FEATURE_SET_AUDIENCE_AND_EVENT_MANAGEMENT].
+     *
+     * Generated from protobuf field <code>.google.ads.datamanager.v1.FeatureSet feature_set = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setFeatureSet($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Ads\DataManager\V1\FeatureSet::class);
+        $this->feature_set = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The customer account in the partner system.
+     * This is required for partner links with the
+     * [FEATURE_SET_AD_EVENT_MANAGEMENT][google.ads.datamanager.v1.FeatureSet.FEATURE_SET_AD_EVENT_MANAGEMENT]
+     * feature set.
+     *
+     * Generated from protobuf field <code>.google.ads.datamanager.v1.PartnerCustomerAccount partner_customer_account = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Ads\DataManager\V1\PartnerCustomerAccount|null
+     */
+    public function getPartnerCustomerAccount()
+    {
+        return $this->partner_customer_account;
+    }
+
+    public function hasPartnerCustomerAccount()
+    {
+        return isset($this->partner_customer_account);
+    }
+
+    public function clearPartnerCustomerAccount()
+    {
+        unset($this->partner_customer_account);
+    }
+
+    /**
+     * Optional. The customer account in the partner system.
+     * This is required for partner links with the
+     * [FEATURE_SET_AD_EVENT_MANAGEMENT][google.ads.datamanager.v1.FeatureSet.FEATURE_SET_AD_EVENT_MANAGEMENT]
+     * feature set.
+     *
+     * Generated from protobuf field <code>.google.ads.datamanager.v1.PartnerCustomerAccount partner_customer_account = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Ads\DataManager\V1\PartnerCustomerAccount $var
+     * @return $this
+     */
+    public function setPartnerCustomerAccount($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Ads\DataManager\V1\PartnerCustomerAccount::class);
+        $this->partner_customer_account = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Metadata associated with the partner link.
+     * This is optional and only accepted for partner links with the
+     * [FEATURE_SET_AD_EVENT_MANAGEMENT][google.ads.datamanager.v1.FeatureSet.FEATURE_SET_AD_EVENT_MANAGEMENT].
+     *
+     * Generated from protobuf field <code>.google.ads.datamanager.v1.PartnerLinkMetadata partner_link_metadata = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Ads\DataManager\V1\PartnerLinkMetadata|null
+     */
+    public function getPartnerLinkMetadata()
+    {
+        return $this->partner_link_metadata;
+    }
+
+    public function hasPartnerLinkMetadata()
+    {
+        return isset($this->partner_link_metadata);
+    }
+
+    public function clearPartnerLinkMetadata()
+    {
+        unset($this->partner_link_metadata);
+    }
+
+    /**
+     * Optional. Metadata associated with the partner link.
+     * This is optional and only accepted for partner links with the
+     * [FEATURE_SET_AD_EVENT_MANAGEMENT][google.ads.datamanager.v1.FeatureSet.FEATURE_SET_AD_EVENT_MANAGEMENT].
+     *
+     * Generated from protobuf field <code>.google.ads.datamanager.v1.PartnerLinkMetadata partner_link_metadata = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Ads\DataManager\V1\PartnerLinkMetadata $var
+     * @return $this
+     */
+    public function setPartnerLinkMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Ads\DataManager\V1\PartnerLinkMetadata::class);
+        $this->partner_link_metadata = $var;
 
         return $this;
     }
