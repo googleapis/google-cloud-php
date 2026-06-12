@@ -27,6 +27,14 @@ class EncryptionInfo extends \Google\Protobuf\Internal\Message
      *           Google Cloud Platform wrapped key information.
      *     @type \Google\Ads\DataManager\V1\AwsWrappedKeyInfo $aws_wrapped_key_info
      *           Amazon Web Services wrapped key information.
+     *     @type \Google\Ads\DataManager\V1\CoordinatorKeyInfo $coordinator_key_info
+     *           Key information for the chosen coordinator key.
+     *           This is not supported for the
+     *           [IngestEvents][google.ads.datamanager.v1.IngestionService.IngestEvents],
+     *           [IngestAudienceMembers][google.ads.datamanager.v1.IngestionService.IngestAudienceMembers],
+     *           and
+     *           [RemoveAudienceMembers][google.ads.datamanager.v1.IngestionService.RemoveAudienceMembers]
+     *           methods.
      * }
      */
     public function __construct($data = NULL) {
@@ -92,6 +100,49 @@ class EncryptionInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Ads\DataManager\V1\AwsWrappedKeyInfo::class);
         $this->writeOneof(2, $var);
+
+        return $this;
+    }
+
+    /**
+     * Key information for the chosen coordinator key.
+     * This is not supported for the
+     * [IngestEvents][google.ads.datamanager.v1.IngestionService.IngestEvents],
+     * [IngestAudienceMembers][google.ads.datamanager.v1.IngestionService.IngestAudienceMembers],
+     * and
+     * [RemoveAudienceMembers][google.ads.datamanager.v1.IngestionService.RemoveAudienceMembers]
+     * methods.
+     *
+     * Generated from protobuf field <code>.google.ads.datamanager.v1.CoordinatorKeyInfo coordinator_key_info = 3;</code>
+     * @return \Google\Ads\DataManager\V1\CoordinatorKeyInfo|null
+     */
+    public function getCoordinatorKeyInfo()
+    {
+        return $this->readOneof(3);
+    }
+
+    public function hasCoordinatorKeyInfo()
+    {
+        return $this->hasOneof(3);
+    }
+
+    /**
+     * Key information for the chosen coordinator key.
+     * This is not supported for the
+     * [IngestEvents][google.ads.datamanager.v1.IngestionService.IngestEvents],
+     * [IngestAudienceMembers][google.ads.datamanager.v1.IngestionService.IngestAudienceMembers],
+     * and
+     * [RemoveAudienceMembers][google.ads.datamanager.v1.IngestionService.RemoveAudienceMembers]
+     * methods.
+     *
+     * Generated from protobuf field <code>.google.ads.datamanager.v1.CoordinatorKeyInfo coordinator_key_info = 3;</code>
+     * @param \Google\Ads\DataManager\V1\CoordinatorKeyInfo $var
+     * @return $this
+     */
+    public function setCoordinatorKeyInfo($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Ads\DataManager\V1\CoordinatorKeyInfo::class);
+        $this->writeOneof(3, $var);
 
         return $this;
     }

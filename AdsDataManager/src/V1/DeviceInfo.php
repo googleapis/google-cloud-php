@@ -33,7 +33,7 @@ class DeviceInfo extends \Google\Protobuf\Internal\Message
      * imports](https://support.google.com/google-ads/answer/2998031) page for
      * more details.
      *
-     * Generated from protobuf field <code>string ip_address = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string ip_address = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
      */
     protected $ip_address = '';
     /**
@@ -183,7 +183,7 @@ class DeviceInfo extends \Google\Protobuf\Internal\Message
      * imports](https://support.google.com/google-ads/answer/2998031) page for
      * more details.
      *
-     * Generated from protobuf field <code>string ip_address = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string ip_address = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
      * @return string
      */
     public function getIpAddress()
@@ -203,7 +203,7 @@ class DeviceInfo extends \Google\Protobuf\Internal\Message
      * imports](https://support.google.com/google-ads/answer/2998031) page for
      * more details.
      *
-     * Generated from protobuf field <code>string ip_address = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string ip_address = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
      * @param string $var
      * @return $this
      */

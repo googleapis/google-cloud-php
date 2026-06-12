@@ -24,9 +24,12 @@
 
 namespace Google\Ads\DataManager\V1\Client;
 
+use Google\Ads\DataManager\V1\AdEvent;
 use Google\Ads\DataManager\V1\AudienceMember;
 use Google\Ads\DataManager\V1\Destination;
 use Google\Ads\DataManager\V1\Event;
+use Google\Ads\DataManager\V1\IngestAdEventsRequest;
+use Google\Ads\DataManager\V1\IngestAdEventsResponse;
 use Google\Ads\DataManager\V1\IngestAudienceMembersRequest;
 use Google\Ads\DataManager\V1\IngestAudienceMembersResponse;
 use Google\Ads\DataManager\V1\IngestEventsRequest;
@@ -52,6 +55,7 @@ use Psr\Log\LoggerInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
+ * @method PromiseInterface<IngestAdEventsResponse> ingestAdEventsAsync(IngestAdEventsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<IngestAudienceMembersResponse> ingestAudienceMembersAsync(IngestAudienceMembersRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<IngestEventsResponse> ingestEventsAsync(IngestEventsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<RemoveAudienceMembersResponse> removeAudienceMembersAsync(RemoveAudienceMembersRequest $request, array $optionalArgs = [])
@@ -185,6 +189,36 @@ final class IngestionServiceClient
 
         array_unshift($args, substr($method, 0, -5));
         return call_user_func_array([$this, 'startAsyncCall'], $args);
+    }
+
+    /**
+     * Uploads a list of
+     * [AdEvent][google.ads.datamanager.v1.AdEvent] resources to Google
+     * Analytics.
+     *
+     * This feature is only available to accounts on an allowlist.
+     *
+     * The async variant is {@see IngestionServiceClient::ingestAdEventsAsync()} .
+     *
+     * @example samples/V1/IngestionServiceClient/ingest_ad_events.php
+     *
+     * @param IngestAdEventsRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return IngestAdEventsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function ingestAdEvents(IngestAdEventsRequest $request, array $callOptions = []): IngestAdEventsResponse
+    {
+        return $this->startApiCall('IngestAdEvents', $request, $callOptions)->wait();
     }
 
     /**

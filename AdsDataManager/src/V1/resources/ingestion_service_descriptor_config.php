@@ -23,6 +23,10 @@
 return [
     'interfaces' => [
         'google.ads.datamanager.v1.IngestionService' => [
+            'IngestAdEvents' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Ads\DataManager\V1\IngestAdEventsResponse',
+            ],
             'IngestAudienceMembers' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Ads\DataManager\V1\IngestAudienceMembersResponse',
