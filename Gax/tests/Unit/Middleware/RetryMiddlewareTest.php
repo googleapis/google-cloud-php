@@ -53,7 +53,8 @@ class RetryMiddlewareTest extends TestCase
 
     public function setUp(): void
     {
-        $this->noOpDelay = function(int $delayMs) {};
+        $this->noOpDelay = function (int $delayMs) {
+        };
     }
 
     public function testRetryNoRetryableCode()

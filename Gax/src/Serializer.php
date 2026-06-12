@@ -489,6 +489,7 @@ class Serializer
      */
     private function checkFieldRepeated(FieldDescriptor $field): bool
     {
+        /** @phpstan-ignore-next-line **/
         if (method_exists($field, 'isRepeated')) {
             return $field->isRepeated();
         }
