@@ -1,5 +1,129 @@
 # Changelog
 
+## 1.0.0
+
+<details><summary>googleads/data-manager 0.6.0</summary>
+
+
+
+### Features
+
+* [AdsDataManager] add encrypted_user_id.proto and the EncryptedUserId resource ([#9192](https://github.com/googleapis/google-cloud-php/issues/9192)) ([bab5404](https://github.com/googleapis/google-cloud-php/commit/bab540478dba8b0ca1da01f315d6f6f36a336e7f))
+
+</details>
+
+<details><summary>google/cloud-alloydb 1.8.0</summary>
+
+
+
+### Features
+
+* [AlloyDb] add POSTGRES_18 to supported database versions ([#9246](https://github.com/googleapis/google-cloud-php/issues/9246)) ([609378d](https://github.com/googleapis/google-cloud-php/commit/609378dff5799ef5128f2fdaea778cc49cb3864f))
+
+</details>
+
+<details><summary>google/cloud-bigtable 2.25.1</summary>
+
+
+
+</details>
+
+<details><summary>google/common-protos 4.14.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-confidentialcomputing 1.8.0</summary>
+
+
+
+### Features
+
+* [ConfidentialComputing] add instance field to VerifyAttestationRequest ([#9248](https://github.com/googleapis/google-cloud-php/issues/9248)) ([ebc3e3f](https://github.com/googleapis/google-cloud-php/commit/ebc3e3f39dbba7ee1eba341ba7844693917ad008))
+
+</details>
+
+<details><summary>google/cloud-container 2.10.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-core 1.72.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-dataproc 2.12.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-dlp 2.13.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-firestore 2.2.0</summary>
+
+
+
+### Features
+
+* [Firestore] expose the 'auto_commit_transaction' option for the ExecutePipeline API ([#9244](https://github.com/googleapis/google-cloud-php/issues/9244)) ([b50f2ba](https://github.com/googleapis/google-cloud-php/commit/b50f2ba00a80aa5a4989360d532442565b4a7666))
+
+</details>
+
+<details><summary>google/gax 1.43.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-geminidataanalytics 0.12.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* [GeminiDataAnalytics] Changed proto3 optional flag of an existing field `value` in message `.google.cloud.geminidataanalytics.v1beta.LookerQuery` ([#9233](https://github.com/googleapis/google-cloud-php/issues/9233))
+
+### Bug Fixes
+
+* [GeminiDataAnalytics] Changed proto3 optional flag of an existing field `value` in message `.google.cloud.geminidataanalytics.v1beta.LookerQuery` ([#9233](https://github.com/googleapis/google-cloud-php/issues/9233)) ([6452082](https://github.com/googleapis/google-cloud-php/commit/64520820718d7ad598ba68f9ed1b292450883b83))
+
+</details>
+
+<details><summary>google/cloud-modelarmor 0.7.0</summary>
+
+
+
+### Features
+
+* [ModelArmor] add streaming methods StreamSanitizeUserPrompt and StreamSanitizeModelResponse ([#9243](https://github.com/googleapis/google-cloud-php/issues/9243)) ([226e394](https://github.com/googleapis/google-cloud-php/commit/226e394b7c878fd5cbf55e0f88dfa182db149fa1))
+
+</details>
+
+<details><summary>google/cloud-oracledatabase 0.9.0</summary>
+
+
+
+### Features
+
+* [OracleDatabase] add v1 client libraries for Oracle Database Goldengate ([#9242](https://github.com/googleapis/google-cloud-php/issues/9242)) ([bbb8f47](https://github.com/googleapis/google-cloud-php/commit/bbb8f47b42408089bed05262e1691f74eaf8be7e))
+
+</details>
+
+<details><summary>google/cloud-spanner 2.9.1</summary>
+
+
+
+</details>
+
 ## 0.332.0
 
 <details><summary>googleads/data-manager 0.5.0</summary>
