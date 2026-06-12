@@ -54,6 +54,7 @@ class IamTest extends SnippetTestCase
         $this->checkAndSkipTest([
             SpannerClient::class,
         ]);
+        $this->checkAndSkipGrpcTests();
         $res = $snippet->invoke('iam');
 
         $this->assertInstanceOf(IamManager::class, $res->returnVal());

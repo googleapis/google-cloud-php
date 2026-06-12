@@ -47,7 +47,9 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Google\\Cloud\\Core\\Tests\\": "tests"
+            "Google\\Cloud\\Core\\Tests\\": "tests",
+            "Google\\ApiCore\\Testing\\": "tests/Unit/generated",
+            "GPBMetadata\\ApiCore\\Testing\\": "tests/Unit/metadata"
         }
     }
 }

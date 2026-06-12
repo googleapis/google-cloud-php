@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Spanner\Tests\Snippet;
 
+use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Spanner\PgNumeric;
 
@@ -25,8 +26,12 @@ use Google\Cloud\Spanner\PgNumeric;
  */
 class PgNumericTest extends SnippetTestCase
 {
+    use GrpcTestTrait;
+
     public function testClass()
     {
+        $this->checkAndSkipGrpcTests();
+
         $expected = new PgNumeric('99999999999999999999999999999999999999.000000999999999');
         $snippet = $this->snippetFromClass(PgNumeric::class);
         $res = $snippet->invoke('pgNumeric');

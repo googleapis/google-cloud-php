@@ -18,6 +18,7 @@
 namespace Google\Cloud\Core\Testing\Snippet;
 
 use Google\Cloud\Core\Testing\CheckForClassTrait;
+use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\Container;
 use Google\Cloud\Core\Testing\Snippet\Parser\Snippet;
 use PHPUnit\Framework\TestCase;
@@ -35,6 +36,7 @@ class SnippetTestCase extends TestCase
     const PROJECT = 'my-awesome-project';
 
     use CheckForClassTrait;
+    use GrpcTestTrait;
 
     private static $coverage;
     private static $parser;
