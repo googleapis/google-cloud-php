@@ -1,0 +1,88 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.workloadmanager.v1",
+    "libraryPackage": "Google\\Cloud\\WorkloadManager\\V1",
+    "services": {
+        "WorkloadManager": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "WorkloadManagerGapicClient",
+                    "rpcs": {
+                        "CreateEvaluation": {
+                            "methods": [
+                                "createEvaluation"
+                            ]
+                        },
+                        "DeleteEvaluation": {
+                            "methods": [
+                                "deleteEvaluation"
+                            ]
+                        },
+                        "DeleteExecution": {
+                            "methods": [
+                                "deleteExecution"
+                            ]
+                        },
+                        "GetEvaluation": {
+                            "methods": [
+                                "getEvaluation"
+                            ]
+                        },
+                        "GetExecution": {
+                            "methods": [
+                                "getExecution"
+                            ]
+                        },
+                        "ListEvaluations": {
+                            "methods": [
+                                "listEvaluations"
+                            ]
+                        },
+                        "ListExecutionResults": {
+                            "methods": [
+                                "listExecutionResults"
+                            ]
+                        },
+                        "ListExecutions": {
+                            "methods": [
+                                "listExecutions"
+                            ]
+                        },
+                        "ListRules": {
+                            "methods": [
+                                "listRules"
+                            ]
+                        },
+                        "ListScannedResources": {
+                            "methods": [
+                                "listScannedResources"
+                            ]
+                        },
+                        "RunEvaluation": {
+                            "methods": [
+                                "runEvaluation"
+                            ]
+                        },
+                        "UpdateEvaluation": {
+                            "methods": [
+                                "updateEvaluation"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
