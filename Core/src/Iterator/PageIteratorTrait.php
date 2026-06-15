@@ -193,9 +193,7 @@ trait PageIteratorTrait
     #[\ReturnTypeWillChange]
     public function current()
     {
-        if (!$this->isInitialized) {
-            $this->initialize();
-        }
+        $this->initialize();
 
         if ($this->page === null) {
             $this->page = $this->executeCall();
