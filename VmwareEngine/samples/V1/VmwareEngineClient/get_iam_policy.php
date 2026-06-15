@@ -30,7 +30,7 @@ use Google\Cloud\VmwareEngine\V1\Client\VmwareEngineClient;
 
 /**
  * Gets the access control policy for a resource. Returns an empty policy
-if the resource exists and does not have a policy set.
+ * if the resource exists and does not have a policy set.
  *
  * @param string $resource REQUIRED: The resource for which the policy is being requested.
  *                         See the operation documentation for the appropriate value for this field.
