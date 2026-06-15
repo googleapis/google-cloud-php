@@ -32,7 +32,7 @@ use Google\Cloud\NetworkServices\V1\TcpRoute;
  * Gets details of a single TcpRoute.
  *
  * @param string $formattedName A name of the TcpRoute to get. Must be in the format
- *                              `projects/&#42;/locations/global/tcpRoutes/*`. Please see
+ *                              `projects/&#42;/locations/&#42;/tcpRoutes/*`. Please see
  *                              {@see NetworkServicesClient::tcpRouteName()} for help formatting this field.
  */
 function get_tcp_route_sample(string $formattedName): void

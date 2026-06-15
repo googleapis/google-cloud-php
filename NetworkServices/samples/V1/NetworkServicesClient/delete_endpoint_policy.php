@@ -33,7 +33,7 @@ use Google\Rpc\Status;
  * Deletes a single EndpointPolicy.
  *
  * @param string $formattedName A name of the EndpointPolicy to delete. Must be in the format
- *                              `projects/&#42;/locations/global/endpointPolicies/*`. Please see
+ *                              `projects/&#42;/locations/&#42;/endpointPolicies/*`. Please see
  *                              {@see NetworkServicesClient::endpointPolicyName()} for help formatting this field.
  */
 function delete_endpoint_policy_sample(string $formattedName): void

@@ -29,10 +29,19 @@ class WireFormat
      * Generated from protobuf enum <code>EXT_PROC_GRPC = 1;</code>
      */
     const EXT_PROC_GRPC = 1;
+    /**
+     * The extension service uses Envoy's `ext_authz` gRPC API. The backend
+     * service for the extension must use HTTP2 or H2C as the protocol.
+     * `EXT_AUTHZ_GRPC` is only supported for regional `AuthzExtension` resources.
+     *
+     * Generated from protobuf enum <code>EXT_AUTHZ_GRPC = 3;</code>
+     */
+    const EXT_AUTHZ_GRPC = 3;
 
     private static $valueToName = [
         self::WIRE_FORMAT_UNSPECIFIED => 'WIRE_FORMAT_UNSPECIFIED',
         self::EXT_PROC_GRPC => 'EXT_PROC_GRPC',
+        self::EXT_AUTHZ_GRPC => 'EXT_AUTHZ_GRPC',
     ];
 
     public static function name($value)

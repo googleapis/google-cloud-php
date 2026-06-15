@@ -144,6 +144,11 @@
                 "grpc": {
                     "libraryClient": "NetworkServicesGapicClient",
                     "rpcs": {
+                        "CreateAgentGateway": {
+                            "methods": [
+                                "createAgentGateway"
+                            ]
+                        },
                         "CreateEndpointPolicy": {
                             "methods": [
                                 "createEndpointPolicy"
@@ -199,6 +204,11 @@
                                 "createWasmPluginVersion"
                             ]
                         },
+                        "DeleteAgentGateway": {
+                            "methods": [
+                                "deleteAgentGateway"
+                            ]
+                        },
                         "DeleteEndpointPolicy": {
                             "methods": [
                                 "deleteEndpointPolicy"
@@ -252,6 +262,11 @@
                         "DeleteWasmPluginVersion": {
                             "methods": [
                                 "deleteWasmPluginVersion"
+                            ]
+                        },
+                        "GetAgentGateway": {
+                            "methods": [
+                                "getAgentGateway"
                             ]
                         },
                         "GetEndpointPolicy": {
@@ -319,6 +334,11 @@
                                 "getWasmPluginVersion"
                             ]
                         },
+                        "ListAgentGateways": {
+                            "methods": [
+                                "listAgentGateways"
+                            ]
+                        },
                         "ListEndpointPolicies": {
                             "methods": [
                                 "listEndpointPolicies"
@@ -382,6 +402,11 @@
                         "ListWasmPlugins": {
                             "methods": [
                                 "listWasmPlugins"
+                            ]
+                        },
+                        "UpdateAgentGateway": {
+                            "methods": [
+                                "updateAgentGateway"
                             ]
                         },
                         "UpdateEndpointPolicy": {

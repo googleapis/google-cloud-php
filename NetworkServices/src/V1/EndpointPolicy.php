@@ -20,7 +20,7 @@ class EndpointPolicy extends \Google\Protobuf\Internal\Message
 {
     /**
      * Identifier. Name of the EndpointPolicy resource. It matches pattern
-     * `projects/{project}/locations/global/endpointPolicies/{endpoint_policy}`.
+     * `projects/{project}/locations/{@*}endpointPolicies/{endpoint_policy}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
@@ -112,7 +112,7 @@ class EndpointPolicy extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Identifier. Name of the EndpointPolicy resource. It matches pattern
-     *           `projects/{project}/locations/global/endpointPolicies/{endpoint_policy}`.
+     *           `projects/{project}/locations/{@*}endpointPolicies/{endpoint_policy}`.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The timestamp when the resource was created.
      *     @type \Google\Protobuf\Timestamp $update_time
@@ -160,7 +160,7 @@ class EndpointPolicy extends \Google\Protobuf\Internal\Message
 
     /**
      * Identifier. Name of the EndpointPolicy resource. It matches pattern
-     * `projects/{project}/locations/global/endpointPolicies/{endpoint_policy}`.
+     * `projects/{project}/locations/{@*}endpointPolicies/{endpoint_policy}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
@@ -172,7 +172,7 @@ class EndpointPolicy extends \Google\Protobuf\Internal\Message
 
     /**
      * Identifier. Name of the EndpointPolicy resource. It matches pattern
-     * `projects/{project}/locations/global/endpointPolicies/{endpoint_policy}`.
+     * `projects/{project}/locations/{@*}endpointPolicies/{endpoint_policy}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
