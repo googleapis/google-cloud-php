@@ -253,6 +253,8 @@ class ErrorReason
     const UNSUPPORTED_LINKED_ACCOUNT_FOR_DATA_PARTNER = 38;
     /**
      * Events data contains no user identifiers or ad identifiers.
+     * For Floodlight Event ingestion this error indicates requests contains no ad
+     * identifiers.
      *
      * Generated from protobuf enum <code>NO_IDENTIFIERS_PROVIDED = 39;</code>
      */
