@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /*
  * Copyright 2023 Google LLC
  * All rights reserved.
@@ -132,16 +134,6 @@ class CallOptions implements ArrayAccess, OptionsInterface
     public function setTransportOptions(array $transportOptions): self
     {
         $this->transportOptions = $transportOptions;
-
-        return $this;
-    }
-
-    /**
-     * @deprecated use CallOptions::setTransportOptions
-     */
-    public function setTransportSpecificOptions(array $transportSpecificOptions): self
-    {
-        $this->setTransportOptions($transportSpecificOptions);
 
         return $this;
     }

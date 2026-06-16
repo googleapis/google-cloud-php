@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /*
  * Copyright 2018 Google LLC
  * All rights reserved.
@@ -115,10 +117,10 @@ class RelativeResourceTemplate implements ResourceTemplateInterface
                 throw $this->renderingException($bindings, "missing required binding '$key' for segment '$segment'");
             }
             $value = $bindings[$key];
-            if (!is_null($value) && $segment->matches($value)) {
+            if (!is_null($value) && $segment->matches((string) $value)) {
                 $literalSegments[] = new Segment(
                     Segment::LITERAL_SEGMENT,
-                    $value,
+                    (string) $value,
                     $segment->getValue(),
                     $segment->getTemplate(),
                     $segment->getSeparator()

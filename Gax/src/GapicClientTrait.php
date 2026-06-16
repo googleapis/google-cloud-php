@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /*
  * Copyright 2018 Google LLC
  * All rights reserved.
@@ -32,7 +34,6 @@
 
 namespace Google\ApiCore;
 
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Middleware\CredentialsWrapperMiddleware;
 use Google\ApiCore\Middleware\FixedHeaderMiddleware;
 use Google\ApiCore\Middleware\OperationsMiddleware;
@@ -50,6 +51,7 @@ use Google\ApiCore\Transport\RestTransport;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\LongRunning\Operation;
+use Google\LongRunning\OperationsClient;
 use Google\Protobuf\Internal\Message;
 use GuzzleHttp\Promise\PromiseInterface;
 

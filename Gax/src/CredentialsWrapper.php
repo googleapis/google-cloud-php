@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /*
  * Copyright 2018 Google LLC
  * All rights reserved.
@@ -212,24 +214,6 @@ class CredentialsWrapper implements HeaderCredentialsInterface, ProjectIdProvide
             return $this->credentialsFetcher->getProjectId($httpHandler);
         }
         return null;
-    }
-
-    /**
-     * @deprecated
-     * @return string Bearer string containing access token.
-     */
-    public function getBearerString()
-    {
-        $token = $this->credentialsFetcher->getLastReceivedToken();
-        if (self::isExpired($token)) {
-            $this->checkUniverseDomain();
-
-            $token = $this->credentialsFetcher->fetchAuthToken($this->authHttpHandler);
-            if (!self::isValid($token)) {
-                return '';
-            }
-        }
-        return empty($token['access_token']) ? '' : 'Bearer ' . $token['access_token'];
     }
 
     /**
