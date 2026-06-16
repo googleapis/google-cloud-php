@@ -80,7 +80,7 @@ class ComponentUpdateCommandTest extends TestCase
         $commandTester = new CommandTester($application->get('component:update'));
 
         $commandTester->execute([
-            'component' => self::COMPONENT_NAME,
+            '--component' => self::COMPONENT_NAME,
             '--googleapis-gen-path' => $googleapisGenPath,
         ]);
     }
@@ -100,7 +100,7 @@ class ComponentUpdateCommandTest extends TestCase
         $commandTester = new CommandTester($application->get('component:update'));
 
         $commandTester->execute([
-            'component' => self::COMPONENT_NAME,
+            '--component' => self::COMPONENT_NAME,
             '--googleapis-gen-path' => self::$tmpDir,
         ]);
     }
@@ -190,7 +190,7 @@ class ComponentUpdateCommandTest extends TestCase
         $commandTester = new CommandTester($application->get('component:update'));
 
         $commandTester->execute([
-            'component' => self::COMPONENT_NAME,
+            '--component' => self::COMPONENT_NAME,
             '--googleapis-gen-path' => $googleapisGenPath,
         ]);
 
@@ -213,7 +213,7 @@ class ComponentUpdateCommandTest extends TestCase
             'Y' // Does this information look correct? [Y/n]
         ]);
         $commandTester->execute([
-            'component' => self::COMPONENT_NAME,
+            '--component' => self::COMPONENT_NAME,
             '--timeout' => 'not-a-number',
         ]);
     }
