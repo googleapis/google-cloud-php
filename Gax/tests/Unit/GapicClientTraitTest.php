@@ -897,6 +897,51 @@ class GapicClientTraitTest extends TestCase
     }
 
     /**
+     * @dataProvider buildClientOptionsRegionalEndpointData
+     * @runInSeparateProcess
+     * @preserveGlobalState disabled
+     */
+    public function testBuildClientOptionsRegionalEndpoint(?string $apiEndpoint, ?string $envVarValue, bool $rabEnabled)
+    {
+        if ($envVarValue !== null) {
+            putenv('GOOGLE_AUTH_TRUST_BOUNDARY_ENABLE_EXPERIMENT=' . $envVarValue);
+        }
+
+        $client = new class() extends StubGapicClient {
+            public array $capturedCredentialsConfig = [];
+
+            public function createCredentialsWrapper($credentials, array $credentialsConfig, string $universeDomain)
+            {
+                $this->capturedCredentialsConfig = $credentialsConfig;
+                return null;
+            }
+        };
+
+        $clientOptions = $client->buildClientOptions(
+            $apiEndpoint !== null ? ['apiEndpoint' => $apiEndpoint] : []
+        );
+        $client->setClientOptions($clientOptions);
+
+        $this->assertEquals(
+            $rabEnabled,
+            $client->capturedCredentialsConfig['enableRegionalAccessBoundary'] ?? null
+        );
+    }
+
+    public function buildClientOptionsRegionalEndpointData()
+    {
+        return [
+            ['test.googleapis.com', 'true', true],
+            ['test.rep.googleapis.com', 'true', false],
+            ['test.rep.sandbox.googleapis.com', 'true', false],
+            ['test.googleapis.com', 'false', false],
+            ['test.googleapis.com', null, false],
+            ['', 'true', true], // Empty endpoint case
+            [null, 'true', true], // Unset endpoint case
+        ];
+    }
+
+    /**
      * @dataProvider buildRequestHeaderParams
      */
     public function testBuildRequestHeaders($headerParams, $request, $expected)
