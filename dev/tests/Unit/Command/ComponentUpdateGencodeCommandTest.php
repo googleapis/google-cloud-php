@@ -120,7 +120,7 @@ class ComponentUpdateCommandTest extends TestCase
         $commandTester = new CommandTester($application->get('component:update'));
 
         $commandTester->execute([
-            'component' => 'NonExistantComponent',
+            '--component' => 'NonExistantComponent',
             '--googleapis-gen-path' => self::$tmpDir,
         ]);
     }
