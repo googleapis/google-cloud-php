@@ -1581,17 +1581,17 @@ class GapicClientTraitTest extends TestCase
         $transport->startUnaryCall(
             Argument::type(Call::class),
             [
-                'transportOptions' => [
-                    'custom' => ['addModifyUnaryCallableOption' => true]
-                ],
-                'headers' => AgentHeader::buildAgentHeader([]),
-                'credentialsWrapper' => CredentialsWrapper::build([
-                    'keyFile' => __DIR__ . '/testdata/creds/json-key-file.json'
-                ])
+            'transportOptions' => [
+                'custom' => ['addModifyUnaryCallableOption' => true]
+            ],
+            'headers' => AgentHeader::buildAgentHeader([]),
+            'credentialsWrapper' => CredentialsWrapper::build([
+                'keyFile' => __DIR__ . '/testdata/creds/json-key-file.json'
+            ])
             ]
         )
-            ->shouldBeCalledOnce()
-            ->willReturn(new FulfilledPromise(new Operation()));
+           ->shouldBeCalledOnce()
+           ->willReturn(new FulfilledPromise(new Operation()));
 
         $client->startCall(
             'simpleMethod',

@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /*
  * Copyright 2018 Google LLC
  * All rights reserved.
@@ -142,7 +144,7 @@ class RetryMiddleware implements MiddlewareInterface
         $timeoutMult = $this->retrySettings->getRpcTimeoutMultiplier();
         $maxTimeoutMs = $this->retrySettings->getMaxRpcTimeoutMillis();
 
-        $delayMs = $this->retrySettings->getInitialRetryDelayMillis();
+        $delayMs = (int) $this->retrySettings->getInitialRetryDelayMillis();
         $timeoutMs = $options['timeoutMillis'];
         $currentTimeMs = $this->getCurrentTimeMs();
 
@@ -183,7 +185,7 @@ class RetryMiddleware implements MiddlewareInterface
         );
     }
 
-    protected function getCurrentTimeMs()
+    protected function getCurrentTimeMs(): float
     {
         return microtime(true) * 1000.0;
     }

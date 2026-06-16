@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /*
  * Copyright 2017 Google LLC
  * All rights reserved.
@@ -220,7 +222,7 @@ class Serializer
         foreach ($metadata as $key => $values) {
             foreach ($values as $value) {
                 $decodedValue = ['@type' => $key];
-                if (self::hasBinaryHeaderSuffix($key)) {
+                if (is_string($key) && self::hasBinaryHeaderSuffix($key)) {
                     if (isset(KnownTypes::BIN_TYPES[$key])) {
                         $class = KnownTypes::BIN_TYPES[$key];
                         /**
