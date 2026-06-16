@@ -175,29 +175,9 @@
                                 "getGoldengateConnectionAssignment"
                             ]
                         },
-                        "GetGoldengateConnectionType": {
-                            "methods": [
-                                "getGoldengateConnectionType"
-                            ]
-                        },
                         "GetGoldengateDeployment": {
                             "methods": [
                                 "getGoldengateDeployment"
-                            ]
-                        },
-                        "GetGoldengateDeploymentEnvironment": {
-                            "methods": [
-                                "getGoldengateDeploymentEnvironment"
-                            ]
-                        },
-                        "GetGoldengateDeploymentType": {
-                            "methods": [
-                                "getGoldengateDeploymentType"
-                            ]
-                        },
-                        "GetGoldengateDeploymentVersion": {
-                            "methods": [
-                                "getGoldengateDeploymentVersion"
                             ]
                         },
                         "GetOdbNetwork": {

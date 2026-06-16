@@ -456,53 +456,9 @@ return [
                     ],
                 ],
             ],
-            'GetGoldengateConnectionType' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/goldengateConnectionTypes/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
             'GetGoldengateDeployment' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/goldengateDeployments/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'GetGoldengateDeploymentEnvironment' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/goldengateDeploymentEnvironments/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'GetGoldengateDeploymentType' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/goldengateDeploymentTypes/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'GetGoldengateDeploymentVersion' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/goldengateDeploymentVersions/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
