@@ -1,6 +1,6 @@
-# Google Cloud Appoptimize for PHP
+# Google Cloud App Optimize for PHP
 
-> Idiomatic PHP client for [Google Cloud Appoptimize](https://docs.cloud.google.com/app-optimize/overview).
+> Idiomatic PHP client for [Google Cloud App Optimize](https://docs.cloud.google.com/app-optimize/overview).
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud-appoptimize/v/stable)](https://packagist.org/packages/google/cloud-appoptimize) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-appoptimize.svg)](https://packagist.org/packages/google/cloud-appoptimize)
 
@@ -36,7 +36,7 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 
 ```php
 use Google\ApiCore\ApiException;
-use Google\Cloud\Appoptimize\V1beta\Client\AppOptimizeClient;
+use Google\Cloud\AppOptimize\V1beta\Client\AppOptimizeClient;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\Location;
 
