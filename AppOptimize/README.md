@@ -36,7 +36,7 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 
 ```php
 use Google\ApiCore\ApiException;
-use Google\Cloud\Appoptimize\V1beta\Client\AppOptimizeClient;
+use Google\Cloud\AppOptimize\V1beta\Client\AppOptimizeClient;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\Location;
 
