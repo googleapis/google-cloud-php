@@ -1,6 +1,6 @@
-# Google Cloud Appoptimize for PHP
+# Google Cloud App Optimize for PHP
 
-> Idiomatic PHP client for [Google Cloud Appoptimize](https://docs.cloud.google.com/app-optimize/overview).
+> Idiomatic PHP client for [Google Cloud App Optimize](https://docs.cloud.google.com/app-optimize/overview).
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud-appoptimize/v/stable)](https://packagist.org/packages/google/cloud-appoptimize) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-appoptimize.svg)](https://packagist.org/packages/google/cloud-appoptimize)
 
