@@ -40,7 +40,7 @@ jobs:
       with:
         php-version: ${{ matrix.php }}
         # Only cache the heavy/matrix extensions (e.g., grpc)
-        extensions: sodium, sysvshm, ${{ matrix.extensions }}
+        extensions: sodium, ${{ matrix.extensions }}
         key: cache-key-1 # increment to bust the cache
 
     - name: Cache extensions
@@ -55,8 +55,6 @@ jobs:
       with:
         php-version: ${{ matrix.php }}
         extensions: sodium, sysvshm, ${{ matrix.extensions }}
-        cache-extensions: true
-        cache-extensions-key: cache-key-2 # increment this to bust the cache
 
     # This step registers the cached extension binaries into PHP
     - name: Enable Cached Extensions
@@ -68,6 +66,14 @@ jobs:
         timeout_minutes: 10
         max_attempts: 3
         command: composer --no-interaction --no-ansi --no-progress update
+    - name: Verify Extensions are Loaded
+      run: |
+        php -m | grep -i sodium
+        php -m | grep -i sysvshm
+        # If matrix.extensions includes grpc, verify it's loaded
+        if [[ "${{ matrix.extensions }}" == "grpc"* ]]; then
+          php -m | grep -i grpc
+        fi
     - name: Run Unit Test Suite ${{ matrix.platform != 'windows-latest' || '(Windows)' }}
       run: |
         vendor/bin/phpunit -c phpunit.xml.dist
