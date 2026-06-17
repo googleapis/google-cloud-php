@@ -13,12 +13,12 @@ jobs:
       matrix:
         platform: [ubuntu-latest, windows-latest]
         php: [ "8.2", "8.3", "8.4", "8.5" ]
-        extensions: ["grpc-1.78.0"]
+        extensions: ["grpc-1.54.0"]
         type: ["Unit Test"]
         include:
           - platform: "ubuntu-latest"
             php: "8.1"
-            extensions: "grpc-1.78.0"
+            extensions: "grpc-1.54.0"
             type: "Unit Test"
           - platform: "ubuntu-latest"
             php: "8.1"
@@ -38,7 +38,7 @@ jobs:
       uses: shivammathur/cache-extensions@v1
       with:
         php-version: ${{ matrix.php }}
-        extensions: sodium,sysvshm,${{ matrix.extensions }}
+        extensions: sodium,${{ matrix.extensions }}
         key: cache-key-1 # increment to bust the cache
     - name: Cache extensions
       uses: actions/cache@v5
@@ -50,7 +50,7 @@ jobs:
       uses: shivammathur/setup-php@verbose
       with:
         php-version: ${{ matrix.php }}
-        extensions: sodium,sysvshm,${{ matrix.extensions }}
+        extensions: sodium,${{ matrix.extensions }}
     - name: Install Dependencies
       uses: nick-invision/retry@v4
       with:
