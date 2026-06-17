@@ -49,7 +49,9 @@ class RuleExecutionErrorServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return RuleExecutionErrorServiceClient */
@@ -72,17 +74,14 @@ class RuleExecutionErrorServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $ruleExecutionErrorsElement = new RuleExecutionError();
-        $ruleExecutionErrors = [
-            $ruleExecutionErrorsElement,
-        ];
+        $ruleExecutionErrors = [$ruleExecutionErrorsElement];
         $expectedResponse = new ListRuleExecutionErrorsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setRuleExecutionErrors($ruleExecutionErrors);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $request = (new ListRuleExecutionErrorsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListRuleExecutionErrorsRequest())->setParent($formattedParent);
         $response = $gapicClient->listRuleExecutionErrors($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -92,7 +91,10 @@ class RuleExecutionErrorServiceClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.chronicle.v1.RuleExecutionErrorService/ListRuleExecutionErrors', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.chronicle.v1.RuleExecutionErrorService/ListRuleExecutionErrors',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -109,17 +111,19 @@ class RuleExecutionErrorServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $request = (new ListRuleExecutionErrorsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListRuleExecutionErrorsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listRuleExecutionErrors($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -144,17 +148,14 @@ class RuleExecutionErrorServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $ruleExecutionErrorsElement = new RuleExecutionError();
-        $ruleExecutionErrors = [
-            $ruleExecutionErrorsElement,
-        ];
+        $ruleExecutionErrors = [$ruleExecutionErrorsElement];
         $expectedResponse = new ListRuleExecutionErrorsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setRuleExecutionErrors($ruleExecutionErrors);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $request = (new ListRuleExecutionErrorsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListRuleExecutionErrorsRequest())->setParent($formattedParent);
         $response = $gapicClient->listRuleExecutionErrorsAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -164,7 +165,10 @@ class RuleExecutionErrorServiceClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.chronicle.v1.RuleExecutionErrorService/ListRuleExecutionErrors', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.chronicle.v1.RuleExecutionErrorService/ListRuleExecutionErrors',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
