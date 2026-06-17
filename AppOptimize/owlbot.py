@@ -24,7 +24,7 @@ from synthtool import _tracked_paths
 
 logging.basicConfig(level=logging.DEBUG)
 
-src = Path(f"../{php.STAGING_DIR}/Appoptimize").resolve()
+src = Path(f"../{php.STAGING_DIR}/AppOptimize").resolve()
 dest = Path().resolve()
 
 # Added so that we can pass copy_excludes in the owlbot_main() call
