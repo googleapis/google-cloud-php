@@ -59,10 +59,12 @@ class ComponentUpdateCommand extends Command
     {
         $this->setName('component:update')
             ->setDescription('Update one or all components using Owlbot')
-            ->addArgument(
+            ->addOption(
                 'component',
-                InputArgument::OPTIONAL,
-                'The name of the component to update. If not provided, all components will be updated.'
+                'c',
+                InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY,
+                'Add to the readme of the specified component',
+                []
             )
             ->addOption(
                 'googleapis-gen-path',
@@ -82,7 +84,6 @@ class ComponentUpdateCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $componentName = $input->getArgument('component');
         $googleApisGenDir = realpath($input->getOption('googleapis-gen-path'));
         $unsafeTimeout = $input->getOption('timeout');
 
@@ -104,7 +105,7 @@ class ComponentUpdateCommand extends Command
         $this->checkDockerAvailable();
 
         // Find components to update
-        $components = Component::getComponents($componentName ? [$componentName] : []);
+        $components = Component::getComponents($input->getOption('component'));
         foreach ($components as $component) {
             $componentName = $component->getName();
             $output->writeln("\n<info>Running Owlbot in $componentName</info>");
