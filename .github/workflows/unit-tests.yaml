@@ -34,7 +34,8 @@ jobs:
     steps:
     - uses: actions/checkout@v6
 
-    - name: Setup cache environment
+    - if: ${{ matrix.extensions != '' }}
+      name: Setup cache environment
       id: extcache
       uses: shivammathur/cache-extensions@v1
       with:
