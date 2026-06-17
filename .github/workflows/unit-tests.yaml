@@ -39,12 +39,11 @@ jobs:
       uses: shivammathur/cache-extensions@v1
       with:
         php-version: ${{ matrix.php }}
-        # Only cache the heavy/matrix extensions (e.g., grpc)
         extensions: sodium, ${{ matrix.extensions }}
         key: cache-key-1 # increment to bust the cache
 
     - name: Cache extensions
-      uses: actions/cache@v4 # Note: v4 is the current stable standard for actions/cache
+      uses: actions/cache@v4
       with:
         path: ${{ steps.extcache.outputs.dir }}
         key: ${{ steps.extcache.outputs.key }}
@@ -55,10 +54,6 @@ jobs:
       with:
         php-version: ${{ matrix.php }}
         extensions: sodium, sysvshm, ${{ matrix.extensions }}
-
-    # This step registers the cached extension binaries into PHP
-    - name: Enable Cached Extensions
-      run: ${{ steps.extcache.outputs.prefix }}
 
     - name: Install Dependencies
       uses: nick-invision/retry@v4
