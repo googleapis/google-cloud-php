@@ -34,14 +34,13 @@ jobs:
     steps:
     - uses: actions/checkout@v6
 
-    - if: ${{ matrix.extensions != '' }}
-      name: Setup cache environment
+    - name: Setup cache environment
       id: extcache
       uses: shivammathur/cache-extensions@v1
       with:
         php-version: ${{ matrix.php }}
         # Only cache the heavy/matrix extensions (e.g., grpc)
-        extensions: ${{ matrix.extensions }}
+        extensions: sodium, sysvshm, ${{ matrix.extensions }}
         key: cache-key-1 # increment to bust the cache
 
     - name: Cache extensions
@@ -55,7 +54,7 @@ jobs:
       uses: shivammathur/setup-php@verbose
       with:
         php-version: ${{ matrix.php }}
-        extensions: sodium, sysvshm
+        extensions: "" # these are handled by the cache above
 
     # This step registers the cached extension binaries into PHP
     - name: Enable Cached Extensions
