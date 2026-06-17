@@ -73,6 +73,18 @@ return [
                     ],
                 ],
             ],
+            'VerifyReferenceList' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{instance=projects/*/locations/*/instances/*}:verifyReferenceList',
+                'body' => '*',
+                'placeholders' => [
+                    'instance' => [
+                        'getters' => [
+                            'getInstance',
+                        ],
+                    ],
+                ],
+            ],
         ],
         'google.longrunning.Operations' => [
             'CancelOperation' => [

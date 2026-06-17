@@ -375,6 +375,11 @@
                             "methods": [
                                 "updateReferenceList"
                             ]
+                        },
+                        "VerifyReferenceList": {
+                            "methods": [
+                                "verifyReferenceList"
+                            ]
                         }
                     }
                 }
@@ -443,6 +448,11 @@
                         "UpdateRuleDeployment": {
                             "methods": [
                                 "updateRuleDeployment"
+                            ]
+                        },
+                        "VerifyRuleText": {
+                            "methods": [
+                                "verifyRuleText"
                             ]
                         }
                     }
