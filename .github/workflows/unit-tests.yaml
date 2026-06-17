@@ -54,7 +54,9 @@ jobs:
       uses: shivammathur/setup-php@verbose
       with:
         php-version: ${{ matrix.php }}
-        extensions: "" # these are handled by the cache above
+        extensions: sodium, sysvshm, ${{ matrix.extensions }}
+        cache-extensions: true
+        cache-extensions-key: cache-key-1
 
     # This step registers the cached extension binaries into PHP
     - name: Enable Cached Extensions
