@@ -56,7 +56,7 @@ jobs:
         php-version: ${{ matrix.php }}
         extensions: sodium, sysvshm, ${{ matrix.extensions }}
         cache-extensions: true
-        cache-extensions-key: cache-key-1
+        cache-extensions-key: cache-key-2 # increment this to bust the cache
 
     # This step registers the cached extension binaries into PHP
     - name: Enable Cached Extensions
