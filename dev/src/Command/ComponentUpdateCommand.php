@@ -105,7 +105,7 @@ class ComponentUpdateCommand extends Command
         $this->checkDockerAvailable();
 
         // Find components to update
-        $components = Component::getComponents($input->getArgument('component'));
+        $components = Component::getComponents($input->getOption('component'));
         foreach ($components as $component) {
             $componentName = $component->getName();
             $output->writeln("\n<info>Running Owlbot in $componentName</info>");
