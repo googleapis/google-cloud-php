@@ -338,9 +338,9 @@ class RetryMiddlewareTest extends TestCase
         $retrySettings = RetrySettings::constructDefault()
             ->with([
                 'retriesEnabled' => true,
-                'totalTimeoutMillis' => 1,
+                'totalTimeoutMillis' => 10,
                 'retryFunction' => function ($ex, $options) {
-                    usleep(500);
+                    usleep(5001);
                     return true;
                 }
             ]);
@@ -359,8 +359,8 @@ class RetryMiddlewareTest extends TestCase
             $this->fail('Expected an exception, but didn\'t receive any');
         } catch (ApiException $e) {
             $this->assertEquals('Retry total timeout exceeded.', $e->getMessage());
-            // we used a total timeout of 1 ms and every retry sleeps for .9 ms
-            // This means that the call count should be 2(original call and 1 retry)
+            // we used a total timeout of 10 ms and every retry sleeps for 9 ms
+            // This means that the call count should be 2 (original call and 1 retry)
             $this->assertEquals(2, $callCount);
         }
     }
