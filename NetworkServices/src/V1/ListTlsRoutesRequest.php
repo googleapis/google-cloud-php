@@ -17,7 +17,7 @@ class ListTlsRoutesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The project and location from which the TlsRoutes should be
-     * listed, specified in the format `projects/{@*}locations/global`.
+     * listed, specified in the format `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -47,7 +47,7 @@ class ListTlsRoutesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string $parent Required. The project and location from which the TlsRoutes should be
-     *                       listed, specified in the format `projects/&#42;/locations/global`. Please see
+     *                       listed, specified in the format `projects/&#42;/locations/*`. Please see
      *                       {@see NetworkServicesClient::locationName()} for help formatting this field.
      *
      * @return \Google\Cloud\NetworkServices\V1\ListTlsRoutesRequest
@@ -68,7 +68,7 @@ class ListTlsRoutesRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The project and location from which the TlsRoutes should be
-     *           listed, specified in the format `projects/{@*}locations/global`.
+     *           listed, specified in the format `projects/{@*}locations/*`.
      *     @type int $page_size
      *           Maximum number of TlsRoutes to return per call.
      *     @type string $page_token
@@ -88,7 +88,7 @@ class ListTlsRoutesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The project and location from which the TlsRoutes should be
-     * listed, specified in the format `projects/{@*}locations/global`.
+     * listed, specified in the format `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -100,7 +100,7 @@ class ListTlsRoutesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The project and location from which the TlsRoutes should be
-     * listed, specified in the format `projects/{@*}locations/global`.
+     * listed, specified in the format `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

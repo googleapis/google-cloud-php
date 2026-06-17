@@ -59,12 +59,6 @@ use Google\Rpc\Status;
  *
  *                                                                          For more information, see [CEL matcher language
  *                                                                          reference](https://cloud.google.com/service-extensions/docs/cel-matcher-language-reference).
- * @param string $lbEdgeExtensionExtensionChainsExtensionsName              The name for this extension.
- *                                                                          The name is logged as part of the HTTP request logs.
- *                                                                          The name must conform with RFC-1034, is restricted to lower-cased
- *                                                                          letters, numbers and hyphens, and can have a maximum length of 63
- *                                                                          characters. Additionally, the first character must be a letter and the
- *                                                                          last a letter or a number.
  * @param string $lbEdgeExtensionExtensionChainsExtensionsService           The reference to the service that runs the extension.
  *
  *                                                                          To configure a callout extension, `service` must be a fully-qualified
@@ -98,7 +92,6 @@ function create_lb_edge_extension_sample(
     string $lbEdgeExtensionForwardingRulesElement,
     string $lbEdgeExtensionExtensionChainsName,
     string $lbEdgeExtensionExtensionChainsMatchConditionCelExpression,
-    string $lbEdgeExtensionExtensionChainsExtensionsName,
     string $lbEdgeExtensionExtensionChainsExtensionsService,
     int $lbEdgeExtensionLoadBalancingScheme
 ): void {
@@ -110,7 +103,6 @@ function create_lb_edge_extension_sample(
     $lbEdgeExtensionExtensionChainsMatchCondition = (new MatchCondition())
         ->setCelExpression($lbEdgeExtensionExtensionChainsMatchConditionCelExpression);
     $extension = (new Extension())
-        ->setName($lbEdgeExtensionExtensionChainsExtensionsName)
         ->setService($lbEdgeExtensionExtensionChainsExtensionsService);
     $lbEdgeExtensionExtensionChainsExtensions = [$extension,];
     $extensionChain = (new ExtensionChain())
@@ -165,7 +157,6 @@ function callSample(): void
     $lbEdgeExtensionForwardingRulesElement = '[FORWARDING_RULES]';
     $lbEdgeExtensionExtensionChainsName = '[NAME]';
     $lbEdgeExtensionExtensionChainsMatchConditionCelExpression = '[CEL_EXPRESSION]';
-    $lbEdgeExtensionExtensionChainsExtensionsName = '[NAME]';
     $lbEdgeExtensionExtensionChainsExtensionsService = '[SERVICE]';
     $lbEdgeExtensionLoadBalancingScheme = LoadBalancingScheme::LOAD_BALANCING_SCHEME_UNSPECIFIED;
 
@@ -176,7 +167,6 @@ function callSample(): void
         $lbEdgeExtensionForwardingRulesElement,
         $lbEdgeExtensionExtensionChainsName,
         $lbEdgeExtensionExtensionChainsMatchConditionCelExpression,
-        $lbEdgeExtensionExtensionChainsExtensionsName,
         $lbEdgeExtensionExtensionChainsExtensionsService,
         $lbEdgeExtensionLoadBalancingScheme
     );

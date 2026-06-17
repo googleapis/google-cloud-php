@@ -53,20 +53,22 @@ class AuthzExtension extends \Google\Protobuf\Internal\Message
      */
     private $labels;
     /**
-     * Required. All backend services and forwarding rules referenced by this
+     * Optional. All backend services and forwarding rules referenced by this
      * extension must share the same load balancing scheme. Supported values:
-     * `INTERNAL_MANAGED`, `EXTERNAL_MANAGED`. For more information, refer to
+     * `INTERNAL_MANAGED`, `EXTERNAL_MANAGED`. Can be omitted for AuthzExtensions
+     * that do not reference a backend service. For more information, refer to
      * [Backend services
      * overview](https://cloud.google.com/load-balancing/docs/backend-service).
      *
-     * Generated from protobuf field <code>.google.cloud.networkservices.v1.LoadBalancingScheme load_balancing_scheme = 6 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.networkservices.v1.LoadBalancingScheme load_balancing_scheme = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $load_balancing_scheme = 0;
     /**
-     * Required. The `:authority` header in the gRPC request sent from Envoy
-     * to the extension service.
+     * Optional. The `:authority` header in the gRPC request sent from Envoy to
+     * the extension service. It is required when the `service` field points to a
+     * backend service or a wasm plugin.
      *
-     * Generated from protobuf field <code>string authority = 7 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string authority = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $authority = '';
     /**
@@ -128,8 +130,24 @@ class AuthzExtension extends \Google\Protobuf\Internal\Message
      */
     private $forward_headers;
     /**
+     * Optional. List of the Envoy attributes to forward to the extension server.
+     * The attributes provided here are included as part of the
+     * `ProcessingRequest.attributes` field (of type
+     * `map<string, google.protobuf.Struct>`), where the keys are the attribute
+     * names. Refer to the
+     * [documentation](https://cloud.google.com/service-extensions/docs/cel-matcher-language-reference#attributes)
+     * for the names of attributes that can be forwarded. If omitted, no
+     * attributes are sent. Each element is a string indicating the
+     * attribute name.
+     *
+     * Generated from protobuf field <code>repeated string forward_attributes = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $forward_attributes;
+    /**
      * Optional. The format of communication supported by the callout extension.
-     * If not specified, the default value `EXT_PROC_GRPC` is used.
+     * This field is supported only for regional `AuthzExtension` resources. If
+     * not specified, the default value `EXT_PROC_GRPC` is used. Global
+     * `AuthzExtension` resources use the `EXT_PROC_GRPC` wire format.
      *
      * Generated from protobuf field <code>.google.cloud.networkservices.v1.WireFormat wire_format = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -158,14 +176,16 @@ class AuthzExtension extends \Google\Protobuf\Internal\Message
      *           labels](/compute/docs/labeling-resources#requirements) for Google Cloud
      *           resources.
      *     @type int $load_balancing_scheme
-     *           Required. All backend services and forwarding rules referenced by this
+     *           Optional. All backend services and forwarding rules referenced by this
      *           extension must share the same load balancing scheme. Supported values:
-     *           `INTERNAL_MANAGED`, `EXTERNAL_MANAGED`. For more information, refer to
+     *           `INTERNAL_MANAGED`, `EXTERNAL_MANAGED`. Can be omitted for AuthzExtensions
+     *           that do not reference a backend service. For more information, refer to
      *           [Backend services
      *           overview](https://cloud.google.com/load-balancing/docs/backend-service).
      *     @type string $authority
-     *           Required. The `:authority` header in the gRPC request sent from Envoy
-     *           to the extension service.
+     *           Optional. The `:authority` header in the gRPC request sent from Envoy to
+     *           the extension service. It is required when the `service` field points to a
+     *           backend service or a wasm plugin.
      *     @type string $service
      *           Required. The reference to the service that runs the extension.
      *           To configure a callout extension, `service` must be a fully-qualified
@@ -204,9 +224,21 @@ class AuthzExtension extends \Google\Protobuf\Internal\Message
      *           Optional. List of the HTTP headers to forward to the extension
      *           (from the client). If omitted, all headers are sent.
      *           Each element is a string indicating the header name.
+     *     @type string[] $forward_attributes
+     *           Optional. List of the Envoy attributes to forward to the extension server.
+     *           The attributes provided here are included as part of the
+     *           `ProcessingRequest.attributes` field (of type
+     *           `map<string, google.protobuf.Struct>`), where the keys are the attribute
+     *           names. Refer to the
+     *           [documentation](https://cloud.google.com/service-extensions/docs/cel-matcher-language-reference#attributes)
+     *           for the names of attributes that can be forwarded. If omitted, no
+     *           attributes are sent. Each element is a string indicating the
+     *           attribute name.
      *     @type int $wire_format
      *           Optional. The format of communication supported by the callout extension.
-     *           If not specified, the default value `EXT_PROC_GRPC` is used.
+     *           This field is supported only for regional `AuthzExtension` resources. If
+     *           not specified, the default value `EXT_PROC_GRPC` is used. Global
+     *           `AuthzExtension` resources use the `EXT_PROC_GRPC` wire format.
      * }
      */
     public function __construct($data = NULL) {
@@ -377,13 +409,14 @@ class AuthzExtension extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. All backend services and forwarding rules referenced by this
+     * Optional. All backend services and forwarding rules referenced by this
      * extension must share the same load balancing scheme. Supported values:
-     * `INTERNAL_MANAGED`, `EXTERNAL_MANAGED`. For more information, refer to
+     * `INTERNAL_MANAGED`, `EXTERNAL_MANAGED`. Can be omitted for AuthzExtensions
+     * that do not reference a backend service. For more information, refer to
      * [Backend services
      * overview](https://cloud.google.com/load-balancing/docs/backend-service).
      *
-     * Generated from protobuf field <code>.google.cloud.networkservices.v1.LoadBalancingScheme load_balancing_scheme = 6 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.networkservices.v1.LoadBalancingScheme load_balancing_scheme = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getLoadBalancingScheme()
@@ -392,13 +425,14 @@ class AuthzExtension extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. All backend services and forwarding rules referenced by this
+     * Optional. All backend services and forwarding rules referenced by this
      * extension must share the same load balancing scheme. Supported values:
-     * `INTERNAL_MANAGED`, `EXTERNAL_MANAGED`. For more information, refer to
+     * `INTERNAL_MANAGED`, `EXTERNAL_MANAGED`. Can be omitted for AuthzExtensions
+     * that do not reference a backend service. For more information, refer to
      * [Backend services
      * overview](https://cloud.google.com/load-balancing/docs/backend-service).
      *
-     * Generated from protobuf field <code>.google.cloud.networkservices.v1.LoadBalancingScheme load_balancing_scheme = 6 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.networkservices.v1.LoadBalancingScheme load_balancing_scheme = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -411,10 +445,11 @@ class AuthzExtension extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The `:authority` header in the gRPC request sent from Envoy
-     * to the extension service.
+     * Optional. The `:authority` header in the gRPC request sent from Envoy to
+     * the extension service. It is required when the `service` field points to a
+     * backend service or a wasm plugin.
      *
-     * Generated from protobuf field <code>string authority = 7 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string authority = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getAuthority()
@@ -423,10 +458,11 @@ class AuthzExtension extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The `:authority` header in the gRPC request sent from Envoy
-     * to the extension service.
+     * Optional. The `:authority` header in the gRPC request sent from Envoy to
+     * the extension service. It is required when the `service` field points to a
+     * backend service or a wasm plugin.
      *
-     * Generated from protobuf field <code>string authority = 7 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string authority = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -645,8 +681,52 @@ class AuthzExtension extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. List of the Envoy attributes to forward to the extension server.
+     * The attributes provided here are included as part of the
+     * `ProcessingRequest.attributes` field (of type
+     * `map<string, google.protobuf.Struct>`), where the keys are the attribute
+     * names. Refer to the
+     * [documentation](https://cloud.google.com/service-extensions/docs/cel-matcher-language-reference#attributes)
+     * for the names of attributes that can be forwarded. If omitted, no
+     * attributes are sent. Each element is a string indicating the
+     * attribute name.
+     *
+     * Generated from protobuf field <code>repeated string forward_attributes = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return RepeatedField<string>
+     */
+    public function getForwardAttributes()
+    {
+        return $this->forward_attributes;
+    }
+
+    /**
+     * Optional. List of the Envoy attributes to forward to the extension server.
+     * The attributes provided here are included as part of the
+     * `ProcessingRequest.attributes` field (of type
+     * `map<string, google.protobuf.Struct>`), where the keys are the attribute
+     * names. Refer to the
+     * [documentation](https://cloud.google.com/service-extensions/docs/cel-matcher-language-reference#attributes)
+     * for the names of attributes that can be forwarded. If omitted, no
+     * attributes are sent. Each element is a string indicating the
+     * attribute name.
+     *
+     * Generated from protobuf field <code>repeated string forward_attributes = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string[] $var
+     * @return $this
+     */
+    public function setForwardAttributes($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->forward_attributes = $arr;
+
+        return $this;
+    }
+
+    /**
      * Optional. The format of communication supported by the callout extension.
-     * If not specified, the default value `EXT_PROC_GRPC` is used.
+     * This field is supported only for regional `AuthzExtension` resources. If
+     * not specified, the default value `EXT_PROC_GRPC` is used. Global
+     * `AuthzExtension` resources use the `EXT_PROC_GRPC` wire format.
      *
      * Generated from protobuf field <code>.google.cloud.networkservices.v1.WireFormat wire_format = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -658,7 +738,9 @@ class AuthzExtension extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The format of communication supported by the callout extension.
-     * If not specified, the default value `EXT_PROC_GRPC` is used.
+     * This field is supported only for regional `AuthzExtension` resources. If
+     * not specified, the default value `EXT_PROC_GRPC` is used. Global
+     * `AuthzExtension` resources use the `EXT_PROC_GRPC` wire format.
      *
      * Generated from protobuf field <code>.google.cloud.networkservices.v1.WireFormat wire_format = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var

@@ -18,7 +18,7 @@
 namespace Google\Cloud\Datastore;
 
 use Google\Cloud\Core\ArrayTrait;
-use Google\Protobuf\Internal\RepeatedField;
+use Google\Protobuf\RepeatedField;
 use InvalidArgumentException;
 use JsonSerializable;
 

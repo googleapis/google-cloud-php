@@ -35,7 +35,7 @@ use Google\Rpc\Status;
  * Creates a new HttpRoute in a given project and location.
  *
  * @param string $formattedParent           The parent resource of the HttpRoute. Must be in the
- *                                          format `projects/&#42;/locations/global`. Please see
+ *                                          format `projects/&#42;/locations/*`. Please see
  *                                          {@see NetworkServicesClient::locationName()} for help formatting this field.
  * @param string $httpRouteId               Short name of the HttpRoute resource to be created.
  * @param string $httpRouteHostnamesElement Hostnames define a set of hosts that should match against the

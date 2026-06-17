@@ -45,8 +45,8 @@ use Google\Cloud\Datastore\V1\RollbackRequest;
 use Google\Cloud\Datastore\V1\RunAggregationQueryRequest;
 use Google\Cloud\Datastore\V1\RunQueryRequest;
 use Google\Cloud\Datastore\V1\TransactionOptions;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\PrintOptions;
+use Google\Protobuf\RepeatedField;
 use Google\Protobuf\Timestamp as ProtobufTimestamp;
 use InvalidArgumentException;
 

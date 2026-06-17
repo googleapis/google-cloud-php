@@ -76,13 +76,21 @@ class Gateway extends \Google\Protobuf\Internal\Message
     /**
      * Required. One or more port numbers (1-65535), on which the Gateway will
      * receive traffic. The proxy binds to the specified ports.
-     * Gateways of type 'SECURE_WEB_GATEWAY' are limited to 1 port.
+     * Gateways of type 'SECURE_WEB_GATEWAY' are limited to 5 ports.
      * Gateways of type 'OPEN_MESH' listen on 0.0.0.0 for IPv4 and :: for IPv6 and
      * support multiple ports.
      *
      * Generated from protobuf field <code>repeated int32 ports = 11 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $ports;
+    /**
+     * Optional. If true, the Gateway will listen on all ports. This is mutually
+     * exclusive with the `ports` field. This field only applies to gateways of
+     * type 'SECURE_WEB_GATEWAY'.
+     *
+     * Generated from protobuf field <code>bool all_ports = 34 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $all_ports = false;
     /**
      * Optional. Scope determines how configuration across multiple Gateway
      * instances are merged. The configuration for multiple Gateway instances with
@@ -162,6 +170,14 @@ class Gateway extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.networkservices.v1.Gateway.RoutingMode routing_mode = 32 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $routing_mode = 0;
+    /**
+     * Optional. If true, the gateway will allow traffic from clients outside of
+     * the region where the gateway is located.
+     * This field is configurable only for gateways of type SECURE_WEB_GATEWAY.
+     *
+     * Generated from protobuf field <code>bool allow_global_access = 33 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $allow_global_access = false;
 
     /**
      * Constructor.
@@ -195,9 +211,13 @@ class Gateway extends \Google\Protobuf\Internal\Message
      *     @type int[] $ports
      *           Required. One or more port numbers (1-65535), on which the Gateway will
      *           receive traffic. The proxy binds to the specified ports.
-     *           Gateways of type 'SECURE_WEB_GATEWAY' are limited to 1 port.
+     *           Gateways of type 'SECURE_WEB_GATEWAY' are limited to 5 ports.
      *           Gateways of type 'OPEN_MESH' listen on 0.0.0.0 for IPv4 and :: for IPv6 and
      *           support multiple ports.
+     *     @type bool $all_ports
+     *           Optional. If true, the Gateway will listen on all ports. This is mutually
+     *           exclusive with the `ports` field. This field only applies to gateways of
+     *           type 'SECURE_WEB_GATEWAY'.
      *     @type string $scope
      *           Optional. Scope determines how configuration across multiple Gateway
      *           instances are merged. The configuration for multiple Gateway instances with
@@ -241,6 +261,10 @@ class Gateway extends \Google\Protobuf\Internal\Message
      *           Optional. The routing mode of the Gateway.
      *           This field is configurable only for gateways of type SECURE_WEB_GATEWAY.
      *           This field is required for gateways of type SECURE_WEB_GATEWAY.
+     *     @type bool $allow_global_access
+     *           Optional. If true, the gateway will allow traffic from clients outside of
+     *           the region where the gateway is located.
+     *           This field is configurable only for gateways of type SECURE_WEB_GATEWAY.
      * }
      */
     public function __construct($data = NULL) {
@@ -493,7 +517,7 @@ class Gateway extends \Google\Protobuf\Internal\Message
     /**
      * Required. One or more port numbers (1-65535), on which the Gateway will
      * receive traffic. The proxy binds to the specified ports.
-     * Gateways of type 'SECURE_WEB_GATEWAY' are limited to 1 port.
+     * Gateways of type 'SECURE_WEB_GATEWAY' are limited to 5 ports.
      * Gateways of type 'OPEN_MESH' listen on 0.0.0.0 for IPv4 and :: for IPv6 and
      * support multiple ports.
      *
@@ -508,7 +532,7 @@ class Gateway extends \Google\Protobuf\Internal\Message
     /**
      * Required. One or more port numbers (1-65535), on which the Gateway will
      * receive traffic. The proxy binds to the specified ports.
-     * Gateways of type 'SECURE_WEB_GATEWAY' are limited to 1 port.
+     * Gateways of type 'SECURE_WEB_GATEWAY' are limited to 5 ports.
      * Gateways of type 'OPEN_MESH' listen on 0.0.0.0 for IPv4 and :: for IPv6 and
      * support multiple ports.
      *
@@ -520,6 +544,36 @@ class Gateway extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::INT32);
         $this->ports = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If true, the Gateway will listen on all ports. This is mutually
+     * exclusive with the `ports` field. This field only applies to gateways of
+     * type 'SECURE_WEB_GATEWAY'.
+     *
+     * Generated from protobuf field <code>bool all_ports = 34 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getAllPorts()
+    {
+        return $this->all_ports;
+    }
+
+    /**
+     * Optional. If true, the Gateway will listen on all ports. This is mutually
+     * exclusive with the `ports` field. This field only applies to gateways of
+     * type 'SECURE_WEB_GATEWAY'.
+     *
+     * Generated from protobuf field <code>bool all_ports = 34 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setAllPorts($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->all_ports = $var;
 
         return $this;
     }
@@ -814,6 +868,36 @@ class Gateway extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\NetworkServices\V1\Gateway\RoutingMode::class);
         $this->routing_mode = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If true, the gateway will allow traffic from clients outside of
+     * the region where the gateway is located.
+     * This field is configurable only for gateways of type SECURE_WEB_GATEWAY.
+     *
+     * Generated from protobuf field <code>bool allow_global_access = 33 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getAllowGlobalAccess()
+    {
+        return $this->allow_global_access;
+    }
+
+    /**
+     * Optional. If true, the gateway will allow traffic from clients outside of
+     * the region where the gateway is located.
+     * This field is configurable only for gateways of type SECURE_WEB_GATEWAY.
+     *
+     * Generated from protobuf field <code>bool allow_global_access = 33 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setAllowGlobalAccess($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->allow_global_access = $var;
 
         return $this;
     }

@@ -33,7 +33,7 @@ use Google\Rpc\Status;
  * Deletes a single TlsRoute.
  *
  * @param string $formattedName A name of the TlsRoute to delete. Must be in the format
- *                              `projects/&#42;/locations/global/tlsRoutes/*`. Please see
+ *                              `projects/&#42;/locations/&#42;/tlsRoutes/*`. Please see
  *                              {@see NetworkServicesClient::tlsRouteName()} for help formatting this field.
  */
 function delete_tls_route_sample(string $formattedName): void

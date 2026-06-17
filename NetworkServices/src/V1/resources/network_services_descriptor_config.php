@@ -23,6 +23,25 @@
 return [
     'interfaces' => [
         'google.cloud.networkservices.v1.NetworkServices' => [
+            'CreateAgentGateway' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\NetworkServices\V1\AgentGateway',
+                    'metadataReturnType' => '\Google\Cloud\NetworkServices\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateEndpointPolicy' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\NetworkServices\V1\EndpointPolicy',
@@ -228,6 +247,25 @@ return [
                         'keyName' => 'parent',
                         'fieldAccessors' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteAgentGateway' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
+                    'metadataReturnType' => '\Google\Cloud\NetworkServices\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
                         ],
                     ],
                 ],
@@ -441,6 +479,26 @@ return [
                     ],
                 ],
             ],
+            'UpdateAgentGateway' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\NetworkServices\V1\AgentGateway',
+                    'metadataReturnType' => '\Google\Cloud\NetworkServices\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'agent_gateway.name',
+                        'fieldAccessors' => [
+                            'getAgentGateway',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateEndpointPolicy' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\NetworkServices\V1\EndpointPolicy',
@@ -641,6 +699,18 @@ return [
                     ],
                 ],
             ],
+            'GetAgentGateway' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\NetworkServices\V1\AgentGateway',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetEndpointPolicy' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\NetworkServices\V1\EndpointPolicy',
@@ -793,6 +863,26 @@ return [
                         'keyName' => 'name',
                         'fieldAccessors' => [
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListAgentGateways' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getAgentGateways',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\NetworkServices\V1\ListAgentGatewaysResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
                         ],
                     ],
                 ],
@@ -1132,6 +1222,7 @@ return [
             ],
             'templateMap' => [
                 'address' => 'projects/{project}/regions/{region}/addresses/{address}',
+                'agentGateway' => 'projects/{project}/locations/{location}/agentGateways/{agent_gateway}',
                 'authorizationPolicy' => 'projects/{project}/locations/{location}/authorizationPolicies/{authorization_policy}',
                 'backendService' => 'projects/{project}/locations/{location}/backendServices/{backend_service}',
                 'certificate' => 'projects/{project}/locations/{location}/certificates/{certificate}',
@@ -1151,6 +1242,7 @@ return [
                 'serviceBinding' => 'projects/{project}/locations/{location}/serviceBindings/{service_binding}',
                 'serviceLbPolicy' => 'projects/{project}/locations/{location}/serviceLbPolicies/{service_lb_policy}',
                 'subnetwork' => 'projects/{project}/regions/{region}/subnetworks/{subnetwork}',
+                'targetTcpProxy' => 'projects/{project}/locations/{location}/targetTcpProxies/{target_tcp_proxy}',
                 'tcpRoute' => 'projects/{project}/locations/{location}/tcpRoutes/{tcp_route}',
                 'tlsRoute' => 'projects/{project}/locations/{location}/tlsRoutes/{tls_route}',
                 'wasmPlugin' => 'projects/{project}/locations/{location}/wasmPlugins/{wasm_plugin}',

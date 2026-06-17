@@ -27,6 +27,7 @@ use Google\Ads\DataManager\V1\Client\PartnerLinkServiceClient;
 use Google\Ads\DataManager\V1\CreatePartnerLinkRequest;
 use Google\Ads\DataManager\V1\PartnerLink;
 use Google\Ads\DataManager\V1\ProductAccount;
+use Google\Ads\DataManager\V1\ProductAccount\AccountType;
 use Google\ApiCore\ApiException;
 
 /**
@@ -42,25 +43,35 @@ use Google\ApiCore\ApiException;
  * account of the request. Format:
  * `accountTypes/{loginAccountType}/accounts/{loginAccountId}`
  *
- * @param string $formattedParent                    The parent, which owns this collection of partner links.
- *                                                   Format: accountTypes/{account_type}/accounts/{account}
- *                                                   Please see {@see PartnerLinkServiceClient::accountName()} for help formatting this field.
- * @param string $partnerLinkOwningAccountAccountId  The ID of the account. For example, your Google Ads account ID.
- * @param string $partnerLinkPartnerAccountAccountId The ID of the account. For example, your Google Ads account ID.
+ * @param string $formattedParent                      The parent, which owns this collection of partner links.
+ *                                                     Format: accountTypes/{account_type}/accounts/{account}
+ *                                                     Please see {@see PartnerLinkServiceClient::accountName()} for help formatting this field.
+ * @param string $partnerLinkOwningAccountAccountId    The ID of the account. For example, your Google Ads account ID.
+ * @param int    $partnerLinkOwningAccountAccountType  The type of the account. For example, `GOOGLE_ADS`.
+ *                                                     Either `account_type` or the deprecated `product` is required.
+ *                                                     If both are set, the values must match.
+ * @param string $partnerLinkPartnerAccountAccountId   The ID of the account. For example, your Google Ads account ID.
+ * @param int    $partnerLinkPartnerAccountAccountType The type of the account. For example, `GOOGLE_ADS`.
+ *                                                     Either `account_type` or the deprecated `product` is required.
+ *                                                     If both are set, the values must match.
  */
 function create_partner_link_sample(
     string $formattedParent,
     string $partnerLinkOwningAccountAccountId,
-    string $partnerLinkPartnerAccountAccountId
+    int $partnerLinkOwningAccountAccountType,
+    string $partnerLinkPartnerAccountAccountId,
+    int $partnerLinkPartnerAccountAccountType
 ): void {
     // Create a client.
     $partnerLinkServiceClient = new PartnerLinkServiceClient();
 
     // Prepare the request message.
     $partnerLinkOwningAccount = (new ProductAccount())
-        ->setAccountId($partnerLinkOwningAccountAccountId);
+        ->setAccountId($partnerLinkOwningAccountAccountId)
+        ->setAccountType($partnerLinkOwningAccountAccountType);
     $partnerLinkPartnerAccount = (new ProductAccount())
-        ->setAccountId($partnerLinkPartnerAccountAccountId);
+        ->setAccountId($partnerLinkPartnerAccountAccountId)
+        ->setAccountType($partnerLinkPartnerAccountAccountType);
     $partnerLink = (new PartnerLink())
         ->setOwningAccount($partnerLinkOwningAccount)
         ->setPartnerAccount($partnerLinkPartnerAccount);
@@ -91,12 +102,16 @@ function callSample(): void
 {
     $formattedParent = PartnerLinkServiceClient::accountName('[ACCOUNT_TYPE]', '[ACCOUNT]');
     $partnerLinkOwningAccountAccountId = '[ACCOUNT_ID]';
+    $partnerLinkOwningAccountAccountType = AccountType::ACCOUNT_TYPE_UNSPECIFIED;
     $partnerLinkPartnerAccountAccountId = '[ACCOUNT_ID]';
+    $partnerLinkPartnerAccountAccountType = AccountType::ACCOUNT_TYPE_UNSPECIFIED;
 
     create_partner_link_sample(
         $formattedParent,
         $partnerLinkOwningAccountAccountId,
-        $partnerLinkPartnerAccountAccountId
+        $partnerLinkOwningAccountAccountType,
+        $partnerLinkPartnerAccountAccountId,
+        $partnerLinkPartnerAccountAccountType
     );
 }
 // [END datamanager_v1_generated_PartnerLinkService_CreatePartnerLink_sync]

@@ -17,7 +17,7 @@ class CreateTcpRouteRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The parent resource of the TcpRoute. Must be in the
-     * format `projects/{@*}locations/global`.
+     * format `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -37,7 +37,7 @@ class CreateTcpRouteRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                                    $parent     Required. The parent resource of the TcpRoute. Must be in the
-     *                                                              format `projects/&#42;/locations/global`. Please see
+     *                                                              format `projects/&#42;/locations/*`. Please see
      *                                                              {@see NetworkServicesClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\NetworkServices\V1\TcpRoute $tcpRoute   Required. TcpRoute resource to be created.
      * @param string                                    $tcpRouteId Required. Short name of the TcpRoute resource to be created.
@@ -62,7 +62,7 @@ class CreateTcpRouteRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The parent resource of the TcpRoute. Must be in the
-     *           format `projects/{@*}locations/global`.
+     *           format `projects/{@*}locations/*`.
      *     @type string $tcp_route_id
      *           Required. Short name of the TcpRoute resource to be created.
      *     @type \Google\Cloud\NetworkServices\V1\TcpRoute $tcp_route
@@ -76,7 +76,7 @@ class CreateTcpRouteRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent resource of the TcpRoute. Must be in the
-     * format `projects/{@*}locations/global`.
+     * format `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -88,7 +88,7 @@ class CreateTcpRouteRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent resource of the TcpRoute. Must be in the
-     * format `projects/{@*}locations/global`.
+     * format `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

@@ -29,6 +29,7 @@ use Google\Ads\DataManager\V1\Destination;
 use Google\Ads\DataManager\V1\IngestAudienceMembersRequest;
 use Google\Ads\DataManager\V1\IngestAudienceMembersResponse;
 use Google\Ads\DataManager\V1\ProductAccount;
+use Google\Ads\DataManager\V1\ProductAccount\AccountType;
 use Google\ApiCore\ApiException;
 
 /**
@@ -36,13 +37,17 @@ use Google\ApiCore\ApiException;
  * [AudienceMember][google.ads.datamanager.v1.AudienceMember] resources to the
  * provided [Destination][google.ads.datamanager.v1.Destination].
  *
- * @param string $destinationsOperatingAccountAccountId The ID of the account. For example, your Google Ads account ID.
- * @param string $destinationsProductDestinationId      The object within the product account to ingest into. For
- *                                                      example, a Google Ads audience ID, a Display & Video 360 audience ID or a
- *                                                      Google Ads conversion action ID.
+ * @param string $destinationsOperatingAccountAccountId   The ID of the account. For example, your Google Ads account ID.
+ * @param int    $destinationsOperatingAccountAccountType The type of the account. For example, `GOOGLE_ADS`.
+ *                                                        Either `account_type` or the deprecated `product` is required.
+ *                                                        If both are set, the values must match.
+ * @param string $destinationsProductDestinationId        The object within the product account to ingest into. For
+ *                                                        example, a Google Ads audience ID, a Display & Video 360 audience ID or a
+ *                                                        Google Ads conversion action ID.
  */
 function ingest_audience_members_sample(
     string $destinationsOperatingAccountAccountId,
+    int $destinationsOperatingAccountAccountType,
     string $destinationsProductDestinationId
 ): void {
     // Create a client.
@@ -50,7 +55,8 @@ function ingest_audience_members_sample(
 
     // Prepare the request message.
     $destinationsOperatingAccount = (new ProductAccount())
-        ->setAccountId($destinationsOperatingAccountAccountId);
+        ->setAccountId($destinationsOperatingAccountAccountId)
+        ->setAccountType($destinationsOperatingAccountAccountType);
     $destination = (new Destination())
         ->setOperatingAccount($destinationsOperatingAccount)
         ->setProductDestinationId($destinationsProductDestinationId);
@@ -82,10 +88,12 @@ function ingest_audience_members_sample(
 function callSample(): void
 {
     $destinationsOperatingAccountAccountId = '[ACCOUNT_ID]';
+    $destinationsOperatingAccountAccountType = AccountType::ACCOUNT_TYPE_UNSPECIFIED;
     $destinationsProductDestinationId = '[PRODUCT_DESTINATION_ID]';
 
     ingest_audience_members_sample(
         $destinationsOperatingAccountAccountId,
+        $destinationsOperatingAccountAccountType,
         $destinationsProductDestinationId
     );
 }

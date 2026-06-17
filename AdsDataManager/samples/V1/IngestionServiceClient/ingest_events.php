@@ -29,6 +29,7 @@ use Google\Ads\DataManager\V1\Event;
 use Google\Ads\DataManager\V1\IngestEventsRequest;
 use Google\Ads\DataManager\V1\IngestEventsResponse;
 use Google\Ads\DataManager\V1\ProductAccount;
+use Google\Ads\DataManager\V1\ProductAccount\AccountType;
 use Google\ApiCore\ApiException;
 use Google\Protobuf\Timestamp;
 
@@ -37,13 +38,17 @@ use Google\Protobuf\Timestamp;
  * [Event][google.ads.datamanager.v1.Event] resources from
  * the provided [Destination][google.ads.datamanager.v1.Destination].
  *
- * @param string $destinationsOperatingAccountAccountId The ID of the account. For example, your Google Ads account ID.
- * @param string $destinationsProductDestinationId      The object within the product account to ingest into. For
- *                                                      example, a Google Ads audience ID, a Display & Video 360 audience ID or a
- *                                                      Google Ads conversion action ID.
+ * @param string $destinationsOperatingAccountAccountId   The ID of the account. For example, your Google Ads account ID.
+ * @param int    $destinationsOperatingAccountAccountType The type of the account. For example, `GOOGLE_ADS`.
+ *                                                        Either `account_type` or the deprecated `product` is required.
+ *                                                        If both are set, the values must match.
+ * @param string $destinationsProductDestinationId        The object within the product account to ingest into. For
+ *                                                        example, a Google Ads audience ID, a Display & Video 360 audience ID or a
+ *                                                        Google Ads conversion action ID.
  */
 function ingest_events_sample(
     string $destinationsOperatingAccountAccountId,
+    int $destinationsOperatingAccountAccountType,
     string $destinationsProductDestinationId
 ): void {
     // Create a client.
@@ -51,7 +56,8 @@ function ingest_events_sample(
 
     // Prepare the request message.
     $destinationsOperatingAccount = (new ProductAccount())
-        ->setAccountId($destinationsOperatingAccountAccountId);
+        ->setAccountId($destinationsOperatingAccountAccountId)
+        ->setAccountType($destinationsOperatingAccountAccountType);
     $destination = (new Destination())
         ->setOperatingAccount($destinationsOperatingAccount)
         ->setProductDestinationId($destinationsProductDestinationId);
@@ -86,8 +92,13 @@ function ingest_events_sample(
 function callSample(): void
 {
     $destinationsOperatingAccountAccountId = '[ACCOUNT_ID]';
+    $destinationsOperatingAccountAccountType = AccountType::ACCOUNT_TYPE_UNSPECIFIED;
     $destinationsProductDestinationId = '[PRODUCT_DESTINATION_ID]';
 
-    ingest_events_sample($destinationsOperatingAccountAccountId, $destinationsProductDestinationId);
+    ingest_events_sample(
+        $destinationsOperatingAccountAccountId,
+        $destinationsOperatingAccountAccountType,
+        $destinationsProductDestinationId
+    );
 }
 // [END datamanager_v1_generated_IngestionService_IngestEvents_sync]

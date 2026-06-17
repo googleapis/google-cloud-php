@@ -60,12 +60,6 @@ use Google\Rpc\Status;
  *
  *                                                                           For more information, see [CEL matcher language
  *                                                                           reference](https://cloud.google.com/service-extensions/docs/cel-matcher-language-reference).
- * @param string $lbRouteExtensionExtensionChainsExtensionsName              The name for this extension.
- *                                                                           The name is logged as part of the HTTP request logs.
- *                                                                           The name must conform with RFC-1034, is restricted to lower-cased
- *                                                                           letters, numbers and hyphens, and can have a maximum length of 63
- *                                                                           characters. Additionally, the first character must be a letter and the
- *                                                                           last a letter or a number.
  * @param string $lbRouteExtensionExtensionChainsExtensionsService           The reference to the service that runs the extension.
  *
  *                                                                           To configure a callout extension, `service` must be a fully-qualified
@@ -101,7 +95,6 @@ function create_lb_route_extension_sample(
     string $lbRouteExtensionForwardingRulesElement,
     string $lbRouteExtensionExtensionChainsName,
     string $lbRouteExtensionExtensionChainsMatchConditionCelExpression,
-    string $lbRouteExtensionExtensionChainsExtensionsName,
     string $lbRouteExtensionExtensionChainsExtensionsService,
     int $lbRouteExtensionLoadBalancingScheme
 ): void {
@@ -113,7 +106,6 @@ function create_lb_route_extension_sample(
     $lbRouteExtensionExtensionChainsMatchCondition = (new MatchCondition())
         ->setCelExpression($lbRouteExtensionExtensionChainsMatchConditionCelExpression);
     $extension = (new Extension())
-        ->setName($lbRouteExtensionExtensionChainsExtensionsName)
         ->setService($lbRouteExtensionExtensionChainsExtensionsService);
     $lbRouteExtensionExtensionChainsExtensions = [$extension,];
     $extensionChain = (new ExtensionChain())
@@ -168,7 +160,6 @@ function callSample(): void
     $lbRouteExtensionForwardingRulesElement = '[FORWARDING_RULES]';
     $lbRouteExtensionExtensionChainsName = '[NAME]';
     $lbRouteExtensionExtensionChainsMatchConditionCelExpression = '[CEL_EXPRESSION]';
-    $lbRouteExtensionExtensionChainsExtensionsName = '[NAME]';
     $lbRouteExtensionExtensionChainsExtensionsService = '[SERVICE]';
     $lbRouteExtensionLoadBalancingScheme = LoadBalancingScheme::LOAD_BALANCING_SCHEME_UNSPECIFIED;
 
@@ -179,7 +170,6 @@ function callSample(): void
         $lbRouteExtensionForwardingRulesElement,
         $lbRouteExtensionExtensionChainsName,
         $lbRouteExtensionExtensionChainsMatchConditionCelExpression,
-        $lbRouteExtensionExtensionChainsExtensionsName,
         $lbRouteExtensionExtensionChainsExtensionsService,
         $lbRouteExtensionLoadBalancingScheme
     );

@@ -23,6 +23,11 @@
 return [
     'interfaces' => [
         'google.ads.datamanager.v1.IngestionService' => [
+            'IngestAdEvents' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/adEvents:ingest',
+                'body' => '*',
+            ],
             'IngestAudienceMembers' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/audienceMembers:ingest',
