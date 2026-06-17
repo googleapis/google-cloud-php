@@ -1,4 +1,4 @@
 releaseType: php-yoshi
-bumpMinorPreMajor: true
+manifest: true
 handleGHRelease: true
 primaryBranch: main
