@@ -35,7 +35,6 @@ namespace Google\ApiCore\Tests\Unit\Middleware;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\ApiStatus;
 use Google\ApiCore\Call;
-use Google\ApiCore\Middleware\MiddlewareInterface;
 use Google\ApiCore\Middleware\RetryMiddleware;
 use Google\ApiCore\RetrySettings;
 use Google\Rpc\Code;
@@ -226,8 +225,8 @@ class RetryMiddlewareTest extends TestCase
             $callCount += 1;
             $observedTimeouts[] = $options['timeoutMillis'];
             return $promise = new Promise(function () use (&$promise, $callCount) {
-                // each call needs to take at least 1 millisecond otherwise the rounded timeout will not decrease
-                // with each step of the test.
+                // each call needs to take at least 1 millisecond otherwise the rounded timeout will
+                // not decrease with each step of the test.
                 usleep(1000);
                 if ($callCount < 3) {
                     throw new ApiException('Cancelled!', Code::CANCELLED, ApiStatus::CANCELLED);
@@ -246,7 +245,7 @@ class RetryMiddlewareTest extends TestCase
         $this->assertCount(3, $observedTimeouts);
         $this->assertEquals($observedTimeouts[0], $timeout);
         for ($i = 1; $i < count($observedTimeouts); $i++) {
-            $this->assertTrue($observedTimeouts[$i - 1] > $observedTimeouts[$i]);
+            $this->assertLessThan($observedTimeouts[$i - 1], $observedTimeouts[$i]);
         }
     }
 
@@ -341,7 +340,7 @@ class RetryMiddlewareTest extends TestCase
                 'retriesEnabled' => true,
                 'totalTimeoutMillis' => 1,
                 'retryFunction' => function ($ex, $options) {
-                    usleep(900);
+                    usleep(500);
                     return true;
                 }
             ]);
