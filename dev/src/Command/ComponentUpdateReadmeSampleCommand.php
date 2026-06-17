@@ -45,8 +45,19 @@ class ComponentUpdateReadmeSampleCommand extends Command
     {
         $this->setName('component:update:readme-sample')
             ->setDescription('Add a sample to a component')
-            ->addOption('component', 'c', InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY, 'Add to the readme of the specified component', [])
-            ->addOption('update', '', InputOption::VALUE_NONE, 'updates the sample in the readme if it exists');
+            ->addOption(
+                'component',
+                'c',
+                InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY,
+                'Add to the readme of the specified component',
+                []
+            )
+            ->addOption(
+                'force',
+                '',
+                InputOption::VALUE_NONE,
+                'updates the sample in the readme if it exists'
+            );
         ;
     }
 
@@ -76,7 +87,7 @@ class ComponentUpdateReadmeSampleCommand extends Command
             $sample = "```php\n" . $sample . "\n```";
             if (preg_match('/### Sample\n\n(```(.|\n)*```)/', $readme, $matches)) {
                 $output->writeln('Sample already exists in <info>' . $component->getName() . '</> README.md');
-                if (!$input->getOption('update')) {
+                if (!$input->getOption('force')) {
                     continue;
                 }
                 if ($matches[1] === $sample) {
