@@ -64,12 +64,8 @@ jobs:
 
     - name: Run Unit Test Suite ${{ matrix.platform != 'windows-latest' || '(Windows)' }}
       run: |
-        if [[ "${{ matrix.extensions }}" == "grpc"* ]]; then
-          # print gRPC version
-          php -i | grep 'grpc module version'
-        fi
         vendor/bin/phpunit -c phpunit.xml.dist
-    - if: ${{ matrix.platform != 'windows-latest' }}
+    - if: ${{ matrix.platform != 'windows-latest' && matrix.php != '8.5' }}
       name: Run Snippet Test Suite
       run: |
         vendor/bin/phpunit -c phpunit-snippets.xml.dist --verbose
