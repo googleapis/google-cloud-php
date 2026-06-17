@@ -1,0 +1,63 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.beyondcorp.clientgateways.v1",
+    "libraryPackage": "Google\\Cloud\\BeyondCorp\\ClientGateways\\V1",
+    "services": {
+        "ClientGatewaysService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ClientGatewaysServiceGapicClient",
+                    "rpcs": {
+                        "CreateClientGateway": {
+                            "methods": [
+                                "createClientGateway"
+                            ]
+                        },
+                        "DeleteClientGateway": {
+                            "methods": [
+                                "deleteClientGateway"
+                            ]
+                        },
+                        "GetClientGateway": {
+                            "methods": [
+                                "getClientGateway"
+                            ]
+                        },
+                        "ListClientGateways": {
+                            "methods": [
+                                "listClientGateways"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
