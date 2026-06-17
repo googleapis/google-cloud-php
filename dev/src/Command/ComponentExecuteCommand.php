@@ -59,7 +59,13 @@ Execute a PHP file:
 
 EOF)
             ->addArgument('code', InputArgument::REQUIRED, 'Path to a file or PHP code to execute')
-            ->addOption('component', 'c', InputOption::VALUE_REQUIRED, 'If specified, display repo info for this component only', '')
+            ->addOption(
+                'component',
+                'c',
+                InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY,
+                'If specified, execute code for this component only',
+                []
+            )
             ->addOption('token', 't', InputOption::VALUE_REQUIRED, 'Github token to use for authentication', '')
             ->addOption('packagist-token', 'p', InputOption::VALUE_REQUIRED, 'Packagist token for the webhook')
         ;
@@ -72,9 +78,7 @@ EOF)
         $github = new GitHub(new RunShell(), $http, $input->getOption('token'), $output);
         $packagist = new Packagist($http, self::PACKAGIST_USERNAME, $input->getOption('packagist-token') ?? '');
 
-        $componentName = $input->getOption('component');
-        $components = $componentName ? [new Component($componentName)] : Component::getComponents();
-
+        $components = Component::getComponents($input->getOption('component'));
         $code = $input->getArgument('code');
         if (file_exists($code)) {
             $executeFn = require $code;

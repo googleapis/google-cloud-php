@@ -1,8 +1,12 @@
 # Google API Core for PHP
 
-![Build Status](https://github.com/googleapis/gax-php/actions/workflows/tests.yml/badge.svg)
+[![Latest Stable Version](https://poser.pugx.org/google/gax/v/stable)](https://packagist.org/packages/google/gax) [![Packagist](https://img.shields.io/packagist/dm/google/gax.svg)](https://packagist.org/packages/google/gax)
 
--   [Documentation](https://cloud.google.com/php/docs/reference/gax/latest)
+* [API documentation](https://cloud.google.com/php/docs/reference/gax/latest)
+
+**NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any
+support requests, bug reports, or development contributions should be directed to
+that project.
 
 Google API Core for PHP (gax-php) is a set of modules which aids the development
 of APIs for clients based on [gRPC][] and Google API conventions.
