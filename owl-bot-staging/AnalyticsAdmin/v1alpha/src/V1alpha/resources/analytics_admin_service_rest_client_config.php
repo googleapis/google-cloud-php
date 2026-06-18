@@ -1862,6 +1862,19 @@ return [
                     ],
                 ],
             ],
+            'UpdateReportingIdentitySettings' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1alpha/{reporting_identity_settings.name=properties/*/reportingIdentitySettings}',
+                'body' => 'reporting_identity_settings',
+                'placeholders' => [
+                    'reporting_identity_settings.name' => [
+                        'getters' => [
+                            'getReportingIdentitySettings',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateSKAdNetworkConversionValueSchema' => [
                 'method' => 'patch',
                 'uriTemplate' => '/v1alpha/{skadnetwork_conversion_value_schema.name=properties/*/dataStreams/*/sKAdNetworkConversionValueSchema/*}',

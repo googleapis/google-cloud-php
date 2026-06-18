@@ -2035,6 +2035,19 @@ return [
                     ],
                 ],
             ],
+            'UpdateReportingIdentitySettings' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Analytics\Admin\V1alpha\ReportingIdentitySettings',
+                'headerParams' => [
+                    [
+                        'keyName' => 'reporting_identity_settings.name',
+                        'fieldAccessors' => [
+                            'getReportingIdentitySettings',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateSKAdNetworkConversionValueSchema' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Analytics\Admin\V1alpha\SKAdNetworkConversionValueSchema',
