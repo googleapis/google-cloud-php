@@ -16,21 +16,21 @@ use Google\Protobuf\RepeatedField;
 class ListAccountsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The maximum number of resources to return. The service may return
+     * Optional. The maximum number of resources to return. The service may return
      * fewer than this value, even if there are additional pages.
      * If unspecified, at most 50 resources will be returned.
      * The maximum value is 200; (higher values will be coerced to the maximum)
      *
-     * Generated from protobuf field <code>int32 page_size = 1;</code>
+     * Generated from protobuf field <code>int32 page_size = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $page_size = 0;
     /**
-     * A page token, received from a previous `ListAccounts` call.
+     * Optional. A page token, received from a previous `ListAccounts` call.
      * Provide this to retrieve the subsequent page.
      * When paginating, all other parameters provided to `ListAccounts` must
      * match the call that provided the page token.
      *
-     * Generated from protobuf field <code>string page_token = 2;</code>
+     * Generated from protobuf field <code>string page_token = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $page_token = '';
     /**
@@ -49,12 +49,12 @@ class ListAccountsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $page_size
-     *           The maximum number of resources to return. The service may return
+     *           Optional. The maximum number of resources to return. The service may return
      *           fewer than this value, even if there are additional pages.
      *           If unspecified, at most 50 resources will be returned.
      *           The maximum value is 200; (higher values will be coerced to the maximum)
      *     @type string $page_token
-     *           A page token, received from a previous `ListAccounts` call.
+     *           Optional. A page token, received from a previous `ListAccounts` call.
      *           Provide this to retrieve the subsequent page.
      *           When paginating, all other parameters provided to `ListAccounts` must
      *           match the call that provided the page token.
@@ -70,12 +70,12 @@ class ListAccountsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of resources to return. The service may return
+     * Optional. The maximum number of resources to return. The service may return
      * fewer than this value, even if there are additional pages.
      * If unspecified, at most 50 resources will be returned.
      * The maximum value is 200; (higher values will be coerced to the maximum)
      *
-     * Generated from protobuf field <code>int32 page_size = 1;</code>
+     * Generated from protobuf field <code>int32 page_size = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getPageSize()
@@ -84,12 +84,12 @@ class ListAccountsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of resources to return. The service may return
+     * Optional. The maximum number of resources to return. The service may return
      * fewer than this value, even if there are additional pages.
      * If unspecified, at most 50 resources will be returned.
      * The maximum value is 200; (higher values will be coerced to the maximum)
      *
-     * Generated from protobuf field <code>int32 page_size = 1;</code>
+     * Generated from protobuf field <code>int32 page_size = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -102,12 +102,12 @@ class ListAccountsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A page token, received from a previous `ListAccounts` call.
+     * Optional. A page token, received from a previous `ListAccounts` call.
      * Provide this to retrieve the subsequent page.
      * When paginating, all other parameters provided to `ListAccounts` must
      * match the call that provided the page token.
      *
-     * Generated from protobuf field <code>string page_token = 2;</code>
+     * Generated from protobuf field <code>string page_token = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getPageToken()
@@ -116,12 +116,12 @@ class ListAccountsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A page token, received from a previous `ListAccounts` call.
+     * Optional. A page token, received from a previous `ListAccounts` call.
      * Provide this to retrieve the subsequent page.
      * When paginating, all other parameters provided to `ListAccounts` must
      * match the call that provided the page token.
      *
-     * Generated from protobuf field <code>string page_token = 2;</code>
+     * Generated from protobuf field <code>string page_token = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
