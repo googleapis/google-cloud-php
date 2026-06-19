@@ -107,6 +107,13 @@ class State
      */
     const START_FROM_CLOUD_RUN_REVISION = 26;
     /**
+     * Initial state: packet originating from a Cloud Run Job.
+     * A CloudRunJobInfo is populated with starting Job information.
+     *
+     * Generated from protobuf enum <code>START_FROM_CLOUD_RUN_JOB = 50;</code>
+     */
+    const START_FROM_CLOUD_RUN_JOB = 50;
+    /**
      * Initial state: packet originating from a Storage Bucket. Used only for
      * return traces.
      * The storage_bucket information is populated.
@@ -336,6 +343,7 @@ class State
         self::START_FROM_CLOUD_FUNCTION => 'START_FROM_CLOUD_FUNCTION',
         self::START_FROM_APP_ENGINE_VERSION => 'START_FROM_APP_ENGINE_VERSION',
         self::START_FROM_CLOUD_RUN_REVISION => 'START_FROM_CLOUD_RUN_REVISION',
+        self::START_FROM_CLOUD_RUN_JOB => 'START_FROM_CLOUD_RUN_JOB',
         self::START_FROM_STORAGE_BUCKET => 'START_FROM_STORAGE_BUCKET',
         self::START_FROM_PSC_PUBLISHED_SERVICE => 'START_FROM_PSC_PUBLISHED_SERVICE',
         self::START_FROM_SERVERLESS_NEG => 'START_FROM_SERVERLESS_NEG',
