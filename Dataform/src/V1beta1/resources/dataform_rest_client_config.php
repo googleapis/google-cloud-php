@@ -189,6 +189,18 @@ return [
                     ],
                 ],
             ],
+            'DeleteFolderTree' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/folders/*}:deleteTree',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteReleaseConfig' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/repositories/*/releaseConfigs/*}',
@@ -211,9 +223,33 @@ return [
                     ],
                 ],
             ],
+            'DeleteRepositoryLongRunning' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/repositories/*}:deleteLongRunning',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteTeamFolder' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/teamFolders/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteTeamFolderTree' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/teamFolders/*}:deleteTree',
+                'body' => '*',
                 'placeholders' => [
                     'name' => [
                         'getters' => [

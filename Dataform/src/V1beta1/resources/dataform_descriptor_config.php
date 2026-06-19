@@ -23,6 +23,63 @@
 return [
     'interfaces' => [
         'google.cloud.dataform.v1beta1.Dataform' => [
+            'DeleteFolderTree' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
+                    'metadataReturnType' => '\Google\Cloud\Dataform\V1beta1\DeleteFolderTreeMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteRepositoryLongRunning' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Dataform\V1beta1\DeleteRepositoryLongRunningResponse',
+                    'metadataReturnType' => '\Google\Cloud\Dataform\V1beta1\DeleteRepositoryLongRunningMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteTeamFolderTree' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
+                    'metadataReturnType' => '\Google\Cloud\Dataform\V1beta1\DeleteFolderTreeMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'MoveFolder' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Protobuf\GPBEmpty',
@@ -1123,6 +1180,7 @@ return [
                 'cryptoKey' => 'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}',
                 'cryptoKeyVersion' => 'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}',
                 'folder' => 'projects/{project}/locations/{location}/folders/{folder}',
+                'gitRepositoryLink' => 'projects/{project}/locations/{location}/connections/{connection}/gitRepositoryLinks/{git_repository_link}',
                 'location' => 'projects/{project}/locations/{location}',
                 'notebookRuntimeTemplate' => 'projects/{project}/locations/{location}/notebookRuntimeTemplates/{notebook_runtime_template}',
                 'releaseConfig' => 'projects/{project}/locations/{location}/repositories/{repository}/releaseConfigs/{release_config}',

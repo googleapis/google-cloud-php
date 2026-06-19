@@ -56,9 +56,13 @@ use Google\Cloud\Dataform\V1beta1\CreateWorkflowConfigRequest;
 use Google\Cloud\Dataform\V1beta1\CreateWorkflowInvocationRequest;
 use Google\Cloud\Dataform\V1beta1\CreateWorkspaceRequest;
 use Google\Cloud\Dataform\V1beta1\DeleteFolderRequest;
+use Google\Cloud\Dataform\V1beta1\DeleteFolderTreeRequest;
 use Google\Cloud\Dataform\V1beta1\DeleteReleaseConfigRequest;
+use Google\Cloud\Dataform\V1beta1\DeleteRepositoryLongRunningRequest;
+use Google\Cloud\Dataform\V1beta1\DeleteRepositoryLongRunningResponse;
 use Google\Cloud\Dataform\V1beta1\DeleteRepositoryRequest;
 use Google\Cloud\Dataform\V1beta1\DeleteTeamFolderRequest;
+use Google\Cloud\Dataform\V1beta1\DeleteTeamFolderTreeRequest;
 use Google\Cloud\Dataform\V1beta1\DeleteWorkflowConfigRequest;
 use Google\Cloud\Dataform\V1beta1\DeleteWorkflowInvocationRequest;
 use Google\Cloud\Dataform\V1beta1\DeleteWorkspaceRequest;
@@ -178,9 +182,12 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<WorkflowInvocation> createWorkflowInvocationAsync(CreateWorkflowInvocationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Workspace> createWorkspaceAsync(CreateWorkspaceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteFolderAsync(DeleteFolderRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteFolderTreeAsync(DeleteFolderTreeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteReleaseConfigAsync(DeleteReleaseConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteRepositoryAsync(DeleteRepositoryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteRepositoryLongRunningAsync(DeleteRepositoryLongRunningRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteTeamFolderAsync(DeleteTeamFolderRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteTeamFolderTreeAsync(DeleteTeamFolderTreeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteWorkflowConfigAsync(DeleteWorkflowConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteWorkflowInvocationAsync(DeleteWorkflowInvocationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteWorkspaceAsync(DeleteWorkspaceRequest $request, array $optionalArgs = [])
@@ -467,6 +474,33 @@ final class DataformClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * git_repository_link resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $connection
+     * @param string $gitRepositoryLink
+     *
+     * @return string The formatted git_repository_link resource.
+     *
+     * @experimental
+     */
+    public static function gitRepositoryLinkName(
+        string $project,
+        string $location,
+        string $connection,
+        string $gitRepositoryLink
+    ): string {
+        return self::getPathTemplate('gitRepositoryLink')->render([
+            'project' => $project,
+            'location' => $location,
+            'connection' => $connection,
+            'git_repository_link' => $gitRepositoryLink,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a location
      * resource.
      *
@@ -689,6 +723,7 @@ final class DataformClient
      * - cryptoKey: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}
      * - cryptoKeyVersion: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}
      * - folder: projects/{project}/locations/{location}/folders/{folder}
+     * - gitRepositoryLink: projects/{project}/locations/{location}/connections/{connection}/gitRepositoryLinks/{git_repository_link}
      * - location: projects/{project}/locations/{location}
      * - notebookRuntimeTemplate: projects/{project}/locations/{location}/notebookRuntimeTemplates/{notebook_runtime_template}
      * - releaseConfig: projects/{project}/locations/{location}/repositories/{repository}/releaseConfigs/{release_config}
@@ -1184,6 +1219,35 @@ final class DataformClient
     }
 
     /**
+     * Deletes a Folder with its contents (Folders, Repositories, Workspaces,
+     * ReleaseConfigs, and WorkflowConfigs).
+     *
+     * The async variant is {@see DataformClient::deleteFolderTreeAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/delete_folder_tree.php
+     *
+     * @param DeleteFolderTreeRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<null>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function deleteFolderTree(DeleteFolderTreeRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DeleteFolderTree', $request, $callOptions)->wait();
+    }
+
+    /**
      * Deletes a single ReleaseConfig.
      *
      * The async variant is {@see DataformClient::deleteReleaseConfigAsync()} .
@@ -1236,6 +1300,36 @@ final class DataformClient
     }
 
     /**
+     * Deletes a single repository asynchronously.
+     *
+     * The async variant is {@see DataformClient::deleteRepositoryLongRunningAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/delete_repository_long_running.php
+     *
+     * @param DeleteRepositoryLongRunningRequest $request     A request to house fields associated with the call.
+     * @param array                              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<DeleteRepositoryLongRunningResponse>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function deleteRepositoryLongRunning(
+        DeleteRepositoryLongRunningRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('DeleteRepositoryLongRunning', $request, $callOptions)->wait();
+    }
+
+    /**
      * Deletes a single TeamFolder.
      *
      * The async variant is {@see DataformClient::deleteTeamFolderAsync()} .
@@ -1259,6 +1353,37 @@ final class DataformClient
     public function deleteTeamFolder(DeleteTeamFolderRequest $request, array $callOptions = []): void
     {
         $this->startApiCall('DeleteTeamFolder', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a TeamFolder with its contents (Folders, Repositories, Workspaces,
+     * ReleaseConfigs, and WorkflowConfigs).
+     *
+     * The async variant is {@see DataformClient::deleteTeamFolderTreeAsync()} .
+     *
+     * @example samples/V1beta1/DataformClient/delete_team_folder_tree.php
+     *
+     * @param DeleteTeamFolderTreeRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<null>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function deleteTeamFolderTree(
+        DeleteTeamFolderTreeRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('DeleteTeamFolderTree', $request, $callOptions)->wait();
     }
 
     /**
@@ -3029,13 +3154,21 @@ final class DataformClient
 
     /**
      * Lists information about the supported locations for this service.
-     * This method can be called in two ways:
      *
-     * *   **List all public locations:** Use the path `GET /v1/locations`.
-     * *   **List project-visible locations:** Use the path
-     * `GET /v1/projects/{project_id}/locations`. This may include public
-     * locations as well as private or other locations specifically visible
-     * to the project.
+     * This method lists locations based on the resource scope provided in
+     * the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+     * **Global locations**: If `name` is empty, the method lists the
+     * public locations available to all projects. * **Project-specific
+     * locations**: If `name` follows the format
+     * `projects/{project}`, the method lists locations visible to that
+     * specific project. This includes public, private, or other
+     * project-specific locations enabled for the project.
+     *
+     * For gRPC and client library implementations, the resource name is
+     * passed as the `name` field. For direct service calls, the resource
+     * name is
+     * incorporated into the request path based on the specific service
+     * implementation and version.
      *
      * The async variant is {@see DataformClient::listLocationsAsync()} .
      *
