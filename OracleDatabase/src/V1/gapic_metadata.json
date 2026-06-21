@@ -10,6 +10,11 @@
                 "grpc": {
                     "libraryClient": "OracleDatabaseGapicClient",
                     "rpcs": {
+                        "ConfigureExascaleCloudExadataInfrastructure": {
+                            "methods": [
+                                "configureExascaleCloudExadataInfrastructure"
+                            ]
+                        },
                         "CreateAutonomousDatabase": {
                             "methods": [
                                 "createAutonomousDatabase"

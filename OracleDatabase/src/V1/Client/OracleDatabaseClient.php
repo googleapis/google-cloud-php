@@ -41,6 +41,7 @@ use Google\Cloud\Location\Location;
 use Google\Cloud\OracleDatabase\V1\AutonomousDatabase;
 use Google\Cloud\OracleDatabase\V1\CloudExadataInfrastructure;
 use Google\Cloud\OracleDatabase\V1\CloudVmCluster;
+use Google\Cloud\OracleDatabase\V1\ConfigureExascaleCloudExadataInfrastructureRequest;
 use Google\Cloud\OracleDatabase\V1\CreateAutonomousDatabaseRequest;
 use Google\Cloud\OracleDatabase\V1\CreateCloudExadataInfrastructureRequest;
 use Google\Cloud\OracleDatabase\V1\CreateCloudVmClusterRequest;
@@ -146,6 +147,7 @@ use Psr\Log\LoggerInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
+ * @method PromiseInterface<OperationResponse> configureExascaleCloudExadataInfrastructureAsync(ConfigureExascaleCloudExadataInfrastructureRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createAutonomousDatabaseAsync(CreateAutonomousDatabaseRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createCloudExadataInfrastructureAsync(CreateCloudExadataInfrastructureRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createCloudVmClusterAsync(CreateCloudVmClusterRequest $request, array $optionalArgs = [])
@@ -808,6 +810,36 @@ final class OracleDatabaseClient
 
         array_unshift($args, substr($method, 0, -5));
         return call_user_func_array([$this, 'startAsyncCall'], $args);
+    }
+
+    /**
+     * Configures Exascale for a single Exadata Infrastructure.
+     *
+     * The async variant is
+     * {@see OracleDatabaseClient::configureExascaleCloudExadataInfrastructureAsync()}
+     * .
+     *
+     * @example samples/V1/OracleDatabaseClient/configure_exascale_cloud_exadata_infrastructure.php
+     *
+     * @param ConfigureExascaleCloudExadataInfrastructureRequest $request     A request to house fields associated with the call.
+     * @param array                                              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<CloudExadataInfrastructure>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function configureExascaleCloudExadataInfrastructure(
+        ConfigureExascaleCloudExadataInfrastructureRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('ConfigureExascaleCloudExadataInfrastructure', $request, $callOptions)->wait();
     }
 
     /**

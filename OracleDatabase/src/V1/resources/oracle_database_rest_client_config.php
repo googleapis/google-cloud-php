@@ -47,6 +47,18 @@ return [
             ],
         ],
         'google.cloud.oracledatabase.v1.OracleDatabase' => [
+            'ConfigureExascaleCloudExadataInfrastructure' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/cloudExadataInfrastructures/*}:configureExascale',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'CreateAutonomousDatabase' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/autonomousDatabases',

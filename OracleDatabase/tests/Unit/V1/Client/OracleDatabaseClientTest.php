@@ -37,6 +37,7 @@ use Google\Cloud\OracleDatabase\V1\AutonomousDbVersion;
 use Google\Cloud\OracleDatabase\V1\Client\OracleDatabaseClient;
 use Google\Cloud\OracleDatabase\V1\CloudExadataInfrastructure;
 use Google\Cloud\OracleDatabase\V1\CloudVmCluster;
+use Google\Cloud\OracleDatabase\V1\ConfigureExascaleCloudExadataInfrastructureRequest;
 use Google\Cloud\OracleDatabase\V1\CreateAutonomousDatabaseRequest;
 use Google\Cloud\OracleDatabase\V1\CreateCloudExadataInfrastructureRequest;
 use Google\Cloud\OracleDatabase\V1\CreateCloudVmClusterRequest;
@@ -215,6 +216,155 @@ class OracleDatabaseClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ];
         return new OracleDatabaseClient($options);
+    }
+
+    /** @test */
+    public function configureExascaleCloudExadataInfrastructureTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/configureExascaleCloudExadataInfrastructureTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name2 = 'name2-1052831874';
+        $displayName = 'displayName1615086568';
+        $gcpOracleZone = 'gcpOracleZone1763347746';
+        $entitlementId = 'entitlementId-1715775123';
+        $expectedResponse = new CloudExadataInfrastructure();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setGcpOracleZone($gcpOracleZone);
+        $expectedResponse->setEntitlementId($entitlementId);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/configureExascaleCloudExadataInfrastructureTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedName = $gapicClient->cloudExadataInfrastructureName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[CLOUD_EXADATA_INFRASTRUCTURE]'
+        );
+        $totalStorageSizeGb = 1493200154;
+        $request = (new ConfigureExascaleCloudExadataInfrastructureRequest())
+            ->setName($formattedName)
+            ->setTotalStorageSizeGb($totalStorageSizeGb);
+        $response = $gapicClient->configureExascaleCloudExadataInfrastructure($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.oracledatabase.v1.OracleDatabase/ConfigureExascaleCloudExadataInfrastructure',
+            $actualApiFuncCall
+        );
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualApiRequestObject->getTotalStorageSizeGb();
+        $this->assertProtobufEquals($totalStorageSizeGb, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/configureExascaleCloudExadataInfrastructureTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function configureExascaleCloudExadataInfrastructureExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/configureExascaleCloudExadataInfrastructureTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->cloudExadataInfrastructureName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[CLOUD_EXADATA_INFRASTRUCTURE]'
+        );
+        $totalStorageSizeGb = 1493200154;
+        $request = (new ConfigureExascaleCloudExadataInfrastructureRequest())
+            ->setName($formattedName)
+            ->setTotalStorageSizeGb($totalStorageSizeGb);
+        $response = $gapicClient->configureExascaleCloudExadataInfrastructure($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/configureExascaleCloudExadataInfrastructureTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /** @test */
@@ -554,6 +704,7 @@ class OracleDatabaseClientTest extends GeneratedTest
         $odbNetwork = 'odbNetwork-1199754980';
         $odbSubnet = 'odbSubnet118675119';
         $backupOdbSubnet = 'backupOdbSubnet677701964';
+        $exascaleDbStorageVault = 'exascaleDbStorageVault-2059486384';
         $expectedResponse = new CloudVmCluster();
         $expectedResponse->setName($name);
         $expectedResponse->setExadataInfrastructure($exadataInfrastructure);
@@ -565,6 +716,7 @@ class OracleDatabaseClientTest extends GeneratedTest
         $expectedResponse->setOdbNetwork($odbNetwork);
         $expectedResponse->setOdbSubnet($odbSubnet);
         $expectedResponse->setBackupOdbSubnet($backupOdbSubnet);
+        $expectedResponse->setExascaleDbStorageVault($exascaleDbStorageVault);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1104,11 +1256,13 @@ class OracleDatabaseClientTest extends GeneratedTest
         $displayName = 'displayName1615086568';
         $gcpOracleZone = 'gcpOracleZone1763347746';
         $entitlementId = 'entitlementId-1715775123';
+        $exadataInfrastructure = 'exadataInfrastructure94104074';
         $expectedResponse = new ExascaleDbStorageVault();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setGcpOracleZone($gcpOracleZone);
         $expectedResponse->setEntitlementId($entitlementId);
+        $expectedResponse->setExadataInfrastructure($exadataInfrastructure);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -3850,6 +4004,7 @@ class OracleDatabaseClientTest extends GeneratedTest
         $odbNetwork = 'odbNetwork-1199754980';
         $odbSubnet = 'odbSubnet118675119';
         $backupOdbSubnet = 'backupOdbSubnet677701964';
+        $exascaleDbStorageVault = 'exascaleDbStorageVault-2059486384';
         $expectedResponse = new CloudVmCluster();
         $expectedResponse->setName($name2);
         $expectedResponse->setExadataInfrastructure($exadataInfrastructure);
@@ -3861,6 +4016,7 @@ class OracleDatabaseClientTest extends GeneratedTest
         $expectedResponse->setOdbNetwork($odbNetwork);
         $expectedResponse->setOdbSubnet($odbSubnet);
         $expectedResponse->setBackupOdbSubnet($backupOdbSubnet);
+        $expectedResponse->setExascaleDbStorageVault($exascaleDbStorageVault);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->cloudVmClusterName('[PROJECT]', '[LOCATION]', '[CLOUD_VM_CLUSTER]');
@@ -4174,11 +4330,13 @@ class OracleDatabaseClientTest extends GeneratedTest
         $displayName = 'displayName1615086568';
         $gcpOracleZone = 'gcpOracleZone1763347746';
         $entitlementId = 'entitlementId-1715775123';
+        $exadataInfrastructure = 'exadataInfrastructure94104074';
         $expectedResponse = new ExascaleDbStorageVault();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setGcpOracleZone($gcpOracleZone);
         $expectedResponse->setEntitlementId($entitlementId);
+        $expectedResponse->setExadataInfrastructure($exadataInfrastructure);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->exascaleDbStorageVaultName(
@@ -8482,7 +8640,7 @@ class OracleDatabaseClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function createAutonomousDatabaseAsyncTest()
+    public function configureExascaleCloudExadataInfrastructureAsyncTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
@@ -8499,46 +8657,36 @@ class OracleDatabaseClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
         $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/createAutonomousDatabaseTest');
+        $incompleteOperation->setName('operations/configureExascaleCloudExadataInfrastructureTest');
         $incompleteOperation->setDone(false);
         $transport->addResponse($incompleteOperation);
-        $name = 'name3373707';
-        $database = 'database1789464955';
+        $name2 = 'name2-1052831874';
         $displayName = 'displayName1615086568';
+        $gcpOracleZone = 'gcpOracleZone1763347746';
         $entitlementId = 'entitlementId-1715775123';
-        $adminPassword = 'adminPassword1579561355';
-        $adminPasswordSecretVersion = 'adminPasswordSecretVersion-1735395459';
-        $network = 'network1843485230';
-        $cidr = 'cidr3053428';
-        $odbNetwork = 'odbNetwork-1199754980';
-        $odbSubnet = 'odbSubnet118675119';
-        $expectedResponse = new AutonomousDatabase();
-        $expectedResponse->setName($name);
-        $expectedResponse->setDatabase($database);
+        $expectedResponse = new CloudExadataInfrastructure();
+        $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setGcpOracleZone($gcpOracleZone);
         $expectedResponse->setEntitlementId($entitlementId);
-        $expectedResponse->setAdminPassword($adminPassword);
-        $expectedResponse->setAdminPasswordSecretVersion($adminPasswordSecretVersion);
-        $expectedResponse->setNetwork($network);
-        $expectedResponse->setCidr($cidr);
-        $expectedResponse->setOdbNetwork($odbNetwork);
-        $expectedResponse->setOdbSubnet($odbSubnet);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
-        $completeOperation->setName('operations/createAutonomousDatabaseTest');
+        $completeOperation->setName('operations/configureExascaleCloudExadataInfrastructureTest');
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $autonomousDatabaseId = 'autonomousDatabaseId-1188134896';
-        $autonomousDatabase = new AutonomousDatabase();
-        $request = (new CreateAutonomousDatabaseRequest())
-            ->setParent($formattedParent)
-            ->setAutonomousDatabaseId($autonomousDatabaseId)
-            ->setAutonomousDatabase($autonomousDatabase);
-        $response = $gapicClient->createAutonomousDatabaseAsync($request)->wait();
+        $formattedName = $gapicClient->cloudExadataInfrastructureName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[CLOUD_EXADATA_INFRASTRUCTURE]'
+        );
+        $totalStorageSizeGb = 1493200154;
+        $request = (new ConfigureExascaleCloudExadataInfrastructureRequest())
+            ->setName($formattedName)
+            ->setTotalStorageSizeGb($totalStorageSizeGb);
+        $response = $gapicClient->configureExascaleCloudExadataInfrastructureAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -8548,17 +8696,15 @@ class OracleDatabaseClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame(
-            '/google.cloud.oracledatabase.v1.OracleDatabase/CreateAutonomousDatabase',
+            '/google.cloud.oracledatabase.v1.OracleDatabase/ConfigureExascaleCloudExadataInfrastructure',
             $actualApiFuncCall
         );
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getAutonomousDatabaseId();
-        $this->assertProtobufEquals($autonomousDatabaseId, $actualValue);
-        $actualValue = $actualApiRequestObject->getAutonomousDatabase();
-        $this->assertProtobufEquals($autonomousDatabase, $actualValue);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualApiRequestObject->getTotalStorageSizeGb();
+        $this->assertProtobufEquals($totalStorageSizeGb, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
-        $expectedOperationsRequestObject->setName('operations/createAutonomousDatabaseTest');
+        $expectedOperationsRequestObject->setName('operations/configureExascaleCloudExadataInfrastructureTest');
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);

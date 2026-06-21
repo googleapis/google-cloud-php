@@ -23,6 +23,25 @@
 return [
     'interfaces' => [
         'google.cloud.oracledatabase.v1.OracleDatabase' => [
+            'ConfigureExascaleCloudExadataInfrastructure' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\OracleDatabase\V1\CloudExadataInfrastructure',
+                    'metadataReturnType' => '\Google\Cloud\OracleDatabase\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'CreateAutonomousDatabase' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\OracleDatabase\V1\AutonomousDatabase',
