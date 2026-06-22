@@ -122,7 +122,7 @@ jobs:
       - name: "Install PHP"
         uses: shivammathur/setup-php@v2
         with:
-          php-version: "8.1"
+          php-version: "8.2"
       - name: "Install dependencies"
         run: composer install -d dev
       - name: "Check repo compliance"

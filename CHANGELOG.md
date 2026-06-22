@@ -1,5 +1,858 @@
 # Changelog
 
+## 0.333.0
+
+<details><summary>googleads/data-manager 0.6.0</summary>
+
+
+
+### Features
+
+* [AdsDataManager] add AdEvent message and related enums for ingesting ad event data ([#9251](https://github.com/googleapis/google-cloud-php/issues/9251)) ([9556b0c](https://github.com/googleapis/google-cloud-php/commit/9556b0c09ba46ad5326ffed0771229470a5998e7))
+
+</details>
+
+<details><summary>google/cloud-ai-platform 1.60.1</summary>
+
+
+
+### Bug Fixes
+
+* **php:** remove abandoned deps ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+
+
+### Documentation
+
+* [Many APIs] update cloud ml ces v1beta client libraries ([#9239](https://github.com/googleapis/google-cloud-php/issues/9239)) ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+* Update comments for `audio_recording_config` and `bigquery_export_settings` in `LoggingSettings`. ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+* Update comments for `root_span`, `turns`, and `max_turns` in `Evaluation`. ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+* Update comments for various `InputType` enum values. ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+
+</details>
+
+<details><summary>google/cloud-apigee-registry 1.1.4</summary>
+
+
+
+### Bug Fixes
+
+* **php:** remove abandoned deps ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+
+
+### Documentation
+
+* [Many APIs] update cloud ml ces v1beta client libraries ([#9239](https://github.com/googleapis/google-cloud-php/issues/9239)) ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+* Update comments for `audio_recording_config` and `bigquery_export_settings` in `LoggingSettings`. ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+* Update comments for `root_span`, `turns`, and `max_turns` in `Evaluation`. ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+* Update comments for various `InputType` enum values. ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+
+</details>
+
+<details><summary>google/cloud-apphub 0.4.5</summary>
+
+
+
+### Bug Fixes
+
+* **php:** remove abandoned deps ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+
+
+### Documentation
+
+* [Many APIs] update cloud ml ces v1beta client libraries ([#9239](https://github.com/googleapis/google-cloud-php/issues/9239)) ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+* Update comments for `audio_recording_config` and `bigquery_export_settings` in `LoggingSettings`. ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+* Update comments for `root_span`, `turns`, and `max_turns` in `Evaluation`. ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+* Update comments for various `InputType` enum values. ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+
+</details>
+
+<details><summary>google/cloud-appoptimize 0.1.1</summary>
+
+
+
+### Bug Fixes
+
+* **php:** remove abandoned deps ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+
+
+### Documentation
+
+* [Many APIs] update cloud ml ces v1beta client libraries ([#9239](https://github.com/googleapis/google-cloud-php/issues/9239)) ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+* Update comments for `audio_recording_config` and `bigquery_export_settings` in `LoggingSettings`. ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+* Update comments for `root_span`, `turns`, and `max_turns` in `Evaluation`. ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+* Update comments for various `InputType` enum values. ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+
+</details>
+
+<details><summary>google/cloud-artifact-registry 1.7.2</summary>
+
+
+
+### Bug Fixes
+
+* **php:** remove abandoned deps ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+
+
+### Documentation
+
+* [Many APIs] update cloud ml ces v1beta client libraries ([#9239](https://github.com/googleapis/google-cloud-php/issues/9239)) ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+* Update comments for `audio_recording_config` and `bigquery_export_settings` in `LoggingSettings`. ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+* Update comments for `root_span`, `turns`, and `max_turns` in `Evaluation`. ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+* Update comments for various `InputType` enum values. ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+
+</details>
+
+<details><summary>google/cloud-auditmanager 0.1.2</summary>
+
+
+
+### Bug Fixes
+
+* **php:** remove abandoned deps ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+
+
+### Documentation
+
+* [Many APIs] update cloud ml ces v1beta client libraries ([#9239](https://github.com/googleapis/google-cloud-php/issues/9239)) ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+* Update comments for `audio_recording_config` and `bigquery_export_settings` in `LoggingSettings`. ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+* Update comments for `root_span`, `turns`, and `max_turns` in `Evaluation`. ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+* Update comments for various `InputType` enum values. ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+
+</details>
+
+<details><summary>google/cloud-backupdr 0.13.1</summary>
+
+
+
+### Bug Fixes
+
+* **php:** remove abandoned deps ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+
+
+### Documentation
+
+* [Many APIs] update cloud ml ces v1beta client libraries ([#9239](https://github.com/googleapis/google-cloud-php/issues/9239)) ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+* Update comments for `audio_recording_config` and `bigquery_export_settings` in `LoggingSettings`. ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+* Update comments for `root_span`, `turns`, and `max_turns` in `Evaluation`. ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+* Update comments for various `InputType` enum values. ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+
+</details>
+
+<details><summary>google/cloud-beyondcorp-appconnections 1.1.4</summary>
+
+
+
+### Bug Fixes
+
+* **php:** remove abandoned deps ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+
+
+### Documentation
+
+* [Many APIs] update cloud ml ces v1beta client libraries ([#9239](https://github.com/googleapis/google-cloud-php/issues/9239)) ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+* Update comments for `audio_recording_config` and `bigquery_export_settings` in `LoggingSettings`. ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+* Update comments for `root_span`, `turns`, and `max_turns` in `Evaluation`. ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+* Update comments for various `InputType` enum values. ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+
+</details>
+
+<details><summary>google/cloud-beyondcorp-appconnectors 1.1.4</summary>
+
+
+
+### Bug Fixes
+
+* **php:** remove abandoned deps ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+
+
+### Documentation
+
+* [Many APIs] update cloud ml ces v1beta client libraries ([#9239](https://github.com/googleapis/google-cloud-php/issues/9239)) ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+* Update comments for `audio_recording_config` and `bigquery_export_settings` in `LoggingSettings`. ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+* Update comments for `root_span`, `turns`, and `max_turns` in `Evaluation`. ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+* Update comments for various `InputType` enum values. ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+
+</details>
+
+<details><summary>google/cloud-beyondcorp-appgateways 1.1.4</summary>
+
+
+
+### Bug Fixes
+
+* **php:** remove abandoned deps ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+
+
+### Documentation
+
+* [Many APIs] update cloud ml ces v1beta client libraries ([#9239](https://github.com/googleapis/google-cloud-php/issues/9239)) ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+* Update comments for `audio_recording_config` and `bigquery_export_settings` in `LoggingSettings`. ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+* Update comments for `root_span`, `turns`, and `max_turns` in `Evaluation`. ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+* Update comments for various `InputType` enum values. ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+
+</details>
+
+<details><summary>google/cloud-beyondcorp-clientconnectorservices 1.1.4</summary>
+
+
+
+### Bug Fixes
+
+* **php:** remove abandoned deps ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+
+
+### Documentation
+
+* [Many APIs] update cloud ml ces v1beta client libraries ([#9239](https://github.com/googleapis/google-cloud-php/issues/9239)) ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+* Update comments for `audio_recording_config` and `bigquery_export_settings` in `LoggingSettings`. ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+* Update comments for `root_span`, `turns`, and `max_turns` in `Evaluation`. ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+* Update comments for various `InputType` enum values. ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+
+</details>
+
+<details><summary>google/cloud-beyondcorp-clientgateways 1.1.4</summary>
+
+
+
+### Bug Fixes
+
+* **php:** remove abandoned deps ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+
+
+### Documentation
+
+* [Many APIs] update cloud ml ces v1beta client libraries ([#9239](https://github.com/googleapis/google-cloud-php/issues/9239)) ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+* Update comments for `audio_recording_config` and `bigquery_export_settings` in `LoggingSettings`. ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+* Update comments for `root_span`, `turns`, and `max_turns` in `Evaluation`. ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+* Update comments for various `InputType` enum values. ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+
+</details>
+
+<details><summary>google/cloud-build 1.1.3</summary>
+
+
+
+### Bug Fixes
+
+* **php:** remove abandoned deps ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+
+
+### Documentation
+
+* [Many APIs] update cloud ml ces v1beta client libraries ([#9239](https://github.com/googleapis/google-cloud-php/issues/9239)) ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+* Update comments for `audio_recording_config` and `bigquery_export_settings` in `LoggingSettings`. ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+* Update comments for `root_span`, `turns`, and `max_turns` in `Evaluation`. ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+* Update comments for various `InputType` enum values. ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+
+</details>
+
+<details><summary>google/cloud-ces 0.2.1</summary>
+
+
+
+### Bug Fixes
+
+* **php:** remove abandoned deps ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+
+
+### Documentation
+
+* [Many APIs] update cloud ml ces v1beta client libraries ([#9239](https://github.com/googleapis/google-cloud-php/issues/9239)) ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+* Update comments for `audio_recording_config` and `bigquery_export_settings` in `LoggingSettings`. ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+* Update comments for `root_span`, `turns`, and `max_turns` in `Evaluation`. ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+* Update comments for various `InputType` enum values. ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+
+</details>
+
+<details><summary>google/common-protos 4.14.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-config 1.8.1</summary>
+
+
+
+### Bug Fixes
+
+* **php:** remove abandoned deps ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+
+
+### Documentation
+
+* [Many APIs] update cloud ml ces v1beta client libraries ([#9239](https://github.com/googleapis/google-cloud-php/issues/9239)) ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+* Update comments for `audio_recording_config` and `bigquery_export_settings` in `LoggingSettings`. ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+* Update comments for `root_span`, `turns`, and `max_turns` in `Evaluation`. ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+* Update comments for various `InputType` enum values. ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+
+</details>
+
+<details><summary>google/cloud-core 1.72.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-dataform 0.11.1</summary>
+
+
+
+### Bug Fixes
+
+* **php:** remove abandoned deps ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+
+
+### Documentation
+
+* [Many APIs] update cloud ml ces v1beta client libraries ([#9239](https://github.com/googleapis/google-cloud-php/issues/9239)) ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+* Update comments for `audio_recording_config` and `bigquery_export_settings` in `LoggingSettings`. ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+* Update comments for `root_span`, `turns`, and `max_turns` in `Evaluation`. ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+* Update comments for various `InputType` enum values. ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+
+</details>
+
+<details><summary>google/cloud-dataplex 1.14.1</summary>
+
+
+
+### Bug Fixes
+
+* **php:** remove abandoned deps ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+
+
+### Documentation
+
+* [Many APIs] update cloud ml ces v1beta client libraries ([#9239](https://github.com/googleapis/google-cloud-php/issues/9239)) ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+* Update comments for `audio_recording_config` and `bigquery_export_settings` in `LoggingSettings`. ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+* Update comments for `root_span`, `turns`, and `max_turns` in `Evaluation`. ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+* Update comments for various `InputType` enum values. ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+
+</details>
+
+<details><summary>google/cloud-dataproc 2.12.1</summary>
+
+
+
+### Bug Fixes
+
+* **php:** remove abandoned deps ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+
+
+### Documentation
+
+* [Many APIs] update cloud ml ces v1beta client libraries ([#9239](https://github.com/googleapis/google-cloud-php/issues/9239)) ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+* Update comments for `audio_recording_config` and `bigquery_export_settings` in `LoggingSettings`. ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+* Update comments for `root_span`, `turns`, and `max_turns` in `Evaluation`. ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+* Update comments for various `InputType` enum values. ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+
+</details>
+
+<details><summary>google/cloud-dataproc-metastore 1.2.4</summary>
+
+
+
+### Bug Fixes
+
+* **php:** remove abandoned deps ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+
+
+### Documentation
+
+* [Many APIs] update cloud ml ces v1beta client libraries ([#9239](https://github.com/googleapis/google-cloud-php/issues/9239)) ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+* Update comments for `audio_recording_config` and `bigquery_export_settings` in `LoggingSettings`. ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+* Update comments for `root_span`, `turns`, and `max_turns` in `Evaluation`. ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+* Update comments for various `InputType` enum values. ([071804a](https://github.com/googleapis/google-cloud-php/commit/071804a3a5af083289eb92940059373cd0106f17))
+
+</details>
+
+<details><summary>google/cloud-datastore 2.1.0</summary>
+
+
+
+### Features
+
+* **docs:** publish protobuf to refdocs ([#9126](https://github.com/googleapis/google-cloud-php/issues/9126)) ([a1390ed](https://github.com/googleapis/google-cloud-php/commit/a1390edd1d449e6c4b8b926402e0e05f23991e0b))
+
+</details>
+
+<details><summary>google/cloud-deploy 1.6.4</summary>
+
+
+
+### Bug Fixes
+
+* **php:** remove abandoned deps ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+
+
+### Documentation
+
+* [Many APIs] update cloud ml ces v1beta client libraries ([#9240](https://github.com/googleapis/google-cloud-php/issues/9240)) ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+* Update comments for `audio_recording_config` and `bigquery_export_settings` in `LoggingSettings`. ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+* Update comments for `root_span`, `turns`, and `max_turns` in `Evaluation`. ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+* Update comments for various `InputType` enum values. ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+
+</details>
+
+<details><summary>google/cloud-developerconnect 0.6.2</summary>
+
+
+
+### Bug Fixes
+
+* **php:** remove abandoned deps ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+
+
+### Documentation
+
+* [Many APIs] update cloud ml ces v1beta client libraries ([#9240](https://github.com/googleapis/google-cloud-php/issues/9240)) ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+* Update comments for `audio_recording_config` and `bigquery_export_settings` in `LoggingSettings`. ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+* Update comments for `root_span`, `turns`, and `max_turns` in `Evaluation`. ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+* Update comments for various `InputType` enum values. ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+
+</details>
+
+<details><summary>google/cloud-dialogflow 2.4.1</summary>
+
+
+
+### Bug Fixes
+
+* **php:** remove abandoned deps ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+
+
+### Documentation
+
+* [Many APIs] update cloud ml ces v1beta client libraries ([#9240](https://github.com/googleapis/google-cloud-php/issues/9240)) ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+* Update comments for `audio_recording_config` and `bigquery_export_settings` in `LoggingSettings`. ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+* Update comments for `root_span`, `turns`, and `max_turns` in `Evaluation`. ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+* Update comments for various `InputType` enum values. ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+
+</details>
+
+<details><summary>google/cloud-dialogflow-cx 0.11.2</summary>
+
+
+
+### Bug Fixes
+
+* **php:** remove abandoned deps ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+
+
+### Documentation
+
+* [Many APIs] update cloud ml ces v1beta client libraries ([#9240](https://github.com/googleapis/google-cloud-php/issues/9240)) ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+* Update comments for `audio_recording_config` and `bigquery_export_settings` in `LoggingSettings`. ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+* Update comments for `root_span`, `turns`, and `max_turns` in `Evaluation`. ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+* Update comments for various `InputType` enum values. ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+
+</details>
+
+<details><summary>google/cloud-eventarc 2.3.2</summary>
+
+
+
+### Bug Fixes
+
+* **php:** remove abandoned deps ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+
+
+### Documentation
+
+* [Many APIs] update cloud ml ces v1beta client libraries ([#9240](https://github.com/googleapis/google-cloud-php/issues/9240)) ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+* Update comments for `audio_recording_config` and `bigquery_export_settings` in `LoggingSettings`. ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+* Update comments for `root_span`, `turns`, and `max_turns` in `Evaluation`. ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+* Update comments for various `InputType` enum values. ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+
+</details>
+
+<details><summary>google/cloud-functions 2.1.4</summary>
+
+
+
+### Bug Fixes
+
+* **php:** remove abandoned deps ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+
+
+### Documentation
+
+* [Many APIs] update cloud ml ces v1beta client libraries ([#9240](https://github.com/googleapis/google-cloud-php/issues/9240)) ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+* Update comments for `audio_recording_config` and `bigquery_export_settings` in `LoggingSettings`. ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+* Update comments for `root_span`, `turns`, and `max_turns` in `Evaluation`. ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+* Update comments for various `InputType` enum values. ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+
+</details>
+
+<details><summary>google/gax 1.43.2</summary>
+
+
+
+### Bug Fixes
+
+* **Gax:** RetryMiddleware should determine deadlineMs before first call ([#9265](https://github.com/googleapis/google-cloud-php/issues/9265)) ([770bece](https://github.com/googleapis/google-cloud-php/commit/770becec3b1cb68e8bff84387ed725335859fd36))
+
+
+### Documentation
+
+* **gax:** update README for monorepo ([#9257](https://github.com/googleapis/google-cloud-php/issues/9257)) ([be57a83](https://github.com/googleapis/google-cloud-php/commit/be57a837c9892d76bf374b02cbaf61e6320bd556))
+
+</details>
+
+<details><summary>google/cloud-geminidataanalytics 0.11.1</summary>
+
+
+
+### Bug Fixes
+
+* **php:** remove abandoned deps ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+
+
+### Documentation
+
+* [Many APIs] update cloud ml ces v1beta client libraries ([#9240](https://github.com/googleapis/google-cloud-php/issues/9240)) ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+* Update comments for `audio_recording_config` and `bigquery_export_settings` in `LoggingSettings`. ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+* Update comments for `root_span`, `turns`, and `max_turns` in `Evaluation`. ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+* Update comments for various `InputType` enum values. ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+
+</details>
+
+<details><summary>google/cloud-gke-backup 1.3.4</summary>
+
+
+
+### Bug Fixes
+
+* **php:** remove abandoned deps ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+
+
+### Documentation
+
+* [Many APIs] update cloud ml ces v1beta client libraries ([#9240](https://github.com/googleapis/google-cloud-php/issues/9240)) ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+* Update comments for `audio_recording_config` and `bigquery_export_settings` in `LoggingSettings`. ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+* Update comments for `root_span`, `turns`, and `max_turns` in `Evaluation`. ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+* Update comments for various `InputType` enum values. ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+
+</details>
+
+<details><summary>google/cloud-hypercomputecluster 0.3.1</summary>
+
+
+
+### Bug Fixes
+
+* **php:** remove abandoned deps ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+
+
+### Documentation
+
+* [Many APIs] update cloud ml ces v1beta client libraries ([#9240](https://github.com/googleapis/google-cloud-php/issues/9240)) ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+* Update comments for `audio_recording_config` and `bigquery_export_settings` in `LoggingSettings`. ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+* Update comments for `root_span`, `turns`, and `max_turns` in `Evaluation`. ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+* Update comments for various `InputType` enum values. ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+
+</details>
+
+<details><summary>google/cloud-kms 2.9.1</summary>
+
+
+
+### Bug Fixes
+
+* **php:** remove abandoned deps ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+
+
+### Documentation
+
+* [Many APIs] update cloud ml ces v1beta client libraries ([#9240](https://github.com/googleapis/google-cloud-php/issues/9240)) ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+* Update comments for `audio_recording_config` and `bigquery_export_settings` in `LoggingSettings`. ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+* Update comments for `root_span`, `turns`, and `max_turns` in `Evaluation`. ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+* Update comments for various `InputType` enum values. ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+
+</details>
+
+<details><summary>google/cloud-netapp 1.12.1</summary>
+
+
+
+### Bug Fixes
+
+* **php:** remove abandoned deps ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+
+
+### Documentation
+
+* [Many APIs] update cloud ml ces v1beta client libraries ([#9240](https://github.com/googleapis/google-cloud-php/issues/9240)) ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+* Update comments for `audio_recording_config` and `bigquery_export_settings` in `LoggingSettings`. ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+* Update comments for `root_span`, `turns`, and `max_turns` in `Evaluation`. ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+* Update comments for various `InputType` enum values. ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+
+</details>
+
+<details><summary>google/cloud-network-connectivity 2.5.4</summary>
+
+
+
+### Bug Fixes
+
+* **php:** remove abandoned deps ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+
+
+### Documentation
+
+* [Many APIs] update cloud ml ces v1beta client libraries ([#9240](https://github.com/googleapis/google-cloud-php/issues/9240)) ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+* Update comments for `audio_recording_config` and `bigquery_export_settings` in `LoggingSettings`. ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+* Update comments for `root_span`, `turns`, and `max_turns` in `Evaluation`. ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+* Update comments for various `InputType` enum values. ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+
+</details>
+
+<details><summary>google/cloud-network-management 2.9.3</summary>
+
+
+
+### Bug Fixes
+
+* **php:** remove abandoned deps ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+
+
+### Documentation
+
+* [Many APIs] update cloud ml ces v1beta client libraries ([#9240](https://github.com/googleapis/google-cloud-php/issues/9240)) ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+* Update comments for `audio_recording_config` and `bigquery_export_settings` in `LoggingSettings`. ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+* Update comments for `root_span`, `turns`, and `max_turns` in `Evaluation`. ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+* Update comments for various `InputType` enum values. ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+
+</details>
+
+<details><summary>google/cloud-network-security 1.4.1</summary>
+
+
+
+### Bug Fixes
+
+* **php:** remove abandoned deps ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+
+
+### Documentation
+
+* [Many APIs] update cloud ml ces v1beta client libraries ([#9240](https://github.com/googleapis/google-cloud-php/issues/9240)) ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+* Update comments for `audio_recording_config` and `bigquery_export_settings` in `LoggingSettings`. ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+* Update comments for `root_span`, `turns`, and `max_turns` in `Evaluation`. ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+* Update comments for various `InputType` enum values. ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+
+</details>
+
+<details><summary>google/cloud-networkservices 0.9.0</summary>
+
+
+
+### Features
+
+* [NetworkServices] add AgentGateway resource and associated RPCs ([#9250](https://github.com/googleapis/google-cloud-php/issues/9250)) ([e5a390e](https://github.com/googleapis/google-cloud-php/commit/e5a390e70edff95d2a7b4cd150d0e02154617eb6))
+
+</details>
+
+<details><summary>google/cloud-notebooks 1.1.4</summary>
+
+
+
+### Bug Fixes
+
+* **php:** remove abandoned deps ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+
+
+### Documentation
+
+* [Many APIs] update cloud ml ces v1beta client libraries ([#9240](https://github.com/googleapis/google-cloud-php/issues/9240)) ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+* Update comments for `audio_recording_config` and `bigquery_export_settings` in `LoggingSettings`. ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+* Update comments for `root_span`, `turns`, and `max_turns` in `Evaluation`. ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+* Update comments for various `InputType` enum values. ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+
+</details>
+
+<details><summary>google/cloud-pubsub 2.19.4</summary>
+
+
+
+### Bug Fixes
+
+* **php:** remove abandoned deps ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+
+
+### Documentation
+
+* [Many APIs] update cloud ml ces v1beta client libraries ([#9240](https://github.com/googleapis/google-cloud-php/issues/9240)) ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+* Update comments for `audio_recording_config` and `bigquery_export_settings` in `LoggingSettings`. ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+* Update comments for `root_span`, `turns`, and `max_turns` in `Evaluation`. ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+* Update comments for various `InputType` enum values. ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+
+</details>
+
+<details><summary>google/cloud-securesourcemanager 1.8.1</summary>
+
+
+
+### Bug Fixes
+
+* **php:** remove abandoned deps ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+
+
+### Documentation
+
+* [Many APIs] update cloud ml ces v1beta client libraries ([#9240](https://github.com/googleapis/google-cloud-php/issues/9240)) ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+* Update comments for `audio_recording_config` and `bigquery_export_settings` in `LoggingSettings`. ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+* Update comments for `root_span`, `turns`, and `max_turns` in `Evaluation`. ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+* Update comments for various `InputType` enum values. ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+
+</details>
+
+<details><summary>google/cloud-securitycompliance 0.4.1</summary>
+
+
+
+### Bug Fixes
+
+* **php:** remove abandoned deps ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+
+
+### Documentation
+
+* [Many APIs] update cloud ml ces v1beta client libraries ([#9240](https://github.com/googleapis/google-cloud-php/issues/9240)) ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+* Update comments for `audio_recording_config` and `bigquery_export_settings` in `LoggingSettings`. ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+* Update comments for `root_span`, `turns`, and `max_turns` in `Evaluation`. ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+* Update comments for various `InputType` enum values. ([f5e4601](https://github.com/googleapis/google-cloud-php/commit/f5e4601c0c91554c0ef1761e27ddfc17c4fca144))
+
+</details>
+
+<details><summary>google/cloud-security-private-ca 2.4.1</summary>
+
+
+
+### Bug Fixes
+
+* **php:** remove abandoned deps ([492e599](https://github.com/googleapis/google-cloud-php/commit/492e599ae7bbd9d2ba312c33e00fd35ff499aa87))
+
+
+### Documentation
+
+* [Many APIs] update cloud ml ces v1beta client libraries ([#9241](https://github.com/googleapis/google-cloud-php/issues/9241)) ([492e599](https://github.com/googleapis/google-cloud-php/commit/492e599ae7bbd9d2ba312c33e00fd35ff499aa87))
+* Update comments for `audio_recording_config` and `bigquery_export_settings` in `LoggingSettings`. ([492e599](https://github.com/googleapis/google-cloud-php/commit/492e599ae7bbd9d2ba312c33e00fd35ff499aa87))
+* Update comments for `root_span`, `turns`, and `max_turns` in `Evaluation`. ([492e599](https://github.com/googleapis/google-cloud-php/commit/492e599ae7bbd9d2ba312c33e00fd35ff499aa87))
+* Update comments for various `InputType` enum values. ([492e599](https://github.com/googleapis/google-cloud-php/commit/492e599ae7bbd9d2ba312c33e00fd35ff499aa87))
+
+</details>
+
+<details><summary>google/cloud-service-management 2.2.1</summary>
+
+
+
+### Bug Fixes
+
+* **php:** remove abandoned deps ([492e599](https://github.com/googleapis/google-cloud-php/commit/492e599ae7bbd9d2ba312c33e00fd35ff499aa87))
+
+
+### Documentation
+
+* [Many APIs] update cloud ml ces v1beta client libraries ([#9241](https://github.com/googleapis/google-cloud-php/issues/9241)) ([492e599](https://github.com/googleapis/google-cloud-php/commit/492e599ae7bbd9d2ba312c33e00fd35ff499aa87))
+* Update comments for `audio_recording_config` and `bigquery_export_settings` in `LoggingSettings`. ([492e599](https://github.com/googleapis/google-cloud-php/commit/492e599ae7bbd9d2ba312c33e00fd35ff499aa87))
+* Update comments for `root_span`, `turns`, and `max_turns` in `Evaluation`. ([492e599](https://github.com/googleapis/google-cloud-php/commit/492e599ae7bbd9d2ba312c33e00fd35ff499aa87))
+* Update comments for various `InputType` enum values. ([492e599](https://github.com/googleapis/google-cloud-php/commit/492e599ae7bbd9d2ba312c33e00fd35ff499aa87))
+
+</details>
+
+<details><summary>google/cloud-spanner 2.10.0</summary>
+
+
+
+### Features
+
+* **docs:** publish protobuf to refdocs ([#9126](https://github.com/googleapis/google-cloud-php/issues/9126)) ([a1390ed](https://github.com/googleapis/google-cloud-php/commit/a1390edd1d449e6c4b8b926402e0e05f23991e0b))
+
+</details>
+
+<details><summary>google/cloud-speech 2.5.2</summary>
+
+
+
+### Bug Fixes
+
+* **php:** remove abandoned deps ([492e599](https://github.com/googleapis/google-cloud-php/commit/492e599ae7bbd9d2ba312c33e00fd35ff499aa87))
+
+
+### Documentation
+
+* [Many APIs] update cloud ml ces v1beta client libraries ([#9241](https://github.com/googleapis/google-cloud-php/issues/9241)) ([492e599](https://github.com/googleapis/google-cloud-php/commit/492e599ae7bbd9d2ba312c33e00fd35ff499aa87))
+* Update comments for `audio_recording_config` and `bigquery_export_settings` in `LoggingSettings`. ([492e599](https://github.com/googleapis/google-cloud-php/commit/492e599ae7bbd9d2ba312c33e00fd35ff499aa87))
+* Update comments for `root_span`, `turns`, and `max_turns` in `Evaluation`. ([492e599](https://github.com/googleapis/google-cloud-php/commit/492e599ae7bbd9d2ba312c33e00fd35ff499aa87))
+* Update comments for various `InputType` enum values. ([492e599](https://github.com/googleapis/google-cloud-php/commit/492e599ae7bbd9d2ba312c33e00fd35ff499aa87))
+
+</details>
+
+<details><summary>google/cloud-translate 2.3.1</summary>
+
+
+
+### Documentation
+
+* **Translate:** add MIGRATING.md and update README.md ([#9235](https://github.com/googleapis/google-cloud-php/issues/9235)) ([03beb83](https://github.com/googleapis/google-cloud-php/commit/03beb83b6a3039eb053b3e02141f9d8bbd139503))
+
+</details>
+
+<details><summary>google/cloud-vectorsearch 0.4.1</summary>
+
+
+
+### Bug Fixes
+
+* **php:** remove abandoned deps ([492e599](https://github.com/googleapis/google-cloud-php/commit/492e599ae7bbd9d2ba312c33e00fd35ff499aa87))
+
+
+### Documentation
+
+* [Many APIs] update cloud ml ces v1beta client libraries ([#9241](https://github.com/googleapis/google-cloud-php/issues/9241)) ([492e599](https://github.com/googleapis/google-cloud-php/commit/492e599ae7bbd9d2ba312c33e00fd35ff499aa87))
+* Update comments for `audio_recording_config` and `bigquery_export_settings` in `LoggingSettings`. ([492e599](https://github.com/googleapis/google-cloud-php/commit/492e599ae7bbd9d2ba312c33e00fd35ff499aa87))
+* Update comments for `root_span`, `turns`, and `max_turns` in `Evaluation`. ([492e599](https://github.com/googleapis/google-cloud-php/commit/492e599ae7bbd9d2ba312c33e00fd35ff499aa87))
+* Update comments for various `InputType` enum values. ([492e599](https://github.com/googleapis/google-cloud-php/commit/492e599ae7bbd9d2ba312c33e00fd35ff499aa87))
+
+</details>
+
+<details><summary>google/cloud-vmware-engine 1.3.1</summary>
+
+
+
+### Bug Fixes
+
+* **php:** remove abandoned deps ([492e599](https://github.com/googleapis/google-cloud-php/commit/492e599ae7bbd9d2ba312c33e00fd35ff499aa87))
+
+
+### Documentation
+
+* [Many APIs] update cloud ml ces v1beta client libraries ([#9241](https://github.com/googleapis/google-cloud-php/issues/9241)) ([492e599](https://github.com/googleapis/google-cloud-php/commit/492e599ae7bbd9d2ba312c33e00fd35ff499aa87))
+* Update comments for `audio_recording_config` and `bigquery_export_settings` in `LoggingSettings`. ([492e599](https://github.com/googleapis/google-cloud-php/commit/492e599ae7bbd9d2ba312c33e00fd35ff499aa87))
+* Update comments for `root_span`, `turns`, and `max_turns` in `Evaluation`. ([492e599](https://github.com/googleapis/google-cloud-php/commit/492e599ae7bbd9d2ba312c33e00fd35ff499aa87))
+* Update comments for various `InputType` enum values. ([492e599](https://github.com/googleapis/google-cloud-php/commit/492e599ae7bbd9d2ba312c33e00fd35ff499aa87))
+
+</details>
+
+<details><summary>google/cloud-workloadmanager 0.2.1</summary>
+
+
+
+### Bug Fixes
+
+* **php:** remove abandoned deps ([492e599](https://github.com/googleapis/google-cloud-php/commit/492e599ae7bbd9d2ba312c33e00fd35ff499aa87))
+
+
+### Documentation
+
+* [Many APIs] update cloud ml ces v1beta client libraries ([#9241](https://github.com/googleapis/google-cloud-php/issues/9241)) ([492e599](https://github.com/googleapis/google-cloud-php/commit/492e599ae7bbd9d2ba312c33e00fd35ff499aa87))
+* Update comments for `audio_recording_config` and `bigquery_export_settings` in `LoggingSettings`. ([492e599](https://github.com/googleapis/google-cloud-php/commit/492e599ae7bbd9d2ba312c33e00fd35ff499aa87))
+* Update comments for `root_span`, `turns`, and `max_turns` in `Evaluation`. ([492e599](https://github.com/googleapis/google-cloud-php/commit/492e599ae7bbd9d2ba312c33e00fd35ff499aa87))
+* Update comments for various `InputType` enum values. ([492e599](https://github.com/googleapis/google-cloud-php/commit/492e599ae7bbd9d2ba312c33e00fd35ff499aa87))
+
+</details>
+
 ## 0.332.0
 
 <details><summary>googleads/data-manager 0.5.0</summary>
