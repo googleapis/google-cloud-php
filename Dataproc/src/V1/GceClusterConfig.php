@@ -145,11 +145,20 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
     protected $shielded_instance_config = null;
     /**
      * Optional. Confidential Instance Config for clusters using [Confidential
-     * VMs](https://cloud.google.com/compute/confidential-vm/docs).
+     * VMs](https://cloud.google.com/confidential-computing/confidential-vm/docs).
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.ConfidentialInstanceConfig confidential_instance_config = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $confidential_instance_config = null;
+    /**
+     * Optional. [Resource manager tags]
+     * (https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing)
+     * to add to all instances (see [Use secure tags]
+     * (https://cloud.google.com/dataproc/docs/guides/use-secure-tags)).
+     *
+     * Generated from protobuf field <code>map<string, string> resource_manager_tags = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $resource_manager_tags;
 
     /**
      * Constructor.
@@ -238,7 +247,12 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      *           VMs](https://cloud.google.com/security/shielded-cloud/shielded-vm).
      *     @type \Google\Cloud\Dataproc\V1\ConfidentialInstanceConfig $confidential_instance_config
      *           Optional. Confidential Instance Config for clusters using [Confidential
-     *           VMs](https://cloud.google.com/compute/confidential-vm/docs).
+     *           VMs](https://cloud.google.com/confidential-computing/confidential-vm/docs).
+     *     @type array|\Google\Protobuf\Internal\MapField $resource_manager_tags
+     *           Optional. [Resource manager tags]
+     *           (https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing)
+     *           to add to all instances (see [Use secure tags]
+     *           (https://cloud.google.com/dataproc/docs/guides/use-secure-tags)).
      * }
      */
     public function __construct($data = NULL) {
@@ -710,7 +724,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Confidential Instance Config for clusters using [Confidential
-     * VMs](https://cloud.google.com/compute/confidential-vm/docs).
+     * VMs](https://cloud.google.com/confidential-computing/confidential-vm/docs).
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.ConfidentialInstanceConfig confidential_instance_config = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Dataproc\V1\ConfidentialInstanceConfig|null
@@ -732,7 +746,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Confidential Instance Config for clusters using [Confidential
-     * VMs](https://cloud.google.com/compute/confidential-vm/docs).
+     * VMs](https://cloud.google.com/confidential-computing/confidential-vm/docs).
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.ConfidentialInstanceConfig confidential_instance_config = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Dataproc\V1\ConfidentialInstanceConfig $var
@@ -742,6 +756,38 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1\ConfidentialInstanceConfig::class);
         $this->confidential_instance_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. [Resource manager tags]
+     * (https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing)
+     * to add to all instances (see [Use secure tags]
+     * (https://cloud.google.com/dataproc/docs/guides/use-secure-tags)).
+     *
+     * Generated from protobuf field <code>map<string, string> resource_manager_tags = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getResourceManagerTags()
+    {
+        return $this->resource_manager_tags;
+    }
+
+    /**
+     * Optional. [Resource manager tags]
+     * (https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing)
+     * to add to all instances (see [Use secure tags]
+     * (https://cloud.google.com/dataproc/docs/guides/use-secure-tags)).
+     *
+     * Generated from protobuf field <code>map<string, string> resource_manager_tags = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setResourceManagerTags($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->resource_manager_tags = $arr;
 
         return $this;
     }
