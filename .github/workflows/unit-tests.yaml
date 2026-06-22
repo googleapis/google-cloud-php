@@ -32,7 +32,7 @@ jobs:
     runs-on: ${{ matrix.platform }}
     continue-on-error: true
     steps:
-    - uses: actions/checkout@v6
+    - uses: actions/checkout@v7
 
     - name: Setup cache environment
       id: extcache
@@ -74,7 +74,7 @@ jobs:
     name: Package Tests
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v6
+    - uses: actions/checkout@v7
     - name: Setup PHP
       uses: shivammathur/setup-php@verbose
       with:
@@ -87,7 +87,7 @@ jobs:
     name: Package Tests (Lowest Dependencies)
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v6
+    - uses: actions/checkout@v7
     - name: Setup PHP
       uses: shivammathur/setup-php@verbose
       with:
@@ -102,7 +102,7 @@ jobs:
     name: Dev Commands Unit Tests
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v6
+    - uses: actions/checkout@v7
     - name: Setup PHP
       uses: shivammathur/setup-php@verbose
       with:
