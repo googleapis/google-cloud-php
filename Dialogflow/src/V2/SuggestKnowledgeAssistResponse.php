@@ -40,6 +40,14 @@ class SuggestKnowledgeAssistResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int32 context_size = 3;</code>
      */
     protected $context_size = 0;
+    /**
+     * Optional. The list of additional suggested queries based on the context.
+     * This is used for the cases when we want to generate multiple queries
+     * for a single request.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.KnowledgeAssistAnswer.AdditionalSuggestedQueryResult additional_suggested_query_results = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $additional_suggested_query_results;
 
     /**
      * Constructor.
@@ -59,6 +67,10 @@ class SuggestKnowledgeAssistResponse extends \Google\Protobuf\Internal\Message
      *           to compile the suggestion. It may be smaller than the
      *           [SuggestKnowledgeAssistRequest.context_size][google.cloud.dialogflow.v2.SuggestKnowledgeAssistRequest.context_size]
      *           field in the request if there are fewer messages in the conversation.
+     *     @type \Google\Cloud\Dialogflow\V2\KnowledgeAssistAnswer\AdditionalSuggestedQueryResult[] $additional_suggested_query_results
+     *           Optional. The list of additional suggested queries based on the context.
+     *           This is used for the cases when we want to generate multiple queries
+     *           for a single request.
      * }
      */
     public function __construct($data = NULL) {
@@ -162,6 +174,36 @@ class SuggestKnowledgeAssistResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->context_size = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The list of additional suggested queries based on the context.
+     * This is used for the cases when we want to generate multiple queries
+     * for a single request.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.KnowledgeAssistAnswer.AdditionalSuggestedQueryResult additional_suggested_query_results = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\KnowledgeAssistAnswer\AdditionalSuggestedQueryResult>
+     */
+    public function getAdditionalSuggestedQueryResults()
+    {
+        return $this->additional_suggested_query_results;
+    }
+
+    /**
+     * Optional. The list of additional suggested queries based on the context.
+     * This is used for the cases when we want to generate multiple queries
+     * for a single request.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.KnowledgeAssistAnswer.AdditionalSuggestedQueryResult additional_suggested_query_results = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dialogflow\V2\KnowledgeAssistAnswer\AdditionalSuggestedQueryResult[] $var
+     * @return $this
+     */
+    public function setAdditionalSuggestedQueryResults($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dialogflow\V2\KnowledgeAssistAnswer\AdditionalSuggestedQueryResult::class);
+        $this->additional_suggested_query_results = $arr;
 
         return $this;
     }

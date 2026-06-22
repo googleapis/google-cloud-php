@@ -111,6 +111,12 @@ class ConversationProfile extends \Google\Protobuf\Internal\Message
      */
     protected $language_code = '';
     /**
+     * Optional. Configuration for SIP connections.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SipConfig sip_config = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $sip_config = null;
+    /**
      * The time zone of this conversational profile from the
      * [time zone database](https://www.iana.org/time-zones), e.g.,
      * America/New_York, Europe/Paris. Defaults to America/New_York.
@@ -184,6 +190,8 @@ class ConversationProfile extends \Google\Protobuf\Internal\Message
      *           languages.
      *           This should be a [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt)
      *           language tag. Example: "en-US".
+     *     @type \Google\Cloud\Dialogflow\V2\SipConfig $sip_config
+     *           Optional. Configuration for SIP connections.
      *     @type string $time_zone
      *           The time zone of this conversational profile from the
      *           [time zone database](https://www.iana.org/time-zones), e.g.,
@@ -671,6 +679,42 @@ class ConversationProfile extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->language_code = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Configuration for SIP connections.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SipConfig sip_config = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dialogflow\V2\SipConfig|null
+     */
+    public function getSipConfig()
+    {
+        return $this->sip_config;
+    }
+
+    public function hasSipConfig()
+    {
+        return isset($this->sip_config);
+    }
+
+    public function clearSipConfig()
+    {
+        unset($this->sip_config);
+    }
+
+    /**
+     * Optional. Configuration for SIP connections.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SipConfig sip_config = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dialogflow\V2\SipConfig $var
+     * @return $this
+     */
+    public function setSipConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\SipConfig::class);
+        $this->sip_config = $var;
 
         return $this;
     }
