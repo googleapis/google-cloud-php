@@ -222,6 +222,7 @@ use Google\Analytics\Admin\V1alpha\UpdateKeyEventRequest;
 use Google\Analytics\Admin\V1alpha\UpdateMeasurementProtocolSecretRequest;
 use Google\Analytics\Admin\V1alpha\UpdatePropertyRequest;
 use Google\Analytics\Admin\V1alpha\UpdateReportingDataAnnotationRequest;
+use Google\Analytics\Admin\V1alpha\UpdateReportingIdentitySettingsRequest;
 use Google\Analytics\Admin\V1alpha\UpdateSKAdNetworkConversionValueSchemaRequest;
 use Google\Analytics\Admin\V1alpha\UpdateSearchAds360LinkRequest;
 use Google\Analytics\Admin\V1alpha\UpdateSubpropertyEventFilterRequest;
@@ -404,6 +405,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<MeasurementProtocolSecret> updateMeasurementProtocolSecretAsync(UpdateMeasurementProtocolSecretRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Property> updatePropertyAsync(UpdatePropertyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ReportingDataAnnotation> updateReportingDataAnnotationAsync(UpdateReportingDataAnnotationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ReportingIdentitySettings> updateReportingIdentitySettingsAsync(UpdateReportingIdentitySettingsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<SKAdNetworkConversionValueSchema> updateSKAdNetworkConversionValueSchemaAsync(UpdateSKAdNetworkConversionValueSchemaRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<SearchAds360Link> updateSearchAds360LinkAsync(UpdateSearchAds360LinkRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<SubpropertyEventFilter> updateSubpropertyEventFilterAsync(UpdateSubpropertyEventFilterRequest $request, array $optionalArgs = [])
@@ -5928,6 +5930,37 @@ final class AnalyticsAdminServiceClient
         array $callOptions = []
     ): ReportingDataAnnotation {
         return $this->startApiCall('UpdateReportingDataAnnotation', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates the reporting identity settings for this property.
+     *
+     * The async variant is
+     * {@see AnalyticsAdminServiceClient::updateReportingIdentitySettingsAsync()} .
+     *
+     * @example samples/V1alpha/AnalyticsAdminServiceClient/update_reporting_identity_settings.php
+     *
+     * @param UpdateReportingIdentitySettingsRequest $request     A request to house fields associated with the call.
+     * @param array                                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return ReportingIdentitySettings
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function updateReportingIdentitySettings(
+        UpdateReportingIdentitySettingsRequest $request,
+        array $callOptions = []
+    ): ReportingIdentitySettings {
+        return $this->startApiCall('UpdateReportingIdentitySettings', $request, $callOptions)->wait();
     }
 
     /**

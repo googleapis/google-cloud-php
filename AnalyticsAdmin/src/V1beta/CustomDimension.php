@@ -16,10 +16,10 @@ use Google\Protobuf\RepeatedField;
 class CustomDimension extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. Resource name for this CustomDimension resource.
+     * Identifier. Resource name for this CustomDimension resource.
      * Format: properties/{property}/customDimensions/{customDimension}
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
@@ -75,7 +75,7 @@ class CustomDimension extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Output only. Resource name for this CustomDimension resource.
+     *           Identifier. Resource name for this CustomDimension resource.
      *           Format: properties/{property}/customDimensions/{customDimension}
      *     @type string $parameter_name
      *           Required. Immutable. Tagging parameter name for this custom dimension.
@@ -110,10 +110,10 @@ class CustomDimension extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Resource name for this CustomDimension resource.
+     * Identifier. Resource name for this CustomDimension resource.
      * Format: properties/{property}/customDimensions/{customDimension}
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -122,10 +122,10 @@ class CustomDimension extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Resource name for this CustomDimension resource.
+     * Identifier. Resource name for this CustomDimension resource.
      * Format: properties/{property}/customDimensions/{customDimension}
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */

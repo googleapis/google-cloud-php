@@ -264,6 +264,7 @@ use Google\Analytics\Admin\V1alpha\UpdateKeyEventRequest;
 use Google\Analytics\Admin\V1alpha\UpdateMeasurementProtocolSecretRequest;
 use Google\Analytics\Admin\V1alpha\UpdatePropertyRequest;
 use Google\Analytics\Admin\V1alpha\UpdateReportingDataAnnotationRequest;
+use Google\Analytics\Admin\V1alpha\UpdateReportingIdentitySettingsRequest;
 use Google\Analytics\Admin\V1alpha\UpdateSKAdNetworkConversionValueSchemaRequest;
 use Google\Analytics\Admin\V1alpha\UpdateSearchAds360LinkRequest;
 use Google\Analytics\Admin\V1alpha\UpdateSubpropertyEventFilterRequest;
@@ -11525,6 +11526,78 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $request = (new UpdateReportingDataAnnotationRequest())->setReportingDataAnnotation($reportingDataAnnotation);
         try {
             $gapicClient->updateReportingDataAnnotation($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateReportingIdentitySettingsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $expectedResponse = new ReportingIdentitySettings();
+        $expectedResponse->setName($name);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $reportingIdentitySettings = new ReportingIdentitySettings();
+        $request = (new UpdateReportingIdentitySettingsRequest())->setReportingIdentitySettings(
+            $reportingIdentitySettings
+        );
+        $response = $gapicClient->updateReportingIdentitySettings($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.analytics.admin.v1alpha.AnalyticsAdminService/UpdateReportingIdentitySettings',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getReportingIdentitySettings();
+        $this->assertProtobufEquals($reportingIdentitySettings, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateReportingIdentitySettingsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $reportingIdentitySettings = new ReportingIdentitySettings();
+        $request = (new UpdateReportingIdentitySettingsRequest())->setReportingIdentitySettings(
+            $reportingIdentitySettings
+        );
+        try {
+            $gapicClient->updateReportingIdentitySettings($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

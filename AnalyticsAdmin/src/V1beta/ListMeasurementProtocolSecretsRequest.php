@@ -24,20 +24,21 @@ class ListMeasurementProtocolSecretsRequest extends \Google\Protobuf\Internal\Me
      */
     protected $parent = '';
     /**
-     * The maximum number of resources to return.
+     * Optional. The maximum number of resources to return.
      * If unspecified, at most 10 resources will be returned.
      * The maximum value is 10. Higher values will be coerced to the maximum.
      *
-     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $page_size = 0;
     /**
-     * A page token, received from a previous `ListMeasurementProtocolSecrets`
-     * call. Provide this to retrieve the subsequent page. When paginating, all
-     * other parameters provided to `ListMeasurementProtocolSecrets` must match
-     * the call that provided the page token.
+     * Optional. A page token, received from a previous
+     * `ListMeasurementProtocolSecrets` call. Provide this to retrieve the
+     * subsequent page. When paginating, all other parameters provided to
+     * `ListMeasurementProtocolSecrets` must match the call that provided the page
+     * token.
      *
-     * Generated from protobuf field <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $page_token = '';
 
@@ -68,14 +69,15 @@ class ListMeasurementProtocolSecretsRequest extends \Google\Protobuf\Internal\Me
      *           Format:
      *           properties/{property}/dataStreams/{dataStream}/measurementProtocolSecrets
      *     @type int $page_size
-     *           The maximum number of resources to return.
+     *           Optional. The maximum number of resources to return.
      *           If unspecified, at most 10 resources will be returned.
      *           The maximum value is 10. Higher values will be coerced to the maximum.
      *     @type string $page_token
-     *           A page token, received from a previous `ListMeasurementProtocolSecrets`
-     *           call. Provide this to retrieve the subsequent page. When paginating, all
-     *           other parameters provided to `ListMeasurementProtocolSecrets` must match
-     *           the call that provided the page token.
+     *           Optional. A page token, received from a previous
+     *           `ListMeasurementProtocolSecrets` call. Provide this to retrieve the
+     *           subsequent page. When paginating, all other parameters provided to
+     *           `ListMeasurementProtocolSecrets` must match the call that provided the page
+     *           token.
      * }
      */
     public function __construct($data = NULL) {
@@ -114,11 +116,11 @@ class ListMeasurementProtocolSecretsRequest extends \Google\Protobuf\Internal\Me
     }
 
     /**
-     * The maximum number of resources to return.
+     * Optional. The maximum number of resources to return.
      * If unspecified, at most 10 resources will be returned.
      * The maximum value is 10. Higher values will be coerced to the maximum.
      *
-     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getPageSize()
@@ -127,11 +129,11 @@ class ListMeasurementProtocolSecretsRequest extends \Google\Protobuf\Internal\Me
     }
 
     /**
-     * The maximum number of resources to return.
+     * Optional. The maximum number of resources to return.
      * If unspecified, at most 10 resources will be returned.
      * The maximum value is 10. Higher values will be coerced to the maximum.
      *
-     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -144,12 +146,13 @@ class ListMeasurementProtocolSecretsRequest extends \Google\Protobuf\Internal\Me
     }
 
     /**
-     * A page token, received from a previous `ListMeasurementProtocolSecrets`
-     * call. Provide this to retrieve the subsequent page. When paginating, all
-     * other parameters provided to `ListMeasurementProtocolSecrets` must match
-     * the call that provided the page token.
+     * Optional. A page token, received from a previous
+     * `ListMeasurementProtocolSecrets` call. Provide this to retrieve the
+     * subsequent page. When paginating, all other parameters provided to
+     * `ListMeasurementProtocolSecrets` must match the call that provided the page
+     * token.
      *
-     * Generated from protobuf field <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getPageToken()
@@ -158,12 +161,13 @@ class ListMeasurementProtocolSecretsRequest extends \Google\Protobuf\Internal\Me
     }
 
     /**
-     * A page token, received from a previous `ListMeasurementProtocolSecrets`
-     * call. Provide this to retrieve the subsequent page. When paginating, all
-     * other parameters provided to `ListMeasurementProtocolSecrets` must match
-     * the call that provided the page token.
+     * Optional. A page token, received from a previous
+     * `ListMeasurementProtocolSecrets` call. Provide this to retrieve the
+     * subsequent page. When paginating, all other parameters provided to
+     * `ListMeasurementProtocolSecrets` must match the call that provided the page
+     * token.
      *
-     * Generated from protobuf field <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
