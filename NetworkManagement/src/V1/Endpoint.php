@@ -132,6 +132,16 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      */
     protected $cloud_run_revision = null;
     /**
+     * A [Cloud Run](https://cloud.google.com/run)
+     * [job](https://docs.cloud.google.com/run/docs/reference/rest/v2/projects.locations.jobs#Job)
+     * URI.
+     * Applicable only to source endpoint.
+     * The format is: projects/{project}/locations/{location}/jobs/{job}
+     *
+     * Generated from protobuf field <code>string cloud_run_job = 24;</code>
+     */
+    protected $cloud_run_job = '';
+    /**
      * A VPC network URI. For source endpoints, used according to the
      * `network_type`. For destination endpoints, used only when the source is an
      * external IP address endpoint, and the destination is an internal IP address
@@ -213,6 +223,12 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      *           A [Cloud Run](https://cloud.google.com/run)
      *           [revision](https://cloud.google.com/run/docs/reference/rest/v1/namespaces.revisions/get)
      *           Applicable only to source endpoint.
+     *     @type string $cloud_run_job
+     *           A [Cloud Run](https://cloud.google.com/run)
+     *           [job](https://docs.cloud.google.com/run/docs/reference/rest/v2/projects.locations.jobs#Job)
+     *           URI.
+     *           Applicable only to source endpoint.
+     *           The format is: projects/{project}/locations/{location}/jobs/{job}
      *     @type string $network
      *           A VPC network URI. For source endpoints, used according to the
      *           `network_type`. For destination endpoints, used only when the source is an
@@ -743,6 +759,40 @@ class Endpoint extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\NetworkManagement\V1\Endpoint\CloudRunRevisionEndpoint::class);
         $this->cloud_run_revision = $var;
+
+        return $this;
+    }
+
+    /**
+     * A [Cloud Run](https://cloud.google.com/run)
+     * [job](https://docs.cloud.google.com/run/docs/reference/rest/v2/projects.locations.jobs#Job)
+     * URI.
+     * Applicable only to source endpoint.
+     * The format is: projects/{project}/locations/{location}/jobs/{job}
+     *
+     * Generated from protobuf field <code>string cloud_run_job = 24;</code>
+     * @return string
+     */
+    public function getCloudRunJob()
+    {
+        return $this->cloud_run_job;
+    }
+
+    /**
+     * A [Cloud Run](https://cloud.google.com/run)
+     * [job](https://docs.cloud.google.com/run/docs/reference/rest/v2/projects.locations.jobs#Job)
+     * URI.
+     * Applicable only to source endpoint.
+     * The format is: projects/{project}/locations/{location}/jobs/{job}
+     *
+     * Generated from protobuf field <code>string cloud_run_job = 24;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCloudRunJob($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->cloud_run_job = $var;
 
         return $this;
     }
