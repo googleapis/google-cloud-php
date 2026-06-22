@@ -23,6 +23,25 @@
 return [
     'interfaces' => [
         'google.cloud.oracledatabase.v1.OracleDatabase' => [
+            'ConfigureExascaleCloudExadataInfrastructure' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\OracleDatabase\V1\CloudExadataInfrastructure',
+                    'metadataReturnType' => '\Google\Cloud\OracleDatabase\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'CreateAutonomousDatabase' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\OracleDatabase\V1\AutonomousDatabase',
@@ -772,57 +791,9 @@ return [
                     ],
                 ],
             ],
-            'GetGoldengateConnectionType' => [
-                'callType' => \Google\ApiCore\Call::UNARY_CALL,
-                'responseType' => 'Google\Cloud\OracleDatabase\V1\GoldengateConnectionType',
-                'headerParams' => [
-                    [
-                        'keyName' => 'name',
-                        'fieldAccessors' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
             'GetGoldengateDeployment' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\OracleDatabase\V1\GoldengateDeployment',
-                'headerParams' => [
-                    [
-                        'keyName' => 'name',
-                        'fieldAccessors' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'GetGoldengateDeploymentEnvironment' => [
-                'callType' => \Google\ApiCore\Call::UNARY_CALL,
-                'responseType' => 'Google\Cloud\OracleDatabase\V1\GoldengateDeploymentEnvironment',
-                'headerParams' => [
-                    [
-                        'keyName' => 'name',
-                        'fieldAccessors' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'GetGoldengateDeploymentType' => [
-                'callType' => \Google\ApiCore\Call::UNARY_CALL,
-                'responseType' => 'Google\Cloud\OracleDatabase\V1\GoldengateDeploymentType',
-                'headerParams' => [
-                    [
-                        'keyName' => 'name',
-                        'fieldAccessors' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'GetGoldengateDeploymentVersion' => [
-                'callType' => \Google\ApiCore\Call::UNARY_CALL,
-                'responseType' => 'Google\Cloud\OracleDatabase\V1\GoldengateDeploymentVersion',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -1506,11 +1477,7 @@ return [
                 'giVersion' => 'projects/{project}/locations/{location}/giVersions/{gi_version}',
                 'goldengateConnection' => 'projects/{project}/locations/{location}/goldengateConnections/{goldengate_connection}',
                 'goldengateConnectionAssignment' => 'projects/{project}/locations/{location}/goldengateConnectionAssignments/{goldengate_connection_assignment}',
-                'goldengateConnectionType' => 'projects/{project}/locations/{location}/goldengateConnectionTypes/{goldengate_connection_type}',
                 'goldengateDeployment' => 'projects/{project}/locations/{location}/goldengateDeployments/{goldengate_deployment}',
-                'goldengateDeploymentEnvironment' => 'projects/{project}/locations/{location}/goldengateDeploymentEnvironments/{goldengate_deployment_environment}',
-                'goldengateDeploymentType' => 'projects/{project}/locations/{location}/goldengateDeploymentTypes/{goldengate_deployment_type}',
-                'goldengateDeploymentVersion' => 'projects/{project}/locations/{location}/goldengateDeploymentVersions/{goldengate_deployment_version}',
                 'location' => 'projects/{project}/locations/{location}',
                 'network' => 'projects/{project}/global/networks/{network}',
                 'odbNetwork' => 'projects/{project}/locations/{location}/odbNetworks/{odb_network}',

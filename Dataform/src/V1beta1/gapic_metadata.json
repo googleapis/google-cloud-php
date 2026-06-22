@@ -75,6 +75,11 @@
                                 "deleteFolder"
                             ]
                         },
+                        "DeleteFolderTree": {
+                            "methods": [
+                                "deleteFolderTree"
+                            ]
+                        },
                         "DeleteReleaseConfig": {
                             "methods": [
                                 "deleteReleaseConfig"
@@ -85,9 +90,19 @@
                                 "deleteRepository"
                             ]
                         },
+                        "DeleteRepositoryLongRunning": {
+                            "methods": [
+                                "deleteRepositoryLongRunning"
+                            ]
+                        },
                         "DeleteTeamFolder": {
                             "methods": [
                                 "deleteTeamFolder"
+                            ]
+                        },
+                        "DeleteTeamFolderTree": {
+                            "methods": [
+                                "deleteTeamFolderTree"
                             ]
                         },
                         "DeleteWorkflowConfig": {

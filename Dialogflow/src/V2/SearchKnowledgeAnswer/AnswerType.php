@@ -37,12 +37,26 @@ class AnswerType
      * Generated from protobuf enum <code>INTENT = 3;</code>
      */
     const INTENT = 3;
+    /**
+     * The answer is from Playbook.
+     *
+     * Generated from protobuf enum <code>PLAYBOOK = 4;</code>
+     */
+    const PLAYBOOK = 4;
+    /**
+     * The answer is from event.
+     *
+     * Generated from protobuf enum <code>EVENT = 5;</code>
+     */
+    const EVENT = 5;
 
     private static $valueToName = [
         self::ANSWER_TYPE_UNSPECIFIED => 'ANSWER_TYPE_UNSPECIFIED',
         self::FAQ => 'FAQ',
         self::GENERATIVE => 'GENERATIVE',
         self::INTENT => 'INTENT',
+        self::PLAYBOOK => 'PLAYBOOK',
+        self::EVENT => 'EVENT',
     ];
 
     public static function name($value)
