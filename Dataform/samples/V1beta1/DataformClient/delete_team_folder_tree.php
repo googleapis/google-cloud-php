@@ -22,39 +22,42 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START dataform_v1beta1_generated_Dataform_QueryUserRootContents_sync]
+// [START dataform_v1beta1_generated_Dataform_DeleteTeamFolderTree_sync]
 use Google\ApiCore\ApiException;
-use Google\ApiCore\PagedListResponse;
+use Google\ApiCore\OperationResponse;
 use Google\Cloud\Dataform\V1beta1\Client\DataformClient;
-use Google\Cloud\Dataform\V1beta1\QueryUserRootContentsRequest;
-use Google\Cloud\Dataform\V1beta1\QueryUserRootContentsResponse\RootContentsEntry;
+use Google\Cloud\Dataform\V1beta1\DeleteTeamFolderTreeRequest;
+use Google\Rpc\Status;
 
 /**
- * Returns the contents of a caller's root folder in a given location.
- * The root folder contains all resources that are created by the user and not
- * contained in any other folder.
+ * Deletes a TeamFolder with its contents (Folders, Repositories, Workspaces,
+ * ReleaseConfigs, and WorkflowConfigs).
  *
- * @param string $formattedLocation Location of the user root folder to list contents for.
- *                                  Format: projects/&#42;/locations/*
- *                                  Please see {@see DataformClient::locationName()} for help formatting this field.
+ * @param string $formattedName The TeamFolder's name.
+ *                              Format: projects/{project}/locations/{location}/teamFolders/{team_folder}
+ *                              Please see {@see DataformClient::teamFolderName()} for help formatting this field.
  */
-function query_user_root_contents_sample(string $formattedLocation): void
+function delete_team_folder_tree_sample(string $formattedName): void
 {
     // Create a client.
     $dataformClient = new DataformClient();
 
     // Prepare the request message.
-    $request = (new QueryUserRootContentsRequest())
-        ->setLocation($formattedLocation);
+    $request = (new DeleteTeamFolderTreeRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
-        /** @var PagedListResponse $response */
-        $response = $dataformClient->queryUserRootContents($request);
+        /** @var OperationResponse $response */
+        $response = $dataformClient->deleteTeamFolderTree($request);
+        $response->pollUntilComplete();
 
-        /** @var RootContentsEntry $element */
-        foreach ($response as $element) {
-            printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
+        if ($response->operationSucceeded()) {
+            printf('Operation completed successfully.' . PHP_EOL);
+        } else {
+            /** @var Status $error */
+            $error = $response->getError();
+            printf('Operation failed with error data: %s' . PHP_EOL, $error->serializeToJsonString());
         }
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
@@ -72,8 +75,8 @@ function query_user_root_contents_sample(string $formattedLocation): void
  */
 function callSample(): void
 {
-    $formattedLocation = DataformClient::locationName('[PROJECT]', '[LOCATION]');
+    $formattedName = DataformClient::teamFolderName('[PROJECT]', '[LOCATION]', '[TEAM_FOLDER]');
 
-    query_user_root_contents_sample($formattedLocation);
+    delete_team_folder_tree_sample($formattedName);
 }
-// [END dataform_v1beta1_generated_Dataform_QueryUserRootContents_sync]
+// [END dataform_v1beta1_generated_Dataform_DeleteTeamFolderTree_sync]

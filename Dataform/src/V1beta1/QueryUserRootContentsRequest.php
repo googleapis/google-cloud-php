@@ -16,7 +16,7 @@ use Google\Protobuf\RepeatedField;
 class QueryUserRootContentsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Location of the user root folder whose contents to list.
+     * Required. Location of the user root folder to list contents for.
      * Format: projects/{@*}locations/*
      *
      * Generated from protobuf field <code>string location = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -45,8 +45,8 @@ class QueryUserRootContentsRequest extends \Google\Protobuf\Internal\Message
      * Will order Folders before Repositories, and then by `order_by` in ascending
      * order. Supported keywords: display_name (default), created_at,
      * last_modified_at. Examples:
-     *   - `orderBy="display_name"`
-     *   - `orderBy="display_name desc"`
+     * * `orderBy="display_name"`
+     * * `orderBy="display_name desc"`
      *
      * Generated from protobuf field <code>string order_by = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -55,14 +55,14 @@ class QueryUserRootContentsRequest extends \Google\Protobuf\Internal\Message
      * Optional. Optional filtering for the returned list. Filtering is currently
      * only supported on the `display_name` field.
      * Example:
-     *  - `filter="display_name="MyFolder""`
+     * * `filter="display_name="MyFolder""`
      *
      * Generated from protobuf field <code>string filter = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $filter = '';
 
     /**
-     * @param string $location Required. Location of the user root folder whose contents to list.
+     * @param string $location Required. Location of the user root folder to list contents for.
      *                         Format: projects/&#42;/locations/*
      *                         Please see {@see DataformClient::locationName()} for help formatting this field.
      *
@@ -83,7 +83,7 @@ class QueryUserRootContentsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $location
-     *           Required. Location of the user root folder whose contents to list.
+     *           Required. Location of the user root folder to list contents for.
      *           Format: projects/{@*}locations/*
      *     @type int $page_size
      *           Optional. Maximum number of paths to return. The server may return fewer
@@ -100,13 +100,13 @@ class QueryUserRootContentsRequest extends \Google\Protobuf\Internal\Message
      *           Will order Folders before Repositories, and then by `order_by` in ascending
      *           order. Supported keywords: display_name (default), created_at,
      *           last_modified_at. Examples:
-     *             - `orderBy="display_name"`
-     *             - `orderBy="display_name desc"`
+     *           * `orderBy="display_name"`
+     *           * `orderBy="display_name desc"`
      *     @type string $filter
      *           Optional. Optional filtering for the returned list. Filtering is currently
      *           only supported on the `display_name` field.
      *           Example:
-     *            - `filter="display_name="MyFolder""`
+     *           * `filter="display_name="MyFolder""`
      * }
      */
     public function __construct($data = NULL) {
@@ -115,7 +115,7 @@ class QueryUserRootContentsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Location of the user root folder whose contents to list.
+     * Required. Location of the user root folder to list contents for.
      * Format: projects/{@*}locations/*
      *
      * Generated from protobuf field <code>string location = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -127,7 +127,7 @@ class QueryUserRootContentsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Location of the user root folder whose contents to list.
+     * Required. Location of the user root folder to list contents for.
      * Format: projects/{@*}locations/*
      *
      * Generated from protobuf field <code>string location = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -211,8 +211,8 @@ class QueryUserRootContentsRequest extends \Google\Protobuf\Internal\Message
      * Will order Folders before Repositories, and then by `order_by` in ascending
      * order. Supported keywords: display_name (default), created_at,
      * last_modified_at. Examples:
-     *   - `orderBy="display_name"`
-     *   - `orderBy="display_name desc"`
+     * * `orderBy="display_name"`
+     * * `orderBy="display_name desc"`
      *
      * Generated from protobuf field <code>string order_by = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -227,8 +227,8 @@ class QueryUserRootContentsRequest extends \Google\Protobuf\Internal\Message
      * Will order Folders before Repositories, and then by `order_by` in ascending
      * order. Supported keywords: display_name (default), created_at,
      * last_modified_at. Examples:
-     *   - `orderBy="display_name"`
-     *   - `orderBy="display_name desc"`
+     * * `orderBy="display_name"`
+     * * `orderBy="display_name desc"`
      *
      * Generated from protobuf field <code>string order_by = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -246,7 +246,7 @@ class QueryUserRootContentsRequest extends \Google\Protobuf\Internal\Message
      * Optional. Optional filtering for the returned list. Filtering is currently
      * only supported on the `display_name` field.
      * Example:
-     *  - `filter="display_name="MyFolder""`
+     * * `filter="display_name="MyFolder""`
      *
      * Generated from protobuf field <code>string filter = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -260,7 +260,7 @@ class QueryUserRootContentsRequest extends \Google\Protobuf\Internal\Message
      * Optional. Optional filtering for the returned list. Filtering is currently
      * only supported on the `display_name` field.
      * Example:
-     *  - `filter="display_name="MyFolder""`
+     * * `filter="display_name="MyFolder""`
      *
      * Generated from protobuf field <code>string filter = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

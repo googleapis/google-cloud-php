@@ -22,39 +22,43 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START dataform_v1beta1_generated_Dataform_QueryUserRootContents_sync]
+// [START dataform_v1beta1_generated_Dataform_DeleteRepositoryLongRunning_sync]
 use Google\ApiCore\ApiException;
-use Google\ApiCore\PagedListResponse;
+use Google\ApiCore\OperationResponse;
 use Google\Cloud\Dataform\V1beta1\Client\DataformClient;
-use Google\Cloud\Dataform\V1beta1\QueryUserRootContentsRequest;
-use Google\Cloud\Dataform\V1beta1\QueryUserRootContentsResponse\RootContentsEntry;
+use Google\Cloud\Dataform\V1beta1\DeleteRepositoryLongRunningRequest;
+use Google\Cloud\Dataform\V1beta1\DeleteRepositoryLongRunningResponse;
+use Google\Rpc\Status;
 
 /**
- * Returns the contents of a caller's root folder in a given location.
- * The root folder contains all resources that are created by the user and not
- * contained in any other folder.
+ * Deletes a single repository asynchronously.
  *
- * @param string $formattedLocation Location of the user root folder to list contents for.
- *                                  Format: projects/&#42;/locations/*
- *                                  Please see {@see DataformClient::locationName()} for help formatting this field.
+ * @param string $formattedName The repository's name. Please see
+ *                              {@see DataformClient::repositoryName()} for help formatting this field.
  */
-function query_user_root_contents_sample(string $formattedLocation): void
+function delete_repository_long_running_sample(string $formattedName): void
 {
     // Create a client.
     $dataformClient = new DataformClient();
 
     // Prepare the request message.
-    $request = (new QueryUserRootContentsRequest())
-        ->setLocation($formattedLocation);
+    $request = (new DeleteRepositoryLongRunningRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
-        /** @var PagedListResponse $response */
-        $response = $dataformClient->queryUserRootContents($request);
+        /** @var OperationResponse $response */
+        $response = $dataformClient->deleteRepositoryLongRunning($request);
+        $response->pollUntilComplete();
 
-        /** @var RootContentsEntry $element */
-        foreach ($response as $element) {
-            printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
+        if ($response->operationSucceeded()) {
+            /** @var DeleteRepositoryLongRunningResponse $result */
+            $result = $response->getResult();
+            printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
+        } else {
+            /** @var Status $error */
+            $error = $response->getError();
+            printf('Operation failed with error data: %s' . PHP_EOL, $error->serializeToJsonString());
         }
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
@@ -72,8 +76,8 @@ function query_user_root_contents_sample(string $formattedLocation): void
  */
 function callSample(): void
 {
-    $formattedLocation = DataformClient::locationName('[PROJECT]', '[LOCATION]');
+    $formattedName = DataformClient::repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
 
-    query_user_root_contents_sample($formattedLocation);
+    delete_repository_long_running_sample($formattedName);
 }
-// [END dataform_v1beta1_generated_Dataform_QueryUserRootContents_sync]
+// [END dataform_v1beta1_generated_Dataform_DeleteRepositoryLongRunning_sync]
