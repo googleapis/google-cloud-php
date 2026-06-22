@@ -473,6 +473,12 @@ class Cause
      */
     const CLOUD_RUN_REVISION_NOT_READY = 29;
     /**
+     * Packet sent from a Cloud Run job that is not ready.
+     *
+     * Generated from protobuf enum <code>CLOUD_RUN_JOB_NOT_READY = 113;</code>
+     */
+    const CLOUD_RUN_JOB_NOT_READY = 113;
+    /**
      * Packet was dropped inside Private Service Connect service producer.
      *
      * Generated from protobuf enum <code>DROPPED_INSIDE_PSC_SERVICE_PRODUCER = 37;</code>
@@ -811,6 +817,7 @@ class Cause
         self::HYBRID_NEG_NON_DYNAMIC_ROUTE_MATCHED => 'HYBRID_NEG_NON_DYNAMIC_ROUTE_MATCHED',
         self::HYBRID_NEG_NON_LOCAL_DYNAMIC_ROUTE_MATCHED => 'HYBRID_NEG_NON_LOCAL_DYNAMIC_ROUTE_MATCHED',
         self::CLOUD_RUN_REVISION_NOT_READY => 'CLOUD_RUN_REVISION_NOT_READY',
+        self::CLOUD_RUN_JOB_NOT_READY => 'CLOUD_RUN_JOB_NOT_READY',
         self::DROPPED_INSIDE_PSC_SERVICE_PRODUCER => 'DROPPED_INSIDE_PSC_SERVICE_PRODUCER',
         self::LOAD_BALANCER_HAS_NO_PROXY_SUBNET => 'LOAD_BALANCER_HAS_NO_PROXY_SUBNET',
         self::CLOUD_NAT_NO_ADDRESSES => 'CLOUD_NAT_NO_ADDRESSES',
