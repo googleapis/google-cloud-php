@@ -21,6 +21,12 @@ class SuggestedQuery extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string query_text = 1;</code>
      */
     protected $query_text = '';
+    /**
+     * Optional. The search contexts for the query.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.KnowledgeAssistAnswer.SuggestedQuery.SearchContext search_contexts = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $search_contexts;
 
     /**
      * Constructor.
@@ -30,6 +36,8 @@ class SuggestedQuery extends \Google\Protobuf\Internal\Message
      *
      *     @type string $query_text
      *           Suggested query text.
+     *     @type \Google\Cloud\Dialogflow\V2\KnowledgeAssistAnswer\SuggestedQuery\SearchContext[] $search_contexts
+     *           Optional. The search contexts for the query.
      * }
      */
     public function __construct($data = NULL) {
@@ -59,6 +67,32 @@ class SuggestedQuery extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->query_text = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The search contexts for the query.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.KnowledgeAssistAnswer.SuggestedQuery.SearchContext search_contexts = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\KnowledgeAssistAnswer\SuggestedQuery\SearchContext>
+     */
+    public function getSearchContexts()
+    {
+        return $this->search_contexts;
+    }
+
+    /**
+     * Optional. The search contexts for the query.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.KnowledgeAssistAnswer.SuggestedQuery.SearchContext search_contexts = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dialogflow\V2\KnowledgeAssistAnswer\SuggestedQuery\SearchContext[] $var
+     * @return $this
+     */
+    public function setSearchContexts($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dialogflow\V2\KnowledgeAssistAnswer\SuggestedQuery\SearchContext::class);
+        $this->search_contexts = $arr;
 
         return $this;
     }
