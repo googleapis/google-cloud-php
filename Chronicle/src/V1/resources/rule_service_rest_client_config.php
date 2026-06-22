@@ -164,6 +164,18 @@ return [
                     'update_mask',
                 ],
             ],
+            'VerifyRuleText' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{instance=projects/*/locations/*/instances/*}:verifyRuleText',
+                'body' => '*',
+                'placeholders' => [
+                    'instance' => [
+                        'getters' => [
+                            'getInstance',
+                        ],
+                    ],
+                ],
+            ],
         ],
         'google.longrunning.Operations' => [
             'CancelOperation' => [
