@@ -129,4 +129,9 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.SPLIT_TOKEN }}
           PG_TOKEN: ${{ secrets.PACKAGIST_SAFE_TOKEN }}
-        run: ./dev/google-cloud repo:compliance --format=ci -t $GH_TOKEN -p $PG_TOKEN
+        run: |
+          ./dev/google-cloud repo:compliance \
+            --format=ci  \
+            -t $GH_TOKEN \
+            -p $PG_TOKEN \
+            --skip Gax:repo # Skip repo check for Gax because issues are enabled
