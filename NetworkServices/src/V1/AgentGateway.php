@@ -67,7 +67,7 @@ class AgentGateway extends \Google\Protobuf\Internal\Message
      * Optional. A list of Agent registries containing the agents, MCP servers and
      * tools governed by the Agent Gateway. Note: Currently limited to
      * project-scoped registries Must be of format
-     * `//agentregistry.googleapis.com/projects/{project}/locations/{location}/
+     * `//agentregistry.googleapis.com/projects/{project}/locations/{location}/`
      *
      * Generated from protobuf field <code>repeated string registries = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -121,7 +121,7 @@ class AgentGateway extends \Google\Protobuf\Internal\Message
      *           Optional. A list of Agent registries containing the agents, MCP servers and
      *           tools governed by the Agent Gateway. Note: Currently limited to
      *           project-scoped registries Must be of format
-     *           `//agentregistry.googleapis.com/projects/{project}/locations/{location}/
+     *           `//agentregistry.googleapis.com/projects/{project}/locations/{location}/`
      *     @type \Google\Cloud\NetworkServices\V1\AgentGateway\NetworkConfig $network_config
      *           Optional. Network configuration for the AgentGateway.
      *     @type \Google\Cloud\NetworkServices\V1\AgentGateway\AgentGatewayOutputCard $agent_gateway_card
@@ -423,7 +423,7 @@ class AgentGateway extends \Google\Protobuf\Internal\Message
      * Optional. A list of Agent registries containing the agents, MCP servers and
      * tools governed by the Agent Gateway. Note: Currently limited to
      * project-scoped registries Must be of format
-     * `//agentregistry.googleapis.com/projects/{project}/locations/{location}/
+     * `//agentregistry.googleapis.com/projects/{project}/locations/{location}/`
      *
      * Generated from protobuf field <code>repeated string registries = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return RepeatedField<string>
@@ -437,7 +437,7 @@ class AgentGateway extends \Google\Protobuf\Internal\Message
      * Optional. A list of Agent registries containing the agents, MCP servers and
      * tools governed by the Agent Gateway. Note: Currently limited to
      * project-scoped registries Must be of format
-     * `//agentregistry.googleapis.com/projects/{project}/locations/{location}/
+     * `//agentregistry.googleapis.com/projects/{project}/locations/{location}/`
      *
      * Generated from protobuf field <code>repeated string registries = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string[] $var
