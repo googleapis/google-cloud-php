@@ -11,7 +11,7 @@ jobs:
     name: Breaking Change Detector
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
       - name: "Install PHP"
@@ -65,7 +65,7 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.pull_request.user.login == 'release-please[bot]'
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
       - name: Parse allowed major versions
@@ -116,7 +116,7 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.pull_request.user.login == 'release-please[bot]'
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
       - name: "Install PHP"
