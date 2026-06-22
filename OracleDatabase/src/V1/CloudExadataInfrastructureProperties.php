@@ -206,6 +206,12 @@ class CloudExadataInfrastructureProperties extends \Google\Protobuf\Internal\Mes
      * Generated from protobuf field <code>string storage_server_type = 30 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $storage_server_type = '';
+    /**
+     * Output only. The Exascale configuration for the Exadata Infrastructure.
+     *
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.ExascaleConfig exascale_config = 32 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $exascale_config = null;
 
     /**
      * Constructor.
@@ -284,6 +290,8 @@ class CloudExadataInfrastructureProperties extends \Google\Protobuf\Internal\Mes
      *           Output only. The database server type of the Exadata Infrastructure.
      *     @type string $storage_server_type
      *           Output only. The storage server type of the Exadata Infrastructure.
+     *     @type \Google\Cloud\OracleDatabase\V1\ExascaleConfig $exascale_config
+     *           Output only. The Exascale configuration for the Exadata Infrastructure.
      * }
      */
     public function __construct($data = NULL) {
@@ -1119,6 +1127,42 @@ class CloudExadataInfrastructureProperties extends \Google\Protobuf\Internal\Mes
     {
         GPBUtil::checkString($var, True);
         $this->storage_server_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The Exascale configuration for the Exadata Infrastructure.
+     *
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.ExascaleConfig exascale_config = 32 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\OracleDatabase\V1\ExascaleConfig|null
+     */
+    public function getExascaleConfig()
+    {
+        return $this->exascale_config;
+    }
+
+    public function hasExascaleConfig()
+    {
+        return isset($this->exascale_config);
+    }
+
+    public function clearExascaleConfig()
+    {
+        unset($this->exascale_config);
+    }
+
+    /**
+     * Output only. The Exascale configuration for the Exadata Infrastructure.
+     *
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.ExascaleConfig exascale_config = 32 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\OracleDatabase\V1\ExascaleConfig $var
+     * @return $this
+     */
+    public function setExascaleConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\OracleDatabase\V1\ExascaleConfig::class);
+        $this->exascale_config = $var;
 
         return $this;
     }
