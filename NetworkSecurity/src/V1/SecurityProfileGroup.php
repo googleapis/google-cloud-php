@@ -52,8 +52,8 @@ class SecurityProfileGroup extends \Google\Protobuf\Internal\Message
      */
     protected $etag = '';
     /**
-     * Output only. Identifier used by the data-path. Unique within {container,
-     * location}.
+     * Output only. Identifier used by the data-path. Unique within \{container,
+     * location\}.
      *
      * Generated from protobuf field <code>uint64 data_path_id = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -115,8 +115,8 @@ class SecurityProfileGroup extends \Google\Protobuf\Internal\Message
      *           other fields, and may be sent on update and delete requests to ensure the
      *           client has an up-to-date value before proceeding.
      *     @type int|string $data_path_id
-     *           Output only. Identifier used by the data-path. Unique within {container,
-     *           location}.
+     *           Output only. Identifier used by the data-path. Unique within \{container,
+     *           location\}.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Optional. Labels as key value pairs.
      *     @type string $threat_prevention_profile
@@ -299,8 +299,8 @@ class SecurityProfileGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Identifier used by the data-path. Unique within {container,
-     * location}.
+     * Output only. Identifier used by the data-path. Unique within \{container,
+     * location\}.
      *
      * Generated from protobuf field <code>uint64 data_path_id = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int|string
@@ -311,8 +311,8 @@ class SecurityProfileGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Identifier used by the data-path. Unique within {container,
-     * location}.
+     * Output only. Identifier used by the data-path. Unique within \{container,
+     * location\}.
      *
      * Generated from protobuf field <code>uint64 data_path_id = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int|string $var
