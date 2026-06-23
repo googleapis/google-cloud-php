@@ -136,6 +136,12 @@ class Target
      * Generated from protobuf enum <code>CLOUD_RUN_JOB = 20;</code>
      */
     const CLOUD_RUN_JOB = 20;
+    /**
+     * Target is a DMS Private Connection. Used only for return traces.
+     *
+     * Generated from protobuf enum <code>DMS_PRIVATE_CONNECTION = 21;</code>
+     */
+    const DMS_PRIVATE_CONNECTION = 21;
 
     private static $valueToName = [
         self::TARGET_UNSPECIFIED => 'TARGET_UNSPECIFIED',
@@ -158,6 +164,7 @@ class Target
         self::REDIS_CLUSTER => 'REDIS_CLUSTER',
         self::GKE_POD => 'GKE_POD',
         self::CLOUD_RUN_JOB => 'CLOUD_RUN_JOB',
+        self::DMS_PRIVATE_CONNECTION => 'DMS_PRIVATE_CONNECTION',
     ];
 
     public static function name($value)
