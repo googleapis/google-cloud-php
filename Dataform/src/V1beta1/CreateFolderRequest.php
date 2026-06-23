@@ -29,10 +29,13 @@ class CreateFolderRequest extends \Google\Protobuf\Internal\Message
      */
     protected $folder = null;
     /**
+     * Deprecated: This field is not used. The resource name is generated
+     * automatically.
      * The ID to use for the Folder, which will become the final component of
      * the Folder's resource name.
      *
-     * Generated from protobuf field <code>string folder_id = 3;</code>
+     * Generated from protobuf field <code>string folder_id = 3 [deprecated = true];</code>
+     * @deprecated
      */
     protected $folder_id = '';
 
@@ -65,6 +68,8 @@ class CreateFolderRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dataform\V1beta1\Folder $folder
      *           Required. The Folder to create.
      *     @type string $folder_id
+     *           Deprecated: This field is not used. The resource name is generated
+     *           automatically.
      *           The ID to use for the Folder, which will become the final component of
      *           the Folder's resource name.
      * }
@@ -139,27 +144,37 @@ class CreateFolderRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Deprecated: This field is not used. The resource name is generated
+     * automatically.
      * The ID to use for the Folder, which will become the final component of
      * the Folder's resource name.
      *
-     * Generated from protobuf field <code>string folder_id = 3;</code>
+     * Generated from protobuf field <code>string folder_id = 3 [deprecated = true];</code>
      * @return string
+     * @deprecated
      */
     public function getFolderId()
     {
+        if ($this->folder_id !== '') {
+            @trigger_error('folder_id is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->folder_id;
     }
 
     /**
+     * Deprecated: This field is not used. The resource name is generated
+     * automatically.
      * The ID to use for the Folder, which will become the final component of
      * the Folder's resource name.
      *
-     * Generated from protobuf field <code>string folder_id = 3;</code>
+     * Generated from protobuf field <code>string folder_id = 3 [deprecated = true];</code>
      * @param string $var
      * @return $this
+     * @deprecated
      */
     public function setFolderId($var)
     {
+        @trigger_error('folder_id is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkString($var, True);
         $this->folder_id = $var;
 

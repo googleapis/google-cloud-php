@@ -34,6 +34,8 @@ use Google\Cloud\Chronicle\V1\ListReferenceListsResponse;
 use Google\Cloud\Chronicle\V1\ReferenceList;
 use Google\Cloud\Chronicle\V1\ReferenceListSyntaxType;
 use Google\Cloud\Chronicle\V1\UpdateReferenceListRequest;
+use Google\Cloud\Chronicle\V1\VerifyReferenceListRequest;
+use Google\Cloud\Chronicle\V1\VerifyReferenceListResponse;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -378,6 +380,85 @@ class ReferenceListServiceClientTest extends GeneratedTest
         $request = (new UpdateReferenceListRequest())->setReferenceList($referenceList);
         try {
             $gapicClient->updateReferenceList($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function verifyReferenceListTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $success = false;
+        $expectedResponse = new VerifyReferenceListResponse();
+        $expectedResponse->setSuccess($success);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedInstance = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+        $syntaxType = ReferenceListSyntaxType::REFERENCE_LIST_SYNTAX_TYPE_UNSPECIFIED;
+        $entries = [];
+        $request = (new VerifyReferenceListRequest())
+            ->setInstance($formattedInstance)
+            ->setSyntaxType($syntaxType)
+            ->setEntries($entries);
+        $response = $gapicClient->verifyReferenceList($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.chronicle.v1.ReferenceListService/VerifyReferenceList', $actualFuncCall);
+        $actualValue = $actualRequestObject->getInstance();
+        $this->assertProtobufEquals($formattedInstance, $actualValue);
+        $actualValue = $actualRequestObject->getSyntaxType();
+        $this->assertProtobufEquals($syntaxType, $actualValue);
+        $actualValue = $actualRequestObject->getEntries();
+        $this->assertProtobufEquals($entries, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function verifyReferenceListExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedInstance = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+        $syntaxType = ReferenceListSyntaxType::REFERENCE_LIST_SYNTAX_TYPE_UNSPECIFIED;
+        $entries = [];
+        $request = (new VerifyReferenceListRequest())
+            ->setInstance($formattedInstance)
+            ->setSyntaxType($syntaxType)
+            ->setEntries($entries);
+        try {
+            $gapicClient->verifyReferenceList($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

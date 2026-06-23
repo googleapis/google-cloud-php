@@ -208,6 +208,18 @@ return [
                     ],
                 ],
             ],
+            'VerifyRuleText' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Chronicle\V1\VerifyRuleTextResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'instance',
+                        'fieldAccessors' => [
+                            'getInstance',
+                        ],
+                    ],
+                ],
+            ],
             'templateMap' => [
                 'dataAccessScope' => 'projects/{project}/locations/{location}/instances/{instance}/dataAccessScopes/{data_access_scope}',
                 'instance' => 'projects/{project}/locations/{location}/instances/{instance}',

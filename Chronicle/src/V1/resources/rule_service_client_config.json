@@ -119,6 +119,11 @@
                     "timeout_millis": 600000,
                     "retry_codes_name": "no_retry_3_codes",
                     "retry_params_name": "no_retry_3_params"
+                },
+                "VerifyRuleText": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
                 }
             }
         }

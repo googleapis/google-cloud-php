@@ -217,6 +217,12 @@ class CloudVmClusterProperties extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.ComputeModel compute_model = 37 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $compute_model = 0;
+    /**
+     * Output only. The storage management type of the VM Cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.CloudVmClusterProperties.StorageManagementType storage_management_type = 38 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $storage_management_type = 0;
 
     /**
      * Constructor.
@@ -294,6 +300,8 @@ class CloudVmClusterProperties extends \Google\Protobuf\Internal\Message
      *           Optional. OCI Cluster name.
      *     @type int $compute_model
      *           Output only. The compute model of the VM Cluster.
+     *     @type int $storage_management_type
+     *           Output only. The storage management type of the VM Cluster.
      * }
      */
     public function __construct($data = NULL) {
@@ -1183,6 +1191,32 @@ class CloudVmClusterProperties extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\OracleDatabase\V1\ComputeModel::class);
         $this->compute_model = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The storage management type of the VM Cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.CloudVmClusterProperties.StorageManagementType storage_management_type = 38 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getStorageManagementType()
+    {
+        return $this->storage_management_type;
+    }
+
+    /**
+     * Output only. The storage management type of the VM Cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.CloudVmClusterProperties.StorageManagementType storage_management_type = 38 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setStorageManagementType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\OracleDatabase\V1\CloudVmClusterProperties\StorageManagementType::class);
+        $this->storage_management_type = $var;
 
         return $this;
     }

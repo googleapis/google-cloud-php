@@ -115,6 +115,14 @@ class CloudVmCluster extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.IdentityConnector identity_connector = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $identity_connector = null;
+    /**
+     * Optional. The name of ExascaleDbStorageVault associated with the VM
+     * Cluster. Format:
+     * projects/{project}/locations/{location}/exascaleDbStorageVaults/{exascale_db_storage_vault}
+     *
+     * Generated from protobuf field <code>string exascale_db_storage_vault = 17 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     */
+    protected $exascale_db_storage_vault = '';
 
     /**
      * Constructor.
@@ -165,6 +173,10 @@ class CloudVmCluster extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\OracleDatabase\V1\IdentityConnector $identity_connector
      *           Output only. The identity connector details which will allow OCI to
      *           securely access the resources in the customer project.
+     *     @type string $exascale_db_storage_vault
+     *           Optional. The name of ExascaleDbStorageVault associated with the VM
+     *           Cluster. Format:
+     *           projects/{project}/locations/{location}/exascaleDbStorageVaults/{exascale_db_storage_vault}
      * }
      */
     public function __construct($data = NULL) {
@@ -592,6 +604,36 @@ class CloudVmCluster extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\OracleDatabase\V1\IdentityConnector::class);
         $this->identity_connector = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The name of ExascaleDbStorageVault associated with the VM
+     * Cluster. Format:
+     * projects/{project}/locations/{location}/exascaleDbStorageVaults/{exascale_db_storage_vault}
+     *
+     * Generated from protobuf field <code>string exascale_db_storage_vault = 17 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getExascaleDbStorageVault()
+    {
+        return $this->exascale_db_storage_vault;
+    }
+
+    /**
+     * Optional. The name of ExascaleDbStorageVault associated with the VM
+     * Cluster. Format:
+     * projects/{project}/locations/{location}/exascaleDbStorageVaults/{exascale_db_storage_vault}
+     *
+     * Generated from protobuf field <code>string exascale_db_storage_vault = 17 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setExascaleDbStorageVault($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->exascale_db_storage_vault = $var;
 
         return $this;
     }

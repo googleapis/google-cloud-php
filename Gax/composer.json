@@ -2,7 +2,9 @@
     "name": "google/gax",
     "type": "library",
     "description": "Google API Core for PHP",
-    "keywords": ["google"],
+    "keywords": [
+        "google"
+    ],
     "homepage": "https://github.com/googleapis/gax-php",
     "license": "BSD-3-Clause",
     "require": {

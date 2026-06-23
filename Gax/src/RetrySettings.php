@@ -376,7 +376,8 @@ class RetrySettings
             'totalTimeoutMillis' => 600000,
             'retryableCodes' => [],
             'maxRetries' => self::DEFAULT_MAX_RETRIES,
-            'retryFunction' => null]);
+            'retryFunction' => null
+        ]);
     }
 
     /**

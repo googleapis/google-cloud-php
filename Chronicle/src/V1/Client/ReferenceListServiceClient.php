@@ -39,6 +39,8 @@ use Google\Cloud\Chronicle\V1\GetReferenceListRequest;
 use Google\Cloud\Chronicle\V1\ListReferenceListsRequest;
 use Google\Cloud\Chronicle\V1\ReferenceList;
 use Google\Cloud\Chronicle\V1\UpdateReferenceListRequest;
+use Google\Cloud\Chronicle\V1\VerifyReferenceListRequest;
+use Google\Cloud\Chronicle\V1\VerifyReferenceListResponse;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
 
@@ -57,6 +59,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<ReferenceList> getReferenceListAsync(GetReferenceListRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listReferenceListsAsync(ListReferenceListsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ReferenceList> updateReferenceListAsync(UpdateReferenceListRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<VerifyReferenceListResponse> verifyReferenceListAsync(VerifyReferenceListRequest $request, array $optionalArgs = [])
  */
 final class ReferenceListServiceClient
 {
@@ -83,7 +86,11 @@ final class ReferenceListServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/chronicle',
+        'https://www.googleapis.com/auth/chronicle.readonly',
+        'https://www.googleapis.com/auth/cloud-platform',
+    ];
 
     private static function getClientDefaults()
     {
@@ -364,5 +371,34 @@ final class ReferenceListServiceClient
     public function updateReferenceList(UpdateReferenceListRequest $request, array $callOptions = []): ReferenceList
     {
         return $this->startApiCall('UpdateReferenceList', $request, $callOptions)->wait();
+    }
+
+    /**
+     * VerifyReferenceList validates list content and returns line errors, if any.
+     *
+     * The async variant is
+     * {@see ReferenceListServiceClient::verifyReferenceListAsync()} .
+     *
+     * @example samples/V1/ReferenceListServiceClient/verify_reference_list.php
+     *
+     * @param VerifyReferenceListRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return VerifyReferenceListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function verifyReferenceList(
+        VerifyReferenceListRequest $request,
+        array $callOptions = []
+    ): VerifyReferenceListResponse {
+        return $this->startApiCall('VerifyReferenceList', $request, $callOptions)->wait();
     }
 }

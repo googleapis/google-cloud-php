@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     name: PHP Style Check
     steps:
-    - uses: actions/checkout@v6
+    - uses: actions/checkout@v7
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
       with:
@@ -52,11 +52,11 @@ jobs:
     runs-on: ubuntu-latest
     name: PHPStan Static Analysis
     steps:
-    - uses: actions/checkout@v6
+    - uses: actions/checkout@v7
     - name: Install PHP
       uses: shivammathur/setup-php@v2
       with:
-        php-version: '8.1'
+        php-version: '8.2'
     - name: "Install dependencies"
       run: |
         composer --no-interaction --no-ansi --no-progress update

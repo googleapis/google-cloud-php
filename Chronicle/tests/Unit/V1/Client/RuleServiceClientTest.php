@@ -46,6 +46,8 @@ use Google\Cloud\Chronicle\V1\Rule;
 use Google\Cloud\Chronicle\V1\RuleDeployment;
 use Google\Cloud\Chronicle\V1\UpdateRuleDeploymentRequest;
 use Google\Cloud\Chronicle\V1\UpdateRuleRequest;
+use Google\Cloud\Chronicle\V1\VerifyRuleTextRequest;
+use Google\Cloud\Chronicle\V1\VerifyRuleTextResponse;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
@@ -1013,6 +1015,75 @@ class RuleServiceClientTest extends GeneratedTest
         $request = (new UpdateRuleDeploymentRequest())->setRuleDeployment($ruleDeployment)->setUpdateMask($updateMask);
         try {
             $gapicClient->updateRuleDeployment($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function verifyRuleTextTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $success = false;
+        $expectedResponse = new VerifyRuleTextResponse();
+        $expectedResponse->setSuccess($success);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedInstance = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+        $ruleText = 'ruleText-2092014448';
+        $request = (new VerifyRuleTextRequest())->setInstance($formattedInstance)->setRuleText($ruleText);
+        $response = $gapicClient->verifyRuleText($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.chronicle.v1.RuleService/VerifyRuleText', $actualFuncCall);
+        $actualValue = $actualRequestObject->getInstance();
+        $this->assertProtobufEquals($formattedInstance, $actualValue);
+        $actualValue = $actualRequestObject->getRuleText();
+        $this->assertProtobufEquals($ruleText, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function verifyRuleTextExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedInstance = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+        $ruleText = 'ruleText-2092014448';
+        $request = (new VerifyRuleTextRequest())->setInstance($formattedInstance)->setRuleText($ruleText);
+        try {
+            $gapicClient->verifyRuleText($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

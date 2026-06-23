@@ -80,6 +80,18 @@ return [
                     ],
                 ],
             ],
+            'VerifyReferenceList' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Chronicle\V1\VerifyReferenceListResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'instance',
+                        'fieldAccessors' => [
+                            'getInstance',
+                        ],
+                    ],
+                ],
+            ],
             'templateMap' => [
                 'instance' => 'projects/{project}/locations/{location}/instances/{instance}',
                 'referenceList' => 'projects/{project}/locations/{location}/instances/{instance}/referenceLists/{reference_list}',

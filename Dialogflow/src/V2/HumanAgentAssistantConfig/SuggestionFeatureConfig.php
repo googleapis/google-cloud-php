@@ -79,6 +79,26 @@ class SuggestionFeatureConfig extends \Google\Protobuf\Internal\Message
      */
     protected $rai_settings = null;
     /**
+     * Optional. The trigger event for suggestion.
+     * If unspecified, it will be `CUSTOMER_MESSAGE`.
+     * Supported features: KNOWLEDGE_ASSIST
+     * For KNOWLEDGE_ASSIST, these four trigger events are supported:
+     * 1. TRIGGER_EVENT_UNSPECIFIED
+     * 2. END_OF_UTTERANCE
+     * 3. CUSTOMER_MESSAGE
+     * 4. AGENT_MESSAGE
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.TriggerEvent suggestion_trigger_event = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $suggestion_trigger_event = 0;
+    /**
+     * Optional. If true, disable appending available search context to the
+     * search query. Supported features: KNOWLEDGE_ASSIST
+     *
+     * Generated from protobuf field <code>bool disable_query_search_context = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $disable_query_search_context = false;
+    /**
      * Settings of suggestion trigger.
      * Currently, only ARTICLE_SUGGESTION and FAQ will use this field.
      *
@@ -141,6 +161,18 @@ class SuggestionFeatureConfig extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dialogflow\V2\RaiSettings $rai_settings
      *           Optional. Settings for Responsible AI checks.
      *           Supported features:  KNOWLEDGE_ASSIST
+     *     @type int $suggestion_trigger_event
+     *           Optional. The trigger event for suggestion.
+     *           If unspecified, it will be `CUSTOMER_MESSAGE`.
+     *           Supported features: KNOWLEDGE_ASSIST
+     *           For KNOWLEDGE_ASSIST, these four trigger events are supported:
+     *           1. TRIGGER_EVENT_UNSPECIFIED
+     *           2. END_OF_UTTERANCE
+     *           3. CUSTOMER_MESSAGE
+     *           4. AGENT_MESSAGE
+     *     @type bool $disable_query_search_context
+     *           Optional. If true, disable appending available search context to the
+     *           search query. Supported features: KNOWLEDGE_ASSIST
      *     @type \Google\Cloud\Dialogflow\V2\HumanAgentAssistantConfig\SuggestionTriggerSettings $suggestion_trigger_settings
      *           Settings of suggestion trigger.
      *           Currently, only ARTICLE_SUGGESTION and FAQ will use this field.
@@ -411,6 +443,74 @@ class SuggestionFeatureConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\RaiSettings::class);
         $this->rai_settings = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The trigger event for suggestion.
+     * If unspecified, it will be `CUSTOMER_MESSAGE`.
+     * Supported features: KNOWLEDGE_ASSIST
+     * For KNOWLEDGE_ASSIST, these four trigger events are supported:
+     * 1. TRIGGER_EVENT_UNSPECIFIED
+     * 2. END_OF_UTTERANCE
+     * 3. CUSTOMER_MESSAGE
+     * 4. AGENT_MESSAGE
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.TriggerEvent suggestion_trigger_event = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getSuggestionTriggerEvent()
+    {
+        return $this->suggestion_trigger_event;
+    }
+
+    /**
+     * Optional. The trigger event for suggestion.
+     * If unspecified, it will be `CUSTOMER_MESSAGE`.
+     * Supported features: KNOWLEDGE_ASSIST
+     * For KNOWLEDGE_ASSIST, these four trigger events are supported:
+     * 1. TRIGGER_EVENT_UNSPECIFIED
+     * 2. END_OF_UTTERANCE
+     * 3. CUSTOMER_MESSAGE
+     * 4. AGENT_MESSAGE
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.TriggerEvent suggestion_trigger_event = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setSuggestionTriggerEvent($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Dialogflow\V2\TriggerEvent::class);
+        $this->suggestion_trigger_event = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If true, disable appending available search context to the
+     * search query. Supported features: KNOWLEDGE_ASSIST
+     *
+     * Generated from protobuf field <code>bool disable_query_search_context = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getDisableQuerySearchContext()
+    {
+        return $this->disable_query_search_context;
+    }
+
+    /**
+     * Optional. If true, disable appending available search context to the
+     * search query. Supported features: KNOWLEDGE_ASSIST
+     *
+     * Generated from protobuf field <code>bool disable_query_search_context = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDisableQuerySearchContext($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->disable_query_search_context = $var;
 
         return $this;
     }

@@ -41,6 +41,7 @@ use Google\Cloud\Location\Location;
 use Google\Cloud\OracleDatabase\V1\AutonomousDatabase;
 use Google\Cloud\OracleDatabase\V1\CloudExadataInfrastructure;
 use Google\Cloud\OracleDatabase\V1\CloudVmCluster;
+use Google\Cloud\OracleDatabase\V1\ConfigureExascaleCloudExadataInfrastructureRequest;
 use Google\Cloud\OracleDatabase\V1\CreateAutonomousDatabaseRequest;
 use Google\Cloud\OracleDatabase\V1\CreateCloudExadataInfrastructureRequest;
 use Google\Cloud\OracleDatabase\V1\CreateCloudVmClusterRequest;
@@ -79,21 +80,13 @@ use Google\Cloud\OracleDatabase\V1\GetExadbVmClusterRequest;
 use Google\Cloud\OracleDatabase\V1\GetExascaleDbStorageVaultRequest;
 use Google\Cloud\OracleDatabase\V1\GetGoldengateConnectionAssignmentRequest;
 use Google\Cloud\OracleDatabase\V1\GetGoldengateConnectionRequest;
-use Google\Cloud\OracleDatabase\V1\GetGoldengateConnectionTypeRequest;
-use Google\Cloud\OracleDatabase\V1\GetGoldengateDeploymentEnvironmentRequest;
 use Google\Cloud\OracleDatabase\V1\GetGoldengateDeploymentRequest;
-use Google\Cloud\OracleDatabase\V1\GetGoldengateDeploymentTypeRequest;
-use Google\Cloud\OracleDatabase\V1\GetGoldengateDeploymentVersionRequest;
 use Google\Cloud\OracleDatabase\V1\GetOdbNetworkRequest;
 use Google\Cloud\OracleDatabase\V1\GetOdbSubnetRequest;
 use Google\Cloud\OracleDatabase\V1\GetPluggableDatabaseRequest;
 use Google\Cloud\OracleDatabase\V1\GoldengateConnection;
 use Google\Cloud\OracleDatabase\V1\GoldengateConnectionAssignment;
-use Google\Cloud\OracleDatabase\V1\GoldengateConnectionType;
 use Google\Cloud\OracleDatabase\V1\GoldengateDeployment;
-use Google\Cloud\OracleDatabase\V1\GoldengateDeploymentEnvironment;
-use Google\Cloud\OracleDatabase\V1\GoldengateDeploymentType;
-use Google\Cloud\OracleDatabase\V1\GoldengateDeploymentVersion;
 use Google\Cloud\OracleDatabase\V1\ListAutonomousDatabaseBackupsRequest;
 use Google\Cloud\OracleDatabase\V1\ListAutonomousDatabaseCharacterSetsRequest;
 use Google\Cloud\OracleDatabase\V1\ListAutonomousDatabasesRequest;
@@ -154,6 +147,7 @@ use Psr\Log\LoggerInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
+ * @method PromiseInterface<OperationResponse> configureExascaleCloudExadataInfrastructureAsync(ConfigureExascaleCloudExadataInfrastructureRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createAutonomousDatabaseAsync(CreateAutonomousDatabaseRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createCloudExadataInfrastructureAsync(CreateCloudExadataInfrastructureRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createCloudVmClusterAsync(CreateCloudVmClusterRequest $request, array $optionalArgs = [])
@@ -187,11 +181,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<ExascaleDbStorageVault> getExascaleDbStorageVaultAsync(GetExascaleDbStorageVaultRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<GoldengateConnection> getGoldengateConnectionAsync(GetGoldengateConnectionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<GoldengateConnectionAssignment> getGoldengateConnectionAssignmentAsync(GetGoldengateConnectionAssignmentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<GoldengateConnectionType> getGoldengateConnectionTypeAsync(GetGoldengateConnectionTypeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<GoldengateDeployment> getGoldengateDeploymentAsync(GetGoldengateDeploymentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<GoldengateDeploymentEnvironment> getGoldengateDeploymentEnvironmentAsync(GetGoldengateDeploymentEnvironmentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<GoldengateDeploymentType> getGoldengateDeploymentTypeAsync(GetGoldengateDeploymentTypeRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<GoldengateDeploymentVersion> getGoldengateDeploymentVersionAsync(GetGoldengateDeploymentVersionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OdbNetwork> getOdbNetworkAsync(GetOdbNetworkRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OdbSubnet> getOdbSubnetAsync(GetOdbSubnetRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PluggableDatabase> getPluggableDatabaseAsync(GetPluggableDatabaseRequest $request, array $optionalArgs = [])
@@ -559,28 +549,6 @@ final class OracleDatabaseClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
-     * goldengate_connection_type resource.
-     *
-     * @param string $project
-     * @param string $location
-     * @param string $goldengateConnectionType
-     *
-     * @return string The formatted goldengate_connection_type resource.
-     */
-    public static function goldengateConnectionTypeName(
-        string $project,
-        string $location,
-        string $goldengateConnectionType
-    ): string {
-        return self::getPathTemplate('goldengateConnectionType')->render([
-            'project' => $project,
-            'location' => $location,
-            'goldengate_connection_type' => $goldengateConnectionType,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent a
      * goldengate_deployment resource.
      *
      * @param string $project
@@ -598,72 +566,6 @@ final class OracleDatabaseClient
             'project' => $project,
             'location' => $location,
             'goldengate_deployment' => $goldengateDeployment,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent a
-     * goldengate_deployment_environment resource.
-     *
-     * @param string $project
-     * @param string $location
-     * @param string $goldengateDeploymentEnvironment
-     *
-     * @return string The formatted goldengate_deployment_environment resource.
-     */
-    public static function goldengateDeploymentEnvironmentName(
-        string $project,
-        string $location,
-        string $goldengateDeploymentEnvironment
-    ): string {
-        return self::getPathTemplate('goldengateDeploymentEnvironment')->render([
-            'project' => $project,
-            'location' => $location,
-            'goldengate_deployment_environment' => $goldengateDeploymentEnvironment,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent a
-     * goldengate_deployment_type resource.
-     *
-     * @param string $project
-     * @param string $location
-     * @param string $goldengateDeploymentType
-     *
-     * @return string The formatted goldengate_deployment_type resource.
-     */
-    public static function goldengateDeploymentTypeName(
-        string $project,
-        string $location,
-        string $goldengateDeploymentType
-    ): string {
-        return self::getPathTemplate('goldengateDeploymentType')->render([
-            'project' => $project,
-            'location' => $location,
-            'goldengate_deployment_type' => $goldengateDeploymentType,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent a
-     * goldengate_deployment_version resource.
-     *
-     * @param string $project
-     * @param string $location
-     * @param string $goldengateDeploymentVersion
-     *
-     * @return string The formatted goldengate_deployment_version resource.
-     */
-    public static function goldengateDeploymentVersionName(
-        string $project,
-        string $location,
-        string $goldengateDeploymentVersion
-    ): string {
-        return self::getPathTemplate('goldengateDeploymentVersion')->render([
-            'project' => $project,
-            'location' => $location,
-            'goldengate_deployment_version' => $goldengateDeploymentVersion,
         ]);
     }
 
@@ -798,11 +700,7 @@ final class OracleDatabaseClient
      * - giVersion: projects/{project}/locations/{location}/giVersions/{gi_version}
      * - goldengateConnection: projects/{project}/locations/{location}/goldengateConnections/{goldengate_connection}
      * - goldengateConnectionAssignment: projects/{project}/locations/{location}/goldengateConnectionAssignments/{goldengate_connection_assignment}
-     * - goldengateConnectionType: projects/{project}/locations/{location}/goldengateConnectionTypes/{goldengate_connection_type}
      * - goldengateDeployment: projects/{project}/locations/{location}/goldengateDeployments/{goldengate_deployment}
-     * - goldengateDeploymentEnvironment: projects/{project}/locations/{location}/goldengateDeploymentEnvironments/{goldengate_deployment_environment}
-     * - goldengateDeploymentType: projects/{project}/locations/{location}/goldengateDeploymentTypes/{goldengate_deployment_type}
-     * - goldengateDeploymentVersion: projects/{project}/locations/{location}/goldengateDeploymentVersions/{goldengate_deployment_version}
      * - location: projects/{project}/locations/{location}
      * - network: projects/{project}/global/networks/{network}
      * - odbNetwork: projects/{project}/locations/{location}/odbNetworks/{odb_network}
@@ -912,6 +810,36 @@ final class OracleDatabaseClient
 
         array_unshift($args, substr($method, 0, -5));
         return call_user_func_array([$this, 'startAsyncCall'], $args);
+    }
+
+    /**
+     * Configures Exascale for a single Exadata Infrastructure.
+     *
+     * The async variant is
+     * {@see OracleDatabaseClient::configureExascaleCloudExadataInfrastructureAsync()}
+     * .
+     *
+     * @example samples/V1/OracleDatabaseClient/configure_exascale_cloud_exadata_infrastructure.php
+     *
+     * @param ConfigureExascaleCloudExadataInfrastructureRequest $request     A request to house fields associated with the call.
+     * @param array                                              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<CloudExadataInfrastructure>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function configureExascaleCloudExadataInfrastructure(
+        ConfigureExascaleCloudExadataInfrastructureRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('ConfigureExascaleCloudExadataInfrastructure', $request, $callOptions)->wait();
     }
 
     /**
@@ -1839,35 +1767,6 @@ final class OracleDatabaseClient
     }
 
     /**
-     * Gets details of a single GoldengateConnectionType.
-     *
-     * The async variant is
-     * {@see OracleDatabaseClient::getGoldengateConnectionTypeAsync()} .
-     *
-     * @example samples/V1/OracleDatabaseClient/get_goldengate_connection_type.php
-     *
-     * @param GetGoldengateConnectionTypeRequest $request     A request to house fields associated with the call.
-     * @param array                              $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return GoldengateConnectionType
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function getGoldengateConnectionType(
-        GetGoldengateConnectionTypeRequest $request,
-        array $callOptions = []
-    ): GoldengateConnectionType {
-        return $this->startApiCall('GetGoldengateConnectionType', $request, $callOptions)->wait();
-    }
-
-    /**
      * Gets details of a single GoldengateDeployment.
      *
      * The async variant is {@see OracleDatabaseClient::getGoldengateDeploymentAsync()}
@@ -1894,93 +1793,6 @@ final class OracleDatabaseClient
         array $callOptions = []
     ): GoldengateDeployment {
         return $this->startApiCall('GetGoldengateDeployment', $request, $callOptions)->wait();
-    }
-
-    /**
-     * Gets details of a single GoldengateDeploymentEnvironment.
-     *
-     * The async variant is
-     * {@see OracleDatabaseClient::getGoldengateDeploymentEnvironmentAsync()} .
-     *
-     * @example samples/V1/OracleDatabaseClient/get_goldengate_deployment_environment.php
-     *
-     * @param GetGoldengateDeploymentEnvironmentRequest $request     A request to house fields associated with the call.
-     * @param array                                     $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return GoldengateDeploymentEnvironment
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function getGoldengateDeploymentEnvironment(
-        GetGoldengateDeploymentEnvironmentRequest $request,
-        array $callOptions = []
-    ): GoldengateDeploymentEnvironment {
-        return $this->startApiCall('GetGoldengateDeploymentEnvironment', $request, $callOptions)->wait();
-    }
-
-    /**
-     * Gets details of a single GoldenGateDeploymentType.
-     *
-     * The async variant is
-     * {@see OracleDatabaseClient::getGoldengateDeploymentTypeAsync()} .
-     *
-     * @example samples/V1/OracleDatabaseClient/get_goldengate_deployment_type.php
-     *
-     * @param GetGoldengateDeploymentTypeRequest $request     A request to house fields associated with the call.
-     * @param array                              $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return GoldengateDeploymentType
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function getGoldengateDeploymentType(
-        GetGoldengateDeploymentTypeRequest $request,
-        array $callOptions = []
-    ): GoldengateDeploymentType {
-        return $this->startApiCall('GetGoldengateDeploymentType', $request, $callOptions)->wait();
-    }
-
-    /**
-     * Gets details of a single GoldengateDeploymentVersion.
-     *
-     * The async variant is
-     * {@see OracleDatabaseClient::getGoldengateDeploymentVersionAsync()} .
-     *
-     * @example samples/V1/OracleDatabaseClient/get_goldengate_deployment_version.php
-     *
-     * @param GetGoldengateDeploymentVersionRequest $request     A request to house fields associated with the call.
-     * @param array                                 $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return GoldengateDeploymentVersion
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function getGoldengateDeploymentVersion(
-        GetGoldengateDeploymentVersionRequest $request,
-        array $callOptions = []
-    ): GoldengateDeploymentVersion {
-        return $this->startApiCall('GetGoldengateDeploymentVersion', $request, $callOptions)->wait();
     }
 
     /**

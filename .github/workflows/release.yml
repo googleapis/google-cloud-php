@@ -41,14 +41,14 @@ jobs:
             go build -o splitsh-lite github.com/splitsh/lite
             mv splitsh-lite /usr/local/bin/splitsh-lite
         - name: Checkout google/cloud
-          uses: actions/checkout@v6
+          uses: actions/checkout@v7
           with:
             persist-credentials: false
             fetch-depth: 0
         - name: Setup PHP
           uses: shivammathur/setup-php@v2
           with:
-            php-version: '8.1'
+            php-version: '8.2'
             ini-values: memory_limit=2048M
         - name: Install Dependencies
           uses: nick-fields/retry@v4
