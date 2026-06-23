@@ -28,9 +28,9 @@ class ApiEndpointTraitTest extends TestCase
     /**
      * @dataProvider normalizeApiEndpointData
      */
-    public function testNormalizeApiEndpoint($ApiEndpointString, $expectedAddress, $expectedPort)
+    public function testNormalizeApiEndpoint($apiEndpointString, $expectedAddress, $expectedPort)
     {
-        list($actualAddress, $actualPort) = self::normalizeApiEndpoint($ApiEndpointString);
+        list($actualAddress, $actualPort) = self::normalizeApiEndpoint($apiEndpointString);
         $this->assertSame($expectedAddress, $actualAddress);
         $this->assertSame($expectedPort, $actualPort);
     }
@@ -47,12 +47,12 @@ class ApiEndpointTraitTest extends TestCase
     /**
      * @dataProvider normalizeApiEndpointInvalidData
      */
-    public function testNormalizeApiEndpointInvalid($ApiEndpointString)
+    public function testNormalizeApiEndpointInvalid($apiEndpointString)
     {
         $this->expectException(ValidationException::class);
         $this->expectExceptionMessage('Invalid apiEndpoint');
 
-        self::normalizeApiEndpoint($ApiEndpointString);
+        self::normalizeApiEndpoint($apiEndpointString);
     }
 
     public function normalizeApiEndpointInvalidData()

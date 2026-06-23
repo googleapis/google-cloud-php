@@ -50,8 +50,8 @@ use Google\ApiCore\Transport\GrpcTransport;
 use Google\ApiCore\Transport\RestTransport;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
-use Google\LongRunning\OperationsClient;
 use Google\Protobuf\Internal\Message;
 use GuzzleHttp\Promise\PromiseInterface;
 
@@ -285,20 +285,8 @@ trait GapicClientTrait
         // Therefore, we need to remove it from the $options array before
         // creating the ClientOptions.
         $hasEmulator = $this->pluck('hasEmulator', $options, false) ?? false;
-        if ($this->isBackwardsCompatibilityMode()) {
-            if (is_string($options['clientConfig'])) {
-                // perform validation for V1 surfaces which is done in the
-                // ClientOptions class for v2 surfaces.
-                $options['clientConfig'] = json_decode(
-                    file_get_contents($options['clientConfig']),
-                    true
-                );
-                self::validateFileExists($options['descriptorsConfigPath']);
-            }
-        } else {
-            // cast to ClientOptions for new surfaces only
-            $options = new ClientOptions($options);
-        }
+        // cast to ClientOptions for new surfaces only
+        $options = new ClientOptions($options);
         $this->serviceName = $options['serviceName'];
         $this->retrySettings = RetrySettings::load(
             $this->serviceName,
@@ -320,14 +308,6 @@ trait GapicClientTrait
             $headerInfo['restVersion'] = Version::getApiCoreVersion();
         }
         $this->agentHeader = AgentHeader::buildAgentHeader($headerInfo);
-
-        // Set "client_library_name" depending on client library surface being used
-        $userAgentHeader = sprintf(
-            'gcloud-php-%s/%s',
-            $this->isBackwardsCompatibilityMode() ? 'legacy' : 'new',
-            $options['gapicVersion']
-        );
-        $this->agentHeader['User-Agent'] = [$userAgentHeader];
 
         self::validateFileExists($options['descriptorsConfigPath']);
 
@@ -434,26 +414,26 @@ trait GapicClientTrait
     }
 
     /**
-     * @param array $options
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
      * @return OperationsClient
      */
     private function createOperationsClient(array $options)
     {
-        $this->pluckArray([
-            'serviceName',
-            'clientConfig',
-            'descriptorsConfigPath',
-        ], $options);
+        // Unset client-specific configuration options
+        unset(
+            $options['serviceName'],
+            $options['clientConfig'],
+            $options['descriptorsConfigPath']
+        );
 
-        // User-supplied operations client
-        if ($operationsClient = $this->pluck('operationsClient', $options, false)) {
-            return $operationsClient;
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
         }
 
-        // operationsClientClass option
-        $operationsClientClass = $this->pluck('operationsClientClass', $options, false)
-            ?: OperationsCLient::class;
-        return new $operationsClientClass($options);
+        return new OperationsClient($options);
     }
 
     /**
@@ -768,9 +748,6 @@ trait GapicClientTrait
      */
     private function configureCallOptions(array $optionalArgs): array
     {
-        if ($this->isBackwardsCompatibilityMode()) {
-            return $optionalArgs;
-        }
         // cast to CallOptions for new surfaces only
         return (new CallOptions($optionalArgs))->toArray();
     }
@@ -1008,14 +985,5 @@ trait GapicClientTrait
     protected function modifyStreamingCallable(callable &$callable)
     {
         // Do nothing - this method exists to allow callable modification by partial veneers.
-    }
-
-    /**
-     * @internal
-     */
-    private function isBackwardsCompatibilityMode(): bool
-    {
-        return $this->backwardsCompatibilityMode
-            ?? $this->backwardsCompatibilityMode = substr(__CLASS__, -11) === 'GapicClient';
     }
 }
