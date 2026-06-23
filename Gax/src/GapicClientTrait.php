@@ -344,10 +344,18 @@ trait GapicClientTrait
                 $options['credentialsConfig']['quotaProject'] ?? null
             );
         } else {
+            $enableRegionalAccessBoundary = filter_var(
+                getenv('GOOGLE_AUTH_TRUST_BOUNDARY_ENABLE_EXPERIMENT'),
+                FILTER_VALIDATE_BOOLEAN
+            );
+            $isRegional = str_ends_with($options['apiEndpoint'], '.rep.googleapis.com')
+                || str_ends_with($options['apiEndpoint'], '.rep.sandbox.googleapis.com');
             $this->credentialsWrapper = $this->createCredentialsWrapper(
                 $options['credentials'],
-                $options['credentialsConfig'],
-                $options['universeDomain']
+                $options['credentialsConfig'] + [
+                    'enableRegionalAccessBoundary' => $enableRegionalAccessBoundary && !$isRegional
+                ],
+                $options['universeDomain'],
             );
         }
 
