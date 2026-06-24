@@ -1682,8 +1682,10 @@ class GapicClientTraitTest extends TestCase
                 ]),
                 'timeoutMillis' => null, // adds null timeoutMillis,
                 'transportOptions' => [],
+                'metadataCallback' => null,
             ]
         )
+
             ->shouldBeCalledOnce()
             ->willReturn(new FulfilledPromise(new Operation()));
 
