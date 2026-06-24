@@ -10,7 +10,7 @@ jobs:
     gapic-showcase:
         runs-on: ubuntu-latest
         env:
-            GAPIC_SHOWCASE_VERSION: 0.36.2
+            GAPIC_SHOWCASE_VERSION: 0.40.0
             OS: linux
             ARCH: amd64
         name: GAPIC Showcase Conformance Tests
@@ -21,13 +21,21 @@ jobs:
         - name: Setup PHP
           uses: shivammathur/setup-php@v2
           with:
-            php-version: '8.1'
+            php-version: '8.2'
             extensions: grpc
 
-        - name: Install and run GAPIC Showcase
+        - name: Set up Go
+          uses: actions/setup-go@v5
+          with:
+            go-version: '>=1.26'
+
+        - name: Install GAPIC Showcase from Branch
           run: |
-            curl -L https://github.com/googleapis/gapic-showcase/releases/download/v${GAPIC_SHOWCASE_VERSION}/gapic-showcase-${GAPIC_SHOWCASE_VERSION}-${OS}-${ARCH}.tar.gz | tar -zx
-            ./gapic-showcase run &
+            go install github.com/googleapis/gapic-showcase@feat-pqc-tls
+
+        - name: Run the GAPIC showcase server
+          run: |
+            gapic-showcase run --port :7469 --tls --ca-cert-output-file showcase.pem & sleep 5
 
         - name: Install dependencies
           run: |
@@ -35,4 +43,3 @@ jobs:
 
         - name: Run PHPUnit
           run: Gax/vendor/bin/phpunit -c Gax/phpunit-conformance.xml.dist
-
