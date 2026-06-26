@@ -782,6 +782,7 @@ return [
             'templateMap' => [
                 'backup' => 'projects/{project}/backups/{backup}',
                 'network' => 'projects/{project}/global/networks/{network}',
+                'serviceConnectionPolicy' => 'projects/{project}/regions/{region}/serviceConnectionPolicies/{service_connection_policy}',
             ],
         ],
     ],
