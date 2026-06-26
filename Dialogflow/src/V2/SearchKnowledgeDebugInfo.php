@@ -40,6 +40,12 @@ class SearchKnowledgeDebugInfo extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.ServiceLatency service_latency = 4;</code>
      */
     protected $service_latency = null;
+    /**
+     * Optional. Debug info from the Customer Engagement Suite (CES) execution.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct ces_debug_info = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $ces_debug_info = null;
 
     /**
      * Constructor.
@@ -56,6 +62,8 @@ class SearchKnowledgeDebugInfo extends \Google\Protobuf\Internal\Message
      *           Information about parameters ingested for search knowledge.
      *     @type \Google\Cloud\Dialogflow\V2\ServiceLatency $service_latency
      *           The latency of the service.
+     *     @type \Google\Protobuf\Struct $ces_debug_info
+     *           Optional. Debug info from the Customer Engagement Suite (CES) execution.
      * }
      */
     public function __construct($data = NULL) {
@@ -195,6 +203,42 @@ class SearchKnowledgeDebugInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\ServiceLatency::class);
         $this->service_latency = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Debug info from the Customer Engagement Suite (CES) execution.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct ces_debug_info = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Struct|null
+     */
+    public function getCesDebugInfo()
+    {
+        return $this->ces_debug_info;
+    }
+
+    public function hasCesDebugInfo()
+    {
+        return isset($this->ces_debug_info);
+    }
+
+    public function clearCesDebugInfo()
+    {
+        unset($this->ces_debug_info);
+    }
+
+    /**
+     * Optional. Debug info from the Customer Engagement Suite (CES) execution.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct ces_debug_info = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\Struct $var
+     * @return $this
+     */
+    public function setCesDebugInfo($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Struct::class);
+        $this->ces_debug_info = $var;
 
         return $this;
     }
