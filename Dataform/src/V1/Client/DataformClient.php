@@ -453,6 +453,31 @@ final class DataformClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * git_repository_link resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $connection
+     * @param string $gitRepositoryLink
+     *
+     * @return string The formatted git_repository_link resource.
+     */
+    public static function gitRepositoryLinkName(
+        string $project,
+        string $location,
+        string $connection,
+        string $gitRepositoryLink
+    ): string {
+        return self::getPathTemplate('gitRepositoryLink')->render([
+            'project' => $project,
+            'location' => $location,
+            'connection' => $connection,
+            'git_repository_link' => $gitRepositoryLink,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a location
      * resource.
      *
@@ -657,6 +682,7 @@ final class DataformClient
      * - cryptoKey: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}
      * - cryptoKeyVersion: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}
      * - folder: projects/{project}/locations/{location}/folders/{folder}
+     * - gitRepositoryLink: projects/{project}/locations/{location}/connections/{connection}/gitRepositoryLinks/{git_repository_link}
      * - location: projects/{project}/locations/{location}
      * - notebookRuntimeTemplate: projects/{project}/locations/{location}/notebookRuntimeTemplates/{notebook_runtime_template}
      * - releaseConfig: projects/{project}/locations/{location}/repositories/{repository}/releaseConfigs/{release_config}
@@ -2899,9 +2925,8 @@ final class DataformClient
      * Lists information about the supported locations for this service.
      *
      * This method lists locations based on the resource scope provided in
-     * the [ListLocationsRequest.name] field:
-     *
-     * * **Global locations**: If `name` is empty, the method lists the
+     * the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+     * **Global locations**: If `name` is empty, the method lists the
      * public locations available to all projects. * **Project-specific
      * locations**: If `name` follows the format
      * `projects/{project}`, the method lists locations visible to that
