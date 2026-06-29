@@ -733,20 +733,10 @@ class ManageBucketsTest extends StorageTestCase
      */
     public function testDeleteBucketIpFilter(Bucket $bucket)
     {
-        $ipFilterConfig = [
-            'mode' => 'Disabled',
-            'publicNetworkSource' => [
-                'allowedIpCidrRanges' => []
-            ],
-            'allowAllServiceAgentAccess' => true
-        ];
-
-        $bucket->update(['ipFilter' => $ipFilterConfig]);
+        $bucket->update(['ipFilter' => null]);
         $info = $bucket->reload();
 
-        $this->assertArrayHasKey('ipFilter', $info);
-        $this->assertEquals('Disabled', $info['ipFilter']['mode']);
-        $this->assertArrayNotHasKey('allowedIpCidrRanges', $info['ipFilter']['publicNetworkSource']);
+        $this->assertArrayNotHasKey('ipFilter', $info);
     }
 
     /**

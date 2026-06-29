@@ -767,30 +767,16 @@ class BucketTest extends TestCase
     {
         $bucketInfo = [
             'name' => self::BUCKET_NAME,
-            'ipFilter' => [
-                'mode' => 'Disabled',
-                'publicNetworkSource' => []
-            ]
         ];
 
-        $this->connection->patchBucket(Argument::withEntry('ipFilter', [
-            'mode' => 'Disabled',
-            'publicNetworkSource' => [
-                'allowedIpCidrRanges' => []
-            ]
-        ]))
+        $this->connection->patchBucket(Argument::withEntry('ipFilter', null))
             ->shouldBeCalled()
             ->willReturn($bucketInfo);
 
         $bucket = $this->getBucket();
-        $info = $bucket->update(['ipFilter' => [
-            'mode' => 'Disabled',
-            'publicNetworkSource' => ['allowedIpCidrRanges' => []]
-        ]]);
+        $info = $bucket->update(['ipFilter' => null]);
 
-        $this->assertArrayHasKey('ipFilter', $info);
-        $this->assertEquals('Disabled', $info['ipFilter']['mode']);
-        $this->assertArrayNotHasKey('allowedIpCidrRanges', $info['ipFilter']['publicNetworkSource']);
+        $this->assertArrayNotHasKey('ipFilter', $info);
     }
 
     public function testGetsInfo()
