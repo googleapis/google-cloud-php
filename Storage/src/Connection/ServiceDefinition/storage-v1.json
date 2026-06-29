@@ -324,6 +324,61 @@
                         }
                     }
                 },
+                "ipFilter": {
+                    "type": "object",
+                    "description": "The bucket's IP filter configuration.",
+                    "properties": {
+                        "mode": {
+                            "type": "string",
+                            "description": "The bucket's IP filter mode. E.g., 'Enabled', 'Disabled'.",
+                            "enum": [
+                                "Enabled",
+                                "Disabled"
+                            ]
+                        },
+                        "publicNetworkSource": {
+                            "type": "object",
+                            "description": "The public network source configuration for IP filtering.",
+                            "properties": {
+                                "allowedIpCidrRanges": {
+                                    "type": "array",
+                                    "description": "Allowed public IP CIDR ranges.",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        },
+                        "vpcNetworkSources": {
+                            "type": "array",
+                            "description": "Private VPC network sources for IP filtering.",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "network": {
+                                        "type": "string",
+                                        "description": "The fully qualified VPC network name."
+                                    },
+                                    "allowedIpCidrRanges": {
+                                        "type": "array",
+                                        "description": "Allowed IP CIDR ranges.",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "allowCrossOrgVpcs": {
+                            "type": "boolean",
+                            "description": "Whether to allow cross-organization VPCs."
+                        },
+                        "allowAllServiceAgentAccess": {
+                            "type": "boolean",
+                            "description": "Whether to allow service agent access."
+                        }
+                    }
+                },
                 "id": {
                     "type": "string",
                     "description": "The ID of the bucket. For buckets, the id and name properties are the same."

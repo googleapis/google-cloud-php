@@ -496,6 +496,16 @@ class StorageClient
      *           [feature documentation](https://cloud.google.com/storage/docs/uniform-bucket-level-access),
      *           as well as
      *           [Should You Use uniform bucket-level access](https://cloud.google.com/storage/docs/uniform-bucket-level-access#should-you-use)
+     *     @type array $ipFilter The bucket's IP filter configuration.
+     *           @type string $ipFilter.mode The IP filter mode. Accepted values are 'Enabled' and 'Disabled'.
+     *           @type array $ipFilter.publicNetworkSource Public network configuration.
+     *                 @type array $ipFilter.publicNetworkSource.allowedIpCidrRanges Allowed IP/CIDR ranges.
+     *           @type array $ipFilter.vpcNetworkSources List of private VPC networks configurations.
+     *                 Each element contains:
+     *                 @type string $ipFilter.vpcNetworkSources[].network Fully qualified VPC network URL/name.
+     *                 @type array $ipFilter.vpcNetworkSources[].allowedIpCidrRanges Allowed IP/CIDR ranges.
+     *           @type bool $ipFilter.allowCrossOrgVpcs Set true to allow VPCs outside the org.
+     *           @type bool $ipFilter.allowAllServiceAgentAccess Set true to allow service-to-service agent interactions.
      *     @type string $rpo Specifies the Turbo Replication setting for a dual-region bucket.
      *           The possible values are DEFAULT and ASYNC_TURBO. Trying to set the rpo for a non dual-region
      *           bucket will throw an exception. Non existence of this parameter is equivalent to it being DEFAULT.

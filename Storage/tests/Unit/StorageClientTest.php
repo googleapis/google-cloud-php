@@ -130,6 +130,35 @@ class StorageClientTest extends TestCase
         $this->assertEquals('bucket1', $buckets[0]->name());
     }
 
+    public function testGetsBucketsWithIpFilter()
+    {
+        $ipFilterConfig = [
+            'mode' => 'Enabled',
+            'publicNetworkSource' => [
+                'allowedIpCidrRanges' => ['1.2.3.4/32']
+            ]
+        ];
+
+        $this->connection->listBuckets(Argument::any())->willReturn([
+            'items' => [
+                ['name' => 'bucket1', 'ipFilter' => $ipFilterConfig]
+            ]
+        ]);
+        $this->connection->projectId()
+            ->willReturn(self::PROJECT);
+
+        $this->client->___setProperty('connection', $this->connection->reveal());
+        $buckets = iterator_to_array($this->client->buckets());
+
+        $this->assertEquals('bucket1', $buckets[0]->name());
+        $this->assertArrayHasKey('ipFilter', $buckets[0]->info());
+        $this->assertEquals('Enabled', $buckets[0]->info()['ipFilter']['mode']);
+        $this->assertEquals(
+            ['1.2.3.4/32'],
+            $buckets[0]->info()['ipFilter']['publicNetworkSource']['allowedIpCidrRanges']
+        );
+    }
+
     public function testGetsBucketsWithToken()
     {
         $this->connection->listBuckets(Argument::any())
@@ -262,6 +291,43 @@ class StorageClientTest extends TestCase
             $this->client->createBucket(
                 $bucketName,
                 ['encryption' => $encryptionConfig]
+            )
+        );
+    }
+
+    public function testCreatesBucketWithIpFilter()
+    {
+        $bucketName = 'ip-filter-bucket';
+        $ipFilterConfig = [
+            'mode' => 'Enabled',
+            'publicNetworkSource' => [
+                'allowedIpCidrRanges' => ['1.2.3.4/32']
+            ],
+            'vpcNetworkSources' => [
+                [
+                    'network' => 'projects/p1/global/networks/n1',
+                    'allowedIpCidrRanges' => ['10.0.0.0/24']
+                ]
+            ],
+            'allowCrossOrgVpcs' => true,
+            'allowAllServiceAgentAccess' => false
+        ];
+        $this->connection->projectId()
+            ->willReturn(self::PROJECT);
+        $this->connection
+            ->insertBucket(Argument::allOf(
+                Argument::withEntry('name', $bucketName),
+                Argument::withEntry('project', self::PROJECT),
+                Argument::withEntry('ipFilter', $ipFilterConfig)
+            ))
+            ->willReturn(['name' => $bucketName]);
+        $this->client->___setProperty('connection', $this->connection->reveal());
+
+        $this->assertInstanceOf(
+            Bucket::class,
+            $this->client->createBucket(
+                $bucketName,
+                ['ipFilter' => $ipFilterConfig]
             )
         );
     }
