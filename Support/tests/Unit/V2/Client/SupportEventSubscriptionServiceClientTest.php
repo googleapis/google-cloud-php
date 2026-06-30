@@ -54,7 +54,9 @@ class SupportEventSubscriptionServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return SupportEventSubscriptionServiceClient */
@@ -95,7 +97,10 @@ class SupportEventSubscriptionServiceClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.support.v2.SupportEventSubscriptionService/CreateSupportEventSubscription', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.support.v2.SupportEventSubscriptionService/CreateSupportEventSubscription',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualRequestObject->getSupportEventSubscription();
@@ -114,12 +119,15 @@ class SupportEventSubscriptionServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->organizationName('[ORGANIZATION]');
@@ -159,15 +167,17 @@ class SupportEventSubscriptionServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->supportEventSubscriptionName('[ORGANIZATION]', '[SUPPORT_EVENT_SUBSCRIPTION]');
-        $request = (new DeleteSupportEventSubscriptionRequest())
-            ->setName($formattedName);
+        $request = (new DeleteSupportEventSubscriptionRequest())->setName($formattedName);
         $response = $gapicClient->deleteSupportEventSubscription($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.support.v2.SupportEventSubscriptionService/DeleteSupportEventSubscription', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.support.v2.SupportEventSubscriptionService/DeleteSupportEventSubscription',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -184,17 +194,19 @@ class SupportEventSubscriptionServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->supportEventSubscriptionName('[ORGANIZATION]', '[SUPPORT_EVENT_SUBSCRIPTION]');
-        $request = (new DeleteSupportEventSubscriptionRequest())
-            ->setName($formattedName);
+        $request = (new DeleteSupportEventSubscriptionRequest())->setName($formattedName);
         try {
             $gapicClient->deleteSupportEventSubscription($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -225,15 +237,17 @@ class SupportEventSubscriptionServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->supportEventSubscriptionName('[ORGANIZATION]', '[SUPPORT_EVENT_SUBSCRIPTION]');
-        $request = (new GetSupportEventSubscriptionRequest())
-            ->setName($formattedName);
+        $request = (new GetSupportEventSubscriptionRequest())->setName($formattedName);
         $response = $gapicClient->getSupportEventSubscription($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.support.v2.SupportEventSubscriptionService/GetSupportEventSubscription', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.support.v2.SupportEventSubscriptionService/GetSupportEventSubscription',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -250,17 +264,19 @@ class SupportEventSubscriptionServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->supportEventSubscriptionName('[ORGANIZATION]', '[SUPPORT_EVENT_SUBSCRIPTION]');
-        $request = (new GetSupportEventSubscriptionRequest())
-            ->setName($formattedName);
+        $request = (new GetSupportEventSubscriptionRequest())->setName($formattedName);
         try {
             $gapicClient->getSupportEventSubscription($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -285,17 +301,14 @@ class SupportEventSubscriptionServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $supportEventSubscriptionsElement = new SupportEventSubscription();
-        $supportEventSubscriptions = [
-            $supportEventSubscriptionsElement,
-        ];
+        $supportEventSubscriptions = [$supportEventSubscriptionsElement];
         $expectedResponse = new ListSupportEventSubscriptionsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSupportEventSubscriptions($supportEventSubscriptions);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->organizationName('[ORGANIZATION]');
-        $request = (new ListSupportEventSubscriptionsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListSupportEventSubscriptionsRequest())->setParent($formattedParent);
         $response = $gapicClient->listSupportEventSubscriptions($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -305,7 +318,10 @@ class SupportEventSubscriptionServiceClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.support.v2.SupportEventSubscriptionService/ListSupportEventSubscriptions', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.support.v2.SupportEventSubscriptionService/ListSupportEventSubscriptions',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -322,17 +338,19 @@ class SupportEventSubscriptionServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->organizationName('[ORGANIZATION]');
-        $request = (new ListSupportEventSubscriptionsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListSupportEventSubscriptionsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listSupportEventSubscriptions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -363,15 +381,17 @@ class SupportEventSubscriptionServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->supportEventSubscriptionName('[ORGANIZATION]', '[SUPPORT_EVENT_SUBSCRIPTION]');
-        $request = (new UndeleteSupportEventSubscriptionRequest())
-            ->setName($formattedName);
+        $request = (new UndeleteSupportEventSubscriptionRequest())->setName($formattedName);
         $response = $gapicClient->undeleteSupportEventSubscription($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.support.v2.SupportEventSubscriptionService/UndeleteSupportEventSubscription', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.support.v2.SupportEventSubscriptionService/UndeleteSupportEventSubscription',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -388,17 +408,19 @@ class SupportEventSubscriptionServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->supportEventSubscriptionName('[ORGANIZATION]', '[SUPPORT_EVENT_SUBSCRIPTION]');
-        $request = (new UndeleteSupportEventSubscriptionRequest())
-            ->setName($formattedName);
+        $request = (new UndeleteSupportEventSubscriptionRequest())->setName($formattedName);
         try {
             $gapicClient->undeleteSupportEventSubscription($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -431,15 +453,19 @@ class SupportEventSubscriptionServiceClientTest extends GeneratedTest
         $supportEventSubscription = new SupportEventSubscription();
         $supportEventSubscriptionPubSubTopic = 'supportEventSubscriptionPubSubTopic-1272370428';
         $supportEventSubscription->setPubSubTopic($supportEventSubscriptionPubSubTopic);
-        $request = (new UpdateSupportEventSubscriptionRequest())
-            ->setSupportEventSubscription($supportEventSubscription);
+        $request = (new UpdateSupportEventSubscriptionRequest())->setSupportEventSubscription(
+            $supportEventSubscription
+        );
         $response = $gapicClient->updateSupportEventSubscription($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.support.v2.SupportEventSubscriptionService/UpdateSupportEventSubscription', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.support.v2.SupportEventSubscriptionService/UpdateSupportEventSubscription',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getSupportEventSubscription();
         $this->assertProtobufEquals($supportEventSubscription, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -456,19 +482,23 @@ class SupportEventSubscriptionServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $supportEventSubscription = new SupportEventSubscription();
         $supportEventSubscriptionPubSubTopic = 'supportEventSubscriptionPubSubTopic-1272370428';
         $supportEventSubscription->setPubSubTopic($supportEventSubscriptionPubSubTopic);
-        $request = (new UpdateSupportEventSubscriptionRequest())
-            ->setSupportEventSubscription($supportEventSubscription);
+        $request = (new UpdateSupportEventSubscriptionRequest())->setSupportEventSubscription(
+            $supportEventSubscription
+        );
         try {
             $gapicClient->updateSupportEventSubscription($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -511,7 +541,10 @@ class SupportEventSubscriptionServiceClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.support.v2.SupportEventSubscriptionService/CreateSupportEventSubscription', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.support.v2.SupportEventSubscriptionService/CreateSupportEventSubscription',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualRequestObject->getSupportEventSubscription();
