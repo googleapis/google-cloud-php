@@ -1,4 +1,7 @@
 name: System Tests
+
+permissions:
+  contents: read
 on:
   # This is failing because we don't have a service account key
   # they need to be moved to kokoro instead
@@ -12,11 +15,12 @@ jobs:
     env:
       ASSET_TEST_BUCKET: cloud-php-testdata
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
         with:
           fetch-depth: 0
+          persist-credentials: false
       - name: Setup PHP
-        uses: shivammathur/setup-php@verbose
+        uses: shivammathur/setup-php@verbose # zizmor: ignore[unpinned-uses]
         with:
           php-version: "8.1"
           extensions: grpc
