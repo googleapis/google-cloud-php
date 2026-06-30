@@ -1,0 +1,115 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.support.v2beta",
+    "libraryPackage": "Google\\Cloud\\Support\\V2beta",
+    "services": {
+        "CaseAttachmentService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "CaseAttachmentServiceGapicClient",
+                    "rpcs": {
+                        "GetAttachment": {
+                            "methods": [
+                                "getAttachment"
+                            ]
+                        },
+                        "ListAttachments": {
+                            "methods": [
+                                "listAttachments"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "CaseService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "CaseServiceGapicClient",
+                    "rpcs": {
+                        "CloseCase": {
+                            "methods": [
+                                "closeCase"
+                            ]
+                        },
+                        "CreateCase": {
+                            "methods": [
+                                "createCase"
+                            ]
+                        },
+                        "EscalateCase": {
+                            "methods": [
+                                "escalateCase"
+                            ]
+                        },
+                        "GetCase": {
+                            "methods": [
+                                "getCase"
+                            ]
+                        },
+                        "ListCases": {
+                            "methods": [
+                                "listCases"
+                            ]
+                        },
+                        "SearchCaseClassifications": {
+                            "methods": [
+                                "searchCaseClassifications"
+                            ]
+                        },
+                        "SearchCases": {
+                            "methods": [
+                                "searchCases"
+                            ]
+                        },
+                        "UpdateCase": {
+                            "methods": [
+                                "updateCase"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "CommentService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "CommentServiceGapicClient",
+                    "rpcs": {
+                        "CreateComment": {
+                            "methods": [
+                                "createComment"
+                            ]
+                        },
+                        "GetComment": {
+                            "methods": [
+                                "getComment"
+                            ]
+                        },
+                        "ListComments": {
+                            "methods": [
+                                "listComments"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "FeedService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "FeedServiceGapicClient",
+                    "rpcs": {
+                        "ShowFeed": {
+                            "methods": [
+                                "showFeed"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
