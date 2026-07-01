@@ -29,9 +29,11 @@ jobs:
         id: compatibility-checker
         continue-on-error: true
         # OwlBot PRs which are not labelled feat should not add new files or methods
+        env:
+          PR_REF: ${{ github.head_ref || github.ref_name }}
         run: |
           ~/.composer/vendor/bin/roave-backward-compatibility-check \
-            --from=origin/${{ github.head_ref || github.ref_name }} \
+            --from=origin/"$PR_REF" \
             --to=origin/main
       - name: "Print the action item"
         run: |
