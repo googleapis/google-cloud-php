@@ -19,7 +19,7 @@ jobs:
           RELEASE_TAG: ${{ inputs.tag }}
         steps:
         - name: Clone libgit2
-          uses: actions/checkout@master
+          uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
           with:
             repository: libgit2/libgit2
             ref: v1.5.1
@@ -31,7 +31,7 @@ jobs:
             cmake .. -DCMAKE_INSTALL_PREFIX=/usr/local
             sudo cmake --build . --target install
         - name: Clone splitsh/lite
-          uses: actions/checkout@master
+          uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
           with:
             repository: splitsh/lite
             ref: v2.0.0
