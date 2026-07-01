@@ -1,3 +1,6 @@
+permissions:
+  contents: read
+
 name: DocFX Test Suite
 on:
   push:
@@ -12,9 +15,11 @@ jobs:
     env:
       PHPDOC_ENV: prod
     steps:
-    - uses: actions/checkout@v7
+    - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
+      with:
+        persist-credentials: false
     - name: Setup Python
-      uses: actions/setup-python@v6
+      uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
       with:
         python-version: '3.14'
     - run: pip install --no-deps --require-hashes -r .kokoro/docs/docker/requirements.txt
@@ -24,14 +29,16 @@ jobs:
         php-version: "8.2"
     - name: Extract phpDocumentor
       id: extract
-      uses: shrink/actions-docker-extract@v4
+      uses: shrink/actions-docker-extract@f1ef61065b78731fe3310b4e84e511f6a927a77e # v4
       with:
         image: "phpdoc/phpdoc:3.5.3"
         path: "/opt/phpdoc/."
     - name: Symlink phpDocumentor
-      run: ln -s $(pwd)/${{ steps.extract.outputs.destination }}/bin/phpdoc /usr/local/bin/phpdoc
+      run: ln -s $(pwd)/${STEPS_EXTRACT_OUTPUTS_DESTINATION}/bin/phpdoc /usr/local/bin/phpdoc
+      env:
+        STEPS_EXTRACT_OUTPUTS_DESTINATION: ${{ steps.extract.outputs.destination }}
     - name: Install Dependencies
-      uses: nick-invision/retry@v4
+      uses: nick-invision/retry@ad984534de44a9489a53aefd81eb77f87c70dc60 # v4
       with:
         timeout_minutes: 10
         max_attempts: 3
