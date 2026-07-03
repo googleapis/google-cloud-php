@@ -62,7 +62,9 @@ class FindingsRefinementServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return FindingsRefinementServiceClient */
@@ -87,15 +89,17 @@ class FindingsRefinementServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedInstance = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $request = (new ComputeAllFindingsRefinementActivitiesRequest())
-            ->setInstance($formattedInstance);
+        $request = (new ComputeAllFindingsRefinementActivitiesRequest())->setInstance($formattedInstance);
         $response = $gapicClient->computeAllFindingsRefinementActivities($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.chronicle.v1.FindingsRefinementService/ComputeAllFindingsRefinementActivities', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.chronicle.v1.FindingsRefinementService/ComputeAllFindingsRefinementActivities',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getInstance();
         $this->assertProtobufEquals($formattedInstance, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -112,17 +116,19 @@ class FindingsRefinementServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedInstance = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $request = (new ComputeAllFindingsRefinementActivitiesRequest())
-            ->setInstance($formattedInstance);
+        $request = (new ComputeAllFindingsRefinementActivitiesRequest())->setInstance($formattedInstance);
         try {
             $gapicClient->computeAllFindingsRefinementActivities($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -148,16 +154,23 @@ class FindingsRefinementServiceClientTest extends GeneratedTest
         $expectedResponse = new ComputeFindingsRefinementActivityResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->findingsRefinementName('[PROJECT]', '[LOCATION]', '[INSTANCE]', '[FINDINGS_REFINEMENT]');
-        $request = (new ComputeFindingsRefinementActivityRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->findingsRefinementName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[INSTANCE]',
+            '[FINDINGS_REFINEMENT]'
+        );
+        $request = (new ComputeFindingsRefinementActivityRequest())->setName($formattedName);
         $response = $gapicClient->computeFindingsRefinementActivity($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.chronicle.v1.FindingsRefinementService/ComputeFindingsRefinementActivity', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.chronicle.v1.FindingsRefinementService/ComputeFindingsRefinementActivity',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -174,17 +187,24 @@ class FindingsRefinementServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->findingsRefinementName('[PROJECT]', '[LOCATION]', '[INSTANCE]', '[FINDINGS_REFINEMENT]');
-        $request = (new ComputeFindingsRefinementActivityRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->findingsRefinementName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[INSTANCE]',
+            '[FINDINGS_REFINEMENT]'
+        );
+        $request = (new ComputeFindingsRefinementActivityRequest())->setName($formattedName);
         try {
             $gapicClient->computeFindingsRefinementActivity($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -227,7 +247,10 @@ class FindingsRefinementServiceClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.chronicle.v1.FindingsRefinementService/CreateFindingsRefinement', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.chronicle.v1.FindingsRefinementService/CreateFindingsRefinement',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualRequestObject->getFindingsRefinement();
@@ -246,12 +269,15 @@ class FindingsRefinementServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
@@ -290,16 +316,23 @@ class FindingsRefinementServiceClientTest extends GeneratedTest
         $expectedResponse->setQuery($query);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->findingsRefinementName('[PROJECT]', '[LOCATION]', '[INSTANCE]', '[FINDINGS_REFINEMENT]');
-        $request = (new GetFindingsRefinementRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->findingsRefinementName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[INSTANCE]',
+            '[FINDINGS_REFINEMENT]'
+        );
+        $request = (new GetFindingsRefinementRequest())->setName($formattedName);
         $response = $gapicClient->getFindingsRefinement($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.chronicle.v1.FindingsRefinementService/GetFindingsRefinement', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.chronicle.v1.FindingsRefinementService/GetFindingsRefinement',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -316,17 +349,24 @@ class FindingsRefinementServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->findingsRefinementName('[PROJECT]', '[LOCATION]', '[INSTANCE]', '[FINDINGS_REFINEMENT]');
-        $request = (new GetFindingsRefinementRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->findingsRefinementName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[INSTANCE]',
+            '[FINDINGS_REFINEMENT]'
+        );
+        $request = (new GetFindingsRefinementRequest())->setName($formattedName);
         try {
             $gapicClient->getFindingsRefinement($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -358,16 +398,23 @@ class FindingsRefinementServiceClientTest extends GeneratedTest
         $expectedResponse->setArchived($archived);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->findingsRefinementDeploymentName('[PROJECT]', '[LOCATION]', '[INSTANCE]', '[FINDINGS_REFINEMENT]');
-        $request = (new GetFindingsRefinementDeploymentRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->findingsRefinementDeploymentName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[INSTANCE]',
+            '[FINDINGS_REFINEMENT]'
+        );
+        $request = (new GetFindingsRefinementDeploymentRequest())->setName($formattedName);
         $response = $gapicClient->getFindingsRefinementDeployment($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.chronicle.v1.FindingsRefinementService/GetFindingsRefinementDeployment', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.chronicle.v1.FindingsRefinementService/GetFindingsRefinementDeployment',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -384,17 +431,24 @@ class FindingsRefinementServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->findingsRefinementDeploymentName('[PROJECT]', '[LOCATION]', '[INSTANCE]', '[FINDINGS_REFINEMENT]');
-        $request = (new GetFindingsRefinementDeploymentRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->findingsRefinementDeploymentName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[INSTANCE]',
+            '[FINDINGS_REFINEMENT]'
+        );
+        $request = (new GetFindingsRefinementDeploymentRequest())->setName($formattedName);
         try {
             $gapicClient->getFindingsRefinementDeployment($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -419,17 +473,14 @@ class FindingsRefinementServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $allFindingsRefinementDeploymentsElement = new FindingsRefinementDeployment();
-        $allFindingsRefinementDeployments = [
-            $allFindingsRefinementDeploymentsElement,
-        ];
+        $allFindingsRefinementDeployments = [$allFindingsRefinementDeploymentsElement];
         $expectedResponse = new ListAllFindingsRefinementDeploymentsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setAllFindingsRefinementDeployments($allFindingsRefinementDeployments);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedInstance = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $request = (new ListAllFindingsRefinementDeploymentsRequest())
-            ->setInstance($formattedInstance);
+        $request = (new ListAllFindingsRefinementDeploymentsRequest())->setInstance($formattedInstance);
         $response = $gapicClient->listAllFindingsRefinementDeployments($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -439,7 +490,10 @@ class FindingsRefinementServiceClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.chronicle.v1.FindingsRefinementService/ListAllFindingsRefinementDeployments', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.chronicle.v1.FindingsRefinementService/ListAllFindingsRefinementDeployments',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getInstance();
         $this->assertProtobufEquals($formattedInstance, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -456,17 +510,19 @@ class FindingsRefinementServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedInstance = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $request = (new ListAllFindingsRefinementDeploymentsRequest())
-            ->setInstance($formattedInstance);
+        $request = (new ListAllFindingsRefinementDeploymentsRequest())->setInstance($formattedInstance);
         try {
             $gapicClient->listAllFindingsRefinementDeployments($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -491,17 +547,14 @@ class FindingsRefinementServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $findingsRefinementsElement = new FindingsRefinement();
-        $findingsRefinements = [
-            $findingsRefinementsElement,
-        ];
+        $findingsRefinements = [$findingsRefinementsElement];
         $expectedResponse = new ListFindingsRefinementsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setFindingsRefinements($findingsRefinements);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $request = (new ListFindingsRefinementsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListFindingsRefinementsRequest())->setParent($formattedParent);
         $response = $gapicClient->listFindingsRefinements($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -511,7 +564,10 @@ class FindingsRefinementServiceClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.chronicle.v1.FindingsRefinementService/ListFindingsRefinements', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.chronicle.v1.FindingsRefinementService/ListFindingsRefinements',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -528,17 +584,19 @@ class FindingsRefinementServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $request = (new ListFindingsRefinementsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListFindingsRefinementsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listFindingsRefinements($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -571,15 +629,17 @@ class FindingsRefinementServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $findingsRefinement = new FindingsRefinement();
-        $request = (new UpdateFindingsRefinementRequest())
-            ->setFindingsRefinement($findingsRefinement);
+        $request = (new UpdateFindingsRefinementRequest())->setFindingsRefinement($findingsRefinement);
         $response = $gapicClient->updateFindingsRefinement($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.chronicle.v1.FindingsRefinementService/UpdateFindingsRefinement', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.chronicle.v1.FindingsRefinementService/UpdateFindingsRefinement',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getFindingsRefinement();
         $this->assertProtobufEquals($findingsRefinement, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -596,17 +656,19 @@ class FindingsRefinementServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $findingsRefinement = new FindingsRefinement();
-        $request = (new UpdateFindingsRefinementRequest())
-            ->setFindingsRefinement($findingsRefinement);
+        $request = (new UpdateFindingsRefinementRequest())->setFindingsRefinement($findingsRefinement);
         try {
             $gapicClient->updateFindingsRefinement($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -651,7 +713,10 @@ class FindingsRefinementServiceClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.chronicle.v1.FindingsRefinementService/UpdateFindingsRefinementDeployment', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.chronicle.v1.FindingsRefinementService/UpdateFindingsRefinementDeployment',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getFindingsRefinementDeployment();
         $this->assertProtobufEquals($findingsRefinementDeployment, $actualValue);
         $actualValue = $actualRequestObject->getUpdateMask();
@@ -670,12 +735,15 @@ class FindingsRefinementServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $findingsRefinementDeployment = new FindingsRefinementDeployment();
@@ -711,15 +779,17 @@ class FindingsRefinementServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedInstance = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $request = (new ComputeAllFindingsRefinementActivitiesRequest())
-            ->setInstance($formattedInstance);
+        $request = (new ComputeAllFindingsRefinementActivitiesRequest())->setInstance($formattedInstance);
         $response = $gapicClient->computeAllFindingsRefinementActivitiesAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.chronicle.v1.FindingsRefinementService/ComputeAllFindingsRefinementActivities', $actualFuncCall);
+        $this->assertSame(
+            '/google.cloud.chronicle.v1.FindingsRefinementService/ComputeAllFindingsRefinementActivities',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getInstance();
         $this->assertProtobufEquals($formattedInstance, $actualValue);
         $this->assertTrue($transport->isExhausted());
