@@ -10,6 +10,7 @@ jobs:
   backwards-compatibility-check:
     name: Breaking Change Detector
     runs-on: ubuntu-latest
+    if: ${{ !contains(github.event.pull_request.body, 'BREAKING_CHANGE_REASON=') }}
     steps:
       - uses: actions/checkout@v7
         with:
@@ -32,13 +33,9 @@ jobs:
         run: composer global require "roave/backward-compatibility-check:^8.2"
       - name: "Check for BC breaks"
         if: github.event.pull_request.user.login != 'release-please[bot]'
-        # Ensure the build still passes by adding BREAKING_CHANGE_REASON=[reason] to the PR description.
-        continue-on-error: ${{ contains(github.event.pull_request.body, 'BREAKING_CHANGE_REASON=') }}
         run: |
           ~/.composer/vendor/bin/roave-backward-compatibility-check --from=origin/main --format=github-actions
       - name: "Check for BC label"
-        # Ensure the build still passes by adding BREAKING_CHANGE_REASON=[reason] to the PR description.
-        continue-on-error: ${{ contains(github.event.pull_request.body, 'BREAKING_CHANGE_REASON=') }}
         run: |
           if [[ "true" == "${{ contains(github.event.pull_request.title, '!:') }}" ]]; then
             echo "Breaking change label found in PR title"
