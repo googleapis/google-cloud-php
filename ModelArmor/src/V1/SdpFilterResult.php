@@ -28,6 +28,9 @@ class SdpFilterResult extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\ModelArmor\V1\SdpDeidentifyResult $deidentify_result
      *           Sensitive Data Protection Deidentification result if deidentification is
      *           performed.
+     *     @type \Google\Cloud\ModelArmor\V1\SdpRedactResult $redact_result
+     *           Sensitive Data Protection Redaction result if redaction is performed.
+     *           This is primarily used for image redaction.
      * }
      */
     public function __construct($data = NULL) {
@@ -95,6 +98,39 @@ class SdpFilterResult extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\ModelArmor\V1\SdpDeidentifyResult::class);
         $this->writeOneof(2, $var);
+
+        return $this;
+    }
+
+    /**
+     * Sensitive Data Protection Redaction result if redaction is performed.
+     * This is primarily used for image redaction.
+     *
+     * Generated from protobuf field <code>.google.cloud.modelarmor.v1.SdpRedactResult redact_result = 3;</code>
+     * @return \Google\Cloud\ModelArmor\V1\SdpRedactResult|null
+     */
+    public function getRedactResult()
+    {
+        return $this->readOneof(3);
+    }
+
+    public function hasRedactResult()
+    {
+        return $this->hasOneof(3);
+    }
+
+    /**
+     * Sensitive Data Protection Redaction result if redaction is performed.
+     * This is primarily used for image redaction.
+     *
+     * Generated from protobuf field <code>.google.cloud.modelarmor.v1.SdpRedactResult redact_result = 3;</code>
+     * @param \Google\Cloud\ModelArmor\V1\SdpRedactResult $var
+     * @return $this
+     */
+    public function setRedactResult($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\ModelArmor\V1\SdpRedactResult::class);
+        $this->writeOneof(3, $var);
 
         return $this;
     }
