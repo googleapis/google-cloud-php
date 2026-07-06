@@ -33,6 +33,7 @@
 namespace Google\ApiCore;
 
 use Google\ApiCore\LongRunning\OperationsClient;
+use Google\ApiCore\ResumableUpload\ResumableUpload;
 use Google\ApiCore\Middleware\CredentialsWrapperMiddleware;
 use Google\ApiCore\Middleware\FixedHeaderMiddleware;
 use Google\ApiCore\Middleware\OperationsMiddleware;
@@ -557,6 +558,7 @@ trait GapicClientTrait
             case Call::SERVER_STREAMING_CALL:
             case Call::CLIENT_STREAMING_CALL:
             case Call::BIDI_STREAMING_CALL:
+            case Call::RESUMABLE_UPLOAD_CALL:
                 throw new ValidationException("Call type '$callType' of requested method " .
                     "'$methodName' is not supported for async execution.");
         }
@@ -617,6 +619,10 @@ trait GapicClientTrait
 
         if ($callType == Call::PAGINATED_CALL) {
             return $this->getPagedListResponse($methodName, $optionalArgs, $decodeType, $request, $interfaceName);
+        }
+
+        if ($callType == Call::RESUMABLE_UPLOAD_CALL) {
+            return $this->startResumableUploadCall($methodName, $optionalArgs, $decodeType, $request, $interfaceName);
         }
 
         // Unary, and all Streaming types handled by startCall.
@@ -868,6 +874,38 @@ trait GapicClientTrait
             $request,
             $interfaceName
         )->wait();
+    }
+
+    /**
+     * @param string $methodName
+     * @param array $optionalArgs
+     * @param string $decodeType
+     * @param Message|null $request
+     * @param string|null $interfaceName
+     *
+     * @return ResumableUpload
+     */
+    private function startResumableUploadCall(
+        string $methodName,
+        array $optionalArgs,
+        string $decodeType,
+        ?Message $request,
+        ?string $interfaceName = null
+    ) {
+        $call = new Call(
+            $this->buildMethod($interfaceName, $methodName),
+            $decodeType,
+            $request,
+            $this->descriptors[$methodName] ?? [],
+            Call::RESUMABLE_UPLOAD_CALL
+        );
+
+        return new ResumableUpload(
+            $this->resumableUploadClient,
+            $call,
+            $optionalArgs,
+            $optionalArgs['uploadUrl'] ?? null
+        );
     }
 
     /**

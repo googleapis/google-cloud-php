@@ -706,6 +706,15 @@ class GapicClientTraitTest extends TestCase
                 ],
                 'not supported for async execution'
             ],
+            [
+                [
+                    'Method' => [
+                        'callType' => Call::RESUMABLE_UPLOAD_CALL,
+                        'responseType' => 'Google\Longrunning\Operation'
+                    ]
+                ],
+                'not supported for async execution'
+            ],
         ];
     }
 
