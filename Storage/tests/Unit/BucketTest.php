@@ -631,6 +631,154 @@ class BucketTest extends TestCase
         );
     }
 
+    public function testUpdatesIpFilterConfig()
+    {
+        $ipFilterConfig = [
+            'mode' => 'Enabled',
+            'publicNetworkSource' => [
+                'allowedIpCidrRanges' => ['1.2.3.4/32']
+            ],
+            'vpcNetworkSources' => [
+                [
+                    'network' => 'projects/p1/global/networks/n1',
+                    'allowedIpCidrRanges' => ['10.0.0.0/24']
+                ]
+            ],
+            'allowCrossOrgVpcs' => true,
+            'allowAllServiceAgentAccess' => false
+        ];
+        $this->connection->patchBucket(Argument::withEntry('ipFilter', $ipFilterConfig))
+            ->shouldBeCalled()
+            ->willReturn([
+                'name' => self::BUCKET_NAME,
+                'ipFilter' => $ipFilterConfig
+            ]);
+
+        $bucket = $this->getBucket(['name' => self::BUCKET_NAME]);
+
+        $bucket->update(['ipFilter' => $ipFilterConfig]);
+
+        $this->assertArrayHasKey('ipFilter', $bucket->info());
+        $this->assertEquals(
+            'Enabled',
+            $bucket->info()['ipFilter']['mode']
+        );
+        $this->assertEquals(
+            ['1.2.3.4/32'],
+            $bucket->info()['ipFilter']['publicNetworkSource']['allowedIpCidrRanges']
+        );
+    }
+
+    public function testBucketAccessAllowedWithIpFilter()
+    {
+        $ipFilterConfig = [
+            'mode' => 'Enabled',
+            'publicNetworkSource' => [
+                'allowedIpCidrRanges' => ['12.34.56.78/32']
+            ],
+            'allowAllServiceAgentAccess' => true
+        ];
+        $bucketInfo = [
+            'name' => self::BUCKET_NAME,
+            'ipFilter' => $ipFilterConfig
+        ];
+        $this->connection->getBucket(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn($bucketInfo);
+
+        $bucket = $this->getBucket();
+        $info = $bucket->info();
+
+        $this->assertArrayHasKey('ipFilter', $info);
+        $this->assertEquals('Enabled', $info['ipFilter']['mode']);
+    }
+
+    public function testBucketAccessDeniedByIpFilter()
+    {
+        $this->expectException(ServiceException::class);
+        $this->expectExceptionCode(403);
+        $this->expectExceptionMessage('BUCKET_IP_FILTER_DENIED');
+
+        $this->connection->getBucket(Argument::any())
+            ->shouldBeCalled()
+            ->willThrow(new ServiceException('BUCKET_IP_FILTER_DENIED', 403));
+
+        $bucket = $this->getBucket();
+        $bucket->info();
+    }
+
+    public function testGetBucketWithIpFilter()
+    {
+        $ipFilterConfig = [
+            'mode' => 'Disabled',
+            'publicNetworkSource' => [
+                'allowedIpCidrRanges' => ['1.2.3.0/24']
+            ],
+            'allowAllServiceAgentAccess' => true
+        ];
+
+        $bucketInfo = [
+            'name' => self::BUCKET_NAME,
+            'ipFilter' => $ipFilterConfig
+        ];
+
+        $this->connection->getBucket(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn($bucketInfo);
+
+        $bucket = $this->getBucket();
+        $info = $bucket->info();
+
+        $this->assertArrayHasKey('ipFilter', $info);
+        $this->assertEquals('Disabled', $info['ipFilter']['mode']);
+        $this->assertEquals(
+            ['1.2.3.0/24'],
+            $info['ipFilter']['publicNetworkSource']['allowedIpCidrRanges']
+        );
+    }
+
+    public function testDisableBucketIpFilter()
+    {
+        $ipFilterConfig = [
+            'mode' => 'Disabled',
+            'publicNetworkSource' => [
+                'allowedIpCidrRanges' => ['1.2.3.0/24']
+            ],
+            'allowAllServiceAgentAccess' => true
+        ];
+
+        $bucketInfo = [
+            'name' => self::BUCKET_NAME,
+            'ipFilter' => $ipFilterConfig
+        ];
+
+        $this->connection->patchBucket(Argument::withEntry('ipFilter', $ipFilterConfig))
+            ->shouldBeCalled()
+            ->willReturn($bucketInfo);
+
+        $bucket = $this->getBucket();
+        $info = $bucket->update(['ipFilter' => $ipFilterConfig]);
+
+        $this->assertArrayHasKey('ipFilter', $info);
+        $this->assertEquals('Disabled', $info['ipFilter']['mode']);
+    }
+
+    public function testDeleteBucketIpFilter()
+    {
+        $bucketInfo = [
+            'name' => self::BUCKET_NAME,
+        ];
+
+        $this->connection->patchBucket(Argument::withEntry('ipFilter', null))
+            ->shouldBeCalled()
+            ->willReturn($bucketInfo);
+
+        $bucket = $this->getBucket();
+        $info = $bucket->update(['ipFilter' => null]);
+
+        $this->assertArrayNotHasKey('ipFilter', $info);
+    }
+
     public function testGetsInfo()
     {
         $bucketInfo = [

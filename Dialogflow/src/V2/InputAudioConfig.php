@@ -107,6 +107,14 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      */
     protected $single_utterance = false;
     /**
+     * Optional. If `true`, responses with voice activity speech events will be
+     * returned as they are detected.
+     * Note: This setting is relevant only for streaming methods.
+     *
+     * Generated from protobuf field <code>bool enable_voice_activity_events = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $enable_voice_activity_events = false;
+    /**
      * Only used in
      * [Participants.AnalyzeContent][google.cloud.dialogflow.v2.Participants.AnalyzeContent]
      * and
@@ -199,6 +207,10 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      *           Note: This setting is relevant only for streaming methods.
      *           Note: When specified, InputAudioConfig.single_utterance takes precedence
      *           over StreamingDetectIntentRequest.single_utterance.
+     *     @type bool $enable_voice_activity_events
+     *           Optional. If `true`, responses with voice activity speech events will be
+     *           returned as they are detected.
+     *           Note: This setting is relevant only for streaming methods.
      *     @type bool $disable_no_speech_recognized_event
      *           Only used in
      *           [Participants.AnalyzeContent][google.cloud.dialogflow.v2.Participants.AnalyzeContent]
@@ -532,6 +544,36 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->single_utterance = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If `true`, responses with voice activity speech events will be
+     * returned as they are detected.
+     * Note: This setting is relevant only for streaming methods.
+     *
+     * Generated from protobuf field <code>bool enable_voice_activity_events = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getEnableVoiceActivityEvents()
+    {
+        return $this->enable_voice_activity_events;
+    }
+
+    /**
+     * Optional. If `true`, responses with voice activity speech events will be
+     * returned as they are detected.
+     * Note: This setting is relevant only for streaming methods.
+     *
+     * Generated from protobuf field <code>bool enable_voice_activity_events = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableVoiceActivityEvents($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_voice_activity_events = $var;
 
         return $this;
     }
