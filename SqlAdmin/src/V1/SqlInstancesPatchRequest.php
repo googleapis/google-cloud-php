@@ -28,6 +28,20 @@ class SqlInstancesPatchRequest extends \Google\Protobuf\Internal\Message
      */
     protected $project = '';
     /**
+     * Optional. Set PSC config to the same value as the existing config to
+     * reconcile the PSC networking.
+     *
+     * Generated from protobuf field <code>optional bool reconcile_psc_networking = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $reconcile_psc_networking = null;
+    /**
+     * Optional. Set PSC config to the same value as the existing config and force
+     * reconcile the PSC networking.
+     *
+     * Generated from protobuf field <code>optional bool reconcile_psc_networking_force = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $reconcile_psc_networking_force = null;
+    /**
      * Generated from protobuf field <code>.google.cloud.sql.v1.DatabaseInstance body = 100;</code>
      */
     protected $body = null;
@@ -42,6 +56,12 @@ class SqlInstancesPatchRequest extends \Google\Protobuf\Internal\Message
      *           Cloud SQL instance ID. This does not include the project ID.
      *     @type string $project
      *           Project ID of the project that contains the instance.
+     *     @type bool $reconcile_psc_networking
+     *           Optional. Set PSC config to the same value as the existing config to
+     *           reconcile the PSC networking.
+     *     @type bool $reconcile_psc_networking_force
+     *           Optional. Set PSC config to the same value as the existing config and force
+     *           reconcile the PSC networking.
      *     @type \Google\Cloud\Sql\V1\DatabaseInstance $body
      * }
      */
@@ -98,6 +118,82 @@ class SqlInstancesPatchRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->project = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Set PSC config to the same value as the existing config to
+     * reconcile the PSC networking.
+     *
+     * Generated from protobuf field <code>optional bool reconcile_psc_networking = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getReconcilePscNetworking()
+    {
+        return isset($this->reconcile_psc_networking) ? $this->reconcile_psc_networking : false;
+    }
+
+    public function hasReconcilePscNetworking()
+    {
+        return isset($this->reconcile_psc_networking);
+    }
+
+    public function clearReconcilePscNetworking()
+    {
+        unset($this->reconcile_psc_networking);
+    }
+
+    /**
+     * Optional. Set PSC config to the same value as the existing config to
+     * reconcile the PSC networking.
+     *
+     * Generated from protobuf field <code>optional bool reconcile_psc_networking = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setReconcilePscNetworking($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->reconcile_psc_networking = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Set PSC config to the same value as the existing config and force
+     * reconcile the PSC networking.
+     *
+     * Generated from protobuf field <code>optional bool reconcile_psc_networking_force = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getReconcilePscNetworkingForce()
+    {
+        return isset($this->reconcile_psc_networking_force) ? $this->reconcile_psc_networking_force : false;
+    }
+
+    public function hasReconcilePscNetworkingForce()
+    {
+        return isset($this->reconcile_psc_networking_force);
+    }
+
+    public function clearReconcilePscNetworkingForce()
+    {
+        unset($this->reconcile_psc_networking_force);
+    }
+
+    /**
+     * Optional. Set PSC config to the same value as the existing config and force
+     * reconcile the PSC networking.
+     *
+     * Generated from protobuf field <code>optional bool reconcile_psc_networking_force = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setReconcilePscNetworkingForce($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->reconcile_psc_networking_force = $var;
 
         return $this;
     }

@@ -208,7 +208,7 @@ class Settings extends \Google\Protobuf\Internal\Message
      */
     protected $sql_server_audit_config = null;
     /**
-     * Optional. The edition of the instance.
+     * Optional. The edition type of the Cloud SQL instance.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.Settings.Edition edition = 38 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -445,7 +445,7 @@ class Settings extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Sql\V1\SqlServerAuditConfig $sql_server_audit_config
      *           SQL Server specific audit configuration.
      *     @type int $edition
-     *           Optional. The edition of the instance.
+     *           Optional. The edition type of the Cloud SQL instance.
      *     @type int $connector_enforcement
      *           Specifies if connections must use Cloud SQL connectors.
      *           Option values include the following: `NOT_REQUIRED` (Cloud SQL instances
@@ -1606,7 +1606,7 @@ class Settings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The edition of the instance.
+     * Optional. The edition type of the Cloud SQL instance.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.Settings.Edition edition = 38 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -1617,7 +1617,7 @@ class Settings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The edition of the instance.
+     * Optional. The edition type of the Cloud SQL instance.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1.Settings.Edition edition = 38 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
