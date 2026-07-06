@@ -36,6 +36,12 @@ class BeginTransactionRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.datastore.v1.TransactionOptions transaction_options = 10;</code>
      */
     protected $transaction_options = null;
+    /**
+     * Optional. The options for this request.
+     *
+     * Generated from protobuf field <code>.google.datastore.v1.RequestOptions request_options = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $request_options = null;
 
     /**
      * @param string $projectId Required. The ID of the project against which to make the request.
@@ -64,6 +70,8 @@ class BeginTransactionRequest extends \Google\Protobuf\Internal\Message
      *           database.
      *     @type \Google\Cloud\Datastore\V1\TransactionOptions $transaction_options
      *           Options for a new transaction.
+     *     @type \Google\Cloud\Datastore\V1\RequestOptions $request_options
+     *           Optional. The options for this request.
      * }
      */
     public function __construct($data = NULL) {
@@ -159,6 +167,42 @@ class BeginTransactionRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Datastore\V1\TransactionOptions::class);
         $this->transaction_options = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The options for this request.
+     *
+     * Generated from protobuf field <code>.google.datastore.v1.RequestOptions request_options = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Datastore\V1\RequestOptions|null
+     */
+    public function getRequestOptions()
+    {
+        return $this->request_options;
+    }
+
+    public function hasRequestOptions()
+    {
+        return isset($this->request_options);
+    }
+
+    public function clearRequestOptions()
+    {
+        unset($this->request_options);
+    }
+
+    /**
+     * Optional. The options for this request.
+     *
+     * Generated from protobuf field <code>.google.datastore.v1.RequestOptions request_options = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Datastore\V1\RequestOptions $var
+     * @return $this
+     */
+    public function setRequestOptions($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Datastore\V1\RequestOptions::class);
+        $this->request_options = $var;
 
         return $this;
     }
