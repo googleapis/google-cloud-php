@@ -52,6 +52,7 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
+use Google\LongRunning\OperationsClient;
 use Google\Protobuf\Internal\Message;
 use GuzzleHttp\Promise\PromiseInterface;
 
