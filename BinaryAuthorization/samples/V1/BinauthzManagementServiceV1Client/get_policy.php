@@ -29,16 +29,20 @@ use Google\Cloud\BinaryAuthorization\V1\GetPolicyRequest;
 use Google\Cloud\BinaryAuthorization\V1\Policy;
 
 /**
- * A [policy][google.cloud.binaryauthorization.v1.Policy] specifies the [attestors][google.cloud.binaryauthorization.v1.Attestor] that must attest to
- * a container image, before the project is allowed to deploy that
- * image. There is at most one policy per project. All image admission
- * requests are permitted if a project has no policy.
+ * A [policy][google.cloud.binaryauthorization.v1.Policy] specifies the
+ * [attestors][google.cloud.binaryauthorization.v1.Attestor] that must attest
+ * to a container image, before the project is allowed to deploy that image.
+ * There is at most one policy per project. All image admission requests are
+ * permitted if a project has no policy.
  *
- * Gets the [policy][google.cloud.binaryauthorization.v1.Policy] for this project. Returns a default
- * [policy][google.cloud.binaryauthorization.v1.Policy] if the project does not have one.
+ * Gets the [policy][google.cloud.binaryauthorization.v1.Policy] for this
+ * project. Returns a default
+ * [policy][google.cloud.binaryauthorization.v1.Policy] if the project does
+ * not have one.
  *
- * @param string $formattedName The resource name of the [policy][google.cloud.binaryauthorization.v1.Policy] to retrieve,
- *                              in the format `projects/&#42;/policy`. Please see
+ * @param string $formattedName The resource name of the
+ *                              [policy][google.cloud.binaryauthorization.v1.Policy] to retrieve, in the
+ *                              format `projects/&#42;/policy`. Please see
  *                              {@see BinauthzManagementServiceV1Client::policyName()} for help formatting this field.
  */
 function get_policy_sample(string $formattedName): void

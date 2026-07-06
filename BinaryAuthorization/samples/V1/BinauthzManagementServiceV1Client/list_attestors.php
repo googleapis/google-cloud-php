@@ -31,10 +31,11 @@ use Google\Cloud\BinaryAuthorization\V1\ListAttestorsRequest;
 
 /**
  * Lists [attestors][google.cloud.binaryauthorization.v1.Attestor].
- * Returns INVALID_ARGUMENT if the project does not exist.
+ * Returns `INVALID_ARGUMENT` if the project does not exist.
  *
  * @param string $formattedParent The resource name of the project associated with the
- *                                [attestors][google.cloud.binaryauthorization.v1.Attestor], in the format `projects/*`. Please see
+ *                                [attestors][google.cloud.binaryauthorization.v1.Attestor], in the format
+ *                                `projects/*`. Please see
  *                                {@see BinauthzManagementServiceV1Client::projectName()} for help formatting this field.
  */
 function list_attestors_sample(string $formattedParent): void

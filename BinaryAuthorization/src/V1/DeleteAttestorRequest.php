@@ -9,23 +9,26 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * Request message for [BinauthzManagementService.DeleteAttestor][].
+ * Request message for
+ * [BinauthzManagementServiceV1.DeleteAttestor][google.cloud.binaryauthorization.v1.BinauthzManagementServiceV1.DeleteAttestor].
  *
  * Generated from protobuf message <code>google.cloud.binaryauthorization.v1.DeleteAttestorRequest</code>
  */
 class DeleteAttestorRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of the [attestors][google.cloud.binaryauthorization.v1.Attestor] to delete, in the format
-     * `projects/{@*}attestors/*`.
+     * Required. The name of the
+     * [attestors][google.cloud.binaryauthorization.v1.Attestor] to delete, in the
+     * format `projects/{@*}attestors/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $name = '';
 
     /**
-     * @param string $name Required. The name of the [attestors][google.cloud.binaryauthorization.v1.Attestor] to delete, in the format
-     *                     `projects/&#42;/attestors/*`. Please see
+     * @param string $name Required. The name of the
+     *                     [attestors][google.cloud.binaryauthorization.v1.Attestor] to delete, in the
+     *                     format `projects/&#42;/attestors/*`. Please see
      *                     {@see BinauthzManagementServiceV1Client::attestorName()} for help formatting this field.
      *
      * @return \Google\Cloud\BinaryAuthorization\V1\DeleteAttestorRequest
@@ -45,8 +48,9 @@ class DeleteAttestorRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The name of the [attestors][google.cloud.binaryauthorization.v1.Attestor] to delete, in the format
-     *           `projects/{@*}attestors/*`.
+     *           Required. The name of the
+     *           [attestors][google.cloud.binaryauthorization.v1.Attestor] to delete, in the
+     *           format `projects/{@*}attestors/*`.
      * }
      */
     public function __construct($data = NULL) {
@@ -55,8 +59,9 @@ class DeleteAttestorRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the [attestors][google.cloud.binaryauthorization.v1.Attestor] to delete, in the format
-     * `projects/{@*}attestors/*`.
+     * Required. The name of the
+     * [attestors][google.cloud.binaryauthorization.v1.Attestor] to delete, in the
+     * format `projects/{@*}attestors/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -67,8 +72,9 @@ class DeleteAttestorRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the [attestors][google.cloud.binaryauthorization.v1.Attestor] to delete, in the format
-     * `projects/{@*}attestors/*`.
+     * Required. The name of the
+     * [attestors][google.cloud.binaryauthorization.v1.Attestor] to delete, in the
+     * format `projects/{@*}attestors/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

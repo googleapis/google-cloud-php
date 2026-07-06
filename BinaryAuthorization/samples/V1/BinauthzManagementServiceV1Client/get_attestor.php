@@ -30,10 +30,12 @@ use Google\Cloud\BinaryAuthorization\V1\GetAttestorRequest;
 
 /**
  * Gets an [attestor][google.cloud.binaryauthorization.v1.Attestor].
- * Returns NOT_FOUND if the [attestor][google.cloud.binaryauthorization.v1.Attestor] does not exist.
+ * Returns `NOT_FOUND` if the
+ * [attestor][google.cloud.binaryauthorization.v1.Attestor] does not exist.
  *
- * @param string $formattedName The name of the [attestor][google.cloud.binaryauthorization.v1.Attestor] to retrieve, in the format
- *                              `projects/&#42;/attestors/*`. Please see
+ * @param string $formattedName The name of the
+ *                              [attestor][google.cloud.binaryauthorization.v1.Attestor] to retrieve, in
+ *                              the format `projects/&#42;/attestors/*`. Please see
  *                              {@see BinauthzManagementServiceV1Client::attestorName()} for help formatting this field.
  */
 function get_attestor_sample(string $formattedName): void

@@ -32,11 +32,12 @@ use Google\Cloud\BinaryAuthorization\V1\Policy;
 use Google\Cloud\BinaryAuthorization\V1\UpdatePolicyRequest;
 
 /**
- * Creates or updates a project's [policy][google.cloud.binaryauthorization.v1.Policy], and returns a copy of the
- * new [policy][google.cloud.binaryauthorization.v1.Policy]. A policy is always updated as a whole, to avoid race
- * conditions with concurrent policy enforcement (or management!)
- * requests. Returns NOT_FOUND if the project does not exist, INVALID_ARGUMENT
- * if the request is malformed.
+ * Creates or updates a project's
+ * [policy][google.cloud.binaryauthorization.v1.Policy], and returns a copy of
+ * the new [policy][google.cloud.binaryauthorization.v1.Policy]. A policy is
+ * always updated as a whole, to avoid race conditions with concurrent policy
+ * enforcement (or management!) requests. Returns `NOT_FOUND` if the project
+ * does not exist, `INVALID_ARGUMENT` if the request is malformed.
  *
  * @param int $policyDefaultAdmissionRuleEvaluationMode  How this admission rule will be evaluated.
  * @param int $policyDefaultAdmissionRuleEnforcementMode The action when a pod creation is denied by the admission rule.
