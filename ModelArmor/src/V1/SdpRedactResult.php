@@ -9,54 +9,51 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * Sensitive Data Protection Inspection Result.
+ * Sensitive Data Protection Redaction Result.
  *
- * Generated from protobuf message <code>google.cloud.modelarmor.v1.SdpInspectResult</code>
+ * Generated from protobuf message <code>google.cloud.modelarmor.v1.SdpRedactResult</code>
  */
-class SdpInspectResult extends \Google\Protobuf\Internal\Message
+class SdpRedactResult extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. Reports whether Sensitive Data Protection inspection was
+     * Output only. Reports whether Sensitive Data Protection redaction was
      * successfully executed or not.
      *
      * Generated from protobuf field <code>.google.cloud.modelarmor.v1.FilterExecutionState execution_state = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $execution_state = 0;
     /**
-     * Optional messages corresponding to the result.
+     * Output only. Optional messages corresponding to the result.
      * A message can provide warnings or error details.
      * For example, if execution state is skipped then this field provides
      * related reason/explanation.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.modelarmor.v1.MessageItem message_items = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.modelarmor.v1.MessageItem message_items = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $message_items;
     /**
-     * Output only. Match state for SDP Inspection.
-     * Value is MATCH_FOUND if at least one Sensitive Data Protection finding is
-     * identified.
+     * Output only. Match state for Sensitive Data Protection Redaction.
+     * Value is MATCH_FOUND if content is redacted.
      *
      * Generated from protobuf field <code>.google.cloud.modelarmor.v1.FilterMatchState match_state = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $match_state = 0;
     /**
-     * List of Sensitive Data Protection findings.
+     * Output only. The redacted image. The type will be the same as the original
+     * image.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.modelarmor.v1.SdpFinding findings = 4;</code>
+     * Generated from protobuf field <code>bytes redacted_image = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $redacted_image = '';
+    /**
+     * Output only. The findings. This field is populated in the response only
+     * when include_findings in the SDP template is set to true.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.modelarmor.v1.SdpFinding findings = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $findings;
     /**
-     * If true, then there is possibility that more findings were identified and
-     * the findings returned are a subset of all findings. The findings
-     * list might be truncated because the input items were too large, or because
-     * the server reached the maximum amount of resources allowed for a single API
-     * call.
-     *
-     * Generated from protobuf field <code>bool findings_truncated = 5;</code>
-     */
-    protected $findings_truncated = false;
-    /**
-     * Contains text extracted from the image, if applicable.
+     * The extracted text from the image.
      *
      * Generated from protobuf field <code>string extracted_image_text = 6;</code>
      */
@@ -69,27 +66,24 @@ class SdpInspectResult extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $execution_state
-     *           Output only. Reports whether Sensitive Data Protection inspection was
+     *           Output only. Reports whether Sensitive Data Protection redaction was
      *           successfully executed or not.
      *     @type \Google\Cloud\ModelArmor\V1\MessageItem[] $message_items
-     *           Optional messages corresponding to the result.
+     *           Output only. Optional messages corresponding to the result.
      *           A message can provide warnings or error details.
      *           For example, if execution state is skipped then this field provides
      *           related reason/explanation.
      *     @type int $match_state
-     *           Output only. Match state for SDP Inspection.
-     *           Value is MATCH_FOUND if at least one Sensitive Data Protection finding is
-     *           identified.
+     *           Output only. Match state for Sensitive Data Protection Redaction.
+     *           Value is MATCH_FOUND if content is redacted.
+     *     @type string $redacted_image
+     *           Output only. The redacted image. The type will be the same as the original
+     *           image.
      *     @type \Google\Cloud\ModelArmor\V1\SdpFinding[] $findings
-     *           List of Sensitive Data Protection findings.
-     *     @type bool $findings_truncated
-     *           If true, then there is possibility that more findings were identified and
-     *           the findings returned are a subset of all findings. The findings
-     *           list might be truncated because the input items were too large, or because
-     *           the server reached the maximum amount of resources allowed for a single API
-     *           call.
+     *           Output only. The findings. This field is populated in the response only
+     *           when include_findings in the SDP template is set to true.
      *     @type string $extracted_image_text
-     *           Contains text extracted from the image, if applicable.
+     *           The extracted text from the image.
      * }
      */
     public function __construct($data = NULL) {
@@ -98,7 +92,7 @@ class SdpInspectResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Reports whether Sensitive Data Protection inspection was
+     * Output only. Reports whether Sensitive Data Protection redaction was
      * successfully executed or not.
      *
      * Generated from protobuf field <code>.google.cloud.modelarmor.v1.FilterExecutionState execution_state = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -110,7 +104,7 @@ class SdpInspectResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Reports whether Sensitive Data Protection inspection was
+     * Output only. Reports whether Sensitive Data Protection redaction was
      * successfully executed or not.
      *
      * Generated from protobuf field <code>.google.cloud.modelarmor.v1.FilterExecutionState execution_state = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -126,12 +120,12 @@ class SdpInspectResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional messages corresponding to the result.
+     * Output only. Optional messages corresponding to the result.
      * A message can provide warnings or error details.
      * For example, if execution state is skipped then this field provides
      * related reason/explanation.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.modelarmor.v1.MessageItem message_items = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.modelarmor.v1.MessageItem message_items = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return RepeatedField<\Google\Cloud\ModelArmor\V1\MessageItem>
      */
     public function getMessageItems()
@@ -140,12 +134,12 @@ class SdpInspectResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional messages corresponding to the result.
+     * Output only. Optional messages corresponding to the result.
      * A message can provide warnings or error details.
      * For example, if execution state is skipped then this field provides
      * related reason/explanation.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.modelarmor.v1.MessageItem message_items = 2;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.modelarmor.v1.MessageItem message_items = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\ModelArmor\V1\MessageItem[] $var
      * @return $this
      */
@@ -158,9 +152,8 @@ class SdpInspectResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Match state for SDP Inspection.
-     * Value is MATCH_FOUND if at least one Sensitive Data Protection finding is
-     * identified.
+     * Output only. Match state for Sensitive Data Protection Redaction.
+     * Value is MATCH_FOUND if content is redacted.
      *
      * Generated from protobuf field <code>.google.cloud.modelarmor.v1.FilterMatchState match_state = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
@@ -171,9 +164,8 @@ class SdpInspectResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Match state for SDP Inspection.
-     * Value is MATCH_FOUND if at least one Sensitive Data Protection finding is
-     * identified.
+     * Output only. Match state for Sensitive Data Protection Redaction.
+     * Value is MATCH_FOUND if content is redacted.
      *
      * Generated from protobuf field <code>.google.cloud.modelarmor.v1.FilterMatchState match_state = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
@@ -188,9 +180,38 @@ class SdpInspectResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of Sensitive Data Protection findings.
+     * Output only. The redacted image. The type will be the same as the original
+     * image.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.modelarmor.v1.SdpFinding findings = 4;</code>
+     * Generated from protobuf field <code>bytes redacted_image = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getRedactedImage()
+    {
+        return $this->redacted_image;
+    }
+
+    /**
+     * Output only. The redacted image. The type will be the same as the original
+     * image.
+     *
+     * Generated from protobuf field <code>bytes redacted_image = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRedactedImage($var)
+    {
+        GPBUtil::checkString($var, False);
+        $this->redacted_image = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The findings. This field is populated in the response only
+     * when include_findings in the SDP template is set to true.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.modelarmor.v1.SdpFinding findings = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return RepeatedField<\Google\Cloud\ModelArmor\V1\SdpFinding>
      */
     public function getFindings()
@@ -199,9 +220,10 @@ class SdpInspectResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of Sensitive Data Protection findings.
+     * Output only. The findings. This field is populated in the response only
+     * when include_findings in the SDP template is set to true.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.modelarmor.v1.SdpFinding findings = 4;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.modelarmor.v1.SdpFinding findings = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\ModelArmor\V1\SdpFinding[] $var
      * @return $this
      */
@@ -214,41 +236,7 @@ class SdpInspectResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If true, then there is possibility that more findings were identified and
-     * the findings returned are a subset of all findings. The findings
-     * list might be truncated because the input items were too large, or because
-     * the server reached the maximum amount of resources allowed for a single API
-     * call.
-     *
-     * Generated from protobuf field <code>bool findings_truncated = 5;</code>
-     * @return bool
-     */
-    public function getFindingsTruncated()
-    {
-        return $this->findings_truncated;
-    }
-
-    /**
-     * If true, then there is possibility that more findings were identified and
-     * the findings returned are a subset of all findings. The findings
-     * list might be truncated because the input items were too large, or because
-     * the server reached the maximum amount of resources allowed for a single API
-     * call.
-     *
-     * Generated from protobuf field <code>bool findings_truncated = 5;</code>
-     * @param bool $var
-     * @return $this
-     */
-    public function setFindingsTruncated($var)
-    {
-        GPBUtil::checkBool($var);
-        $this->findings_truncated = $var;
-
-        return $this;
-    }
-
-    /**
-     * Contains text extracted from the image, if applicable.
+     * The extracted text from the image.
      *
      * Generated from protobuf field <code>string extracted_image_text = 6;</code>
      * @return string
@@ -259,7 +247,7 @@ class SdpInspectResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Contains text extracted from the image, if applicable.
+     * The extracted text from the image.
      *
      * Generated from protobuf field <code>string extracted_image_text = 6;</code>
      * @param string $var

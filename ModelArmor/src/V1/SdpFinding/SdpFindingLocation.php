@@ -20,6 +20,7 @@ class SdpFindingLocation extends \Google\Protobuf\Internal\Message
      * These are relative to the finding's containing element.
      * Note that when the content is not textual, this references
      * the UTF-8 encoded textual representation of the content.
+     * Note: Omitted if content is an image.
      *
      * Generated from protobuf field <code>.google.cloud.modelarmor.v1.RangeInfo byte_range = 1;</code>
      */
@@ -28,10 +29,23 @@ class SdpFindingLocation extends \Google\Protobuf\Internal\Message
      * Unicode character offsets delimiting the finding.
      * These are relative to the finding's containing element.
      * Provided when the content is text.
+     * Note: Omitted if content is an image.
      *
      * Generated from protobuf field <code>.google.cloud.modelarmor.v1.RangeInfo codepoint_range = 2;</code>
      */
     protected $codepoint_range = null;
+    /**
+     * List of nested objects pointing to the precise location of the finding
+     * within an image, file or record.
+     * For example, a single finding might be detected in two
+     * separate bounding boxes within an image (e.g., if it wraps across
+     * a line or is partially obscured). In such cases, content_locations
+     * would contain two SdpContentLocation entries, each with an
+     * image_finding_location pointing to a different bounding box.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.modelarmor.v1.SdpContentLocation content_locations = 3;</code>
+     */
+    private $content_locations;
 
     /**
      * Constructor.
@@ -44,10 +58,20 @@ class SdpFindingLocation extends \Google\Protobuf\Internal\Message
      *           These are relative to the finding's containing element.
      *           Note that when the content is not textual, this references
      *           the UTF-8 encoded textual representation of the content.
+     *           Note: Omitted if content is an image.
      *     @type \Google\Cloud\ModelArmor\V1\RangeInfo $codepoint_range
      *           Unicode character offsets delimiting the finding.
      *           These are relative to the finding's containing element.
      *           Provided when the content is text.
+     *           Note: Omitted if content is an image.
+     *     @type \Google\Cloud\ModelArmor\V1\SdpContentLocation[] $content_locations
+     *           List of nested objects pointing to the precise location of the finding
+     *           within an image, file or record.
+     *           For example, a single finding might be detected in two
+     *           separate bounding boxes within an image (e.g., if it wraps across
+     *           a line or is partially obscured). In such cases, content_locations
+     *           would contain two SdpContentLocation entries, each with an
+     *           image_finding_location pointing to a different bounding box.
      * }
      */
     public function __construct($data = NULL) {
@@ -60,6 +84,7 @@ class SdpFindingLocation extends \Google\Protobuf\Internal\Message
      * These are relative to the finding's containing element.
      * Note that when the content is not textual, this references
      * the UTF-8 encoded textual representation of the content.
+     * Note: Omitted if content is an image.
      *
      * Generated from protobuf field <code>.google.cloud.modelarmor.v1.RangeInfo byte_range = 1;</code>
      * @return \Google\Cloud\ModelArmor\V1\RangeInfo|null
@@ -84,6 +109,7 @@ class SdpFindingLocation extends \Google\Protobuf\Internal\Message
      * These are relative to the finding's containing element.
      * Note that when the content is not textual, this references
      * the UTF-8 encoded textual representation of the content.
+     * Note: Omitted if content is an image.
      *
      * Generated from protobuf field <code>.google.cloud.modelarmor.v1.RangeInfo byte_range = 1;</code>
      * @param \Google\Cloud\ModelArmor\V1\RangeInfo $var
@@ -101,6 +127,7 @@ class SdpFindingLocation extends \Google\Protobuf\Internal\Message
      * Unicode character offsets delimiting the finding.
      * These are relative to the finding's containing element.
      * Provided when the content is text.
+     * Note: Omitted if content is an image.
      *
      * Generated from protobuf field <code>.google.cloud.modelarmor.v1.RangeInfo codepoint_range = 2;</code>
      * @return \Google\Cloud\ModelArmor\V1\RangeInfo|null
@@ -124,6 +151,7 @@ class SdpFindingLocation extends \Google\Protobuf\Internal\Message
      * Unicode character offsets delimiting the finding.
      * These are relative to the finding's containing element.
      * Provided when the content is text.
+     * Note: Omitted if content is an image.
      *
      * Generated from protobuf field <code>.google.cloud.modelarmor.v1.RangeInfo codepoint_range = 2;</code>
      * @param \Google\Cloud\ModelArmor\V1\RangeInfo $var
@@ -133,6 +161,44 @@ class SdpFindingLocation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\ModelArmor\V1\RangeInfo::class);
         $this->codepoint_range = $var;
+
+        return $this;
+    }
+
+    /**
+     * List of nested objects pointing to the precise location of the finding
+     * within an image, file or record.
+     * For example, a single finding might be detected in two
+     * separate bounding boxes within an image (e.g., if it wraps across
+     * a line or is partially obscured). In such cases, content_locations
+     * would contain two SdpContentLocation entries, each with an
+     * image_finding_location pointing to a different bounding box.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.modelarmor.v1.SdpContentLocation content_locations = 3;</code>
+     * @return RepeatedField<\Google\Cloud\ModelArmor\V1\SdpContentLocation>
+     */
+    public function getContentLocations()
+    {
+        return $this->content_locations;
+    }
+
+    /**
+     * List of nested objects pointing to the precise location of the finding
+     * within an image, file or record.
+     * For example, a single finding might be detected in two
+     * separate bounding boxes within an image (e.g., if it wraps across
+     * a line or is partially obscured). In such cases, content_locations
+     * would contain two SdpContentLocation entries, each with an
+     * image_finding_location pointing to a different bounding box.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.modelarmor.v1.SdpContentLocation content_locations = 3;</code>
+     * @param \Google\Cloud\ModelArmor\V1\SdpContentLocation[] $var
+     * @return $this
+     */
+    public function setContentLocations($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\ModelArmor\V1\SdpContentLocation::class);
+        $this->content_locations = $arr;
 
         return $this;
     }
