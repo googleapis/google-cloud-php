@@ -53,6 +53,35 @@ class PscAutoConnectionConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string consumer_network_status = 5;</code>
      */
     protected $consumer_network_status = null;
+    /**
+     * Output only. The service connection policy created automatically for the
+     * consumer network when `psc_auto_connection_policy_enabled` is true. It is
+     * in the format of:
+     * `projects/{project}/regions/{region}/serviceConnectionPolicies/{policy_id}`
+     * The `policy_id` is in format of `$NETWORK-$RANDOM`.
+     *
+     * Generated from protobuf field <code>optional string service_connection_policy = 6 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     */
+    protected $service_connection_policy = null;
+    /**
+     * Output only. The status of service connection policy creation.
+     *
+     * Generated from protobuf field <code>optional string service_connection_policy_creation_result = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $service_connection_policy_creation_result = null;
+    /**
+     * Output only. The status of automated DNS provisioning.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.sql.v1.AutoDnsStatus instance_auto_dns_status = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $instance_auto_dns_status = null;
+    /**
+     * Output only. The status of automated DNS provisioning for the write
+     * endpoint.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.sql.v1.AutoDnsStatus write_endpoint_auto_dns_status = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $write_endpoint_auto_dns_status = null;
 
     /**
      * Constructor.
@@ -77,6 +106,19 @@ class PscAutoConnectionConfig extends \Google\Protobuf\Internal\Message
      *           The connection status of the consumer endpoint.
      *     @type string $consumer_network_status
      *           The connection policy status of the consumer network.
+     *     @type string $service_connection_policy
+     *           Output only. The service connection policy created automatically for the
+     *           consumer network when `psc_auto_connection_policy_enabled` is true. It is
+     *           in the format of:
+     *           `projects/{project}/regions/{region}/serviceConnectionPolicies/{policy_id}`
+     *           The `policy_id` is in format of `$NETWORK-$RANDOM`.
+     *     @type string $service_connection_policy_creation_result
+     *           Output only. The status of service connection policy creation.
+     *     @type int $instance_auto_dns_status
+     *           Output only. The status of automated DNS provisioning.
+     *     @type int $write_endpoint_auto_dns_status
+     *           Output only. The status of automated DNS provisioning for the write
+     *           endpoint.
      * }
      */
     public function __construct($data = NULL) {
@@ -254,6 +296,160 @@ class PscAutoConnectionConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->consumer_network_status = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The service connection policy created automatically for the
+     * consumer network when `psc_auto_connection_policy_enabled` is true. It is
+     * in the format of:
+     * `projects/{project}/regions/{region}/serviceConnectionPolicies/{policy_id}`
+     * The `policy_id` is in format of `$NETWORK-$RANDOM`.
+     *
+     * Generated from protobuf field <code>optional string service_connection_policy = 6 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getServiceConnectionPolicy()
+    {
+        return isset($this->service_connection_policy) ? $this->service_connection_policy : '';
+    }
+
+    public function hasServiceConnectionPolicy()
+    {
+        return isset($this->service_connection_policy);
+    }
+
+    public function clearServiceConnectionPolicy()
+    {
+        unset($this->service_connection_policy);
+    }
+
+    /**
+     * Output only. The service connection policy created automatically for the
+     * consumer network when `psc_auto_connection_policy_enabled` is true. It is
+     * in the format of:
+     * `projects/{project}/regions/{region}/serviceConnectionPolicies/{policy_id}`
+     * The `policy_id` is in format of `$NETWORK-$RANDOM`.
+     *
+     * Generated from protobuf field <code>optional string service_connection_policy = 6 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setServiceConnectionPolicy($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->service_connection_policy = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The status of service connection policy creation.
+     *
+     * Generated from protobuf field <code>optional string service_connection_policy_creation_result = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getServiceConnectionPolicyCreationResult()
+    {
+        return isset($this->service_connection_policy_creation_result) ? $this->service_connection_policy_creation_result : '';
+    }
+
+    public function hasServiceConnectionPolicyCreationResult()
+    {
+        return isset($this->service_connection_policy_creation_result);
+    }
+
+    public function clearServiceConnectionPolicyCreationResult()
+    {
+        unset($this->service_connection_policy_creation_result);
+    }
+
+    /**
+     * Output only. The status of service connection policy creation.
+     *
+     * Generated from protobuf field <code>optional string service_connection_policy_creation_result = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setServiceConnectionPolicyCreationResult($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->service_connection_policy_creation_result = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The status of automated DNS provisioning.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.sql.v1.AutoDnsStatus instance_auto_dns_status = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getInstanceAutoDnsStatus()
+    {
+        return isset($this->instance_auto_dns_status) ? $this->instance_auto_dns_status : 0;
+    }
+
+    public function hasInstanceAutoDnsStatus()
+    {
+        return isset($this->instance_auto_dns_status);
+    }
+
+    public function clearInstanceAutoDnsStatus()
+    {
+        unset($this->instance_auto_dns_status);
+    }
+
+    /**
+     * Output only. The status of automated DNS provisioning.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.sql.v1.AutoDnsStatus instance_auto_dns_status = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setInstanceAutoDnsStatus($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Sql\V1\AutoDnsStatus::class);
+        $this->instance_auto_dns_status = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The status of automated DNS provisioning for the write
+     * endpoint.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.sql.v1.AutoDnsStatus write_endpoint_auto_dns_status = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getWriteEndpointAutoDnsStatus()
+    {
+        return isset($this->write_endpoint_auto_dns_status) ? $this->write_endpoint_auto_dns_status : 0;
+    }
+
+    public function hasWriteEndpointAutoDnsStatus()
+    {
+        return isset($this->write_endpoint_auto_dns_status);
+    }
+
+    public function clearWriteEndpointAutoDnsStatus()
+    {
+        unset($this->write_endpoint_auto_dns_status);
+    }
+
+    /**
+     * Output only. The status of automated DNS provisioning for the write
+     * endpoint.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.sql.v1.AutoDnsStatus write_endpoint_auto_dns_status = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setWriteEndpointAutoDnsStatus($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Sql\V1\AutoDnsStatus::class);
+        $this->write_endpoint_auto_dns_status = $var;
 
         return $this;
     }
