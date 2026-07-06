@@ -337,6 +337,60 @@
                 }
             }
         },
+        "FindingsRefinementService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "FindingsRefinementServiceGapicClient",
+                    "rpcs": {
+                        "ComputeAllFindingsRefinementActivities": {
+                            "methods": [
+                                "computeAllFindingsRefinementActivities"
+                            ]
+                        },
+                        "ComputeFindingsRefinementActivity": {
+                            "methods": [
+                                "computeFindingsRefinementActivity"
+                            ]
+                        },
+                        "CreateFindingsRefinement": {
+                            "methods": [
+                                "createFindingsRefinement"
+                            ]
+                        },
+                        "GetFindingsRefinement": {
+                            "methods": [
+                                "getFindingsRefinement"
+                            ]
+                        },
+                        "GetFindingsRefinementDeployment": {
+                            "methods": [
+                                "getFindingsRefinementDeployment"
+                            ]
+                        },
+                        "ListAllFindingsRefinementDeployments": {
+                            "methods": [
+                                "listAllFindingsRefinementDeployments"
+                            ]
+                        },
+                        "ListFindingsRefinements": {
+                            "methods": [
+                                "listFindingsRefinements"
+                            ]
+                        },
+                        "UpdateFindingsRefinement": {
+                            "methods": [
+                                "updateFindingsRefinement"
+                            ]
+                        },
+                        "UpdateFindingsRefinementDeployment": {
+                            "methods": [
+                                "updateFindingsRefinementDeployment"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "InstanceService": {
             "clients": {
                 "grpc": {
