@@ -15,15 +15,7 @@ jobs:
         php: [ "8.2", "8.3", "8.4", "8.5" ]
         extensions: ["grpc"]
         type: ["Unit Test"]
-        exclude:
-          - platform: "ubuntu-latest"
-            php: "8.5"
         include:
-          - platform: "ubuntu-latest"
-            php: "8.5"
-            # Use grpc-1.78 due to a bug in newer grpc versions on PHP 8.5: https://github.com/grpc/grpc/issues/42242
-            extensions: "grpc-1.78"
-            type: "Unit Test"
           - platform: "ubuntu-latest"
             php: "8.1"
             extensions: "grpc"
@@ -47,7 +39,7 @@ jobs:
       uses: shivammathur/cache-extensions@v1
       with:
         php-version: ${{ matrix.php }}
-        extensions: sodium, ${{ matrix.extensions }}
+        extensions: sodium, sysvshm, ${{ matrix.extensions }}
         key: cache-key-1 # increment to bust the cache
 
     - name: Cache extensions
