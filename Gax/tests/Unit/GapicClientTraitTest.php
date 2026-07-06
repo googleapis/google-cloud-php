@@ -887,7 +887,7 @@ class GapicClientTraitTest extends TestCase
         }
         $expectedProperties = [
             'serviceName' => 'test.interface.v1.api',
-            'agentHeader' => AgentHeader::buildAgentHeader([]) + ['User-Agent' => ['gcloud-php-legacy/']],
+            'agentHeader' => AgentHeader::buildAgentHeader([]),
             'retrySettings' => $expectedRetrySettings,
         ];
         return [
@@ -977,18 +977,6 @@ class GapicClientTraitTest extends TestCase
                 /* $expected */ ['']
             ],
         ];
-    }
-
-    public function testModifyClientOptions()
-    {
-        $options = [];
-        $client = new StubGapicClientExtension();
-        $updatedOptions = $client->buildClientOptions($options);
-        $client->setClientOptions($updatedOptions);
-
-        $this->assertArrayHasKey('addNewOption', $updatedOptions);
-        $this->assertTrue($updatedOptions['disableRetries']);
-        $this->assertEquals('abc123', $updatedOptions['apiEndpoint']);
     }
 
     private function buildClientToTestModifyCallMethods($clientClass = null)
@@ -1206,7 +1194,6 @@ class GapicClientTraitTest extends TestCase
             [
                 'headers' => AgentHeader::buildAgentHeader([]) + [
                     'X-Goog-User-Project' => [$quotaProject],
-                    'User-Agent' => ['gcloud-php-legacy/']
                 ],
                 'credentialsWrapper' => $credentialsWrapper->reveal()
             ]
@@ -1701,25 +1688,6 @@ class GapicClientTraitTest extends TestCase
         )->wait();
     }
 
-    public function testSurfaceAgentHeaders()
-    {
-        // V1 does not contain new headers
-        $client = new RestOnlyGapicClient([
-            'gapicVersion' => '0.0.2',
-        ]);
-        $agentHeader = $client->getAgentHeader();
-        $this->assertStringContainsString(' gapic/0.0.2 ', $agentHeader['x-goog-api-client'][0]);
-        $this->assertEquals('gcloud-php-legacy/0.0.2', $agentHeader['User-Agent'][0]);
-
-        // V2 contains new headers
-        $client = new GapicV2SurfaceClient([
-            'gapicVersion' => '0.0.1',
-        ]);
-        $agentHeader = $client->getAgentHeader();
-        $this->assertStringContainsString(' gapic/0.0.1 ', $agentHeader['x-goog-api-client'][0]);
-        $this->assertEquals('gcloud-php-new/0.0.1', $agentHeader['User-Agent'][0]);
-    }
-
     public function testApiKeyOption()
     {
         $transport = $this->prophesize(TransportInterface::class);
@@ -1919,13 +1887,6 @@ trait GapicClientStubTrait
 
 class StubGapicClientExtension extends StubGapicClient
 {
-    protected function modifyClientOptions(array &$options)
-    {
-        $options['disableRetries'] = true;
-        $options['addNewOption'] = true;
-        $options['apiEndpoint'] = 'abc123';
-    }
-
     protected function modifyUnaryCallable(callable &$callable)
     {
         $originalCallable = $callable;
