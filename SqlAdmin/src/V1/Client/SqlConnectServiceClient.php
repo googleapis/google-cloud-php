@@ -36,6 +36,7 @@ use Google\Cloud\Sql\V1\ConnectSettings;
 use Google\Cloud\Sql\V1\GenerateEphemeralCertRequest;
 use Google\Cloud\Sql\V1\GenerateEphemeralCertResponse;
 use Google\Cloud\Sql\V1\GetConnectSettingsRequest;
+use Google\Cloud\Sql\V1\ResolveConnectSettingsRequest;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
 
@@ -47,6 +48,7 @@ use Psr\Log\LoggerInterface;
  *
  * @method PromiseInterface<GenerateEphemeralCertResponse> generateEphemeralCertAsync(GenerateEphemeralCertRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ConnectSettings> getConnectSettingsAsync(GetConnectSettingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ConnectSettings> resolveConnectSettingsAsync(ResolveConnectSettingsRequest $request, array $optionalArgs = [])
  */
 final class SqlConnectServiceClient
 {
@@ -237,5 +239,35 @@ final class SqlConnectServiceClient
     public function getConnectSettings(GetConnectSettingsRequest $request, array $callOptions = []): ConnectSettings
     {
         return $this->startApiCall('GetConnectSettings', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Retrieves connect settings about a Cloud SQL instance using the instance
+     * DNS name.
+     *
+     * The async variant is
+     * {@see SqlConnectServiceClient::resolveConnectSettingsAsync()} .
+     *
+     * @example samples/V1/SqlConnectServiceClient/resolve_connect_settings.php
+     *
+     * @param ResolveConnectSettingsRequest $request     A request to house fields associated with the call.
+     * @param array                         $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return ConnectSettings
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function resolveConnectSettings(
+        ResolveConnectSettingsRequest $request,
+        array $callOptions = []
+    ): ConnectSettings {
+        return $this->startApiCall('ResolveConnectSettings', $request, $callOptions)->wait();
     }
 }
