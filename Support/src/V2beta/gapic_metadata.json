@@ -110,6 +110,45 @@
                     }
                 }
             }
+        },
+        "SupportEventSubscriptionService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "SupportEventSubscriptionServiceGapicClient",
+                    "rpcs": {
+                        "CreateSupportEventSubscription": {
+                            "methods": [
+                                "createSupportEventSubscription"
+                            ]
+                        },
+                        "DeleteSupportEventSubscription": {
+                            "methods": [
+                                "deleteSupportEventSubscription"
+                            ]
+                        },
+                        "GetSupportEventSubscription": {
+                            "methods": [
+                                "getSupportEventSubscription"
+                            ]
+                        },
+                        "ListSupportEventSubscriptions": {
+                            "methods": [
+                                "listSupportEventSubscriptions"
+                            ]
+                        },
+                        "UndeleteSupportEventSubscription": {
+                            "methods": [
+                                "undeleteSupportEventSubscription"
+                            ]
+                        },
+                        "UpdateSupportEventSubscription": {
+                            "methods": [
+                                "updateSupportEventSubscription"
+                            ]
+                        }
+                    }
+                }
+            }
         }
     }
 }
