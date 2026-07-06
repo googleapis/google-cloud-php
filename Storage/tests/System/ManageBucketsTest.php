@@ -18,6 +18,7 @@
 namespace Google\Cloud\Storage\Tests\System;
 
 use Google\Cloud\Core\Exception\BadRequestException;
+use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Storage\Bucket;
 
 /**
@@ -576,5 +577,212 @@ class ManageBucketsTest extends StorageTestCase
                 ]
             ]
         ];
+    }
+
+    /**
+     * @group storage-ipfilter
+     */
+    public function testCreateBucketWithIpFilterDisabled()
+    {
+        $projectId = self::getProjectId(getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH'));
+
+        $ipFilterConfig = [
+            'mode' => 'Disabled',
+            'publicNetworkSource' => [
+                'allowedIpCidrRanges' => ['1.2.3.0/24']
+            ],
+            'vpcNetworkSources' => [
+                [
+                    'network' => 'projects/' . $projectId . '/global/networks/default',
+                    'allowedIpCidrRanges' => ['10.0.0.0/24']
+                ]
+            ],
+            'allowCrossOrgVpcs' => true,
+            'allowAllServiceAgentAccess' => true
+        ];
+
+        $bucketName = uniqid(self::TESTING_PREFIX);
+        $bucket = self::createBucket(
+            self::$client,
+            $bucketName,
+            ['ipFilter' => $ipFilterConfig]
+        );
+
+        $info = $bucket->info();
+        $this->assertArrayHasKey('ipFilter', $info);
+        $this->assertEquals('Disabled', $info['ipFilter']['mode']);
+        $this->assertEquals(['1.2.3.0/24'], $info['ipFilter']['publicNetworkSource']['allowedIpCidrRanges']);
+        $this->assertEquals(
+            'projects/' . $projectId . '/global/networks/default',
+            $info['ipFilter']['vpcNetworkSources'][0]['network']
+        );
+        $this->assertEquals(['10.0.0.0/24'], $info['ipFilter']['vpcNetworkSources'][0]['allowedIpCidrRanges']);
+        $this->assertTrue($info['ipFilter']['allowAllServiceAgentAccess']);
+        $this->assertTrue($info['ipFilter']['allowCrossOrgVpcs']);
+
+        return $bucket;
+    }
+
+    /**
+     * @depends testCreateBucketWithIpFilterDisabled
+     * @group storage-ipfilter
+     */
+    public function testUpdateIpFilterDisabled(Bucket $bucket)
+    {
+        $ipFilterConfig = [
+            'mode' => 'Disabled',
+            'publicNetworkSource' => [
+                'allowedIpCidrRanges' => ['1.2.3.0/24', '5.6.7.0/24']
+            ],
+            'allowAllServiceAgentAccess' => false
+        ];
+
+        $bucket->update(['ipFilter' => $ipFilterConfig]);
+        $info = $bucket->reload();
+
+        $this->assertArrayHasKey('ipFilter', $info);
+        $this->assertEquals('Disabled', $info['ipFilter']['mode']);
+        $this->assertEquals(
+            ['1.2.3.0/24', '5.6.7.0/24'],
+            $info['ipFilter']['publicNetworkSource']['allowedIpCidrRanges']
+        );
+        $this->assertFalse($info['ipFilter']['allowAllServiceAgentAccess']);
+    }
+
+    /**
+     * @group storage-ipfilter
+     */
+    public function testCreateBucketWithInvalidIpFilterFails()
+    {
+        $this->expectException(BadRequestException::class);
+
+        $ipFilterConfig = [
+            'mode' => 'Disabled',
+            'publicNetworkSource' => [
+                // Host bits must be zero for /24 range, so 1.2.3.4/24 is invalid
+                'allowedIpCidrRanges' => ['1.2.3.4/24']
+            ],
+            'allowAllServiceAgentAccess' => true
+        ];
+
+        self::createBucket(
+            self::$client,
+            uniqid(self::TESTING_PREFIX),
+            [
+                'ipFilter' => $ipFilterConfig,
+                'retries' => 0,
+                'sysTestRetries' => 0
+            ]
+        );
+    }
+
+    /**
+     * @group storage-ipfilter
+     */
+    public function testUpdateBucketWithInvalidIpFilterFails()
+    {
+        $bucket = self::createBucket(self::$client, uniqid(self::TESTING_PREFIX));
+
+        $this->expectException(BadRequestException::class);
+
+        $ipFilterConfig = [
+            'mode' => 'Disabled',
+            'publicNetworkSource' => [
+                'allowedIpCidrRanges' => ['1.2.3.4/24']
+            ],
+            'allowAllServiceAgentAccess' => true
+        ];
+
+        $bucket->update(['ipFilter' => $ipFilterConfig]);
+    }
+
+    /**
+     * @group storage-ipfilter
+     */
+    public function testGetBucketWithIpFilter()
+    {
+        $bucketName = uniqid(self::TESTING_PREFIX);
+        $ipFilterConfig = [
+            'mode' => 'Disabled',
+            'publicNetworkSource' => [
+                'allowedIpCidrRanges' => ['1.2.3.0/24']
+            ],
+            'allowAllServiceAgentAccess' => true
+        ];
+
+        self::createBucket(
+            self::$client,
+            $bucketName,
+            ['ipFilter' => $ipFilterConfig]
+        );
+
+        $bucket = self::$client->bucket($bucketName);
+        $info = $bucket->reload();
+
+        $this->assertArrayHasKey('ipFilter', $info);
+        $this->assertEquals('Disabled', $info['ipFilter']['mode']);
+        $this->assertEquals(
+            ['1.2.3.0/24'],
+            $info['ipFilter']['publicNetworkSource']['allowedIpCidrRanges']
+        );
+    }
+
+    /**
+     * @group storage-ipfilter
+     * @depends testCreateBucketWithIpFilterDisabled
+     */
+    public function testDeleteBucketIpFilter(Bucket $bucket)
+    {
+        $bucket->update(['ipFilter' => null]);
+        $info = $bucket->reload();
+
+        $this->assertArrayNotHasKey('ipFilter', $info);
+    }
+
+    /**
+     * @group storage-ipfilter
+     */
+    public function testBucketAccessWhenEnforced()
+    {
+        $iam = self::$bucket->iam();
+        $isExempt = !empty($iam->testPermissions(['storage.buckets.exemptFromIpFilter']));
+
+        if (!$isExempt) {
+            $this->markTestSkipped(
+                'Runner is not exempt from IP filter. Skipping lockout tests to prevent orphaned resources.'
+            );
+        }
+
+        $bucketName = uniqid(self::TESTING_PREFIX);
+        $ipFilterConfig = [
+            'mode' => 'Enabled',
+            'publicNetworkSource' => [
+                'allowedIpCidrRanges' => ['1.1.1.1/32'] // Blocked IP for runner
+            ],
+            'allowAllServiceAgentAccess' => true
+        ];
+
+        $bucket = self::createBucket(
+            self::$client,
+            $bucketName,
+            ['ipFilter' => $ipFilterConfig]
+        );
+
+        $objectName = 'test_ip_filter.txt';
+        $objectContent = 'hello world';
+
+        $object = $bucket->upload($objectContent, ['name' => $objectName]);
+        $this->assertEquals($objectContent, $object->downloadAsString());
+
+        $unauthBucket = self::$unauthenticatedClient->bucket($bucketName);
+        $unauthObject = $unauthBucket->object($objectName);
+
+        try {
+            $unauthObject->downloadAsString();
+            $this->fail('Expected unauthenticated download to fail due to IP filter.');
+        } catch (ServiceException $e) {
+            $this->assertEquals(403, $e->getCode());
+            $this->assertStringContainsString('IP filtering', $e->getMessage());
+        }
     }
 }
