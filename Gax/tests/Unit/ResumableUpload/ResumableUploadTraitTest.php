@@ -1,0 +1,131 @@
+<?php
+/*
+ * Copyright 2026 Google LLC
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are
+ * met:
+ *
+ *     * Redistributions of source code must retain the above copyright
+ * notice, this list of conditions and the following disclaimer.
+ *     * Redistributions in binary form must reproduce the above
+ * copyright notice, this list of conditions and the following disclaimer
+ * in the documentation and/or other materials provided with the
+ * distribution.
+ *     * Neither the name of Google Inc. nor the names of its
+ * contributors may be used to endorse or promote products derived from
+ * this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+ * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+ * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+ * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+ * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+ * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+namespace Google\ApiCore\Tests\Unit\ResumableUpload;
+
+use Google\ApiCore\Call;
+use Google\ApiCore\CredentialsWrapper;
+use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\ResumableUpload\ResumableUpload;
+use Google\ApiCore\ResumableUpload\ResumableUploadClient;
+use Google\ApiCore\ResumableUpload\ResumableUploadTrait;
+use Google\Protobuf\Timestamp;
+use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
+
+class ResumableUploadTraitTest extends TestCase
+{
+    use ProphecyTrait;
+    public function testTraitClientCreationAndResumeUpload()
+    {
+        $httpHandler = function () {
+        };
+        $credentialsWrapper = $this->prophesize(CredentialsWrapper::class)->reveal();
+
+        $client = new class ($credentialsWrapper, ['httpHandler' => $httpHandler]) {
+            use GapicClientTrait;
+            use ResumableUploadTrait;
+
+            public function setDescriptors(array $descriptors): void
+            {
+                $this->descriptors = $descriptors;
+            }
+
+            public function __construct(?CredentialsWrapper $credentialsWrapper, array $options)
+            {
+                $this->credentialsWrapper = $credentialsWrapper;
+                $options['transportConfig']['rest']['restClientConfigPath'] = __DIR__
+                    . '/../testdata/resources/test_service_rest_client_config.php';
+                $this->resumableUploadClient = $this->createResumableUploadClient($options);
+            }
+
+            public function getResumableUploadClient(): ResumableUploadClient
+            {
+                return $this->resumableUploadClient;
+            }
+        };
+        $client->setDescriptors([
+            'CreateYouTubeVideoUpload' => [
+                'callType' => Call::RESUMABLE_UPLOAD_CALL,
+                'responseType' => Timestamp::class,
+            ],
+        ]);
+
+        $uploadClient = $client->getResumableUploadClient();
+        $this->assertInstanceOf(ResumableUploadClient::class, $uploadClient);
+        $clientRef = new \ReflectionClass($uploadClient);
+        $this->assertIsCallable($clientRef->getProperty('httpHandler')->getValue($uploadClient));
+        $this->assertSame($credentialsWrapper, $clientRef->getProperty('credentialsWrapper')->getValue($uploadClient));
+
+        $resumed = $client->resumeUpload('createYouTubeVideoUpload', 'https://upload.url/session123', ['chunkSize' => 1024]);
+        $this->assertInstanceOf(ResumableUpload::class, $resumed);
+
+        $ref = new \ReflectionClass($resumed);
+        $clientProp = $ref->getProperty('resumableUploadClient');
+        $this->assertSame($client->getResumableUploadClient(), $clientProp->getValue($resumed));
+        $optionsProp = $ref->getProperty('resumableUploadOptions');
+        $this->assertSame(['chunkSize' => 1024, 'uploadUrl' => 'https://upload.url/session123', 'headers' => []], $optionsProp->getValue($resumed));
+        $callProp = $ref->getProperty('call');
+        $this->assertSame(Timestamp::class, $callProp->getValue($resumed)->getDecodeType());
+    }
+
+    public function testCreateResumableUploadClientWithoutCredentialsEmitsWarning()
+    {
+        $warningEmitted = false;
+        set_error_handler(function ($errno, $errstr) use (&$warningEmitted) {
+            if ($errno === E_USER_WARNING && str_contains($errstr, 'Resumable upload/download methods will not work when the client is initialized without authentication credentials')) {
+                $warningEmitted = true;
+                return true;
+            }
+            return false;
+        });
+
+        try {
+            new class () {
+                use ResumableUploadTrait;
+
+                public array $agentHeader = [];
+
+                public function __construct()
+                {
+                    $options['transportConfig']['rest']['restClientConfigPath'] = __DIR__
+                        . '/../testdata/resources/test_service_rest_client_config.php';
+                    $this->createResumableUploadClient($options);
+                }
+            };
+        } finally {
+            restore_error_handler();
+        }
+
+        $this->assertTrue($warningEmitted);
+    }
+}
