@@ -313,6 +313,11 @@
                             "methods": [
                                 "getConnectSettings"
                             ]
+                        },
+                        "ResolveConnectSettings": {
+                            "methods": [
+                                "resolveConnectSettings"
+                            ]
                         }
                     }
                 }

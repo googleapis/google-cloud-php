@@ -95,6 +95,7 @@ return [
             'templateMap' => [
                 'backup' => 'projects/{project}/backups/{backup}',
                 'project' => 'projects/{project}',
+                'serviceConnectionPolicy' => 'projects/{project}/regions/{region}/serviceConnectionPolicies/{service_connection_policy}',
             ],
         ],
     ],
