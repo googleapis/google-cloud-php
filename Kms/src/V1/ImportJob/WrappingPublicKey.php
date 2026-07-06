@@ -23,10 +23,26 @@ class WrappingPublicKey extends \Google\Protobuf\Internal\Message
      * Considerations](https://tools.ietf.org/html/rfc7468#section-2) and
      * [Textual Encoding of Subject Public Key Info]
      * (https://tools.ietf.org/html/rfc7468#section-13).
+     * This field gets populated by default for RSA-based import methods, if no
+     * public_key_format is specified in the request.
+     * If you want to retrieve the wrapping key of an
+     * [ImportJob][google.cloud.kms.v1.ImportJob] in some other format, use
+     * [KeyManagementService.GetImportJob][google.cloud.kms.v1.KeyManagementService.GetImportJob]
+     * and set the public_key_format to the desired public key format.
      *
      * Generated from protobuf field <code>string pem = 1;</code>
      */
     protected $pem = '';
+    /**
+     * Output only. Contains the public key, formatted according to the
+     * [PublicKey.PublicKeyFormat][google.cloud.kms.v1.PublicKey.PublicKeyFormat]
+     * specified in the
+     * [KeyManagementService.GetImportJob][google.cloud.kms.v1.KeyManagementService.GetImportJob]
+     * request.
+     *
+     * Generated from protobuf field <code>bytes data = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $data = '';
 
     /**
      * Constructor.
@@ -40,6 +56,18 @@ class WrappingPublicKey extends \Google\Protobuf\Internal\Message
      *           Considerations](https://tools.ietf.org/html/rfc7468#section-2) and
      *           [Textual Encoding of Subject Public Key Info]
      *           (https://tools.ietf.org/html/rfc7468#section-13).
+     *           This field gets populated by default for RSA-based import methods, if no
+     *           public_key_format is specified in the request.
+     *           If you want to retrieve the wrapping key of an
+     *           [ImportJob][google.cloud.kms.v1.ImportJob] in some other format, use
+     *           [KeyManagementService.GetImportJob][google.cloud.kms.v1.KeyManagementService.GetImportJob]
+     *           and set the public_key_format to the desired public key format.
+     *     @type string $data
+     *           Output only. Contains the public key, formatted according to the
+     *           [PublicKey.PublicKeyFormat][google.cloud.kms.v1.PublicKey.PublicKeyFormat]
+     *           specified in the
+     *           [KeyManagementService.GetImportJob][google.cloud.kms.v1.KeyManagementService.GetImportJob]
+     *           request.
      * }
      */
     public function __construct($data = NULL) {
@@ -53,6 +81,12 @@ class WrappingPublicKey extends \Google\Protobuf\Internal\Message
      * Considerations](https://tools.ietf.org/html/rfc7468#section-2) and
      * [Textual Encoding of Subject Public Key Info]
      * (https://tools.ietf.org/html/rfc7468#section-13).
+     * This field gets populated by default for RSA-based import methods, if no
+     * public_key_format is specified in the request.
+     * If you want to retrieve the wrapping key of an
+     * [ImportJob][google.cloud.kms.v1.ImportJob] in some other format, use
+     * [KeyManagementService.GetImportJob][google.cloud.kms.v1.KeyManagementService.GetImportJob]
+     * and set the public_key_format to the desired public key format.
      *
      * Generated from protobuf field <code>string pem = 1;</code>
      * @return string
@@ -68,6 +102,12 @@ class WrappingPublicKey extends \Google\Protobuf\Internal\Message
      * Considerations](https://tools.ietf.org/html/rfc7468#section-2) and
      * [Textual Encoding of Subject Public Key Info]
      * (https://tools.ietf.org/html/rfc7468#section-13).
+     * This field gets populated by default for RSA-based import methods, if no
+     * public_key_format is specified in the request.
+     * If you want to retrieve the wrapping key of an
+     * [ImportJob][google.cloud.kms.v1.ImportJob] in some other format, use
+     * [KeyManagementService.GetImportJob][google.cloud.kms.v1.KeyManagementService.GetImportJob]
+     * and set the public_key_format to the desired public key format.
      *
      * Generated from protobuf field <code>string pem = 1;</code>
      * @param string $var
@@ -77,6 +117,40 @@ class WrappingPublicKey extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->pem = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Contains the public key, formatted according to the
+     * [PublicKey.PublicKeyFormat][google.cloud.kms.v1.PublicKey.PublicKeyFormat]
+     * specified in the
+     * [KeyManagementService.GetImportJob][google.cloud.kms.v1.KeyManagementService.GetImportJob]
+     * request.
+     *
+     * Generated from protobuf field <code>bytes data = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getData()
+    {
+        return $this->data;
+    }
+
+    /**
+     * Output only. Contains the public key, formatted according to the
+     * [PublicKey.PublicKeyFormat][google.cloud.kms.v1.PublicKey.PublicKeyFormat]
+     * specified in the
+     * [KeyManagementService.GetImportJob][google.cloud.kms.v1.KeyManagementService.GetImportJob]
+     * request.
+     *
+     * Generated from protobuf field <code>bytes data = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setData($var)
+    {
+        GPBUtil::checkString($var, False);
+        $this->data = $var;
 
         return $this;
     }
