@@ -1,5 +1,270 @@
 # Changelog
 
+## 0.334.0
+
+<details><summary>google/cloud-ai-platform 1.61.0</summary>
+
+
+
+### Features
+
+* [AiPlatform] Add identity_type to Reasoning Engine public protos ([#9319](https://github.com/googleapis/google-cloud-php/issues/9319)) ([9d1c547](https://github.com/googleapis/google-cloud-php/commit/9d1c547936d283051ce285c3c1415e6029e21b08))
+
+</details>
+
+<details><summary>google/analytics-admin 0.33.0</summary>
+
+
+
+### Features
+
+* [AnalyticsAdmin] add a can_edit field to the PropertySummary resource to indicate if a user has permission to edit the property ([#9280](https://github.com/googleapis/google-cloud-php/issues/9280)) ([a7ced84](https://github.com/googleapis/google-cloud-php/commit/a7ced84109bbcb5c68cf09aaebd0894011d575ba))
+
+</details>
+
+<details><summary>google/apps-chat 0.21.0</summary>
+
+
+
+### Features
+
+* [AppsChat] add new FORWARD QuoteType enum in the QuotedMessageMetadata proto ([#9275](https://github.com/googleapis/google-cloud-php/issues/9275)) ([91c8f6f](https://github.com/googleapis/google-cloud-php/commit/91c8f6f857ddadf3878ba6040b713ca9c8ace3d3))
+
+</details>
+
+<details><summary>google/cloud-binary-authorization 1.2.0</summary>
+
+
+
+### Features
+
+* [BinaryAuthorization] add support for new signature algorithm in PkixPublicKey SignatureAlgorithm ([#9318](https://github.com/googleapis/google-cloud-php/issues/9318)) ([f5e6619](https://github.com/googleapis/google-cloud-php/commit/f5e6619b746ad1a20504ee09e8631145619317f3))
+
+</details>
+
+<details><summary>google/cloud-ces 0.2.2</summary>
+
+
+
+### Bug Fixes
+
+* [Ces] add routing annotations to BidiRunSession in v1 and v1beta ([#9309](https://github.com/googleapis/google-cloud-php/issues/9309)) ([cec5881](https://github.com/googleapis/google-cloud-php/commit/cec58815b0bb46a38846b364877e854ebb2da790))
+
+</details>
+
+<details><summary>google/cloud-chronicle 0.5.0</summary>
+
+
+
+### Features
+
+* [Chronicle] GA FindingsRefinementService Client libraries ([#9313](https://github.com/googleapis/google-cloud-php/issues/9313)) ([8e36f5a](https://github.com/googleapis/google-cloud-php/commit/8e36f5ab9b652e60bfce3efbc2cccbd1bdfbd3f5))
+* [Chronicle] GA RuleExecutionErrorService Client libraries ([#9272](https://github.com/googleapis/google-cloud-php/issues/9272)) ([45c0eb0](https://github.com/googleapis/google-cloud-php/commit/45c0eb0fba1b5a25786e46d87fe922b9c4c6b13b))
+
+</details>
+
+<details><summary>google/cloud-core 1.72.4</summary>
+
+
+
+### Bug Fixes
+
+* PageIterator avoids making double calls on current ([#9236](https://github.com/googleapis/google-cloud-php/issues/9236)) ([5d566da](https://github.com/googleapis/google-cloud-php/commit/5d566daa570074225639248a34d3371acb418ab5))
+
+</details>
+
+<details><summary>google/cloud-dataform 0.12.0</summary>
+
+
+
+### Features
+
+* [Dataform] Add Developer Connect integration for Git repository authentication ([#9303](https://github.com/googleapis/google-cloud-php/issues/9303)) ([3c7ba89](https://github.com/googleapis/google-cloud-php/commit/3c7ba893a5d79e4fc8f080aa34ca5fec6a8fe143))
+* [Dataform] Add support for recursive folder and team folder deletions ([#9282](https://github.com/googleapis/google-cloud-php/issues/9282)) ([41b0f84](https://github.com/googleapis/google-cloud-php/commit/41b0f84ba017ba5de88e29e05aa29b4739af2e2f))
+* Add Developer Connect integration for Git repository authentication ([41b0f84](https://github.com/googleapis/google-cloud-php/commit/41b0f84ba017ba5de88e29e05aa29b4739af2e2f))
+* Add directory metadata views to retrieve file sizes and modification timestamps ([41b0f84](https://github.com/googleapis/google-cloud-php/commit/41b0f84ba017ba5de88e29e05aa29b4739af2e2f))
+* Add effective default branch field and granular access token error status for repositories ([41b0f84](https://github.com/googleapis/google-cloud-php/commit/41b0f84ba017ba5de88e29e05aa29b4739af2e2f))
+* Add effective default branch field for repositories ([3c7ba89](https://github.com/googleapis/google-cloud-php/commit/3c7ba893a5d79e4fc8f080aa34ca5fec6a8fe143))
+* Add long-running operations for asynchronous repository deletion ([41b0f84](https://github.com/googleapis/google-cloud-php/commit/41b0f84ba017ba5de88e29e05aa29b4739af2e2f))
+
+
+### Documentation
+
+* Clarify field usage guidelines and default values in API reference documentation ([3c7ba89](https://github.com/googleapis/google-cloud-php/commit/3c7ba893a5d79e4fc8f080aa34ca5fec6a8fe143))
+* Clarify field usage guidelines and default values in API reference documentation ([41b0f84](https://github.com/googleapis/google-cloud-php/commit/41b0f84ba017ba5de88e29e05aa29b4739af2e2f))
+
+</details>
+
+<details><summary>google/cloud-dataproc 2.13.0</summary>
+
+
+
+### Features
+
+* [Dataproc] Add `ConfidentialInstanceType` field to support selection of confidential compute technology ([#9281](https://github.com/googleapis/google-cloud-php/issues/9281)) ([f3233e6](https://github.com/googleapis/google-cloud-php/commit/f3233e608f2f6df73ab3a086592a686c6c9fde8f))
+* [Dataproc] Add `DiskConfig` to instance selection to support disk config overrides for flexible VMs ([#9312](https://github.com/googleapis/google-cloud-php/issues/9312)) ([03ba91f](https://github.com/googleapis/google-cloud-php/commit/03ba91f954852f17ca2182e8d80c27b479ce9acc))
+
+</details>
+
+<details><summary>google/cloud-datastore 2.2.0</summary>
+
+
+
+### Features
+
+* [Datastore] introduce RequestOptions message and request_options field on Datastore v1 request messages to enable request tagging ([#9300](https://github.com/googleapis/google-cloud-php/issues/9300)) ([824bd1e](https://github.com/googleapis/google-cloud-php/commit/824bd1ef636226d714e8e21b7622fc56dd34cfe9))
+
+</details>
+
+<details><summary>google/cloud-dialogflow 2.5.0</summary>
+
+
+
+### Features
+
+* [Dialogflow] added support for new AnswerType types ([#9277](https://github.com/googleapis/google-cloud-php/issues/9277)) ([1dd57dc](https://github.com/googleapis/google-cloud-php/commit/1dd57dc07f080a81d2db3688fb634e2949c2845b))
+* [Dialogflow] speech activity event is configurable through InputAudioConfig.enable_voice_activity_events ([#9302](https://github.com/googleapis/google-cloud-php/issues/9302)) ([4b58087](https://github.com/googleapis/google-cloud-php/commit/4b58087f71a21e37b92ef7f5ed0e68029e44c9f5))
+
+</details>
+
+<details><summary>google/cloud-dialogflow-cx 0.11.3</summary>
+
+
+
+### Documentation
+
+* [DialogflowCx] clarified OUTPUT_AUDIO_ENCODING_MP3 bit rate with deprecation and DETECT_INTENT_RESPONSE_VIEW_BASIC ([#9278](https://github.com/googleapis/google-cloud-php/issues/9278)) ([7c51ce3](https://github.com/googleapis/google-cloud-php/commit/7c51ce3abe348befdc4c43d2e1345ccadf70768f))
+
+</details>
+
+<details><summary>google/gax 1.44.0</summary>
+
+
+
+### Features
+
+* add metadataCallback to CallOptions ([#9298](https://github.com/googleapis/google-cloud-php/issues/9298)) ([6a6d4a9](https://github.com/googleapis/google-cloud-php/commit/6a6d4a900bca95a8935c23271dcd358ae36593bd))
+* **Gax:** add support for Regional Access Boundaries ([#9259](https://github.com/googleapis/google-cloud-php/issues/9259)) ([cc3e79c](https://github.com/googleapis/google-cloud-php/commit/cc3e79c2896cda1ab27c875249df8aef968b504d))
+
+
+### Bug Fixes
+
+* Add the rpc uri to the logs ([#9307](https://github.com/googleapis/google-cloud-php/issues/9307)) ([d5c1330](https://github.com/googleapis/google-cloud-php/commit/d5c13306a435afe106c3006496c65e285385a457))
+
+</details>
+
+<details><summary>google/cloud-kms 2.10.0</summary>
+
+
+
+### Features
+
+* [Kms] add support for post-quantum (PQ) import methods ([#9304](https://github.com/googleapis/google-cloud-php/issues/9304)) ([b7deb00](https://github.com/googleapis/google-cloud-php/commit/b7deb00841ea5af328ad48ea21c793b5bcc7a30e))
+
+</details>
+
+<details><summary>google/cloud-modelarmor 0.7.0</summary>
+
+
+
+### Features
+
+* [ModelArmor] add image sanitization support ([#9311](https://github.com/googleapis/google-cloud-php/issues/9311)) ([e6d66c4](https://github.com/googleapis/google-cloud-php/commit/e6d66c47892fbdebc83ddc699d42f1d8cd92e754))
+
+</details>
+
+<details><summary>google/cloud-network-management 2.10.0</summary>
+
+
+
+### Features
+
+* [NetworkManagement] add DMS Private Connection ([#9294](https://github.com/googleapis/google-cloud-php/issues/9294)) ([3db4d2e](https://github.com/googleapis/google-cloud-php/commit/3db4d2e4ac32502343ae2680af991bdc579aba13))
+* [NetworkManagement] add fields and messages for Cloud Run jobs ([#9283](https://github.com/googleapis/google-cloud-php/issues/9283)) ([f27b5bd](https://github.com/googleapis/google-cloud-php/commit/f27b5bd463493c7718b01482b54ffdb4b99f7464))
+
+</details>
+
+<details><summary>google/cloud-network-security 1.4.2</summary>
+
+
+
+### Documentation
+
+* [NetworkSecurity] escape data_path_id comment braces in security_profile_group.proto ([#9296](https://github.com/googleapis/google-cloud-php/issues/9296)) ([85bc252](https://github.com/googleapis/google-cloud-php/commit/85bc2521539f0e619ad2417141555db42dc0941c))
+* **networksecurity:** [NetworkSecurity] escape comment braces properly in security_profile_group.proto ([#9308](https://github.com/googleapis/google-cloud-php/issues/9308)) ([090b0ae](https://github.com/googleapis/google-cloud-php/commit/090b0aeb47f2d3077bef63730887874e57312b1a))
+
+</details>
+
+<details><summary>google/cloud-networkservices 0.9.1</summary>
+
+
+
+### Documentation
+
+* [NetworkServices] fix unclosed backtick in AgentGateway registries comment ([#9273](https://github.com/googleapis/google-cloud-php/issues/9273)) ([5a04898](https://github.com/googleapis/google-cloud-php/commit/5a04898ea8a288a22ede85b7ed3da83d156ee5f6))
+
+</details>
+
+<details><summary>google/cloud-oracledatabase 0.9.0</summary>
+
+
+
+### Features
+
+* [OracleDatabase] Expand Oracle Database v1 API to add support for Exascale on Dedicated Infrastructure ([#9264](https://github.com/googleapis/google-cloud-php/issues/9264)) ([3596b42](https://github.com/googleapis/google-cloud-php/commit/3596b4252a7333b1721654ec5c7a6fe09d630096))
+
+</details>
+
+<details><summary>google/cloud-securesourcemanager 1.9.0</summary>
+
+
+
+### Features
+
+* [SecureSourceManager] Support per-repository identity for repositories ([#9314](https://github.com/googleapis/google-cloud-php/issues/9314)) ([fb287fb](https://github.com/googleapis/google-cloud-php/commit/fb287fb11430ade31cae98301f1e224db990f647))
+
+</details>
+
+<details><summary>google/cloud-sql-admin 1.10.0</summary>
+
+
+
+### Features
+
+* [SqlAdmin] add GREEN_INSTANCE to SqlInstanceType enums ([#9301](https://github.com/googleapis/google-cloud-php/issues/9301)) ([6fe9c24](https://github.com/googleapis/google-cloud-php/commit/6fe9c24412c90605545e965046d3366c37a3fdea))
+
+</details>
+
+<details><summary>google/cloud-storage 2.4.0</summary>
+
+
+
+### Features
+
+* **Storage:** add support for Bucket IP filter configuration ([#9286](https://github.com/googleapis/google-cloud-php/issues/9286)) ([85ac41b](https://github.com/googleapis/google-cloud-php/commit/85ac41b39607a2f5e2d17737444189eff5b787ba))
+
+</details>
+
+<details><summary>google/cloud-support 1.7.0</summary>
+
+
+
+### Features
+
+* [Support] A new service `SupportEventSubscription` is added ([#9305](https://github.com/googleapis/google-cloud-php/issues/9305)) ([3ca27ee](https://github.com/googleapis/google-cloud-php/commit/3ca27ee87577f26771882777a283b5ce00e0e083))
+
+</details>
+
+<details><summary>google/cloud-vectorsearch 0.5.0</summary>
+
+
+
+### Features
+
+* [VectorSearch] Added `force` field to DeleteCollectionRequest to allow deleting a Collection together with its Indexes and DataObjects ([#9290](https://github.com/googleapis/google-cloud-php/issues/9290)) ([2fb98ce](https://github.com/googleapis/google-cloud-php/commit/2fb98cea01c843a4918eaf60e43eeabe90b1e3e8))
+
+</details>
+
 ## 0.333.0
 
 <details><summary>googleads/data-manager 0.6.0</summary>
