@@ -178,6 +178,17 @@ return [
                     ],
                 ],
             ],
+            'GetAvailability' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=users/*/availability}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetCustomEmoji' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=customEmojis/*}',
@@ -343,6 +354,42 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/v1/spaces',
             ],
+            'MarkAsActive' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=users/*/availability}:markAsActive',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'MarkAsAway' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=users/*/availability}:markAsAway',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'MarkAsDoNotDisturb' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=users/*/availability}:markAsDoNotDisturb',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'MoveSectionItem' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{name=users/*/sections/*/items/*}:move',
@@ -375,6 +422,22 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1/spaces:setup',
                 'body' => '*',
+            ],
+            'UpdateAvailability' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{availability.name=users/*/availability}',
+                'body' => 'availability',
+                'placeholders' => [
+                    'availability.name' => [
+                        'getters' => [
+                            'getAvailability',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
             ],
             'UpdateMembership' => [
                 'method' => 'patch',
