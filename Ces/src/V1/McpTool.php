@@ -24,6 +24,13 @@ class McpTool extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
+     * Optional. The name override of the MCP tool.
+     * This is populated if the name was overridden by a Toolset override.
+     *
+     * Generated from protobuf field <code>string name_override = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $name_override = '';
+    /**
      * Optional. The description of the MCP tool.
      *
      * Generated from protobuf field <code>string description = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -86,6 +93,13 @@ class McpTool extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, string> custom_headers = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $custom_headers;
+    /**
+     * Output only. The dynamic availability state of the tool on the external
+     * server.
+     *
+     * Generated from protobuf field <code>.google.cloud.ces.v1.McpTool.State state = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $state = 0;
 
     /**
      * Constructor.
@@ -95,6 +109,9 @@ class McpTool extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. The name of the MCP tool.
+     *     @type string $name_override
+     *           Optional. The name override of the MCP tool.
+     *           This is populated if the name was overridden by a Toolset override.
      *     @type string $description
      *           Optional. The description of the MCP tool.
      *     @type \Google\Cloud\Ces\V1\Schema $input_schema
@@ -126,6 +143,9 @@ class McpTool extends \Google\Protobuf\Internal\Message
      *           can be set in the session variables. See
      *           https://docs.cloud.google.com/customer-engagement-ai/conversational-agents/ps/tool/open-api#openapi-injection
      *           for more details.
+     *     @type int $state
+     *           Output only. The dynamic availability state of the tool on the external
+     *           server.
      * }
      */
     public function __construct($data = NULL) {
@@ -155,6 +175,34 @@ class McpTool extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The name override of the MCP tool.
+     * This is populated if the name was overridden by a Toolset override.
+     *
+     * Generated from protobuf field <code>string name_override = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getNameOverride()
+    {
+        return $this->name_override;
+    }
+
+    /**
+     * Optional. The name override of the MCP tool.
+     * This is populated if the name was overridden by a Toolset override.
+     *
+     * Generated from protobuf field <code>string name_override = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setNameOverride($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->name_override = $var;
 
         return $this;
     }
@@ -443,6 +491,34 @@ class McpTool extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->custom_headers = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The dynamic availability state of the tool on the external
+     * server.
+     *
+     * Generated from protobuf field <code>.google.cloud.ces.v1.McpTool.State state = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getState()
+    {
+        return $this->state;
+    }
+
+    /**
+     * Output only. The dynamic availability state of the tool on the external
+     * server.
+     *
+     * Generated from protobuf field <code>.google.cloud.ces.v1.McpTool.State state = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setState($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Ces\V1\McpTool\State::class);
+        $this->state = $var;
 
         return $this;
     }

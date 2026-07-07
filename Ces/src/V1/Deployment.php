@@ -66,6 +66,26 @@ class Deployment extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string etag = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $etag = '';
+    /**
+     * Optional. Experiment configuration for the deployment.
+     *
+     * Generated from protobuf field <code>.google.cloud.ces.v1.ExperimentConfig experiment_config = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $experiment_config = null;
+    /**
+     * Optional. Input only. Ephemeral WhatsApp credentials required when
+     * configuring a WhatsApp channel profile.
+     *
+     * Generated from protobuf field <code>.google.cloud.ces.v1.WhatsAppCredentials whatsapp_credentials = 10 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = INPUT_ONLY];</code>
+     */
+    protected $whatsapp_credentials = null;
+    /**
+     * Optional. Input only. Ephemeral Instagram credentials required when
+     * configuring a Instagram channel profile.
+     *
+     * Generated from protobuf field <code>.google.cloud.ces.v1.InstagramCredentials instagram_credentials = 11 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = INPUT_ONLY];</code>
+     */
+    protected $instagram_credentials = null;
 
     /**
      * Constructor.
@@ -95,6 +115,14 @@ class Deployment extends \Google\Protobuf\Internal\Message
      *           Output only. Etag used to ensure the object hasn't changed during a
      *           read-modify-write operation. If the etag is empty, the update will
      *           overwrite any concurrent changes.
+     *     @type \Google\Cloud\Ces\V1\ExperimentConfig $experiment_config
+     *           Optional. Experiment configuration for the deployment.
+     *     @type \Google\Cloud\Ces\V1\WhatsAppCredentials $whatsapp_credentials
+     *           Optional. Input only. Ephemeral WhatsApp credentials required when
+     *           configuring a WhatsApp channel profile.
+     *     @type \Google\Cloud\Ces\V1\InstagramCredentials $instagram_credentials
+     *           Optional. Input only. Ephemeral Instagram credentials required when
+     *           configuring a Instagram channel profile.
      * }
      */
     public function __construct($data = NULL) {
@@ -326,6 +354,118 @@ class Deployment extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->etag = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Experiment configuration for the deployment.
+     *
+     * Generated from protobuf field <code>.google.cloud.ces.v1.ExperimentConfig experiment_config = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Ces\V1\ExperimentConfig|null
+     */
+    public function getExperimentConfig()
+    {
+        return $this->experiment_config;
+    }
+
+    public function hasExperimentConfig()
+    {
+        return isset($this->experiment_config);
+    }
+
+    public function clearExperimentConfig()
+    {
+        unset($this->experiment_config);
+    }
+
+    /**
+     * Optional. Experiment configuration for the deployment.
+     *
+     * Generated from protobuf field <code>.google.cloud.ces.v1.ExperimentConfig experiment_config = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Ces\V1\ExperimentConfig $var
+     * @return $this
+     */
+    public function setExperimentConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Ces\V1\ExperimentConfig::class);
+        $this->experiment_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Input only. Ephemeral WhatsApp credentials required when
+     * configuring a WhatsApp channel profile.
+     *
+     * Generated from protobuf field <code>.google.cloud.ces.v1.WhatsAppCredentials whatsapp_credentials = 10 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = INPUT_ONLY];</code>
+     * @return \Google\Cloud\Ces\V1\WhatsAppCredentials|null
+     */
+    public function getWhatsappCredentials()
+    {
+        return $this->whatsapp_credentials;
+    }
+
+    public function hasWhatsappCredentials()
+    {
+        return isset($this->whatsapp_credentials);
+    }
+
+    public function clearWhatsappCredentials()
+    {
+        unset($this->whatsapp_credentials);
+    }
+
+    /**
+     * Optional. Input only. Ephemeral WhatsApp credentials required when
+     * configuring a WhatsApp channel profile.
+     *
+     * Generated from protobuf field <code>.google.cloud.ces.v1.WhatsAppCredentials whatsapp_credentials = 10 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = INPUT_ONLY];</code>
+     * @param \Google\Cloud\Ces\V1\WhatsAppCredentials $var
+     * @return $this
+     */
+    public function setWhatsappCredentials($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Ces\V1\WhatsAppCredentials::class);
+        $this->whatsapp_credentials = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Input only. Ephemeral Instagram credentials required when
+     * configuring a Instagram channel profile.
+     *
+     * Generated from protobuf field <code>.google.cloud.ces.v1.InstagramCredentials instagram_credentials = 11 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = INPUT_ONLY];</code>
+     * @return \Google\Cloud\Ces\V1\InstagramCredentials|null
+     */
+    public function getInstagramCredentials()
+    {
+        return $this->instagram_credentials;
+    }
+
+    public function hasInstagramCredentials()
+    {
+        return isset($this->instagram_credentials);
+    }
+
+    public function clearInstagramCredentials()
+    {
+        unset($this->instagram_credentials);
+    }
+
+    /**
+     * Optional. Input only. Ephemeral Instagram credentials required when
+     * configuring a Instagram channel profile.
+     *
+     * Generated from protobuf field <code>.google.cloud.ces.v1.InstagramCredentials instagram_credentials = 11 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = INPUT_ONLY];</code>
+     * @param \Google\Cloud\Ces\V1\InstagramCredentials $var
+     * @return $this
+     */
+    public function setInstagramCredentials($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Ces\V1\InstagramCredentials::class);
+        $this->instagram_credentials = $var;
 
         return $this;
     }

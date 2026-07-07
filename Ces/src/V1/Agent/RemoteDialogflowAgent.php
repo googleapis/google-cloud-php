@@ -70,6 +70,14 @@ class RemoteDialogflowAgent extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool respect_response_interruption_settings = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $respect_response_interruption_settings = false;
+    /**
+     * Optional. The name of the variable that contains the language code to be
+     * used for the Dialogflow session. If unspecified, the default language
+     * code of the Dialogflow agent will be used.
+     *
+     * Generated from protobuf field <code>string language_code_variable = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $language_code_variable = '';
 
     /**
      * Constructor.
@@ -103,6 +111,10 @@ class RemoteDialogflowAgent extends \Google\Protobuf\Internal\Message
      *           [`allow_playback_interruption`](https://docs.cloud.google.com/dialogflow/cx/docs/reference/rpc/google.cloud.dialogflow.cx.v3#text)
      *           set to true will be interruptable, all other messages follow the
      *           app-level barge-in settings.
+     *     @type string $language_code_variable
+     *           Optional. The name of the variable that contains the language code to be
+     *           used for the Dialogflow session. If unspecified, the default language
+     *           code of the Dialogflow agent will be used.
      * }
      */
     public function __construct($data = NULL) {
@@ -290,6 +302,36 @@ class RemoteDialogflowAgent extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->respect_response_interruption_settings = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The name of the variable that contains the language code to be
+     * used for the Dialogflow session. If unspecified, the default language
+     * code of the Dialogflow agent will be used.
+     *
+     * Generated from protobuf field <code>string language_code_variable = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getLanguageCodeVariable()
+    {
+        return $this->language_code_variable;
+    }
+
+    /**
+     * Optional. The name of the variable that contains the language code to be
+     * used for the Dialogflow session. If unspecified, the default language
+     * code of the Dialogflow agent will be used.
+     *
+     * Generated from protobuf field <code>string language_code_variable = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setLanguageCodeVariable($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->language_code_variable = $var;
 
         return $this;
     }

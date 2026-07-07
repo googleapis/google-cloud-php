@@ -60,6 +60,14 @@ class McpToolset extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, string> custom_headers = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $custom_headers;
+    /**
+     * Optional. Overrides for individual tools within this toolset.
+     * This allows overriding specific details like descriptions, names,
+     * or pinning the tools' states so they aren't fully dynamic.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.ces.v1.McpToolOverride tool_overrides = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $tool_overrides;
 
     /**
      * Constructor.
@@ -91,6 +99,10 @@ class McpToolset extends \Google\Protobuf\Internal\Message
      *           can be set in the session variables. See
      *           https://docs.cloud.google.com/customer-engagement-ai/conversational-agents/ps/tool/open-api#openapi-injection
      *           for more details.
+     *     @type \Google\Cloud\Ces\V1\McpToolOverride[] $tool_overrides
+     *           Optional. Overrides for individual tools within this toolset.
+     *           This allows overriding specific details like descriptions, names,
+     *           or pinning the tools' states so they aren't fully dynamic.
      * }
      */
     public function __construct($data = NULL) {
@@ -282,6 +294,36 @@ class McpToolset extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->custom_headers = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Overrides for individual tools within this toolset.
+     * This allows overriding specific details like descriptions, names,
+     * or pinning the tools' states so they aren't fully dynamic.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.ces.v1.McpToolOverride tool_overrides = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return RepeatedField<\Google\Cloud\Ces\V1\McpToolOverride>
+     */
+    public function getToolOverrides()
+    {
+        return $this->tool_overrides;
+    }
+
+    /**
+     * Optional. Overrides for individual tools within this toolset.
+     * This allows overriding specific details like descriptions, names,
+     * or pinning the tools' states so they aren't fully dynamic.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.ces.v1.McpToolOverride tool_overrides = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Ces\V1\McpToolOverride[] $var
+     * @return $this
+     */
+    public function setToolOverrides($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Ces\V1\McpToolOverride::class);
+        $this->tool_overrides = $arr;
 
         return $this;
     }
