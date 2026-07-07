@@ -9,23 +9,26 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * Request message for [BinauthzManagementService.GetPolicy][].
+ * Request message for
+ * [BinauthzManagementServiceV1.GetPolicy][google.cloud.binaryauthorization.v1.BinauthzManagementServiceV1.GetPolicy].
  *
  * Generated from protobuf message <code>google.cloud.binaryauthorization.v1.GetPolicyRequest</code>
  */
 class GetPolicyRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of the [policy][google.cloud.binaryauthorization.v1.Policy] to retrieve,
-     * in the format `projects/{@*}policy`.
+     * Required. The resource name of the
+     * [policy][google.cloud.binaryauthorization.v1.Policy] to retrieve, in the
+     * format `projects/{@*}policy`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $name = '';
 
     /**
-     * @param string $name Required. The resource name of the [policy][google.cloud.binaryauthorization.v1.Policy] to retrieve,
-     *                     in the format `projects/&#42;/policy`. Please see
+     * @param string $name Required. The resource name of the
+     *                     [policy][google.cloud.binaryauthorization.v1.Policy] to retrieve, in the
+     *                     format `projects/&#42;/policy`. Please see
      *                     {@see BinauthzManagementServiceV1Client::policyName()} for help formatting this field.
      *
      * @return \Google\Cloud\BinaryAuthorization\V1\GetPolicyRequest
@@ -45,8 +48,9 @@ class GetPolicyRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The resource name of the [policy][google.cloud.binaryauthorization.v1.Policy] to retrieve,
-     *           in the format `projects/{@*}policy`.
+     *           Required. The resource name of the
+     *           [policy][google.cloud.binaryauthorization.v1.Policy] to retrieve, in the
+     *           format `projects/{@*}policy`.
      * }
      */
     public function __construct($data = NULL) {
@@ -55,8 +59,9 @@ class GetPolicyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the [policy][google.cloud.binaryauthorization.v1.Policy] to retrieve,
-     * in the format `projects/{@*}policy`.
+     * Required. The resource name of the
+     * [policy][google.cloud.binaryauthorization.v1.Policy] to retrieve, in the
+     * format `projects/{@*}policy`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -67,8 +72,9 @@ class GetPolicyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the [policy][google.cloud.binaryauthorization.v1.Policy] to retrieve,
-     * in the format `projects/{@*}policy`.
+     * Required. The resource name of the
+     * [policy][google.cloud.binaryauthorization.v1.Policy] to retrieve, in the
+     * format `projects/{@*}policy`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

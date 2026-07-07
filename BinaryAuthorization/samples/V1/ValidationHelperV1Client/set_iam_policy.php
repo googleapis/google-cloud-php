@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,35 +22,37 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START binaryauthorization_v1_generated_BinauthzManagementServiceV1_GetAttestor_sync]
+// [START binaryauthorization_v1_generated_ValidationHelperV1_SetIamPolicy_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\BinaryAuthorization\V1\Attestor;
-use Google\Cloud\BinaryAuthorization\V1\Client\BinauthzManagementServiceV1Client;
-use Google\Cloud\BinaryAuthorization\V1\GetAttestorRequest;
+use Google\Cloud\BinaryAuthorization\V1\Client\ValidationHelperV1Client;
+use Google\Cloud\Iam\V1\Policy;
+use Google\Cloud\Iam\V1\SetIamPolicyRequest;
 
 /**
- * Gets an [attestor][google.cloud.binaryauthorization.v1.Attestor].
- * Returns `NOT_FOUND` if the
- * [attestor][google.cloud.binaryauthorization.v1.Attestor] does not exist.
+ * Sets the access control policy on the specified resource. Replaces
+ * any existing policy.
  *
- * @param string $formattedName The name of the
- *                              [attestor][google.cloud.binaryauthorization.v1.Attestor] to retrieve, in
- *                              the format `projects/&#42;/attestors/*`. Please see
- *                              {@see BinauthzManagementServiceV1Client::attestorName()} for help formatting this field.
+ * Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+ * errors.
+ *
+ * @param string $resource REQUIRED: The resource for which the policy is being specified.
+ *                         See the operation documentation for the appropriate value for this field.
  */
-function get_attestor_sample(string $formattedName): void
+function set_iam_policy_sample(string $resource): void
 {
     // Create a client.
-    $binauthzManagementServiceV1Client = new BinauthzManagementServiceV1Client();
+    $validationHelperV1Client = new ValidationHelperV1Client();
 
     // Prepare the request message.
-    $request = (new GetAttestorRequest())
-        ->setName($formattedName);
+    $policy = new Policy();
+    $request = (new SetIamPolicyRequest())
+        ->setResource($resource)
+        ->setPolicy($policy);
 
     // Call the API and handle any network failures.
     try {
-        /** @var Attestor $response */
-        $response = $binauthzManagementServiceV1Client->getAttestor($request);
+        /** @var Policy $response */
+        $response = $validationHelperV1Client->setIamPolicy($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
@@ -68,8 +70,8 @@ function get_attestor_sample(string $formattedName): void
  */
 function callSample(): void
 {
-    $formattedName = BinauthzManagementServiceV1Client::attestorName('[PROJECT]', '[ATTESTOR]');
+    $resource = '[RESOURCE]';
 
-    get_attestor_sample($formattedName);
+    set_iam_policy_sample($resource);
 }
-// [END binaryauthorization_v1_generated_BinauthzManagementServiceV1_GetAttestor_sync]
+// [END binaryauthorization_v1_generated_ValidationHelperV1_SetIamPolicy_sync]

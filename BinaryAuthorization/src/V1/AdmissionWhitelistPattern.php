@@ -9,8 +9,10 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * An [admission allowlist pattern][google.cloud.binaryauthorization.v1.AdmissionWhitelistPattern] exempts images
- * from checks by [admission rules][google.cloud.binaryauthorization.v1.AdmissionRule].
+ * An [admission allowlist
+ * pattern][google.cloud.binaryauthorization.v1.AdmissionWhitelistPattern]
+ * exempts images from checks by [admission
+ * rules][google.cloud.binaryauthorization.v1.AdmissionRule].
  *
  * Generated from protobuf message <code>google.cloud.binaryauthorization.v1.AdmissionWhitelistPattern</code>
  */

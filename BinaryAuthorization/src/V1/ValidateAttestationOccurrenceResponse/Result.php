@@ -7,7 +7,7 @@ namespace Google\Cloud\BinaryAuthorization\V1\ValidateAttestationOccurrenceRespo
 use UnexpectedValueException;
 
 /**
- * The enum returned in the "result" field.
+ * The enum returned in the `result` field.
  *
  * Protobuf type <code>google.cloud.binaryauthorization.v1.ValidateAttestationOccurrenceResponse.Result</code>
  */

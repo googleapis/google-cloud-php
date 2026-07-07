@@ -43,6 +43,10 @@ use Google\Cloud\BinaryAuthorization\V1\ListAttestorsRequest;
 use Google\Cloud\BinaryAuthorization\V1\Policy;
 use Google\Cloud\BinaryAuthorization\V1\UpdateAttestorRequest;
 use Google\Cloud\BinaryAuthorization\V1\UpdatePolicyRequest;
+use Google\Cloud\Iam\V1\GetIamPolicyRequest;
+use Google\Cloud\Iam\V1\SetIamPolicyRequest;
+use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
+use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
 
@@ -70,6 +74,9 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<PagedListResponse> listAttestorsAsync(ListAttestorsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Attestor> updateAttestorAsync(UpdateAttestorRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Policy> updatePolicyAsync(UpdatePolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
  */
 final class BinauthzManagementServiceV1Client
 {
@@ -309,9 +316,11 @@ final class BinauthzManagementServiceV1Client
     }
 
     /**
-     * Creates an [attestor][google.cloud.binaryauthorization.v1.Attestor], and returns a copy of the new
-     * [attestor][google.cloud.binaryauthorization.v1.Attestor]. Returns NOT_FOUND if the project does not exist,
-     * INVALID_ARGUMENT if the request is malformed, ALREADY_EXISTS if the
+     * Creates an [attestor][google.cloud.binaryauthorization.v1.Attestor], and
+     * returns a copy of the new
+     * [attestor][google.cloud.binaryauthorization.v1.Attestor]. Returns
+     * `NOT_FOUND` if the project does not exist, `INVALID_ARGUMENT` if the
+     * request is malformed, `ALREADY_EXISTS` if the
      * [attestor][google.cloud.binaryauthorization.v1.Attestor] already exists.
      *
      * The async variant is
@@ -339,7 +348,8 @@ final class BinauthzManagementServiceV1Client
     }
 
     /**
-     * Deletes an [attestor][google.cloud.binaryauthorization.v1.Attestor]. Returns NOT_FOUND if the
+     * Deletes an [attestor][google.cloud.binaryauthorization.v1.Attestor].
+     * Returns `NOT_FOUND` if the
      * [attestor][google.cloud.binaryauthorization.v1.Attestor] does not exist.
      *
      * The async variant is
@@ -366,7 +376,8 @@ final class BinauthzManagementServiceV1Client
 
     /**
      * Gets an [attestor][google.cloud.binaryauthorization.v1.Attestor].
-     * Returns NOT_FOUND if the [attestor][google.cloud.binaryauthorization.v1.Attestor] does not exist.
+     * Returns `NOT_FOUND` if the
+     * [attestor][google.cloud.binaryauthorization.v1.Attestor] does not exist.
      *
      * The async variant is
      * {@see BinauthzManagementServiceV1Client::getAttestorAsync()} .
@@ -393,13 +404,16 @@ final class BinauthzManagementServiceV1Client
     }
 
     /**
-     * A [policy][google.cloud.binaryauthorization.v1.Policy] specifies the [attestors][google.cloud.binaryauthorization.v1.Attestor] that must attest to
-     * a container image, before the project is allowed to deploy that
-     * image. There is at most one policy per project. All image admission
-     * requests are permitted if a project has no policy.
+     * A [policy][google.cloud.binaryauthorization.v1.Policy] specifies the
+     * [attestors][google.cloud.binaryauthorization.v1.Attestor] that must attest
+     * to a container image, before the project is allowed to deploy that image.
+     * There is at most one policy per project. All image admission requests are
+     * permitted if a project has no policy.
      *
-     * Gets the [policy][google.cloud.binaryauthorization.v1.Policy] for this project. Returns a default
-     * [policy][google.cloud.binaryauthorization.v1.Policy] if the project does not have one.
+     * Gets the [policy][google.cloud.binaryauthorization.v1.Policy] for this
+     * project. Returns a default
+     * [policy][google.cloud.binaryauthorization.v1.Policy] if the project does
+     * not have one.
      *
      * The async variant is {@see BinauthzManagementServiceV1Client::getPolicyAsync()}
      * .
@@ -427,7 +441,7 @@ final class BinauthzManagementServiceV1Client
 
     /**
      * Lists [attestors][google.cloud.binaryauthorization.v1.Attestor].
-     * Returns INVALID_ARGUMENT if the project does not exist.
+     * Returns `INVALID_ARGUMENT` if the project does not exist.
      *
      * The async variant is
      * {@see BinauthzManagementServiceV1Client::listAttestorsAsync()} .
@@ -455,7 +469,8 @@ final class BinauthzManagementServiceV1Client
 
     /**
      * Updates an [attestor][google.cloud.binaryauthorization.v1.Attestor].
-     * Returns NOT_FOUND if the [attestor][google.cloud.binaryauthorization.v1.Attestor] does not exist.
+     * Returns `NOT_FOUND` if the
+     * [attestor][google.cloud.binaryauthorization.v1.Attestor] does not exist.
      *
      * The async variant is
      * {@see BinauthzManagementServiceV1Client::updateAttestorAsync()} .
@@ -482,11 +497,12 @@ final class BinauthzManagementServiceV1Client
     }
 
     /**
-     * Creates or updates a project's [policy][google.cloud.binaryauthorization.v1.Policy], and returns a copy of the
-     * new [policy][google.cloud.binaryauthorization.v1.Policy]. A policy is always updated as a whole, to avoid race
-     * conditions with concurrent policy enforcement (or management!)
-     * requests. Returns NOT_FOUND if the project does not exist, INVALID_ARGUMENT
-     * if the request is malformed.
+     * Creates or updates a project's
+     * [policy][google.cloud.binaryauthorization.v1.Policy], and returns a copy of
+     * the new [policy][google.cloud.binaryauthorization.v1.Policy]. A policy is
+     * always updated as a whole, to avoid race conditions with concurrent policy
+     * enforcement (or management!) requests. Returns `NOT_FOUND` if the project
+     * does not exist, `INVALID_ARGUMENT` if the request is malformed.
      *
      * The async variant is
      * {@see BinauthzManagementServiceV1Client::updatePolicyAsync()} .
@@ -510,5 +526,99 @@ final class BinauthzManagementServiceV1Client
     public function updatePolicy(UpdatePolicyRequest $request, array $callOptions = []): Policy
     {
         return $this->startApiCall('UpdatePolicy', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets the access control policy for a resource. Returns an empty policy
+     * if the resource exists and does not have a policy set.
+     *
+     * The async variant is
+     * {@see BinauthzManagementServiceV1Client::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/BinauthzManagementServiceV1Client/get_iam_policy.php
+     *
+     * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Iam\V1\Policy
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getIamPolicy(GetIamPolicyRequest $request, array $callOptions = []): \Google\Cloud\Iam\V1\Policy
+    {
+        return $this->startApiCall('GetIamPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Sets the access control policy on the specified resource. Replaces
+     * any existing policy.
+     *
+     * Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+     * errors.
+     *
+     * The async variant is
+     * {@see BinauthzManagementServiceV1Client::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/BinauthzManagementServiceV1Client/set_iam_policy.php
+     *
+     * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Iam\V1\Policy
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function setIamPolicy(SetIamPolicyRequest $request, array $callOptions = []): \Google\Cloud\Iam\V1\Policy
+    {
+        return $this->startApiCall('SetIamPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Returns permissions that a caller has on the specified resource. If the
+     * resource does not exist, this will return an empty set of
+     * permissions, not a `NOT_FOUND` error.
+     *
+     * Note: This operation is designed to be used for building
+     * permission-aware UIs and command-line tools, not for authorization
+     * checking. This operation may "fail open" without warning.
+     *
+     * The async variant is
+     * {@see BinauthzManagementServiceV1Client::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/BinauthzManagementServiceV1Client/test_iam_permissions.php
+     *
+     * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return TestIamPermissionsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
+        return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

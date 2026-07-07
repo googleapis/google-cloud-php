@@ -28,11 +28,13 @@ use Google\Cloud\BinaryAuthorization\V1\Client\BinauthzManagementServiceV1Client
 use Google\Cloud\BinaryAuthorization\V1\DeleteAttestorRequest;
 
 /**
- * Deletes an [attestor][google.cloud.binaryauthorization.v1.Attestor]. Returns NOT_FOUND if the
+ * Deletes an [attestor][google.cloud.binaryauthorization.v1.Attestor].
+ * Returns `NOT_FOUND` if the
  * [attestor][google.cloud.binaryauthorization.v1.Attestor] does not exist.
  *
- * @param string $formattedName The name of the [attestors][google.cloud.binaryauthorization.v1.Attestor] to delete, in the format
- *                              `projects/&#42;/attestors/*`. Please see
+ * @param string $formattedName The name of the
+ *                              [attestors][google.cloud.binaryauthorization.v1.Attestor] to delete, in the
+ *                              format `projects/&#42;/attestors/*`. Please see
  *                              {@see BinauthzManagementServiceV1Client::attestorName()} for help formatting this field.
  */
 function delete_attestor_sample(string $formattedName): void

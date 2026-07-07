@@ -9,25 +9,30 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * Request message for [BinauthzManagementService.UpdatePolicy][].
+ * Request message for
+ * [BinauthzManagementServiceV1.UpdatePolicy][google.cloud.binaryauthorization.v1.BinauthzManagementServiceV1.UpdatePolicy].
  *
  * Generated from protobuf message <code>google.cloud.binaryauthorization.v1.UpdatePolicyRequest</code>
  */
 class UpdatePolicyRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. A new or updated [policy][google.cloud.binaryauthorization.v1.Policy] value. The service will
-     * overwrite the [policy name][google.cloud.binaryauthorization.v1.Policy.name] field with the resource name in
-     * the request URL, in the format `projects/{@*}policy`.
+     * Required. A new or updated
+     * [policy][google.cloud.binaryauthorization.v1.Policy] value. The service
+     * will overwrite the [policy
+     * name][google.cloud.binaryauthorization.v1.Policy.name] field with the
+     * resource name in the request URL, in the format `projects/{@*}policy`.
      *
      * Generated from protobuf field <code>.google.cloud.binaryauthorization.v1.Policy policy = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $policy = null;
 
     /**
-     * @param \Google\Cloud\BinaryAuthorization\V1\Policy $policy Required. A new or updated [policy][google.cloud.binaryauthorization.v1.Policy] value. The service will
-     *                                                            overwrite the [policy name][google.cloud.binaryauthorization.v1.Policy.name] field with the resource name in
-     *                                                            the request URL, in the format `projects/&#42;/policy`.
+     * @param \Google\Cloud\BinaryAuthorization\V1\Policy $policy Required. A new or updated
+     *                                                            [policy][google.cloud.binaryauthorization.v1.Policy] value. The service
+     *                                                            will overwrite the [policy
+     *                                                            name][google.cloud.binaryauthorization.v1.Policy.name] field with the
+     *                                                            resource name in the request URL, in the format `projects/&#42;/policy`.
      *
      * @return \Google\Cloud\BinaryAuthorization\V1\UpdatePolicyRequest
      *
@@ -46,9 +51,11 @@ class UpdatePolicyRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\BinaryAuthorization\V1\Policy $policy
-     *           Required. A new or updated [policy][google.cloud.binaryauthorization.v1.Policy] value. The service will
-     *           overwrite the [policy name][google.cloud.binaryauthorization.v1.Policy.name] field with the resource name in
-     *           the request URL, in the format `projects/{@*}policy`.
+     *           Required. A new or updated
+     *           [policy][google.cloud.binaryauthorization.v1.Policy] value. The service
+     *           will overwrite the [policy
+     *           name][google.cloud.binaryauthorization.v1.Policy.name] field with the
+     *           resource name in the request URL, in the format `projects/{@*}policy`.
      * }
      */
     public function __construct($data = NULL) {
@@ -57,9 +64,11 @@ class UpdatePolicyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A new or updated [policy][google.cloud.binaryauthorization.v1.Policy] value. The service will
-     * overwrite the [policy name][google.cloud.binaryauthorization.v1.Policy.name] field with the resource name in
-     * the request URL, in the format `projects/{@*}policy`.
+     * Required. A new or updated
+     * [policy][google.cloud.binaryauthorization.v1.Policy] value. The service
+     * will overwrite the [policy
+     * name][google.cloud.binaryauthorization.v1.Policy.name] field with the
+     * resource name in the request URL, in the format `projects/{@*}policy`.
      *
      * Generated from protobuf field <code>.google.cloud.binaryauthorization.v1.Policy policy = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\BinaryAuthorization\V1\Policy|null
@@ -80,9 +89,11 @@ class UpdatePolicyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A new or updated [policy][google.cloud.binaryauthorization.v1.Policy] value. The service will
-     * overwrite the [policy name][google.cloud.binaryauthorization.v1.Policy.name] field with the resource name in
-     * the request URL, in the format `projects/{@*}policy`.
+     * Required. A new or updated
+     * [policy][google.cloud.binaryauthorization.v1.Policy] value. The service
+     * will overwrite the [policy
+     * name][google.cloud.binaryauthorization.v1.Policy.name] field with the
+     * resource name in the request URL, in the format `projects/{@*}policy`.
      *
      * Generated from protobuf field <code>.google.cloud.binaryauthorization.v1.Policy policy = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\BinaryAuthorization\V1\Policy $var

@@ -29,12 +29,15 @@ use Google\Cloud\BinaryAuthorization\V1\Client\BinauthzManagementServiceV1Client
 use Google\Cloud\BinaryAuthorization\V1\CreateAttestorRequest;
 
 /**
- * Creates an [attestor][google.cloud.binaryauthorization.v1.Attestor], and returns a copy of the new
- * [attestor][google.cloud.binaryauthorization.v1.Attestor]. Returns NOT_FOUND if the project does not exist,
- * INVALID_ARGUMENT if the request is malformed, ALREADY_EXISTS if the
+ * Creates an [attestor][google.cloud.binaryauthorization.v1.Attestor], and
+ * returns a copy of the new
+ * [attestor][google.cloud.binaryauthorization.v1.Attestor]. Returns
+ * `NOT_FOUND` if the project does not exist, `INVALID_ARGUMENT` if the
+ * request is malformed, `ALREADY_EXISTS` if the
  * [attestor][google.cloud.binaryauthorization.v1.Attestor] already exists.
  *
- * @param string $formattedParent The parent of this [attestor][google.cloud.binaryauthorization.v1.Attestor]. Please see
+ * @param string $formattedParent The parent of this
+ *                                [attestor][google.cloud.binaryauthorization.v1.Attestor]. Please see
  *                                {@see BinauthzManagementServiceV1Client::projectName()} for help formatting this field.
  * @param string $attestorId      The [attestors][google.cloud.binaryauthorization.v1.Attestor] ID.
  * @param string $attestorName    The resource name, in the format:

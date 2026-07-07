@@ -30,10 +30,11 @@ use Google\Cloud\BinaryAuthorization\V1\ValidateAttestationOccurrenceResponse;
 use Grafeas\V1\AttestationOccurrence;
 
 /**
- * Returns whether the given Attestation for the given image URI
- * was signed by the given Attestor
+ * Returns whether the given `Attestation` for the given image URI
+ * was signed by the given `Attestor`
  *
- * @param string $attestor              The resource name of the [Attestor][google.cloud.binaryauthorization.v1.Attestor] of the
+ * @param string $attestor              The resource name of the
+ *                                      [Attestor][google.cloud.binaryauthorization.v1.Attestor] of the
  *                                      [occurrence][grafeas.v1.Occurrence], in the format
  *                                      `projects/&#42;/attestors/*`.
  * @param string $occurrenceNote        The resource name of the [Note][grafeas.v1.Note] to which the

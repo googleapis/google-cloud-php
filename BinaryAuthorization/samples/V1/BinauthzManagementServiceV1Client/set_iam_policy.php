@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,42 +22,37 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START binaryauthorization_v1_generated_BinauthzManagementServiceV1_GetPolicy_sync]
+// [START binaryauthorization_v1_generated_BinauthzManagementServiceV1_SetIamPolicy_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\BinaryAuthorization\V1\Client\BinauthzManagementServiceV1Client;
-use Google\Cloud\BinaryAuthorization\V1\GetPolicyRequest;
-use Google\Cloud\BinaryAuthorization\V1\Policy;
+use Google\Cloud\Iam\V1\Policy;
+use Google\Cloud\Iam\V1\SetIamPolicyRequest;
 
 /**
- * A [policy][google.cloud.binaryauthorization.v1.Policy] specifies the
- * [attestors][google.cloud.binaryauthorization.v1.Attestor] that must attest
- * to a container image, before the project is allowed to deploy that image.
- * There is at most one policy per project. All image admission requests are
- * permitted if a project has no policy.
+ * Sets the access control policy on the specified resource. Replaces
+ * any existing policy.
  *
- * Gets the [policy][google.cloud.binaryauthorization.v1.Policy] for this
- * project. Returns a default
- * [policy][google.cloud.binaryauthorization.v1.Policy] if the project does
- * not have one.
+ * Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+ * errors.
  *
- * @param string $formattedName The resource name of the
- *                              [policy][google.cloud.binaryauthorization.v1.Policy] to retrieve, in the
- *                              format `projects/&#42;/policy`. Please see
- *                              {@see BinauthzManagementServiceV1Client::policyName()} for help formatting this field.
+ * @param string $resource REQUIRED: The resource for which the policy is being specified.
+ *                         See the operation documentation for the appropriate value for this field.
  */
-function get_policy_sample(string $formattedName): void
+function set_iam_policy_sample(string $resource): void
 {
     // Create a client.
     $binauthzManagementServiceV1Client = new BinauthzManagementServiceV1Client();
 
     // Prepare the request message.
-    $request = (new GetPolicyRequest())
-        ->setName($formattedName);
+    $policy = new Policy();
+    $request = (new SetIamPolicyRequest())
+        ->setResource($resource)
+        ->setPolicy($policy);
 
     // Call the API and handle any network failures.
     try {
         /** @var Policy $response */
-        $response = $binauthzManagementServiceV1Client->getPolicy($request);
+        $response = $binauthzManagementServiceV1Client->setIamPolicy($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
@@ -75,8 +70,8 @@ function get_policy_sample(string $formattedName): void
  */
 function callSample(): void
 {
-    $formattedName = BinauthzManagementServiceV1Client::policyName('[PROJECT]');
+    $resource = '[RESOURCE]';
 
-    get_policy_sample($formattedName);
+    set_iam_policy_sample($resource);
 }
-// [END binaryauthorization_v1_generated_BinauthzManagementServiceV1_GetPolicy_sync]
+// [END binaryauthorization_v1_generated_BinauthzManagementServiceV1_SetIamPolicy_sync]
