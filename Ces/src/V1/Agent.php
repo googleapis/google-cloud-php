@@ -167,6 +167,13 @@ class Agent extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.TransferRule transfer_rules = 30 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $transfer_rules;
+    /**
+     * Output only. Misconfigurations or errors in the agent that may affect agent
+     * quality.
+     *
+     * Generated from protobuf field <code>repeated string validation_errors = 32 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $validation_errors;
     protected $agent_type;
 
     /**
@@ -256,6 +263,9 @@ class Agent extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Ces\V1\TransferRule[] $transfer_rules
      *           Optional. Agent transfer rules.
      *           If multiple rules match, the first one in the list will be used.
+     *     @type string[] $validation_errors
+     *           Output only. Misconfigurations or errors in the agent that may affect agent
+     *           quality.
      * }
      */
     public function __construct($data = NULL) {
@@ -945,6 +955,34 @@ class Agent extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Ces\V1\TransferRule::class);
         $this->transfer_rules = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Misconfigurations or errors in the agent that may affect agent
+     * quality.
+     *
+     * Generated from protobuf field <code>repeated string validation_errors = 32 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return RepeatedField<string>
+     */
+    public function getValidationErrors()
+    {
+        return $this->validation_errors;
+    }
+
+    /**
+     * Output only. Misconfigurations or errors in the agent that may affect agent
+     * quality.
+     *
+     * Generated from protobuf field <code>repeated string validation_errors = 32 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string[] $var
+     * @return $this
+     */
+    public function setValidationErrors($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->validation_errors = $arr;
 
         return $this;
     }

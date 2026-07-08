@@ -37,6 +37,12 @@ class SessionOutput extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.ces.v1.SessionOutput.DiagnosticInfo diagnostic_info = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $diagnostic_info = null;
+    /**
+     * Context messages for external supervision guardrails.
+     *
+     * Generated from protobuf field <code>repeated .google.protobuf.Any context = 12;</code>
+     */
+    private $context;
     protected $output_type;
 
     /**
@@ -71,6 +77,8 @@ class SessionOutput extends \Google\Protobuf\Internal\Message
      *           Optional. Diagnostic information contains execution details during the
      *           processing of the input. Only populated in the last SessionOutput (with
      *           `turn_completed=true`) for each turn.
+     *     @type \Google\Protobuf\Any[] $context
+     *           Context messages for external supervision guardrails.
      * }
      */
     public function __construct($data = NULL) {
@@ -391,6 +399,32 @@ class SessionOutput extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Ces\V1\SessionOutput\DiagnosticInfo::class);
         $this->diagnostic_info = $var;
+
+        return $this;
+    }
+
+    /**
+     * Context messages for external supervision guardrails.
+     *
+     * Generated from protobuf field <code>repeated .google.protobuf.Any context = 12;</code>
+     * @return RepeatedField<\Google\Protobuf\Any>
+     */
+    public function getContext()
+    {
+        return $this->context;
+    }
+
+    /**
+     * Context messages for external supervision guardrails.
+     *
+     * Generated from protobuf field <code>repeated .google.protobuf.Any context = 12;</code>
+     * @param \Google\Protobuf\Any[] $var
+     * @return $this
+     */
+    public function setContext($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Protobuf\Any::class);
+        $this->context = $arr;
 
         return $this;
     }

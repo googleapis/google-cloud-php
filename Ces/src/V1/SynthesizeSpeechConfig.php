@@ -26,6 +26,16 @@ class SynthesizeSpeechConfig extends \Google\Protobuf\Internal\Message
      */
     protected $voice = '';
     /**
+     * Optional. The Cloud Storage URI to the audio sample for voice cloning. The
+     * audio sample should be a mono-channel, 24kHz WAV file.
+     * Note: Please make sure the CES service agent
+     * `service-<PROJECT-NUMBER>\@gcp-sa-ces.iam.gserviceaccount.com` has
+     * `storage.objects.get` permission to the Cloud Storage object.
+     *
+     * Generated from protobuf field <code>string voice_sample_gcs_uri = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $voice_sample_gcs_uri = '';
+    /**
      * Optional. The speaking rate/speed in the range [0.25, 2.0]. 1.0 is the
      * normal native speed supported by the specific voice. 2.0 is twice as fast,
      * and 0.5 is half as fast. Values outside of the range [0.25, 2.0] will
@@ -34,6 +44,22 @@ class SynthesizeSpeechConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>double speaking_rate = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $speaking_rate = 0.0;
+    /**
+     * Optional. The model used to synthesize audio.
+     * Currently supported values:
+     * - "gemini-3.1-flash-tts-preview"
+     * If empty, Chirp3-HD is used.
+     *
+     * Generated from protobuf field <code>string model = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $model = '';
+    /**
+     * Optional. The instruction used to synthesize speech when using a generative
+     * model.
+     *
+     * Generated from protobuf field <code>string instruction = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $instruction = '';
 
     /**
      * Constructor.
@@ -47,11 +73,25 @@ class SynthesizeSpeechConfig extends \Google\Protobuf\Internal\Message
      *           For the list of available voices, please refer to [Supported voices and
      *           languages](https://cloud.google.com/text-to-speech/docs/voices) from Cloud
      *           Text-to-Speech.
+     *     @type string $voice_sample_gcs_uri
+     *           Optional. The Cloud Storage URI to the audio sample for voice cloning. The
+     *           audio sample should be a mono-channel, 24kHz WAV file.
+     *           Note: Please make sure the CES service agent
+     *           `service-<PROJECT-NUMBER>\@gcp-sa-ces.iam.gserviceaccount.com` has
+     *           `storage.objects.get` permission to the Cloud Storage object.
      *     @type float $speaking_rate
      *           Optional. The speaking rate/speed in the range [0.25, 2.0]. 1.0 is the
      *           normal native speed supported by the specific voice. 2.0 is twice as fast,
      *           and 0.5 is half as fast. Values outside of the range [0.25, 2.0] will
      *           return an error.
+     *     @type string $model
+     *           Optional. The model used to synthesize audio.
+     *           Currently supported values:
+     *           - "gemini-3.1-flash-tts-preview"
+     *           If empty, Chirp3-HD is used.
+     *     @type string $instruction
+     *           Optional. The instruction used to synthesize speech when using a generative
+     *           model.
      * }
      */
     public function __construct($data = NULL) {
@@ -94,6 +134,40 @@ class SynthesizeSpeechConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. The Cloud Storage URI to the audio sample for voice cloning. The
+     * audio sample should be a mono-channel, 24kHz WAV file.
+     * Note: Please make sure the CES service agent
+     * `service-<PROJECT-NUMBER>\@gcp-sa-ces.iam.gserviceaccount.com` has
+     * `storage.objects.get` permission to the Cloud Storage object.
+     *
+     * Generated from protobuf field <code>string voice_sample_gcs_uri = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getVoiceSampleGcsUri()
+    {
+        return $this->voice_sample_gcs_uri;
+    }
+
+    /**
+     * Optional. The Cloud Storage URI to the audio sample for voice cloning. The
+     * audio sample should be a mono-channel, 24kHz WAV file.
+     * Note: Please make sure the CES service agent
+     * `service-<PROJECT-NUMBER>\@gcp-sa-ces.iam.gserviceaccount.com` has
+     * `storage.objects.get` permission to the Cloud Storage object.
+     *
+     * Generated from protobuf field <code>string voice_sample_gcs_uri = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setVoiceSampleGcsUri($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->voice_sample_gcs_uri = $var;
+
+        return $this;
+    }
+
+    /**
      * Optional. The speaking rate/speed in the range [0.25, 2.0]. 1.0 is the
      * normal native speed supported by the specific voice. 2.0 is twice as fast,
      * and 0.5 is half as fast. Values outside of the range [0.25, 2.0] will
@@ -121,6 +195,66 @@ class SynthesizeSpeechConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkDouble($var);
         $this->speaking_rate = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The model used to synthesize audio.
+     * Currently supported values:
+     * - "gemini-3.1-flash-tts-preview"
+     * If empty, Chirp3-HD is used.
+     *
+     * Generated from protobuf field <code>string model = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getModel()
+    {
+        return $this->model;
+    }
+
+    /**
+     * Optional. The model used to synthesize audio.
+     * Currently supported values:
+     * - "gemini-3.1-flash-tts-preview"
+     * If empty, Chirp3-HD is used.
+     *
+     * Generated from protobuf field <code>string model = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setModel($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->model = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The instruction used to synthesize speech when using a generative
+     * model.
+     *
+     * Generated from protobuf field <code>string instruction = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getInstruction()
+    {
+        return $this->instruction;
+    }
+
+    /**
+     * Optional. The instruction used to synthesize speech when using a generative
+     * model.
+     *
+     * Generated from protobuf field <code>string instruction = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setInstruction($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->instruction = $var;
 
         return $this;
     }

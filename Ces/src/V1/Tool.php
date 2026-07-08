@@ -43,6 +43,14 @@ class Tool extends \Google\Protobuf\Internal\Message
      */
     protected $execution_type = 0;
     /**
+     * Optional. The timeout for the tool execution. If not set, the default
+     * timeout is 30 seconds for `SYNCHRONOUS` tools and 60 seconds for
+     * `ASYNCHRONOUS` tools.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration timeout = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $timeout = null;
+    /**
      * Output only. Timestamp when the tool was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -106,6 +114,8 @@ class Tool extends \Google\Protobuf\Internal\Message
      *           Optional. The agent tool.
      *     @type \Google\Cloud\Ces\V1\WidgetTool $widget_tool
      *           Optional. The widget tool.
+     *     @type \Google\Cloud\Ces\V1\RemoteAgentTool $remote_agent_tool
+     *           Optional. The remote agent tool.
      *     @type string $name
      *           Identifier. The resource name of the tool. Format:
      *           * `projects/{project}/locations/{location}/apps/{app}/tools/{tool}`
@@ -120,6 +130,10 @@ class Tool extends \Google\Protobuf\Internal\Message
      *           is derived from its `name` property.
      *     @type int $execution_type
      *           Optional. The execution type of the tool.
+     *     @type \Google\Protobuf\Duration $timeout
+     *           Optional. The timeout for the tool execution. If not set, the default
+     *           timeout is 30 seconds for `SYNCHRONOUS` tools and 60 seconds for
+     *           `ASYNCHRONOUS` tools.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Timestamp when the tool was created.
      *     @type \Google\Protobuf\Timestamp $update_time
@@ -484,6 +498,37 @@ class Tool extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. The remote agent tool.
+     *
+     * Generated from protobuf field <code>.google.cloud.ces.v1.RemoteAgentTool remote_agent_tool = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Ces\V1\RemoteAgentTool|null
+     */
+    public function getRemoteAgentTool()
+    {
+        return $this->readOneof(25);
+    }
+
+    public function hasRemoteAgentTool()
+    {
+        return $this->hasOneof(25);
+    }
+
+    /**
+     * Optional. The remote agent tool.
+     *
+     * Generated from protobuf field <code>.google.cloud.ces.v1.RemoteAgentTool remote_agent_tool = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Ces\V1\RemoteAgentTool $var
+     * @return $this
+     */
+    public function setRemoteAgentTool($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Ces\V1\RemoteAgentTool::class);
+        $this->writeOneof(25, $var);
+
+        return $this;
+    }
+
+    /**
      * Identifier. The resource name of the tool. Format:
      * * `projects/{project}/locations/{location}/apps/{app}/tools/{tool}`
      *   for standalone tools.
@@ -573,6 +618,46 @@ class Tool extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Ces\V1\ExecutionType::class);
         $this->execution_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The timeout for the tool execution. If not set, the default
+     * timeout is 30 seconds for `SYNCHRONOUS` tools and 60 seconds for
+     * `ASYNCHRONOUS` tools.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration timeout = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Duration|null
+     */
+    public function getTimeout()
+    {
+        return $this->timeout;
+    }
+
+    public function hasTimeout()
+    {
+        return isset($this->timeout);
+    }
+
+    public function clearTimeout()
+    {
+        unset($this->timeout);
+    }
+
+    /**
+     * Optional. The timeout for the tool execution. If not set, the default
+     * timeout is 30 seconds for `SYNCHRONOUS` tools and 60 seconds for
+     * `ASYNCHRONOUS` tools.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration timeout = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\Duration $var
+     * @return $this
+     */
+    public function setTimeout($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
+        $this->timeout = $var;
 
         return $this;
     }
