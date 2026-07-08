@@ -191,6 +191,18 @@ return [
                     ],
                 ],
             ],
+            'GetAvailability' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Apps\Chat\V1\Availability',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetCustomEmoji' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Apps\Chat\V1\CustomEmoji',
@@ -431,6 +443,42 @@ return [
                 'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
                 'responseType' => 'Google\Apps\Chat\V1\ListSpacesResponse',
             ],
+            'MarkAsActive' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Apps\Chat\V1\Availability',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'MarkAsAway' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Apps\Chat\V1\Availability',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'MarkAsDoNotDisturb' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Apps\Chat\V1\Availability',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'MoveSectionItem' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Apps\Chat\V1\MoveSectionItemResponse',
@@ -470,6 +518,19 @@ return [
             'SetUpSpace' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Apps\Chat\V1\Space',
+            ],
+            'UpdateAvailability' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Apps\Chat\V1\Availability',
+                'headerParams' => [
+                    [
+                        'keyName' => 'availability.name',
+                        'fieldAccessors' => [
+                            'getAvailability',
+                            'getName',
+                        ],
+                    ],
+                ],
             ],
             'UpdateMembership' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
@@ -563,6 +624,7 @@ return [
             ],
             'templateMap' => [
                 'attachment' => 'spaces/{space}/messages/{message}/attachments/{attachment}',
+                'availability' => 'users/{user}/availability',
                 'customEmoji' => 'customEmojis/{custom_emoji}',
                 'membership' => 'spaces/{space}/members/{member}',
                 'message' => 'spaces/{space}/messages/{message}',
