@@ -1057,7 +1057,6 @@ class SpannerClient
     {
         $metricsClient = $this->pluck('metricServiceClient', $options, false);
         $timeoutMillis = $this->pluck('metricsTimeoutMillis', $options, false) ?? 100;
-        $location = $this->getLocation();
 
         if (!$this->pluck('enableBuiltInMetrics', $options, false)) {
             return;
@@ -1087,6 +1086,7 @@ class SpannerClient
             throw new ValidationException('The "metricServiceClient" option must be a MetricServiceClient instance.');
         }
 
+        $location = $this->getLocation();
         $metricsClientId = RUUID::uuid4()->toString() . '-' . getmypid();
         $exporter = new MetricsExporter($metricsClient, $this->projectId, $metricsClientId, $timeoutMillis);
         $reader = new ExportingReader($exporter);
