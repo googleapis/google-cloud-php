@@ -35,6 +35,11 @@
                                 "exportBackup"
                             ]
                         },
+                        "FinishMigration": {
+                            "methods": [
+                                "finishMigration"
+                            ]
+                        },
                         "GetBackup": {
                             "methods": [
                                 "getBackup"
@@ -78,6 +83,11 @@
                         "RescheduleMaintenance": {
                             "methods": [
                                 "rescheduleMaintenance"
+                            ]
+                        },
+                        "StartMigration": {
+                            "methods": [
+                                "startMigration"
                             ]
                         },
                         "UpdateInstance": {
