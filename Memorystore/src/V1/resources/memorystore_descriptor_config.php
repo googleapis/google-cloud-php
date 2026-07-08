@@ -118,7 +118,45 @@ return [
                     ],
                 ],
             ],
+            'FinishMigration' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Memorystore\V1\Instance',
+                    'metadataReturnType' => '\Google\Cloud\Memorystore\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'RescheduleMaintenance' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Memorystore\V1\Instance',
+                    'metadataReturnType' => '\Google\Cloud\Memorystore\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'StartMigration' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Memorystore\V1\Instance',
                     'metadataReturnType' => '\Google\Cloud\Memorystore\V1\OperationMetadata',
@@ -321,6 +359,7 @@ return [
                 'instance' => 'projects/{project}/locations/{location}/instances/{instance}',
                 'location' => 'projects/{project}/locations/{location}',
                 'network' => 'projects/{project}/global/networks/{network}',
+                'networkAttachment' => 'projects/{project}/regions/{region}/networkAttachments/{network_attachment}',
                 'serviceAttachment' => 'projects/{project}/regions/{region}/serviceAttachments/{service_attachment}',
                 'sharedRegionalCertificateAuthority' => 'projects/{project}/locations/{location}/sharedRegionalCertificateAuthority',
             ],

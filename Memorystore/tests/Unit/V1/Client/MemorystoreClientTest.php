@@ -39,6 +39,7 @@ use Google\Cloud\Memorystore\V1\CreateInstanceRequest;
 use Google\Cloud\Memorystore\V1\DeleteBackupRequest;
 use Google\Cloud\Memorystore\V1\DeleteInstanceRequest;
 use Google\Cloud\Memorystore\V1\ExportBackupRequest;
+use Google\Cloud\Memorystore\V1\FinishMigrationRequest;
 use Google\Cloud\Memorystore\V1\GetBackupCollectionRequest;
 use Google\Cloud\Memorystore\V1\GetBackupRequest;
 use Google\Cloud\Memorystore\V1\GetCertificateAuthorityRequest;
@@ -53,7 +54,9 @@ use Google\Cloud\Memorystore\V1\ListInstancesRequest;
 use Google\Cloud\Memorystore\V1\ListInstancesResponse;
 use Google\Cloud\Memorystore\V1\RescheduleMaintenanceRequest;
 use Google\Cloud\Memorystore\V1\RescheduleMaintenanceRequest\RescheduleType;
+use Google\Cloud\Memorystore\V1\SelfManagedSource;
 use Google\Cloud\Memorystore\V1\SharedRegionalCertificateAuthority;
+use Google\Cloud\Memorystore\V1\StartMigrationRequest;
 use Google\Cloud\Memorystore\V1\UpdateInstanceRequest;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
@@ -788,6 +791,164 @@ class MemorystoreClientTest extends GeneratedTest
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/exportBackupTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function finishMigrationTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/finishMigrationTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name2 = 'name2-1052831874';
+        $uid = 'uid115792';
+        $replicaCount = 564075208;
+        $shardCount = 495377042;
+        $engineVersion = 'engineVersion-618177573';
+        $deletionProtectionEnabled = true;
+        $simulateMaintenanceEvent = false;
+        $ondemandMaintenance = true;
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
+        $asyncInstanceEndpointsDeletionEnabled = true;
+        $kmsKey = 'kmsKey-591635343';
+        $backupCollection = 'backupCollection-1182285509';
+        $maintenanceVersion = 'maintenanceVersion-588975188';
+        $effectiveMaintenanceVersion = 'effectiveMaintenanceVersion1518555412';
+        $allowFewerZonesDeployment = false;
+        $serverCaPool = 'serverCaPool-1294323103';
+        $rotateServerCertificate = false;
+        $expectedResponse = new Instance();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setUid($uid);
+        $expectedResponse->setReplicaCount($replicaCount);
+        $expectedResponse->setShardCount($shardCount);
+        $expectedResponse->setEngineVersion($engineVersion);
+        $expectedResponse->setDeletionProtectionEnabled($deletionProtectionEnabled);
+        $expectedResponse->setSimulateMaintenanceEvent($simulateMaintenanceEvent);
+        $expectedResponse->setOndemandMaintenance($ondemandMaintenance);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
+        $expectedResponse->setAsyncInstanceEndpointsDeletionEnabled($asyncInstanceEndpointsDeletionEnabled);
+        $expectedResponse->setKmsKey($kmsKey);
+        $expectedResponse->setBackupCollection($backupCollection);
+        $expectedResponse->setMaintenanceVersion($maintenanceVersion);
+        $expectedResponse->setEffectiveMaintenanceVersion($effectiveMaintenanceVersion);
+        $expectedResponse->setAllowFewerZonesDeployment($allowFewerZonesDeployment);
+        $expectedResponse->setServerCaPool($serverCaPool);
+        $expectedResponse->setRotateServerCertificate($rotateServerCertificate);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/finishMigrationTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+        $request = (new FinishMigrationRequest())->setName($formattedName);
+        $response = $gapicClient->finishMigration($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.memorystore.v1.Memorystore/FinishMigration', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/finishMigrationTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function finishMigrationExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/finishMigrationTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+        $request = (new FinishMigrationRequest())->setName($formattedName);
+        $response = $gapicClient->finishMigration($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/finishMigrationTest');
         try {
             $response->pollUntilComplete([
                 'initialPollDelayMillis' => 1,
@@ -1551,6 +1712,188 @@ class MemorystoreClientTest extends GeneratedTest
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/rescheduleMaintenanceTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function startMigrationTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/startMigrationTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name2 = 'name2-1052831874';
+        $uid = 'uid115792';
+        $replicaCount = 564075208;
+        $shardCount = 495377042;
+        $engineVersion = 'engineVersion-618177573';
+        $deletionProtectionEnabled = true;
+        $simulateMaintenanceEvent = false;
+        $ondemandMaintenance = true;
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
+        $asyncInstanceEndpointsDeletionEnabled = true;
+        $kmsKey = 'kmsKey-591635343';
+        $backupCollection = 'backupCollection-1182285509';
+        $maintenanceVersion = 'maintenanceVersion-588975188';
+        $effectiveMaintenanceVersion = 'effectiveMaintenanceVersion1518555412';
+        $allowFewerZonesDeployment = false;
+        $serverCaPool = 'serverCaPool-1294323103';
+        $rotateServerCertificate = false;
+        $expectedResponse = new Instance();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setUid($uid);
+        $expectedResponse->setReplicaCount($replicaCount);
+        $expectedResponse->setShardCount($shardCount);
+        $expectedResponse->setEngineVersion($engineVersion);
+        $expectedResponse->setDeletionProtectionEnabled($deletionProtectionEnabled);
+        $expectedResponse->setSimulateMaintenanceEvent($simulateMaintenanceEvent);
+        $expectedResponse->setOndemandMaintenance($ondemandMaintenance);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
+        $expectedResponse->setAsyncInstanceEndpointsDeletionEnabled($asyncInstanceEndpointsDeletionEnabled);
+        $expectedResponse->setKmsKey($kmsKey);
+        $expectedResponse->setBackupCollection($backupCollection);
+        $expectedResponse->setMaintenanceVersion($maintenanceVersion);
+        $expectedResponse->setEffectiveMaintenanceVersion($effectiveMaintenanceVersion);
+        $expectedResponse->setAllowFewerZonesDeployment($allowFewerZonesDeployment);
+        $expectedResponse->setServerCaPool($serverCaPool);
+        $expectedResponse->setRotateServerCertificate($rotateServerCertificate);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/startMigrationTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $selfManagedSource = new SelfManagedSource();
+        $selfManagedSourceIpAddress = 'selfManagedSourceIpAddress-492809281';
+        $selfManagedSource->setIpAddress($selfManagedSourceIpAddress);
+        $selfManagedSourcePort = 1811124815;
+        $selfManagedSource->setPort($selfManagedSourcePort);
+        $selfManagedSourceNetworkAttachment = $gapicClient->networkAttachmentName(
+            '[PROJECT]',
+            '[REGION]',
+            '[NETWORK_ATTACHMENT]'
+        );
+        $selfManagedSource->setNetworkAttachment($selfManagedSourceNetworkAttachment);
+        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+        $request = (new StartMigrationRequest())->setSelfManagedSource($selfManagedSource)->setName($formattedName);
+        $response = $gapicClient->startMigration($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.memorystore.v1.Memorystore/StartMigration', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getSelfManagedSource();
+        $this->assertProtobufEquals($selfManagedSource, $actualValue);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/startMigrationTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function startMigrationExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/startMigrationTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $selfManagedSource = new SelfManagedSource();
+        $selfManagedSourceIpAddress = 'selfManagedSourceIpAddress-492809281';
+        $selfManagedSource->setIpAddress($selfManagedSourceIpAddress);
+        $selfManagedSourcePort = 1811124815;
+        $selfManagedSource->setPort($selfManagedSourcePort);
+        $selfManagedSourceNetworkAttachment = $gapicClient->networkAttachmentName(
+            '[PROJECT]',
+            '[REGION]',
+            '[NETWORK_ATTACHMENT]'
+        );
+        $selfManagedSource->setNetworkAttachment($selfManagedSourceNetworkAttachment);
+        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+        $request = (new StartMigrationRequest())->setSelfManagedSource($selfManagedSource)->setName($formattedName);
+        $response = $gapicClient->startMigration($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/startMigrationTest');
         try {
             $response->pollUntilComplete([
                 'initialPollDelayMillis' => 1,

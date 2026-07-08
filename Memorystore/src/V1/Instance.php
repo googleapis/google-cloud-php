@@ -159,9 +159,9 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     private $endpoints;
     /**
-     * Optional. The mode config for the instance.
+     * Optional. Immutable. The mode config for the instance.
      *
-     * Generated from protobuf field <code>.google.cloud.memorystore.v1.Instance.Mode mode = 26 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.memorystore.v1.Instance.Mode mode = 26 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     protected $mode = 0;
     /**
@@ -292,6 +292,12 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional bool rotate_server_certificate = 58 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = INPUT_ONLY];</code>
      */
     protected $rotate_server_certificate = null;
+    /**
+     * Output only. Migration config for the instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.memorystore.v1.MigrationConfig migration_config = 59 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $migration_config = null;
     protected $import_sources;
 
     /**
@@ -362,7 +368,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Memorystore\V1\Instance\InstanceEndpoint[] $endpoints
      *           Optional. Endpoints for the instance.
      *     @type int $mode
-     *           Optional. The mode config for the instance.
+     *           Optional. Immutable. The mode config for the instance.
      *     @type bool $simulate_maintenance_event
      *           Optional. Input only. Simulate a maintenance event.
      *     @type bool $ondemand_maintenance
@@ -413,6 +419,8 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           "projects/{project}/locations/{region}/caPools/{ca_pool}".
      *     @type bool $rotate_server_certificate
      *           Optional. Input only. Rotate the server certificates.
+     *     @type \Google\Cloud\Memorystore\V1\MigrationConfig $migration_config
+     *           Output only. Migration config for the instance.
      * }
      */
     public function __construct($data = NULL) {
@@ -1177,9 +1185,9 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The mode config for the instance.
+     * Optional. Immutable. The mode config for the instance.
      *
-     * Generated from protobuf field <code>.google.cloud.memorystore.v1.Instance.Mode mode = 26 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.memorystore.v1.Instance.Mode mode = 26 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return int
      */
     public function getMode()
@@ -1188,9 +1196,9 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The mode config for the instance.
+     * Optional. Immutable. The mode config for the instance.
      *
-     * Generated from protobuf field <code>.google.cloud.memorystore.v1.Instance.Mode mode = 26 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.memorystore.v1.Instance.Mode mode = 26 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param int $var
      * @return $this
      */
@@ -1902,6 +1910,42 @@ class Instance extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->rotate_server_certificate = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Migration config for the instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.memorystore.v1.MigrationConfig migration_config = 59 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Memorystore\V1\MigrationConfig|null
+     */
+    public function getMigrationConfig()
+    {
+        return $this->migration_config;
+    }
+
+    public function hasMigrationConfig()
+    {
+        return isset($this->migration_config);
+    }
+
+    public function clearMigrationConfig()
+    {
+        unset($this->migration_config);
+    }
+
+    /**
+     * Output only. Migration config for the instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.memorystore.v1.MigrationConfig migration_config = 59 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Memorystore\V1\MigrationConfig $var
+     * @return $this
+     */
+    public function setMigrationConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Memorystore\V1\MigrationConfig::class);
+        $this->migration_config = $var;
 
         return $this;
     }

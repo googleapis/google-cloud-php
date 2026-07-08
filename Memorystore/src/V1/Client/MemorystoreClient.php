@@ -46,6 +46,7 @@ use Google\Cloud\Memorystore\V1\CreateInstanceRequest;
 use Google\Cloud\Memorystore\V1\DeleteBackupRequest;
 use Google\Cloud\Memorystore\V1\DeleteInstanceRequest;
 use Google\Cloud\Memorystore\V1\ExportBackupRequest;
+use Google\Cloud\Memorystore\V1\FinishMigrationRequest;
 use Google\Cloud\Memorystore\V1\GetBackupCollectionRequest;
 use Google\Cloud\Memorystore\V1\GetBackupRequest;
 use Google\Cloud\Memorystore\V1\GetCertificateAuthorityRequest;
@@ -57,6 +58,7 @@ use Google\Cloud\Memorystore\V1\ListBackupsRequest;
 use Google\Cloud\Memorystore\V1\ListInstancesRequest;
 use Google\Cloud\Memorystore\V1\RescheduleMaintenanceRequest;
 use Google\Cloud\Memorystore\V1\SharedRegionalCertificateAuthority;
+use Google\Cloud\Memorystore\V1\StartMigrationRequest;
 use Google\Cloud\Memorystore\V1\UpdateInstanceRequest;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
@@ -79,6 +81,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<OperationResponse> deleteBackupAsync(DeleteBackupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteInstanceAsync(DeleteInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> exportBackupAsync(ExportBackupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> finishMigrationAsync(FinishMigrationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Backup> getBackupAsync(GetBackupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<BackupCollection> getBackupCollectionAsync(GetBackupCollectionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<CertificateAuthority> getCertificateAuthorityAsync(GetCertificateAuthorityRequest $request, array $optionalArgs = [])
@@ -88,6 +91,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<PagedListResponse> listBackupsAsync(ListBackupsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listInstancesAsync(ListInstancesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> rescheduleMaintenanceAsync(RescheduleMaintenanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> startMigrationAsync(StartMigrationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateInstanceAsync(UpdateInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
@@ -117,7 +121,11 @@ final class MemorystoreClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/cloud-platform',
+        'https://www.googleapis.com/auth/memorystore.read-only',
+        'https://www.googleapis.com/auth/memorystore.read-write',
+    ];
 
     private $operationsClient;
 
@@ -374,6 +382,25 @@ final class MemorystoreClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * network_attachment resource.
+     *
+     * @param string $project
+     * @param string $region
+     * @param string $networkAttachment
+     *
+     * @return string The formatted network_attachment resource.
+     */
+    public static function networkAttachmentName(string $project, string $region, string $networkAttachment): string
+    {
+        return self::getPathTemplate('networkAttachment')->render([
+            'project' => $project,
+            'region' => $region,
+            'network_attachment' => $networkAttachment,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * service_attachment resource.
      *
      * @param string $project
@@ -421,6 +448,7 @@ final class MemorystoreClient
      * - instance: projects/{project}/locations/{location}/instances/{instance}
      * - location: projects/{project}/locations/{location}
      * - network: projects/{project}/global/networks/{network}
+     * - networkAttachment: projects/{project}/regions/{region}/networkAttachments/{network_attachment}
      * - serviceAttachment: projects/{project}/regions/{region}/serviceAttachments/{service_attachment}
      * - sharedRegionalCertificateAuthority: projects/{project}/locations/{location}/sharedRegionalCertificateAuthority
      *
@@ -667,6 +695,37 @@ final class MemorystoreClient
     public function exportBackup(ExportBackupRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('ExportBackup', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Finalizes the migration process.
+     *
+     * After the successful completion of this operation, the target instance
+     * will:
+     * 1. Stop replicating from the source instance.
+     * 2. Allow both reads and writes.
+     *
+     * The async variant is {@see MemorystoreClient::finishMigrationAsync()} .
+     *
+     * @example samples/V1/MemorystoreClient/finish_migration.php
+     *
+     * @param FinishMigrationRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<Instance>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function finishMigration(FinishMigrationRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('FinishMigration', $request, $callOptions)->wait();
     }
 
     /**
@@ -918,6 +977,39 @@ final class MemorystoreClient
     }
 
     /**
+     * Initiates the migration of a source instance to the target Memorystore
+     * instance.
+     *
+     * After the successful completion of this operation, the target instance
+     * will:
+     * 1. Set up replication with the source instance and replicate any writes to
+     * the source instance.
+     * 2. Only allow reads.
+     *
+     * The async variant is {@see MemorystoreClient::startMigrationAsync()} .
+     *
+     * @example samples/V1/MemorystoreClient/start_migration.php
+     *
+     * @param StartMigrationRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<Instance>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function startMigration(StartMigrationRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('StartMigration', $request, $callOptions)->wait();
+    }
+
+    /**
      * Updates the parameters of a single Instance.
      *
      * The async variant is {@see MemorystoreClient::updateInstanceAsync()} .
@@ -971,6 +1063,21 @@ final class MemorystoreClient
 
     /**
      * Lists information about the supported locations for this service.
+     *
+     * This method lists locations based on the resource scope provided in
+     * the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+     * **Global locations**: If `name` is empty, the method lists the
+     * public locations available to all projects. * **Project-specific
+     * locations**: If `name` follows the format
+     * `projects/{project}`, the method lists locations visible to that
+     * specific project. This includes public, private, or other
+     * project-specific locations enabled for the project.
+     *
+     * For gRPC and client library implementations, the resource name is
+     * passed as the `name` field. For direct service calls, the resource
+     * name is
+     * incorporated into the request path based on the specific service
+     * implementation and version.
      *
      * The async variant is {@see MemorystoreClient::listLocationsAsync()} .
      *

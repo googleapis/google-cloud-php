@@ -63,6 +63,11 @@
                     "retry_codes_name": "no_retry_codes",
                     "retry_params_name": "no_retry_params"
                 },
+                "FinishMigration": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
                 "GetBackup": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "no_retry_codes",
@@ -104,6 +109,11 @@
                     "retry_params_name": "retry_policy_1_params"
                 },
                 "RescheduleMaintenance": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "StartMigration": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "no_retry_codes",
                     "retry_params_name": "no_retry_params"

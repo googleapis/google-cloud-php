@@ -46,7 +46,7 @@ class PscConnection extends \Google\Protobuf\Internal\Message
     protected $project_id = '';
     /**
      * Required. The consumer network where the IP address resides, in the form of
-     * projects/{project_id}/global/networks/{network_id}.
+     * projects/{project_id}/global/networks/{network_name}.
      *
      * Generated from protobuf field <code>string network = 5 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -99,7 +99,7 @@ class PscConnection extends \Google\Protobuf\Internal\Message
      *           from.
      *     @type string $network
      *           Required. The consumer network where the IP address resides, in the form of
-     *           projects/{project_id}/global/networks/{network_id}.
+     *           projects/{project_id}/global/networks/{network_name}.
      *     @type string $service_attachment
      *           Required. The service attachment which is the target of the PSC connection,
      *           in the form of
@@ -265,7 +265,7 @@ class PscConnection extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The consumer network where the IP address resides, in the form of
-     * projects/{project_id}/global/networks/{network_id}.
+     * projects/{project_id}/global/networks/{network_name}.
      *
      * Generated from protobuf field <code>string network = 5 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -277,7 +277,7 @@ class PscConnection extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The consumer network where the IP address resides, in the form of
-     * projects/{project_id}/global/networks/{network_id}.
+     * projects/{project_id}/global/networks/{network_name}.
      *
      * Generated from protobuf field <code>string network = 5 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
