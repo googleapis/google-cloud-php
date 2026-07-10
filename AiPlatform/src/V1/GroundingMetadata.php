@@ -28,6 +28,14 @@ class GroundingMetadata extends \Google\Protobuf\Internal\Message
      */
     protected $search_entry_point = null;
     /**
+     * Optional. The queries that were executed by the retrieval tools.
+     * This field is populated only when the grounding source is a retrieval tool,
+     * such as Vertex AI Search.
+     *
+     * Generated from protobuf field <code>repeated string retrieval_queries = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $retrieval_queries;
+    /**
      * List of supporting references retrieved from specified grounding source.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.GroundingChunk grounding_chunks = 5;</code>
@@ -71,6 +79,10 @@ class GroundingMetadata extends \Google\Protobuf\Internal\Message
      *           Optional. Web search queries for the following-up web search.
      *     @type \Google\Cloud\AIPlatform\V1\SearchEntryPoint $search_entry_point
      *           Optional. Google search entry for the following-up web searches.
+     *     @type string[] $retrieval_queries
+     *           Optional. The queries that were executed by the retrieval tools.
+     *           This field is populated only when the grounding source is a retrieval tool,
+     *           such as Vertex AI Search.
      *     @type \Google\Cloud\AIPlatform\V1\GroundingChunk[] $grounding_chunks
      *           List of supporting references retrieved from specified grounding source.
      *     @type \Google\Cloud\AIPlatform\V1\GroundingSupport[] $grounding_supports
@@ -149,6 +161,36 @@ class GroundingMetadata extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\SearchEntryPoint::class);
         $this->search_entry_point = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The queries that were executed by the retrieval tools.
+     * This field is populated only when the grounding source is a retrieval tool,
+     * such as Vertex AI Search.
+     *
+     * Generated from protobuf field <code>repeated string retrieval_queries = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return RepeatedField<string>
+     */
+    public function getRetrievalQueries()
+    {
+        return $this->retrieval_queries;
+    }
+
+    /**
+     * Optional. The queries that were executed by the retrieval tools.
+     * This field is populated only when the grounding source is a retrieval tool,
+     * such as Vertex AI Search.
+     *
+     * Generated from protobuf field <code>repeated string retrieval_queries = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string[] $var
+     * @return $this
+     */
+    public function setRetrievalQueries($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->retrieval_queries = $arr;
 
         return $this;
     }
