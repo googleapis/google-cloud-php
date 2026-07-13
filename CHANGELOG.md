@@ -1,5 +1,58 @@
 # Changelog
 
+## 0.335.0
+
+<details><summary>google/cloud-ai-platform 1.62.0</summary>
+
+
+
+### Features
+
+* [AiPlatform] expose retrieval_queries in GroundingMetadata for the v1 API ([#9338](https://github.com/googleapis/google-cloud-php/issues/9338)) ([998f9c2](https://github.com/googleapis/google-cloud-php/commit/998f9c2698b492b7d8f2f4d102c12e2a0b679a44))
+
+</details>
+
+<details><summary>google/apps-chat 0.22.0</summary>
+
+
+
+### Features
+
+* [AppsChat] Add access permission settings to Space resource for configuring space discovery and join permissions ([#9337](https://github.com/googleapis/google-cloud-php/issues/9337)) ([d152d9b](https://github.com/googleapis/google-cloud-php/commit/d152d9bdb3f6c789749e3960c68a9a60ac39f86b))
+* [AppsChat] Add Availability Api's ([#9320](https://github.com/googleapis/google-cloud-php/issues/9320)) ([9e1e169](https://github.com/googleapis/google-cloud-php/commit/9e1e16935d9626cb19acbbd6c08689809cf7490b))
+
+</details>
+
+<details><summary>google/cloud-ces 0.3.0</summary>
+
+
+
+### Features
+
+* [Ces] update public libraries for CES v1 ([#9324](https://github.com/googleapis/google-cloud-php/issues/9324)) ([9902096](https://github.com/googleapis/google-cloud-php/commit/99020965fa5d4d4ee1e2dbdb37689346dee2d675))
+
+</details>
+
+<details><summary>google/cloud-discoveryengine 1.12.0</summary>
+
+
+
+### Features
+
+* [DiscoveryEngine] Add RelevanceFilterSpec to SearchRequest in v1 ([#9333](https://github.com/googleapis/google-cloud-php/issues/9333)) ([72f6aa0](https://github.com/googleapis/google-cloud-php/commit/72f6aa0fdbd444ba93a694c4188c127c16f68eee))
+
+</details>
+
+<details><summary>google/cloud-memorystore 0.11.0</summary>
+
+
+
+### Features
+
+* [Memorystore] Add support for self managed migrations feature to Memorystore for Valkey ([#9326](https://github.com/googleapis/google-cloud-php/issues/9326)) ([266495c](https://github.com/googleapis/google-cloud-php/commit/266495c64fcc91ce462a7565023562efe5a8168e))
+
+</details>
+
 ## 0.334.0
 
 <details><summary>google/cloud-ai-platform 1.61.0</summary>
