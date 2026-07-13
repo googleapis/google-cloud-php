@@ -1,0 +1,52 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.shopping.merchant.products.v1",
+    "libraryPackage": "Google\\Shopping\\Merchant\\Products\\V1",
+    "services": {
+        "ProductInputsService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ProductInputsServiceGapicClient",
+                    "rpcs": {
+                        "DeleteProductInput": {
+                            "methods": [
+                                "deleteProductInput"
+                            ]
+                        },
+                        "InsertProductInput": {
+                            "methods": [
+                                "insertProductInput"
+                            ]
+                        },
+                        "UpdateProductInput": {
+                            "methods": [
+                                "updateProductInput"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "ProductsService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ProductsServiceGapicClient",
+                    "rpcs": {
+                        "GetProduct": {
+                            "methods": [
+                                "getProduct"
+                            ]
+                        },
+                        "ListProducts": {
+                            "methods": [
+                                "listProducts"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
