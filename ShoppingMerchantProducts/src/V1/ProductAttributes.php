@@ -552,6 +552,14 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
      */
     protected $pickup_sla = null;
     /**
+     * Optional. The [pickup
+     * cost](https://support.google.com/merchants/answer/16988704) for an item
+     * when a customer buys it online and picks it up at a store.
+     *
+     * Generated from protobuf field <code>optional .google.shopping.merchant.products.v1.PickupCost pickup_cost = 172 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $pickup_cost = null;
+    /**
      * [Link template](https://support.google.com/merchants/answer/13871172) for
      * business hosted local storefront.
      *
@@ -721,6 +729,342 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string video_links = 169 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $video_links;
+    /**
+     * The [minimum value](https://support.google.com/merchants/answer/16989009)
+     * in the cart before a customer can initiate checkout. Supports multiple
+     * minimum order values. Different minimum order values can be specified per
+     * country, service and surface. Maximum entries: 100.
+     *
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1.ProductMinimumOrderValue minimum_order_values = 146;</code>
+     */
+    private $minimum_order_values;
+    /**
+     * The [Vehicle Identification Number
+     * (VIN)](https://support.google.com/google-ads/answer/14154510) of the
+     * vehicle.
+     *
+     * Generated from protobuf field <code>string vin = 147;</code>
+     */
+    protected $vin = '';
+    /**
+     * The [Model](https://support.google.com/google-ads/answer/14154511) of the
+     * vehicle, such as `LX`, `EX`, and others.
+     *
+     * Generated from protobuf field <code>string model = 148;</code>
+     */
+    protected $model = '';
+    /**
+     * The [Trim](https://support.google.com/google-ads/answer/14154176) of the
+     * vehicle model, such as `S`, `SV`, `SL` and others.
+     *
+     * Generated from protobuf field <code>string trim = 149;</code>
+     */
+    protected $trim = '';
+    /**
+     * The [body style](https://support.google.com/google-ads/answer/14157085) of
+     * the vehicle.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.products.v1.ProductAttributes.VehicleBodyStyle body_style = 150;</code>
+     */
+    protected $body_style = 0;
+    /**
+     * The [Year](https://support.google.com/google-ads/answer/14152816) of the
+     * vehicle model.
+     *
+     * Generated from protobuf field <code>int64 year = 151;</code>
+     */
+    protected $year = 0;
+    /**
+     * The number of miles/kms on the vehicle. See the
+     * [Mileage](https://support.google.com/google-ads/answer/14156166) for more
+     * information.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.products.v1.ProductAttributes.Mileage mileage = 152;</code>
+     */
+    protected $mileage = null;
+    /**
+     * The [electric range](https://support.google.com/google-ads/answer/15162232)
+     * of the vehicle in miles/kms.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.products.v1.ProductAttributes.Mileage electric_range = 153;</code>
+     */
+    protected $electric_range = null;
+    /**
+     * The [fuel
+     * consumption](https://support.google.com/google-ads/answer/14543580) of the
+     * vehicle.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.products.v1.ProductAttributes.FuelConsumption fuel_consumption = 154;</code>
+     */
+    protected $fuel_consumption = null;
+    /**
+     * The fuel consumption of the vehicle when the hybrid battery is discharged.
+     * See the [Help Center
+     * article](https://support.google.com/google-ads/answer/15162033) for more
+     * information.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.products.v1.ProductAttributes.FuelConsumption fuel_consumption_discharged_battery = 155;</code>
+     */
+    protected $fuel_consumption_discharged_battery = null;
+    /**
+     * The [energy
+     * consumption](https://support.google.com/google-ads/answer/14546149) of the
+     * vehicle.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.products.v1.ProductAttributes.EnergyConsumption energy_consumption = 156;</code>
+     */
+    protected $energy_consumption = null;
+    /**
+     * The [co2 emission](https://support.google.com/google-ads/answer/14546146)
+     * of the vehicle.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.products.v1.ProductAttributes.Co2Emissions co2_emissions = 157;</code>
+     */
+    protected $co2_emissions = null;
+    /**
+     * The date the vehicle was first registered. Format: `YYYY-MM`. See the
+     * [Date first
+     * registered](https://support.google.com/google-ads/answer/14546138) for more
+     * information.
+     *
+     * Generated from protobuf field <code>string date_first_registered = 158;</code>
+     */
+    protected $date_first_registered = '';
+    /**
+     * The [engine](https://support.google.com/google-ads/answer/14156068) type of
+     * the vehicle.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.products.v1.ProductAttributes.EngineType engine = 159;</code>
+     */
+    protected $engine = 0;
+    /**
+     * The [emission
+     * standard](https://support.google.com/google-ads/answer/14869021) of the
+     * vehicle.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.products.v1.ProductAttributes.EmissionsStandard emissions_standard = 160;</code>
+     */
+    protected $emissions_standard = 0;
+    /**
+     * Whether the vehicle is OEM [certified
+     * pre-owned](https://support.google.com/google-ads/answer/14156475).
+     *
+     * Generated from protobuf field <code>bool certified_pre_owned = 161;</code>
+     */
+    protected $certified_pre_owned = false;
+    /**
+     * The MSRP (Manufacturer Suggested Retail Price) for the vehicle in its
+     * current configuration. See the [Vehicle
+     * MSRP](https://support.google.com/google-ads/answer/14154171) for more
+     * information.
+     *
+     * Generated from protobuf field <code>.google.shopping.type.Price vehicle_msrp = 162;</code>
+     */
+    protected $vehicle_msrp = null;
+    /**
+     * The all-in advertised price for a vehicle, which includes costs for the
+     * following – any accessories attached to the vehicle, environmental levies,
+     * extra warranty, fuel, freight, pre-delivery inspection (PDI), dealer fees
+     * for handling licensing, provincial regulatory fees, miscellaneous dealer
+     * charges for security etching and nitrogen tire fill, and
+     * factory-to-customer or dealer-to-customer discounts or incentives. See the
+     * [Vehicle all-in
+     * price](https://support.google.com/google-ads/answer/14156981) for more
+     * information.
+     *
+     * Generated from protobuf field <code>.google.shopping.type.Price vehicle_all_in_price = 163;</code>
+     */
+    protected $vehicle_all_in_price = null;
+    /**
+     * The [price type](https://support.google.com/google-ads/answer/14592783) of
+     * the vehicle.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.products.v1.ProductAttributes.VehiclePriceType vehicle_price_type = 164;</code>
+     */
+    protected $vehicle_price_type = 0;
+    /**
+     * Whether the vehicle is sold with mandatory inspection and maintenance
+     * performed before delivery. See the [Vehicle mandatory inspection
+     * included](https://support.google.com/google-ads/answer/15956630) for more
+     * information.`
+     *
+     * Generated from protobuf field <code>bool vehicle_mandatory_inspection_included = 166;</code>
+     */
+    protected $vehicle_mandatory_inspection_included = false;
+    /**
+     * The miscellaneous expenses like insurance and registration fees of the
+     * vehicle. See the [Vehicle
+     * expenses](https://support.google.com/google-ads/answer/15957154) for more
+     * information.
+     *
+     * Generated from protobuf field <code>.google.shopping.type.Price vehicle_expenses = 167;</code>
+     */
+    protected $vehicle_expenses = null;
+    /**
+     * The [warranty](https://support.google.com/google-ads/answer/15957626) of
+     * the vehicle.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.products.v1.ProductAttributes.Warranty warranty = 168;</code>
+     */
+    protected $warranty = null;
+    /**
+     * The display address of the property.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.products.v1.ProductAttributes.DisplayAddress display_address = 179;</code>
+     */
+    protected $display_address = null;
+    /**
+     * The latitude of the property. The value must be between -90 (inclusive) and
+     * 90 (inclusive), up to 6 decimal places.
+     *
+     * Generated from protobuf field <code>optional double latitude = 180;</code>
+     */
+    protected $latitude = null;
+    /**
+     * The longitude of the property. The value must be between -180 (inclusive)
+     * and 180 (inclusive), up to 6 decimal places.
+     *
+     * Generated from protobuf field <code>optional double longitude = 181;</code>
+     */
+    protected $longitude = null;
+    /**
+     * The neighborhood (locality) of the property, such as `Wallingford`,
+     * `Greenwood`, etc.
+     *
+     * Generated from protobuf field <code>string neighborhood = 182;</code>
+     */
+    protected $neighborhood = '';
+    /**
+     * The unit area of the property, such as `1000 sqft`.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.products.v1.ProductAttributes.UnitArea unit_area = 183;</code>
+     */
+    protected $unit_area = null;
+    /**
+     * The number of units available for a specific floor plan of the property.
+     * The value must be greater than 0.
+     *
+     * Generated from protobuf field <code>optional int64 number_of_units = 184;</code>
+     */
+    protected $number_of_units = null;
+    /**
+     * The name of the property.
+     *
+     * Generated from protobuf field <code>string property_name = 185;</code>
+     */
+    protected $property_name = '';
+    /**
+     * The number of bedrooms in the property. The value must be greater than or
+     * equal to 0 and a multiple of 1.0.
+     *
+     * Generated from protobuf field <code>optional double number_of_bedrooms = 186;</code>
+     */
+    protected $number_of_bedrooms = null;
+    /**
+     * The number of bathrooms in the property. The value must be greater than 0
+     * and a multiple of 0.5.
+     *
+     * Generated from protobuf field <code>optional double number_of_bathrooms = 187;</code>
+     */
+    protected $number_of_bathrooms = null;
+    /**
+     * The type of property.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.products.v1.ProductAttributes.PropertyType property_type = 188;</code>
+     */
+    protected $property_type = 0;
+    /**
+     * The amenity features for the property.
+     *
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1.ProductAttributes.AmenityFeature amenity_feature = 189;</code>
+     */
+    private $amenity_feature;
+    /**
+     * The utilities included for the property.
+     *
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1.ProductAttributes.UtilitiesIncluded utilities_included = 190;</code>
+     */
+    private $utilities_included;
+    /**
+     * The pet policy for the property.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.products.v1.ProductAttributes.PetPolicy pet_policy = 191;</code>
+     */
+    protected $pet_policy = null;
+    /**
+     * The specialty housing type for the property.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.products.v1.ProductAttributes.SpecialtyHousingType specialty_housing_type = 192;</code>
+     */
+    protected $specialty_housing_type = 0;
+    /**
+     * The product fee for the property.
+     *
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1.ProductAttributes.ProductFee product_fee = 193;</code>
+     */
+    private $product_fee;
+    /**
+     * The short title of the item.
+     *
+     * Generated from protobuf field <code>optional string short_title = 194;</code>
+     */
+    protected $short_title = null;
+    /**
+     * Optional. Contains user-, merchant-, and manufacturer-authored [questions
+     * and answers](https://support.google.com/merchants/answer/17085211) about
+     * the product. Max 30 question and answer pairs. Max 10000 characters total.
+     * Each question can have max 1000 characters. Each answer can have max 1000
+     * characters.
+     *
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1.ProductAttributes.QuestionAndAnswer questions_and_answers = 173 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $questions_and_answers;
+    /**
+     * Optional. Indicates the
+     * [popularity](https://support.google.com/merchants/answer/17085297) of the
+     * product in a merchant's inventory. Using a scale of 0.0 (lowest) to 100.0
+     * (highest).
+     *
+     * Generated from protobuf field <code>float popularity_rank = 174 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $popularity_rank = 0.0;
+    /**
+     * Optional. Represents the [title of the product
+     * group](https://support.google.com/merchants/answer/17085146) to which
+     * this variant product belongs. This can be used along with the [item group
+     * id](https://support.google.com/merchants/answer/6324507) attribute.
+     * It lets you perform better grouping of variant products, and helps
+     * identifying common product characteristics more efficiently.
+     *
+     * Generated from protobuf field <code>string item_group_title = 175 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $item_group_title = '';
+    /**
+     * Optional. Contains a list of PDF [document
+     * URLs](https://support.google.com/merchants/answer/17084656) for the
+     * product. Examples are training manuals, user guides, assembly instructions,
+     * package inserts, etc. Must start with "http://" or "https://"), ASCII
+     * characters only, and RFC 3986 compliant.
+     *
+     * Generated from protobuf field <code>repeated string document_links = 176 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $document_links;
+    /**
+     * Optional. Contains the [list of all variant-identifying
+     * options](https://support.google.com/merchants/answer/17085214) of this
+     * product.
+     *
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1.ProductAttributes.VariantOption variant_options = 177 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $variant_options;
+    /**
+     * Optional. Specifies how other [products are
+     * related](https://support.google.com/merchants/answer/17085213) to this
+     * product.
+     *
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1.ProductAttributes.RelatedProduct related_products = 178 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $related_products;
 
     /**
      * Constructor.
@@ -956,6 +1300,10 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
      *     @type int $pickup_sla
      *           Item store pickup timeline. For more information, see
      *           [Pickup SLA](https://support.google.com/merchants/answer/14635400).
+     *     @type \Google\Shopping\Merchant\Products\V1\PickupCost $pickup_cost
+     *           Optional. The [pickup
+     *           cost](https://support.google.com/merchants/answer/16988704) for an item
+     *           when a customer buys it online and picks it up at a store.
      *     @type string $link_template
      *           [Link template](https://support.google.com/merchants/answer/13871172) for
      *           business hosted local storefront.
@@ -1042,6 +1390,166 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
      *           more visuals for your product beyond your image attributes. See the [Help
      *           Center article](https://support.google.com/merchants/answer/15216925) for
      *           more information.
+     *     @type \Google\Shopping\Merchant\Products\V1\ProductMinimumOrderValue[] $minimum_order_values
+     *           The [minimum value](https://support.google.com/merchants/answer/16989009)
+     *           in the cart before a customer can initiate checkout. Supports multiple
+     *           minimum order values. Different minimum order values can be specified per
+     *           country, service and surface. Maximum entries: 100.
+     *     @type string $vin
+     *           The [Vehicle Identification Number
+     *           (VIN)](https://support.google.com/google-ads/answer/14154510) of the
+     *           vehicle.
+     *     @type string $model
+     *           The [Model](https://support.google.com/google-ads/answer/14154511) of the
+     *           vehicle, such as `LX`, `EX`, and others.
+     *     @type string $trim
+     *           The [Trim](https://support.google.com/google-ads/answer/14154176) of the
+     *           vehicle model, such as `S`, `SV`, `SL` and others.
+     *     @type int $body_style
+     *           The [body style](https://support.google.com/google-ads/answer/14157085) of
+     *           the vehicle.
+     *     @type int|string $year
+     *           The [Year](https://support.google.com/google-ads/answer/14152816) of the
+     *           vehicle model.
+     *     @type \Google\Shopping\Merchant\Products\V1\ProductAttributes\Mileage $mileage
+     *           The number of miles/kms on the vehicle. See the
+     *           [Mileage](https://support.google.com/google-ads/answer/14156166) for more
+     *           information.
+     *     @type \Google\Shopping\Merchant\Products\V1\ProductAttributes\Mileage $electric_range
+     *           The [electric range](https://support.google.com/google-ads/answer/15162232)
+     *           of the vehicle in miles/kms.
+     *     @type \Google\Shopping\Merchant\Products\V1\ProductAttributes\FuelConsumption $fuel_consumption
+     *           The [fuel
+     *           consumption](https://support.google.com/google-ads/answer/14543580) of the
+     *           vehicle.
+     *     @type \Google\Shopping\Merchant\Products\V1\ProductAttributes\FuelConsumption $fuel_consumption_discharged_battery
+     *           The fuel consumption of the vehicle when the hybrid battery is discharged.
+     *           See the [Help Center
+     *           article](https://support.google.com/google-ads/answer/15162033) for more
+     *           information.
+     *     @type \Google\Shopping\Merchant\Products\V1\ProductAttributes\EnergyConsumption $energy_consumption
+     *           The [energy
+     *           consumption](https://support.google.com/google-ads/answer/14546149) of the
+     *           vehicle.
+     *     @type \Google\Shopping\Merchant\Products\V1\ProductAttributes\Co2Emissions $co2_emissions
+     *           The [co2 emission](https://support.google.com/google-ads/answer/14546146)
+     *           of the vehicle.
+     *     @type string $date_first_registered
+     *           The date the vehicle was first registered. Format: `YYYY-MM`. See the
+     *           [Date first
+     *           registered](https://support.google.com/google-ads/answer/14546138) for more
+     *           information.
+     *     @type int $engine
+     *           The [engine](https://support.google.com/google-ads/answer/14156068) type of
+     *           the vehicle.
+     *     @type int $emissions_standard
+     *           The [emission
+     *           standard](https://support.google.com/google-ads/answer/14869021) of the
+     *           vehicle.
+     *     @type bool $certified_pre_owned
+     *           Whether the vehicle is OEM [certified
+     *           pre-owned](https://support.google.com/google-ads/answer/14156475).
+     *     @type \Google\Shopping\Type\Price $vehicle_msrp
+     *           The MSRP (Manufacturer Suggested Retail Price) for the vehicle in its
+     *           current configuration. See the [Vehicle
+     *           MSRP](https://support.google.com/google-ads/answer/14154171) for more
+     *           information.
+     *     @type \Google\Shopping\Type\Price $vehicle_all_in_price
+     *           The all-in advertised price for a vehicle, which includes costs for the
+     *           following – any accessories attached to the vehicle, environmental levies,
+     *           extra warranty, fuel, freight, pre-delivery inspection (PDI), dealer fees
+     *           for handling licensing, provincial regulatory fees, miscellaneous dealer
+     *           charges for security etching and nitrogen tire fill, and
+     *           factory-to-customer or dealer-to-customer discounts or incentives. See the
+     *           [Vehicle all-in
+     *           price](https://support.google.com/google-ads/answer/14156981) for more
+     *           information.
+     *     @type int $vehicle_price_type
+     *           The [price type](https://support.google.com/google-ads/answer/14592783) of
+     *           the vehicle.
+     *     @type bool $vehicle_mandatory_inspection_included
+     *           Whether the vehicle is sold with mandatory inspection and maintenance
+     *           performed before delivery. See the [Vehicle mandatory inspection
+     *           included](https://support.google.com/google-ads/answer/15956630) for more
+     *           information.`
+     *     @type \Google\Shopping\Type\Price $vehicle_expenses
+     *           The miscellaneous expenses like insurance and registration fees of the
+     *           vehicle. See the [Vehicle
+     *           expenses](https://support.google.com/google-ads/answer/15957154) for more
+     *           information.
+     *     @type \Google\Shopping\Merchant\Products\V1\ProductAttributes\Warranty $warranty
+     *           The [warranty](https://support.google.com/google-ads/answer/15957626) of
+     *           the vehicle.
+     *     @type \Google\Shopping\Merchant\Products\V1\ProductAttributes\DisplayAddress $display_address
+     *           The display address of the property.
+     *     @type float $latitude
+     *           The latitude of the property. The value must be between -90 (inclusive) and
+     *           90 (inclusive), up to 6 decimal places.
+     *     @type float $longitude
+     *           The longitude of the property. The value must be between -180 (inclusive)
+     *           and 180 (inclusive), up to 6 decimal places.
+     *     @type string $neighborhood
+     *           The neighborhood (locality) of the property, such as `Wallingford`,
+     *           `Greenwood`, etc.
+     *     @type \Google\Shopping\Merchant\Products\V1\ProductAttributes\UnitArea $unit_area
+     *           The unit area of the property, such as `1000 sqft`.
+     *     @type int|string $number_of_units
+     *           The number of units available for a specific floor plan of the property.
+     *           The value must be greater than 0.
+     *     @type string $property_name
+     *           The name of the property.
+     *     @type float $number_of_bedrooms
+     *           The number of bedrooms in the property. The value must be greater than or
+     *           equal to 0 and a multiple of 1.0.
+     *     @type float $number_of_bathrooms
+     *           The number of bathrooms in the property. The value must be greater than 0
+     *           and a multiple of 0.5.
+     *     @type int $property_type
+     *           The type of property.
+     *     @type int[] $amenity_feature
+     *           The amenity features for the property.
+     *     @type int[] $utilities_included
+     *           The utilities included for the property.
+     *     @type \Google\Shopping\Merchant\Products\V1\ProductAttributes\PetPolicy $pet_policy
+     *           The pet policy for the property.
+     *     @type int $specialty_housing_type
+     *           The specialty housing type for the property.
+     *     @type \Google\Shopping\Merchant\Products\V1\ProductAttributes\ProductFee[] $product_fee
+     *           The product fee for the property.
+     *     @type string $short_title
+     *           The short title of the item.
+     *     @type \Google\Shopping\Merchant\Products\V1\ProductAttributes\QuestionAndAnswer[] $questions_and_answers
+     *           Optional. Contains user-, merchant-, and manufacturer-authored [questions
+     *           and answers](https://support.google.com/merchants/answer/17085211) about
+     *           the product. Max 30 question and answer pairs. Max 10000 characters total.
+     *           Each question can have max 1000 characters. Each answer can have max 1000
+     *           characters.
+     *     @type float $popularity_rank
+     *           Optional. Indicates the
+     *           [popularity](https://support.google.com/merchants/answer/17085297) of the
+     *           product in a merchant's inventory. Using a scale of 0.0 (lowest) to 100.0
+     *           (highest).
+     *     @type string $item_group_title
+     *           Optional. Represents the [title of the product
+     *           group](https://support.google.com/merchants/answer/17085146) to which
+     *           this variant product belongs. This can be used along with the [item group
+     *           id](https://support.google.com/merchants/answer/6324507) attribute.
+     *           It lets you perform better grouping of variant products, and helps
+     *           identifying common product characteristics more efficiently.
+     *     @type string[] $document_links
+     *           Optional. Contains a list of PDF [document
+     *           URLs](https://support.google.com/merchants/answer/17084656) for the
+     *           product. Examples are training manuals, user guides, assembly instructions,
+     *           package inserts, etc. Must start with "http://" or "https://"), ASCII
+     *           characters only, and RFC 3986 compliant.
+     *     @type \Google\Shopping\Merchant\Products\V1\ProductAttributes\VariantOption[] $variant_options
+     *           Optional. Contains the [list of all variant-identifying
+     *           options](https://support.google.com/merchants/answer/17085214) of this
+     *           product.
+     *     @type \Google\Shopping\Merchant\Products\V1\ProductAttributes\RelatedProduct[] $related_products
+     *           Optional. Specifies how other [products are
+     *           related](https://support.google.com/merchants/answer/17085213) to this
+     *           product.
      * }
      */
     public function __construct($data = NULL) {
@@ -3810,6 +4318,46 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. The [pickup
+     * cost](https://support.google.com/merchants/answer/16988704) for an item
+     * when a customer buys it online and picks it up at a store.
+     *
+     * Generated from protobuf field <code>optional .google.shopping.merchant.products.v1.PickupCost pickup_cost = 172 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Shopping\Merchant\Products\V1\PickupCost|null
+     */
+    public function getPickupCost()
+    {
+        return $this->pickup_cost;
+    }
+
+    public function hasPickupCost()
+    {
+        return isset($this->pickup_cost);
+    }
+
+    public function clearPickupCost()
+    {
+        unset($this->pickup_cost);
+    }
+
+    /**
+     * Optional. The [pickup
+     * cost](https://support.google.com/merchants/answer/16988704) for an item
+     * when a customer buys it online and picks it up at a store.
+     *
+     * Generated from protobuf field <code>optional .google.shopping.merchant.products.v1.PickupCost pickup_cost = 172 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Shopping\Merchant\Products\V1\PickupCost $var
+     * @return $this
+     */
+    public function setPickupCost($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Shopping\Merchant\Products\V1\PickupCost::class);
+        $this->pickup_cost = $var;
+
+        return $this;
+    }
+
+    /**
      * [Link template](https://support.google.com/merchants/answer/13871172) for
      * business hosted local storefront.
      *
@@ -4569,6 +5117,1484 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->video_links = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The [minimum value](https://support.google.com/merchants/answer/16989009)
+     * in the cart before a customer can initiate checkout. Supports multiple
+     * minimum order values. Different minimum order values can be specified per
+     * country, service and surface. Maximum entries: 100.
+     *
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1.ProductMinimumOrderValue minimum_order_values = 146;</code>
+     * @return RepeatedField<\Google\Shopping\Merchant\Products\V1\ProductMinimumOrderValue>
+     */
+    public function getMinimumOrderValues()
+    {
+        return $this->minimum_order_values;
+    }
+
+    /**
+     * The [minimum value](https://support.google.com/merchants/answer/16989009)
+     * in the cart before a customer can initiate checkout. Supports multiple
+     * minimum order values. Different minimum order values can be specified per
+     * country, service and surface. Maximum entries: 100.
+     *
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1.ProductMinimumOrderValue minimum_order_values = 146;</code>
+     * @param \Google\Shopping\Merchant\Products\V1\ProductMinimumOrderValue[] $var
+     * @return $this
+     */
+    public function setMinimumOrderValues($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Shopping\Merchant\Products\V1\ProductMinimumOrderValue::class);
+        $this->minimum_order_values = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The [Vehicle Identification Number
+     * (VIN)](https://support.google.com/google-ads/answer/14154510) of the
+     * vehicle.
+     *
+     * Generated from protobuf field <code>string vin = 147;</code>
+     * @return string
+     */
+    public function getVin()
+    {
+        return $this->vin;
+    }
+
+    /**
+     * The [Vehicle Identification Number
+     * (VIN)](https://support.google.com/google-ads/answer/14154510) of the
+     * vehicle.
+     *
+     * Generated from protobuf field <code>string vin = 147;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setVin($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->vin = $var;
+
+        return $this;
+    }
+
+    /**
+     * The [Model](https://support.google.com/google-ads/answer/14154511) of the
+     * vehicle, such as `LX`, `EX`, and others.
+     *
+     * Generated from protobuf field <code>string model = 148;</code>
+     * @return string
+     */
+    public function getModel()
+    {
+        return $this->model;
+    }
+
+    /**
+     * The [Model](https://support.google.com/google-ads/answer/14154511) of the
+     * vehicle, such as `LX`, `EX`, and others.
+     *
+     * Generated from protobuf field <code>string model = 148;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setModel($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->model = $var;
+
+        return $this;
+    }
+
+    /**
+     * The [Trim](https://support.google.com/google-ads/answer/14154176) of the
+     * vehicle model, such as `S`, `SV`, `SL` and others.
+     *
+     * Generated from protobuf field <code>string trim = 149;</code>
+     * @return string
+     */
+    public function getTrim()
+    {
+        return $this->trim;
+    }
+
+    /**
+     * The [Trim](https://support.google.com/google-ads/answer/14154176) of the
+     * vehicle model, such as `S`, `SV`, `SL` and others.
+     *
+     * Generated from protobuf field <code>string trim = 149;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setTrim($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->trim = $var;
+
+        return $this;
+    }
+
+    /**
+     * The [body style](https://support.google.com/google-ads/answer/14157085) of
+     * the vehicle.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.products.v1.ProductAttributes.VehicleBodyStyle body_style = 150;</code>
+     * @return int
+     */
+    public function getBodyStyle()
+    {
+        return $this->body_style;
+    }
+
+    /**
+     * The [body style](https://support.google.com/google-ads/answer/14157085) of
+     * the vehicle.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.products.v1.ProductAttributes.VehicleBodyStyle body_style = 150;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setBodyStyle($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Shopping\Merchant\Products\V1\ProductAttributes\VehicleBodyStyle::class);
+        $this->body_style = $var;
+
+        return $this;
+    }
+
+    /**
+     * The [Year](https://support.google.com/google-ads/answer/14152816) of the
+     * vehicle model.
+     *
+     * Generated from protobuf field <code>int64 year = 151;</code>
+     * @return int|string
+     */
+    public function getYear()
+    {
+        return $this->year;
+    }
+
+    /**
+     * The [Year](https://support.google.com/google-ads/answer/14152816) of the
+     * vehicle model.
+     *
+     * Generated from protobuf field <code>int64 year = 151;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setYear($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->year = $var;
+
+        return $this;
+    }
+
+    /**
+     * The number of miles/kms on the vehicle. See the
+     * [Mileage](https://support.google.com/google-ads/answer/14156166) for more
+     * information.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.products.v1.ProductAttributes.Mileage mileage = 152;</code>
+     * @return \Google\Shopping\Merchant\Products\V1\ProductAttributes\Mileage|null
+     */
+    public function getMileage()
+    {
+        return $this->mileage;
+    }
+
+    public function hasMileage()
+    {
+        return isset($this->mileage);
+    }
+
+    public function clearMileage()
+    {
+        unset($this->mileage);
+    }
+
+    /**
+     * The number of miles/kms on the vehicle. See the
+     * [Mileage](https://support.google.com/google-ads/answer/14156166) for more
+     * information.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.products.v1.ProductAttributes.Mileage mileage = 152;</code>
+     * @param \Google\Shopping\Merchant\Products\V1\ProductAttributes\Mileage $var
+     * @return $this
+     */
+    public function setMileage($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Shopping\Merchant\Products\V1\ProductAttributes\Mileage::class);
+        $this->mileage = $var;
+
+        return $this;
+    }
+
+    /**
+     * The [electric range](https://support.google.com/google-ads/answer/15162232)
+     * of the vehicle in miles/kms.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.products.v1.ProductAttributes.Mileage electric_range = 153;</code>
+     * @return \Google\Shopping\Merchant\Products\V1\ProductAttributes\Mileage|null
+     */
+    public function getElectricRange()
+    {
+        return $this->electric_range;
+    }
+
+    public function hasElectricRange()
+    {
+        return isset($this->electric_range);
+    }
+
+    public function clearElectricRange()
+    {
+        unset($this->electric_range);
+    }
+
+    /**
+     * The [electric range](https://support.google.com/google-ads/answer/15162232)
+     * of the vehicle in miles/kms.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.products.v1.ProductAttributes.Mileage electric_range = 153;</code>
+     * @param \Google\Shopping\Merchant\Products\V1\ProductAttributes\Mileage $var
+     * @return $this
+     */
+    public function setElectricRange($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Shopping\Merchant\Products\V1\ProductAttributes\Mileage::class);
+        $this->electric_range = $var;
+
+        return $this;
+    }
+
+    /**
+     * The [fuel
+     * consumption](https://support.google.com/google-ads/answer/14543580) of the
+     * vehicle.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.products.v1.ProductAttributes.FuelConsumption fuel_consumption = 154;</code>
+     * @return \Google\Shopping\Merchant\Products\V1\ProductAttributes\FuelConsumption|null
+     */
+    public function getFuelConsumption()
+    {
+        return $this->fuel_consumption;
+    }
+
+    public function hasFuelConsumption()
+    {
+        return isset($this->fuel_consumption);
+    }
+
+    public function clearFuelConsumption()
+    {
+        unset($this->fuel_consumption);
+    }
+
+    /**
+     * The [fuel
+     * consumption](https://support.google.com/google-ads/answer/14543580) of the
+     * vehicle.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.products.v1.ProductAttributes.FuelConsumption fuel_consumption = 154;</code>
+     * @param \Google\Shopping\Merchant\Products\V1\ProductAttributes\FuelConsumption $var
+     * @return $this
+     */
+    public function setFuelConsumption($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Shopping\Merchant\Products\V1\ProductAttributes\FuelConsumption::class);
+        $this->fuel_consumption = $var;
+
+        return $this;
+    }
+
+    /**
+     * The fuel consumption of the vehicle when the hybrid battery is discharged.
+     * See the [Help Center
+     * article](https://support.google.com/google-ads/answer/15162033) for more
+     * information.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.products.v1.ProductAttributes.FuelConsumption fuel_consumption_discharged_battery = 155;</code>
+     * @return \Google\Shopping\Merchant\Products\V1\ProductAttributes\FuelConsumption|null
+     */
+    public function getFuelConsumptionDischargedBattery()
+    {
+        return $this->fuel_consumption_discharged_battery;
+    }
+
+    public function hasFuelConsumptionDischargedBattery()
+    {
+        return isset($this->fuel_consumption_discharged_battery);
+    }
+
+    public function clearFuelConsumptionDischargedBattery()
+    {
+        unset($this->fuel_consumption_discharged_battery);
+    }
+
+    /**
+     * The fuel consumption of the vehicle when the hybrid battery is discharged.
+     * See the [Help Center
+     * article](https://support.google.com/google-ads/answer/15162033) for more
+     * information.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.products.v1.ProductAttributes.FuelConsumption fuel_consumption_discharged_battery = 155;</code>
+     * @param \Google\Shopping\Merchant\Products\V1\ProductAttributes\FuelConsumption $var
+     * @return $this
+     */
+    public function setFuelConsumptionDischargedBattery($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Shopping\Merchant\Products\V1\ProductAttributes\FuelConsumption::class);
+        $this->fuel_consumption_discharged_battery = $var;
+
+        return $this;
+    }
+
+    /**
+     * The [energy
+     * consumption](https://support.google.com/google-ads/answer/14546149) of the
+     * vehicle.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.products.v1.ProductAttributes.EnergyConsumption energy_consumption = 156;</code>
+     * @return \Google\Shopping\Merchant\Products\V1\ProductAttributes\EnergyConsumption|null
+     */
+    public function getEnergyConsumption()
+    {
+        return $this->energy_consumption;
+    }
+
+    public function hasEnergyConsumption()
+    {
+        return isset($this->energy_consumption);
+    }
+
+    public function clearEnergyConsumption()
+    {
+        unset($this->energy_consumption);
+    }
+
+    /**
+     * The [energy
+     * consumption](https://support.google.com/google-ads/answer/14546149) of the
+     * vehicle.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.products.v1.ProductAttributes.EnergyConsumption energy_consumption = 156;</code>
+     * @param \Google\Shopping\Merchant\Products\V1\ProductAttributes\EnergyConsumption $var
+     * @return $this
+     */
+    public function setEnergyConsumption($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Shopping\Merchant\Products\V1\ProductAttributes\EnergyConsumption::class);
+        $this->energy_consumption = $var;
+
+        return $this;
+    }
+
+    /**
+     * The [co2 emission](https://support.google.com/google-ads/answer/14546146)
+     * of the vehicle.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.products.v1.ProductAttributes.Co2Emissions co2_emissions = 157;</code>
+     * @return \Google\Shopping\Merchant\Products\V1\ProductAttributes\Co2Emissions|null
+     */
+    public function getCo2Emissions()
+    {
+        return $this->co2_emissions;
+    }
+
+    public function hasCo2Emissions()
+    {
+        return isset($this->co2_emissions);
+    }
+
+    public function clearCo2Emissions()
+    {
+        unset($this->co2_emissions);
+    }
+
+    /**
+     * The [co2 emission](https://support.google.com/google-ads/answer/14546146)
+     * of the vehicle.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.products.v1.ProductAttributes.Co2Emissions co2_emissions = 157;</code>
+     * @param \Google\Shopping\Merchant\Products\V1\ProductAttributes\Co2Emissions $var
+     * @return $this
+     */
+    public function setCo2Emissions($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Shopping\Merchant\Products\V1\ProductAttributes\Co2Emissions::class);
+        $this->co2_emissions = $var;
+
+        return $this;
+    }
+
+    /**
+     * The date the vehicle was first registered. Format: `YYYY-MM`. See the
+     * [Date first
+     * registered](https://support.google.com/google-ads/answer/14546138) for more
+     * information.
+     *
+     * Generated from protobuf field <code>string date_first_registered = 158;</code>
+     * @return string
+     */
+    public function getDateFirstRegistered()
+    {
+        return $this->date_first_registered;
+    }
+
+    /**
+     * The date the vehicle was first registered. Format: `YYYY-MM`. See the
+     * [Date first
+     * registered](https://support.google.com/google-ads/answer/14546138) for more
+     * information.
+     *
+     * Generated from protobuf field <code>string date_first_registered = 158;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDateFirstRegistered($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->date_first_registered = $var;
+
+        return $this;
+    }
+
+    /**
+     * The [engine](https://support.google.com/google-ads/answer/14156068) type of
+     * the vehicle.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.products.v1.ProductAttributes.EngineType engine = 159;</code>
+     * @return int
+     */
+    public function getEngine()
+    {
+        return $this->engine;
+    }
+
+    /**
+     * The [engine](https://support.google.com/google-ads/answer/14156068) type of
+     * the vehicle.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.products.v1.ProductAttributes.EngineType engine = 159;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setEngine($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Shopping\Merchant\Products\V1\ProductAttributes\EngineType::class);
+        $this->engine = $var;
+
+        return $this;
+    }
+
+    /**
+     * The [emission
+     * standard](https://support.google.com/google-ads/answer/14869021) of the
+     * vehicle.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.products.v1.ProductAttributes.EmissionsStandard emissions_standard = 160;</code>
+     * @return int
+     */
+    public function getEmissionsStandard()
+    {
+        return $this->emissions_standard;
+    }
+
+    /**
+     * The [emission
+     * standard](https://support.google.com/google-ads/answer/14869021) of the
+     * vehicle.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.products.v1.ProductAttributes.EmissionsStandard emissions_standard = 160;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setEmissionsStandard($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Shopping\Merchant\Products\V1\ProductAttributes\EmissionsStandard::class);
+        $this->emissions_standard = $var;
+
+        return $this;
+    }
+
+    /**
+     * Whether the vehicle is OEM [certified
+     * pre-owned](https://support.google.com/google-ads/answer/14156475).
+     *
+     * Generated from protobuf field <code>bool certified_pre_owned = 161;</code>
+     * @return bool
+     */
+    public function getCertifiedPreOwned()
+    {
+        return $this->certified_pre_owned;
+    }
+
+    /**
+     * Whether the vehicle is OEM [certified
+     * pre-owned](https://support.google.com/google-ads/answer/14156475).
+     *
+     * Generated from protobuf field <code>bool certified_pre_owned = 161;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setCertifiedPreOwned($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->certified_pre_owned = $var;
+
+        return $this;
+    }
+
+    /**
+     * The MSRP (Manufacturer Suggested Retail Price) for the vehicle in its
+     * current configuration. See the [Vehicle
+     * MSRP](https://support.google.com/google-ads/answer/14154171) for more
+     * information.
+     *
+     * Generated from protobuf field <code>.google.shopping.type.Price vehicle_msrp = 162;</code>
+     * @return \Google\Shopping\Type\Price|null
+     */
+    public function getVehicleMsrp()
+    {
+        return $this->vehicle_msrp;
+    }
+
+    public function hasVehicleMsrp()
+    {
+        return isset($this->vehicle_msrp);
+    }
+
+    public function clearVehicleMsrp()
+    {
+        unset($this->vehicle_msrp);
+    }
+
+    /**
+     * The MSRP (Manufacturer Suggested Retail Price) for the vehicle in its
+     * current configuration. See the [Vehicle
+     * MSRP](https://support.google.com/google-ads/answer/14154171) for more
+     * information.
+     *
+     * Generated from protobuf field <code>.google.shopping.type.Price vehicle_msrp = 162;</code>
+     * @param \Google\Shopping\Type\Price $var
+     * @return $this
+     */
+    public function setVehicleMsrp($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Shopping\Type\Price::class);
+        $this->vehicle_msrp = $var;
+
+        return $this;
+    }
+
+    /**
+     * The all-in advertised price for a vehicle, which includes costs for the
+     * following – any accessories attached to the vehicle, environmental levies,
+     * extra warranty, fuel, freight, pre-delivery inspection (PDI), dealer fees
+     * for handling licensing, provincial regulatory fees, miscellaneous dealer
+     * charges for security etching and nitrogen tire fill, and
+     * factory-to-customer or dealer-to-customer discounts or incentives. See the
+     * [Vehicle all-in
+     * price](https://support.google.com/google-ads/answer/14156981) for more
+     * information.
+     *
+     * Generated from protobuf field <code>.google.shopping.type.Price vehicle_all_in_price = 163;</code>
+     * @return \Google\Shopping\Type\Price|null
+     */
+    public function getVehicleAllInPrice()
+    {
+        return $this->vehicle_all_in_price;
+    }
+
+    public function hasVehicleAllInPrice()
+    {
+        return isset($this->vehicle_all_in_price);
+    }
+
+    public function clearVehicleAllInPrice()
+    {
+        unset($this->vehicle_all_in_price);
+    }
+
+    /**
+     * The all-in advertised price for a vehicle, which includes costs for the
+     * following – any accessories attached to the vehicle, environmental levies,
+     * extra warranty, fuel, freight, pre-delivery inspection (PDI), dealer fees
+     * for handling licensing, provincial regulatory fees, miscellaneous dealer
+     * charges for security etching and nitrogen tire fill, and
+     * factory-to-customer or dealer-to-customer discounts or incentives. See the
+     * [Vehicle all-in
+     * price](https://support.google.com/google-ads/answer/14156981) for more
+     * information.
+     *
+     * Generated from protobuf field <code>.google.shopping.type.Price vehicle_all_in_price = 163;</code>
+     * @param \Google\Shopping\Type\Price $var
+     * @return $this
+     */
+    public function setVehicleAllInPrice($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Shopping\Type\Price::class);
+        $this->vehicle_all_in_price = $var;
+
+        return $this;
+    }
+
+    /**
+     * The [price type](https://support.google.com/google-ads/answer/14592783) of
+     * the vehicle.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.products.v1.ProductAttributes.VehiclePriceType vehicle_price_type = 164;</code>
+     * @return int
+     */
+    public function getVehiclePriceType()
+    {
+        return $this->vehicle_price_type;
+    }
+
+    /**
+     * The [price type](https://support.google.com/google-ads/answer/14592783) of
+     * the vehicle.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.products.v1.ProductAttributes.VehiclePriceType vehicle_price_type = 164;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setVehiclePriceType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Shopping\Merchant\Products\V1\ProductAttributes\VehiclePriceType::class);
+        $this->vehicle_price_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Whether the vehicle is sold with mandatory inspection and maintenance
+     * performed before delivery. See the [Vehicle mandatory inspection
+     * included](https://support.google.com/google-ads/answer/15956630) for more
+     * information.`
+     *
+     * Generated from protobuf field <code>bool vehicle_mandatory_inspection_included = 166;</code>
+     * @return bool
+     */
+    public function getVehicleMandatoryInspectionIncluded()
+    {
+        return $this->vehicle_mandatory_inspection_included;
+    }
+
+    /**
+     * Whether the vehicle is sold with mandatory inspection and maintenance
+     * performed before delivery. See the [Vehicle mandatory inspection
+     * included](https://support.google.com/google-ads/answer/15956630) for more
+     * information.`
+     *
+     * Generated from protobuf field <code>bool vehicle_mandatory_inspection_included = 166;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setVehicleMandatoryInspectionIncluded($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->vehicle_mandatory_inspection_included = $var;
+
+        return $this;
+    }
+
+    /**
+     * The miscellaneous expenses like insurance and registration fees of the
+     * vehicle. See the [Vehicle
+     * expenses](https://support.google.com/google-ads/answer/15957154) for more
+     * information.
+     *
+     * Generated from protobuf field <code>.google.shopping.type.Price vehicle_expenses = 167;</code>
+     * @return \Google\Shopping\Type\Price|null
+     */
+    public function getVehicleExpenses()
+    {
+        return $this->vehicle_expenses;
+    }
+
+    public function hasVehicleExpenses()
+    {
+        return isset($this->vehicle_expenses);
+    }
+
+    public function clearVehicleExpenses()
+    {
+        unset($this->vehicle_expenses);
+    }
+
+    /**
+     * The miscellaneous expenses like insurance and registration fees of the
+     * vehicle. See the [Vehicle
+     * expenses](https://support.google.com/google-ads/answer/15957154) for more
+     * information.
+     *
+     * Generated from protobuf field <code>.google.shopping.type.Price vehicle_expenses = 167;</code>
+     * @param \Google\Shopping\Type\Price $var
+     * @return $this
+     */
+    public function setVehicleExpenses($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Shopping\Type\Price::class);
+        $this->vehicle_expenses = $var;
+
+        return $this;
+    }
+
+    /**
+     * The [warranty](https://support.google.com/google-ads/answer/15957626) of
+     * the vehicle.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.products.v1.ProductAttributes.Warranty warranty = 168;</code>
+     * @return \Google\Shopping\Merchant\Products\V1\ProductAttributes\Warranty|null
+     */
+    public function getWarranty()
+    {
+        return $this->warranty;
+    }
+
+    public function hasWarranty()
+    {
+        return isset($this->warranty);
+    }
+
+    public function clearWarranty()
+    {
+        unset($this->warranty);
+    }
+
+    /**
+     * The [warranty](https://support.google.com/google-ads/answer/15957626) of
+     * the vehicle.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.products.v1.ProductAttributes.Warranty warranty = 168;</code>
+     * @param \Google\Shopping\Merchant\Products\V1\ProductAttributes\Warranty $var
+     * @return $this
+     */
+    public function setWarranty($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Shopping\Merchant\Products\V1\ProductAttributes\Warranty::class);
+        $this->warranty = $var;
+
+        return $this;
+    }
+
+    /**
+     * The display address of the property.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.products.v1.ProductAttributes.DisplayAddress display_address = 179;</code>
+     * @return \Google\Shopping\Merchant\Products\V1\ProductAttributes\DisplayAddress|null
+     */
+    public function getDisplayAddress()
+    {
+        return $this->display_address;
+    }
+
+    public function hasDisplayAddress()
+    {
+        return isset($this->display_address);
+    }
+
+    public function clearDisplayAddress()
+    {
+        unset($this->display_address);
+    }
+
+    /**
+     * The display address of the property.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.products.v1.ProductAttributes.DisplayAddress display_address = 179;</code>
+     * @param \Google\Shopping\Merchant\Products\V1\ProductAttributes\DisplayAddress $var
+     * @return $this
+     */
+    public function setDisplayAddress($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Shopping\Merchant\Products\V1\ProductAttributes\DisplayAddress::class);
+        $this->display_address = $var;
+
+        return $this;
+    }
+
+    /**
+     * The latitude of the property. The value must be between -90 (inclusive) and
+     * 90 (inclusive), up to 6 decimal places.
+     *
+     * Generated from protobuf field <code>optional double latitude = 180;</code>
+     * @return float
+     */
+    public function getLatitude()
+    {
+        return isset($this->latitude) ? $this->latitude : 0.0;
+    }
+
+    public function hasLatitude()
+    {
+        return isset($this->latitude);
+    }
+
+    public function clearLatitude()
+    {
+        unset($this->latitude);
+    }
+
+    /**
+     * The latitude of the property. The value must be between -90 (inclusive) and
+     * 90 (inclusive), up to 6 decimal places.
+     *
+     * Generated from protobuf field <code>optional double latitude = 180;</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setLatitude($var)
+    {
+        GPBUtil::checkDouble($var);
+        $this->latitude = $var;
+
+        return $this;
+    }
+
+    /**
+     * The longitude of the property. The value must be between -180 (inclusive)
+     * and 180 (inclusive), up to 6 decimal places.
+     *
+     * Generated from protobuf field <code>optional double longitude = 181;</code>
+     * @return float
+     */
+    public function getLongitude()
+    {
+        return isset($this->longitude) ? $this->longitude : 0.0;
+    }
+
+    public function hasLongitude()
+    {
+        return isset($this->longitude);
+    }
+
+    public function clearLongitude()
+    {
+        unset($this->longitude);
+    }
+
+    /**
+     * The longitude of the property. The value must be between -180 (inclusive)
+     * and 180 (inclusive), up to 6 decimal places.
+     *
+     * Generated from protobuf field <code>optional double longitude = 181;</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setLongitude($var)
+    {
+        GPBUtil::checkDouble($var);
+        $this->longitude = $var;
+
+        return $this;
+    }
+
+    /**
+     * The neighborhood (locality) of the property, such as `Wallingford`,
+     * `Greenwood`, etc.
+     *
+     * Generated from protobuf field <code>string neighborhood = 182;</code>
+     * @return string
+     */
+    public function getNeighborhood()
+    {
+        return $this->neighborhood;
+    }
+
+    /**
+     * The neighborhood (locality) of the property, such as `Wallingford`,
+     * `Greenwood`, etc.
+     *
+     * Generated from protobuf field <code>string neighborhood = 182;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setNeighborhood($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->neighborhood = $var;
+
+        return $this;
+    }
+
+    /**
+     * The unit area of the property, such as `1000 sqft`.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.products.v1.ProductAttributes.UnitArea unit_area = 183;</code>
+     * @return \Google\Shopping\Merchant\Products\V1\ProductAttributes\UnitArea|null
+     */
+    public function getUnitArea()
+    {
+        return $this->unit_area;
+    }
+
+    public function hasUnitArea()
+    {
+        return isset($this->unit_area);
+    }
+
+    public function clearUnitArea()
+    {
+        unset($this->unit_area);
+    }
+
+    /**
+     * The unit area of the property, such as `1000 sqft`.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.products.v1.ProductAttributes.UnitArea unit_area = 183;</code>
+     * @param \Google\Shopping\Merchant\Products\V1\ProductAttributes\UnitArea $var
+     * @return $this
+     */
+    public function setUnitArea($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Shopping\Merchant\Products\V1\ProductAttributes\UnitArea::class);
+        $this->unit_area = $var;
+
+        return $this;
+    }
+
+    /**
+     * The number of units available for a specific floor plan of the property.
+     * The value must be greater than 0.
+     *
+     * Generated from protobuf field <code>optional int64 number_of_units = 184;</code>
+     * @return int|string
+     */
+    public function getNumberOfUnits()
+    {
+        return isset($this->number_of_units) ? $this->number_of_units : 0;
+    }
+
+    public function hasNumberOfUnits()
+    {
+        return isset($this->number_of_units);
+    }
+
+    public function clearNumberOfUnits()
+    {
+        unset($this->number_of_units);
+    }
+
+    /**
+     * The number of units available for a specific floor plan of the property.
+     * The value must be greater than 0.
+     *
+     * Generated from protobuf field <code>optional int64 number_of_units = 184;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setNumberOfUnits($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->number_of_units = $var;
+
+        return $this;
+    }
+
+    /**
+     * The name of the property.
+     *
+     * Generated from protobuf field <code>string property_name = 185;</code>
+     * @return string
+     */
+    public function getPropertyName()
+    {
+        return $this->property_name;
+    }
+
+    /**
+     * The name of the property.
+     *
+     * Generated from protobuf field <code>string property_name = 185;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPropertyName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->property_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * The number of bedrooms in the property. The value must be greater than or
+     * equal to 0 and a multiple of 1.0.
+     *
+     * Generated from protobuf field <code>optional double number_of_bedrooms = 186;</code>
+     * @return float
+     */
+    public function getNumberOfBedrooms()
+    {
+        return isset($this->number_of_bedrooms) ? $this->number_of_bedrooms : 0.0;
+    }
+
+    public function hasNumberOfBedrooms()
+    {
+        return isset($this->number_of_bedrooms);
+    }
+
+    public function clearNumberOfBedrooms()
+    {
+        unset($this->number_of_bedrooms);
+    }
+
+    /**
+     * The number of bedrooms in the property. The value must be greater than or
+     * equal to 0 and a multiple of 1.0.
+     *
+     * Generated from protobuf field <code>optional double number_of_bedrooms = 186;</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setNumberOfBedrooms($var)
+    {
+        GPBUtil::checkDouble($var);
+        $this->number_of_bedrooms = $var;
+
+        return $this;
+    }
+
+    /**
+     * The number of bathrooms in the property. The value must be greater than 0
+     * and a multiple of 0.5.
+     *
+     * Generated from protobuf field <code>optional double number_of_bathrooms = 187;</code>
+     * @return float
+     */
+    public function getNumberOfBathrooms()
+    {
+        return isset($this->number_of_bathrooms) ? $this->number_of_bathrooms : 0.0;
+    }
+
+    public function hasNumberOfBathrooms()
+    {
+        return isset($this->number_of_bathrooms);
+    }
+
+    public function clearNumberOfBathrooms()
+    {
+        unset($this->number_of_bathrooms);
+    }
+
+    /**
+     * The number of bathrooms in the property. The value must be greater than 0
+     * and a multiple of 0.5.
+     *
+     * Generated from protobuf field <code>optional double number_of_bathrooms = 187;</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setNumberOfBathrooms($var)
+    {
+        GPBUtil::checkDouble($var);
+        $this->number_of_bathrooms = $var;
+
+        return $this;
+    }
+
+    /**
+     * The type of property.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.products.v1.ProductAttributes.PropertyType property_type = 188;</code>
+     * @return int
+     */
+    public function getPropertyType()
+    {
+        return $this->property_type;
+    }
+
+    /**
+     * The type of property.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.products.v1.ProductAttributes.PropertyType property_type = 188;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setPropertyType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Shopping\Merchant\Products\V1\ProductAttributes\PropertyType::class);
+        $this->property_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * The amenity features for the property.
+     *
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1.ProductAttributes.AmenityFeature amenity_feature = 189;</code>
+     * @return RepeatedField<int>
+     */
+    public function getAmenityFeature()
+    {
+        return $this->amenity_feature;
+    }
+
+    /**
+     * The amenity features for the property.
+     *
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1.ProductAttributes.AmenityFeature amenity_feature = 189;</code>
+     * @param int[] $var
+     * @return $this
+     */
+    public function setAmenityFeature($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::ENUM, \Google\Shopping\Merchant\Products\V1\ProductAttributes\AmenityFeature::class);
+        $this->amenity_feature = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The utilities included for the property.
+     *
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1.ProductAttributes.UtilitiesIncluded utilities_included = 190;</code>
+     * @return RepeatedField<int>
+     */
+    public function getUtilitiesIncluded()
+    {
+        return $this->utilities_included;
+    }
+
+    /**
+     * The utilities included for the property.
+     *
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1.ProductAttributes.UtilitiesIncluded utilities_included = 190;</code>
+     * @param int[] $var
+     * @return $this
+     */
+    public function setUtilitiesIncluded($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::ENUM, \Google\Shopping\Merchant\Products\V1\ProductAttributes\UtilitiesIncluded::class);
+        $this->utilities_included = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The pet policy for the property.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.products.v1.ProductAttributes.PetPolicy pet_policy = 191;</code>
+     * @return \Google\Shopping\Merchant\Products\V1\ProductAttributes\PetPolicy|null
+     */
+    public function getPetPolicy()
+    {
+        return $this->pet_policy;
+    }
+
+    public function hasPetPolicy()
+    {
+        return isset($this->pet_policy);
+    }
+
+    public function clearPetPolicy()
+    {
+        unset($this->pet_policy);
+    }
+
+    /**
+     * The pet policy for the property.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.products.v1.ProductAttributes.PetPolicy pet_policy = 191;</code>
+     * @param \Google\Shopping\Merchant\Products\V1\ProductAttributes\PetPolicy $var
+     * @return $this
+     */
+    public function setPetPolicy($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Shopping\Merchant\Products\V1\ProductAttributes\PetPolicy::class);
+        $this->pet_policy = $var;
+
+        return $this;
+    }
+
+    /**
+     * The specialty housing type for the property.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.products.v1.ProductAttributes.SpecialtyHousingType specialty_housing_type = 192;</code>
+     * @return int
+     */
+    public function getSpecialtyHousingType()
+    {
+        return $this->specialty_housing_type;
+    }
+
+    /**
+     * The specialty housing type for the property.
+     *
+     * Generated from protobuf field <code>.google.shopping.merchant.products.v1.ProductAttributes.SpecialtyHousingType specialty_housing_type = 192;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setSpecialtyHousingType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Shopping\Merchant\Products\V1\ProductAttributes\SpecialtyHousingType::class);
+        $this->specialty_housing_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * The product fee for the property.
+     *
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1.ProductAttributes.ProductFee product_fee = 193;</code>
+     * @return RepeatedField<\Google\Shopping\Merchant\Products\V1\ProductAttributes\ProductFee>
+     */
+    public function getProductFee()
+    {
+        return $this->product_fee;
+    }
+
+    /**
+     * The product fee for the property.
+     *
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1.ProductAttributes.ProductFee product_fee = 193;</code>
+     * @param \Google\Shopping\Merchant\Products\V1\ProductAttributes\ProductFee[] $var
+     * @return $this
+     */
+    public function setProductFee($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Shopping\Merchant\Products\V1\ProductAttributes\ProductFee::class);
+        $this->product_fee = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The short title of the item.
+     *
+     * Generated from protobuf field <code>optional string short_title = 194;</code>
+     * @return string
+     */
+    public function getShortTitle()
+    {
+        return isset($this->short_title) ? $this->short_title : '';
+    }
+
+    public function hasShortTitle()
+    {
+        return isset($this->short_title);
+    }
+
+    public function clearShortTitle()
+    {
+        unset($this->short_title);
+    }
+
+    /**
+     * The short title of the item.
+     *
+     * Generated from protobuf field <code>optional string short_title = 194;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setShortTitle($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->short_title = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Contains user-, merchant-, and manufacturer-authored [questions
+     * and answers](https://support.google.com/merchants/answer/17085211) about
+     * the product. Max 30 question and answer pairs. Max 10000 characters total.
+     * Each question can have max 1000 characters. Each answer can have max 1000
+     * characters.
+     *
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1.ProductAttributes.QuestionAndAnswer questions_and_answers = 173 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return RepeatedField<\Google\Shopping\Merchant\Products\V1\ProductAttributes\QuestionAndAnswer>
+     */
+    public function getQuestionsAndAnswers()
+    {
+        return $this->questions_and_answers;
+    }
+
+    /**
+     * Optional. Contains user-, merchant-, and manufacturer-authored [questions
+     * and answers](https://support.google.com/merchants/answer/17085211) about
+     * the product. Max 30 question and answer pairs. Max 10000 characters total.
+     * Each question can have max 1000 characters. Each answer can have max 1000
+     * characters.
+     *
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1.ProductAttributes.QuestionAndAnswer questions_and_answers = 173 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Shopping\Merchant\Products\V1\ProductAttributes\QuestionAndAnswer[] $var
+     * @return $this
+     */
+    public function setQuestionsAndAnswers($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Shopping\Merchant\Products\V1\ProductAttributes\QuestionAndAnswer::class);
+        $this->questions_and_answers = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Indicates the
+     * [popularity](https://support.google.com/merchants/answer/17085297) of the
+     * product in a merchant's inventory. Using a scale of 0.0 (lowest) to 100.0
+     * (highest).
+     *
+     * Generated from protobuf field <code>float popularity_rank = 174 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return float
+     */
+    public function getPopularityRank()
+    {
+        return $this->popularity_rank;
+    }
+
+    /**
+     * Optional. Indicates the
+     * [popularity](https://support.google.com/merchants/answer/17085297) of the
+     * product in a merchant's inventory. Using a scale of 0.0 (lowest) to 100.0
+     * (highest).
+     *
+     * Generated from protobuf field <code>float popularity_rank = 174 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setPopularityRank($var)
+    {
+        GPBUtil::checkFloat($var);
+        $this->popularity_rank = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Represents the [title of the product
+     * group](https://support.google.com/merchants/answer/17085146) to which
+     * this variant product belongs. This can be used along with the [item group
+     * id](https://support.google.com/merchants/answer/6324507) attribute.
+     * It lets you perform better grouping of variant products, and helps
+     * identifying common product characteristics more efficiently.
+     *
+     * Generated from protobuf field <code>string item_group_title = 175 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getItemGroupTitle()
+    {
+        return $this->item_group_title;
+    }
+
+    /**
+     * Optional. Represents the [title of the product
+     * group](https://support.google.com/merchants/answer/17085146) to which
+     * this variant product belongs. This can be used along with the [item group
+     * id](https://support.google.com/merchants/answer/6324507) attribute.
+     * It lets you perform better grouping of variant products, and helps
+     * identifying common product characteristics more efficiently.
+     *
+     * Generated from protobuf field <code>string item_group_title = 175 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setItemGroupTitle($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->item_group_title = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Contains a list of PDF [document
+     * URLs](https://support.google.com/merchants/answer/17084656) for the
+     * product. Examples are training manuals, user guides, assembly instructions,
+     * package inserts, etc. Must start with "http://" or "https://"), ASCII
+     * characters only, and RFC 3986 compliant.
+     *
+     * Generated from protobuf field <code>repeated string document_links = 176 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return RepeatedField<string>
+     */
+    public function getDocumentLinks()
+    {
+        return $this->document_links;
+    }
+
+    /**
+     * Optional. Contains a list of PDF [document
+     * URLs](https://support.google.com/merchants/answer/17084656) for the
+     * product. Examples are training manuals, user guides, assembly instructions,
+     * package inserts, etc. Must start with "http://" or "https://"), ASCII
+     * characters only, and RFC 3986 compliant.
+     *
+     * Generated from protobuf field <code>repeated string document_links = 176 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string[] $var
+     * @return $this
+     */
+    public function setDocumentLinks($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->document_links = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Contains the [list of all variant-identifying
+     * options](https://support.google.com/merchants/answer/17085214) of this
+     * product.
+     *
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1.ProductAttributes.VariantOption variant_options = 177 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return RepeatedField<\Google\Shopping\Merchant\Products\V1\ProductAttributes\VariantOption>
+     */
+    public function getVariantOptions()
+    {
+        return $this->variant_options;
+    }
+
+    /**
+     * Optional. Contains the [list of all variant-identifying
+     * options](https://support.google.com/merchants/answer/17085214) of this
+     * product.
+     *
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1.ProductAttributes.VariantOption variant_options = 177 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Shopping\Merchant\Products\V1\ProductAttributes\VariantOption[] $var
+     * @return $this
+     */
+    public function setVariantOptions($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Shopping\Merchant\Products\V1\ProductAttributes\VariantOption::class);
+        $this->variant_options = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies how other [products are
+     * related](https://support.google.com/merchants/answer/17085213) to this
+     * product.
+     *
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1.ProductAttributes.RelatedProduct related_products = 178 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return RepeatedField<\Google\Shopping\Merchant\Products\V1\ProductAttributes\RelatedProduct>
+     */
+    public function getRelatedProducts()
+    {
+        return $this->related_products;
+    }
+
+    /**
+     * Optional. Specifies how other [products are
+     * related](https://support.google.com/merchants/answer/17085213) to this
+     * product.
+     *
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1.ProductAttributes.RelatedProduct related_products = 178 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Shopping\Merchant\Products\V1\ProductAttributes\RelatedProduct[] $var
+     * @return $this
+     */
+    public function setRelatedProducts($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Shopping\Merchant\Products\V1\ProductAttributes\RelatedProduct::class);
+        $this->related_products = $arr;
 
         return $this;
     }
