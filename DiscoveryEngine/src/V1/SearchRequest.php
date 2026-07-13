@@ -456,6 +456,16 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      */
     protected $relevance_threshold = 0;
     /**
+     * Optional. The granular relevance filtering specification.
+     * If not specified, the global `relevance_threshold` will be used for all
+     * sub-searches. If specified, this overrides the global
+     * `relevance_threshold` to use thresholds on a per sub-search basis.
+     * This feature is currently supported only for custom and site search.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.RelevanceFilterSpec relevance_filter_spec = 86 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $relevance_filter_spec = null;
+    /**
      * Optional. The specification for returning the relevance score.
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.RelevanceScoreSpec relevance_score_spec = 52 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -774,6 +784,12 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *           If more granular relevance filtering is required, use the
      *           `relevance_filter_spec` instead.
      *           This feature is not supported for healthcare search.
+     *     @type \Google\Cloud\DiscoveryEngine\V1\SearchRequest\RelevanceFilterSpec $relevance_filter_spec
+     *           Optional. The granular relevance filtering specification.
+     *           If not specified, the global `relevance_threshold` will be used for all
+     *           sub-searches. If specified, this overrides the global
+     *           `relevance_threshold` to use thresholds on a per sub-search basis.
+     *           This feature is currently supported only for custom and site search.
      *     @type \Google\Cloud\DiscoveryEngine\V1\SearchRequest\RelevanceScoreSpec $relevance_score_spec
      *           Optional. The specification for returning the relevance score.
      * }
@@ -2217,6 +2233,50 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\DiscoveryEngine\V1\SearchRequest\RelevanceThreshold::class);
         $this->relevance_threshold = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The granular relevance filtering specification.
+     * If not specified, the global `relevance_threshold` will be used for all
+     * sub-searches. If specified, this overrides the global
+     * `relevance_threshold` to use thresholds on a per sub-search basis.
+     * This feature is currently supported only for custom and site search.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.RelevanceFilterSpec relevance_filter_spec = 86 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1\SearchRequest\RelevanceFilterSpec|null
+     */
+    public function getRelevanceFilterSpec()
+    {
+        return $this->relevance_filter_spec;
+    }
+
+    public function hasRelevanceFilterSpec()
+    {
+        return isset($this->relevance_filter_spec);
+    }
+
+    public function clearRelevanceFilterSpec()
+    {
+        unset($this->relevance_filter_spec);
+    }
+
+    /**
+     * Optional. The granular relevance filtering specification.
+     * If not specified, the global `relevance_threshold` will be used for all
+     * sub-searches. If specified, this overrides the global
+     * `relevance_threshold` to use thresholds on a per sub-search basis.
+     * This feature is currently supported only for custom and site search.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.RelevanceFilterSpec relevance_filter_spec = 86 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\SearchRequest\RelevanceFilterSpec $var
+     * @return $this
+     */
+    public function setRelevanceFilterSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\SearchRequest\RelevanceFilterSpec::class);
+        $this->relevance_filter_spec = $var;
 
         return $this;
     }
