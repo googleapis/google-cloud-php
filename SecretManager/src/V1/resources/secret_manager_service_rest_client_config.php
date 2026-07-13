@@ -163,6 +163,25 @@ return [
                     ],
                 ],
             ],
+            'EnableManagedRotation' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/secrets/*}:enableManagedRotation',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{parent=projects/*/locations/*/secrets/*}:enableManagedRotation',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'EnableSecretVersion' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{name=projects/*/secrets/*/versions/*}:enable',
@@ -257,6 +276,25 @@ return [
                     [
                         'method' => 'get',
                         'uriTemplate' => '/v1/{parent=projects/*/locations/*}/secrets',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'RotateSecret' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/secrets/*}:rotateSecret',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{parent=projects/*/locations/*/secrets/*}:rotateSecret',
+                        'body' => '*',
                     ],
                 ],
                 'placeholders' => [

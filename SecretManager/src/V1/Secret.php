@@ -139,6 +139,23 @@ class Secret extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, string> tags = 16 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $tags;
+    /**
+     * Optional. Immutable. This defines the type of the secret.
+     * Enforces certain structural requirements on the
+     * [SecretVersions][google.cloud.secretmanager.v1.SecretVersion].
+     * For secret of type UNSPECIFIED, the SecretVersions can be of any type.
+     *
+     * Generated from protobuf field <code>.google.cloud.secretmanager.v1.Secret.SecretType secret_type = 17 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $secret_type = 0;
+    /**
+     * Output only. Defines the policy member for the secret.
+     * This will be used to check if the caller has the permission to perform
+     * certain operations on the typed secret.
+     *
+     * Generated from protobuf field <code>.google.iam.v1.ResourcePolicyMember policy_member = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $policy_member = null;
     protected $expiration;
 
     /**
@@ -226,6 +243,15 @@ class Secret extends \Google\Protobuf\Internal\Message
      *             "123/costCenter": "marketing"
      *           Tags are used to organize and group resources.
      *           Tags can be used to control policy evaluation for the resource.
+     *     @type int $secret_type
+     *           Optional. Immutable. This defines the type of the secret.
+     *           Enforces certain structural requirements on the
+     *           [SecretVersions][google.cloud.secretmanager.v1.SecretVersion].
+     *           For secret of type UNSPECIFIED, the SecretVersions can be of any type.
+     *     @type \Google\Cloud\Iam\V1\ResourcePolicyMember $policy_member
+     *           Output only. Defines the policy member for the secret.
+     *           This will be used to check if the caller has the permission to perform
+     *           certain operations on the typed secret.
      * }
      */
     public function __construct($data = NULL) {
@@ -755,6 +781,78 @@ class Secret extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->tags = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Immutable. This defines the type of the secret.
+     * Enforces certain structural requirements on the
+     * [SecretVersions][google.cloud.secretmanager.v1.SecretVersion].
+     * For secret of type UNSPECIFIED, the SecretVersions can be of any type.
+     *
+     * Generated from protobuf field <code>.google.cloud.secretmanager.v1.Secret.SecretType secret_type = 17 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getSecretType()
+    {
+        return $this->secret_type;
+    }
+
+    /**
+     * Optional. Immutable. This defines the type of the secret.
+     * Enforces certain structural requirements on the
+     * [SecretVersions][google.cloud.secretmanager.v1.SecretVersion].
+     * For secret of type UNSPECIFIED, the SecretVersions can be of any type.
+     *
+     * Generated from protobuf field <code>.google.cloud.secretmanager.v1.Secret.SecretType secret_type = 17 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setSecretType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\SecretManager\V1\Secret\SecretType::class);
+        $this->secret_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Defines the policy member for the secret.
+     * This will be used to check if the caller has the permission to perform
+     * certain operations on the typed secret.
+     *
+     * Generated from protobuf field <code>.google.iam.v1.ResourcePolicyMember policy_member = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Iam\V1\ResourcePolicyMember|null
+     */
+    public function getPolicyMember()
+    {
+        return $this->policy_member;
+    }
+
+    public function hasPolicyMember()
+    {
+        return isset($this->policy_member);
+    }
+
+    public function clearPolicyMember()
+    {
+        unset($this->policy_member);
+    }
+
+    /**
+     * Output only. Defines the policy member for the secret.
+     * This will be used to check if the caller has the permission to perform
+     * certain operations on the typed secret.
+     *
+     * Generated from protobuf field <code>.google.iam.v1.ResourcePolicyMember policy_member = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Iam\V1\ResourcePolicyMember $var
+     * @return $this
+     */
+    public function setPolicyMember($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Iam\V1\ResourcePolicyMember::class);
+        $this->policy_member = $var;
 
         return $this;
     }
