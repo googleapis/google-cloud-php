@@ -1,0 +1,218 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.securitycenter.v2",
+    "libraryPackage": "Google\\Cloud\\SecurityCenter\\V2",
+    "services": {
+        "SecurityCenter": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "SecurityCenterGapicClient",
+                    "rpcs": {
+                        "BatchCreateResourceValueConfigs": {
+                            "methods": [
+                                "batchCreateResourceValueConfigs"
+                            ]
+                        },
+                        "BulkMuteFindings": {
+                            "methods": [
+                                "bulkMuteFindings"
+                            ]
+                        },
+                        "CreateBigQueryExport": {
+                            "methods": [
+                                "createBigQueryExport"
+                            ]
+                        },
+                        "CreateFinding": {
+                            "methods": [
+                                "createFinding"
+                            ]
+                        },
+                        "CreateMuteConfig": {
+                            "methods": [
+                                "createMuteConfig"
+                            ]
+                        },
+                        "CreateNotificationConfig": {
+                            "methods": [
+                                "createNotificationConfig"
+                            ]
+                        },
+                        "CreateSource": {
+                            "methods": [
+                                "createSource"
+                            ]
+                        },
+                        "DeleteBigQueryExport": {
+                            "methods": [
+                                "deleteBigQueryExport"
+                            ]
+                        },
+                        "DeleteMuteConfig": {
+                            "methods": [
+                                "deleteMuteConfig"
+                            ]
+                        },
+                        "DeleteNotificationConfig": {
+                            "methods": [
+                                "deleteNotificationConfig"
+                            ]
+                        },
+                        "DeleteResourceValueConfig": {
+                            "methods": [
+                                "deleteResourceValueConfig"
+                            ]
+                        },
+                        "GetBigQueryExport": {
+                            "methods": [
+                                "getBigQueryExport"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "GetMuteConfig": {
+                            "methods": [
+                                "getMuteConfig"
+                            ]
+                        },
+                        "GetNotificationConfig": {
+                            "methods": [
+                                "getNotificationConfig"
+                            ]
+                        },
+                        "GetResourceValueConfig": {
+                            "methods": [
+                                "getResourceValueConfig"
+                            ]
+                        },
+                        "GetSimulation": {
+                            "methods": [
+                                "getSimulation"
+                            ]
+                        },
+                        "GetSource": {
+                            "methods": [
+                                "getSource"
+                            ]
+                        },
+                        "GetValuedResource": {
+                            "methods": [
+                                "getValuedResource"
+                            ]
+                        },
+                        "GroupFindings": {
+                            "methods": [
+                                "groupFindings"
+                            ]
+                        },
+                        "ListAttackPaths": {
+                            "methods": [
+                                "listAttackPaths"
+                            ]
+                        },
+                        "ListBigQueryExports": {
+                            "methods": [
+                                "listBigQueryExports"
+                            ]
+                        },
+                        "ListFindings": {
+                            "methods": [
+                                "listFindings"
+                            ]
+                        },
+                        "ListMuteConfigs": {
+                            "methods": [
+                                "listMuteConfigs"
+                            ]
+                        },
+                        "ListNotificationConfigs": {
+                            "methods": [
+                                "listNotificationConfigs"
+                            ]
+                        },
+                        "ListResourceValueConfigs": {
+                            "methods": [
+                                "listResourceValueConfigs"
+                            ]
+                        },
+                        "ListSources": {
+                            "methods": [
+                                "listSources"
+                            ]
+                        },
+                        "ListValuedResources": {
+                            "methods": [
+                                "listValuedResources"
+                            ]
+                        },
+                        "SetFindingState": {
+                            "methods": [
+                                "setFindingState"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "SetMute": {
+                            "methods": [
+                                "setMute"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        },
+                        "UpdateBigQueryExport": {
+                            "methods": [
+                                "updateBigQueryExport"
+                            ]
+                        },
+                        "UpdateExternalSystem": {
+                            "methods": [
+                                "updateExternalSystem"
+                            ]
+                        },
+                        "UpdateFinding": {
+                            "methods": [
+                                "updateFinding"
+                            ]
+                        },
+                        "UpdateMuteConfig": {
+                            "methods": [
+                                "updateMuteConfig"
+                            ]
+                        },
+                        "UpdateNotificationConfig": {
+                            "methods": [
+                                "updateNotificationConfig"
+                            ]
+                        },
+                        "UpdateResourceValueConfig": {
+                            "methods": [
+                                "updateResourceValueConfig"
+                            ]
+                        },
+                        "UpdateSecurityMarks": {
+                            "methods": [
+                                "updateSecurityMarks"
+                            ]
+                        },
+                        "UpdateSource": {
+                            "methods": [
+                                "updateSource"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
