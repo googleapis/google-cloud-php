@@ -1,0 +1,383 @@
+{
+    "interfaces": {
+        "google.cloud.securitycenter.v1.SecurityCenter": {
+            "retry_codes": {
+                "no_retry_codes": [],
+                "no_retry_1_codes": [],
+                "retry_policy_1_codes": [
+                    "DEADLINE_EXCEEDED",
+                    "UNAVAILABLE"
+                ],
+                "no_retry_2_codes": [],
+                "retry_policy_2_codes": [
+                    "DEADLINE_EXCEEDED",
+                    "UNAVAILABLE"
+                ]
+            },
+            "retry_params": {
+                "no_retry_params": {
+                    "initial_retry_delay_millis": 0,
+                    "retry_delay_multiplier": 0.0,
+                    "max_retry_delay_millis": 0,
+                    "initial_rpc_timeout_millis": 0,
+                    "rpc_timeout_multiplier": 1.0,
+                    "max_rpc_timeout_millis": 0,
+                    "total_timeout_millis": 0
+                },
+                "no_retry_1_params": {
+                    "initial_retry_delay_millis": 0,
+                    "retry_delay_multiplier": 0.0,
+                    "max_retry_delay_millis": 0,
+                    "initial_rpc_timeout_millis": 60000,
+                    "rpc_timeout_multiplier": 1.0,
+                    "max_rpc_timeout_millis": 60000,
+                    "total_timeout_millis": 60000
+                },
+                "retry_policy_1_params": {
+                    "initial_retry_delay_millis": 100,
+                    "retry_delay_multiplier": 1.3,
+                    "max_retry_delay_millis": 60000,
+                    "initial_rpc_timeout_millis": 60000,
+                    "rpc_timeout_multiplier": 1.0,
+                    "max_rpc_timeout_millis": 60000,
+                    "total_timeout_millis": 60000
+                },
+                "no_retry_2_params": {
+                    "initial_retry_delay_millis": 0,
+                    "retry_delay_multiplier": 0.0,
+                    "max_retry_delay_millis": 0,
+                    "initial_rpc_timeout_millis": 480000,
+                    "rpc_timeout_multiplier": 1.0,
+                    "max_rpc_timeout_millis": 480000,
+                    "total_timeout_millis": 480000
+                },
+                "retry_policy_2_params": {
+                    "initial_retry_delay_millis": 100,
+                    "retry_delay_multiplier": 1.3,
+                    "max_retry_delay_millis": 60000,
+                    "initial_rpc_timeout_millis": 480000,
+                    "rpc_timeout_multiplier": 1.0,
+                    "max_rpc_timeout_millis": 480000,
+                    "total_timeout_millis": 480000
+                }
+            },
+            "methods": {
+                "BatchCreateResourceValueConfigs": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "BulkMuteFindings": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "CreateBigQueryExport": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "CreateEventThreatDetectionCustomModule": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "CreateFinding": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
+                },
+                "CreateMuteConfig": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "CreateNotificationConfig": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
+                },
+                "CreateSecurityHealthAnalyticsCustomModule": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
+                },
+                "CreateSource": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
+                },
+                "DeleteBigQueryExport": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "DeleteEventThreatDetectionCustomModule": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "DeleteMuteConfig": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "DeleteNotificationConfig": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
+                },
+                "DeleteResourceValueConfig": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "DeleteSecurityHealthAnalyticsCustomModule": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
+                },
+                "GetBigQueryExport": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "GetEffectiveEventThreatDetectionCustomModule": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "GetEffectiveSecurityHealthAnalyticsCustomModule": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "GetEventThreatDetectionCustomModule": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "GetIamPolicy": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "GetMuteConfig": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "GetNotificationConfig": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "GetOrganizationSettings": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "GetResourceValueConfig": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "GetSecurityHealthAnalyticsCustomModule": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "GetSimulation": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "GetSource": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "GetValuedResource": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "GroupAssets": {
+                    "timeout_millis": 480000,
+                    "retry_codes_name": "retry_policy_2_codes",
+                    "retry_params_name": "retry_policy_2_params"
+                },
+                "GroupFindings": {
+                    "timeout_millis": 480000,
+                    "retry_codes_name": "retry_policy_2_codes",
+                    "retry_params_name": "retry_policy_2_params"
+                },
+                "ListAssets": {
+                    "timeout_millis": 480000,
+                    "retry_codes_name": "retry_policy_2_codes",
+                    "retry_params_name": "retry_policy_2_params"
+                },
+                "ListAttackPaths": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "ListBigQueryExports": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "ListDescendantEventThreatDetectionCustomModules": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "ListDescendantSecurityHealthAnalyticsCustomModules": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "ListEffectiveEventThreatDetectionCustomModules": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "ListEffectiveSecurityHealthAnalyticsCustomModules": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "ListEventThreatDetectionCustomModules": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "ListFindings": {
+                    "timeout_millis": 480000,
+                    "retry_codes_name": "retry_policy_2_codes",
+                    "retry_params_name": "retry_policy_2_params"
+                },
+                "ListMuteConfigs": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "ListNotificationConfigs": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "ListResourceValueConfigs": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "ListSecurityHealthAnalyticsCustomModules": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "ListSources": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "ListValuedResources": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "RunAssetDiscovery": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
+                },
+                "SetFindingState": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
+                },
+                "SetIamPolicy": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
+                },
+                "SetMute": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "SimulateSecurityHealthAnalyticsCustomModule": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "TestIamPermissions": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "UpdateBigQueryExport": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "UpdateEventThreatDetectionCustomModule": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "UpdateExternalSystem": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "UpdateFinding": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
+                },
+                "UpdateMuteConfig": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "UpdateNotificationConfig": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
+                },
+                "UpdateOrganizationSettings": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
+                },
+                "UpdateResourceValueConfig": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "UpdateSecurityHealthAnalyticsCustomModule": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
+                },
+                "UpdateSecurityMarks": {
+                    "timeout_millis": 480000,
+                    "retry_codes_name": "no_retry_2_codes",
+                    "retry_params_name": "no_retry_2_params"
+                },
+                "UpdateSource": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
+                },
+                "ValidateEventThreatDetectionCustomModule": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                }
+            }
+        }
+    }
+}
