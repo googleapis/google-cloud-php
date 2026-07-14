@@ -41,13 +41,6 @@ use Psr\Http\Message\ResponseInterface;
  */
 class ResumableUploadState
 {
-    public int $chunkSize;
-    /** @var callable|null */
-    public $progressCallback;
-    public array $headers;
-    public ?string $uploadUrl;
-
-    public string $phase;
     public string $previousPhase;
     public int $committedOffset = 0;
     public int $chunkGranularity = 1;
@@ -64,21 +57,16 @@ class ResumableUploadState
      * @param callable|null $progressCallback
      * @param array $headers
      * @param ?string $uploadUrl
-     * @param string $initialPhase
+     * @param string $phase
      */
     public function __construct(
-        int $chunkSize,
-        $progressCallback,
-        array $headers,
-        ?string $uploadUrl,
-        string $initialPhase
+        public int $chunkSize,
+        /** @var callable|null $progressCallback */
+        public $progressCallback,
+        public array $headers,
+        public ?string $uploadUrl,
+        public string $phase
     ) {
-        $this->chunkSize = $chunkSize;
-        $this->progressCallback = $progressCallback;
-        $this->headers = $headers;
-        $this->uploadUrl = $uploadUrl;
-
-        $this->phase = $initialPhase;
-        $this->previousPhase = $initialPhase;
+        $this->previousPhase = $phase;
     }
 }

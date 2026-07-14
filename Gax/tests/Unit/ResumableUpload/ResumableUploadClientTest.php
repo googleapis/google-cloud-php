@@ -439,19 +439,14 @@ class ResumableUploadClientTest extends TestCase
         $upload->startUpload($unseekableStream->reveal());
     }
 
-    public function testStartUploadWithoutCredentialsThrowsException()
+    public function testStartUploadWithoutCredentialsThrowsTypeError()
     {
-        $this->expectException(\Google\ApiCore\ValidationException::class);
-        $this->expectExceptionMessage('The authentication credentials were either not provided or not found. To use resumable uploads, credentials must be provided using the "credentials" client option, or discoverable from Application Default Credentials.');
+        $this->expectException(\TypeError::class);
 
         $requestBuilder = $this->prophesize(\Google\ApiCore\RequestBuilder::class)->reveal();
         $httpHandler = function () {};
 
-        $client = new ResumableUploadClient($requestBuilder, $httpHandler, null);
-        $call = new Call('test.method', Timestamp::class, new Timestamp(), [], Call::RESUMABLE_UPLOAD_CALL);
-        $upload = new ResumableUpload($client, $call);
-
-        $upload->startUpload(Utils::streamFor('hello'));
+        new ResumableUploadClient($requestBuilder, $httpHandler, null);
     }
 
     public function testStartUploadInitialFailureThrowsOriginalExceptionWithoutQueryingEmptyUrl()

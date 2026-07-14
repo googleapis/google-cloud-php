@@ -89,31 +89,7 @@ trait ResumableUploadTrait
      */
     private function createResumableUploadClient(array $options): ResumableUploadClient
     {
-        $credentialsWrapper = isset($this->credentialsWrapper) && $this->credentialsWrapper instanceof CredentialsWrapper
-            ? $this->credentialsWrapper
-            : null;
-
-        if ($credentialsWrapper === null) {
-            @trigger_error(
-                'Resumable upload/download methods will not work when the client is initialized without authentication credentials (or with a pre-constructed gRPC channel).',
-                E_USER_WARNING
-            );
-        }
-
-        $httpHandler = null;
-        if (isset($options['httpHandler']) && is_callable($options['httpHandler'])) {
-            $httpHandler = $options['httpHandler'];
-        } elseif (isset($options['transportConfig']['rest']['httpHandler'])
-            && is_callable($options['transportConfig']['rest']['httpHandler'])
-        ) {
-            $httpHandler = $options['transportConfig']['rest']['httpHandler'];
-        }
-
-        if ($httpHandler === null) {
-            $logger = $options['transportConfig']['rest']['logger'] ?? null;
-            $httpHandler = [HttpHandlerFactory::build(logger: $logger), 'async'];
-        }
-
+        $httpHandler = $options['httpHandler'] ?? [HttpHandlerFactory::build(), 'async'];
         $apiEndpoint = $options['apiEndpoint'] ?? '';
         list($baseUri, $port) = self::normalizeServiceAddress($apiEndpoint);
         $restConfigPath = $options['transportConfig']['rest']['restClientConfigPath'] ?? '';
@@ -122,10 +98,9 @@ trait ResumableUploadTrait
         return new ResumableUploadClient(
             $requestBuilder,
             $httpHandler,
-            $credentialsWrapper,
+            $this->credentialsWrapper,
             $this->agentHeader,
-            $options['apiEndpoint'] ?? '',
-            $options['uploadPrefix'] ?? '/resumable/upload'
+            $apiEndpoint
         );
     }
 }

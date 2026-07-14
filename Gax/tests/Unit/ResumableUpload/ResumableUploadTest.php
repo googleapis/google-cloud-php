@@ -52,7 +52,7 @@ class ResumableUploadTest extends TestCase
         $httpHandler = function () {
         };
         $requestBuilder = $this->prophesize(\Google\ApiCore\RequestBuilder::class)->reveal();
-        $client = new ResumableUploadClient($requestBuilder, $httpHandler, serviceAddress: 'test.googleapis.com');
+        $client = new ResumableUploadClient($requestBuilder, $httpHandler, $this->prophesize(CredentialsWrapper::class)->reveal(), [], 'test.googleapis.com');
 
         $call = new Call('v1/test:create', Timestamp::class, new Timestamp(), [], Call::RESUMABLE_UPLOAD_CALL);
         $upload = new ResumableUpload($client, $call, [
@@ -164,7 +164,7 @@ class ResumableUploadTest extends TestCase
         $this->expectException(\TypeError::class);
 
         $requestBuilder = $this->prophesize(\Google\ApiCore\RequestBuilder::class)->reveal();
-        $client = new ResumableUploadClient($requestBuilder, function () {});
+        $client = new ResumableUploadClient($requestBuilder, function () {}, $this->prophesize(CredentialsWrapper::class)->reveal());
         new ResumableUpload($client, null);
     }
 

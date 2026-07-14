@@ -66,14 +66,6 @@ class ResumableUploadClient
     private const DEFAULT_TOTAL_TIMEOUT_MILLIS = 600000;
     private const MAX_RECOVERY_ATTEMPTS = 3;
 
-    /** @var callable|null */
-    private $httpHandler = null;
-    private ?CredentialsWrapper $credentialsWrapper = null;
-    private array $headers = [];
-    private string $serviceAddress = '';
-    private string $uploadPrefix = '/resumable/upload';
-    private RequestBuilder $requestBuilder;
-
     /**
      * @param RequestBuilder $requestBuilder RequestBuilder for rendering REST URI templates and wildcards.
      * @param callable $httpHandler Handler used to deliver PSR-7 requests.
@@ -83,19 +75,14 @@ class ResumableUploadClient
      * @param string $uploadPrefix Resumable upload path prefix (default: '/resumable/upload').
      */
     public function __construct(
-        RequestBuilder $requestBuilder,
-        callable $httpHandler,
-        ?CredentialsWrapper $credentialsWrapper = null,
-        array $headers = [],
-        string $serviceAddress = '',
-        string $uploadPrefix = '/resumable/upload'
+        private RequestBuilder $requestBuilder,
+        /** @var callable $httpHandler */
+        private $httpHandler,
+        private CredentialsWrapper $credentialsWrapper,
+        private array $headers = [],
+        private string $serviceAddress = '',
+        private string $uploadPrefix = '/resumable/upload'
     ) {
-        $this->requestBuilder = $requestBuilder;
-        $this->httpHandler = $httpHandler;
-        $this->credentialsWrapper = $credentialsWrapper;
-        $this->headers = $headers;
-        $this->serviceAddress = $serviceAddress;
-        $this->uploadPrefix = $uploadPrefix;
     }
 
     /**
@@ -134,12 +121,6 @@ class ResumableUploadClient
         Call $call,
         array $resumableUploadOptions = []
     ): Message {
-        if ($this->credentialsWrapper === null) {
-            throw new ValidationException(
-                'The authentication credentials were either not provided or not found. To use resumable uploads, credentials must be provided using the "credentials" client option, or discoverable from Application Default Credentials.'
-            );
-        }
-
         $uploadUrl = $upload->getUploadUrl() ?? $resumableUploadOptions['uploadUrl'] ?? null;
         $totalTimeoutMillis = (float) ($resumableUploadOptions['totalTimeoutMillis']
             ?? self::DEFAULT_TOTAL_TIMEOUT_MILLIS);
@@ -456,10 +437,8 @@ class ResumableUploadClient
         ?RetrySettings $retrySettings = null
     ): ResponseInterface {
         $reqHeaders = array_merge($this->headers, $request->getHeaders());
-        if ($this->credentialsWrapper) {
-            if ($authCallback = $this->credentialsWrapper->getAuthorizationHeaderCallback()) {
-                $reqHeaders = array_merge($reqHeaders, $authCallback());
-            }
+        if ($authCallback = $this->credentialsWrapper->getAuthorizationHeaderCallback()) {
+            $reqHeaders = array_merge($reqHeaders, $authCallback());
         }
         foreach ($reqHeaders as $k => $v) {
             $request = $request->withHeader($k, $v);
