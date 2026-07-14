@@ -139,25 +139,6 @@ final class IDSClient
     }
 
     /**
-     * Create the default operation client for the service.
-     *
-     * @param array $options ClientOptions for the client.
-     *
-     * @return OperationsClient
-     */
-    private function createOperationsClient(array $options)
-    {
-        // Unset client-specific configuration options
-        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
-
-        if (isset($options['operationsClient'])) {
-            return $options['operationsClient'];
-        }
-
-        return new OperationsClient($options);
-    }
-
-    /**
      * Formats a string containing the fully-qualified path to represent a endpoint
      * resource.
      *

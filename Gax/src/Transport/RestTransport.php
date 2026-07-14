@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /*
  * Copyright 2018 Google LLC
  * All rights reserved.
@@ -31,12 +33,12 @@
  */
 namespace Google\ApiCore\Transport;
 
+use Google\ApiCore\ApiEndpointTrait;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\Call;
 use Google\ApiCore\InsecureRequestBuilder;
 use Google\ApiCore\RequestBuilder;
 use Google\ApiCore\ServerStream;
-use Google\ApiCore\ServiceAddressTrait;
 use Google\ApiCore\Transport\Rest\RestServerStreamingCall;
 use Google\ApiCore\ValidationException;
 use Google\ApiCore\ValidationTrait;
@@ -50,8 +52,8 @@ use Psr\Http\Message\ResponseInterface;
  */
 class RestTransport implements TransportInterface
 {
+    use ApiEndpointTrait;
     use ValidationTrait;
-    use ServiceAddressTrait;
     use HttpUnaryTransportTrait {
         startServerStreamingCall as protected unsupportedServerStreamingCall;
     }
@@ -97,7 +99,7 @@ class RestTransport implements TransportInterface
             'hasEmulator' => false,
             'logger' => null,
         ];
-        list($baseUri, $port) = self::normalizeServiceAddress($apiEndpoint);
+        list($baseUri, $port) = self::normalizeApiEndpoint($apiEndpoint);
         $requestBuilder = $config['hasEmulator']
             ? new InsecureRequestBuilder("$baseUri:$port", $restConfigPath)
             : new RequestBuilder("$baseUri:$port", $restConfigPath);
