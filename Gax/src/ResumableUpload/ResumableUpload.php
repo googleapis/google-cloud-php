@@ -42,8 +42,6 @@ use Psr\Http\Message\StreamInterface;
  */
 class ResumableUpload
 {
-    private ?string $uploadUrl = null;
-
     /**
      * @param ResumableUploadClient $resumableUploadClient
      * @param Call $call
@@ -73,9 +71,8 @@ class ResumableUpload
         private ResumableUploadClient $resumableUploadClient,
         private Call $call,
         private array $resumableUploadOptions = [],
-        ?string $uploadUrl = null
+        private ?string $uploadUrl = null
     ) {
-        $this->uploadUrl = $uploadUrl;
     }
 
     /**

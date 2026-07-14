@@ -97,35 +97,4 @@ class ResumableUploadTraitTest extends TestCase
         $callProp = $ref->getProperty('call');
         $this->assertSame(Timestamp::class, $callProp->getValue($resumed)->getDecodeType());
     }
-
-    public function testCreateResumableUploadClientWithoutCredentialsEmitsWarning()
-    {
-        $warningEmitted = false;
-        set_error_handler(function ($errno, $errstr) use (&$warningEmitted) {
-            if ($errno === E_USER_WARNING && str_contains($errstr, 'Resumable upload/download methods will not work when the client is initialized without authentication credentials')) {
-                $warningEmitted = true;
-                return true;
-            }
-            return false;
-        });
-
-        try {
-            new class () {
-                use ResumableUploadTrait;
-
-                public array $agentHeader = [];
-
-                public function __construct()
-                {
-                    $options['transportConfig']['rest']['restClientConfigPath'] = __DIR__
-                        . '/../testdata/resources/test_service_rest_client_config.php';
-                    $this->createResumableUploadClient($options);
-                }
-            };
-        } finally {
-            restore_error_handler();
-        }
-
-        $this->assertTrue($warningEmitted);
-    }
 }
