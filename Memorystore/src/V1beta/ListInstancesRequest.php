@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * Request message for [ListInstances][].
+ * Request message for `ListInstances`.
  *
  * Generated from protobuf message <code>google.cloud.memorystore.v1beta.ListInstancesRequest</code>
  */

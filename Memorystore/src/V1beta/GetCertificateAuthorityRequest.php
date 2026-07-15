@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * Request message for [GetCertificateAuthority][].
+ * Request message for `GetCertificateAuthority`.
  *
  * Generated from protobuf message <code>google.cloud.memorystore.v1beta.GetCertificateAuthorityRequest</code>
  */
