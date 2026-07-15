@@ -32,7 +32,11 @@
 
 namespace Google\ApiCore\ResumableUpload;
 
+use Google\ApiCore\ApiException;
+use Google\ApiCore\ApiStatus;
+use Google\ApiCore\ValidationException;
 use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\StreamInterface;
 
 /**
  * State container for an active resumable upload session.
@@ -49,7 +53,6 @@ class ResumableUploadState
     public ?string $previousBuffer = null;
     public int $previousOffset = 0;
     public bool $isEof = false;
-    public ?ResponseInterface $finalResponse = null;
 
     /**
      * @param int $chunkSize
@@ -66,5 +69,114 @@ class ResumableUploadState
         public ?string $uploadUrl,
         public string $phase
     ) {
+    }
+
+    public function prepareBuffer(StreamInterface $dataStream): void
+    {
+        if ($this->buffer !== null) {
+            return;
+        }
+
+        $effectiveChunkSize = $this->chunkSize;
+        if ($this->chunkGranularity > 0 && ($effectiveChunkSize % $this->chunkGranularity !== 0)) {
+            $effectiveChunkSize = (int) (
+                floor($effectiveChunkSize / $this->chunkGranularity) * $this->chunkGranularity
+            );
+            if ($effectiveChunkSize === 0) {
+                $effectiveChunkSize = $this->chunkGranularity;
+            }
+        }
+
+        if ($this->committedOffset > 0 && $dataStream->tell() !== $this->committedOffset) {
+            if (!$dataStream->isSeekable()) {
+                throw new ValidationException(
+                    "Cannot read from stream at offset {$this->committedOffset}: the stream "
+                    . "position is {$dataStream->tell()} and the stream is not seekable."
+                );
+            }
+            try {
+                $dataStream->seek($this->committedOffset);
+            } catch (\Throwable $e) {
+                throw new ValidationException(
+                    "Failed to seek data stream to offset {$this->committedOffset}: " . $e->getMessage(),
+                    0,
+                    $e
+                );
+            }
+        }
+
+        try {
+            $this->buffer = $dataStream->read($effectiveChunkSize);
+        } catch (\Throwable $e) {
+            throw new ValidationException(
+                "Error reading from data stream: " . $e->getMessage(),
+                0,
+                $e
+            );
+        }
+        $this->isEof = $dataStream->eof();
+    }
+
+    public function commitBuffer(): void
+    {
+        $this->previousBuffer = $this->buffer;
+        $this->previousOffset = $this->committedOffset;
+        $this->committedOffset += strlen((string) $this->buffer);
+        $this->buffer = null;
+    }
+
+    public function reconcileRecoveryOffset(
+        int $serverOffset,
+        StreamInterface $dataStream,
+        int $maxRecoveryAttempts
+    ): void {
+        if ($serverOffset === $this->lastRecoveryOffset) {
+            $this->recoveryAttempts++;
+            if ($this->recoveryAttempts >= $maxRecoveryAttempts) {
+                throw new ApiException(
+                    'Exhausted recovery attempts with unchanged offset',
+                    0,
+                    ApiStatus::ABORTED
+                );
+            }
+        } else {
+            $this->recoveryAttempts = 0;
+        }
+        $this->lastRecoveryOffset = $serverOffset;
+
+        if ($this->buffer !== null
+            && $serverOffset >= $this->committedOffset
+            && $serverOffset <= $this->committedOffset + strlen((string) $this->buffer)
+        ) {
+            $sliceOffset = $serverOffset - $this->committedOffset;
+            $this->buffer = substr($this->buffer, $sliceOffset);
+            $this->committedOffset = $serverOffset;
+        } elseif ($this->previousBuffer !== null
+            && $serverOffset >= $this->previousOffset
+            && $serverOffset < $this->committedOffset
+        ) {
+            $combined = $this->previousBuffer . (string) $this->buffer;
+            $sliceOffset = $serverOffset - $this->previousOffset;
+            $this->buffer = substr($combined, $sliceOffset);
+            $this->committedOffset = $serverOffset;
+        } else {
+            if (!$dataStream->isSeekable()) {
+                throw new ValidationException(
+                    "Cannot recover resumable upload: the server confirmed offset {$serverOffset}, "
+                    . "which falls outside the buffered chunks, and the provided data stream is not seekable."
+                );
+            }
+            try {
+                $dataStream->seek($serverOffset);
+            } catch (\Throwable $e) {
+                throw new ValidationException(
+                    "Failed to seek data stream to offset {$serverOffset}: " . $e->getMessage(),
+                    0,
+                    $e
+                );
+            }
+            $this->committedOffset = $serverOffset;
+            $this->buffer = null;
+        }
     }
 }

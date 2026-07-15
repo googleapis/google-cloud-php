@@ -24,10 +24,21 @@ jobs:
             php-version: '8.1'
             extensions: grpc
 
-        - name: Install and run GAPIC Showcase
+        # TODO: Restore the release download step below once resumable-upload changes are merged upstream into gapic-showcase
+        # - name: Install and run GAPIC Showcase
+        #   run: |
+        #     curl -L https://github.com/googleapis/gapic-showcase/releases/download/v${GAPIC_SHOWCASE_VERSION}/gapic-showcase-${GAPIC_SHOWCASE_VERSION}-${OS}-${ARCH}.tar.gz | tar -zx
+        #     ./gapic-showcase run &
+
+        - name: Setup Go
+          uses: actions/setup-go@v5
+          with:
+            go-version: 'stable'
+
+        - name: Install and run GAPIC Showcase from fork
           run: |
-            curl -L https://github.com/googleapis/gapic-showcase/releases/download/v${GAPIC_SHOWCASE_VERSION}/gapic-showcase-${GAPIC_SHOWCASE_VERSION}-${OS}-${ARCH}.tar.gz | tar -zx
-            ./gapic-showcase run &
+            go install github.com/bshaffer/gapic-showcase/cmd/gapic-showcase@resumable-upload
+            gapic-showcase run &
 
         - name: Install dependencies
           run: |
