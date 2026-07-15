@@ -41,7 +41,6 @@ use Psr\Http\Message\ResponseInterface;
  */
 class ResumableUploadState
 {
-    public string $previousPhase;
     public int $committedOffset = 0;
     public int $chunkGranularity = 1;
     public int $recoveryAttempts = 0;
@@ -67,6 +66,5 @@ class ResumableUploadState
         public ?string $uploadUrl,
         public string $phase
     ) {
-        $this->previousPhase = $phase;
     }
 }
