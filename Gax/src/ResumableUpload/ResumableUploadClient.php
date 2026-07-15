@@ -74,6 +74,8 @@ class ResumableUploadClient
      * @param string $serviceAddress Service address or API endpoint.
      * @param string $uploadPrefix Resumable upload path prefix (default: '/resumable/upload').
      */
+    private ?ResponseInterface $finalResponse = null;
+
     public function __construct(
         private RequestBuilder $requestBuilder,
         /** @var callable $httpHandler */
@@ -121,6 +123,7 @@ class ResumableUploadClient
         Call $call,
         array $resumableUploadOptions = []
     ): Message {
+        $this->finalResponse = null;
         $uploadUrl = $upload->getUploadUrl() ?? $resumableUploadOptions['uploadUrl'] ?? null;
         $totalTimeoutMillis = (float) ($resumableUploadOptions['totalTimeoutMillis']
             ?? self::DEFAULT_TOTAL_TIMEOUT_MILLIS);
@@ -135,13 +138,7 @@ class ResumableUploadClient
         );
 
         while ($state->phase !== self::PHASE_DONE) {
-            if (microtime(true) * 1000 >= $deadlineMs) {
-                throw new ApiException(
-                    'Resumable upload total timeout exceeded.',
-                    Code::DEADLINE_EXCEEDED,
-                    ApiStatus::DEADLINE_EXCEEDED
-                );
-            }
+            $this->checkDeadline($deadlineMs);
             try {
                 $state->phase = match ($state->phase) {
                     self::PHASE_STARTING => $call->getMessage() !== null
@@ -153,8 +150,8 @@ class ResumableUploadClient
                             $resumableUploadOptions
                         )
                         : throw new ValidationException("A Call with request message is required when starting a new resumable upload."),
-                    self::PHASE_TRANSMITTING => $this->phaseTransmitting($state, $upload, $dataStream),
-                    self::PHASE_FINALIZING => $this->phaseFinalizing($state, $upload, $dataStream),
+                    self::PHASE_TRANSMITTING,
+                    self::PHASE_FINALIZING => $this->phaseUploading($state, $upload, $dataStream),
                     self::PHASE_RECOVERY => $this->phaseRecovery($state, $upload, $dataStream),
                     default => throw new ApiException("Unexpected phase: {$state->phase}", 0, ApiStatus::INTERNAL),
                 };
@@ -172,11 +169,11 @@ class ResumableUploadClient
             throw new ValidationException('A valid decodeType is required on the Call object.');
         }
 
-        if ($state->finalResponse === null) {
+        if ($this->finalResponse === null) {
             throw new ApiException('No final response received from server.', 0, ApiStatus::INTERNAL);
         }
 
-        $body = (string) $state->finalResponse->getBody();
+        $body = (string) $this->finalResponse->getBody();
         if ($body === '') {
             throw new ApiException('Final response body was empty.', 0, ApiStatus::INTERNAL);
         }
@@ -195,8 +192,6 @@ class ResumableUploadClient
         Call $call,
         array $options = []
     ): string {
-        $method = $call->getMethod();
-        $requestMessage = $call->getMessage();
         $headers = $state->headers;
         $headers['X-Goog-Upload-Protocol'] = 'resumable';
         $headers['X-Goog-Upload-Command'] = 'start';
@@ -204,23 +199,21 @@ class ResumableUploadClient
             $headers['X-Goog-Upload-Header-Content-Length'] = (string) $dataStream->getSize();
         }
 
-        $request = $this->requestBuilder->build($method, $requestMessage, $headers);
-        if ($this->uploadPrefix !== '' && $this->uploadPrefix !== '/') {
-            $uri = $request->getUri();
-            $path = $uri->getPath();
-            $newPath = rtrim($this->uploadPrefix, '/') . ($path === '' || $path === '/' ? '' : '/' . ltrim($path, '/'));
-            $request = $request->withUri($uri->withPath($newPath));
-        }
+        $request = $this->requestBuilder->build($call->getMethod(), $call->getMessage(), $headers);
 
-        $timeoutMillis = $options['timeoutMillis'] ?? null;
+        // Add upload prefix
+        $uri = $request->getUri();
+        $request = $request->withUri($uri->withPath($this->uploadPrefix . $uri->getPath()));
+
+        // Add retry settings
         $retrySettings = $options['retrySettings'] ?? null;
         if ($retrySettings !== null && !$retrySettings instanceof RetrySettings) {
             $retrySettings = RetrySettings::constructDefault()->with($retrySettings);
         }
 
-        $response = $this->sendRequest($request, $timeoutMillis, $retrySettings);
-        $statusCode = $response->getStatusCode();
-        if ($statusCode !== 200) {
+        // Make the request
+        $response = $this->sendRequest($request, $options['timeoutMillis'] ?? null, $retrySettings);
+        if ($response->getStatusCode() !== 200) {
             $this->handleErrorResponse($response);
         }
         $urlHeader = $response->getHeaderLine('X-Goog-Upload-URL');
@@ -234,117 +227,52 @@ class ResumableUploadClient
         $state->chunkGranularity = !empty($granularityHeader) ? (int) $granularityHeader : 1;
         $statusHeader = $response->getHeaderLine('X-Goog-Upload-Status');
         if ($statusHeader === 'final') {
-            $state->finalResponse = $response;
+            $this->finalResponse = $response;
             return self::PHASE_DONE;
         }
         return self::PHASE_TRANSMITTING;
     }
 
-    private function phaseTransmitting(
+    private function phaseUploading(
         ResumableUploadState $state,
         ResumableUpload $upload,
         StreamInterface $dataStream
     ): string {
-        return $this->phaseTransmittingOrFinalizing(self::PHASE_TRANSMITTING, $state, $upload, $dataStream);
-    }
-
-    private function phaseFinalizing(
-        ResumableUploadState $state,
-        ResumableUpload $upload,
-        StreamInterface $dataStream
-    ): string {
-        return $this->phaseTransmittingOrFinalizing(self::PHASE_FINALIZING, $state, $upload, $dataStream);
-    }
-
-    private function phaseTransmittingOrFinalizing(
-        string $phase,
-        ResumableUploadState $state,
-        ResumableUpload $upload,
-        StreamInterface $dataStream
-    ): string {
-        if ($state->buffer === null) {
-            $effectiveChunkSize = $state->chunkSize;
-            if ($state->chunkGranularity > 0 && ($effectiveChunkSize % $state->chunkGranularity !== 0)) {
-                $effectiveChunkSize = (int) (
-                    floor($effectiveChunkSize / $state->chunkGranularity) * $state->chunkGranularity
-                );
-                if ($effectiveChunkSize === 0) {
-                    $effectiveChunkSize = $state->chunkGranularity;
-                }
-            }
-
-            if ($state->committedOffset > 0 && $dataStream->tell() !== $state->committedOffset) {
-                if (!$dataStream->isSeekable()) {
-                    throw new ValidationException(
-                        "Cannot read from stream at offset {$state->committedOffset}: the stream position is {$dataStream->tell()} and the stream is not seekable."
-                    );
-                }
-                try {
-                    $dataStream->seek($state->committedOffset);
-                } catch (\Throwable $e) {
-                    throw new ValidationException(
-                        "Failed to seek data stream to offset {$state->committedOffset}: " . $e->getMessage(),
-                        0,
-                        $e
-                    );
-                }
-            }
-
-            try {
-                $state->buffer = $dataStream->read($effectiveChunkSize);
-            } catch (\Throwable $e) {
-                throw new ValidationException(
-                    "Error reading from data stream: " . $e->getMessage(),
-                    0,
-                    $e
-                );
-            }
-            $state->isEof = $dataStream->eof();
-        }
+        $state->prepareBuffer($dataStream);
 
         $headers = $state->headers;
         $headers['X-Goog-Upload-Offset'] = (string) $state->committedOffset;
+        $body = (string) $state->buffer;
 
         if ($state->isEof) {
             $phase = self::PHASE_FINALIZING;
-            if (strlen((string) $state->buffer) > 0) {
-                $headers['X-Goog-Upload-Command'] = 'upload, finalize';
-                $body = (string) $state->buffer;
-            } else {
-                $headers['X-Goog-Upload-Command'] = 'finalize';
-                $body = '';
-            }
+            $headers['X-Goog-Upload-Command'] = strlen($body) > 0 ? 'upload, finalize' : 'finalize';
         } else {
             $phase = self::PHASE_TRANSMITTING;
             $headers['X-Goog-Upload-Command'] = 'upload';
-            $body = (string) $state->buffer;
         }
 
         $response = $this->sendRequest(
             new Request('POST', (string) $state->uploadUrl, $headers, $body)
         );
-        $statusCode = $response->getStatusCode();
-        if ($statusCode === 200) {
-            if ($state->progressCallback && $headers['X-Goog-Upload-Command'] !== 'finalize') {
-                ($state->progressCallback)(
-                    $state->committedOffset + strlen((string) $state->buffer),
-                    $upload
-                );
-            }
-
-            $statusHeader = $response->getHeaderLine('X-Goog-Upload-Status');
-            if ($statusHeader === 'final') {
-                $state->finalResponse = $response;
-                return self::PHASE_DONE;
-            }
-            $state->previousBuffer = $state->buffer;
-            $state->previousOffset = $state->committedOffset;
-            $state->committedOffset += strlen((string) $state->buffer);
-            $state->buffer = null;
-            return self::PHASE_TRANSMITTING;
+        if ($response->getStatusCode() !== 200) {
+            $this->handleErrorResponse($response);
         }
-        $this->handleErrorResponse($response);
-        return $phase;
+
+        if ($state->progressCallback && $headers['X-Goog-Upload-Command'] !== 'finalize') {
+            ($state->progressCallback)(
+                $state->committedOffset + strlen($body),
+                $upload
+            );
+        }
+
+        if ($response->getHeaderLine('X-Goog-Upload-Status') === 'final') {
+            $this->finalResponse = $response;
+            return self::PHASE_DONE;
+        }
+
+        $state->commitBuffer();
+        return self::PHASE_TRANSMITTING;
     }
 
     private function phaseRecovery(ResumableUploadState $state, ResumableUpload $upload, StreamInterface $dataStream): string
@@ -364,57 +292,11 @@ class ResumableUploadClient
                 ? (int) $serverOffsetStr
                 : $state->committedOffset;
 
-            if ($serverOffset === $state->lastRecoveryOffset) {
-                $state->recoveryAttempts++;
-                if ($state->recoveryAttempts >= self::MAX_RECOVERY_ATTEMPTS) {
-                    throw new ApiException(
-                        'Exhausted recovery attempts with unchanged offset',
-                        0,
-                        ApiStatus::ABORTED
-                    );
-                }
-            } else {
-                $state->recoveryAttempts = 0;
-            }
-            $state->lastRecoveryOffset = $serverOffset;
-
-            if ($state->buffer !== null
-                && $serverOffset >= $state->committedOffset
-                && $serverOffset <= $state->committedOffset + strlen((string) $state->buffer)
-            ) {
-                $sliceOffset = $serverOffset - $state->committedOffset;
-                $state->buffer = substr($state->buffer, $sliceOffset);
-                $state->committedOffset = $serverOffset;
-            } elseif ($state->previousBuffer !== null
-                && $serverOffset >= $state->previousOffset
-                && $serverOffset < $state->committedOffset
-            ) {
-                $combined = $state->previousBuffer . (string) $state->buffer;
-                $sliceOffset = $serverOffset - $state->previousOffset;
-                $state->buffer = substr($combined, $sliceOffset);
-                $state->committedOffset = $serverOffset;
-            } else {
-                if (!$dataStream->isSeekable()) {
-                    throw new ValidationException(
-                        "Cannot recover resumable upload: the server confirmed offset {$serverOffset}, which falls outside the buffered chunks, and the provided data stream is not seekable."
-                    );
-                }
-                try {
-                    $dataStream->seek($serverOffset);
-                } catch (\Throwable $e) {
-                    throw new ValidationException(
-                        "Failed to seek data stream to offset {$serverOffset}: " . $e->getMessage(),
-                        0,
-                        $e
-                    );
-                }
-                $state->committedOffset = $serverOffset;
-                $state->buffer = null;
-            }
+            $state->reconcileRecoveryOffset($serverOffset, $dataStream, self::MAX_RECOVERY_ATTEMPTS);
 
             $statusHeader = $response->getHeaderLine('X-Goog-Upload-Status');
             if ($statusHeader === 'final') {
-                $state->finalResponse = $response;
+                $this->finalResponse = $response;
                 return self::PHASE_DONE;
             }
 
@@ -467,19 +349,24 @@ class ResumableUploadClient
         return $response;
     }
 
-    private function handleException(
-        ApiException|RequestException $e,
-        ResumableUploadState $state,
-        float $deadlineMs
-    ): string {
+    private function checkDeadline(float $deadlineMs, ?\Throwable $previous = null): void
+    {
         if (microtime(true) * 1000 >= $deadlineMs) {
             throw new ApiException(
                 'Resumable upload total timeout exceeded.',
                 Code::DEADLINE_EXCEEDED,
                 ApiStatus::DEADLINE_EXCEEDED,
-                ['previous' => $e]
+                $previous ? ['previous' => $previous] : []
             );
         }
+    }
+
+    private function handleException(
+        ApiException|RequestException $e,
+        ResumableUploadState $state,
+        float $deadlineMs
+    ): string {
+        $this->checkDeadline($deadlineMs, $e);
 
         $code = $e->getCode();
         if ($e instanceof RequestException) {
@@ -513,13 +400,12 @@ class ResumableUploadClient
         );
     }
 
-    private function handleErrorResponse(ResponseInterface $response)
+    private function handleErrorResponse(ResponseInterface $response): never
     {
         $statusCode = $response->getStatusCode();
         $body = (string) $response->getBody();
 
-        $statusHeader = $response->getHeaderLine('X-Goog-Upload-Status');
-        if ($statusHeader === 'final') {
+        if ($response->getHeaderLine('X-Goog-Upload-Status') === 'final') {
             throw new ApiException(
                 $body ?: 'Upload rejected by server',
                 $statusCode,
