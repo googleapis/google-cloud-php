@@ -144,7 +144,7 @@ class ResumableUploadClient
             }
             try {
                 $state->phase = match ($state->phase) {
-                    self::PHASE_STARTING => $call !== null && $call->getMessage() !== null
+                    self::PHASE_STARTING => $call->getMessage() !== null
                         ? $this->phaseStarting(
                             $state,
                             $upload,
@@ -320,7 +320,6 @@ class ResumableUploadClient
             $body = (string) $state->buffer;
         }
 
-        $state->previousPhase = $phase;
         $response = $this->sendRequest(
             new Request('POST', (string) $state->uploadUrl, $headers, $body)
         );
@@ -423,9 +422,7 @@ class ResumableUploadClient
                 ($state->progressCallback)($state->committedOffset, $upload);
             }
 
-            return $state->previousPhase === self::PHASE_FINALIZING
-                ? self::PHASE_FINALIZING
-                : self::PHASE_TRANSMITTING;
+            return self::PHASE_TRANSMITTING;
         }
         $this->handleErrorResponse($response);
         return self::PHASE_RECOVERY;
