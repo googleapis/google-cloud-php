@@ -34,6 +34,7 @@ namespace Google\ApiCore\Transport;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\ApiStatus;
 use Google\ApiCore\Call;
+use Google\ApiCore\ResumableUpload\ResumableUploadTransportInterface;
 use Google\ApiCore\ServiceAddressTrait;
 use Google\ApiCore\ValidationException;
 use Google\ApiCore\ValidationTrait;
@@ -48,7 +49,7 @@ use Psr\Http\Message\ResponseInterface;
  * A transport that sends protobuf over HTTP 1.1 that can be used when full gRPC support
  * is not available.
  */
-class GrpcFallbackTransport implements TransportInterface
+class GrpcFallbackTransport implements TransportInterface, ResumableUploadTransportInterface
 {
     use ValidationTrait;
     use ServiceAddressTrait;
@@ -108,7 +109,7 @@ class GrpcFallbackTransport implements TransportInterface
         $options['requestId'] = crc32((string) spl_object_id($call) . getmypid());
 
         return $httpHandler(
-            $this->buildRequest($call, $options),
+            $this->buildGrpcFallbackRequest($call, $options),
             $this->getCallOptions($options)
         )->then(
             function (ResponseInterface $response) use ($options) {
@@ -133,7 +134,7 @@ class GrpcFallbackTransport implements TransportInterface
      * @param array $options
      * @return RequestInterface
      */
-    private function buildRequest(Call $call, array $options)
+    private function buildGrpcFallbackRequest(Call $call, array $options)
     {
         // Build common headers and set the content type to 'application/x-protobuf'
         $headers = ['Content-Type' => 'application/x-protobuf'] + self::buildCommonHeaders($options);

@@ -38,6 +38,7 @@ use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\ResumableUpload\ResumableUpload;
 use Google\ApiCore\ResumableUpload\ResumableUploadClient;
 use Google\ApiCore\ResumableUpload\ResumableUploadTrait;
+use Google\ApiCore\ResumableUpload\ResumableUploadTransportInterface;
 use Google\Protobuf\Timestamp;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -83,7 +84,7 @@ class ResumableUploadTraitTest extends TestCase
         $uploadClient = $client->getResumableUploadClient();
         $this->assertInstanceOf(ResumableUploadClient::class, $uploadClient);
         $clientRef = new \ReflectionClass($uploadClient);
-        $this->assertIsCallable($clientRef->getProperty('httpHandler')->getValue($uploadClient));
+        $this->assertInstanceOf(ResumableUploadTransportInterface::class, $clientRef->getProperty('transport')->getValue($uploadClient));
         $this->assertSame($credentialsWrapper, $clientRef->getProperty('credentialsWrapper')->getValue($uploadClient));
 
         $resumed = $client->resumeUpload('createYouTubeVideoUpload', 'https://upload.url/session123', ['chunkSize' => 1024]);

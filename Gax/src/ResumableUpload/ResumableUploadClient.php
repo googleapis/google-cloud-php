@@ -67,9 +67,8 @@ class ResumableUploadClient
     private const MAX_RECOVERY_ATTEMPTS = 3;
 
     /**
-     * @param RequestBuilder $requestBuilder RequestBuilder for rendering REST URI templates and wildcards.
-     * @param callable $httpHandler Handler used to deliver PSR-7 requests.
-     * @param ?CredentialsWrapper $credentialsWrapper The credentials wrapper from GAPIC client.
+     * @param ResumableUploadTransportInterface $transport Transport implementing buildRequest and sendRawRequest.
+     * @param CredentialsWrapper $credentialsWrapper The credentials wrapper from GAPIC client.
      * @param array $headers Custom headers to include with all upload requests.
      * @param string $serviceAddress Service address or API endpoint.
      * @param string $uploadPrefix Resumable upload path prefix (default: '/resumable/upload').
@@ -77,9 +76,7 @@ class ResumableUploadClient
     private ?ResponseInterface $finalResponse = null;
 
     public function __construct(
-        private RequestBuilder $requestBuilder,
-        /** @var callable $httpHandler */
-        private $httpHandler,
+        private ResumableUploadTransportInterface $transport,
         private CredentialsWrapper $credentialsWrapper,
         private array $headers = [],
         private string $serviceAddress = '',
@@ -199,7 +196,7 @@ class ResumableUploadClient
             $headers['X-Goog-Upload-Header-Content-Length'] = (string) $dataStream->getSize();
         }
 
-        $request = $this->requestBuilder->build($call->getMethod(), $call->getMessage(), $headers);
+        $request = $this->transport->buildRequest($call->getMethod(), $call->getMessage(), $headers);
 
         // Add upload prefix
         $uri = $request->getUri();
@@ -323,7 +320,6 @@ class ResumableUploadClient
             $request = $request->withHeader($k, $v);
         }
 
-        $httpHandler = $this->httpHandler;
         $callOptions = [];
         if ($timeoutMillis !== null && $timeoutMillis > 0) {
             $callOptions['timeout'] = $timeoutMillis / 1000;
@@ -332,7 +328,7 @@ class ResumableUploadClient
         if ($retrySettings !== null) {
             $callOptions['retrySettings'] = $retrySettings;
             $middleware = new RetryMiddleware(
-                fn(Call $unusedCall, array $options) => Create::promiseFor($httpHandler($request, $options)),
+                fn(Call $unusedCall, array $options) => Create::promiseFor($this->transport->sendRawRequest($request, $options)),
                 $retrySettings
             );
             $response = $middleware(
@@ -340,7 +336,7 @@ class ResumableUploadClient
                 $callOptions
             );
         } else {
-            $response = $httpHandler($request, $callOptions);
+            $response = $this->transport->sendRawRequest($request, $callOptions);
         }
 
         if (is_object($response) && method_exists($response, 'wait')) {
