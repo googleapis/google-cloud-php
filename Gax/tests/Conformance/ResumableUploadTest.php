@@ -18,7 +18,6 @@
 namespace Google\Generator\Tests\Conformance;
 
 use Google\ApiCore\ApiException;
-use Google\ApiCore\InsecureCredentialsWrapper;
 use Google\ApiCore\ResumableUpload\ResumableUpload;
 use Google\Showcase\V1beta1\Client\ResumableUploadServiceClient;
 use Google\Showcase\V1beta1\UploadMediaRequest;
@@ -41,7 +40,7 @@ class ResumableUploadTest extends TestCase
     ): UploadMediaResponse {
         $client = new ResumableUploadServiceClient([
             'apiEndpoint' => self::SHOWCASE_HOST,
-            'credentials' => new InsecureCredentialsWrapper(),
+            'hasEmulator' => true,
         ]);
 
         $options = [

@@ -91,20 +91,22 @@ trait ResumableUploadTrait
      */
     private function createResumableUploadClient(array $options): ResumableUploadClient
     {
-        $httpHandler = $options['httpHandler'] ?? [HttpHandlerFactory::build(), 'async'];
-        $apiEndpoint = $options['apiEndpoint'] ?? '';
-        list($baseUri, $port) = self::normalizeServiceAddress($apiEndpoint);
-        $restConfigPath = $options['transportConfig']['rest']['restClientConfigPath'] ?? '';
-        $requestBuilder = $this->credentialsWrapper instanceof InsecureCredentialsWrapper
-            ? new InsecureRequestBuilder("$baseUri:$port", $restConfigPath)
-            : new RequestBuilder("$baseUri:$port", $restConfigPath);
+        $transport = $options['transport'] ?? null;
+        if (!$transport instanceof ResumableUploadTransportInterface) {
+            $transport = $this->createTransport(
+                $options['apiEndpoint'] ?? '',
+                'rest',
+                $options['transportConfig'] ?? [],
+                $options['clientCertSource'] ?? null,
+                $options['hasEmulator'] ?? false
+            );
+        }
 
         return new ResumableUploadClient(
-            $requestBuilder,
-            $httpHandler,
+            $transport,
             $this->credentialsWrapper,
             $this->agentHeader,
-            $apiEndpoint
+            $options['apiEndpoint'] ?? ''
         );
     }
 }

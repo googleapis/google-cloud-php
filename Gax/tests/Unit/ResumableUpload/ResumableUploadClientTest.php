@@ -37,17 +37,34 @@ use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\ResumableUpload\ResumableUpload;
 use Google\ApiCore\ResumableUpload\ResumableUploadClient;
+use Google\ApiCore\ResumableUpload\ResumableUploadTransportInterface;
 use Google\ApiCore\RetrySettings;
+use Google\Protobuf\Internal\Message;
 use Google\Protobuf\Timestamp;
 use GuzzleHttp\Psr7\Utils;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
+use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamInterface;
 
 class ResumableUploadClientTest extends TestCase
 {
     use ProphecyTrait;
+
+    private function createStubTransport($requestBuilder, $httpHandler): ResumableUploadTransportInterface
+    {
+        return new class($requestBuilder, $httpHandler) implements ResumableUploadTransportInterface {
+            public function __construct(private $requestBuilder, private $httpHandler) {}
+            public function sendRawRequest(RequestInterface $request, array $options = []) {
+                return ($this->httpHandler)($request, $options);
+            }
+            public function buildRequest(string $method, ?Message $message = null, array $headers = []): RequestInterface {
+                return $this->requestBuilder->build($method, $message, $headers);
+            }
+        };
+    }
+
     public function testClientCreationAndInitialization()
     {
         $httpHandler = function () {
@@ -55,15 +72,13 @@ class ResumableUploadClientTest extends TestCase
         $credentialsWrapper = $this->prophesize(CredentialsWrapper::class)->reveal();
         $requestBuilder = $this->prophesize(\Google\ApiCore\RequestBuilder::class)->reveal();
         $client = new ResumableUploadClient(
-            $requestBuilder,
-            $httpHandler,
+            $this->createStubTransport($requestBuilder, $httpHandler),
             $credentialsWrapper,
             serviceAddress: 'test.googleapis.com'
         );
 
         $ref = new \ReflectionClass($client);
-        $this->assertSame($requestBuilder, $ref->getProperty('requestBuilder')->getValue($client));
-        $this->assertIsCallable($ref->getProperty('httpHandler')->getValue($client));
+        $this->assertInstanceOf(ResumableUploadTransportInterface::class, $ref->getProperty('transport')->getValue($client));
         $this->assertSame($credentialsWrapper, $ref->getProperty('credentialsWrapper')->getValue($client));
 
         $call = new Call('v1/test:create', Timestamp::class, new Timestamp(), [], Call::RESUMABLE_UPLOAD_CALL);
@@ -100,8 +115,7 @@ class ResumableUploadClientTest extends TestCase
             ));
 
         $client = new ResumableUploadClient(
-            $requestBuilder->reveal(),
-            $httpHandler,
+            $this->createStubTransport($requestBuilder->reveal(), $httpHandler),
             $this->prophesize(CredentialsWrapper::class)->reveal(),
             [],
             'test.googleapis.com',
@@ -127,7 +141,7 @@ class ResumableUploadClientTest extends TestCase
 
         $requestBuilder = $this->prophesize(\Google\ApiCore\RequestBuilder::class)->reveal();
         $httpHandler = function () {};
-        $client = new ResumableUploadClient($requestBuilder, $httpHandler, $this->prophesize(CredentialsWrapper::class)->reveal());
+        $client = new ResumableUploadClient($this->createStubTransport($requestBuilder, $httpHandler), $this->prophesize(CredentialsWrapper::class)->reveal());
         $call = new Call('v1/test:create', Timestamp::class, null, [], Call::RESUMABLE_UPLOAD_CALL);
         $upload = new ResumableUpload($client, $call);
         $client->startUpload($upload, Utils::streamFor('hello'), $call);
@@ -165,8 +179,7 @@ class ResumableUploadClientTest extends TestCase
             ));
 
         $client = new ResumableUploadClient(
-            $requestBuilder->reveal(),
-            $httpHandler,
+            $this->createStubTransport($requestBuilder->reveal(), $httpHandler),
             $credentialsWrapper->reveal(),
             [],
             'test.googleapis.com',
@@ -201,7 +214,7 @@ class ResumableUploadClientTest extends TestCase
 
         $requestBuilder = $this->prophesize(\Google\ApiCore\RequestBuilder::class);
         $requestBuilder->build(Argument::any(), Argument::any(), Argument::any())->willReturn(new \GuzzleHttp\Psr7\Request('POST', 'https://test.googleapis.com/test'));
-        $client = new ResumableUploadClient($requestBuilder->reveal(), $httpHandler, $this->prophesize(CredentialsWrapper::class)->reveal());
+        $client = new ResumableUploadClient($this->createStubTransport($requestBuilder->reveal(), $httpHandler), $this->prophesize(CredentialsWrapper::class)->reveal());
 
         $call = new Call('test.method', Timestamp::class, new Timestamp(), [], Call::RESUMABLE_UPLOAD_CALL);
         $upload = new ResumableUpload($client, $call, [
@@ -232,7 +245,7 @@ class ResumableUploadClientTest extends TestCase
 
         $requestBuilder = $this->prophesize(\Google\ApiCore\RequestBuilder::class);
         $requestBuilder->build(Argument::any(), Argument::any(), Argument::any())->willReturn(new \GuzzleHttp\Psr7\Request('POST', 'https://test.googleapis.com/test'));
-        $client = new ResumableUploadClient($requestBuilder->reveal(), $httpHandler, $this->prophesize(CredentialsWrapper::class)->reveal());
+        $client = new ResumableUploadClient($this->createStubTransport($requestBuilder->reveal(), $httpHandler), $this->prophesize(CredentialsWrapper::class)->reveal());
 
         $retrySettings = ['maxRetries' => 3];
         $call = new Call('test.method', Timestamp::class, new Timestamp(), [], Call::RESUMABLE_UPLOAD_CALL);
@@ -269,7 +282,7 @@ class ResumableUploadClientTest extends TestCase
 
         $requestBuilder = $this->prophesize(\Google\ApiCore\RequestBuilder::class);
         $requestBuilder->build(Argument::any(), Argument::any(), Argument::any())->willReturn(new \GuzzleHttp\Psr7\Request('POST', 'https://test.googleapis.com/test'));
-        $client = new ResumableUploadClient($requestBuilder->reveal(), $httpHandler, $this->prophesize(CredentialsWrapper::class)->reveal());
+        $client = new ResumableUploadClient($this->createStubTransport($requestBuilder->reveal(), $httpHandler), $this->prophesize(CredentialsWrapper::class)->reveal());
 
         $call = new Call('test.method', Timestamp::class, new Timestamp(), [], Call::RESUMABLE_UPLOAD_CALL);
         $upload = new ResumableUpload($client, $call, [
@@ -291,7 +304,7 @@ class ResumableUploadClientTest extends TestCase
         $this->expectExceptionMessage('Resumable upload total timeout exceeded.');
 
         $requestBuilder = $this->prophesize(\Google\ApiCore\RequestBuilder::class)->reveal();
-        $client = new ResumableUploadClient($requestBuilder, function () {}, $this->prophesize(CredentialsWrapper::class)->reveal());
+        $client = new ResumableUploadClient($this->createStubTransport($requestBuilder, function () {}), $this->prophesize(CredentialsWrapper::class)->reveal());
 
         $call = new Call('test.method', Timestamp::class, new Timestamp(), [], Call::RESUMABLE_UPLOAD_CALL);
         $upload = new ResumableUpload($client, $call, [
@@ -322,7 +335,7 @@ class ResumableUploadClientTest extends TestCase
             $headers = $args[2] ?? [];
             return new \GuzzleHttp\Psr7\Request('POST', 'https://test.googleapis.com/' . $path, $headers);
         });
-        $client = new ResumableUploadClient($requestBuilder->reveal(), $httpHandler, $this->prophesize(CredentialsWrapper::class)->reveal());
+        $client = new ResumableUploadClient($this->createStubTransport($requestBuilder->reveal(), $httpHandler), $this->prophesize(CredentialsWrapper::class)->reveal());
 
         $call = new Call('test.method', Timestamp::class, new Timestamp(), [], Call::RESUMABLE_UPLOAD_CALL);
         $upload = new ResumableUpload($client, $call, [
@@ -373,7 +386,7 @@ class ResumableUploadClientTest extends TestCase
 
         $requestBuilder = $this->prophesize(\Google\ApiCore\RequestBuilder::class);
         $requestBuilder->build(Argument::any(), Argument::any(), Argument::any())->willReturn(new \GuzzleHttp\Psr7\Request('POST', 'https://test.googleapis.com/test'));
-        $client = new ResumableUploadClient($requestBuilder->reveal(), $httpHandler, $this->prophesize(CredentialsWrapper::class)->reveal());
+        $client = new ResumableUploadClient($this->createStubTransport($requestBuilder->reveal(), $httpHandler), $this->prophesize(CredentialsWrapper::class)->reveal());
 
         $call = new Call('test.method', Timestamp::class, new Timestamp(), [], Call::RESUMABLE_UPLOAD_CALL);
         $upload = new ResumableUpload($client, $call, [
@@ -423,7 +436,7 @@ class ResumableUploadClientTest extends TestCase
 
         $requestBuilder = $this->prophesize(\Google\ApiCore\RequestBuilder::class);
         $requestBuilder->build(Argument::any(), Argument::any(), Argument::any())->willReturn(new \GuzzleHttp\Psr7\Request('POST', 'https://test.googleapis.com/test'));
-        $client = new ResumableUploadClient($requestBuilder->reveal(), $httpHandler, $this->prophesize(CredentialsWrapper::class)->reveal());
+        $client = new ResumableUploadClient($this->createStubTransport($requestBuilder->reveal(), $httpHandler), $this->prophesize(CredentialsWrapper::class)->reveal());
 
         $call = new Call('test.method', Timestamp::class, new Timestamp(), [], Call::RESUMABLE_UPLOAD_CALL);
         $upload = new ResumableUpload($client, $call, ['chunkSize' => 10]);
@@ -465,8 +478,7 @@ class ResumableUploadClientTest extends TestCase
             new \GuzzleHttp\Psr7\Request('POST', 'https://test.googleapis.com/test')
         );
         $client = new ResumableUploadClient(
-            $requestBuilder->reveal(),
-            $httpHandler,
+            $this->createStubTransport($requestBuilder->reveal(), $httpHandler),
             $this->prophesize(CredentialsWrapper::class)->reveal()
         );
 
