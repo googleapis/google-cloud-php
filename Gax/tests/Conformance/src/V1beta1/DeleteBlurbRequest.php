@@ -24,20 +24,6 @@ class DeleteBlurbRequest extends \Google\Protobuf\Internal\Message
     protected $name = '';
 
     /**
-     * @param string $name The resource name of the requested blurb. Please see
-     *                     {@see MessagingClient::blurbName()} for help formatting this field.
-     *
-     * @return \Google\Showcase\V1beta1\DeleteBlurbRequest
-     *
-     * @experimental
-     */
-    public static function build(string $name): self
-    {
-        return (new self())
-            ->setName($name);
-    }
-
-    /**
      * Constructor.
      *
      * @param array $data {

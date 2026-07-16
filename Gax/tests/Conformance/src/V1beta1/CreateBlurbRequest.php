@@ -31,23 +31,6 @@ class CreateBlurbRequest extends \Google\Protobuf\Internal\Message
     protected $blurb = null;
 
     /**
-     * @param string                         $parent The resource name of the chat room or user profile that this blurb will
-     *                                               be tied to. Please see
-     *                                               {@see MessagingClient::userName()} for help formatting this field.
-     * @param \Google\Showcase\V1beta1\Blurb $blurb  The blurb to create.
-     *
-     * @return \Google\Showcase\V1beta1\CreateBlurbRequest
-     *
-     * @experimental
-     */
-    public static function build(string $parent, \Google\Showcase\V1beta1\Blurb $blurb): self
-    {
-        return (new self())
-            ->setParent($parent)
-            ->setBlurb($blurb);
-    }
-
-    /**
      * Constructor.
      *
      * @param array $data {

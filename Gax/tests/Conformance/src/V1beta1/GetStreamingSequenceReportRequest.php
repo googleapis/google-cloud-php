@@ -19,19 +19,6 @@ class GetStreamingSequenceReportRequest extends \Google\Protobuf\Internal\Messag
     protected $name = '';
 
     /**
-     * @param string $name Please see {@see SequenceServiceClient::streamingSequenceReportName()} for help formatting this field.
-     *
-     * @return \Google\Showcase\V1beta1\GetStreamingSequenceReportRequest
-     *
-     * @experimental
-     */
-    public static function build(string $name): self
-    {
-        return (new self())
-            ->setName($name);
-    }
-
-    /**
      * Constructor.
      *
      * @param array $data {

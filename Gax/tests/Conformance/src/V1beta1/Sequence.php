@@ -9,6 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
+ * A sequence of responses to be returned in order for each unary call attempt
+ *
  * Generated from protobuf message <code>google.showcase.v1beta1.Sequence</code>
  */
 class Sequence extends \Google\Protobuf\Internal\Message

@@ -93,6 +93,46 @@ class ComplianceData extends \Google\Protobuf\Internal\Message
      */
     protected $p_int32 = null;
     /**
+     * Generated from protobuf field <code>optional sint32 p_sint32 = 39;</code>
+     */
+    protected $p_sint32 = null;
+    /**
+     * Generated from protobuf field <code>optional sfixed32 p_sfixed32 = 40;</code>
+     */
+    protected $p_sfixed32 = null;
+    /**
+     * Generated from protobuf field <code>optional uint32 p_uint32 = 41;</code>
+     */
+    protected $p_uint32 = null;
+    /**
+     * Generated from protobuf field <code>optional fixed32 p_fixed32 = 42;</code>
+     */
+    protected $p_fixed32 = null;
+    /**
+     * Generated from protobuf field <code>optional int64 p_int64 = 43;</code>
+     */
+    protected $p_int64 = null;
+    /**
+     * Generated from protobuf field <code>optional sint64 p_sint64 = 44;</code>
+     */
+    protected $p_sint64 = null;
+    /**
+     * Generated from protobuf field <code>optional sfixed64 p_sfixed64 = 45;</code>
+     */
+    protected $p_sfixed64 = null;
+    /**
+     * Generated from protobuf field <code>optional uint64 p_uint64 = 46;</code>
+     */
+    protected $p_uint64 = null;
+    /**
+     * Generated from protobuf field <code>optional fixed64 p_fixed64 = 47;</code>
+     */
+    protected $p_fixed64 = null;
+    /**
+     * Generated from protobuf field <code>optional float p_float = 48;</code>
+     */
+    protected $p_float = null;
+    /**
      * Generated from protobuf field <code>optional double p_double = 19;</code>
      */
     protected $p_double = null;
@@ -134,6 +174,16 @@ class ComplianceData extends \Google\Protobuf\Internal\Message
      *     @type \Google\Showcase\V1beta1\ComplianceDataChild $f_child
      *     @type string $p_string
      *     @type int $p_int32
+     *     @type int $p_sint32
+     *     @type int $p_sfixed32
+     *     @type int $p_uint32
+     *     @type int $p_fixed32
+     *     @type int|string $p_int64
+     *     @type int|string $p_sint64
+     *     @type int|string $p_sfixed64
+     *     @type int|string $p_uint64
+     *     @type int|string $p_fixed64
+     *     @type float $p_float
      *     @type float $p_double
      *     @type bool $p_bool
      *     @type int $p_kingdom
@@ -589,6 +639,326 @@ class ComplianceData extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->p_int32 = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>optional sint32 p_sint32 = 39;</code>
+     * @return int
+     */
+    public function getPSint32()
+    {
+        return isset($this->p_sint32) ? $this->p_sint32 : 0;
+    }
+
+    public function hasPSint32()
+    {
+        return isset($this->p_sint32);
+    }
+
+    public function clearPSint32()
+    {
+        unset($this->p_sint32);
+    }
+
+    /**
+     * Generated from protobuf field <code>optional sint32 p_sint32 = 39;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setPSint32($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->p_sint32 = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>optional sfixed32 p_sfixed32 = 40;</code>
+     * @return int
+     */
+    public function getPSfixed32()
+    {
+        return isset($this->p_sfixed32) ? $this->p_sfixed32 : 0;
+    }
+
+    public function hasPSfixed32()
+    {
+        return isset($this->p_sfixed32);
+    }
+
+    public function clearPSfixed32()
+    {
+        unset($this->p_sfixed32);
+    }
+
+    /**
+     * Generated from protobuf field <code>optional sfixed32 p_sfixed32 = 40;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setPSfixed32($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->p_sfixed32 = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>optional uint32 p_uint32 = 41;</code>
+     * @return int
+     */
+    public function getPUint32()
+    {
+        return isset($this->p_uint32) ? $this->p_uint32 : 0;
+    }
+
+    public function hasPUint32()
+    {
+        return isset($this->p_uint32);
+    }
+
+    public function clearPUint32()
+    {
+        unset($this->p_uint32);
+    }
+
+    /**
+     * Generated from protobuf field <code>optional uint32 p_uint32 = 41;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setPUint32($var)
+    {
+        GPBUtil::checkUint32($var);
+        $this->p_uint32 = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>optional fixed32 p_fixed32 = 42;</code>
+     * @return int
+     */
+    public function getPFixed32()
+    {
+        return isset($this->p_fixed32) ? $this->p_fixed32 : 0;
+    }
+
+    public function hasPFixed32()
+    {
+        return isset($this->p_fixed32);
+    }
+
+    public function clearPFixed32()
+    {
+        unset($this->p_fixed32);
+    }
+
+    /**
+     * Generated from protobuf field <code>optional fixed32 p_fixed32 = 42;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setPFixed32($var)
+    {
+        GPBUtil::checkUint32($var);
+        $this->p_fixed32 = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>optional int64 p_int64 = 43;</code>
+     * @return int|string
+     */
+    public function getPInt64()
+    {
+        return isset($this->p_int64) ? $this->p_int64 : 0;
+    }
+
+    public function hasPInt64()
+    {
+        return isset($this->p_int64);
+    }
+
+    public function clearPInt64()
+    {
+        unset($this->p_int64);
+    }
+
+    /**
+     * Generated from protobuf field <code>optional int64 p_int64 = 43;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setPInt64($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->p_int64 = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>optional sint64 p_sint64 = 44;</code>
+     * @return int|string
+     */
+    public function getPSint64()
+    {
+        return isset($this->p_sint64) ? $this->p_sint64 : 0;
+    }
+
+    public function hasPSint64()
+    {
+        return isset($this->p_sint64);
+    }
+
+    public function clearPSint64()
+    {
+        unset($this->p_sint64);
+    }
+
+    /**
+     * Generated from protobuf field <code>optional sint64 p_sint64 = 44;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setPSint64($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->p_sint64 = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>optional sfixed64 p_sfixed64 = 45;</code>
+     * @return int|string
+     */
+    public function getPSfixed64()
+    {
+        return isset($this->p_sfixed64) ? $this->p_sfixed64 : 0;
+    }
+
+    public function hasPSfixed64()
+    {
+        return isset($this->p_sfixed64);
+    }
+
+    public function clearPSfixed64()
+    {
+        unset($this->p_sfixed64);
+    }
+
+    /**
+     * Generated from protobuf field <code>optional sfixed64 p_sfixed64 = 45;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setPSfixed64($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->p_sfixed64 = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>optional uint64 p_uint64 = 46;</code>
+     * @return int|string
+     */
+    public function getPUint64()
+    {
+        return isset($this->p_uint64) ? $this->p_uint64 : 0;
+    }
+
+    public function hasPUint64()
+    {
+        return isset($this->p_uint64);
+    }
+
+    public function clearPUint64()
+    {
+        unset($this->p_uint64);
+    }
+
+    /**
+     * Generated from protobuf field <code>optional uint64 p_uint64 = 46;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setPUint64($var)
+    {
+        GPBUtil::checkUint64($var);
+        $this->p_uint64 = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>optional fixed64 p_fixed64 = 47;</code>
+     * @return int|string
+     */
+    public function getPFixed64()
+    {
+        return isset($this->p_fixed64) ? $this->p_fixed64 : 0;
+    }
+
+    public function hasPFixed64()
+    {
+        return isset($this->p_fixed64);
+    }
+
+    public function clearPFixed64()
+    {
+        unset($this->p_fixed64);
+    }
+
+    /**
+     * Generated from protobuf field <code>optional fixed64 p_fixed64 = 47;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setPFixed64($var)
+    {
+        GPBUtil::checkUint64($var);
+        $this->p_fixed64 = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>optional float p_float = 48;</code>
+     * @return float
+     */
+    public function getPFloat()
+    {
+        return isset($this->p_float) ? $this->p_float : 0.0;
+    }
+
+    public function hasPFloat()
+    {
+        return isset($this->p_float);
+    }
+
+    public function clearPFloat()
+    {
+        unset($this->p_float);
+    }
+
+    /**
+     * Generated from protobuf field <code>optional float p_float = 48;</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setPFloat($var)
+    {
+        GPBUtil::checkFloat($var);
+        $this->p_float = $var;
 
         return $this;
     }

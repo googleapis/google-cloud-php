@@ -9,6 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
+ * Request message for the AttemptStreamingSequence method.
+ *
  * Generated from protobuf message <code>google.showcase.v1beta1.AttemptStreamingSequenceRequest</code>
  */
 class AttemptStreamingSequenceRequest extends \Google\Protobuf\Internal\Message
@@ -25,19 +27,6 @@ class AttemptStreamingSequenceRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int32 last_fail_index = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $last_fail_index = 0;
-
-    /**
-     * @param string $name Please see {@see SequenceServiceClient::streamingSequenceName()} for help formatting this field.
-     *
-     * @return \Google\Showcase\V1beta1\AttemptStreamingSequenceRequest
-     *
-     * @experimental
-     */
-    public static function build(string $name): self
-    {
-        return (new self())
-            ->setName($name);
-    }
 
     /**
      * Constructor.

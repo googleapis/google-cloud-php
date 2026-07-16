@@ -28,7 +28,7 @@ class Response extends \Google\Protobuf\Internal\Message
      */
     protected $delay = null;
     /**
-     * The index that the status should be sent
+     * The index that the status should be sent at
      *
      * Generated from protobuf field <code>int32 response_index = 3;</code>
      */
@@ -45,7 +45,7 @@ class Response extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Duration $delay
      *           The amount of time to delay sending the response.
      *     @type int $response_index
-     *           The index that the status should be sent
+     *           The index that the status should be sent at
      * }
      */
     public function __construct($data = NULL) {
@@ -126,7 +126,7 @@ class Response extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The index that the status should be sent
+     * The index that the status should be sent at
      *
      * Generated from protobuf field <code>int32 response_index = 3;</code>
      * @return int
@@ -137,7 +137,7 @@ class Response extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The index that the status should be sent
+     * The index that the status should be sent at
      *
      * Generated from protobuf field <code>int32 response_index = 3;</code>
      * @param int $var

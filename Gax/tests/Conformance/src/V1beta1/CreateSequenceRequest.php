@@ -9,6 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
+ * Request message for creating a sequence of unary calls
+ *
  * Generated from protobuf message <code>google.showcase.v1beta1.CreateSequenceRequest</code>
  */
 class CreateSequenceRequest extends \Google\Protobuf\Internal\Message
@@ -17,19 +19,6 @@ class CreateSequenceRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.showcase.v1beta1.Sequence sequence = 1;</code>
      */
     protected $sequence = null;
-
-    /**
-     * @param \Google\Showcase\V1beta1\Sequence $sequence
-     *
-     * @return \Google\Showcase\V1beta1\CreateSequenceRequest
-     *
-     * @experimental
-     */
-    public static function build(\Google\Showcase\V1beta1\Sequence $sequence): self
-    {
-        return (new self())
-            ->setSequence($sequence);
-    }
 
     /**
      * Constructor.

@@ -9,16 +9,22 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
+ * A sequence of responses to be returned in order at the delay specified
+ * as part of the server streaming call
+ *
  * Generated from protobuf message <code>google.showcase.v1beta1.StreamingSequence</code>
  */
 class StreamingSequence extends \Google\Protobuf\Internal\Message
 {
     /**
+     * The name of the streaming sequence.
+     *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $name = '';
     /**
-     * The Content that the stream will send
+     * The content that the stream will send
+     * this was specified when the sequence was created
      *
      * Generated from protobuf field <code>string content = 2;</code>
      */
@@ -38,8 +44,10 @@ class StreamingSequence extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
+     *           The name of the streaming sequence.
      *     @type string $content
-     *           The Content that the stream will send
+     *           The content that the stream will send
+     *           this was specified when the sequence was created
      *     @type array<\Google\Showcase\V1beta1\StreamingSequence\Response>|\Google\Protobuf\Internal\RepeatedField $responses
      *           Sequence of responses to return in order for each attempt. If empty, the
      *           default response is an immediate OK.
@@ -51,6 +59,8 @@ class StreamingSequence extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * The name of the streaming sequence.
+     *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
@@ -60,6 +70,8 @@ class StreamingSequence extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * The name of the streaming sequence.
+     *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
@@ -73,7 +85,8 @@ class StreamingSequence extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Content that the stream will send
+     * The content that the stream will send
+     * this was specified when the sequence was created
      *
      * Generated from protobuf field <code>string content = 2;</code>
      * @return string
@@ -84,7 +97,8 @@ class StreamingSequence extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Content that the stream will send
+     * The content that the stream will send
+     * this was specified when the sequence was created
      *
      * Generated from protobuf field <code>string content = 2;</code>
      * @param string $var

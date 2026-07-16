@@ -9,6 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
+ * A report of the results of a sequence of unary responses
+ *
  * Generated from protobuf message <code>google.showcase.v1beta1.SequenceReport</code>
  */
 class SequenceReport extends \Google\Protobuf\Internal\Message

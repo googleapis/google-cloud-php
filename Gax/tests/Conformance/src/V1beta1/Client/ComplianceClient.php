@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,6 +29,7 @@ namespace Google\Showcase\V1beta1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
@@ -102,25 +103,28 @@ final class ComplianceClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'localhost:7469:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
-     *           *Important*: If you accept a credential configuration (credential
-     *           JSON/File/Stream) from an external source for authentication to Google Cloud
-     *           Platform, you must validate it before providing it to any Google API or library.
-     *           Providing an unvalidated credential configuration to Google APIs can compromise
-     *           the security of your systems and data. For more information {@see
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Showcase\V1beta1\ComplianceClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new ComplianceClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
      *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
@@ -158,13 +162,15 @@ final class ComplianceClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      *
      * @experimental
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -190,8 +196,6 @@ final class ComplianceClient
      * VerifyEnum() to work) but are not guaranteed to be the same across separate Showcase server runs.
      *
      * The async variant is {@see ComplianceClient::getEnumAsync()} .
-     *
-     * @example samples/V1beta1/ComplianceClient/get_enum.php
      *
      * @param EnumRequest $request     A request to house fields associated with the call.
      * @param array       $callOptions {
@@ -219,8 +223,6 @@ final class ComplianceClient
      * sending the entire request object in the REST body.
      *
      * The async variant is {@see ComplianceClient::repeatDataBodyAsync()} .
-     *
-     * @example samples/V1beta1/ComplianceClient/repeat_data_body.php
      *
      * @param RepeatRequest $request     A request to house fields associated with the call.
      * @param array         $callOptions {
@@ -250,8 +252,6 @@ final class ComplianceClient
      *
      * The async variant is {@see ComplianceClient::repeatDataBodyInfoAsync()} .
      *
-     * @example samples/V1beta1/ComplianceClient/repeat_data_body_info.php
-     *
      * @param RepeatRequest $request     A request to house fields associated with the call.
      * @param array         $callOptions {
      *     Optional.
@@ -277,8 +277,6 @@ final class ComplianceClient
      * This method echoes the ComplianceData request, using the HTTP PATCH method.
      *
      * The async variant is {@see ComplianceClient::repeatDataBodyPatchAsync()} .
-     *
-     * @example samples/V1beta1/ComplianceClient/repeat_data_body_patch.php
      *
      * @param RepeatRequest $request     A request to house fields associated with the call.
      * @param array         $callOptions {
@@ -306,8 +304,6 @@ final class ComplianceClient
      *
      * The async variant is {@see ComplianceClient::repeatDataBodyPutAsync()} .
      *
-     * @example samples/V1beta1/ComplianceClient/repeat_data_body_put.php
-     *
      * @param RepeatRequest $request     A request to house fields associated with the call.
      * @param array         $callOptions {
      *     Optional.
@@ -333,8 +329,6 @@ final class ComplianceClient
      * Same as RepeatDataSimplePath, but with a path resource.
      *
      * The async variant is {@see ComplianceClient::repeatDataPathResourceAsync()} .
-     *
-     * @example samples/V1beta1/ComplianceClient/repeat_data_path_resource.php
      *
      * @param RepeatRequest $request     A request to house fields associated with the call.
      * @param array         $callOptions {
@@ -363,8 +357,6 @@ final class ComplianceClient
      * The async variant is
      * {@see ComplianceClient::repeatDataPathTrailingResourceAsync()} .
      *
-     * @example samples/V1beta1/ComplianceClient/repeat_data_path_trailing_resource.php
-     *
      * @param RepeatRequest $request     A request to house fields associated with the call.
      * @param array         $callOptions {
      *     Optional.
@@ -391,8 +383,6 @@ final class ComplianceClient
      * sending all request fields as query parameters.
      *
      * The async variant is {@see ComplianceClient::repeatDataQueryAsync()} .
-     *
-     * @example samples/V1beta1/ComplianceClient/repeat_data_query.php
      *
      * @param RepeatRequest $request     A request to house fields associated with the call.
      * @param array         $callOptions {
@@ -421,8 +411,6 @@ final class ComplianceClient
      * "/bar/{foo}" rather than "/{foo=bar/*}"), and the rest as query parameters.
      *
      * The async variant is {@see ComplianceClient::repeatDataSimplePathAsync()} .
-     *
-     * @example samples/V1beta1/ComplianceClient/repeat_data_simple_path.php
      *
      * @param RepeatRequest $request     A request to house fields associated with the call.
      * @param array         $callOptions {
@@ -454,8 +442,6 @@ final class ComplianceClient
      * although they are not guaranteed to be the same across separate Showcase server runs.
      *
      * The async variant is {@see ComplianceClient::verifyEnumAsync()} .
-     *
-     * @example samples/V1beta1/ComplianceClient/verify_enum.php
      *
      * @param EnumResponse $request     A request to house fields associated with the call.
      * @param array        $callOptions {

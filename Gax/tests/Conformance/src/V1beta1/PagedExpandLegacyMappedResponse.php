@@ -18,7 +18,7 @@ class PagedExpandLegacyMappedResponse extends \Google\Protobuf\Internal\Message
      * (-- aip.dev/not-precedent: This is a legacy, non-standard pattern that violates
      *     aip.dev/158. Ordinarily, this should be a `repeated` field, as in PagedExpandResponse. --)
      *
-     * Generated from protobuf field <code>repeated .google.showcase.v1beta1.PagedExpandResponseList alphabetized = 1;</code>
+     * Generated from protobuf field <code>map<string, .google.showcase.v1beta1.PagedExpandResponseList> alphabetized = 1;</code>
      */
     private $alphabetized;
     /**
@@ -34,7 +34,7 @@ class PagedExpandLegacyMappedResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Showcase\V1beta1\PagedExpandResponseList>|\Google\Protobuf\Internal\RepeatedField $alphabetized
+     *     @type array|\Google\Protobuf\Internal\MapField $alphabetized
      *           The words that were expanded, indexed by their initial character.
      *           (-- aip.dev/not-precedent: This is a legacy, non-standard pattern that violates
      *               aip.dev/158. Ordinarily, this should be a `repeated` field, as in PagedExpandResponse. --)
@@ -52,8 +52,8 @@ class PagedExpandLegacyMappedResponse extends \Google\Protobuf\Internal\Message
      * (-- aip.dev/not-precedent: This is a legacy, non-standard pattern that violates
      *     aip.dev/158. Ordinarily, this should be a `repeated` field, as in PagedExpandResponse. --)
      *
-     * Generated from protobuf field <code>repeated .google.showcase.v1beta1.PagedExpandResponseList alphabetized = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * Generated from protobuf field <code>map<string, .google.showcase.v1beta1.PagedExpandResponseList> alphabetized = 1;</code>
+     * @return \Google\Protobuf\Internal\MapField
      */
     public function getAlphabetized()
     {
@@ -65,13 +65,13 @@ class PagedExpandLegacyMappedResponse extends \Google\Protobuf\Internal\Message
      * (-- aip.dev/not-precedent: This is a legacy, non-standard pattern that violates
      *     aip.dev/158. Ordinarily, this should be a `repeated` field, as in PagedExpandResponse. --)
      *
-     * Generated from protobuf field <code>repeated .google.showcase.v1beta1.PagedExpandResponseList alphabetized = 1;</code>
-     * @param array<\Google\Showcase\V1beta1\PagedExpandResponseList>|\Google\Protobuf\Internal\RepeatedField $var
+     * Generated from protobuf field <code>map<string, .google.showcase.v1beta1.PagedExpandResponseList> alphabetized = 1;</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */
     public function setAlphabetized($var)
     {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Showcase\V1beta1\PagedExpandResponseList::class);
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Showcase\V1beta1\PagedExpandResponseList::class);
         $this->alphabetized = $arr;
 
         return $this;

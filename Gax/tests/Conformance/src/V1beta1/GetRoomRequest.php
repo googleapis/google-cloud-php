@@ -24,20 +24,6 @@ class GetRoomRequest extends \Google\Protobuf\Internal\Message
     protected $name = '';
 
     /**
-     * @param string $name The resource name of the requested room. Please see
-     *                     {@see MessagingClient::roomName()} for help formatting this field.
-     *
-     * @return \Google\Showcase\V1beta1\GetRoomRequest
-     *
-     * @experimental
-     */
-    public static function build(string $name): self
-    {
-        return (new self())
-            ->setName($name);
-    }
-
-    /**
      * Constructor.
      *
      * @param array $data {

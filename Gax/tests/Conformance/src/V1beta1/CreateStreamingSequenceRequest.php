@@ -9,6 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
+ * Request message for the sequences of responses to be sent in a server streaming call
+ *
  * Generated from protobuf message <code>google.showcase.v1beta1.CreateStreamingSequenceRequest</code>
  */
 class CreateStreamingSequenceRequest extends \Google\Protobuf\Internal\Message
@@ -17,19 +19,6 @@ class CreateStreamingSequenceRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.showcase.v1beta1.StreamingSequence streaming_sequence = 1;</code>
      */
     protected $streaming_sequence = null;
-
-    /**
-     * @param \Google\Showcase\V1beta1\StreamingSequence $streamingSequence
-     *
-     * @return \Google\Showcase\V1beta1\CreateStreamingSequenceRequest
-     *
-     * @experimental
-     */
-    public static function build(\Google\Showcase\V1beta1\StreamingSequence $streamingSequence): self
-    {
-        return (new self())
-            ->setStreamingSequence($streamingSequence);
-    }
 
     /**
      * Constructor.
