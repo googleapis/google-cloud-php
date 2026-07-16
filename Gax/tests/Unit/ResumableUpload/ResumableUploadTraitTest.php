@@ -87,14 +87,14 @@ class ResumableUploadTraitTest extends TestCase
         $this->assertInstanceOf(ResumableUploadTransportInterface::class, $clientRef->getProperty('transport')->getValue($uploadClient));
         $this->assertSame($credentialsWrapper, $clientRef->getProperty('credentialsWrapper')->getValue($uploadClient));
 
-        $resumed = $client->resumeUpload('createYouTubeVideoUpload', 'https://upload.url/session123', ['chunkSize' => 1024]);
+        $resumed = $client->resumeUpload('createYouTubeVideoUpload', 'https://upload.url/session123', ['timeoutMillis' => 5000]);
         $this->assertInstanceOf(ResumableUpload::class, $resumed);
 
         $ref = new \ReflectionClass($resumed);
         $clientProp = $ref->getProperty('resumableUploadClient');
         $this->assertSame($client->getResumableUploadClient(), $clientProp->getValue($resumed));
-        $optionsProp = $ref->getProperty('resumableUploadOptions');
-        $this->assertSame(['chunkSize' => 1024, 'uploadUrl' => 'https://upload.url/session123', 'headers' => []], $optionsProp->getValue($resumed));
+        $optionsProp = $ref->getProperty('callOptions');
+        $this->assertSame(['timeoutMillis' => 5000, 'uploadUrl' => 'https://upload.url/session123', 'headers' => []], $optionsProp->getValue($resumed));
         $callProp = $ref->getProperty('call');
         $this->assertSame(Timestamp::class, $callProp->getValue($resumed)->getDecodeType());
     }

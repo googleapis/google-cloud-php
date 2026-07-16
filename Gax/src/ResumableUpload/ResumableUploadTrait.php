@@ -41,6 +41,8 @@ use Google\Auth\HttpHandler\HttpHandlerFactory;
 
 /**
  * Trait for GAPIC clients that support resumable uploads.
+ *
+ * @internal
  */
 trait ResumableUploadTrait
 {
@@ -53,22 +55,13 @@ trait ResumableUploadTrait
      *
      * @param string $methodName The API method name.
      * @param string $uploadUrl The resumable upload session URL.
-     * @param array $resumableUploadOptions {
+     * @param array $optionalArgs {
      *     Optional.
      *
-     *     @type int $chunkSize Optional. The size of each chunk to upload in bytes.
-     *           Must be a multiple of 262144 (256 KB). Values smaller than the server's chunk
-     *           granularity (typically 256 KB) will be rounded up to match the granularity.
-     *           Defaults to 8388608 (8 MB).
-     *     @type callable $progressCallback Optional. A callback function executed after
-     *           every chunk upload or query. The callback should accept two arguments:
-     *           (int $bytesUploaded, ResumableUpload $upload).
      *     @type array $headers Optional. Key-value array of custom HTTP headers to
      *           include with upload requests.
      *     @type int $timeoutMillis Optional. The timeout in milliseconds for the
      *           initial start call.
-     *     @type int $totalTimeoutMillis Optional. The total timeout in milliseconds for the
-     *           entire resumable upload operation. Defaults to 600000 (10 minutes).
      *     @type RetrySettings|array $retrySettings Optional. Retry settings to use for the
      *           initial start call.
      * }
@@ -77,10 +70,10 @@ trait ResumableUploadTrait
     public function resumeUpload(
         string $methodName,
         string $uploadUrl,
-        array $resumableUploadOptions = []
+        array $optionalArgs = []
     ): ResumableUpload {
-        $resumableUploadOptions['uploadUrl'] = $uploadUrl;
-        return $this->startApiCall(ucfirst($methodName), null, $resumableUploadOptions);
+        $optionalArgs['uploadUrl'] = $uploadUrl;
+        return $this->startApiCall(ucfirst($methodName), null, $optionalArgs);
     }
 
     /**

@@ -102,14 +102,14 @@ class ResumableUploadTest extends TestCase
         $client = new ResumableUploadClient($this->createStubTransport($requestBuilder->reveal(), $httpHandler), $this->prophesize(CredentialsWrapper::class)->reveal(), serviceAddress: 'test.googleapis.com');
         $callbackUpload = null;
         $call = new \Google\ApiCore\Call('v1/test:create', Timestamp::class, new Timestamp(), [], \Google\ApiCore\Call::RESUMABLE_UPLOAD_CALL);
-        $upload = new ResumableUpload($client, $call, [
+        $upload = new ResumableUpload($client, $call);
+
+        $stream = Utils::streamFor('hello world');
+        $upload->startUpload($stream, [
             'progressCallback' => function (int $bytes, ResumableUpload $u) use (&$callbackUpload) {
                 $callbackUpload = $u;
             }
         ]);
-
-        $stream = Utils::streamFor('hello world');
-        $upload->startUpload($stream);
 
         $this->assertSame($upload, $callbackUpload);
         $this->assertSame('https://upload.url/123', $callbackUpload->getUploadUrl());
@@ -148,6 +148,40 @@ class ResumableUploadTest extends TestCase
         $this->assertEquals('upload, finalize', $requests[1]->getHeaderLine('X-Goog-Upload-Command'));
         $this->assertEquals('hello world', (string) $requests[1]->getBody());
         $this->assertEquals('https://upload.url/123', $upload->getUploadUrl());
+    }
+
+    public function testCustomHeadersOnlySentOnInitialStartRequest()
+    {
+        $requests = [];
+        $httpHandler = $this->createMockHttpHandler([
+            new Response(200, ['X-Goog-Upload-Status' => 'active', 'X-Goog-Upload-URL' => 'https://upload.url/123']),
+            new Response(200, ['X-Goog-Upload-Status' => 'final'], '"1970-01-01T03:25:45Z"')
+        ], $requests);
+
+        $requestBuilder = $this->prophesize(\Google\ApiCore\RequestBuilder::class);
+        $requestBuilder->build(Argument::any(), Argument::any(), Argument::any())->will(function ($args) {
+            $path = $args[0];
+            $headers = $args[2] ?? [];
+            return new \GuzzleHttp\Psr7\Request('POST', 'https://test.googleapis.com/' . $path, $headers);
+        });
+        $client = new ResumableUploadClient(
+            $this->createStubTransport($requestBuilder->reveal(), $httpHandler),
+            $this->prophesize(CredentialsWrapper::class)->reveal(),
+            serviceAddress: 'test.googleapis.com'
+        );
+        $call = new \Google\ApiCore\Call('v1/test:create', Timestamp::class, new Timestamp(), [], \Google\ApiCore\Call::RESUMABLE_UPLOAD_CALL);
+        $upload = new ResumableUpload($client, $call, [
+            'headers' => ['X-Custom-Start-Header' => 'initial-only-value']
+        ]);
+
+        $stream = Utils::streamFor('hello world');
+        $upload->startUpload($stream);
+
+        $this->assertCount(2, $requests);
+        $this->assertEquals('start', $requests[0]->getHeaderLine('X-Goog-Upload-Command'));
+        $this->assertEquals('initial-only-value', $requests[0]->getHeaderLine('X-Custom-Start-Header'));
+        $this->assertEquals('upload, finalize', $requests[1]->getHeaderLine('X-Goog-Upload-Command'));
+        $this->assertEquals('', $requests[1]->getHeaderLine('X-Custom-Start-Header'));
     }
 
     public function testUploadUrlTrackingAndResume()

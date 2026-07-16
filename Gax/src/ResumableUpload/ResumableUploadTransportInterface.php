@@ -39,6 +39,8 @@ use Psr\Http\Message\ResponseInterface;
 
 /**
  * An interface for transports that support resumable uploads.
+ *
+ * @internal
  */
 interface ResumableUploadTransportInterface
 {

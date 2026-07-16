@@ -48,7 +48,6 @@ class ResumableUploadStateTest extends TestCase
         $state = new ResumableUploadState(
             10,
             null,
-            [],
             null,
             'starting'
         );
@@ -65,7 +64,6 @@ class ResumableUploadStateTest extends TestCase
         $state = new ResumableUploadState(
             10,
             null,
-            [],
             null,
             'starting'
         );
@@ -82,7 +80,6 @@ class ResumableUploadStateTest extends TestCase
         $state = new ResumableUploadState(
             300000,
             null,
-            [],
             null,
             'starting'
         );
@@ -99,7 +96,6 @@ class ResumableUploadStateTest extends TestCase
         $state = new ResumableUploadState(
             5,
             null,
-            [],
             null,
             'starting'
         );
@@ -116,7 +112,6 @@ class ResumableUploadStateTest extends TestCase
         $state = new ResumableUploadState(
             5,
             null,
-            [],
             null,
             'starting'
         );
@@ -136,7 +131,6 @@ class ResumableUploadStateTest extends TestCase
         $state = new ResumableUploadState(
             10,
             null,
-            [],
             null,
             'transmitting'
         );
@@ -156,7 +150,6 @@ class ResumableUploadStateTest extends TestCase
         $state = new ResumableUploadState(
             10,
             null,
-            [],
             'https://upload.url',
             'recovery'
         );
@@ -177,7 +170,6 @@ class ResumableUploadStateTest extends TestCase
         $state = new ResumableUploadState(
             10,
             null,
-            [],
             'https://upload.url',
             'recovery'
         );
@@ -198,7 +190,6 @@ class ResumableUploadStateTest extends TestCase
         $state = new ResumableUploadState(
             10,
             null,
-            [],
             'https://upload.url',
             'recovery'
         );
@@ -218,7 +209,6 @@ class ResumableUploadStateTest extends TestCase
         $state = new ResumableUploadState(
             10,
             null,
-            [],
             'https://upload.url',
             'recovery'
         );
@@ -238,7 +228,6 @@ class ResumableUploadStateTest extends TestCase
         $state = new ResumableUploadState(
             10,
             null,
-            [],
             'https://upload.url',
             'recovery'
         );

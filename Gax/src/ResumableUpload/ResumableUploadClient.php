@@ -54,6 +54,8 @@ use Psr\Http\Message\StreamInterface;
  * Manages the REST transport and authentication credentials for resumable upload RPCs,
  * and executes the HTTP upload stream loop.
  * Instantiated during GAPIC client initialization when the service has resumable upload methods.
+ *
+ * @internal
  */
 class ResumableUploadClient
 {
@@ -89,7 +91,17 @@ class ResumableUploadClient
      *
      * @param ResumableUpload $upload
      * @param StreamInterface $dataStream
-     * @param ?Call $call
+     * @param Call $call
+     * @param array $callOptions {
+     *     Optional.
+     *
+     *     @type array $headers Optional. Key-value array of custom HTTP headers to
+     *           include with upload requests.
+     *     @type int $timeoutMillis Optional. The timeout in milliseconds for the
+     *           initial start call.
+     *     @type RetrySettings|array $retrySettings Optional. Retry settings to use for the
+     *           initial start call.
+     * }
      * @param array $resumableUploadOptions {
      *     Optional.
      *
@@ -100,14 +112,8 @@ class ResumableUploadClient
      *     @type callable $progressCallback Optional. A callback function executed after
      *           every chunk upload or query. The callback should accept two arguments:
      *           (int $bytesUploaded, ResumableUpload $upload).
-     *     @type array $headers Optional. Key-value array of custom HTTP headers to
-     *           include with upload requests.
-     *     @type int $timeoutMillis Optional. The timeout in milliseconds for the
-     *           initial start call.
      *     @type int $totalTimeoutMillis Optional. The total timeout in milliseconds for the
      *           entire resumable upload operation. Defaults to 600000 (10 minutes).
-     *     @type RetrySettings|array $retrySettings Optional. Retry settings to use for the
-     *           initial start call.
      *     @type string $uploadUrl Optional. An existing resumable upload session URL
      *           to resume an upload across process restarts or interruptions.
      * }
@@ -118,6 +124,7 @@ class ResumableUploadClient
         ResumableUpload $upload,
         StreamInterface $dataStream,
         Call $call,
+        array $callOptions = [],
         array $resumableUploadOptions = []
     ): Message {
         $this->finalResponse = null;
@@ -129,7 +136,6 @@ class ResumableUploadClient
         $state = new ResumableUploadState(
             $resumableUploadOptions['chunkSize'] ?? self::DEFAULT_CHUNK_SIZE,
             $resumableUploadOptions['progressCallback'] ?? null,
-            $resumableUploadOptions['headers'] ?? [],
             $uploadUrl,
             $uploadUrl !== null ? self::PHASE_RECOVERY : self::PHASE_STARTING
         );
@@ -144,7 +150,7 @@ class ResumableUploadClient
                             $upload,
                             $dataStream,
                             $call,
-                            $resumableUploadOptions
+                            $callOptions
                         )
                         : throw new ValidationException("A Call with request message is required when starting a new resumable upload."),
                     self::PHASE_TRANSMITTING,
@@ -187,9 +193,9 @@ class ResumableUploadClient
         ResumableUpload $upload,
         StreamInterface $dataStream,
         Call $call,
-        array $options = []
+        array $callOptions = []
     ): string {
-        $headers = $state->headers;
+        $headers = $callOptions['headers'] ?? [];
         $headers['X-Goog-Upload-Protocol'] = 'resumable';
         $headers['X-Goog-Upload-Command'] = 'start';
         if ($dataStream->getSize() !== null) {
@@ -203,13 +209,13 @@ class ResumableUploadClient
         $request = $request->withUri($uri->withPath($this->uploadPrefix . $uri->getPath()));
 
         // Add retry settings
-        $retrySettings = $options['retrySettings'] ?? null;
+        $retrySettings = $callOptions['retrySettings'] ?? null;
         if ($retrySettings !== null && !$retrySettings instanceof RetrySettings) {
             $retrySettings = RetrySettings::constructDefault()->with($retrySettings);
         }
 
         // Make the request
-        $response = $this->sendRequest($request, $options['timeoutMillis'] ?? null, $retrySettings);
+        $response = $this->sendRequest($request, $callOptions['timeoutMillis'] ?? null, $retrySettings);
         if ($response->getStatusCode() !== 200) {
             $this->handleErrorResponse($response);
         }
@@ -237,7 +243,7 @@ class ResumableUploadClient
     ): string {
         $state->prepareBuffer($dataStream);
 
-        $headers = $state->headers;
+        $headers = [];
         $headers['X-Goog-Upload-Offset'] = (string) $state->committedOffset;
         $body = (string) $state->buffer;
 
@@ -277,8 +283,7 @@ class ResumableUploadClient
         if (empty($state->uploadUrl)) {
             throw new ValidationException('Cannot recover resumable upload: uploadUrl is not set.');
         }
-        $headers = $state->headers;
-        $headers['X-Goog-Upload-Command'] = 'query';
+        $headers = ['X-Goog-Upload-Command' => 'query'];
         $response = $this->sendRequest(
             new Request('POST', (string) $state->uploadUrl, $headers, '')
         );

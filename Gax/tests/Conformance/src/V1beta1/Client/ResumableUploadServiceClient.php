@@ -178,26 +178,15 @@ final class ResumableUploadServiceClient
     /**
      * A method with media_upload annotation enabled.
      *
-     * @param UploadMediaRequest $request                A request to house fields associated with the call.
-     * @param array              $resumableUploadOptions {
+     * @param UploadMediaRequest $request     A request to house fields associated with the call.
+     * @param array              $callOptions {
      *     Optional.
      *
-     *     @type int $chunkSize
-     *           Optional. The size of each chunk to upload in bytes. Must be a multiple of
-     *           262144 (256 KB). Values smaller than the server's chunk granularity (typically
-     *           256 KB) will be rounded up to match the granularity. Defaults to 8388608 (8 MB).
-     *     @type callable $progressCallback
-     *           Optional. A callback function executed after every chunk upload or query. The
-     *           callback should accept two arguments: (int $bytesUploaded,
-     *           {@see ResumableUpload} $upload).
      *     @type array $headers
-     *           Optional. Key-value array of custom HTTP headers to include with upload
-     *           requests.
+     *           Optional. Key-value array of custom HTTP headers to include with the initial
+     *           upload request.
      *     @type int $timeoutMillis
      *           Optional. The timeout in milliseconds for the initial start call.
-     *     @type int $totalTimeoutMillis
-     *           Optional. The total timeout in milliseconds for the entire resumable upload
-     *           operation. Defaults to 600000 (10 minutes).
      *     @type RetrySettings|array $retrySettings
      *           Optional. Retry settings to use for the initial start call.
      * }
@@ -208,8 +197,8 @@ final class ResumableUploadServiceClient
      *
      * @experimental
      */
-    public function uploadMedia(UploadMediaRequest $request, array $resumableUploadOptions = []): ResumableUpload
+    public function uploadMedia(UploadMediaRequest $request, array $callOptions = []): ResumableUpload
     {
-        return $this->startApiCall('UploadMedia', $request, $resumableUploadOptions);
+        return $this->startApiCall('UploadMedia', $request, $callOptions);
     }
 }
