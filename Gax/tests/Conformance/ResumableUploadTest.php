@@ -19,10 +19,7 @@ namespace Google\Generator\Tests\Conformance;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\InsecureCredentialsWrapper;
-use Google\ApiCore\InsecureRequestBuilder;
 use Google\ApiCore\ResumableUpload\ResumableUpload;
-use Google\ApiCore\Transport\RestTransport;
-use Google\Auth\HttpHandler\HttpHandlerFactory;
 use Google\Showcase\V1beta1\Client\ResumableUploadServiceClient;
 use Google\Showcase\V1beta1\UploadMediaRequest;
 use Google\Showcase\V1beta1\UploadMediaResponse;
@@ -42,13 +39,8 @@ class ResumableUploadTest extends TestCase
         ?callable $progressCallback = null,
         array $headers = []
     ): UploadMediaResponse {
-        $restConfigPath = __DIR__ . '/src/V1beta1/resources/resumable_upload_service_rest_client_config.php';
-        $requestBuilder = new InsecureRequestBuilder(self::SHOWCASE_HOST, $restConfigPath);
-        $httpHandler = HttpHandlerFactory::build();
-        $rest = new RestTransport($requestBuilder, [$httpHandler, 'async']);
-
         $client = new ResumableUploadServiceClient([
-            'transport' => $rest,
+            'apiEndpoint' => self::SHOWCASE_HOST,
             'credentials' => new InsecureCredentialsWrapper(),
         ]);
 
@@ -83,7 +75,7 @@ class ResumableUploadTest extends TestCase
 
         $this->assertInstanceOf(UploadMediaResponse::class, $result);
         $this->assertEquals(strlen($payload), $callbackBytes);
-        $this->assertStringStartsWith("http://" . self::SHOWCASE_HOST . "/v1beta1/files:upload?sid=", $callbackUrl);
+        $this->assertStringStartsWith("http://" . self::SHOWCASE_HOST . "/resumable/upload/v1beta1/files:upload?sid=", $callbackUrl);
     }
 
     public function testNonFatalErrorOnStartRecovery()
