@@ -33,6 +33,8 @@
 namespace Google\ApiCore\ResumableUpload;
 
 use Google\ApiCore\CredentialsWrapper;
+use Google\ApiCore\InsecureCredentialsWrapper;
+use Google\ApiCore\InsecureRequestBuilder;
 use Google\ApiCore\RequestBuilder;
 use Google\ApiCore\ServiceAddressTrait;
 use Google\Auth\HttpHandler\HttpHandlerFactory;
@@ -93,7 +95,9 @@ trait ResumableUploadTrait
         $apiEndpoint = $options['apiEndpoint'] ?? '';
         list($baseUri, $port) = self::normalizeServiceAddress($apiEndpoint);
         $restConfigPath = $options['transportConfig']['rest']['restClientConfigPath'] ?? '';
-        $requestBuilder = new RequestBuilder("$baseUri:$port", $restConfigPath);
+        $requestBuilder = $this->credentialsWrapper instanceof InsecureCredentialsWrapper
+            ? new InsecureRequestBuilder("$baseUri:$port", $restConfigPath)
+            : new RequestBuilder("$baseUri:$port", $restConfigPath);
 
         return new ResumableUploadClient(
             $requestBuilder,
