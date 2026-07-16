@@ -43,19 +43,21 @@ class ResumableUploadTest extends TestCase
             'hasEmulator' => true,
         ]);
 
-        $options = [
-            'chunkSize' => 1024,
+        $callOptions = [
             'headers' => $headers
         ];
+        $resumableUploadOptions = [
+            'chunkSize' => 1024
+        ];
         if ($progressCallback !== null) {
-            $options['progressCallback'] = $progressCallback;
+            $resumableUploadOptions['progressCallback'] = $progressCallback;
         }
 
         $request = new UploadMediaRequest();
-        $upload = $client->uploadMedia($request, $options);
+        $upload = $client->uploadMedia($request, $callOptions);
 
         $stream = Utils::streamFor($data);
-        return $upload->startUpload($stream);
+        return $upload->startUpload($stream, $resumableUploadOptions);
     }
 
     public function testHappyPathUpload()
@@ -104,6 +106,33 @@ class ResumableUploadTest extends TestCase
                 'after_offset' => 1024,
                 'action_after_failures' => 'succeed'
             ])
+        ];
+
+        $result = $this->createClientAndUpload($payload, null, $headers);
+        $this->assertInstanceOf(UploadMediaResponse::class, $result);
+    }
+
+    public function testNonFatalErrorOnQueryRecovery()
+    {
+        $payload = str_repeat("a", 3000);
+        $headers = [
+            'X-Goog-Test-Scenario' => 'non_fatal_error_on_query',
+            'X-Goog-Test-Scenario-Config' => json_encode([
+                'error_code' => 503,
+                'failure_count' => 1,
+                'action_after_failures' => 'succeed'
+            ])
+        ];
+
+        $result = $this->createClientAndUpload($payload, null, $headers);
+        $this->assertInstanceOf(UploadMediaResponse::class, $result);
+    }
+
+    public function testChunkGranularityScenario()
+    {
+        $payload = str_repeat("b", 1024);
+        $headers = [
+            'X-Goog-Test-Scenario' => 'chunk_granularity'
         ];
 
         $result = $this->createClientAndUpload($payload, null, $headers);

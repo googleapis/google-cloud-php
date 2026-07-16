@@ -307,10 +307,10 @@ class ResumableUploadClientTest extends TestCase
         $client = new ResumableUploadClient($this->createStubTransport($requestBuilder, function () {}), $this->prophesize(CredentialsWrapper::class)->reveal());
 
         $call = new Call('test.method', Timestamp::class, new Timestamp(), [], Call::RESUMABLE_UPLOAD_CALL);
-        $upload = new ResumableUpload($client, $call, [
+        $upload = new ResumableUpload($client, $call);
+        $upload->startUpload(Utils::streamFor('hello'), [
             'totalTimeoutMillis' => -10000 // expired timeout in ms
         ]);
-        $upload->startUpload(Utils::streamFor('hello'));
     }
 
     public function testStartUploadWithCustomHeaders()
@@ -345,7 +345,7 @@ class ResumableUploadClientTest extends TestCase
 
         $this->assertCount(2, $requests);
         $this->assertSame('custom-value', $requests[0]->getHeaderLine('X-Custom-Header'));
-        $this->assertSame('custom-value', $requests[1]->getHeaderLine('X-Custom-Header'));
+        $this->assertSame('', $requests[1]->getHeaderLine('X-Custom-Header'));
     }
 
     public function testStartUploadRecoversFromPreviousBufferWithoutSeeking()
@@ -490,5 +490,47 @@ class ResumableUploadClientTest extends TestCase
         } finally {
             $this->assertCount(1, $requests);
         }
+    }
+
+    public function testHeadersSentOnlyOnInitialStartRequest()
+    {
+        $requests = [];
+        $httpHandler = function ($request, $options = []) use (&$requests) {
+            $requests[] = $request;
+            if (count($requests) === 1) {
+                return \GuzzleHttp\Promise\Create::promiseFor(new \GuzzleHttp\Psr7\Response(200, [
+                    'X-Goog-Upload-Status' => 'active',
+                    'X-Goog-Upload-URL' => 'https://upload.url/123'
+                ]));
+            }
+            return \GuzzleHttp\Promise\Create::promiseFor(new \GuzzleHttp\Psr7\Response(200, [
+                'X-Goog-Upload-Status' => 'final'
+            ], '"1970-01-01T00:00:00Z"'));
+        };
+
+        $requestBuilder = $this->prophesize(\Google\ApiCore\RequestBuilder::class);
+        $requestBuilder->build(Argument::any(), Argument::any(), Argument::any())->will(function ($args) {
+            $headers = $args[2] ?? [];
+            return new \GuzzleHttp\Psr7\Request('POST', 'https://test.googleapis.com/' . $args[0], $headers);
+        });
+
+        $client = new ResumableUploadClient(
+            $this->createStubTransport($requestBuilder->reveal(), $httpHandler),
+            $this->prophesize(CredentialsWrapper::class)->reveal(),
+            serviceAddress: 'test.googleapis.com'
+        );
+
+        $call = new Call('test.method', Timestamp::class, new Timestamp(), [], Call::RESUMABLE_UPLOAD_CALL);
+        $upload = new ResumableUpload($client, $call);
+
+        $client->startUpload($upload, Utils::streamFor('hello'), $call, [
+            'headers' => ['X-Initial-Custom-Header' => 'secret-value']
+        ]);
+
+        $this->assertCount(2, $requests);
+        $this->assertEquals('start', $requests[0]->getHeaderLine('X-Goog-Upload-Command'));
+        $this->assertEquals('secret-value', $requests[0]->getHeaderLine('X-Initial-Custom-Header'));
+        $this->assertEquals('upload, finalize', $requests[1]->getHeaderLine('X-Goog-Upload-Command'));
+        $this->assertEquals('', $requests[1]->getHeaderLine('X-Initial-Custom-Header'));
     }
 }

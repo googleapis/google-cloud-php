@@ -45,22 +45,13 @@ class ResumableUpload
     /**
      * @param ResumableUploadClient $resumableUploadClient
      * @param Call $call
-     * @param array $resumableUploadOptions {
+     * @param array $callOptions {
      *     Optional.
      *
-     *     @type int $chunkSize Optional. The size of each chunk to upload in bytes.
-     *           Must be a multiple of 262144 (256 KB). Values smaller than the server's chunk
-     *           granularity (typically 256 KB) will be rounded up to match the granularity.
-     *           Defaults to 8388608 (8 MB).
-     *     @type callable $progressCallback Optional. A callback function executed after
-     *           every chunk upload or query. The callback should accept two arguments:
-     *           (int $bytesUploaded, ResumableUpload $upload).
      *     @type array $headers Optional. Key-value array of custom HTTP headers to
      *           include with upload requests.
      *     @type int $timeoutMillis Optional. The timeout in milliseconds for the
      *           initial start call.
-     *     @type int $totalTimeoutMillis Optional. The total timeout in milliseconds for the
-     *           entire resumable upload operation. Defaults to 600000 (10 minutes).
      *     @type RetrySettings|array $retrySettings Optional. Retry settings to use for the
      *           initial start call.
      * }
@@ -70,14 +61,14 @@ class ResumableUpload
     public function __construct(
         private ResumableUploadClient $resumableUploadClient,
         private Call $call,
-        private array $resumableUploadOptions = [],
+        private array $callOptions = [],
         private ?string $uploadUrl = null
     ) {
     }
 
     /**
      * Returns the resumable upload session URL, if available.
-     * This URL can be persisted and used later with `$client->resumeUpload($uploadUrl)`
+     * This URL can be persisted and used later with `$client->resumeUpload($methodName, $uploadUrl)`
      * to resume the upload across process restarts or background jobs.
      *
      * @return ?string
@@ -100,20 +91,35 @@ class ResumableUpload
 
     /**
      * Starts or resumes the resumable upload exchange using the provided data stream.
-     * If this instance already has an `uploadUrl` (e.g. created via `$client->resumeUpload($uploadUrl)`
-     * or after a previous start/interruption), calling `startUpload($dataStream)` queries the server
-     * for the current byte offset and resumes transmitting remaining chunks.
+     * If this instance already has an `uploadUrl` (e.g. created via `$client->resumeUpload($methodName, $uploadUrl)`
+     * or after a previous start/interruption), calling `startUpload($dataStream, $resumableUploadOptions)` queries
+     * the server for the current byte offset and resumes transmitting remaining chunks.
      *
      * @param StreamInterface $dataStream
+     * @param array $resumableUploadOptions {
+     *     Optional.
+     *
+     *     @type int $chunkSize Optional. The size of each chunk to upload in bytes.
+     *           Must be a multiple of 262144 (256 KB). Values smaller than the server's chunk
+     *           granularity (typically 256 KB) will be rounded up to match the granularity.
+     *           Defaults to 8388608 (8 MB).
+     *     @type callable $progressCallback Optional. A callback function executed after
+     *           every chunk upload or query. The callback should accept two arguments:
+     *           (int $bytesUploaded, ResumableUpload $upload).
+     *     @type int $totalTimeoutMillis Optional. The total timeout in milliseconds for the
+     *           entire resumable upload operation. Defaults to 600000 (10 minutes).
+     * }
      * @return Message
      */
-    public function startUpload(StreamInterface $dataStream): Message
+    public function startUpload(StreamInterface $dataStream, array $resumableUploadOptions = []): Message
     {
         return $this->resumableUploadClient->startUpload(
             $this,
             $dataStream,
             $this->call,
-            $this->resumableUploadOptions
+            $this->callOptions,
+            $resumableUploadOptions
         );
     }
 }
+

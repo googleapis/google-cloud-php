@@ -57,7 +57,6 @@ class ResumableUploadState
     /**
      * @param int $chunkSize
      * @param callable|null $progressCallback
-     * @param array $headers
      * @param ?string $uploadUrl
      * @param string $phase
      */
@@ -65,7 +64,6 @@ class ResumableUploadState
         public int $chunkSize,
         /** @var callable|null $progressCallback */
         public $progressCallback,
-        public array $headers,
         public ?string $uploadUrl,
         public string $phase
     ) {
