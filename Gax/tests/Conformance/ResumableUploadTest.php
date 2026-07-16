@@ -17,42 +17,40 @@
 
 namespace Google\Generator\Tests\Conformance;
 
-use Google\ApiCore\Call;
+use Google\ApiCore\ApiException;
 use Google\ApiCore\InsecureCredentialsWrapper;
+use Google\ApiCore\InsecureRequestBuilder;
 use Google\ApiCore\ResumableUpload\ResumableUpload;
-use Google\ApiCore\ResumableUpload\ResumableUploadClient;
+use Google\ApiCore\Transport\RestTransport;
 use Google\Auth\HttpHandler\HttpHandlerFactory;
-use Google\Protobuf\Timestamp;
+use Google\Showcase\V1beta1\Client\ResumableUploadServiceClient;
+use Google\Showcase\V1beta1\UploadMediaRequest;
+use Google\Showcase\V1beta1\UploadMediaResponse;
 use GuzzleHttp\Psr7\Utils;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Conformance tests validating ResumableUploadClient and ResumableUpload protocol implementation
- * against a locally running gapic-showcase server instance.
+ * against a locally running gapic-showcase server instance using the generated ResumableUploadServiceClient.
  */
 class ResumableUploadTest extends TestCase
 {
-    private const SHOWCASE_HOST = 'http://localhost:7469';
+    private const SHOWCASE_HOST = 'localhost:7469';
 
     private function createClientAndUpload(
         string $data,
         ?callable $progressCallback = null,
         array $headers = []
-    ): Timestamp {
+    ): UploadMediaResponse {
+        $restConfigPath = __DIR__ . '/src/V1beta1/resources/resumable_upload_service_rest_client_config.php';
+        $requestBuilder = new InsecureRequestBuilder(self::SHOWCASE_HOST, $restConfigPath);
         $httpHandler = HttpHandlerFactory::build();
-        $requestBuilder = $this->createMock(\Google\ApiCore\RequestBuilder::class);
-        $requestBuilder->method('build')->willReturnCallback(function ($path, $message, $reqHeaders = []) {
-            $body = $message ? $message->serializeToJsonString() : '';
-            return new \GuzzleHttp\Psr7\Request('POST', self::SHOWCASE_HOST, $reqHeaders, $body);
-        });
+        $rest = new RestTransport($requestBuilder, [$httpHandler, 'async']);
 
-        $client = new ResumableUploadClient(
-            $requestBuilder,
-            [$httpHandler, 'async'],
-            new InsecureCredentialsWrapper(),
-            serviceAddress: self::SHOWCASE_HOST,
-            uploadPrefix: '/upload'
-        );
+        $client = new ResumableUploadServiceClient([
+            'transport' => $rest,
+            'credentials' => new InsecureCredentialsWrapper(),
+        ]);
 
         $options = [
             'chunkSize' => 1024,
@@ -62,15 +60,8 @@ class ResumableUploadTest extends TestCase
             $options['progressCallback'] = $progressCallback;
         }
 
-        $upload = new ResumableUpload(
-            $client,
-            new Call(
-                'test.method',
-                Timestamp::class,
-                new Timestamp()
-            ),
-            $options
-        );
+        $request = new UploadMediaRequest();
+        $upload = $client->uploadMedia($request, $options);
 
         $stream = Utils::streamFor($data);
         return $upload->startUpload($stream);
@@ -90,45 +81,59 @@ class ResumableUploadTest extends TestCase
             }
         );
 
-        $this->assertInstanceOf(Timestamp::class, $result);
+        $this->assertInstanceOf(UploadMediaResponse::class, $result);
         $this->assertEquals(strlen($payload), $callbackBytes);
-        $this->assertStringStartsWith(self::SHOWCASE_HOST . "/upload?sid=", $callbackUrl);
+        $this->assertStringStartsWith("http://" . self::SHOWCASE_HOST . "/v1beta1/files:upload?sid=", $callbackUrl);
     }
 
     public function testNonFatalErrorOnStartRecovery()
     {
         $payload = "data with transient 503 error on start";
-        $result = $this->createClientAndUpload(
-            $payload,
-            headers: [
-                'X-Goog-Test-Scenario' => 'non_fatal_error_on_start',
-                'X-Goog-Test-Scenario-Config' => json_encode([
-                    'error_code' => 503,
-                    'failure_count' => 2,
-                    'action_after_failures' => 'succeed'
-                ])
-            ]
-        );
+        $headers = [
+            'X-Goog-Test-Scenario' => 'non_fatal_error_on_start',
+            'X-Goog-Test-Scenario-Config' => json_encode([
+                'error_code' => 503,
+                'failure_count' => 1,
+                'action_after_failures' => 'succeed'
+            ])
+        ];
 
-        $this->assertInstanceOf(Timestamp::class, $result);
+        $result = $this->createClientAndUpload($payload, null, $headers);
+        $this->assertInstanceOf(UploadMediaResponse::class, $result);
     }
 
     public function testNonFatalErrorOnChunkUploadRecovery()
     {
-        $payload = "data with transient 503 error on chunk upload";
-        $result = $this->createClientAndUpload(
-            $payload,
-            headers: [
-                'X-Goog-Test-Scenario' => 'non_fatal_error_on_chunk_upload',
-                'X-Goog-Test-Scenario-Config' => json_encode([
-                    'error_code' => 503,
-                    'failure_count' => 2,
-                    'action_after_failures' => 'succeed',
-                    'after_offset' => 0
-                ])
-            ]
-        );
+        $payload = str_repeat("a", 3000); // multiple chunks
+        $headers = [
+            'X-Goog-Test-Scenario' => 'non_fatal_error_on_chunk_upload',
+            'X-Goog-Test-Scenario-Config' => json_encode([
+                'error_code' => 503,
+                'failure_count' => 1,
+                'after_offset' => 1024,
+                'action_after_failures' => 'succeed'
+            ])
+        ];
 
-        $this->assertInstanceOf(Timestamp::class, $result);
+        $result = $this->createClientAndUpload($payload, null, $headers);
+        $this->assertInstanceOf(UploadMediaResponse::class, $result);
+    }
+
+    public function testFatalErrorOnStartThrowsException()
+    {
+        $payload = "fatal error payload";
+        $headers = [
+            'X-Goog-Test-Scenario' => 'fatal_error_on_start',
+            'X-Goog-Test-Scenario-Config' => json_encode([
+                'error_code' => 403,
+                'failure_count' => 1,
+                'action_after_failures' => 'fail'
+            ])
+        ];
+
+        $this->expectException(ApiException::class);
+        $this->expectExceptionCode(403);
+
+        $this->createClientAndUpload($payload, null, $headers);
     }
 }
