@@ -77,7 +77,7 @@ class HttpRequest extends \Google\Protobuf\Internal\Message
     /**
      * The referer URL of the request, as defined in
      * [HTTP/1.1 Header Field
-     * Definitions](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html).
+     * Definitions](https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html).
      *
      * Generated from protobuf field <code>string referer = 8;</code>
      */
@@ -158,7 +158,7 @@ class HttpRequest extends \Google\Protobuf\Internal\Message
      *     @type string $referer
      *           The referer URL of the request, as defined in
      *           [HTTP/1.1 Header Field
-     *           Definitions](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html).
+     *           Definitions](https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html).
      *     @type \Google\Protobuf\Duration $latency
      *           The request processing latency on the server, from the time the request was
      *           received until the response was sent.
@@ -412,7 +412,7 @@ class HttpRequest extends \Google\Protobuf\Internal\Message
     /**
      * The referer URL of the request, as defined in
      * [HTTP/1.1 Header Field
-     * Definitions](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html).
+     * Definitions](https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html).
      *
      * Generated from protobuf field <code>string referer = 8;</code>
      * @return string
@@ -425,7 +425,7 @@ class HttpRequest extends \Google\Protobuf\Internal\Message
     /**
      * The referer URL of the request, as defined in
      * [HTTP/1.1 Header Field
-     * Definitions](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html).
+     * Definitions](https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html).
      *
      * Generated from protobuf field <code>string referer = 8;</code>
      * @param string $var
