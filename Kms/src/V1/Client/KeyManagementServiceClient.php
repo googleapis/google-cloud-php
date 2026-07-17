@@ -59,6 +59,8 @@ use Google\Cloud\Kms\V1\DeleteCryptoKeyVersionRequest;
 use Google\Cloud\Kms\V1\DestroyCryptoKeyVersionRequest;
 use Google\Cloud\Kms\V1\EncryptRequest;
 use Google\Cloud\Kms\V1\EncryptResponse;
+use Google\Cloud\Kms\V1\ExportTrustedKeyWrappedCryptoKeyVersionRequest;
+use Google\Cloud\Kms\V1\ExportTrustedKeyWrappedCryptoKeyVersionResponse;
 use Google\Cloud\Kms\V1\GenerateRandomBytesRequest;
 use Google\Cloud\Kms\V1\GenerateRandomBytesResponse;
 use Google\Cloud\Kms\V1\GetCryptoKeyRequest;
@@ -69,6 +71,7 @@ use Google\Cloud\Kms\V1\GetPublicKeyRequest;
 use Google\Cloud\Kms\V1\GetRetiredResourceRequest;
 use Google\Cloud\Kms\V1\ImportCryptoKeyVersionRequest;
 use Google\Cloud\Kms\V1\ImportJob;
+use Google\Cloud\Kms\V1\ImportTrustedKeyWrappedCryptoKeyVersionRequest;
 use Google\Cloud\Kms\V1\KeyRing;
 use Google\Cloud\Kms\V1\ListCryptoKeyVersionsRequest;
 use Google\Cloud\Kms\V1\ListCryptoKeysRequest;
@@ -131,6 +134,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<OperationResponse> deleteCryptoKeyVersionAsync(DeleteCryptoKeyVersionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<CryptoKeyVersion> destroyCryptoKeyVersionAsync(DestroyCryptoKeyVersionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<EncryptResponse> encryptAsync(EncryptRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ExportTrustedKeyWrappedCryptoKeyVersionResponse> exportTrustedKeyWrappedCryptoKeyVersionAsync(ExportTrustedKeyWrappedCryptoKeyVersionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<GenerateRandomBytesResponse> generateRandomBytesAsync(GenerateRandomBytesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<CryptoKey> getCryptoKeyAsync(GetCryptoKeyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<CryptoKeyVersion> getCryptoKeyVersionAsync(GetCryptoKeyVersionRequest $request, array $optionalArgs = [])
@@ -139,6 +143,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<PublicKey> getPublicKeyAsync(GetPublicKeyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<RetiredResource> getRetiredResourceAsync(GetRetiredResourceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<CryptoKeyVersion> importCryptoKeyVersionAsync(ImportCryptoKeyVersionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CryptoKeyVersion> importTrustedKeyWrappedCryptoKeyVersionAsync(ImportTrustedKeyWrappedCryptoKeyVersionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listCryptoKeyVersionsAsync(ListCryptoKeyVersionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listCryptoKeysAsync(ListCryptoKeysRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listImportJobsAsync(ListImportJobsRequest $request, array $optionalArgs = [])
@@ -890,6 +895,46 @@ final class KeyManagementServiceClient
     }
 
     /**
+     * Exports a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] with a
+     * trusted key.
+     *
+     * The [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] must have
+     * trusted_wrapping_enabled set to true. The
+     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] of the
+     * [wrapping_key] must have the
+     * [AES_WRAPPING][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.AES_WRAPPING]
+     * purpose. The [wrapping_key] must have the
+     * [AES_256_KWP][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm.AES_256_KWP]
+     * algorithm.
+     *
+     * The async variant is
+     * {@see KeyManagementServiceClient::exportTrustedKeyWrappedCryptoKeyVersionAsync()}
+     * .
+     *
+     * @example samples/V1/KeyManagementServiceClient/export_trusted_key_wrapped_crypto_key_version.php
+     *
+     * @param ExportTrustedKeyWrappedCryptoKeyVersionRequest $request     A request to house fields associated with the call.
+     * @param array                                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return ExportTrustedKeyWrappedCryptoKeyVersionResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function exportTrustedKeyWrappedCryptoKeyVersion(
+        ExportTrustedKeyWrappedCryptoKeyVersionRequest $request,
+        array $callOptions = []
+    ): ExportTrustedKeyWrappedCryptoKeyVersionResponse {
+        return $this->startApiCall('ExportTrustedKeyWrappedCryptoKeyVersion', $request, $callOptions)->wait();
+    }
+
+    /**
      * Generate random bytes using the Cloud KMS randomness source in the provided
      * location.
      *
@@ -1121,6 +1166,47 @@ final class KeyManagementServiceClient
         array $callOptions = []
     ): CryptoKeyVersion {
         return $this->startApiCall('ImportCryptoKeyVersion', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Import wrapped key material into a
+     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] with a trusted
+     * key.
+     *
+     * All requests must specify a [CryptoKey][google.cloud.kms.v1.CryptoKey]. If
+     * a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] is additionally
+     * specified in the request, key material will be reimported into that
+     * version. Otherwise, a new version will be created, and will be assigned the
+     * next sequential id within the [CryptoKey][google.cloud.kms.v1.CryptoKey].
+     *
+     * The [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] will have
+     * trusted_wrapping_enabled set to true.
+     *
+     * The async variant is
+     * {@see KeyManagementServiceClient::importTrustedKeyWrappedCryptoKeyVersionAsync()}
+     * .
+     *
+     * @example samples/V1/KeyManagementServiceClient/import_trusted_key_wrapped_crypto_key_version.php
+     *
+     * @param ImportTrustedKeyWrappedCryptoKeyVersionRequest $request     A request to house fields associated with the call.
+     * @param array                                          $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return CryptoKeyVersion
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function importTrustedKeyWrappedCryptoKeyVersion(
+        ImportTrustedKeyWrappedCryptoKeyVersionRequest $request,
+        array $callOptions = []
+    ): CryptoKeyVersion {
+        return $this->startApiCall('ImportTrustedKeyWrappedCryptoKeyVersion', $request, $callOptions)->wait();
     }
 
     /**

@@ -348,6 +348,13 @@ class CryptoKeyVersionAlgorithm
      * Generated from protobuf enum <code>PQ_SIGN_ML_DSA_87_EXTERNAL_MU = 71;</code>
      */
     const PQ_SIGN_ML_DSA_87_EXTERNAL_MU = 71;
+    /**
+     * AES key wrap with zero padding algorithm (RFC 5649). Can only be used
+     * by keys with purpose AES_WRAPPING.
+     *
+     * Generated from protobuf enum <code>AES_256_KWP = 73;</code>
+     */
+    const AES_256_KWP = 73;
 
     private static $valueToName = [
         self::CRYPTO_KEY_VERSION_ALGORITHM_UNSPECIFIED => 'CRYPTO_KEY_VERSION_ALGORITHM_UNSPECIFIED',
@@ -397,6 +404,7 @@ class CryptoKeyVersionAlgorithm
         self::PQ_SIGN_ML_DSA_44_EXTERNAL_MU => 'PQ_SIGN_ML_DSA_44_EXTERNAL_MU',
         self::PQ_SIGN_ML_DSA_65_EXTERNAL_MU => 'PQ_SIGN_ML_DSA_65_EXTERNAL_MU',
         self::PQ_SIGN_ML_DSA_87_EXTERNAL_MU => 'PQ_SIGN_ML_DSA_87_EXTERNAL_MU',
+        self::AES_256_KWP => 'AES_256_KWP',
     ];
 
     public static function name($value)

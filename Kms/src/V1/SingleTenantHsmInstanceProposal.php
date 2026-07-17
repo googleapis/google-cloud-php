@@ -186,6 +186,11 @@ class SingleTenantHsmInstanceProposal extends \Google\Protobuf\Internal\Message
      *           must be in the
      *           [ACTIVE][google.cloud.kms.v1.SingleTenantHsmInstance.State.ACTIVE] state
      *           to perform this operation.
+     *     @type \Google\Cloud\Kms\V1\SingleTenantHsmInstanceProposal\UpgradeKeyTrust $upgrade_key_trust
+     *           Promotes a key with the AES_WRAPPING purpose to a trusted wrapping key.
+     *           The key must be in the
+     *           [ACTIVE][CryptoKeyVersion.CryptoKeyVersionState.ACTIVE] state to perform
+     *           this operation.
      * }
      */
     public function __construct($data = NULL) {
@@ -866,6 +871,43 @@ class SingleTenantHsmInstanceProposal extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Kms\V1\SingleTenantHsmInstanceProposal\RefreshSingleTenantHsmInstance::class);
         $this->writeOneof(17, $var);
+
+        return $this;
+    }
+
+    /**
+     * Promotes a key with the AES_WRAPPING purpose to a trusted wrapping key.
+     * The key must be in the
+     * [ACTIVE][CryptoKeyVersion.CryptoKeyVersionState.ACTIVE] state to perform
+     * this operation.
+     *
+     * Generated from protobuf field <code>.google.cloud.kms.v1.SingleTenantHsmInstanceProposal.UpgradeKeyTrust upgrade_key_trust = 18;</code>
+     * @return \Google\Cloud\Kms\V1\SingleTenantHsmInstanceProposal\UpgradeKeyTrust|null
+     */
+    public function getUpgradeKeyTrust()
+    {
+        return $this->readOneof(18);
+    }
+
+    public function hasUpgradeKeyTrust()
+    {
+        return $this->hasOneof(18);
+    }
+
+    /**
+     * Promotes a key with the AES_WRAPPING purpose to a trusted wrapping key.
+     * The key must be in the
+     * [ACTIVE][CryptoKeyVersion.CryptoKeyVersionState.ACTIVE] state to perform
+     * this operation.
+     *
+     * Generated from protobuf field <code>.google.cloud.kms.v1.SingleTenantHsmInstanceProposal.UpgradeKeyTrust upgrade_key_trust = 18;</code>
+     * @param \Google\Cloud\Kms\V1\SingleTenantHsmInstanceProposal\UpgradeKeyTrust $var
+     * @return $this
+     */
+    public function setUpgradeKeyTrust($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Kms\V1\SingleTenantHsmInstanceProposal\UpgradeKeyTrust::class);
+        $this->writeOneof(18, $var);
 
         return $this;
     }
