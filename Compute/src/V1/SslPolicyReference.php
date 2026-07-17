@@ -15,9 +15,6 @@ use Google\Protobuf\RepeatedField;
 class SslPolicyReference extends \Google\Protobuf\Internal\Message
 {
     /**
-     * URL of the SSL policy resource. Set this to empty string to clear any
-     * existing SSL policy associated with the target proxy resource.
-     *
      * Generated from protobuf field <code>optional string ssl_policy = 295190213;</code>
      */
     protected $ssl_policy = null;
@@ -29,8 +26,6 @@ class SslPolicyReference extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $ssl_policy
-     *           URL of the SSL policy resource. Set this to empty string to clear any
-     *           existing SSL policy associated with the target proxy resource.
      * }
      */
     public function __construct($data = NULL) {
@@ -39,9 +34,6 @@ class SslPolicyReference extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URL of the SSL policy resource. Set this to empty string to clear any
-     * existing SSL policy associated with the target proxy resource.
-     *
      * Generated from protobuf field <code>optional string ssl_policy = 295190213;</code>
      * @return string
      */
@@ -61,9 +53,6 @@ class SslPolicyReference extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URL of the SSL policy resource. Set this to empty string to clear any
-     * existing SSL policy associated with the target proxy resource.
-     *
      * Generated from protobuf field <code>optional string ssl_policy = 295190213;</code>
      * @param string $var
      * @return $this

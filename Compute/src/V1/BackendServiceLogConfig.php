@@ -24,6 +24,18 @@ class BackendServiceLogConfig extends \Google\Protobuf\Internal\Message
      */
     protected $enable = null;
     /**
+     * The list of request headers that will be logged to Stackdriver.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.BackendServiceLogConfigLoggingHttpHeader logging_http_request_headers = 430426367;</code>
+     */
+    private $logging_http_request_headers;
+    /**
+     * The list of response headers that will be logged to Stackdriver.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.BackendServiceLogConfigLoggingHttpHeader logging_http_response_headers = 515407743;</code>
+     */
+    private $logging_http_response_headers;
+    /**
      * This field can only be specified if logging is enabled for this backend
      * service and "logConfig.optionalMode" was set to CUSTOM. Contains a list
      * of optional fields you want to include in the logs. For example:
@@ -63,6 +75,10 @@ class BackendServiceLogConfig extends \Google\Protobuf\Internal\Message
      *     @type bool $enable
      *           Denotes whether to enable logging for the load balancer
      *           traffic served by this backend service. The default value is false.
+     *     @type \Google\Cloud\Compute\V1\BackendServiceLogConfigLoggingHttpHeader[] $logging_http_request_headers
+     *           The list of request headers that will be logged to Stackdriver.
+     *     @type \Google\Cloud\Compute\V1\BackendServiceLogConfigLoggingHttpHeader[] $logging_http_response_headers
+     *           The list of response headers that will be logged to Stackdriver.
      *     @type string[] $optional_fields
      *           This field can only be specified if logging is enabled for this backend
      *           service and "logConfig.optionalMode" was set to CUSTOM. Contains a list
@@ -122,6 +138,58 @@ class BackendServiceLogConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->enable = $var;
+
+        return $this;
+    }
+
+    /**
+     * The list of request headers that will be logged to Stackdriver.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.BackendServiceLogConfigLoggingHttpHeader logging_http_request_headers = 430426367;</code>
+     * @return RepeatedField<\Google\Cloud\Compute\V1\BackendServiceLogConfigLoggingHttpHeader>
+     */
+    public function getLoggingHttpRequestHeaders()
+    {
+        return $this->logging_http_request_headers;
+    }
+
+    /**
+     * The list of request headers that will be logged to Stackdriver.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.BackendServiceLogConfigLoggingHttpHeader logging_http_request_headers = 430426367;</code>
+     * @param \Google\Cloud\Compute\V1\BackendServiceLogConfigLoggingHttpHeader[] $var
+     * @return $this
+     */
+    public function setLoggingHttpRequestHeaders($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Compute\V1\BackendServiceLogConfigLoggingHttpHeader::class);
+        $this->logging_http_request_headers = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The list of response headers that will be logged to Stackdriver.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.BackendServiceLogConfigLoggingHttpHeader logging_http_response_headers = 515407743;</code>
+     * @return RepeatedField<\Google\Cloud\Compute\V1\BackendServiceLogConfigLoggingHttpHeader>
+     */
+    public function getLoggingHttpResponseHeaders()
+    {
+        return $this->logging_http_response_headers;
+    }
+
+    /**
+     * The list of response headers that will be logged to Stackdriver.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.BackendServiceLogConfigLoggingHttpHeader logging_http_response_headers = 515407743;</code>
+     * @param \Google\Cloud\Compute\V1\BackendServiceLogConfigLoggingHttpHeader[] $var
+     * @return $this
+     */
+    public function setLoggingHttpResponseHeaders($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Compute\V1\BackendServiceLogConfigLoggingHttpHeader::class);
+        $this->logging_http_response_headers = $arr;
 
         return $this;
     }

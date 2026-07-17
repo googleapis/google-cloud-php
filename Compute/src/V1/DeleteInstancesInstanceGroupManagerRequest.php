@@ -28,6 +28,13 @@ class DeleteInstancesInstanceGroupManagerRequest extends \Google\Protobuf\Intern
      */
     protected $instance_group_managers_delete_instances_request_resource = null;
     /**
+     * When set, graceful shutdown is skipped for instance deletion even if it's
+     * configured for the instances.
+     *
+     * Generated from protobuf field <code>optional bool no_graceful_shutdown = 336255890;</code>
+     */
+    protected $no_graceful_shutdown = null;
+    /**
      * Project ID for this request.
      *
      * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "project"];</code>
@@ -87,6 +94,9 @@ class DeleteInstancesInstanceGroupManagerRequest extends \Google\Protobuf\Intern
      *           The name of the managed instance group.
      *     @type \Google\Cloud\Compute\V1\InstanceGroupManagersDeleteInstancesRequest $instance_group_managers_delete_instances_request_resource
      *           The body resource for this request
+     *     @type bool $no_graceful_shutdown
+     *           When set, graceful shutdown is skipped for instance deletion even if it's
+     *           configured for the instances.
      *     @type string $project
      *           Project ID for this request.
      *     @type string $request_id
@@ -169,6 +179,44 @@ class DeleteInstancesInstanceGroupManagerRequest extends \Google\Protobuf\Intern
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\InstanceGroupManagersDeleteInstancesRequest::class);
         $this->instance_group_managers_delete_instances_request_resource = $var;
+
+        return $this;
+    }
+
+    /**
+     * When set, graceful shutdown is skipped for instance deletion even if it's
+     * configured for the instances.
+     *
+     * Generated from protobuf field <code>optional bool no_graceful_shutdown = 336255890;</code>
+     * @return bool
+     */
+    public function getNoGracefulShutdown()
+    {
+        return isset($this->no_graceful_shutdown) ? $this->no_graceful_shutdown : false;
+    }
+
+    public function hasNoGracefulShutdown()
+    {
+        return isset($this->no_graceful_shutdown);
+    }
+
+    public function clearNoGracefulShutdown()
+    {
+        unset($this->no_graceful_shutdown);
+    }
+
+    /**
+     * When set, graceful shutdown is skipped for instance deletion even if it's
+     * configured for the instances.
+     *
+     * Generated from protobuf field <code>optional bool no_graceful_shutdown = 336255890;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setNoGracefulShutdown($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->no_graceful_shutdown = $var;
 
         return $this;
     }

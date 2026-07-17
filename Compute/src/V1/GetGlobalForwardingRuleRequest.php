@@ -27,6 +27,13 @@ class GetGlobalForwardingRuleRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $project = '';
+    /**
+     * 
+     * Check the View enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string view = 3619493;</code>
+     */
+    protected $view = null;
 
     /**
      * @param string $project        Project ID for this request.
@@ -53,6 +60,9 @@ class GetGlobalForwardingRuleRequest extends \Google\Protobuf\Internal\Message
      *           Name of the ForwardingRule resource to return.
      *     @type string $project
      *           Project ID for this request.
+     *     @type string $view
+     *           
+     *           Check the View enum for the list of possible values.
      * }
      */
     public function __construct($data = NULL) {
@@ -108,6 +118,44 @@ class GetGlobalForwardingRuleRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->project = $var;
+
+        return $this;
+    }
+
+    /**
+     * 
+     * Check the View enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string view = 3619493;</code>
+     * @return string
+     */
+    public function getView()
+    {
+        return isset($this->view) ? $this->view : '';
+    }
+
+    public function hasView()
+    {
+        return isset($this->view);
+    }
+
+    public function clearView()
+    {
+        unset($this->view);
+    }
+
+    /**
+     * 
+     * Check the View enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string view = 3619493;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setView($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->view = $var;
 
         return $this;
     }

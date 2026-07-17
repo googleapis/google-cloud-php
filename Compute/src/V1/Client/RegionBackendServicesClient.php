@@ -448,8 +448,10 @@ final class RegionBackendServicesClient
     }
 
     /**
-     * Retrieves a list of all usable backend services in the specified project in
-     * the given region.
+     * Retrieves a list of all usable backend services for Application Load
+     * Balancers and Proxy Network Load Balancers in the specified project in the
+     * given region. Backend services for external and internal passthrough
+     * Network Load Balancers are not included in the response.
      *
      * The async variant is {@see RegionBackendServicesClient::listUsableAsync()} .
      *
