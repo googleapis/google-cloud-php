@@ -160,6 +160,30 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool reimport_eligible = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $reimport_eligible = false;
+    /**
+     * Immutable. Field indicating that the key may be wrapped by a trusted key.
+     * This field can be set for all key purposes except
+     * [ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT],
+     * and is only valid for keys with protection level
+     * [HSM_SINGLE_TENANT][google.cloud.kms.v1.ProtectionLevel.HSM_SINGLE_TENANT].
+     * This field can only be set at creation or import time via
+     * [CreateCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.CreateCryptoKeyVersion],
+     * or
+     * [ImportCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.ImportCryptoKeyVersion].
+     *
+     * Generated from protobuf field <code>bool trusted_wrapping_enabled = 21 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     */
+    protected $trusted_wrapping_enabled = false;
+    /**
+     * Output only. Field indicating that the key wrapping key is trusted.
+     * This field is only valid for key purpose
+     * [AES_256_WRAPPING][CryptoKey.CryptoKeyPurpose.AES_256_WRAPPING], and
+     * protection level
+     * [HSM_SINGLE_TENANT][google.cloud.kms.v1.ProtectionLevel.HSM_SINGLE_TENANT].
+     *
+     * Generated from protobuf field <code>bool hsm_trusted = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $hsm_trusted = false;
 
     /**
      * Constructor.
@@ -240,6 +264,22 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      *           Output only. Whether or not this key version is eligible for reimport, by
      *           being specified as a target in
      *           [ImportCryptoKeyVersionRequest.crypto_key_version][google.cloud.kms.v1.ImportCryptoKeyVersionRequest.crypto_key_version].
+     *     @type bool $trusted_wrapping_enabled
+     *           Immutable. Field indicating that the key may be wrapped by a trusted key.
+     *           This field can be set for all key purposes except
+     *           [ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT],
+     *           and is only valid for keys with protection level
+     *           [HSM_SINGLE_TENANT][google.cloud.kms.v1.ProtectionLevel.HSM_SINGLE_TENANT].
+     *           This field can only be set at creation or import time via
+     *           [CreateCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.CreateCryptoKeyVersion],
+     *           or
+     *           [ImportCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.ImportCryptoKeyVersion].
+     *     @type bool $hsm_trusted
+     *           Output only. Field indicating that the key wrapping key is trusted.
+     *           This field is only valid for key purpose
+     *           [AES_256_WRAPPING][CryptoKey.CryptoKeyPurpose.AES_256_WRAPPING], and
+     *           protection level
+     *           [HSM_SINGLE_TENANT][google.cloud.kms.v1.ProtectionLevel.HSM_SINGLE_TENANT].
      * }
      */
     public function __construct($data = NULL) {
@@ -811,6 +851,82 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->reimport_eligible = $var;
+
+        return $this;
+    }
+
+    /**
+     * Immutable. Field indicating that the key may be wrapped by a trusted key.
+     * This field can be set for all key purposes except
+     * [ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT],
+     * and is only valid for keys with protection level
+     * [HSM_SINGLE_TENANT][google.cloud.kms.v1.ProtectionLevel.HSM_SINGLE_TENANT].
+     * This field can only be set at creation or import time via
+     * [CreateCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.CreateCryptoKeyVersion],
+     * or
+     * [ImportCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.ImportCryptoKeyVersion].
+     *
+     * Generated from protobuf field <code>bool trusted_wrapping_enabled = 21 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @return bool
+     */
+    public function getTrustedWrappingEnabled()
+    {
+        return $this->trusted_wrapping_enabled;
+    }
+
+    /**
+     * Immutable. Field indicating that the key may be wrapped by a trusted key.
+     * This field can be set for all key purposes except
+     * [ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT],
+     * and is only valid for keys with protection level
+     * [HSM_SINGLE_TENANT][google.cloud.kms.v1.ProtectionLevel.HSM_SINGLE_TENANT].
+     * This field can only be set at creation or import time via
+     * [CreateCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.CreateCryptoKeyVersion],
+     * or
+     * [ImportCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.ImportCryptoKeyVersion].
+     *
+     * Generated from protobuf field <code>bool trusted_wrapping_enabled = 21 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setTrustedWrappingEnabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->trusted_wrapping_enabled = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Field indicating that the key wrapping key is trusted.
+     * This field is only valid for key purpose
+     * [AES_256_WRAPPING][CryptoKey.CryptoKeyPurpose.AES_256_WRAPPING], and
+     * protection level
+     * [HSM_SINGLE_TENANT][google.cloud.kms.v1.ProtectionLevel.HSM_SINGLE_TENANT].
+     *
+     * Generated from protobuf field <code>bool hsm_trusted = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getHsmTrusted()
+    {
+        return $this->hsm_trusted;
+    }
+
+    /**
+     * Output only. Field indicating that the key wrapping key is trusted.
+     * This field is only valid for key purpose
+     * [AES_256_WRAPPING][CryptoKey.CryptoKeyPurpose.AES_256_WRAPPING], and
+     * protection level
+     * [HSM_SINGLE_TENANT][google.cloud.kms.v1.ProtectionLevel.HSM_SINGLE_TENANT].
+     *
+     * Generated from protobuf field <code>bool hsm_trusted = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setHsmTrusted($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->hsm_trusted = $var;
 
         return $this;
     }

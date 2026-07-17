@@ -84,7 +84,7 @@ class SingleTenantHsmInstance extends \Google\Protobuf\Internal\Message
      * Optional. Immutable. Indicates whether key portability is enabled for the
      * [SingleTenantHsmInstance][google.cloud.kms.v1.SingleTenantHsmInstance].
      * This can only be set at creation time. Key portability features are
-     * disabled by default and not yet available in GA.
+     * disabled by default.
      *
      * Generated from protobuf field <code>bool key_portability_enabled = 8 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
@@ -131,7 +131,7 @@ class SingleTenantHsmInstance extends \Google\Protobuf\Internal\Message
      *           Optional. Immutable. Indicates whether key portability is enabled for the
      *           [SingleTenantHsmInstance][google.cloud.kms.v1.SingleTenantHsmInstance].
      *           This can only be set at creation time. Key portability features are
-     *           disabled by default and not yet available in GA.
+     *           disabled by default.
      * }
      */
     public function __construct($data = NULL) {
@@ -409,7 +409,7 @@ class SingleTenantHsmInstance extends \Google\Protobuf\Internal\Message
      * Optional. Immutable. Indicates whether key portability is enabled for the
      * [SingleTenantHsmInstance][google.cloud.kms.v1.SingleTenantHsmInstance].
      * This can only be set at creation time. Key portability features are
-     * disabled by default and not yet available in GA.
+     * disabled by default.
      *
      * Generated from protobuf field <code>bool key_portability_enabled = 8 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return bool
@@ -423,7 +423,7 @@ class SingleTenantHsmInstance extends \Google\Protobuf\Internal\Message
      * Optional. Immutable. Indicates whether key portability is enabled for the
      * [SingleTenantHsmInstance][google.cloud.kms.v1.SingleTenantHsmInstance].
      * This can only be set at creation time. Key portability features are
-     * disabled by default and not yet available in GA.
+     * disabled by default.
      *
      * Generated from protobuf field <code>bool key_portability_enabled = 8 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param bool $var
