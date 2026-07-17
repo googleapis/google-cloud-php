@@ -40,6 +40,11 @@
                                 "disableSecretVersion"
                             ]
                         },
+                        "EnableManagedRotation": {
+                            "methods": [
+                                "enableManagedRotation"
+                            ]
+                        },
                         "EnableSecretVersion": {
                             "methods": [
                                 "enableSecretVersion"
@@ -68,6 +73,11 @@
                         "ListSecrets": {
                             "methods": [
                                 "listSecrets"
+                            ]
+                        },
+                        "RotateSecret": {
+                            "methods": [
+                                "rotateSecret"
                             ]
                         },
                         "SetIamPolicy": {
