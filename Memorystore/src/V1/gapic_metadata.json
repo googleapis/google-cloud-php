@@ -10,6 +10,16 @@
                 "grpc": {
                     "libraryClient": "MemorystoreGapicClient",
                     "rpcs": {
+                        "AddAuthToken": {
+                            "methods": [
+                                "addAuthToken"
+                            ]
+                        },
+                        "AddTokenAuthUser": {
+                            "methods": [
+                                "addTokenAuthUser"
+                            ]
+                        },
                         "BackupInstance": {
                             "methods": [
                                 "backupInstance"
@@ -18,6 +28,11 @@
                         "CreateInstance": {
                             "methods": [
                                 "createInstance"
+                            ]
+                        },
+                        "DeleteAuthToken": {
+                            "methods": [
+                                "deleteAuthToken"
                             ]
                         },
                         "DeleteBackup": {
@@ -30,6 +45,11 @@
                                 "deleteInstance"
                             ]
                         },
+                        "DeleteTokenAuthUser": {
+                            "methods": [
+                                "deleteTokenAuthUser"
+                            ]
+                        },
                         "ExportBackup": {
                             "methods": [
                                 "exportBackup"
@@ -38,6 +58,11 @@
                         "FinishMigration": {
                             "methods": [
                                 "finishMigration"
+                            ]
+                        },
+                        "GetAuthToken": {
+                            "methods": [
+                                "getAuthToken"
                             ]
                         },
                         "GetBackup": {
@@ -65,6 +90,16 @@
                                 "getSharedRegionalCertificateAuthority"
                             ]
                         },
+                        "GetTokenAuthUser": {
+                            "methods": [
+                                "getTokenAuthUser"
+                            ]
+                        },
+                        "ListAuthTokens": {
+                            "methods": [
+                                "listAuthTokens"
+                            ]
+                        },
                         "ListBackupCollections": {
                             "methods": [
                                 "listBackupCollections"
@@ -78,6 +113,11 @@
                         "ListInstances": {
                             "methods": [
                                 "listInstances"
+                            ]
+                        },
+                        "ListTokenAuthUsers": {
+                            "methods": [
+                                "listTokenAuthUsers"
                             ]
                         },
                         "RescheduleMaintenance": {
