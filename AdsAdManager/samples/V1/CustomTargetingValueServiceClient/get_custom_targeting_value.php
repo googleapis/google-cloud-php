@@ -29,7 +29,7 @@ use Google\Ads\AdManager\V1\GetCustomTargetingValueRequest;
 use Google\ApiCore\ApiException;
 
 /**
- * API to retrieve a `CustomTargetingValue` object.
+ * Retrieves a `CustomTargetingValue` object.
  *
  * @param string $formattedName The resource name of the CustomTargetingValue.
  *                              Format:

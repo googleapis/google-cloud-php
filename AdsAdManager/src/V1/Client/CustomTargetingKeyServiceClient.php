@@ -272,7 +272,7 @@ final class CustomTargetingKeyServiceClient
     }
 
     /**
-     * API to batch activate `CustomTargetingKey` objects.
+     * Batch activates `CustomTargetingKey` objects.
      *
      * The async variant is
      * {@see CustomTargetingKeyServiceClient::batchActivateCustomTargetingKeysAsync()}
@@ -302,7 +302,7 @@ final class CustomTargetingKeyServiceClient
     }
 
     /**
-     * API to batch create `CustomTargetingKey` objects.
+     * Creates `CustomTargetingKey` objects.
      *
      * The async variant is
      * {@see CustomTargetingKeyServiceClient::batchCreateCustomTargetingKeysAsync()} .
@@ -361,7 +361,7 @@ final class CustomTargetingKeyServiceClient
     }
 
     /**
-     * API to batch update `CustomTargetingKey` objects.
+     * Batch updates `CustomTargetingKey` objects.
      *
      * The async variant is
      * {@see CustomTargetingKeyServiceClient::batchUpdateCustomTargetingKeysAsync()} .
@@ -390,7 +390,7 @@ final class CustomTargetingKeyServiceClient
     }
 
     /**
-     * API to create a `CustomTargetingKey` object.
+     * Creates a `CustomTargetingKey` object.
      *
      * The async variant is
      * {@see CustomTargetingKeyServiceClient::createCustomTargetingKeyAsync()} .
@@ -419,7 +419,7 @@ final class CustomTargetingKeyServiceClient
     }
 
     /**
-     * API to retrieve a `CustomTargetingKey` object.
+     * Retrieves a `CustomTargetingKey` object.
      *
      * The async variant is
      * {@see CustomTargetingKeyServiceClient::getCustomTargetingKeyAsync()} .
@@ -448,7 +448,7 @@ final class CustomTargetingKeyServiceClient
     }
 
     /**
-     * API to retrieve a list of `CustomTargetingKey` objects.
+     * Lists `CustomTargetingKey` objects.
      *
      * The async variant is
      * {@see CustomTargetingKeyServiceClient::listCustomTargetingKeysAsync()} .
@@ -477,7 +477,7 @@ final class CustomTargetingKeyServiceClient
     }
 
     /**
-     * API to update a `CustomTargetingKey` object.
+     * Updates a `CustomTargetingKey` object.
      *
      * The async variant is
      * {@see CustomTargetingKeyServiceClient::updateCustomTargetingKeyAsync()} .

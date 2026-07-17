@@ -29,7 +29,7 @@ use Google\Ads\AdManager\V1\GetCmsMetadataKeyRequest;
 use Google\ApiCore\ApiException;
 
 /**
- * API to retrieve a `CmsMetadataKey` object.
+ * Retrieves a `CmsMetadataKey` object.
  *
  * @param string $formattedName The resource name of the CmsMetadataKey.
  *                              Format: `networks/{network_code}/cmsMetadataKeys/{cms_metadata_key_id}`

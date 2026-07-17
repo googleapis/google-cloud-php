@@ -29,7 +29,7 @@ use Google\Ads\AdManager\V1\RichMediaAdsCompany;
 use Google\ApiCore\ApiException;
 
 /**
- * API to retrieve a `RichMediaAdsCompany` object.
+ * Retrieves a `RichMediaAdsCompany` object.
  *
  * @param string $formattedName The resource name of the RichMediaAdsCompany.
  *                              Format:

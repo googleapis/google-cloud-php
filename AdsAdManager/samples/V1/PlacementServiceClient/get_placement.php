@@ -29,7 +29,7 @@ use Google\Ads\AdManager\V1\Placement;
 use Google\ApiCore\ApiException;
 
 /**
- * API to retrieve a `Placement` object.
+ * Retrieves a `Placement` object.
  *
  * @param string $formattedName The resource name of the Placement.
  *                              Format: `networks/{network_code}/placements/{placement_id}`

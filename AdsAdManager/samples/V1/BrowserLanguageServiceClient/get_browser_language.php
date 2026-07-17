@@ -29,7 +29,7 @@ use Google\Ads\AdManager\V1\GetBrowserLanguageRequest;
 use Google\ApiCore\ApiException;
 
 /**
- * API to retrieve a `BrowserLanguage` object.
+ * Retrieves a `BrowserLanguage` object.
  *
  * @param string $formattedName The resource name of the BrowserLanguage.
  *                              Format: `networks/{network_code}/browserLanguages/{browser_language_id}`

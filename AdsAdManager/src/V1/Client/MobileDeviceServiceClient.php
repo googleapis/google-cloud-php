@@ -255,7 +255,7 @@ final class MobileDeviceServiceClient
     }
 
     /**
-     * API to retrieve a `MobileDevice` object.
+     * Retrieves a `MobileDevice` object.
      *
      * The async variant is {@see MobileDeviceServiceClient::getMobileDeviceAsync()} .
      *
@@ -281,7 +281,7 @@ final class MobileDeviceServiceClient
     }
 
     /**
-     * API to retrieve a list of `MobileDevice` objects.
+     * Lists `MobileDevice` objects.
      *
      * The async variant is {@see MobileDeviceServiceClient::listMobileDevicesAsync()}
      * .

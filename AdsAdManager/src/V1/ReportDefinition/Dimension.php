@@ -61,7 +61,7 @@ class Dimension
     const ADVERTISER_CREDIT_STATUS_NAME = 476;
     /**
      * The domain name of the advertiser.
-     * Corresponds to "Advertiser domain" in the Ad Manager UI.
+     * Corresponds to "Landing page domain" in the Ad Manager UI.
      * Compatible with the following report types: `HISTORICAL`
      * Data format: `STRING`
      *
@@ -1739,7 +1739,8 @@ class Dimension
      *  normal creative.
      * Corresponds to "Creative or creative set value" in the Ad Manager UI
      * (when showing API fields).
-     * Compatible with the following report types: `HISTORICAL`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `REAL_TIME_VIDEO`
      * Data format: `ENUM`
      *
      * Generated from protobuf enum <code>CREATIVE_OR_CREATIVE_SET = 682;</code>
@@ -1749,7 +1750,8 @@ class Dimension
      * Localized string name of whether the creative is part of a creative set
      *  or a normal creative.
      * Corresponds to "Creative or creative set" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `REAL_TIME_VIDEO`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>CREATIVE_OR_CREATIVE_SET_NAME = 683;</code>
@@ -2087,6 +2089,15 @@ class Dimension
      * Generated from protobuf enum <code>DEAL_NAME = 437;</code>
      */
     const DEAL_NAME = 437;
+    /**
+     * The declared domain of the advertiser.
+     * Corresponds to "Declared advertiser domain" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `STRING`
+     *
+     * Generated from protobuf enum <code>DECLARED_ADVERTISER_DOMAIN = 796;</code>
+     */
+    const DECLARED_ADVERTISER_DOMAIN = 796;
     /**
      * The ID of the secure signals that were sent to the bidder who won the
      *  impression.
@@ -2711,7 +2722,8 @@ class Dimension
     /**
      * The Custom Targeting Value ID
      * Corresponds to "Key-values ID" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`
      * Data format: `IDENTIFIER`
      *
      * Generated from protobuf enum <code>KEY_VALUES_ID = 214;</code>
@@ -2720,7 +2732,8 @@ class Dimension
     /**
      * The Custom Targeting Value formatted like `{keyName}={valueName}`
      * Corresponds to "Key-values" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>KEY_VALUES_NAME = 215;</code>
@@ -2729,7 +2742,7 @@ class Dimension
     /**
      * The custom criteria key-values specified in ad requests.
      * Corresponds to "Key-values" in the Ad Manager UI.
-     * Compatible with the following report types: `FUTURE_SELL_THROUGH`
+     * Compatible with the following report types:
      * Data format: `STRING_LIST`
      *
      * Generated from protobuf enum <code>KEY_VALUES_SET = 713;</code>
@@ -4970,7 +4983,7 @@ class Dimension
      */
     const VIDEO_FALLBACK_POSITION = 530;
     /**
-     * The duration of the ad break in seconds for a live stream event.
+     * The expected duration of the ad break in seconds for a live stream event.
      * Corresponds to "Ad break duration (seconds)" in the Ad Manager UI.
      * Compatible with the following report types: `HISTORICAL`
      * Data format: `INTEGER`
@@ -7401,6 +7414,7 @@ class Dimension
         self::DEAL_ID => 'DEAL_ID',
         self::DEAL_ID_ALL => 'DEAL_ID_ALL',
         self::DEAL_NAME => 'DEAL_NAME',
+        self::DECLARED_ADVERTISER_DOMAIN => 'DECLARED_ADVERTISER_DOMAIN',
         self::DELIVERED_SECURE_SIGNAL_ID => 'DELIVERED_SECURE_SIGNAL_ID',
         self::DELIVERED_SECURE_SIGNAL_NAME => 'DELIVERED_SECURE_SIGNAL_NAME',
         self::DEMAND_CHANNEL => 'DEMAND_CHANNEL',

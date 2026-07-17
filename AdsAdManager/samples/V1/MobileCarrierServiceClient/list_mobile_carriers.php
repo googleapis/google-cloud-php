@@ -29,7 +29,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 
 /**
- * API to retrieve a list of `MobileCarrier` objects.
+ * Lists `MobileCarrier` objects.
  *
  * @param string $formattedParent The parent, which owns this collection of MobileCarriers.
  *                                Format: `networks/{network_code}`

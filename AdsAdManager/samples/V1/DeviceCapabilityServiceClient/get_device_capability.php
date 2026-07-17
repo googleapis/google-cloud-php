@@ -29,7 +29,7 @@ use Google\Ads\AdManager\V1\GetDeviceCapabilityRequest;
 use Google\ApiCore\ApiException;
 
 /**
- * API to retrieve a `DeviceCapability` object.
+ * Retrieves a `DeviceCapability` object.
  *
  * @param string $formattedName The resource name of the DeviceCapability.
  *                              Format: `networks/{network_code}/deviceCapabilities/{device_capability_id}`

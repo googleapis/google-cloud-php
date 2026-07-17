@@ -350,7 +350,7 @@ final class PlacementServiceClient
     }
 
     /**
-     * API to batch create `Placement` objects.
+     * Creates `Placement` objects.
      *
      * The async variant is {@see PlacementServiceClient::batchCreatePlacementsAsync()}
      * .
@@ -408,7 +408,7 @@ final class PlacementServiceClient
     }
 
     /**
-     * API to batch update `Placement` objects.
+     * Batch updates `Placement` objects.
      *
      * The async variant is {@see PlacementServiceClient::batchUpdatePlacementsAsync()}
      * .
@@ -437,7 +437,7 @@ final class PlacementServiceClient
     }
 
     /**
-     * API to create an `Placement` object.
+     * Creates an `Placement` object.
      *
      * The async variant is {@see PlacementServiceClient::createPlacementAsync()} .
      *
@@ -463,7 +463,7 @@ final class PlacementServiceClient
     }
 
     /**
-     * API to retrieve a `Placement` object.
+     * Retrieves a `Placement` object.
      *
      * The async variant is {@see PlacementServiceClient::getPlacementAsync()} .
      *
@@ -489,7 +489,7 @@ final class PlacementServiceClient
     }
 
     /**
-     * API to retrieve a list of `Placement` objects.
+     * Lists `Placement` objects.
      *
      * The async variant is {@see PlacementServiceClient::listPlacementsAsync()} .
      *
@@ -515,7 +515,7 @@ final class PlacementServiceClient
     }
 
     /**
-     * API to update an `Placement` object.
+     * Updates an `Placement` object.
      *
      * The async variant is {@see PlacementServiceClient::updatePlacementAsync()} .
      *

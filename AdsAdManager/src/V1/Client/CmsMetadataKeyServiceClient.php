@@ -261,7 +261,7 @@ final class CmsMetadataKeyServiceClient
     }
 
     /**
-     * API to activate a list of `CmsMetadataKey` objects.
+     * Activates a list of `CmsMetadataKey` objects.
      *
      * The async variant is
      * {@see CmsMetadataKeyServiceClient::batchActivateCmsMetadataKeysAsync()} .
@@ -290,7 +290,7 @@ final class CmsMetadataKeyServiceClient
     }
 
     /**
-     * API to deactivate a list of `CmsMetadataKey` objects.
+     * Deactivates a list of `CmsMetadataKey` objects.
      *
      * The async variant is
      * {@see CmsMetadataKeyServiceClient::batchDeactivateCmsMetadataKeysAsync()} .
@@ -319,7 +319,7 @@ final class CmsMetadataKeyServiceClient
     }
 
     /**
-     * API to retrieve a `CmsMetadataKey` object.
+     * Retrieves a `CmsMetadataKey` object.
      *
      * The async variant is
      * {@see CmsMetadataKeyServiceClient::getCmsMetadataKeyAsync()} .
@@ -346,7 +346,7 @@ final class CmsMetadataKeyServiceClient
     }
 
     /**
-     * API to retrieve a list of `CmsMetadataKey` objects.
+     * Lists `CmsMetadataKey` objects.
      *
      * The async variant is
      * {@see CmsMetadataKeyServiceClient::listCmsMetadataKeysAsync()} .

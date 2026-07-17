@@ -63,6 +63,99 @@
                 }
             }
         },
+        "AdRuleService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "AdRuleServiceGapicClient",
+                    "rpcs": {
+                        "BatchActivateAdRules": {
+                            "methods": [
+                                "batchActivateAdRules"
+                            ]
+                        },
+                        "BatchCreateAdRules": {
+                            "methods": [
+                                "batchCreateAdRules"
+                            ]
+                        },
+                        "BatchDeactivateAdRules": {
+                            "methods": [
+                                "batchDeactivateAdRules"
+                            ]
+                        },
+                        "BatchDeleteAdRules": {
+                            "methods": [
+                                "batchDeleteAdRules"
+                            ]
+                        },
+                        "BatchUpdateAdRules": {
+                            "methods": [
+                                "batchUpdateAdRules"
+                            ]
+                        },
+                        "CreateAdRule": {
+                            "methods": [
+                                "createAdRule"
+                            ]
+                        },
+                        "GetAdRule": {
+                            "methods": [
+                                "getAdRule"
+                            ]
+                        },
+                        "ListAdRules": {
+                            "methods": [
+                                "listAdRules"
+                            ]
+                        },
+                        "UpdateAdRule": {
+                            "methods": [
+                                "updateAdRule"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "AdSpotService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "AdSpotServiceGapicClient",
+                    "rpcs": {
+                        "BatchCreateAdSpots": {
+                            "methods": [
+                                "batchCreateAdSpots"
+                            ]
+                        },
+                        "BatchUpdateAdSpots": {
+                            "methods": [
+                                "batchUpdateAdSpots"
+                            ]
+                        },
+                        "CreateAdSpot": {
+                            "methods": [
+                                "createAdSpot"
+                            ]
+                        },
+                        "GetAdSpot": {
+                            "methods": [
+                                "getAdSpot"
+                            ]
+                        },
+                        "ListAdSpots": {
+                            "methods": [
+                                "listAdSpots"
+                            ]
+                        },
+                        "UpdateAdSpot": {
+                            "methods": [
+                                "updateAdSpot"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "AdUnitService": {
             "clients": {
                 "grpc": {
@@ -241,6 +334,55 @@
                         "ListBrowsers": {
                             "methods": [
                                 "listBrowsers"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "CdnConfigService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "CdnConfigServiceGapicClient",
+                    "rpcs": {
+                        "BatchActivateCdnConfigs": {
+                            "methods": [
+                                "batchActivateCdnConfigs"
+                            ]
+                        },
+                        "BatchArchiveCdnConfigs": {
+                            "methods": [
+                                "batchArchiveCdnConfigs"
+                            ]
+                        },
+                        "BatchCreateCdnConfigs": {
+                            "methods": [
+                                "batchCreateCdnConfigs"
+                            ]
+                        },
+                        "BatchUpdateCdnConfigs": {
+                            "methods": [
+                                "batchUpdateCdnConfigs"
+                            ]
+                        },
+                        "CreateCdnConfig": {
+                            "methods": [
+                                "createCdnConfig"
+                            ]
+                        },
+                        "GetCdnConfig": {
+                            "methods": [
+                                "getCdnConfig"
+                            ]
+                        },
+                        "ListCdnConfigs": {
+                            "methods": [
+                                "listCdnConfigs"
+                            ]
+                        },
+                        "UpdateCdnConfig": {
+                            "methods": [
+                                "updateCdnConfig"
                             ]
                         }
                     }
@@ -542,6 +684,31 @@
                 "grpc": {
                     "libraryClient": "CustomTargetingValueServiceGapicClient",
                     "rpcs": {
+                        "BatchActivateCustomTargetingValues": {
+                            "methods": [
+                                "batchActivateCustomTargetingValues"
+                            ]
+                        },
+                        "BatchCreateCustomTargetingValues": {
+                            "methods": [
+                                "batchCreateCustomTargetingValues"
+                            ]
+                        },
+                        "BatchDeactivateCustomTargetingValues": {
+                            "methods": [
+                                "batchDeactivateCustomTargetingValues"
+                            ]
+                        },
+                        "BatchUpdateCustomTargetingValues": {
+                            "methods": [
+                                "batchUpdateCustomTargetingValues"
+                            ]
+                        },
+                        "CreateCustomTargetingValue": {
+                            "methods": [
+                                "createCustomTargetingValue"
+                            ]
+                        },
                         "GetCustomTargetingValue": {
                             "methods": [
                                 "getCustomTargetingValue"
@@ -550,6 +717,11 @@
                         "ListCustomTargetingValues": {
                             "methods": [
                                 "listCustomTargetingValues"
+                            ]
+                        },
+                        "UpdateCustomTargetingValue": {
+                            "methods": [
+                                "updateCustomTargetingValue"
                             ]
                         }
                     }
@@ -752,6 +924,70 @@
                         "ListLinkedDevices": {
                             "methods": [
                                 "listLinkedDevices"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "LiveStreamService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "LiveStreamServiceGapicClient",
+                    "rpcs": {
+                        "BatchActivateLiveStreams": {
+                            "methods": [
+                                "batchActivateLiveStreams"
+                            ]
+                        },
+                        "BatchArchiveLiveStreams": {
+                            "methods": [
+                                "batchArchiveLiveStreams"
+                            ]
+                        },
+                        "BatchCreateLiveStreams": {
+                            "methods": [
+                                "batchCreateLiveStreams"
+                            ]
+                        },
+                        "BatchPauseAdsLiveStreams": {
+                            "methods": [
+                                "batchPauseAdsLiveStreams"
+                            ]
+                        },
+                        "BatchPauseLiveStreams": {
+                            "methods": [
+                                "batchPauseLiveStreams"
+                            ]
+                        },
+                        "BatchRefreshMasterPlaylists": {
+                            "methods": [
+                                "batchRefreshMasterPlaylists"
+                            ]
+                        },
+                        "BatchUpdateLiveStreams": {
+                            "methods": [
+                                "batchUpdateLiveStreams"
+                            ]
+                        },
+                        "CreateLiveStream": {
+                            "methods": [
+                                "createLiveStream"
+                            ]
+                        },
+                        "GetLiveStream": {
+                            "methods": [
+                                "getLiveStream"
+                            ]
+                        },
+                        "ListLiveStreams": {
+                            "methods": [
+                                "listLiveStreams"
+                            ]
+                        },
+                        "UpdateLiveStream": {
+                            "methods": [
+                                "updateLiveStream"
                             ]
                         }
                     }
@@ -1162,6 +1398,64 @@
                 }
             }
         },
+        "SuggestedAdUnitService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "SuggestedAdUnitServiceGapicClient",
+                    "rpcs": {
+                        "BatchApproveSuggestedAdUnits": {
+                            "methods": [
+                                "batchApproveSuggestedAdUnits"
+                            ]
+                        },
+                        "GetSuggestedAdUnit": {
+                            "methods": [
+                                "getSuggestedAdUnit"
+                            ]
+                        },
+                        "ListSuggestedAdUnits": {
+                            "methods": [
+                                "listSuggestedAdUnits"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "TargetingPresetService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "TargetingPresetServiceGapicClient",
+                    "rpcs": {
+                        "BatchCreateTargetingPresets": {
+                            "methods": [
+                                "batchCreateTargetingPresets"
+                            ]
+                        },
+                        "BatchDeactivateTargetingPresets": {
+                            "methods": [
+                                "batchDeactivateTargetingPresets"
+                            ]
+                        },
+                        "CreateTargetingPreset": {
+                            "methods": [
+                                "createTargetingPreset"
+                            ]
+                        },
+                        "GetTargetingPreset": {
+                            "methods": [
+                                "getTargetingPreset"
+                            ]
+                        },
+                        "ListTargetingPresets": {
+                            "methods": [
+                                "listTargetingPresets"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "TaxonomyCategoryService": {
             "clients": {
                 "grpc": {
@@ -1224,6 +1518,25 @@
                         "UpdateTeam": {
                             "methods": [
                                 "updateTeam"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "ThirdPartyCompanyService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ThirdPartyCompanyServiceGapicClient",
+                    "rpcs": {
+                        "GetThirdPartyCompany": {
+                            "methods": [
+                                "getThirdPartyCompany"
+                            ]
+                        },
+                        "ListThirdPartyCompanies": {
+                            "methods": [
+                                "listThirdPartyCompanies"
                             ]
                         }
                     }

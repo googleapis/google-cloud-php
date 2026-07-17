@@ -29,7 +29,7 @@ use Google\Ads\AdManager\V1\GetContentBundleRequest;
 use Google\ApiCore\ApiException;
 
 /**
- * API to retrieve a `ContentBundle` object.
+ * Retrieves a `ContentBundle` object.
  *
  * @param string $formattedName The resource name of the ContentBundle.
  *                              Format: `networks/{network_code}/contentBundles/{content_bundle_id}`

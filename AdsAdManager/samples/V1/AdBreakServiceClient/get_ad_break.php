@@ -29,7 +29,7 @@ use Google\Ads\AdManager\V1\GetAdBreakRequest;
 use Google\ApiCore\ApiException;
 
 /**
- * API to retrieve an `AdBreak` object.
+ * Retrieves an `AdBreak` object.
  *
  * Query an ad break by its resource name or custom asset key. Check the
  * resource's `breakState` field to determine its state.

@@ -29,7 +29,7 @@ use Google\Ads\AdManager\V1\GetCustomTargetingKeyRequest;
 use Google\ApiCore\ApiException;
 
 /**
- * API to retrieve a `CustomTargetingKey` object.
+ * Retrieves a `CustomTargetingKey` object.
  *
  * @param string $formattedName The resource name of the CustomTargetingKey.
  *                              Format:

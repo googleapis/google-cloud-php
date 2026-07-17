@@ -31,7 +31,7 @@ use Google\Ads\AdManager\V1\UpdatePlacementRequest;
 use Google\ApiCore\ApiException;
 
 /**
- * API to batch update `Placement` objects.
+ * Batch updates `Placement` objects.
  *
  * @param string $formattedParent              The parent resource where `Placements` will be updated.
  *                                             Format: `networks/{network_code}`

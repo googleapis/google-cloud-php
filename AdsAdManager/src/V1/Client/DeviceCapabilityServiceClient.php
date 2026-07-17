@@ -256,7 +256,7 @@ final class DeviceCapabilityServiceClient
     }
 
     /**
-     * API to retrieve a `DeviceCapability` object.
+     * Retrieves a `DeviceCapability` object.
      *
      * The async variant is
      * {@see DeviceCapabilityServiceClient::getDeviceCapabilityAsync()} .
@@ -283,7 +283,7 @@ final class DeviceCapabilityServiceClient
     }
 
     /**
-     * API to retrieve a list of `DeviceCapability` objects.
+     * Lists `DeviceCapability` objects.
      *
      * The async variant is
      * {@see DeviceCapabilityServiceClient::listDeviceCapabilitiesAsync()} .
