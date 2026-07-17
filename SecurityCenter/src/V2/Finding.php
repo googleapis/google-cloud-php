@@ -486,6 +486,24 @@ class Finding extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.securitycenter.v2.VertexAi vertex_ai = 72;</code>
      */
     protected $vertex_ai = null;
+    /**
+     * Primary Agent that the specified finding was flagged for
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v2.Agent agent = 81;</code>
+     */
+    protected $agent = null;
+    /**
+     * Conversational session(s) where the finding occurred.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.AgentSession agent_sessions = 82;</code>
+     */
+    private $agent_sessions;
+    /**
+     * Details about behavior anomalies detected in AI agents.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v2.AgentAnomaly agent_anomaly = 83;</code>
+     */
+    protected $agent_anomaly = null;
 
     /**
      * Constructor.
@@ -715,6 +733,12 @@ class Finding extends \Google\Protobuf\Internal\Message
      *           This field cannot be updated. Its value is ignored in all update requests.
      *     @type \Google\Cloud\SecurityCenter\V2\VertexAi $vertex_ai
      *           VertexAi associated with the finding.
+     *     @type \Google\Cloud\SecurityCenter\V2\Agent $agent
+     *           Primary Agent that the specified finding was flagged for
+     *     @type \Google\Cloud\SecurityCenter\V2\AgentSession[] $agent_sessions
+     *           Conversational session(s) where the finding occurred.
+     *     @type \Google\Cloud\SecurityCenter\V2\AgentAnomaly $agent_anomaly
+     *           Details about behavior anomalies detected in AI agents.
      * }
      */
     public function __construct($data = NULL) {
@@ -2794,6 +2818,104 @@ class Finding extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V2\VertexAi::class);
         $this->vertex_ai = $var;
+
+        return $this;
+    }
+
+    /**
+     * Primary Agent that the specified finding was flagged for
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v2.Agent agent = 81;</code>
+     * @return \Google\Cloud\SecurityCenter\V2\Agent|null
+     */
+    public function getAgent()
+    {
+        return $this->agent;
+    }
+
+    public function hasAgent()
+    {
+        return isset($this->agent);
+    }
+
+    public function clearAgent()
+    {
+        unset($this->agent);
+    }
+
+    /**
+     * Primary Agent that the specified finding was flagged for
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v2.Agent agent = 81;</code>
+     * @param \Google\Cloud\SecurityCenter\V2\Agent $var
+     * @return $this
+     */
+    public function setAgent($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V2\Agent::class);
+        $this->agent = $var;
+
+        return $this;
+    }
+
+    /**
+     * Conversational session(s) where the finding occurred.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.AgentSession agent_sessions = 82;</code>
+     * @return RepeatedField<\Google\Cloud\SecurityCenter\V2\AgentSession>
+     */
+    public function getAgentSessions()
+    {
+        return $this->agent_sessions;
+    }
+
+    /**
+     * Conversational session(s) where the finding occurred.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.AgentSession agent_sessions = 82;</code>
+     * @param \Google\Cloud\SecurityCenter\V2\AgentSession[] $var
+     * @return $this
+     */
+    public function setAgentSessions($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\SecurityCenter\V2\AgentSession::class);
+        $this->agent_sessions = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Details about behavior anomalies detected in AI agents.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v2.AgentAnomaly agent_anomaly = 83;</code>
+     * @return \Google\Cloud\SecurityCenter\V2\AgentAnomaly|null
+     */
+    public function getAgentAnomaly()
+    {
+        return $this->agent_anomaly;
+    }
+
+    public function hasAgentAnomaly()
+    {
+        return isset($this->agent_anomaly);
+    }
+
+    public function clearAgentAnomaly()
+    {
+        unset($this->agent_anomaly);
+    }
+
+    /**
+     * Details about behavior anomalies detected in AI agents.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v2.AgentAnomaly agent_anomaly = 83;</code>
+     * @param \Google\Cloud\SecurityCenter\V2\AgentAnomaly $var
+     * @return $this
+     */
+    public function setAgentAnomaly($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V2\AgentAnomaly::class);
+        $this->agent_anomaly = $var;
 
         return $this;
     }
