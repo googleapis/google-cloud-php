@@ -23,6 +23,66 @@
 return [
     'interfaces' => [
         'google.ads.admanager.v1.CustomTargetingValueService' => [
+            'BatchActivateCustomTargetingValues' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/customTargetingValues:batchActivate',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchCreateCustomTargetingValues' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/customTargetingValues:batchCreate',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchDeactivateCustomTargetingValues' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/customTargetingValues:batchDeactivate',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchUpdateCustomTargetingValues' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/customTargetingValues:batchUpdate',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateCustomTargetingValue' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/customTargetingValues',
+                'body' => 'custom_targeting_value',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'GetCustomTargetingValue' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=networks/*/customTargetingValues/*}',
@@ -53,6 +113,19 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateCustomTargetingValue' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{custom_targeting_value.name=networks/*/customTargetingValues/*}',
+                'body' => 'custom_targeting_value',
+                'placeholders' => [
+                    'custom_targeting_value.name' => [
+                        'getters' => [
+                            'getCustomTargetingValue',
+                            'getName',
                         ],
                     ],
                 ],

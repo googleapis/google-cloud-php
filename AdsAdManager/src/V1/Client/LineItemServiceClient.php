@@ -255,7 +255,7 @@ final class LineItemServiceClient
     }
 
     /**
-     * API to retrieve a `LineItem` object.
+     * Retrieves a `LineItem` object.
      *
      * The async variant is {@see LineItemServiceClient::getLineItemAsync()} .
      *
@@ -281,7 +281,7 @@ final class LineItemServiceClient
     }
 
     /**
-     * API to retrieve a list of `LineItem` objects.
+     * Lists `LineItem` objects.
      *
      * The async variant is {@see LineItemServiceClient::listLineItemsAsync()} .
      *

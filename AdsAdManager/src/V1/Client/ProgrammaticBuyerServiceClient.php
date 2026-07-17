@@ -256,7 +256,7 @@ final class ProgrammaticBuyerServiceClient
     }
 
     /**
-     * API to retrieve a `ProgrammaticBuyer` object.
+     * Retrieves a `ProgrammaticBuyer` object.
      *
      * The async variant is
      * {@see ProgrammaticBuyerServiceClient::getProgrammaticBuyerAsync()} .
@@ -285,7 +285,7 @@ final class ProgrammaticBuyerServiceClient
     }
 
     /**
-     * API to retrieve a list of `ProgrammaticBuyer` objects.
+     * Lists `ProgrammaticBuyer` objects.
      *
      * The async variant is
      * {@see ProgrammaticBuyerServiceClient::listProgrammaticBuyersAsync()} .

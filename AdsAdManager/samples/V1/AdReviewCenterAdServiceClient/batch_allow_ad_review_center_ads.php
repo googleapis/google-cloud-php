@@ -31,7 +31,7 @@ use Google\ApiCore\OperationResponse;
 use Google\Rpc\Status;
 
 /**
- * API to batch allow AdReviewCenterAds.
+ * Batch allows AdReviewCenterAds.
  * This method supports partial success. Some operations may succeed while
  * others fail. Callers should check the failedRequests field in the response
  * to determine which operations failed.

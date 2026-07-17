@@ -29,7 +29,7 @@ use Google\Ads\AdManager\V1\MobileDevice;
 use Google\ApiCore\ApiException;
 
 /**
- * API to retrieve a `MobileDevice` object.
+ * Retrieves a `MobileDevice` object.
  *
  * @param string $formattedName The resource name of the MobileDevice.
  *                              Format: `networks/{network_code}/mobileDevices/{mobile_device_id}`

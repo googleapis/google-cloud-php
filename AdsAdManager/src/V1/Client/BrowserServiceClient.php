@@ -255,7 +255,7 @@ final class BrowserServiceClient
     }
 
     /**
-     * API to retrieve a `Browser` object.
+     * Retrieves a `Browser` object.
      *
      * The async variant is {@see BrowserServiceClient::getBrowserAsync()} .
      *
@@ -281,7 +281,7 @@ final class BrowserServiceClient
     }
 
     /**
-     * API to retrieve a list of `Browser` objects.
+     * Lists `Browser` objects.
      *
      * The async variant is {@see BrowserServiceClient::listBrowsersAsync()} .
      *

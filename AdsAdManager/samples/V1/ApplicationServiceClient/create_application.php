@@ -29,7 +29,7 @@ use Google\Ads\AdManager\V1\CreateApplicationRequest;
 use Google\ApiCore\ApiException;
 
 /**
- * API to create a `Application` object.
+ * Creates a `Application` object.
  *
  * @param string $formattedParent        The parent resource where this `Application` will be created.
  *                                       Format: `networks/{network_code}`

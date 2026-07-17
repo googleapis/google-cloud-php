@@ -29,7 +29,7 @@ use Google\Ads\AdManager\V1\OperatingSystemVersion;
 use Google\ApiCore\ApiException;
 
 /**
- * API to retrieve a `OperatingSystemVersion` object.
+ * Retrieves a `OperatingSystemVersion` object.
  *
  * @param string $formattedName The resource name of the OperatingSystemVersion.
  *                              Format:

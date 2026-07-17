@@ -29,7 +29,7 @@ use Google\Ads\AdManager\V1\GetCreativeTemplateRequest;
 use Google\ApiCore\ApiException;
 
 /**
- * API to retrieve a `CreativeTemplate` object.
+ * Retrieves a `CreativeTemplate` object.
  *
  * @param string $formattedName The resource name of the CreativeTemplate.
  *                              Format: `networks/{network_code}/creativeTemplates/{creative_template_id}`

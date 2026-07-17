@@ -255,7 +255,7 @@ final class ContentBundleServiceClient
     }
 
     /**
-     * API to retrieve a `ContentBundle` object.
+     * Retrieves a `ContentBundle` object.
      *
      * The async variant is {@see ContentBundleServiceClient::getContentBundleAsync()}
      * .
@@ -282,7 +282,7 @@ final class ContentBundleServiceClient
     }
 
     /**
-     * API to retrieve a list of `ContentBundle` objects.
+     * Lists `ContentBundle` objects.
      *
      * The async variant is
      * {@see ContentBundleServiceClient::listContentBundlesAsync()} .

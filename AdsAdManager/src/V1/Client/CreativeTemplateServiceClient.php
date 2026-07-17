@@ -256,7 +256,7 @@ final class CreativeTemplateServiceClient
     }
 
     /**
-     * API to retrieve a `CreativeTemplate` object.
+     * Retrieves a `CreativeTemplate` object.
      *
      * The async variant is
      * {@see CreativeTemplateServiceClient::getCreativeTemplateAsync()} .
@@ -283,7 +283,7 @@ final class CreativeTemplateServiceClient
     }
 
     /**
-     * API to retrieve a list of `CreativeTemplate` objects.
+     * Lists `CreativeTemplate` objects.
      *
      * The async variant is
      * {@see CreativeTemplateServiceClient::listCreativeTemplatesAsync()} .

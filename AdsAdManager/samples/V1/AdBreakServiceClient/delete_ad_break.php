@@ -28,7 +28,7 @@ use Google\Ads\AdManager\V1\DeleteAdBreakRequest;
 use Google\ApiCore\ApiException;
 
 /**
- * API to delete an `AdBreak` object.
+ * Deletes an `AdBreak` object.
  *
  * Deletes and cancels an incomplete ad break, mitigating the need to wait
  * for the current break to serve before recreating an ad break. You can

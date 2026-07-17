@@ -255,7 +255,7 @@ final class BandwidthGroupServiceClient
     }
 
     /**
-     * API to retrieve a `BandwidthGroup` object.
+     * Retrieves a `BandwidthGroup` object.
      *
      * The async variant is
      * {@see BandwidthGroupServiceClient::getBandwidthGroupAsync()} .
@@ -282,7 +282,7 @@ final class BandwidthGroupServiceClient
     }
 
     /**
-     * API to retrieve a list of `BandwidthGroup` objects.
+     * Lists `BandwidthGroup` objects.
      *
      * The async variant is
      * {@see BandwidthGroupServiceClient::listBandwidthGroupsAsync()} .

@@ -29,7 +29,7 @@ use Google\Ads\AdManager\V1\Client\CustomTargetingKeyServiceClient;
 use Google\ApiCore\ApiException;
 
 /**
- * API to batch activate `CustomTargetingKey` objects.
+ * Batch activates `CustomTargetingKey` objects.
  *
  * @param string $formattedParent       Format: `networks/{network_code}`
  *                                      Please see {@see CustomTargetingKeyServiceClient::networkName()} for help formatting this field.

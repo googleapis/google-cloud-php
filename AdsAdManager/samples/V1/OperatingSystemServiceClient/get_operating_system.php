@@ -29,7 +29,7 @@ use Google\Ads\AdManager\V1\OperatingSystem;
 use Google\ApiCore\ApiException;
 
 /**
- * API to retrieve a `OperatingSystem` object.
+ * Retrieves a `OperatingSystem` object.
  *
  * @param string $formattedName The resource name of the OperatingSystem.
  *                              Format: `networks/{network_code}/operatingSystems/{operating_system_id}`

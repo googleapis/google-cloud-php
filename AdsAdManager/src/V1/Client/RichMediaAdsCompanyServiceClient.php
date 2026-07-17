@@ -256,7 +256,7 @@ final class RichMediaAdsCompanyServiceClient
     }
 
     /**
-     * API to retrieve a `RichMediaAdsCompany` object.
+     * Retrieves a `RichMediaAdsCompany` object.
      *
      * The async variant is
      * {@see RichMediaAdsCompanyServiceClient::getRichMediaAdsCompanyAsync()} .
@@ -285,7 +285,7 @@ final class RichMediaAdsCompanyServiceClient
     }
 
     /**
-     * API to retrieve a list of `RichMediaAdsCompany` objects.
+     * Lists `RichMediaAdsCompany` objects.
      *
      * The async variant is
      * {@see RichMediaAdsCompanyServiceClient::listRichMediaAdsCompaniesAsync()} .

@@ -29,7 +29,7 @@ use Google\Ads\AdManager\V1\GetGeoTargetRequest;
 use Google\ApiCore\ApiException;
 
 /**
- * API to retrieve a `GeoTarget` object.
+ * Retrieves a `GeoTarget` object.
  *
  * @param string $formattedName The resource name of the GeoTarget.
  *                              Format: `networks/{network_code}/geoTargets/{geo_target_id}`

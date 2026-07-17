@@ -29,7 +29,7 @@ use Google\Ads\AdManager\V1\MobileDeviceSubmodel;
 use Google\ApiCore\ApiException;
 
 /**
- * API to retrieve a `MobileDeviceSubmodel` object.
+ * Retrieves a `MobileDeviceSubmodel` object.
  *
  * @param string $formattedName The resource name of the MobileDeviceSubmodel.
  *                              Format:

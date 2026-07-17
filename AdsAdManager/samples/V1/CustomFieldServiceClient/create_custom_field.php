@@ -32,7 +32,7 @@ use Google\Ads\AdManager\V1\CustomFieldVisibilityEnum\CustomFieldVisibility;
 use Google\ApiCore\ApiException;
 
 /**
- * API to create a `CustomField` object.
+ * Creates a `CustomField` object.
  *
  * @param string $formattedParent        The parent resource where this `CustomField` will be created.
  *                                       Format: `networks/{network_code}`

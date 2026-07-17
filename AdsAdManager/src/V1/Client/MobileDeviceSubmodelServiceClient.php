@@ -256,7 +256,7 @@ final class MobileDeviceSubmodelServiceClient
     }
 
     /**
-     * API to retrieve a `MobileDeviceSubmodel` object.
+     * Retrieves a `MobileDeviceSubmodel` object.
      *
      * The async variant is
      * {@see MobileDeviceSubmodelServiceClient::getMobileDeviceSubmodelAsync()} .
@@ -285,7 +285,7 @@ final class MobileDeviceSubmodelServiceClient
     }
 
     /**
-     * API to retrieve a list of `MobileDeviceSubmodel` objects.
+     * Lists `MobileDeviceSubmodel` objects.
      *
      * The async variant is
      * {@see MobileDeviceSubmodelServiceClient::listMobileDeviceSubmodelsAsync()} .

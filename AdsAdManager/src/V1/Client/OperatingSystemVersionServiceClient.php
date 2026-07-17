@@ -256,7 +256,7 @@ final class OperatingSystemVersionServiceClient
     }
 
     /**
-     * API to retrieve a `OperatingSystemVersion` object.
+     * Retrieves a `OperatingSystemVersion` object.
      *
      * The async variant is
      * {@see OperatingSystemVersionServiceClient::getOperatingSystemVersionAsync()} .
@@ -285,7 +285,7 @@ final class OperatingSystemVersionServiceClient
     }
 
     /**
-     * API to retrieve a list of `OperatingSystemVersion` objects.
+     * Lists `OperatingSystemVersion` objects.
      *
      * The async variant is
      * {@see OperatingSystemVersionServiceClient::listOperatingSystemVersionsAsync()} .

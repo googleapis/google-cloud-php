@@ -255,7 +255,7 @@ final class ContentLabelServiceClient
     }
 
     /**
-     * API to retrieve a `ContentLabel` object.
+     * Retrieves a `ContentLabel` object.
      *
      * The async variant is {@see ContentLabelServiceClient::getContentLabelAsync()} .
      *
@@ -281,7 +281,7 @@ final class ContentLabelServiceClient
     }
 
     /**
-     * API to retrieve a list of `ContentLabel` objects.
+     * Lists `ContentLabel` objects.
      *
      * The async variant is {@see ContentLabelServiceClient::listContentLabelsAsync()}
      * .

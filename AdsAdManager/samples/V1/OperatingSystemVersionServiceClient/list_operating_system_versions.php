@@ -29,7 +29,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 
 /**
- * API to retrieve a list of `OperatingSystemVersion` objects.
+ * Lists `OperatingSystemVersion` objects.
  *
  * @param string $formattedParent The parent, which owns this collection of
  *                                OperatingSystemVersions. Format: `networks/{network_code}`

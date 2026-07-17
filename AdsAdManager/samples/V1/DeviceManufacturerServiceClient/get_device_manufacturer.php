@@ -29,7 +29,7 @@ use Google\Ads\AdManager\V1\GetDeviceManufacturerRequest;
 use Google\ApiCore\ApiException;
 
 /**
- * API to retrieve a `DeviceManufacturer` object.
+ * Retrieves a `DeviceManufacturer` object.
  *
  * @param string $formattedName The resource name of the DeviceManufacturer.
  *                              Format:

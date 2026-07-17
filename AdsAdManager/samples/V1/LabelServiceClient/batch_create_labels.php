@@ -32,7 +32,7 @@ use Google\Ads\AdManager\V1\LabelTypeEnum\LabelType;
 use Google\ApiCore\ApiException;
 
 /**
- * API to batch create `Label` objects.
+ * Creates `Label` objects.
  *
  * @param string $formattedParent           The parent resource where `Labels` will be created.
  *                                          Format: `networks/{network_code}`

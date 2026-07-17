@@ -320,7 +320,7 @@ final class AdReviewCenterAdServiceClient
     }
 
     /**
-     * API to batch allow AdReviewCenterAds.
+     * Batch allows AdReviewCenterAds.
      * This method supports partial success. Some operations may succeed while
      * others fail. Callers should check the failedRequests field in the response
      * to determine which operations failed.
@@ -352,7 +352,7 @@ final class AdReviewCenterAdServiceClient
     }
 
     /**
-     * API to batch block AdReviewCenterAds.
+     * Batch blocks AdReviewCenterAds.
      * This method supports partial success. Some operations may succeed while
      * others fail. Callers should check the failedRequests field in the response
      * to determine which operations failed.
@@ -384,7 +384,7 @@ final class AdReviewCenterAdServiceClient
     }
 
     /**
-     * API to search for AdReviewCenterAds.
+     * Searches for AdReviewCenterAds.
      *
      * The async variant is
      * {@see AdReviewCenterAdServiceClient::searchAdReviewCenterAdsAsync()} .

@@ -34,7 +34,7 @@ use Google\Ads\AdManager\V1\CustomFieldVisibilityEnum\CustomFieldVisibility;
 use Google\ApiCore\ApiException;
 
 /**
- * API to batch create `CustomField` objects.
+ * Creates `CustomField` objects.
  *
  * @param string $formattedParent                The parent resource where `CustomFields` will be created.
  *                                               Format: `networks/{network_code}`
