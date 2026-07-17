@@ -1,5 +1,133 @@
 # Changelog
 
+## 0.336.0
+
+<details><summary>googleads/ad-manager 0.8.0</summary>
+
+
+
+### Features
+
+* [AdsAdManager] Added AdSpotService ([#9351](https://github.com/googleapis/google-cloud-php/issues/9351)) ([4f75a74](https://github.com/googleapis/google-cloud-php/commit/4f75a74ba220a70017a62cf7863666987de30638))
+
+</details>
+
+<details><summary>google/cloud-backupdr 0.13.2</summary>
+
+
+
+### Documentation
+
+* [BackupDr] update documentation comment for access_restriction in BackupVault proto ([#9353](https://github.com/googleapis/google-cloud-php/issues/9353)) ([720636b](https://github.com/googleapis/google-cloud-php/commit/720636b7d3bd83ad2e096dca39799ae97eab9ca1))
+
+</details>
+
+<details><summary>google/cloud-compute 2.11.0</summary>
+
+
+
+### Features
+
+* [Compute] Update Compute Engine v1 API to revision 20260629 ([#1213](https://github.com/googleapis/google-cloud-php/issues/1213)) ([#9348](https://github.com/googleapis/google-cloud-php/issues/9348)) ([ca925d2](https://github.com/googleapis/google-cloud-php/commit/ca925d28c40864c3e6e1b99369702f3866ed9b6b))
+
+</details>
+
+<details><summary>google/cloud-dataproc 4.0.0</summary>
+
+
+
+</details>
+
+<details><summary>google/developer-knowledge 0.2.0</summary>
+
+
+
+### Features
+
+* [DeveloperKnowledge] add AnswerQuery RPC to v1 ([12c3c41](https://github.com/googleapis/google-cloud-php/commit/12c3c41ae293e46c0ad091172f17b747bef4a93b))
+
+</details>
+
+<details><summary>google/gax 1.45.0</summary>
+
+
+
+### Features
+
+* **secretmanager:** [SecretManager] add support for Managed Rotation ([#9339](https://github.com/googleapis/google-cloud-php/issues/9339)) ([6c477b8](https://github.com/googleapis/google-cloud-php/commit/6c477b889b242a3181a49988ed5b654be6c2a0fb))
+
+</details>
+
+<details><summary>google/cloud-kms 2.11.0</summary>
+
+
+
+### Features
+
+* [Kms] Add support for trusted key wrapping and HSM key trust upgrades ([#9350](https://github.com/googleapis/google-cloud-php/issues/9350)) ([c2b61d3](https://github.com/googleapis/google-cloud-php/commit/c2b61d3147261c5bbb3d25730121bba27b3901d8))
+
+</details>
+
+<details><summary>google/cloud-memorystore 0.12.0</summary>
+
+
+
+### Features
+
+* [Memorystore] Add support for Basic Auth feature to Memorystore for Valkey ([#9343](https://github.com/googleapis/google-cloud-php/issues/9343)) ([186ac90](https://github.com/googleapis/google-cloud-php/commit/186ac9061cbbf975f73a0e037b6d321d1b020f99))
+
+</details>
+
+<details><summary>google/cloud-secret-manager 2.4.0</summary>
+
+
+
+### Features
+
+* **secretmanager:** [SecretManager] add support for Managed Rotation ([#9339](https://github.com/googleapis/google-cloud-php/issues/9339)) ([6c477b8](https://github.com/googleapis/google-cloud-php/commit/6c477b889b242a3181a49988ed5b654be6c2a0fb))
+
+</details>
+
+<details><summary>google/cloud-security-center 2.6.0</summary>
+
+
+
+### Features
+
+* [SecurityCenter] add agent, agent_sessions, and agent_anomaly fields to Finding ([#9342](https://github.com/googleapis/google-cloud-php/issues/9342)) ([a43522f](https://github.com/googleapis/google-cloud-php/commit/a43522fe218dd14c691445622220e055e696aff4))
+
+</details>
+
+<details><summary>google/cloud-service-control 2.3.0</summary>
+
+
+
+### Features
+
+* [ServiceControl] Add user_labels field ([#9352](https://github.com/googleapis/google-cloud-php/issues/9352)) ([569ca88](https://github.com/googleapis/google-cloud-php/commit/569ca88a75dc443f6b3de4802d1030d1c5e02a50))
+
+</details>
+
+<details><summary>google/shopping-merchant-inventories 1.5.0</summary>
+
+
+
+### Features
+
+* [ShoppingMerchantInventories] export custom_attributes field in LocalInventory and RegionalInventory ([#9349](https://github.com/googleapis/google-cloud-php/issues/9349)) ([3f522b3](https://github.com/googleapis/google-cloud-php/commit/3f522b3df27e85ec9838d28902d1d701e3ee1897))
+
+</details>
+
+<details><summary>google/shopping-merchant-products 1.7.0</summary>
+
+
+
+### Features
+
+* [ShoppingMerchantProducts] add various new attributes to Product including vehicles, properties, and Q&A ([#9341](https://github.com/googleapis/google-cloud-php/issues/9341)) ([a27b115](https://github.com/googleapis/google-cloud-php/commit/a27b115deac06f1078a3ba56b065fe85538793bd))
+
+</details>
+
 ## 0.335.0
 
 <details><summary>google/cloud-ai-platform 1.62.0</summary>
