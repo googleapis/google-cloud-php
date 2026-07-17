@@ -292,6 +292,7 @@ class TargetTcpProxiesClientTest extends GeneratedTest
         $description = 'description-1724546052';
         $id = 3355;
         $kind = 'kind3292052';
+        $loadBalancingScheme = 'loadBalancingScheme1974502980';
         $name = 'name3373707';
         $proxyBind = true;
         $proxyHeader = 'proxyHeader-1987109506';
@@ -303,6 +304,7 @@ class TargetTcpProxiesClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setId($id);
         $expectedResponse->setKind($kind);
+        $expectedResponse->setLoadBalancingScheme($loadBalancingScheme);
         $expectedResponse->setName($name);
         $expectedResponse->setProxyBind($proxyBind);
         $expectedResponse->setProxyHeader($proxyHeader);
