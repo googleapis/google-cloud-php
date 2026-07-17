@@ -47,6 +47,30 @@ return [
             ],
         ],
         'google.cloud.memorystore.v1.Memorystore' => [
+            'AddAuthToken' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{token_auth_user=projects/*/locations/*/instances/*/tokenAuthUsers/*}:addAuthToken',
+                'body' => '*',
+                'placeholders' => [
+                    'token_auth_user' => [
+                        'getters' => [
+                            'getTokenAuthUser',
+                        ],
+                    ],
+                ],
+            ],
+            'AddTokenAuthUser' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{instance=projects/*/locations/*/instances/*}:addTokenAuthUser',
+                'body' => '*',
+                'placeholders' => [
+                    'instance' => [
+                        'getters' => [
+                            'getInstance',
+                        ],
+                    ],
+                ],
+            ],
             'BackupInstance' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/instances/*}:backup',
@@ -74,6 +98,17 @@ return [
                     'instance_id',
                 ],
             ],
+            'DeleteAuthToken' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/instances/*/tokenAuthUsers/*/authTokens/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteBackup' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/backupCollections/*/backups/*}',
@@ -88,6 +123,17 @@ return [
             'DeleteInstance' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/instances/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteTokenAuthUser' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/instances/*/tokenAuthUsers/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -112,6 +158,17 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/instances/*}:finishMigration',
                 'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetAuthToken' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/instances/*/tokenAuthUsers/*/authTokens/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -175,6 +232,28 @@ return [
                     ],
                 ],
             ],
+            'GetTokenAuthUser' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/instances/*/tokenAuthUsers/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListAuthTokens' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/instances/*/tokenAuthUsers/*}/authTokens',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListBackupCollections' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/backupCollections',
@@ -200,6 +279,17 @@ return [
             'ListInstances' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/instances',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListTokenAuthUsers' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/instances/*}/tokenAuthUsers',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [

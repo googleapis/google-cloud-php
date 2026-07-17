@@ -40,15 +40,37 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
+use Google\Cloud\Memorystore\V1beta\AddAuthTokenRequest;
+use Google\Cloud\Memorystore\V1beta\AddTokenAuthUserRequest;
+use Google\Cloud\Memorystore\V1beta\AuthToken;
+use Google\Cloud\Memorystore\V1beta\Backup;
+use Google\Cloud\Memorystore\V1beta\BackupCollection;
+use Google\Cloud\Memorystore\V1beta\BackupInstanceRequest;
 use Google\Cloud\Memorystore\V1beta\CertificateAuthority;
 use Google\Cloud\Memorystore\V1beta\CreateInstanceRequest;
+use Google\Cloud\Memorystore\V1beta\DeleteAuthTokenRequest;
+use Google\Cloud\Memorystore\V1beta\DeleteBackupRequest;
 use Google\Cloud\Memorystore\V1beta\DeleteInstanceRequest;
+use Google\Cloud\Memorystore\V1beta\DeleteTokenAuthUserRequest;
+use Google\Cloud\Memorystore\V1beta\ExportBackupRequest;
+use Google\Cloud\Memorystore\V1beta\FinishMigrationRequest;
+use Google\Cloud\Memorystore\V1beta\GetAuthTokenRequest;
+use Google\Cloud\Memorystore\V1beta\GetBackupCollectionRequest;
+use Google\Cloud\Memorystore\V1beta\GetBackupRequest;
 use Google\Cloud\Memorystore\V1beta\GetCertificateAuthorityRequest;
 use Google\Cloud\Memorystore\V1beta\GetInstanceRequest;
 use Google\Cloud\Memorystore\V1beta\GetSharedRegionalCertificateAuthorityRequest;
+use Google\Cloud\Memorystore\V1beta\GetTokenAuthUserRequest;
 use Google\Cloud\Memorystore\V1beta\Instance;
+use Google\Cloud\Memorystore\V1beta\ListAuthTokensRequest;
+use Google\Cloud\Memorystore\V1beta\ListBackupCollectionsRequest;
+use Google\Cloud\Memorystore\V1beta\ListBackupsRequest;
 use Google\Cloud\Memorystore\V1beta\ListInstancesRequest;
+use Google\Cloud\Memorystore\V1beta\ListTokenAuthUsersRequest;
+use Google\Cloud\Memorystore\V1beta\RescheduleMaintenanceRequest;
 use Google\Cloud\Memorystore\V1beta\SharedRegionalCertificateAuthority;
+use Google\Cloud\Memorystore\V1beta\StartMigrationRequest;
+use Google\Cloud\Memorystore\V1beta\TokenAuthUser;
 use Google\Cloud\Memorystore\V1beta\UpdateInstanceRequest;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
@@ -68,12 +90,30 @@ use Psr\Log\LoggerInterface;
  *
  * @experimental
  *
+ * @method PromiseInterface<OperationResponse> addAuthTokenAsync(AddAuthTokenRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> addTokenAuthUserAsync(AddTokenAuthUserRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> backupInstanceAsync(BackupInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createInstanceAsync(CreateInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAuthTokenAsync(DeleteAuthTokenRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteBackupAsync(DeleteBackupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteInstanceAsync(DeleteInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteTokenAuthUserAsync(DeleteTokenAuthUserRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> exportBackupAsync(ExportBackupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> finishMigrationAsync(FinishMigrationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AuthToken> getAuthTokenAsync(GetAuthTokenRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Backup> getBackupAsync(GetBackupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BackupCollection> getBackupCollectionAsync(GetBackupCollectionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<CertificateAuthority> getCertificateAuthorityAsync(GetCertificateAuthorityRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Instance> getInstanceAsync(GetInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<SharedRegionalCertificateAuthority> getSharedRegionalCertificateAuthorityAsync(GetSharedRegionalCertificateAuthorityRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TokenAuthUser> getTokenAuthUserAsync(GetTokenAuthUserRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAuthTokensAsync(ListAuthTokensRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listBackupCollectionsAsync(ListBackupCollectionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listBackupsAsync(ListBackupsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listInstancesAsync(ListInstancesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listTokenAuthUsersAsync(ListTokenAuthUsersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> rescheduleMaintenanceAsync(RescheduleMaintenanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> startMigrationAsync(StartMigrationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateInstanceAsync(UpdateInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
@@ -103,7 +143,11 @@ final class MemorystoreClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/cloud-platform',
+        'https://www.googleapis.com/auth/memorystore.read-only',
+        'https://www.googleapis.com/auth/memorystore.read-write',
+    ];
 
     private $operationsClient;
 
@@ -179,6 +223,84 @@ final class MemorystoreClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a auth_token
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $instance
+     * @param string $tokenAuthUser
+     * @param string $authToken
+     *
+     * @return string The formatted auth_token resource.
+     *
+     * @experimental
+     */
+    public static function authTokenName(
+        string $project,
+        string $location,
+        string $instance,
+        string $tokenAuthUser,
+        string $authToken
+    ): string {
+        return self::getPathTemplate('authToken')->render([
+            'project' => $project,
+            'location' => $location,
+            'instance' => $instance,
+            'token_auth_user' => $tokenAuthUser,
+            'auth_token' => $authToken,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a backup
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $backupCollection
+     * @param string $backup
+     *
+     * @return string The formatted backup resource.
+     *
+     * @experimental
+     */
+    public static function backupName(
+        string $project,
+        string $location,
+        string $backupCollection,
+        string $backup
+    ): string {
+        return self::getPathTemplate('backup')->render([
+            'project' => $project,
+            'location' => $location,
+            'backup_collection' => $backupCollection,
+            'backup' => $backup,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * backup_collection resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $backupCollection
+     *
+     * @return string The formatted backup_collection resource.
+     *
+     * @experimental
+     */
+    public static function backupCollectionName(string $project, string $location, string $backupCollection): string
+    {
+        return self::getPathTemplate('backupCollection')->render([
+            'project' => $project,
+            'location' => $location,
+            'backup_collection' => $backupCollection,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a ca_pool
      * resource.
      *
@@ -196,6 +318,59 @@ final class MemorystoreClient
             'project' => $project,
             'location' => $location,
             'ca_pool' => $caPool,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a crypto_key
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $keyRing
+     * @param string $cryptoKey
+     *
+     * @return string The formatted crypto_key resource.
+     *
+     * @experimental
+     */
+    public static function cryptoKeyName(string $project, string $location, string $keyRing, string $cryptoKey): string
+    {
+        return self::getPathTemplate('cryptoKey')->render([
+            'project' => $project,
+            'location' => $location,
+            'key_ring' => $keyRing,
+            'crypto_key' => $cryptoKey,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * crypto_key_version resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $keyRing
+     * @param string $cryptoKey
+     * @param string $cryptoKeyVersion
+     *
+     * @return string The formatted crypto_key_version resource.
+     *
+     * @experimental
+     */
+    public static function cryptoKeyVersionName(
+        string $project,
+        string $location,
+        string $keyRing,
+        string $cryptoKey,
+        string $cryptoKeyVersion
+    ): string {
+        return self::getPathTemplate('cryptoKeyVersion')->render([
+            'project' => $project,
+            'location' => $location,
+            'key_ring' => $keyRing,
+            'crypto_key' => $cryptoKey,
+            'crypto_key_version' => $cryptoKeyVersion,
         ]);
     }
 
@@ -281,6 +456,27 @@ final class MemorystoreClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * network_attachment resource.
+     *
+     * @param string $project
+     * @param string $region
+     * @param string $networkAttachment
+     *
+     * @return string The formatted network_attachment resource.
+     *
+     * @experimental
+     */
+    public static function networkAttachmentName(string $project, string $region, string $networkAttachment): string
+    {
+        return self::getPathTemplate('networkAttachment')->render([
+            'project' => $project,
+            'region' => $region,
+            'network_attachment' => $networkAttachment,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * service_attachment resource.
      *
      * @param string $project
@@ -320,16 +516,50 @@ final class MemorystoreClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * token_auth_user resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $instance
+     * @param string $tokenAuthUser
+     *
+     * @return string The formatted token_auth_user resource.
+     *
+     * @experimental
+     */
+    public static function tokenAuthUserName(
+        string $project,
+        string $location,
+        string $instance,
+        string $tokenAuthUser
+    ): string {
+        return self::getPathTemplate('tokenAuthUser')->render([
+            'project' => $project,
+            'location' => $location,
+            'instance' => $instance,
+            'token_auth_user' => $tokenAuthUser,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - authToken: projects/{project}/locations/{location}/instances/{instance}/tokenAuthUsers/{token_auth_user}/authTokens/{auth_token}
+     * - backup: projects/{project}/locations/{location}/backupCollections/{backup_collection}/backups/{backup}
+     * - backupCollection: projects/{project}/locations/{location}/backupCollections/{backup_collection}
      * - caPool: projects/{project}/locations/{location}/caPools/{ca_pool}
+     * - cryptoKey: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}
+     * - cryptoKeyVersion: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}
      * - forwardingRule: projects/{project}/regions/{region}/forwardingRules/{forwarding_rule}
      * - instance: projects/{project}/locations/{location}/instances/{instance}
      * - location: projects/{project}/locations/{location}
      * - network: projects/{project}/global/networks/{network}
+     * - networkAttachment: projects/{project}/regions/{region}/networkAttachments/{network_attachment}
      * - serviceAttachment: projects/{project}/regions/{region}/serviceAttachments/{service_attachment}
      * - sharedRegionalCertificateAuthority: projects/{project}/locations/{location}/sharedRegionalCertificateAuthority
+     * - tokenAuthUser: projects/{project}/locations/{location}/instances/{instance}/tokenAuthUsers/{token_auth_user}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -440,6 +670,101 @@ final class MemorystoreClient
     }
 
     /**
+     * Adds a token for a user of a token based auth enabled instance.
+     *
+     * The async variant is {@see MemorystoreClient::addAuthTokenAsync()} .
+     *
+     * @example samples/V1beta/MemorystoreClient/add_auth_token.php
+     *
+     * @param AddAuthTokenRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<TokenAuthUser>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function addAuthToken(AddAuthTokenRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('AddAuthToken', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Adds a token auth user for a token based auth enabled instance.
+     *
+     * The async variant is {@see MemorystoreClient::addTokenAuthUserAsync()} .
+     *
+     * @example samples/V1beta/MemorystoreClient/add_token_auth_user.php
+     *
+     * @param AddTokenAuthUserRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<Instance>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function addTokenAuthUser(AddTokenAuthUserRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('AddTokenAuthUser', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Backup Instance.
+     * If this is the first time a backup is being created, a backup collection
+     * will be created at the backend, and this backup belongs to this collection.
+     * Both collection and backup will have a resource name. Backup will be
+     * executed for each shard. A replica (primary if nonHA) will be selected to
+     * perform the execution. Backup call will be rejected if there is an ongoing
+     * backup or update operation. Be aware that during preview, if the instance's
+     * internal software version is too old, critical update will be performed
+     * before actual backup. Once the internal software version is updated to the
+     * minimum version required by the backup feature, subsequent backups will not
+     * require critical update. After preview, there will be no critical update
+     * needed for backup.
+     *
+     * The async variant is {@see MemorystoreClient::backupInstanceAsync()} .
+     *
+     * @example samples/V1beta/MemorystoreClient/backup_instance.php
+     *
+     * @param BackupInstanceRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<Instance>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function backupInstance(BackupInstanceRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('BackupInstance', $request, $callOptions)->wait();
+    }
+
+    /**
      * Creates a new Instance in a given project and location.
      *
      * The async variant is {@see MemorystoreClient::createInstanceAsync()} .
@@ -468,6 +793,62 @@ final class MemorystoreClient
     }
 
     /**
+     * Deletes a token for a user of a token based auth enabled instance.
+     *
+     * The async variant is {@see MemorystoreClient::deleteAuthTokenAsync()} .
+     *
+     * @example samples/V1beta/MemorystoreClient/delete_auth_token.php
+     *
+     * @param DeleteAuthTokenRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<null>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function deleteAuthToken(DeleteAuthTokenRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DeleteAuthToken', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a specific backup.
+     *
+     * The async variant is {@see MemorystoreClient::deleteBackupAsync()} .
+     *
+     * @example samples/V1beta/MemorystoreClient/delete_backup.php
+     *
+     * @param DeleteBackupRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<null>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function deleteBackup(DeleteBackupRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DeleteBackup', $request, $callOptions)->wait();
+    }
+
+    /**
      * Deletes a single Instance.
      *
      * The async variant is {@see MemorystoreClient::deleteInstanceAsync()} .
@@ -493,6 +874,179 @@ final class MemorystoreClient
     public function deleteInstance(DeleteInstanceRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('DeleteInstance', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a token auth user for a token based auth enabled instance.
+     *
+     * The async variant is {@see MemorystoreClient::deleteTokenAuthUserAsync()} .
+     *
+     * @example samples/V1beta/MemorystoreClient/delete_token_auth_user.php
+     *
+     * @param DeleteTokenAuthUserRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<null>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function deleteTokenAuthUser(DeleteTokenAuthUserRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DeleteTokenAuthUser', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Exports a specific backup to a customer target Cloud Storage URI.
+     *
+     * The async variant is {@see MemorystoreClient::exportBackupAsync()} .
+     *
+     * @example samples/V1beta/MemorystoreClient/export_backup.php
+     *
+     * @param ExportBackupRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<Backup>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function exportBackup(ExportBackupRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('ExportBackup', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Finalizes the migration process.
+     *
+     * After the successful completion of this operation, the target instance
+     * will:
+     * 1. Stop replicating from the source instance.
+     * 2. Allow both reads and writes.
+     *
+     * The async variant is {@see MemorystoreClient::finishMigrationAsync()} .
+     *
+     * @example samples/V1beta/MemorystoreClient/finish_migration.php
+     *
+     * @param FinishMigrationRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<Instance>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function finishMigration(FinishMigrationRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('FinishMigration', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets a token based auth enabled instance's auth token for a given user.
+     *
+     * The async variant is {@see MemorystoreClient::getAuthTokenAsync()} .
+     *
+     * @example samples/V1beta/MemorystoreClient/get_auth_token.php
+     *
+     * @param GetAuthTokenRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return AuthToken
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function getAuthToken(GetAuthTokenRequest $request, array $callOptions = []): AuthToken
+    {
+        return $this->startApiCall('GetAuthToken', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets the details of a specific backup.
+     *
+     * The async variant is {@see MemorystoreClient::getBackupAsync()} .
+     *
+     * @example samples/V1beta/MemorystoreClient/get_backup.php
+     *
+     * @param GetBackupRequest $request     A request to house fields associated with the call.
+     * @param array            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Backup
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function getBackup(GetBackupRequest $request, array $callOptions = []): Backup
+    {
+        return $this->startApiCall('GetBackup', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Get a backup collection.
+     *
+     * The async variant is {@see MemorystoreClient::getBackupCollectionAsync()} .
+     *
+     * @example samples/V1beta/MemorystoreClient/get_backup_collection.php
+     *
+     * @param GetBackupCollectionRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BackupCollection
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function getBackupCollection(GetBackupCollectionRequest $request, array $callOptions = []): BackupCollection
+    {
+        return $this->startApiCall('GetBackupCollection', $request, $callOptions)->wait();
     }
 
     /**
@@ -586,6 +1140,124 @@ final class MemorystoreClient
     }
 
     /**
+     * Gets a specific token auth user for a token based auth enabled instance.
+     *
+     * The async variant is {@see MemorystoreClient::getTokenAuthUserAsync()} .
+     *
+     * @example samples/V1beta/MemorystoreClient/get_token_auth_user.php
+     *
+     * @param GetTokenAuthUserRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return TokenAuthUser
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function getTokenAuthUser(GetTokenAuthUserRequest $request, array $callOptions = []): TokenAuthUser
+    {
+        return $this->startApiCall('GetTokenAuthUser', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Lists all the auth tokens for a specific token auth user.
+     *
+     * The async variant is {@see MemorystoreClient::listAuthTokensAsync()} .
+     *
+     * @example samples/V1beta/MemorystoreClient/list_auth_tokens.php
+     *
+     * @param ListAuthTokensRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function listAuthTokens(ListAuthTokensRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListAuthTokens', $request, $callOptions);
+    }
+
+    /**
+     * Lists all backup collections owned by a consumer project in either the
+     * specified location (region) or all locations.
+     *
+     * If `location_id` is specified as `-` (wildcard), then all regions
+     * available to the project are queried, and the results are aggregated.
+     *
+     * The async variant is {@see MemorystoreClient::listBackupCollectionsAsync()} .
+     *
+     * @example samples/V1beta/MemorystoreClient/list_backup_collections.php
+     *
+     * @param ListBackupCollectionsRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function listBackupCollections(
+        ListBackupCollectionsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('ListBackupCollections', $request, $callOptions);
+    }
+
+    /**
+     * Lists all backups owned by a backup collection.
+     *
+     * The async variant is {@see MemorystoreClient::listBackupsAsync()} .
+     *
+     * @example samples/V1beta/MemorystoreClient/list_backups.php
+     *
+     * @param ListBackupsRequest $request     A request to house fields associated with the call.
+     * @param array              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function listBackups(ListBackupsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListBackups', $request, $callOptions);
+    }
+
+    /**
      * Lists Instances in a given project and location.
      *
      * The async variant is {@see MemorystoreClient::listInstancesAsync()} .
@@ -611,6 +1283,99 @@ final class MemorystoreClient
     public function listInstances(ListInstancesRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('ListInstances', $request, $callOptions);
+    }
+
+    /**
+     * Lists all the token auth users for a token based auth enabled instance.
+     *
+     * The async variant is {@see MemorystoreClient::listTokenAuthUsersAsync()} .
+     *
+     * @example samples/V1beta/MemorystoreClient/list_token_auth_users.php
+     *
+     * @param ListTokenAuthUsersRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function listTokenAuthUsers(ListTokenAuthUsersRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListTokenAuthUsers', $request, $callOptions);
+    }
+
+    /**
+     * Reschedules upcoming maintenance event.
+     *
+     * The async variant is {@see MemorystoreClient::rescheduleMaintenanceAsync()} .
+     *
+     * @example samples/V1beta/MemorystoreClient/reschedule_maintenance.php
+     *
+     * @param RescheduleMaintenanceRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<Instance>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function rescheduleMaintenance(
+        RescheduleMaintenanceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('RescheduleMaintenance', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Initiates the migration of a source instance to the target Memorystore
+     * instance.
+     *
+     * After the successful completion of this operation, the target instance
+     * will:
+     * 1. Set up replication with the source instance and replicate any writes to
+     * the source instance.
+     * 2. Only allow reads.
+     *
+     * The async variant is {@see MemorystoreClient::startMigrationAsync()} .
+     *
+     * @example samples/V1beta/MemorystoreClient/start_migration.php
+     *
+     * @param StartMigrationRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<Instance>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function startMigration(StartMigrationRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('StartMigration', $request, $callOptions)->wait();
     }
 
     /**
@@ -671,6 +1436,21 @@ final class MemorystoreClient
 
     /**
      * Lists information about the supported locations for this service.
+     *
+     * This method lists locations based on the resource scope provided in
+     * the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+     * **Global locations**: If `name` is empty, the method lists the
+     * public locations available to all projects. * **Project-specific
+     * locations**: If `name` follows the format
+     * `projects/{project}`, the method lists locations visible to that
+     * specific project. This includes public, private, or other
+     * project-specific locations enabled for the project.
+     *
+     * For gRPC and client library implementations, the resource name is
+     * passed as the `name` field. For direct service calls, the resource
+     * name is
+     * incorporated into the request path based on the specific service
+     * implementation and version.
      *
      * The async variant is {@see MemorystoreClient::listLocationsAsync()} .
      *
