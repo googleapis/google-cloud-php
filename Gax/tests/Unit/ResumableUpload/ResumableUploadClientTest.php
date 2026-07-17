@@ -348,6 +348,43 @@ class ResumableUploadClientTest extends TestCase
         $this->assertSame('', $requests[1]->getHeaderLine('X-Custom-Header'));
     }
 
+    public function testStartUploadSendsConstructorHeadersOnInitialRequestOnly()
+    {
+        $requests = [];
+        $httpHandler = function ($request, $options = []) use (&$requests) {
+            $requests[] = $request;
+            if (count($requests) === 1) {
+                return \GuzzleHttp\Promise\Create::promiseFor(new \GuzzleHttp\Psr7\Response(200, [
+                    'X-Goog-Upload-Status' => 'active',
+                    'X-Goog-Upload-URL' => 'https://upload.url/123'
+                ]));
+            }
+            return \GuzzleHttp\Promise\Create::promiseFor(new \GuzzleHttp\Psr7\Response(200, [
+                'X-Goog-Upload-Status' => 'final'
+            ], '"1970-01-01T00:00:00Z"'));
+        };
+
+        $requestBuilder = $this->prophesize(\Google\ApiCore\RequestBuilder::class);
+        $requestBuilder->build(Argument::any(), Argument::any(), Argument::any())->will(function ($args) {
+            $path = $args[0];
+            $headers = $args[2] ?? [];
+            return new \GuzzleHttp\Psr7\Request('POST', 'https://test.googleapis.com/' . $path, $headers);
+        });
+        $client = new ResumableUploadClient(
+            $this->createStubTransport($requestBuilder->reveal(), $httpHandler),
+            $this->prophesize(CredentialsWrapper::class)->reveal(),
+            headers: ['x-goog-api-client' => 'test-agent/1.0']
+        );
+
+        $call = new Call('test.method', Timestamp::class, new Timestamp(), [], Call::RESUMABLE_UPLOAD_CALL);
+        $upload = new ResumableUpload($client, $call);
+        $upload->startUpload(Utils::streamFor('hello'));
+
+        $this->assertCount(2, $requests);
+        $this->assertSame('test-agent/1.0', $requests[0]->getHeaderLine('x-goog-api-client'));
+        $this->assertSame('', $requests[1]->getHeaderLine('x-goog-api-client'));
+    }
+
     public function testStartUploadRecoversFromPreviousBufferWithoutSeeking()
     {
         $requests = [];
