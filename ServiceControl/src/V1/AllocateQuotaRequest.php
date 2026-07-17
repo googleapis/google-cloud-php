@@ -18,7 +18,8 @@ class AllocateQuotaRequest extends \Google\Protobuf\Internal\Message
     /**
      * Name of the service as specified in the service configuration. For example,
      * `"pubsub.googleapis.com"`.
-     * See [google.api.Service][google.api.Service] for the definition of a service name.
+     * See [google.api.Service][google.api.Service] for the definition of a
+     * service name.
      *
      * Generated from protobuf field <code>string service_name = 1;</code>
      */
@@ -47,7 +48,8 @@ class AllocateQuotaRequest extends \Google\Protobuf\Internal\Message
      *     @type string $service_name
      *           Name of the service as specified in the service configuration. For example,
      *           `"pubsub.googleapis.com"`.
-     *           See [google.api.Service][google.api.Service] for the definition of a service name.
+     *           See [google.api.Service][google.api.Service] for the definition of a
+     *           service name.
      *     @type \Google\Cloud\ServiceControl\V1\QuotaOperation $allocate_operation
      *           Operation that describes the quota allocation.
      *     @type string $service_config_id
@@ -64,7 +66,8 @@ class AllocateQuotaRequest extends \Google\Protobuf\Internal\Message
     /**
      * Name of the service as specified in the service configuration. For example,
      * `"pubsub.googleapis.com"`.
-     * See [google.api.Service][google.api.Service] for the definition of a service name.
+     * See [google.api.Service][google.api.Service] for the definition of a
+     * service name.
      *
      * Generated from protobuf field <code>string service_name = 1;</code>
      * @return string
@@ -77,7 +80,8 @@ class AllocateQuotaRequest extends \Google\Protobuf\Internal\Message
     /**
      * Name of the service as specified in the service configuration. For example,
      * `"pubsub.googleapis.com"`.
-     * See [google.api.Service][google.api.Service] for the definition of a service name.
+     * See [google.api.Service][google.api.Service] for the definition of a
+     * service name.
      *
      * Generated from protobuf field <code>string service_name = 1;</code>
      * @param string $var

@@ -40,8 +40,8 @@ use Google\Cloud\ServiceControl\V1\Client\ServiceControllerClient;
  * propagation, therefore callers MUST NOT depend on the `Check` method having
  * the latest policy information.
  *
- * NOTE: the [CheckRequest][google.api.servicecontrol.v1.CheckRequest] has
- * the size limit (wire-format byte size) of 1MB.
+ * NOTE: the [CheckRequest][google.api.servicecontrol.v1.CheckRequest] has the
+ * size limit (wire-format byte size) of 1MB.
  *
  * This method requires the `servicemanagement.services.check` permission
  * on the specified service. For more information, see
