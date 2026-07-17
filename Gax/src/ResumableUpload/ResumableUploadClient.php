@@ -71,7 +71,7 @@ class ResumableUploadClient
     /**
      * @param ResumableUploadTransportInterface $transport Transport implementing buildRequest and sendRawRequest.
      * @param CredentialsWrapper $credentialsWrapper The credentials wrapper from GAPIC client.
-     * @param array $headers Custom headers to include with all upload requests.
+     * @param array $headers Custom headers to include with the initial upload request.
      * @param string $serviceAddress Service address or API endpoint.
      * @param string $uploadPrefix Resumable upload path prefix (default: '/resumable/upload').
      */
@@ -195,7 +195,7 @@ class ResumableUploadClient
         Call $call,
         array $callOptions = []
     ): string {
-        $headers = $callOptions['headers'] ?? [];
+        $headers = array_merge($this->headers, $callOptions['headers'] ?? []);
         $headers['X-Goog-Upload-Protocol'] = 'resumable';
         $headers['X-Goog-Upload-Command'] = 'start';
         if ($dataStream->getSize() !== null) {
@@ -317,7 +317,7 @@ class ResumableUploadClient
         ?int $timeoutMillis = null,
         ?RetrySettings $retrySettings = null
     ): ResponseInterface {
-        $reqHeaders = array_merge($this->headers, $request->getHeaders());
+        $reqHeaders = $request->getHeaders();
         if ($authCallback = $this->credentialsWrapper->getAuthorizationHeaderCallback()) {
             $reqHeaders = array_merge($reqHeaders, $authCallback());
         }
