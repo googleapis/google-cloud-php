@@ -22,38 +22,30 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START developerknowledge_v1_generated_DeveloperKnowledge_BatchGetDocuments_sync]
+// [START developerknowledge_v1_generated_DeveloperKnowledge_AnswerQuery_sync]
 use Google\ApiCore\ApiException;
-use Google\Developers\DeveloperKnowledge\V1\BatchGetDocumentsRequest;
-use Google\Developers\DeveloperKnowledge\V1\BatchGetDocumentsResponse;
+use Google\Developers\DeveloperKnowledge\V1\AnswerQueryRequest;
+use Google\Developers\DeveloperKnowledge\V1\AnswerQueryResponse;
 use Google\Developers\DeveloperKnowledge\V1\Client\DeveloperKnowledgeClient;
 
 /**
- * Retrieves multiple documents, each with its full Markdown content.
+ * Answers a query using grounded generation.
  *
- * @param string $formattedNamesElement Specifies the names of the documents to retrieve. A maximum of 20
- *                                      documents can be retrieved in a batch. The documents are returned in the
- *                                      same order as the `names` in the request.
- *
- *                                      Format: `documents/{uri_without_scheme}`
- *                                      Example: `documents/docs.cloud.google.com/storage/docs/creating-buckets`
- *
- *                                      Please see {@see DeveloperKnowledgeClient::documentName()} for help formatting this field.
+ * @param string $query The query to answer.
  */
-function batch_get_documents_sample(string $formattedNamesElement): void
+function answer_query_sample(string $query): void
 {
     // Create a client.
     $developerKnowledgeClient = new DeveloperKnowledgeClient();
 
     // Prepare the request message.
-    $formattedNames = [$formattedNamesElement,];
-    $request = (new BatchGetDocumentsRequest())
-        ->setNames($formattedNames);
+    $request = (new AnswerQueryRequest())
+        ->setQuery($query);
 
     // Call the API and handle any network failures.
     try {
-        /** @var BatchGetDocumentsResponse $response */
-        $response = $developerKnowledgeClient->batchGetDocuments($request);
+        /** @var AnswerQueryResponse $response */
+        $response = $developerKnowledgeClient->answerQuery($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
@@ -71,8 +63,8 @@ function batch_get_documents_sample(string $formattedNamesElement): void
  */
 function callSample(): void
 {
-    $formattedNamesElement = DeveloperKnowledgeClient::documentName('[DOCUMENT]');
+    $query = '[QUERY]';
 
-    batch_get_documents_sample($formattedNamesElement);
+    answer_query_sample($query);
 }
-// [END developerknowledge_v1_generated_DeveloperKnowledge_BatchGetDocuments_sync]
+// [END developerknowledge_v1_generated_DeveloperKnowledge_AnswerQuery_sync]

@@ -23,6 +23,10 @@
 return [
     'interfaces' => [
         'google.developers.knowledge.v1.DeveloperKnowledge' => [
+            'AnswerQuery' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Developers\DeveloperKnowledge\V1\AnswerQueryResponse',
+            ],
             'BatchGetDocuments' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Developers\DeveloperKnowledge\V1\BatchGetDocumentsResponse',
