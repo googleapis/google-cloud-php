@@ -13,5 +13,5 @@
 # limitations under the License.
 docker:
   image: gcr.io/cloud-devrel-public-resources/owlbot-php:latest
-  digest: sha256:388cf7cb96aa2f1203cc8b185baa9a194ef31c6672d044381ef19f9e94b07a23
-# created: 2026-05-06T16:58:33.161926831Z
+  digest: sha256:08993a38a40cd2256998c9bd460f458333a522e91c7c1b6e9df327e0186cae62
+# created: 2026-07-17T15:57:40.421207481Z
