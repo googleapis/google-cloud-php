@@ -34,10 +34,13 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\Compute\V1\AdvanceRolloutRequest;
 use Google\Cloud\Compute\V1\CancelRolloutRequest;
 use Google\Cloud\Compute\V1\DeleteRolloutRequest;
 use Google\Cloud\Compute\V1\GetRolloutRequest;
 use Google\Cloud\Compute\V1\ListRolloutsRequest;
+use Google\Cloud\Compute\V1\PauseRolloutRequest;
+use Google\Cloud\Compute\V1\ResumeRolloutRequest;
 use Google\Cloud\Compute\V1\Rollout;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
@@ -48,10 +51,13 @@ use Psr\Log\LoggerInterface;
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
+ * @method PromiseInterface<OperationResponse> advanceAsync(AdvanceRolloutRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> cancelAsync(CancelRolloutRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteAsync(DeleteRolloutRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Rollout> getAsync(GetRolloutRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listAsync(ListRolloutsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> pauseAsync(PauseRolloutRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> resumeAsync(ResumeRolloutRequest $request, array $optionalArgs = [])
  */
 final class RolloutsClient
 {
@@ -266,6 +272,32 @@ final class RolloutsClient
     }
 
     /**
+     * Advances a Rollout to the next wave, or completes it if no waves remain.
+     *
+     * The async variant is {@see RolloutsClient::advanceAsync()} .
+     *
+     * @example samples/V1/RolloutsClient/advance.php
+     *
+     * @param AdvanceRolloutRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function advance(AdvanceRolloutRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('Advance', $request, $callOptions)->wait();
+    }
+
+    /**
      * Cancels a Rollout.
      *
      * The async variant is {@see RolloutsClient::cancelAsync()} .
@@ -367,5 +399,57 @@ final class RolloutsClient
     public function list(ListRolloutsRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('List', $request, $callOptions);
+    }
+
+    /**
+     * Pauses a Rollout.
+     *
+     * The async variant is {@see RolloutsClient::pauseAsync()} .
+     *
+     * @example samples/V1/RolloutsClient/pause.php
+     *
+     * @param PauseRolloutRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function pause(PauseRolloutRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('Pause', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Resumes a Rollout.
+     *
+     * The async variant is {@see RolloutsClient::resumeAsync()} .
+     *
+     * @example samples/V1/RolloutsClient/resume.php
+     *
+     * @param ResumeRolloutRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function resume(ResumeRolloutRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('Resume', $request, $callOptions)->wait();
     }
 }

@@ -35,8 +35,10 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Compute\V1\AggregatedListRoutersRequest;
+use Google\Cloud\Compute\V1\DeleteNamedSetRouterRequest;
 use Google\Cloud\Compute\V1\DeleteRoutePolicyRouterRequest;
 use Google\Cloud\Compute\V1\DeleteRouterRequest;
+use Google\Cloud\Compute\V1\GetNamedSetRouterRequest;
 use Google\Cloud\Compute\V1\GetNatIpInfoRouterRequest;
 use Google\Cloud\Compute\V1\GetNatMappingInfoRoutersRequest;
 use Google\Cloud\Compute\V1\GetRoutePolicyRouterRequest;
@@ -44,16 +46,20 @@ use Google\Cloud\Compute\V1\GetRouterRequest;
 use Google\Cloud\Compute\V1\GetRouterStatusRouterRequest;
 use Google\Cloud\Compute\V1\InsertRouterRequest;
 use Google\Cloud\Compute\V1\ListBgpRoutesRoutersRequest;
+use Google\Cloud\Compute\V1\ListNamedSetsRoutersRequest;
 use Google\Cloud\Compute\V1\ListRoutePoliciesRoutersRequest;
 use Google\Cloud\Compute\V1\ListRoutersRequest;
 use Google\Cloud\Compute\V1\NatIpInfoResponse;
+use Google\Cloud\Compute\V1\PatchNamedSetRouterRequest;
 use Google\Cloud\Compute\V1\PatchRoutePolicyRouterRequest;
 use Google\Cloud\Compute\V1\PatchRouterRequest;
 use Google\Cloud\Compute\V1\PreviewRouterRequest;
 use Google\Cloud\Compute\V1\Router;
 use Google\Cloud\Compute\V1\RouterStatusResponse;
+use Google\Cloud\Compute\V1\RoutersGetNamedSetResponse;
 use Google\Cloud\Compute\V1\RoutersGetRoutePolicyResponse;
 use Google\Cloud\Compute\V1\RoutersPreviewResponse;
+use Google\Cloud\Compute\V1\UpdateNamedSetRouterRequest;
 use Google\Cloud\Compute\V1\UpdateRoutePolicyRouterRequest;
 use Google\Cloud\Compute\V1\UpdateRouterRequest;
 use GuzzleHttp\Promise\PromiseInterface;
@@ -67,8 +73,10 @@ use Psr\Log\LoggerInterface;
  *
  * @method PromiseInterface<PagedListResponse> aggregatedListAsync(AggregatedListRoutersRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteAsync(DeleteRouterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteNamedSetAsync(DeleteNamedSetRouterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteRoutePolicyAsync(DeleteRoutePolicyRouterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Router> getAsync(GetRouterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RoutersGetNamedSetResponse> getNamedSetAsync(GetNamedSetRouterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<NatIpInfoResponse> getNatIpInfoAsync(GetNatIpInfoRouterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> getNatMappingInfoAsync(GetNatMappingInfoRoutersRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<RoutersGetRoutePolicyResponse> getRoutePolicyAsync(GetRoutePolicyRouterRequest $request, array $optionalArgs = [])
@@ -76,11 +84,14 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<OperationResponse> insertAsync(InsertRouterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listAsync(ListRoutersRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listBgpRoutesAsync(ListBgpRoutesRoutersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listNamedSetsAsync(ListNamedSetsRoutersRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listRoutePoliciesAsync(ListRoutePoliciesRoutersRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> patchAsync(PatchRouterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> patchNamedSetAsync(PatchNamedSetRouterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> patchRoutePolicyAsync(PatchRoutePolicyRouterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<RoutersPreviewResponse> previewAsync(PreviewRouterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateAsync(UpdateRouterRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateNamedSetAsync(UpdateNamedSetRouterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateRoutePolicyAsync(UpdateRoutePolicyRouterRequest $request, array $optionalArgs = [])
  */
 final class RoutersClient
@@ -351,6 +362,32 @@ final class RoutersClient
     }
 
     /**
+     * Deletes Named Set
+     *
+     * The async variant is {@see RoutersClient::deleteNamedSetAsync()} .
+     *
+     * @example samples/V1/RoutersClient/delete_named_set.php
+     *
+     * @param DeleteNamedSetRouterRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteNamedSet(DeleteNamedSetRouterRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DeleteNamedSet', $request, $callOptions)->wait();
+    }
+
+    /**
      * Deletes Route Policy
      *
      * The async variant is {@see RoutersClient::deleteRoutePolicyAsync()} .
@@ -402,6 +439,32 @@ final class RoutersClient
     public function get(GetRouterRequest $request, array $callOptions = []): Router
     {
         return $this->startApiCall('Get', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Returns specified Named Set
+     *
+     * The async variant is {@see RoutersClient::getNamedSetAsync()} .
+     *
+     * @example samples/V1/RoutersClient/get_named_set.php
+     *
+     * @param GetNamedSetRouterRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return RoutersGetNamedSetResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getNamedSet(GetNamedSetRouterRequest $request, array $callOptions = []): RoutersGetNamedSetResponse
+    {
+        return $this->startApiCall('GetNamedSet', $request, $callOptions)->wait();
     }
 
     /**
@@ -594,6 +657,33 @@ final class RoutersClient
     }
 
     /**
+     * Retrieves a list of router named set subresources available to the
+     * specified project.
+     *
+     * The async variant is {@see RoutersClient::listNamedSetsAsync()} .
+     *
+     * @example samples/V1/RoutersClient/list_named_sets.php
+     *
+     * @param ListNamedSetsRoutersRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listNamedSets(ListNamedSetsRoutersRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListNamedSets', $request, $callOptions);
+    }
+
+    /**
      * Retrieves a list of router route policy subresources available to the
      * specified project.
      *
@@ -649,6 +739,32 @@ final class RoutersClient
     public function patch(PatchRouterRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('Patch', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Patches Named Set
+     *
+     * The async variant is {@see RoutersClient::patchNamedSetAsync()} .
+     *
+     * @example samples/V1/RoutersClient/patch_named_set.php
+     *
+     * @param PatchNamedSetRouterRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function patchNamedSet(PatchNamedSetRouterRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('PatchNamedSet', $request, $callOptions)->wait();
     }
 
     /**
@@ -731,6 +847,32 @@ final class RoutersClient
     public function update(UpdateRouterRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('Update', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates or creates new Named Set
+     *
+     * The async variant is {@see RoutersClient::updateNamedSetAsync()} .
+     *
+     * @example samples/V1/RoutersClient/update_named_set.php
+     *
+     * @param UpdateNamedSetRouterRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateNamedSet(UpdateNamedSetRouterRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('UpdateNamedSet', $request, $callOptions)->wait();
     }
 
     /**

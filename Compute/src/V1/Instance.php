@@ -172,6 +172,14 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     protected $last_suspended_timestamp = null;
     /**
+     * Specifies which method should be used for encrypting the
+     * Local SSDs attached to the VM.
+     * Check the LocalSsdEncryptionMode enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string local_ssd_encryption_mode = 121582032;</code>
+     */
+    protected $local_ssd_encryption_mode = null;
+    /**
      * Full or partial URL of the machine type resource to use for this instance,
      * in the format:zones/zone/machineTypes/machine-type. This is provided by the client
      * when the instance is created. For example, the following is a valid partial
@@ -450,6 +458,10 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           Output only. [Output Only] Last stop timestamp inRFC3339 text format.
      *     @type string $last_suspended_timestamp
      *           Output only. [Output Only] Last suspended timestamp inRFC3339 text format.
+     *     @type string $local_ssd_encryption_mode
+     *           Specifies which method should be used for encrypting the
+     *           Local SSDs attached to the VM.
+     *           Check the LocalSsdEncryptionMode enum for the list of possible values.
      *     @type string $machine_type
      *           Full or partial URL of the machine type resource to use for this instance,
      *           in the format:zones/zone/machineTypes/machine-type. This is provided by the client
@@ -1336,6 +1348,46 @@ class Instance extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->last_suspended_timestamp = $var;
+
+        return $this;
+    }
+
+    /**
+     * Specifies which method should be used for encrypting the
+     * Local SSDs attached to the VM.
+     * Check the LocalSsdEncryptionMode enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string local_ssd_encryption_mode = 121582032;</code>
+     * @return string
+     */
+    public function getLocalSsdEncryptionMode()
+    {
+        return isset($this->local_ssd_encryption_mode) ? $this->local_ssd_encryption_mode : '';
+    }
+
+    public function hasLocalSsdEncryptionMode()
+    {
+        return isset($this->local_ssd_encryption_mode);
+    }
+
+    public function clearLocalSsdEncryptionMode()
+    {
+        unset($this->local_ssd_encryption_mode);
+    }
+
+    /**
+     * Specifies which method should be used for encrypting the
+     * Local SSDs attached to the VM.
+     * Check the LocalSsdEncryptionMode enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string local_ssd_encryption_mode = 121582032;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setLocalSsdEncryptionMode($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->local_ssd_encryption_mode = $var;
 
         return $this;
     }
