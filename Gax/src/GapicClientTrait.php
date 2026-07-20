@@ -158,6 +158,16 @@ trait GapicClientTrait
     }
 
     /**
+     * Get the default scopes required by the service.
+     *
+     * @return array
+     */
+    public static function getServiceScopes(): array
+    {
+        return self::$serviceScopes;
+    }
+
+    /**
      * Initiates an orderly shutdown in which preexisting calls continue but new
      * calls are immediately cancelled.
      *
