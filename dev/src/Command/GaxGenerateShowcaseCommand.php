@@ -17,11 +17,14 @@
 
 namespace Google\Cloud\Dev\Command;
 
+use Google\Generator\CodeGenerator;
+use Google\Generator\Utils\MigrationMode;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Process\ExecutableFinder;
 use Symfony\Component\Process\Process;
 
 /**
@@ -49,121 +52,109 @@ class GaxGenerateShowcaseCommand extends Command
                 'generator-path',
                 'g',
                 InputOption::VALUE_REQUIRED,
-                'Path to gapic-generator-php repository (or set GAPIC_GENERATOR_PHP_PATH env var)'
-            )
-            ->addOption(
-                'googleapis-path',
-                'a',
-                InputOption::VALUE_REQUIRED,
-                'Path to googleapis repository (or set GOOGLEAPIS_PATH env var)'
+                'Path to local gapic-generator-php repository (defaults to installed vendor dependency)'
             )
             ->addOption(
                 'showcase-path',
                 'p',
                 InputOption::VALUE_REQUIRED,
-                'Path to local gapic-showcase repository (or set SHOWCASE_PATH env var)'
+                'Path to local gapic-showcase repository (defaults to installed vendor dependency)'
             )
             ->addOption(
-                'showcase-version',
-                's',
+                'googleapis-path',
+                'a',
                 InputOption::VALUE_REQUIRED,
-                'Specify a custom gapic-showcase release tag (e.g. v0.41.1)'
+                'Path to googleapis repository (defaults to submodule in gapic-generator-php)'
             );
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $gaxDir = $this->rootDirectory . 'Gax';
-        $conformanceDir = $gaxDir . '/tests/Conformance';
-        $tmpShowcaseDir = $conformanceDir . '/tmp_showcase';
-        $tmpGoogleapisDir = $conformanceDir . '/tmp_googleapis';
-        $tmpOutputDir = $conformanceDir . '/tmp_out';
-        $descFile = $conformanceDir . '/desc.pb';
-
-        // 1. Resolve Generator Path
-        $generatorPath = $input->getOption('generator-path')
-            ?: getenv('GAPIC_GENERATOR_PHP_PATH');
-
-        if (!$generatorPath || !file_exists($generatorPath . '/vendor/autoload.php')) {
-            $output->writeln('<error>Error: gapic-generator-php not found.</error>');
-            $output->writeln('Please specify the path using <comment>--generator-path <dir></comment> or set the <comment>GAPIC_GENERATOR_PHP_PATH</comment> environment variable.');
+        $executableFinder = new ExecutableFinder();
+        if (!$executableFinder->find('protoc')) {
+            $output->writeln('<error>Error: protoc not found. Please install the protobuf compiler.</error>');
             return Command::FAILURE;
         }
 
-        // 2. Resolve Googleapis Path (Auto-fetch if not provided)
-        $googleapisPath = $input->getOption('googleapis-path')
-            ?: getenv('GOOGLEAPIS_PATH');
+        $gaxDir = $this->rootDirectory . 'Gax';
+        $conformanceDir = $gaxDir . '/tests/Conformance';
+        $tmpOutputDir = $conformanceDir . '/tmp_out';
+        $descFile = $conformanceDir . '/desc.pb';
 
-        if (!$googleapisPath || !is_dir($googleapisPath . '/google/cloud')) {
-            $output->writeln('<info>Fetching googleapis definitions from GitHub...</info>');
-            $this->fs->remove($tmpGoogleapisDir);
-            $this->runProcess(['git', 'clone', '--depth', '1', 'https://github.com/googleapis/googleapis.git', $tmpGoogleapisDir]);
-            if (is_dir($tmpGoogleapisDir . '/google/cloud')) {
-                $googleapisPath = $tmpGoogleapisDir;
+        // 1. Resolve Generator Path (Defaults to vendor dependency)
+        $generatorPath = $input->getOption('generator-path');
+        if ($generatorPath) {
+            $generatorPath = rtrim($generatorPath, '/');
+            if (file_exists($generatorPath . '/vendor/autoload.php')) {
+                require_once $generatorPath . '/vendor/autoload.php';
+            }
+            $output->writeln("<info>Using custom gapic-generator-php from:</info> {$generatorPath}");
+        } else {
+            $generatorPath = $this->rootDirectory . 'dev/vendor/google/gapic-generator-php';
+            $output->writeln('<info>Using installed gapic-generator-php dependency.</info>');
+        }
+
+        // Register autoloader for generated generator proto classes
+        spl_autoload_register(function (string $class) use ($generatorPath) {
+            $prefixes = [
+                'Google\\' => $generatorPath . '/generated/Google/',
+                'Grpc\\' => $generatorPath . '/generated/Grpc/',
+                'GPBMetadata\\' => $generatorPath . '/generated/GPBMetadata/',
+            ];
+            foreach ($prefixes as $prefix => $baseDir) {
+                if (str_starts_with($class, $prefix)) {
+                    $rel = str_replace('\\', '/', substr($class, strlen($prefix)));
+                    $file = $baseDir . $rel . '.php';
+                    if (file_exists($file)) {
+                        require_once $file;
+                        return;
+                    }
+                }
+            }
+        });
+
+        // 2. Resolve Showcase Path (Defaults to vendor dependency)
+        $showcasePath = $input->getOption('showcase-path') ?: $this->rootDirectory . 'dev/vendor/google/gapic-showcase';
+        if (!is_dir($showcasePath . '/schema/google/showcase/v1beta1')) {
+            $output->writeln("<error>Error: gapic-showcase schema directory not found at {$showcasePath}.</error>");
+            return Command::FAILURE;
+        }
+        $schemaDir = $showcasePath . '/schema/google/showcase/v1beta1';
+
+        // 3. Resolve Googleapis Path (Defaults to submodule in generatorPath)
+        $googleapisPath = $input->getOption('googleapis-path');
+        if (!$googleapisPath) {
+            $submoduleGoogleapis = $generatorPath . '/googleapis';
+            if (is_dir($generatorPath . '/.git') && !file_exists($submoduleGoogleapis . '/google/cloud/common_resources.proto')) {
+                $output->writeln('<info>Initializing googleapis submodule in gapic-generator-php...</info>');
+                $this->runProcess(['git', 'submodule', 'update', '--init', '--recursive'], $generatorPath);
+            }
+            if (is_dir($submoduleGoogleapis . '/google/cloud')) {
+                $googleapisPath = $submoduleGoogleapis;
             }
         }
 
         if (!$googleapisPath || !is_dir($googleapisPath . '/google/cloud')) {
             $output->writeln('<error>Error: googleapis directory not found.</error>');
-            $output->writeln('Please specify the path using <comment>--googleapis-path <dir></comment> or set the <comment>GOOGLEAPIS_PATH</comment> environment variable.');
+            $output->writeln('Please specify the path using <comment>--googleapis-path <dir></comment>');
             return Command::FAILURE;
         }
 
-        // 3. Resolve Showcase Schemas
-        $output->writeln('<info>1. Resolving gapic-showcase schemas...</info>');
-        $showcasePath = $input->getOption('showcase-path') ?: getenv('SHOWCASE_PATH');
-        $showcaseVersion = $input->getOption('showcase-version') ?: getenv('SHOWCASE_VERSION');
-        $resolvedTag = null;
-        $showcaseDir = null;
-
-        if ($showcasePath && is_dir($showcasePath . '/schema/google/showcase/v1beta1')) {
-            $showcaseDir = $showcasePath;
-            $output->writeln("Using specified local gapic-showcase path: <comment>{$showcaseDir}</comment>");
-        } else {
-            if ($showcaseVersion) {
-                $resolvedTag = $showcaseVersion;
-            } else {
-                $output->writeln('Querying GitHub for latest gapic-showcase release tag...');
-                $releaseJson = @file_get_contents(
-                    'https://api.github.com/repos/googleapis/gapic-showcase/releases/latest',
-                    false,
-                    stream_context_create(['http' => ['header' => "User-Agent: PHP\r\n"]])
-                );
-                if ($releaseJson && ($data = json_decode($releaseJson, true)) && isset($data['tag_name'])) {
-                    $resolvedTag = $data['tag_name'];
-                }
-            }
-
-            if ($resolvedTag) {
-                $output->writeln("Fetching gapic-showcase schema for tag: <comment>{$resolvedTag}</comment>...");
-                $this->fs->remove($tmpShowcaseDir);
-                $this->runProcess(['git', 'clone', '--depth', '1', '--branch', $resolvedTag, 'https://github.com/googleapis/gapic-showcase.git', $tmpShowcaseDir]);
-                if (is_dir($tmpShowcaseDir . '/schema/google/showcase/v1beta1')) {
-                    $showcaseDir = $tmpShowcaseDir;
-                }
-            }
-        }
-
-        if (!$showcaseDir) {
-            $output->writeln('<error>Error: Unable to resolve gapic-showcase schemas.</error>');
-            $output->writeln('Please specify a local path using <comment>--showcase-path <dir></comment> or ensure internet access to fetch from GitHub.');
-            return Command::FAILURE;
-        }
-
-        $schemaDir = $showcaseDir . '/schema/google/showcase/v1beta1';
+        $output->writeln("<info>Using gapic-showcase schemas from:</info> {$schemaDir}");
+        $output->writeln("<info>Using googleapis definitions from:</info> {$googleapisPath}");
 
         // 4. Clean up temporary outputs
-        $output->writeln('<info>2. Cleaning up existing temporary outputs...</info>');
+        $output->writeln('<info>1. Cleaning up existing temporary outputs...</info>');
         $this->fs->remove([$tmpOutputDir, $descFile]);
         $this->fs->mkdir($tmpOutputDir . '/src');
 
         // 5. Compile Proto Descriptor Set (desc.pb)
-        $output->writeln('<info>3. Compiling proto descriptor set (desc.pb)...</info>');
+        $output->writeln('<info>2. Compiling proto descriptor set (desc.pb)...</info>');
         $protocDescCmd = [
             'protoc',
             '--include_imports',
             '--include_source_info',
-            '-I', $showcaseDir . '/schema',
+            '-I', $showcasePath . '/schema',
             '-I', $googleapisPath,
             '--descriptor_set_out=' . $descFile,
             $schemaDir . '/echo.proto',
@@ -176,18 +167,12 @@ class GaxGenerateShowcaseCommand extends Command
         $this->runProcess($protocDescCmd);
 
         // 6. Generate GAPIC PHP Client via CodeGenerator
-        $output->writeln('<info>4. Generating GAPIC PHP client for GAX (gRPC + REST, NEW_SURFACE_ONLY mode)...</info>');
-        require_once $generatorPath . '/vendor/autoload.php';
+        $output->writeln('<info>3. Generating GAPIC PHP client for GAX (NEW_SURFACE_ONLY mode)...</info>');
 
         $descBytes = file_get_contents($descFile);
         $grpcConfig = file_get_contents($schemaDir . '/showcase_grpc_service_config.json');
 
-        /** @var class-string $codeGeneratorClass */
-        $codeGeneratorClass = 'Google\Generator\CodeGenerator';
-        /** @var class-string $migrationModeClass */
-        $migrationModeClass = 'Google\Generator\Utils\MigrationMode';
-
-        $files = $codeGeneratorClass::generateFromDescriptor(
+        $files = CodeGenerator::generateFromDescriptor(
             $descBytes,
             'google.showcase.v1beta1',
             'grpc+rest',
@@ -198,7 +183,7 @@ class GaxGenerateShowcaseCommand extends Command
             false,
             -1,
             false,
-            $migrationModeClass::NEW_SURFACE_ONLY
+            MigrationMode::NEW_SURFACE_ONLY
         );
 
         foreach ($files as [$relPath, $content]) {
@@ -208,18 +193,18 @@ class GaxGenerateShowcaseCommand extends Command
         }
 
         // 7. Generate Protobuf Message Classes via protoc --php_out
-        $output->writeln('<info>5. Generating Protobuf message classes...</info>');
+        $output->writeln('<info>4. Generating Protobuf message classes...</info>');
         $protoFiles = glob($schemaDir . '/*.proto');
         $protocPhpCmd = array_merge([
             'protoc',
-            '-I', $showcaseDir . '/schema',
+            '-I', $showcasePath . '/schema',
             '-I', $googleapisPath,
             '--php_out=' . $tmpOutputDir . '/src',
         ], $protoFiles);
         $this->runProcess($protocPhpCmd);
 
         // 8. Organize output into GAX Conformance directory
-        $output->writeln('<info>6. Organizing output into GAX Conformance directory...</info>');
+        $output->writeln('<info>5. Organizing output into GAX Conformance directory...</info>');
         $this->fs->remove([$conformanceDir . '/src/V1beta1', $conformanceDir . '/metadata']);
         $this->fs->mkdir([$conformanceDir . '/src/V1beta1/resources', $conformanceDir . '/metadata']);
 
@@ -241,8 +226,8 @@ class GaxGenerateShowcaseCommand extends Command
         }
 
         // 9. Clean up temporary files
-        $output->writeln('<info>7. Cleaning up temporary files...</info>');
-        $this->fs->remove([$tmpOutputDir, $descFile, $tmpShowcaseDir, $tmpGoogleapisDir]);
+        $output->writeln('<info>6. Cleaning up temporary files...</info>');
+        $this->fs->remove([$tmpOutputDir, $descFile]);
 
         $output->writeln("<info>✅ Showcase Client generation complete! Output saved in: {$conformanceDir}</info>");
 

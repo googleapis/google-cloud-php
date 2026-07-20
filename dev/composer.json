@@ -21,6 +21,8 @@
         }
     },
     "require-dev": {
+        "google/gapic-generator-php": "dev-main",
+        "google/gapic-showcase": "dev-main",
         "phpunit/phpunit": "^9.0",
         "phpspec/prophecy-phpunit": "^2.0",
         "swaggest/json-schema": "^0.12.0",
@@ -35,6 +37,45 @@
             "options": {
                 "versions": {
                     "google/cloud": "dev-parent"
+                }
+            }
+        },
+        "gapic-generator-php": {
+            "type": "package",
+            "package": {
+                "name": "google/gapic-generator-php",
+                "version": "dev-main",
+                "source": {
+                    "url": "https://github.com/googleapis/gapic-generator-php.git",
+                    "type": "git",
+                    "reference": "main"
+                },
+                "require": {
+                    "friendsofphp/php-cs-fixer": "^3",
+                    "microsoft/tolerant-php-parser": "^0.1.2"
+                },
+                "autoload": {
+                    "psr-4": {
+                        "Google\\Generator\\": "src",
+                        "Google\\": "generated/Google",
+                        "Grpc\\": "generated/Grpc",
+                        "GPBMetadata\\": "generated/GPBMetadata"
+                    }
+                },
+                "options": {
+                    "submodules": true
+                }
+            }
+        },
+        "gapic-showcase": {
+            "type": "package",
+            "package": {
+                "name": "google/gapic-showcase",
+                "version": "dev-main",
+                "source": {
+                    "url": "https://github.com/googleapis/gapic-showcase.git",
+                    "type": "git",
+                    "reference": "main"
                 }
             }
         }

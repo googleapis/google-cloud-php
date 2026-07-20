@@ -8,17 +8,13 @@ To generate or update the Showcase client SDK, message classes, and metadata usi
 
 ```sh
 # From the repository root, run the console command:
-GAPIC_GENERATOR_PHP_PATH=/path/to/gapic-generator-php ./dev/google-cloud gax:generate-showcase
-
-# To specify a custom version tag:
-GAPIC_GENERATOR_PHP_PATH=/path/to/gapic-generator-php ./dev/google-cloud gax:generate-showcase --showcase-version v0.41.1
+./dev/google-cloud gax:generate-showcase --showcase-path /path/to/gapic-showcase
 ```
 
 Options:
-- `-g, --generator-path <dir>`: Path to `gapic-generator-php` (or set `GAPIC_GENERATOR_PHP_PATH`).
-- `-s, --showcase-version <tag>`: Custom `gapic-showcase` release tag (or set `SHOWCASE_VERSION`).
-- `-p, --showcase-path <dir>`: Local path to `gapic-showcase` repository (or set `SHOWCASE_PATH`).
-- `-a, --googleapis-path <dir>`: Path to `googleapis` repository (or set `GOOGLEAPIS_PATH`).
+- `-p, --showcase-path <dir>`: Path to local `gapic-showcase` repository (**required**).
+- `-g, --generator-path <dir>`: Path to local `gapic-generator-php` (optional; defaults to installed dependency in `dev/vendor`).
+- `-a, --googleapis-path <dir>`: Path to `googleapis` repository (optional; defaults to submodule in `gapic-generator-php`).
 
 ## Running Conformance Tests
 
