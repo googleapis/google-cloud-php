@@ -50,6 +50,13 @@ class ShowcaseGenerateCommand extends Command
         $this->setName('showcase:generate')
             ->setDescription('Generates the GAPIC Showcase client SDK for Conformance tests')
             ->addOption(
+                'out-dir',
+                'o',
+                InputOption::VALUE_REQUIRED,
+                'Output directory relative to root.',
+                'Gax'
+            )
+            ->addOption(
                 'generator-path',
                 'g',
                 InputOption::VALUE_REQUIRED,
@@ -77,8 +84,9 @@ class ShowcaseGenerateCommand extends Command
             return Command::FAILURE;
         }
 
-        $gaxDir = $this->rootDirectory . 'Gax';
-        $conformanceDir = $gaxDir . '/tests/Conformance';
+        $outDir = $input->getOption('out-dir');
+        $targetDir = $this->rootDirectory . trim($outDir, '/');
+        $conformanceDir = $targetDir . '/tests/Conformance';
         $tmpOutputDir = $conformanceDir . '/tmp_out';
         $descFile = $conformanceDir . '/desc.pb';
 
@@ -141,6 +149,7 @@ class ShowcaseGenerateCommand extends Command
             return Command::FAILURE;
         }
 
+        $output->writeln("<info>Using output directory:</info> {$targetDir}");
         $output->writeln("<info>Using gapic-showcase schemas from:</info> {$schemaDir}");
         $output->writeln("<info>Using googleapis definitions from:</info> {$googleapisPath}");
 
@@ -204,8 +213,8 @@ class ShowcaseGenerateCommand extends Command
         ], $protoFiles);
         $this->runProcess($protocPhpCmd);
 
-        // 8. Organize output into GAX Conformance directory
-        $output->writeln('<info>5. Organizing output into GAX Conformance directory...</info>');
+        // 8. Organize output into Conformance directory
+        $output->writeln('<info>5. Organizing output into Conformance directory...</info>');
         $this->fs->remove([$conformanceDir . '/src/V1beta1', $conformanceDir . '/metadata']);
         $this->fs->mkdir([$conformanceDir . '/src/V1beta1/resources', $conformanceDir . '/metadata']);
 
