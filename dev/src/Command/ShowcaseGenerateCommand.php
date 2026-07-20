@@ -24,6 +24,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Finder\Finder;
 use Symfony\Component\Process\ExecutableFinder;
 use Symfony\Component\Process\Process;
 
@@ -224,6 +225,10 @@ class ShowcaseGenerateCommand extends Command
         if (is_dir($tmpOutputDir . '/src/GPBMetadata/Google/Showcase')) {
             $this->fs->mirror($tmpOutputDir . '/src/GPBMetadata/Google/Showcase', $conformanceDir . '/metadata');
         }
+
+        // Exclude deprecated Protobuf flat alias files matching *_* (ignoring resources)
+        $deprecatedFinder = (new Finder())->files()->name('*_*')->in($conformanceDir . '/src/V1beta1')->notPath('resources');
+        $this->fs->remove($deprecatedFinder);
 
         // 9. Clean up temporary files
         $output->writeln('<info>6. Cleaning up temporary files...</info>');
