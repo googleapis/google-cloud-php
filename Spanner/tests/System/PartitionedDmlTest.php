@@ -88,7 +88,7 @@ class PartitionedDmlTest extends SystemTestCase
     private function executeInsert(array $rows)
     {
         self::$database->runTransaction(function ($t) use ($rows) {
-            $t->insertBatch(self::PDML_TABLE, $rows);
+            $t->insertOrUpdateBatch(self::PDML_TABLE, $rows);
 
             $t->commit();
         });
