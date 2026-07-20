@@ -28,11 +28,11 @@ use Symfony\Component\Process\ExecutableFinder;
 use Symfony\Component\Process\Process;
 
 /**
- * Generate Showcase Client SDK for GAX Conformance Tests.
+ * Generate Showcase Client SDK for Conformance Tests.
  *
  * @internal
  */
-class GaxGenerateShowcaseCommand extends Command
+class ShowcaseGenerateCommand extends Command
 {
     private string $rootDirectory;
     private Filesystem $fs;
@@ -46,8 +46,8 @@ class GaxGenerateShowcaseCommand extends Command
 
     protected function configure()
     {
-        $this->setName('gax:generate-showcase')
-            ->setDescription('Generates the GAPIC Showcase client SDK for GAX Conformance tests')
+        $this->setName('showcase:generate')
+            ->setDescription('Generates the GAPIC Showcase client SDK for Conformance tests')
             ->addOption(
                 'generator-path',
                 'g',
@@ -94,7 +94,7 @@ class GaxGenerateShowcaseCommand extends Command
             $output->writeln('<info>Using installed gapic-generator-php dependency.</info>');
         }
 
-        // Register autoloader for generated generator proto classes
+        // Register autoloader for generator generated proto classes
         spl_autoload_register(function (string $class) use ($generatorPath) {
             $prefixes = [
                 'Google\\' => $generatorPath . '/generated/Google/',
@@ -166,8 +166,8 @@ class GaxGenerateShowcaseCommand extends Command
         ];
         $this->runProcess($protocDescCmd);
 
-        // 6. Generate GAPIC PHP Client via CodeGenerator
-        $output->writeln('<info>3. Generating GAPIC PHP client for GAX (NEW_SURFACE_ONLY mode)...</info>');
+        // 6. Generate Showcase PHP Client via CodeGenerator
+        $output->writeln('<info>3. Generating Showcase PHP client (NEW_SURFACE_ONLY mode)...</info>');
 
         $descBytes = file_get_contents($descFile);
         $grpcConfig = file_get_contents($schemaDir . '/showcase_grpc_service_config.json');
