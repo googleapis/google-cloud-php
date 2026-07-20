@@ -182,7 +182,12 @@ class GaxGenerateShowcaseCommand extends Command
         $descBytes = file_get_contents($descFile);
         $grpcConfig = file_get_contents($schemaDir . '/showcase_grpc_service_config.json');
 
-        $files = \Google\Generator\CodeGenerator::generateFromDescriptor(
+        /** @var class-string $codeGeneratorClass */
+        $codeGeneratorClass = 'Google\Generator\CodeGenerator';
+        /** @var class-string $migrationModeClass */
+        $migrationModeClass = 'Google\Generator\Utils\MigrationMode';
+
+        $files = $codeGeneratorClass::generateFromDescriptor(
             $descBytes,
             'google.showcase.v1beta1',
             'grpc+rest',
@@ -193,7 +198,7 @@ class GaxGenerateShowcaseCommand extends Command
             false,
             -1,
             false,
-            \Google\Generator\Utils\MigrationMode::NEW_SURFACE_ONLY
+            $migrationModeClass::NEW_SURFACE_ONLY
         );
 
         foreach ($files as [$relPath, $content]) {
