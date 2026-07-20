@@ -4,31 +4,38 @@ This directory contains the integration conformance test suite (`ShowcaseTest.ph
 
 ## Generating the Showcase Client
 
-To generate or update the Showcase client SDK, message classes, metadata, and server binary:
+To generate or update the Showcase client SDK, message classes, and metadata using the PHP CLI tool:
 
 ```sh
-# From the Gax directory, run via Composer:
-GAPIC_GENERATOR_PHP_PATH=/path/to/gapic-generator-php composer generate-showcase
+# From the repository root, run the console command:
+GAPIC_GENERATOR_PHP_PATH=/path/to/gapic-generator-php ./dev/google-cloud gax:generate-showcase
 
 # To specify a custom version tag:
-GAPIC_GENERATOR_PHP_PATH=/path/to/gapic-generator-php composer generate-showcase -- --version v0.41.1
+GAPIC_GENERATOR_PHP_PATH=/path/to/gapic-generator-php ./dev/google-cloud gax:generate-showcase --showcase-version v0.41.1
 ```
 
-Or run the script directly:
-```sh
-./generate-showcase.sh \
-  --generator-path /path/to/gapic-generator-php \
-  --version v0.41.1
-```
+Options:
+- `-g, --generator-path <dir>`: Path to `gapic-generator-php` (or set `GAPIC_GENERATOR_PHP_PATH`).
+- `-s, --showcase-version <tag>`: Custom `gapic-showcase` release tag (or set `SHOWCASE_VERSION`).
+- `-p, --showcase-path <dir>`: Local path to `gapic-showcase` repository (or set `SHOWCASE_PATH`).
+- `-a, --googleapis-path <dir>`: Path to `googleapis` repository (or set `GOOGLEAPIS_PATH`).
 
 ## Running Conformance Tests
 
-1. Launch the matching Showcase mock server in the background or in a separate terminal:
+1. Install and launch the matching `gapic-showcase` mock server in the background:
    ```sh
-   ./tests/Conformance/bin/gapic-showcase run
+   # Option 1 (curl)
+   curl -L https://github.com/googleapis/gapic-showcase/releases/download/v0.41.1/gapic-showcase-0.41.1-linux-amd64.tar.gz | tar -zx
+   ./gapic-showcase run &
+
+   # Option 2 (go install)
+   go install github.com/googleapis/gapic-showcase/cmd/gapic-showcase@latest
+   gapic-showcase run &
    ```
 
 2. Run the PHPUnit conformance test suite:
    ```sh
-   vendor/bin/phpunit tests/Conformance/ShowcaseTest.php
+   vendor/bin/phpunit -c Gax/phpunit-conformance.xml.dist
+   # or from the Gax directory:
+   cd Gax && vendor/bin/phpunit tests/Conformance/ShowcaseTest.php
    ```
