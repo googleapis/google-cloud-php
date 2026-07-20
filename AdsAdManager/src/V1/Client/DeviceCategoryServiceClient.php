@@ -255,7 +255,7 @@ final class DeviceCategoryServiceClient
     }
 
     /**
-     * API to retrieve a `DeviceCategory` object.
+     * Retrieves a `DeviceCategory` object.
      *
      * The async variant is
      * {@see DeviceCategoryServiceClient::getDeviceCategoryAsync()} .
@@ -282,7 +282,7 @@ final class DeviceCategoryServiceClient
     }
 
     /**
-     * API to retrieve a list of `DeviceCategory` objects.
+     * Lists `DeviceCategory` objects.
      *
      * The async variant is
      * {@see DeviceCategoryServiceClient::listDeviceCategoriesAsync()} .

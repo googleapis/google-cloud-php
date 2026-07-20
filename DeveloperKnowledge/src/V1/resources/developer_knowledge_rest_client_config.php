@@ -23,6 +23,11 @@
 return [
     'interfaces' => [
         'google.developers.knowledge.v1.DeveloperKnowledge' => [
+            'AnswerQuery' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1:answerQuery',
+                'body' => '*',
+            ],
             'BatchGetDocuments' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/documents:batchGet',

@@ -34,6 +34,8 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Developers\DeveloperKnowledge\V1\AnswerQueryRequest;
+use Google\Developers\DeveloperKnowledge\V1\AnswerQueryResponse;
 use Google\Developers\DeveloperKnowledge\V1\BatchGetDocumentsRequest;
 use Google\Developers\DeveloperKnowledge\V1\BatchGetDocumentsResponse;
 use Google\Developers\DeveloperKnowledge\V1\Document;
@@ -68,6 +70,7 @@ use Psr\Log\LoggerInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
+ * @method PromiseInterface<AnswerQueryResponse> answerQueryAsync(AnswerQueryRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<BatchGetDocumentsResponse> batchGetDocumentsAsync(BatchGetDocumentsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Document> getDocumentAsync(GetDocumentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> searchDocumentChunksAsync(SearchDocumentChunksRequest $request, array $optionalArgs = [])
@@ -240,6 +243,32 @@ final class DeveloperKnowledgeClient
 
         array_unshift($args, substr($method, 0, -5));
         return call_user_func_array([$this, 'startAsyncCall'], $args);
+    }
+
+    /**
+     * Answers a query using grounded generation.
+     *
+     * The async variant is {@see DeveloperKnowledgeClient::answerQueryAsync()} .
+     *
+     * @example samples/V1/DeveloperKnowledgeClient/answer_query.php
+     *
+     * @param AnswerQueryRequest $request     A request to house fields associated with the call.
+     * @param array              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return AnswerQueryResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function answerQuery(AnswerQueryRequest $request, array $callOptions = []): AnswerQueryResponse
+    {
+        return $this->startApiCall('AnswerQuery', $request, $callOptions)->wait();
     }
 
     /**

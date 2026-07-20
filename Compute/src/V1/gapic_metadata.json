@@ -4764,6 +4764,11 @@
                 "grpc": {
                     "libraryClient": "RolloutsGapicClient",
                     "rpcs": {
+                        "Advance": {
+                            "methods": [
+                                "advance"
+                            ]
+                        },
                         "Cancel": {
                             "methods": [
                                 "cancel"
@@ -4782,6 +4787,16 @@
                         "List": {
                             "methods": [
                                 "list"
+                            ]
+                        },
+                        "Pause": {
+                            "methods": [
+                                "pause"
+                            ]
+                        },
+                        "Resume": {
+                            "methods": [
+                                "resume"
                             ]
                         }
                     }
@@ -4803,6 +4818,11 @@
                                 "delete"
                             ]
                         },
+                        "DeleteNamedSet": {
+                            "methods": [
+                                "deleteNamedSet"
+                            ]
+                        },
                         "DeleteRoutePolicy": {
                             "methods": [
                                 "deleteRoutePolicy"
@@ -4811,6 +4831,11 @@
                         "Get": {
                             "methods": [
                                 "get"
+                            ]
+                        },
+                        "GetNamedSet": {
+                            "methods": [
+                                "getNamedSet"
                             ]
                         },
                         "GetNatIpInfo": {
@@ -4848,6 +4873,11 @@
                                 "listBgpRoutes"
                             ]
                         },
+                        "ListNamedSets": {
+                            "methods": [
+                                "listNamedSets"
+                            ]
+                        },
                         "ListRoutePolicies": {
                             "methods": [
                                 "listRoutePolicies"
@@ -4856,6 +4886,11 @@
                         "Patch": {
                             "methods": [
                                 "patch"
+                            ]
+                        },
+                        "PatchNamedSet": {
+                            "methods": [
+                                "patchNamedSet"
                             ]
                         },
                         "PatchRoutePolicy": {
@@ -4871,6 +4906,11 @@
                         "Update": {
                             "methods": [
                                 "update"
+                            ]
+                        },
+                        "UpdateNamedSet": {
+                            "methods": [
+                                "updateNamedSet"
                             ]
                         },
                         "UpdateRoutePolicy": {

@@ -10,14 +10,69 @@
                 "grpc": {
                     "libraryClient": "MemorystoreGapicClient",
                     "rpcs": {
+                        "AddAuthToken": {
+                            "methods": [
+                                "addAuthToken"
+                            ]
+                        },
+                        "AddTokenAuthUser": {
+                            "methods": [
+                                "addTokenAuthUser"
+                            ]
+                        },
+                        "BackupInstance": {
+                            "methods": [
+                                "backupInstance"
+                            ]
+                        },
                         "CreateInstance": {
                             "methods": [
                                 "createInstance"
                             ]
                         },
+                        "DeleteAuthToken": {
+                            "methods": [
+                                "deleteAuthToken"
+                            ]
+                        },
+                        "DeleteBackup": {
+                            "methods": [
+                                "deleteBackup"
+                            ]
+                        },
                         "DeleteInstance": {
                             "methods": [
                                 "deleteInstance"
+                            ]
+                        },
+                        "DeleteTokenAuthUser": {
+                            "methods": [
+                                "deleteTokenAuthUser"
+                            ]
+                        },
+                        "ExportBackup": {
+                            "methods": [
+                                "exportBackup"
+                            ]
+                        },
+                        "FinishMigration": {
+                            "methods": [
+                                "finishMigration"
+                            ]
+                        },
+                        "GetAuthToken": {
+                            "methods": [
+                                "getAuthToken"
+                            ]
+                        },
+                        "GetBackup": {
+                            "methods": [
+                                "getBackup"
+                            ]
+                        },
+                        "GetBackupCollection": {
+                            "methods": [
+                                "getBackupCollection"
                             ]
                         },
                         "GetCertificateAuthority": {
@@ -35,9 +90,44 @@
                                 "getSharedRegionalCertificateAuthority"
                             ]
                         },
+                        "GetTokenAuthUser": {
+                            "methods": [
+                                "getTokenAuthUser"
+                            ]
+                        },
+                        "ListAuthTokens": {
+                            "methods": [
+                                "listAuthTokens"
+                            ]
+                        },
+                        "ListBackupCollections": {
+                            "methods": [
+                                "listBackupCollections"
+                            ]
+                        },
+                        "ListBackups": {
+                            "methods": [
+                                "listBackups"
+                            ]
+                        },
                         "ListInstances": {
                             "methods": [
                                 "listInstances"
+                            ]
+                        },
+                        "ListTokenAuthUsers": {
+                            "methods": [
+                                "listTokenAuthUsers"
+                            ]
+                        },
+                        "RescheduleMaintenance": {
+                            "methods": [
+                                "rescheduleMaintenance"
+                            ]
+                        },
+                        "StartMigration": {
+                            "methods": [
+                                "startMigration"
                             ]
                         },
                         "UpdateInstance": {

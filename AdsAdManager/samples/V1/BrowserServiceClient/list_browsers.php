@@ -29,7 +29,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 
 /**
- * API to retrieve a list of `Browser` objects.
+ * Lists `Browser` objects.
  *
  * @param string $formattedParent The parent, which owns this collection of Browsers.
  *                                Format: `networks/{network_code}`

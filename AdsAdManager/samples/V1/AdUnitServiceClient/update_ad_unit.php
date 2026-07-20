@@ -29,7 +29,7 @@ use Google\Ads\AdManager\V1\UpdateAdUnitRequest;
 use Google\ApiCore\ApiException;
 
 /**
- * API to update an `AdUnit` object.
+ * Updates an `AdUnit` object.
  *
  * @param string $formattedAdUnitParentAdUnit Immutable. The AdUnit's parent. Every ad unit has a parent except
  *                                            for the root ad unit, which is created by Google. Format:

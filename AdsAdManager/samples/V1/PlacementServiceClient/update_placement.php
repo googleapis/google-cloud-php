@@ -29,7 +29,7 @@ use Google\Ads\AdManager\V1\UpdatePlacementRequest;
 use Google\ApiCore\ApiException;
 
 /**
- * API to update an `Placement` object.
+ * Updates an `Placement` object.
  *
  * @param string $placementDisplayName The display name of the placement. This attribute has a maximum
  *                                     length of 255 characters.

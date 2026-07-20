@@ -21,6 +21,19 @@ class ErrorHandlingSettings extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.ces.v1.ErrorHandlingSettings.ErrorHandlingStrategy error_handling_strategy = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $error_handling_strategy = 0;
+    /**
+     * Optional. Configuration for handling fallback responses.
+     *
+     * Generated from protobuf field <code>.google.cloud.ces.v1.ErrorHandlingSettings.FallbackResponseConfig fallback_response_config = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $fallback_response_config = null;
+    /**
+     * Optional. Configuration for ending the session in case of system errors
+     * (e.g. LLM errors).
+     *
+     * Generated from protobuf field <code>.google.cloud.ces.v1.ErrorHandlingSettings.EndSessionConfig end_session_config = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $end_session_config = null;
 
     /**
      * Constructor.
@@ -30,6 +43,11 @@ class ErrorHandlingSettings extends \Google\Protobuf\Internal\Message
      *
      *     @type int $error_handling_strategy
      *           Optional. The strategy to use for error handling.
+     *     @type \Google\Cloud\Ces\V1\ErrorHandlingSettings\FallbackResponseConfig $fallback_response_config
+     *           Optional. Configuration for handling fallback responses.
+     *     @type \Google\Cloud\Ces\V1\ErrorHandlingSettings\EndSessionConfig $end_session_config
+     *           Optional. Configuration for ending the session in case of system errors
+     *           (e.g. LLM errors).
      * }
      */
     public function __construct($data = NULL) {
@@ -59,6 +77,80 @@ class ErrorHandlingSettings extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Ces\V1\ErrorHandlingSettings\ErrorHandlingStrategy::class);
         $this->error_handling_strategy = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Configuration for handling fallback responses.
+     *
+     * Generated from protobuf field <code>.google.cloud.ces.v1.ErrorHandlingSettings.FallbackResponseConfig fallback_response_config = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Ces\V1\ErrorHandlingSettings\FallbackResponseConfig|null
+     */
+    public function getFallbackResponseConfig()
+    {
+        return $this->fallback_response_config;
+    }
+
+    public function hasFallbackResponseConfig()
+    {
+        return isset($this->fallback_response_config);
+    }
+
+    public function clearFallbackResponseConfig()
+    {
+        unset($this->fallback_response_config);
+    }
+
+    /**
+     * Optional. Configuration for handling fallback responses.
+     *
+     * Generated from protobuf field <code>.google.cloud.ces.v1.ErrorHandlingSettings.FallbackResponseConfig fallback_response_config = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Ces\V1\ErrorHandlingSettings\FallbackResponseConfig $var
+     * @return $this
+     */
+    public function setFallbackResponseConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Ces\V1\ErrorHandlingSettings\FallbackResponseConfig::class);
+        $this->fallback_response_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Configuration for ending the session in case of system errors
+     * (e.g. LLM errors).
+     *
+     * Generated from protobuf field <code>.google.cloud.ces.v1.ErrorHandlingSettings.EndSessionConfig end_session_config = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Ces\V1\ErrorHandlingSettings\EndSessionConfig|null
+     */
+    public function getEndSessionConfig()
+    {
+        return $this->end_session_config;
+    }
+
+    public function hasEndSessionConfig()
+    {
+        return isset($this->end_session_config);
+    }
+
+    public function clearEndSessionConfig()
+    {
+        unset($this->end_session_config);
+    }
+
+    /**
+     * Optional. Configuration for ending the session in case of system errors
+     * (e.g. LLM errors).
+     *
+     * Generated from protobuf field <code>.google.cloud.ces.v1.ErrorHandlingSettings.EndSessionConfig end_session_config = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Ces\V1\ErrorHandlingSettings\EndSessionConfig $var
+     * @return $this
+     */
+    public function setEndSessionConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Ces\V1\ErrorHandlingSettings\EndSessionConfig::class);
+        $this->end_session_config = $var;
 
         return $this;
     }

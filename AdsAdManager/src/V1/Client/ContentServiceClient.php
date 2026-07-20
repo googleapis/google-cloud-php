@@ -255,7 +255,7 @@ final class ContentServiceClient
     }
 
     /**
-     * API to retrieve a `Content` object.
+     * Retrieves a `Content` object.
      *
      * The async variant is {@see ContentServiceClient::getContentAsync()} .
      *
@@ -281,7 +281,7 @@ final class ContentServiceClient
     }
 
     /**
-     * API to retrieve a list of `Content` objects.
+     * Lists `Content` objects.
      *
      * The async variant is {@see ContentServiceClient::listContentAsync()} .
      *

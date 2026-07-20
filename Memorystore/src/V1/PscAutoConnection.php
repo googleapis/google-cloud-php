@@ -46,7 +46,7 @@ class PscAutoConnection extends \Google\Protobuf\Internal\Message
     protected $project_id = '';
     /**
      * Required. The network where the PSC endpoints are created, in the form of
-     * projects/{project_id}/global/networks/{network_id}.
+     * projects/{project_id}/global/networks/{network_name}.
      *
      * Generated from protobuf field <code>string network = 5 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -99,7 +99,7 @@ class PscAutoConnection extends \Google\Protobuf\Internal\Message
      *           This should be the same project_id that the instance is being created in.
      *     @type string $network
      *           Required. The network where the PSC endpoints are created, in the form of
-     *           projects/{project_id}/global/networks/{network_id}.
+     *           projects/{project_id}/global/networks/{network_name}.
      *     @type string $service_attachment
      *           Output only. The service attachment which is the target of the PSC
      *           connection, in the form of
@@ -265,7 +265,7 @@ class PscAutoConnection extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The network where the PSC endpoints are created, in the form of
-     * projects/{project_id}/global/networks/{network_id}.
+     * projects/{project_id}/global/networks/{network_name}.
      *
      * Generated from protobuf field <code>string network = 5 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -277,7 +277,7 @@ class PscAutoConnection extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The network where the PSC endpoints are created, in the form of
-     * projects/{project_id}/global/networks/{network_id}.
+     * projects/{project_id}/global/networks/{network_name}.
      *
      * Generated from protobuf field <code>string network = 5 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

@@ -255,7 +255,7 @@ final class MobileCarrierServiceClient
     }
 
     /**
-     * API to retrieve a `MobileCarrier` object.
+     * Retrieves a `MobileCarrier` object.
      *
      * The async variant is {@see MobileCarrierServiceClient::getMobileCarrierAsync()}
      * .
@@ -282,7 +282,7 @@ final class MobileCarrierServiceClient
     }
 
     /**
-     * API to retrieve a list of `MobileCarrier` objects.
+     * Lists `MobileCarrier` objects.
      *
      * The async variant is
      * {@see MobileCarrierServiceClient::listMobileCarriersAsync()} .

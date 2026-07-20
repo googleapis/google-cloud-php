@@ -255,7 +255,7 @@ final class OrderServiceClient
     }
 
     /**
-     * API to retrieve an Order object.
+     * Retrieves an `Order` object.
      *
      * The async variant is {@see OrderServiceClient::getOrderAsync()} .
      *
@@ -281,7 +281,7 @@ final class OrderServiceClient
     }
 
     /**
-     * API to retrieve a list of `Order` objects.
+     * Lists `Order` objects.
      *
      * Fields used for literal matching in filter string:
      * * `order_id`

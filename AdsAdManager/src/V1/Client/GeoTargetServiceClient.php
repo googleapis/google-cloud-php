@@ -255,7 +255,7 @@ final class GeoTargetServiceClient
     }
 
     /**
-     * API to retrieve a `GeoTarget` object.
+     * Retrieves a `GeoTarget` object.
      *
      * The async variant is {@see GeoTargetServiceClient::getGeoTargetAsync()} .
      *
@@ -281,7 +281,7 @@ final class GeoTargetServiceClient
     }
 
     /**
-     * API to retrieve a list of `GeoTarget` objects.
+     * Lists `GeoTarget` objects.
      *
      * The async variant is {@see GeoTargetServiceClient::listGeoTargetsAsync()} .
      *

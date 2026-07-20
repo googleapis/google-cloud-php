@@ -24,9 +24,19 @@
 
 namespace Google\Ads\AdManager\V1\Client;
 
+use Google\Ads\AdManager\V1\BatchActivateCustomTargetingValuesRequest;
+use Google\Ads\AdManager\V1\BatchActivateCustomTargetingValuesResponse;
+use Google\Ads\AdManager\V1\BatchCreateCustomTargetingValuesRequest;
+use Google\Ads\AdManager\V1\BatchCreateCustomTargetingValuesResponse;
+use Google\Ads\AdManager\V1\BatchDeactivateCustomTargetingValuesRequest;
+use Google\Ads\AdManager\V1\BatchDeactivateCustomTargetingValuesResponse;
+use Google\Ads\AdManager\V1\BatchUpdateCustomTargetingValuesRequest;
+use Google\Ads\AdManager\V1\BatchUpdateCustomTargetingValuesResponse;
+use Google\Ads\AdManager\V1\CreateCustomTargetingValueRequest;
 use Google\Ads\AdManager\V1\CustomTargetingValue;
 use Google\Ads\AdManager\V1\GetCustomTargetingValueRequest;
 use Google\Ads\AdManager\V1\ListCustomTargetingValuesRequest;
+use Google\Ads\AdManager\V1\UpdateCustomTargetingValueRequest;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
@@ -51,8 +61,14 @@ use Psr\Log\LoggerInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
+ * @method PromiseInterface<BatchActivateCustomTargetingValuesResponse> batchActivateCustomTargetingValuesAsync(BatchActivateCustomTargetingValuesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchCreateCustomTargetingValuesResponse> batchCreateCustomTargetingValuesAsync(BatchCreateCustomTargetingValuesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchDeactivateCustomTargetingValuesResponse> batchDeactivateCustomTargetingValuesAsync(BatchDeactivateCustomTargetingValuesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchUpdateCustomTargetingValuesResponse> batchUpdateCustomTargetingValuesAsync(BatchUpdateCustomTargetingValuesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CustomTargetingValue> createCustomTargetingValueAsync(CreateCustomTargetingValueRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<CustomTargetingValue> getCustomTargetingValueAsync(GetCustomTargetingValueRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listCustomTargetingValuesAsync(ListCustomTargetingValuesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<CustomTargetingValue> updateCustomTargetingValueAsync(UpdateCustomTargetingValueRequest $request, array $optionalArgs = [])
  */
 final class CustomTargetingValueServiceClient
 {
@@ -118,6 +134,23 @@ final class CustomTargetingValueServiceClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * custom_targeting_key resource.
+     *
+     * @param string $networkCode
+     * @param string $customTargetingKey
+     *
+     * @return string The formatted custom_targeting_key resource.
+     */
+    public static function customTargetingKeyName(string $networkCode, string $customTargetingKey): string
+    {
+        return self::getPathTemplate('customTargetingKey')->render([
+            'network_code' => $networkCode,
+            'custom_targeting_key' => $customTargetingKey,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * custom_targeting_value resource.
      *
      * @param string $networkCode
@@ -152,6 +185,7 @@ final class CustomTargetingValueServiceClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - customTargetingKey: networks/{network_code}/customTargetingKeys/{custom_targeting_key}
      * - customTargetingValue: networks/{network_code}/customTargetingValues/{custom_targeting_value}
      * - network: networks/{network_code}
      *
@@ -256,7 +290,156 @@ final class CustomTargetingValueServiceClient
     }
 
     /**
-     * API to retrieve a `CustomTargetingValue` object.
+     * Batch activates `CustomTargetingValue` objects.
+     *
+     * The async variant is
+     * {@see CustomTargetingValueServiceClient::batchActivateCustomTargetingValuesAsync()}
+     * .
+     *
+     * @example samples/V1/CustomTargetingValueServiceClient/batch_activate_custom_targeting_values.php
+     *
+     * @param BatchActivateCustomTargetingValuesRequest $request     A request to house fields associated with the call.
+     * @param array                                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchActivateCustomTargetingValuesResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchActivateCustomTargetingValues(
+        BatchActivateCustomTargetingValuesRequest $request,
+        array $callOptions = []
+    ): BatchActivateCustomTargetingValuesResponse {
+        return $this->startApiCall('BatchActivateCustomTargetingValues', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates `CustomTargetingValue` objects.
+     *
+     * The async variant is
+     * {@see CustomTargetingValueServiceClient::batchCreateCustomTargetingValuesAsync()}
+     * .
+     *
+     * @example samples/V1/CustomTargetingValueServiceClient/batch_create_custom_targeting_values.php
+     *
+     * @param BatchCreateCustomTargetingValuesRequest $request     A request to house fields associated with the call.
+     * @param array                                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchCreateCustomTargetingValuesResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchCreateCustomTargetingValues(
+        BatchCreateCustomTargetingValuesRequest $request,
+        array $callOptions = []
+    ): BatchCreateCustomTargetingValuesResponse {
+        return $this->startApiCall('BatchCreateCustomTargetingValues', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deactivates a list of `CustomTargetingValue` objects.
+     *
+     * The async variant is
+     * {@see CustomTargetingValueServiceClient::batchDeactivateCustomTargetingValuesAsync()}
+     * .
+     *
+     * @example samples/V1/CustomTargetingValueServiceClient/batch_deactivate_custom_targeting_values.php
+     *
+     * @param BatchDeactivateCustomTargetingValuesRequest $request     A request to house fields associated with the call.
+     * @param array                                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchDeactivateCustomTargetingValuesResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchDeactivateCustomTargetingValues(
+        BatchDeactivateCustomTargetingValuesRequest $request,
+        array $callOptions = []
+    ): BatchDeactivateCustomTargetingValuesResponse {
+        return $this->startApiCall('BatchDeactivateCustomTargetingValues', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Batch updates `CustomTargetingValue` objects.
+     *
+     * The async variant is
+     * {@see CustomTargetingValueServiceClient::batchUpdateCustomTargetingValuesAsync()}
+     * .
+     *
+     * @example samples/V1/CustomTargetingValueServiceClient/batch_update_custom_targeting_values.php
+     *
+     * @param BatchUpdateCustomTargetingValuesRequest $request     A request to house fields associated with the call.
+     * @param array                                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchUpdateCustomTargetingValuesResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchUpdateCustomTargetingValues(
+        BatchUpdateCustomTargetingValuesRequest $request,
+        array $callOptions = []
+    ): BatchUpdateCustomTargetingValuesResponse {
+        return $this->startApiCall('BatchUpdateCustomTargetingValues', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates a `CustomTargetingValue` object.
+     *
+     * The async variant is
+     * {@see CustomTargetingValueServiceClient::createCustomTargetingValueAsync()} .
+     *
+     * @example samples/V1/CustomTargetingValueServiceClient/create_custom_targeting_value.php
+     *
+     * @param CreateCustomTargetingValueRequest $request     A request to house fields associated with the call.
+     * @param array                             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return CustomTargetingValue
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createCustomTargetingValue(
+        CreateCustomTargetingValueRequest $request,
+        array $callOptions = []
+    ): CustomTargetingValue {
+        return $this->startApiCall('CreateCustomTargetingValue', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Retrieves a `CustomTargetingValue` object.
      *
      * The async variant is
      * {@see CustomTargetingValueServiceClient::getCustomTargetingValueAsync()} .
@@ -285,7 +468,7 @@ final class CustomTargetingValueServiceClient
     }
 
     /**
-     * API to retrieve a list of `CustomTargetingValue` objects.
+     * Lists `CustomTargetingValue` objects.
      *
      * The async variant is
      * {@see CustomTargetingValueServiceClient::listCustomTargetingValuesAsync()} .
@@ -311,5 +494,34 @@ final class CustomTargetingValueServiceClient
         array $callOptions = []
     ): PagedListResponse {
         return $this->startApiCall('ListCustomTargetingValues', $request, $callOptions);
+    }
+
+    /**
+     * Updates a `CustomTargetingValue` object.
+     *
+     * The async variant is
+     * {@see CustomTargetingValueServiceClient::updateCustomTargetingValueAsync()} .
+     *
+     * @example samples/V1/CustomTargetingValueServiceClient/update_custom_targeting_value.php
+     *
+     * @param UpdateCustomTargetingValueRequest $request     A request to house fields associated with the call.
+     * @param array                             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return CustomTargetingValue
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateCustomTargetingValue(
+        UpdateCustomTargetingValueRequest $request,
+        array $callOptions = []
+    ): CustomTargetingValue {
+        return $this->startApiCall('UpdateCustomTargetingValue', $request, $callOptions)->wait();
     }
 }

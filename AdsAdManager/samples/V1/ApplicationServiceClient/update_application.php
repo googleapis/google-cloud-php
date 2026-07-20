@@ -29,7 +29,7 @@ use Google\Ads\AdManager\V1\UpdateApplicationRequest;
 use Google\ApiCore\ApiException;
 
 /**
- * API to update a `Application` object.
+ * Updates a `Application` object.
  *
  * @param string $applicationDisplayName The display name of the application.
  */

@@ -70,7 +70,7 @@ class NodeType
      */
     const STANDARD_LARGE = 8;
     /**
-     * High memory 2x large.
+     * High memory 2xlarge.
      *
      * Generated from protobuf enum <code>HIGHMEM_2XLARGE = 9;</code>
      */

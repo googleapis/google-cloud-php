@@ -255,7 +255,7 @@ final class OperatingSystemServiceClient
     }
 
     /**
-     * API to retrieve a `OperatingSystem` object.
+     * Retrieves a `OperatingSystem` object.
      *
      * The async variant is
      * {@see OperatingSystemServiceClient::getOperatingSystemAsync()} .
@@ -282,7 +282,7 @@ final class OperatingSystemServiceClient
     }
 
     /**
-     * API to retrieve a list of `OperatingSystem` objects.
+     * Lists `OperatingSystem` objects.
      *
      * The async variant is
      * {@see OperatingSystemServiceClient::listOperatingSystemsAsync()} .

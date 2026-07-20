@@ -31,7 +31,7 @@ use Google\Ads\AdManager\V1\CustomTargetingKeyTypeEnum\CustomTargetingKeyType;
 use Google\ApiCore\ApiException;
 
 /**
- * API to create a `CustomTargetingKey` object.
+ * Creates a `CustomTargetingKey` object.
  *
  * @param string $formattedParent                  The parent resource where this `CustomTargetingKey` will be
  *                                                 created. Format: `networks/{network_code}`

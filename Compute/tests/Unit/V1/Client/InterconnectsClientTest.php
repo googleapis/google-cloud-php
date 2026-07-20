@@ -210,6 +210,7 @@ class InterconnectsClientTest extends GeneratedTest
         $creationTimestamp = 'creationTimestamp567396278';
         $customerName = 'customerName-2143818164';
         $description = 'description-1724546052';
+        $effectiveLocation = 'effectiveLocation302355277';
         $googleIpAddress = 'googleIpAddress1516847778';
         $googleReferenceId = 'googleReferenceId534944469';
         $id = 3355;
@@ -236,6 +237,7 @@ class InterconnectsClientTest extends GeneratedTest
         $expectedResponse->setCreationTimestamp($creationTimestamp);
         $expectedResponse->setCustomerName($customerName);
         $expectedResponse->setDescription($description);
+        $expectedResponse->setEffectiveLocation($effectiveLocation);
         $expectedResponse->setGoogleIpAddress($googleIpAddress);
         $expectedResponse->setGoogleReferenceId($googleReferenceId);
         $expectedResponse->setId($id);

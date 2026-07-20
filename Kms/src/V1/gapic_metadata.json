@@ -316,6 +316,11 @@
                                 "encrypt"
                             ]
                         },
+                        "ExportTrustedKeyWrappedCryptoKeyVersion": {
+                            "methods": [
+                                "exportTrustedKeyWrappedCryptoKeyVersion"
+                            ]
+                        },
                         "GenerateRandomBytes": {
                             "methods": [
                                 "generateRandomBytes"
@@ -354,6 +359,11 @@
                         "ImportCryptoKeyVersion": {
                             "methods": [
                                 "importCryptoKeyVersion"
+                            ]
+                        },
+                        "ImportTrustedKeyWrappedCryptoKeyVersion": {
+                            "methods": [
+                                "importTrustedKeyWrappedCryptoKeyVersion"
                             ]
                         },
                         "ListCryptoKeyVersions": {

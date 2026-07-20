@@ -76,6 +76,15 @@ class LocalInventoryAttributes extends \Google\Protobuf\Internal\Message
      */
     protected $instore_product_location = null;
     /**
+     * Optional. Specifies a label associated with the shipping for the
+     * `LocalInventory` resource. Can be used to group local shipping services to
+     * this particular inventory item. For accepted field format, see the [Local
+     * delivery](https://support.google.com/merchants/answer/14819809#localdelivery)
+     *
+     * Generated from protobuf field <code>optional string local_shipping_label = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $local_shipping_label = null;
+    /**
      * Optional. An optional list of loyalty programs containing applicable
      * loyalty member prices for this product at this store.
      * This field is used to show store-specific member prices on Local
@@ -92,6 +101,19 @@ class LocalInventoryAttributes extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.shopping.merchant.inventories.v1.InventoryLoyaltyProgram loyalty_programs = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $loyalty_programs;
+    /**
+     * Optional. A list of custom (merchant-provided) attributes. It can also be
+     * used for submitting any attribute of the data specification in its generic
+     * form (for example, `{ "name": "size type", "value": "regular" }`). This is
+     * useful for submitting attributes not explicitly exposed by the API. Maximum
+     * allowed number of characters for each custom attribute is 10240 (represents
+     * sum of characters for name and value). Maximum 2500 custom attributes can
+     * be set, with total size of 102.4kB. Underscores in custom
+     * attribute names are replaced by spaces upon insertion.
+     *
+     * Generated from protobuf field <code>repeated .google.shopping.type.CustomAttribute custom_attributes = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $custom_attributes;
 
     /**
      * Constructor.
@@ -127,6 +149,11 @@ class LocalInventoryAttributes extends \Google\Protobuf\Internal\Message
      *     @type string $instore_product_location
      *           Optional. Location of the product inside the store. Maximum length is 20
      *           bytes.
+     *     @type string $local_shipping_label
+     *           Optional. Specifies a label associated with the shipping for the
+     *           `LocalInventory` resource. Can be used to group local shipping services to
+     *           this particular inventory item. For accepted field format, see the [Local
+     *           delivery](https://support.google.com/merchants/answer/14819809#localdelivery)
      *     @type \Google\Shopping\Merchant\Inventories\V1\InventoryLoyaltyProgram[] $loyalty_programs
      *           Optional. An optional list of loyalty programs containing applicable
      *           loyalty member prices for this product at this store.
@@ -140,6 +167,15 @@ class LocalInventoryAttributes extends \Google\Protobuf\Internal\Message
      *           for details on supported countries and loyalty program configuration.
      *           For local inventory specific details, see the [Local inventory data
      *           specification](https://support.google.com/merchants/answer/3061342).
+     *     @type \Google\Shopping\Type\CustomAttribute[] $custom_attributes
+     *           Optional. A list of custom (merchant-provided) attributes. It can also be
+     *           used for submitting any attribute of the data specification in its generic
+     *           form (for example, `{ "name": "size type", "value": "regular" }`). This is
+     *           useful for submitting attributes not explicitly exposed by the API. Maximum
+     *           allowed number of characters for each custom attribute is 10240 (represents
+     *           sum of characters for name and value). Maximum 2500 custom attributes can
+     *           be set, with total size of 102.4kB. Underscores in custom
+     *           attribute names are replaced by spaces upon insertion.
      * }
      */
     public function __construct($data = NULL) {
@@ -460,6 +496,48 @@ class LocalInventoryAttributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. Specifies a label associated with the shipping for the
+     * `LocalInventory` resource. Can be used to group local shipping services to
+     * this particular inventory item. For accepted field format, see the [Local
+     * delivery](https://support.google.com/merchants/answer/14819809#localdelivery)
+     *
+     * Generated from protobuf field <code>optional string local_shipping_label = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getLocalShippingLabel()
+    {
+        return isset($this->local_shipping_label) ? $this->local_shipping_label : '';
+    }
+
+    public function hasLocalShippingLabel()
+    {
+        return isset($this->local_shipping_label);
+    }
+
+    public function clearLocalShippingLabel()
+    {
+        unset($this->local_shipping_label);
+    }
+
+    /**
+     * Optional. Specifies a label associated with the shipping for the
+     * `LocalInventory` resource. Can be used to group local shipping services to
+     * this particular inventory item. For accepted field format, see the [Local
+     * delivery](https://support.google.com/merchants/answer/14819809#localdelivery)
+     *
+     * Generated from protobuf field <code>optional string local_shipping_label = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setLocalShippingLabel($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->local_shipping_label = $var;
+
+        return $this;
+    }
+
+    /**
      * Optional. An optional list of loyalty programs containing applicable
      * loyalty member prices for this product at this store.
      * This field is used to show store-specific member prices on Local
@@ -503,6 +581,46 @@ class LocalInventoryAttributes extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Shopping\Merchant\Inventories\V1\InventoryLoyaltyProgram::class);
         $this->loyalty_programs = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. A list of custom (merchant-provided) attributes. It can also be
+     * used for submitting any attribute of the data specification in its generic
+     * form (for example, `{ "name": "size type", "value": "regular" }`). This is
+     * useful for submitting attributes not explicitly exposed by the API. Maximum
+     * allowed number of characters for each custom attribute is 10240 (represents
+     * sum of characters for name and value). Maximum 2500 custom attributes can
+     * be set, with total size of 102.4kB. Underscores in custom
+     * attribute names are replaced by spaces upon insertion.
+     *
+     * Generated from protobuf field <code>repeated .google.shopping.type.CustomAttribute custom_attributes = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return RepeatedField<\Google\Shopping\Type\CustomAttribute>
+     */
+    public function getCustomAttributes()
+    {
+        return $this->custom_attributes;
+    }
+
+    /**
+     * Optional. A list of custom (merchant-provided) attributes. It can also be
+     * used for submitting any attribute of the data specification in its generic
+     * form (for example, `{ "name": "size type", "value": "regular" }`). This is
+     * useful for submitting attributes not explicitly exposed by the API. Maximum
+     * allowed number of characters for each custom attribute is 10240 (represents
+     * sum of characters for name and value). Maximum 2500 custom attributes can
+     * be set, with total size of 102.4kB. Underscores in custom
+     * attribute names are replaced by spaces upon insertion.
+     *
+     * Generated from protobuf field <code>repeated .google.shopping.type.CustomAttribute custom_attributes = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Shopping\Type\CustomAttribute[] $var
+     * @return $this
+     */
+    public function setCustomAttributes($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Shopping\Type\CustomAttribute::class);
+        $this->custom_attributes = $arr;
 
         return $this;
     }

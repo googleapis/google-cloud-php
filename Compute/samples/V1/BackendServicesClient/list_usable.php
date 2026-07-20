@@ -29,7 +29,10 @@ use Google\Cloud\Compute\V1\Client\BackendServicesClient;
 use Google\Cloud\Compute\V1\ListUsableBackendServicesRequest;
 
 /**
- * Retrieves a list of all usable backend services in the specified project.
+ * Retrieves a list of all usable backend services for Application Load
+ * Balancers and Proxy Network Load Balancers in the specified project.
+ * Backend services for external and internal passthrough Network Load
+ * Balancers are not included in the response.
  *
  * @param string $project Project ID for this request.
  */

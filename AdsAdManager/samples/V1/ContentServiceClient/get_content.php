@@ -29,7 +29,7 @@ use Google\Ads\AdManager\V1\GetContentRequest;
 use Google\ApiCore\ApiException;
 
 /**
- * API to retrieve a `Content` object.
+ * Retrieves a `Content` object.
  *
  * @param string $formattedName The resource name of the Content.
  *                              Format: `networks/{network_code}/content/{content_id}`

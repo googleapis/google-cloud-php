@@ -255,7 +255,7 @@ final class BrowserLanguageServiceClient
     }
 
     /**
-     * API to retrieve a `BrowserLanguage` object.
+     * Retrieves a `BrowserLanguage` object.
      *
      * The async variant is
      * {@see BrowserLanguageServiceClient::getBrowserLanguageAsync()} .
@@ -282,7 +282,7 @@ final class BrowserLanguageServiceClient
     }
 
     /**
-     * API to retrieve a list of `BrowserLanguage` objects.
+     * Lists `BrowserLanguage` objects.
      *
      * The async variant is
      * {@see BrowserLanguageServiceClient::listBrowserLanguagesAsync()} .

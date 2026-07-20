@@ -37,12 +37,20 @@ class Source
      * Generated from protobuf enum <code>EVAL = 3;</code>
      */
     const PBEVAL = 3;
+    /**
+     * The conversation is from an agent tool. Agent tool runs the agent in a
+     * separate session, which is persisted for testing and debugging purposes.
+     *
+     * Generated from protobuf enum <code>AGENT_TOOL = 4;</code>
+     */
+    const AGENT_TOOL = 4;
 
     private static $valueToName = [
         self::SOURCE_UNSPECIFIED => 'SOURCE_UNSPECIFIED',
         self::LIVE => 'LIVE',
         self::SIMULATOR => 'SIMULATOR',
         self::PBEVAL => 'EVAL',
+        self::AGENT_TOOL => 'AGENT_TOOL',
     ];
 
     public static function name($value)

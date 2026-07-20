@@ -29,7 +29,7 @@ use Google\Ads\AdManager\V1\GetAdUnitRequest;
 use Google\ApiCore\ApiException;
 
 /**
- * API to retrieve an AdUnit object.
+ * Retrieves an `AdUnit` object.
  *
  * @param string $formattedName The resource name of the AdUnit.
  *                              Format: `networks/{network_code}/adUnits/{ad_unit_id}`

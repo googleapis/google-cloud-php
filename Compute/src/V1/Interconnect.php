@@ -87,6 +87,14 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      */
     protected $description = null;
     /**
+     * Output only. URL of the InterconnectLocation object that represents where
+     * this connection is to be provisioned. By default it will be the same as the
+     * location field.
+     *
+     * Generated from protobuf field <code>optional string effective_location = 302355277;</code>
+     */
+    protected $effective_location = null;
+    /**
      * Output only. [Output Only] A list of outages expected for this Interconnect.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectOutageNotification expected_outages = 264484123;</code>
@@ -371,6 +379,10 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      *     @type string $description
      *           An optional description of this resource. Provide this property when you
      *           create the resource.
+     *     @type string $effective_location
+     *           Output only. URL of the InterconnectLocation object that represents where
+     *           this connection is to be provisioned. By default it will be the same as the
+     *           location field.
      *     @type \Google\Cloud\Compute\V1\InterconnectOutageNotification[] $expected_outages
      *           Output only. [Output Only] A list of outages expected for this Interconnect.
      *     @type string $google_ip_address
@@ -812,6 +824,46 @@ class Interconnect extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->description = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. URL of the InterconnectLocation object that represents where
+     * this connection is to be provisioned. By default it will be the same as the
+     * location field.
+     *
+     * Generated from protobuf field <code>optional string effective_location = 302355277;</code>
+     * @return string
+     */
+    public function getEffectiveLocation()
+    {
+        return isset($this->effective_location) ? $this->effective_location : '';
+    }
+
+    public function hasEffectiveLocation()
+    {
+        return isset($this->effective_location);
+    }
+
+    public function clearEffectiveLocation()
+    {
+        unset($this->effective_location);
+    }
+
+    /**
+     * Output only. URL of the InterconnectLocation object that represents where
+     * this connection is to be provisioned. By default it will be the same as the
+     * location field.
+     *
+     * Generated from protobuf field <code>optional string effective_location = 302355277;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setEffectiveLocation($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->effective_location = $var;
 
         return $this;
     }

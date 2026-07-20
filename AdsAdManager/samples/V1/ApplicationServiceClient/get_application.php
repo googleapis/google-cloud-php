@@ -29,7 +29,7 @@ use Google\Ads\AdManager\V1\GetApplicationRequest;
 use Google\ApiCore\ApiException;
 
 /**
- * API to retrieve a `Application` object.
+ * Retrieves a `Application` object.
  *
  * @param string $formattedName The resource name of the Application.
  *                              Format: `networks/{network_code}/applications/{application_id}`

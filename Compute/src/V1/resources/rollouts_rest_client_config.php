@@ -23,6 +23,22 @@
 return [
     'interfaces' => [
         'google.cloud.compute.v1.Rollouts' => [
+            'Advance' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/global/rollouts/{rollout}/advance',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'rollout' => [
+                        'getters' => [
+                            'getRollout',
+                        ],
+                    ],
+                ],
+            ],
             'Cancel' => [
                 'method' => 'patch',
                 'uriTemplate' => '/compute/v1/projects/{project}/global/rollouts/{rollout}',
@@ -78,6 +94,38 @@ return [
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                ],
+            ],
+            'Pause' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/global/rollouts/{rollout}/pause',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'rollout' => [
+                        'getters' => [
+                            'getRollout',
+                        ],
+                    ],
+                ],
+            ],
+            'Resume' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/global/rollouts/{rollout}/resume',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'rollout' => [
+                        'getters' => [
+                            'getRollout',
                         ],
                     ],
                 ],

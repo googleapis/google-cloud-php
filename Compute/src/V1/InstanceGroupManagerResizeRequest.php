@@ -40,6 +40,15 @@ class InstanceGroupManagerResizeRequest extends \Google\Protobuf\Internal\Messag
      */
     protected $id = null;
     /**
+     * The names of instances to be created by this resize request. The number of
+     * names specified determines the number of instances to create. The group's
+     * target size will be increased by this number. This field cannot be used
+     * together with 'resize_by'.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.PerInstanceConfig instances = 29097598;</code>
+     */
+    private $instances;
+    /**
      * Output only. The resource type, which is alwayscompute#instanceGroupManagerResizeRequest for resize requests.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -123,6 +132,11 @@ class InstanceGroupManagerResizeRequest extends \Google\Protobuf\Internal\Messag
      *     @type int|string $id
      *           Output only. A unique identifier for this resource type. The server generates this
      *           identifier.
+     *     @type \Google\Cloud\Compute\V1\PerInstanceConfig[] $instances
+     *           The names of instances to be created by this resize request. The number of
+     *           names specified determines the number of instances to create. The group's
+     *           target size will be increased by this number. This field cannot be used
+     *           together with 'resize_by'.
      *     @type string $kind
      *           Output only. The resource type, which is alwayscompute#instanceGroupManagerResizeRequest for resize requests.
      *     @type string $name
@@ -267,6 +281,38 @@ class InstanceGroupManagerResizeRequest extends \Google\Protobuf\Internal\Messag
     {
         GPBUtil::checkUint64($var);
         $this->id = $var;
+
+        return $this;
+    }
+
+    /**
+     * The names of instances to be created by this resize request. The number of
+     * names specified determines the number of instances to create. The group's
+     * target size will be increased by this number. This field cannot be used
+     * together with 'resize_by'.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.PerInstanceConfig instances = 29097598;</code>
+     * @return RepeatedField<\Google\Cloud\Compute\V1\PerInstanceConfig>
+     */
+    public function getInstances()
+    {
+        return $this->instances;
+    }
+
+    /**
+     * The names of instances to be created by this resize request. The number of
+     * names specified determines the number of instances to create. The group's
+     * target size will be increased by this number. This field cannot be used
+     * together with 'resize_by'.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.PerInstanceConfig instances = 29097598;</code>
+     * @param \Google\Cloud\Compute\V1\PerInstanceConfig[] $var
+     * @return $this
+     */
+    public function setInstances($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Compute\V1\PerInstanceConfig::class);
+        $this->instances = $arr;
 
         return $this;
     }

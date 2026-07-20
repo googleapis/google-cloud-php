@@ -57,17 +57,23 @@ class Address extends \Google\Protobuf\Internal\Message
      */
     protected $id = null;
     /**
-     * Reference to the source of external IPv4 addresses,
-     * like a PublicDelegatedPrefix (PDP) for BYOIP.
-     * The PDP must support enhanced IPv4 allocations.
-     * Use one of the following formats to specify a PDP when reserving an
-     * external IPv4 address using BYOIP.
+     * Reference to the source of IP addresses.
+     * It supports the following cases:
      *    -
-     *    Full resource URL, as inhttps://www.googleapis.com/compute/v1/projects/projectId/regions/region/publicDelegatedPrefixes/pdp-name
+     *      Case 1: PublicDelegatedPrefix (PDP) for BYOIP external IPv4
+     *      addresses. The PDP must support enhanced IPv4 allocations.
      *    -
-     *    Partial URL, as in
-     *           - projects/projectId/regions/region/publicDelegatedPrefixes/pdp-name
-     *           - regions/region/publicDelegatedPrefixes/pdp-name
+     *      Case 2: Internal Range for global internal addresses.
+     * Use one of the following formats to specify the resource:
+     * For a Public Delegated Prefix:
+     *    -
+     *    Full resource URL:https://www.googleapis.com/compute/v1/projects/projectId/regions/region/publicDelegatedPrefixes/pdp
+     *    - Partial URL:
+     *       - projects/projectId/regions/region/publicDelegatedPrefixes/pdp-name
+     *       - regions/region/publicDelegatedPrefixes/pdp-name
+     * For an Internal Range:
+     *    - Full URL:https://networkconnectivity.googleapis.com/v1/projects/project/locations/global/internalRanges/internal-range
+     *    - Partial URL:projects/project/locations/global/internalRanges/internal-range
      *
      * Generated from protobuf field <code>optional string ip_collection = 176818358;</code>
      */
@@ -240,17 +246,23 @@ class Address extends \Google\Protobuf\Internal\Message
      *           Output only. [Output Only] The unique identifier for the resource. This identifier is
      *           defined by the server.
      *     @type string $ip_collection
-     *           Reference to the source of external IPv4 addresses,
-     *           like a PublicDelegatedPrefix (PDP) for BYOIP.
-     *           The PDP must support enhanced IPv4 allocations.
-     *           Use one of the following formats to specify a PDP when reserving an
-     *           external IPv4 address using BYOIP.
+     *           Reference to the source of IP addresses.
+     *           It supports the following cases:
      *              -
-     *              Full resource URL, as inhttps://www.googleapis.com/compute/v1/projects/projectId/regions/region/publicDelegatedPrefixes/pdp-name
+     *                Case 1: PublicDelegatedPrefix (PDP) for BYOIP external IPv4
+     *                addresses. The PDP must support enhanced IPv4 allocations.
      *              -
-     *              Partial URL, as in
-     *                     - projects/projectId/regions/region/publicDelegatedPrefixes/pdp-name
-     *                     - regions/region/publicDelegatedPrefixes/pdp-name
+     *                Case 2: Internal Range for global internal addresses.
+     *           Use one of the following formats to specify the resource:
+     *           For a Public Delegated Prefix:
+     *              -
+     *              Full resource URL:https://www.googleapis.com/compute/v1/projects/projectId/regions/region/publicDelegatedPrefixes/pdp
+     *              - Partial URL:
+     *                 - projects/projectId/regions/region/publicDelegatedPrefixes/pdp-name
+     *                 - regions/region/publicDelegatedPrefixes/pdp-name
+     *           For an Internal Range:
+     *              - Full URL:https://networkconnectivity.googleapis.com/v1/projects/project/locations/global/internalRanges/internal-range
+     *              - Partial URL:projects/project/locations/global/internalRanges/internal-range
      *     @type string $ip_version
      *           The IP version that will be used by this address. Valid options areIPV4 or IPV6.
      *           Check the IpVersion enum for the list of possible values.
@@ -533,17 +545,23 @@ class Address extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Reference to the source of external IPv4 addresses,
-     * like a PublicDelegatedPrefix (PDP) for BYOIP.
-     * The PDP must support enhanced IPv4 allocations.
-     * Use one of the following formats to specify a PDP when reserving an
-     * external IPv4 address using BYOIP.
+     * Reference to the source of IP addresses.
+     * It supports the following cases:
      *    -
-     *    Full resource URL, as inhttps://www.googleapis.com/compute/v1/projects/projectId/regions/region/publicDelegatedPrefixes/pdp-name
+     *      Case 1: PublicDelegatedPrefix (PDP) for BYOIP external IPv4
+     *      addresses. The PDP must support enhanced IPv4 allocations.
      *    -
-     *    Partial URL, as in
-     *           - projects/projectId/regions/region/publicDelegatedPrefixes/pdp-name
-     *           - regions/region/publicDelegatedPrefixes/pdp-name
+     *      Case 2: Internal Range for global internal addresses.
+     * Use one of the following formats to specify the resource:
+     * For a Public Delegated Prefix:
+     *    -
+     *    Full resource URL:https://www.googleapis.com/compute/v1/projects/projectId/regions/region/publicDelegatedPrefixes/pdp
+     *    - Partial URL:
+     *       - projects/projectId/regions/region/publicDelegatedPrefixes/pdp-name
+     *       - regions/region/publicDelegatedPrefixes/pdp-name
+     * For an Internal Range:
+     *    - Full URL:https://networkconnectivity.googleapis.com/v1/projects/project/locations/global/internalRanges/internal-range
+     *    - Partial URL:projects/project/locations/global/internalRanges/internal-range
      *
      * Generated from protobuf field <code>optional string ip_collection = 176818358;</code>
      * @return string
@@ -564,17 +582,23 @@ class Address extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Reference to the source of external IPv4 addresses,
-     * like a PublicDelegatedPrefix (PDP) for BYOIP.
-     * The PDP must support enhanced IPv4 allocations.
-     * Use one of the following formats to specify a PDP when reserving an
-     * external IPv4 address using BYOIP.
+     * Reference to the source of IP addresses.
+     * It supports the following cases:
      *    -
-     *    Full resource URL, as inhttps://www.googleapis.com/compute/v1/projects/projectId/regions/region/publicDelegatedPrefixes/pdp-name
+     *      Case 1: PublicDelegatedPrefix (PDP) for BYOIP external IPv4
+     *      addresses. The PDP must support enhanced IPv4 allocations.
      *    -
-     *    Partial URL, as in
-     *           - projects/projectId/regions/region/publicDelegatedPrefixes/pdp-name
-     *           - regions/region/publicDelegatedPrefixes/pdp-name
+     *      Case 2: Internal Range for global internal addresses.
+     * Use one of the following formats to specify the resource:
+     * For a Public Delegated Prefix:
+     *    -
+     *    Full resource URL:https://www.googleapis.com/compute/v1/projects/projectId/regions/region/publicDelegatedPrefixes/pdp
+     *    - Partial URL:
+     *       - projects/projectId/regions/region/publicDelegatedPrefixes/pdp-name
+     *       - regions/region/publicDelegatedPrefixes/pdp-name
+     * For an Internal Range:
+     *    - Full URL:https://networkconnectivity.googleapis.com/v1/projects/project/locations/global/internalRanges/internal-range
+     *    - Partial URL:projects/project/locations/global/internalRanges/internal-range
      *
      * Generated from protobuf field <code>optional string ip_collection = 176818358;</code>
      * @param string $var

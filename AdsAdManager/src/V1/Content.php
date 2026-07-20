@@ -28,6 +28,119 @@ class Content extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string display_name = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $display_name = null;
+    /**
+     * Output only. The status of this `Content`.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.ContentStatusEnum.ContentStatus status = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $status = null;
+    /**
+     * Output only. Whether the content status was defined by the user, or by the
+     * source CMS from which the `Content` was ingested.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.ContentStatusSourceEnum.ContentStatusSource content_status_source = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $content_status_source = null;
+    /**
+     * Output only. The current DAI ingest status of the HLS media for the
+     * `Content`. This attribute is unset if the `Content` is not eligible for
+     * dynamic ad insertion or if the `Content` does not have HLS media.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.DaiIngestStatusEnum.DaiIngestStatus hls_ingest_status = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $hls_ingest_status = null;
+    /**
+     * Output only. The list of any errors that occurred during the most recent
+     * DAI ingestion process of the HLS media. This attribute will be empty if the
+     * hlsIngestStatus is [DaiIngestStatus.SUCCESS][] or if the `Content` is
+     * not eligible for dynamic ad insertion or if the `Content` does not have
+     * HLS media.
+     *
+     * Generated from protobuf field <code>repeated .google.ads.admanager.v1.DaiIngestError hls_ingest_errors = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $hls_ingest_errors;
+    /**
+     * Output only. The timestamp at which this `Content`'s HLS media was last
+     * ingested for DAI. This attribute will be unset if the `Content` is not
+     * eligible for dynamic ad insertion or if the `Content` does not have HLS
+     * media.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.Timestamp last_hls_ingest_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $last_hls_ingest_time = null;
+    /**
+     * Output only. The current DAI ingest status of the DASH media for the
+     * `Content`. This attribute is unset if the `Content` is not eligible for
+     * dynamic ad insertion or if the `Content` does not have DASH media.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.DaiIngestStatusEnum.DaiIngestStatus dash_ingest_status = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $dash_ingest_status = null;
+    /**
+     * Output only. The list of any errors that occurred during the most recent
+     * DAI ingestion process of the DASH media. This attribute will be empty if
+     * the hlsIngestStatus is [DaiIngestStatus.SUCCESS][] or if the `Content` is
+     * not eligible for dynamic ad insertion or if the `Content` does not have
+     * DASH media.
+     *
+     * Generated from protobuf field <code>repeated .google.ads.admanager.v1.DaiIngestError dash_ingest_errors = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $dash_ingest_errors;
+    /**
+     * Output only. The timestamp at which this `Content`'s DASH media was last
+     * ingested for DAI. This attribute will be unset if the `Content` is not
+     * eligible for dynamic ad insertion or if the `Content` does not have DASH
+     * media.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.Timestamp last_dash_ingest_time = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $last_dash_ingest_time = null;
+    /**
+     * Output only. The timestamp at which this `Content` was published.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.Timestamp import_time = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $import_time = null;
+    /**
+     * Output only. The timestamp at which this `Content` was last modified.
+     * The last modified date time will always be updated when a
+     * [ContentBundle][google.ads.admanager.v1.ContentBundle]
+     * association is changed, but will not always be updated when a
+     * [CmsMetadataValue][google.ads.admanager.v1.CmsMetadataValue]
+     * value is changed.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.Timestamp update_time = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $update_time = null;
+    /**
+     * Output only. Information about the `Content` from the CMS it was ingested
+     * from.
+     *
+     * Generated from protobuf field <code>repeated .google.ads.admanager.v1.CmsContent cms_sources = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $cms_sources;
+    /**
+     * Output only. The resource names of the
+     * [ContentBundles][google.ads.admanager.v1.ContentBundle] of
+     * which this `Content` is a member.
+     *
+     * Generated from protobuf field <code>repeated string content_bundles = 14 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     */
+    private $content_bundles;
+    /**
+     * Output only. The resource names of the [CmsMetadataValues]
+     * [google.ads.admanager.v1.CmsMetadataValue] that
+     * are associated with this `Content`.
+     *
+     * Generated from protobuf field <code>repeated string cms_metadata_values = 15 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     */
+    private $cms_metadata_values;
+    /**
+     * Output only. The duration of the `Content`.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.Duration duration = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $duration = null;
 
     /**
      * Constructor.
@@ -40,6 +153,63 @@ class Content extends \Google\Protobuf\Internal\Message
      *           Format: `networks/{network_code}/content/{content_id}`
      *     @type string $display_name
      *           Output only. The name of the `Content`.
+     *     @type int $status
+     *           Output only. The status of this `Content`.
+     *     @type int $content_status_source
+     *           Output only. Whether the content status was defined by the user, or by the
+     *           source CMS from which the `Content` was ingested.
+     *     @type int $hls_ingest_status
+     *           Output only. The current DAI ingest status of the HLS media for the
+     *           `Content`. This attribute is unset if the `Content` is not eligible for
+     *           dynamic ad insertion or if the `Content` does not have HLS media.
+     *     @type \Google\Ads\AdManager\V1\DaiIngestError[] $hls_ingest_errors
+     *           Output only. The list of any errors that occurred during the most recent
+     *           DAI ingestion process of the HLS media. This attribute will be empty if the
+     *           hlsIngestStatus is [DaiIngestStatus.SUCCESS][] or if the `Content` is
+     *           not eligible for dynamic ad insertion or if the `Content` does not have
+     *           HLS media.
+     *     @type \Google\Protobuf\Timestamp $last_hls_ingest_time
+     *           Output only. The timestamp at which this `Content`'s HLS media was last
+     *           ingested for DAI. This attribute will be unset if the `Content` is not
+     *           eligible for dynamic ad insertion or if the `Content` does not have HLS
+     *           media.
+     *     @type int $dash_ingest_status
+     *           Output only. The current DAI ingest status of the DASH media for the
+     *           `Content`. This attribute is unset if the `Content` is not eligible for
+     *           dynamic ad insertion or if the `Content` does not have DASH media.
+     *     @type \Google\Ads\AdManager\V1\DaiIngestError[] $dash_ingest_errors
+     *           Output only. The list of any errors that occurred during the most recent
+     *           DAI ingestion process of the DASH media. This attribute will be empty if
+     *           the hlsIngestStatus is [DaiIngestStatus.SUCCESS][] or if the `Content` is
+     *           not eligible for dynamic ad insertion or if the `Content` does not have
+     *           DASH media.
+     *     @type \Google\Protobuf\Timestamp $last_dash_ingest_time
+     *           Output only. The timestamp at which this `Content`'s DASH media was last
+     *           ingested for DAI. This attribute will be unset if the `Content` is not
+     *           eligible for dynamic ad insertion or if the `Content` does not have DASH
+     *           media.
+     *     @type \Google\Protobuf\Timestamp $import_time
+     *           Output only. The timestamp at which this `Content` was published.
+     *     @type \Google\Protobuf\Timestamp $update_time
+     *           Output only. The timestamp at which this `Content` was last modified.
+     *           The last modified date time will always be updated when a
+     *           [ContentBundle][google.ads.admanager.v1.ContentBundle]
+     *           association is changed, but will not always be updated when a
+     *           [CmsMetadataValue][google.ads.admanager.v1.CmsMetadataValue]
+     *           value is changed.
+     *     @type \Google\Ads\AdManager\V1\CmsContent[] $cms_sources
+     *           Output only. Information about the `Content` from the CMS it was ingested
+     *           from.
+     *     @type string[] $content_bundles
+     *           Output only. The resource names of the
+     *           [ContentBundles][google.ads.admanager.v1.ContentBundle] of
+     *           which this `Content` is a member.
+     *     @type string[] $cms_metadata_values
+     *           Output only. The resource names of the [CmsMetadataValues]
+     *           [google.ads.admanager.v1.CmsMetadataValue] that
+     *           are associated with this `Content`.
+     *     @type \Google\Protobuf\Duration $duration
+     *           Output only. The duration of the `Content`.
      * }
      */
     public function __construct($data = NULL) {
@@ -107,6 +277,518 @@ class Content extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->display_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The status of this `Content`.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.ContentStatusEnum.ContentStatus status = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getStatus()
+    {
+        return isset($this->status) ? $this->status : 0;
+    }
+
+    public function hasStatus()
+    {
+        return isset($this->status);
+    }
+
+    public function clearStatus()
+    {
+        unset($this->status);
+    }
+
+    /**
+     * Output only. The status of this `Content`.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.ContentStatusEnum.ContentStatus status = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setStatus($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Ads\AdManager\V1\ContentStatusEnum\ContentStatus::class);
+        $this->status = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Whether the content status was defined by the user, or by the
+     * source CMS from which the `Content` was ingested.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.ContentStatusSourceEnum.ContentStatusSource content_status_source = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getContentStatusSource()
+    {
+        return isset($this->content_status_source) ? $this->content_status_source : 0;
+    }
+
+    public function hasContentStatusSource()
+    {
+        return isset($this->content_status_source);
+    }
+
+    public function clearContentStatusSource()
+    {
+        unset($this->content_status_source);
+    }
+
+    /**
+     * Output only. Whether the content status was defined by the user, or by the
+     * source CMS from which the `Content` was ingested.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.ContentStatusSourceEnum.ContentStatusSource content_status_source = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setContentStatusSource($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Ads\AdManager\V1\ContentStatusSourceEnum\ContentStatusSource::class);
+        $this->content_status_source = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The current DAI ingest status of the HLS media for the
+     * `Content`. This attribute is unset if the `Content` is not eligible for
+     * dynamic ad insertion or if the `Content` does not have HLS media.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.DaiIngestStatusEnum.DaiIngestStatus hls_ingest_status = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getHlsIngestStatus()
+    {
+        return isset($this->hls_ingest_status) ? $this->hls_ingest_status : 0;
+    }
+
+    public function hasHlsIngestStatus()
+    {
+        return isset($this->hls_ingest_status);
+    }
+
+    public function clearHlsIngestStatus()
+    {
+        unset($this->hls_ingest_status);
+    }
+
+    /**
+     * Output only. The current DAI ingest status of the HLS media for the
+     * `Content`. This attribute is unset if the `Content` is not eligible for
+     * dynamic ad insertion or if the `Content` does not have HLS media.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.DaiIngestStatusEnum.DaiIngestStatus hls_ingest_status = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setHlsIngestStatus($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Ads\AdManager\V1\DaiIngestStatusEnum\DaiIngestStatus::class);
+        $this->hls_ingest_status = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The list of any errors that occurred during the most recent
+     * DAI ingestion process of the HLS media. This attribute will be empty if the
+     * hlsIngestStatus is [DaiIngestStatus.SUCCESS][] or if the `Content` is
+     * not eligible for dynamic ad insertion or if the `Content` does not have
+     * HLS media.
+     *
+     * Generated from protobuf field <code>repeated .google.ads.admanager.v1.DaiIngestError hls_ingest_errors = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return RepeatedField<\Google\Ads\AdManager\V1\DaiIngestError>
+     */
+    public function getHlsIngestErrors()
+    {
+        return $this->hls_ingest_errors;
+    }
+
+    /**
+     * Output only. The list of any errors that occurred during the most recent
+     * DAI ingestion process of the HLS media. This attribute will be empty if the
+     * hlsIngestStatus is [DaiIngestStatus.SUCCESS][] or if the `Content` is
+     * not eligible for dynamic ad insertion or if the `Content` does not have
+     * HLS media.
+     *
+     * Generated from protobuf field <code>repeated .google.ads.admanager.v1.DaiIngestError hls_ingest_errors = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Ads\AdManager\V1\DaiIngestError[] $var
+     * @return $this
+     */
+    public function setHlsIngestErrors($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Ads\AdManager\V1\DaiIngestError::class);
+        $this->hls_ingest_errors = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The timestamp at which this `Content`'s HLS media was last
+     * ingested for DAI. This attribute will be unset if the `Content` is not
+     * eligible for dynamic ad insertion or if the `Content` does not have HLS
+     * media.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.Timestamp last_hls_ingest_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getLastHlsIngestTime()
+    {
+        return $this->last_hls_ingest_time;
+    }
+
+    public function hasLastHlsIngestTime()
+    {
+        return isset($this->last_hls_ingest_time);
+    }
+
+    public function clearLastHlsIngestTime()
+    {
+        unset($this->last_hls_ingest_time);
+    }
+
+    /**
+     * Output only. The timestamp at which this `Content`'s HLS media was last
+     * ingested for DAI. This attribute will be unset if the `Content` is not
+     * eligible for dynamic ad insertion or if the `Content` does not have HLS
+     * media.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.Timestamp last_hls_ingest_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setLastHlsIngestTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->last_hls_ingest_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The current DAI ingest status of the DASH media for the
+     * `Content`. This attribute is unset if the `Content` is not eligible for
+     * dynamic ad insertion or if the `Content` does not have DASH media.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.DaiIngestStatusEnum.DaiIngestStatus dash_ingest_status = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getDashIngestStatus()
+    {
+        return isset($this->dash_ingest_status) ? $this->dash_ingest_status : 0;
+    }
+
+    public function hasDashIngestStatus()
+    {
+        return isset($this->dash_ingest_status);
+    }
+
+    public function clearDashIngestStatus()
+    {
+        unset($this->dash_ingest_status);
+    }
+
+    /**
+     * Output only. The current DAI ingest status of the DASH media for the
+     * `Content`. This attribute is unset if the `Content` is not eligible for
+     * dynamic ad insertion or if the `Content` does not have DASH media.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.DaiIngestStatusEnum.DaiIngestStatus dash_ingest_status = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setDashIngestStatus($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Ads\AdManager\V1\DaiIngestStatusEnum\DaiIngestStatus::class);
+        $this->dash_ingest_status = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The list of any errors that occurred during the most recent
+     * DAI ingestion process of the DASH media. This attribute will be empty if
+     * the hlsIngestStatus is [DaiIngestStatus.SUCCESS][] or if the `Content` is
+     * not eligible for dynamic ad insertion or if the `Content` does not have
+     * DASH media.
+     *
+     * Generated from protobuf field <code>repeated .google.ads.admanager.v1.DaiIngestError dash_ingest_errors = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return RepeatedField<\Google\Ads\AdManager\V1\DaiIngestError>
+     */
+    public function getDashIngestErrors()
+    {
+        return $this->dash_ingest_errors;
+    }
+
+    /**
+     * Output only. The list of any errors that occurred during the most recent
+     * DAI ingestion process of the DASH media. This attribute will be empty if
+     * the hlsIngestStatus is [DaiIngestStatus.SUCCESS][] or if the `Content` is
+     * not eligible for dynamic ad insertion or if the `Content` does not have
+     * DASH media.
+     *
+     * Generated from protobuf field <code>repeated .google.ads.admanager.v1.DaiIngestError dash_ingest_errors = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Ads\AdManager\V1\DaiIngestError[] $var
+     * @return $this
+     */
+    public function setDashIngestErrors($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Ads\AdManager\V1\DaiIngestError::class);
+        $this->dash_ingest_errors = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The timestamp at which this `Content`'s DASH media was last
+     * ingested for DAI. This attribute will be unset if the `Content` is not
+     * eligible for dynamic ad insertion or if the `Content` does not have DASH
+     * media.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.Timestamp last_dash_ingest_time = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getLastDashIngestTime()
+    {
+        return $this->last_dash_ingest_time;
+    }
+
+    public function hasLastDashIngestTime()
+    {
+        return isset($this->last_dash_ingest_time);
+    }
+
+    public function clearLastDashIngestTime()
+    {
+        unset($this->last_dash_ingest_time);
+    }
+
+    /**
+     * Output only. The timestamp at which this `Content`'s DASH media was last
+     * ingested for DAI. This attribute will be unset if the `Content` is not
+     * eligible for dynamic ad insertion or if the `Content` does not have DASH
+     * media.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.Timestamp last_dash_ingest_time = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setLastDashIngestTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->last_dash_ingest_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The timestamp at which this `Content` was published.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.Timestamp import_time = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getImportTime()
+    {
+        return $this->import_time;
+    }
+
+    public function hasImportTime()
+    {
+        return isset($this->import_time);
+    }
+
+    public function clearImportTime()
+    {
+        unset($this->import_time);
+    }
+
+    /**
+     * Output only. The timestamp at which this `Content` was published.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.Timestamp import_time = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setImportTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->import_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The timestamp at which this `Content` was last modified.
+     * The last modified date time will always be updated when a
+     * [ContentBundle][google.ads.admanager.v1.ContentBundle]
+     * association is changed, but will not always be updated when a
+     * [CmsMetadataValue][google.ads.admanager.v1.CmsMetadataValue]
+     * value is changed.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.Timestamp update_time = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getUpdateTime()
+    {
+        return $this->update_time;
+    }
+
+    public function hasUpdateTime()
+    {
+        return isset($this->update_time);
+    }
+
+    public function clearUpdateTime()
+    {
+        unset($this->update_time);
+    }
+
+    /**
+     * Output only. The timestamp at which this `Content` was last modified.
+     * The last modified date time will always be updated when a
+     * [ContentBundle][google.ads.admanager.v1.ContentBundle]
+     * association is changed, but will not always be updated when a
+     * [CmsMetadataValue][google.ads.admanager.v1.CmsMetadataValue]
+     * value is changed.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.Timestamp update_time = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setUpdateTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->update_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Information about the `Content` from the CMS it was ingested
+     * from.
+     *
+     * Generated from protobuf field <code>repeated .google.ads.admanager.v1.CmsContent cms_sources = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return RepeatedField<\Google\Ads\AdManager\V1\CmsContent>
+     */
+    public function getCmsSources()
+    {
+        return $this->cms_sources;
+    }
+
+    /**
+     * Output only. Information about the `Content` from the CMS it was ingested
+     * from.
+     *
+     * Generated from protobuf field <code>repeated .google.ads.admanager.v1.CmsContent cms_sources = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Ads\AdManager\V1\CmsContent[] $var
+     * @return $this
+     */
+    public function setCmsSources($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Ads\AdManager\V1\CmsContent::class);
+        $this->cms_sources = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The resource names of the
+     * [ContentBundles][google.ads.admanager.v1.ContentBundle] of
+     * which this `Content` is a member.
+     *
+     * Generated from protobuf field <code>repeated string content_bundles = 14 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * @return RepeatedField<string>
+     */
+    public function getContentBundles()
+    {
+        return $this->content_bundles;
+    }
+
+    /**
+     * Output only. The resource names of the
+     * [ContentBundles][google.ads.admanager.v1.ContentBundle] of
+     * which this `Content` is a member.
+     *
+     * Generated from protobuf field <code>repeated string content_bundles = 14 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * @param string[] $var
+     * @return $this
+     */
+    public function setContentBundles($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->content_bundles = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The resource names of the [CmsMetadataValues]
+     * [google.ads.admanager.v1.CmsMetadataValue] that
+     * are associated with this `Content`.
+     *
+     * Generated from protobuf field <code>repeated string cms_metadata_values = 15 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * @return RepeatedField<string>
+     */
+    public function getCmsMetadataValues()
+    {
+        return $this->cms_metadata_values;
+    }
+
+    /**
+     * Output only. The resource names of the [CmsMetadataValues]
+     * [google.ads.admanager.v1.CmsMetadataValue] that
+     * are associated with this `Content`.
+     *
+     * Generated from protobuf field <code>repeated string cms_metadata_values = 15 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
+     * @param string[] $var
+     * @return $this
+     */
+    public function setCmsMetadataValues($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->cms_metadata_values = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The duration of the `Content`.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.Duration duration = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Duration|null
+     */
+    public function getDuration()
+    {
+        return $this->duration;
+    }
+
+    public function hasDuration()
+    {
+        return isset($this->duration);
+    }
+
+    public function clearDuration()
+    {
+        unset($this->duration);
+    }
+
+    /**
+     * Output only. The duration of the `Content`.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.Duration duration = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Duration $var
+     * @return $this
+     */
+    public function setDuration($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
+        $this->duration = $var;
 
         return $this;
     }

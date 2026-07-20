@@ -262,7 +262,7 @@ final class CmsMetadataValueServiceClient
     }
 
     /**
-     * API to activate a list of `CmsMetadataValue` objects.
+     * Activates a list of `CmsMetadataValue` objects.
      *
      * The async variant is
      * {@see CmsMetadataValueServiceClient::batchActivateCmsMetadataValuesAsync()} .
@@ -291,7 +291,7 @@ final class CmsMetadataValueServiceClient
     }
 
     /**
-     * API to deactivate a list of `CmsMetadataValue` objects.
+     * Deactivates a list of `CmsMetadataValue` objects.
      *
      * The async variant is
      * {@see CmsMetadataValueServiceClient::batchDeactivateCmsMetadataValuesAsync()} .
@@ -320,7 +320,7 @@ final class CmsMetadataValueServiceClient
     }
 
     /**
-     * API to retrieve a `CmsMetadataValue` object.
+     * Retrieves a `CmsMetadataValue` object.
      *
      * The async variant is
      * {@see CmsMetadataValueServiceClient::getCmsMetadataValueAsync()} .
@@ -347,7 +347,7 @@ final class CmsMetadataValueServiceClient
     }
 
     /**
-     * API to retrieve a list of `CmsMetadataValue` objects.
+     * Lists `CmsMetadataValue` objects.
      *
      * The async variant is
      * {@see CmsMetadataValueServiceClient::listCmsMetadataValuesAsync()} .

@@ -46,11 +46,13 @@ use Google\Cloud\SecretManager\V1\CreateSecretRequest;
 use Google\Cloud\SecretManager\V1\DeleteSecretRequest;
 use Google\Cloud\SecretManager\V1\DestroySecretVersionRequest;
 use Google\Cloud\SecretManager\V1\DisableSecretVersionRequest;
+use Google\Cloud\SecretManager\V1\EnableManagedRotationRequest;
 use Google\Cloud\SecretManager\V1\EnableSecretVersionRequest;
 use Google\Cloud\SecretManager\V1\GetSecretRequest;
 use Google\Cloud\SecretManager\V1\GetSecretVersionRequest;
 use Google\Cloud\SecretManager\V1\ListSecretVersionsRequest;
 use Google\Cloud\SecretManager\V1\ListSecretsRequest;
+use Google\Cloud\SecretManager\V1\RotateSecretRequest;
 use Google\Cloud\SecretManager\V1\Secret;
 use Google\Cloud\SecretManager\V1\SecretVersion;
 use Google\Cloud\SecretManager\V1\UpdateSecretRequest;
@@ -80,12 +82,14 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<void> deleteSecretAsync(DeleteSecretRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<SecretVersion> destroySecretVersionAsync(DestroySecretVersionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<SecretVersion> disableSecretVersionAsync(DisableSecretVersionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SecretVersion> enableManagedRotationAsync(EnableManagedRotationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<SecretVersion> enableSecretVersionAsync(EnableSecretVersionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Secret> getSecretAsync(GetSecretRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<SecretVersion> getSecretVersionAsync(GetSecretVersionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listSecretVersionsAsync(ListSecretVersionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listSecretsAsync(ListSecretsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SecretVersion> rotateSecretAsync(RotateSecretRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Secret> updateSecretAsync(UpdateSecretRequest $request, array $optionalArgs = [])
@@ -598,6 +602,37 @@ final class SecretManagerServiceClient
     }
 
     /**
+     * Enables the managed rotation feature for a
+     * [Secret][google.cloud.secretmanager.v1.Secret]. This method can only be
+     * triggered once for a secret. In order to do further rotations, RotateSecret
+     * should be used. This method will add a secret version and update the
+     * password in Cloud SQL.
+     *
+     * The async variant is
+     * {@see SecretManagerServiceClient::enableManagedRotationAsync()} .
+     *
+     * @example samples/V1/SecretManagerServiceClient/enable_managed_rotation.php
+     *
+     * @param EnableManagedRotationRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return SecretVersion
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function enableManagedRotation(EnableManagedRotationRequest $request, array $callOptions = []): SecretVersion
+    {
+        return $this->startApiCall('EnableManagedRotation', $request, $callOptions)->wait();
+    }
+
+    /**
      * Enables a [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
      *
      * Sets the [state][google.cloud.secretmanager.v1.SecretVersion.state] of the
@@ -764,6 +799,34 @@ final class SecretManagerServiceClient
     public function listSecrets(ListSecretsRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('ListSecrets', $request, $callOptions);
+    }
+
+    /**
+     * Do a managed rotation for a [Secret][google.cloud.secretmanager.v1.Secret].
+     * This can only be triggered after Managed rotation has been enabled.
+     * This method will add a secret version and update the password in Cloud SQL.
+     *
+     * The async variant is {@see SecretManagerServiceClient::rotateSecretAsync()} .
+     *
+     * @example samples/V1/SecretManagerServiceClient/rotate_secret.php
+     *
+     * @param RotateSecretRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return SecretVersion
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function rotateSecret(RotateSecretRequest $request, array $callOptions = []): SecretVersion
+    {
+        return $this->startApiCall('RotateSecret', $request, $callOptions)->wait();
     }
 
     /**

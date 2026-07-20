@@ -29,7 +29,7 @@ use Google\Ads\AdManager\V1\Client\CmsMetadataKeyServiceClient;
 use Google\ApiCore\ApiException;
 
 /**
- * API to deactivate a list of `CmsMetadataKey` objects.
+ * Deactivates a list of `CmsMetadataKey` objects.
  *
  * @param string $formattedParent       The parent resource where `CmsMetadataKeys` will be
  *                                      deactivated.

@@ -90,6 +90,11 @@
                                 "getAttachment"
                             ]
                         },
+                        "GetAvailability": {
+                            "methods": [
+                                "getAvailability"
+                            ]
+                        },
                         "GetCustomEmoji": {
                             "methods": [
                                 "getCustomEmoji"
@@ -170,6 +175,21 @@
                                 "listSpaces"
                             ]
                         },
+                        "MarkAsActive": {
+                            "methods": [
+                                "markAsActive"
+                            ]
+                        },
+                        "MarkAsAway": {
+                            "methods": [
+                                "markAsAway"
+                            ]
+                        },
+                        "MarkAsDoNotDisturb": {
+                            "methods": [
+                                "markAsDoNotDisturb"
+                            ]
+                        },
                         "MoveSectionItem": {
                             "methods": [
                                 "moveSectionItem"
@@ -188,6 +208,11 @@
                         "SetUpSpace": {
                             "methods": [
                                 "setUpSpace"
+                            ]
+                        },
+                        "UpdateAvailability": {
+                            "methods": [
+                                "updateAvailability"
                             ]
                         },
                         "UpdateMembership": {
