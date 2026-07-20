@@ -31,7 +31,6 @@ use Google\ApiCore\BidiStream;
 use Google\ApiCore\ClientStream;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
@@ -40,6 +39,7 @@ use Google\ApiCore\ServerStream;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use Google\Showcase\V1beta1\BlockRequest;
 use Google\Showcase\V1beta1\BlockResponse;
@@ -158,6 +158,25 @@ final class EchoClient
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
+    }
+
+    /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return OperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new OperationsClient($options);
     }
 
     /**

@@ -49,8 +49,5 @@
             "Google\\Showcase\\": "tests/Conformance/src",
             "GPBMetadata\\Google\\Showcase\\": "tests/Conformance/metadata"
         }
-    },
-    "scripts": {
-        "generate-showcase": "./generate-showcase.sh"
     }
 }
