@@ -200,6 +200,15 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     protected $encryption_info = null;
     /**
+     * Optional. If true, cluster endpoints that are created and registered by
+     * customers can be deleted asynchronously. That is, such a cluster endpoint
+     * can be de-registered before the forwarding rules in the cluster endpoint
+     * are deleted.
+     *
+     * Generated from protobuf field <code>optional bool async_cluster_endpoints_deletion_enabled = 44 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $async_cluster_endpoints_deletion_enabled = null;
+    /**
      * Optional. Server CA mode for the cluster.
      *
      * Generated from protobuf field <code>optional .google.cloud.redis.cluster.v1.ServerCaMode server_ca_mode = 53 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -306,6 +315,11 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *           Optional. The automated backup config for the cluster.
      *     @type \Google\Cloud\Redis\Cluster\V1\EncryptionInfo $encryption_info
      *           Output only. Encryption information of the data at rest of the cluster.
+     *     @type bool $async_cluster_endpoints_deletion_enabled
+     *           Optional. If true, cluster endpoints that are created and registered by
+     *           customers can be deleted asynchronously. That is, such a cluster endpoint
+     *           can be de-registered before the forwarding rules in the cluster endpoint
+     *           are deleted.
      *     @type int $server_ca_mode
      *           Optional. Server CA mode for the cluster.
      *     @type string $server_ca_pool
@@ -1305,6 +1319,48 @@ class Cluster extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Redis\Cluster\V1\EncryptionInfo::class);
         $this->encryption_info = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If true, cluster endpoints that are created and registered by
+     * customers can be deleted asynchronously. That is, such a cluster endpoint
+     * can be de-registered before the forwarding rules in the cluster endpoint
+     * are deleted.
+     *
+     * Generated from protobuf field <code>optional bool async_cluster_endpoints_deletion_enabled = 44 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getAsyncClusterEndpointsDeletionEnabled()
+    {
+        return isset($this->async_cluster_endpoints_deletion_enabled) ? $this->async_cluster_endpoints_deletion_enabled : false;
+    }
+
+    public function hasAsyncClusterEndpointsDeletionEnabled()
+    {
+        return isset($this->async_cluster_endpoints_deletion_enabled);
+    }
+
+    public function clearAsyncClusterEndpointsDeletionEnabled()
+    {
+        unset($this->async_cluster_endpoints_deletion_enabled);
+    }
+
+    /**
+     * Optional. If true, cluster endpoints that are created and registered by
+     * customers can be deleted asynchronously. That is, such a cluster endpoint
+     * can be de-registered before the forwarding rules in the cluster endpoint
+     * are deleted.
+     *
+     * Generated from protobuf field <code>optional bool async_cluster_endpoints_deletion_enabled = 44 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setAsyncClusterEndpointsDeletionEnabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->async_cluster_endpoints_deletion_enabled = $var;
 
         return $this;
     }
