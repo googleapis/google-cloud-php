@@ -93,7 +93,7 @@ class TransactionTest extends SystemTestCase
         $cols = array_keys($row);
 
         $db->runTransaction(function ($t) use ($row) {
-            $t->insert(self::TEST_TABLE_NAME, $row);
+            $t->insertOrUpdate(self::TEST_TABLE_NAME, $row);
             $t->commit();
         });
 
@@ -272,15 +272,16 @@ class TransactionTest extends SystemTestCase
         $this->skipEmulatorTests();
 
         $error = null;
+        $newName = uniqid('Doug');
         $row = $this->getRow();
-        $row['name'] = 'Doug';
+        $row['name'] = $newName;
 
         $db->runTransaction(function ($t) use ($row) {
             $t->update(self::TEST_TABLE_NAME, $row);
             $t->commit();
         });
         $row = $this->getRow();
-        $this->assertEquals('Doug', $row['name']);
+        $this->assertEquals($newName, $row['name']);
 
         try {
             $db->runTransaction(function ($t) use ($values) {

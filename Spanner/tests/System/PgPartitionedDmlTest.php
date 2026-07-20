@@ -47,7 +47,7 @@ class PgPartitionedDmlTest extends SystemTestCase
 
         $db = self::$database;
 
-        $db->updateDdl('CREATE TABLE ' . self::PDML_TABLE . '(
+        $db->updateDdl('CREATE TABLE IF NOT EXISTS ' . self::PDML_TABLE . '(
             id bigint NOT NULL,
             stringField varchar(1024),
             boolField BOOL,
@@ -95,7 +95,7 @@ class PgPartitionedDmlTest extends SystemTestCase
     private function executeInsert(array $rows)
     {
         self::$database->runTransaction(function ($t) use ($rows) {
-            $t->insertBatch(self::PDML_TABLE, $rows);
+            $t->insertOrUpdateBatch(self::PDML_TABLE, $rows);
 
             $t->commit();
         });

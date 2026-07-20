@@ -53,7 +53,7 @@ class PgTransactionTest extends SystemTestCase
         self::$tableName = 'transactions_test';
 
         self::$database->updateDdlBatch([
-            'CREATE TABLE ' . self::$tableName . ' (
+            'CREATE TABLE IF NOT EXISTS ' . self::$tableName . ' (
                     id bigint NOT NULL,
                     number bigint NOT NULL,
                     PRIMARY KEY (id)
@@ -77,7 +77,7 @@ class PgTransactionTest extends SystemTestCase
 
         $db->runTransaction(function ($t) {
             $id = rand(1, 346464);
-            $t->insert(self::TEST_TABLE_NAME, [
+            $t->insertOrUpdate(self::TEST_TABLE_NAME, [
                 'id' => $id,
                 'name' => uniqid(self::TESTING_PREFIX),
                 'birthday' => new Date(new \DateTime('2000-01-01'))
@@ -142,15 +142,16 @@ class PgTransactionTest extends SystemTestCase
         $this->skipEmulatorTests();
 
         $error = null;
+        $newName = uniqid('Doug');
         $row = $this->getRow();
-        $row['name'] = 'Doug';
+        $row['name'] = $newName;
 
         $db->runTransaction(function ($t) use ($row) {
             $t->update(self::TEST_TABLE_NAME, $row);
             $t->commit();
         });
         $row = $this->getRow();
-        $this->assertEquals('Doug', $row['name']);
+        $this->assertEquals($newName, $row['name']);
 
         try {
             $db->runTransaction(function ($t) use ($values) {
