@@ -19,39 +19,41 @@ jobs:
           RELEASE_TAG: ${{ inputs.tag }}
         steps:
         - name: Clone libgit2
-          uses: actions/checkout@master
+          uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
           with:
             repository: libgit2/libgit2
             ref: v1.5.1
             path: libgit2
+            persist-credentials: false
         - name: Install libgit2
           run: |
             mkdir libgit2/build && cd libgit2/build
             cmake .. -DCMAKE_INSTALL_PREFIX=/usr/local
             sudo cmake --build . --target install
         - name: Clone splitsh/lite
-          uses: actions/checkout@master
+          uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
           with:
             repository: splitsh/lite
             ref: v2.0.0
             path: lite
+            persist-credentials: false
         - name: Build splitsh-lite
           run: |
             cd lite
             go build -o splitsh-lite github.com/splitsh/lite
             mv splitsh-lite /usr/local/bin/splitsh-lite
         - name: Checkout google/cloud
-          uses: actions/checkout@v7
+          uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
           with:
             persist-credentials: false
             fetch-depth: 0
         - name: Setup PHP
-          uses: shivammathur/setup-php@v2
+          uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # v2
           with:
             php-version: '8.2'
             ini-values: memory_limit=2048M
         - name: Install Dependencies
-          uses: nick-fields/retry@v4
+          uses: nick-fields/retry@ad984534de44a9489a53aefd81eb77f87c70dc60 # v4
           with:
             timeout_minutes: 10
             max_attempts: 3
@@ -62,15 +64,16 @@ jobs:
         - name: Run Subtree Split and Release
           env:
             RELEASE_TAG: ${{ inputs.tag != '' && inputs.tag || steps.getTag.outputs.tag }}
+            VARS_PACKAGIST_USERNAME: ${{ vars.PACKAGIST_USERNAME }}
           run: |
             ./dev/google-cloud split $GITHUB_REPOSITORY $RELEASE_TAG \
               --splitsh=/usr/local/bin/splitsh-lite \
               -t ${{ secrets.SPLIT_TOKEN }} \
-              --packagist-username=${{ vars.PACKAGIST_USERNAME }} \
+              --packagist-username=${VARS_PACKAGIST_USERNAME} \
               --packagist-token=${{ secrets.PACKAGIST_TOKEN }} \
               --packagist-safe-token=${{ secrets.PACKAGIST_SAFE_TOKEN }}
         - name: Verify all releases made it to Packagist
-          uses: nick-fields/retry@v4
+          uses: nick-fields/retry@ad984534de44a9489a53aefd81eb77f87c70dc60 # v4
           with:
             command: |
               ./dev/google-cloud release:verify

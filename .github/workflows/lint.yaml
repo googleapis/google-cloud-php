@@ -12,9 +12,11 @@ jobs:
     runs-on: ubuntu-latest
     name: PHP Style Check
     steps:
-    - uses: actions/checkout@v7
+    - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
+      with:
+        persist-credentials: false
     - name: Setup PHP
-      uses: shivammathur/setup-php@v2
+      uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # v2
       with:
         php-version: '8.1'
     - name: Install Dependencies
@@ -24,7 +26,7 @@ jobs:
 
   style_csfixer:
     name: PHP CS Fixer
-    uses: GoogleCloudPlatform/php-tools/.github/workflows/code-standards.yml@main
+    uses: GoogleCloudPlatform/php-tools/.github/workflows/code-standards.yml@main # zizmor: ignore[unpinned-uses]
     with:
       config: GoogleCloudPlatform/php-tools/.php-cs-fixer.default.php@main
       exclude-patterns: |
@@ -52,9 +54,11 @@ jobs:
     runs-on: ubuntu-latest
     name: PHPStan Static Analysis
     steps:
-    - uses: actions/checkout@v7
+    - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
+      with:
+        persist-credentials: false
     - name: Install PHP
-      uses: shivammathur/setup-php@v2
+      uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # v2
       with:
         php-version: '8.2'
     - name: "Install dependencies"
