@@ -123,6 +123,11 @@ RUN wget -O /tmp/get-pip.py 'https://bootstrap.pypa.io/get-pip.py' \
   && rm /tmp/get-pip.py \
   && python3.11 -m pip
 
+# Define the prefix argument, default to backend build environment.
+# Override this locally by using the following:
+#     docker build --build-arg PATH_PREFIX="." .
+ARG PATH_PREFIX="git/build-dir/.kokoro/docs/docker"
+
 # Install docsuploader
-COPY requirements.txt .
+COPY ${PATH_PREFIX}/requirements.txt .
 RUN python3.11 -m pip install --require-hashes -r requirements.txt
