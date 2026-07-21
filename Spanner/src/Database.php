@@ -1687,12 +1687,13 @@ class Database
 
         $session = $options['session'] ?? $this->session;
         $executeOptions = $this->pluckArray(['parameters', 'types'], $options);
+        $callOptions = $this->pluckArray(['requestOptions', 'timeoutMillis'], $options);
         return $this->operation->execute($session, $sql, $executeOptions + [
             'transaction' => $txnOptions,
             'transactionContext' => $txnContext,
             'directedReadOptions' => $directedReadOptions,
             'route-to-leader' => $txnContext === Database::CONTEXT_READWRITE
-        ]);
+        ] + $callOptions);
     }
 
     /**
@@ -2072,9 +2073,11 @@ class Database
             'transaction' => $txnOptions,
         ];
 
+        $callOptions = $this->pluckArray(['requestOptions', 'timeoutMillis'], $options);
+
         return $this->operation->read($this->session, $table, $keySet, $columns, $readOptions + [
             'route-to-leader' => $txnContext === Database::CONTEXT_READ
-        ]);
+        ] + $callOptions);
     }
 
     /**

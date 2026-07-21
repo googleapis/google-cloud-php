@@ -275,9 +275,11 @@ trait TransactionalReadTrait
             $executeSqlOptions['requestOptions']['transactionTag'] = $this->tag;
         }
 
+        $callOptions = $this->pluckArray(['requestOptions', 'timeoutMillis'], $options);
+
         $result = $this->operation->execute($this->session, $sql, $executeSqlOptions + [
             'route-to-leader' => $this->context === Database::CONTEXT_READWRITE
-        ]);
+        ] + $callOptions);
 
         if (empty($this->id()) && $result->transaction()) {
             $this->setId($result->transaction()->id());
@@ -341,7 +343,7 @@ trait TransactionalReadTrait
         $this->checkReadContext();
 
         $readOptions = $this->pluckArray(
-            ['index', 'limit', 'partitionToken', 'requestOptions', 'directedReadOptions'],
+            ['index', 'limit', 'partitionToken', 'requestOptions', 'directedReadOptions', 'orderBy', 'lockHint'],
             $options,
         );
         $options['transactionType'] = $this->context;
@@ -362,9 +364,11 @@ trait TransactionalReadTrait
             $readOptions,
             $this->directedReadOptions ?? []
         );
+        $callOptions = $this->pluckArray(['timeoutMillis'], $options);
+
         $result = $this->operation->read($this->session, $table, $keySet, $columns, $readOptions + [
             'route-to-leader' => $this->context === Database::CONTEXT_READWRITE
-        ]);
+        ] + $callOptions);
 
         if (empty($this->id()) && $result->transaction()) {
             $this->setId($result->transaction()->id());
