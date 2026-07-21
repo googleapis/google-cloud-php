@@ -262,6 +262,8 @@ class ReadTest extends SystemTestCase
         $rows = iterator_to_array($res->rows());
         $this->assertNotEmpty($rows);
         $this->assertEquals($limit, count($rows));
+
+        $res->transaction()->rollback();
     }
 
     public function testLockHintOnReadOnlyThrowsAnError()
