@@ -39,6 +39,12 @@ use Psr\Http\Message\StreamInterface;
 /**
  * User-facing object returned when a resumable upload method is called.
  * Contains the ResumableUploadClient and manages the upload operation.
+ *
+ * NOTE: The ResumableUpload class is designed for standard, single-threaded PHP execution
+ * environments such as PHP-FPM and PHP-CLI. Concurrency controls are out of scope. If pause() or
+ * cancel() are called, they will block and execute synchronously. ResumableUpload instances
+ * are NOT thread-safe, and should not be shared across concurrent asynchronous contexts (such as
+ * parallel Fibers or Swoole coroutines) without external synchronization.
  */
 class ResumableUpload
 {
