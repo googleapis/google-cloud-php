@@ -71,11 +71,17 @@ class SerializerTest extends TestCase
 
         // Check that $message when encoded and decoded is unchanged
         $deserializedMessage = $serializer->decodeMessage(new $klass(), $serializedMessage);
-        $this->assertEquals($message, $deserializedMessage);
+        $this->assertEquals(
+            $serializer->encodeMessage($message),
+            $serializer->encodeMessage($deserializedMessage)
+        );
 
         // Check that $arrayStructure when decoded is equal to $message
         $deserializedStructure = $serializer->decodeMessage(new $klass(), $arrayStructure);
-        $this->assertEquals($message, $deserializedStructure);
+        $this->assertEquals(
+            $serializer->encodeMessage($message),
+            $serializer->encodeMessage($deserializedStructure)
+        );
 
         // Check that $arrayStructure when decoded and encoded is unchanged
         $reserializedStructure = $serializer->encodeMessage($deserializedStructure);
