@@ -53,14 +53,14 @@ class ShowcaseGenerateCommand extends Command
                 'out-dir',
                 'o',
                 InputOption::VALUE_REQUIRED,
-                'Output directory relative to root.',
+                'Output directory relative to root (defaults to Gax)',
                 'Gax'
             )
             ->addOption(
                 'generator-path',
                 'g',
                 InputOption::VALUE_REQUIRED,
-                'Path to local gapic-generator-php repository (defaults to installed vendor dependency)'
+                'Path to local gapic-generator repository (defaults to installed vendor dependency)'
             )
             ->addOption(
                 'showcase-path',
@@ -72,7 +72,7 @@ class ShowcaseGenerateCommand extends Command
                 'googleapis-path',
                 'a',
                 InputOption::VALUE_REQUIRED,
-                'Path to googleapis repository (defaults to submodule in gapic-generator-php)'
+                'Path to googleapis repository (defaults to submodule in gapic-generator)'
             );
     }
 
@@ -97,30 +97,15 @@ class ShowcaseGenerateCommand extends Command
             if (file_exists($generatorPath . '/vendor/autoload.php')) {
                 require_once $generatorPath . '/vendor/autoload.php';
             }
-            $output->writeln("<info>Using custom gapic-generator-php from:</info> {$generatorPath}");
+            $output->writeln("<info>Using custom gapic-generator from:</info> {$generatorPath}");
         } else {
-            $generatorPath = $this->rootDirectory . 'dev/vendor/google/gapic-generator-php';
-            $output->writeln('<info>Using installed gapic-generator-php dependency.</info>');
-        }
-
-        // Register autoloader for generator generated proto classes
-        spl_autoload_register(function (string $class) use ($generatorPath) {
-            $prefixes = [
-                'Google\\' => $generatorPath . '/generated/Google/',
-                'Grpc\\' => $generatorPath . '/generated/Grpc/',
-                'GPBMetadata\\' => $generatorPath . '/generated/GPBMetadata/',
-            ];
-            foreach ($prefixes as $prefix => $baseDir) {
-                if (str_starts_with($class, $prefix)) {
-                    $rel = str_replace('\\', '/', substr($class, strlen($prefix)));
-                    $file = $baseDir . $rel . '.php';
-                    if (file_exists($file)) {
-                        require_once $file;
-                        return;
-                    }
-                }
+            if (is_dir($this->rootDirectory . 'dev/vendor/google/gapic-generator')) {
+                $generatorPath = $this->rootDirectory . 'dev/vendor/google/gapic-generator';
+            } else {
+                $generatorPath = $this->rootDirectory . 'dev/vendor/google/gapic-generator-php';
             }
-        });
+            $output->writeln('<info>Using installed gapic-generator dependency.</info>');
+        }
 
         // 2. Resolve Showcase Path (Defaults to vendor dependency)
         $showcasePath = $input->getOption('showcase-path') ?: $this->rootDirectory . 'dev/vendor/google/gapic-showcase';
@@ -134,9 +119,13 @@ class ShowcaseGenerateCommand extends Command
         $googleapisPath = $input->getOption('googleapis-path');
         if (!$googleapisPath) {
             $submoduleGoogleapis = $generatorPath . '/googleapis';
-            if (is_dir($generatorPath . '/.git') && !file_exists($submoduleGoogleapis . '/google/cloud/common_resources.proto')) {
-                $output->writeln('<info>Initializing googleapis submodule in gapic-generator-php...</info>');
-                $this->runProcess(['git', 'submodule', 'update', '--init', '--recursive'], $generatorPath);
+            if (!file_exists($submoduleGoogleapis . '/google/cloud/common_resources.proto')) {
+                $output->writeln('<info>Fetching googleapis definitions for gapic-generator...</info>');
+                if (is_dir($generatorPath . '/.git')) {
+                    $this->runProcess(['git', 'submodule', 'update', '--init', '--recursive'], $generatorPath);
+                } else {
+                    $this->runProcess(['git', 'clone', '--depth', '1', 'https://github.com/googleapis/googleapis.git', $submoduleGoogleapis]);
+                }
             }
             if (is_dir($submoduleGoogleapis . '/google/cloud')) {
                 $googleapisPath = $submoduleGoogleapis;

@@ -103,7 +103,11 @@ final class EchoClient
     /** The api version of the service */
     private string $apiVersion = 'v1_20240408';
 
-    /** The default scopes required by the service. */
+    /**
+     * The default scopes required by the service.
+     *
+     * @internal
+     */
     public static $serviceScopes = [];
 
     private $operationsClient;
