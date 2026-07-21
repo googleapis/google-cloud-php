@@ -149,20 +149,22 @@ class ShowcaseGenerateCommand extends Command
 
         // 5. Compile Proto Descriptor Set (desc.pb)
         $output->writeln('<info>2. Compiling proto descriptor set (desc.pb)...</info>');
-        $protocDescCmd = [
+        $allProtoFiles = glob($schemaDir . '/*.proto');
+        $generatorProtoFiles = array_values(array_filter(
+            $allProtoFiles,
+            fn ($file) => !str_ends_with($file, 'messaging.proto')
+        ));
+
+        $protocDescCmd = array_merge([
             'protoc',
             '--include_imports',
             '--include_source_info',
             '-I', $showcasePath . '/schema',
             '-I', $googleapisPath,
             '--descriptor_set_out=' . $descFile,
-            $schemaDir . '/echo.proto',
-            $schemaDir . '/identity.proto',
-            $schemaDir . '/compliance.proto',
-            $schemaDir . '/sequence.proto',
-            $schemaDir . '/testing.proto',
+        ], $generatorProtoFiles, [
             $googleapisPath . '/google/cloud/common_resources.proto',
-        ];
+        ]);
         $this->runProcess($protocDescCmd);
 
         // 6. Generate Showcase PHP Client via CodeGenerator
@@ -171,14 +173,16 @@ class ShowcaseGenerateCommand extends Command
         $descBytes = file_get_contents($descFile);
         $grpcConfig = file_get_contents($schemaDir . '/showcase_grpc_service_config.json');
 
+        $serviceYaml = file_exists($schemaDir . '/showcase_v1beta1.yaml') ? file_get_contents($schemaDir . '/showcase_v1beta1.yaml') : null;
+
         $files = CodeGenerator::generateFromDescriptor(
             $descBytes,
             'google.showcase.v1beta1',
             'grpc+rest',
-            false,
+            true,
             $grpcConfig,
             null,
-            null,
+            $serviceYaml,
             false,
             -1,
             false,
@@ -193,13 +197,12 @@ class ShowcaseGenerateCommand extends Command
 
         // 7. Generate Protobuf Message Classes via protoc --php_out
         $output->writeln('<info>4. Generating Protobuf message classes...</info>');
-        $protoFiles = glob($schemaDir . '/*.proto');
         $protocPhpCmd = array_merge([
             'protoc',
             '-I', $showcasePath . '/schema',
             '-I', $googleapisPath,
             '--php_out=' . $tmpOutputDir . '/src',
-        ], $protoFiles);
+        ], $allProtoFiles);
         $this->runProcess($protocPhpCmd);
 
         // 8. Organize output into Conformance directory
@@ -225,7 +228,7 @@ class ShowcaseGenerateCommand extends Command
         }
 
         // Exclude deprecated Protobuf flat alias files matching *_* (ignoring resources)
-        $deprecatedFinder = (new Finder())->files()->name('*_*')->in($conformanceDir . '/src/V1beta1')->notPath('resources');
+        $deprecatedFinder = (new Finder())->files()->name('*_*.php')->in($conformanceDir . '/src/V1beta1')->notPath('resources');
         $this->fs->remove($deprecatedFinder);
 
         // 9. Clean up temporary files

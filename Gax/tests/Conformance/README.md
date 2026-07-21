@@ -2,6 +2,14 @@
 
 This directory contains the integration conformance test suite (`ShowcaseTest.php`) and generated client SDK for `gapic-showcase`.
 
+## Prerequisites
+
+- **Protobuf Compiler (`protoc`)**: Ensure `protoc` is installed and available in your `$PATH`.
+- **Dev Dependencies**: Ensure dev dependencies are installed:
+  ```sh
+  composer install -d dev/
+  ```
+
 ## Generating the Showcase Client
 
 To generate or update the Showcase client SDK, message classes, and metadata using the PHP CLI tool:
@@ -12,6 +20,7 @@ To generate or update the Showcase client SDK, message classes, and metadata usi
 ```
 
 Options:
+- `-o, --out-dir <dir>`: Output directory relative to repository root (defaults to `Gax`).
 - `-p, --showcase-path <dir>`: Path to local `gapic-showcase` repository (defaults to installed vendor dependency).
 - `-g, --generator-path <dir>`: Path to local `gapic-generator-php` (defaults to installed vendor dependency).
 - `-a, --googleapis-path <dir>`: Path to `googleapis` repository (defaults to submodule in `gapic-generator-php`).

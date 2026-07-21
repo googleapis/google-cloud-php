@@ -112,6 +112,10 @@ return [
                         ],
                     ],
                 ],
+                'autoPopulatedFields' => [
+                    'requestId' => \Google\Api\FieldInfo\Format::UUID4,
+                    'otherRequestId' => \Google\Api\FieldInfo\Format::UUID4,
+                ],
             ],
             'EchoErrorDetails' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
