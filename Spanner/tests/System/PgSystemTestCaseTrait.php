@@ -25,54 +25,64 @@ trait PgSystemTestCaseTrait
 
     protected static function setUpTestDatabase(): void
     {
-        if (self::$hasSetUp) {
+        if (TestDatabaseManager::$pgHasSetUp) {
+            self::$client = TestDatabaseManager::$client;
+            self::$instance = TestDatabaseManager::$instance;
+            self::$database = TestDatabaseManager::$pgDatabase;
+            self::$dbName = TestDatabaseManager::$pgDbName;
+            self::$hasSetUp = true;
             return;
         }
 
         self::$instance = self::getClient()->instance(self::INSTANCE_NAME);
 
-        self::$dbName = uniqid(self::TESTING_PREFIX);
+        if (!self::$dbName = getenv('GOOGLE_CLOUD_SPANNER_TEST_PG_DATABASE')) {
+            self::$dbName = uniqid(self::TESTING_PREFIX);
 
-        // create a PG DB first
-        $op = self::$instance->createDatabase(self::$dbName, [
-            'databaseDialect' => DatabaseDialect::POSTGRESQL
-        ]);
-        // wait for the DB to be ready
-        $op->pollUntilComplete();
+            self::$deletionQueue->add(function () {
+                self::getDatabaseInstance(self::$dbName)->drop();
+            });
+        }
+        
+        self::$database = self::getDatabaseInstance(self::$dbName);
 
-        $db = self::getDatabaseInstance(self::$dbName);
-
-        self::$deletionQueue->add(function () use ($db) {
-            $db->drop();
-        });
-
-        self::$database = $db;
-
-        $db->updateDdlBatch(
-            [
-                'CREATE TABLE ' . self::TEST_TABLE_NAME . ' (
-                    id bigint PRIMARY KEY,
-                    name varchar(1024) NOT NULL,
-                    birthday date
-                )',
-            ]
-        )->pollUntilComplete();
-
-        // Currently, the emulator doesn't support setting roles for the PG
-        // dialect.
-        if (!self::isEmulatorUsed()) {
+        if (!self::$database->exists()) {
+            $op = self::$instance->createDatabase(self::$dbName, [
+                'databaseDialect' => DatabaseDialect::POSTGRESQL
+            ]);
+            $op->pollUntilComplete();
+            
             $db->updateDdlBatch(
                 [
-                    'CREATE ROLE ' . self::DATABASE_ROLE,
-                    'CREATE ROLE ' . self::RESTRICTIVE_DATABASE_ROLE,
-                    'GRANT SELECT ON TABLE ' . self::TEST_TABLE_NAME .
-                    ' TO ' . self::DATABASE_ROLE,
-                    'GRANT SELECT(id, name), INSERT(id, name), UPDATE(id, name) ON TABLE '
-                    . self::TEST_TABLE_NAME . ' TO ' . self::RESTRICTIVE_DATABASE_ROLE,
+                    'CREATE TABLE IF NOT EXISTS ' . self::TEST_TABLE_NAME . ' (
+                        id bigint PRIMARY KEY,
+                        name varchar(1024) NOT NULL,
+                        birthday date
+                    )',
                 ]
             )->pollUntilComplete();
+
+            // Currently, the emulator doesn't support setting roles for the PG
+            // dialect.
+            if (!self::isEmulatorUsed()) {
+                $db->updateDdlBatch(
+                    [
+                        'CREATE ROLE ' . self::DATABASE_ROLE,
+                        'CREATE ROLE ' . self::RESTRICTIVE_DATABASE_ROLE,
+                        'GRANT SELECT ON TABLE ' . self::TEST_TABLE_NAME .
+                        ' TO ' . self::DATABASE_ROLE,
+                        'GRANT SELECT(id, name), INSERT(id, name), UPDATE(id, name) ON TABLE '
+                        . self::TEST_TABLE_NAME . ' TO ' . self::RESTRICTIVE_DATABASE_ROLE,
+                    ]
+                )->pollUntilComplete();
+            }
         }
 
+        TestDatabaseManager::$pgHasSetUp = true;
+        TestDatabaseManager::$client = self::$client;
+        TestDatabaseManager::$instance = self::$instance;
+        TestDatabaseManager::$pgDatabase = self::$database;
+        TestDatabaseManager::$pgDbName = self::$dbName;
         self::$hasSetUp = true;
     }
 }

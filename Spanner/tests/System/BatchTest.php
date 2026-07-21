@@ -58,10 +58,7 @@ class BatchTest extends SystemTestCase
         ))->pollUntilComplete();
 
         if (self::$database->info()['databaseDialect'] == DatabaseDialect::GOOGLE_STANDARD_SQL) {
-            $statements = [
-                sprintf('CREATE ROLE %s', self::$dbRole),
-                sprintf('CREATE ROLE %s', self::$restrictiveDbRole),
-            ];
+            $statements = [];
 
             if (!self::isEmulatorUsed()) {
                 $statements[] = sprintf(

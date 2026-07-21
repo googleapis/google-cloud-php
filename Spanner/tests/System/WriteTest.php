@@ -28,6 +28,7 @@ use Google\Cloud\Spanner\Date;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Numeric;
 use Google\Cloud\Spanner\Proto;
+use Google\Cloud\Spanner\Uuid;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Protobuf\Internal\Message;
 use Google\Rpc\Code;
@@ -139,8 +140,12 @@ class WriteTest extends SystemTestCase
         $read = $db->read(self::TABLE_NAME, $keyset, [$field]);
         $row = $read->rows()->current();
 
-        if ($value instanceof Timestamp || $value instanceof Uuid) {
+        if ($value instanceof Timestamp) {
             $this->assertEquals($value->formatAsString(), $row[$field]->formatAsString());
+        } elseif ($value instanceof Uuid) {
+            $this->assertEquals($value->formatAsString(), is_string($row[$field])
+            ? $row[$field]
+            : $row[$field]->formatAsString());
         } else {
             $this->assertValues($value, $row[$field]);
         }
@@ -153,8 +158,12 @@ class WriteTest extends SystemTestCase
         ]);
 
         $row = $exec->rows()->current();
-        if ($value instanceof Timestamp || $value instanceof Uuid) {
+        if ($value instanceof Timestamp) {
             $this->assertEquals($value->formatAsString(), $row[$field]->formatAsString());
+        } elseif ($value instanceof Uuid) {
+            $this->assertEquals($value->formatAsString(), is_string($row[$field])
+            ? $row[$field]
+            : $row[$field]->formatAsString());
         } elseif ($value instanceof Message) {
             $this->assertInstanceOf(Proto::class, $row[$field]);
             $this->assertEquals(base64_encode($value->serializeToString()), $row[$field]->getValue());

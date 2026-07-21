@@ -24,8 +24,8 @@ use Google\Cloud\Spanner\Date;
  */
 trait DatabaseRoleTrait
 {
-    private static $restrictiveDbRole = 'restrictiveReaderRole';
-    private static $dbRole = 'readerRole';
+    private static $restrictiveDbRole = 'RestrictiveReader';
+    private static $dbRole = 'Reader';
 
     abstract public static function setUpBeforeClass();
 

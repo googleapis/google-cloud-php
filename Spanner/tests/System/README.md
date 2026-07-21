@@ -12,6 +12,7 @@ GOOGLE_CLOUD_PROJECT="<YOUR_PROJECT_ID>"
 
 # These environment variables are optional, and will speed up running the tests locally
 GOOGLE_CLOUD_SPANNER_TEST_DATABASE=test-database
+GOOGLE_CLOUD_SPANNER_TEST_PG_DATABASE=test-pg-database
 GOOGLE_CLOUD_SPANNER_TEST_BACKUP_DATABASE_1=test-backup-database1
 GOOGLE_CLOUD_SPANNER_TEST_BACKUP_DATABASE_2=test-backup-database2
 ```

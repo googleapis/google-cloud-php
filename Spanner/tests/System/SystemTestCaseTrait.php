@@ -44,6 +44,9 @@ trait SystemTestCaseTrait
         if (self::$client) {
             return self::$client;
         }
+        if (TestDatabaseManager::$client) {
+            return self::$client = TestDatabaseManager::$client;
+        }
 
         $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
 
@@ -68,6 +71,7 @@ trait SystemTestCaseTrait
             ]
         ];
         $clientConfig = [
+            'projectId' => getenv('GOOGLE_CLOUD_PROJECT') ?: null,
             'keyFilePath' => $keyFilePath,
             'enableBuiltInMetrics' => false, // Disabling the metrics for general tests
         ];
@@ -93,7 +97,12 @@ trait SystemTestCaseTrait
 
     private static function setUpTestDatabase(): void
     {
-        if (self::$hasSetUp) {
+        if (TestDatabaseManager::$sqlHasSetUp) {
+            self::$client = TestDatabaseManager::$client;
+            self::$instance = TestDatabaseManager::$instance;
+            self::$database = TestDatabaseManager::$sqlDatabase;
+            self::$dbName = TestDatabaseManager::$sqlDbName;
+            self::$hasSetUp = true;
             return;
         }
 
@@ -139,6 +148,11 @@ trait SystemTestCaseTrait
             }
         }
 
+        TestDatabaseManager::$sqlHasSetUp = true;
+        TestDatabaseManager::$client = self::$client;
+        TestDatabaseManager::$instance = self::$instance;
+        TestDatabaseManager::$sqlDatabase = self::$database;
+        TestDatabaseManager::$sqlDbName = self::$dbName;
         self::$hasSetUp = true;
     }
 
