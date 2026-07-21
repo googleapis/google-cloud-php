@@ -52,7 +52,7 @@ trait PgSystemTestCaseTrait
             ]);
             $op->pollUntilComplete();
             
-            $db->updateDdlBatch(
+            self::$database->updateDdlBatch(
                 [
                     'CREATE TABLE IF NOT EXISTS ' . self::TEST_TABLE_NAME . ' (
                         id bigint PRIMARY KEY,
@@ -65,7 +65,7 @@ trait PgSystemTestCaseTrait
             // Currently, the emulator doesn't support setting roles for the PG
             // dialect.
             if (!self::isEmulatorUsed()) {
-                $db->updateDdlBatch(
+                self::$database->updateDdlBatch(
                     [
                         'CREATE ROLE ' . self::DATABASE_ROLE,
                         'CREATE ROLE ' . self::RESTRICTIVE_DATABASE_ROLE,
