@@ -31,12 +31,13 @@ use InvalidArgumentException;
  */
 class PgTransactionTest extends SystemTestCase
 {
+    const TABLE_NAME = 'PgTransactionTest';
     use DatabaseRoleTrait;
     use PgSystemTestCaseTrait;
 
     private static $row = [];
 
-    private static $tableName;
+    
     private static $id1;
     private static $isSetup = false;
 
@@ -49,16 +50,6 @@ class PgTransactionTest extends SystemTestCase
             return;
         }
         self::setUpTestDatabase();
-
-        self::$tableName = 'transactions_test';
-
-        self::$database->updateDdlBatch([
-            'CREATE TABLE IF NOT EXISTS ' . self::$tableName . ' (
-                    id bigint NOT NULL,
-                    number bigint NOT NULL,
-                    PRIMARY KEY (id)
-                )'
-        ])->pollUntilComplete();
 
         self::$id1 = rand(1000, 9999);
         self::$row = [
@@ -105,7 +96,7 @@ class PgTransactionTest extends SystemTestCase
         $ex = false;
         try {
             $db->runTransaction(function ($t) {
-                $t->execute('SELECT * FROM ' . self::$tableName);
+                $t->execute('SELECT * FROM ' . self::TABLE_NAME);
             });
         } catch (\RuntimeException $e) {
             $this->assertEquals('Transactions must be rolled back or committed.', $e->getMessage());

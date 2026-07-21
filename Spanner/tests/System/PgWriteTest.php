@@ -49,41 +49,7 @@ class PgWriteTest extends SystemTestCase
      */
     public static function setUpTestFixtures(): void
     {
-        // The equiavalent tests for the GSQL dialect are also skipped.
-        self::skipEmulatorTests();
         self::setUpTestDatabase();
-
-        self::$database->updateDdlBatch([
-            'CREATE TABLE ' . self::TABLE_NAME . ' (
-                id bigint NOT NULL,
-                boolfield boolean,
-                bytesfield bytea,
-                datefield date,
-                floatfield float,
-                float4field float4,
-                intfield bigint,
-                stringfield varchar(1024),
-                timestampfield timestamptz,
-                pgnumericfield numeric,
-                pgjsonbfield jsonb,
-                arrayfield bigint[],
-                arrayboolfield boolean[],
-                arrayfloatfield float[],
-                arrayfloat4field float4[],
-                arraystringfield varchar(1024)[],
-                arraybytesfield bytea[],
-                arraytimestampfield timestamptz[],
-                arraydatefield date[],
-                arraypgnumericfield numeric[],
-                arraypgjsonbfield jsonb[],
-                PRIMARY KEY (id)
-            )',
-            'CREATE TABLE ' . self::COMMIT_TIMESTAMP_TABLE_NAME . ' (
-                id bigint NOT NULL,
-                commitTimestamp SPANNER.COMMIT_TIMESTAMP NOT NULL,
-                PRIMARY KEY (id, commitTimestamp)
-            )'
-        ])->pollUntilComplete();
     }
 
     public function fieldValueProvider()
@@ -114,7 +80,7 @@ class PgWriteTest extends SystemTestCase
     {
         $db = self::$database;
 
-        $db->insert(self::TABLE_NAME, [
+        $db->insertOrUpdate(self::TABLE_NAME, [
             'id' => $id,
             $field => $value
         ]);
@@ -153,7 +119,7 @@ class PgWriteTest extends SystemTestCase
 
         $db = self::$database;
 
-        $db->insert(self::TABLE_NAME, [
+        $db->insertOrUpdate(self::TABLE_NAME, [
             'id' => $id,
             $field => $value
         ]);
@@ -182,7 +148,7 @@ class PgWriteTest extends SystemTestCase
 
         $db = self::$database;
 
-        $db->insert(self::TABLE_NAME, [
+        $db->insertOrUpdate(self::TABLE_NAME, [
             'id' => $id,
             $field => $value
         ]);
@@ -218,7 +184,7 @@ class PgWriteTest extends SystemTestCase
     {
         $db = self::$database;
 
-        $db->insert(self::TABLE_NAME, [
+        $db->insertOrUpdate(self::TABLE_NAME, [
             'id' => $id,
             $field => null
         ]);
@@ -282,7 +248,7 @@ class PgWriteTest extends SystemTestCase
     {
         $db = self::$database;
 
-        $db->insert(self::TABLE_NAME, [
+        $db->insertOrUpdate(self::TABLE_NAME, [
             'id' => $id,
             $field => $value
         ]);
@@ -330,7 +296,7 @@ class PgWriteTest extends SystemTestCase
     {
         $db = self::$database;
 
-        $db->insert(self::TABLE_NAME, [
+        $db->insertOrUpdate(self::TABLE_NAME, [
             'id' => $id,
             $field => $value
         ]);
@@ -364,7 +330,7 @@ class PgWriteTest extends SystemTestCase
 
         $db = self::$database;
 
-        $db->insert(uniqid(self::TESTING_PREFIX), ['foo' => 'bar']);
+        $db->insertOrUpdate(uniqid(self::TESTING_PREFIX), ['foo' => 'bar']);
     }
 
     public function testWriteToNonExistentColumnFails()
@@ -373,7 +339,7 @@ class PgWriteTest extends SystemTestCase
 
         $db = self::$database;
 
-        $db->insert(self::TABLE_NAME, [uniqid(self::TESTING_PREFIX) => 'bar']);
+        $db->insertOrUpdate(self::TABLE_NAME, [uniqid(self::TESTING_PREFIX) => 'bar']);
     }
 
     public function testWriteIncorrectTypeToColumn()
@@ -382,7 +348,7 @@ class PgWriteTest extends SystemTestCase
 
         $db = self::$database;
 
-        $db->insert(self::TABLE_NAME, [
+        $db->insertOrUpdate(self::TABLE_NAME, [
             'id' => $this->randId(),
             'boolfield' => 'bar'
         ]);
@@ -396,7 +362,7 @@ class PgWriteTest extends SystemTestCase
     {
         $db = self::$database;
 
-        $db->insert(self::TABLE_NAME, [
+        $db->insertOrUpdate(self::TABLE_NAME, [
             'id' => $id,
             'bytesfield' => $bytes
         ]);
@@ -428,7 +394,7 @@ class PgWriteTest extends SystemTestCase
     {
         $db = self::$database;
 
-        $db->insert(self::TABLE_NAME, [
+        $db->insertOrUpdate(self::TABLE_NAME, [
             'id' => $id,
             'pgnumericfield' => $numeric
         ]);
@@ -459,7 +425,7 @@ class PgWriteTest extends SystemTestCase
     public function testCommitTimestamp()
     {
         $id = $this->randId();
-        $ts = self::$database->insert(self::COMMIT_TIMESTAMP_TABLE_NAME, [
+        $ts = self::$database->insertOrUpdate(self::COMMIT_TIMESTAMP_TABLE_NAME, [
             'id' => $id,
             'committimestamp' => new CommitTimestamp()
         ]);
@@ -477,7 +443,7 @@ class PgWriteTest extends SystemTestCase
     {
         $id = $this->randId();
         $str = base64_encode(random_bytes(rand(1, 100)));
-        $row = self::$database->insert(self::TABLE_NAME, [
+        $row = self::$database->insertOrUpdate(self::TABLE_NAME, [
             'id' => $id,
             'stringfield' => $str
         ]);
@@ -507,7 +473,7 @@ class PgWriteTest extends SystemTestCase
     {
         $id = $this->randId();
 
-        $row = self::$database->insert(self::TABLE_NAME, [
+        $row = self::$database->insertOrUpdate(self::TABLE_NAME, [
             'id' => $id,
             'timestampfield' => $timestamp
         ]);
@@ -549,7 +515,7 @@ class PgWriteTest extends SystemTestCase
         try {
             $id = $this->randId();
 
-            $row = self::$database->insert(self::TABLE_NAME, [
+            $row = self::$database->insertOrUpdate(self::TABLE_NAME, [
                 'id' => $id,
                 'timestampfield' => $timestamp
             ]);

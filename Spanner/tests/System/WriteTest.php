@@ -28,6 +28,7 @@ use Google\Cloud\Spanner\Date;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Numeric;
 use Google\Cloud\Spanner\Proto;
+use Google\Cloud\Spanner\Uuid;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Protobuf\Internal\Message;
 use Google\Rpc\Code;
@@ -50,48 +51,7 @@ class WriteTest extends SystemTestCase
      */
     public static function setUpTestFixtures(): void
     {
-        self::skipEmulatorTests();
         self::setUpTestDatabase();
-
-        self::$database->updateDdlBatch([
-            'CREATE PROTO BUNDLE (' .
-                'testing.data.User,' .
-                'testing.data.User.Address,' .
-                'testing.data.Book' .
-            ')',
-            'CREATE TABLE ' . self::TABLE_NAME . ' (
-                id INT64 NOT NULL,
-                arrayField ARRAY<INT64>,
-                arrayBoolField ARRAY<BOOL>,
-                arrayFloatField ARRAY<FLOAT64>,
-                arrayFloat32Field ARRAY<FLOAT32>,
-                arrayStringField ARRAY<STRING(MAX)>,
-                arrayBytesField ARRAY<BYTES(MAX)>,
-                arrayTimestampField ARRAY<TIMESTAMP>,
-                arrayDateField ARRAY<DATE>,
-                arrayNumericField ARRAY<NUMERIC>,
-                arrayProtoField ARRAY<`testing.data.User`>,
-                boolField BOOL,
-                bytesField BYTES(MAX),
-                dateField DATE,
-                floatField FLOAT64,
-                float32Field FLOAT32,
-                intField INT64,
-                stringField STRING(MAX),
-                timestampField TIMESTAMP,
-                numericField NUMERIC,
-                uuidField STRING(36),
-                arrayUuidField ARRAY<STRING(36)>,
-                protoField `testing.data.User`,
-            ) PRIMARY KEY (id)',
-            'CREATE TABLE ' . self::COMMIT_TIMESTAMP_TABLE_NAME . ' (
-                id INT64 NOT NULL,
-                commitTimestamp TIMESTAMP NOT NULL OPTIONS
-                    (allow_commit_timestamp=true)
-            ) PRIMARY KEY (id, commitTimestamp DESC)'
-        ], [
-            'protoDescriptors' => file_get_contents(__DIR__ . '/../data/proto/user.pb'),
-        ])->pollUntilComplete();
     }
 
     public function fieldValueProvider()
@@ -129,7 +89,7 @@ class WriteTest extends SystemTestCase
     {
         $db = self::$database;
 
-        $db->insert(self::TABLE_NAME, [
+        $db->insertOrUpdate(self::TABLE_NAME, [
             'id' => $id,
             $field => $value
         ]);
@@ -139,8 +99,12 @@ class WriteTest extends SystemTestCase
         $read = $db->read(self::TABLE_NAME, $keyset, [$field]);
         $row = $read->rows()->current();
 
-        if ($value instanceof Timestamp || $value instanceof Uuid) {
+        if ($value instanceof Timestamp) {
             $this->assertEquals($value->formatAsString(), $row[$field]->formatAsString());
+        } elseif ($value instanceof Uuid) {
+            $this->assertEquals($value->formatAsString(), is_string($row[$field])
+            ? $row[$field]
+            : $row[$field]->formatAsString());
         } else {
             $this->assertValues($value, $row[$field]);
         }
@@ -153,8 +117,12 @@ class WriteTest extends SystemTestCase
         ]);
 
         $row = $exec->rows()->current();
-        if ($value instanceof Timestamp || $value instanceof Uuid) {
+        if ($value instanceof Timestamp) {
             $this->assertEquals($value->formatAsString(), $row[$field]->formatAsString());
+        } elseif ($value instanceof Uuid) {
+            $this->assertEquals($value->formatAsString(), is_string($row[$field])
+            ? $row[$field]
+            : $row[$field]->formatAsString());
         } elseif ($value instanceof Message) {
             $this->assertInstanceOf(Proto::class, $row[$field]);
             $this->assertEquals(base64_encode($value->serializeToString()), $row[$field]->getValue());
@@ -175,7 +143,7 @@ class WriteTest extends SystemTestCase
 
         $db = self::$database;
 
-        $db->insert(self::TABLE_NAME, [
+        $db->insertOrUpdate(self::TABLE_NAME, [
             'id' => $id,
             $field => $value
         ]);
@@ -207,7 +175,7 @@ class WriteTest extends SystemTestCase
 
         $db = self::$database;
 
-        $db->insert(self::TABLE_NAME, [
+        $db->insertOrUpdate(self::TABLE_NAME, [
             'id' => $id,
             $field => $value
         ]);
@@ -250,7 +218,7 @@ class WriteTest extends SystemTestCase
     {
         $db = self::$database;
 
-        $db->insert(self::TABLE_NAME, [
+        $db->insertOrUpdate(self::TABLE_NAME, [
             'id' => $id,
             $field => null
         ]);
@@ -344,7 +312,7 @@ class WriteTest extends SystemTestCase
     {
         $db = self::$database;
 
-        $db->insert(self::TABLE_NAME, [
+        $db->insertOrUpdate(self::TABLE_NAME, [
             'id' => $id,
             $field => $value
         ]);
@@ -390,7 +358,7 @@ class WriteTest extends SystemTestCase
     {
         $db = self::$database;
 
-        $db->insert(self::TABLE_NAME, [
+        $db->insertOrUpdate(self::TABLE_NAME, [
             'id' => $id,
             $field => $value
         ]);
@@ -424,7 +392,7 @@ class WriteTest extends SystemTestCase
 
         $db = self::$database;
 
-        $db->insert(uniqid(self::TESTING_PREFIX), ['foo' => 'bar']);
+        $db->insertOrUpdate(uniqid(self::TESTING_PREFIX), ['foo' => 'bar']);
     }
 
     public function testWriteToNonExistentColumnFails()
@@ -433,7 +401,7 @@ class WriteTest extends SystemTestCase
 
         $db = self::$database;
 
-        $db->insert(self::TABLE_NAME, [uniqid(self::TESTING_PREFIX) => 'bar']);
+        $db->insertOrUpdate(self::TABLE_NAME, [uniqid(self::TESTING_PREFIX) => 'bar']);
     }
 
     public function testWriteIncorrectTypeToColumn()
@@ -442,7 +410,7 @@ class WriteTest extends SystemTestCase
 
         $db = self::$database;
 
-        $db->insert(self::TABLE_NAME, [
+        $db->insertOrUpdate(self::TABLE_NAME, [
             'id' => $this->randId(),
             'boolField' => 'bar'
         ]);
@@ -456,7 +424,7 @@ class WriteTest extends SystemTestCase
     {
         $db = self::$database;
 
-        $db->insert(self::TABLE_NAME, [
+        $db->insertOrUpdate(self::TABLE_NAME, [
             'id' => $id,
             'bytesField' => $bytes
         ]);
@@ -492,7 +460,7 @@ class WriteTest extends SystemTestCase
     {
         $db = self::$database;
 
-        $db->insert(self::TABLE_NAME, [
+        $db->insertOrUpdate(self::TABLE_NAME, [
             'id' => $id,
             'numericField' => $numeric
         ]);
@@ -527,7 +495,7 @@ class WriteTest extends SystemTestCase
     public function testCommitTimestamp()
     {
         $id = $this->randId();
-        $ts = self::$database->insert(self::COMMIT_TIMESTAMP_TABLE_NAME, [
+        $ts = self::$database->insertOrUpdate(self::COMMIT_TIMESTAMP_TABLE_NAME, [
             'id' => $id,
             'commitTimestamp' => new CommitTimestamp()
         ]);
@@ -545,7 +513,7 @@ class WriteTest extends SystemTestCase
     {
         $id = $this->randId();
         $str = base64_encode(random_bytes(rand(100, 9999)));
-        $row = self::$database->insert(self::TABLE_NAME, [
+        $row = self::$database->insertOrUpdate(self::TABLE_NAME, [
             'id' => $id,
             'stringField' => $str
         ]);
@@ -575,7 +543,7 @@ class WriteTest extends SystemTestCase
     {
         $id = $this->randId();
 
-        $row = self::$database->insert(self::TABLE_NAME, [
+        $row = self::$database->insertOrUpdate(self::TABLE_NAME, [
             'id' => $id,
             'timestampField' => $timestamp
         ]);
@@ -617,7 +585,7 @@ class WriteTest extends SystemTestCase
         try {
             $id = $this->randId();
 
-            $row = self::$database->insert(self::TABLE_NAME, [
+            $row = self::$database->insertOrUpdate(self::TABLE_NAME, [
                 'id' => $id,
                 'timestampField' => $timestamp
             ]);
@@ -837,7 +805,7 @@ class WriteTest extends SystemTestCase
 
             $this->assertEquals(1, $count);
 
-            $t->insert(self::TABLE_NAME, [
+            $t->insertOrUpdate(self::TABLE_NAME, [
                 'id' => $id2,
                 'stringField' => $randStr
             ]);
@@ -909,7 +877,7 @@ class WriteTest extends SystemTestCase
         $randStr2 = base64_encode(random_bytes(500));
         $db = self::$database;
 
-        $db->insert(self::TABLE_NAME, [
+        $db->insertOrUpdate(self::TABLE_NAME, [
             'id' => $id,
             'stringField' => $randStr
         ]);

@@ -27,9 +27,10 @@ use Google\Cloud\Spanner\KeySet;
  */
 class LargeReadTest extends SystemTestCase
 {
+    const TABLE_NAME = 'LargeReadTable';
     use SystemTestCaseTrait;
 
-    private static $tableName;
+    
     private static $row = [];
 
     //@codingStandardsIgnoreStart
@@ -48,7 +49,7 @@ class LargeReadTest extends SystemTestCase
     {
         self::setUpTestDatabase();
 
-        self::$tableName = uniqid(self::TESTING_PREFIX);
+        
 
         $str = '';
         foreach (self::$data as $letter) {
@@ -67,7 +68,7 @@ class LargeReadTest extends SystemTestCase
                 stringArrayColumn ARRAY<STRING(MAX)> NOT NULL,
                 bytesArrayColumn ARRAY<BYTES(MAX)> NOT NULL
             ) PRIMARY KEY (id)',
-            self::$tableName
+            self::TABLE_NAME
         ))->pollUntilComplete();
 
         self::seedTable();
@@ -84,7 +85,7 @@ class LargeReadTest extends SystemTestCase
         ];
 
         for ($i = 0; $i < 10; $i++) {
-            self::$database->insert(self::$tableName, self::$row + ['id' => self::randId()], [
+            self::$database->insert(self::TABLE_NAME, self::$row + ['id' => self::randId()], [
                 'timeoutMillis' => 50000
             ]);
         }
@@ -98,7 +99,7 @@ class LargeReadTest extends SystemTestCase
         $db = self::$database;
 
         $keyset = new KeySet(['all' => true]);
-        $read = $db->read(self::$tableName, $keyset, array_keys(self::$row));
+        $read = $db->read(self::TABLE_NAME, $keyset, array_keys(self::$row));
 
         foreach ($read->rows() as $row) {
             $this->runAssertionsOnRow($row);
@@ -112,7 +113,7 @@ class LargeReadTest extends SystemTestCase
     {
         $db = self::$database;
 
-        $execute = $db->execute('SELECT * FROM ' . self::$tableName);
+        $execute = $db->execute('SELECT * FROM ' . self::TABLE_NAME);
 
         foreach ($execute->rows() as $row) {
             $this->runAssertionsOnRow($row);

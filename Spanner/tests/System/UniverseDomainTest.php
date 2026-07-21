@@ -95,13 +95,7 @@ class UniverseDomainTest extends SystemTestCase
         $this->assertStringEndsWith('/' . self::$dbName, self::$database->name());
 
         // Create a test table
-        $op = self::$database->updateDdlBatch([
-            'CREATE TABLE ' . self::$tableName . ' (
-                id INT64 NOT NULL,
-                name STRING(MAX) NOT NULL
-            ) PRIMARY KEY (id)'
-        ]);
-        $op->pollUntilComplete();
+        $op = $op->pollUntilComplete();
 
         // Verify the table was created
         $result = self::$database->execute(
