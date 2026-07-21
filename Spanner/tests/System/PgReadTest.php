@@ -57,8 +57,8 @@ class PgReadTest extends SystemTestCase
 
         $stmts = [];
         foreach ([self::$readTableName, self::$rangeTableName] as $table) {
-            $index1 = ['table' => $table, 'name' => uniqid(self::TESTING_PREFIX), 'type' => 'simple'];
-            $index2 = ['table' => $table, 'name' => uniqid(self::TESTING_PREFIX), 'type' => 'complex'];
+            $index1 = ['table' => $table, 'name' => 'idx_' . $table . '_simple', 'type' => 'simple'];
+            $index2 = ['table' => $table, 'name' => 'idx_' . $table . '_complex', 'type' => 'complex'];
 
             $stmts[] = sprintf($create, $table);
             $stmts[] = sprintf($idx, $index1['name'], $table, 'id');
@@ -69,10 +69,11 @@ class PgReadTest extends SystemTestCase
         }
 
         $db = self::$database;
-        $db->updateDdlBatch($stmts)->pollUntilComplete();
+        $op = $db->updateDdlBatch($stmts);
+        $op->pollUntilComplete();
 
         self::$dataset = self::generateDataset(20, true);
-        $db->insertBatch(self::$rangeTableName, self::$dataset);
+        $db->insertOrUpdateBatch(self::$rangeTableName, self::$dataset);
     }
 
     public function testRangeReadSingleKeyOpen()
