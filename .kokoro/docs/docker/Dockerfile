@@ -124,5 +124,9 @@ RUN wget -O /tmp/get-pip.py 'https://bootstrap.pypa.io/get-pip.py' \
   && python3.11 -m pip
 
 # Install docsuploader
-COPY requirements.txt .
+# Define the prefix argument (default to empty for local builds)
+ARG PATH_PREFIX=""
+
+# Install docsuploader
+COPY ${PATH_PREFIX}requirements.txt .
 RUN python3.11 -m pip install --require-hashes -r requirements.txt
