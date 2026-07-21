@@ -123,7 +123,6 @@ RUN wget -O /tmp/get-pip.py 'https://bootstrap.pypa.io/get-pip.py' \
   && rm /tmp/get-pip.py \
   && python3.11 -m pip
 
-# Install docsuploader
 # Define the prefix argument (default to empty for local builds)
 ARG PATH_PREFIX=""
 
