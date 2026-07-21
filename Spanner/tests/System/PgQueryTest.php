@@ -41,7 +41,7 @@ class PgQueryTest extends SystemTestCase
 {
     use PgSystemTestCaseTrait;
 
-    const TABLE_NAME = 'PgQueryTest';
+    const TABLE_NAME = 'PgQueryTest_2';
 
     public static $timestampVal;
 

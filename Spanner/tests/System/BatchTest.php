@@ -69,7 +69,18 @@ class BatchTest extends SystemTestCase
 
         $snapshot = $batch->snapshotFromString($string);
 
-        $partitions = $snapshot->partitionQuery($query, ['parameters' => $parameters]);
+        $partitions = null;
+        for ($i = 0; $i < 3; $i++) {
+            try {
+                $partitions = $snapshot->partitionQuery($query, ['parameters' => $parameters]);
+                break;
+            } catch (\Google\Cloud\Core\Exception\ServiceException $ex) {
+                if ($i === 2 || !in_array($ex->getStatus(), ['UNAVAILABLE', 'DEADLINE_EXCEEDED'])) {
+                    throw $ex;
+                }
+                sleep(2);
+            }
+        }
         $this->assertEquals(count($resultSet), $this->executePartitions($batch, $snapshot, $partitions));
 
         $keySet = new KeySet([

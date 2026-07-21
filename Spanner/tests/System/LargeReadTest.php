@@ -58,19 +58,6 @@ class LargeReadTest extends SystemTestCase
 
         self::$str = $str;
 
-        $db = self::$database;
-
-        $db->updateDdl(sprintf(
-            'CREATE TABLE %s (
-                id INT64 NOT NULL,
-                stringColumn STRING(MAX) NOT NULL,
-                bytesColumn BYTES(MAX) NOT NULL,
-                stringArrayColumn ARRAY<STRING(MAX)> NOT NULL,
-                bytesArrayColumn ARRAY<BYTES(MAX)> NOT NULL
-            ) PRIMARY KEY (id)',
-            self::TABLE_NAME
-        ))->pollUntilComplete();
-
         self::seedTable();
     }
 

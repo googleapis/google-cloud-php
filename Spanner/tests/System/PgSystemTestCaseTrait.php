@@ -128,7 +128,7 @@ trait PgSystemTestCaseTrait
                     boolField BOOL,
                     PRIMARY KEY (id)
                 )',
-                'CREATE TABLE IF NOT EXISTS PgQueryTest (
+                'CREATE TABLE IF NOT EXISTS PgQueryTest_2 (
                     id bigint NOT NULL,
                     name varchar(1024),
                     registered bool,
