@@ -240,6 +240,10 @@ trait TransactionalReadTrait
      *           If using the `replicaSelection::type` setting, utilize the constants available in
      *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection\Type} to set a value.
      *     @type string $partitionToken
+     *     @type array $headers Headers to be set with the request.
+     *     @type array|RetrySettings $retrySettings Retry settings to be used with the request.
+     *     @type int $timeoutMillis Timeout to use for this call.
+     *     @type array $transportOptions Options to be used for the transport.
      * }
      * @codingStandardsIgnoreEnd
      * @return Result
@@ -264,9 +268,11 @@ trait TransactionalReadTrait
             $this->directedReadOptions
         );
 
-        $executeSqlOptions = $this->pluckArray(
-            ['partitionToken', 'parameters', 'types', ],
-            $options
+        $executeSqlOptions = (new \Google\Cloud\Core\OptionsValidator())->stripUnknownOptions(
+            $options,
+            ['parameters', 'types'],
+            \Google\ApiCore\Options\CallOptions::class,
+            \Google\Cloud\Spanner\V1\ExecuteSqlRequest::class
         );
         $executeSqlOptions['seqno'] = $this->seqno++;
         $executeSqlOptions['transaction'] = $txnOptions;
@@ -275,9 +281,8 @@ trait TransactionalReadTrait
             $executeSqlOptions['requestOptions']['transactionTag'] = $this->tag;
         }
 
-        $result = $this->operation->execute($this->session, $sql, $executeSqlOptions + [
-            'route-to-leader' => $this->context === Database::CONTEXT_READWRITE
-        ]);
+        $executeSqlOptions['route-to-leader'] = $this->context === Database::CONTEXT_READWRITE;
+        $result = $this->operation->execute($this->session, $sql, $executeSqlOptions);
 
         if (empty($this->id()) && $result->transaction()) {
             $this->setId($result->transaction()->id());
@@ -332,6 +337,10 @@ trait TransactionalReadTrait
      *           and not Snapshots.
      *           {@see \Google\Cloud\Spanner\V1\ReadRequest} and {@see \Google\Cloud\Spanner\V1\ReadRequest\LockHint}
      *           for more information and available options.
+     *     @type array $headers Headers to be set with the request.
+     *     @type array|RetrySettings $retrySettings Retry settings to be used with the request.
+     *     @type int $timeoutMillis Timeout to use for this call.
+     *     @type array $transportOptions Options to be used for the transport.
      * }
      * @return Result
      */
@@ -340,9 +349,10 @@ trait TransactionalReadTrait
         $this->singleUseState();
         $this->checkReadContext();
 
-        $readOptions = $this->pluckArray(
-            ['index', 'limit', 'partitionToken', 'requestOptions', 'directedReadOptions'],
+        $readOptions = (new \Google\Cloud\Core\OptionsValidator())->stripUnknownOptions(
             $options,
+            \Google\ApiCore\Options\CallOptions::class,
+            \Google\Cloud\Spanner\V1\ReadRequest::class
         );
         $options['transactionType'] = $this->context;
         if (empty($this->transactionId) && isset($this->transactionSelector['begin'])) {
@@ -362,9 +372,8 @@ trait TransactionalReadTrait
             $readOptions,
             $this->directedReadOptions ?? []
         );
-        $result = $this->operation->read($this->session, $table, $keySet, $columns, $readOptions + [
-            'route-to-leader' => $this->context === Database::CONTEXT_READWRITE
-        ]);
+        $readOptions['route-to-leader'] = $this->context === Database::CONTEXT_READWRITE;
+        $result = $this->operation->read($this->session, $table, $keySet, $columns, $readOptions);
 
         if (empty($this->id()) && $result->transaction()) {
             $this->setId($result->transaction()->id());

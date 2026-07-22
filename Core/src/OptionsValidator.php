@@ -106,4 +106,56 @@ class OptionsValidator
 
         return $splitOptions;
     }
+
+    /**
+     * @var array
+     */
+    private static array $allowedKeysCache = [];
+
+    /**
+     * Filter an array of options to only include those matching the supplied `$optionTypes`.
+     *
+     * @param  array                $options
+     * @param  array|Message|string ...$optionTypes
+     * @return array
+     */
+    public function stripUnknownOptions(array $options, array|Message|string ...$optionTypes): array
+    {
+        $cacheKey = serialize(array_map(function ($type) {
+            return is_object($type) ? get_class($type) : $type;
+        }, $optionTypes));
+
+        if (isset(self::$allowedKeysCache[$cacheKey])) {
+            return array_intersect_key($options, array_flip(self::$allowedKeysCache[$cacheKey]));
+        }
+
+        $allowedKeys = [];
+        foreach ($optionTypes as $optionType) {
+            if (is_array($optionType)) {
+                $allowedKeys = array_merge($allowedKeys, $optionType);
+            } elseif ($optionType === CallOptions::class) {
+                $callOptionKeys = array_keys((new CallOptions([]))->toArray());
+                $allowedKeys = array_merge($allowedKeys, $callOptionKeys);
+            } elseif ($optionType instanceof Message
+                || (is_string($optionType) && is_subclass_of($optionType, Message::class))
+            ) {
+                $messageKeys = array_map(
+                    fn ($method) => lcfirst(substr($method, 3)),
+                    array_filter(
+                        get_class_methods($optionType),
+                        fn ($m) => 0 === strpos($m, 'get')
+                    )
+                );
+                $allowedKeys = array_merge($allowedKeys, $messageKeys);
+            } elseif (is_string($optionType)) {
+                $allowedKeys[] = $optionType;
+            } else {
+                throw new LogicException(sprintf('Invalid option type: %s', $optionType));
+            }
+        }
+
+        self::$allowedKeysCache[$cacheKey] = $allowedKeys;
+
+        return array_intersect_key($options, array_flip($allowedKeys));
+    }
 }

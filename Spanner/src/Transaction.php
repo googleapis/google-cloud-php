@@ -235,6 +235,10 @@ class Transaction implements TransactionalReadInterface
      *     @type array $transaction a set of Options for a transaction selector.
      *           For more details on these options please
      *           {@see https://cloud.google.com/spanner/docs/reference/rest/v1/TransactionSelector}
+     *     @type array $headers Headers to be set with the request.
+     *     @type array|RetrySettings $retrySettings Retry settings to be used with the request.
+     *     @type int $timeoutMillis Timeout to use for this call.
+     *     @type array $transportOptions Options to be used for the transport.
      * }
      * @return int The number of rows modified.
      * @throws ValidationException
@@ -345,6 +349,10 @@ class Transaction implements TransactionalReadInterface
      *         on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      *         Please note, the `transactionTag` setting will be ignored as the transaction tag should have already
      *         been set when creating the transaction.
+     *     @type array $headers Headers to be set with the request.
+     *     @type array|RetrySettings $retrySettings Retry settings to be used with the request.
+     *     @type int $timeoutMillis Timeout to use for this call.
+     *     @type array $transportOptions Options to be used for the transport.
      * }
      * @return BatchDmlResult
      * @throws \InvalidArgumentException If any statement is missing the `sql` key.
@@ -424,6 +432,12 @@ class Transaction implements TransactionalReadInterface
      *         Please note, if using the `priority` setting you may utilize the constants available
      *         on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      *         Please note, the `requestTag` setting will be ignored as it is not supported for commit requests.
+     *     @type array $headers Headers to be set with the request.
+     *     @type array|RetrySettings $retrySettings Retry settings to be used with the request.
+     *     @type int $timeoutMillis Timeout in milliseconds to be used for the API request.
+     *     @type array $transportOptions Transport options to be used with the request.
+     *           For more information on available call options, please see
+     *           [CallOptions](https://docs.cloud.google.com/php/docs/reference/gax/latest/Options.CallOptions).
      * }
      * @return Timestamp The commit timestamp.
      * @throws \BadMethodCallException If the transaction is not active or already used.
@@ -463,13 +477,23 @@ class Transaction implements TransactionalReadInterface
         }
 
         // Build the commit options
-        $commitOptions = $this->pluckArray(
-            ['returnCommitStats', 'maxCommitDelay'],
-            $options
+        $commitOptions = (new \Google\Cloud\Core\OptionsValidator())->stripUnknownOptions(
+            $options,
+            \Google\ApiCore\Options\CallOptions::class,
+            \Google\Cloud\Spanner\V1\CommitRequest::class
         );
         // Set the latest received precommit token from the last request from within this transaction.
         if ($this->precommitToken) {
             $commitOptions['precommitToken'] = $this->precommitToken;
+        }
+        if (isset($commitOptions['requestOptions'])
+            && is_array($commitOptions['requestOptions'])
+            && isset($commitOptions['requestOptions']['requestTag'])
+        ) {
+            unset($commitOptions['requestOptions']['requestTag']);
+            if (0 === count($commitOptions['requestOptions'])) {
+                unset($commitOptions['requestOptions']);
+            }
         }
         // set the transaction tag if it exists
         if ($this->tag) {
@@ -569,16 +593,15 @@ class Transaction implements TransactionalReadInterface
         }
         [$txnOptions] = $this->transactionOptionsBuilder->transactionSelector($options);
 
-        $updateOptions = $this->pluckArray(['parameters', 'types'], $options);
-        $updateOptions += [
-            'seqno' => $this->seqno++,
-            'transaction' => $txnOptions,
-            'headers' => ['spanner-route-to-leader' => ['true']]
-        ];
-
-        if (isset($options['requestOptions'])) {
-            $updateOptions['requestOptions'] = $options['requestOptions'];
-        }
+        $updateOptions = (new \Google\Cloud\Core\OptionsValidator())->stripUnknownOptions(
+            $options,
+            ['parameters', 'types'],
+            \Google\ApiCore\Options\CallOptions::class,
+            \Google\Cloud\Spanner\V1\ExecuteSqlRequest::class
+        );
+        $updateOptions['seqno'] = $this->seqno++;
+        $updateOptions['transaction'] = $txnOptions;
+        $updateOptions['route-to-leader'] = true;
 
         if ($this->tag) {
             $updateOptions['requestOptions']['transactionTag'] = $this->tag;
