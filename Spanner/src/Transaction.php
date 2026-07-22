@@ -265,7 +265,7 @@ class Transaction implements TransactionalReadInterface
             $this->type = self::TYPE_PRE_ALLOCATED;
         }
 
-        $options = $this->buildUpdateOptions($options);
+        $options = $this->buildUpdateOptions($options, \Google\Cloud\Spanner\V1\ExecuteSqlRequest::class);
         return $this->operation
             ->executeUpdate($this->session, $this, $sql, $options);
     }
@@ -359,7 +359,7 @@ class Transaction implements TransactionalReadInterface
      */
     public function executeUpdateBatch(array $statements, array $options = []): BatchDmlResult
     {
-        $options = $this->buildUpdateOptions($options);
+        $options = $this->buildUpdateOptions($options, \Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest::class);
         return $this->operation->executeUpdateBatch(
             $this->session,
             $this,
@@ -581,9 +581,10 @@ class Transaction implements TransactionalReadInterface
      * Build the update options.
      *
      * @param array $options The update options
+     * @param string $requestClass The protobuf request class
      * @return array
      */
-    private function buildUpdateOptions(array $options): array
+    private function buildUpdateOptions(array $options, string $requestClass): array
     {
         $options['transactionType'] = $this->context;
         if (empty($this->transactionId) && isset($this->transactionSelector['begin'])) {
@@ -595,9 +596,9 @@ class Transaction implements TransactionalReadInterface
 
         $updateOptions = (new \Google\Cloud\Core\OptionsValidator())->stripUnknownOptions(
             $options,
-            ['parameters', 'types'],
+            $requestClass === \Google\Cloud\Spanner\V1\ExecuteSqlRequest::class ? ['parameters', 'types'] : [],
             \Google\ApiCore\Options\CallOptions::class,
-            \Google\Cloud\Spanner\V1\ExecuteSqlRequest::class
+            $requestClass
         );
         $updateOptions['seqno'] = $this->seqno++;
         $updateOptions['transaction'] = $txnOptions;
