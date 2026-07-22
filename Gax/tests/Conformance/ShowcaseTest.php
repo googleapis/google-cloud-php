@@ -36,10 +36,24 @@ final class ShowcaseTest extends TestCase
 {
     public function provideTransport()
     {
+        $pemPath = __DIR__ . '/showcase.pem';
+        $host = 'localhost:7469';
+
+        // gRPC Configuration
+        $pemContents = file_get_contents($pemPath);
+
+        if (!$pemContents) {
+            $this->fail('Could not read showcase.pem');
+        }
+
         // build gRPC transport
         $grpc = GrpcTransport::build(
             'localhost:7469',
-            ['stubOpts' => ['credentials' => ChannelCredentials::createInsecure()]]
+            [
+                'stubOpts' => [
+                    'credentials' => ChannelCredentials::createSsl($pemContents)
+                ]
+            ]
         );
 
         // build REST transport
