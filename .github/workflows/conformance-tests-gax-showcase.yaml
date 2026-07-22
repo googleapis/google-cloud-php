@@ -22,7 +22,7 @@ jobs:
           uses: shivammathur/setup-php@v2
           with:
             php-version: '8.2'
-            extensions: grpc
+            extensions: grpc-1.83.0
 
         - name: Install and run GAPIC Showcase
           run: |

@@ -22,7 +22,7 @@ use PHPUnit\Framework\TestCase;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\KnownTypes;
 use Google\ApiCore\InsecureCredentialsWrapper;
-use Google\ApiCore\InsecureRequestBuilder;
+use Google\ApiCore\RequestBuilder;
 use Google\ApiCore\Transport\GrpcTransport;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\Transport\RestTransport;
@@ -31,6 +31,7 @@ use Google\Protobuf\Internal\Message;
 use Google\Showcase\V1beta1\Client\EchoClient;
 use Google\Showcase\V1beta1\FailEchoWithDetailsRequest;
 use Grpc\ChannelCredentials;
+use GuzzleHttp\Client;
 
 final class ShowcaseTest extends TestCase
 {
@@ -58,8 +59,9 @@ final class ShowcaseTest extends TestCase
 
         // build REST transport
         $restConfigPath = __DIR__ . '/src/V1beta1/resources/echo_rest_client_config.php';
-        $requestBuilder = new InsecureRequestBuilder('localhost:7469', $restConfigPath);
-        $httpHandler = HttpHandlerFactory::build();
+        $requestBuilder = new RequestBuilder('localhost:7469', $restConfigPath);
+        $guzzleClient = new Client(['verify' => $pemPath]);
+        $httpHandler = HttpHandlerFactory::build($guzzleClient);
         $rest = new RestTransport($requestBuilder, [$httpHandler, 'async']);
 
         return [[$grpc], [$rest]];
