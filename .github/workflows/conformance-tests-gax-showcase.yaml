@@ -10,7 +10,7 @@ jobs:
     gapic-showcase:
         runs-on: ubuntu-latest
         env:
-            GAPIC_SHOWCASE_VERSION: 0.40.0
+            GAPIC_SHOWCASE_VERSION: 0.42.0
             OS: linux
             ARCH: amd64
         name: GAPIC Showcase Conformance Tests
@@ -24,18 +24,11 @@ jobs:
             php-version: '8.2'
             extensions: grpc
 
-        - name: Set up Go
-          uses: actions/setup-go@v5
-          with:
-            go-version: '>=1.26'
-
-        - name: Install GAPIC Showcase from Branch
+        - name: Install and run GAPIC Showcase
           run: |
-            go install github.com/googleapis/gapic-showcase@feat-pqc-tls
-
-        - name: Run the GAPIC showcase server
-          run: |
-            gapic-showcase run --port :7469 --tls --ca-cert-output-file showcase.pem & sleep 5
+            curl -L https://github.com/googleapis/gapic-showcase/releases/download/v${GAPIC_SHOWCASE_VERSION}/gapic-showcase-${GAPIC_SHOWCASE_VERSION}-${OS}-${ARCH}.tar.gz | tar -zx
+            ./gapic-showcase run --port :7469 --tls --ca-cert-output-file Gax/tests/Conformance/showcase.pem &
+            sleep 2
 
         - name: Install dependencies
           run: |

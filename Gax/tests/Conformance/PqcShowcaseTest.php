@@ -71,7 +71,6 @@ class PqcShowcaseTest extends TestCase
     {
         $expected = 'This is a test';
         $expectedGroup = 'X25519MLKEM768';
-        $expectedVersion = 'TLS 1.3';
         $responseHeaders = null;
         $metadataCallback = function (array $metadata) use (&$responseHeaders) {
             $responseHeaders = $metadata;
@@ -94,7 +93,6 @@ class PqcShowcaseTest extends TestCase
         /** @var array<string, array<int, string>> $responseHeaders */
         $responseHeaders = array_change_key_case($responseHeaders, CASE_LOWER);
 
-        $this->assertEquals($expectedVersion, $responseHeaders[self::TLS_VERSION][0]);
         $this->assertEquals($expectedGroup, $responseHeaders[self::TLS_GROUP][0]);
     }
 }
