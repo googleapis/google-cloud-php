@@ -232,6 +232,72 @@ final class SqlInstancesServiceClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * project_location_secret_secret_version resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $secret
+     * @param string $secretVersion
+     *
+     * @return string The formatted project_location_secret_secret_version resource.
+     */
+    public static function projectLocationSecretSecretVersionName(
+        string $project,
+        string $location,
+        string $secret,
+        string $secretVersion
+    ): string {
+        return self::getPathTemplate('projectLocationSecretSecretVersion')->render([
+            'project' => $project,
+            'location' => $location,
+            'secret' => $secret,
+            'secret_version' => $secretVersion,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_secret_secret_version resource.
+     *
+     * @param string $project
+     * @param string $secret
+     * @param string $secretVersion
+     *
+     * @return string The formatted project_secret_secret_version resource.
+     */
+    public static function projectSecretSecretVersionName(
+        string $project,
+        string $secret,
+        string $secretVersion
+    ): string {
+        return self::getPathTemplate('projectSecretSecretVersion')->render([
+            'project' => $project,
+            'secret' => $secret,
+            'secret_version' => $secretVersion,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * secret_version resource.
+     *
+     * @param string $project
+     * @param string $secret
+     * @param string $secretVersion
+     *
+     * @return string The formatted secret_version resource.
+     */
+    public static function secretVersionName(string $project, string $secret, string $secretVersion): string
+    {
+        return self::getPathTemplate('secretVersion')->render([
+            'project' => $project,
+            'secret' => $secret,
+            'secret_version' => $secretVersion,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * service_connection_policy resource.
      *
      * @param string $project
@@ -258,6 +324,9 @@ final class SqlInstancesServiceClient
      * Template: Pattern
      * - backup: projects/{project}/backups/{backup}
      * - network: projects/{project}/global/networks/{network}
+     * - projectLocationSecretSecretVersion: projects/{project}/locations/{location}/secrets/{secret}/versions/{secret_version}
+     * - projectSecretSecretVersion: projects/{project}/secrets/{secret}/versions/{secret_version}
+     * - secretVersion: projects/{project}/secrets/{secret}/versions/{secret_version}
      * - serviceConnectionPolicy: projects/{project}/regions/{region}/serviceConnectionPolicies/{service_connection_policy}
      *
      * The optional $template argument can be supplied to specify a particular pattern,

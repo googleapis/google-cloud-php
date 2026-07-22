@@ -378,6 +378,13 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.DnsNameMapping dns_names = 67 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $dns_names;
+    /**
+     * Optional. If true, instance metadata is sent to the Database Center. If
+     * false, instance metadata is not sent to the Database Center.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue database_center_integration_enabled = 72 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $database_center_integration_enabled = null;
 
     /**
      * Constructor.
@@ -541,6 +548,9 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
      *           the read pool.
      *     @type \Google\Cloud\Sql\V1\DnsNameMapping[] $dns_names
      *           Output only. The list of DNS names used by this instance.
+     *     @type \Google\Protobuf\BoolValue $database_center_integration_enabled
+     *           Optional. If true, instance metadata is sent to the Database Center. If
+     *           false, instance metadata is not sent to the Database Center.
      * }
      */
     public function __construct($data = NULL) {
@@ -2443,6 +2453,73 @@ class DatabaseInstance extends \Google\Protobuf\Internal\Message
 
         return $this;
     }
+
+    /**
+     * Optional. If true, instance metadata is sent to the Database Center. If
+     * false, instance metadata is not sent to the Database Center.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue database_center_integration_enabled = 72 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\BoolValue|null
+     */
+    public function getDatabaseCenterIntegrationEnabled()
+    {
+        return $this->database_center_integration_enabled;
+    }
+
+    public function hasDatabaseCenterIntegrationEnabled()
+    {
+        return isset($this->database_center_integration_enabled);
+    }
+
+    public function clearDatabaseCenterIntegrationEnabled()
+    {
+        unset($this->database_center_integration_enabled);
+    }
+
+    /**
+     * Returns the unboxed value from <code>getDatabaseCenterIntegrationEnabled()</code>
+
+     * Optional. If true, instance metadata is sent to the Database Center. If
+     * false, instance metadata is not sent to the Database Center.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue database_center_integration_enabled = 72 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool|null
+     */
+    public function getDatabaseCenterIntegrationEnabledUnwrapped()
+    {
+        return $this->readWrapperValue("database_center_integration_enabled");
+    }
+
+    /**
+     * Optional. If true, instance metadata is sent to the Database Center. If
+     * false, instance metadata is not sent to the Database Center.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue database_center_integration_enabled = 72 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\BoolValue $var
+     * @return $this
+     */
+    public function setDatabaseCenterIntegrationEnabled($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\BoolValue::class);
+        $this->database_center_integration_enabled = $var;
+
+        return $this;
+    }
+
+    /**
+     * Sets the field by wrapping a primitive type in a Google\Protobuf\BoolValue object.
+
+     * Optional. If true, instance metadata is sent to the Database Center. If
+     * false, instance metadata is not sent to the Database Center.
+     *
+     * Generated from protobuf field <code>.google.protobuf.BoolValue database_center_integration_enabled = 72 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool|null $var
+     * @return $this
+     */
+    public function setDatabaseCenterIntegrationEnabledUnwrapped($var)
+    {
+        $this->writeWrapperValue("database_center_integration_enabled", $var);
+        return $this;}
 
 }
 

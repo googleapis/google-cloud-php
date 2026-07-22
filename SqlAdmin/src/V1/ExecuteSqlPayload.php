@@ -75,6 +75,15 @@ class ExecuteSqlPayload extends \Google\Protobuf\Internal\Message
      *           statement or a sequence of statements separated by semicolons.
      *     @type string $database
      *           Optional. Name of the database on which the statement will be executed.
+     *     @type string $password_secret_version
+     *           Optional. The resource name of the Secret Manager secret holding the
+     *           password for the user to log into the database. The secret should be
+     *           created using the regional endpoint (for API) or from the Regional
+     *           Secrets page (for UI), and stored in the same region as the Cloud SQL
+     *           instance. The expected resource name format is
+     *           `projects/{project}/locations/{location}/secrets/{secret}/versions/{secret_version}`.
+     *           Used together with the `user` field.
+     *           The secret resource name will not be stored.
      *     @type bool $auto_iam_authn
      *           Optional. When set to `true`, the API caller identity associated with the
      *           request is used for database authentication. The API caller must be an
@@ -176,6 +185,51 @@ class ExecuteSqlPayload extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->database = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The resource name of the Secret Manager secret holding the
+     * password for the user to log into the database. The secret should be
+     * created using the regional endpoint (for API) or from the Regional
+     * Secrets page (for UI), and stored in the same region as the Cloud SQL
+     * instance. The expected resource name format is
+     * `projects/{project}/locations/{location}/secrets/{secret}/versions/{secret_version}`.
+     * Used together with the `user` field.
+     * The secret resource name will not be stored.
+     *
+     * Generated from protobuf field <code>string password_secret_version = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getPasswordSecretVersion()
+    {
+        return $this->readOneof(5);
+    }
+
+    public function hasPasswordSecretVersion()
+    {
+        return $this->hasOneof(5);
+    }
+
+    /**
+     * Optional. The resource name of the Secret Manager secret holding the
+     * password for the user to log into the database. The secret should be
+     * created using the regional endpoint (for API) or from the Regional
+     * Secrets page (for UI), and stored in the same region as the Cloud SQL
+     * instance. The expected resource name format is
+     * `projects/{project}/locations/{location}/secrets/{secret}/versions/{secret_version}`.
+     * Used together with the `user` field.
+     * The secret resource name will not be stored.
+     *
+     * Generated from protobuf field <code>string password_secret_version = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPasswordSecretVersion($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->writeOneof(5, $var);
 
         return $this;
     }
