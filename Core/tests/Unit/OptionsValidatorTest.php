@@ -19,14 +19,7 @@ namespace Google\Cloud\Core\Tests\Unit;
 
 use Google\ApiCore\Options\CallOptions;
 use Google\Cloud\Core\OptionsValidator;
-use Google\Protobuf\Internal\Message;
 use PHPUnit\Framework\TestCase;
-
-class DummyMessage extends Message
-{
-    public function getQueryOptions() {}
-    public function getRequestOptions() {}
-}
 
 /**
  * @group core

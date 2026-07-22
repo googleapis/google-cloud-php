@@ -580,8 +580,8 @@ class Transaction implements TransactionalReadInterface
     /**
      * Build the update options.
      *
-     * @param array $options The update options
-     * @param string $requestClass The protobuf request class
+     * @param  array  $options      The update options
+     * @param  string $requestClass The protobuf request class
      * @return array
      */
     private function buildUpdateOptions(array $options, string $requestClass): array
