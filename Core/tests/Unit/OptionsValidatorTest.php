@@ -19,8 +19,14 @@ namespace Google\Cloud\Core\Tests\Unit;
 
 use Google\ApiCore\Options\CallOptions;
 use Google\Cloud\Core\OptionsValidator;
-use Google\Cloud\Spanner\V1\ExecuteSqlRequest;
+use Google\Protobuf\Internal\Message;
 use PHPUnit\Framework\TestCase;
+
+class DummyMessage extends Message
+{
+    public function getQueryOptions() {}
+    public function getRequestOptions() {}
+}
 
 /**
  * @group core
@@ -48,12 +54,12 @@ class OptionsValidatorTest extends TestCase
             $options,
             ['parameters'],
             CallOptions::class,
-            ExecuteSqlRequest::class
+            DummyMessage::class
         );
 
         $this->assertArrayHasKey('parameters', $stripped);
-        $this->assertArrayHasKey('queryOptions', $stripped); // From ExecuteSqlRequest
-        $this->assertArrayHasKey('requestOptions', $stripped); // From ExecuteSqlRequest
+        $this->assertArrayHasKey('queryOptions', $stripped); // From DummyMessage
+        $this->assertArrayHasKey('requestOptions', $stripped); // From DummyMessage
         $this->assertArrayHasKey('timeoutMillis', $stripped); // From CallOptions
         $this->assertArrayNotHasKey('unknown', $stripped);
     }
