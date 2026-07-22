@@ -29,7 +29,7 @@ use Google\Ads\AdManager\V1\UpdateSiteRequest;
 use Google\ApiCore\ApiException;
 
 /**
- * API to update a `Site` object.
+ * Updates a `Site` object.
  *
  * @param string $siteUrl The URL of the Site.
  */

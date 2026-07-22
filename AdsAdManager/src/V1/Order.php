@@ -219,6 +219,28 @@ class Order extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.CustomFieldValue custom_field_values = 38 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $custom_field_values;
+    /**
+     * Output only. The total number of impressions delivered for Line items in
+     * this order.
+     *
+     * Generated from protobuf field <code>optional int64 impressions_delivered = 41 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $impressions_delivered = null;
+    /**
+     * Output only. Total clicks delivered for all Line items of this `Order`.
+     * This value is calculated from the associated `LineItem` values.
+     *
+     * Generated from protobuf field <code>optional int64 total_clicks_delivered = 53 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $total_clicks_delivered = null;
+    /**
+     * Output only. Total viewable impressions delivered for all Line items of
+     * this `Order`. This value is calculated from the associated `LineItem`
+     * values.
+     *
+     * Generated from protobuf field <code>optional int64 total_viewable_impressions_delivered = 54 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $total_viewable_impressions_delivered = null;
 
     /**
      * Constructor.
@@ -313,6 +335,16 @@ class Order extends \Google\Protobuf\Internal\Message
      *           assigned by Google.
      *     @type \Google\Ads\AdManager\V1\CustomFieldValue[] $custom_field_values
      *           Optional. The set of custom field values to this order.
+     *     @type int|string $impressions_delivered
+     *           Output only. The total number of impressions delivered for Line items in
+     *           this order.
+     *     @type int|string $total_clicks_delivered
+     *           Output only. Total clicks delivered for all Line items of this `Order`.
+     *           This value is calculated from the associated `LineItem` values.
+     *     @type int|string $total_viewable_impressions_delivered
+     *           Output only. Total viewable impressions delivered for all Line items of
+     *           this `Order`. This value is calculated from the associated `LineItem`
+     *           values.
      * }
      */
     public function __construct($data = NULL) {
@@ -1328,6 +1360,122 @@ class Order extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Ads\AdManager\V1\CustomFieldValue::class);
         $this->custom_field_values = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The total number of impressions delivered for Line items in
+     * this order.
+     *
+     * Generated from protobuf field <code>optional int64 impressions_delivered = 41 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int|string
+     */
+    public function getImpressionsDelivered()
+    {
+        return isset($this->impressions_delivered) ? $this->impressions_delivered : 0;
+    }
+
+    public function hasImpressionsDelivered()
+    {
+        return isset($this->impressions_delivered);
+    }
+
+    public function clearImpressionsDelivered()
+    {
+        unset($this->impressions_delivered);
+    }
+
+    /**
+     * Output only. The total number of impressions delivered for Line items in
+     * this order.
+     *
+     * Generated from protobuf field <code>optional int64 impressions_delivered = 41 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setImpressionsDelivered($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->impressions_delivered = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Total clicks delivered for all Line items of this `Order`.
+     * This value is calculated from the associated `LineItem` values.
+     *
+     * Generated from protobuf field <code>optional int64 total_clicks_delivered = 53 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int|string
+     */
+    public function getTotalClicksDelivered()
+    {
+        return isset($this->total_clicks_delivered) ? $this->total_clicks_delivered : 0;
+    }
+
+    public function hasTotalClicksDelivered()
+    {
+        return isset($this->total_clicks_delivered);
+    }
+
+    public function clearTotalClicksDelivered()
+    {
+        unset($this->total_clicks_delivered);
+    }
+
+    /**
+     * Output only. Total clicks delivered for all Line items of this `Order`.
+     * This value is calculated from the associated `LineItem` values.
+     *
+     * Generated from protobuf field <code>optional int64 total_clicks_delivered = 53 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setTotalClicksDelivered($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->total_clicks_delivered = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Total viewable impressions delivered for all Line items of
+     * this `Order`. This value is calculated from the associated `LineItem`
+     * values.
+     *
+     * Generated from protobuf field <code>optional int64 total_viewable_impressions_delivered = 54 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int|string
+     */
+    public function getTotalViewableImpressionsDelivered()
+    {
+        return isset($this->total_viewable_impressions_delivered) ? $this->total_viewable_impressions_delivered : 0;
+    }
+
+    public function hasTotalViewableImpressionsDelivered()
+    {
+        return isset($this->total_viewable_impressions_delivered);
+    }
+
+    public function clearTotalViewableImpressionsDelivered()
+    {
+        unset($this->total_viewable_impressions_delivered);
+    }
+
+    /**
+     * Output only. Total viewable impressions delivered for all Line items of
+     * this `Order`. This value is calculated from the associated `LineItem`
+     * values.
+     *
+     * Generated from protobuf field <code>optional int64 total_viewable_impressions_delivered = 54 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setTotalViewableImpressionsDelivered($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->total_viewable_impressions_delivered = $var;
 
         return $this;
     }

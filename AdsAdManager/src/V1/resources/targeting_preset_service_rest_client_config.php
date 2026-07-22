@@ -47,6 +47,18 @@ return [
                     ],
                 ],
             ],
+            'BatchUpdateTargetingPresets' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/targetingPresets:batchUpdate',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateTargetingPreset' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=networks/*}/targetingPresets',
@@ -77,6 +89,19 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateTargetingPreset' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{targeting_preset.name=networks/*/targetingPresets/*}',
+                'body' => 'targeting_preset',
+                'placeholders' => [
+                    'targeting_preset.name' => [
+                        'getters' => [
+                            'getTargetingPreset',
+                            'getName',
                         ],
                     ],
                 ],

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,15 +22,13 @@
 
 namespace Google\Ads\AdManager\Tests\Unit\V1\Client;
 
-use Google\Ads\AdManager\V1\BatchActivateContentBundlesRequest;
-use Google\Ads\AdManager\V1\BatchActivateContentBundlesResponse;
-use Google\Ads\AdManager\V1\BatchDeactivateContentBundlesRequest;
-use Google\Ads\AdManager\V1\BatchDeactivateContentBundlesResponse;
-use Google\Ads\AdManager\V1\Client\ContentBundleServiceClient;
-use Google\Ads\AdManager\V1\ContentBundle;
-use Google\Ads\AdManager\V1\GetContentBundleRequest;
-use Google\Ads\AdManager\V1\ListContentBundlesRequest;
-use Google\Ads\AdManager\V1\ListContentBundlesResponse;
+use Google\Ads\AdManager\V1\Client\CreativeSetServiceClient;
+use Google\Ads\AdManager\V1\CreateCreativeSetRequest;
+use Google\Ads\AdManager\V1\CreativeSet;
+use Google\Ads\AdManager\V1\GetCreativeSetRequest;
+use Google\Ads\AdManager\V1\ListCreativeSetsRequest;
+use Google\Ads\AdManager\V1\ListCreativeSetsResponse;
+use Google\Ads\AdManager\V1\UpdateCreativeSetRequest;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
@@ -43,7 +41,7 @@ use stdClass;
  *
  * @group gapic
  */
-class ContentBundleServiceClientTest extends GeneratedTest
+class CreativeSetServiceClientTest extends GeneratedTest
 {
     /** @return TransportInterface */
     private function createTransport($deserialize = null)
@@ -59,17 +57,17 @@ class ContentBundleServiceClientTest extends GeneratedTest
             ->getMock();
     }
 
-    /** @return ContentBundleServiceClient */
+    /** @return CreativeSetServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
             'credentials' => $this->createCredentials(),
         ];
-        return new ContentBundleServiceClient($options);
+        return new CreativeSetServiceClient($options);
     }
 
     /** @test */
-    public function batchActivateContentBundlesTest()
+    public function createCreativeSetTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -77,28 +75,40 @@ class ContentBundleServiceClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
-        $expectedResponse = new BatchActivateContentBundlesResponse();
+        $name = 'name3373707';
+        $displayName = 'displayName1615086568';
+        $masterCreative = 'masterCreative1906705644';
+        $expectedResponse = new CreativeSet();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setMasterCreative($masterCreative);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
-        $formattedNames = [$gapicClient->contentBundleName('[NETWORK_CODE]', '[CONTENT_BUNDLE]')];
-        $request = (new BatchActivateContentBundlesRequest())->setParent($formattedParent)->setNames($formattedNames);
-        $response = $gapicClient->batchActivateContentBundles($request);
+        $creativeSet = new CreativeSet();
+        $creativeSetDisplayName = 'creativeSetDisplayName561983034';
+        $creativeSet->setDisplayName($creativeSetDisplayName);
+        $creativeSetMasterCreative = $gapicClient->creativeName('[NETWORK_CODE]', '[CREATIVE]');
+        $creativeSet->setMasterCreative($creativeSetMasterCreative);
+        $creativeSetCompanionCreatives = [$gapicClient->creativeName('[NETWORK_CODE]', '[CREATIVE]')];
+        $creativeSet->setCompanionCreatives($creativeSetCompanionCreatives);
+        $request = (new CreateCreativeSetRequest())->setParent($formattedParent)->setCreativeSet($creativeSet);
+        $response = $gapicClient->createCreativeSet($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.ads.admanager.v1.ContentBundleService/BatchActivateContentBundles', $actualFuncCall);
+        $this->assertSame('/google.ads.admanager.v1.CreativeSetService/CreateCreativeSet', $actualFuncCall);
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getNames();
-        $this->assertProtobufEquals($formattedNames, $actualValue);
+        $actualValue = $actualRequestObject->getCreativeSet();
+        $this->assertProtobufEquals($creativeSet, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
-    public function batchActivateContentBundlesExceptionTest()
+    public function createCreativeSetExceptionTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -120,10 +130,16 @@ class ContentBundleServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
-        $formattedNames = [$gapicClient->contentBundleName('[NETWORK_CODE]', '[CONTENT_BUNDLE]')];
-        $request = (new BatchActivateContentBundlesRequest())->setParent($formattedParent)->setNames($formattedNames);
+        $creativeSet = new CreativeSet();
+        $creativeSetDisplayName = 'creativeSetDisplayName561983034';
+        $creativeSet->setDisplayName($creativeSetDisplayName);
+        $creativeSetMasterCreative = $gapicClient->creativeName('[NETWORK_CODE]', '[CREATIVE]');
+        $creativeSet->setMasterCreative($creativeSetMasterCreative);
+        $creativeSetCompanionCreatives = [$gapicClient->creativeName('[NETWORK_CODE]', '[CREATIVE]')];
+        $creativeSet->setCompanionCreatives($creativeSetCompanionCreatives);
+        $request = (new CreateCreativeSetRequest())->setParent($formattedParent)->setCreativeSet($creativeSet);
         try {
-            $gapicClient->batchActivateContentBundles($request);
+            $gapicClient->createCreativeSet($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -136,77 +152,7 @@ class ContentBundleServiceClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function batchDeactivateContentBundlesTest()
-    {
-        $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        // Mock response
-        $expectedResponse = new BatchDeactivateContentBundlesResponse();
-        $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
-        $formattedNames = [$gapicClient->contentBundleName('[NETWORK_CODE]', '[CONTENT_BUNDLE]')];
-        $request = (new BatchDeactivateContentBundlesRequest())->setParent($formattedParent)->setNames($formattedNames);
-        $response = $gapicClient->batchDeactivateContentBundles($request);
-        $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame(
-            '/google.ads.admanager.v1.ContentBundleService/BatchDeactivateContentBundles',
-            $actualFuncCall
-        );
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getNames();
-        $this->assertProtobufEquals($formattedNames, $actualValue);
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /** @test */
-    public function batchDeactivateContentBundlesExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode(
-            [
-                'message' => 'internal error',
-                'code' => Code::DATA_LOSS,
-                'status' => 'DATA_LOSS',
-                'details' => [],
-            ],
-            JSON_PRETTY_PRINT
-        );
-        $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
-        $formattedNames = [$gapicClient->contentBundleName('[NETWORK_CODE]', '[CONTENT_BUNDLE]')];
-        $request = (new BatchDeactivateContentBundlesRequest())->setParent($formattedParent)->setNames($formattedNames);
-        try {
-            $gapicClient->batchDeactivateContentBundles($request);
-            // If the $gapicClient method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /** @test */
-    public function getContentBundleTest()
+    public function getCreativeSetTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -216,27 +162,29 @@ class ContentBundleServiceClientTest extends GeneratedTest
         // Mock response
         $name2 = 'name2-1052831874';
         $displayName = 'displayName1615086568';
-        $expectedResponse = new ContentBundle();
+        $masterCreative = 'masterCreative1906705644';
+        $expectedResponse = new CreativeSet();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setMasterCreative($masterCreative);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->contentBundleName('[NETWORK_CODE]', '[CONTENT_BUNDLE]');
-        $request = (new GetContentBundleRequest())->setName($formattedName);
-        $response = $gapicClient->getContentBundle($request);
+        $formattedName = $gapicClient->creativeSetName('[NETWORK_CODE]', '[CREATIVE_SET]');
+        $request = (new GetCreativeSetRequest())->setName($formattedName);
+        $response = $gapicClient->getCreativeSet($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.ads.admanager.v1.ContentBundleService/GetContentBundle', $actualFuncCall);
+        $this->assertSame('/google.ads.admanager.v1.CreativeSetService/GetCreativeSet', $actualFuncCall);
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
-    public function getContentBundleExceptionTest()
+    public function getCreativeSetExceptionTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -257,10 +205,10 @@ class ContentBundleServiceClientTest extends GeneratedTest
         );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->contentBundleName('[NETWORK_CODE]', '[CONTENT_BUNDLE]');
-        $request = (new GetContentBundleRequest())->setName($formattedName);
+        $formattedName = $gapicClient->creativeSetName('[NETWORK_CODE]', '[CREATIVE_SET]');
+        $request = (new GetCreativeSetRequest())->setName($formattedName);
         try {
-            $gapicClient->getContentBundle($request);
+            $gapicClient->getCreativeSet($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -273,7 +221,7 @@ class ContentBundleServiceClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function listContentBundlesTest()
+    public function listCreativeSetsTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -283,33 +231,33 @@ class ContentBundleServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $totalSize = 705419236;
-        $contentBundlesElement = new ContentBundle();
-        $contentBundles = [$contentBundlesElement];
-        $expectedResponse = new ListContentBundlesResponse();
+        $creativeSetsElement = new CreativeSet();
+        $creativeSets = [$creativeSetsElement];
+        $expectedResponse = new ListCreativeSetsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setTotalSize($totalSize);
-        $expectedResponse->setContentBundles($contentBundles);
+        $expectedResponse->setCreativeSets($creativeSets);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
-        $request = (new ListContentBundlesRequest())->setParent($formattedParent);
-        $response = $gapicClient->listContentBundles($request);
+        $request = (new ListCreativeSetsRequest())->setParent($formattedParent);
+        $response = $gapicClient->listCreativeSets($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
-        $this->assertEquals($expectedResponse->getContentBundles()[0], $resources[0]);
+        $this->assertEquals($expectedResponse->getCreativeSets()[0], $resources[0]);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.ads.admanager.v1.ContentBundleService/ListContentBundles', $actualFuncCall);
+        $this->assertSame('/google.ads.admanager.v1.CreativeSetService/ListCreativeSets', $actualFuncCall);
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
-    public function listContentBundlesExceptionTest()
+    public function listCreativeSetsExceptionTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -331,9 +279,9 @@ class ContentBundleServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
-        $request = (new ListContentBundlesRequest())->setParent($formattedParent);
+        $request = (new ListCreativeSetsRequest())->setParent($formattedParent);
         try {
-            $gapicClient->listContentBundles($request);
+            $gapicClient->listCreativeSets($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -346,7 +294,7 @@ class ContentBundleServiceClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function batchActivateContentBundlesAsyncTest()
+    public function updateCreativeSetTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -354,23 +302,116 @@ class ContentBundleServiceClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
-        $expectedResponse = new BatchActivateContentBundlesResponse();
+        $name = 'name3373707';
+        $displayName = 'displayName1615086568';
+        $masterCreative = 'masterCreative1906705644';
+        $expectedResponse = new CreativeSet();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setMasterCreative($masterCreative);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
-        $formattedNames = [$gapicClient->contentBundleName('[NETWORK_CODE]', '[CONTENT_BUNDLE]')];
-        $request = (new BatchActivateContentBundlesRequest())->setParent($formattedParent)->setNames($formattedNames);
-        $response = $gapicClient->batchActivateContentBundlesAsync($request)->wait();
+        $creativeSet = new CreativeSet();
+        $creativeSetDisplayName = 'creativeSetDisplayName561983034';
+        $creativeSet->setDisplayName($creativeSetDisplayName);
+        $creativeSetMasterCreative = $gapicClient->creativeName('[NETWORK_CODE]', '[CREATIVE]');
+        $creativeSet->setMasterCreative($creativeSetMasterCreative);
+        $creativeSetCompanionCreatives = [$gapicClient->creativeName('[NETWORK_CODE]', '[CREATIVE]')];
+        $creativeSet->setCompanionCreatives($creativeSetCompanionCreatives);
+        $request = (new UpdateCreativeSetRequest())->setCreativeSet($creativeSet);
+        $response = $gapicClient->updateCreativeSet($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.ads.admanager.v1.ContentBundleService/BatchActivateContentBundles', $actualFuncCall);
+        $this->assertSame('/google.ads.admanager.v1.CreativeSetService/UpdateCreativeSet', $actualFuncCall);
+        $actualValue = $actualRequestObject->getCreativeSet();
+        $this->assertProtobufEquals($creativeSet, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateCreativeSetExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $creativeSet = new CreativeSet();
+        $creativeSetDisplayName = 'creativeSetDisplayName561983034';
+        $creativeSet->setDisplayName($creativeSetDisplayName);
+        $creativeSetMasterCreative = $gapicClient->creativeName('[NETWORK_CODE]', '[CREATIVE]');
+        $creativeSet->setMasterCreative($creativeSetMasterCreative);
+        $creativeSetCompanionCreatives = [$gapicClient->creativeName('[NETWORK_CODE]', '[CREATIVE]')];
+        $creativeSet->setCompanionCreatives($creativeSetCompanionCreatives);
+        $request = (new UpdateCreativeSetRequest())->setCreativeSet($creativeSet);
+        try {
+            $gapicClient->updateCreativeSet($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function createCreativeSetAsyncTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $displayName = 'displayName1615086568';
+        $masterCreative = 'masterCreative1906705644';
+        $expectedResponse = new CreativeSet();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setMasterCreative($masterCreative);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
+        $creativeSet = new CreativeSet();
+        $creativeSetDisplayName = 'creativeSetDisplayName561983034';
+        $creativeSet->setDisplayName($creativeSetDisplayName);
+        $creativeSetMasterCreative = $gapicClient->creativeName('[NETWORK_CODE]', '[CREATIVE]');
+        $creativeSet->setMasterCreative($creativeSetMasterCreative);
+        $creativeSetCompanionCreatives = [$gapicClient->creativeName('[NETWORK_CODE]', '[CREATIVE]')];
+        $creativeSet->setCompanionCreatives($creativeSetCompanionCreatives);
+        $request = (new CreateCreativeSetRequest())->setParent($formattedParent)->setCreativeSet($creativeSet);
+        $response = $gapicClient->createCreativeSetAsync($request)->wait();
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.ads.admanager.v1.CreativeSetService/CreateCreativeSet', $actualFuncCall);
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getNames();
-        $this->assertProtobufEquals($formattedNames, $actualValue);
+        $actualValue = $actualRequestObject->getCreativeSet();
+        $this->assertProtobufEquals($creativeSet, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

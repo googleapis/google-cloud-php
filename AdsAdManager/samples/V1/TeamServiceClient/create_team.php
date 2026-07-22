@@ -29,7 +29,7 @@ use Google\Ads\AdManager\V1\Team;
 use Google\ApiCore\ApiException;
 
 /**
- * API to create a `Team` object.
+ * Creates a `Team` object.
  *
  * @param string $formattedParent The parent resource where this `Team` will be created.
  *                                Format: `networks/{network_code}`

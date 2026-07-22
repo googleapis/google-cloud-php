@@ -29,7 +29,7 @@ use Google\Ads\AdManager\V1\GetContactRequest;
 use Google\ApiCore\ApiException;
 
 /**
- * API to retrieve a `Contact` object.
+ * Retrieves a `Contact` object.
  *
  * @param string $formattedName The resource name of the Contact.
  *                              Format: `networks/{network_code}/contacts/{contact_id}`

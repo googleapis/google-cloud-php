@@ -255,7 +255,7 @@ final class CompanyServiceClient
     }
 
     /**
-     * API to retrieve a `Company` object.
+     * Retrieves a `Company` object.
      *
      * The async variant is {@see CompanyServiceClient::getCompanyAsync()} .
      *
@@ -281,7 +281,7 @@ final class CompanyServiceClient
     }
 
     /**
-     * API to retrieve a list of `Company` objects.
+     * Lists `Company` objects.
      *
      * The async variant is {@see CompanyServiceClient::listCompaniesAsync()} .
      *

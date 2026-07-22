@@ -2123,7 +2123,7 @@ class Dimension
      * Corresponds to "Demand channel value" in the Ad Manager UI (when showing
      * API fields).
      * Compatible with the following report types: `HISTORICAL`, `REACH`,
-     * `REVENUE_VERIFICATION`, `AD_SPEED`
+     * `REVENUE_VERIFICATION`, `AD_SPEED`, `ON_PLATFORM_MULTICALL`
      * Data format: `ENUM`
      *
      * Generated from protobuf enum <code>DEMAND_CHANNEL = 9;</code>
@@ -2133,7 +2133,7 @@ class Dimension
      * Demand channel name.
      * Corresponds to "Demand channel" in the Ad Manager UI.
      * Compatible with the following report types: `HISTORICAL`, `REACH`,
-     * `REVENUE_VERIFICATION`, `AD_SPEED`
+     * `REVENUE_VERIFICATION`, `AD_SPEED`, `ON_PLATFORM_MULTICALL`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>DEMAND_CHANNEL_NAME = 10;</code>

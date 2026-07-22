@@ -29,7 +29,7 @@ use Google\Ads\AdManager\V1\CreateContactRequest;
 use Google\ApiCore\ApiException;
 
 /**
- * API to create a `Contact` object.
+ * Creates a `Contact` object.
  *
  * @param string $formattedParent         The parent resource where this `Contact` will be created.
  *                                        Format: `networks/{network_code}`

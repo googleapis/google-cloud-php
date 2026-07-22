@@ -234,7 +234,7 @@ final class McmEarningsServiceClient
     }
 
     /**
-     * API to retrieve a list of `McmEarnings` objects.
+     * Lists `McmEarnings` objects.
      *
      * The async variant is {@see McmEarningsServiceClient::fetchMcmEarningsAsync()} .
      *

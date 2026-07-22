@@ -22,20 +22,21 @@
 
 namespace Google\Ads\AdManager\Tests\Unit\V1\Client;
 
-use Google\Ads\AdManager\V1\BatchCreateTargetingPresetsRequest;
-use Google\Ads\AdManager\V1\BatchCreateTargetingPresetsResponse;
-use Google\Ads\AdManager\V1\BatchDeactivateTargetingPresetsRequest;
-use Google\Ads\AdManager\V1\BatchDeactivateTargetingPresetsResponse;
-use Google\Ads\AdManager\V1\BatchUpdateTargetingPresetsRequest;
-use Google\Ads\AdManager\V1\BatchUpdateTargetingPresetsResponse;
-use Google\Ads\AdManager\V1\Client\TargetingPresetServiceClient;
-use Google\Ads\AdManager\V1\CreateTargetingPresetRequest;
-use Google\Ads\AdManager\V1\GetTargetingPresetRequest;
-use Google\Ads\AdManager\V1\ListTargetingPresetsRequest;
-use Google\Ads\AdManager\V1\ListTargetingPresetsResponse;
-use Google\Ads\AdManager\V1\Targeting;
-use Google\Ads\AdManager\V1\TargetingPreset;
-use Google\Ads\AdManager\V1\UpdateTargetingPresetRequest;
+use Google\Ads\AdManager\V1\BatchArchiveSlatesRequest;
+use Google\Ads\AdManager\V1\BatchArchiveSlatesResponse;
+use Google\Ads\AdManager\V1\BatchCreateSlatesRequest;
+use Google\Ads\AdManager\V1\BatchCreateSlatesResponse;
+use Google\Ads\AdManager\V1\BatchUnarchiveSlatesRequest;
+use Google\Ads\AdManager\V1\BatchUnarchiveSlatesResponse;
+use Google\Ads\AdManager\V1\BatchUpdateSlatesRequest;
+use Google\Ads\AdManager\V1\BatchUpdateSlatesResponse;
+use Google\Ads\AdManager\V1\Client\SlateServiceClient;
+use Google\Ads\AdManager\V1\CreateSlateRequest;
+use Google\Ads\AdManager\V1\GetSlateRequest;
+use Google\Ads\AdManager\V1\ListSlatesRequest;
+use Google\Ads\AdManager\V1\ListSlatesResponse;
+use Google\Ads\AdManager\V1\Slate;
+use Google\Ads\AdManager\V1\UpdateSlateRequest;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
@@ -48,7 +49,7 @@ use stdClass;
  *
  * @group gapic
  */
-class TargetingPresetServiceClientTest extends GeneratedTest
+class SlateServiceClientTest extends GeneratedTest
 {
     /** @return TransportInterface */
     private function createTransport($deserialize = null)
@@ -64,17 +65,17 @@ class TargetingPresetServiceClientTest extends GeneratedTest
             ->getMock();
     }
 
-    /** @return TargetingPresetServiceClient */
+    /** @return SlateServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
             'credentials' => $this->createCredentials(),
         ];
-        return new TargetingPresetServiceClient($options);
+        return new SlateServiceClient($options);
     }
 
     /** @test */
-    public function batchCreateTargetingPresetsTest()
+    public function batchArchiveSlatesTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -82,22 +83,86 @@ class TargetingPresetServiceClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
-        $expectedResponse = new BatchCreateTargetingPresetsResponse();
+        $expectedResponse = new BatchArchiveSlatesResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
-        $requests = [];
-        $request = (new BatchCreateTargetingPresetsRequest())->setParent($formattedParent)->setRequests($requests);
-        $response = $gapicClient->batchCreateTargetingPresets($request);
+        $formattedNames = [$gapicClient->slateName('[NETWORK_CODE]', '[SLATE]')];
+        $request = (new BatchArchiveSlatesRequest())->setParent($formattedParent)->setNames($formattedNames);
+        $response = $gapicClient->batchArchiveSlates($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame(
-            '/google.ads.admanager.v1.TargetingPresetService/BatchCreateTargetingPresets',
-            $actualFuncCall
+        $this->assertSame('/google.ads.admanager.v1.SlateService/BatchArchiveSlates', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getNames();
+        $this->assertProtobufEquals($formattedNames, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function batchArchiveSlatesExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
         );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
+        $formattedNames = [$gapicClient->slateName('[NETWORK_CODE]', '[SLATE]')];
+        $request = (new BatchArchiveSlatesRequest())->setParent($formattedParent)->setNames($formattedNames);
+        try {
+            $gapicClient->batchArchiveSlates($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function batchCreateSlatesTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new BatchCreateSlatesResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
+        $requests = [];
+        $request = (new BatchCreateSlatesRequest())->setParent($formattedParent)->setRequests($requests);
+        $response = $gapicClient->batchCreateSlates($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.ads.admanager.v1.SlateService/BatchCreateSlates', $actualFuncCall);
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualRequestObject->getRequests();
@@ -106,7 +171,7 @@ class TargetingPresetServiceClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function batchCreateTargetingPresetsExceptionTest()
+    public function batchCreateSlatesExceptionTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -129,9 +194,9 @@ class TargetingPresetServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
         $requests = [];
-        $request = (new BatchCreateTargetingPresetsRequest())->setParent($formattedParent)->setRequests($requests);
+        $request = (new BatchCreateSlatesRequest())->setParent($formattedParent)->setRequests($requests);
         try {
-            $gapicClient->batchCreateTargetingPresets($request);
+            $gapicClient->batchCreateSlates($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -144,7 +209,7 @@ class TargetingPresetServiceClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function batchDeactivateTargetingPresetsTest()
+    public function batchUnarchiveSlatesTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -152,24 +217,86 @@ class TargetingPresetServiceClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
-        $changeCount = 235488192;
-        $expectedResponse = new BatchDeactivateTargetingPresetsResponse();
-        $expectedResponse->setChangeCount($changeCount);
+        $expectedResponse = new BatchUnarchiveSlatesResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
-        $requests = [];
-        $request = (new BatchDeactivateTargetingPresetsRequest())->setParent($formattedParent)->setRequests($requests);
-        $response = $gapicClient->batchDeactivateTargetingPresets($request);
+        $formattedNames = [$gapicClient->slateName('[NETWORK_CODE]', '[SLATE]')];
+        $request = (new BatchUnarchiveSlatesRequest())->setParent($formattedParent)->setNames($formattedNames);
+        $response = $gapicClient->batchUnarchiveSlates($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame(
-            '/google.ads.admanager.v1.TargetingPresetService/BatchDeactivateTargetingPresets',
-            $actualFuncCall
+        $this->assertSame('/google.ads.admanager.v1.SlateService/BatchUnarchiveSlates', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getNames();
+        $this->assertProtobufEquals($formattedNames, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function batchUnarchiveSlatesExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
         );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
+        $formattedNames = [$gapicClient->slateName('[NETWORK_CODE]', '[SLATE]')];
+        $request = (new BatchUnarchiveSlatesRequest())->setParent($formattedParent)->setNames($formattedNames);
+        try {
+            $gapicClient->batchUnarchiveSlates($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function batchUpdateSlatesTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new BatchUpdateSlatesResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
+        $requests = [];
+        $request = (new BatchUpdateSlatesRequest())->setParent($formattedParent)->setRequests($requests);
+        $response = $gapicClient->batchUpdateSlates($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.ads.admanager.v1.SlateService/BatchUpdateSlates', $actualFuncCall);
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualRequestObject->getRequests();
@@ -178,7 +305,7 @@ class TargetingPresetServiceClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function batchDeactivateTargetingPresetsExceptionTest()
+    public function batchUpdateSlatesExceptionTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -201,9 +328,9 @@ class TargetingPresetServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
         $requests = [];
-        $request = (new BatchDeactivateTargetingPresetsRequest())->setParent($formattedParent)->setRequests($requests);
+        $request = (new BatchUpdateSlatesRequest())->setParent($formattedParent)->setRequests($requests);
         try {
-            $gapicClient->batchDeactivateTargetingPresets($request);
+            $gapicClient->batchUpdateSlates($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -216,77 +343,7 @@ class TargetingPresetServiceClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function batchUpdateTargetingPresetsTest()
-    {
-        $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        // Mock response
-        $expectedResponse = new BatchUpdateTargetingPresetsResponse();
-        $transport->addResponse($expectedResponse);
-        // Mock request
-        $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
-        $requests = [];
-        $request = (new BatchUpdateTargetingPresetsRequest())->setParent($formattedParent)->setRequests($requests);
-        $response = $gapicClient->batchUpdateTargetingPresets($request);
-        $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame(
-            '/google.ads.admanager.v1.TargetingPresetService/BatchUpdateTargetingPresets',
-            $actualFuncCall
-        );
-        $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getRequests();
-        $this->assertProtobufEquals($requests, $actualValue);
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /** @test */
-    public function batchUpdateTargetingPresetsExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode(
-            [
-                'message' => 'internal error',
-                'code' => Code::DATA_LOSS,
-                'status' => 'DATA_LOSS',
-                'details' => [],
-            ],
-            JSON_PRETTY_PRINT
-        );
-        $transport->addResponse(null, $status);
-        // Mock request
-        $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
-        $requests = [];
-        $request = (new BatchUpdateTargetingPresetsRequest())->setParent($formattedParent)->setRequests($requests);
-        try {
-            $gapicClient->batchUpdateTargetingPresets($request);
-            // If the $gapicClient method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /** @test */
-    public function createTargetingPresetTest()
+    public function createSlateTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -296,36 +353,34 @@ class TargetingPresetServiceClientTest extends GeneratedTest
         // Mock response
         $name = 'name3373707';
         $displayName = 'displayName1615086568';
-        $expectedResponse = new TargetingPreset();
+        $videoSourceUrl = 'videoSourceUrl2100956559';
+        $expectedResponse = new Slate();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setVideoSourceUrl($videoSourceUrl);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
-        $targetingPreset = new TargetingPreset();
-        $targetingPresetDisplayName = 'targetingPresetDisplayName818581853';
-        $targetingPreset->setDisplayName($targetingPresetDisplayName);
-        $targetingPresetTargeting = new Targeting();
-        $targetingPreset->setTargeting($targetingPresetTargeting);
-        $request = (new CreateTargetingPresetRequest())
-            ->setParent($formattedParent)
-            ->setTargetingPreset($targetingPreset);
-        $response = $gapicClient->createTargetingPreset($request);
+        $slate = new Slate();
+        $slateDisplayName = 'slateDisplayName-1205103852';
+        $slate->setDisplayName($slateDisplayName);
+        $request = (new CreateSlateRequest())->setParent($formattedParent)->setSlate($slate);
+        $response = $gapicClient->createSlate($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.ads.admanager.v1.TargetingPresetService/CreateTargetingPreset', $actualFuncCall);
+        $this->assertSame('/google.ads.admanager.v1.SlateService/CreateSlate', $actualFuncCall);
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getTargetingPreset();
-        $this->assertProtobufEquals($targetingPreset, $actualValue);
+        $actualValue = $actualRequestObject->getSlate();
+        $this->assertProtobufEquals($slate, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
-    public function createTargetingPresetExceptionTest()
+    public function createSlateExceptionTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -347,16 +402,12 @@ class TargetingPresetServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
-        $targetingPreset = new TargetingPreset();
-        $targetingPresetDisplayName = 'targetingPresetDisplayName818581853';
-        $targetingPreset->setDisplayName($targetingPresetDisplayName);
-        $targetingPresetTargeting = new Targeting();
-        $targetingPreset->setTargeting($targetingPresetTargeting);
-        $request = (new CreateTargetingPresetRequest())
-            ->setParent($formattedParent)
-            ->setTargetingPreset($targetingPreset);
+        $slate = new Slate();
+        $slateDisplayName = 'slateDisplayName-1205103852';
+        $slate->setDisplayName($slateDisplayName);
+        $request = (new CreateSlateRequest())->setParent($formattedParent)->setSlate($slate);
         try {
-            $gapicClient->createTargetingPreset($request);
+            $gapicClient->createSlate($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -369,7 +420,7 @@ class TargetingPresetServiceClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function getTargetingPresetTest()
+    public function getSlateTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -379,27 +430,29 @@ class TargetingPresetServiceClientTest extends GeneratedTest
         // Mock response
         $name2 = 'name2-1052831874';
         $displayName = 'displayName1615086568';
-        $expectedResponse = new TargetingPreset();
+        $videoSourceUrl = 'videoSourceUrl2100956559';
+        $expectedResponse = new Slate();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setVideoSourceUrl($videoSourceUrl);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->targetingPresetName('[NETWORK_CODE]', '[TARGETING_PRESET]');
-        $request = (new GetTargetingPresetRequest())->setName($formattedName);
-        $response = $gapicClient->getTargetingPreset($request);
+        $formattedName = $gapicClient->slateName('[NETWORK_CODE]', '[SLATE]');
+        $request = (new GetSlateRequest())->setName($formattedName);
+        $response = $gapicClient->getSlate($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.ads.admanager.v1.TargetingPresetService/GetTargetingPreset', $actualFuncCall);
+        $this->assertSame('/google.ads.admanager.v1.SlateService/GetSlate', $actualFuncCall);
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
-    public function getTargetingPresetExceptionTest()
+    public function getSlateExceptionTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -420,10 +473,10 @@ class TargetingPresetServiceClientTest extends GeneratedTest
         );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->targetingPresetName('[NETWORK_CODE]', '[TARGETING_PRESET]');
-        $request = (new GetTargetingPresetRequest())->setName($formattedName);
+        $formattedName = $gapicClient->slateName('[NETWORK_CODE]', '[SLATE]');
+        $request = (new GetSlateRequest())->setName($formattedName);
         try {
-            $gapicClient->getTargetingPreset($request);
+            $gapicClient->getSlate($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -436,7 +489,7 @@ class TargetingPresetServiceClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function listTargetingPresetsTest()
+    public function listSlatesTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -446,33 +499,33 @@ class TargetingPresetServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $totalSize = 705419236;
-        $targetingPresetsElement = new TargetingPreset();
-        $targetingPresets = [$targetingPresetsElement];
-        $expectedResponse = new ListTargetingPresetsResponse();
+        $slatesElement = new Slate();
+        $slates = [$slatesElement];
+        $expectedResponse = new ListSlatesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setTotalSize($totalSize);
-        $expectedResponse->setTargetingPresets($targetingPresets);
+        $expectedResponse->setSlates($slates);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
-        $request = (new ListTargetingPresetsRequest())->setParent($formattedParent);
-        $response = $gapicClient->listTargetingPresets($request);
+        $request = (new ListSlatesRequest())->setParent($formattedParent);
+        $response = $gapicClient->listSlates($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
-        $this->assertEquals($expectedResponse->getTargetingPresets()[0], $resources[0]);
+        $this->assertEquals($expectedResponse->getSlates()[0], $resources[0]);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.ads.admanager.v1.TargetingPresetService/ListTargetingPresets', $actualFuncCall);
+        $this->assertSame('/google.ads.admanager.v1.SlateService/ListSlates', $actualFuncCall);
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
-    public function listTargetingPresetsExceptionTest()
+    public function listSlatesExceptionTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -494,9 +547,9 @@ class TargetingPresetServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
-        $request = (new ListTargetingPresetsRequest())->setParent($formattedParent);
+        $request = (new ListSlatesRequest())->setParent($formattedParent);
         try {
-            $gapicClient->listTargetingPresets($request);
+            $gapicClient->listSlates($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -509,7 +562,7 @@ class TargetingPresetServiceClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function updateTargetingPresetTest()
+    public function updateSlateTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -519,31 +572,31 @@ class TargetingPresetServiceClientTest extends GeneratedTest
         // Mock response
         $name = 'name3373707';
         $displayName = 'displayName1615086568';
-        $expectedResponse = new TargetingPreset();
+        $videoSourceUrl = 'videoSourceUrl2100956559';
+        $expectedResponse = new Slate();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setVideoSourceUrl($videoSourceUrl);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $targetingPreset = new TargetingPreset();
-        $targetingPresetDisplayName = 'targetingPresetDisplayName818581853';
-        $targetingPreset->setDisplayName($targetingPresetDisplayName);
-        $targetingPresetTargeting = new Targeting();
-        $targetingPreset->setTargeting($targetingPresetTargeting);
-        $request = (new UpdateTargetingPresetRequest())->setTargetingPreset($targetingPreset);
-        $response = $gapicClient->updateTargetingPreset($request);
+        $slate = new Slate();
+        $slateDisplayName = 'slateDisplayName-1205103852';
+        $slate->setDisplayName($slateDisplayName);
+        $request = (new UpdateSlateRequest())->setSlate($slate);
+        $response = $gapicClient->updateSlate($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.ads.admanager.v1.TargetingPresetService/UpdateTargetingPreset', $actualFuncCall);
-        $actualValue = $actualRequestObject->getTargetingPreset();
-        $this->assertProtobufEquals($targetingPreset, $actualValue);
+        $this->assertSame('/google.ads.admanager.v1.SlateService/UpdateSlate', $actualFuncCall);
+        $actualValue = $actualRequestObject->getSlate();
+        $this->assertProtobufEquals($slate, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
-    public function updateTargetingPresetExceptionTest()
+    public function updateSlateExceptionTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -564,14 +617,12 @@ class TargetingPresetServiceClientTest extends GeneratedTest
         );
         $transport->addResponse(null, $status);
         // Mock request
-        $targetingPreset = new TargetingPreset();
-        $targetingPresetDisplayName = 'targetingPresetDisplayName818581853';
-        $targetingPreset->setDisplayName($targetingPresetDisplayName);
-        $targetingPresetTargeting = new Targeting();
-        $targetingPreset->setTargeting($targetingPresetTargeting);
-        $request = (new UpdateTargetingPresetRequest())->setTargetingPreset($targetingPreset);
+        $slate = new Slate();
+        $slateDisplayName = 'slateDisplayName-1205103852';
+        $slate->setDisplayName($slateDisplayName);
+        $request = (new UpdateSlateRequest())->setSlate($slate);
         try {
-            $gapicClient->updateTargetingPreset($request);
+            $gapicClient->updateSlate($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -584,7 +635,7 @@ class TargetingPresetServiceClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function batchCreateTargetingPresetsAsyncTest()
+    public function batchArchiveSlatesAsyncTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -592,26 +643,23 @@ class TargetingPresetServiceClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
-        $expectedResponse = new BatchCreateTargetingPresetsResponse();
+        $expectedResponse = new BatchArchiveSlatesResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
-        $requests = [];
-        $request = (new BatchCreateTargetingPresetsRequest())->setParent($formattedParent)->setRequests($requests);
-        $response = $gapicClient->batchCreateTargetingPresetsAsync($request)->wait();
+        $formattedNames = [$gapicClient->slateName('[NETWORK_CODE]', '[SLATE]')];
+        $request = (new BatchArchiveSlatesRequest())->setParent($formattedParent)->setNames($formattedNames);
+        $response = $gapicClient->batchArchiveSlatesAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame(
-            '/google.ads.admanager.v1.TargetingPresetService/BatchCreateTargetingPresets',
-            $actualFuncCall
-        );
+        $this->assertSame('/google.ads.admanager.v1.SlateService/BatchArchiveSlates', $actualFuncCall);
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getRequests();
-        $this->assertProtobufEquals($requests, $actualValue);
+        $actualValue = $actualRequestObject->getNames();
+        $this->assertProtobufEquals($formattedNames, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

@@ -29,7 +29,7 @@ use Google\Ads\AdManager\V1\Report;
 use Google\ApiCore\ApiException;
 
 /**
- * API to retrieve a `Report` object.
+ * Retrieves a `Report` object.
  *
  * @param string $formattedName The resource name of the report.
  *                              Format: `networks/{network_code}/reports/{report_id}`

@@ -29,7 +29,7 @@ use Google\Ads\AdManager\V1\Client\TeamServiceClient;
 use Google\ApiCore\ApiException;
 
 /**
- * API to batch activate `Team` objects.
+ * Batch activates `Team` objects.
  *
  * @param string $formattedParent       Format: `networks/{network_code}`
  *                                      Please see {@see TeamServiceClient::networkName()} for help formatting this field.

@@ -23,6 +23,30 @@
 return [
     'interfaces' => [
         'google.ads.admanager.v1.ContentBundleService' => [
+            'BatchActivateContentBundles' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Ads\AdManager\V1\BatchActivateContentBundlesResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchDeactivateContentBundles' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Ads\AdManager\V1\BatchDeactivateContentBundlesResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'GetContentBundle' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Ads\AdManager\V1\ContentBundle',

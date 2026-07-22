@@ -29,7 +29,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 
 /**
- * API to retrieve all the networks the current user has access to.
+ * Retrieves all the networks the current user has access to.
  *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:
