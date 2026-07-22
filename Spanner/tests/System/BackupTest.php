@@ -154,9 +154,19 @@ class BackupTest extends SystemTestCase
         $this->assertArrayHasKey('startTime', $metadata['progress']);
 
         // Poll for completion with the extended timeout
-        $op->pollUntilComplete([
-            'timeoutMillis' => self::LONG_TIMEOUT_SECONDS * 1000 // GAX expects milliseconds
-        ]);
+        $timeout = time() + self::LONG_TIMEOUT_SECONDS;
+        while (time() < $timeout) {
+            try {
+                $op->pollUntilComplete([
+                    'timeoutMillis' => ($timeout - time()) * 1000
+                ]);
+                break;
+            } catch (\Google\ApiCore\ApiException $e) {
+                if ($e->getStatus() !== 'DEADLINE_EXCEEDED') {
+                    throw $e;
+                }
+            }
+        }
 
         self::$deletionQueue->add(function () use ($backup) {
             $backup->delete();
@@ -189,10 +199,20 @@ class BackupTest extends SystemTestCase
         $backup = self::$instance->backup($backupId);
 
         $e = null;
-        try {
-            $backup->create(self::$dbName1, $expireTime);
-        } catch (BadRequestException $e) {
-        } catch (FailedPreconditionException $e) {
+        for ($i = 0; $i < 3; $i++) {
+            try {
+                $backup->create(self::$dbName1, $expireTime);
+                break;
+            } catch (BadRequestException $e) {
+                break;
+            } catch (FailedPreconditionException $e) {
+                break;
+            } catch (\Google\Cloud\Core\Exception\ServiceException $ex) {
+                if ($i === 2 || !in_array($ex->getStatus(), ['UNAVAILABLE', 'DEADLINE_EXCEEDED'])) {
+                    throw $ex;
+                }
+                sleep(2);
+            }
         }
 
         $this->assertNotNull($e);
@@ -241,7 +261,22 @@ class BackupTest extends SystemTestCase
         self::$createTime2 = gmdate('"Y-m-d\TH:i:s\Z"');
         $op = $backup->create(self::$dbName2, $expireTime);
         
-        $op->cancel();
+        try {
+            $op->cancel();
+        } catch (\Google\ApiCore\ApiException $e) {
+            if ($e->getStatus() !== 'DEADLINE_EXCEEDED') {
+                throw $e;
+            }
+        }
+
+        // Wait until the operation is done so we free up the pending backup slot for self::$dbName2.
+        // We catch any exception here because the operation might fail (which is expected if cancelled)
+        // or timeout during polling.
+        try {
+            $op->pollUntilComplete(['maxPollingDurationSeconds' => 120]);
+        } catch (\Exception $e) {
+            // Ignore
+        }
 
         // Cancellation usually drops the backup. We don't assert exists()
         // to avoid flakiness with asynchronous deletion.
@@ -586,9 +621,19 @@ class BackupTest extends SystemTestCase
         $this->assertArrayHasKey('startTime', $metadata['progress']);
 
         // Poll for completion with the extended timeout
-        $op->pollUntilComplete([
-            'maxPollingDurationSeconds' => self::LONG_TIMEOUT_SECONDS
-        ]);
+        $timeout = time() + self::LONG_TIMEOUT_SECONDS;
+        while (time() < $timeout) {
+            try {
+                $op->pollUntilComplete([
+                    'maxPollingDurationSeconds' => $timeout - time()
+                ]);
+                break;
+            } catch (\Google\ApiCore\ApiException $e) {
+                if ($e->getStatus() !== 'DEADLINE_EXCEEDED') {
+                    throw $e;
+                }
+            }
+        }
         $restoredDb = $this::$instance->database($restoreDbName);
 
         self::$deletionQueue->add(function () use ($restoredDb) {
