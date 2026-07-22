@@ -89,7 +89,7 @@ class WriteTest extends SystemTestCase
     {
         $db = self::$database;
 
-        $db->insert(self::TABLE_NAME, [
+        $db->insertOrUpdate(self::TABLE_NAME, [
             'id' => $id,
             $field => $value
         ]);
@@ -143,7 +143,7 @@ class WriteTest extends SystemTestCase
 
         $db = self::$database;
 
-        $db->insert(self::TABLE_NAME, [
+        $db->insertOrUpdate(self::TABLE_NAME, [
             'id' => $id,
             $field => $value
         ]);
@@ -175,7 +175,7 @@ class WriteTest extends SystemTestCase
 
         $db = self::$database;
 
-        $db->insert(self::TABLE_NAME, [
+        $db->insertOrUpdate(self::TABLE_NAME, [
             'id' => $id,
             $field => $value
         ]);
@@ -218,7 +218,7 @@ class WriteTest extends SystemTestCase
     {
         $db = self::$database;
 
-        $db->insert(self::TABLE_NAME, [
+        $db->insertOrUpdate(self::TABLE_NAME, [
             'id' => $id,
             $field => null
         ]);
@@ -312,7 +312,7 @@ class WriteTest extends SystemTestCase
     {
         $db = self::$database;
 
-        $db->insert(self::TABLE_NAME, [
+        $db->insertOrUpdate(self::TABLE_NAME, [
             'id' => $id,
             $field => $value
         ]);
@@ -358,7 +358,7 @@ class WriteTest extends SystemTestCase
     {
         $db = self::$database;
 
-        $db->insert(self::TABLE_NAME, [
+        $db->insertOrUpdate(self::TABLE_NAME, [
             'id' => $id,
             $field => $value
         ]);
@@ -392,7 +392,7 @@ class WriteTest extends SystemTestCase
 
         $db = self::$database;
 
-        $db->insert(uniqid(self::TESTING_PREFIX), ['foo' => 'bar']);
+        $db->insertOrUpdate(uniqid(self::TESTING_PREFIX), ['foo' => 'bar']);
     }
 
     public function testWriteToNonExistentColumnFails()
@@ -401,7 +401,7 @@ class WriteTest extends SystemTestCase
 
         $db = self::$database;
 
-        $db->insert(self::TABLE_NAME, [uniqid(self::TESTING_PREFIX) => 'bar']);
+        $db->insertOrUpdate(self::TABLE_NAME, [uniqid(self::TESTING_PREFIX) => 'bar']);
     }
 
     public function testWriteIncorrectTypeToColumn()
@@ -410,7 +410,7 @@ class WriteTest extends SystemTestCase
 
         $db = self::$database;
 
-        $db->insert(self::TABLE_NAME, [
+        $db->insertOrUpdate(self::TABLE_NAME, [
             'id' => $this->randId(),
             'boolField' => 'bar'
         ]);
@@ -424,7 +424,7 @@ class WriteTest extends SystemTestCase
     {
         $db = self::$database;
 
-        $db->insert(self::TABLE_NAME, [
+        $db->insertOrUpdate(self::TABLE_NAME, [
             'id' => $id,
             'bytesField' => $bytes
         ]);
@@ -460,7 +460,7 @@ class WriteTest extends SystemTestCase
     {
         $db = self::$database;
 
-        $db->insert(self::TABLE_NAME, [
+        $db->insertOrUpdate(self::TABLE_NAME, [
             'id' => $id,
             'numericField' => $numeric
         ]);
@@ -495,7 +495,7 @@ class WriteTest extends SystemTestCase
     public function testCommitTimestamp()
     {
         $id = $this->randId();
-        $ts = self::$database->insert(self::COMMIT_TIMESTAMP_TABLE_NAME, [
+        $ts = self::$database->insertOrUpdate(self::COMMIT_TIMESTAMP_TABLE_NAME, [
             'id' => $id,
             'commitTimestamp' => new CommitTimestamp()
         ]);
@@ -513,7 +513,7 @@ class WriteTest extends SystemTestCase
     {
         $id = $this->randId();
         $str = base64_encode(random_bytes(rand(100, 9999)));
-        $row = self::$database->insert(self::TABLE_NAME, [
+        $row = self::$database->insertOrUpdate(self::TABLE_NAME, [
             'id' => $id,
             'stringField' => $str
         ]);
@@ -543,7 +543,7 @@ class WriteTest extends SystemTestCase
     {
         $id = $this->randId();
 
-        $row = self::$database->insert(self::TABLE_NAME, [
+        $row = self::$database->insertOrUpdate(self::TABLE_NAME, [
             'id' => $id,
             'timestampField' => $timestamp
         ]);
@@ -585,7 +585,7 @@ class WriteTest extends SystemTestCase
         try {
             $id = $this->randId();
 
-            $row = self::$database->insert(self::TABLE_NAME, [
+            $row = self::$database->insertOrUpdate(self::TABLE_NAME, [
                 'id' => $id,
                 'timestampField' => $timestamp
             ]);
@@ -805,7 +805,7 @@ class WriteTest extends SystemTestCase
 
             $this->assertEquals(1, $count);
 
-            $t->insert(self::TABLE_NAME, [
+            $t->insertOrUpdate(self::TABLE_NAME, [
                 'id' => $id2,
                 'stringField' => $randStr
             ]);
@@ -877,7 +877,7 @@ class WriteTest extends SystemTestCase
         $randStr2 = base64_encode(random_bytes(500));
         $db = self::$database;
 
-        $db->insert(self::TABLE_NAME, [
+        $db->insertOrUpdate(self::TABLE_NAME, [
             'id' => $id,
             'stringField' => $randStr
         ]);

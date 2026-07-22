@@ -330,7 +330,7 @@ class PgReadTest extends SystemTestCase
         $dataset = $this->generateDataset();
 
         $db = self::$database;
-        $db->insertBatch(self::READ_TABLE_NAME, $dataset);
+        $db->insertOrUpdateBatch(self::READ_TABLE_NAME, $dataset);
 
         $indexes = array_rand($dataset, 4);
         $points = [];
@@ -355,7 +355,7 @@ class PgReadTest extends SystemTestCase
         $dataset = $this->generateDataset();
 
         $db = self::$database;
-        $db->insertBatch(self::READ_TABLE_NAME, $dataset);
+        $db->insertOrUpdateBatch(self::READ_TABLE_NAME, $dataset);
 
         $indexes = array_rand($dataset, 4);
         $points = [];

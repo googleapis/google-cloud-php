@@ -63,7 +63,7 @@ class ReadTest extends SystemTestCase
         
 
         self::$dataset = self::generateDataset(20, true);
-        $db->insertBatch(self::RANGE_TABLE_NAME, self::$dataset);
+        $db->insertOrUpdateBatch(self::RANGE_TABLE_NAME, self::$dataset);
     }
 
     /**
@@ -434,7 +434,7 @@ class ReadTest extends SystemTestCase
         $dataset = $this->generateDataset();
 
         $db = self::$database;
-        $db->insertBatch(self::READ_TABLE_NAME, $dataset);
+        $db->insertOrUpdateBatch(self::READ_TABLE_NAME, $dataset);
 
         $indexes = array_rand($dataset, 4);
         $points = [];
@@ -462,7 +462,7 @@ class ReadTest extends SystemTestCase
         $dataset = $this->generateDataset();
 
         $db = self::$database;
-        $db->insertBatch(self::READ_TABLE_NAME, $dataset);
+        $db->insertOrUpdateBatch(self::READ_TABLE_NAME, $dataset);
 
         $indexes = array_rand($dataset, 4);
         $points = [];
@@ -565,7 +565,7 @@ class ReadTest extends SystemTestCase
         // If that happens, we recursively call this function to generate another set.
         try {
             $unorderedDataset = self::generateDataset(10, false);
-            self::$database->insertBatch(self::RANGE_TABLE_NAME, $unorderedDataset);
+            self::$database->insertOrUpdateBatch(self::RANGE_TABLE_NAME, $unorderedDataset);
         } catch (ConflictException $e) {
             $json = json_decode($e->getMessage(), true);
 

@@ -161,15 +161,13 @@ trait SystemTestCaseTrait
                 ) PRIMARY KEY (id)',
                 'CREATE UNIQUE INDEX IF NOT EXISTS RangeTable_Idx1 ON RangeTable (id)',
                 'CREATE UNIQUE INDEX IF NOT EXISTS RangeTable_Idx2 ON RangeTable (id, val)',
-                'CREATE TABLE IF NOT EXISTS SnapshotTest (
+                'CREATE TABLE IF NOT EXISTS Snapshots (
                     id INT64 NOT NULL,
-                    name STRING(MAX) NOT NULL,
-                    birthday DATE
+                    number INT64 NOT NULL
                 ) PRIMARY KEY (id)',
-                'CREATE TABLE IF NOT EXISTS TransactionTest (
+                'CREATE TABLE IF NOT EXISTS Transactions (
                     id INT64 NOT NULL,
-                    name STRING(MAX) NOT NULL,
-                    birthday DATE
+                    number INT64 NOT NULL
                 ) PRIMARY KEY (id)',
                 'CREATE TABLE IF NOT EXISTS UniverseDomainTest (
                     id INT64 NOT NULL,

@@ -53,7 +53,22 @@ class TransactionTest extends SystemTestCase
      */
     public static function setUpTestFixtures(): void
     {
+        if (self::$isSetup) {
+            return;
+        }
         self::setUpTestDatabase();
+
+        self::$id1 = rand(1000, 9999);
+
+        self::$row = [
+            'id' => self::$id1,
+            'name' => uniqid(self::TESTING_PREFIX),
+            'birthday' => new Date(new \DateTime('2000-01-01'))
+        ];
+
+        self::$database->insert(self::TEST_TABLE_NAME, self::$row);
+
+        self::$isSetup = true;
     }
 
     public function testRunTransaction()
