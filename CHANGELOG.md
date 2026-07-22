@@ -1,5 +1,82 @@
 # Changelog
 
+## 0.337.0
+
+<details><summary>google/cloud-ai-platform 1.63.0</summary>
+
+
+
+### Features
+
+* [AiPlatform] add Route to GroundingChunk.Maps in Vertex AI v1 ([#9370](https://github.com/googleapis/google-cloud-php/issues/9370)) ([1588d9c](https://github.com/googleapis/google-cloud-php/commit/1588d9cf557f27181d1e291bcf99d4969cbe89b8))
+
+
+### Documentation
+
+* expand GroundingChunk.Maps documentation to describe route support ([1588d9c](https://github.com/googleapis/google-cloud-php/commit/1588d9cf557f27181d1e291bcf99d4969cbe89b8))
+
+</details>
+
+<details><summary>google/apps-chat 0.23.0</summary>
+
+
+
+### Features
+
+* [AppsChat] Addition of Membership Affiliation information ([#9376](https://github.com/googleapis/google-cloud-php/issues/9376)) ([5e1fe05](https://github.com/googleapis/google-cloud-php/commit/5e1fe0508b115476b91b347afa90aff180f6c69b))
+
+</details>
+
+<details><summary>google/developer-knowledge 0.2.1</summary>
+
+
+
+### Documentation
+
+* [DeveloperKnowledge] fix filter docs -- content_length_bytes is not supported yet and strings must be quoted ([#9367](https://github.com/googleapis/google-cloud-php/issues/9367)) ([c587677](https://github.com/googleapis/google-cloud-php/commit/c5876775c40b3e161b817101a36ccf26d8b8dbc2))
+
+</details>
+
+<details><summary>google/gax 1.46.0</summary>
+
+
+
+### Features
+
+* Add getServiceScopes method to GapicClientTrait ([#9372](https://github.com/googleapis/google-cloud-php/issues/9372)) ([0e0c79e](https://github.com/googleapis/google-cloud-php/commit/0e0c79eaa9fc0290bab7e857fc7751e6e9471e94))
+
+</details>
+
+<details><summary>google/cloud-networkservices 0.10.0</summary>
+
+
+
+### Features
+
+* [NetworkServices] A new field `resource_uris` is added to message `.google.cloud.networkservices.v1.AgentGateway` ([#9369](https://github.com/googleapis/google-cloud-php/issues/9369)) ([e614859](https://github.com/googleapis/google-cloud-php/commit/e61485920d8499a83827a0c6a21e0f8ffec28470))
+
+</details>
+
+<details><summary>google/cloud-redis-cluster 0.9.0</summary>
+
+
+
+### Features
+
+* [RedisCluster] [Memorystore for Redis Cluster] add Cluster.AsyncClusterEndpointsDeletionEnabled ([#9361](https://github.com/googleapis/google-cloud-php/issues/9361)) ([2e12179](https://github.com/googleapis/google-cloud-php/commit/2e12179c83de9dee8aa268796236188079b8601f))
+
+</details>
+
+<details><summary>google/cloud-spanner 2.10.1</summary>
+
+
+
+### Bug Fixes
+
+* **Spanner:** prevent unnecessary GCE metadata probing during client … ([#9327](https://github.com/googleapis/google-cloud-php/issues/9327)) ([920e1bc](https://github.com/googleapis/google-cloud-php/commit/920e1bca8cd4c44c4d41ad05c13e875cac050fc4))
+
+</details>
+
 ## 0.336.0
 
 <details><summary>googleads/ad-manager 0.8.0</summary>
