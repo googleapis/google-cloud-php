@@ -647,6 +647,48 @@ class OperationTest extends TestCase
         $this->assertEquals($partitionToken2, $res[1]->token());
     }
 
+    public function testPartitionReadWithOptions()
+    {
+        $transactionId = 'foo';
+        $partitionToken1 = 'token1';
+        $options = [
+            'headers' => ['custom-header' => 'value'],
+            'retrySettings' => ['retriesEnabled' => false],
+            'timeoutMillis' => 1234,
+            'transportOptions' => ['grpc' => ['timeout' => 100]],
+        ];
+
+        $this->spannerClient->partitionRead(
+            Argument::any(),
+            Argument::that(function (array $callOptions) {
+                $this->assertEquals($callOptions['headers']['custom-header'], 'value');
+                $this->assertEquals($callOptions['retrySettings'], ['retriesEnabled' => false]);
+                $this->assertEquals($callOptions['timeoutMillis'], 1234);
+                $this->assertEquals($callOptions['transportOptions'], ['grpc' => ['timeout' => 100]]);
+                return true;
+            })
+        )
+            ->shouldBeCalled()
+            ->willReturn(new PartitionResponse([
+                'partitions' => [
+                    new Partition(['partition_token' => $partitionToken1]),
+                ]
+            ]));
+
+        $res = $this->operation->partitionRead(
+            $this->session,
+            $transactionId,
+            'Posts',
+            new KeySet(['all' => true]),
+            ['foo'],
+            $options
+        );
+
+        $this->assertContainsOnlyInstancesOf(ReadPartition::class, $res);
+        $this->assertCount(1, $res);
+        $this->assertEquals($partitionToken1, $res[0]->token());
+    }
+
     public function testCommitWithPrecommitTokenOnRetry()
     {
         $failureResponse = (new CommitResponse())
