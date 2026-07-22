@@ -49,11 +49,8 @@ class PgWriteTest extends SystemTestCase
      */
     public static function setUpTestFixtures(): void
     {
-        // The equiavalent tests for the GSQL dialect are also skipped.
-        self::skipEmulatorTests();
         self::setUpTestDatabase();
-
-        }
+    }
 
     public function fieldValueProvider()
     {

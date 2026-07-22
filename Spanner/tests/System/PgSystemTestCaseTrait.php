@@ -145,7 +145,9 @@ trait PgSystemTestCaseTrait
             self::$database->updateDdlBatch(
                 [
                     'CREATE ROLE ' . self::DATABASE_ROLE,
-                    'CREATE ROLE ' . self::RESTRICTIVE_DATABASE_ROLE,
+                    'CREATE ROLE ' . self::RESTRICTIVE_DATABASE_ROLE
+                ])->pollUntilComplete();
+            self::$database->updateDdlBatch([
                     'GRANT SELECT ON TABLE ' . self::TEST_TABLE_NAME .
                     ' TO ' . self::DATABASE_ROLE,
                     'GRANT SELECT(id, name), INSERT(id, name), UPDATE(id, name) ON TABLE '

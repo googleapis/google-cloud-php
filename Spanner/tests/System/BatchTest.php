@@ -43,14 +43,8 @@ class BatchTest extends SystemTestCase
      */
     public static function setUpTestFixtures(): void
     {
-        if (self::$isSetup) {
-            return;
-        }
         self::setUpTestDatabase();
-
-        self::TABLE_NAME = uniqid(self::TESTING_PREFIX);
-
-        
+    }
 
     public function testBatch()
     {

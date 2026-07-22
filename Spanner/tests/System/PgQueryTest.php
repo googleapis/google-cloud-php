@@ -39,7 +39,6 @@ use Google\Cloud\Spanner\V1\RequestOptions\Priority;
  */
 class PgQueryTest extends SystemTestCase
 {
-    const TABLE_NAME = 'PgQueryTest';
     use PgSystemTestCaseTrait;
 
     const TABLE_NAME = 'test';

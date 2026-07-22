@@ -31,7 +31,6 @@ use Google\Protobuf\Duration;
  */
 class SnapshotTest extends SystemTestCase
 {
-    const TABLE_NAME = 'SnapshotTest';
     use SystemTestCaseTrait;
 
     const TABLE_NAME = 'Snapshots';
@@ -44,15 +43,8 @@ class SnapshotTest extends SystemTestCase
     public static function setUpTestFixtures(): void
     {
         self::setUpTestDatabase();
+    }
 
-        self::TABLE_NAME = uniqid(self::TABLE_NAME);
-
-        }
-
-    /**
-     * covers 63
-     * covers 68
-     */
     public function testSnapshotStrongRead()
     {
         $db = self::$database;
