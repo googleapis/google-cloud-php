@@ -9,7 +9,9 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * Chunk from Google Maps.
+ * A `Maps` chunk is a piece of evidence that comes from Google Maps,
+ * containing information about places or routes. This is used to provide
+ * the user with rich, location-based information.
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.GroundingChunk.Maps</code>
  */
@@ -48,6 +50,12 @@ class Maps extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.GroundingChunk.Maps.PlaceAnswerSources place_answer_sources = 5;</code>
      */
     protected $place_answer_sources = null;
+    /**
+     * Output only. Route information.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.GroundingChunk.Maps.Route route = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $route = null;
 
     /**
      * Constructor.
@@ -68,6 +76,8 @@ class Maps extends \Google\Protobuf\Internal\Message
      *           Sources used to generate the place answer.
      *           This includes review snippets and photos that were used to generate the
      *           answer, as well as uris to flag content.
+     *     @type \Google\Cloud\AIPlatform\V1\GroundingChunk\Maps\Route $route
+     *           Output only. Route information.
      * }
      */
     public function __construct($data = NULL) {
@@ -257,6 +267,42 @@ class Maps extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\GroundingChunk\Maps\PlaceAnswerSources::class);
         $this->place_answer_sources = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Route information.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.GroundingChunk.Maps.Route route = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\AIPlatform\V1\GroundingChunk\Maps\Route|null
+     */
+    public function getRoute()
+    {
+        return $this->route;
+    }
+
+    public function hasRoute()
+    {
+        return isset($this->route);
+    }
+
+    public function clearRoute()
+    {
+        unset($this->route);
+    }
+
+    /**
+     * Output only. Route information.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.GroundingChunk.Maps.Route route = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\AIPlatform\V1\GroundingChunk\Maps\Route $var
+     * @return $this
+     */
+    public function setRoute($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\GroundingChunk\Maps\Route::class);
+        $this->route = $var;
 
         return $this;
     }
