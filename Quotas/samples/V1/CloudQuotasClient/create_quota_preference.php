@@ -32,7 +32,7 @@ use Google\Cloud\CloudQuotas\V1\QuotaPreference;
 /**
  * Creates a new QuotaPreference that declares the desired value for a quota.
  *
- * @param string $formattedParent                          Value for parent.
+ * @param string $formattedParent                          Identifier. Value for parent.
  *
  *                                                         Example:
  *                                                         `projects/123/locations/global`
@@ -41,7 +41,7 @@ use Google\Cloud\CloudQuotas\V1\QuotaPreference;
  *                                                         to -1, it means the value is "unlimited".
  * @param string $quotaPreferenceService                   The name of the service to which the quota preference is applied.
  * @param string $quotaPreferenceQuotaId                   The id of the quota to which the quota preference is applied. A
- *                                                         quota name is unique in the service. Example: `CpusPerProjectPerRegion`
+ *                                                         quota name is unique in the service. For example, `CpusPerProjectPerRegion`
  */
 function create_quota_preference_sample(
     string $formattedParent,

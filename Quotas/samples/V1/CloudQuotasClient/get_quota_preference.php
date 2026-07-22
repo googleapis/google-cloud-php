@@ -31,7 +31,7 @@ use Google\Cloud\CloudQuotas\V1\QuotaPreference;
 /**
  * Gets details of a single QuotaPreference.
  *
- * @param string $formattedName Name of the resource
+ * @param string $formattedName Identifier. Name of the resource
  *
  *                              Example name:
  *                              `projects/123/locations/global/quota_preferences/my-config-for-us-east1`

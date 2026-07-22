@@ -49,7 +49,9 @@ class QuotaAdjusterSettingsManagerClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return QuotaAdjusterSettingsManagerClient */
@@ -82,15 +84,17 @@ class QuotaAdjusterSettingsManagerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->quotaAdjusterSettingsName('[PROJECT]', '[LOCATION]');
-        $request = (new GetQuotaAdjusterSettingsRequest())
-            ->setName($formattedName);
+        $request = (new GetQuotaAdjusterSettingsRequest())->setName($formattedName);
         $response = $gapicClient->getQuotaAdjusterSettings($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.api.cloudquotas.v1.QuotaAdjusterSettingsManager/GetQuotaAdjusterSettings', $actualFuncCall);
+        $this->assertSame(
+            '/google.api.cloudquotas.v1.QuotaAdjusterSettingsManager/GetQuotaAdjusterSettings',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -107,17 +111,19 @@ class QuotaAdjusterSettingsManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->quotaAdjusterSettingsName('[PROJECT]', '[LOCATION]');
-        $request = (new GetQuotaAdjusterSettingsRequest())
-            ->setName($formattedName);
+        $request = (new GetQuotaAdjusterSettingsRequest())->setName($formattedName);
         try {
             $gapicClient->getQuotaAdjusterSettings($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -152,15 +158,17 @@ class QuotaAdjusterSettingsManagerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $quotaAdjusterSettings = new QuotaAdjusterSettings();
-        $request = (new UpdateQuotaAdjusterSettingsRequest())
-            ->setQuotaAdjusterSettings($quotaAdjusterSettings);
+        $request = (new UpdateQuotaAdjusterSettingsRequest())->setQuotaAdjusterSettings($quotaAdjusterSettings);
         $response = $gapicClient->updateQuotaAdjusterSettings($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.api.cloudquotas.v1.QuotaAdjusterSettingsManager/UpdateQuotaAdjusterSettings', $actualFuncCall);
+        $this->assertSame(
+            '/google.api.cloudquotas.v1.QuotaAdjusterSettingsManager/UpdateQuotaAdjusterSettings',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getQuotaAdjusterSettings();
         $this->assertProtobufEquals($quotaAdjusterSettings, $actualValue);
         $this->assertTrue($transport->isExhausted());
@@ -177,17 +185,19 @@ class QuotaAdjusterSettingsManagerClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $quotaAdjusterSettings = new QuotaAdjusterSettings();
-        $request = (new UpdateQuotaAdjusterSettingsRequest())
-            ->setQuotaAdjusterSettings($quotaAdjusterSettings);
+        $request = (new UpdateQuotaAdjusterSettingsRequest())->setQuotaAdjusterSettings($quotaAdjusterSettings);
         try {
             $gapicClient->updateQuotaAdjusterSettings($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -222,15 +232,17 @@ class QuotaAdjusterSettingsManagerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->quotaAdjusterSettingsName('[PROJECT]', '[LOCATION]');
-        $request = (new GetQuotaAdjusterSettingsRequest())
-            ->setName($formattedName);
+        $request = (new GetQuotaAdjusterSettingsRequest())->setName($formattedName);
         $response = $gapicClient->getQuotaAdjusterSettingsAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.api.cloudquotas.v1.QuotaAdjusterSettingsManager/GetQuotaAdjusterSettings', $actualFuncCall);
+        $this->assertSame(
+            '/google.api.cloudquotas.v1.QuotaAdjusterSettingsManager/GetQuotaAdjusterSettings',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());

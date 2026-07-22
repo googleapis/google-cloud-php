@@ -32,7 +32,7 @@ use Google\Cloud\CloudQuotas\V1\QuotaInfo;
 /**
  * Lists QuotaInfos of all quotas for a given project, folder or organization.
  *
- * @param string $formattedParent Parent value of QuotaInfo resources.
+ * @param string $formattedParent Identifier. Parent value of QuotaInfo resources.
  *                                Listing across different resource containers (such as 'projects/-') is not
  *                                allowed.
  *
