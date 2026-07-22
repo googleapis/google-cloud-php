@@ -53,38 +53,7 @@ class PgWriteTest extends SystemTestCase
         self::skipEmulatorTests();
         self::setUpTestDatabase();
 
-        self::$database->updateDdlBatch([
-            'CREATE TABLE IF NOT EXISTS ' . self::TABLE_NAME . ' (
-                id bigint NOT NULL,
-                boolfield boolean,
-                bytesfield bytea,
-                datefield date,
-                floatfield float,
-                float4field float4,
-                intfield bigint,
-                stringfield varchar(1024),
-                timestampfield timestamptz,
-                pgnumericfield numeric,
-                pgjsonbfield jsonb,
-                arrayfield bigint[],
-                arrayboolfield boolean[],
-                arrayfloatfield float[],
-                arrayfloat4field float4[],
-                arraystringfield varchar(1024)[],
-                arraybytesfield bytea[],
-                arraytimestampfield timestamptz[],
-                arraydatefield date[],
-                arraypgnumericfield numeric[],
-                arraypgjsonbfield jsonb[],
-                PRIMARY KEY (id)
-            )',
-            'CREATE TABLE IF NOT EXISTS ' . self::COMMIT_TIMESTAMP_TABLE_NAME . ' (
-                id bigint NOT NULL,
-                commitTimestamp SPANNER.COMMIT_TIMESTAMP NOT NULL,
-                PRIMARY KEY (id, commitTimestamp)
-            )'
-        ])->pollUntilComplete();
-    }
+        }
 
     public function fieldValueProvider()
     {

@@ -54,46 +54,7 @@ class WriteTest extends SystemTestCase
         self::skipEmulatorTests();
         self::setUpTestDatabase();
 
-        self::$database->updateDdlBatch([
-            'CREATE PROTO BUNDLE (' .
-                'testing.data.User,' .
-                'testing.data.User.Address,' .
-                'testing.data.Book' .
-            ')',
-            'CREATE TABLE ' . self::TABLE_NAME . ' (
-                id INT64 NOT NULL,
-                arrayField ARRAY<INT64>,
-                arrayBoolField ARRAY<BOOL>,
-                arrayFloatField ARRAY<FLOAT64>,
-                arrayFloat32Field ARRAY<FLOAT32>,
-                arrayStringField ARRAY<STRING(MAX)>,
-                arrayBytesField ARRAY<BYTES(MAX)>,
-                arrayTimestampField ARRAY<TIMESTAMP>,
-                arrayDateField ARRAY<DATE>,
-                arrayNumericField ARRAY<NUMERIC>,
-                arrayProtoField ARRAY<`testing.data.User`>,
-                boolField BOOL,
-                bytesField BYTES(MAX),
-                dateField DATE,
-                floatField FLOAT64,
-                float32Field FLOAT32,
-                intField INT64,
-                stringField STRING(MAX),
-                timestampField TIMESTAMP,
-                numericField NUMERIC,
-                uuidField STRING(36),
-                arrayUuidField ARRAY<STRING(36)>,
-                protoField `testing.data.User`,
-            ) PRIMARY KEY (id)',
-            'CREATE TABLE ' . self::COMMIT_TIMESTAMP_TABLE_NAME . ' (
-                id INT64 NOT NULL,
-                commitTimestamp TIMESTAMP NOT NULL OPTIONS
-                    (allow_commit_timestamp=true)
-            ) PRIMARY KEY (id, commitTimestamp DESC)'
-        ], [
-            'protoDescriptors' => file_get_contents(__DIR__ . '/../data/proto/user.pb'),
-        ])->pollUntilComplete();
-    }
+        }
 
     public function fieldValueProvider()
     {

@@ -34,10 +34,12 @@ use Google\Cloud\Spanner\V1\ReadRequest\OrderBy;
  */
 class ReadTest extends SystemTestCase
 {
+    const READ_TABLE_NAME = 'ReadTable';
+    const RANGE_TABLE_NAME = 'RangeTable';
     use SystemTestCaseTrait;
 
-    private static $readTableName;
-    private static $rangeTableName;
+    
+    
     private static $indexes = [];
     private static $dataset;
 
@@ -48,34 +50,20 @@ class ReadTest extends SystemTestCase
     {
         self::setUpTestDatabase();
 
-        self::$readTableName = uniqid(self::TESTING_PREFIX);
-        self::$rangeTableName = uniqid(self::TESTING_PREFIX);
+        
+        
 
-        $create = 'CREATE TABLE %s (
-            id INT64 NOT NULL,
-            val STRING(MAX) NOT NULL,
-        ) PRIMARY KEY (id)';
+        
 
-        $idx = 'CREATE UNIQUE INDEX %s ON %s (%s)';
+        
 
-        $stmts = [];
-        foreach ([self::$readTableName, self::$rangeTableName] as $table) {
-            $index1 = ['table' => $table, 'name' => uniqid(self::TESTING_PREFIX), 'type' => 'simple'];
-            $index2 = ['table' => $table, 'name' => uniqid(self::TESTING_PREFIX), 'type' => 'complex'];
-
-            $stmts[] = sprintf($create, $table);
-            $stmts[] = sprintf($idx, $index1['name'], $table, 'id');
-            $stmts[] = sprintf($idx, $index2['name'], $table, 'id, val');
-
-            self::$indexes[] = $index1;
-            self::$indexes[] = $index2;
-        }
+        
 
         $db = self::$database;
-        $db->updateDdlBatch($stmts)->pollUntilComplete();
+        
 
         self::$dataset = self::generateDataset(20, true);
-        $db->insertBatch(self::$rangeTableName, self::$dataset);
+        $db->insertBatch(self::RANGE_TABLE_NAME, self::$dataset);
     }
 
     /**
@@ -92,7 +80,7 @@ class ReadTest extends SystemTestCase
 
         $keyset = new KeySet(['ranges' => [$range]]);
 
-        $res = $db->read(self::$rangeTableName, $keyset, array_keys(self::$dataset[0]));
+        $res = $db->read(self::RANGE_TABLE_NAME, $keyset, array_keys(self::$dataset[0]));
         $rows = iterator_to_array($res->rows());
         $this->assertNotContains(self::$dataset[0], $rows);
         $this->assertNotContains(self::$dataset[10], $rows);
@@ -114,7 +102,7 @@ class ReadTest extends SystemTestCase
 
         $keyset = new KeySet(['ranges' => [$range]]);
 
-        $res = $db->read(self::$rangeTableName, $keyset, array_keys(self::$dataset[0]));
+        $res = $db->read(self::RANGE_TABLE_NAME, $keyset, array_keys(self::$dataset[0]));
         $rows = iterator_to_array($res->rows());
         $this->assertContains(self::$dataset[0], $rows);
         $this->assertContains(self::$dataset[10], $rows);
@@ -135,7 +123,7 @@ class ReadTest extends SystemTestCase
 
         $keyset = new KeySet(['ranges' => [$range]]);
 
-        $res = $db->read(self::$rangeTableName, $keyset, array_keys(self::$dataset[0]));
+        $res = $db->read(self::RANGE_TABLE_NAME, $keyset, array_keys(self::$dataset[0]));
         $rows = iterator_to_array($res->rows());
         $this->assertNotContains(self::$dataset[0], $rows);
         $this->assertContains(self::$dataset[10], $rows);
@@ -156,7 +144,7 @@ class ReadTest extends SystemTestCase
 
         $keyset = new KeySet(['ranges' => [$range]]);
 
-        $res = $db->read(self::$rangeTableName, $keyset, array_keys(self::$dataset[0]));
+        $res = $db->read(self::RANGE_TABLE_NAME, $keyset, array_keys(self::$dataset[0]));
         $rows = iterator_to_array($res->rows());
         $this->assertContains(self::$dataset[0], $rows);
         $this->assertNotContains(self::$dataset[10], $rows);
@@ -176,7 +164,7 @@ class ReadTest extends SystemTestCase
 
         $keyset = new KeySet(['ranges' => [$range]]);
 
-        $res = $db->read(self::$rangeTableName, $keyset, array_keys(self::$dataset[0]));
+        $res = $db->read(self::RANGE_TABLE_NAME, $keyset, array_keys(self::$dataset[0]));
         $rows = iterator_to_array($res->rows());
         $this->assertNotContains(self::$dataset[0], $rows);
         $this->assertNotContains(self::$dataset[10], $rows);
@@ -198,7 +186,7 @@ class ReadTest extends SystemTestCase
 
         $keyset = new KeySet(['ranges' => [$range]]);
 
-        $res = $db->read(self::$rangeTableName, $keyset, array_keys(self::$dataset[0]));
+        $res = $db->read(self::RANGE_TABLE_NAME, $keyset, array_keys(self::$dataset[0]));
         $rows = iterator_to_array($res->rows());
         $this->assertContains(self::$dataset[0], $rows);
         $this->assertContains(self::$dataset[10], $rows);
@@ -218,8 +206,8 @@ class ReadTest extends SystemTestCase
 
         $keyset = new KeySet(['ranges' => [$range]]);
 
-        $res = $db->read(self::$rangeTableName, $keyset, array_keys(self::$dataset[0]), [
-            'index' => $this->getIndexName(self::$rangeTableName, 'complex')
+        $res = $db->read(self::RANGE_TABLE_NAME, $keyset, array_keys(self::$dataset[0]), [
+            'index' => $this->getIndexName(self::RANGE_TABLE_NAME, 'complex')
         ]);
         $rows = iterator_to_array($res->rows());
         $this->assertNotContains(self::$dataset[0], $rows);
@@ -232,7 +220,7 @@ class ReadTest extends SystemTestCase
 
         $this->insertUnorderedBatch();
 
-        $res = $db->read(self::$rangeTableName, new KeySet(['all' => true]), array_keys(self::$dataset[0]), [
+        $res = $db->read(self::RANGE_TABLE_NAME, new KeySet(['all' => true]), array_keys(self::$dataset[0]), [
             'orderBy' => OrderBy::ORDER_BY_PRIMARY_KEY
         ]);
         $rows = iterator_to_array($res->rows());
@@ -252,7 +240,7 @@ class ReadTest extends SystemTestCase
         $db = self::$database;
         $limit = 10;
 
-        $res = $db->read(self::$rangeTableName, new KeySet(['all' => true]), array_keys(self::$dataset[0]), [
+        $res = $db->read(self::RANGE_TABLE_NAME, new KeySet(['all' => true]), array_keys(self::$dataset[0]), [
             'begin' => true,
             'transactionType' => Database::CONTEXT_READWRITE,
             'lockHint' => LockHint::LOCK_HINT_EXCLUSIVE,
@@ -272,7 +260,7 @@ class ReadTest extends SystemTestCase
         $db = self::$database;
         $this->expectException(BadRequestException::class);
 
-        $res = $db->read(self::$rangeTableName, new KeySet(['all' => true]), array_keys(self::$dataset[0]), [
+        $res = $db->read(self::RANGE_TABLE_NAME, new KeySet(['all' => true]), array_keys(self::$dataset[0]), [
             'lockHint' => LockHint::LOCK_HINT_EXCLUSIVE
         ]);
 
@@ -295,8 +283,8 @@ class ReadTest extends SystemTestCase
 
         $keyset = new KeySet(['ranges' => [$range]]);
 
-        $res = $db->read(self::$rangeTableName, $keyset, array_keys(self::$dataset[0]), [
-            'index' => $this->getIndexName(self::$rangeTableName, 'complex')
+        $res = $db->read(self::RANGE_TABLE_NAME, $keyset, array_keys(self::$dataset[0]), [
+            'index' => $this->getIndexName(self::RANGE_TABLE_NAME, 'complex')
         ]);
         $rows = iterator_to_array($res->rows());
         $this->assertContains(self::$dataset[0], $rows);
@@ -318,8 +306,8 @@ class ReadTest extends SystemTestCase
 
         $keyset = new KeySet(['ranges' => [$range]]);
 
-        $res = $db->read(self::$rangeTableName, $keyset, array_keys(self::$dataset[0]), [
-            'index' => $this->getIndexName(self::$rangeTableName, 'complex')
+        $res = $db->read(self::RANGE_TABLE_NAME, $keyset, array_keys(self::$dataset[0]), [
+            'index' => $this->getIndexName(self::RANGE_TABLE_NAME, 'complex')
         ]);
         $rows = iterator_to_array($res->rows());
         $this->assertNotContains(self::$dataset[0], $rows);
@@ -341,8 +329,8 @@ class ReadTest extends SystemTestCase
 
         $keyset = new KeySet(['ranges' => [$range]]);
 
-        $res = $db->read(self::$rangeTableName, $keyset, array_keys(self::$dataset[0]), [
-            'index' => $this->getIndexName(self::$rangeTableName, 'complex')
+        $res = $db->read(self::RANGE_TABLE_NAME, $keyset, array_keys(self::$dataset[0]), [
+            'index' => $this->getIndexName(self::RANGE_TABLE_NAME, 'complex')
         ]);
         $rows = iterator_to_array($res->rows());
         $this->assertContains(self::$dataset[0], $rows);
@@ -363,8 +351,8 @@ class ReadTest extends SystemTestCase
 
         $keyset = new KeySet(['ranges' => [$range]]);
 
-        $res = $db->read(self::$rangeTableName, $keyset, array_keys(self::$dataset[0]), [
-            'index' => $this->getIndexName(self::$rangeTableName, 'complex')
+        $res = $db->read(self::RANGE_TABLE_NAME, $keyset, array_keys(self::$dataset[0]), [
+            'index' => $this->getIndexName(self::RANGE_TABLE_NAME, 'complex')
         ]);
         $rows = iterator_to_array($res->rows());
         $this->assertNotContains(self::$dataset[0], $rows);
@@ -387,8 +375,8 @@ class ReadTest extends SystemTestCase
 
         $keyset = new KeySet(['ranges' => [$range]]);
 
-        $res = $db->read(self::$rangeTableName, $keyset, array_keys(self::$dataset[0]), [
-            'index' => $this->getIndexName(self::$rangeTableName, 'complex')
+        $res = $db->read(self::RANGE_TABLE_NAME, $keyset, array_keys(self::$dataset[0]), [
+            'index' => $this->getIndexName(self::RANGE_TABLE_NAME, 'complex')
         ]);
         $rows = iterator_to_array($res->rows());
         $this->assertContains(self::$dataset[0], $rows);
@@ -404,7 +392,7 @@ class ReadTest extends SystemTestCase
 
         $res = function ($limit) use ($db) {
             $keyset = new KeySet(['all' => true]);
-            return $db->read(self::$rangeTableName, $keyset, array_keys(self::$dataset[0]), [
+            return $db->read(self::RANGE_TABLE_NAME, $keyset, array_keys(self::$dataset[0]), [
                 'limit' => $limit
             ])->rows();
         };
@@ -425,9 +413,9 @@ class ReadTest extends SystemTestCase
 
         $res = function ($limit) use ($db) {
             $keyset = new KeySet(['all' => true]);
-            return $db->read(self::$rangeTableName, $keyset, array_keys(self::$dataset[0]), [
+            return $db->read(self::RANGE_TABLE_NAME, $keyset, array_keys(self::$dataset[0]), [
                 'limit' => $limit,
-                'index' => $this->getIndexName(self::$rangeTableName, 'complex')
+                'index' => $this->getIndexName(self::RANGE_TABLE_NAME, 'complex')
             ])->rows();
         };
 
@@ -446,7 +434,7 @@ class ReadTest extends SystemTestCase
         $dataset = $this->generateDataset();
 
         $db = self::$database;
-        $db->insertBatch(self::$readTableName, $dataset);
+        $db->insertBatch(self::READ_TABLE_NAME, $dataset);
 
         $indexes = array_rand($dataset, 4);
         $points = [];
@@ -458,7 +446,7 @@ class ReadTest extends SystemTestCase
 
         $keyset = new KeySet(['keys' => $keys]);
 
-        $res = $db->read(self::$readTableName, $keyset, array_keys($dataset[0]));
+        $res = $db->read(self::READ_TABLE_NAME, $keyset, array_keys($dataset[0]));
         $rows = $res->rows();
         foreach ($rows as $index => $row) {
             $this->assertContains($row, $dataset);
@@ -474,7 +462,7 @@ class ReadTest extends SystemTestCase
         $dataset = $this->generateDataset();
 
         $db = self::$database;
-        $db->insertBatch(self::$readTableName, $dataset);
+        $db->insertBatch(self::READ_TABLE_NAME, $dataset);
 
         $indexes = array_rand($dataset, 4);
         $points = [];
@@ -486,8 +474,8 @@ class ReadTest extends SystemTestCase
 
         $keyset = new KeySet(['keys' => $keys]);
 
-        $res = $db->read(self::$readTableName, $keyset, array_keys($dataset[0]), [
-            'index' => $this->getIndexName(self::$readTableName, 'complex')
+        $res = $db->read(self::READ_TABLE_NAME, $keyset, array_keys($dataset[0]), [
+            'index' => $this->getIndexName(self::READ_TABLE_NAME, 'complex')
         ]);
         $rows = $res->rows();
         foreach ($rows as $index => $row) {
@@ -567,15 +555,7 @@ class ReadTest extends SystemTestCase
 
     private function getIndexName($table, $type)
     {
-        $res = array_filter(self::$indexes, function ($index) use ($table, $type) {
-            return $index['table'] === $table && $index['type'] === $type;
-        });
-
-        if (!$res) {
-            throw new \RuntimeException('index not found');
-        }
-
-        return current($res)['name'];
+        return $type === 'simple' ? $table . '_Idx1' : $table . '_Idx2';
     }
 
     private function insertUnorderedBatch()
@@ -585,7 +565,7 @@ class ReadTest extends SystemTestCase
         // If that happens, we recursively call this function to generate another set.
         try {
             $unorderedDataset = self::generateDataset(10, false);
-            self::$database->insertBatch(self::$rangeTableName, $unorderedDataset);
+            self::$database->insertBatch(self::RANGE_TABLE_NAME, $unorderedDataset);
         } catch (ConflictException $e) {
             $json = json_decode($e->getMessage(), true);
 

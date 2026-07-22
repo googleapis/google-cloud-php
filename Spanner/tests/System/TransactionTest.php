@@ -36,6 +36,7 @@ use ReflectionClass;
  */
 class TransactionTest extends SystemTestCase
 {
+    const TABLE_NAME = 'TransactionTest';
     use DatabaseRoleTrait;
     use SystemTestCaseTrait;
 
@@ -44,7 +45,7 @@ class TransactionTest extends SystemTestCase
 
     private static $row = [];
 
-    private static $tableName;
+    
     private static $id1;
     private static $isSetup = false;
 
@@ -58,7 +59,7 @@ class TransactionTest extends SystemTestCase
         }
         self::setUpTestDatabase();
 
-        self::$tableName = uniqid(self::TABLE_NAME);
+        self::TABLE_NAME = uniqid(self::TABLE_NAME);
         self::$id1 = rand(1000, 9999);
 
         self::$row = [
@@ -69,12 +70,6 @@ class TransactionTest extends SystemTestCase
 
         self::$database->insert(self::TEST_TABLE_NAME, self::$row);
 
-        self::$database->updateDdl(
-            'CREATE TABLE ' . self::$tableName . ' (
-                    id INT64 NOT NULL,
-                    number INT64 NOT NULL
-                ) PRIMARY KEY (id)'
-        )->pollUntilComplete();
         self::$isSetup = true;
     }
 
@@ -122,7 +117,7 @@ class TransactionTest extends SystemTestCase
         $db = self::$database;
 
         $id = $this->randId();
-        $db->insert(self::$tableName, [
+        $db->insert(self::TABLE_NAME, [
             'id' => $id,
             'number' => 0
         ]);
@@ -131,11 +126,11 @@ class TransactionTest extends SystemTestCase
             'php',
             __DIR__ . '/pcntl/ConcurrentTransactionsIncrementValueWithRead.php',
             $db->name(),
-            self::$tableName,
+            self::TABLE_NAME,
             $id
         ]));
 
-        $row = $db->execute('SELECT * FROM ' . self::$tableName . ' WHERE id = @id', [
+        $row = $db->execute('SELECT * FROM ' . self::TABLE_NAME . ' WHERE id = @id', [
             'parameters' => [
                 'id' => $id
             ]
@@ -157,7 +152,7 @@ class TransactionTest extends SystemTestCase
         $ex = false;
         try {
             $db->runTransaction(function ($t) {
-                $t->execute('SELECT * FROM ' . self::$tableName);
+                $t->execute('SELECT * FROM ' . self::TABLE_NAME);
             });
         } catch (\RuntimeException $e) {
             $this->assertEquals('Transactions must be rolled back or committed.', $e->getMessage());
@@ -181,7 +176,7 @@ class TransactionTest extends SystemTestCase
         $db = self::$database;
 
         $id = $this->randId();
-        $db->insert(self::$tableName, [
+        $db->insert(self::TABLE_NAME, [
             'id' => $id,
             'number' => 0
         ]);
@@ -190,11 +185,11 @@ class TransactionTest extends SystemTestCase
             'php',
             __DIR__ . '/pcntl/AbortedErrorCausesRetry.php',
             $db->name(),
-            self::$tableName,
+            self::TABLE_NAME,
             $id
         ]));
 
-        $row = $db->execute('SELECT * FROM ' . self::$tableName . ' WHERE id = @id', [
+        $row = $db->execute('SELECT * FROM ' . self::TABLE_NAME . ' WHERE id = @id', [
             'parameters' => [
                 'id' => $id
             ]
@@ -220,7 +215,7 @@ class TransactionTest extends SystemTestCase
         $db = self::$database;
 
         $id = $this->randId();
-        $db->insert(self::$tableName, [
+        $db->insert(self::TABLE_NAME, [
             'id' => $id,
             'number' => 0
         ]);
@@ -229,11 +224,11 @@ class TransactionTest extends SystemTestCase
             'php',
             __DIR__ . '/pcntl/ConcurrentTransactionsIncrementValueWithExecute.php',
             $db->name(),
-            self::$tableName,
+            self::TABLE_NAME,
             $id
         ]));
 
-        $row = $db->execute('SELECT * FROM ' . self::$tableName . ' WHERE id = @id', [
+        $row = $db->execute('SELECT * FROM ' . self::TABLE_NAME . ' WHERE id = @id', [
             'parameters' => [
                 'id' => $id
             ]
@@ -312,20 +307,20 @@ class TransactionTest extends SystemTestCase
         $db = self::$database;
         $id = $this->randId();
 
-        $db->insert(self::$tableName, [
+        $db->insert(self::TABLE_NAME, [
             'id' => $id,
             'number' => 0
         ]);
 
         $snapshot = $db->snapshot();
         $rows = $snapshot->execute(
-            'SELECT * FROM ' . self::$tableName . ' WHERE id = ' . $id,
+            'SELECT * FROM ' . self::TABLE_NAME . ' WHERE id = ' . $id,
             $directedReadOptions
         )->rows()->current();
         $this->assertEquals(0, $rows['number']);
 
         $rows = $db->execute(
-            'SELECT * FROM ' . self::$tableName . ' WHERE id = ' . $id,
+            'SELECT * FROM ' . self::TABLE_NAME . ' WHERE id = ' . $id,
             ['transactionId' => $snapshot->id()] + $directedReadOptions
         )->rows()->current();
         $this->assertEquals(0, $rows['number']);
@@ -346,7 +341,7 @@ class TransactionTest extends SystemTestCase
 
         try {
             $rows = $db->execute(
-                'SELECT * FROM ' . self::$tableName,
+                'SELECT * FROM ' . self::TABLE_NAME,
                 ['transactionId' => $transaction->id()] + $directedReadOptions
             )->rows()->current();
         } catch (ServiceException $e) {
@@ -357,7 +352,7 @@ class TransactionTest extends SystemTestCase
         $exception = null;
         try {
             $row = $transaction->execute(
-                'SELECT * FROM ' . self::$tableName,
+                'SELECT * FROM ' . self::TABLE_NAME,
                 $directedReadOptions
             )->rows()->current();
         } catch (ServiceException $e) {

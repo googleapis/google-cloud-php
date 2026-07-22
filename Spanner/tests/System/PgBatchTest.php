@@ -30,10 +30,11 @@ use Google\Cloud\Spanner\Batch\BatchSnapshot;
  */
 class PgBatchTest extends SystemTestCase
 {
+    const TABLE_NAME = 'PgBatchTest';
     use PgSystemTestCaseTrait;
     use DatabaseRoleTrait;
 
-    private static $tableName;
+    
     private static $hasSetupBatch = false;
 
     /**
@@ -50,34 +51,9 @@ class PgBatchTest extends SystemTestCase
         }
         self::setUpTestDatabase();
 
-        self::$tableName = uniqid(self::TESTING_PREFIX);
+        
 
-        self::$database->updateDdl(sprintf(
-            'CREATE TABLE IF NOT EXISTS %s (
-                    id INTEGER PRIMARY KEY,
-                    decade INTEGER NOT NULL
-                )',
-            self::$tableName
-        ))->pollUntilComplete();
-
-        if (self::$database->info()['databaseDialect'] == DatabaseDialect::POSTGRESQL) {
-            $statements = [];
-
-            if (!self::isEmulatorUsed()) {
-                $statements[] = sprintf(
-                    'GRANT SELECT(id) ON TABLE %s TO %s',
-                    self::$tableName,
-                    self::$restrictiveDbRole
-                );
-                $statements[] = sprintf(
-                    'GRANT SELECT ON TABLE %s TO %s',
-                    self::$tableName,
-                    self::$dbRole
-                );
-            }
-
-            self::$database->updateDdlBatch($statements)->pollUntilComplete();
-        }
+        
 
         self::seedTable();
         self::$hasSetupBatch = true;
@@ -95,7 +71,7 @@ class PgBatchTest extends SystemTestCase
         $query = 'SELECT
                     id,
                     decade
-                FROM ' . self::$tableName . '
+                FROM ' . self::TABLE_NAME . '
                 WHERE
                     decade > $1
                 AND
@@ -146,7 +122,7 @@ class PgBatchTest extends SystemTestCase
     {
         $decades = [1950, 1960, 1970, 1980, 1990, 2000];
         for ($i = 0; $i < 250; $i++) {
-            self::$database->insert(self::$tableName, [
+            self::$database->insert(self::TABLE_NAME, [
                 'id' => self::randId(),
                 'decade' => array_rand($decades)
             ], [

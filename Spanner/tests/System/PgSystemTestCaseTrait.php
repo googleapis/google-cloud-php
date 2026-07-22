@@ -51,31 +51,109 @@ trait PgSystemTestCaseTrait
                 'databaseDialect' => DatabaseDialect::POSTGRESQL
             ]);
             $op->pollUntilComplete();
-            
+        }
+
+        self::$database->updateDdlBatch(
+            [
+                'CREATE TABLE IF NOT EXISTS PgBatchTest (
+                    id INTEGER PRIMARY KEY,
+                    decade INTEGER NOT NULL
+                )',
+                'CREATE TABLE IF NOT EXISTS Singers (
+                    SingerId   BIGINT NOT NULL,
+                    FirstName  CHARACTER VARYING(1024),
+                    LastName   CHARACTER VARYING(1024),
+                    PRIMARY KEY(SingerId)
+                )',
+                'CREATE TABLE IF NOT EXISTS Albums (
+                    SingerId     BIGINT NOT NULL,
+                    AlbumId      BIGINT NOT NULL,
+                    AlbumTitle   CHARACTER VARYING(1024),
+                    PRIMARY KEY(SingerId, AlbumId)
+                ) INTERLEAVE IN PARENT Singers ON DELETE CASCADE',
+                'CREATE TABLE IF NOT EXISTS PgReadTable (
+                    id bigint NOT NULL,
+                    val character varying NOT NULL,
+                    PRIMARY KEY (id)
+                )',
+                'CREATE UNIQUE INDEX IF NOT EXISTS PgReadTable_Idx1 ON PgReadTable (id)',
+                'CREATE UNIQUE INDEX IF NOT EXISTS PgReadTable_Idx2 ON PgReadTable (id, val)',
+                'CREATE TABLE IF NOT EXISTS PgRangeTable (
+                    id bigint NOT NULL,
+                    val character varying NOT NULL,
+                    PRIMARY KEY (id)
+                )',
+                'CREATE UNIQUE INDEX IF NOT EXISTS PgRangeTable_Idx1 ON PgRangeTable (id)',
+                'CREATE UNIQUE INDEX IF NOT EXISTS PgRangeTable_Idx2 ON PgRangeTable (id, val)',
+                'CREATE TABLE IF NOT EXISTS PgTransactionTest (
+                    id bigint NOT NULL,
+                    name character varying NOT NULL,
+                    birthday date,
+                    PRIMARY KEY (id)
+                )',
+                'CREATE TABLE IF NOT EXISTS Writes (
+                    id bigint NOT NULL,
+                    arrayField bigint[],
+                    arrayBoolField boolean[],
+                    arrayFloatField double precision[],
+                    arrayFloat32Field real[],
+                    arrayStringField character varying[],
+                    arrayBytesField bytea[],
+                    arrayTimestampField timestamp with time zone[],
+                    arrayDateField date[],
+                    arrayNumericField numeric[],
+                    boolField boolean,
+                    bytesField bytea,
+                    dateField date,
+                    floatField double precision,
+                    float32Field real,
+                    intField bigint,
+                    stringField character varying,
+                    timestampField timestamp with time zone,
+                    numericField numeric,
+                    uuidField character varying(36),
+                    arrayUuidField character varying(36)[],
+                    PRIMARY KEY (id)
+                )',
+                'CREATE TABLE IF NOT EXISTS CommitTimestamps (
+                    id bigint NOT NULL,
+                    commitTimestamp spanner.commit_timestamp NOT NULL,
+                    PRIMARY KEY(id)
+                )',
+                'CREATE TABLE IF NOT EXISTS pgPartitionedDml (
+                    id bigint NOT NULL,
+                    value bigint,
+                    PRIMARY KEY (id)
+                )',
+                'CREATE TABLE IF NOT EXISTS PgQueryTest (
+                    id bigint NOT NULL,
+                    name character varying NOT NULL,
+                    birthday date,
+                    PRIMARY KEY (id)
+                )',
+                'CREATE TABLE IF NOT EXISTS ' . self::TEST_TABLE_NAME . ' (
+                    id bigint PRIMARY KEY,
+                    name varchar(1024) NOT NULL,
+                    birthday date
+                )',
+            ]
+        )->pollUntilComplete();
+
+        // Currently, the emulator doesn't support setting roles for the PG
+        // dialect.
+        if (!self::isEmulatorUsed()) {
             self::$database->updateDdlBatch(
                 [
-                    'CREATE TABLE IF NOT EXISTS ' . self::TEST_TABLE_NAME . ' (
-                        id bigint PRIMARY KEY,
-                        name varchar(1024) NOT NULL,
-                        birthday date
-                    )',
+                    'CREATE ROLE ' . self::DATABASE_ROLE,
+                    'CREATE ROLE ' . self::RESTRICTIVE_DATABASE_ROLE,
+                    'GRANT SELECT ON TABLE ' . self::TEST_TABLE_NAME .
+                    ' TO ' . self::DATABASE_ROLE,
+                    'GRANT SELECT(id, name), INSERT(id, name), UPDATE(id, name) ON TABLE '
+                    . self::TEST_TABLE_NAME . ' TO ' . self::RESTRICTIVE_DATABASE_ROLE,
+                    'GRANT SELECT(id) ON TABLE PgBatchTest TO ' . self::RESTRICTIVE_DATABASE_ROLE,
+                    'GRANT SELECT ON TABLE PgBatchTest TO ' . self::DATABASE_ROLE,
                 ]
             )->pollUntilComplete();
-
-            // Currently, the emulator doesn't support setting roles for the PG
-            // dialect.
-            if (!self::isEmulatorUsed()) {
-                self::$database->updateDdlBatch(
-                    [
-                        'CREATE ROLE ' . self::DATABASE_ROLE,
-                        'CREATE ROLE ' . self::RESTRICTIVE_DATABASE_ROLE,
-                        'GRANT SELECT ON TABLE ' . self::TEST_TABLE_NAME .
-                        ' TO ' . self::DATABASE_ROLE,
-                        'GRANT SELECT(id, name), INSERT(id, name), UPDATE(id, name) ON TABLE '
-                        . self::TEST_TABLE_NAME . ' TO ' . self::RESTRICTIVE_DATABASE_ROLE,
-                    ]
-                )->pollUntilComplete();
-            }
         }
 
         TestDatabaseManager::$pgHasSetUp = true;

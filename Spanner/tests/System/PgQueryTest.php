@@ -39,6 +39,7 @@ use Google\Cloud\Spanner\V1\RequestOptions\Priority;
  */
 class PgQueryTest extends SystemTestCase
 {
+    const TABLE_NAME = 'PgQueryTest';
     use PgSystemTestCaseTrait;
 
     const TABLE_NAME = 'test';
@@ -51,22 +52,6 @@ class PgQueryTest extends SystemTestCase
     public static function setUpTestFixtures(): void
     {
         self::setUpTestDatabase();
-
-        self::$database->updateDdl(
-            'CREATE TABLE IF NOT EXISTS ' . self::TABLE_NAME . ' (
-                id bigint NOT NULL,
-                name varchar(1024),
-                registered bool,
-                age numeric,
-                rating float,
-                bytes_col bytea,
-                created_at timestamptz,
-                dt date,
-                data jsonb,
-                weight float4,
-                PRIMARY KEY (id)
-            )'
-        )->pollUntilComplete();
 
         self::$timestampVal = new Timestamp(new \DateTime());
 
