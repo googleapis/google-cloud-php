@@ -92,7 +92,14 @@ class PqcShowcaseTest extends TestCase
 
         /** @var array<string, array<int, string>> $responseHeaders */
         $responseHeaders = array_change_key_case($responseHeaders, CASE_LOWER);
+        $negotiatedGroup = $responseHeaders[self::TLS_GROUP][0];
 
-        $this->assertEquals($expectedGroup, $responseHeaders[self::TLS_GROUP][0]);
+        if ($transport instanceof GrpcTransport) {
+            // gRPC must ALWAYS negotiate PQC
+            $this->assertEquals($expectedGroup, $negotiatedGroup);
+        } else {
+            // REST uses host system OpenSSL (X25519MLKEM768 when PQC is available, or X25519 fallback)
+            $this->assertContains($negotiatedGroup, [$expectedGroup, 'X25519']);
+        }
     }
 }
