@@ -18,8 +18,8 @@
 namespace Google\Cloud\Spanner;
 
 use Google\ApiCore\ValidationException;
-use Google\Cloud\Core\OptionsValidator;
 use Google\Cloud\Core\Exception\AbortedException;
+use Google\Cloud\Core\OptionsValidator;
 use Google\Cloud\Spanner\Session\SessionCache;
 use Google\Cloud\Spanner\V1\CommitResponse\CommitStats;
 use Google\Cloud\Spanner\V1\MultiplexedSessionPrecommitToken;
