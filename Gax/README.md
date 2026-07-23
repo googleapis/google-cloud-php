@@ -80,11 +80,19 @@ be found for Mac or Windows.
     > vendor/bin/phpunit
     ```
 
-4.  Run static analysis tools
+4.  Run conformance tests (requires [GAPIC Showcase](https://github.com/googleapis/gapic-showcase)).
+
+    ```sh
+    > ./gapic-showcase run --port :7469 --tls --ca-cert-output-file tests/Conformance/showcase.pem &
+    > vendor/bin/phpunit -c phpunit-conformance.xml.dist
+    ```
+
+5.  Run static analysis tools
 
     ```sh
     > phpstan -c phpstan.neon.dist
     ```
+
 
 ## License
 
