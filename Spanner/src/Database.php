@@ -51,7 +51,9 @@ use Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseRequest;
 use Google\Cloud\Spanner\Session\SessionCache;
 use Google\Cloud\Spanner\V1\BatchWriteRequest;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
+use Google\Cloud\Spanner\V1\ExecuteSqlRequest;
 use Google\Cloud\Spanner\V1\Mutation;
+use Google\Cloud\Spanner\V1\ReadRequest;
 use Google\Cloud\Spanner\V1\Mutation\Delete;
 use Google\Cloud\Spanner\V1\Mutation\Write;
 use Google\Cloud\Spanner\V1\TransactionOptions\IsolationLevel;
@@ -1716,8 +1718,8 @@ class Database
         $executeOptions = $this->optionsValidator->stripUnknownOptions(
             $options,
             ['parameters', 'types'],
-            \Google\ApiCore\Options\CallOptions::class,
-            \Google\Cloud\Spanner\V1\ExecuteSqlRequest::class
+            CallOptions::class,
+            ExecuteSqlRequest::class
         );
         $executeOptions['transaction'] = $txnOptions;
         $executeOptions['transactionContext'] = $txnContext;
@@ -2098,8 +2100,8 @@ class Database
 
         $readOptions = $this->optionsValidator->stripUnknownOptions(
             $options,
-            \Google\ApiCore\Options\CallOptions::class,
-            \Google\Cloud\Spanner\V1\ReadRequest::class
+            CallOptions::class,
+            ReadRequest::class
         );
         $readOptions['transactionContext'] = $txnContext;
         $readOptions['directedReadOptions'] = $this->transactionOptionsBuilder->configureDirectedReadOptions(

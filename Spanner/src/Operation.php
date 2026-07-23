@@ -906,7 +906,7 @@ class Operation
         $queryPartitionOptions = $this->optionsValidator->stripUnknownOptions(
             $options,
             ['parameters', 'types', 'maxPartitions', 'partitionSizeBytes'],
-            \Google\ApiCore\Options\CallOptions::class
+            CallOptions::class
         );
 
         /** @var RepeatedField<Partition> $protoPartitions */
@@ -992,7 +992,7 @@ class Operation
         $readPartitionOptions = $this->optionsValidator->stripUnknownOptions(
             $options,
             ['index', 'maxPartitions', 'partitionSizeBytes'],
-            \Google\ApiCore\Options\CallOptions::class
+            CallOptions::class
         );
         /** @var RepeatedField<Partition> $protoPartitions */
         $protoPartitions = $response->getPartitions();
