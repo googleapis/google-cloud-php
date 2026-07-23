@@ -116,7 +116,7 @@ class OptionsValidator
      * Filter an array of options to only include those matching the supplied `$optionTypes`.
      *
      * @param  array                $options
-     * @param  array|string ...$optionTypes
+     * @param  array|string ...$optionTypes An array of scalar keys, or a classname string (e.g. CallOptions::class).
      * @return array
      */
     public function stripUnknownOptions(array $options, array|string ...$optionTypes): array
