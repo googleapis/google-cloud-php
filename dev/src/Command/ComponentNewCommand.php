@@ -233,7 +233,7 @@ class ComponentNewCommand extends Command
 
         if (!$input->getOption('no-update')) {
             $args = [
-                'component' => $new->componentName,
+                '--component' => [$new->componentName],
                 '--timeout' => $timeout,
             ];
             if (!$this->getApplication()->has('component:update')) {
