@@ -116,14 +116,12 @@ class OptionsValidator
      * Filter an array of options to only include those matching the supplied `$optionTypes`.
      *
      * @param  array                $options
-     * @param  array|Message|string ...$optionTypes
+     * @param  array|string ...$optionTypes
      * @return array
      */
-    public function stripUnknownOptions(array $options, array|Message|string ...$optionTypes): array
+    public function stripUnknownOptions(array $options, array|string ...$optionTypes): array
     {
-        $cacheKey = serialize(array_map(function ($type) {
-            return is_object($type) ? get_class($type) : $type;
-        }, $optionTypes));
+        $cacheKey = serialize($optionTypes);
 
         if (isset(self::$allowedKeysCache[$cacheKey])) {
             return array_intersect_key($options, array_flip(self::$allowedKeysCache[$cacheKey]));
@@ -136,9 +134,7 @@ class OptionsValidator
             } elseif ($optionType === CallOptions::class) {
                 $callOptionKeys = array_keys((new CallOptions([]))->toArray());
                 $allowedKeys = array_merge($allowedKeys, $callOptionKeys);
-            } elseif ($optionType instanceof Message
-                || (is_string($optionType) && is_subclass_of($optionType, Message::class))
-            ) {
+            } elseif (is_string($optionType) && is_subclass_of($optionType, Message::class)) {
                 $messageKeys = array_map(
                     fn ($method) => lcfirst(substr($method, 3)),
                     array_filter(
@@ -147,8 +143,6 @@ class OptionsValidator
                     )
                 );
                 $allowedKeys = array_merge($allowedKeys, $messageKeys);
-            } elseif (is_string($optionType)) {
-                $allowedKeys[] = $optionType;
             } else {
                 throw new LogicException(sprintf('Invalid option type: %s', $optionType));
             }

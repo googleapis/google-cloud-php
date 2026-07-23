@@ -18,6 +18,7 @@
 namespace Google\Cloud\Spanner;
 
 use Google\ApiCore\ValidationException;
+use Google\Cloud\Core\OptionsValidator;
 use Google\Cloud\Core\Exception\AbortedException;
 use Google\Cloud\Spanner\Session\SessionCache;
 use Google\Cloud\Spanner\V1\CommitResponse\CommitStats;
@@ -125,6 +126,7 @@ class Transaction implements TransactionalReadInterface
         $this->requestOptions = $options['requestOptions'] ?? [];
         $this->transactionOptions = $options['transactionOptions'] ?? new TransactionOptions();
         $this->transactionOptionsBuilder = new TransactionOptionsBuilder();
+        $this->optionsValidator = new OptionsValidator();
 
         if (!is_null($mapper)) {
             $this->mapper = $mapper;
@@ -477,7 +479,7 @@ class Transaction implements TransactionalReadInterface
         }
 
         // Build the commit options
-        $commitOptions = (new \Google\Cloud\Core\OptionsValidator())->stripUnknownOptions(
+        $commitOptions = $this->optionsValidator->stripUnknownOptions(
             $options,
             \Google\ApiCore\Options\CallOptions::class,
             \Google\Cloud\Spanner\V1\CommitRequest::class
@@ -594,7 +596,7 @@ class Transaction implements TransactionalReadInterface
         }
         [$txnOptions] = $this->transactionOptionsBuilder->transactionSelector($options);
 
-        $updateOptions = (new \Google\Cloud\Core\OptionsValidator())->stripUnknownOptions(
+        $updateOptions = $this->optionsValidator->stripUnknownOptions(
             $options,
             $requestClass === \Google\Cloud\Spanner\V1\ExecuteSqlRequest::class ? ['parameters', 'types'] : [],
             \Google\ApiCore\Options\CallOptions::class,

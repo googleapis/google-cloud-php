@@ -18,6 +18,7 @@
 namespace Google\Cloud\Spanner;
 
 use Google\ApiCore\ArrayTrait;
+use Google\Cloud\Core\OptionsValidator;
 use Google\Cloud\Spanner\Session\SessionCache;
 use Google\Cloud\Spanner\V1\TransactionOptions;
 
@@ -29,6 +30,11 @@ use Google\Cloud\Spanner\V1\TransactionOptions;
 trait TransactionalReadTrait
 {
     use ArrayTrait;
+
+    /**
+     * @var OptionsValidator
+     */
+    protected $optionsValidator;
 
     private Operation $operation;
     private SessionCache $session;
@@ -268,7 +274,7 @@ trait TransactionalReadTrait
             $this->directedReadOptions
         );
 
-        $executeSqlOptions = (new \Google\Cloud\Core\OptionsValidator())->stripUnknownOptions(
+        $executeSqlOptions = $this->optionsValidator->stripUnknownOptions(
             $options,
             ['parameters', 'types'],
             \Google\ApiCore\Options\CallOptions::class,
@@ -349,7 +355,7 @@ trait TransactionalReadTrait
         $this->singleUseState();
         $this->checkReadContext();
 
-        $readOptions = (new \Google\Cloud\Core\OptionsValidator())->stripUnknownOptions(
+        $readOptions = $this->optionsValidator->stripUnknownOptions(
             $options,
             \Google\ApiCore\Options\CallOptions::class,
             \Google\Cloud\Spanner\V1\ReadRequest::class

@@ -474,11 +474,10 @@ class Operation
          * @var array $callOptions
          * @var array $rtl
          */
-        [$dmlRequest, $callOptions, $_, $rtl] = $this->validateOptions(
+        [$dmlRequest, $callOptions, $rtl] = $this->validateOptions(
             $options,
             new ExecuteBatchDmlRequest(),
             CallOptions::class,
-            [],
             ['route-to-leader']
         );
 
