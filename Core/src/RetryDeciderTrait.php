@@ -66,8 +66,13 @@ trait RetryDeciderTrait
                 return false;
             }
 
-            $message = ($ex instanceof RequestException && $ex->hasResponse())
-                ? (string) $ex->getResponse()->getBody()
+            // Guzzle 7 carries the response on RequestException, Guzzle 8 only
+            // on its ResponseException subclass, hence the method_exists() check.
+            $response = $ex instanceof RequestException && method_exists($ex, 'getResponse')
+                ? $ex->getResponse()
+                : null;
+            $message = $response
+                ? (string) $response->getBody()
                 : $ex->getMessage();
 
             try {

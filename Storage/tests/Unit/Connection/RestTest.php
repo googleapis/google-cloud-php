@@ -28,7 +28,7 @@ use Google\Cloud\Core\Upload\StreamableUploader;
 use Google\Cloud\Storage\Connection\Rest;
 use Google\Cloud\Storage\Connection\RetryTrait;
 use GuzzleHttp\Client;
-use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Exception\BadResponseException;
 use GuzzleHttp\Promise\Create;
 use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\Psr7\Request;
@@ -511,7 +511,7 @@ class RestTest extends TestCase
                 $actualRequests[$requestIndex] = $args[0];
                 $requestHeaders[$requestIndex] = $args[1]['headers'] ?? [];
                 if ($requestIndex++ === 0) {
-                    throw new RequestException("Server error", $args[0], new Response($status1, [], $body1));
+                    throw new BadResponseException("Server error", $args[0], new Response($status1, [], $body1));
                 }
                 return new Response($status2, [], $body2);
             }
@@ -1041,10 +1041,17 @@ class RestTest extends TestCase
         }
 
         // Multipart upload request
-        $lines = explode(PHP_EOL, (string) $request->getBody());
+        // (guzzle/psr7 2 generates per-part Content-Length headers, psr7 3
+        // does not; strip them so the line offsets match on both)
+        $lines = array_values(array_filter(
+            explode(PHP_EOL, (string) $request->getBody()),
+            function ($line) {
+                return strpos($line, 'Content-Length:') !== 0;
+            }
+        ));
         return [
-            trim(explode(':', $lines[7])[1]),
-            json_decode($lines[5], true)
+            trim(explode(':', $lines[6])[1]),
+            json_decode($lines[4], true)
         ];
     }
 }

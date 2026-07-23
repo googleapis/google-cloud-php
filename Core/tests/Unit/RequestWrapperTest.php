@@ -31,7 +31,7 @@ use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Exception\ServerException;
 use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Core\RequestWrapper;
-use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Promise\Create;
 use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\Psr7\Request;
@@ -335,7 +335,7 @@ class RequestWrapperTest extends TestCase
                 $msg = str_repeat('0', 121);
                 $jsonMsg = '{"msg":"' . $msg . '"}';
 
-                throw new RequestException(
+                throw new ClientException(
                     $jsonMsg,
                     $request,
                     new Response(400, [], $jsonMsg)
