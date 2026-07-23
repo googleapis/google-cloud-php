@@ -17,11 +17,15 @@
 
 namespace Google\Cloud\Spanner;
 
+use Google\ApiCore\Options\CallOptions;
 use Google\ApiCore\ValidationException;
 use Google\Cloud\Core\Exception\AbortedException;
 use Google\Cloud\Core\OptionsValidator;
 use Google\Cloud\Spanner\Session\SessionCache;
+use Google\Cloud\Spanner\V1\CommitRequest;
 use Google\Cloud\Spanner\V1\CommitResponse\CommitStats;
+use Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest;
+use Google\Cloud\Spanner\V1\ExecuteSqlRequest;
 use Google\Cloud\Spanner\V1\MultiplexedSessionPrecommitToken;
 use Google\Cloud\Spanner\V1\RequestOptions;
 use Google\Cloud\Spanner\V1\TransactionOptions;
@@ -267,7 +271,7 @@ class Transaction implements TransactionalReadInterface
             $this->type = self::TYPE_PRE_ALLOCATED;
         }
 
-        $options = $this->buildUpdateOptions($options, \Google\Cloud\Spanner\V1\ExecuteSqlRequest::class);
+        $options = $this->buildUpdateOptions($options, ExecuteSqlRequest::class);
         return $this->operation
             ->executeUpdate($this->session, $this, $sql, $options);
     }
@@ -361,7 +365,7 @@ class Transaction implements TransactionalReadInterface
      */
     public function executeUpdateBatch(array $statements, array $options = []): BatchDmlResult
     {
-        $options = $this->buildUpdateOptions($options, \Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest::class);
+        $options = $this->buildUpdateOptions($options, ExecuteBatchDmlRequest::class);
         return $this->operation->executeUpdateBatch(
             $this->session,
             $this,
@@ -481,8 +485,8 @@ class Transaction implements TransactionalReadInterface
         // Build the commit options
         $commitOptions = $this->optionsValidator->stripUnknownOptions(
             $options,
-            \Google\ApiCore\Options\CallOptions::class,
-            \Google\Cloud\Spanner\V1\CommitRequest::class
+            CallOptions::class,
+            CommitRequest::class
         );
         // Set the latest received precommit token from the last request from within this transaction.
         if ($this->precommitToken) {
@@ -598,8 +602,8 @@ class Transaction implements TransactionalReadInterface
 
         $updateOptions = $this->optionsValidator->stripUnknownOptions(
             $options,
-            $requestClass === \Google\Cloud\Spanner\V1\ExecuteSqlRequest::class ? ['parameters', 'types'] : [],
-            \Google\ApiCore\Options\CallOptions::class,
+            $requestClass === ExecuteSqlRequest::class ? ['parameters', 'types'] : [],
+            CallOptions::class,
             $requestClass
         );
         $updateOptions['seqno'] = $this->seqno++;

@@ -18,8 +18,11 @@
 namespace Google\Cloud\Spanner;
 
 use Google\ApiCore\ArrayTrait;
+use Google\ApiCore\Options\CallOptions;
 use Google\Cloud\Core\OptionsValidator;
 use Google\Cloud\Spanner\Session\SessionCache;
+use Google\Cloud\Spanner\V1\ExecuteSqlRequest;
+use Google\Cloud\Spanner\V1\ReadRequest;
 use Google\Cloud\Spanner\V1\TransactionOptions;
 
 /**
@@ -277,8 +280,8 @@ trait TransactionalReadTrait
         $executeSqlOptions = $this->optionsValidator->stripUnknownOptions(
             $options,
             ['parameters', 'types'],
-            \Google\ApiCore\Options\CallOptions::class,
-            \Google\Cloud\Spanner\V1\ExecuteSqlRequest::class
+            CallOptions::class,
+            ExecuteSqlRequest::class
         );
         $executeSqlOptions['seqno'] = $this->seqno++;
         $executeSqlOptions['transaction'] = $txnOptions;
@@ -357,8 +360,8 @@ trait TransactionalReadTrait
 
         $readOptions = $this->optionsValidator->stripUnknownOptions(
             $options,
-            \Google\ApiCore\Options\CallOptions::class,
-            \Google\Cloud\Spanner\V1\ReadRequest::class
+            CallOptions::class,
+            ReadRequest::class
         );
         $options['transactionType'] = $this->context;
         if (empty($this->transactionId) && isset($this->transactionSelector['begin'])) {
