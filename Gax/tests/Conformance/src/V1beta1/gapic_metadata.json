@@ -163,6 +163,85 @@
                 }
             }
         },
+        "Messaging": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "MessagingGapicClient",
+                    "rpcs": {
+                        "Connect": {
+                            "methods": [
+                                "connect"
+                            ]
+                        },
+                        "CreateBlurb": {
+                            "methods": [
+                                "createBlurb"
+                            ]
+                        },
+                        "CreateRoom": {
+                            "methods": [
+                                "createRoom"
+                            ]
+                        },
+                        "DeleteBlurb": {
+                            "methods": [
+                                "deleteBlurb"
+                            ]
+                        },
+                        "DeleteRoom": {
+                            "methods": [
+                                "deleteRoom"
+                            ]
+                        },
+                        "GetBlurb": {
+                            "methods": [
+                                "getBlurb"
+                            ]
+                        },
+                        "GetRoom": {
+                            "methods": [
+                                "getRoom"
+                            ]
+                        },
+                        "ListBlurbs": {
+                            "methods": [
+                                "listBlurbs"
+                            ]
+                        },
+                        "ListRooms": {
+                            "methods": [
+                                "listRooms"
+                            ]
+                        },
+                        "SearchBlurbs": {
+                            "methods": [
+                                "searchBlurbs"
+                            ]
+                        },
+                        "SendBlurbs": {
+                            "methods": [
+                                "sendBlurbs"
+                            ]
+                        },
+                        "StreamBlurbs": {
+                            "methods": [
+                                "streamBlurbs"
+                            ]
+                        },
+                        "UpdateBlurb": {
+                            "methods": [
+                                "updateBlurb"
+                            ]
+                        },
+                        "UpdateRoom": {
+                            "methods": [
+                                "updateRoom"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "SequenceService": {
             "clients": {
                 "grpc": {
