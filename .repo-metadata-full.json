@@ -459,6 +459,14 @@
         "library_type": "GAPIC_AUTO",
         "api_shortname": "cloudcommerceconsumerprocurement"
     },
+    "Commerceproducer": {
+        "language": "php",
+        "distribution_name": "google/cloud-commerceproducer",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-commerceproducer/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "commerceproducer"
+    },
     "CommonProtos": {
         "language": "php",
         "distribution_name": "google/common-protos",
@@ -805,14 +813,6 @@
         "library_type": "GAPIC_AUTO",
         "api_shortname": "cloudfunctions"
     },
-    "Gax": {
-        "language": "php",
-        "distribution_name": "google/gax",
-        "release_level": "stable",
-        "client_documentation": "https://cloud.google.com/php/docs/reference/gax/latest",
-        "library_type": "CORE",
-        "api_shortname": ""
-    },
     "GSuiteAddOns": {
         "language": "php",
         "distribution_name": "google/cloud-gsuite-addons",
@@ -822,6 +822,14 @@
         "product_documentation": "https://developers.google.com/workspace/add-ons/overview",
         "issue_tracker": "https://github.com/googleapis/google-cloud-php/issues",
         "api_shortname": "gsuiteaddons"
+    },
+    "Gax": {
+        "language": "php",
+        "distribution_name": "google/gax",
+        "release_level": "stable",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/gax/latest",
+        "library_type": "CORE",
+        "api_shortname": ""
     },
     "GeminiDataAnalytics": {
         "language": "php",
