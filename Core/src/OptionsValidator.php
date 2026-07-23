@@ -33,6 +33,11 @@ class OptionsValidator
     use ArrayTrait;
 
     /**
+     * @var array
+     */
+    private static array $allowedKeysCache = [];
+
+    /**
      * @param ?Serializer $serializer use a serializer to decode protobuf messages
      *        instead of calling {@see Message::mergeFromJsonString()}.
      */
@@ -106,11 +111,6 @@ class OptionsValidator
 
         return $splitOptions;
     }
-
-    /**
-     * @var array
-     */
-    private static array $allowedKeysCache = [];
 
     /**
      * Filter an array of options to only include those matching the supplied `$optionTypes`.
