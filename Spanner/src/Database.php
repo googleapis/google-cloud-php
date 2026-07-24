@@ -965,6 +965,17 @@ class Database
             $this->isRunningTransaction = true;
             try {
                 $res = call_user_func($operation, $transaction);
+            } catch (\Throwable $e) {
+                $active = $transaction->state() === Transaction::STATE_ACTIVE;
+                $singleUse = $transaction->type() === Transaction::TYPE_SINGLE_USE;
+                if ($active && !$singleUse) {
+                    try {
+                        $transaction->rollback($options);
+                    } catch (\Throwable $rollbackException) {
+                        // ignore rollback failure and bubble up the original exception
+                    }
+                }
+                throw $e;
             } finally {
                 $this->isRunningTransaction = false;
             }
@@ -1676,12 +1687,13 @@ class Database
 
         $session = $options['session'] ?? $this->session;
         $executeOptions = $this->pluckArray(['parameters', 'types'], $options);
+        $callOptions = $this->pluckArray(['requestOptions', 'timeoutMillis'], $options);
         return $this->operation->execute($session, $sql, $executeOptions + [
             'transaction' => $txnOptions,
             'transactionContext' => $txnContext,
             'directedReadOptions' => $directedReadOptions,
             'route-to-leader' => $txnContext === Database::CONTEXT_READWRITE
-        ]);
+        ] + $callOptions);
     }
 
     /**
@@ -2061,9 +2073,11 @@ class Database
             'transaction' => $txnOptions,
         ];
 
+        $callOptions = $this->pluckArray(['requestOptions', 'timeoutMillis'], $options);
+
         return $this->operation->read($this->session, $table, $keySet, $columns, $readOptions + [
             'route-to-leader' => $txnContext === Database::CONTEXT_READ
-        ]);
+        ] + $callOptions);
     }
 
     /**

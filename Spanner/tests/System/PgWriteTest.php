@@ -54,7 +54,7 @@ class PgWriteTest extends SystemTestCase
         self::setUpTestDatabase();
 
         self::$database->updateDdlBatch([
-            'CREATE TABLE ' . self::TABLE_NAME . ' (
+            'CREATE TABLE IF NOT EXISTS ' . self::TABLE_NAME . ' (
                 id bigint NOT NULL,
                 boolfield boolean,
                 bytesfield bytea,
@@ -78,7 +78,7 @@ class PgWriteTest extends SystemTestCase
                 arraypgjsonbfield jsonb[],
                 PRIMARY KEY (id)
             )',
-            'CREATE TABLE ' . self::COMMIT_TIMESTAMP_TABLE_NAME . ' (
+            'CREATE TABLE IF NOT EXISTS ' . self::COMMIT_TIMESTAMP_TABLE_NAME . ' (
                 id bigint NOT NULL,
                 commitTimestamp SPANNER.COMMIT_TIMESTAMP NOT NULL,
                 PRIMARY KEY (id, commitTimestamp)

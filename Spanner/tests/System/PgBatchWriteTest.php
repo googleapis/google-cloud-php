@@ -40,13 +40,13 @@ class PgBatchWriteTest extends SystemTestCase
         self::setUpTestDatabase();
 
         self::$database->updateDdlBatch([
-            'CREATE TABLE Singers (
+            'CREATE TABLE IF NOT EXISTS Singers (
                 singerid   bigint NOT NULL,
                 firstname  varchar(1024),
                 lastname   varchar(1024),
                 PRIMARY KEY (singerid)
             )',
-            'CREATE TABLE Albums (
+            'CREATE TABLE IF NOT EXISTS Albums (
                 singerid     bigint NOT NULL,
                 albumid      bigint NOT NULL,
                 albumtitle   varchar(1024),

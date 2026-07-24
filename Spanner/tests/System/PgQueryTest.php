@@ -25,6 +25,7 @@ use Google\Cloud\Spanner\Bytes;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Date;
 use Google\Cloud\Spanner\Interval;
+use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\PgJsonb;
 use Google\Cloud\Spanner\PgNumeric;
 use Google\Cloud\Spanner\Timestamp;
@@ -52,7 +53,7 @@ class PgQueryTest extends SystemTestCase
         self::setUpTestDatabase();
 
         self::$database->updateDdl(
-            'CREATE TABLE ' . self::TABLE_NAME . ' (
+            'CREATE TABLE IF NOT EXISTS ' . self::TABLE_NAME . ' (
                 id bigint NOT NULL,
                 name varchar(1024),
                 registered bool,
@@ -68,6 +69,8 @@ class PgQueryTest extends SystemTestCase
         )->pollUntilComplete();
 
         self::$timestampVal = new Timestamp(new \DateTime());
+
+        self::$database->delete(self::TABLE_NAME, new KeySet(['all' => true]));
 
         self::$database->insertOrUpdateBatch(self::TABLE_NAME, [
             [

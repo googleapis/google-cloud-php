@@ -45,7 +45,11 @@ class LongRunningClientConnection implements LongRunningConnectionInterface
      */
     public function get(array $args): array
     {
-        $operationResponse = $this->gapicClient->resumeOperation($args['name']);
+        if (isset($args['method'])) {
+            $operationResponse = $this->gapicClient->resumeOperation($args['name'], $args['method']);
+        } else {
+            $operationResponse = $this->gapicClient->resumeOperation($args['name']);
+        }
 
         return $this->operationResponseToArray($operationResponse);
     }
@@ -56,10 +60,11 @@ class LongRunningClientConnection implements LongRunningConnectionInterface
      */
     public function cancel(array $args): array
     {
-        $operationResponse = $this->gapicClient->resumeOperation(
-            $args['name'],
-            $args['method'] ?? null
-        );
+        if (isset($args['method'])) {
+            $operationResponse = $this->gapicClient->resumeOperation($args['name'], $args['method']);
+        } else {
+            $operationResponse = $this->gapicClient->resumeOperation($args['name']);
+        }
         $operationResponse->cancel();
 
         return $this->operationResponseToArray($operationResponse);
@@ -71,10 +76,11 @@ class LongRunningClientConnection implements LongRunningConnectionInterface
      */
     public function delete(array $args): array
     {
-        $operationResponse = $this->gapicClient->resumeOperation(
-            $args['name'],
-            $args['method'] ?? null
-        );
+        if (isset($args['method'])) {
+            $operationResponse = $this->gapicClient->resumeOperation($args['name'], $args['method']);
+        } else {
+            $operationResponse = $this->gapicClient->resumeOperation($args['name']);
+        }
         $operationResponse->cancel();
 
         return $this->operationResponseToArray($operationResponse);

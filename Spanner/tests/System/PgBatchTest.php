@@ -53,7 +53,7 @@ class PgBatchTest extends SystemTestCase
         self::$tableName = uniqid(self::TESTING_PREFIX);
 
         self::$database->updateDdl(sprintf(
-            'CREATE TABLE %s (
+            'CREATE TABLE IF NOT EXISTS %s (
                     id INTEGER PRIMARY KEY,
                     decade INTEGER NOT NULL
                 )',
@@ -61,10 +61,7 @@ class PgBatchTest extends SystemTestCase
         ))->pollUntilComplete();
 
         if (self::$database->info()['databaseDialect'] == DatabaseDialect::POSTGRESQL) {
-            $statements = [
-                sprintf('CREATE ROLE %s', self::$dbRole),
-                sprintf('CREATE ROLE %s', self::$restrictiveDbRole),
-            ];
+            $statements = [];
 
             if (!self::isEmulatorUsed()) {
                 $statements[] = sprintf(
@@ -119,6 +116,9 @@ class PgBatchTest extends SystemTestCase
         try {
             $partitions = $snapshot->partitionQuery($query, ['parameters' => $parameters]);
         } catch (ServiceException $e) {
+            if (is_null($expected)) {
+                throw $e;
+            }
             $error = $e;
         }
 

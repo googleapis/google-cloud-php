@@ -561,7 +561,7 @@ class ValueMapper
             }
         } elseif ($value instanceof StructValue) {
             foreach ($value->values() as $idx => $val) {
-                $name = $val['name'];
+                $name = (string) ($val['name'] ?? '');
                 $valValue = $val['value'];
 
                 if (!isset($values[$name])) {
@@ -580,7 +580,7 @@ class ValueMapper
         $fields = [];
         $names = [];
         foreach ($typeFields as $typeIndex => $paramType) {
-            $fieldName = $paramType['name'];
+            $fieldName = (string) ($paramType['name'] ?? '');
 
             // Count the number of times the field name has been encountered thus far.
             // This lets us pick the correct index for duplicate fields.
