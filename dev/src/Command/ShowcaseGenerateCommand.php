@@ -74,7 +74,8 @@ class ShowcaseGenerateCommand extends Command
                 'googleapis-path',
                 null,
                 InputOption::VALUE_REQUIRED,
-                'Path to googleapis repository (defaults to submodule in gapic-generator)'
+                'Path to googleapis repository',
+                $this->rootPath . '../googleapis'
             );
     }
 
@@ -106,27 +107,16 @@ class ShowcaseGenerateCommand extends Command
         }
         $schemaDir = $showcasePath . '/schema/google/showcase/v1beta1';
 
-        // 3. Resolve Googleapis Path (Defaults to submodule in generatorPath)
+        // 3. Resolve Googleapis Path (Defaults to ../googleapis or generatorPath/googleapis)
         $googleapisPath = $input->getOption('googleapis-path');
-        if (!$googleapisPath) {
-            $submoduleGoogleapis = $generatorPath . '/googleapis';
-            if (!file_exists($submoduleGoogleapis . '/google/cloud/common_resources.proto')) {
-                $output->writeln('<info>Fetching googleapis definitions for gapic-generator...</info>');
-                if (is_dir($generatorPath . '/.git')) {
-                    $this->runProcess(['git', 'submodule', 'update', '--init', '--recursive'], $generatorPath);
-                } else {
-                    $this->runProcess(['git', 'clone', '--depth', '1', 'https://github.com/googleapis/googleapis.git', $submoduleGoogleapis]);
-                }
+        if (!is_dir($googleapisPath . '/google/cloud')) {
+            if (is_dir($generatorPath . '/googleapis/google/cloud')) {
+                $googleapisPath = $generatorPath . '/googleapis';
+            } else {
+                $output->writeln("<error>Error: googleapis directory not found at {$googleapisPath}.</error>");
+                $output->writeln('Please specify the path using <comment>--googleapis-path <dir></comment>');
+                return Command::FAILURE;
             }
-            if (is_dir($submoduleGoogleapis . '/google/cloud')) {
-                $googleapisPath = $submoduleGoogleapis;
-            }
-        }
-
-        if (!$googleapisPath || !is_dir($googleapisPath . '/google/cloud')) {
-            $output->writeln('<error>Error: googleapis directory not found.</error>');
-            $output->writeln('Please specify the path using <comment>--googleapis-path <dir></comment>');
-            return Command::FAILURE;
         }
 
         $output->writeln("<info>Using output directory:</info> {$targetDir}");
