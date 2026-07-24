@@ -164,7 +164,6 @@ class ShowcaseGenerateCommand extends Command
 
         foreach ($files as [$relPath, $content]) {
             $fullPath = $tmpOutputDir . '/' . $relPath;
-            $this->fs->mkdir(dirname($fullPath));
             $this->fs->dumpFile($fullPath, $content);
         }
 
