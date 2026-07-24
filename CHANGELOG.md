@@ -1,5 +1,57 @@
 # Changelog
 
+## 0.338.0
+
+<details><summary>google/cloud-batch 1.4.2</summary>
+
+
+
+### Documentation
+
+* [Batch] restrict `allowed_locations` region or zone values to the same region where the job is created ([#9384](https://github.com/googleapis/google-cloud-php/issues/9384)) ([720551e](https://github.com/googleapis/google-cloud-php/commit/720551ece54b2da33f543d716af3262a6cbd97d8))
+
+</details>
+
+<details><summary>google/cloud-core 1.72.5</summary>
+
+
+
+### Bug Fixes
+
+* **spanner:** do not drop Spanner and GAX options on Database and Transaction methods ([#9381](https://github.com/googleapis/google-cloud-php/issues/9381)) ([17550aa](https://github.com/googleapis/google-cloud-php/commit/17550aae117a5ff230531666dc90114933409ab4))
+
+</details>
+
+<details><summary>google/cloud-quotas 1.6.0</summary>
+
+
+
+### Features
+
+* [Quotas] publish Cloud Quotas v1 GA client library protos and GAPIC Bazel rules ([#9383](https://github.com/googleapis/google-cloud-php/issues/9383)) ([0f960c3](https://github.com/googleapis/google-cloud-php/commit/0f960c38feb150f4e97f1d7566d9cf0f78ab114c))
+
+</details>
+
+<details><summary>google/cloud-spanner 2.10.2</summary>
+
+
+
+### Bug Fixes
+
+* **spanner:** do not drop Spanner and GAX options on Database and Transaction methods ([#9381](https://github.com/googleapis/google-cloud-php/issues/9381)) ([17550aa](https://github.com/googleapis/google-cloud-php/commit/17550aae117a5ff230531666dc90114933409ab4))
+
+</details>
+
+<details><summary>google/cloud-sql-admin 1.11.0</summary>
+
+
+
+### Features
+
+* [SqlAdmin] add client library publishing configuration for SQL Admin ([#9385](https://github.com/googleapis/google-cloud-php/issues/9385)) ([289b6e2](https://github.com/googleapis/google-cloud-php/commit/289b6e26d25a0455e903d9138ee5d95d6f5e3a80))
+
+</details>
+
 ## 0.337.0
 
 <details><summary>google/cloud-ai-platform 1.63.0</summary>
