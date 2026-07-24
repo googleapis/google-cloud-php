@@ -24,20 +24,6 @@ class DeleteUserRequest extends \Google\Protobuf\Internal\Message
     protected $name = '';
 
     /**
-     * @param string $name The resource name of the user to delete. Please see
-     *                     {@see IdentityClient::userName()} for help formatting this field.
-     *
-     * @return \Google\Showcase\V1beta1\DeleteUserRequest
-     *
-     * @experimental
-     */
-    public static function build(string $name): self
-    {
-        return (new self())
-            ->setName($name);
-    }
-
-    /**
      * Constructor.
      *
      * @param array $data {

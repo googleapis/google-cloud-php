@@ -49,23 +49,6 @@ class SearchBlurbsRequest extends \Google\Protobuf\Internal\Message
     protected $page_token = '';
 
     /**
-     * @param string $parent The rooms or profiles to search. If unset, `SearchBlurbs` will search all
-     *                       rooms and all profiles.
-     * @param string $query  The query used to search for blurbs containing to words of this string.
-     *                       Only posts that contain an exact match of a queried word will be returned.
-     *
-     * @return \Google\Showcase\V1beta1\SearchBlurbsRequest
-     *
-     * @experimental
-     */
-    public static function build(string $parent, string $query): self
-    {
-        return (new self())
-            ->setParent($parent)
-            ->setQuery($query);
-    }
-
-    /**
      * Constructor.
      *
      * @param array $data {

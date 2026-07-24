@@ -24,19 +24,6 @@ class CreateRoomRequest extends \Google\Protobuf\Internal\Message
     protected $room = null;
 
     /**
-     * @param \Google\Showcase\V1beta1\Room $room The room to create.
-     *
-     * @return \Google\Showcase\V1beta1\CreateRoomRequest
-     *
-     * @experimental
-     */
-    public static function build(\Google\Showcase\V1beta1\Room $room): self
-    {
-        return (new self())
-            ->setRoom($room);
-    }
-
-    /**
      * Constructor.
      *
      * @param array $data {

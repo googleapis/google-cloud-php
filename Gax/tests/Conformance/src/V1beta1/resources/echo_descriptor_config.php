@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -112,6 +112,10 @@ return [
                         ],
                     ],
                 ],
+                'autoPopulatedFields' => [
+                    'requestId' => \Google\Api\FieldInfo\Format::UUID4,
+                    'otherRequestId' => \Google\Api\FieldInfo\Format::UUID4,
+                ],
             ],
             'EchoErrorDetails' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
@@ -145,15 +149,7 @@ return [
                 'responseType' => 'Google\Showcase\V1beta1\PagedExpandResponse',
             ],
             'PagedExpandLegacyMapped' => [
-                'pageStreaming' => [
-                    'requestPageTokenGetMethod' => 'getPageToken',
-                    'requestPageTokenSetMethod' => 'setPageToken',
-                    'requestPageSizeGetMethod' => 'getPageSize',
-                    'requestPageSizeSetMethod' => 'setPageSize',
-                    'responsePageTokenGetMethod' => 'getNextPageToken',
-                    'resourcesGetMethod' => 'getAlphabetized',
-                ],
-                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Showcase\V1beta1\PagedExpandLegacyMappedResponse',
             ],
         ],

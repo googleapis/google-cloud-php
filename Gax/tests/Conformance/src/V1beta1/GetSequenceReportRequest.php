@@ -19,19 +19,6 @@ class GetSequenceReportRequest extends \Google\Protobuf\Internal\Message
     protected $name = '';
 
     /**
-     * @param string $name Please see {@see SequenceServiceClient::sequenceReportName()} for help formatting this field.
-     *
-     * @return \Google\Showcase\V1beta1\GetSequenceReportRequest
-     *
-     * @experimental
-     */
-    public static function build(string $name): self
-    {
-        return (new self())
-            ->setName($name);
-    }
-
-    /**
      * Constructor.
      *
      * @param array $data {

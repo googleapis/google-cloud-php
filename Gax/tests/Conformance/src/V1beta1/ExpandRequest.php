@@ -35,21 +35,6 @@ class ExpandRequest extends \Google\Protobuf\Internal\Message
     protected $stream_wait_time = null;
 
     /**
-     * @param string             $content The content that will be split into words and returned on the stream.
-     * @param \Google\Rpc\Status $error   The error that is thrown after all words are sent on the stream.
-     *
-     * @return \Google\Showcase\V1beta1\ExpandRequest
-     *
-     * @experimental
-     */
-    public static function build(string $content, \Google\Rpc\Status $error): self
-    {
-        return (new self())
-            ->setContent($content)
-            ->setError($error);
-    }
-
-    /**
      * Constructor.
      *
      * @param array $data {

@@ -126,7 +126,8 @@
                         }
                     }
                 }
-            }
+            },
+            "apiVersion": "v1_20240408"
         },
         "Identity": {
             "clients": {

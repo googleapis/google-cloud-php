@@ -9,6 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
+ * A report of the results of a streaming sequence.
+ *
  * Generated from protobuf message <code>google.showcase.v1beta1.StreamingSequenceReport</code>
  */
 class StreamingSequenceReport extends \Google\Protobuf\Internal\Message

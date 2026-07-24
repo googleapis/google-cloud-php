@@ -9,6 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
+ * Request message for the unary AttemptSequence method
+ *
  * Generated from protobuf message <code>google.showcase.v1beta1.AttemptSequenceRequest</code>
  */
 class AttemptSequenceRequest extends \Google\Protobuf\Internal\Message
@@ -17,19 +19,6 @@ class AttemptSequenceRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $name = '';
-
-    /**
-     * @param string $name Please see {@see SequenceServiceClient::sequenceName()} for help formatting this field.
-     *
-     * @return \Google\Showcase\V1beta1\AttemptSequenceRequest
-     *
-     * @experimental
-     */
-    public static function build(string $name): self
-    {
-        return (new self())
-            ->setName($name);
-    }
 
     /**
      * Constructor.

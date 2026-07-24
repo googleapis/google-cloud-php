@@ -24,19 +24,6 @@ class CreateUserRequest extends \Google\Protobuf\Internal\Message
     protected $user = null;
 
     /**
-     * @param \Google\Showcase\V1beta1\User $user The user to create.
-     *
-     * @return \Google\Showcase\V1beta1\CreateUserRequest
-     *
-     * @experimental
-     */
-    public static function build(\Google\Showcase\V1beta1\User $user): self
-    {
-        return (new self())
-            ->setUser($user);
-    }
-
-    /**
      * Constructor.
      *
      * @param array $data {

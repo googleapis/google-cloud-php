@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,6 +32,7 @@ use Google\ApiCore\ClientStream;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\ServerStream;
@@ -49,10 +50,12 @@ use Google\Showcase\V1beta1\EchoResponse;
 use Google\Showcase\V1beta1\ExpandRequest;
 use Google\Showcase\V1beta1\FailEchoWithDetailsRequest;
 use Google\Showcase\V1beta1\FailEchoWithDetailsResponse;
+use Google\Showcase\V1beta1\PagedExpandLegacyMappedResponse;
 use Google\Showcase\V1beta1\PagedExpandLegacyRequest;
 use Google\Showcase\V1beta1\PagedExpandRequest;
 use Google\Showcase\V1beta1\PagedExpandResponse;
 use Google\Showcase\V1beta1\WaitRequest;
+use Google\Showcase\V1beta1\WaitResponse;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
 
@@ -65,6 +68,8 @@ use Psr\Log\LoggerInterface;
  * 'x-goog-request-params' metadata key on any method to have the values
  * echoed in the response headers.
  *
+ * This client uses Echo version v1_20240408.
+ *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
@@ -76,7 +81,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<FailEchoWithDetailsResponse> failEchoWithDetailsAsync(FailEchoWithDetailsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> pagedExpandAsync(PagedExpandRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedExpandResponse> pagedExpandLegacyAsync(PagedExpandLegacyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<PagedListResponse> pagedExpandLegacyMappedAsync(PagedExpandRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedExpandLegacyMappedResponse> pagedExpandLegacyMappedAsync(PagedExpandRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> waitAsync(WaitRequest $request, array $optionalArgs = [])
  */
 final class EchoClient
@@ -98,7 +103,11 @@ final class EchoClient
     /** The api version of the service */
     private string $apiVersion = 'v1_20240408';
 
-    /** The default scopes required by the service. */
+    /**
+     * The default scopes required by the service.
+     *
+     * @internal
+     */
     public static $serviceScopes = [];
 
     private $operationsClient;
@@ -149,7 +158,7 @@ final class EchoClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -177,25 +186,28 @@ final class EchoClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'localhost:7469:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
-     *           *Important*: If you accept a credential configuration (credential
-     *           JSON/File/Stream) from an external source for authentication to Google Cloud
-     *           Platform, you must validate it before providing it to any Google API or library.
-     *           Providing an unvalidated credential configuration to Google APIs can compromise
-     *           the security of your systems and data. For more information {@see
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Showcase\V1beta1\EchoClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new EchoClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
      *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
@@ -233,13 +245,15 @@ final class EchoClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      *
      * @experimental
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -263,8 +277,6 @@ final class EchoClient
      * This method showcases how a client handles delays or retries.
      *
      * The async variant is {@see EchoClient::blockAsync()} .
-     *
-     * @example samples/V1beta1/EchoClient/block.php
      *
      * @param BlockRequest $request     A request to house fields associated with the call.
      * @param array        $callOptions {
@@ -292,8 +304,6 @@ final class EchoClient
      * content back on the stream. This method showcases bidirectional
      * streaming RPCs.
      *
-     * @example samples/V1beta1/EchoClient/chat.php
-     *
      * @param array $callOptions {
      *     Optional.
      *
@@ -317,8 +327,6 @@ final class EchoClient
      * by the client, this method will return the a concatenation of the strings
      * passed to it. This method showcases client-side streaming RPCs.
      *
-     * @example samples/V1beta1/EchoClient/collect.php
-     *
      * @param array $callOptions {
      *     Optional.
      *
@@ -341,8 +349,6 @@ final class EchoClient
      * This method simply echoes the request. This method showcases unary RPCs.
      *
      * The async variant is {@see EchoClient::echoAsync()} .
-     *
-     * @example samples/V1beta1/EchoClient/echo.php
      *
      * @param EchoRequest $request     A request to house fields associated with the call.
      * @param array       $callOptions {
@@ -375,8 +381,6 @@ final class EchoClient
      *
      * The async variant is {@see EchoClient::echoErrorDetailsAsync()} .
      *
-     * @example samples/V1beta1/EchoClient/echo_error_details.php
-     *
      * @param EchoErrorDetailsRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -402,8 +406,6 @@ final class EchoClient
      * This method splits the given content into words and will pass each word back
      * through the stream. This method showcases server-side streaming RPCs.
      *
-     * @example samples/V1beta1/EchoClient/expand.php
-     *
      * @param ExpandRequest $request     A request to house fields associated with the call.
      * @param array         $callOptions {
      *     Optional.
@@ -412,7 +414,7 @@ final class EchoClient
      *           Timeout to use for this call.
      * }
      *
-     * @return ServerStream
+     * @return ServerStream<EchoResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      *
@@ -433,8 +435,6 @@ final class EchoClient
      * to the user in an idiomatic form.
      *
      * The async variant is {@see EchoClient::failEchoWithDetailsAsync()} .
-     *
-     * @example samples/V1beta1/EchoClient/fail_echo_with_details.php
      *
      * @param FailEchoWithDetailsRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
@@ -463,8 +463,6 @@ final class EchoClient
      *
      * The async variant is {@see EchoClient::pagedExpandAsync()} .
      *
-     * @example samples/V1beta1/EchoClient/paged_expand.php
-     *
      * @param PagedExpandRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -492,8 +490,6 @@ final class EchoClient
      * do. New APIs should NOT use this pattern.
      *
      * The async variant is {@see EchoClient::pagedExpandLegacyAsync()} .
-     *
-     * @example samples/V1beta1/EchoClient/paged_expand_legacy.php
      *
      * @param PagedExpandLegacyRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -525,8 +521,6 @@ final class EchoClient
      *
      * The async variant is {@see EchoClient::pagedExpandLegacyMappedAsync()} .
      *
-     * @example samples/V1beta1/EchoClient/paged_expand_legacy_mapped.php
-     *
      * @param PagedExpandRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -537,15 +531,15 @@ final class EchoClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return PagedListResponse
+     * @return PagedExpandLegacyMappedResponse
      *
      * @throws ApiException Thrown if the API call fails.
      *
      * @experimental
      */
-    public function pagedExpandLegacyMapped(PagedExpandRequest $request, array $callOptions = []): PagedListResponse
+    public function pagedExpandLegacyMapped(PagedExpandRequest $request, array $callOptions = []): PagedExpandLegacyMappedResponse
     {
-        return $this->startApiCall('PagedExpandLegacyMapped', $request, $callOptions);
+        return $this->startApiCall('PagedExpandLegacyMapped', $request, $callOptions)->wait();
     }
 
     /**
@@ -553,8 +547,6 @@ final class EchoClient
      * This method showcases how a client handles a request timeout.
      *
      * The async variant is {@see EchoClient::waitAsync()} .
-     *
-     * @example samples/V1beta1/EchoClient/wait.php
      *
      * @param WaitRequest $request     A request to house fields associated with the call.
      * @param array       $callOptions {
@@ -566,7 +558,7 @@ final class EchoClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<WaitResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      *
