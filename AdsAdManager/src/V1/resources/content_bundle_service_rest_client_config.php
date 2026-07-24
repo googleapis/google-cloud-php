@@ -23,6 +23,30 @@
 return [
     'interfaces' => [
         'google.ads.admanager.v1.ContentBundleService' => [
+            'BatchActivateContentBundles' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/contentBundles:batchActivate',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchDeactivateContentBundles' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/contentBundles:batchDeactivate',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'GetContentBundle' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=networks/*/contentBundles/*}',

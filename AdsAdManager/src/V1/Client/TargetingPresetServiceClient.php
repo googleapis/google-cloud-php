@@ -28,10 +28,13 @@ use Google\Ads\AdManager\V1\BatchCreateTargetingPresetsRequest;
 use Google\Ads\AdManager\V1\BatchCreateTargetingPresetsResponse;
 use Google\Ads\AdManager\V1\BatchDeactivateTargetingPresetsRequest;
 use Google\Ads\AdManager\V1\BatchDeactivateTargetingPresetsResponse;
+use Google\Ads\AdManager\V1\BatchUpdateTargetingPresetsRequest;
+use Google\Ads\AdManager\V1\BatchUpdateTargetingPresetsResponse;
 use Google\Ads\AdManager\V1\CreateTargetingPresetRequest;
 use Google\Ads\AdManager\V1\GetTargetingPresetRequest;
 use Google\Ads\AdManager\V1\ListTargetingPresetsRequest;
 use Google\Ads\AdManager\V1\TargetingPreset;
+use Google\Ads\AdManager\V1\UpdateTargetingPresetRequest;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
@@ -58,9 +61,11 @@ use Psr\Log\LoggerInterface;
  *
  * @method PromiseInterface<BatchCreateTargetingPresetsResponse> batchCreateTargetingPresetsAsync(BatchCreateTargetingPresetsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<BatchDeactivateTargetingPresetsResponse> batchDeactivateTargetingPresetsAsync(BatchDeactivateTargetingPresetsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchUpdateTargetingPresetsResponse> batchUpdateTargetingPresetsAsync(BatchUpdateTargetingPresetsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<TargetingPreset> createTargetingPresetAsync(CreateTargetingPresetRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<TargetingPreset> getTargetingPresetAsync(GetTargetingPresetRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listTargetingPresetsAsync(ListTargetingPresetsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TargetingPreset> updateTargetingPresetAsync(UpdateTargetingPresetRequest $request, array $optionalArgs = [])
  */
 final class TargetingPresetServiceClient
 {
@@ -699,6 +704,35 @@ final class TargetingPresetServiceClient
     }
 
     /**
+     * Batch updates `TargetingPreset` objects.
+     *
+     * The async variant is
+     * {@see TargetingPresetServiceClient::batchUpdateTargetingPresetsAsync()} .
+     *
+     * @example samples/V1/TargetingPresetServiceClient/batch_update_targeting_presets.php
+     *
+     * @param BatchUpdateTargetingPresetsRequest $request     A request to house fields associated with the call.
+     * @param array                              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchUpdateTargetingPresetsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchUpdateTargetingPresets(
+        BatchUpdateTargetingPresetsRequest $request,
+        array $callOptions = []
+    ): BatchUpdateTargetingPresetsResponse {
+        return $this->startApiCall('BatchUpdateTargetingPresets', $request, $callOptions)->wait();
+    }
+
+    /**
      * Creates a `TargetingPreset` object.
      *
      * The async variant is
@@ -784,5 +818,34 @@ final class TargetingPresetServiceClient
         array $callOptions = []
     ): PagedListResponse {
         return $this->startApiCall('ListTargetingPresets', $request, $callOptions);
+    }
+
+    /**
+     * Updates a `TargetingPreset` object.
+     *
+     * The async variant is
+     * {@see TargetingPresetServiceClient::updateTargetingPresetAsync()} .
+     *
+     * @example samples/V1/TargetingPresetServiceClient/update_targeting_preset.php
+     *
+     * @param UpdateTargetingPresetRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return TargetingPreset
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateTargetingPreset(
+        UpdateTargetingPresetRequest $request,
+        array $callOptions = []
+    ): TargetingPreset {
+        return $this->startApiCall('UpdateTargetingPreset', $request, $callOptions)->wait();
     }
 }

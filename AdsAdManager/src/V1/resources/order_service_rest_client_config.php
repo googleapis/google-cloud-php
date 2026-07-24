@@ -23,6 +23,222 @@
 return [
     'interfaces' => [
         'google.ads.admanager.v1.OrderService' => [
+            'BatchApproveAndOverbookOrders' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/orders:batchApproveAndOverbook',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchApproveOrders' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/orders:batchApprove',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchApproveOrdersWithoutReservation' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/orders:batchApproveWithoutReservation',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchArchiveOrders' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/orders:batchArchive',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchCreateOrders' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/orders:batchCreate',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchDeleteOrders' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/orders:batchDelete',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchDisapproveOrders' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/orders:batchDisapprove',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchDisapproveOrdersWithoutReservationChanges' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/orders:batchDisapproveWithoutReservationChanges',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchPauseOrders' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/orders:batchPause',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchResumeAndOverbookOrders' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/orders:batchResumeAndOverbook',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchResumeOrders' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/orders:batchResume',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchRetractOrders' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/orders:batchRetract',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchRetractOrdersWithoutReservationChanges' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/orders:batchRetractWithoutReservationChanges',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchSubmitOrdersForApproval' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/orders:batchSubmitForApproval',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchSubmitOrdersForApprovalAndOverbook' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/orders:batchSubmitForApprovalAndOverbook',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchSubmitOrdersForApprovalWithoutReservationChanges' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/orders:batchSubmitForApprovalWithoutReservationChanges',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchUnarchiveOrders' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/orders:batchUnarchive',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchUpdateOrders' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/orders:batchUpdate',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'GetOrder' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=networks/*/orders/*}',

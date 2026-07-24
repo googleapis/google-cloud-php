@@ -31,7 +31,7 @@ use Google\Ads\AdManager\V1\Team;
 use Google\ApiCore\ApiException;
 
 /**
- * API to batch create `Team` objects.
+ * Creates `Team` objects.
  *
  * @param string $formattedParent         The parent resource where `Teams` will be created.
  *                                        Format: `networks/{network_code}`

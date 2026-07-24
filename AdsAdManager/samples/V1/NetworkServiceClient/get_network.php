@@ -29,7 +29,7 @@ use Google\Ads\AdManager\V1\Network;
 use Google\ApiCore\ApiException;
 
 /**
- * API to retrieve a Network object.
+ * Retrieves a `Network` object.
  *
  * @param string $formattedName Resource name of Network.
  *                              Format: networks/{network_code}

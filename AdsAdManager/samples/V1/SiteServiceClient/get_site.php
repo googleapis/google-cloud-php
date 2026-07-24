@@ -29,7 +29,7 @@ use Google\Ads\AdManager\V1\Site;
 use Google\ApiCore\ApiException;
 
 /**
- * API to retrieve a `Site` object.
+ * Retrieves a `Site` object.
  *
  * @param string $formattedName The resource name of the Site.
  *                              Format: `networks/{network_code}/sites/{site_id}`

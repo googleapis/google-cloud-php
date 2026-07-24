@@ -30,7 +30,7 @@ use Google\ApiCore\PagedListResponse;
 use Google\Type\Date;
 
 /**
- * API to retrieve a list of `McmEarnings` objects.
+ * Lists `McmEarnings` objects.
  *
  * @param string $formattedParent The parent, which owns this collection of McmEarnings.
  *                                Format: `networks/{network_code}`

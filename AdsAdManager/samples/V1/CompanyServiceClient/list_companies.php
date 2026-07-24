@@ -29,7 +29,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 
 /**
- * API to retrieve a list of `Company` objects.
+ * Lists `Company` objects.
  *
  * @param string $formattedParent The parent, which owns this collection of Companies.
  *                                Format: `networks/{network_code}`

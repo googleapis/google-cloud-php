@@ -31,7 +31,7 @@ use Google\Ads\AdManager\V1\UpdateTeamRequest;
 use Google\ApiCore\ApiException;
 
 /**
- * API to batch update `Team` objects.
+ * Batch updates `Team` objects.
  *
  * @param string $formattedParent         The parent resource where `Teams` will be updated.
  *                                        Format: `networks/{network_code}`
