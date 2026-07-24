@@ -472,12 +472,16 @@ class Operation
         /**
          * @var ExecuteBatchDmlRequest $dmlRequest
          * @var array $callOptions
+         * @var array $rtl
          */
-        [$dmlRequest, $callOptions] = $this->validateOptions(
+        [$dmlRequest, $callOptions, $rtl] = $this->validateOptions(
             $options,
             new ExecuteBatchDmlRequest(),
-            CallOptions::class
+            CallOptions::class,
+            ['route-to-leader']
         );
+
+        $callOptions += $rtl;
 
         $response = $this->spannerClient->executeBatchDml($dmlRequest, $callOptions + [
             'resource-prefix' => $this->getDatabaseNameFromSession($session),
@@ -853,6 +857,10 @@ class Operation
      *           the type should be given as an array, where the first element
      *           is `Database::TYPE_ARRAY` and the second element is the
      *           array type, for instance `[Database::TYPE_ARRAY, Database::TYPE_INT64]`.
+     *     @type array $headers Headers to be set with the request.
+     *     @type array|RetrySettings $retrySettings Retry settings to be used with the request.
+     *     @type int $timeoutMillis Timeout to use for this call.
+     *     @type array $transportOptions Options to be used for the transport.
      * }
      * @return QueryPartition[]
      */
@@ -895,7 +903,11 @@ class Operation
         ]);
 
         $partitions = [];
-        $queryPartitionOptions = $this->pluckArray(['parameters', 'types', 'maxPartitions', 'partitionSizeBytes'], $options);
+        $queryPartitionOptions = $this->optionsValidator->stripUnknownOptions(
+            $options,
+            ['parameters', 'types', 'maxPartitions', 'partitionSizeBytes'],
+            CallOptions::class
+        );
 
         /** @var RepeatedField<Partition> $protoPartitions */
         $protoPartitions = $response->getPartitions();
@@ -931,6 +943,10 @@ class Operation
      *           each partition may be smaller or larger than this size request.
      *           **Defaults to** `1000000000` (i.e. 1 GiB).
      *     @type string $index The name of an index on the table.
+     *     @type array $headers Headers to be set with the request.
+     *     @type array|RetrySettings $retrySettings Retry settings to be used with the request.
+     *     @type int $timeoutMillis Timeout to use for this call.
+     *     @type array $transportOptions Options to be used for the transport.
      * }
      * @return ReadPartition[]
      */
@@ -973,7 +989,11 @@ class Operation
         ]);
 
         $partitions = [];
-        $readPartitionOptions = $this->pluckArray(['index', 'maxPartitions', 'partitionSizeBytes'], $options);
+        $readPartitionOptions = $this->optionsValidator->stripUnknownOptions(
+            $options,
+            ['index', 'maxPartitions', 'partitionSizeBytes'],
+            CallOptions::class
+        );
         /** @var RepeatedField<Partition> $protoPartitions */
         $protoPartitions = $response->getPartitions();
         foreach ($protoPartitions as $partition) {

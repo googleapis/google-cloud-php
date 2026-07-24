@@ -18,7 +18,11 @@
 namespace Google\Cloud\Spanner;
 
 use Google\ApiCore\ArrayTrait;
+use Google\ApiCore\Options\CallOptions;
+use Google\Cloud\Core\OptionsValidator;
 use Google\Cloud\Spanner\Session\SessionCache;
+use Google\Cloud\Spanner\V1\ExecuteSqlRequest;
+use Google\Cloud\Spanner\V1\ReadRequest;
 use Google\Cloud\Spanner\V1\TransactionOptions;
 
 /**
@@ -29,6 +33,11 @@ use Google\Cloud\Spanner\V1\TransactionOptions;
 trait TransactionalReadTrait
 {
     use ArrayTrait;
+
+    /**
+     * @var OptionsValidator
+     */
+    protected $optionsValidator;
 
     private Operation $operation;
     private SessionCache $session;
@@ -240,6 +249,10 @@ trait TransactionalReadTrait
      *           If using the `replicaSelection::type` setting, utilize the constants available in
      *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection\Type} to set a value.
      *     @type string $partitionToken
+     *     @type array $headers Headers to be set with the request.
+     *     @type array|RetrySettings $retrySettings Retry settings to be used with the request.
+     *     @type int $timeoutMillis Timeout to use for this call.
+     *     @type array $transportOptions Options to be used for the transport.
      * }
      * @codingStandardsIgnoreEnd
      * @return Result
@@ -264,9 +277,11 @@ trait TransactionalReadTrait
             $this->directedReadOptions
         );
 
-        $executeSqlOptions = $this->pluckArray(
-            ['partitionToken', 'parameters', 'types', ],
-            $options
+        $executeSqlOptions = $this->optionsValidator->stripUnknownOptions(
+            $options,
+            ['parameters', 'types'],
+            CallOptions::class,
+            ExecuteSqlRequest::class
         );
         $executeSqlOptions['seqno'] = $this->seqno++;
         $executeSqlOptions['transaction'] = $txnOptions;
@@ -275,9 +290,8 @@ trait TransactionalReadTrait
             $executeSqlOptions['requestOptions']['transactionTag'] = $this->tag;
         }
 
-        $result = $this->operation->execute($this->session, $sql, $executeSqlOptions + [
-            'route-to-leader' => $this->context === Database::CONTEXT_READWRITE
-        ]);
+        $executeSqlOptions['route-to-leader'] = $this->context === Database::CONTEXT_READWRITE;
+        $result = $this->operation->execute($this->session, $sql, $executeSqlOptions);
 
         if (empty($this->id()) && $result->transaction()) {
             $this->setId($result->transaction()->id());
@@ -332,6 +346,10 @@ trait TransactionalReadTrait
      *           and not Snapshots.
      *           {@see \Google\Cloud\Spanner\V1\ReadRequest} and {@see \Google\Cloud\Spanner\V1\ReadRequest\LockHint}
      *           for more information and available options.
+     *     @type array $headers Headers to be set with the request.
+     *     @type array|RetrySettings $retrySettings Retry settings to be used with the request.
+     *     @type int $timeoutMillis Timeout to use for this call.
+     *     @type array $transportOptions Options to be used for the transport.
      * }
      * @return Result
      */
@@ -340,9 +358,10 @@ trait TransactionalReadTrait
         $this->singleUseState();
         $this->checkReadContext();
 
-        $readOptions = $this->pluckArray(
-            ['index', 'limit', 'partitionToken', 'requestOptions', 'directedReadOptions'],
+        $readOptions = $this->optionsValidator->stripUnknownOptions(
             $options,
+            CallOptions::class,
+            ReadRequest::class
         );
         $options['transactionType'] = $this->context;
         if (empty($this->transactionId) && isset($this->transactionSelector['begin'])) {
@@ -362,9 +381,8 @@ trait TransactionalReadTrait
             $readOptions,
             $this->directedReadOptions ?? []
         );
-        $result = $this->operation->read($this->session, $table, $keySet, $columns, $readOptions + [
-            'route-to-leader' => $this->context === Database::CONTEXT_READWRITE
-        ]);
+        $readOptions['route-to-leader'] = $this->context === Database::CONTEXT_READWRITE;
+        $result = $this->operation->read($this->session, $table, $keySet, $columns, $readOptions);
 
         if (empty($this->id()) && $result->transaction()) {
             $this->setId($result->transaction()->id());

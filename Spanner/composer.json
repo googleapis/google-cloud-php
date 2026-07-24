@@ -6,7 +6,7 @@
     "require": {
         "php": "^8.1",
         "ext-grpc": "*",
-        "google/cloud-core": "^1.68",
+        "google/cloud-core": "^1.73.0",
         "google/gax": "^1.41.0",
         "google/cloud-monitoring": "^2.2",
         "open-telemetry/sdk": "^1.13"
@@ -21,7 +21,8 @@
         "google/cloud-pubsub": "^2.0",
         "dg/bypass-finals": "^1.7",
         "dms/phpunit-arraysubset-asserts": "^0.5.0",
-        "symfony/process": "^6.4"
+        "symfony/process": "^6.4",
+        "nikic/php-parser": "^5.0"
     },
     "suggest": {
         "ext-protobuf": "Provides a significant increase in throughput over the pure PHP protobuf implementation. See https://cloud.google.com/php/grpc for installation instructions.",

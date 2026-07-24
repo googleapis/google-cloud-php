@@ -1069,6 +1069,36 @@ class DatabaseTest extends TestCase
         $this->assertTimestampIsCorrect($res);
     }
 
+    public function testInsertBatchWithOptions()
+    {
+        $table = 'foo';
+        $row = ['col' => 'val'];
+        $options = [
+            'requestOptions' => ['priority' => 1],
+            'headers' => ['custom-header' => 'value'],
+            'retrySettings' => ['retriesEnabled' => false],
+            'timeoutMillis' => 1234,
+            'transportOptions' => ['grpc' => ['timeout' => 100]],
+        ];
+
+        $this->spannerClient->commit(
+            Argument::that(function ($request) {
+                return $request->getRequestOptions()->getPriority() === 1;
+            }),
+            Argument::that(function (array $callOptions) {
+                $this->assertEquals('value', $callOptions['headers']['custom-header']);
+                $this->assertEquals(['retriesEnabled' => false], $callOptions['retrySettings']);
+                $this->assertEquals(1234, $callOptions['timeoutMillis']);
+                $this->assertEquals(['grpc' => ['timeout' => 100]], $callOptions['transportOptions']);
+                return true;
+            })
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($this->commitResponse());
+
+        $this->database->insertBatch($table, [$row], $options);
+    }
+
     public function testUpdate()
     {
         $table = 'foo';
