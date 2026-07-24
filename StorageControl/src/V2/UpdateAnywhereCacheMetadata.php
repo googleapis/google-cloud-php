@@ -44,13 +44,20 @@ class UpdateAnywhereCacheMetadata extends \Google\Protobuf\Internal\Message
      */
     protected $ttl = null;
     /**
-     * L4 Cache entry Admission Policy in kebab-case (e.g.,
+     * Optional. Anywhere Cache entry Admission Policy in kebab-case (e.g.,
      * "admit-on-first-miss"). If `admission_policy` is pending
      * update, this field equals to the new value specified in the Update request.
      *
-     * Generated from protobuf field <code>optional string admission_policy = 4;</code>
+     * Generated from protobuf field <code>optional string admission_policy = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $admission_policy = null;
+    /**
+     * Specifies whether objects are ingested into the cache upon write. If not
+     * set, it defaults to false.
+     *
+     * Generated from protobuf field <code>optional bool ingest_on_write = 6;</code>
+     */
+    protected $ingest_on_write = null;
 
     /**
      * Constructor.
@@ -70,9 +77,12 @@ class UpdateAnywhereCacheMetadata extends \Google\Protobuf\Internal\Message
      *           is applied to all new cache entries on admission. If `ttl` is pending
      *           update, this field equals to the new value specified in the Update request.
      *     @type string $admission_policy
-     *           L4 Cache entry Admission Policy in kebab-case (e.g.,
+     *           Optional. Anywhere Cache entry Admission Policy in kebab-case (e.g.,
      *           "admit-on-first-miss"). If `admission_policy` is pending
      *           update, this field equals to the new value specified in the Update request.
+     *     @type bool $ingest_on_write
+     *           Specifies whether objects are ingested into the cache upon write. If not
+     *           set, it defaults to false.
      * }
      */
     public function __construct($data = NULL) {
@@ -231,11 +241,11 @@ class UpdateAnywhereCacheMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * L4 Cache entry Admission Policy in kebab-case (e.g.,
+     * Optional. Anywhere Cache entry Admission Policy in kebab-case (e.g.,
      * "admit-on-first-miss"). If `admission_policy` is pending
      * update, this field equals to the new value specified in the Update request.
      *
-     * Generated from protobuf field <code>optional string admission_policy = 4;</code>
+     * Generated from protobuf field <code>optional string admission_policy = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getAdmissionPolicy()
@@ -254,11 +264,11 @@ class UpdateAnywhereCacheMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * L4 Cache entry Admission Policy in kebab-case (e.g.,
+     * Optional. Anywhere Cache entry Admission Policy in kebab-case (e.g.,
      * "admit-on-first-miss"). If `admission_policy` is pending
      * update, this field equals to the new value specified in the Update request.
      *
-     * Generated from protobuf field <code>optional string admission_policy = 4;</code>
+     * Generated from protobuf field <code>optional string admission_policy = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -266,6 +276,44 @@ class UpdateAnywhereCacheMetadata extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->admission_policy = $var;
+
+        return $this;
+    }
+
+    /**
+     * Specifies whether objects are ingested into the cache upon write. If not
+     * set, it defaults to false.
+     *
+     * Generated from protobuf field <code>optional bool ingest_on_write = 6;</code>
+     * @return bool
+     */
+    public function getIngestOnWrite()
+    {
+        return isset($this->ingest_on_write) ? $this->ingest_on_write : false;
+    }
+
+    public function hasIngestOnWrite()
+    {
+        return isset($this->ingest_on_write);
+    }
+
+    public function clearIngestOnWrite()
+    {
+        unset($this->ingest_on_write);
+    }
+
+    /**
+     * Specifies whether objects are ingested into the cache upon write. If not
+     * set, it defaults to false.
+     *
+     * Generated from protobuf field <code>optional bool ingest_on_write = 6;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setIngestOnWrite($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->ingest_on_write = $var;
 
         return $this;
     }

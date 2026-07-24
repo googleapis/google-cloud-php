@@ -51,6 +51,13 @@ class CreateAnywhereCacheMetadata extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string admission_policy = 5;</code>
      */
     protected $admission_policy = null;
+    /**
+     * Optional. Specifies whether objects are ingested into the cache upon write.
+     * Defaults to false.
+     *
+     * Generated from protobuf field <code>optional bool ingest_on_write = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $ingest_on_write = null;
 
     /**
      * Constructor.
@@ -73,6 +80,9 @@ class CreateAnywhereCacheMetadata extends \Google\Protobuf\Internal\Message
      *           Anywhere Cache entry Admission Policy in kebab-case (e.g.,
      *           "admit-on-first-miss"). Default admission policy (admit-on-first-miss) is
      *           applied if not specified in the create request.
+     *     @type bool $ingest_on_write
+     *           Optional. Specifies whether objects are ingested into the cache upon write.
+     *           Defaults to false.
      * }
      */
     public function __construct($data = NULL) {
@@ -266,6 +276,44 @@ class CreateAnywhereCacheMetadata extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->admission_policy = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies whether objects are ingested into the cache upon write.
+     * Defaults to false.
+     *
+     * Generated from protobuf field <code>optional bool ingest_on_write = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getIngestOnWrite()
+    {
+        return isset($this->ingest_on_write) ? $this->ingest_on_write : false;
+    }
+
+    public function hasIngestOnWrite()
+    {
+        return isset($this->ingest_on_write);
+    }
+
+    public function clearIngestOnWrite()
+    {
+        unset($this->ingest_on_write);
+    }
+
+    /**
+     * Optional. Specifies whether objects are ingested into the cache upon write.
+     * Defaults to false.
+     *
+     * Generated from protobuf field <code>optional bool ingest_on_write = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setIngestOnWrite($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->ingest_on_write = $var;
 
         return $this;
     }

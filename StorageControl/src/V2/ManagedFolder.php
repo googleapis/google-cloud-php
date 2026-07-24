@@ -43,6 +43,12 @@ class ManagedFolder extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $update_time = null;
+    /**
+     * Rapid Cache configuration for a managed prefix.
+     *
+     * Generated from protobuf field <code>optional .google.storage.control.v2.ManagedFolder.RapidCacheConfig rapid_cache_config = 6;</code>
+     */
+    protected $rapid_cache_config = null;
 
     /**
      * Constructor.
@@ -62,6 +68,8 @@ class ManagedFolder extends \Google\Protobuf\Internal\Message
      *           Output only. The creation time of the managed folder.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. The modification time of the managed folder.
+     *     @type \Google\Cloud\Storage\Control\V2\ManagedFolder\RapidCacheConfig $rapid_cache_config
+     *           Rapid Cache configuration for a managed prefix.
      * }
      */
     public function __construct($data = NULL) {
@@ -197,6 +205,42 @@ class ManagedFolder extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->update_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Rapid Cache configuration for a managed prefix.
+     *
+     * Generated from protobuf field <code>optional .google.storage.control.v2.ManagedFolder.RapidCacheConfig rapid_cache_config = 6;</code>
+     * @return \Google\Cloud\Storage\Control\V2\ManagedFolder\RapidCacheConfig|null
+     */
+    public function getRapidCacheConfig()
+    {
+        return $this->rapid_cache_config;
+    }
+
+    public function hasRapidCacheConfig()
+    {
+        return isset($this->rapid_cache_config);
+    }
+
+    public function clearRapidCacheConfig()
+    {
+        unset($this->rapid_cache_config);
+    }
+
+    /**
+     * Rapid Cache configuration for a managed prefix.
+     *
+     * Generated from protobuf field <code>optional .google.storage.control.v2.ManagedFolder.RapidCacheConfig rapid_cache_config = 6;</code>
+     * @param \Google\Cloud\Storage\Control\V2\ManagedFolder\RapidCacheConfig $var
+     * @return $this
+     */
+    public function setRapidCacheConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Storage\Control\V2\ManagedFolder\RapidCacheConfig::class);
+        $this->rapid_cache_config = $var;
 
         return $this;
     }
