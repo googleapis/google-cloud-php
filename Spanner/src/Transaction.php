@@ -492,10 +492,7 @@ class Transaction implements TransactionalReadInterface
         if ($this->precommitToken) {
             $commitOptions['precommitToken'] = $this->precommitToken;
         }
-        if (isset($commitOptions['requestOptions'])
-            && is_array($commitOptions['requestOptions'])
-            && isset($commitOptions['requestOptions']['requestTag'])
-        ) {
+        if (isset($commitOptions['requestOptions'])) {
             unset($commitOptions['requestOptions']['requestTag']);
             if (0 === count($commitOptions['requestOptions'])) {
                 unset($commitOptions['requestOptions']);
