@@ -83,6 +83,13 @@ class OnPremisesConfiguration extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.sql.v1.OnPremisesConfiguration.SslOption ssl_option = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $ssl_option = 0;
+    /**
+     * Output only. Indicates whether the resource is managed by Database
+     * Migration Service.
+     *
+     * Generated from protobuf field <code>bool dms_managed = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $dms_managed = false;
 
     /**
      * Constructor.
@@ -114,6 +121,9 @@ class OnPremisesConfiguration extends \Google\Protobuf\Internal\Message
      *           external source instance.
      *     @type int $ssl_option
      *           Optional. SSL option for replica connection to the on-premises source.
+     *     @type bool $dms_managed
+     *           Output only. Indicates whether the resource is managed by Database
+     *           Migration Service.
      * }
      */
     public function __construct($data = NULL) {
@@ -417,6 +427,34 @@ class OnPremisesConfiguration extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Sql\V1\OnPremisesConfiguration\SslOption::class);
         $this->ssl_option = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Indicates whether the resource is managed by Database
+     * Migration Service.
+     *
+     * Generated from protobuf field <code>bool dms_managed = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getDmsManaged()
+    {
+        return $this->dms_managed;
+    }
+
+    /**
+     * Output only. Indicates whether the resource is managed by Database
+     * Migration Service.
+     *
+     * Generated from protobuf field <code>bool dms_managed = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDmsManaged($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->dms_managed = $var;
 
         return $this;
     }
