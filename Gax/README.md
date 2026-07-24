@@ -80,6 +80,8 @@ be found for Mac or Windows.
     > vendor/bin/phpunit
     ```
 
+    For Showcase Conformance testing and client generation, see [tests/Conformance/README.md](tests/Conformance/README.md).
+
 4.  Run static analysis tools
 
     ```sh

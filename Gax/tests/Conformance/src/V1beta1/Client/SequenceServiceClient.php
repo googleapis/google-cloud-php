@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,6 +29,7 @@ namespace Google\Showcase\V1beta1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\ServerStream;
@@ -37,6 +38,7 @@ use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Showcase\V1beta1\AttemptSequenceRequest;
 use Google\Showcase\V1beta1\AttemptStreamingSequenceRequest;
+use Google\Showcase\V1beta1\AttemptStreamingSequenceResponse;
 use Google\Showcase\V1beta1\CreateSequenceRequest;
 use Google\Showcase\V1beta1\CreateStreamingSequenceRequest;
 use Google\Showcase\V1beta1\GetSequenceReportRequest;
@@ -49,7 +51,8 @@ use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
 
 /**
- * Service Description:
+ * Service Description: A service that enables testing of unary and server streaming calls
+ * by specifying a specific, predictable sequence of responses from the service
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
@@ -84,7 +87,11 @@ final class SequenceServiceClient
     /** The name of the code generator, to be included in the agent header. */
     private const CODEGEN_NAME = 'gapic';
 
-    /** The default scopes required by the service. */
+    /**
+     * The default scopes required by the service.
+     *
+     * @internal
+     */
     public static $serviceScopes = [];
 
     private static function getClientDefaults()
@@ -206,25 +213,28 @@ final class SequenceServiceClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'localhost:7469:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
-     *           *Important*: If you accept a credential configuration (credential
-     *           JSON/File/Stream) from an external source for authentication to Google Cloud
-     *           Platform, you must validate it before providing it to any Google API or library.
-     *           Providing an unvalidated credential configuration to Google APIs can compromise
-     *           the security of your systems and data. For more information {@see
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Showcase\V1beta1\SequenceServiceClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new SequenceServiceClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
      *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
@@ -262,13 +272,15 @@ final class SequenceServiceClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      *
      * @experimental
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -286,11 +298,9 @@ final class SequenceServiceClient
     }
 
     /**
-     * Attempts a sequence.
+     * Attempts a sequence of unary responses.
      *
      * The async variant is {@see SequenceServiceClient::attemptSequenceAsync()} .
-     *
-     * @example samples/V1beta1/SequenceServiceClient/attempt_sequence.php
      *
      * @param AttemptSequenceRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
@@ -312,11 +322,10 @@ final class SequenceServiceClient
     }
 
     /**
-     * Attempts a streaming sequence.
+     * Attempts a server streaming call with a sequence of responses
+     * Can be used to test retries and stream resumption logic
      * May not function as expected in HTTP mode due to when http statuses are sent
      * See https://github.com/googleapis/gapic-showcase/issues/1377 for more details
-     *
-     * @example samples/V1beta1/SequenceServiceClient/attempt_streaming_sequence.php
      *
      * @param AttemptStreamingSequenceRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
@@ -326,7 +335,7 @@ final class SequenceServiceClient
      *           Timeout to use for this call.
      * }
      *
-     * @return ServerStream
+     * @return ServerStream<AttemptStreamingSequenceResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      *
@@ -338,11 +347,9 @@ final class SequenceServiceClient
     }
 
     /**
-     * Creates a sequence.
+     * Create a sequence of responses to be returned as unary calls
      *
      * The async variant is {@see SequenceServiceClient::createSequenceAsync()} .
-     *
-     * @example samples/V1beta1/SequenceServiceClient/create_sequence.php
      *
      * @param CreateSequenceRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -366,12 +373,10 @@ final class SequenceServiceClient
     }
 
     /**
-     * Creates a sequence.
+     * Creates a sequence of responses to be returned in a server streaming call
      *
      * The async variant is
      * {@see SequenceServiceClient::createStreamingSequenceAsync()} .
-     *
-     * @example samples/V1beta1/SequenceServiceClient/create_streaming_sequence.php
      *
      * @param CreateStreamingSequenceRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
@@ -395,11 +400,10 @@ final class SequenceServiceClient
     }
 
     /**
-     * Retrieves a sequence.
+     * Retrieves a sequence report which can be used to retrieve information about a
+     * sequence of unary calls.
      *
      * The async variant is {@see SequenceServiceClient::getSequenceReportAsync()} .
-     *
-     * @example samples/V1beta1/SequenceServiceClient/get_sequence_report.php
      *
      * @param GetSequenceReportRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -423,12 +427,11 @@ final class SequenceServiceClient
     }
 
     /**
-     * Retrieves a sequence.
+     * Retrieves a sequence report which can be used to retrieve information
+     * about a sequences of responses in a server streaming call.
      *
      * The async variant is
      * {@see SequenceServiceClient::getStreamingSequenceReportAsync()} .
-     *
-     * @example samples/V1beta1/SequenceServiceClient/get_streaming_sequence_report.php
      *
      * @param GetStreamingSequenceReportRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {
