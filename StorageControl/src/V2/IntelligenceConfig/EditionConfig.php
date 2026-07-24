@@ -11,7 +11,7 @@ use UnexpectedValueException;
  * signifies the edition used for configuring the `IntelligenceConfig`
  * resource and can only take the following values:
  * `EDITION_CONFIG_UNSPECIFIED`, `INHERIT`, `DISABLED`, `STANDARD` and
- * `TRIAL`.
+ * `EVALUATE`.
  *
  * Protobuf type <code>google.storage.control.v2.IntelligenceConfig.EditionConfig</code>
  */
@@ -53,6 +53,12 @@ class EditionConfig
      * Generated from protobuf enum <code>TRIAL = 5;</code>
      */
     const TRIAL = 5;
+    /**
+     * The `IntelligenceConfig` resource is of ESSENTIALS edition.
+     *
+     * Generated from protobuf enum <code>ESSENTIALS = 6;</code>
+     */
+    const ESSENTIALS = 6;
 
     private static $valueToName = [
         self::EDITION_CONFIG_UNSPECIFIED => 'EDITION_CONFIG_UNSPECIFIED',
@@ -60,6 +66,7 @@ class EditionConfig
         self::DISABLED => 'DISABLED',
         self::STANDARD => 'STANDARD',
         self::TRIAL => 'TRIAL',
+        self::ESSENTIALS => 'ESSENTIALS',
     ];
 
     public static function name($value)

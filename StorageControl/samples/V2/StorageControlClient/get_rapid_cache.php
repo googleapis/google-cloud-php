@@ -22,39 +22,33 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START storage_v2_generated_StorageControl_ListIntelligenceFindings_sync]
+// [START storage_v2_generated_StorageControl_GetRapidCache_sync]
 use Google\ApiCore\ApiException;
-use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Storage\Control\V2\Client\StorageControlClient;
-use Google\Cloud\Storage\Control\V2\IntelligenceFinding;
-use Google\Cloud\Storage\Control\V2\ListIntelligenceFindingsRequest;
+use Google\Cloud\Storage\Control\V2\GetRapidCacheRequest;
+use Google\Cloud\Storage\Control\V2\RapidCache;
 
 /**
- * Lists the `IntelligenceFinding` resources for the specified the project.
+ * Gets a Rapid Cache instance.
  *
- * @param string $formattedParent The parent of the `IntelligenceFinding` resource.
- *
- *                                Format: `projects/{project}/locations/{location}`
- *                                Please see {@see StorageControlClient::locationName()} for help formatting this field.
+ * @param string $formattedName The name field in the request should be:
+ *                              `projects/{project}/buckets/{bucket}/rapidCaches/{rapid_cache}`
+ *                              Please see {@see StorageControlClient::rapidCacheName()} for help formatting this field.
  */
-function list_intelligence_findings_sample(string $formattedParent): void
+function get_rapid_cache_sample(string $formattedName): void
 {
     // Create a client.
     $storageControlClient = new StorageControlClient();
 
     // Prepare the request message.
-    $request = (new ListIntelligenceFindingsRequest())
-        ->setParent($formattedParent);
+    $request = (new GetRapidCacheRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
-        /** @var PagedListResponse $response */
-        $response = $storageControlClient->listIntelligenceFindings($request);
-
-        /** @var IntelligenceFinding $element */
-        foreach ($response as $element) {
-            printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
-        }
+        /** @var RapidCache $response */
+        $response = $storageControlClient->getRapidCache($request);
+        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
@@ -71,8 +65,8 @@ function list_intelligence_findings_sample(string $formattedParent): void
  */
 function callSample(): void
 {
-    $formattedParent = StorageControlClient::locationName('[PROJECT]', '[LOCATION]');
+    $formattedName = StorageControlClient::rapidCacheName('[PROJECT]', '[BUCKET]', '[RAPID_CACHE]');
 
-    list_intelligence_findings_sample($formattedParent);
+    get_rapid_cache_sample($formattedName);
 }
-// [END storage_v2_generated_StorageControl_ListIntelligenceFindings_sync]
+// [END storage_v2_generated_StorageControl_GetRapidCache_sync]

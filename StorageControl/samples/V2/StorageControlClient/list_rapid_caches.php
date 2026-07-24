@@ -22,36 +22,34 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START storage_v2_generated_StorageControl_ListIntelligenceFindings_sync]
+// [START storage_v2_generated_StorageControl_ListRapidCaches_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Storage\Control\V2\Client\StorageControlClient;
-use Google\Cloud\Storage\Control\V2\IntelligenceFinding;
-use Google\Cloud\Storage\Control\V2\ListIntelligenceFindingsRequest;
+use Google\Cloud\Storage\Control\V2\ListRapidCachesRequest;
+use Google\Cloud\Storage\Control\V2\RapidCache;
 
 /**
- * Lists the `IntelligenceFinding` resources for the specified the project.
+ * Lists Rapid Cache instances for a given bucket.
  *
- * @param string $formattedParent The parent of the `IntelligenceFinding` resource.
- *
- *                                Format: `projects/{project}/locations/{location}`
- *                                Please see {@see StorageControlClient::locationName()} for help formatting this field.
+ * @param string $formattedParent The bucket to which this cache belongs. Please see
+ *                                {@see StorageControlClient::bucketName()} for help formatting this field.
  */
-function list_intelligence_findings_sample(string $formattedParent): void
+function list_rapid_caches_sample(string $formattedParent): void
 {
     // Create a client.
     $storageControlClient = new StorageControlClient();
 
     // Prepare the request message.
-    $request = (new ListIntelligenceFindingsRequest())
+    $request = (new ListRapidCachesRequest())
         ->setParent($formattedParent);
 
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $storageControlClient->listIntelligenceFindings($request);
+        $response = $storageControlClient->listRapidCaches($request);
 
-        /** @var IntelligenceFinding $element */
+        /** @var RapidCache $element */
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
         }
@@ -71,8 +69,8 @@ function list_intelligence_findings_sample(string $formattedParent): void
  */
 function callSample(): void
 {
-    $formattedParent = StorageControlClient::locationName('[PROJECT]', '[LOCATION]');
+    $formattedParent = StorageControlClient::bucketName('[PROJECT]', '[BUCKET]');
 
-    list_intelligence_findings_sample($formattedParent);
+    list_rapid_caches_sample($formattedParent);
 }
-// [END storage_v2_generated_StorageControl_ListIntelligenceFindings_sync]
+// [END storage_v2_generated_StorageControl_ListRapidCaches_sync]

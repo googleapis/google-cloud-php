@@ -11,10 +11,6 @@ use Google\Protobuf\RepeatedField;
 /**
  * Request message to update the `IntelligenceConfig` resource associated with
  * your folder.
- * **IAM Permissions**:
- * Requires `storage.intelligenceConfigs.update`
- * [IAM](https://cloud.google.com/iam/docs/overview#permissions) permission on
- * the folder.
  *
  * Generated from protobuf message <code>google.storage.control.v2.UpdateFolderIntelligenceConfigRequest</code>
  */

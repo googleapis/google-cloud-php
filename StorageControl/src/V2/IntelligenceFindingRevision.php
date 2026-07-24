@@ -17,11 +17,11 @@ use Google\Protobuf\RepeatedField;
 class IntelligenceFindingRevision extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Identifier. The resource name of `IntelligenceFindingRevision`.
+     * Output only. The resource name of `IntelligenceFindingRevision`.
      * Format:
      * `projects/{project}/locations/{location}/intelligenceFindings/{intelligence_finding}/revisions/{revision}`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $name = '';
     /**
@@ -46,7 +46,7 @@ class IntelligenceFindingRevision extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Identifier. The resource name of `IntelligenceFindingRevision`.
+     *           Output only. The resource name of `IntelligenceFindingRevision`.
      *           Format:
      *           `projects/{project}/locations/{location}/intelligenceFindings/{intelligence_finding}/revisions/{revision}`
      *     @type \Google\Cloud\Storage\Control\V2\IntelligenceFinding $snapshot
@@ -63,11 +63,11 @@ class IntelligenceFindingRevision extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Identifier. The resource name of `IntelligenceFindingRevision`.
+     * Output only. The resource name of `IntelligenceFindingRevision`.
      * Format:
      * `projects/{project}/locations/{location}/intelligenceFindings/{intelligence_finding}/revisions/{revision}`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getName()
@@ -76,11 +76,11 @@ class IntelligenceFindingRevision extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Identifier. The resource name of `IntelligenceFindingRevision`.
+     * Output only. The resource name of `IntelligenceFindingRevision`.
      * Format:
      * `projects/{project}/locations/{location}/intelligenceFindings/{intelligence_finding}/revisions/{revision}`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */

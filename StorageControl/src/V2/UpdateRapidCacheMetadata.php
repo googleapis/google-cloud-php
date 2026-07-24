@@ -10,11 +10,11 @@ use Google\Protobuf\RepeatedField;
 
 /**
  * Message returned in the metadata field of the Operation resource for
- * UpdateAnywhereCache operation.
+ * UpdateRapidCache operation.
  *
- * Generated from protobuf message <code>google.storage.control.v2.UpdateAnywhereCacheMetadata</code>
+ * Generated from protobuf message <code>google.storage.control.v2.UpdateRapidCacheMetadata</code>
  */
-class UpdateAnywhereCacheMetadata extends \Google\Protobuf\Internal\Message
+class UpdateRapidCacheMetadata extends \Google\Protobuf\Internal\Message
 {
     /**
      * Generic metadata for the long running operation.
@@ -23,32 +23,32 @@ class UpdateAnywhereCacheMetadata extends \Google\Protobuf\Internal\Message
      */
     protected $common_metadata = null;
     /**
-     * Anywhere Cache ID.
+     * Rapid Cache ID.
      *
-     * Generated from protobuf field <code>optional string anywhere_cache_id = 2;</code>
+     * Generated from protobuf field <code>optional string rapid_cache_id = 2;</code>
      */
-    protected $anywhere_cache_id = null;
+    protected $rapid_cache_id = null;
     /**
      * The zone in which the cache instance is running. For example,
      * us-central1-a.
      *
-     * Generated from protobuf field <code>optional string zone = 5;</code>
+     * Generated from protobuf field <code>optional string zone = 3;</code>
      */
     protected $zone = null;
     /**
-     * Anywhere Cache entry's TTL between 1h and 7days. A cache-level config that
+     * Rapid Cache entry's TTL between 1h and 7days. A cache-level config that
      * is applied to all new cache entries on admission. If `ttl` is pending
      * update, this field equals to the new value specified in the Update request.
      *
-     * Generated from protobuf field <code>optional .google.protobuf.Duration ttl = 3;</code>
+     * Generated from protobuf field <code>optional .google.protobuf.Duration ttl = 4;</code>
      */
     protected $ttl = null;
     /**
-     * Optional. Anywhere Cache entry Admission Policy in kebab-case (e.g.,
+     * Optional. Rapid Cache entry Admission Policy in kebab-case (e.g.,
      * "admit-on-first-miss"). If `admission_policy` is pending
      * update, this field equals to the new value specified in the Update request.
      *
-     * Generated from protobuf field <code>optional string admission_policy = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string admission_policy = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $admission_policy = null;
     /**
@@ -58,6 +58,12 @@ class UpdateAnywhereCacheMetadata extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional bool ingest_on_write = 6;</code>
      */
     protected $ingest_on_write = null;
+    /**
+     * Optional. The type of cache. Either rapid cache or rapid cache ultra.
+     *
+     * Generated from protobuf field <code>optional string cache_type = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $cache_type = null;
 
     /**
      * Constructor.
@@ -67,22 +73,24 @@ class UpdateAnywhereCacheMetadata extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Storage\Control\V2\CommonLongRunningOperationMetadata $common_metadata
      *           Generic metadata for the long running operation.
-     *     @type string $anywhere_cache_id
-     *           Anywhere Cache ID.
+     *     @type string $rapid_cache_id
+     *           Rapid Cache ID.
      *     @type string $zone
      *           The zone in which the cache instance is running. For example,
      *           us-central1-a.
      *     @type \Google\Protobuf\Duration $ttl
-     *           Anywhere Cache entry's TTL between 1h and 7days. A cache-level config that
+     *           Rapid Cache entry's TTL between 1h and 7days. A cache-level config that
      *           is applied to all new cache entries on admission. If `ttl` is pending
      *           update, this field equals to the new value specified in the Update request.
      *     @type string $admission_policy
-     *           Optional. Anywhere Cache entry Admission Policy in kebab-case (e.g.,
+     *           Optional. Rapid Cache entry Admission Policy in kebab-case (e.g.,
      *           "admit-on-first-miss"). If `admission_policy` is pending
      *           update, this field equals to the new value specified in the Update request.
      *     @type bool $ingest_on_write
      *           Specifies whether objects are ingested into the cache upon write. If not
      *           set, it defaults to false.
+     *     @type string $cache_type
+     *           Optional. The type of cache. Either rapid cache or rapid cache ultra.
      * }
      */
     public function __construct($data = NULL) {
@@ -127,37 +135,37 @@ class UpdateAnywhereCacheMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Anywhere Cache ID.
+     * Rapid Cache ID.
      *
-     * Generated from protobuf field <code>optional string anywhere_cache_id = 2;</code>
+     * Generated from protobuf field <code>optional string rapid_cache_id = 2;</code>
      * @return string
      */
-    public function getAnywhereCacheId()
+    public function getRapidCacheId()
     {
-        return isset($this->anywhere_cache_id) ? $this->anywhere_cache_id : '';
+        return isset($this->rapid_cache_id) ? $this->rapid_cache_id : '';
     }
 
-    public function hasAnywhereCacheId()
+    public function hasRapidCacheId()
     {
-        return isset($this->anywhere_cache_id);
+        return isset($this->rapid_cache_id);
     }
 
-    public function clearAnywhereCacheId()
+    public function clearRapidCacheId()
     {
-        unset($this->anywhere_cache_id);
+        unset($this->rapid_cache_id);
     }
 
     /**
-     * Anywhere Cache ID.
+     * Rapid Cache ID.
      *
-     * Generated from protobuf field <code>optional string anywhere_cache_id = 2;</code>
+     * Generated from protobuf field <code>optional string rapid_cache_id = 2;</code>
      * @param string $var
      * @return $this
      */
-    public function setAnywhereCacheId($var)
+    public function setRapidCacheId($var)
     {
         GPBUtil::checkString($var, True);
-        $this->anywhere_cache_id = $var;
+        $this->rapid_cache_id = $var;
 
         return $this;
     }
@@ -166,7 +174,7 @@ class UpdateAnywhereCacheMetadata extends \Google\Protobuf\Internal\Message
      * The zone in which the cache instance is running. For example,
      * us-central1-a.
      *
-     * Generated from protobuf field <code>optional string zone = 5;</code>
+     * Generated from protobuf field <code>optional string zone = 3;</code>
      * @return string
      */
     public function getZone()
@@ -188,7 +196,7 @@ class UpdateAnywhereCacheMetadata extends \Google\Protobuf\Internal\Message
      * The zone in which the cache instance is running. For example,
      * us-central1-a.
      *
-     * Generated from protobuf field <code>optional string zone = 5;</code>
+     * Generated from protobuf field <code>optional string zone = 3;</code>
      * @param string $var
      * @return $this
      */
@@ -201,11 +209,11 @@ class UpdateAnywhereCacheMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Anywhere Cache entry's TTL between 1h and 7days. A cache-level config that
+     * Rapid Cache entry's TTL between 1h and 7days. A cache-level config that
      * is applied to all new cache entries on admission. If `ttl` is pending
      * update, this field equals to the new value specified in the Update request.
      *
-     * Generated from protobuf field <code>optional .google.protobuf.Duration ttl = 3;</code>
+     * Generated from protobuf field <code>optional .google.protobuf.Duration ttl = 4;</code>
      * @return \Google\Protobuf\Duration|null
      */
     public function getTtl()
@@ -224,11 +232,11 @@ class UpdateAnywhereCacheMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Anywhere Cache entry's TTL between 1h and 7days. A cache-level config that
+     * Rapid Cache entry's TTL between 1h and 7days. A cache-level config that
      * is applied to all new cache entries on admission. If `ttl` is pending
      * update, this field equals to the new value specified in the Update request.
      *
-     * Generated from protobuf field <code>optional .google.protobuf.Duration ttl = 3;</code>
+     * Generated from protobuf field <code>optional .google.protobuf.Duration ttl = 4;</code>
      * @param \Google\Protobuf\Duration $var
      * @return $this
      */
@@ -241,11 +249,11 @@ class UpdateAnywhereCacheMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Anywhere Cache entry Admission Policy in kebab-case (e.g.,
+     * Optional. Rapid Cache entry Admission Policy in kebab-case (e.g.,
      * "admit-on-first-miss"). If `admission_policy` is pending
      * update, this field equals to the new value specified in the Update request.
      *
-     * Generated from protobuf field <code>optional string admission_policy = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string admission_policy = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getAdmissionPolicy()
@@ -264,11 +272,11 @@ class UpdateAnywhereCacheMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Anywhere Cache entry Admission Policy in kebab-case (e.g.,
+     * Optional. Rapid Cache entry Admission Policy in kebab-case (e.g.,
      * "admit-on-first-miss"). If `admission_policy` is pending
      * update, this field equals to the new value specified in the Update request.
      *
-     * Generated from protobuf field <code>optional string admission_policy = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string admission_policy = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -314,6 +322,42 @@ class UpdateAnywhereCacheMetadata extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->ingest_on_write = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The type of cache. Either rapid cache or rapid cache ultra.
+     *
+     * Generated from protobuf field <code>optional string cache_type = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getCacheType()
+    {
+        return isset($this->cache_type) ? $this->cache_type : '';
+    }
+
+    public function hasCacheType()
+    {
+        return isset($this->cache_type);
+    }
+
+    public function clearCacheType()
+    {
+        unset($this->cache_type);
+    }
+
+    /**
+     * Optional. The type of cache. Either rapid cache or rapid cache ultra.
+     *
+     * Generated from protobuf field <code>optional string cache_type = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCacheType($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->cache_type = $var;
 
         return $this;
     }

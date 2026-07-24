@@ -25,6 +25,11 @@
                                 "createManagedFolder"
                             ]
                         },
+                        "CreateRapidCache": {
+                            "methods": [
+                                "createRapidCache"
+                            ]
+                        },
                         "DeleteFolder": {
                             "methods": [
                                 "deleteFolder"
@@ -90,6 +95,11 @@
                                 "getProjectIntelligenceConfig"
                             ]
                         },
+                        "GetRapidCache": {
+                            "methods": [
+                                "getRapidCache"
+                            ]
+                        },
                         "GetStorageLayout": {
                             "methods": [
                                 "getStorageLayout"
@@ -118,6 +128,11 @@
                         "ListManagedFolders": {
                             "methods": [
                                 "listManagedFolders"
+                            ]
+                        },
+                        "ListRapidCaches": {
+                            "methods": [
+                                "listRapidCaches"
                             ]
                         },
                         "PauseAnywhereCache": {
@@ -160,6 +175,11 @@
                                 "updateFolderIntelligenceConfig"
                             ]
                         },
+                        "UpdateManagedFolder": {
+                            "methods": [
+                                "updateManagedFolder"
+                            ]
+                        },
                         "UpdateOrganizationIntelligenceConfig": {
                             "methods": [
                                 "updateOrganizationIntelligenceConfig"
@@ -168,6 +188,11 @@
                         "UpdateProjectIntelligenceConfig": {
                             "methods": [
                                 "updateProjectIntelligenceConfig"
+                            ]
+                        },
+                        "UpdateRapidCache": {
+                            "methods": [
+                                "updateRapidCache"
                             ]
                         }
                     }

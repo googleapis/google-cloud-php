@@ -10,7 +10,7 @@ use Google\Protobuf\RepeatedField;
 
 /**
  * Request message to summarize the intelligence findings for the specified
- * scope(org, folder or project).
+ * scope (organization, folder or project).
  *
  * Generated from protobuf message <code>google.storage.control.v2.SummarizeIntelligenceFindingsRequest</code>
  */
