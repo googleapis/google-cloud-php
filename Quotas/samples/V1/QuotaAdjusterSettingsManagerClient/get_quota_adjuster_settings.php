@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,34 +22,32 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START cloudquotas_v1_generated_CloudQuotas_GetQuotaInfo_sync]
+// [START cloudquotas_v1_generated_QuotaAdjusterSettingsManager_GetQuotaAdjusterSettings_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\CloudQuotas\V1\Client\CloudQuotasClient;
-use Google\Cloud\CloudQuotas\V1\GetQuotaInfoRequest;
-use Google\Cloud\CloudQuotas\V1\QuotaInfo;
+use Google\Cloud\CloudQuotas\V1\Client\QuotaAdjusterSettingsManagerClient;
+use Google\Cloud\CloudQuotas\V1\GetQuotaAdjusterSettingsRequest;
+use Google\Cloud\CloudQuotas\V1\QuotaAdjusterSettings;
 
 /**
- * Retrieve the QuotaInfo of a quota for a project, folder or organization.
+ * Gets the QuotaAdjusterSettings for the specified resource.
  *
- * @param string $formattedName Identifier. The resource name of the quota info.
- *
- *                              An example name:
- *                              `projects/123/locations/global/services/compute.googleapis.com/quotaInfos/CpusPerProjectPerRegion`
- *                              Please see {@see CloudQuotasClient::quotaInfoName()} for help formatting this field.
+ * @param string $formattedName Identifier. Name of the `quotaAdjusterSettings` configuration.
+ *                              Only a single setting per project is supported. Please see
+ *                              {@see QuotaAdjusterSettingsManagerClient::quotaAdjusterSettingsName()} for help formatting this field.
  */
-function get_quota_info_sample(string $formattedName): void
+function get_quota_adjuster_settings_sample(string $formattedName): void
 {
     // Create a client.
-    $cloudQuotasClient = new CloudQuotasClient();
+    $quotaAdjusterSettingsManagerClient = new QuotaAdjusterSettingsManagerClient();
 
     // Prepare the request message.
-    $request = (new GetQuotaInfoRequest())
+    $request = (new GetQuotaAdjusterSettingsRequest())
         ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
-        /** @var QuotaInfo $response */
-        $response = $cloudQuotasClient->getQuotaInfo($request);
+        /** @var QuotaAdjusterSettings $response */
+        $response = $quotaAdjusterSettingsManagerClient->getQuotaAdjusterSettings($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
@@ -67,13 +65,11 @@ function get_quota_info_sample(string $formattedName): void
  */
 function callSample(): void
 {
-    $formattedName = CloudQuotasClient::quotaInfoName(
+    $formattedName = QuotaAdjusterSettingsManagerClient::quotaAdjusterSettingsName(
         '[PROJECT]',
-        '[LOCATION]',
-        '[SERVICE]',
-        '[QUOTA_INFO]'
+        '[LOCATION]'
     );
 
-    get_quota_info_sample($formattedName);
+    get_quota_adjuster_settings_sample($formattedName);
 }
-// [END cloudquotas_v1_generated_CloudQuotas_GetQuotaInfo_sync]
+// [END cloudquotas_v1_generated_QuotaAdjusterSettingsManager_GetQuotaAdjusterSettings_sync]

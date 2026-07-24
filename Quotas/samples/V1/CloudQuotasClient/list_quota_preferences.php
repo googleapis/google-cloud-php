@@ -32,7 +32,7 @@ use Google\Cloud\CloudQuotas\V1\QuotaPreference;
 /**
  * Lists QuotaPreferences in a given project, folder or organization.
  *
- * @param string $formattedParent Parent value of QuotaPreference resources.
+ * @param string $formattedParent Identifier. Parent value of QuotaPreference resources.
  *                                Listing across different resource containers (such as 'projects/-') is not
  *                                allowed.
  *
