@@ -20,6 +20,7 @@ namespace Google\Cloud\Dev\Tests\Unit\Command;
 use Google\Cloud\Dev\Command\ReleaseInfoCommand;
 use Google\Cloud\Dev\Composer;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\BadResponseException;
 use GuzzleHttp\Exception\RequestException;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
@@ -146,7 +147,9 @@ class ReleaseInfoCommandTest extends TestCase
         $response->getStatusCode()
             ->shouldBeCalledOnce()
             ->willReturn(404);
-        $exception = $this->prophesize(RequestException::class);
+        // On Guzzle 8 the response lives on the BadResponseException subclass,
+        // not on the base RequestException.
+        $exception = $this->prophesize(BadResponseException::class);
         $exception->getResponse()
             ->shouldBeCalledOnce()
             ->willReturn($response->reveal());
@@ -168,10 +171,9 @@ class ReleaseInfoCommandTest extends TestCase
         $this->expectExceptionMessage('Unable to retrieve tag');
 
         $tag = 'v0.1000.0';
+        // A base RequestException carries no response on Guzzle 8, so the
+        // changelog lookup cannot determine the status and returns null.
         $exception = $this->prophesize(RequestException::class);
-        $exception->getResponse()
-            ->shouldBeCalledOnce()
-            ->willReturn(null);
         $http = $this->prophesize(Client::class);
         $http->get(
             'https://api.github.com/repos/googleapis/google-cloud-php/releases/tags/' . $tag,

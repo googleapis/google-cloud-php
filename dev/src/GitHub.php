@@ -213,7 +213,10 @@ class GitHub
             return json_decode((string) $res->getBody(), true)['body'];
         } catch (RequestException $e) {
             $this->logException($e);
-            return $e->getResponse()?->getStatusCode() === 404 ? false : null;
+            // Guzzle 7 carries the response on RequestException, Guzzle 8 only
+            // on its ResponseException subclass, hence the method_exists() check.
+            $response = method_exists($e, 'getResponse') ? $e->getResponse() : null;
+            return $response?->getStatusCode() === 404 ? false : null;
         }
     }
 

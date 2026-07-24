@@ -210,7 +210,14 @@ class RestTest extends TestCase
 
     private function getMetadata(Request $request)
     {
-        $lines = explode(PHP_EOL, (string) $request->getBody());
-        return json_decode($lines[5], true);
+        // guzzle/psr7 2 generates per-part Content-Length headers, psr7 3
+        // does not; strip them so the metadata line offset matches on both.
+        $lines = array_values(array_filter(
+            explode(PHP_EOL, (string) $request->getBody()),
+            function ($line) {
+                return strpos($line, 'Content-Length:') !== 0;
+            }
+        ));
+        return json_decode($lines[4], true);
     }
 }
