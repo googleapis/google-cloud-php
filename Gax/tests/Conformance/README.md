@@ -27,15 +27,15 @@ Options:
 
 ## Running Conformance Tests
 
-1. Install and launch the matching `gapic-showcase` mock server in the background:
+1. Install and launch the matching `gapic-showcase` mock server (with Auto-TLS enabled for PQC tests):
    ```sh
    # Option 1 (curl)
-   curl -L https://github.com/googleapis/gapic-showcase/releases/download/v0.41.1/gapic-showcase-0.41.1-linux-amd64.tar.gz | tar -zx
-   ./gapic-showcase run &
+   curl -L https://github.com/googleapis/gapic-showcase/releases/download/v0.42.0/gapic-showcase-0.42.0-linux-amd64.tar.gz | tar -zx
+   ./gapic-showcase run --port :7469 --tls --ca-cert-output-file Gax/tests/Conformance/showcase.pem &
 
    # Option 2 (go install)
    go install github.com/googleapis/gapic-showcase/cmd/gapic-showcase@latest
-   gapic-showcase run &
+   gapic-showcase run --port :7469 --tls --ca-cert-output-file Gax/tests/Conformance/showcase.pem &
    ```
 
 2. Run the PHPUnit conformance test suite:
