@@ -99,7 +99,8 @@ final class ShowcaseTest extends TestCase
     {
         if (!file_exists(self::PEM_PATH)) {
             $this->markTestSkipped(
-                'You need to run the showcase server with --tls --ca-cert-output-file tests/Conformance/showcase.pem to run PQC tests'
+                'You need to run the showcase server with --tls ' .
+                    '--ca-cert-output-file tests/Conformance/showcase.pem to run PQC tests'
             );
         }
 
