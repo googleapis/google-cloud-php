@@ -45,7 +45,17 @@ jobs:
           for COMPONENT in ${CHANGED_COMPONENTS}; do
             BC_BREAKS="$BC_BREAKS$(bash .github/backwards-compatibility-check.sh "${COMPONENT}" "${BASE_REF}")"
           done
+          # Formulate the comment body
+          if [ -n "$BC_BREAKS" ]; then
+            COMMENT_BODY="This PR contains backward compatibility breaking changes detected by the automated BC check against the latest release. Please review the details below:
+
+$BC_BREAKS"
+          else
+            COMMENT_BODY="✅ No backwards compatibility breaking changes were detected for this release PR."
+          fi
+          # Set GITHUB_OUTPUTs
           printf "bc-breaks<<EOF\n%s\nEOF\n" "$BC_BREAKS" >> $GITHUB_OUTPUT
+          printf "comment-body<<EOF\n%s\nEOF\n" "$COMMENT_BODY" >> $GITHUB_OUTPUT
       - name: "Validate standard PR results"
         if: github.event.pull_request.user.login != 'release-please[bot]'
         run: |
@@ -61,29 +71,12 @@ jobs:
           fi
       - name: "Add or update PR comment with BC breaks for Release PRs"
         if: github.event.pull_request.user.login == 'release-please[bot]'
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          COMMENT_TAG="<!-- bc-breaking-changes-comment -->"
-          BC_BREAKS="${{ steps.check-bc.outputs.bc-breaks }}"
-          if [ -n "$BC_BREAKS" ]; then
-            COMMENT_BODY="$COMMENT_TAG
-## ⚠️ Backwards Compatibility (BC) Breaking Changes Notice
-This PR contains backward compatibility breaking changes detected by the automated BC check against the latest release. Please review the details below:
-
-$BC_BREAKS"
-          else
-            COMMENT_BODY="$COMMENT_TAG
-## ⚠️ Backwards Compatibility (BC) Breaking Changes Notice
-✅ No backwards compatibility breaking changes were detected for this release PR.
-"
-          fi
-          COMMENT_ID=$(gh api "repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/comments" --paginate -q ".[] | select(.body | contains(\"$COMMENT_TAG\")) | .id" | head -n 1)
-          if [ -n "$COMMENT_ID" ]; then
-            gh api -X PATCH "repos/${{ github.repository }}/issues/comments/$COMMENT_ID" -f body="$COMMENT_BODY" >/dev/null
-          else
-            gh api -X POST "repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/comments" -f body="$COMMENT_BODY" >/dev/null
-          fi
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          header: bc-breaking-changes-comment
+          message: |
+            ## ⚠️ Backwards Compatibility (BC) Breaking Changes Notice
+            ${{ steps.check-bc.outputs.comment-body }}
 
   # Ensure the release PR does not contain an unexpected (e.g. 2.0.0) major version release
   # Add "MAJOR_VERSION_ALLOWED=component1,component2" to the PR description to allow major version
