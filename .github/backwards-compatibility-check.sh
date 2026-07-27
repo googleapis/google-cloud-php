@@ -17,16 +17,18 @@ set -e
 
 # USAGE:
 #
-#     backwards-compatibility-check.sh COMPONENT
+#     backwards-compatibility-check.sh COMPONENT [BASE_REF]
 #
 # COMPONENT: The component directory name to run the backwards compatibility check for.
+# BASE_REF: Optional. The baseline git ref (e.g. 'main', 'origin/main' or a release tag) to compare against. Defaults to 'main'.
 
-if [ "$#" -ne 1 ]; then
-    echo "usage: backwards-compatibility-check.sh [COMPONENT]"
+if [ "$#" -lt 1 ] || [ "$#" -gt 2 ]; then
+    echo "usage: backwards-compatibility-check.sh COMPONENT [BASE_REF]"
     exit 1
 fi
 
 COMPONENT=$1
+BASE_REF=${2:-main}
 
 # Exception for 'dev'
 if [ "${COMPONENT}" = "dev" ]; then
@@ -47,38 +49,45 @@ if [ ! -f "${COMP_JSON}" ]; then
     exit 1
 fi
 
-# Retrieve the split repository target using jq
-TARGET_REPO=$(jq -r '.extra.component.target // empty' "${COMP_JSON}")
-if [ -z "${TARGET_REPO}" ]; then
-    echo "Error: no split repository target configured in ${COMP_JSON}!" >&2
-    exit 1
+echo "Checking backwards compatibility for component: ${COMPONENT} against baseline: ${BASE_REF}" >&2
+
+# Check if the component existed in the baseline reference
+if ! git rev-parse --verify "${BASE_REF}:${COMPONENT}" >/dev/null 2>&1; then
+    echo "Component ${COMPONENT} did not exist in baseline ${BASE_REF}. Skipping check (all additions)." >&2
+    exit 0
 fi
 
-echo "Checking backwards compatibility for component: ${COMPONENT}" >&2
-echo "Split repository target: ${TARGET_REPO}" >&2
-
-# Create a temporary directory for cloning the split repository
+# Create a temporary directory
 TMP_DIR=$(mktemp -d)
 
-# Clone the split repository with a depth of 1 (containing only the latest commit)
-echo "Cloning https://github.com/${TARGET_REPO}..." >&2
-if ! git clone -q --depth 1 "https://github.com/${TARGET_REPO}" "${TMP_DIR}"; then
-    echo "Failed to clone split repository ${TARGET_REPO}." >&2
+# Initialize a dummy git repo inside TMP_DIR so roave-backward-compatibility-check can compare revisions
+(
+    cd "${TMP_DIR}"
+    git init -q
+)
+
+# Extract baseline files from the BASE_REF, stripping the prefix folder so they land at the root of TMP_DIR
+if ! git archive "${BASE_REF}" "${COMPONENT}" | tar -x --strip-components=1 -C "${TMP_DIR}" 2>/dev/null; then
+    echo "Error: Failed to archive and extract files for ${COMPONENT} from git ref ${BASE_REF}." >&2
     rm -rf "${TMP_DIR}"
     exit 1
 fi
 
-# Copy the current local component files over the cloned split repository,
+(
+    cd "${TMP_DIR}"
+    git add -A
+    git commit -q -m "Base state from ${BASE_REF}"
+)
+
+# Copy the current local component files over the baseline repository,
 # making sure to exclude vendor directories or composer-local files.
-echo "Applying local changes from ${COMPONENT} to the split clone..." >&2
+echo "Applying local changes from ${COMPONENT} to the baseline clone..." >&2
 rsync -a --exclude="vendor/" --exclude="composer-local.json" "${COMPONENT}/" "${TMP_DIR}/"
 
 # Commit the changes in the cloned split repository so we can compare them
 CODE=0
 if (
     cd "${TMP_DIR}"
-    git config user.name "Github Actions"
-    git config user.email "actions@github.com"
     git add -A
 
     # Check if there are any changes to commit
@@ -97,7 +106,7 @@ if (
             echo "✅ No BC Breaks detected in ${COMPONENT}." >&2
         fi
     else
-        echo "No files modified for ${COMPONENT} compared to the split repository HEAD. Skipping check." >&2
+        echo "No files modified for ${COMPONENT} compared to ${BASE_REF}. Skipping check." >&2
     fi
 ); then
     CODE=0

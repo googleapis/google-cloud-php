@@ -32,6 +32,8 @@ jobs:
       - name: "Check for BC breaks"
         id: check-bc
         run: |
+          git config --global user.name "Github Actions"
+          git config --global user.email "actions@github.com"
           BASE_REF="${{ steps.latest-release.outputs.release }}"
           BASE_REF=${BASE_REF:-origin/main}
           CHANGED_COMPONENTS=$(git diff ${BASE_REF} --name-only | grep -E '^[A-Z][a-zA-Z0-9]*/' | cut -d'/' -f1 | sort -u)
@@ -41,7 +43,7 @@ jobs:
           fi
           BC_BREAKS=""
           for COMPONENT in ${CHANGED_COMPONENTS}; do
-            BC_BREAKS="$BC_BREAKS$(bash .github/backwards-compatibility-check.sh "${COMPONENT}")"
+            BC_BREAKS="$BC_BREAKS$(bash .github/backwards-compatibility-check.sh "${COMPONENT}" "${BASE_REF}")"
           done
           printf "bc-breaks<<EOF\n%s\nEOF\n" "$BC_BREAKS" >> $GITHUB_OUTPUT
       - name: "Validate standard PR results"
