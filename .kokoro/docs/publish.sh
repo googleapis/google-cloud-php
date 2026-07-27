@@ -78,19 +78,17 @@ for DIR in ${DIRS}; do
     fi
 done
 
-# Warm the cache with the first component
-if [ ${#DIR_ARRAY[@]} -gt 0 ]; then
-    FIRST_DIR="${DIR_ARRAY[0]}"
-    if ! run_docfx "${FIRST_DIR}"; then
-        echo "Error: Initial DocFX generation (cache warming) failed. Aborting." >&2
-        exit 1
-    fi
+# Warm the cache
+echo "--- Warming DocFX Cache ---"
+if ! "$PROJECT_DIR/dev/google-cloud" docfx --warm-cache; then
+    echo "Error: Initial DocFX cache warming failed. Aborting." >&2
+    exit 1
 fi
 
-# Run the rest in parallel
-if [ ${#DIR_ARRAY[@]} -gt 1 ]; then
+# Run all in parallel
+if [ ${#DIR_ARRAY[@]} -gt 0 ]; then
     MAX_JOBS=${MAX_JOBS:-$(nproc 2>/dev/null || echo 8)}
-    printf "%s\n" "${DIR_ARRAY[@]:1}" | xargs -P "${MAX_JOBS}" -I {} bash -c 'run_docfx_parallel "$@"' _ {}
+    printf "%s\n" "${DIR_ARRAY[@]}" | xargs -P "${MAX_JOBS}" -I {} bash -c 'run_docfx_parallel "$@"' _ {}
 fi
 
 # Add Auth repo

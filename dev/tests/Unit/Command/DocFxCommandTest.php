@@ -245,6 +245,17 @@ class DocFxCommandTest extends TestCase
         $this->assertFileEqualsWithDiff($left, $right, '1' === getenv('UPDATE_FIXTURES'));
     }
 
+    public function testWarmCache()
+    {
+        $exitCode = self::getCommandTester()->execute([
+            '--warm-cache' => true,
+        ]);
+
+        $this->assertEquals(0, $exitCode);
+        $this->assertStringContainsString('Warming cache... ', self::getCommandTester()->getDisplay());
+        $this->assertStringContainsString('Done.', self::getCommandTester()->getDisplay());
+    }
+
     private function assertFileEqualsWithDiff(string $left, string $right, bool $updateFixtures = false)
     {
         if (file_get_contents($left) !== file_get_contents($right)) {
