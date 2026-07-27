@@ -47,9 +47,8 @@ jobs:
           done
           # Set GITHUB_OUTPUT
           printf "bc-breaks<<EOF\n%s\nEOF\n" "$BC_BREAKS" >> $GITHUB_OUTPUT
-      - name: "Prepare release PR comment"
+      - name: "Prepare BC break report"
         id: format-comment
-        if: github.event.pull_request.user.login == 'release-please[bot]'
         run: |
           BC_BREAKS="${{ steps.check-bc.outputs.bc-breaks }}"
           if [ -n "$BC_BREAKS" ]; then
@@ -57,15 +56,14 @@ jobs:
 
 $BC_BREAKS"
           else
-            COMMENT_BODY="✅ No backwards compatibility breaking changes were detected for this release PR."
+            COMMENT_BODY="✅ No backwards compatibility breaking changes were detected."
           fi
           printf "comment-body<<EOF\n%s\nEOF\n" "$COMMENT_BODY" >> $GITHUB_OUTPUT
       - name: "Validate standard PR results"
         if: github.event.pull_request.user.login != 'release-please[bot]'
         run: |
           if [ -n "${{ steps.check-bc.outputs.bc-breaks }}" ]; then
-            echo "❌ Backwards compatibility breaks detected in this PR:"
-            echo "${{ steps.check-bc.outputs.bc-breaks }}"
+            echo "❌ ${{ steps.format-comment.outputs.comment-body }}"
             exit 1
           elif [[ "true" == "${{ contains(github.event.pull_request.title, '!:') }}" ]]; then
             echo "❌ Error: You indicated breaking changes in your PR title (!:), but no backwards compatibility breaks were detected by the automated check."
