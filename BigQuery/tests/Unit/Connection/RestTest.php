@@ -214,9 +214,7 @@ class RestTest extends TestCase
         // does not; strip them so the metadata line offset matches on both.
         $lines = array_values(array_filter(
             explode(PHP_EOL, (string) $request->getBody()),
-            function ($line) {
-                return strpos($line, 'Content-Length:') !== 0;
-            }
+            fn ($line) => strpos($line, 'Content-Length:') !== 0
         ));
         return json_decode($lines[4], true);
     }
