@@ -24,7 +24,7 @@ jobs:
           with:
             php-version: '8.2'
             extensions: grpc-1.83.0
-            key: cache-key-1 #increment to bust the cache
+            key: cache-key-grpc-1.38
 
         - name: Cache extensions
           uses: actions/cache@v4
