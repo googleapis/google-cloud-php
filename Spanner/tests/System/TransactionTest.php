@@ -58,7 +58,7 @@ class TransactionTest extends SystemTestCase
         }
         self::setUpTestDatabase();
 
-        self::$id1 = rand(1000, 9999);
+        self::$id1 = self::randId();
 
         self::$row = [
             'id' => self::$id1,
@@ -74,7 +74,7 @@ class TransactionTest extends SystemTestCase
     public function testRunTransaction()
     {
         $db = self::$database;
-        $id = rand(1, 346464);
+        $id = self::randId();
         $keySet = new KeySet([
             'keys' => [$id]
         ]);
@@ -278,7 +278,7 @@ class TransactionTest extends SystemTestCase
 
         try {
             $db->runTransaction(function ($t) use ($values) {
-                $id = rand(1, 346464);
+                $id = self::randId();
                 $t->insert(self::TEST_TABLE_NAME, $values);
 
                 $t->commit();
@@ -405,7 +405,7 @@ class TransactionTest extends SystemTestCase
         $db = self::$database;
 
         $res = $db->runTransaction(function ($t) {
-            $id = rand(1, 346464);
+            $id = self::randId();
             $row = [
                 'id' => $id,
                 'name' => uniqid(self::TESTING_PREFIX),
@@ -415,7 +415,7 @@ class TransactionTest extends SystemTestCase
             $t->insert(self::TEST_TABLE_NAME, $row);
             $this->assertNull($t->id());
 
-            $id = rand(1, 346464);
+            $id = self::randId();
             $t->executeUpdate(
                 'INSERT INTO ' . self::TEST_TABLE_NAME . ' (id, name, birthday) VALUES (@id, @name, @birthday)',
                 [
@@ -489,7 +489,7 @@ class TransactionTest extends SystemTestCase
         };
 
         $res = $db->runTransaction(function ($t) use ($getChannel) {
-            $id = rand(1, 346464);
+            $id = self::randId();
             $row = [
                 'id' => $id,
                 'name' => uniqid(self::TESTING_PREFIX),
@@ -499,7 +499,7 @@ class TransactionTest extends SystemTestCase
             $t->insert(self::TEST_TABLE_NAME, $row);
             $this->assertNull($t->id());
 
-            $id = rand(1, 346464);
+            $id = self::randId();
             $t->executeUpdate(
                 'INSERT INTO ' . self::TEST_TABLE_NAME . ' (id, name, birthday) VALUES (@id, @name, @birthday)',
                 [
@@ -677,7 +677,7 @@ class TransactionTest extends SystemTestCase
         // if $total is 10, then we will generate 9 rows.
         for ($i = 0; $i < $total; $i++) {
             $rows[] = [
-                'id' => rand(1, 346464),
+                'id' => self::randId(),
                 'name' => uniqid(self::TESTING_PREFIX),
                 'birthday' => new Date(new \DateTime('2000-01-01'))
             ];

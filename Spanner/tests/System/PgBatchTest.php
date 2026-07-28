@@ -121,13 +121,17 @@ class PgBatchTest extends SystemTestCase
     private static function seedTable()
     {
         $decades = [1950, 1960, 1970, 1980, 1990, 2000];
+        $mutations = [];
+
         for ($i = 0; $i < 250; $i++) {
-            self::$database->insert(self::TABLE_NAME, [
+            $mutations[] = [
                 'id' => self::randId(),
-                'decade' => array_rand($decades)
-            ], [
-                'timeoutMillis' => 50000
-            ]);
+                'decade' => $decades[array_rand($decades)]
+            ];
         }
+
+        self::$database->insertBatch(self::TABLE_NAME, $mutations, [
+            'timeoutMillis' => 50000
+        ]);
     }
 }

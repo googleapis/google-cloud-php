@@ -44,6 +44,30 @@ class BatchTest extends SystemTestCase
     public static function setUpTestFixtures(): void
     {
         self::setUpTestDatabase();
+        if (self::$isSetup) {
+            return;
+        }
+        self::seedTable();
+        self::$isSetup = true;
+    }
+
+    private static function seedTable()
+    {
+        $decades = [1950, 1960, 1970, 1980, 1990, 2000];
+        $mutations = [];
+
+        for ($i = 0; $i < 250; $i++) {
+            $mutations[] = [
+                'id' => self::randId(),
+                'decade' => $decades[array_rand($decades)]
+            ];
+        }
+
+        self::$database->insertOrUpdateBatch(
+            self::TABLE_NAME,
+            $mutations,
+            ['timeoutMillis' => 50000]
+        );
     }
 
     public function testBatch()
@@ -83,19 +107,10 @@ class BatchTest extends SystemTestCase
         }
         $this->assertEquals(count($resultSet), $this->executePartitions($batch, $snapshot, $partitions));
 
-        $keySet = new KeySet([
-            'ranges' => [
-                new KeyRange([
-                    'start' => $parameters['earlyBound'],
-                    'startType' => KeyRange::TYPE_OPEN,
-                    'end' => $parameters['lateBound'],
-                    'endType' => KeyRange::TYPE_OPEN
-                ])
-            ]
-        ]);
+        $keySet = new KeySet(['all' => true]);
 
         $partitions = $snapshot->partitionRead(self::TABLE_NAME, $keySet, ['id', 'decade']);
-        $this->assertEquals(count($resultSet), $this->executePartitions($batch, $snapshot, $partitions));
+        $this->assertEquals(250, $this->executePartitions($batch, $snapshot, $partitions));
     }
 
     /**

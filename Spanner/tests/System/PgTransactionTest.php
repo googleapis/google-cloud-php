@@ -51,7 +51,7 @@ class PgTransactionTest extends SystemTestCase
         }
         self::setUpTestDatabase();
 
-        self::$id1 = rand(1000, 9999);
+        self::$id1 = self::randId();
         self::$row = [
             'id' => self::$id1,
             'name' => uniqid(self::TESTING_PREFIX),
@@ -67,7 +67,7 @@ class PgTransactionTest extends SystemTestCase
         $db = self::$database;
 
         $db->runTransaction(function ($t) {
-            $id = rand(1, 346464);
+            $id = self::randId();
             $t->insertOrUpdate(self::TEST_TABLE_NAME, [
                 'id' => $id,
                 'name' => uniqid(self::TESTING_PREFIX),
@@ -146,7 +146,7 @@ class PgTransactionTest extends SystemTestCase
 
         try {
             $db->runTransaction(function ($t) use ($values) {
-                $id = rand(1, 346464);
+                $id = self::randId();
                 $t->insert(self::TEST_TABLE_NAME, $values);
 
                 $t->commit();
