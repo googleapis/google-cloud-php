@@ -476,6 +476,9 @@ class Transaction implements TransactionalReadInterface
             $transaction = $this->operation->transaction($this->session, $operationTransactionOptions);
             // Set the transaction ID of the current transaction.
             $this->transactionId = $transaction->id();
+            if (isset($transaction->precommitToken)) {
+                $this->setPrecommitToken($transaction->precommitToken);
+            }
         }
 
         if (!$this->singleUseState()) {
