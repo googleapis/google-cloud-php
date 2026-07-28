@@ -18,25 +18,30 @@ jobs:
         - name: Checkout code
           uses: actions/checkout@v7
 
-        - name: Setup cache environment
-          id: extcache
-          uses: shivammathur/cache-extensions@v1
-          with:
-            php-version: '8.2'
-            extensions: grpc-1.83.0
-            key: cache-key-grpc-1.38
-
-        - name: Cache extensions
-          uses: actions/cache@v4
-          with:
-            path: ${{ steps.extcache.outputs.dir }}
-            key: ${{ steps.extcache.outputs.key }}
-
         - name: Setup PHP
           uses: shivammathur/setup-php@v2
           with:
             php-version: '8.2'
-            extensions: grpc-1.83.0
+
+        - name: Get PHP Extension Directory
+          id: php-info
+          run: |
+            echo "ext_dir=$(php-config --extension-dir)" >> $GITHUB_OUTPUT
+            echo "ini_dir=$(php -r 'echo ini_get("scan_dir");')" >> $GITHUB_OUTPUT
+
+        - name: Cache gRPC Extension
+          id: cache-grpc
+          uses: actions/cache@v4
+          with:
+            path: |
+              ${{ steps.php-info.outputs.ext_dir }}/grpc.so
+              ${{ steps.php-info.outputs.ini_dir }}/20-grpc.ini
+            key: grpc-1.83.0-php8.2-v1
+
+        - name: Install gRPC Extension
+          if: steps.cache-grpc.outputs.cache-hit != 'true'
+          run: |
+            sudo MAKEFLAGS="-j$(nproc)" pecl install grpc-1.83.0
 
         - name: Install and run GAPIC Showcase
           run: |
