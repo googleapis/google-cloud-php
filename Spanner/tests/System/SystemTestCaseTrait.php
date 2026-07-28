@@ -119,6 +119,14 @@ trait SystemTestCaseTrait
         if (!self::$database->exists()) {
             $op = self::$instance->createDatabase(self::$dbName);
             $op->pollUntilComplete();
+        } else {
+            TestDatabaseManager::$sqlHasSetUp = true;
+            TestDatabaseManager::$client = self::$client;
+            TestDatabaseManager::$instance = self::$instance;
+            TestDatabaseManager::$sqlDatabase = self::$database;
+            TestDatabaseManager::$sqlDbName = self::$dbName;
+            self::$hasSetUp = true;
+            return;
         }
 
         $op = self::$database->updateDdlBatch(

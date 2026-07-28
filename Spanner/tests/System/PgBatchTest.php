@@ -51,9 +51,7 @@ class PgBatchTest extends SystemTestCase
         }
         self::setUpTestDatabase();
 
-        
-
-        
+        self::$database->delete(self::TABLE_NAME, new \Google\Cloud\Spanner\KeySet(['all' => true]));
 
         self::seedTable();
         self::$hasSetupBatch = true;
@@ -130,7 +128,7 @@ class PgBatchTest extends SystemTestCase
             ];
         }
 
-        self::$database->insertBatch(self::TABLE_NAME, $mutations, [
+        self::$database->insertOrUpdateBatch(self::TABLE_NAME, $mutations, [
             'timeoutMillis' => 50000
         ]);
     }

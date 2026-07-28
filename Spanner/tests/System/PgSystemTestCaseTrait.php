@@ -51,6 +51,14 @@ trait PgSystemTestCaseTrait
                 'databaseDialect' => DatabaseDialect::POSTGRESQL
             ]);
             $op->pollUntilComplete();
+        } else {
+            TestDatabaseManager::$pgHasSetUp = true;
+            TestDatabaseManager::$client = self::$client;
+            TestDatabaseManager::$instance = self::$instance;
+            TestDatabaseManager::$pgDatabase = self::$database;
+            TestDatabaseManager::$pgDbName = self::$dbName;
+            self::$hasSetUp = true;
+            return;
         }
 
         self::$database->updateDdlBatch(

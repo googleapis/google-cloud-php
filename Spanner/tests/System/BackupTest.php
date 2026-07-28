@@ -196,7 +196,8 @@ class BackupTest extends SystemTestCase
             } catch (FailedPreconditionException $e) {
                 break;
             } catch (\Google\Cloud\Core\Exception\ServiceException $ex) {
-                if ($i === 2 || !in_array($ex->getStatus(), ['UNAVAILABLE', 'DEADLINE_EXCEEDED'])) {
+                $allowed = [14 /* UNAVAILABLE */, 4 /* DEADLINE_EXCEEDED */];
+                if ($i === 2 || !in_array($ex->getCode(), $allowed)) {
                     throw $ex;
                 }
                 sleep(2);
@@ -251,8 +252,8 @@ class BackupTest extends SystemTestCase
         
         try {
             $op->cancel();
-        } catch (\Google\ApiCore\ApiException $e) {
-            if ($e->getStatus() !== 'DEADLINE_EXCEEDED') {
+        } catch (\Google\Cloud\Core\Exception\ServiceException $e) {
+            if ($e->getCode() !== 4 /* DEADLINE_EXCEEDED */) {
                 throw $e;
             }
         }
@@ -724,8 +725,8 @@ class BackupTest extends SystemTestCase
                     'maxPollingDurationSeconds' => $timeout - time()
                 ]);
                 break;
-            } catch (\Google\ApiCore\ApiException $e) {
-                if ($e->getStatus() !== 'DEADLINE_EXCEEDED') {
+            } catch (\Google\Cloud\Core\Exception\ServiceException $e) {
+                if ($e->getCode() !== 4 /* DEADLINE_EXCEEDED */) {
                     throw $e;
                 }
             }

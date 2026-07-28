@@ -48,8 +48,7 @@ class LargeReadTest extends SystemTestCase
     public static function setUpTestFixtures(): void
     {
         self::setUpTestDatabase();
-
-        
+        self::$database->delete(self::TABLE_NAME, new KeySet(['all' => true]));
 
         $str = '';
         foreach (self::$data as $letter) {

@@ -46,15 +46,9 @@ class PgReadTest extends SystemTestCase
     {
         self::setUpTestDatabase();
 
-        
-        
-
-        
-
-        
-
         $db = self::$database;
-        
+        $db->delete(self::READ_TABLE_NAME, new KeySet(['all' => true]));
+        $db->delete(self::RANGE_TABLE_NAME, new KeySet(['all' => true]));
 
         self::$dataset = self::generateDataset(20, true);
         $db->insertOrUpdateBatch(self::RANGE_TABLE_NAME, self::$dataset);

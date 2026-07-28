@@ -47,6 +47,7 @@ class BatchTest extends SystemTestCase
         if (self::$isSetup) {
             return;
         }
+        self::$database->delete(self::TABLE_NAME, new KeySet(['all' => true]));
         self::seedTable();
         self::$isSetup = true;
     }
@@ -99,7 +100,8 @@ class BatchTest extends SystemTestCase
                 $partitions = $snapshot->partitionQuery($query, ['parameters' => $parameters]);
                 break;
             } catch (\Google\Cloud\Core\Exception\ServiceException $ex) {
-                if ($i === 2 || !in_array($ex->getStatus(), ['UNAVAILABLE', 'DEADLINE_EXCEEDED'])) {
+                $allowed = [14 /* UNAVAILABLE */, 4 /* DEADLINE_EXCEEDED */];
+                if ($i === 2 || !in_array($ex->getCode(), $allowed)) {
                     throw $ex;
                 }
                 sleep(2);

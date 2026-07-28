@@ -238,13 +238,13 @@ class SnapshotTest extends SystemTestCase
     {
         $db = self::$database;
 
-        $db->insertBatch(self::TABLE_NAME, [
+        $db->insertOrUpdateBatch(self::TABLE_NAME, [
             [
-                'id' => rand(1, 346464),
+                'id' => self::randId(),
                 'number' => 1
             ],
             [
-                'id' => rand(1, 346464),
+                'id' => self::randId(),
                 'number' => 2
             ]
         ]);
