@@ -40,7 +40,8 @@ jobs:
             extensions: grpc
 
         - name: Print gRPC Version
-          run: php -r 'echo "gRPC Extension Version: " . phpversion("grpc") . "\n";'
+          run: |
+            php -r 'echo "gRPC Extension Version: " . phpversion("grpc") . PHP_EOL;'
 
         - name: Install and run GAPIC Showcase
           run: |
