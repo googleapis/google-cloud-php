@@ -12,15 +12,15 @@ jobs:
     runs-on: ubuntu-latest
     name: PHP Style Check
     steps:
-    - uses: actions/checkout@v7
-    - name: Setup PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: '8.1'
-    - name: Install Dependencies
-      run: composer global require "squizlabs/php_codesniffer:3.*"
-    - name: Run PHPCS Code Style Checker
-      run: ~/.composer/vendor/bin/phpcs --standard=phpcs-ruleset.xml -p
+      - uses: actions/checkout@v7
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+      - name: Install Dependencies
+        run: composer global require "squizlabs/php_codesniffer:3.*"
+      - name: Run PHPCS Code Style Checker
+        run: ~/.composer/vendor/bin/phpcs --standard=phpcs-ruleset.xml -p
 
   style_csfixer:
     name: PHP CS Fixer
@@ -52,15 +52,15 @@ jobs:
     runs-on: ubuntu-latest
     name: PHPStan Static Analysis
     steps:
-    - uses: actions/checkout@v7
-    - name: Install PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: '8.2'
-    - name: "Install dependencies"
-      run: |
-        composer --no-interaction --no-ansi --no-progress update
-        composer --no-interaction --no-ansi --no-progress update -d dev
-    - name: Run Static Analysis
-      run: |
-        dev/sh/static-analysis
+      - uses: actions/checkout@v7
+      - name: Install PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+      - name: "Install dependencies"
+        run: |
+          composer --no-interaction --no-ansi --no-progress update
+          composer --no-interaction --no-ansi --no-progress update -d dev
+      - name: Run Static Analysis
+        run: |
+          dev/sh/static-analysis

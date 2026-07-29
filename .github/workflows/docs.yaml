@@ -12,31 +12,31 @@ jobs:
     env:
       PHPDOC_ENV: prod
     steps:
-    - uses: actions/checkout@v7
-    - name: Setup Python
-      uses: actions/setup-python@v7
-      with:
-        python-version: '3.14'
-    - run: pip install --require-hashes -r .kokoro/docs/docker/requirements.txt
-    - name: Setup PHP
-      uses: shivammathur/setup-php@verbose
-      with:
-        php-version: "8.2"
-    - name: Extract phpDocumentor
-      id: extract
-      uses: shrink/actions-docker-extract@v4
-      with:
-        image: "phpdoc/phpdoc:3.5.3"
-        path: "/opt/phpdoc/."
-    - name: Symlink phpDocumentor
-      run: ln -s $(pwd)/${{ steps.extract.outputs.destination }}/bin/phpdoc /usr/local/bin/phpdoc
-    - name: Install Dependencies
-      uses: nick-invision/retry@v4
-      with:
-        timeout_minutes: 10
-        max_attempts: 3
-        command: composer --no-interaction --no-ansi --no-progress --no-cache update -d dev
-    - name: Run DocFX Unit Test Suite
-      run: dev/vendor/bin/phpunit -c dev/phpunit-docfx.xml.dist
-    - name: Run Docs Generator (Dry Run)
-      run: .kokoro/docs/publish.sh
+      - uses: actions/checkout@v7
+      - name: Setup Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: '3.14'
+      - run: pip install --require-hashes -r .kokoro/docs/docker/requirements.txt
+      - name: Setup PHP
+        uses: shivammathur/setup-php@verbose
+        with:
+          php-version: "8.2"
+      - name: Extract phpDocumentor
+        id: extract
+        uses: shrink/actions-docker-extract@v4
+        with:
+          image: "phpdoc/phpdoc:3.5.3"
+          path: "/opt/phpdoc/."
+      - name: Symlink phpDocumentor
+        run: ln -s $(pwd)/${{ steps.extract.outputs.destination }}/bin/phpdoc /usr/local/bin/phpdoc
+      - name: Install Dependencies
+        uses: nick-invision/retry@v4
+        with:
+          timeout_minutes: 10
+          max_attempts: 3
+          command: composer --no-interaction --no-ansi --no-progress --no-cache update -d dev
+      - name: Run DocFX Unit Test Suite
+        run: dev/vendor/bin/phpunit -c dev/phpunit-docfx.xml.dist
+      - name: Run Docs Generator (Dry Run)
+        run: .kokoro/docs/publish.sh

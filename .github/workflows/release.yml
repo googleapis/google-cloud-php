@@ -1,79 +1,76 @@
 name: Release Components
 on:
-    # push:
-    #     tags:
-    #         - "*"
-    workflow_dispatch:
-        inputs:
-            tag:
-                description: 'Tag to release'
-                required: true
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tag to release'
+        required: true
 permissions:
-    contents: read
+  contents: read
 jobs:
-    release:
-        name: "Split and Release Components"
-        runs-on: ubuntu-latest
+  release:
+    name: "Split and Release Components"
+    runs-on: ubuntu-latest
+    env:
+      LD_LIBRARY_PATH: /usr/local/lib
+      RELEASE_TAG: ${{ inputs.tag }}
+    steps:
+      - name: Clone libgit2
+        uses: actions/checkout@master
+        with:
+          repository: libgit2/libgit2
+          ref: v1.5.1
+          path: libgit2
+      - name: Install libgit2
+        run: |
+          mkdir libgit2/build && cd libgit2/build
+          cmake .. -DCMAKE_INSTALL_PREFIX=/usr/local
+          sudo cmake --build . --target install
+      - name: Clone splitsh/lite
+        uses: actions/checkout@master
+        with:
+          repository: splitsh/lite
+          ref: v2.0.0
+          path: lite
+      - name: Build splitsh-lite
+        run: |
+          cd lite
+          go build -o splitsh-lite github.com/splitsh/lite
+          mv splitsh-lite /usr/local/bin/splitsh-lite
+      - name: Checkout google/cloud
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          ini-values: memory_limit=2048M
+      - name: Install Dependencies
+        uses: nick-fields/retry@v4
+        with:
+          timeout_minutes: 10
+          max_attempts: 3
+          command: composer update -d dev
+      - id: getTag
+        name: Get Tag
+        run: echo "tag=${GITHUB_REF#refs/*/}" >> $GITHUB_OUTPUT
+      - name: Run Subtree Split and Release
         env:
-          LD_LIBRARY_PATH: /usr/local/lib
-          RELEASE_TAG: ${{ inputs.tag }}
-        steps:
-        - name: Clone libgit2
-          uses: actions/checkout@master
-          with:
-            repository: libgit2/libgit2
-            ref: v1.5.1
-            path: libgit2
-        - name: Install libgit2
-          run: |
-            mkdir libgit2/build && cd libgit2/build
-            cmake .. -DCMAKE_INSTALL_PREFIX=/usr/local
-            sudo cmake --build . --target install
-        - name: Clone splitsh/lite
-          uses: actions/checkout@master
-          with:
-            repository: splitsh/lite
-            ref: v2.0.0
-            path: lite
-        - name: Build splitsh-lite
-          run: |
-            cd lite
-            go build -o splitsh-lite github.com/splitsh/lite
-            mv splitsh-lite /usr/local/bin/splitsh-lite
-        - name: Checkout google/cloud
-          uses: actions/checkout@v7
-          with:
-            persist-credentials: false
-            fetch-depth: 0
-        - name: Setup PHP
-          uses: shivammathur/setup-php@v2
-          with:
-            php-version: '8.2'
-            ini-values: memory_limit=2048M
-        - name: Install Dependencies
-          uses: nick-fields/retry@v4
-          with:
-            timeout_minutes: 10
-            max_attempts: 3
-            command: composer update -d dev
-        - id: getTag
-          name: Get Tag
-          run: echo "tag=${GITHUB_REF#refs/*/}" >> $GITHUB_OUTPUT
-        - name: Run Subtree Split and Release
-          env:
-            RELEASE_TAG: ${{ inputs.tag != '' && inputs.tag || steps.getTag.outputs.tag }}
-          run: |
-            ./dev/google-cloud split $GITHUB_REPOSITORY $RELEASE_TAG \
-              --splitsh=/usr/local/bin/splitsh-lite \
-              -t ${{ secrets.SPLIT_TOKEN }} \
-              --packagist-username=${{ vars.PACKAGIST_USERNAME }} \
-              --packagist-token=${{ secrets.PACKAGIST_TOKEN }} \
-              --packagist-safe-token=${{ secrets.PACKAGIST_SAFE_TOKEN }}
-        - name: Verify all releases made it to Packagist
-          uses: nick-fields/retry@v4
-          with:
-            command: |
-              ./dev/google-cloud release:verify
-            timeout_minutes: 1
-            max_attempts: 3
-            retry_wait_seconds: 30
+          RELEASE_TAG: ${{ inputs.tag != '' && inputs.tag || steps.getTag.outputs.tag }}
+        run: |
+          ./dev/google-cloud split $GITHUB_REPOSITORY $RELEASE_TAG \
+            --splitsh=/usr/local/bin/splitsh-lite \
+            -t ${{ secrets.SPLIT_TOKEN }} \
+            --packagist-username=${{ vars.PACKAGIST_USERNAME }} \
+            --packagist-token=${{ secrets.PACKAGIST_TOKEN }} \
+            --packagist-safe-token=${{ secrets.PACKAGIST_SAFE_TOKEN }}
+      - name: Verify all releases made it to Packagist
+        uses: nick-fields/retry@v4
+        with:
+          command: |
+            ./dev/google-cloud release:verify
+          timeout_minutes: 1
+          max_attempts: 3
+          retry_wait_seconds: 30
