@@ -1,8 +1,5 @@
 name: Release Components
 on:
-  # push:
-  #     tags:
-  #         - "*"
   workflow_dispatch:
     inputs:
       tag:
