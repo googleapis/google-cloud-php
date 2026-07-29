@@ -7,60 +7,59 @@ on:
 permissions:
   contents: read
 jobs:
-  gapic-showcase:
-    name: GAPIC Showcase Conformance Tests
-    runs-on: ubuntu-latest
-    env:
-      GAPIC_SHOWCASE_VERSION: 0.42.0
-      OS: linux
-      ARCH: amd64
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v7
+    gapic-showcase:
+        name: GAPIC Showcase Conformance Tests
+        runs-on: ubuntu-latest
+        env:
+            GAPIC_SHOWCASE_VERSION: 0.42.0
+            OS: linux
+            ARCH: amd64
+        steps:
+        - name: Checkout code
+          uses: actions/checkout@v7
 
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.2'
+        - name: Setup PHP
+          uses: shivammathur/setup-php@v2
+          with:
+              php-version: '8.2'
 
-      - name: Get PHP Extension Directory
-        id: php-info
-        run: |
-          echo "ext_dir=$(php-config --extension-dir)" >> $GITHUB_OUTPUT
-          ini_dir=$(php --ini | grep "Scan this dir" | cut -d: -f2 | xargs)
-          if [ -z "$ini_dir" ]; then ini_dir="/etc/php/8.2/cli/conf.d"; fi
-          echo "ini_dir=$ini_dir" >> $GITHUB_OUTPUT
+        - name: Get PHP Extension Directory
+          id: php-info
+          run: |
+              echo "ext_dir=$(php-config --extension-dir)" >> $GITHUB_OUTPUT
+              ini_dir=$(php --ini | grep "Scan this dir" | cut -d: -f2 | xargs)
+              if [ -z "$ini_dir" ]; then ini_dir="/etc/php/8.2/cli/conf.d"; fi
+              echo "ini_dir=$ini_dir" >> $GITHUB_OUTPUT
 
-      - name: Cache gRPC Extension
-        id: cache-grpc
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/grpc.so
-          key: grpc-1.83.0-php8.2-v3
+        - name: Cache gRPC Extension
+          id: cache-grpc
+          uses: actions/cache@v4
+          with:
+              path: ~/.cache/grpc.so
+              key: grpc-1.83.0-php8.2-v3
 
-      - name: Install gRPC Extension
-        if: steps.cache-grpc.outputs.cache-hit != 'true'
-        run: |
-          sudo MAKEFLAGS="-j$(nproc)" pecl install grpc-1.83.0
-          mkdir -p ~/.cache
-          cp ${{ steps.php-info.outputs.ext_dir }}/grpc.so ~/.cache/grpc.so
+        - name: Install gRPC Extension
+          if: steps.cache-grpc.outputs.cache-hit != 'true'
+          run: |
+              sudo MAKEFLAGS="-j$(nproc)" pecl install grpc-1.83.0
+              mkdir -p ~/.cache
+              cp ${{ steps.php-info.outputs.ext_dir }}/grpc.so ~/.cache/grpc.so
 
-      - name: Enable gRPC Extension
-        run: |
-          sudo cp ~/.cache/grpc.so ${{ steps.php-info.outputs.ext_dir }}/grpc.so
-          echo "extension=grpc.so" | sudo tee ${{ steps.php-info.outputs.ini_dir }}/20-grpc.ini
-          php -m | grep grpc
+        - name: Enable gRPC Extension
+          run: |
+              sudo cp ~/.cache/grpc.so ${{ steps.php-info.outputs.ext_dir }}/grpc.so
+              echo "extension=grpc.so" | sudo tee ${{ steps.php-info.outputs.ini_dir }}/20-grpc.ini
+              php -m | grep grpc
 
-      - name: Install and run GAPIC Showcase
-        run: |
-          curl -L https://github.com/googleapis/gapic-showcase/releases/download/v${GAPIC_SHOWCASE_VERSION}/gapic-showcase-${GAPIC_SHOWCASE_VERSION}-${OS}-${ARCH}.tar.gz | tar -zx
-          ./gapic-showcase run --port :7469 --tls --ca-cert-output-file Gax/tests/Conformance/showcase.pem &
-          sleep 2
+        - name: Install and run GAPIC Showcase
+          run: |
+              curl -L https://github.com/googleapis/gapic-showcase/releases/download/v${GAPIC_SHOWCASE_VERSION}/gapic-showcase-${GAPIC_SHOWCASE_VERSION}-${OS}-${ARCH}.tar.gz | tar -zx
+              ./gapic-showcase run --port :7469 --tls --ca-cert-output-file Gax/tests/Conformance/showcase.pem &
+              sleep 2
 
-      - name: Install dependencies
-        run: |
-          composer update --prefer-dist --no-interaction --no-suggest -d Gax/
+        - name: Install dependencies
+          run: |
+              composer update --prefer-dist --no-interaction --no-suggest -d Gax/
 
-      - name: Run PHPUnit
-        run: Gax/vendor/bin/phpunit -c Gax/phpunit-conformance.xml.dist
-
+        - name: Run PHPUnit
+          run: Gax/vendor/bin/phpunit -c Gax/phpunit-conformance.xml.dist
