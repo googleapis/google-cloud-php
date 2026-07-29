@@ -18,11 +18,26 @@ jobs:
         - name: Checkout code
           uses: actions/checkout@v7
 
+        - name: Setup cache environment
+          id: extcache
+          uses: shivammathur/cache-extensions@v1
+          with:
+            php-version: '8.2'
+            extensions: grpc
+            key: cache-key-1 # increment to bust the cache
+
+        - name: Cache extensions
+          uses: actions/cache@v4
+          with:
+            path: ${{ steps.extcache.outputs.dir }}
+            key: ${{ steps.extcache.outputs.key }}
+            restore-keys: ${{ steps.extcache.outputs.key }}
+
         - name: Setup PHP
           uses: shivammathur/setup-php@v2
           with:
             php-version: '8.2'
-            extensions: grpc-1.83.0
+            extensions: grpc
 
         - name: Install and run GAPIC Showcase
           run: |
