@@ -464,7 +464,7 @@ class Transaction implements TransactionalReadInterface
                 'requestOptions' => $this->requestOptions,
                 'transactionOptions' => $this->transactionOptions,
                 'singleUse' => $this->transactionSelector['singleUse'] ?? null,
-                'tag' => $this->tag ?? null,
+                'tag' => $this->tag,
             ]);
             if (!empty($mutations)) {
                 // Set the mutation key if we have mutations but do not have a precommit token
