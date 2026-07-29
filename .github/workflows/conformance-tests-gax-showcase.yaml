@@ -42,6 +42,7 @@ jobs:
           if: steps.cache-grpc.outputs.cache-hit != 'true'
           run: |
             sudo MAKEFLAGS="-j$(nproc)" pecl install grpc-1.83.0
+            echo "extension=grpc.so" | sudo tee ${{ steps.php-info.outputs.ini_dir }}/20-grpc.ini
 
         - name: Install and run GAPIC Showcase
           run: |
