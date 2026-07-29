@@ -35,16 +35,19 @@ jobs:
         id: cache-grpc
         uses: actions/cache@v4
         with:
-          path: ${{ steps.php-info.outputs.ext_dir }}/grpc.so
-          key: grpc-1.83.0-php8.2-v2
+          path: ~/.cache/grpc.so
+          key: grpc-1.83.0-php8.2-v3
 
       - name: Install gRPC Extension
         if: steps.cache-grpc.outputs.cache-hit != 'true'
         run: |
           sudo MAKEFLAGS="-j$(nproc)" pecl install grpc-1.83.0
+          mkdir -p ~/.cache
+          cp ${{ steps.php-info.outputs.ext_dir }}/grpc.so ~/.cache/grpc.so
 
       - name: Enable gRPC Extension
         run: |
+          sudo cp ~/.cache/grpc.so ${{ steps.php-info.outputs.ext_dir }}/grpc.so
           echo "extension=grpc.so" | sudo tee ${{ steps.php-info.outputs.ini_dir }}/20-grpc.ini
           php -m | grep grpc
 
