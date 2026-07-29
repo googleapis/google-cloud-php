@@ -26,27 +26,32 @@ on:
       - '.github/workflows/conformance-tests-bigtable-proxy.yaml'
   workflow_dispatch:
 name: Run Bigtable Conformance Tests With Proxy
+permissions:
+  contents: read
 jobs:
   conformance:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
 
       - name: Setup PHP
-        uses: shivammathur/setup-php@v2
+        uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # v2
         with:
           php-version: '8.1'
           extensions: grpc
 
       - name: Checkout Bigtable conformance tests
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           repository: googleapis/cloud-bigtable-clients-test
           ref: v0.0.3
           path: cloud-bigtable-clients-test
+          persist-credentials: false
 
-      - uses: actions/setup-go@v7
+      - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7
         with:
           go-version: '>=1.20.2'
 
