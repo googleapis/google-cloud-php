@@ -41,25 +41,25 @@ jobs:
         - name: Install gRPC Extension
           if: steps.cache-grpc.outputs.cache-hit != 'true'
           run: |
-              sudo MAKEFLAGS="-j$(nproc)" pecl install grpc-1.83.0
-              mkdir -p ~/.cache
-              cp ${{ steps.php-info.outputs.ext_dir }}/grpc.so ~/.cache/grpc.so
+            sudo MAKEFLAGS="-j$(nproc)" pecl install grpc-1.83.0
+            mkdir -p ~/.cache
+            cp ${{ steps.php-info.outputs.ext_dir }}/grpc.so ~/.cache/grpc.so
 
         - name: Enable gRPC Extension
           run: |
-              sudo cp ~/.cache/grpc.so ${{ steps.php-info.outputs.ext_dir }}/grpc.so
-              echo "extension=grpc.so" | sudo tee ${{ steps.php-info.outputs.ini_dir }}/20-grpc.ini
-              php -m | grep grpc
+            sudo cp ~/.cache/grpc.so ${{ steps.php-info.outputs.ext_dir }}/grpc.so
+            echo "extension=grpc.so" | sudo tee ${{ steps.php-info.outputs.ini_dir }}/20-grpc.ini
+            php -m | grep grpc
 
         - name: Install and run GAPIC Showcase
           run: |
-              curl -L https://github.com/googleapis/gapic-showcase/releases/download/v${GAPIC_SHOWCASE_VERSION}/gapic-showcase-${GAPIC_SHOWCASE_VERSION}-${OS}-${ARCH}.tar.gz | tar -zx
-              ./gapic-showcase run --port :7469 --tls --ca-cert-output-file Gax/tests/Conformance/showcase.pem &
-              sleep 2
+            curl -L https://github.com/googleapis/gapic-showcase/releases/download/v${GAPIC_SHOWCASE_VERSION}/gapic-showcase-${GAPIC_SHOWCASE_VERSION}-${OS}-${ARCH}.tar.gz | tar -zx
+            ./gapic-showcase run --port :7469 --tls --ca-cert-output-file Gax/tests/Conformance/showcase.pem &
+            sleep 2
 
         - name: Install dependencies
           run: |
-              composer update --prefer-dist --no-interaction --no-suggest -d Gax/
+            composer update --prefer-dist --no-interaction --no-suggest -d Gax/
 
         - name: Run PHPUnit
           run: Gax/vendor/bin/phpunit -c Gax/phpunit-conformance.xml.dist
