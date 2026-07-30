@@ -80,6 +80,7 @@ use Google\Apps\Chat\V1\MoveSectionItemResponse;
 use Google\Apps\Chat\V1\PositionSectionRequest;
 use Google\Apps\Chat\V1\PositionSectionResponse;
 use Google\Apps\Chat\V1\Reaction;
+use Google\Apps\Chat\V1\SearchMessagesRequest;
 use Google\Apps\Chat\V1\SearchSpacesRequest;
 use Google\Apps\Chat\V1\Section;
 use Google\Apps\Chat\V1\SetUpSpaceRequest;
@@ -151,6 +152,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<Availability> markAsDoNotDisturbAsync(MarkAsDoNotDisturbRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<MoveSectionItemResponse> moveSectionItemAsync(MoveSectionItemRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PositionSectionResponse> positionSectionAsync(PositionSectionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> searchMessagesAsync(SearchMessagesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> searchSpacesAsync(SearchSpacesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Space> setUpSpaceAsync(SetUpSpaceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Availability> updateAvailabilityAsync(UpdateAvailabilityRequest $request, array $optionalArgs = [])
@@ -2395,6 +2397,58 @@ final class ChatServiceClient
     public function positionSection(PositionSectionRequest $request, array $callOptions = []): PositionSectionResponse
     {
         return $this->startApiCall('PositionSection', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Searches for messages in Google Chat that the calling user has access to.
+     * Returns a list of messages matching the search criteria.
+     *
+     * To search across all spaces the user has access to, set `parent` to
+     * `spaces/-`. Using any other value for `parent` results in an
+     * `INVALID_ARGUMENT` error. The returned messages have their `name` field
+     * populated with the full resource name, which includes the specific `space`
+     * in which the message resides.
+     *
+     * This API doesn't return all message types. The types of messages listed
+     * below aren't included in the response. Use
+     * [ListMessages][google.chat.v1.ChatService.ListMessages] to list all
+     * messages.
+     *
+     * - Private Messages that are visible to the authenticated user.
+     * - Messages posted by Chat apps in spaces or group chats.
+     * - Messages in a Chat app DM.
+     * - Messages from blocked users.
+     * - Messages in spaces that the caller has muted.
+     *
+     * Requires [user
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+     * with one of the following [authorization
+     * scopes](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes):
+     *
+     * - `https://www.googleapis.com/auth/chat.messages.readonly`
+     * - `https://www.googleapis.com/auth/chat.messages`
+     *
+     * The async variant is {@see ChatServiceClient::searchMessagesAsync()} .
+     *
+     * @example samples/V1/ChatServiceClient/search_messages.php
+     *
+     * @param SearchMessagesRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function searchMessages(SearchMessagesRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('SearchMessages', $request, $callOptions);
     }
 
     /**
