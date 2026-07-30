@@ -31,8 +31,7 @@ class SearchTargetPolicyBindingsRequest extends \Google\Protobuf\Internal\Messag
     /**
      * Optional. The maximum number of policy bindings to return. The service may
      * return fewer than this value.
-     * If unspecified, at most 50 policy bindings will be returned.
-     * The maximum value is 1000; values above 1000 will be coerced to 1000.
+     * The default value is 50. The maximum value is 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -61,6 +60,18 @@ class SearchTargetPolicyBindingsRequest extends \Google\Protobuf\Internal\Messag
      * Generated from protobuf field <code>string parent = 5 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $parent = '';
+    /**
+     * Optional. Filtering currently only supports the kind of policies to return,
+     * and must be in the format "policy_kind={policy_kind}".
+     * If String is empty, bindings bound to all kinds of policies would be
+     * returned.
+     * The only supported values are the following:
+     * * "policy_kind=PRINCIPAL_ACCESS_BOUNDARY",
+     * * "policy_kind=ACCESS"
+     *
+     * Generated from protobuf field <code>string filter = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $filter = '';
 
     /**
      * @param string $parent Required. The parent resource where this search will be performed. This
@@ -114,8 +125,7 @@ class SearchTargetPolicyBindingsRequest extends \Google\Protobuf\Internal\Messag
      *     @type int $page_size
      *           Optional. The maximum number of policy bindings to return. The service may
      *           return fewer than this value.
-     *           If unspecified, at most 50 policy bindings will be returned.
-     *           The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *           The default value is 50. The maximum value is 1000.
      *     @type string $page_token
      *           Optional. A page token, received from a previous
      *           `SearchTargetPolicyBindingsRequest` call. Provide this to retrieve the
@@ -132,6 +142,14 @@ class SearchTargetPolicyBindingsRequest extends \Google\Protobuf\Internal\Messag
      *           * `projects/{project_number}/locations/{location}`
      *           * `folders/{folder_id}/locations/{location}`
      *           * `organizations/{organization_id}/locations/{location}`
+     *     @type string $filter
+     *           Optional. Filtering currently only supports the kind of policies to return,
+     *           and must be in the format "policy_kind={policy_kind}".
+     *           If String is empty, bindings bound to all kinds of policies would be
+     *           returned.
+     *           The only supported values are the following:
+     *           * "policy_kind=PRINCIPAL_ACCESS_BOUNDARY",
+     *           * "policy_kind=ACCESS"
      * }
      */
     public function __construct($data = NULL) {
@@ -182,8 +200,7 @@ class SearchTargetPolicyBindingsRequest extends \Google\Protobuf\Internal\Messag
     /**
      * Optional. The maximum number of policy bindings to return. The service may
      * return fewer than this value.
-     * If unspecified, at most 50 policy bindings will be returned.
-     * The maximum value is 1000; values above 1000 will be coerced to 1000.
+     * The default value is 50. The maximum value is 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -196,8 +213,7 @@ class SearchTargetPolicyBindingsRequest extends \Google\Protobuf\Internal\Messag
     /**
      * Optional. The maximum number of policy bindings to return. The service may
      * return fewer than this value.
-     * If unspecified, at most 50 policy bindings will be returned.
-     * The maximum value is 1000; values above 1000 will be coerced to 1000.
+     * The default value is 50. The maximum value is 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -283,6 +299,44 @@ class SearchTargetPolicyBindingsRequest extends \Google\Protobuf\Internal\Messag
     {
         GPBUtil::checkString($var, True);
         $this->parent = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Filtering currently only supports the kind of policies to return,
+     * and must be in the format "policy_kind={policy_kind}".
+     * If String is empty, bindings bound to all kinds of policies would be
+     * returned.
+     * The only supported values are the following:
+     * * "policy_kind=PRINCIPAL_ACCESS_BOUNDARY",
+     * * "policy_kind=ACCESS"
+     *
+     * Generated from protobuf field <code>string filter = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getFilter()
+    {
+        return $this->filter;
+    }
+
+    /**
+     * Optional. Filtering currently only supports the kind of policies to return,
+     * and must be in the format "policy_kind={policy_kind}".
+     * If String is empty, bindings bound to all kinds of policies would be
+     * returned.
+     * The only supported values are the following:
+     * * "policy_kind=PRINCIPAL_ACCESS_BOUNDARY",
+     * * "policy_kind=ACCESS"
+     *
+     * Generated from protobuf field <code>string filter = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setFilter($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->filter = $var;
 
         return $this;
     }

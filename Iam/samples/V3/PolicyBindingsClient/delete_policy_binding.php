@@ -32,7 +32,7 @@ use Google\Rpc\Status;
 /**
  * Deletes a policy binding and returns a long-running operation.
  * Callers will need the IAM permissions on both the policy and target.
- * Once the binding is deleted, the policy no longer applies to the target.
+ * After the binding is deleted, the policy no longer applies to the target.
  *
  * @param string $formattedName The name of the policy binding to delete.
  *

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,46 +22,42 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START iam_v3_generated_PolicyBindings_UpdatePolicyBinding_sync]
+// [START iam_v3_generated_AccessPolicies_DeleteAccessPolicy_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\Iam\V3\Client\PolicyBindingsClient;
-use Google\Cloud\Iam\V3\PolicyBinding;
-use Google\Cloud\Iam\V3\PolicyBinding\Target;
-use Google\Cloud\Iam\V3\UpdatePolicyBindingRequest;
+use Google\Cloud\Iam\V3\Client\AccessPoliciesClient;
+use Google\Cloud\Iam\V3\DeleteAccessPolicyRequest;
 use Google\Rpc\Status;
 
 /**
- * Updates a policy binding and returns a long-running operation.
- * Callers will need the IAM permissions on the policy and target in the
- * binding to update. Target and policy are immutable and cannot be updated.
+ * Deletes an access policy.
  *
- * @param string $policyBindingPolicy Immutable. The resource name of the policy to be bound. The
- *                                    binding parent and policy must belong to the same organization.
+ * @param string $formattedName The name of the access policy to delete.
+ *
+ *                              Format:
+ *                              `projects/{project_id}/locations/{location}/accessPolicies/{access_policy_id}`
+ *                              `projects/{project_number}/locations/{location}/accessPolicies/{access_policy_id}`
+ *                              `folders/{folder_id}/locations/{location}/accessPolicies/{access_policy_id}`
+ *                              `organizations/{organization_id}/locations/{location}/accessPolicies/{access_policy_id}`
+ *                              Please see {@see AccessPoliciesClient::accessPolicyName()} for help formatting this field.
  */
-function update_policy_binding_sample(string $policyBindingPolicy): void
+function delete_access_policy_sample(string $formattedName): void
 {
     // Create a client.
-    $policyBindingsClient = new PolicyBindingsClient();
+    $accessPoliciesClient = new AccessPoliciesClient();
 
     // Prepare the request message.
-    $policyBindingTarget = new Target();
-    $policyBinding = (new PolicyBinding())
-        ->setTarget($policyBindingTarget)
-        ->setPolicy($policyBindingPolicy);
-    $request = (new UpdatePolicyBindingRequest())
-        ->setPolicyBinding($policyBinding);
+    $request = (new DeleteAccessPolicyRequest())
+        ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $policyBindingsClient->updatePolicyBinding($request);
+        $response = $accessPoliciesClient->deleteAccessPolicy($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
-            /** @var PolicyBinding $result */
-            $result = $response->getResult();
-            printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
+            printf('Operation completed successfully.' . PHP_EOL);
         } else {
             /** @var Status $error */
             $error = $response->getError();
@@ -83,8 +79,12 @@ function update_policy_binding_sample(string $policyBindingPolicy): void
  */
 function callSample(): void
 {
-    $policyBindingPolicy = '[POLICY]';
+    $formattedName = AccessPoliciesClient::accessPolicyName(
+        '[ORGANIZATION]',
+        '[LOCATION]',
+        '[ACCESS_POLICY]'
+    );
 
-    update_policy_binding_sample($policyBindingPolicy);
+    delete_access_policy_sample($formattedName);
 }
-// [END iam_v3_generated_PolicyBindings_UpdatePolicyBinding_sync]
+// [END iam_v3_generated_AccessPolicies_DeleteAccessPolicy_sync]
