@@ -12,19 +12,22 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ !contains(github.event.pull_request.body, 'BREAKING_CHANGE_REASON=') }}
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           fetch-depth: 0
+          persist-credentials: false
       - name: "Install PHP"
-        uses: shivammathur/setup-php@v2
+        uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # v2
         with:
           php-version: "8.1"
       - name: "Rebase PR branch onto main branch"
         if: github.event.pull_request.user.login != 'release-please[bot]'
+        env:
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
         run: |
           git config user.name "Github Actions"
           git config user.email "actions@github.com"
-          git checkout ${{ github.event.pull_request.head.sha }}
+          git checkout "$HEAD_SHA"
           if ! git rebase origin/main; then
             echo "Failed to rebase PR branch onto main. There may be conflicts. Please resolve conflicts or rebase manually."
             exit 1
@@ -36,15 +39,17 @@ jobs:
         run: |
           ~/.composer/vendor/bin/roave-backward-compatibility-check --from=origin/main --format=github-actions
       - name: "Check for BC label"
+        env:
+          HAS_BC_LABEL: ${{ contains(github.event.pull_request.title, '!:') }}
         run: |
-          if [[ "true" == "${{ contains(github.event.pull_request.title, '!:') }}" ]]; then
+          if [[ "true" == "${HAS_BC_LABEL}" ]]; then
             echo "Breaking change label found in PR title"
             exit 1
           fi
       - name: Get Latest Release
         if: github.event.pull_request.user.login == 'release-please[bot]'
         id: latest-release
-        uses: pozetroninc/github-action-get-latest-release@master
+        uses: pozetroninc/github-action-get-latest-release@5ac6001ed175b443484c81ab32a20e12132be99c # master
         with:
           repository: ${{ github.repository }}
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -54,8 +59,10 @@ jobs:
         continue-on-error: true
         run: |
           ~/.composer/vendor/bin/roave-backward-compatibility-check \
-              --from=${{ steps.latest-release.outputs.release }} \
+              --from=${STEPS_LATEST_RELEASE_OUTPUTS_RELEASE} \
               --to=origin/main --format=github-actions
+        env:
+          STEPS_LATEST_RELEASE_OUTPUTS_RELEASE: ${{ steps.latest-release.outputs.release }}
 
   # Ensure the release PR does not contain an unexpected (e.g. 2.0.0) major version release
   # Add "MAJOR_VERSION_ALLOWED=component1,component2" to the PR description to allow major version
@@ -65,11 +72,12 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.pull_request.user.login == 'release-please[bot]'
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           fetch-depth: 0
+          persist-credentials: false
       - name: Parse allowed major versions
-        uses: actions-ecosystem/action-regex-match@v2
+        uses: actions-ecosystem/action-regex-match@9e6c4fb3d5e898f505be7a1fb6e7b0a278f6665b # v2
         id: allowed-major-versions
         with:
           text: ${{ github.event.pull_request.body }}
@@ -78,7 +86,7 @@ jobs:
       - name: "Check for unexpected major version"
         run: |
           # parse allowed major versions into an array
-          IFS=', ' read -r -a ALLOWED_MAJOR_VERSIONS <<< "${{ steps.allowed-major-versions.outputs.group1 }}"
+          IFS=', ' read -r -a ALLOWED_MAJOR_VERSIONS <<< "${STEPS_ALLOWED_MAJOR_VERSIONS_OUTPUTS_GROUP1}"
           # get all changed components
           COMPONENTS=$(git diff origin/main --name-only | grep VERSION | xargs dirname)
           FAIL=""
@@ -102,10 +110,12 @@ jobs:
             echo "major version releases for those components"
             exit 1
           fi
+        env:
+          STEPS_ALLOWED_MAJOR_VERSIONS_OUTPUTS_GROUP1: ${{ steps.allowed-major-versions.outputs.group1 }}
 
   next-release-label-check:
     name: Check for "next release" label
-    uses: GoogleCloudPlatform/php-tools/.github/workflows/release-checks.yml@main
+    uses: GoogleCloudPlatform/php-tools/.github/workflows/release-checks.yml@8d707553d2c90c3b614941950814dcc10c19ce47 # main
     if: github.event.pull_request.user.login == 'release-please[bot]'
     with:
       next-release-label-check: true
@@ -116,11 +126,12 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.pull_request.user.login == 'release-please[bot]'
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           fetch-depth: 0
+          persist-credentials: false
       - name: "Install PHP"
-        uses: shivammathur/setup-php@v2
+        uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # v2
         with:
           php-version: "8.2"
       - name: "Install dependencies"
