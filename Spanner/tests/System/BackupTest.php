@@ -19,6 +19,8 @@ namespace Google\Cloud\Spanner\Tests\System;
 
 use Google\Cloud\Core\Exception\BadRequestException;
 use Google\Cloud\Core\Exception\ConflictException;
+use Google\Cloud\Core\Exception\FailedPreconditionException;
+use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\Testing\System\SystemTestCase;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
@@ -78,6 +80,8 @@ class BackupTest extends SystemTestCase
             self::$deletionQueue->add(function () {
                 self::getDatabaseInstance(self::$dbName1)->drop();
             });
+        } else {
+            self::cleanUpPendingBackups(self::$dbName1);
         }
 
         if (!self::$dbName2 = getenv('GOOGLE_CLOUD_SPANNER_TEST_BACKUP_DATABASE_2')) {
@@ -85,6 +89,8 @@ class BackupTest extends SystemTestCase
             self::$deletionQueue->add(function () {
                 self::getDatabaseInstance(self::$dbName2)->drop();
             });
+        } else {
+            self::cleanUpPendingBackups(self::$dbName2);
         }
 
         $db1 = self::getDatabaseInstance(self::$dbName1);
@@ -179,6 +185,9 @@ class BackupTest extends SystemTestCase
         $this->assertNotNull($metadata);
     }
 
+    /**
+     * @depends testCreateBackup
+     */
     public function testCreateBackupRequestFailed()
     {
         $backupId = uniqid(self::BACKUP_PREFIX);
@@ -209,6 +218,9 @@ class BackupTest extends SystemTestCase
         $this->assertFalse($backup->exists());
     }
 
+    /**
+     * @depends testCreateBackup
+     */
     public function testCreateBackupInvalidArgument()
     {
         $backupId = uniqid(self::BACKUP_PREFIX);
@@ -733,5 +745,27 @@ class BackupTest extends SystemTestCase
         }
         
         return $op;
+    }
+
+    private static function cleanUpPendingBackups($dbName)
+    {
+        $dbFullName = self::getDatabaseInstance($dbName)->name();
+        try {
+            foreach (self::$instance->backupOperations() as $op) {
+                if (!$op->done()) {
+                    $metadata = $op->info()['metadata'] ?? [];
+                    if (isset($metadata['database']) && $metadata['database'] === $dbFullName) {
+                        try {
+                            $op->cancel();
+                            $op->pollUntilComplete(['maxPollingDurationSeconds' => 120]);
+                        } catch (\Exception $e) {
+                            // Ignore exceptions from cancelled operations
+                        }
+                    }
+                }
+            }
+        } catch (\Exception $e) {
+            // Ignore errors
+        }
     }
 }
