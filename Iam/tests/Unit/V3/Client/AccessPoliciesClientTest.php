@@ -20,24 +20,28 @@
  * This file was automatically generated - do not edit!
  */
 
-namespace Google\Cloud\Iam\Tests\Unit\V2\Client;
+namespace Google\Cloud\Iam\Tests\Unit\V3\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-use Google\Cloud\Iam\V2\Client\PoliciesClient;
-use Google\Cloud\Iam\V2\CreatePolicyRequest;
-use Google\Cloud\Iam\V2\DeletePolicyRequest;
-use Google\Cloud\Iam\V2\GetPolicyRequest;
-use Google\Cloud\Iam\V2\ListPoliciesRequest;
-use Google\Cloud\Iam\V2\ListPoliciesResponse;
-use Google\Cloud\Iam\V2\Policy;
-use Google\Cloud\Iam\V2\UpdatePolicyRequest;
+use Google\Cloud\Iam\V3\AccessPolicy;
+use Google\Cloud\Iam\V3\Client\AccessPoliciesClient;
+use Google\Cloud\Iam\V3\CreateAccessPolicyRequest;
+use Google\Cloud\Iam\V3\DeleteAccessPolicyRequest;
+use Google\Cloud\Iam\V3\GetAccessPolicyRequest;
+use Google\Cloud\Iam\V3\ListAccessPoliciesRequest;
+use Google\Cloud\Iam\V3\ListAccessPoliciesResponse;
+use Google\Cloud\Iam\V3\PolicyBinding;
+use Google\Cloud\Iam\V3\SearchAccessPolicyBindingsRequest;
+use Google\Cloud\Iam\V3\SearchAccessPolicyBindingsResponse;
+use Google\Cloud\Iam\V3\UpdateAccessPolicyRequest;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
+use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -46,7 +50,7 @@ use stdClass;
  *
  * @group gapic
  */
-class PoliciesClientTest extends GeneratedTest
+class AccessPoliciesClientTest extends GeneratedTest
 {
     /** @return TransportInterface */
     private function createTransport($deserialize = null)
@@ -57,20 +61,22 @@ class PoliciesClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
-    /** @return PoliciesClient */
+    /** @return AccessPoliciesClient */
     private function createClient(array $options = [])
     {
         $options += [
             'credentials' => $this->createCredentials(),
         ];
-        return new PoliciesClient($options);
+        return new AccessPoliciesClient($options);
     }
 
     /** @test */
-    public function createPolicyTest()
+    public function createAccessPolicyTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
@@ -87,36 +93,34 @@ class PoliciesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
         $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/createPolicyTest');
+        $incompleteOperation->setName('operations/createAccessPolicyTest');
         $incompleteOperation->setDone(false);
         $transport->addResponse($incompleteOperation);
         $name = 'name3373707';
         $uid = 'uid115792';
-        $kind = 'kind3292052';
-        $displayName = 'displayName1615086568';
         $etag = 'etag3123477';
-        $managingAuthority = 'managingAuthority617792550';
-        $expectedResponse = new Policy();
+        $displayName = 'displayName1615086568';
+        $expectedResponse = new AccessPolicy();
         $expectedResponse->setName($name);
         $expectedResponse->setUid($uid);
-        $expectedResponse->setKind($kind);
-        $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setEtag($etag);
-        $expectedResponse->setManagingAuthority($managingAuthority);
+        $expectedResponse->setDisplayName($displayName);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
-        $completeOperation->setName('operations/createPolicyTest');
+        $completeOperation->setName('operations/createAccessPolicyTest');
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $parent = 'parent-995424086';
-        $policy = new Policy();
-        $request = (new CreatePolicyRequest())
-            ->setParent($parent)
-            ->setPolicy($policy);
-        $response = $gapicClient->createPolicy($request);
+        $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
+        $accessPolicyId = 'accessPolicyId-1678988755';
+        $accessPolicy = new AccessPolicy();
+        $request = (new CreateAccessPolicyRequest())
+            ->setParent($formattedParent)
+            ->setAccessPolicyId($accessPolicyId)
+            ->setAccessPolicy($accessPolicy);
+        $response = $gapicClient->createAccessPolicy($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -125,13 +129,15 @@ class PoliciesClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.iam.v2.Policies/CreatePolicy', $actualApiFuncCall);
+        $this->assertSame('/google.iam.v3.AccessPolicies/CreateAccessPolicy', $actualApiFuncCall);
         $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($parent, $actualValue);
-        $actualValue = $actualApiRequestObject->getPolicy();
-        $this->assertProtobufEquals($policy, $actualValue);
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getAccessPolicyId();
+        $this->assertProtobufEquals($accessPolicyId, $actualValue);
+        $actualValue = $actualApiRequestObject->getAccessPolicy();
+        $this->assertProtobufEquals($accessPolicy, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
-        $expectedOperationsRequestObject->setName('operations/createPolicyTest');
+        $expectedOperationsRequestObject->setName('operations/createAccessPolicyTest');
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -150,7 +156,7 @@ class PoliciesClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function createPolicyExceptionTest()
+    public function createAccessPolicyExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
@@ -167,30 +173,35 @@ class PoliciesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
         $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/createPolicyTest');
+        $incompleteOperation->setName('operations/createAccessPolicyTest');
         $incompleteOperation->setDone(false);
         $transport->addResponse($incompleteOperation);
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $parent = 'parent-995424086';
-        $policy = new Policy();
-        $request = (new CreatePolicyRequest())
-            ->setParent($parent)
-            ->setPolicy($policy);
-        $response = $gapicClient->createPolicy($request);
+        $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
+        $accessPolicyId = 'accessPolicyId-1678988755';
+        $accessPolicy = new AccessPolicy();
+        $request = (new CreateAccessPolicyRequest())
+            ->setParent($formattedParent)
+            ->setAccessPolicyId($accessPolicyId)
+            ->setAccessPolicy($accessPolicy);
+        $response = $gapicClient->createAccessPolicy($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
-        $expectedOperationsRequestObject->setName('operations/createPolicyTest');
+        $expectedOperationsRequestObject->setName('operations/createAccessPolicyTest');
         try {
             $response->pollUntilComplete([
                 'initialPollDelayMillis' => 1,
@@ -209,7 +220,7 @@ class PoliciesClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function deletePolicyTest()
+    public function deleteAccessPolicyTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
@@ -226,34 +237,21 @@ class PoliciesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
         $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/deletePolicyTest');
+        $incompleteOperation->setName('operations/deleteAccessPolicyTest');
         $incompleteOperation->setDone(false);
         $transport->addResponse($incompleteOperation);
-        $name2 = 'name2-1052831874';
-        $uid = 'uid115792';
-        $kind = 'kind3292052';
-        $displayName = 'displayName1615086568';
-        $etag2 = 'etag2-1293302904';
-        $managingAuthority = 'managingAuthority617792550';
-        $expectedResponse = new Policy();
-        $expectedResponse->setName($name2);
-        $expectedResponse->setUid($uid);
-        $expectedResponse->setKind($kind);
-        $expectedResponse->setDisplayName($displayName);
-        $expectedResponse->setEtag($etag2);
-        $expectedResponse->setManagingAuthority($managingAuthority);
+        $expectedResponse = new GPBEmpty();
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
-        $completeOperation->setName('operations/deletePolicyTest');
+        $completeOperation->setName('operations/deleteAccessPolicyTest');
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $name = 'name3373707';
-        $request = (new DeletePolicyRequest())
-            ->setName($name);
-        $response = $gapicClient->deletePolicy($request);
+        $formattedName = $gapicClient->accessPolicyName('[ORGANIZATION]', '[LOCATION]', '[ACCESS_POLICY]');
+        $request = (new DeleteAccessPolicyRequest())->setName($formattedName);
+        $response = $gapicClient->deleteAccessPolicy($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -262,11 +260,11 @@ class PoliciesClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.iam.v2.Policies/DeletePolicy', $actualApiFuncCall);
+        $this->assertSame('/google.iam.v3.AccessPolicies/DeleteAccessPolicy', $actualApiFuncCall);
         $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
-        $expectedOperationsRequestObject->setName('operations/deletePolicyTest');
+        $expectedOperationsRequestObject->setName('operations/deleteAccessPolicyTest');
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -285,7 +283,7 @@ class PoliciesClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function deletePolicyExceptionTest()
+    public function deleteAccessPolicyExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
@@ -302,28 +300,30 @@ class PoliciesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
         $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/deletePolicyTest');
+        $incompleteOperation->setName('operations/deleteAccessPolicyTest');
         $incompleteOperation->setDone(false);
         $transport->addResponse($incompleteOperation);
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $name = 'name3373707';
-        $request = (new DeletePolicyRequest())
-            ->setName($name);
-        $response = $gapicClient->deletePolicy($request);
+        $formattedName = $gapicClient->accessPolicyName('[ORGANIZATION]', '[LOCATION]', '[ACCESS_POLICY]');
+        $request = (new DeleteAccessPolicyRequest())->setName($formattedName);
+        $response = $gapicClient->deleteAccessPolicy($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
-        $expectedOperationsRequestObject->setName('operations/deletePolicyTest');
+        $expectedOperationsRequestObject->setName('operations/deleteAccessPolicyTest');
         try {
             $response->pollUntilComplete([
                 'initialPollDelayMillis' => 1,
@@ -342,7 +342,7 @@ class PoliciesClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function getPolicyTest()
+    public function getAccessPolicyTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -352,36 +352,31 @@ class PoliciesClientTest extends GeneratedTest
         // Mock response
         $name2 = 'name2-1052831874';
         $uid = 'uid115792';
-        $kind = 'kind3292052';
-        $displayName = 'displayName1615086568';
         $etag = 'etag3123477';
-        $managingAuthority = 'managingAuthority617792550';
-        $expectedResponse = new Policy();
+        $displayName = 'displayName1615086568';
+        $expectedResponse = new AccessPolicy();
         $expectedResponse->setName($name2);
         $expectedResponse->setUid($uid);
-        $expectedResponse->setKind($kind);
-        $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setEtag($etag);
-        $expectedResponse->setManagingAuthority($managingAuthority);
+        $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $name = 'name3373707';
-        $request = (new GetPolicyRequest())
-            ->setName($name);
-        $response = $gapicClient->getPolicy($request);
+        $formattedName = $gapicClient->accessPolicyName('[ORGANIZATION]', '[LOCATION]', '[ACCESS_POLICY]');
+        $request = (new GetAccessPolicyRequest())->setName($formattedName);
+        $response = $gapicClient->getAccessPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.iam.v2.Policies/GetPolicy', $actualFuncCall);
+        $this->assertSame('/google.iam.v3.AccessPolicies/GetAccessPolicy', $actualFuncCall);
         $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
+        $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
-    public function getPolicyExceptionTest()
+    public function getAccessPolicyExceptionTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -391,19 +386,21 @@ class PoliciesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $name = 'name3373707';
-        $request = (new GetPolicyRequest())
-            ->setName($name);
+        $formattedName = $gapicClient->accessPolicyName('[ORGANIZATION]', '[LOCATION]', '[ACCESS_POLICY]');
+        $request = (new GetAccessPolicyRequest())->setName($formattedName);
         try {
-            $gapicClient->getPolicy($request);
+            $gapicClient->getAccessPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -416,7 +413,7 @@ class PoliciesClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function listPoliciesTest()
+    public function listAccessPoliciesTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -425,35 +422,32 @@ class PoliciesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $nextPageToken = '';
-        $policiesElement = new Policy();
-        $policies = [
-            $policiesElement,
-        ];
-        $expectedResponse = new ListPoliciesResponse();
+        $accessPoliciesElement = new AccessPolicy();
+        $accessPolicies = [$accessPoliciesElement];
+        $expectedResponse = new ListAccessPoliciesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
-        $expectedResponse->setPolicies($policies);
+        $expectedResponse->setAccessPolicies($accessPolicies);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $parent = 'parent-995424086';
-        $request = (new ListPoliciesRequest())
-            ->setParent($parent);
-        $response = $gapicClient->listPolicies($request);
+        $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
+        $request = (new ListAccessPoliciesRequest())->setParent($formattedParent);
+        $response = $gapicClient->listAccessPolicies($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
-        $this->assertEquals($expectedResponse->getPolicies()[0], $resources[0]);
+        $this->assertEquals($expectedResponse->getAccessPolicies()[0], $resources[0]);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.iam.v2.Policies/ListPolicies', $actualFuncCall);
+        $this->assertSame('/google.iam.v3.AccessPolicies/ListAccessPolicies', $actualFuncCall);
         $actualValue = $actualRequestObject->getParent();
-        $this->assertProtobufEquals($parent, $actualValue);
+        $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
-    public function listPoliciesExceptionTest()
+    public function listAccessPoliciesExceptionTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -463,19 +457,21 @@ class PoliciesClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $parent = 'parent-995424086';
-        $request = (new ListPoliciesRequest())
-            ->setParent($parent);
+        $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
+        $request = (new ListAccessPoliciesRequest())->setParent($formattedParent);
         try {
-            $gapicClient->listPolicies($request);
+            $gapicClient->listAccessPolicies($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -488,7 +484,78 @@ class PoliciesClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function updatePolicyTest()
+    public function searchAccessPolicyBindingsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $policyBindingsElement = new PolicyBinding();
+        $policyBindings = [$policyBindingsElement];
+        $expectedResponse = new SearchAccessPolicyBindingsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setPolicyBindings($policyBindings);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->accessPolicyName('[ORGANIZATION]', '[LOCATION]', '[ACCESS_POLICY]');
+        $request = (new SearchAccessPolicyBindingsRequest())->setName($formattedName);
+        $response = $gapicClient->searchAccessPolicyBindings($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getPolicyBindings()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.iam.v3.AccessPolicies/SearchAccessPolicyBindings', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function searchAccessPolicyBindingsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->accessPolicyName('[ORGANIZATION]', '[LOCATION]', '[ACCESS_POLICY]');
+        $request = (new SearchAccessPolicyBindingsRequest())->setName($formattedName);
+        try {
+            $gapicClient->searchAccessPolicyBindings($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateAccessPolicyTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
@@ -505,34 +572,29 @@ class PoliciesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
         $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/updatePolicyTest');
+        $incompleteOperation->setName('operations/updateAccessPolicyTest');
         $incompleteOperation->setDone(false);
         $transport->addResponse($incompleteOperation);
         $name = 'name3373707';
         $uid = 'uid115792';
-        $kind = 'kind3292052';
-        $displayName = 'displayName1615086568';
         $etag = 'etag3123477';
-        $managingAuthority = 'managingAuthority617792550';
-        $expectedResponse = new Policy();
+        $displayName = 'displayName1615086568';
+        $expectedResponse = new AccessPolicy();
         $expectedResponse->setName($name);
         $expectedResponse->setUid($uid);
-        $expectedResponse->setKind($kind);
-        $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setEtag($etag);
-        $expectedResponse->setManagingAuthority($managingAuthority);
+        $expectedResponse->setDisplayName($displayName);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
-        $completeOperation->setName('operations/updatePolicyTest');
+        $completeOperation->setName('operations/updateAccessPolicyTest');
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $policy = new Policy();
-        $request = (new UpdatePolicyRequest())
-            ->setPolicy($policy);
-        $response = $gapicClient->updatePolicy($request);
+        $accessPolicy = new AccessPolicy();
+        $request = (new UpdateAccessPolicyRequest())->setAccessPolicy($accessPolicy);
+        $response = $gapicClient->updateAccessPolicy($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -541,11 +603,11 @@ class PoliciesClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.iam.v2.Policies/UpdatePolicy', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getPolicy();
-        $this->assertProtobufEquals($policy, $actualValue);
+        $this->assertSame('/google.iam.v3.AccessPolicies/UpdateAccessPolicy', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getAccessPolicy();
+        $this->assertProtobufEquals($accessPolicy, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
-        $expectedOperationsRequestObject->setName('operations/updatePolicyTest');
+        $expectedOperationsRequestObject->setName('operations/updateAccessPolicyTest');
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -564,7 +626,7 @@ class PoliciesClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function updatePolicyExceptionTest()
+    public function updateAccessPolicyExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
@@ -581,28 +643,30 @@ class PoliciesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
         $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/updatePolicyTest');
+        $incompleteOperation->setName('operations/updateAccessPolicyTest');
         $incompleteOperation->setDone(false);
         $transport->addResponse($incompleteOperation);
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $policy = new Policy();
-        $request = (new UpdatePolicyRequest())
-            ->setPolicy($policy);
-        $response = $gapicClient->updatePolicy($request);
+        $accessPolicy = new AccessPolicy();
+        $request = (new UpdateAccessPolicyRequest())->setAccessPolicy($accessPolicy);
+        $response = $gapicClient->updateAccessPolicy($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
-        $expectedOperationsRequestObject->setName('operations/updatePolicyTest');
+        $expectedOperationsRequestObject->setName('operations/updateAccessPolicyTest');
         try {
             $response->pollUntilComplete([
                 'initialPollDelayMillis' => 1,
@@ -621,7 +685,7 @@ class PoliciesClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function createPolicyAsyncTest()
+    public function createAccessPolicyAsyncTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
@@ -638,36 +702,34 @@ class PoliciesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
         $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/createPolicyTest');
+        $incompleteOperation->setName('operations/createAccessPolicyTest');
         $incompleteOperation->setDone(false);
         $transport->addResponse($incompleteOperation);
         $name = 'name3373707';
         $uid = 'uid115792';
-        $kind = 'kind3292052';
-        $displayName = 'displayName1615086568';
         $etag = 'etag3123477';
-        $managingAuthority = 'managingAuthority617792550';
-        $expectedResponse = new Policy();
+        $displayName = 'displayName1615086568';
+        $expectedResponse = new AccessPolicy();
         $expectedResponse->setName($name);
         $expectedResponse->setUid($uid);
-        $expectedResponse->setKind($kind);
-        $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setEtag($etag);
-        $expectedResponse->setManagingAuthority($managingAuthority);
+        $expectedResponse->setDisplayName($displayName);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
-        $completeOperation->setName('operations/createPolicyTest');
+        $completeOperation->setName('operations/createAccessPolicyTest');
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $parent = 'parent-995424086';
-        $policy = new Policy();
-        $request = (new CreatePolicyRequest())
-            ->setParent($parent)
-            ->setPolicy($policy);
-        $response = $gapicClient->createPolicyAsync($request)->wait();
+        $formattedParent = $gapicClient->organizationLocationName('[ORGANIZATION]', '[LOCATION]');
+        $accessPolicyId = 'accessPolicyId-1678988755';
+        $accessPolicy = new AccessPolicy();
+        $request = (new CreateAccessPolicyRequest())
+            ->setParent($formattedParent)
+            ->setAccessPolicyId($accessPolicyId)
+            ->setAccessPolicy($accessPolicy);
+        $response = $gapicClient->createAccessPolicyAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -676,13 +738,15 @@ class PoliciesClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.iam.v2.Policies/CreatePolicy', $actualApiFuncCall);
+        $this->assertSame('/google.iam.v3.AccessPolicies/CreateAccessPolicy', $actualApiFuncCall);
         $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($parent, $actualValue);
-        $actualValue = $actualApiRequestObject->getPolicy();
-        $this->assertProtobufEquals($policy, $actualValue);
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getAccessPolicyId();
+        $this->assertProtobufEquals($accessPolicyId, $actualValue);
+        $actualValue = $actualApiRequestObject->getAccessPolicy();
+        $this->assertProtobufEquals($accessPolicy, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
-        $expectedOperationsRequestObject->setName('operations/createPolicyTest');
+        $expectedOperationsRequestObject->setName('operations/createAccessPolicyTest');
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
