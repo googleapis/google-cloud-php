@@ -408,8 +408,11 @@ class Rest implements ConnectionInterface
             &$attempt,
         ) {
             // if the exception has a response for us to use
+            // (Guzzle 7 carries it on RequestException, Guzzle 8 only on its
+            // ResponseException subclass, hence the method_exists() check)
             if ($e instanceof RequestException
-                && $e->hasResponse()
+                && method_exists($e, 'getResponse')
+                && $e->getResponse()
                 && $e->getResponse()->getStatusCode() >= 200
                 && $e->getResponse()->getStatusCode() < 300
             ) {

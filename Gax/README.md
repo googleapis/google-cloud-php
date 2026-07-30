@@ -88,6 +88,7 @@ be found for Mac or Windows.
     > phpstan -c phpstan.neon.dist
     ```
 
+
 ## License
 
 BSD - See [LICENSE][] for more information.

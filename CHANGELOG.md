@@ -1,5 +1,98 @@
 # Changelog
 
+## 0.338.0
+
+<details><summary>google/cloud-batch 1.4.2</summary>
+
+
+
+### Documentation
+
+* [Batch] restrict `allowed_locations` region or zone values to the same region where the job is created ([#9384](https://github.com/googleapis/google-cloud-php/issues/9384)) ([720551e](https://github.com/googleapis/google-cloud-php/commit/720551ece54b2da33f543d716af3262a6cbd97d8))
+
+</details>
+
+<details><summary>google/cloud-bigquery 1.39.0</summary>
+
+
+
+### Features
+
+* add support for Guzzle 8 ([ea23f87](https://github.com/googleapis/google-cloud-php/commit/ea23f87584a9d359039c5bece8c441f679a670ca))
+
+
+### Bug Fixes
+
+* update CloudCore to fix pagination bug ([#9237](https://github.com/googleapis/google-cloud-php/issues/9237)) ([b7b4aeb](https://github.com/googleapis/google-cloud-php/commit/b7b4aeb61ae05291a95c7cd30d9b5569d39f6ada))
+
+</details>
+
+<details><summary>google/cloud-core 1.73.0</summary>
+
+
+
+### Features
+
+* add support for Guzzle 8 ([ea23f87](https://github.com/googleapis/google-cloud-php/commit/ea23f87584a9d359039c5bece8c441f679a670ca))
+
+
+### Bug Fixes
+
+* **spanner:** do not drop Spanner and GAX options on Database and Transaction methods ([#9381](https://github.com/googleapis/google-cloud-php/issues/9381)) ([17550aa](https://github.com/googleapis/google-cloud-php/commit/17550aae117a5ff230531666dc90114933409ab4))
+
+</details>
+
+<details><summary>google/gax 1.47.0</summary>
+
+
+
+### Features
+
+* add support for Guzzle 8 ([ea23f87](https://github.com/googleapis/google-cloud-php/commit/ea23f87584a9d359039c5bece8c441f679a670ca))
+* **dev:** add showcase:generate command and update showcase client ([#9347](https://github.com/googleapis/google-cloud-php/issues/9347)) ([2aaffe7](https://github.com/googleapis/google-cloud-php/commit/2aaffe72f224924810cbb932eed0b3b7712d6f05))
+
+</details>
+
+<details><summary>google/cloud-quotas 1.6.0</summary>
+
+
+
+### Features
+
+* [Quotas] publish Cloud Quotas v1 GA client library protos and GAPIC Bazel rules ([#9383](https://github.com/googleapis/google-cloud-php/issues/9383)) ([0f960c3](https://github.com/googleapis/google-cloud-php/commit/0f960c38feb150f4e97f1d7566d9cf0f78ab114c))
+
+</details>
+
+<details><summary>google/cloud-spanner 2.10.2</summary>
+
+
+
+### Bug Fixes
+
+* **spanner:** do not drop Spanner and GAX options on Database and Transaction methods ([#9381](https://github.com/googleapis/google-cloud-php/issues/9381)) ([17550aa](https://github.com/googleapis/google-cloud-php/commit/17550aae117a5ff230531666dc90114933409ab4))
+
+</details>
+
+<details><summary>google/cloud-sql-admin 1.11.0</summary>
+
+
+
+### Features
+
+* [SqlAdmin] add client library publishing configuration for SQL Admin ([#9385](https://github.com/googleapis/google-cloud-php/issues/9385)) ([289b6e2](https://github.com/googleapis/google-cloud-php/commit/289b6e26d25a0455e903d9138ee5d95d6f5e3a80))
+
+</details>
+
+<details><summary>google/cloud-storage 2.5.0</summary>
+
+
+
+### Features
+
+* add support for Guzzle 8 ([ea23f87](https://github.com/googleapis/google-cloud-php/commit/ea23f87584a9d359039c5bece8c441f679a670ca))
+
+</details>
+
 ## 0.337.0
 
 <details><summary>google/cloud-ai-platform 1.63.0</summary>

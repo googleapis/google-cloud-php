@@ -11,10 +11,6 @@ use Google\Protobuf\RepeatedField;
 /**
  * Request message to get the `IntelligenceConfig` resource associated with your
  * organization.
- * **IAM Permissions**
- * Requires `storage.intelligenceConfigs.get`
- * [IAM](https://cloud.google.com/iam/docs/overview#permissions) permission on
- * the organization.
  *
  * Generated from protobuf message <code>google.storage.control.v2.GetOrganizationIntelligenceConfigRequest</code>
  */

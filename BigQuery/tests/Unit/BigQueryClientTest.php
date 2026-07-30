@@ -47,7 +47,7 @@ use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
-use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Exception\ServerException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -1033,7 +1033,7 @@ class BigQueryClientTest extends TestCase
         $doneJobResponse['status']['state'] = 'DONE';
 
         $apiMockHandler = new MockHandler([
-            new RequestException(
+            new ServerException(
                 'Transient error',
                 new Request('POST', ''),
                 new Response(502)

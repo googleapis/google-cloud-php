@@ -346,6 +346,8 @@ class ApiException extends Exception
 
     /**
      * Creates an ApiException from a GuzzleHttp RequestException.
+     * In Guzzle 7, this method expects a RequestException with a response.
+     * In Guzzle 8, this method expects a ResponseException.
      *
      * @param RequestException $ex
      * @param boolean $isStream
@@ -354,8 +356,10 @@ class ApiException extends Exception
      */
     public static function createFromRequestException(RequestException $ex, bool $isStream = false)
     {
-        $res = $ex->getResponse();
-        $body = (string) $res->getBody();
+        // Guzzle 7 carries the response on RequestException, Guzzle 8 only on
+        // its ResponseException subclass, hence the method_exists() check.
+        $res = method_exists($ex, 'getResponse') ? $ex->getResponse() : null;
+        $body = (string) $res?->getBody();
         $decoded = json_decode($body, true);
 
         // A streaming response body will return one error in an array. Parse
