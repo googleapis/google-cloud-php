@@ -10,11 +10,11 @@ use Google\Protobuf\RepeatedField;
 
 /**
  * Message returned in the metadata field of the Operation resource for
- * CreateAnywhereCache operations.
+ * CreateRapidCache operations.
  *
- * Generated from protobuf message <code>google.storage.control.v2.CreateAnywhereCacheMetadata</code>
+ * Generated from protobuf message <code>google.storage.control.v2.CreateRapidCacheMetadata</code>
  */
-class CreateAnywhereCacheMetadata extends \Google\Protobuf\Internal\Message
+class CreateRapidCacheMetadata extends \Google\Protobuf\Internal\Message
 {
     /**
      * Generic metadata for the long running operation.
@@ -23,24 +23,24 @@ class CreateAnywhereCacheMetadata extends \Google\Protobuf\Internal\Message
      */
     protected $common_metadata = null;
     /**
-     * Anywhere Cache ID.
+     * Rapid Cache ID.
      *
-     * Generated from protobuf field <code>optional string anywhere_cache_id = 2;</code>
+     * Generated from protobuf field <code>optional string rapid_cache_id = 2;</code>
      */
-    protected $anywhere_cache_id = null;
+    protected $rapid_cache_id = null;
     /**
      * The zone in which the cache instance is running. For example,
      * us-central1-a.
      *
-     * Generated from protobuf field <code>optional string zone = 6;</code>
+     * Generated from protobuf field <code>optional string zone = 3;</code>
      */
     protected $zone = null;
     /**
-     * Anywhere Cache entry's TTL. A cache-level config that is applied to all new
+     * Rapid Cache entry's TTL. A cache-level config that is applied to all new
      * cache entries on admission. Default ttl value (24hrs) is applied if not
      * specified in the create request.
      *
-     * Generated from protobuf field <code>optional .google.protobuf.Duration ttl = 3;</code>
+     * Generated from protobuf field <code>optional .google.protobuf.Duration ttl = 4;</code>
      */
     protected $ttl = null;
     /**
@@ -55,9 +55,15 @@ class CreateAnywhereCacheMetadata extends \Google\Protobuf\Internal\Message
      * Optional. Specifies whether objects are ingested into the cache upon write.
      * Defaults to false.
      *
-     * Generated from protobuf field <code>optional bool ingest_on_write = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional bool ingest_on_write = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $ingest_on_write = null;
+    /**
+     * Optional. The type of cache. Either rapid cache or rapid cache ultra.
+     *
+     * Generated from protobuf field <code>optional string cache_type = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $cache_type = null;
 
     /**
      * Constructor.
@@ -67,13 +73,13 @@ class CreateAnywhereCacheMetadata extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Storage\Control\V2\CommonLongRunningOperationMetadata $common_metadata
      *           Generic metadata for the long running operation.
-     *     @type string $anywhere_cache_id
-     *           Anywhere Cache ID.
+     *     @type string $rapid_cache_id
+     *           Rapid Cache ID.
      *     @type string $zone
      *           The zone in which the cache instance is running. For example,
      *           us-central1-a.
      *     @type \Google\Protobuf\Duration $ttl
-     *           Anywhere Cache entry's TTL. A cache-level config that is applied to all new
+     *           Rapid Cache entry's TTL. A cache-level config that is applied to all new
      *           cache entries on admission. Default ttl value (24hrs) is applied if not
      *           specified in the create request.
      *     @type string $admission_policy
@@ -83,6 +89,8 @@ class CreateAnywhereCacheMetadata extends \Google\Protobuf\Internal\Message
      *     @type bool $ingest_on_write
      *           Optional. Specifies whether objects are ingested into the cache upon write.
      *           Defaults to false.
+     *     @type string $cache_type
+     *           Optional. The type of cache. Either rapid cache or rapid cache ultra.
      * }
      */
     public function __construct($data = NULL) {
@@ -127,37 +135,37 @@ class CreateAnywhereCacheMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Anywhere Cache ID.
+     * Rapid Cache ID.
      *
-     * Generated from protobuf field <code>optional string anywhere_cache_id = 2;</code>
+     * Generated from protobuf field <code>optional string rapid_cache_id = 2;</code>
      * @return string
      */
-    public function getAnywhereCacheId()
+    public function getRapidCacheId()
     {
-        return isset($this->anywhere_cache_id) ? $this->anywhere_cache_id : '';
+        return isset($this->rapid_cache_id) ? $this->rapid_cache_id : '';
     }
 
-    public function hasAnywhereCacheId()
+    public function hasRapidCacheId()
     {
-        return isset($this->anywhere_cache_id);
+        return isset($this->rapid_cache_id);
     }
 
-    public function clearAnywhereCacheId()
+    public function clearRapidCacheId()
     {
-        unset($this->anywhere_cache_id);
+        unset($this->rapid_cache_id);
     }
 
     /**
-     * Anywhere Cache ID.
+     * Rapid Cache ID.
      *
-     * Generated from protobuf field <code>optional string anywhere_cache_id = 2;</code>
+     * Generated from protobuf field <code>optional string rapid_cache_id = 2;</code>
      * @param string $var
      * @return $this
      */
-    public function setAnywhereCacheId($var)
+    public function setRapidCacheId($var)
     {
         GPBUtil::checkString($var, True);
-        $this->anywhere_cache_id = $var;
+        $this->rapid_cache_id = $var;
 
         return $this;
     }
@@ -166,7 +174,7 @@ class CreateAnywhereCacheMetadata extends \Google\Protobuf\Internal\Message
      * The zone in which the cache instance is running. For example,
      * us-central1-a.
      *
-     * Generated from protobuf field <code>optional string zone = 6;</code>
+     * Generated from protobuf field <code>optional string zone = 3;</code>
      * @return string
      */
     public function getZone()
@@ -188,7 +196,7 @@ class CreateAnywhereCacheMetadata extends \Google\Protobuf\Internal\Message
      * The zone in which the cache instance is running. For example,
      * us-central1-a.
      *
-     * Generated from protobuf field <code>optional string zone = 6;</code>
+     * Generated from protobuf field <code>optional string zone = 3;</code>
      * @param string $var
      * @return $this
      */
@@ -201,11 +209,11 @@ class CreateAnywhereCacheMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Anywhere Cache entry's TTL. A cache-level config that is applied to all new
+     * Rapid Cache entry's TTL. A cache-level config that is applied to all new
      * cache entries on admission. Default ttl value (24hrs) is applied if not
      * specified in the create request.
      *
-     * Generated from protobuf field <code>optional .google.protobuf.Duration ttl = 3;</code>
+     * Generated from protobuf field <code>optional .google.protobuf.Duration ttl = 4;</code>
      * @return \Google\Protobuf\Duration|null
      */
     public function getTtl()
@@ -224,11 +232,11 @@ class CreateAnywhereCacheMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Anywhere Cache entry's TTL. A cache-level config that is applied to all new
+     * Rapid Cache entry's TTL. A cache-level config that is applied to all new
      * cache entries on admission. Default ttl value (24hrs) is applied if not
      * specified in the create request.
      *
-     * Generated from protobuf field <code>optional .google.protobuf.Duration ttl = 3;</code>
+     * Generated from protobuf field <code>optional .google.protobuf.Duration ttl = 4;</code>
      * @param \Google\Protobuf\Duration $var
      * @return $this
      */
@@ -284,7 +292,7 @@ class CreateAnywhereCacheMetadata extends \Google\Protobuf\Internal\Message
      * Optional. Specifies whether objects are ingested into the cache upon write.
      * Defaults to false.
      *
-     * Generated from protobuf field <code>optional bool ingest_on_write = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional bool ingest_on_write = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
      */
     public function getIngestOnWrite()
@@ -306,7 +314,7 @@ class CreateAnywhereCacheMetadata extends \Google\Protobuf\Internal\Message
      * Optional. Specifies whether objects are ingested into the cache upon write.
      * Defaults to false.
      *
-     * Generated from protobuf field <code>optional bool ingest_on_write = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional bool ingest_on_write = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
      */
@@ -314,6 +322,42 @@ class CreateAnywhereCacheMetadata extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->ingest_on_write = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The type of cache. Either rapid cache or rapid cache ultra.
+     *
+     * Generated from protobuf field <code>optional string cache_type = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getCacheType()
+    {
+        return isset($this->cache_type) ? $this->cache_type : '';
+    }
+
+    public function hasCacheType()
+    {
+        return isset($this->cache_type);
+    }
+
+    public function clearCacheType()
+    {
+        unset($this->cache_type);
+    }
+
+    /**
+     * Optional. The type of cache. Either rapid cache or rapid cache ultra.
+     *
+     * Generated from protobuf field <code>optional string cache_type = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCacheType($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->cache_type = $var;
 
         return $this;
     }
