@@ -9,16 +9,16 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * An Anywhere Cache Instance.
+ * A Rapid Cache Instance.
  *
- * Generated from protobuf message <code>google.storage.control.v2.AnywhereCache</code>
+ * Generated from protobuf message <code>google.storage.control.v2.RapidCache</code>
  */
-class AnywhereCache extends \Google\Protobuf\Internal\Message
+class RapidCache extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Immutable. The resource name of this AnywhereCache.
+     * Immutable. The resource name of this RapidCache.
      * Format:
-     * `projects/{project}/buckets/{bucket}/anywhereCaches/{anywhere_cache}`
+     * projects/{project}/buckets/{bucket}/rapidCaches/{rapid_cache}
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
@@ -27,45 +27,51 @@ class AnywhereCache extends \Google\Protobuf\Internal\Message
      * Immutable. The zone in which the cache instance is running. For example,
      * us-central1-a.
      *
-     * Generated from protobuf field <code>string zone = 10 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>string zone = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
     protected $zone = '';
+    /**
+     * Immutable. The type of Rapid Cache this represents. Valid values include:
+     * 'rapid-cache' and 'rapid-cache-ultra'.
+     *
+     * Generated from protobuf field <code>string cache_type = 3 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     */
+    protected $cache_type = '';
     /**
      * Cache entry TTL (ranges between 1h to 7d). This is a cache-level config
      * that defines how long a cache entry can live. Default ttl value (24hrs)
      * is applied if not specified in the create request. TTL must be in whole
      * seconds.
      *
-     * Generated from protobuf field <code>.google.protobuf.Duration ttl = 3;</code>
+     * Generated from protobuf field <code>.google.protobuf.Duration ttl = 4;</code>
      */
     protected $ttl = null;
     /**
      * Cache admission policy. Valid policies includes:
-     * `admit-on-first-miss` and `admit-on-second-miss`. Defaults to
-     * `admit-on-first-miss`. Default value is applied if not specified in the
-     * create request.
+     * no_read_admission, admit-on-first-miss and admit-on-second-miss. Defaults
+     * to admit-on-first-miss for both AC and RCU. Default value is applied if not
+     * specified in the create request.
      *
-     * Generated from protobuf field <code>string admission_policy = 9;</code>
+     * Generated from protobuf field <code>string admission_policy = 5;</code>
      */
     protected $admission_policy = '';
     /**
-     * Output only. Cache state including `running`, `creating`, `disabled` and
-     * `paused`.
+     * Output only. Cache state including running, creating, and disabled.
      *
-     * Generated from protobuf field <code>string state = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string state = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $state = '';
     /**
-     * Output only. Time when Anywhere cache instance is allocated.
+     * Output only. Time when Rapid cache instance is allocated.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $create_time = null;
     /**
-     * Output only. Time when Anywhere cache instance is last updated, including
+     * Output only. Time when Rapid cache instance is last updated, including
      * creation.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $update_time = null;
     /**
@@ -73,16 +79,9 @@ class AnywhereCache extends \Google\Protobuf\Internal\Message
      * instance. Subsequential update requests will be rejected if this field is
      * true. Output only.
      *
-     * Generated from protobuf field <code>bool pending_update = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>bool pending_update = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $pending_update = false;
-    /**
-     * Optional. Specifies whether objects are ingested into the cache upon write.
-     * Defaults to false.
-     *
-     * Generated from protobuf field <code>optional bool ingest_on_write = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
-     */
-    protected $ingest_on_write = null;
 
     /**
      * Constructor.
@@ -91,12 +90,15 @@ class AnywhereCache extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Immutable. The resource name of this AnywhereCache.
+     *           Immutable. The resource name of this RapidCache.
      *           Format:
-     *           `projects/{project}/buckets/{bucket}/anywhereCaches/{anywhere_cache}`
+     *           projects/{project}/buckets/{bucket}/rapidCaches/{rapid_cache}
      *     @type string $zone
      *           Immutable. The zone in which the cache instance is running. For example,
      *           us-central1-a.
+     *     @type string $cache_type
+     *           Immutable. The type of Rapid Cache this represents. Valid values include:
+     *           'rapid-cache' and 'rapid-cache-ultra'.
      *     @type \Google\Protobuf\Duration $ttl
      *           Cache entry TTL (ranges between 1h to 7d). This is a cache-level config
      *           that defines how long a cache entry can live. Default ttl value (24hrs)
@@ -104,24 +106,20 @@ class AnywhereCache extends \Google\Protobuf\Internal\Message
      *           seconds.
      *     @type string $admission_policy
      *           Cache admission policy. Valid policies includes:
-     *           `admit-on-first-miss` and `admit-on-second-miss`. Defaults to
-     *           `admit-on-first-miss`. Default value is applied if not specified in the
-     *           create request.
+     *           no_read_admission, admit-on-first-miss and admit-on-second-miss. Defaults
+     *           to admit-on-first-miss for both AC and RCU. Default value is applied if not
+     *           specified in the create request.
      *     @type string $state
-     *           Output only. Cache state including `running`, `creating`, `disabled` and
-     *           `paused`.
+     *           Output only. Cache state including running, creating, and disabled.
      *     @type \Google\Protobuf\Timestamp $create_time
-     *           Output only. Time when Anywhere cache instance is allocated.
+     *           Output only. Time when Rapid cache instance is allocated.
      *     @type \Google\Protobuf\Timestamp $update_time
-     *           Output only. Time when Anywhere cache instance is last updated, including
+     *           Output only. Time when Rapid cache instance is last updated, including
      *           creation.
      *     @type bool $pending_update
      *           Output only. True if there is an active update operation against this cache
      *           instance. Subsequential update requests will be rejected if this field is
      *           true. Output only.
-     *     @type bool $ingest_on_write
-     *           Optional. Specifies whether objects are ingested into the cache upon write.
-     *           Defaults to false.
      * }
      */
     public function __construct($data = NULL) {
@@ -130,9 +128,9 @@ class AnywhereCache extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The resource name of this AnywhereCache.
+     * Immutable. The resource name of this RapidCache.
      * Format:
-     * `projects/{project}/buckets/{bucket}/anywhereCaches/{anywhere_cache}`
+     * projects/{project}/buckets/{bucket}/rapidCaches/{rapid_cache}
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
@@ -143,9 +141,9 @@ class AnywhereCache extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The resource name of this AnywhereCache.
+     * Immutable. The resource name of this RapidCache.
      * Format:
-     * `projects/{project}/buckets/{bucket}/anywhereCaches/{anywhere_cache}`
+     * projects/{project}/buckets/{bucket}/rapidCaches/{rapid_cache}
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var
@@ -163,7 +161,7 @@ class AnywhereCache extends \Google\Protobuf\Internal\Message
      * Immutable. The zone in which the cache instance is running. For example,
      * us-central1-a.
      *
-     * Generated from protobuf field <code>string zone = 10 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>string zone = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
      */
     public function getZone()
@@ -175,7 +173,7 @@ class AnywhereCache extends \Google\Protobuf\Internal\Message
      * Immutable. The zone in which the cache instance is running. For example,
      * us-central1-a.
      *
-     * Generated from protobuf field <code>string zone = 10 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>string zone = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var
      * @return $this
      */
@@ -188,12 +186,40 @@ class AnywhereCache extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Immutable. The type of Rapid Cache this represents. Valid values include:
+     * 'rapid-cache' and 'rapid-cache-ultra'.
+     *
+     * Generated from protobuf field <code>string cache_type = 3 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @return string
+     */
+    public function getCacheType()
+    {
+        return $this->cache_type;
+    }
+
+    /**
+     * Immutable. The type of Rapid Cache this represents. Valid values include:
+     * 'rapid-cache' and 'rapid-cache-ultra'.
+     *
+     * Generated from protobuf field <code>string cache_type = 3 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCacheType($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->cache_type = $var;
+
+        return $this;
+    }
+
+    /**
      * Cache entry TTL (ranges between 1h to 7d). This is a cache-level config
      * that defines how long a cache entry can live. Default ttl value (24hrs)
      * is applied if not specified in the create request. TTL must be in whole
      * seconds.
      *
-     * Generated from protobuf field <code>.google.protobuf.Duration ttl = 3;</code>
+     * Generated from protobuf field <code>.google.protobuf.Duration ttl = 4;</code>
      * @return \Google\Protobuf\Duration|null
      */
     public function getTtl()
@@ -217,7 +243,7 @@ class AnywhereCache extends \Google\Protobuf\Internal\Message
      * is applied if not specified in the create request. TTL must be in whole
      * seconds.
      *
-     * Generated from protobuf field <code>.google.protobuf.Duration ttl = 3;</code>
+     * Generated from protobuf field <code>.google.protobuf.Duration ttl = 4;</code>
      * @param \Google\Protobuf\Duration $var
      * @return $this
      */
@@ -231,11 +257,11 @@ class AnywhereCache extends \Google\Protobuf\Internal\Message
 
     /**
      * Cache admission policy. Valid policies includes:
-     * `admit-on-first-miss` and `admit-on-second-miss`. Defaults to
-     * `admit-on-first-miss`. Default value is applied if not specified in the
-     * create request.
+     * no_read_admission, admit-on-first-miss and admit-on-second-miss. Defaults
+     * to admit-on-first-miss for both AC and RCU. Default value is applied if not
+     * specified in the create request.
      *
-     * Generated from protobuf field <code>string admission_policy = 9;</code>
+     * Generated from protobuf field <code>string admission_policy = 5;</code>
      * @return string
      */
     public function getAdmissionPolicy()
@@ -245,11 +271,11 @@ class AnywhereCache extends \Google\Protobuf\Internal\Message
 
     /**
      * Cache admission policy. Valid policies includes:
-     * `admit-on-first-miss` and `admit-on-second-miss`. Defaults to
-     * `admit-on-first-miss`. Default value is applied if not specified in the
-     * create request.
+     * no_read_admission, admit-on-first-miss and admit-on-second-miss. Defaults
+     * to admit-on-first-miss for both AC and RCU. Default value is applied if not
+     * specified in the create request.
      *
-     * Generated from protobuf field <code>string admission_policy = 9;</code>
+     * Generated from protobuf field <code>string admission_policy = 5;</code>
      * @param string $var
      * @return $this
      */
@@ -262,10 +288,9 @@ class AnywhereCache extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Cache state including `running`, `creating`, `disabled` and
-     * `paused`.
+     * Output only. Cache state including running, creating, and disabled.
      *
-     * Generated from protobuf field <code>string state = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string state = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getState()
@@ -274,10 +299,9 @@ class AnywhereCache extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Cache state including `running`, `creating`, `disabled` and
-     * `paused`.
+     * Output only. Cache state including running, creating, and disabled.
      *
-     * Generated from protobuf field <code>string state = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string state = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -290,9 +314,9 @@ class AnywhereCache extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Time when Anywhere cache instance is allocated.
+     * Output only. Time when Rapid cache instance is allocated.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
@@ -311,9 +335,9 @@ class AnywhereCache extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Time when Anywhere cache instance is allocated.
+     * Output only. Time when Rapid cache instance is allocated.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -326,10 +350,10 @@ class AnywhereCache extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Time when Anywhere cache instance is last updated, including
+     * Output only. Time when Rapid cache instance is last updated, including
      * creation.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
      */
     public function getUpdateTime()
@@ -348,10 +372,10 @@ class AnywhereCache extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Time when Anywhere cache instance is last updated, including
+     * Output only. Time when Rapid cache instance is last updated, including
      * creation.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -368,7 +392,7 @@ class AnywhereCache extends \Google\Protobuf\Internal\Message
      * instance. Subsequential update requests will be rejected if this field is
      * true. Output only.
      *
-     * Generated from protobuf field <code>bool pending_update = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>bool pending_update = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return bool
      */
     public function getPendingUpdate()
@@ -381,7 +405,7 @@ class AnywhereCache extends \Google\Protobuf\Internal\Message
      * instance. Subsequential update requests will be rejected if this field is
      * true. Output only.
      *
-     * Generated from protobuf field <code>bool pending_update = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>bool pending_update = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param bool $var
      * @return $this
      */
@@ -389,44 +413,6 @@ class AnywhereCache extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->pending_update = $var;
-
-        return $this;
-    }
-
-    /**
-     * Optional. Specifies whether objects are ingested into the cache upon write.
-     * Defaults to false.
-     *
-     * Generated from protobuf field <code>optional bool ingest_on_write = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return bool
-     */
-    public function getIngestOnWrite()
-    {
-        return isset($this->ingest_on_write) ? $this->ingest_on_write : false;
-    }
-
-    public function hasIngestOnWrite()
-    {
-        return isset($this->ingest_on_write);
-    }
-
-    public function clearIngestOnWrite()
-    {
-        unset($this->ingest_on_write);
-    }
-
-    /**
-     * Optional. Specifies whether objects are ingested into the cache upon write.
-     * Defaults to false.
-     *
-     * Generated from protobuf field <code>optional bool ingest_on_write = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param bool $var
-     * @return $this
-     */
-    public function setIngestOnWrite($var)
-    {
-        GPBUtil::checkBool($var);
-        $this->ingest_on_write = $var;
 
         return $this;
     }
