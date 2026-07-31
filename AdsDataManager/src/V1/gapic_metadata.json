@@ -25,6 +25,11 @@
                                 "ingestEvents"
                             ]
                         },
+                        "RemoveAllAudienceMembers": {
+                            "methods": [
+                                "removeAllAudienceMembers"
+                            ]
+                        },
                         "RemoveAudienceMembers": {
                             "methods": [
                                 "removeAudienceMembers"
