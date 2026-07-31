@@ -620,6 +620,57 @@ class TransactionTest extends TestCase
         $this->assertEquals(1, $transaction->getCommitStats()->getMutationCount());
     }
 
+    public function testCommitSetsPrecommitTokenFromInlineBegin()
+    {
+        $precommitToken = new MultiplexedSessionPrecommitToken([
+            'precommit_token' => 'my-precommit-token',
+        ]);
+
+        $operation = $this->prophesize(Operation::class);
+
+        // Create the transaction returned by Operation::transaction()
+        $returnedTransaction = new Transaction(
+            $operation->reveal(),
+            $this->session->reveal(),
+            self::TRANSACTION,
+            []
+        );
+        $returnedTransaction->setPrecommitToken($precommitToken);
+
+        $operation->transaction($this->session->reveal(), Argument::any())
+            ->shouldBeCalled()
+            ->willReturn($returnedTransaction);
+
+        // Verify that commit() receives the precommit token in options
+        $operation->commit(
+            $this->session->reveal(),
+            Argument::any(),
+            Argument::that(function ($options) use ($precommitToken) {
+                $this->assertArrayHasKey('precommitToken', $options);
+                $this->assertEquals($precommitToken, $options['precommitToken']);
+                return true;
+            })
+        )
+            ->shouldBeCalled()
+            ->willReturn($this->commitResponseWithCommitStats());
+
+        $transaction = new Transaction(
+            $operation->reveal(),
+            $this->session->reveal(),
+            null, // Null transaction ID to trigger inline begin
+            [
+                'begin' => ['readWrite' => []]
+            ]
+        );
+
+        $transaction->insert('Posts', ['foo' => 'bar']);
+        $transaction->commit();
+
+        $ref = new \ReflectionClass(Transaction::class);
+        $prop = $ref->getProperty('precommitToken');
+        $this->assertNull($prop->getValue($transaction));
+    }
+
     public function testCommitInvalidState()
     {
         $this->expectException(\BadMethodCallException::class);
