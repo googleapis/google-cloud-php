@@ -99,26 +99,11 @@ if (
         COMPOSER_BIN=$(composer global config bin-dir --absolute 2>/dev/null || echo ~/.composer/vendor/bin)
         ROAVE_BIN=$(command -v roave-backward-compatibility-check || echo "${COMPOSER_BIN}/roave-backward-compatibility-check")
 
-        FORMAT=${BC_FORMAT:-markdown}
-        if [ "${FORMAT}" = "markdown" ]; then
-            # Run Roave check and capture output
-            OUTPUT=$("${ROAVE_BIN}" --from=HEAD~1 --format=markdown 2>/dev/null || true)
-            if [ -n "${OUTPUT}" ]; then
-                echo "<details>"
-                echo "<summary><b>${COMPONENT}</b>: Backwards Compatibility Breaks Detected</summary>"
-                echo ""
-                echo "${OUTPUT}"
-                echo "</details>"
-                echo ""
-                exit 1
-            fi
+        if ! "${ROAVE_BIN}" --from=HEAD~1 --format=github-actions; then
+            echo "❌ BC Breaks detected in ${COMPONENT}!" >&2
+            exit 1
         else
-            if ! "${ROAVE_BIN}" --from=HEAD~1 --format="${FORMAT}"; then
-                echo "❌ BC Breaks detected in ${COMPONENT}!" >&2
-                exit 1
-            else
-                echo "✅ No BC Breaks detected in ${COMPONENT}." >&2
-            fi
+            echo "✅ No BC Breaks detected in ${COMPONENT}." >&2
         fi
     else
         echo "No files modified for ${COMPONENT} compared to ${BASE_REF}. Skipping check." >&2
