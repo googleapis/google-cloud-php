@@ -48,29 +48,32 @@ jobs:
           fi
 
           IS_RELEASE_PR="${{ github.event.pull_request.user.login == 'release-please[bot]' }}"
+          BC_BREAKS=""
+          FAIL=""
+          BC_FORMAT="github-actions"
+          [ "${IS_RELEASE_PR}" = "true" ] && BC_FORMAT="markdown"
 
-          if [ "${IS_RELEASE_PR}" = "true" ]; then
-            # Release PR: gather markdown and do not fail the step
-            BC_BREAKS=""
-            for COMPONENT in ${CHANGED_COMPONENTS}; do
-              BC_BREAKS="$BC_BREAKS$(BC_FORMAT="markdown" bash .github/backwards-compatibility-check.sh "${COMPONENT}" "${BASE_REF}" || true)"
-            done
-            printf "bc-breaks<<EOF\n%s\nEOF\n" "$BC_BREAKS" >> $GITHUB_OUTPUT
-          else
-            # Normal PR: use github-actions format and fail if there are breaks
-            FAIL=""
-            for COMPONENT in ${CHANGED_COMPONENTS}; do
-              if ! BC_FORMAT="github-actions" bash .github/backwards-compatibility-check.sh "${COMPONENT}" "${BASE_REF}"; then
+          for COMPONENT in ${CHANGED_COMPONENTS}; do
+            OUTPUT=$(BC_FORMAT="${BC_FORMAT}" bash .github/backwards-compatibility-check.sh "${COMPONENT}" "${BASE_REF}")
+            STATUS=$?
+
+            if [ "${IS_RELEASE_PR}" = "true" ]; then
+              BC_BREAKS="${BC_BREAKS}${OUTPUT}"
+            else
+              printf "%s\n" "${OUTPUT}"
+              if [ ${STATUS} -ne 0 ]; then
                 FAIL="true"
               fi
-            done
-
-            if [ "${FAIL}" = "true" ]; then
-              exit 1
-            elif [[ "true" == "${{ contains(github.event.pull_request.title, '!:') }}" ]]; then
-              echo "❌ Error: You indicated breaking changes in your PR title (!:), but no backwards compatibility breaks were detected by the automated check."
-              exit 1
             fi
+          done
+
+          if [ "${IS_RELEASE_PR}" = "true" ]; then
+            printf "bc-breaks<<EOF\n%s\nEOF\n" "${BC_BREAKS}" >> $GITHUB_OUTPUT
+          elif [ "${FAIL}" = "true" ]; then
+            exit 1
+          elif [[ "true" == "${{ contains(github.event.pull_request.title, '!:') }}" ]]; then
+            echo "❌ Error: You indicated breaking changes in your PR title (!:), but no backwards compatibility breaks were detected by the automated check."
+            exit 1
           fi
       - name: "Add or update PR comment with BC breaks for Release PRs"
         if: github.event.pull_request.user.login == 'release-please[bot]' && steps.check-bc.outputs.bc-breaks != ''
