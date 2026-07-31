@@ -21,3 +21,5 @@ src/Jison/Parser.js
 
 # VS Code
 .vscode
+
+*.pem

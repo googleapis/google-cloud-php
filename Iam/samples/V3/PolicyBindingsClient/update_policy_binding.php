@@ -34,9 +34,7 @@ use Google\Rpc\Status;
 /**
  * Updates a policy binding and returns a long-running operation.
  * Callers will need the IAM permissions on the policy and target in the
- * binding to update, and the IAM permission to remove the existing policy
- * from the binding. Target is immutable and cannot be updated. Once the
- * binding is updated, the new policy is applied to the target.
+ * binding to update. Target and policy are immutable and cannot be updated.
  *
  * @param string $policyBindingPolicy Immutable. The resource name of the policy to be bound. The
  *                                    binding parent and policy must belong to the same organization.

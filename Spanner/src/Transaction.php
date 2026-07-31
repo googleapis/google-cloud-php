@@ -464,7 +464,7 @@ class Transaction implements TransactionalReadInterface
                 'requestOptions' => $this->requestOptions,
                 'transactionOptions' => $this->transactionOptions,
                 'singleUse' => $this->transactionSelector['singleUse'] ?? null,
-                'tag' => $this->tag ?? null,
+                'tag' => $this->tag,
             ]);
             if (!empty($mutations)) {
                 // Set the mutation key if we have mutations but do not have a precommit token
@@ -476,6 +476,9 @@ class Transaction implements TransactionalReadInterface
             $transaction = $this->operation->transaction($this->session, $operationTransactionOptions);
             // Set the transaction ID of the current transaction.
             $this->transactionId = $transaction->id();
+            if (isset($transaction->precommitToken)) {
+                $this->setPrecommitToken($transaction->precommitToken);
+            }
         }
 
         if (!$this->singleUseState()) {
