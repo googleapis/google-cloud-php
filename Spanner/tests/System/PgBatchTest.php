@@ -22,6 +22,7 @@ use Google\Cloud\Core\Testing\System\SystemTestCase;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect;
 use Google\Cloud\Spanner\Batch\BatchClient;
 use Google\Cloud\Spanner\Batch\BatchSnapshot;
+use Google\Cloud\Spanner\KeySet;
 
 /**
  * @group spanner
@@ -51,7 +52,7 @@ class PgBatchTest extends SystemTestCase
         }
         self::setUpTestDatabase();
 
-        self::$database->delete(self::TABLE_NAME, new \Google\Cloud\Spanner\KeySet(['all' => true]));
+        self::$database->delete(self::TABLE_NAME, new KeySet(['all' => true]));
 
         self::seedTable();
         self::$hasSetupBatch = true;

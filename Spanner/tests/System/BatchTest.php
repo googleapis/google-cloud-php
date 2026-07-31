@@ -19,11 +19,10 @@ namespace Google\Cloud\Spanner\Tests\System;
 
 use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Core\Testing\System\SystemTestCase;
-use Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect;
 use Google\Cloud\Spanner\Batch\BatchClient;
 use Google\Cloud\Spanner\Batch\BatchSnapshot;
-use Google\Cloud\Spanner\KeyRange;
 use Google\Cloud\Spanner\KeySet;
+use Google\Rpc\Code;
 
 /**
  * @group spanner
@@ -99,8 +98,8 @@ class BatchTest extends SystemTestCase
             try {
                 $partitions = $snapshot->partitionQuery($query, ['parameters' => $parameters]);
                 break;
-            } catch (\Google\Cloud\Core\Exception\ServiceException $ex) {
-                $allowed = [14 /* UNAVAILABLE */, 4 /* DEADLINE_EXCEEDED */];
+            } catch (ServiceException $ex) {
+                $allowed = [Code::UNAVAILABLE, Code::DEADLINE_EXCEEDED];
                 if ($i === 2 || !in_array($ex->getCode(), $allowed)) {
                     throw $ex;
                 }

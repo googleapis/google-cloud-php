@@ -29,6 +29,7 @@ use Google\Cloud\Spanner\Admin\Database\V1\EncryptionInfo\Type;
 use Google\Cloud\Spanner\Admin\Database\V1\RestoreDatabaseEncryptionConfig;
 use Google\Cloud\Spanner\Backup;
 use Google\Cloud\Spanner\Date;
+use Google\Rpc\Code;
 
 /**
  * @group spanner
@@ -81,7 +82,7 @@ class BackupTest extends SystemTestCase
                 self::getDatabaseInstance(self::$dbName1)->drop();
             });
         } else {
-            self::cleanUpPendingBackups(self::$dbName1);
+            self::cancelPendingBackups(self::$dbName1);
         }
 
         if (!self::$dbName2 = getenv('GOOGLE_CLOUD_SPANNER_TEST_BACKUP_DATABASE_2')) {
@@ -90,7 +91,7 @@ class BackupTest extends SystemTestCase
                 self::getDatabaseInstance(self::$dbName2)->drop();
             });
         } else {
-            self::cleanUpPendingBackups(self::$dbName2);
+            self::cancelPendingBackups(self::$dbName2);
         }
 
         $db1 = self::getDatabaseInstance(self::$dbName1);
@@ -144,6 +145,13 @@ class BackupTest extends SystemTestCase
         $op = $backup->create(self::$dbName1, $expireTime, [
             'encryptionConfig' => $encryptionConfig,
         ]);
+
+        self::$deletionQueue->add(function () use ($backup) {
+            if ($backup->exists()) {
+                $backup->delete();
+            }
+        });
+
         self::$backupOperationName = $op->name();
 
         $metadata = null;
@@ -161,10 +169,6 @@ class BackupTest extends SystemTestCase
 
         // Poll for completion with the extended timeout
         $this->pollWithExtendedTimeout($op);
-
-        self::$deletionQueue->add(function () use ($backup) {
-            $backup->delete();
-        });
 
         $this->assertTrue($backup->exists());
         $this->assertInstanceOf(Backup::class, $backup);
@@ -200,12 +204,10 @@ class BackupTest extends SystemTestCase
             try {
                 $backup->create(self::$dbName1, $expireTime);
                 break;
-            } catch (BadRequestException $e) {
+            } catch (BadRequestException | FailedPreconditionException $e) {
                 break;
-            } catch (FailedPreconditionException $e) {
-                break;
-            } catch (\Google\Cloud\Core\Exception\ServiceException $ex) {
-                $allowed = [14 /* UNAVAILABLE */, 4 /* DEADLINE_EXCEEDED */];
+            } catch (ServiceException $ex) {
+                $allowed = [Code::UNAVAILABLE, Code::DEADLINE_EXCEEDED];
                 if ($i === 2 || !in_array($ex->getCode(), $allowed)) {
                     throw $ex;
                 }
@@ -264,8 +266,8 @@ class BackupTest extends SystemTestCase
         
         try {
             $op->cancel();
-        } catch (\Google\Cloud\Core\Exception\ServiceException $e) {
-            if ($e->getCode() !== 4 /* DEADLINE_EXCEEDED */) {
+        } catch (ServiceException $e) {
+            if ($e->getCode() !== Code::DEADLINE_EXCEEDED) {
                 throw $e;
             }
         }
@@ -293,11 +295,14 @@ class BackupTest extends SystemTestCase
         $backup = self::$instance->backup(self::$backupId2);
 
         $op = $backup->create(self::$dbName2, $expireTime);
-        $this->pollWithExtendedTimeout($op);
 
         self::$deletionQueue->add(function () use ($backup) {
-            $backup->delete();
+            if ($backup->exists()) {
+                $backup->delete();
+            }
         });
+        
+        $this->pollWithExtendedTimeout($op);
 
         $this->assertTrue($backup->exists());
     }
@@ -311,6 +316,12 @@ class BackupTest extends SystemTestCase
         $newBackup = self::$instance->backup(self::$copyBackupId);
         $expireTime = new \DateTime('+7 hours');
         $op = $backup->createCopy($newBackup, $expireTime);
+
+        self::$deletionQueue->add(function () use ($newBackup) {
+            if ($newBackup->exists()) {
+                $newBackup->delete();
+            }
+        });
 
         $metadata = null;
         foreach (self::$instance->backupOperations() as $lro) {
@@ -326,10 +337,6 @@ class BackupTest extends SystemTestCase
         $this->assertArrayHasKey('startTime', $metadata['progress']);
 
         $this->pollWithExtendedTimeout($op);
-
-        self::$deletionQueue->add(function () use ($newBackup) {
-            $newBackup->delete();
-        });
 
         $this->assertTrue($newBackup->exists());
         $this->assertInstanceOf(Backup::class, $newBackup);
@@ -404,12 +411,7 @@ class BackupTest extends SystemTestCase
      */
     public function testListAllBackups()
     {
-        $allBackups = iterator_to_array(self::$instance->backups(), false);
-
-        $backupNames = [];
-        foreach ($allBackups as $b) {
-            $backupNames[] = $b->name();
-        }
+        $allBackups = iterator_to_array(self::$instance->backups(['filter' => 'database:' . self::$dbName1]), false);
         $this->assertTrue(count($allBackups) > 0);
         $this->assertContainsOnlyInstancesOf(Backup::class, $allBackups);
     }
@@ -534,7 +536,9 @@ class BackupTest extends SystemTestCase
      */
     public function testListAllBackupOperations()
     {
-        $backupOps = iterator_to_array($this::$instance->backupOperations());
+        $backupOps = iterator_to_array($this::$instance->backupOperations([
+            'filter' => 'name:' . self::$backupOperationName
+        ]));
 
         $backupOpsNames = array_map(function ($bOp) {
             return $bOp->name();
@@ -606,6 +610,15 @@ class BackupTest extends SystemTestCase
             self::fullyQualifiedBackupName(self::$backupId1),
             ['encryptionConfig' => $encryptionConfig]
         );
+
+        $restoredDb = $this::$instance->database($restoreDbName);
+
+        self::$deletionQueue->add(function () use ($restoredDb) {
+            if ($restoredDb->exists()) {
+                $restoredDb->drop();
+            }
+        });
+
         self::$restoreOperationName = $op->name();
 
         $metadata = null;
@@ -623,11 +636,6 @@ class BackupTest extends SystemTestCase
 
         // Poll for completion with the extended timeout
         $this->pollWithExtendedTimeout($op);
-        $restoredDb = $this::$instance->database($restoreDbName);
-
-        self::$deletionQueue->add(function () use ($restoredDb) {
-            $restoredDb->drop();
-        });
 
         $backup = $this::$instance->backup(self::$backupId1);
 
@@ -647,7 +655,9 @@ class BackupTest extends SystemTestCase
      */
     public function testRestoreAppearsInListDatabaseOperations()
     {
-        $databaseOps = iterator_to_array($this::$instance->databaseOperations());
+        $databaseOps = iterator_to_array($this::$instance->databaseOperations([
+            'filter' => 'name:' . self::$restoreOperationName
+        ]));
         $databaseOpsNames = array_map(function ($dOp) {
             return $dOp->name();
         }, $databaseOps);
@@ -676,7 +686,7 @@ class BackupTest extends SystemTestCase
                 $this->assertTrue(true); // Expected exception
                 return;
             } catch (ServiceException $e) {
-                if ($e->getCode() === 14 /* UNAVAILABLE */) {
+                if ($e->getCode() === Code::UNAVAILABLE) {
                     $retries--;
                     sleep(2);
                     continue;
@@ -737,8 +747,8 @@ class BackupTest extends SystemTestCase
                     'maxPollingDurationSeconds' => $timeout - time()
                 ]);
                 break;
-            } catch (\Google\Cloud\Core\Exception\ServiceException $e) {
-                if ($e->getCode() !== 4 /* DEADLINE_EXCEEDED */) {
+            } catch (ServiceException $e) {
+                if ($e->getCode() !== Code::DEADLINE_EXCEEDED) {
                     throw $e;
                 }
             }
@@ -747,21 +757,25 @@ class BackupTest extends SystemTestCase
         return $op;
     }
 
-    private static function cleanUpPendingBackups($dbName)
+    private static function cancelPendingBackups($dbName)
     {
         $dbFullName = self::getDatabaseInstance($dbName)->name();
         try {
             foreach (self::$instance->backupOperations() as $op) {
-                if (!$op->done()) {
-                    $metadata = $op->info()['metadata'] ?? [];
-                    if (isset($metadata['database']) && $metadata['database'] === $dbFullName) {
-                        try {
-                            $op->cancel();
-                            $op->pollUntilComplete(['maxPollingDurationSeconds' => 120]);
-                        } catch (\Exception $e) {
-                            // Ignore exceptions from cancelled operations
-                        }
-                    }
+                if ($op->done()) {
+                    continue;
+                }
+
+                $metadata = $op->info()['metadata'] ?? [];
+                if (!isset($metadata['database']) || $metadata['database'] !== $dbFullName) {
+                    continue;
+                }
+
+                try {
+                    $op->cancel();
+                    $op->pollUntilComplete(['maxPollingDurationSeconds' => 120]);
+                } catch (\Exception $e) {
+                    // Ignore exceptions from cancelled operations
                 }
             }
         } catch (\Exception $e) {
