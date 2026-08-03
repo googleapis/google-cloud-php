@@ -97,6 +97,7 @@ trait SystemTestCaseTrait
 
     private static function setUpTestDatabase(): void
     {
+        self::setupQueue();
         if (TestDatabaseManager::$sqlHasSetUp) {
             self::$client = TestDatabaseManager::$client;
             self::$instance = TestDatabaseManager::$instance;
@@ -110,24 +111,28 @@ trait SystemTestCaseTrait
 
         if (!self::$dbName = getenv('GOOGLE_CLOUD_SPANNER_TEST_DATABASE')) {
             self::$dbName = uniqid(self::TESTING_PREFIX);
-            self::$deletionQueue->add(function () {
+            register_shutdown_function(function () {
                 self::getDatabaseInstance(self::$dbName)->drop();
             });
         }
+
+        if ($token = getenv('TEST_TOKEN')) {
+            self::$dbName .= '-' . $token;
+        }
+        
         self::$database = self::getDatabaseInstance(self::$dbName);
 
         if (!self::$database->exists()) {
             $op = self::$instance->createDatabase(self::$dbName);
             $op->pollUntilComplete();
-        } else {
-            TestDatabaseManager::$sqlHasSetUp = true;
-            TestDatabaseManager::$client = self::$client;
-            TestDatabaseManager::$instance = self::$instance;
-            TestDatabaseManager::$sqlDatabase = self::$database;
-            TestDatabaseManager::$sqlDbName = self::$dbName;
-            self::$hasSetUp = true;
-            return;
         }
+
+        TestDatabaseManager::$sqlHasSetUp = true;
+        TestDatabaseManager::$client = self::$client;
+        TestDatabaseManager::$instance = self::$instance;
+        TestDatabaseManager::$sqlDatabase = self::$database;
+        TestDatabaseManager::$sqlDbName = self::$dbName;
+        self::$hasSetUp = true;
 
         $op = self::$database->updateDdlBatch(
             [

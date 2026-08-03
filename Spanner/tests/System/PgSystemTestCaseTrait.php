@@ -39,9 +39,13 @@ trait PgSystemTestCaseTrait
         if (!self::$dbName = getenv('GOOGLE_CLOUD_SPANNER_TEST_PG_DATABASE')) {
             self::$dbName = uniqid(self::TESTING_PREFIX);
 
-            self::$deletionQueue->add(function () {
+            register_shutdown_function(function () {
                 self::getDatabaseInstance(self::$dbName)->drop();
             });
+        }
+        
+        if ($token = getenv('TEST_TOKEN')) {
+            self::$dbName .= '-' . $token;
         }
         
         self::$database = self::getDatabaseInstance(self::$dbName);
@@ -51,15 +55,14 @@ trait PgSystemTestCaseTrait
                 'databaseDialect' => DatabaseDialect::POSTGRESQL
             ]);
             $op->pollUntilComplete();
-        } else {
-            TestDatabaseManager::$pgHasSetUp = true;
-            TestDatabaseManager::$client = self::$client;
-            TestDatabaseManager::$instance = self::$instance;
-            TestDatabaseManager::$pgDatabase = self::$database;
-            TestDatabaseManager::$pgDbName = self::$dbName;
-            self::$hasSetUp = true;
-            return;
         }
+
+        TestDatabaseManager::$pgHasSetUp = true;
+        TestDatabaseManager::$client = self::$client;
+        TestDatabaseManager::$instance = self::$instance;
+        TestDatabaseManager::$pgDatabase = self::$database;
+        TestDatabaseManager::$pgDbName = self::$dbName;
+        self::$hasSetUp = true;
 
         self::$database->updateDdlBatch(
             [
