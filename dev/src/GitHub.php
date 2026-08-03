@@ -98,7 +98,7 @@ class GitHub
                 self::GITHUB_RELEASE_ENDPOINT,
                 $this->cleanTarget($target), $tagName
             ), [
-                'auth' => [null, $this->token]
+                'auth' => ['', $this->token]
             ]);
 
             return ($res->getStatusCode() === 200);
@@ -135,7 +135,7 @@ class GitHub
                 $this->cleanTarget($target)
             ), [
                 'json' => $requestBody,
-                'auth' => [null, $this->token]
+                'auth' => ['', $this->token]
             ]);
 
             return $res->getStatusCode() === 201;
@@ -165,7 +165,7 @@ class GitHub
             $this->cleanTarget($target),
             $tagName
         ), [
-            'auth' => [null, $this->token]
+            'auth' => ['', $this->token]
         ]);
 
         if ($release = json_decode((string) $res->getBody(), true)) {
@@ -181,7 +181,7 @@ class GitHub
                 $tagId
             ), [
                 'json' => $requestBody,
-                'auth' => [null, $this->token]
+                'auth' => ['', $this->token]
             ]);
 
             return $res->getStatusCode() === 201;
@@ -207,13 +207,16 @@ class GitHub
                 $target,
                 $tagName
             ), [
-                'auth' => [null, $this->token]
+                'auth' => ['', $this->token]
             ]);
 
             return json_decode((string) $res->getBody(), true)['body'];
         } catch (RequestException $e) {
             $this->logException($e);
-            return $e->getResponse()?->getStatusCode() === 404 ? false : null;
+            // Guzzle 7 carries the response on RequestException, Guzzle 8 only
+            // on its ResponseException subclass, hence the method_exists() check.
+            $response = method_exists($e, 'getResponse') ? $e->getResponse() : null;
+            return $response?->getStatusCode() === 404 ? false : null;
         }
     }
 
@@ -266,7 +269,7 @@ class GitHub
                     self::GITHUB_REPO_ENDPOINT,
                     $this->cleanTarget($target)
                 ), [
-                    'auth' => [null, $this->token]
+                    'auth' => ['', $this->token]
                 ]);
 
                 $this->targetInfoCache[$target] = $res;
@@ -289,7 +292,7 @@ class GitHub
                 self::GITHUB_TEAMS_ENDPOINT,
                 $this->cleanTarget($repoName)
             ), [
-                'auth' => [null, $this->token]
+                'auth' => ['', $this->token]
             ]);
 
             return json_decode((string) $res->getBody(), true);
@@ -314,7 +317,7 @@ class GitHub
                 self::GITHUB_RELEASE_CREATE_ENDPOINT,
                 $this->cleanTarget($target)
             ), [
-                'auth' => [null, $this->token]
+                'auth' => ['', $this->token]
             ]);
         } catch (\Exception $e) {
             $this->logException($e);
@@ -344,7 +347,7 @@ class GitHub
                 self::GITHUB_REPO_ENDPOINT,
                 $repoName
             ), [
-                'auth' => [null, $this->token],
+                'auth' => ['', $this->token],
                 'body' => json_encode($settings),
             ]);
 
@@ -368,7 +371,7 @@ class GitHub
                 $teamName,
                 $repoName,
             ), [
-                'auth' => [null, $this->token],
+                'auth' => ['', $this->token],
                 'body' => json_encode(['permission' => $permission]),
             ]);
             return $res->getStatusCode() == 204;
@@ -391,7 +394,7 @@ class GitHub
                 self::GITHUB_WEBHOOK_CREATE_ENDPOINT,
                 $this->cleanTarget($target)
             ), [
-                'auth' => [null, $this->token],
+                'auth' => ['', $this->token],
                 'json' => [
                     'name' => 'web',
                     'active' => true,
@@ -433,7 +436,7 @@ class GitHub
                 self::GITHUB_WEBHOOKS_LIST_ENDPOINT,
                 $this->cleanTarget($target)
             ), [
-                'auth' => [null, $this->token],
+                'auth' => ['', $this->token],
             ]);
         } catch (\Exception $e) {
             $this->logException($e);
@@ -474,7 +477,7 @@ class GitHub
                 $this->cleanTarget($target),
                 $webhookId
             ), [
-                'auth' => [null, $this->token],
+                'auth' => ['', $this->token],
                 'json' => [
                     'config' => [
                         'content_type' => 'json',

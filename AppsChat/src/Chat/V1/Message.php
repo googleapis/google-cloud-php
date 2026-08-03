@@ -86,8 +86,8 @@ class Message extends \Google\Protobuf\Internal\Message
      * but includes the following:
      * * [Markup
      * syntax](https://developers.google.com/workspace/chat/format-messages)
-     * for bold, italic, strikethrough, monospace, monospace block, and bulleted
-     * list.
+     * for bold, italic, strikethrough, monospace, monospace block, bulleted
+     * list, and block quote.
      * * [User
      * mentions](https://developers.google.com/workspace/chat/format-messages#messages-\@mention)
      * using the format `<users/{user}>`.
@@ -188,8 +188,8 @@ class Message extends \Google\Protobuf\Internal\Message
      */
     private $attachment;
     /**
-     * Output only. A URL in `spaces.messages.text` that matches a link preview
-     * pattern. For more information, see [Preview
+     * Output only. A URL in the Chat message `text` field that matches a link
+     * preview pattern. For more information, see [Preview
      * links](https://developers.google.com/workspace/chat/preview-links).
      *
      * Generated from protobuf field <code>.google.chat.v1.MatchedUrl matched_url = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -336,8 +336,8 @@ class Message extends \Google\Protobuf\Internal\Message
      *           but includes the following:
      *           * [Markup
      *           syntax](https://developers.google.com/workspace/chat/format-messages)
-     *           for bold, italic, strikethrough, monospace, monospace block, and bulleted
-     *           list.
+     *           for bold, italic, strikethrough, monospace, monospace block, bulleted
+     *           list, and block quote.
      *           * [User
      *           mentions](https://developers.google.com/workspace/chat/format-messages#messages-\@mention)
      *           using the format `<users/{user}>`.
@@ -393,8 +393,8 @@ class Message extends \Google\Protobuf\Internal\Message
      *     @type \Google\Apps\Chat\V1\Attachment[] $attachment
      *           Optional. User-uploaded attachment.
      *     @type \Google\Apps\Chat\V1\MatchedUrl $matched_url
-     *           Output only. A URL in `spaces.messages.text` that matches a link preview
-     *           pattern. For more information, see [Preview
+     *           Output only. A URL in the Chat message `text` field that matches a link
+     *           preview pattern. For more information, see [Preview
      *           links](https://developers.google.com/workspace/chat/preview-links).
      *     @type bool $thread_reply
      *           Output only. When `true`, the message is a response in a reply thread. When
@@ -714,8 +714,8 @@ class Message extends \Google\Protobuf\Internal\Message
      * but includes the following:
      * * [Markup
      * syntax](https://developers.google.com/workspace/chat/format-messages)
-     * for bold, italic, strikethrough, monospace, monospace block, and bulleted
-     * list.
+     * for bold, italic, strikethrough, monospace, monospace block, bulleted
+     * list, and block quote.
      * * [User
      * mentions](https://developers.google.com/workspace/chat/format-messages#messages-\@mention)
      * using the format `<users/{user}>`.
@@ -743,8 +743,8 @@ class Message extends \Google\Protobuf\Internal\Message
      * but includes the following:
      * * [Markup
      * syntax](https://developers.google.com/workspace/chat/format-messages)
-     * for bold, italic, strikethrough, monospace, monospace block, and bulleted
-     * list.
+     * for bold, italic, strikethrough, monospace, monospace block, bulleted
+     * list, and block quote.
      * * [User
      * mentions](https://developers.google.com/workspace/chat/format-messages#messages-\@mention)
      * using the format `<users/{user}>`.
@@ -1123,8 +1123,8 @@ class Message extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. A URL in `spaces.messages.text` that matches a link preview
-     * pattern. For more information, see [Preview
+     * Output only. A URL in the Chat message `text` field that matches a link
+     * preview pattern. For more information, see [Preview
      * links](https://developers.google.com/workspace/chat/preview-links).
      *
      * Generated from protobuf field <code>.google.chat.v1.MatchedUrl matched_url = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -1146,8 +1146,8 @@ class Message extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. A URL in `spaces.messages.text` that matches a link preview
-     * pattern. For more information, see [Preview
+     * Output only. A URL in the Chat message `text` field that matches a link
+     * preview pattern. For more information, see [Preview
      * links](https://developers.google.com/workspace/chat/preview-links).
      *
      * Generated from protobuf field <code>.google.chat.v1.MatchedUrl matched_url = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>

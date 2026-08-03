@@ -5,6 +5,45 @@
     "protoPackage": "google.iam.v3",
     "libraryPackage": "Google\\Cloud\\Iam\\V3",
     "services": {
+        "AccessPolicies": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "AccessPoliciesGapicClient",
+                    "rpcs": {
+                        "CreateAccessPolicy": {
+                            "methods": [
+                                "createAccessPolicy"
+                            ]
+                        },
+                        "DeleteAccessPolicy": {
+                            "methods": [
+                                "deleteAccessPolicy"
+                            ]
+                        },
+                        "GetAccessPolicy": {
+                            "methods": [
+                                "getAccessPolicy"
+                            ]
+                        },
+                        "ListAccessPolicies": {
+                            "methods": [
+                                "listAccessPolicies"
+                            ]
+                        },
+                        "SearchAccessPolicyBindings": {
+                            "methods": [
+                                "searchAccessPolicyBindings"
+                            ]
+                        },
+                        "UpdateAccessPolicy": {
+                            "methods": [
+                                "updateAccessPolicy"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "PolicyBindings": {
             "clients": {
                 "grpc": {

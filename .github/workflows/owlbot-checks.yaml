@@ -3,6 +3,8 @@ on:
   pull_request:
     types: [opened, synchronize, reopened, edited]
     branches: ['main']
+permissions:
+  contents: read
 jobs:
   # Ensure that PRs labeled "feat" actually contain a new feature, PRs labeled
   # "bug" or "chore" do not.
@@ -12,11 +14,12 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.pull_request.user.login == 'gcf-owl-bot[bot]'
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           fetch-depth: 0
+          persist-credentials: false
       - name: "Install PHP"
-        uses: shivammathur/setup-php@v2
+        uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # v2
         with:
           php-version: "8.1"
       - name: "Install dependencies"
@@ -25,18 +28,23 @@ jobs:
         id: compatibility-checker
         continue-on-error: true
         # OwlBot PRs which are not labelled feat should not add new files or methods
+        env:
+          FROM_REF: ${{ github.head_ref || github.ref_name }}
         run: |
           ~/.composer/vendor/bin/roave-backward-compatibility-check \
-            --from=origin/${{ github.head_ref || github.ref_name }} \
+            --from=origin/${FROM_REF} \
             --to=origin/main
       - name: "Print the action item"
+        env:
+          STEPS_COMPATIBILITY_CHECKER_OUTCOME: ${{ steps.compatibility-checker.outcome }}
+          IS_STARTS_WITH_FEAT: ${{ startsWith(github.event.pull_request.title, 'feat') }}
         run: |
-          if [[ "${{ steps.compatibility-checker.outcome }}" == 'failure' ]]; then
-            if [[ "${{ startsWith(github.event.pull_request.title, 'feat') }}" == "false" ]]; then
+          if [[ "${STEPS_COMPATIBILITY_CHECKER_OUTCOME}" == 'failure' ]]; then
+            if [[ "${IS_STARTS_WITH_FEAT}" == "false" ]]; then
               echo "Action item: Change the conventional commit to use 'feat'"
               exit 1
             fi
-          elif [[ "${{ startsWith(github.event.pull_request.title, 'feat') }}" == "true" ]]; then
+          elif [[ "${IS_STARTS_WITH_FEAT}" == "true" ]]; then
             echo "Action item: No features found, do not use 'feat' for the conventional commit"
             exit 1
           fi
@@ -47,7 +55,9 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.pull_request.user.login == 'gcf-owl-bot[bot]' && github.event.pull_request.draft == false
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
       - name: Ensure
         run: |
           directory_to_check="owl-bot-staging"
