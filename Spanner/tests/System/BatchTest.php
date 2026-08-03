@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Spanner\Tests\System;
 
+use Google\ApiCore\ApiException;
+
 use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Core\Testing\System\SystemTestCase;
 use Google\Cloud\Spanner\Batch\BatchClient;
@@ -98,7 +100,7 @@ class BatchTest extends SystemTestCase
             try {
                 $partitions = $snapshot->partitionQuery($query, ['parameters' => $parameters]);
                 break;
-            } catch (ServiceException $ex) {
+            } catch (ServiceException | ApiException $ex) {
                 $allowed = [Code::UNAVAILABLE, Code::DEADLINE_EXCEEDED];
                 if ($i === 2 || !in_array($ex->getCode(), $allowed)) {
                     throw $ex;
