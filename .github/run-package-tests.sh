@@ -58,11 +58,18 @@ fi
 export COMPOSER=composer-local.json
 
 FAILED_FILE=$(mktemp -d)/failed
-for DIR in ${DIRS}; do
+
+# Executes the package test logic for a single component directory.
+# This function is responsible for copy/configuring local dependencies,
+# updating Composer, and running PHPUnit tests (unit + optional snippet tests).
+# It returns 0 on success, or 1 on failure.
+run_package_test() {
+    local DIR=$1
     echo "--- Processing ${DIR} ---"
     cp "${DIR}/composer.json" "${DIR}/composer-local.json"
+
     # Update composer to use local packages
-    PACKAGE_DEPENDENCIES=(
+    local PACKAGE_DEPENDENCIES=(
         "Gax,gax"
         "CommonProtos,common-protos,4.100"
         "BigQuery,cloud-bigquery"
@@ -78,6 +85,7 @@ for DIR in ${DIRS}; do
         IFS="," read -r PKG_DIR PKG_NAME PKG_VERSION <<< "$i"
         if grep -q "\"google/${PKG_NAME}\":" "${DIR}/composer.json"; then
             # determine local package version
+            local VERSION
             if [ "${STRICT}" = "true" ]; then
                 VERSION=$(cat "${PKG_DIR}/VERSION")
             elif [ -z "${PKG_VERSION}" ]; then
@@ -87,6 +95,7 @@ for DIR in ${DIRS}; do
             fi
             echo "Use local package ${PKG_DIR} as google/${PKG_NAME}:${VERSION} in ${DIR}"
             # "canonical: false" ensures composer will try to install from packagist when the "--prefer-lowest" flag is set.
+            local JSON_CONFIG
             JSON_CONFIG=$(printf '{"type":"path","url":"../%s","options":{"versions":{"google/%s":"%s"}},"canonical":false}' "${PKG_DIR}" "${PKG_NAME}" "${VERSION}")
             composer config "repositories.${PKG_NAME}" -d "${DIR}" "${JSON_CONFIG}"
         fi
@@ -97,20 +106,60 @@ for DIR in ${DIRS}; do
         echo -n " (with ${PREFER_LOWEST})"
     fi
     echo ""
-    composer -q --no-interaction --no-ansi --no-progress ${PREFER_LOWEST} update -d "${DIR}" || {
+    if ! composer -q --no-interaction --no-ansi --no-progress ${PREFER_LOWEST} update -d "${DIR}"; then
         echo "${DIR}: composer install failed" >> "${FAILED_FILE}"
         # run again but without "-q" so we can see the error
         composer --no-interaction --no-ansi --no-progress ${PREFER_LOWEST} update -d "${DIR}"
-        continue
-    }
+        return 1
+    fi
+
     echo "Running ${DIR} Unit Tests"
-    "${DIR}/vendor/bin/phpunit" -c "${DIR}/phpunit.xml.dist" || echo "${DIR}: failed" >> "${FAILED_FILE}"
+    if ! "${DIR}/vendor/bin/phpunit" -c "${DIR}/phpunit.xml.dist"; then
+        echo "${DIR}: failed" >> "${FAILED_FILE}"
+        return 1
+    fi
 
     if [ -f "${DIR}/phpunit-snippets.xml.dist" ]; then
         echo "Running ${DIR} Snippet Tests"
-        "${DIR}/vendor/bin/phpunit" -c "${DIR}/phpunit-snippets.xml.dist" || echo "${DIR} (snippets): failed" >> "${FAILED_FILE}"
+        if ! "${DIR}/vendor/bin/phpunit" -c "${DIR}/phpunit-snippets.xml.dist"; then
+            echo "${DIR} (snippets): failed" >> "${FAILED_FILE}"
+            return 1
+        fi
     fi
-done
+    return 0
+}
+
+# Wrapper function to run the package test logic for a single component.
+# Buffers all stdout/stderr into a temporary log file to ensure that concurrent
+# executions run completely hermetically and their log outputs are printed
+# contiguously, rather than interleaved at the line level.
+run_package_test_parallel() {
+    local DIR=$1
+    local LOG_FILE
+    LOG_FILE=$(mktemp)
+
+    # Run the logic, capturing all output
+    run_package_test "${DIR}" > "$LOG_FILE" 2>&1
+    local EXIT_CODE=$?
+
+    # Print the captured output atomically to standard streams
+    cat "$LOG_FILE"
+    rm "$LOG_FILE"
+    return $EXIT_CODE
+}
+
+# Export functions and key env vars so they are available within subprocesses spawned by xargs
+export -f run_package_test
+export -f run_package_test_parallel
+export STRICT
+export PREFER_LOWEST
+export FAILED_FILE
+
+# Determine optimal parallelism: default to the number of CPU cores on the host runner
+MAX_JOBS=${MAX_JOBS:-$(nproc 2>/dev/null || echo 8)}
+
+# Run the test suites concurrently using xargs -P
+printf "%s\n" ${DIRS} | xargs -P "${MAX_JOBS}" -I {} bash -c 'run_package_test_parallel "$@"' _ {}
 
 if [ -f "${FAILED_FILE}" ]; then
     echo "--------- Failed tests --------------"
