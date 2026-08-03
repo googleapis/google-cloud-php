@@ -1,5 +1,119 @@
 # Changelog
 
+## 0.339.0
+
+<details><summary>google/apps-chat 0.24.0</summary>
+
+
+
+### Features
+
+* [AppsChat] Addition of the Search Messages API ([#9417](https://github.com/googleapis/google-cloud-php/issues/9417)) ([2aa36cf](https://github.com/googleapis/google-cloud-php/commit/2aa36cf952ca7f3f3c5a1243101e9fe7ed1415d5))
+
+</details>
+
+<details><summary>google/cloud-iam 1.4.0</summary>
+
+
+
+### Features
+
+* [Iam] new iam v3 client for AccessPolicies ([#9420](https://github.com/googleapis/google-cloud-php/issues/9420)) ([041719b](https://github.com/googleapis/google-cloud-php/commit/041719b0155cb8f0d6392168618d539b48818fa0))
+
+</details>
+
+<details><summary>google/shopping-css 0.8.2</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-merchant-accounts 1.4.2</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-merchant-datasources 1.3.2</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-merchant-inventories 1.5.1</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-merchant-issueresolution 1.3.2</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-merchant-lfp 1.2.2</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-merchant-notifications 1.2.2</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-merchant-ordertracking 1.2.2</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-merchant-products 1.7.1</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-merchant-promotions 1.2.2</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-merchant-reports 1.3.1</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-merchant-reviews 0.6.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-spanner 2.10.3</summary>
+
+
+
+### Bug Fixes
+
+* **Spanner:** ensure precommit token is set for ILB transactions ([#9406](https://github.com/googleapis/google-cloud-php/issues/9406)) ([7aa8b07](https://github.com/googleapis/google-cloud-php/commit/7aa8b079eb412d07bea9c66c7d604a55cf6aeaaf))
+
+</details>
+
+<details><summary>google/cloud-storage-control 1.10.0</summary>
+
+
+
+### Features
+
+* [StorageControl] Add new CreateRapidCache ([#9395](https://github.com/googleapis/google-cloud-php/issues/9395)) ([f788544](https://github.com/googleapis/google-cloud-php/commit/f7885448d79cab2a4b6954cc5067ec04ffb49e01))
+
+</details>
+
 ## 0.338.0
 
 <details><summary>google/cloud-batch 1.4.2</summary>
