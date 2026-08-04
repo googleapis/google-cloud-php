@@ -716,6 +716,7 @@ class BackupTest extends SystemTestCase
                     self::$backupDbName,
                     self::fullyQualifiedBackupName(self::$backupId)
                 );
+                break;
             } catch (ConflictException $e) {
                 break;
             } catch (ServiceException | ApiException $ex) {
