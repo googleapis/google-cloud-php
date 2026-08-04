@@ -30,8 +30,7 @@ class ListPolicyBindingsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The maximum number of policy bindings to return. The service may
      * return fewer than this value.
-     * If unspecified, at most 50 policy bindings will be returned.
-     * The maximum value is 1000; values above 1000 will be coerced to 1000.
+     * The default value is 50. The maximum value is 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -47,7 +46,8 @@ class ListPolicyBindingsRequest extends \Google\Protobuf\Internal\Message
     protected $page_token = '';
     /**
      * Optional. An expression for filtering the results of the request. Filter
-     * rules are case insensitive. Some eligible fields for filtering are:
+     * rules are case insensitive. Some eligible fields for filtering are the
+     * following:
      * + `target`
      * + `policy`
      * Some examples of filter queries:
@@ -98,8 +98,7 @@ class ListPolicyBindingsRequest extends \Google\Protobuf\Internal\Message
      *     @type int $page_size
      *           Optional. The maximum number of policy bindings to return. The service may
      *           return fewer than this value.
-     *           If unspecified, at most 50 policy bindings will be returned.
-     *           The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *           The default value is 50. The maximum value is 1000.
      *     @type string $page_token
      *           Optional. A page token, received from a previous `ListPolicyBindings` call.
      *           Provide this to retrieve the subsequent page.
@@ -107,7 +106,8 @@ class ListPolicyBindingsRequest extends \Google\Protobuf\Internal\Message
      *           match the call that provided the page token.
      *     @type string $filter
      *           Optional. An expression for filtering the results of the request. Filter
-     *           rules are case insensitive. Some eligible fields for filtering are:
+     *           rules are case insensitive. Some eligible fields for filtering are the
+     *           following:
      *           + `target`
      *           + `policy`
      *           Some examples of filter queries:
@@ -162,8 +162,7 @@ class ListPolicyBindingsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The maximum number of policy bindings to return. The service may
      * return fewer than this value.
-     * If unspecified, at most 50 policy bindings will be returned.
-     * The maximum value is 1000; values above 1000 will be coerced to 1000.
+     * The default value is 50. The maximum value is 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -176,8 +175,7 @@ class ListPolicyBindingsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The maximum number of policy bindings to return. The service may
      * return fewer than this value.
-     * If unspecified, at most 50 policy bindings will be returned.
-     * The maximum value is 1000; values above 1000 will be coerced to 1000.
+     * The default value is 50. The maximum value is 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -225,7 +223,8 @@ class ListPolicyBindingsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. An expression for filtering the results of the request. Filter
-     * rules are case insensitive. Some eligible fields for filtering are:
+     * rules are case insensitive. Some eligible fields for filtering are the
+     * following:
      * + `target`
      * + `policy`
      * Some examples of filter queries:
@@ -243,7 +242,8 @@ class ListPolicyBindingsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. An expression for filtering the results of the request. Filter
-     * rules are case insensitive. Some eligible fields for filtering are:
+     * rules are case insensitive. Some eligible fields for filtering are the
+     * following:
      * + `target`
      * + `policy`
      * Some examples of filter queries:

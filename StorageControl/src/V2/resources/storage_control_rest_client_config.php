@@ -23,6 +23,55 @@
 return [
     'interfaces' => [
         'google.storage.control.v2.StorageControl' => [
+            'CreateFolder' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{parent=projects/*/buckets/*}/folders',
+                'body' => 'folder',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'folder_id',
+                ],
+            ],
+            'DeleteFolder' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v2/{name=projects/*/buckets/*/folders/**}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteFolderRecursive' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{name=projects/*/buckets/*/folders/**}:deleteRecursive',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetFolder' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{name=projects/*/buckets/*/folders/**}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetFolderIntelligenceConfig' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{name=folders/*/locations/*/intelligenceConfig}',
@@ -78,6 +127,28 @@ return [
                     ],
                 ],
             ],
+            'GetStorageLayout' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{name=projects/*/buckets/*/storageLayout}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListFolders' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{parent=projects/*/buckets/*}/folders',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListIntelligenceFindingRevisions' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{parent=projects/*/locations/*/intelligenceFindings/*}/revisions',
@@ -96,6 +167,18 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'RenameFolder' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{name=projects/*/buckets/*/folders/**}:rename',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
                         ],
                     ],
                 ],

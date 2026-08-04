@@ -490,6 +490,30 @@ class OperationTest extends TestCase
         $this->assertEquals('foo', $transaction->id());
     }
 
+    public function testTransactionWithPrecommitToken()
+    {
+        $precommitToken = new MultiplexedSessionPrecommitToken([
+            'precommit_token' => 'my-precommit-token',
+        ]);
+        $this->spannerClient->beginTransaction(
+            Argument::cetera()
+        )
+            ->shouldBeCalled()
+            ->willReturn(new TransactionProto([
+                'id' => self::TRANSACTION,
+                'precommit_token' => $precommitToken,
+            ]));
+
+        $t = $this->operation->transaction($this->session);
+        $this->assertInstanceOf(Transaction::class, $t);
+        $this->assertEquals(self::TRANSACTION, $t->id());
+
+        $ref = new \ReflectionClass(Transaction::class);
+        $prop = $ref->getProperty('precommitToken');
+        $this->assertNotNull($prop->getValue($t));
+        $this->assertEquals($precommitToken, $prop->getValue($t));
+    }
+
     public function testExecuteAndExecuteUpdateWithExcludeTxnFromChangeStreams()
     {
         $sql = 'SELECT example FROM sql_query';

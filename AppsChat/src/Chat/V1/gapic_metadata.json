@@ -200,6 +200,11 @@
                                 "positionSection"
                             ]
                         },
+                        "SearchMessages": {
+                            "methods": [
+                                "searchMessages"
+                            ]
+                        },
                         "SearchSpaces": {
                             "methods": [
                                 "searchSpaces"

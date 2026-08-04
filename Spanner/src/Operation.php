@@ -736,7 +736,7 @@ class Operation
             'requestOptions' => $beginTransaction->getRequestOptions(),
             'transactionOptions' => $txnOptions,
         ]);
-        return new Transaction(
+        $transaction = new Transaction(
             $this,
             $session,
             $id,

@@ -1,4 +1,4 @@
-FROM gcr.io/gcp-runtimes/ubuntu_20_0_4
+FROM gcr.io/gcp-runtimes/ubuntu_20_0_4@sha256:666805a878d9cd58ce9dfd6f423e2d0e3bdf01eea0cddd2be3a88244c1d4dfa5
 ENV PHP_DIR=/opt/php82
 ENV PHP_VERSION=8.2.30
 ENV PHP_SRC_DIR=/usr/local/src/php82-build

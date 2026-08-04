@@ -30,7 +30,7 @@ use Google\Cloud\Storage\Control\V2\IntelligenceFinding;
 use Google\Cloud\Storage\Control\V2\ListIntelligenceFindingsRequest;
 
 /**
- * Lists the `IntelligenceFinding` resources for the specified project.
+ * Lists the `IntelligenceFinding` resources for the specified the project.
  *
  * @param string $formattedParent The parent of the `IntelligenceFinding` resource.
  *

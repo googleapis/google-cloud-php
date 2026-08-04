@@ -84,6 +84,9 @@ use Google\Apps\Chat\V1\MoveSectionItemResponse;
 use Google\Apps\Chat\V1\PositionSectionRequest;
 use Google\Apps\Chat\V1\PositionSectionResponse;
 use Google\Apps\Chat\V1\Reaction;
+use Google\Apps\Chat\V1\SearchMessageResult;
+use Google\Apps\Chat\V1\SearchMessagesRequest;
+use Google\Apps\Chat\V1\SearchMessagesResponse;
 use Google\Apps\Chat\V1\SearchSpacesRequest;
 use Google\Apps\Chat\V1\SearchSpacesResponse;
 use Google\Apps\Chat\V1\Section;
@@ -2747,6 +2750,81 @@ class ChatServiceClientTest extends GeneratedTest
         $request = (new PositionSectionRequest())->setName($formattedName);
         try {
             $gapicClient->positionSection($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function searchMessagesTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $resultsElement = new SearchMessageResult();
+        $results = [$resultsElement];
+        $expectedResponse = new SearchMessagesResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setResults($results);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->spaceName('[SPACE]');
+        $filter = 'filter-1274492040';
+        $request = (new SearchMessagesRequest())->setParent($formattedParent)->setFilter($filter);
+        $response = $gapicClient->searchMessages($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getResults()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.chat.v1.ChatService/SearchMessages', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getFilter();
+        $this->assertProtobufEquals($filter, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function searchMessagesExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->spaceName('[SPACE]');
+        $filter = 'filter-1274492040';
+        $request = (new SearchMessagesRequest())->setParent($formattedParent)->setFilter($filter);
+        try {
+            $gapicClient->searchMessages($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
