@@ -61,12 +61,10 @@ class NewComponent
             ? $options['api-version']
             : ($protoFilename ? self::extractVersionFromProtoFilename($protoFilename) : null);
 
-        $protoFileForPath = $protoFilename ?: (str_replace('.', '/', $new->protoPackage) . '/service.proto');
-        $new->protoPath = self::getProtoPath($protoFileForPath, $new->version);
+        $new->protoPath = self::getProtoPath($protoFilename, $new->version);
 
         return $new;
     }
-
 
     public function getDocumentationUrl(): string
     {
@@ -118,6 +116,9 @@ class NewComponent
 
     private static function getProtoPath(string $protoFilename, ?string $version): string
     {
+        if (empty($protoFilename)) {
+            return '';
+        }
         $protoPath = dirname($protoFilename);
         if (is_null($version)) {
             return $protoPath;

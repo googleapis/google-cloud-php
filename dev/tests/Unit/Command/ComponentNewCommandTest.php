@@ -296,7 +296,7 @@ class ComponentNewCommandTest extends TestCase
         | githubRepo           | googleapis/google-cloud-php-speech-v2
         | gpbMetadataNamespace | GPBMetadata\Google\Cloud\Speech\V2
         | shortName            | speech
-        | protoPath            | google/cloud/speech/(v2)
+        | protoPath            | 
         | version              | v2
         EOF, self::$tmpDir);
 

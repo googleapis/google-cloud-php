@@ -131,6 +131,9 @@ class NewComponentTest extends TestCase
         $this->assertEquals('GPBMetadata\Google\Cloud\Speech\V2', $new->gpbMetadataNamespace);
         $this->assertEquals('speech', $new->shortName);
         $this->assertEquals('v2', $new->version);
-        $this->assertEquals('google/cloud/speech/(v2)', $new->protoPath);
+        $this->assertEquals('', $new->protoPath);
+
+        $newWithProto = NewComponent::fromOptions($options, 'google/cloud/speech/v2/speech.proto');
+        $this->assertEquals('google/cloud/speech/(v2)', $newWithProto->protoPath);
     }
 }
