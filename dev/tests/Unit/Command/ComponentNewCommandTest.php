@@ -324,6 +324,30 @@ class ComponentNewCommandTest extends TestCase
         $commandTester->execute([]);
     }
 
+    public function testNewComponentWithAllOptionsAndProtoPath()
+    {
+        $application = new Application();
+        $application->add(new ComponentNewCommand(self::$tmpDir));
+
+        $commandTester = new CommandTester($application->get('component:new'));
+
+        $commandTester->execute([
+            'proto' => 'google/cloud/secretmanager/v1/service.proto',
+            '--no-update' => true,
+            '--component-name' => 'SecretManagerWithOptions',
+            '--php-namespace' => 'Google\Cloud\SecretManager',
+            '--proto-package' => 'google.cloud.secretmanager',
+            '--api-short-name' => 'secretmanager',
+            '--api-version' => 'v1',
+            '--product-docs' => 'https://cloud.google.com/secret-manager/docs',
+            '--product-homepage' => 'https://cloud.google.com/secret-manager',
+        ]);
+
+        $display = $commandTester->getDisplay();
+        $this->assertStringContainsString('| protoPath            | google/cloud/secretmanager/(v1)', $display);
+        $this->assertFileExists(self::$tmpDir . '/SecretManagerWithOptions/.OwlBot.yaml');
+    }
+
     private function assertComposerJson(string $componentName)
     {
         $composerPath = sprintf('%s/../../fixtures/component/%s/composer.json', __DIR__, $componentName);
