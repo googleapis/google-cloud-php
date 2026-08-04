@@ -30,6 +30,7 @@ use Google\Cloud\Spanner\Admin\Database\V1\CreateBackupEncryptionConfig;
 use Google\Cloud\Spanner\Admin\Database\V1\EncryptionInfo\Type;
 use Google\Cloud\Spanner\Admin\Database\V1\RestoreDatabaseEncryptionConfig;
 use Google\Cloud\Spanner\Backup;
+use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Date;
 use Google\Rpc\Code;
 
@@ -676,6 +677,9 @@ class BackupTest extends SystemTestCase
         );
 
         $this->pollWithExtendedTimeout($op, __FUNCTION__);
+
+        $restoredDb->reload();
+        $this->assertEquals(Database::STATE_READY, $restoredDb->state());
     }
 
     /**
