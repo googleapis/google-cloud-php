@@ -547,6 +547,7 @@ class BackupTest extends SystemTestCase
 
         $this->pollWithExtendedTimeout($op, __FUNCTION__);
 
+        $newBackup->reload();
         $this->assertEquals(Backup::STATE_READY, $newBackup->state());
         $this->assertTrue($newBackup->info()['sizeBytes'] > 0);
     }
