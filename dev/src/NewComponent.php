@@ -39,21 +39,34 @@ class NewComponent
 
     public static function fromProto(string $protoContents, string $protoFilename): self
     {
+        return self::fromOptions([], $protoFilename, $protoContents);
+    }
+
+    public static function fromOptions(array $options, string $protoFilename = '', ?string $protoContents = null): self
+    {
         $new = new self();
-        $new->protoPackage = self::extractPackageNameFromProtoContents($protoContents);
-        $new->phpNamespace = self::extractPhpNamespaceFromProtoContents($protoContents)
+        $new->protoPackage = $options['proto-package']
+            ?? ($protoContents ? self::extractPackageNameFromProtoContents($protoContents) : '');
+        $new->phpNamespace = $options['php-namespace']
+            ?? ($protoContents ? self::extractPhpNamespaceFromProtoContents($protoContents) : null)
             ?: self::derivePhpNamespaceFromProtoPackage($new->protoPackage);
         $new->displayName = self::getDisplayName($new->phpNamespace);
-        $new->componentName = self::getComponentName($new->displayName);
+        $new->componentName = $options['component-name'] ?? self::getComponentName($new->displayName);
         $new->composerPackage = self::getComposerPackageFromProtoPackage($new->protoPackage);
         $new->githubRepo = self::getGithubRepo($new->composerPackage);
         $new->gpbMetadataNamespace = self::getGpbMetadataNamespace($new->protoPackage);
-        $new->shortName = self::extractShortNameFromProtoContents($protoContents);
-        $new->version = self::extractVersionFromProtoFilename($protoFilename);
-        $new->protoPath = self::getProtoPath($protoFilename, $new->version);
+        $new->shortName = $options['api-short-name']
+            ?? ($protoContents ? self::extractShortNameFromProtoContents($protoContents) : '');
+        $new->version = array_key_exists('api-version', $options)
+            ? $options['api-version']
+            : ($protoFilename ? self::extractVersionFromProtoFilename($protoFilename) : null);
+
+        $protoFileForPath = $protoFilename ?: (str_replace('.', '/', $new->protoPackage) . '/service.proto');
+        $new->protoPath = self::getProtoPath($protoFileForPath, $new->version);
 
         return $new;
     }
+
 
     public function getDocumentationUrl(): string
     {

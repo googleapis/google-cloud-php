@@ -77,7 +77,49 @@ class ComponentNewCommand extends Command
     {
         $this->setName('component:new')
             ->setDescription('Add a new Component')
-            ->addArgument('proto', InputArgument::REQUIRED, 'Path to service proto.')
+            ->addArgument('proto', InputArgument::OPTIONAL, 'Path to service proto.')
+            ->addOption(
+                'component-name',
+                null,
+                InputOption::VALUE_REQUIRED,
+                'The component name (e.g. Speech)'
+            )
+            ->addOption(
+                'php-namespace',
+                null,
+                InputOption::VALUE_REQUIRED,
+                'The PHP namespace (e.g. Google\Cloud\Speech\V2)'
+            )
+            ->addOption(
+                'proto-package',
+                null,
+                InputOption::VALUE_REQUIRED,
+                'The proto package (e.g. google.cloud.speech.v2)'
+            )
+            ->addOption(
+                'api-short-name',
+                null,
+                InputOption::VALUE_REQUIRED,
+                'The API short name (e.g. speech)'
+            )
+            ->addOption(
+                'api-version',
+                null,
+                InputOption::VALUE_REQUIRED,
+                'The API version (e.g. v2)'
+            )
+            ->addOption(
+                'product-docs',
+                null,
+                InputOption::VALUE_REQUIRED,
+                'The product documentation URL'
+            )
+            ->addOption(
+                'product-homepage',
+                null,
+                InputOption::VALUE_REQUIRED,
+                'The product homepage URL'
+            )
             ->addOption(
                 'no-update',
                 null,
@@ -95,15 +137,47 @@ class ComponentNewCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $componentName = $input->getOption('component-name');
+        $phpNamespace = $input->getOption('php-namespace');
+        $protoPackage = $input->getOption('proto-package');
+        $apiShortName = $input->getOption('api-short-name');
+        $apiVersion = $input->getOption('api-version');
+        $productDocs = $input->getOption('product-docs');
+        $productHomepage = $input->getOption('product-homepage');
+
+        $options = array_filter([
+            'component-name' => $componentName,
+            'php-namespace' => $phpNamespace,
+            'proto-package' => $protoPackage,
+            'api-short-name' => $apiShortName,
+            'api-version' => $apiVersion,
+            'product-docs' => $productDocs,
+            'product-homepage' => $productHomepage,
+        ], fn($v) => !is_null($v) && $v !== '');
+
+        $allOptionsProvided = count($options) === 7;
+
         $proto = $input->getArgument('proto');
-        $protoFile = file_exists($proto) ? substr($proto, strpos($proto, 'google/')) : $proto;
-        $new = NewComponent::fromProto($this->loadProtoContent($proto), $protoFile);
+        if (!$proto && !$allOptionsProvided) {
+            throw new RuntimeException('Error: You must provide a proto file path or all 7 component options.');
+        }
+
+        $protoFile = '';
+        $protoContents = null;
+        if ($proto) {
+            $protoFile = file_exists($proto) ? substr($proto, strpos($proto, 'google/')) : $proto;
+            if (!$allOptionsProvided) {
+                $protoContents = $this->loadProtoContent($proto);
+            }
+        }
+
+        $new = NewComponent::fromOptions($options, $protoFile, $protoContents);
         $new->componentPath = $this->rootPath;
 
         if (is_dir($this->rootPath . '/' . $new->componentName)) {
             // component already exists
             $output->writeln(''); // blank line
-            if (!$this->getHelper('question')->ask($input, $output, new ConfirmationQuestion(
+            if ($input->isInteractive() && !$this->getHelper('question')->ask($input, $output, new ConfirmationQuestion(
                 sprintf('Component %s already exists. Overwrite it? [Y/n]', $new->componentName),
                 'Y'
             ))) {
@@ -120,7 +194,7 @@ class ComponentNewCommand extends Command
         $timeout = (int) $unsafeTimeout;
 
         $output->writeln(''); // blank line
-        $output->writeln(sprintf('Your package (%s) will have the following info:', $protoFile));
+        $output->writeln(sprintf('Your package (%s) will have the following info:', $protoFile ?: $new->componentName));
 
         $f = fn($f, $v) => ["<info>$f</info>", $v];
         $newArray = (array) $new;
@@ -129,40 +203,52 @@ class ComponentNewCommand extends Command
             ->setRows(array_map($f, array_keys($newArray), $newArray))
             ->render();
 
-        while (
-            !$this->getHelper('question')->ask(
-                $input,
-                $output,
-                new ConfirmationQuestion('Does this information look correct? ("n" to customize) [Y/n] ', 'Y')
-            )
-        ) {
-            foreach ($new as $field => $val) {
-                $new->$field = $this->getHelper('question')->ask(
+        if ($input->isInteractive() && !$allOptionsProvided) {
+            while (
+                !$this->getHelper('question')->ask(
                     $input,
                     $output,
-                    new Question(sprintf('What is the %s? (ENTER for "%s") ', $field, $val), $val)
-                );
+                    new ConfirmationQuestion('Does this information look correct? ("n" to customize) [Y/n] ', 'Y')
+                )
+            ) {
+                foreach ($new as $field => $val) {
+                    $new->$field = $this->getHelper('question')->ask(
+                        $input,
+                        $output,
+                        new Question(sprintf('What is the %s? (ENTER for "%s") ', $field, $val), $val)
+                    );
+                }
+                $newArray = (array) $new;
+                (new Table($output))
+                    ->setRows(array_map($f, array_keys($newArray), $newArray))
+                    ->render();
             }
-            $newArray = (array) $new;
-            (new Table($output))
-                ->setRows(array_map($f, array_keys($newArray), $newArray))
-                ->render();
         }
 
-        $productDocumentation = null;
-        $yamlFileContent = $this->loadYamlConfigContent($new, dirname($proto));
-        $productDocumentation = $yamlFileContent['publishing']['documentation_uri'] ?? null;
-        $productDocumentation = $productDocumentation ?: $this->getHelper('question')->ask(
-            $input,
-            $output,
-            new Question('What is the product documentation URL? ')
-        );
-        $productHomePage = $this->getHomePageFromDocsUrl($productDocumentation);
-        $productHomePage = $productHomePage ?: $this->getHelper('question')->ask(
-            $input,
-            $output,
-            new Question('What is the product homepage? ')
-        );
+        $productDocumentation = $productDocs;
+        if (!$productDocumentation && $proto) {
+            $yamlFileContent = $this->loadYamlConfigContent($new, dirname($proto));
+            $productDocumentation = $yamlFileContent['publishing']['documentation_uri'] ?? null;
+        }
+        if (!$productDocumentation && $input->isInteractive()) {
+            $productDocumentation = $this->getHelper('question')->ask(
+                $input,
+                $output,
+                new Question('What is the product documentation URL? ')
+            );
+        }
+
+        $productHomePage = $productHomepage;
+        if (!$productHomePage && $productDocumentation) {
+            $productHomePage = $this->getHomePageFromDocsUrl($productDocumentation);
+        }
+        if (!$productHomePage && $input->isInteractive()) {
+            $productHomePage = $this->getHelper('question')->ask(
+                $input,
+                $output,
+                new Question('What is the product homepage? ')
+            );
+        }
 
         $documentationUrl = $new->getDocumentationUrl();
 

@@ -111,4 +111,26 @@ class NewComponentTest extends TestCase
             ],
         ];
     }
+
+    public function testFromOptions()
+    {
+        $options = [
+            'component-name' => 'Speech',
+            'php-namespace' => 'Google\Cloud\Speech\V2',
+            'proto-package' => 'google.cloud.speech.v2',
+            'api-short-name' => 'speech',
+            'api-version' => 'v2',
+        ];
+        $new = NewComponent::fromOptions($options);
+        $this->assertEquals('google.cloud.speech.v2', $new->protoPackage);
+        $this->assertEquals('Google\Cloud\Speech\V2', $new->phpNamespace);
+        $this->assertEquals('Google Cloud Speech V2', $new->displayName);
+        $this->assertEquals('Speech', $new->componentName);
+        $this->assertEquals('google/cloud-speech-v2', $new->composerPackage);
+        $this->assertEquals('googleapis/google-cloud-php-speech-v2', $new->githubRepo);
+        $this->assertEquals('GPBMetadata\Google\Cloud\Speech\V2', $new->gpbMetadataNamespace);
+        $this->assertEquals('speech', $new->shortName);
+        $this->assertEquals('v2', $new->version);
+        $this->assertEquals('google/cloud/speech/(v2)', $new->protoPath);
+    }
 }

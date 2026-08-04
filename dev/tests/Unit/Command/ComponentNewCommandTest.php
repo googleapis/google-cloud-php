@@ -267,6 +267,62 @@ class ComponentNewCommandTest extends TestCase
         ]);
     }
 
+    public function testNewComponentWithAllOptions()
+    {
+        $application = new Application();
+        $application->add(new ComponentNewCommand(self::$tmpDir));
+
+        $commandTester = new CommandTester($application->get('component:new'));
+
+        $commandTester->execute([
+            '--no-update' => true,
+            '--component-name' => 'Speech',
+            '--php-namespace' => 'Google\Cloud\Speech\V2',
+            '--proto-package' => 'google.cloud.speech.v2',
+            '--api-short-name' => 'speech',
+            '--api-version' => 'v2',
+            '--product-docs' => 'https://cloud.google.com/speech-to-text/docs',
+            '--product-homepage' => 'https://cloud.google.com/speech-to-text',
+        ]);
+
+        $display = $commandTester->getDisplay();
+        $expectedDisplay = sprintf(<<<EOF
+        | protoPackage         | google.cloud.speech.v2
+        | phpNamespace         | Google\Cloud\Speech\V2
+        | displayName          | Google Cloud Speech V2
+        | componentName        | Speech
+        | componentPath        | %s
+        | composerPackage      | google/cloud-speech-v2
+        | githubRepo           | googleapis/google-cloud-php-speech-v2
+        | gpbMetadataNamespace | GPBMetadata\Google\Cloud\Speech\V2
+        | shortName            | speech
+        | protoPath            | google/cloud/speech/(v2)
+        | version              | v2
+        EOF, self::$tmpDir);
+
+        foreach (explode("\n", $expectedDisplay) as $expectedLine) {
+            $this->assertStringContainsString($expectedLine, $display);
+        }
+
+        $this->assertFileExists(self::$tmpDir . '/Speech/README.md');
+
+        $repoMetadataFull = json_decode(file_get_contents(self::$tmpDir . '/.repo-metadata-full.json'), true);
+        $this->assertArrayHasKey('Speech', $repoMetadataFull);
+        $this->assertEquals('speech', $repoMetadataFull['Speech']['api_shortname']);
+    }
+
+    public function testNewComponentWithoutProtoOrOptionsFails()
+    {
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage('Error: You must provide a proto file path or all 7 component options.');
+
+        $application = new Application();
+        $application->add(new ComponentNewCommand(self::$tmpDir));
+
+        $commandTester = new CommandTester($application->get('component:new'));
+        $commandTester->execute([]);
+    }
+
     private function assertComposerJson(string $componentName)
     {
         $composerPath = sprintf('%s/../../fixtures/component/%s/composer.json', __DIR__, $componentName);
