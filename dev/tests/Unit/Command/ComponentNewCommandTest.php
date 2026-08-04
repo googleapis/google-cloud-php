@@ -305,6 +305,7 @@ class ComponentNewCommandTest extends TestCase
         }
 
         $this->assertFileExists(self::$tmpDir . '/Speech/README.md');
+        $this->assertFileDoesNotExist(self::$tmpDir . '/Speech/.OwlBot.yaml');
 
         $repoMetadataFull = json_decode(file_get_contents(self::$tmpDir . '/.repo-metadata-full.json'), true);
         $this->assertArrayHasKey('Speech', $repoMetadataFull);

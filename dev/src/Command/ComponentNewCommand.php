@@ -271,6 +271,10 @@ class ComponentNewCommand extends Command
         $loader = new FilesystemLoader(self::TEMPLATE_DIR);
         $twig = new Environment($loader);
         foreach (self::TEMPLATE_FILES as $template) {
+            // No need to generate .OwlBot.yaml when calling from librarian
+            if ('.OwlBot.yaml.twig' === $template && $allOptionsProvided && !$proto) {
+                continue;
+            }
             $file = str_replace('.twig', '', $template);
             $output->writeln(sprintf('<info>%s</info> Creating %s from twig template.', $file, $file));
             $filesystem->dumpFile($componentDir . '/' . $file, $twig->render($template, [
