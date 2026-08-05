@@ -400,7 +400,7 @@ class BackupTest extends SystemTestCase
     public function testListAllBackupOperations()
     {
         $backupOps = iterator_to_array($this::$instance->backupOperations([
-            'filter' => 'name:' . self::$backupOperationName
+            'filter' => sprintf('name="%s"', self::$backupOperationName)
         ]));
 
         $backupOpsNames = array_map(function ($bOp) {
@@ -679,7 +679,10 @@ class BackupTest extends SystemTestCase
         $this->pollWithExtendedTimeout($op, __FUNCTION__);
 
         $restoredDb->reload();
-        $this->assertEquals(Database::STATE_READY, $restoredDb->state());
+        $this->assertContains($restoredDb->state(), [
+            Database::STATE_READY,
+            Database::STATE_READY_OPTIMIZING
+        ]);
     }
 
     /**
@@ -691,7 +694,7 @@ class BackupTest extends SystemTestCase
     public function testRestoreAppearsInListDatabaseOperations()
     {
         $databaseOps = iterator_to_array($this::$instance->databaseOperations([
-            'filter' => 'name:' . self::$restoreOperationName
+            'filter' => sprintf('name="%s"', self::$restoreOperationName)
         ]));
         $databaseOpsNames = array_map(function ($dOp) {
             return $dOp->name();
