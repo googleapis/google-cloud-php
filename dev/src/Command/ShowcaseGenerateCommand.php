@@ -107,16 +107,11 @@ class ShowcaseGenerateCommand extends Command
         }
         $schemaDir = $showcasePath . '/schema/google/showcase/v1beta1';
 
-        // 3. Resolve Googleapis Path (Defaults to ../googleapis or generatorPath/googleapis)
         $googleapisPath = $input->getOption('googleapis-path');
         if (!is_dir($googleapisPath . '/google/cloud')) {
-            if (is_dir($generatorPath . '/googleapis/google/cloud')) {
-                $googleapisPath = $generatorPath . '/googleapis';
-            } else {
-                $output->writeln("<error>Error: googleapis directory not found at {$googleapisPath}.</error>");
-                $output->writeln('Please specify the path using <comment>--googleapis-path <dir></comment>');
-                return Command::FAILURE;
-            }
+            $output->writeln("<error>Error: googleapis directory not found at {$googleapisPath}.</error>");
+            $output->writeln('Please specify the path using <comment>--googleapis-path <dir></comment>');
+            return Command::FAILURE;
         }
 
         $output->writeln("<info>Using output directory:</info> {$targetDir}");

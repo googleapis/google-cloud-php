@@ -242,6 +242,8 @@ final class IdentityClient
      *
      * The async variant is {@see IdentityClient::createUserAsync()} .
      *
+     * @example samples/V1beta1/IdentityClient/create_user.php
+     *
      * @param CreateUserRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -268,6 +270,8 @@ final class IdentityClient
      *
      * The async variant is {@see IdentityClient::deleteUserAsync()} .
      *
+     * @example samples/V1beta1/IdentityClient/delete_user.php
+     *
      * @param DeleteUserRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -291,6 +295,8 @@ final class IdentityClient
      * Retrieves the User with the given uri.
      *
      * The async variant is {@see IdentityClient::getUserAsync()} .
+     *
+     * @example samples/V1beta1/IdentityClient/get_user.php
      *
      * @param GetUserRequest $request     A request to house fields associated with the call.
      * @param array          $callOptions {
@@ -318,6 +324,8 @@ final class IdentityClient
      *
      * The async variant is {@see IdentityClient::listUsersAsync()} .
      *
+     * @example samples/V1beta1/IdentityClient/list_users.php
+     *
      * @param ListUsersRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
      *     Optional.
@@ -343,6 +351,8 @@ final class IdentityClient
      * Updates a user.
      *
      * The async variant is {@see IdentityClient::updateUserAsync()} .
+     *
+     * @example samples/V1beta1/IdentityClient/update_user.php
      *
      * @param UpdateUserRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {

@@ -158,7 +158,7 @@ final class EchoClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
+        $options = $methodName && isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -278,6 +278,8 @@ final class EchoClient
      *
      * The async variant is {@see EchoClient::blockAsync()} .
      *
+     * @example samples/V1beta1/EchoClient/block.php
+     *
      * @param BlockRequest $request     A request to house fields associated with the call.
      * @param array        $callOptions {
      *     Optional.
@@ -304,6 +306,8 @@ final class EchoClient
      * content back on the stream. This method showcases bidirectional
      * streaming RPCs.
      *
+     * @example samples/V1beta1/EchoClient/chat.php
+     *
      * @param array $callOptions {
      *     Optional.
      *
@@ -327,6 +331,8 @@ final class EchoClient
      * by the client, this method will return the a concatenation of the strings
      * passed to it. This method showcases client-side streaming RPCs.
      *
+     * @example samples/V1beta1/EchoClient/collect.php
+     *
      * @param array $callOptions {
      *     Optional.
      *
@@ -349,6 +355,8 @@ final class EchoClient
      * This method simply echoes the request. This method showcases unary RPCs.
      *
      * The async variant is {@see EchoClient::echoAsync()} .
+     *
+     * @example samples/V1beta1/EchoClient/echo.php
      *
      * @param EchoRequest $request     A request to house fields associated with the call.
      * @param array       $callOptions {
@@ -381,6 +389,8 @@ final class EchoClient
      *
      * The async variant is {@see EchoClient::echoErrorDetailsAsync()} .
      *
+     * @example samples/V1beta1/EchoClient/echo_error_details.php
+     *
      * @param EchoErrorDetailsRequest $request     A request to house fields associated with the call.
      * @param array                   $callOptions {
      *     Optional.
@@ -405,6 +415,8 @@ final class EchoClient
     /**
      * This method splits the given content into words and will pass each word back
      * through the stream. This method showcases server-side streaming RPCs.
+     *
+     * @example samples/V1beta1/EchoClient/expand.php
      *
      * @param ExpandRequest $request     A request to house fields associated with the call.
      * @param array         $callOptions {
@@ -436,6 +448,8 @@ final class EchoClient
      *
      * The async variant is {@see EchoClient::failEchoWithDetailsAsync()} .
      *
+     * @example samples/V1beta1/EchoClient/fail_echo_with_details.php
+     *
      * @param FailEchoWithDetailsRequest $request     A request to house fields associated with the call.
      * @param array                      $callOptions {
      *     Optional.
@@ -462,6 +476,8 @@ final class EchoClient
      * expanded words, this method returns a paged list of expanded words.
      *
      * The async variant is {@see EchoClient::pagedExpandAsync()} .
+     *
+     * @example samples/V1beta1/EchoClient/paged_expand.php
      *
      * @param PagedExpandRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -490,6 +506,8 @@ final class EchoClient
      * do. New APIs should NOT use this pattern.
      *
      * The async variant is {@see EchoClient::pagedExpandLegacyAsync()} .
+     *
+     * @example samples/V1beta1/EchoClient/paged_expand_legacy.php
      *
      * @param PagedExpandLegacyRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -521,6 +539,8 @@ final class EchoClient
      *
      * The async variant is {@see EchoClient::pagedExpandLegacyMappedAsync()} .
      *
+     * @example samples/V1beta1/EchoClient/paged_expand_legacy_mapped.php
+     *
      * @param PagedExpandRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -547,6 +567,8 @@ final class EchoClient
      * This method showcases how a client handles a request timeout.
      *
      * The async variant is {@see EchoClient::waitAsync()} .
+     *
+     * @example samples/V1beta1/EchoClient/wait.php
      *
      * @param WaitRequest $request     A request to house fields associated with the call.
      * @param array       $callOptions {

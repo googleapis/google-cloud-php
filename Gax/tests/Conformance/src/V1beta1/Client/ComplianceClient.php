@@ -201,6 +201,8 @@ final class ComplianceClient
      *
      * The async variant is {@see ComplianceClient::getEnumAsync()} .
      *
+     * @example samples/V1beta1/ComplianceClient/get_enum.php
+     *
      * @param EnumRequest $request     A request to house fields associated with the call.
      * @param array       $callOptions {
      *     Optional.
@@ -227,6 +229,8 @@ final class ComplianceClient
      * sending the entire request object in the REST body.
      *
      * The async variant is {@see ComplianceClient::repeatDataBodyAsync()} .
+     *
+     * @example samples/V1beta1/ComplianceClient/repeat_data_body.php
      *
      * @param RepeatRequest $request     A request to house fields associated with the call.
      * @param array         $callOptions {
@@ -256,6 +260,8 @@ final class ComplianceClient
      *
      * The async variant is {@see ComplianceClient::repeatDataBodyInfoAsync()} .
      *
+     * @example samples/V1beta1/ComplianceClient/repeat_data_body_info.php
+     *
      * @param RepeatRequest $request     A request to house fields associated with the call.
      * @param array         $callOptions {
      *     Optional.
@@ -281,6 +287,8 @@ final class ComplianceClient
      * This method echoes the ComplianceData request, using the HTTP PATCH method.
      *
      * The async variant is {@see ComplianceClient::repeatDataBodyPatchAsync()} .
+     *
+     * @example samples/V1beta1/ComplianceClient/repeat_data_body_patch.php
      *
      * @param RepeatRequest $request     A request to house fields associated with the call.
      * @param array         $callOptions {
@@ -308,6 +316,8 @@ final class ComplianceClient
      *
      * The async variant is {@see ComplianceClient::repeatDataBodyPutAsync()} .
      *
+     * @example samples/V1beta1/ComplianceClient/repeat_data_body_put.php
+     *
      * @param RepeatRequest $request     A request to house fields associated with the call.
      * @param array         $callOptions {
      *     Optional.
@@ -333,6 +343,8 @@ final class ComplianceClient
      * Same as RepeatDataSimplePath, but with a path resource.
      *
      * The async variant is {@see ComplianceClient::repeatDataPathResourceAsync()} .
+     *
+     * @example samples/V1beta1/ComplianceClient/repeat_data_path_resource.php
      *
      * @param RepeatRequest $request     A request to house fields associated with the call.
      * @param array         $callOptions {
@@ -361,6 +373,8 @@ final class ComplianceClient
      * The async variant is
      * {@see ComplianceClient::repeatDataPathTrailingResourceAsync()} .
      *
+     * @example samples/V1beta1/ComplianceClient/repeat_data_path_trailing_resource.php
+     *
      * @param RepeatRequest $request     A request to house fields associated with the call.
      * @param array         $callOptions {
      *     Optional.
@@ -387,6 +401,8 @@ final class ComplianceClient
      * sending all request fields as query parameters.
      *
      * The async variant is {@see ComplianceClient::repeatDataQueryAsync()} .
+     *
+     * @example samples/V1beta1/ComplianceClient/repeat_data_query.php
      *
      * @param RepeatRequest $request     A request to house fields associated with the call.
      * @param array         $callOptions {
@@ -415,6 +431,8 @@ final class ComplianceClient
      * "/bar/{foo}" rather than "/{foo=bar/*}"), and the rest as query parameters.
      *
      * The async variant is {@see ComplianceClient::repeatDataSimplePathAsync()} .
+     *
+     * @example samples/V1beta1/ComplianceClient/repeat_data_simple_path.php
      *
      * @param RepeatRequest $request     A request to house fields associated with the call.
      * @param array         $callOptions {
@@ -446,6 +464,8 @@ final class ComplianceClient
      * although they are not guaranteed to be the same across separate Showcase server runs.
      *
      * The async variant is {@see ComplianceClient::verifyEnumAsync()} .
+     *
+     * @example samples/V1beta1/ComplianceClient/verify_enum.php
      *
      * @param EnumResponse $request     A request to house fields associated with the call.
      * @param array        $callOptions {

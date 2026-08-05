@@ -277,6 +277,8 @@ final class TestingClient
      *
      * The async variant is {@see TestingClient::createSessionAsync()} .
      *
+     * @example samples/V1beta1/TestingClient/create_session.php
+     *
      * @param CreateSessionRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -302,6 +304,8 @@ final class TestingClient
      * Delete a test session.
      *
      * The async variant is {@see TestingClient::deleteSessionAsync()} .
+     *
+     * @example samples/V1beta1/TestingClient/delete_session.php
      *
      * @param DeleteSessionRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
@@ -332,6 +336,8 @@ final class TestingClient
      *
      * The async variant is {@see TestingClient::deleteTestAsync()} .
      *
+     * @example samples/V1beta1/TestingClient/delete_test.php
+     *
      * @param DeleteTestRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -355,6 +361,8 @@ final class TestingClient
      * Gets a testing session.
      *
      * The async variant is {@see TestingClient::getSessionAsync()} .
+     *
+     * @example samples/V1beta1/TestingClient/get_session.php
      *
      * @param GetSessionRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
@@ -382,6 +390,8 @@ final class TestingClient
      *
      * The async variant is {@see TestingClient::listSessionsAsync()} .
      *
+     * @example samples/V1beta1/TestingClient/list_sessions.php
+     *
      * @param ListSessionsRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -407,6 +417,8 @@ final class TestingClient
      * List the tests of a sessesion.
      *
      * The async variant is {@see TestingClient::listTestsAsync()} .
+     *
+     * @example samples/V1beta1/TestingClient/list_tests.php
      *
      * @param ListTestsRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -436,6 +448,8 @@ final class TestingClient
      *
      * The async variant is {@see TestingClient::reportSessionAsync()} .
      *
+     * @example samples/V1beta1/TestingClient/report_session.php
+     *
      * @param ReportSessionRequest $request     A request to house fields associated with the call.
      * @param array                $callOptions {
      *     Optional.
@@ -464,6 +478,8 @@ final class TestingClient
      * end of the test, this method provides the means to do so.
      *
      * The async variant is {@see TestingClient::verifyTestAsync()} .
+     *
+     * @example samples/V1beta1/TestingClient/verify_test.php
      *
      * @param VerifyTestRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {

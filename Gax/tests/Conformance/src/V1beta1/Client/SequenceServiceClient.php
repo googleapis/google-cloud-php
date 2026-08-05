@@ -302,6 +302,8 @@ final class SequenceServiceClient
      *
      * The async variant is {@see SequenceServiceClient::attemptSequenceAsync()} .
      *
+     * @example samples/V1beta1/SequenceServiceClient/attempt_sequence.php
+     *
      * @param AttemptSequenceRequest $request     A request to house fields associated with the call.
      * @param array                  $callOptions {
      *     Optional.
@@ -327,6 +329,8 @@ final class SequenceServiceClient
      * May not function as expected in HTTP mode due to when http statuses are sent
      * See https://github.com/googleapis/gapic-showcase/issues/1377 for more details
      *
+     * @example samples/V1beta1/SequenceServiceClient/attempt_streaming_sequence.php
+     *
      * @param AttemptStreamingSequenceRequest $request     A request to house fields associated with the call.
      * @param array                           $callOptions {
      *     Optional.
@@ -350,6 +354,8 @@ final class SequenceServiceClient
      * Create a sequence of responses to be returned as unary calls
      *
      * The async variant is {@see SequenceServiceClient::createSequenceAsync()} .
+     *
+     * @example samples/V1beta1/SequenceServiceClient/create_sequence.php
      *
      * @param CreateSequenceRequest $request     A request to house fields associated with the call.
      * @param array                 $callOptions {
@@ -378,6 +384,8 @@ final class SequenceServiceClient
      * The async variant is
      * {@see SequenceServiceClient::createStreamingSequenceAsync()} .
      *
+     * @example samples/V1beta1/SequenceServiceClient/create_streaming_sequence.php
+     *
      * @param CreateStreamingSequenceRequest $request     A request to house fields associated with the call.
      * @param array                          $callOptions {
      *     Optional.
@@ -404,6 +412,8 @@ final class SequenceServiceClient
      * sequence of unary calls.
      *
      * The async variant is {@see SequenceServiceClient::getSequenceReportAsync()} .
+     *
+     * @example samples/V1beta1/SequenceServiceClient/get_sequence_report.php
      *
      * @param GetSequenceReportRequest $request     A request to house fields associated with the call.
      * @param array                    $callOptions {
@@ -432,6 +442,8 @@ final class SequenceServiceClient
      *
      * The async variant is
      * {@see SequenceServiceClient::getStreamingSequenceReportAsync()} .
+     *
+     * @example samples/V1beta1/SequenceServiceClient/get_streaming_sequence_report.php
      *
      * @param GetStreamingSequenceReportRequest $request     A request to house fields associated with the call.
      * @param array                             $callOptions {

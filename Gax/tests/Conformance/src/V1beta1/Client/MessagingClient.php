@@ -161,7 +161,7 @@ final class MessagingClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
+        $options = $methodName && isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -447,6 +447,8 @@ final class MessagingClient
      * blurbs. If an invalid blurb is requested to be created, the stream will
      * close with an error.
      *
+     * @example samples/V1beta1/MessagingClient/connect.php
+     *
      * @param array $callOptions {
      *     Optional.
      *
@@ -471,6 +473,8 @@ final class MessagingClient
      * to be a post on the profile.
      *
      * The async variant is {@see MessagingClient::createBlurbAsync()} .
+     *
+     * @example samples/V1beta1/MessagingClient/create_blurb.php
      *
      * @param CreateBlurbRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -498,6 +502,8 @@ final class MessagingClient
      *
      * The async variant is {@see MessagingClient::createRoomAsync()} .
      *
+     * @example samples/V1beta1/MessagingClient/create_room.php
+     *
      * @param CreateRoomRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -524,6 +530,8 @@ final class MessagingClient
      *
      * The async variant is {@see MessagingClient::deleteBlurbAsync()} .
      *
+     * @example samples/V1beta1/MessagingClient/delete_blurb.php
+     *
      * @param DeleteBlurbRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -548,6 +556,8 @@ final class MessagingClient
      *
      * The async variant is {@see MessagingClient::deleteRoomAsync()} .
      *
+     * @example samples/V1beta1/MessagingClient/delete_room.php
+     *
      * @param DeleteRoomRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -571,6 +581,8 @@ final class MessagingClient
      * Retrieves the Blurb with the given resource name.
      *
      * The async variant is {@see MessagingClient::getBlurbAsync()} .
+     *
+     * @example samples/V1beta1/MessagingClient/get_blurb.php
      *
      * @param GetBlurbRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
@@ -597,6 +609,8 @@ final class MessagingClient
      * Retrieves the Room with the given resource name.
      *
      * The async variant is {@see MessagingClient::getRoomAsync()} .
+     *
+     * @example samples/V1beta1/MessagingClient/get_room.php
      *
      * @param GetRoomRequest $request     A request to house fields associated with the call.
      * @param array          $callOptions {
@@ -625,6 +639,8 @@ final class MessagingClient
      *
      * The async variant is {@see MessagingClient::listBlurbsAsync()} .
      *
+     * @example samples/V1beta1/MessagingClient/list_blurbs.php
+     *
      * @param ListBlurbsRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -650,6 +666,8 @@ final class MessagingClient
      * Lists all chat rooms.
      *
      * The async variant is {@see MessagingClient::listRoomsAsync()} .
+     *
+     * @example samples/V1beta1/MessagingClient/list_rooms.php
      *
      * @param ListRoomsRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -679,6 +697,8 @@ final class MessagingClient
      *
      * The async variant is {@see MessagingClient::searchBlurbsAsync()} .
      *
+     * @example samples/V1beta1/MessagingClient/search_blurbs.php
+     *
      * @param SearchBlurbsRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -704,6 +724,8 @@ final class MessagingClient
      * This is a stream to create multiple blurbs. If an invalid blurb is
      * requested to be created, the stream will close with an error.
      *
+     * @example samples/V1beta1/MessagingClient/send_blurbs.php
+     *
      * @param array $callOptions {
      *     Optional.
      *
@@ -725,6 +747,8 @@ final class MessagingClient
     /**
      * This returns a stream that emits the blurbs that are created for a
      * particular chat room or user profile.
+     *
+     * @example samples/V1beta1/MessagingClient/stream_blurbs.php
      *
      * @param StreamBlurbsRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
@@ -749,6 +773,8 @@ final class MessagingClient
      * Updates a blurb.
      *
      * The async variant is {@see MessagingClient::updateBlurbAsync()} .
+     *
+     * @example samples/V1beta1/MessagingClient/update_blurb.php
      *
      * @param UpdateBlurbRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -775,6 +801,8 @@ final class MessagingClient
      * Updates a room.
      *
      * The async variant is {@see MessagingClient::updateRoomAsync()} .
+     *
+     * @example samples/V1beta1/MessagingClient/update_room.php
      *
      * @param UpdateRoomRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
