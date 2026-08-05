@@ -53,8 +53,8 @@ trait ResumableUploadTrait
     /**
      * Resume an existing resumable upload session.
      *
-     * @param string $methodName The API method name.
      * @param string $uploadUrl The resumable upload session URL.
+     * @param string $methodName The API method name.
      * @param array $optionalArgs {
      *     Optional.
      *
@@ -68,8 +68,8 @@ trait ResumableUploadTrait
      * @return ResumableUpload
      */
     public function resumeUpload(
-        string $methodName,
         string $uploadUrl,
+        string $methodName,
         array $optionalArgs = []
     ): ResumableUpload {
         $optionalArgs['uploadUrl'] = $uploadUrl;
