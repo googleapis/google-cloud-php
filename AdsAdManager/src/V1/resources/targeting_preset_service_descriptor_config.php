@@ -47,6 +47,18 @@ return [
                     ],
                 ],
             ],
+            'BatchUpdateTargetingPresets' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Ads\AdManager\V1\BatchUpdateTargetingPresetsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateTargetingPreset' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Ads\AdManager\V1\TargetingPreset',
@@ -87,6 +99,19 @@ return [
                         'keyName' => 'parent',
                         'fieldAccessors' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateTargetingPreset' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Ads\AdManager\V1\TargetingPreset',
+                'headerParams' => [
+                    [
+                        'keyName' => 'targeting_preset.name',
+                        'fieldAccessors' => [
+                            'getTargetingPreset',
+                            'getName',
                         ],
                     ],
                 ],

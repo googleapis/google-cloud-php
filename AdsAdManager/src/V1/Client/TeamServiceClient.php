@@ -271,7 +271,7 @@ final class TeamServiceClient
     }
 
     /**
-     * API to batch activate `Team` objects.
+     * Batch activates `Team` objects.
      *
      * The async variant is {@see TeamServiceClient::batchActivateTeamsAsync()} .
      *
@@ -299,7 +299,7 @@ final class TeamServiceClient
     }
 
     /**
-     * API to batch create `Team` objects.
+     * Creates `Team` objects.
      *
      * The async variant is {@see TeamServiceClient::batchCreateTeamsAsync()} .
      *
@@ -327,7 +327,7 @@ final class TeamServiceClient
     }
 
     /**
-     * API to batch deactivate `Team` objects.
+     * Batch deactivates `Team` objects.
      *
      * The async variant is {@see TeamServiceClient::batchDeactivateTeamsAsync()} .
      *
@@ -355,7 +355,7 @@ final class TeamServiceClient
     }
 
     /**
-     * API to batch update `Team` objects.
+     * Batch updates `Team` objects.
      *
      * The async variant is {@see TeamServiceClient::batchUpdateTeamsAsync()} .
      *
@@ -383,7 +383,7 @@ final class TeamServiceClient
     }
 
     /**
-     * API to create a `Team` object.
+     * Creates a `Team` object.
      *
      * The async variant is {@see TeamServiceClient::createTeamAsync()} .
      *
@@ -409,7 +409,7 @@ final class TeamServiceClient
     }
 
     /**
-     * API to retrieve a `Team` object.
+     * Retrieves a `Team` object.
      *
      * The async variant is {@see TeamServiceClient::getTeamAsync()} .
      *
@@ -435,7 +435,7 @@ final class TeamServiceClient
     }
 
     /**
-     * API to retrieve a list of `Team` objects.
+     * Lists `Team` objects.
      *
      * The async variant is {@see TeamServiceClient::listTeamsAsync()} .
      *
@@ -461,7 +461,7 @@ final class TeamServiceClient
     }
 
     /**
-     * API to update a `Team` object.
+     * Updates a `Team` object.
      *
      * The async variant is {@see TeamServiceClient::updateTeamAsync()} .
      *

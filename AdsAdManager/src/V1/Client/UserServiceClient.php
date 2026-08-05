@@ -236,7 +236,7 @@ final class UserServiceClient
     }
 
     /**
-     * API to retrieve a User object.
+     * Retrieves a `User` object.
      *
      * To get the current user, the resource name
      * `networks/{networkCode}/users/me` can be used.

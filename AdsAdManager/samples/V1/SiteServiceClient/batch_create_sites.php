@@ -31,7 +31,7 @@ use Google\Ads\AdManager\V1\Site;
 use Google\ApiCore\ApiException;
 
 /**
- * API to batch create `Site` objects.
+ * Creates `Site` objects.
  *
  * @param string $formattedParent         The parent resource where `Sites` will be created.
  *                                        Format: `networks/{network_code}`

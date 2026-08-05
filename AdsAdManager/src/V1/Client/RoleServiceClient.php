@@ -255,7 +255,7 @@ final class RoleServiceClient
     }
 
     /**
-     * API to retrieve a `Role` object.
+     * Retrieves a `Role` object.
      *
      * The async variant is {@see RoleServiceClient::getRoleAsync()} .
      *
@@ -281,7 +281,7 @@ final class RoleServiceClient
     }
 
     /**
-     * API to retrieve a list of `Role` objects.
+     * Lists `Role` objects.
      *
      * The async variant is {@see RoleServiceClient::listRolesAsync()} .
      *

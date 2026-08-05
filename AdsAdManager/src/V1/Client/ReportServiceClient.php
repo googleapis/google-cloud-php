@@ -319,7 +319,7 @@ final class ReportServiceClient
     }
 
     /**
-     * API to create a `Report` object.
+     * Creates a `Report` object.
      *
      * The async variant is {@see ReportServiceClient::createReportAsync()} .
      *
@@ -376,7 +376,7 @@ final class ReportServiceClient
     }
 
     /**
-     * API to retrieve a `Report` object.
+     * Retrieves a `Report` object.
      *
      * The async variant is {@see ReportServiceClient::getReportAsync()} .
      *
@@ -402,7 +402,7 @@ final class ReportServiceClient
     }
 
     /**
-     * API to retrieve a list of `Report` objects.
+     * Lists `Report` objects.
      *
      * The async variant is {@see ReportServiceClient::listReportsAsync()} .
      *
@@ -461,7 +461,7 @@ final class ReportServiceClient
     }
 
     /**
-     * API to update a `Report` object.
+     * Updates a `Report` object.
      *
      * The async variant is {@see ReportServiceClient::updateReportAsync()} .
      *

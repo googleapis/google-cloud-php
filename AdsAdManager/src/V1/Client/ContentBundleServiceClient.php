@@ -24,6 +24,10 @@
 
 namespace Google\Ads\AdManager\V1\Client;
 
+use Google\Ads\AdManager\V1\BatchActivateContentBundlesRequest;
+use Google\Ads\AdManager\V1\BatchActivateContentBundlesResponse;
+use Google\Ads\AdManager\V1\BatchDeactivateContentBundlesRequest;
+use Google\Ads\AdManager\V1\BatchDeactivateContentBundlesResponse;
 use Google\Ads\AdManager\V1\ContentBundle;
 use Google\Ads\AdManager\V1\GetContentBundleRequest;
 use Google\Ads\AdManager\V1\ListContentBundlesRequest;
@@ -51,6 +55,8 @@ use Psr\Log\LoggerInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
+ * @method PromiseInterface<BatchActivateContentBundlesResponse> batchActivateContentBundlesAsync(BatchActivateContentBundlesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchDeactivateContentBundlesResponse> batchDeactivateContentBundlesAsync(BatchDeactivateContentBundlesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ContentBundle> getContentBundleAsync(GetContentBundleRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listContentBundlesAsync(ListContentBundlesRequest $request, array $optionalArgs = [])
  */
@@ -252,6 +258,64 @@ final class ContentBundleServiceClient
 
         array_unshift($args, substr($method, 0, -5));
         return call_user_func_array([$this, 'startAsyncCall'], $args);
+    }
+
+    /**
+     * Activate a list of `ContentBundle` objects.
+     *
+     * The async variant is
+     * {@see ContentBundleServiceClient::batchActivateContentBundlesAsync()} .
+     *
+     * @example samples/V1/ContentBundleServiceClient/batch_activate_content_bundles.php
+     *
+     * @param BatchActivateContentBundlesRequest $request     A request to house fields associated with the call.
+     * @param array                              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchActivateContentBundlesResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchActivateContentBundles(
+        BatchActivateContentBundlesRequest $request,
+        array $callOptions = []
+    ): BatchActivateContentBundlesResponse {
+        return $this->startApiCall('BatchActivateContentBundles', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deactivates a list of `ContentBundle` objects.
+     *
+     * The async variant is
+     * {@see ContentBundleServiceClient::batchDeactivateContentBundlesAsync()} .
+     *
+     * @example samples/V1/ContentBundleServiceClient/batch_deactivate_content_bundles.php
+     *
+     * @param BatchDeactivateContentBundlesRequest $request     A request to house fields associated with the call.
+     * @param array                                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchDeactivateContentBundlesResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchDeactivateContentBundles(
+        BatchDeactivateContentBundlesRequest $request,
+        array $callOptions = []
+    ): BatchDeactivateContentBundlesResponse {
+        return $this->startApiCall('BatchDeactivateContentBundles', $request, $callOptions)->wait();
     }
 
     /**
