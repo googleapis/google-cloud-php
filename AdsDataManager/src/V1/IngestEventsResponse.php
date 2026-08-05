@@ -22,6 +22,12 @@ class IngestEventsResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string request_id = 1;</code>
      */
     protected $request_id = '';
+    /**
+     * Detailed row-level warnings with field paths.
+     *
+     * Generated from protobuf field <code>repeated .google.ads.datamanager.v1.FieldWarning field_warnings = 2;</code>
+     */
+    private $field_warnings;
 
     /**
      * Constructor.
@@ -31,6 +37,8 @@ class IngestEventsResponse extends \Google\Protobuf\Internal\Message
      *
      *     @type string $request_id
      *           The auto-generated ID of the request.
+     *     @type \Google\Ads\DataManager\V1\FieldWarning[] $field_warnings
+     *           Detailed row-level warnings with field paths.
      * }
      */
     public function __construct($data = NULL) {
@@ -60,6 +68,32 @@ class IngestEventsResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->request_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Detailed row-level warnings with field paths.
+     *
+     * Generated from protobuf field <code>repeated .google.ads.datamanager.v1.FieldWarning field_warnings = 2;</code>
+     * @return RepeatedField<\Google\Ads\DataManager\V1\FieldWarning>
+     */
+    public function getFieldWarnings()
+    {
+        return $this->field_warnings;
+    }
+
+    /**
+     * Detailed row-level warnings with field paths.
+     *
+     * Generated from protobuf field <code>repeated .google.ads.datamanager.v1.FieldWarning field_warnings = 2;</code>
+     * @param \Google\Ads\DataManager\V1\FieldWarning[] $var
+     * @return $this
+     */
+    public function setFieldWarnings($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Ads\DataManager\V1\FieldWarning::class);
+        $this->field_warnings = $arr;
 
         return $this;
     }
