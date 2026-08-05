@@ -7,31 +7,45 @@ namespace Grafeas\V1\CVSS;
 use UnexpectedValueException;
 
 /**
+ * Impact.
+ *
  * Protobuf type <code>grafeas.v1.CVSS.Impact</code>
  */
 class Impact
 {
     /**
+     * Unspecified.
+     *
      * Generated from protobuf enum <code>IMPACT_UNSPECIFIED = 0;</code>
      */
     const IMPACT_UNSPECIFIED = 0;
     /**
+     * High impact (H). Defined in CVSS v3, v4.
+     *
      * Generated from protobuf enum <code>IMPACT_HIGH = 1;</code>
      */
     const IMPACT_HIGH = 1;
     /**
+     * Low impact (L). Defined in CVSS v3, v4.
+     *
      * Generated from protobuf enum <code>IMPACT_LOW = 2;</code>
      */
     const IMPACT_LOW = 2;
     /**
+     * No impact (N). Defined in CVSS v2, v3, v4.
+     *
      * Generated from protobuf enum <code>IMPACT_NONE = 3;</code>
      */
     const IMPACT_NONE = 3;
     /**
+     * Partial impact (P). Defined in CVSS v2.
+     *
      * Generated from protobuf enum <code>IMPACT_PARTIAL = 4;</code>
      */
     const IMPACT_PARTIAL = 4;
     /**
+     * Complete impact (C). Defined in CVSS v2.
+     *
      * Generated from protobuf enum <code>IMPACT_COMPLETE = 5;</code>
      */
     const IMPACT_COMPLETE = 5;
