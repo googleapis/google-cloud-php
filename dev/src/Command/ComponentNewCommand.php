@@ -142,8 +142,8 @@ class ComponentNewCommand extends Command
         $protoPackage = $input->getOption('proto-package');
         $apiShortName = $input->getOption('api-short-name');
         $apiVersion = $input->getOption('api-version');
-        $productDocs = $input->getOption('product-docs');
-        $productHomepage = $input->getOption('product-homepage');
+        $productDocumentation = $input->getOption('product-docs');
+        $productHomePage = $input->getOption('product-homepage');
 
         $options = array_filter([
             'component-name' => $componentName,
@@ -151,8 +151,8 @@ class ComponentNewCommand extends Command
             'proto-package' => $protoPackage,
             'api-short-name' => $apiShortName,
             'api-version' => $apiVersion,
-            'product-docs' => $productDocs,
-            'product-homepage' => $productHomepage,
+            'product-docs' => $productDocumentation,
+            'product-homepage' => $productHomePage,
         ], fn($v) => !is_null($v) && $v !== '');
 
         $allOptionsProvided = count($options) === 7;
@@ -225,7 +225,6 @@ class ComponentNewCommand extends Command
             }
         }
 
-        $productDocumentation = $productDocs;
         if (!$productDocumentation && $proto) {
             $yamlFileContent = $this->loadYamlConfigContent($new, dirname($proto));
             $productDocumentation = $yamlFileContent['publishing']['documentation_uri'] ?? null;
@@ -238,7 +237,6 @@ class ComponentNewCommand extends Command
             );
         }
 
-        $productHomePage = $productHomepage;
         if (!$productHomePage && $productDocumentation) {
             $productHomePage = $this->getHomePageFromDocsUrl($productDocumentation);
         }
