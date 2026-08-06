@@ -395,6 +395,28 @@ class ComponentNewCommandTest extends TestCase
         ]);
     }
 
+    public function testNewComponentWithPartialOptionsAndProtoPath()
+    {
+        $application = new Application();
+        $application->add(new ComponentNewCommand(self::$tmpDir));
+
+        $commandTester = new CommandTester($application->get('component:new'));
+        $commandTester->setInputs([
+            'Y', // Does this information look correct? [Y/n]
+            'https://cloud.google.com/secret-manager', // What is the product homepage?
+        ]);
+
+        $commandTester->execute([
+            'proto' => 'google/cloud/secretmanager/v1/service.proto',
+            '--no-update' => true,
+            '--component-name' => 'CustomSecretManagerName',
+        ]);
+
+        $display = $commandTester->getDisplay();
+        $this->assertStringContainsString('| componentName        | CustomSecretManagerName', $display);
+        $this->assertFileExists(self::$tmpDir . '/CustomSecretManagerName/README.md');
+    }
+
     private function assertComposerJson(string $componentName)
     {
         $composerPath = sprintf('%s/../../fixtures/component/%s/composer.json', __DIR__, $componentName);

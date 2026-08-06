@@ -168,7 +168,7 @@ class ComponentNewCommand extends Command
         if ($proto) {
             $protoFile = file_exists($proto) ? substr($proto, strpos($proto, 'google/')) : $proto;
             $protoContents = $this->loadProtoContent($proto);
-            $new = NewComponent::fromProto($protoContents, $protoFile);
+            $new = NewComponent::fromProto($protoContents, $protoFile, $options);
         } else {
             $new = NewComponent::fromOptions($options);
         }
