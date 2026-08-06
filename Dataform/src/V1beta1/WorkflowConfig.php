@@ -44,9 +44,9 @@ class WorkflowConfig extends \Google\Protobuf\Internal\Message
     protected $cron_schedule = '';
     /**
      * Optional. Specifies the time zone to be used when interpreting
-     * cron_schedule. Must be a time zone name from the time zone database
-     * (https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). If left
-     * unspecified, the default is UTC.
+     * cron_schedule. Must be a time zone name from the [time zone
+     * database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). If
+     * left unspecified, the default is `UTC`.
      *
      * Generated from protobuf field <code>string time_zone = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -85,6 +85,13 @@ class WorkflowConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string internal_metadata = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $internal_metadata = null;
+    /**
+     * Optional. Trigger configuration for this workflow.
+     * If present, the workflow will be triggered based on the specified triggers.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.WorkflowTriggerConfig workflow_trigger_config = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $workflow_trigger_config = null;
 
     /**
      * Constructor.
@@ -105,9 +112,9 @@ class WorkflowConfig extends \Google\Protobuf\Internal\Message
      *           this workflow config.
      *     @type string $time_zone
      *           Optional. Specifies the time zone to be used when interpreting
-     *           cron_schedule. Must be a time zone name from the time zone database
-     *           (https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). If left
-     *           unspecified, the default is UTC.
+     *           cron_schedule. Must be a time zone name from the [time zone
+     *           database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). If
+     *           left unspecified, the default is `UTC`.
      *     @type \Google\Cloud\Dataform\V1beta1\WorkflowConfig\ScheduledExecutionRecord[] $recent_scheduled_execution_records
      *           Output only. Records of the 10 most recent scheduled execution attempts,
      *           ordered in descending order of `execution_time`. Updated whenever automatic
@@ -122,6 +129,9 @@ class WorkflowConfig extends \Google\Protobuf\Internal\Message
      *           Output only. All the metadata information that is used internally to serve
      *           the resource. For example: timestamps, flags, status fields, etc. The
      *           format of this field is a JSON string.
+     *     @type \Google\Cloud\Dataform\V1beta1\WorkflowTriggerConfig $workflow_trigger_config
+     *           Optional. Trigger configuration for this workflow.
+     *           If present, the workflow will be triggered based on the specified triggers.
      * }
      */
     public function __construct($data = NULL) {
@@ -251,9 +261,9 @@ class WorkflowConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Specifies the time zone to be used when interpreting
-     * cron_schedule. Must be a time zone name from the time zone database
-     * (https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). If left
-     * unspecified, the default is UTC.
+     * cron_schedule. Must be a time zone name from the [time zone
+     * database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). If
+     * left unspecified, the default is `UTC`.
      *
      * Generated from protobuf field <code>string time_zone = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -265,9 +275,9 @@ class WorkflowConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Specifies the time zone to be used when interpreting
-     * cron_schedule. Must be a time zone name from the time zone database
-     * (https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). If left
-     * unspecified, the default is UTC.
+     * cron_schedule. Must be a time zone name from the [time zone
+     * database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). If
+     * left unspecified, the default is `UTC`.
      *
      * Generated from protobuf field <code>string time_zone = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -445,6 +455,44 @@ class WorkflowConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->internal_metadata = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Trigger configuration for this workflow.
+     * If present, the workflow will be triggered based on the specified triggers.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.WorkflowTriggerConfig workflow_trigger_config = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dataform\V1beta1\WorkflowTriggerConfig|null
+     */
+    public function getWorkflowTriggerConfig()
+    {
+        return $this->workflow_trigger_config;
+    }
+
+    public function hasWorkflowTriggerConfig()
+    {
+        return isset($this->workflow_trigger_config);
+    }
+
+    public function clearWorkflowTriggerConfig()
+    {
+        unset($this->workflow_trigger_config);
+    }
+
+    /**
+     * Optional. Trigger configuration for this workflow.
+     * If present, the workflow will be triggered based on the specified triggers.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.WorkflowTriggerConfig workflow_trigger_config = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dataform\V1beta1\WorkflowTriggerConfig $var
+     * @return $this
+     */
+    public function setWorkflowTriggerConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataform\V1beta1\WorkflowTriggerConfig::class);
+        $this->workflow_trigger_config = $var;
 
         return $this;
     }

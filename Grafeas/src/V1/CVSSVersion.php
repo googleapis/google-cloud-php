@@ -14,22 +14,35 @@ use UnexpectedValueException;
 class CVSSVersion
 {
     /**
+     * Unspecified.
+     *
      * Generated from protobuf enum <code>CVSS_VERSION_UNSPECIFIED = 0;</code>
      */
     const CVSS_VERSION_UNSPECIFIED = 0;
     /**
+     * CVSS v2.
+     *
      * Generated from protobuf enum <code>CVSS_VERSION_2 = 1;</code>
      */
     const CVSS_VERSION_2 = 1;
     /**
+     * CVSS v3.
+     *
      * Generated from protobuf enum <code>CVSS_VERSION_3 = 2;</code>
      */
     const CVSS_VERSION_3 = 2;
+    /**
+     * CVSS v4.
+     *
+     * Generated from protobuf enum <code>CVSS_VERSION_4 = 3;</code>
+     */
+    const CVSS_VERSION_4 = 3;
 
     private static $valueToName = [
         self::CVSS_VERSION_UNSPECIFIED => 'CVSS_VERSION_UNSPECIFIED',
         self::CVSS_VERSION_2 => 'CVSS_VERSION_2',
         self::CVSS_VERSION_3 => 'CVSS_VERSION_3',
+        self::CVSS_VERSION_4 => 'CVSS_VERSION_4',
     ];
 
     public static function name($value)

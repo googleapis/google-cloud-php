@@ -34,7 +34,7 @@ use Google\Ads\AdManager\V1\ReportDefinition\ReportType;
 use Google\ApiCore\ApiException;
 
 /**
- * API to create a `Report` object.
+ * Creates a `Report` object.
  *
  * @param string $formattedParent                         The parent resource where this `Report` will be created.
  *                                                        Format: `networks/{network_code}`

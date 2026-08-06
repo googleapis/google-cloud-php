@@ -38,6 +38,11 @@ return [
                 'uriTemplate' => '/v1/events:ingest',
                 'body' => '*',
             ],
+            'RemoveAllAudienceMembers' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/audienceMembers:removeAll',
+                'body' => '*',
+            ],
             'RemoveAudienceMembers' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/audienceMembers:remove',

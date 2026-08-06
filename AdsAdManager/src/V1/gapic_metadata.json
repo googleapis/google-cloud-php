@@ -510,6 +510,16 @@
                 "grpc": {
                     "libraryClient": "ContentBundleServiceGapicClient",
                     "rpcs": {
+                        "BatchActivateContentBundles": {
+                            "methods": [
+                                "batchActivateContentBundles"
+                            ]
+                        },
+                        "BatchDeactivateContentBundles": {
+                            "methods": [
+                                "batchDeactivateContentBundles"
+                            ]
+                        },
                         "GetContentBundle": {
                             "methods": [
                                 "getContentBundle"
@@ -556,6 +566,35 @@
                         "ListContent": {
                             "methods": [
                                 "listContent"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "CreativeSetService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "CreativeSetServiceGapicClient",
+                    "rpcs": {
+                        "CreateCreativeSet": {
+                            "methods": [
+                                "createCreativeSet"
+                            ]
+                        },
+                        "GetCreativeSet": {
+                            "methods": [
+                                "getCreativeSet"
+                            ]
+                        },
+                        "ListCreativeSets": {
+                            "methods": [
+                                "listCreativeSets"
+                            ]
+                        },
+                        "UpdateCreativeSet": {
+                            "methods": [
+                                "updateCreativeSet"
                             ]
                         }
                     }
@@ -1127,6 +1166,96 @@
                 "grpc": {
                     "libraryClient": "OrderServiceGapicClient",
                     "rpcs": {
+                        "BatchApproveAndOverbookOrders": {
+                            "methods": [
+                                "batchApproveAndOverbookOrders"
+                            ]
+                        },
+                        "BatchApproveOrders": {
+                            "methods": [
+                                "batchApproveOrders"
+                            ]
+                        },
+                        "BatchApproveOrdersWithoutReservation": {
+                            "methods": [
+                                "batchApproveOrdersWithoutReservation"
+                            ]
+                        },
+                        "BatchArchiveOrders": {
+                            "methods": [
+                                "batchArchiveOrders"
+                            ]
+                        },
+                        "BatchCreateOrders": {
+                            "methods": [
+                                "batchCreateOrders"
+                            ]
+                        },
+                        "BatchDeleteOrders": {
+                            "methods": [
+                                "batchDeleteOrders"
+                            ]
+                        },
+                        "BatchDisapproveOrders": {
+                            "methods": [
+                                "batchDisapproveOrders"
+                            ]
+                        },
+                        "BatchDisapproveOrdersWithoutReservationChanges": {
+                            "methods": [
+                                "batchDisapproveOrdersWithoutReservationChanges"
+                            ]
+                        },
+                        "BatchPauseOrders": {
+                            "methods": [
+                                "batchPauseOrders"
+                            ]
+                        },
+                        "BatchResumeAndOverbookOrders": {
+                            "methods": [
+                                "batchResumeAndOverbookOrders"
+                            ]
+                        },
+                        "BatchResumeOrders": {
+                            "methods": [
+                                "batchResumeOrders"
+                            ]
+                        },
+                        "BatchRetractOrders": {
+                            "methods": [
+                                "batchRetractOrders"
+                            ]
+                        },
+                        "BatchRetractOrdersWithoutReservationChanges": {
+                            "methods": [
+                                "batchRetractOrdersWithoutReservationChanges"
+                            ]
+                        },
+                        "BatchSubmitOrdersForApproval": {
+                            "methods": [
+                                "batchSubmitOrdersForApproval"
+                            ]
+                        },
+                        "BatchSubmitOrdersForApprovalAndOverbook": {
+                            "methods": [
+                                "batchSubmitOrdersForApprovalAndOverbook"
+                            ]
+                        },
+                        "BatchSubmitOrdersForApprovalWithoutReservationChanges": {
+                            "methods": [
+                                "batchSubmitOrdersForApprovalWithoutReservationChanges"
+                            ]
+                        },
+                        "BatchUnarchiveOrders": {
+                            "methods": [
+                                "batchUnarchiveOrders"
+                            ]
+                        },
+                        "BatchUpdateOrders": {
+                            "methods": [
+                                "batchUpdateOrders"
+                            ]
+                        },
                         "GetOrder": {
                             "methods": [
                                 "getOrder"
@@ -1398,6 +1527,55 @@
                 }
             }
         },
+        "SlateService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "SlateServiceGapicClient",
+                    "rpcs": {
+                        "BatchArchiveSlates": {
+                            "methods": [
+                                "batchArchiveSlates"
+                            ]
+                        },
+                        "BatchCreateSlates": {
+                            "methods": [
+                                "batchCreateSlates"
+                            ]
+                        },
+                        "BatchUnarchiveSlates": {
+                            "methods": [
+                                "batchUnarchiveSlates"
+                            ]
+                        },
+                        "BatchUpdateSlates": {
+                            "methods": [
+                                "batchUpdateSlates"
+                            ]
+                        },
+                        "CreateSlate": {
+                            "methods": [
+                                "createSlate"
+                            ]
+                        },
+                        "GetSlate": {
+                            "methods": [
+                                "getSlate"
+                            ]
+                        },
+                        "ListSlates": {
+                            "methods": [
+                                "listSlates"
+                            ]
+                        },
+                        "UpdateSlate": {
+                            "methods": [
+                                "updateSlate"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "SuggestedAdUnitService": {
             "clients": {
                 "grpc": {
@@ -1437,6 +1615,11 @@
                                 "batchDeactivateTargetingPresets"
                             ]
                         },
+                        "BatchUpdateTargetingPresets": {
+                            "methods": [
+                                "batchUpdateTargetingPresets"
+                            ]
+                        },
                         "CreateTargetingPreset": {
                             "methods": [
                                 "createTargetingPreset"
@@ -1450,6 +1633,11 @@
                         "ListTargetingPresets": {
                             "methods": [
                                 "listTargetingPresets"
+                            ]
+                        },
+                        "UpdateTargetingPreset": {
+                            "methods": [
+                                "updateTargetingPreset"
                             ]
                         }
                     }

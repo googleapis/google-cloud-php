@@ -35,6 +35,11 @@ class RemoveAudienceMembersStatus extends \Google\Protobuf\Internal\Message
      *           The status of the ppid data removal from the destination.
      *     @type \Google\Ads\DataManager\V1\RequestStatusPerDestination\RemoveCompositeDataStatus $composite_data_removal_status
      *           The status of the composite data removal from the destination.
+     *     @type \Google\Ads\DataManager\V1\RequestStatusPerDestination\RemoveGoogleUserIdDataStatus $google_user_id_data_removal_status
+     *           The status of the google user id data removal from the destination.
+     *     @type \Google\Ads\DataManager\V1\RequestStatusPerDestination\RemovePartnerProvidedIdDataStatus $partner_provided_id_data_removal_status
+     *           The status of the partner provided id data removal from the
+     *           destination.
      * }
      */
     public function __construct($data = NULL) {
@@ -224,6 +229,70 @@ class RemoveAudienceMembersStatus extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Ads\DataManager\V1\RequestStatusPerDestination\RemoveCompositeDataStatus::class);
         $this->writeOneof(6, $var);
+
+        return $this;
+    }
+
+    /**
+     * The status of the google user id data removal from the destination.
+     *
+     * Generated from protobuf field <code>.google.ads.datamanager.v1.RequestStatusPerDestination.RemoveGoogleUserIdDataStatus google_user_id_data_removal_status = 7;</code>
+     * @return \Google\Ads\DataManager\V1\RequestStatusPerDestination\RemoveGoogleUserIdDataStatus|null
+     */
+    public function getGoogleUserIdDataRemovalStatus()
+    {
+        return $this->readOneof(7);
+    }
+
+    public function hasGoogleUserIdDataRemovalStatus()
+    {
+        return $this->hasOneof(7);
+    }
+
+    /**
+     * The status of the google user id data removal from the destination.
+     *
+     * Generated from protobuf field <code>.google.ads.datamanager.v1.RequestStatusPerDestination.RemoveGoogleUserIdDataStatus google_user_id_data_removal_status = 7;</code>
+     * @param \Google\Ads\DataManager\V1\RequestStatusPerDestination\RemoveGoogleUserIdDataStatus $var
+     * @return $this
+     */
+    public function setGoogleUserIdDataRemovalStatus($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Ads\DataManager\V1\RequestStatusPerDestination\RemoveGoogleUserIdDataStatus::class);
+        $this->writeOneof(7, $var);
+
+        return $this;
+    }
+
+    /**
+     * The status of the partner provided id data removal from the
+     * destination.
+     *
+     * Generated from protobuf field <code>.google.ads.datamanager.v1.RequestStatusPerDestination.RemovePartnerProvidedIdDataStatus partner_provided_id_data_removal_status = 8;</code>
+     * @return \Google\Ads\DataManager\V1\RequestStatusPerDestination\RemovePartnerProvidedIdDataStatus|null
+     */
+    public function getPartnerProvidedIdDataRemovalStatus()
+    {
+        return $this->readOneof(8);
+    }
+
+    public function hasPartnerProvidedIdDataRemovalStatus()
+    {
+        return $this->hasOneof(8);
+    }
+
+    /**
+     * The status of the partner provided id data removal from the
+     * destination.
+     *
+     * Generated from protobuf field <code>.google.ads.datamanager.v1.RequestStatusPerDestination.RemovePartnerProvidedIdDataStatus partner_provided_id_data_removal_status = 8;</code>
+     * @param \Google\Ads\DataManager\V1\RequestStatusPerDestination\RemovePartnerProvidedIdDataStatus $var
+     * @return $this
+     */
+    public function setPartnerProvidedIdDataRemovalStatus($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Ads\DataManager\V1\RequestStatusPerDestination\RemovePartnerProvidedIdDataStatus::class);
+        $this->writeOneof(8, $var);
 
         return $this;
     }

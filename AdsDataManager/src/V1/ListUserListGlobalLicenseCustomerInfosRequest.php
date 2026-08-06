@@ -43,6 +43,9 @@ class ListUserListGlobalLicenseCustomerInfosRequest extends \Google\Protobuf\Int
      * - `>=`
      * - `<`
      * - `<=`
+     * **Supported Functions:**
+     * - `IN(field, value1, value2, ...)`: returns true if the field matches any
+     * of the values.  Example: `IN(user_list_id, 123, 456)`
      * **Unsupported Fields:**
      * - `name` (use get method instead)
      * - `historical_pricings` and all its subfields
@@ -120,6 +123,9 @@ class ListUserListGlobalLicenseCustomerInfosRequest extends \Google\Protobuf\Int
      *           - `>=`
      *           - `<`
      *           - `<=`
+     *           **Supported Functions:**
+     *           - `IN(field, value1, value2, ...)`: returns true if the field matches any
+     *           of the values.  Example: `IN(user_list_id, 123, 456)`
      *           **Unsupported Fields:**
      *           - `name` (use get method instead)
      *           - `historical_pricings` and all its subfields
@@ -195,6 +201,9 @@ class ListUserListGlobalLicenseCustomerInfosRequest extends \Google\Protobuf\Int
      * - `>=`
      * - `<`
      * - `<=`
+     * **Supported Functions:**
+     * - `IN(field, value1, value2, ...)`: returns true if the field matches any
+     * of the values.  Example: `IN(user_list_id, 123, 456)`
      * **Unsupported Fields:**
      * - `name` (use get method instead)
      * - `historical_pricings` and all its subfields
@@ -224,6 +233,9 @@ class ListUserListGlobalLicenseCustomerInfosRequest extends \Google\Protobuf\Int
      * - `>=`
      * - `<`
      * - `<=`
+     * **Supported Functions:**
+     * - `IN(field, value1, value2, ...)`: returns true if the field matches any
+     * of the values.  Example: `IN(user_list_id, 123, 456)`
      * **Unsupported Fields:**
      * - `name` (use get method instead)
      * - `historical_pricings` and all its subfields

@@ -257,7 +257,7 @@ final class ThirdPartyCompanyServiceClient
     }
 
     /**
-     * API to retrieve a `ThirdPartyCompany` object.
+     * Retrieves a `ThirdPartyCompany` object.
      *
      * The async variant is
      * {@see ThirdPartyCompanyServiceClient::getThirdPartyCompanyAsync()} .
@@ -286,7 +286,7 @@ final class ThirdPartyCompanyServiceClient
     }
 
     /**
-     * API to retrieve a list of `ThirdPartyCompany` objects.
+     * Lists `ThirdPartyCompany` objects.
      *
      * The async variant is
      * {@see ThirdPartyCompanyServiceClient::listThirdPartyCompaniesAsync()} .
