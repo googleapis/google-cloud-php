@@ -159,6 +159,7 @@ class ComponentNewCommand extends Command
 
         $proto = $input->getArgument('proto');
         if ($proto && $allOptionsProvided) {
+            // When all 7 options are supplied, the proto path is unused.
             throw new RuntimeException('Error: Cannot provide both a proto file path and all 7 component options.');
         }
         if (!$proto && !$allOptionsProvided) {
