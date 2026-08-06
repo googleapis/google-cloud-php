@@ -194,7 +194,7 @@ class ComponentNewCommand extends Command
         $timeout = (int) $unsafeTimeout;
 
         $output->writeln(''); // blank line
-        $output->writeln(sprintf('Your package (%s) will have the following info:', $protoFile ?: $new->componentName));
+        $output->writeln(sprintf('Your package (%s) will have the following info:', $new->componentName));
 
         $f = fn($f, $v) => ["<info>$f</info>", $v];
         $newArray = (array) $new;
