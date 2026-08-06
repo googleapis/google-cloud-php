@@ -110,7 +110,6 @@ run_package_test() {
         echo "${DIR}: composer install failed" >> "${FAILED_FILE}"
         # run again but without "-q" so we can see the error
         composer --no-interaction --no-ansi --no-progress ${PREFER_LOWEST} update -d "${DIR}"
-        echo "${DIR}: failed" >> "${FAILED_FILE}"
         return 1
     fi
 
@@ -160,7 +159,7 @@ export FAILED_FILE
 MAX_JOBS=${MAX_JOBS:-$(nproc 2>/dev/null || echo 8)}
 
 # Run the test suites concurrently using xargs -P
-printf "%s\n" ${DIRS} | xargs -P "${MAX_JOBS}" -I {} bash -c 'run_package_test_parallel "$@"' _ {}
+printf "%s\n" ${DIRS} | xargs -P "${MAX_JOBS}" -I {} bash -c 'run_package_test_parallel "$@"' _ {} || true
 
 if [ -f "${FAILED_FILE}" ]; then
     echo "--------- Failed tests --------------"
