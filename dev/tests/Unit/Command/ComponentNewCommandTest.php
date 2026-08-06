@@ -108,10 +108,6 @@ class ComponentNewCommandTest extends TestCase
 
     public function testNewComponentWithCustomOptions()
     {
-        if (!is_dir(self::$tmpDir . '/SecretManager')) {
-            mkdir(self::$tmpDir . '/SecretManager', 0777, true);
-        }
-
         self::$commandTester->setInputs([
             'Y',                                                            // Component already exists. Overwrite it? ? [Y/n]
             'n',                                                            // Does this information look correct? [Y/n]
@@ -168,10 +164,6 @@ class ComponentNewCommandTest extends TestCase
 
     public function testNewComponentWithUpdateComponent()
     {
-        if (!is_dir(self::$tmpDir . '/SecretManager')) {
-            mkdir(self::$tmpDir . '/SecretManager', 0777, true);
-        }
-
         $dummyCommand = $this->prophesize(Command::class);
 
         $dummyCommand->isEnabled()->willReturn(true);
@@ -237,10 +229,6 @@ class ComponentNewCommandTest extends TestCase
 
     public function testNewComponentWithExistingComponent()
     {
-        if (!is_dir(self::$tmpDir . '/SecretManager')) {
-            mkdir(self::$tmpDir . '/SecretManager', 0777, true);
-        }
-
         $application = new Application();
         $application->add(new ComponentNewCommand(self::$tmpDir));
 
