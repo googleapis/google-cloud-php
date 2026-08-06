@@ -175,10 +175,10 @@ class ComponentNewCommand extends Command
         $new = NewComponent::fromOptions($options, $protoFile, $protoContents);
         $new->componentPath = $this->rootPath;
 
-        if (is_dir($this->rootPath . '/' . $new->componentName)) {
+        if ($input->isInteractive() && is_dir($this->rootPath . '/' . $new->componentName)) {
             // component already exists
             $output->writeln(''); // blank line
-            if ($input->isInteractive() && !$this->getHelper('question')->ask($input, $output, new ConfirmationQuestion(
+            if (!$this->getHelper('question')->ask($input, $output, new ConfirmationQuestion(
                 sprintf('Component %s already exists. Overwrite it? [Y/n]', $new->componentName),
                 'Y'
             ))) {
