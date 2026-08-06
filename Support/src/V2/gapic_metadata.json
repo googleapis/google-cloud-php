@@ -112,6 +112,11 @@
                                 "deleteSupportEventSubscription"
                             ]
                         },
+                        "ExpungeSupportEventSubscription": {
+                            "methods": [
+                                "expungeSupportEventSubscription"
+                            ]
+                        },
                         "GetSupportEventSubscription": {
                             "methods": [
                                 "getSupportEventSubscription"

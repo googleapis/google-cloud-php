@@ -36,6 +36,7 @@ use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Support\V2\CreateSupportEventSubscriptionRequest;
 use Google\Cloud\Support\V2\DeleteSupportEventSubscriptionRequest;
+use Google\Cloud\Support\V2\ExpungeSupportEventSubscriptionRequest;
 use Google\Cloud\Support\V2\GetSupportEventSubscriptionRequest;
 use Google\Cloud\Support\V2\ListSupportEventSubscriptionsRequest;
 use Google\Cloud\Support\V2\SupportEventSubscription;
@@ -57,6 +58,7 @@ use Psr\Log\LoggerInterface;
  *
  * @method PromiseInterface<SupportEventSubscription> createSupportEventSubscriptionAsync(CreateSupportEventSubscriptionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<SupportEventSubscription> deleteSupportEventSubscriptionAsync(DeleteSupportEventSubscriptionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> expungeSupportEventSubscriptionAsync(ExpungeSupportEventSubscriptionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<SupportEventSubscription> getSupportEventSubscriptionAsync(GetSupportEventSubscriptionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listSupportEventSubscriptionsAsync(ListSupportEventSubscriptionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<SupportEventSubscription> undeleteSupportEventSubscriptionAsync(UndeleteSupportEventSubscriptionRequest $request, array $optionalArgs = [])
@@ -313,6 +315,64 @@ final class SupportEventSubscriptionServiceClient
     }
 
     /**
+     * Expunges a support event subscription.
+     *
+     * EXAMPLES:
+     *
+     * cURL:
+     *
+     * ```shell
+     * support_event_subscription="organizations/123456789/supportEventSubscriptions/abcdef123456"
+     * curl \
+     * --request POST \
+     * --header "Authorization: Bearer $(gcloud auth print-access-token)" \
+     * "https://cloudsupport.googleapis.com/v2/$support_event_subscription:expunge"
+     * ```
+     *
+     * Python:
+     *
+     * ```python
+     * import googleapiclient.discovery
+     *
+     * api_version = "v2"
+     * supportApiService = googleapiclient.discovery.build(
+     * serviceName="cloudsupport",
+     * version=api_version,
+     * discoveryServiceUrl=f"https://cloudsupport.googleapis.com/$discovery/rest?version={api_version}",
+     * )
+     *
+     * request = supportApiService.supportEventSubscriptions().expunge(
+     * name="organizations/123456789/supportEventSubscriptions/abcdef123456"
+     * )
+     * print(request.execute())
+     * ```
+     *
+     * The async variant is
+     * {@see SupportEventSubscriptionServiceClient::expungeSupportEventSubscriptionAsync()}
+     * .
+     *
+     * @example samples/V2/SupportEventSubscriptionServiceClient/expunge_support_event_subscription.php
+     *
+     * @param ExpungeSupportEventSubscriptionRequest $request     A request to house fields associated with the call.
+     * @param array                                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function expungeSupportEventSubscription(
+        ExpungeSupportEventSubscriptionRequest $request,
+        array $callOptions = []
+    ): void {
+        $this->startApiCall('ExpungeSupportEventSubscription', $request, $callOptions)->wait();
+    }
+
+    /**
      * Gets a support event subscription.
      *
      * The async variant is
@@ -343,7 +403,7 @@ final class SupportEventSubscriptionServiceClient
     }
 
     /**
-     * Lists support event subscriptions.
+     * Lists support event subscriptions for an organization.
      *
      * The async variant is
      * {@see SupportEventSubscriptionServiceClient::listSupportEventSubscriptionsAsync()}
