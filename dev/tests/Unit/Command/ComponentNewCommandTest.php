@@ -312,6 +312,29 @@ class ComponentNewCommandTest extends TestCase
         $this->assertEquals('speech', $repoMetadataFull['Speech']['api_shortname']);
     }
 
+    public function testNewComponentWithAllOptionsAndEmptyProductHomepage()
+    {
+        $application = new Application();
+        $application->add(new ComponentNewCommand(self::$tmpDir));
+
+        $commandTester = new CommandTester($application->get('component:new'));
+
+        $commandTester->execute([
+            '--no-update' => true,
+            '--component-name' => 'SpeechEmptyHomepage',
+            '--php-namespace' => 'Google\Cloud\Speech\V2',
+            '--proto-package' => 'google.cloud.speech.v2',
+            '--api-short-name' => 'speech',
+            '--api-version' => 'v2',
+            '--product-docs' => 'https://cloud.google.com/speech-to-text/docs',
+            '--product-homepage' => '',
+        ]);
+
+        $display = $commandTester->getDisplay();
+        $this->assertStringContainsString('| componentName        | SpeechEmptyHomepage', $display);
+        $this->assertFileExists(self::$tmpDir . '/SpeechEmptyHomepage/README.md');
+    }
+
     public function testNewComponentWithoutProtoOrOptionsFails()
     {
         $this->expectException(\RuntimeException::class);

@@ -153,7 +153,7 @@ class ComponentNewCommand extends Command
             'api-version' => $apiVersion,
             'product-docs' => $productDocumentation,
             'product-homepage' => $productHomePage,
-        ], fn($v) => !is_null($v) && $v !== '');
+        ], 'is_string');
 
         $allOptionsProvided = count($options) === 7;
 
