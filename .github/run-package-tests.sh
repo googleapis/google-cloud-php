@@ -110,6 +110,7 @@ run_package_test() {
         echo "${DIR}: composer install failed" >> "${FAILED_FILE}"
         # run again but without "-q" so we can see the error
         composer --no-interaction --no-ansi --no-progress ${PREFER_LOWEST} update -d "${DIR}"
+        echo "${DIR}: failed" >> "${FAILED_FILE}"
         return 1
     fi
 
