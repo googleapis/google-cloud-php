@@ -29,7 +29,7 @@ use Google\Ads\AdManager\V1\Site;
 use Google\ApiCore\ApiException;
 
 /**
- * API to create a `Site` object.
+ * Creates a `Site` object.
  *
  * @param string $formattedParent The parent resource where this `Site` will be created.
  *                                Format: `networks/{network_code}`

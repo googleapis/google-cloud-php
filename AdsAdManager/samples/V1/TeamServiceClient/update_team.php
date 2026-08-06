@@ -29,7 +29,7 @@ use Google\Ads\AdManager\V1\UpdateTeamRequest;
 use Google\ApiCore\ApiException;
 
 /**
- * API to update a `Team` object.
+ * Updates a `Team` object.
  *
  * @param string $teamDisplayName The name of the Team. This value has a maximum length of 127
  *                                characters.

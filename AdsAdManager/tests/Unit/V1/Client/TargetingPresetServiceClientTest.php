@@ -26,6 +26,8 @@ use Google\Ads\AdManager\V1\BatchCreateTargetingPresetsRequest;
 use Google\Ads\AdManager\V1\BatchCreateTargetingPresetsResponse;
 use Google\Ads\AdManager\V1\BatchDeactivateTargetingPresetsRequest;
 use Google\Ads\AdManager\V1\BatchDeactivateTargetingPresetsResponse;
+use Google\Ads\AdManager\V1\BatchUpdateTargetingPresetsRequest;
+use Google\Ads\AdManager\V1\BatchUpdateTargetingPresetsResponse;
 use Google\Ads\AdManager\V1\Client\TargetingPresetServiceClient;
 use Google\Ads\AdManager\V1\CreateTargetingPresetRequest;
 use Google\Ads\AdManager\V1\GetTargetingPresetRequest;
@@ -33,6 +35,7 @@ use Google\Ads\AdManager\V1\ListTargetingPresetsRequest;
 use Google\Ads\AdManager\V1\ListTargetingPresetsResponse;
 use Google\Ads\AdManager\V1\Targeting;
 use Google\Ads\AdManager\V1\TargetingPreset;
+use Google\Ads\AdManager\V1\UpdateTargetingPresetRequest;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
@@ -201,6 +204,76 @@ class TargetingPresetServiceClientTest extends GeneratedTest
         $request = (new BatchDeactivateTargetingPresetsRequest())->setParent($formattedParent)->setRequests($requests);
         try {
             $gapicClient->batchDeactivateTargetingPresets($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function batchUpdateTargetingPresetsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new BatchUpdateTargetingPresetsResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
+        $requests = [];
+        $request = (new BatchUpdateTargetingPresetsRequest())->setParent($formattedParent)->setRequests($requests);
+        $response = $gapicClient->batchUpdateTargetingPresets($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.ads.admanager.v1.TargetingPresetService/BatchUpdateTargetingPresets',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getRequests();
+        $this->assertProtobufEquals($requests, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function batchUpdateTargetingPresetsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
+        $requests = [];
+        $request = (new BatchUpdateTargetingPresetsRequest())->setParent($formattedParent)->setRequests($requests);
+        try {
+            $gapicClient->batchUpdateTargetingPresets($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -424,6 +497,81 @@ class TargetingPresetServiceClientTest extends GeneratedTest
         $request = (new ListTargetingPresetsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listTargetingPresets($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateTargetingPresetTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $displayName = 'displayName1615086568';
+        $expectedResponse = new TargetingPreset();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDisplayName($displayName);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $targetingPreset = new TargetingPreset();
+        $targetingPresetDisplayName = 'targetingPresetDisplayName818581853';
+        $targetingPreset->setDisplayName($targetingPresetDisplayName);
+        $targetingPresetTargeting = new Targeting();
+        $targetingPreset->setTargeting($targetingPresetTargeting);
+        $request = (new UpdateTargetingPresetRequest())->setTargetingPreset($targetingPreset);
+        $response = $gapicClient->updateTargetingPreset($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.ads.admanager.v1.TargetingPresetService/UpdateTargetingPreset', $actualFuncCall);
+        $actualValue = $actualRequestObject->getTargetingPreset();
+        $this->assertProtobufEquals($targetingPreset, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateTargetingPresetExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $targetingPreset = new TargetingPreset();
+        $targetingPresetDisplayName = 'targetingPresetDisplayName818581853';
+        $targetingPreset->setDisplayName($targetingPresetDisplayName);
+        $targetingPresetTargeting = new Targeting();
+        $targetingPreset->setTargeting($targetingPresetTargeting);
+        $request = (new UpdateTargetingPresetRequest())->setTargetingPreset($targetingPreset);
+        try {
+            $gapicClient->updateTargetingPreset($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
