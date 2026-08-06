@@ -2304,6 +2304,9 @@ class DatabaseTest extends TestCase
 
     public function testRunTransactionRollsBackOnException()
     {
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage('Callback exception');
+
         $sql = $this->createStreamingAPIArgs()['sql'];
 
         $this->stubExecuteStreamingSql();
@@ -2314,9 +2317,6 @@ class DatabaseTest extends TestCase
             Argument::type('array')
         )
             ->shouldBeCalledOnce();
-
-        $this->expectException(\RuntimeException::class);
-        $this->expectExceptionMessage('Callback exception');
 
         $this->database->runTransaction(function (Transaction $t) use ($sql) {
             $t->execute($sql);
