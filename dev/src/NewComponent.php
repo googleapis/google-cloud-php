@@ -59,10 +59,9 @@ class NewComponent
     {
         $new = new self();
         $new->protoPackage = $options['proto-package'] ?? '';
-        $new->phpNamespace = $options['php-namespace']
-            ?? self::derivePhpNamespaceFromProtoPackage($new->protoPackage);
+        $new->phpNamespace = $options['php-namespace'] ?? '';
         $new->displayName = self::getDisplayName($new->phpNamespace);
-        $new->componentName = $options['component-name'] ?? self::getComponentName($new->displayName);
+        $new->componentName = $options['component-name'] ?? '';
         $new->composerPackage = self::getComposerPackageFromProtoPackage($new->protoPackage);
         $new->githubRepo = self::getGithubRepo($new->composerPackage);
         $new->gpbMetadataNamespace = self::getGpbMetadataNamespace($new->protoPackage);
