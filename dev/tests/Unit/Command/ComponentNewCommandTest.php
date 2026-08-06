@@ -347,8 +347,11 @@ class ComponentNewCommandTest extends TestCase
         $commandTester->execute([]);
     }
 
-    public function testNewComponentWithAllOptionsAndProtoPath()
+    public function testNewComponentWithAllOptionsAndProtoPathFails()
     {
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage('Error: Cannot provide both a proto file path and all 7 component options.');
+
         $application = new Application();
         $application->add(new ComponentNewCommand(self::$tmpDir));
 
@@ -365,10 +368,6 @@ class ComponentNewCommandTest extends TestCase
             '--product-docs' => 'https://cloud.google.com/secret-manager/docs',
             '--product-homepage' => 'https://cloud.google.com/secret-manager',
         ]);
-
-        $display = $commandTester->getDisplay();
-        $this->assertStringContainsString('| protoPath            | google/cloud/secretmanager/(v1)', $display);
-        $this->assertFileExists(self::$tmpDir . '/SecretManagerWithOptions/.OwlBot.yaml');
     }
 
     private function assertComposerJson(string $componentName)

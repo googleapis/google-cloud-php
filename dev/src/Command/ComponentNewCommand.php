@@ -158,6 +158,9 @@ class ComponentNewCommand extends Command
         $allOptionsProvided = count($options) === 7;
 
         $proto = $input->getArgument('proto');
+        if ($proto && $allOptionsProvided) {
+            throw new RuntimeException('Error: Cannot provide both a proto file path and all 7 component options.');
+        }
         if (!$proto && !$allOptionsProvided) {
             throw new RuntimeException('Error: You must provide a proto file path or all 7 component options.');
         }
@@ -166,9 +169,7 @@ class ComponentNewCommand extends Command
         $protoContents = null;
         if ($proto) {
             $protoFile = file_exists($proto) ? substr($proto, strpos($proto, 'google/')) : $proto;
-            if (!$allOptionsProvided) {
-                $protoContents = $this->loadProtoContent($proto);
-            }
+            $protoContents = $this->loadProtoContent($proto);
         }
 
         $new = NewComponent::fromOptions($options, $protoFile, $protoContents);
@@ -270,7 +271,7 @@ class ComponentNewCommand extends Command
         $twig = new Environment($loader);
         foreach (self::TEMPLATE_FILES as $template) {
             // No need to generate .OwlBot.yaml when calling from librarian
-            if ('.OwlBot.yaml.twig' === $template && $allOptionsProvided && !$proto) {
+            if ('.OwlBot.yaml.twig' === $template && $allOptionsProvided) {
                 continue;
             }
             $file = str_replace('.twig', '', $template);
