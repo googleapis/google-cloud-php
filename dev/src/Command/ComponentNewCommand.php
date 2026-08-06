@@ -165,14 +165,13 @@ class ComponentNewCommand extends Command
             throw new RuntimeException('Error: You must provide a proto file path or all 7 component options.');
         }
 
-        $protoFile = '';
-        $protoContents = null;
         if ($proto) {
             $protoFile = file_exists($proto) ? substr($proto, strpos($proto, 'google/')) : $proto;
             $protoContents = $this->loadProtoContent($proto);
+            $new = NewComponent::fromProto($protoContents, $protoFile);
+        } else {
+            $new = NewComponent::fromOptions($options);
         }
-
-        $new = NewComponent::fromOptions($options, $protoFile, $protoContents);
         $new->componentPath = $this->rootPath;
 
         if ($input->isInteractive() && is_dir($this->rootPath . '/' . $new->componentName)) {
