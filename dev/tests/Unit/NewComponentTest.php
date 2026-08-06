@@ -161,7 +161,7 @@ class NewComponentTest extends TestCase
 EOF;
         $new = NewComponent::fromProto($protoContents, 'google/cloud/speech/v2/speech.proto', $options);
         $this->assertEquals('CustomSpeechName', $new->componentName);
-        $this->assertEquals('google.cloud.speech.v2', $new->protoPackage);
+        $this->assertEquals('google.cloud.speech', $new->protoPackage);
         $this->assertEquals('Google\Cloud\Speech\V2', $new->phpNamespace);
         $this->assertEquals('speech', $new->shortName);
         $this->assertEquals('v2', $new->version);
