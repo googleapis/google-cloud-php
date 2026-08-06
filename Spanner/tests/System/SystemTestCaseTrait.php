@@ -127,13 +127,6 @@ trait SystemTestCaseTrait
             $op->pollUntilComplete();
         }
 
-        TestDatabaseManager::$sqlHasSetUp = true;
-        TestDatabaseManager::$client = self::$client;
-        TestDatabaseManager::$instance = self::$instance;
-        TestDatabaseManager::$sqlDatabase = self::$database;
-        TestDatabaseManager::$sqlDbName = self::$dbName;
-        self::$hasSetUp = true;
-
         $op = self::$database->updateDdlBatch(
             [
                 'CREATE TABLE IF NOT EXISTS BatchTest (

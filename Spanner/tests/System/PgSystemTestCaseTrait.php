@@ -57,13 +57,6 @@ trait PgSystemTestCaseTrait
             $op->pollUntilComplete();
         }
 
-        TestDatabaseManager::$pgHasSetUp = true;
-        TestDatabaseManager::$client = self::$client;
-        TestDatabaseManager::$instance = self::$instance;
-        TestDatabaseManager::$pgDatabase = self::$database;
-        TestDatabaseManager::$pgDbName = self::$dbName;
-        self::$hasSetUp = true;
-
         self::$database->updateDdlBatch(
             [
                 'CREATE TABLE IF NOT EXISTS PgBatchTest (
