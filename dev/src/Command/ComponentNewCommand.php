@@ -204,7 +204,7 @@ class ComponentNewCommand extends Command
             ->setRows(array_map($f, array_keys($newArray), $newArray))
             ->render();
 
-        if ($input->isInteractive() && !$allOptionsProvided) {
+        if ($input->isInteractive()) {
             while (
                 !$this->getHelper('question')->ask(
                     $input,

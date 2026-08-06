@@ -273,6 +273,7 @@ class ComponentNewCommandTest extends TestCase
         $application->add(new ComponentNewCommand(self::$tmpDir));
 
         $commandTester = new CommandTester($application->get('component:new'));
+        $commandTester->setInputs(['Y']);
 
         $commandTester->execute([
             '--no-update' => true,
@@ -312,12 +313,36 @@ class ComponentNewCommandTest extends TestCase
         $this->assertEquals('speech', $repoMetadataFull['Speech']['api_shortname']);
     }
 
+    public function testNewComponentWithAllOptionsNonInteractive()
+    {
+        $application = new Application();
+        $application->add(new ComponentNewCommand(self::$tmpDir));
+
+        $commandTester = new CommandTester($application->get('component:new'));
+
+        $commandTester->execute([
+            '--no-update' => true,
+            '--component-name' => 'SpeechNonInteractive',
+            '--php-namespace' => 'Google\Cloud\Speech\V2',
+            '--proto-package' => 'google.cloud.speech.v2',
+            '--api-short-name' => 'speech',
+            '--api-version' => 'v2',
+            '--product-docs' => 'https://cloud.google.com/speech-to-text/docs',
+            '--product-homepage' => 'https://cloud.google.com/speech-to-text',
+        ], ['interactive' => false]);
+
+        $display = $commandTester->getDisplay();
+        $this->assertStringContainsString('| componentName        | SpeechNonInteractive', $display);
+        $this->assertFileExists(self::$tmpDir . '/SpeechNonInteractive/README.md');
+    }
+
     public function testNewComponentWithAllOptionsAndEmptyProductHomepage()
     {
         $application = new Application();
         $application->add(new ComponentNewCommand(self::$tmpDir));
 
         $commandTester = new CommandTester($application->get('component:new'));
+        $commandTester->setInputs(['Y']);
 
         $commandTester->execute([
             '--no-update' => true,
