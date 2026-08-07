@@ -8,7 +8,7 @@
         "NetApp": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "NetAppGapicClient",
+                    "libraryClient": "NetAppClient",
                     "rpcs": {
                         "CreateActiveDirectory": {
                             "methods": [
