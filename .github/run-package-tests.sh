@@ -159,7 +159,7 @@ export FAILED_FILE
 MAX_JOBS=${MAX_JOBS:-$(nproc 2>/dev/null || echo 8)}
 
 # Run the test suites concurrently using xargs -P
-printf "%s\n" ${DIRS} | xargs -P "${MAX_JOBS}" -I {} bash -c 'run_package_test_parallel "$@"' _ {}
+printf "%s\n" ${DIRS} | xargs -P "${MAX_JOBS}" -I {} bash -c 'run_package_test_parallel "$@"' _ {} || true
 
 if [ -f "${FAILED_FILE}" ]; then
     echo "--------- Failed tests --------------"
