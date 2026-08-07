@@ -70,6 +70,7 @@ run_package_test() {
 
     # Update composer to use local packages
     local PACKAGE_DEPENDENCIES=(
+        "Auth,auth"
         "Gax,gax"
         "CommonProtos,common-protos,4.100"
         "BigQuery,cloud-bigquery"
@@ -78,7 +79,7 @@ run_package_test() {
         "PubSub,cloud-pubsub"
         "Storage,cloud-storage,2.100"
         "ShoppingCommonProtos,shopping-common-protos"
-        "GeoCommonProtos,geo-common-protos,0.1",
+        "GeoCommonProtos,geo-common-protos,0.1"
         "Monitoring,cloud-monitoring"
     )
     for i in "${PACKAGE_DEPENDENCIES[@]}"; do
