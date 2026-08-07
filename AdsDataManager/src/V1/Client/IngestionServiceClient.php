@@ -34,6 +34,8 @@ use Google\Ads\DataManager\V1\IngestAudienceMembersRequest;
 use Google\Ads\DataManager\V1\IngestAudienceMembersResponse;
 use Google\Ads\DataManager\V1\IngestEventsRequest;
 use Google\Ads\DataManager\V1\IngestEventsResponse;
+use Google\Ads\DataManager\V1\RemoveAllAudienceMembersRequest;
+use Google\Ads\DataManager\V1\RemoveAllAudienceMembersResponse;
 use Google\Ads\DataManager\V1\RemoveAudienceMembersRequest;
 use Google\Ads\DataManager\V1\RemoveAudienceMembersResponse;
 use Google\Ads\DataManager\V1\RetrieveRequestStatusRequest;
@@ -58,6 +60,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<IngestAdEventsResponse> ingestAdEventsAsync(IngestAdEventsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<IngestAudienceMembersResponse> ingestAudienceMembersAsync(IngestAudienceMembersRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<IngestEventsResponse> ingestEventsAsync(IngestEventsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RemoveAllAudienceMembersResponse> removeAllAudienceMembersAsync(RemoveAllAudienceMembersRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<RemoveAudienceMembersResponse> removeAudienceMembersAsync(RemoveAudienceMembersRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<RetrieveRequestStatusResponse> retrieveRequestStatusAsync(RetrieveRequestStatusRequest $request, array $optionalArgs = [])
  */
@@ -278,6 +281,35 @@ final class IngestionServiceClient
     public function ingestEvents(IngestEventsRequest $request, array $callOptions = []): IngestEventsResponse
     {
         return $this->startApiCall('IngestEvents', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Removes all audience members from the provided destinations.
+     *
+     * The async variant is
+     * {@see IngestionServiceClient::removeAllAudienceMembersAsync()} .
+     *
+     * @example samples/V1/IngestionServiceClient/remove_all_audience_members.php
+     *
+     * @param RemoveAllAudienceMembersRequest $request     A request to house fields associated with the call.
+     * @param array                           $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return RemoveAllAudienceMembersResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function removeAllAudienceMembers(
+        RemoveAllAudienceMembersRequest $request,
+        array $callOptions = []
+    ): RemoveAllAudienceMembersResponse {
+        return $this->startApiCall('RemoveAllAudienceMembers', $request, $callOptions)->wait();
     }
 
     /**

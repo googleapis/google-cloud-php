@@ -237,7 +237,7 @@ final class NetworkServiceClient
     }
 
     /**
-     * API to retrieve a Network object.
+     * Retrieves a `Network` object.
      *
      * The async variant is {@see NetworkServiceClient::getNetworkAsync()} .
      *
@@ -263,7 +263,7 @@ final class NetworkServiceClient
     }
 
     /**
-     * API to retrieve all the networks the current user has access to.
+     * Retrieves all the networks the current user has access to.
      *
      * The async variant is {@see NetworkServiceClient::listNetworksAsync()} .
      *

@@ -29,7 +29,7 @@ use Google\Ads\AdManager\V1\Team;
 use Google\ApiCore\ApiException;
 
 /**
- * API to retrieve a `Team` object.
+ * Retrieves a `Team` object.
  *
  * @param string $formattedName The resource name of the Team.
  *                              Format: `networks/{network_code}/teams/{team_id}`

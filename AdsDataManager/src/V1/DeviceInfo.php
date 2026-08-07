@@ -22,7 +22,8 @@ class DeviceInfo extends \Google\Protobuf\Internal\Message
      */
     protected $user_agent = '';
     /**
-     * Optional. The IP address of the device for the given context.
+     * Optional. The IP address of the device for the given context. Required when
+     * used in an [AdEvent][google.ads.datamanager.v1.AdEvent].
      * **Note:** Google Ads does not support IP address matching for end users in
      * the European Economic Area (EEA), United Kingdom (UK), or Switzerland (CH).
      * Add logic to conditionally exclude sharing IP addresses from users from
@@ -107,7 +108,8 @@ class DeviceInfo extends \Google\Protobuf\Internal\Message
      *     @type string $user_agent
      *           Optional. The user-agent string of the device for the given context.
      *     @type string $ip_address
-     *           Optional. The IP address of the device for the given context.
+     *           Optional. The IP address of the device for the given context. Required when
+     *           used in an [AdEvent][google.ads.datamanager.v1.AdEvent].
      *           **Note:** Google Ads does not support IP address matching for end users in
      *           the European Economic Area (EEA), United Kingdom (UK), or Switzerland (CH).
      *           Add logic to conditionally exclude sharing IP addresses from users from
@@ -172,7 +174,8 @@ class DeviceInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The IP address of the device for the given context.
+     * Optional. The IP address of the device for the given context. Required when
+     * used in an [AdEvent][google.ads.datamanager.v1.AdEvent].
      * **Note:** Google Ads does not support IP address matching for end users in
      * the European Economic Area (EEA), United Kingdom (UK), or Switzerland (CH).
      * Add logic to conditionally exclude sharing IP addresses from users from
@@ -192,7 +195,8 @@ class DeviceInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The IP address of the device for the given context.
+     * Optional. The IP address of the device for the given context. Required when
+     * used in an [AdEvent][google.ads.datamanager.v1.AdEvent].
      * **Note:** Google Ads does not support IP address matching for end users in
      * the European Economic Area (EEA), United Kingdom (UK), or Switzerland (CH).
      * Add logic to conditionally exclude sharing IP addresses from users from

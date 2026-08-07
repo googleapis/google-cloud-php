@@ -283,7 +283,7 @@ final class ContactServiceClient
     }
 
     /**
-     * API to batch create `Contact` objects.
+     * Creates `Contact` objects.
      *
      * The async variant is {@see ContactServiceClient::batchCreateContactsAsync()} .
      *
@@ -311,7 +311,7 @@ final class ContactServiceClient
     }
 
     /**
-     * API to batch update `Contact` objects.
+     * Batch updates `Contact` objects.
      *
      * The async variant is {@see ContactServiceClient::batchUpdateContactsAsync()} .
      *
@@ -339,7 +339,7 @@ final class ContactServiceClient
     }
 
     /**
-     * API to create a `Contact` object.
+     * Creates a `Contact` object.
      *
      * The async variant is {@see ContactServiceClient::createContactAsync()} .
      *
@@ -365,7 +365,7 @@ final class ContactServiceClient
     }
 
     /**
-     * API to retrieve a `Contact` object.
+     * Retrieves a `Contact` object.
      *
      * The async variant is {@see ContactServiceClient::getContactAsync()} .
      *
@@ -391,7 +391,7 @@ final class ContactServiceClient
     }
 
     /**
-     * API to retrieve a list of `Contact` objects.
+     * Lists `Contact` objects.
      *
      * The async variant is {@see ContactServiceClient::listContactsAsync()} .
      *
@@ -417,7 +417,7 @@ final class ContactServiceClient
     }
 
     /**
-     * API to update a `Contact` object.
+     * Updates a `Contact` object.
      *
      * The async variant is {@see ContactServiceClient::updateContactAsync()} .
      *

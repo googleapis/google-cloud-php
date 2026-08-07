@@ -29,7 +29,7 @@ class SearchPartnerLinksRequest extends \Google\Protobuf\Internal\Message
     /**
      * The maximum number of partner links to return. The service may return
      * fewer than this value.
-     * If unspecified, at most 10 partner links will be returned.
+     * If unspecified, at most 50 partner links will be returned.
      * The maximum value is 100; values above 100 will be coerced to 100.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
@@ -61,6 +61,11 @@ class SearchPartnerLinksRequest extends \Google\Protobuf\Internal\Message
      * - `owning_account.account_id`
      * - `partner_account.account_type`
      * - `partner_account.account_id`
+     * - `feature_set`
+     * For partner links with the
+     * [FEATURE_SET_AD_EVENT_MANAGEMENT][google.ads.datamanager.v1.FeatureSet.FEATURE_SET_AD_EVENT_MANAGEMENT]
+     * feature set, the following fields are also supported:
+     * - `partner_customer_account.account_id`
      * Example:
      * `owning_account.account_type = "GOOGLE_ADS" AND partner_account.account_id
      * = 987654321`
@@ -101,7 +106,7 @@ class SearchPartnerLinksRequest extends \Google\Protobuf\Internal\Message
      *     @type int $page_size
      *           The maximum number of partner links to return. The service may return
      *           fewer than this value.
-     *           If unspecified, at most 10 partner links will be returned.
+     *           If unspecified, at most 50 partner links will be returned.
      *           The maximum value is 100; values above 100 will be coerced to 100.
      *     @type string $page_token
      *           A page token, received from a previous `SearchPartnerLinks` call.
@@ -125,6 +130,11 @@ class SearchPartnerLinksRequest extends \Google\Protobuf\Internal\Message
      *           - `owning_account.account_id`
      *           - `partner_account.account_type`
      *           - `partner_account.account_id`
+     *           - `feature_set`
+     *           For partner links with the
+     *           [FEATURE_SET_AD_EVENT_MANAGEMENT][google.ads.datamanager.v1.FeatureSet.FEATURE_SET_AD_EVENT_MANAGEMENT]
+     *           feature set, the following fields are also supported:
+     *           - `partner_customer_account.account_id`
      *           Example:
      *           `owning_account.account_type = "GOOGLE_ADS" AND partner_account.account_id
      *           = 987654321`
@@ -170,7 +180,7 @@ class SearchPartnerLinksRequest extends \Google\Protobuf\Internal\Message
     /**
      * The maximum number of partner links to return. The service may return
      * fewer than this value.
-     * If unspecified, at most 10 partner links will be returned.
+     * If unspecified, at most 50 partner links will be returned.
      * The maximum value is 100; values above 100 will be coerced to 100.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
@@ -184,7 +194,7 @@ class SearchPartnerLinksRequest extends \Google\Protobuf\Internal\Message
     /**
      * The maximum number of partner links to return. The service may return
      * fewer than this value.
-     * If unspecified, at most 10 partner links will be returned.
+     * If unspecified, at most 50 partner links will be returned.
      * The maximum value is 100; values above 100 will be coerced to 100.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
@@ -248,6 +258,11 @@ class SearchPartnerLinksRequest extends \Google\Protobuf\Internal\Message
      * - `owning_account.account_id`
      * - `partner_account.account_type`
      * - `partner_account.account_id`
+     * - `feature_set`
+     * For partner links with the
+     * [FEATURE_SET_AD_EVENT_MANAGEMENT][google.ads.datamanager.v1.FeatureSet.FEATURE_SET_AD_EVENT_MANAGEMENT]
+     * feature set, the following fields are also supported:
+     * - `partner_customer_account.account_id`
      * Example:
      * `owning_account.account_type = "GOOGLE_ADS" AND partner_account.account_id
      * = 987654321`
@@ -277,6 +292,11 @@ class SearchPartnerLinksRequest extends \Google\Protobuf\Internal\Message
      * - `owning_account.account_id`
      * - `partner_account.account_type`
      * - `partner_account.account_id`
+     * - `feature_set`
+     * For partner links with the
+     * [FEATURE_SET_AD_EVENT_MANAGEMENT][google.ads.datamanager.v1.FeatureSet.FEATURE_SET_AD_EVENT_MANAGEMENT]
+     * feature set, the following fields are also supported:
+     * - `partner_customer_account.account_id`
      * Example:
      * `owning_account.account_type = "GOOGLE_ADS" AND partner_account.account_id
      * = 987654321`
