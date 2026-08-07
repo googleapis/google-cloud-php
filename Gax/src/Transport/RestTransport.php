@@ -99,7 +99,7 @@ class RestTransport implements TransportInterface, ResumableUploadTransportInter
             'logger' => null,
         ];
         list($baseUri, $port) = self::normalizeServiceAddress($apiEndpoint);
-        $requestBuilder = $config['hasEmulator'] || !empty($config['insecure'])
+        $requestBuilder = $config['hasEmulator']
             ? new InsecureRequestBuilder("$baseUri:$port", $restConfigPath)
             : new RequestBuilder("$baseUri:$port", $restConfigPath);
         $httpHandler = $config['httpHandler'] ?: self::buildHttpHandlerAsync($config['logger']);

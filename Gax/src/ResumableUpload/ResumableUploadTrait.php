@@ -46,8 +46,6 @@ use Google\Auth\HttpHandler\HttpHandlerFactory;
  */
 trait ResumableUploadTrait
 {
-    use ServiceAddressTrait;
-
     private ResumableUploadClient $resumableUploadClient;
 
     /**
