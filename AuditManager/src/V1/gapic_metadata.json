@@ -8,7 +8,7 @@
         "AuditManager": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "AuditManagerGapicClient",
+                    "libraryClient": "AuditManagerClient",
                     "rpcs": {
                         "EnrollResource": {
                             "methods": [

@@ -8,7 +8,7 @@
         "BackupDR": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "BackupDRGapicClient",
+                    "libraryClient": "BackupDRClient",
                     "rpcs": {
                         "CreateBackupPlan": {
                             "methods": [
@@ -227,7 +227,7 @@
         "BackupDrProtectionSummary": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "BackupDrProtectionSummaryGapicClient",
+                    "libraryClient": "BackupDrProtectionSummaryClient",
                     "rpcs": {
                         "ListResourceBackupConfigs": {
                             "methods": [
