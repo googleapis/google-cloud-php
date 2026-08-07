@@ -8,7 +8,7 @@
         "AccountLimitsService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "AccountLimitsServiceGapicClient",
+                    "libraryClient": "AccountLimitsServiceClient",
                     "rpcs": {
                         "GetAccountLimit": {
                             "methods": [
@@ -27,7 +27,7 @@
         "QuotaService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "QuotaServiceGapicClient",
+                    "libraryClient": "QuotaServiceClient",
                     "rpcs": {
                         "ListQuotaGroups": {
                             "methods": [
