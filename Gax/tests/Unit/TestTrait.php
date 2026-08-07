@@ -138,9 +138,9 @@ trait TestTrait
         }
 
         // add mocks to autoloader
-        $loader = file_exists(__DIR__ . '/../../../vendor/autoload.php')
-            ? require __DIR__ . '/../../../vendor/autoload.php'
-            : require __DIR__ . '/../../vendor/autoload.php';
+        $loader = file_exists(__DIR__ . '/../../vendor/autoload.php')
+            ? require __DIR__ . '/../../vendor/autoload.php'
+            : require __DIR__ . '/../../../vendor/autoload.php';
 
         $loader->addPsr4($namespace . '\\', __DIR__ . '/testdata/' . $dir);
     }

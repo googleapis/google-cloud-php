@@ -35,6 +35,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\Call;
 use Google\ApiCore\InsecureRequestBuilder;
 use Google\ApiCore\RequestBuilder;
+use Google\ApiCore\ResumableUpload\ResumableUploadTransportInterface;
 use Google\ApiCore\ServerStream;
 use Google\ApiCore\ServiceAddressTrait;
 use Google\ApiCore\Transport\Rest\RestServerStreamingCall;
@@ -48,7 +49,7 @@ use Psr\Http\Message\ResponseInterface;
 /**
  * A REST based transport implementation.
  */
-class RestTransport implements TransportInterface
+class RestTransport implements TransportInterface, ResumableUploadTransportInterface
 {
     use ValidationTrait;
     use ServiceAddressTrait;
