@@ -33,8 +33,6 @@
 namespace Google\ApiCore\Tests\Unit\ResumableUpload;
 
 use Google\ApiCore\ApiException;
-use Google\ApiCore\ApiStatus;
-use Google\ApiCore\ResumableUpload\ResumableUploadClient;
 use Google\ApiCore\ResumableUpload\ResumableUploadState;
 use Google\ApiCore\ValidationException;
 use GuzzleHttp\Psr7\Utils;

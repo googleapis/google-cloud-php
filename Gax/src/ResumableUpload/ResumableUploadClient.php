@@ -32,13 +32,11 @@
 
 namespace Google\ApiCore\ResumableUpload;
 
-use Exception;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\ApiStatus;
 use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Middleware\RetryMiddleware;
-use Google\ApiCore\RequestBuilder;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\ValidationException;
 use Google\Protobuf\Internal\Message;
@@ -151,7 +149,7 @@ class ResumableUploadClient
                             $callOptions
                         )
                         : throw new ValidationException(
-                            "A Call with request message is required when starting a new resumable upload."
+                            'A Call with request message is required when starting a new resumable upload.'
                         ),
                     self::PHASE_TRANSMITTING,
                     self::PHASE_FINALIZING => $this->phaseUploading($state, $upload, $dataStream),
@@ -340,7 +338,7 @@ class ResumableUploadClient
         if ($retrySettings !== null) {
             $callOptions['retrySettings'] = $retrySettings;
             $middleware = new RetryMiddleware(
-                fn(Call $unusedCall, array $options) => Create::promiseFor(
+                fn (Call $unusedCall, array $options) => Create::promiseFor(
                     $this->transport->sendRawRequest($request, $options)
                 ),
                 $retrySettings

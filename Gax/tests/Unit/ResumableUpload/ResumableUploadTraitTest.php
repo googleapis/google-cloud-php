@@ -52,7 +52,7 @@ class ResumableUploadTraitTest extends TestCase
         };
         $credentialsWrapper = $this->prophesize(CredentialsWrapper::class)->reveal();
 
-        $client = new class ($credentialsWrapper, ['httpHandler' => $httpHandler]) {
+        $client = new class($credentialsWrapper, ['httpHandler' => $httpHandler]) {
             use GapicClientTrait;
             use ResumableUploadTrait;
 

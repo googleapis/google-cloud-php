@@ -35,7 +35,6 @@ namespace Google\ApiCore\ResumableUpload;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\ApiStatus;
 use Google\ApiCore\ValidationException;
-use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
 
 /**
@@ -107,7 +106,7 @@ class ResumableUploadState
             $this->buffer = $dataStream->read($effectiveChunkSize);
         } catch (\Throwable $e) {
             throw new ValidationException(
-                "Error reading from data stream: " . $e->getMessage(),
+                'Error reading from data stream: ' . $e->getMessage(),
                 0,
                 $e
             );
@@ -161,7 +160,7 @@ class ResumableUploadState
             if (!$dataStream->isSeekable()) {
                 throw new ValidationException(
                     "Cannot recover resumable upload: the server confirmed offset {$serverOffset}, "
-                    . "which falls outside the buffered chunks, and the provided data stream is not seekable."
+                    . 'which falls outside the buffered chunks, and the provided data stream is not seekable.'
                 );
             }
             try {

@@ -32,13 +32,6 @@
 
 namespace Google\ApiCore\ResumableUpload;
 
-use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\InsecureCredentialsWrapper;
-use Google\ApiCore\InsecureRequestBuilder;
-use Google\ApiCore\RequestBuilder;
-use Google\ApiCore\ServiceAddressTrait;
-use Google\Auth\HttpHandler\HttpHandlerFactory;
-
 /**
  * Trait for GAPIC clients that support resumable uploads.
  *

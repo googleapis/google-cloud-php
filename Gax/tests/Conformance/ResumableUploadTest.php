@@ -79,7 +79,7 @@ class ResumableUploadTest extends TestCase
     {
         $callbackBytes = null;
         $callbackUrl = null;
-        $payload = "hello world from happy path integration test to resumable upload service!";
+        $payload = 'hello world from happy path integration test to resumable upload service!';
 
         $result = $this->createClientAndUpload(
             $payload,
@@ -93,13 +93,13 @@ class ResumableUploadTest extends TestCase
         $this->assertInstanceOf(UploadMediaResponse::class, $result);
         $this->assertEquals(strlen($payload), $callbackBytes);
         $expectedUrlPrefix = "$scheme://" . self::SHOWCASE_HOST
-            . "/resumable/upload/v1beta1/files:upload?sid=";
+            . '/resumable/upload/v1beta1/files:upload?sid=';
         $this->assertStringStartsWith($expectedUrlPrefix, $callbackUrl);
     }
 
     public function testNonFatalErrorOnStartRecovery()
     {
-        $payload = "data with transient 503 error on start";
+        $payload = 'data with transient 503 error on start';
         $headers = [
             'X-Goog-Test-Scenario' => 'non_fatal_error_on_start',
             'X-Goog-Test-Scenario-Config' => json_encode([
@@ -115,7 +115,7 @@ class ResumableUploadTest extends TestCase
 
     public function testNonFatalErrorOnChunkUploadRecovery()
     {
-        $payload = str_repeat("a", 3000); // multiple chunks
+        $payload = str_repeat('a', 3000); // multiple chunks
         $headers = [
             'X-Goog-Test-Scenario' => 'non_fatal_error_on_chunk_upload',
             'X-Goog-Test-Scenario-Config' => json_encode([
@@ -132,7 +132,7 @@ class ResumableUploadTest extends TestCase
 
     public function testNonFatalErrorOnQueryRecovery()
     {
-        $payload = str_repeat("a", 3000);
+        $payload = str_repeat('a', 3000);
         $headers = [
             'X-Goog-Test-Scenario' => 'non_fatal_error_on_query',
             'X-Goog-Test-Scenario-Config' => json_encode([
@@ -148,7 +148,7 @@ class ResumableUploadTest extends TestCase
 
     public function testChunkGranularityScenario()
     {
-        $payload = str_repeat("b", 1024);
+        $payload = str_repeat('b', 1024);
         $headers = [
             'X-Goog-Test-Scenario' => 'chunk_granularity'
         ];
@@ -159,7 +159,7 @@ class ResumableUploadTest extends TestCase
 
     public function testFatalErrorOnStartThrowsException()
     {
-        $payload = "fatal error payload";
+        $payload = 'fatal error payload';
         $headers = [
             'X-Goog-Test-Scenario' => 'fatal_error_on_start',
             'X-Goog-Test-Scenario-Config' => json_encode([

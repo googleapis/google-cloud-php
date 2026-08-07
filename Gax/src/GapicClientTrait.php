@@ -33,7 +33,6 @@
 namespace Google\ApiCore;
 
 use Google\ApiCore\LongRunning\OperationsClient;
-use Google\ApiCore\ResumableUpload\ResumableUpload;
 use Google\ApiCore\Middleware\CredentialsWrapperMiddleware;
 use Google\ApiCore\Middleware\FixedHeaderMiddleware;
 use Google\ApiCore\Middleware\OperationsMiddleware;
@@ -45,6 +44,7 @@ use Google\ApiCore\Middleware\TransportCallMiddleware;
 use Google\ApiCore\Options\CallOptions;
 use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\Options\TransportOptions;
+use Google\ApiCore\ResumableUpload\ResumableUpload;
 use Google\ApiCore\Transport\GrpcFallbackTransport;
 use Google\ApiCore\Transport\GrpcTransport;
 use Google\ApiCore\Transport\RestTransport;
