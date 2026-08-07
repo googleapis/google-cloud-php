@@ -8,7 +8,7 @@
         "AddressGroupService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "AddressGroupServiceGapicClient",
+                    "libraryClient": "AddressGroupServiceClient",
                     "rpcs": {
                         "AddAddressGroupItems": {
                             "methods": [
@@ -87,7 +87,7 @@
         "OrganizationAddressGroupService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "OrganizationAddressGroupServiceGapicClient",
+                    "libraryClient": "OrganizationAddressGroupServiceClient",
                     "rpcs": {
                         "AddAddressGroupItems": {
                             "methods": [
@@ -166,7 +166,7 @@
         "DnsThreatDetectorService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "DnsThreatDetectorServiceGapicClient",
+                    "libraryClient": "DnsThreatDetectorServiceClient",
                     "rpcs": {
                         "CreateDnsThreatDetector": {
                             "methods": [
@@ -225,7 +225,7 @@
         "FirewallActivation": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "FirewallActivationGapicClient",
+                    "libraryClient": "FirewallActivationClient",
                     "rpcs": {
                         "CreateFirewallEndpoint": {
                             "methods": [
@@ -334,7 +334,7 @@
         "Intercept": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "InterceptGapicClient",
+                    "libraryClient": "InterceptClient",
                     "rpcs": {
                         "CreateInterceptDeployment": {
                             "methods": [
@@ -468,7 +468,7 @@
         "Mirroring": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "MirroringGapicClient",
+                    "libraryClient": "MirroringClient",
                     "rpcs": {
                         "CreateMirroringDeployment": {
                             "methods": [
@@ -602,7 +602,7 @@
         "NetworkSecurity": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "NetworkSecurityGapicClient",
+                    "libraryClient": "NetworkSecurityClient",
                     "rpcs": {
                         "CreateAuthorizationPolicy": {
                             "methods": [
@@ -861,7 +861,7 @@
         "SecurityProfileGroupService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "SecurityProfileGroupServiceGapicClient",
+                    "libraryClient": "SecurityProfileGroupServiceClient",
                     "rpcs": {
                         "CreateSecurityProfile": {
                             "methods": [
@@ -945,7 +945,7 @@
         "OrganizationSecurityProfileGroupService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "OrganizationSecurityProfileGroupServiceGapicClient",
+                    "libraryClient": "OrganizationSecurityProfileGroupServiceClient",
                     "rpcs": {
                         "CreateSecurityProfile": {
                             "methods": [
@@ -1029,7 +1029,7 @@
         "SSERealmService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "SSERealmServiceGapicClient",
+                    "libraryClient": "SSERealmServiceClient",
                     "rpcs": {
                         "CreateSACAttachment": {
                             "methods": [

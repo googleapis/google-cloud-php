@@ -491,7 +491,7 @@ class Visit extends \Google\Protobuf\Internal\Message
      */
     public function getArrivalLoads()
     {
-        if ($this->arrival_loads->count() !== 0) {
+        if (count($this->arrival_loads) !== 0) {
             @trigger_error('arrival_loads is deprecated.', E_USER_DEPRECATED);
         }
         return $this->arrival_loads;
@@ -584,7 +584,7 @@ class Visit extends \Google\Protobuf\Internal\Message
      */
     public function getDemands()
     {
-        if ($this->demands->count() !== 0) {
+        if (count($this->demands) !== 0) {
             @trigger_error('demands is deprecated.', E_USER_DEPRECATED);
         }
         return $this->demands;
