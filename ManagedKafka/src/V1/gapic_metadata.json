@@ -8,7 +8,7 @@
         "ManagedKafka": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ManagedKafkaGapicClient",
+                    "libraryClient": "ManagedKafkaClient",
                     "rpcs": {
                         "AddAclEntry": {
                             "methods": [
@@ -132,7 +132,7 @@
         "ManagedKafkaConnect": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ManagedKafkaConnectGapicClient",
+                    "libraryClient": "ManagedKafkaConnectClient",
                     "rpcs": {
                         "CreateConnectCluster": {
                             "methods": [
