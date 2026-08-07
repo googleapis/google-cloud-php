@@ -43,6 +43,9 @@ use Psr\Log\LoggerInterface;
  * A trait for shared functionality between transports that support only unary RPCs using simple
  * HTTP requests.
  *
+ * @property string $baseUri
+ * @property \Google\ApiCore\RequestBuilder $requestBuilder
+ *
  * @internal
  */
 trait HttpUnaryTransportTrait
@@ -200,7 +203,8 @@ trait HttpUnaryTransportTrait
         $headers = ['Content-Type' => 'application/x-protobuf'] + $headers;
         $headers += ['x-goog-api-client' => []];
         $headers['x-goog-api-client'][] = 'grpc-web';
-        $uri = "https://{$this->baseUri}/\$rpc/{$method}";
+        $baseUri = property_exists($this, 'baseUri') ? $this->baseUri : '';
+        $uri = "https://{$baseUri}/\$rpc/{$method}";
 
         return new \GuzzleHttp\Psr7\Request(
             'POST',

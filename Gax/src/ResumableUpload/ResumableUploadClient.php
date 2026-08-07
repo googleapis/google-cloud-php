@@ -87,6 +87,14 @@ class ResumableUploadClient
     }
 
     /**
+     * @return string
+     */
+    public function getServiceAddress(): string
+    {
+        return $this->serviceAddress;
+    }
+
+    /**
      * Starts the resumable upload exchange using the provided data stream.
      *
      * @param ResumableUpload $upload
@@ -152,13 +160,15 @@ class ResumableUploadClient
                             $call,
                             $callOptions
                         )
-                        : throw new ValidationException("A Call with request message is required when starting a new resumable upload."),
+                        : throw new ValidationException(
+                            "A Call with request message is required when starting a new resumable upload."
+                        ),
                     self::PHASE_TRANSMITTING,
                     self::PHASE_FINALIZING => $this->phaseUploading($state, $upload, $dataStream),
                     self::PHASE_RECOVERY => $this->phaseRecovery($state, $upload, $dataStream),
                     default => throw new ApiException("Unexpected phase: {$state->phase}", 0, ApiStatus::INTERNAL),
                 };
-            } catch (ApiException | RequestException $e) {
+            } catch (\Throwable $e) {
                 $state->phase = $this->handleException(
                     $e,
                     $state,
@@ -221,6 +231,11 @@ class ResumableUploadClient
         }
         $urlHeader = $response->getHeaderLine('X-Goog-Upload-URL');
         if (!empty($urlHeader)) {
+            if ($request->getUri()->getScheme() === 'https'
+                && str_starts_with($urlHeader, 'http://')
+            ) {
+                $urlHeader = 'https://' . substr($urlHeader, 7);
+            }
             $state->uploadUrl = $urlHeader;
         }
         if ($state->uploadUrl !== null) {
@@ -278,8 +293,11 @@ class ResumableUploadClient
         return self::PHASE_TRANSMITTING;
     }
 
-    private function phaseRecovery(ResumableUploadState $state, ResumableUpload $upload, StreamInterface $dataStream): string
-    {
+    private function phaseRecovery(
+        ResumableUploadState $state,
+        ResumableUpload $upload,
+        StreamInterface $dataStream
+    ): string {
         if (empty($state->uploadUrl)) {
             throw new ValidationException('Cannot recover resumable upload: uploadUrl is not set.');
         }
@@ -309,7 +327,6 @@ class ResumableUploadClient
             return self::PHASE_TRANSMITTING;
         }
         $this->handleErrorResponse($response);
-        return self::PHASE_RECOVERY;
     }
 
     private function sendRequest(
@@ -333,7 +350,9 @@ class ResumableUploadClient
         if ($retrySettings !== null) {
             $callOptions['retrySettings'] = $retrySettings;
             $middleware = new RetryMiddleware(
-                fn(Call $unusedCall, array $options) => Create::promiseFor($this->transport->sendRawRequest($request, $options)),
+                fn(Call $unusedCall, array $options) => Create::promiseFor(
+                    $this->transport->sendRawRequest($request, $options)
+                ),
                 $retrySettings
             );
             $response = $middleware(
@@ -363,15 +382,15 @@ class ResumableUploadClient
     }
 
     private function handleException(
-        ApiException|RequestException $e,
+        \Throwable $e,
         ResumableUploadState $state,
         float $deadlineMs
     ): string {
         $this->checkDeadline($deadlineMs, $e);
 
-        $code = $e->getCode();
+        $code = (int) $e->getCode();
         if ($e instanceof RequestException) {
-            $response = $e->getResponse();
+            $response = method_exists($e, 'getResponse') ? $e->getResponse() : null;
             if ($response) {
                 $code = $response->getStatusCode();
             }
@@ -390,7 +409,7 @@ class ResumableUploadClient
             return self::PHASE_RECOVERY;
         }
 
-        if ($e instanceof ApiException) {
+        if ($e instanceof ApiException || $e instanceof ValidationException) {
             throw $e;
         }
         throw new ApiException(
@@ -414,10 +433,10 @@ class ResumableUploadClient
             );
         }
 
-        throw new RequestException(
-            "HTTP error {$statusCode}",
-            new Request('POST', ''),
-            $response
+        throw new ApiException(
+            "HTTP error {$statusCode}: {$body}",
+            $statusCode,
+            ApiStatus::statusFromRpcCode(ApiStatus::rpcCodeFromHttpStatusCode($statusCode))
         );
     }
 }

@@ -354,8 +354,6 @@ trait GapicClientTrait
                 $options['apiKey'],
                 $options['credentialsConfig']['quotaProject'] ?? null
             );
-        } elseif ($hasEmulator && null === $options['credentials']) {
-            $this->credentialsWrapper = new InsecureCredentialsWrapper();
         } else {
             $enableRegionalAccessBoundary = filter_var(
                 getenv('GOOGLE_AUTH_TRUST_BOUNDARY_ENABLE_EXPERIMENT'),

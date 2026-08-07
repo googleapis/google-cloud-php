@@ -32,16 +32,31 @@ use PHPUnit\Framework\TestCase;
 class ResumableUploadTest extends TestCase
 {
     private const SHOWCASE_HOST = 'localhost:7469';
+    private const PEM_PATH = __DIR__ . '/showcase.pem';
 
     private function createClientAndUpload(
         string $data,
         ?callable $progressCallback = null,
         array $headers = []
     ): UploadMediaResponse {
-        $client = new ResumableUploadServiceClient([
+        $options = [
             'apiEndpoint' => self::SHOWCASE_HOST,
-            'hasEmulator' => true,
-        ]);
+        ];
+        if (file_exists(self::PEM_PATH)) {
+            $httpHandler = \Google\Auth\HttpHandler\HttpHandlerFactory::build(
+                new \GuzzleHttp\Client(['verify' => self::PEM_PATH])
+            );
+            $options['transportConfig'] = [
+                'rest' => [
+                    'httpHandler' => [$httpHandler, 'async'],
+                ],
+            ];
+            $options['credentials'] = new \Google\ApiCore\InsecureCredentialsWrapper();
+        } else {
+            $options['hasEmulator'] = true;
+        }
+
+        $client = new ResumableUploadServiceClient($options);
 
         $callOptions = [
             'headers' => $headers
@@ -74,9 +89,12 @@ class ResumableUploadTest extends TestCase
             }
         );
 
+        $scheme = file_exists(self::PEM_PATH) ? 'https' : 'http';
         $this->assertInstanceOf(UploadMediaResponse::class, $result);
         $this->assertEquals(strlen($payload), $callbackBytes);
-        $this->assertStringStartsWith("http://" . self::SHOWCASE_HOST . "/resumable/upload/v1beta1/files:upload?sid=", $callbackUrl);
+        $expectedUrlPrefix = "$scheme://" . self::SHOWCASE_HOST
+            . "/resumable/upload/v1beta1/files:upload?sid=";
+        $this->assertStringStartsWith($expectedUrlPrefix, $callbackUrl);
     }
 
     public function testNonFatalErrorOnStartRecovery()
