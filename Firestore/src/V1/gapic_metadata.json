@@ -8,7 +8,7 @@
         "Firestore": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "FirestoreGapicClient",
+                    "libraryClient": "FirestoreClient",
                     "rpcs": {
                         "BatchGetDocuments": {
                             "methods": [

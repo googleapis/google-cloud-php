@@ -8,7 +8,7 @@
         "Domains": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "DomainsGapicClient",
+                    "libraryClient": "DomainsClient",
                     "rpcs": {
                         "ConfigureContactSettings": {
                             "methods": [
