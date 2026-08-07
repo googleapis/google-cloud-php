@@ -8,7 +8,7 @@
         "Datastream": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "DatastreamGapicClient",
+                    "libraryClient": "DatastreamClient",
                     "rpcs": {
                         "CreateConnectionProfile": {
                             "methods": [
