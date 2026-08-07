@@ -8,7 +8,7 @@
         "AccountsService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "AccountsServiceGapicClient",
+                    "libraryClient": "AccountsServiceClient",
                     "rpcs": {
                         "GetAccount": {
                             "methods": [
@@ -32,7 +32,7 @@
         "AccountLabelsService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "AccountLabelsServiceGapicClient",
+                    "libraryClient": "AccountLabelsServiceClient",
                     "rpcs": {
                         "CreateAccountLabel": {
                             "methods": [
@@ -61,7 +61,7 @@
         "CssProductInputsService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "CssProductInputsServiceGapicClient",
+                    "libraryClient": "CssProductInputsServiceClient",
                     "rpcs": {
                         "DeleteCssProductInput": {
                             "methods": [
@@ -85,7 +85,7 @@
         "CssProductsService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "CssProductsServiceGapicClient",
+                    "libraryClient": "CssProductsServiceClient",
                     "rpcs": {
                         "GetCssProduct": {
                             "methods": [
@@ -104,7 +104,7 @@
         "QuotaService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "QuotaServiceGapicClient",
+                    "libraryClient": "QuotaServiceClient",
                     "rpcs": {
                         "ListQuotaGroups": {
                             "methods": [
