@@ -23,12 +23,15 @@
 namespace Google\Ads\DataManager\Tests\Unit\V1\Client;
 
 use Google\Ads\DataManager\V1\Client\IngestionServiceClient;
+use Google\Ads\DataManager\V1\EncryptionInfo;
 use Google\Ads\DataManager\V1\IngestAdEventsRequest;
 use Google\Ads\DataManager\V1\IngestAdEventsResponse;
 use Google\Ads\DataManager\V1\IngestAudienceMembersRequest;
 use Google\Ads\DataManager\V1\IngestAudienceMembersResponse;
 use Google\Ads\DataManager\V1\IngestEventsRequest;
 use Google\Ads\DataManager\V1\IngestEventsResponse;
+use Google\Ads\DataManager\V1\RemoveAllAudienceMembersRequest;
+use Google\Ads\DataManager\V1\RemoveAllAudienceMembersResponse;
 use Google\Ads\DataManager\V1\RemoveAudienceMembersRequest;
 use Google\Ads\DataManager\V1\RemoveAudienceMembersResponse;
 use Google\Ads\DataManager\V1\RetrieveRequestStatusRequest;
@@ -83,7 +86,8 @@ class IngestionServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $adEvents = [];
-        $request = (new IngestAdEventsRequest())->setAdEvents($adEvents);
+        $encryptionInfo = new EncryptionInfo();
+        $request = (new IngestAdEventsRequest())->setAdEvents($adEvents)->setEncryptionInfo($encryptionInfo);
         $response = $gapicClient->ingestAdEvents($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -93,6 +97,8 @@ class IngestionServiceClientTest extends GeneratedTest
         $this->assertSame('/google.ads.datamanager.v1.IngestionService/IngestAdEvents', $actualFuncCall);
         $actualValue = $actualRequestObject->getAdEvents();
         $this->assertProtobufEquals($adEvents, $actualValue);
+        $actualValue = $actualRequestObject->getEncryptionInfo();
+        $this->assertProtobufEquals($encryptionInfo, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -119,7 +125,8 @@ class IngestionServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $adEvents = [];
-        $request = (new IngestAdEventsRequest())->setAdEvents($adEvents);
+        $encryptionInfo = new EncryptionInfo();
+        $request = (new IngestAdEventsRequest())->setAdEvents($adEvents)->setEncryptionInfo($encryptionInfo);
         try {
             $gapicClient->ingestAdEvents($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -264,6 +271,71 @@ class IngestionServiceClientTest extends GeneratedTest
         $request = (new IngestEventsRequest())->setDestinations($destinations)->setEvents($events);
         try {
             $gapicClient->ingestEvents($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function removeAllAudienceMembersTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $requestId = 'requestId37109963';
+        $expectedResponse = new RemoveAllAudienceMembersResponse();
+        $expectedResponse->setRequestId($requestId);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $destinations = [];
+        $request = (new RemoveAllAudienceMembersRequest())->setDestinations($destinations);
+        $response = $gapicClient->removeAllAudienceMembers($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.ads.datamanager.v1.IngestionService/RemoveAllAudienceMembers', $actualFuncCall);
+        $actualValue = $actualRequestObject->getDestinations();
+        $this->assertProtobufEquals($destinations, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function removeAllAudienceMembersExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $destinations = [];
+        $request = (new RemoveAllAudienceMembersRequest())->setDestinations($destinations);
+        try {
+            $gapicClient->removeAllAudienceMembers($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -424,7 +496,8 @@ class IngestionServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $adEvents = [];
-        $request = (new IngestAdEventsRequest())->setAdEvents($adEvents);
+        $encryptionInfo = new EncryptionInfo();
+        $request = (new IngestAdEventsRequest())->setAdEvents($adEvents)->setEncryptionInfo($encryptionInfo);
         $response = $gapicClient->ingestAdEventsAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -434,6 +507,8 @@ class IngestionServiceClientTest extends GeneratedTest
         $this->assertSame('/google.ads.datamanager.v1.IngestionService/IngestAdEvents', $actualFuncCall);
         $actualValue = $actualRequestObject->getAdEvents();
         $this->assertProtobufEquals($adEvents, $actualValue);
+        $actualValue = $actualRequestObject->getEncryptionInfo();
+        $this->assertProtobufEquals($encryptionInfo, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

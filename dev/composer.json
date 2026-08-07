@@ -43,12 +43,14 @@
         "gapic-generator": {
             "type": "vcs",
             "url": "https://github.com/googleapis/gapic-generator-php.git",
+            "only": ["google/gapic-generator"],
             "options": {
                 "submodules": true
             }
         },
         "gapic-showcase": {
             "type": "package",
+            "only": ["google/gapic-showcase"],
             "package": {
                 "name": "google/gapic-showcase",
                 "version": "dev-main",

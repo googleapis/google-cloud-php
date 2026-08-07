@@ -26,6 +26,11 @@
                     "retry_codes_name": "no_retry_codes",
                     "retry_params_name": "no_retry_params"
                 },
+                "BatchUpdateTargetingPresets": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
                 "CreateTargetingPreset": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "no_retry_codes",
@@ -37,6 +42,11 @@
                     "retry_params_name": "no_retry_params"
                 },
                 "ListTargetingPresets": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "UpdateTargetingPreset": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "no_retry_codes",
                     "retry_params_name": "no_retry_params"

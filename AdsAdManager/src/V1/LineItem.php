@@ -32,12 +32,25 @@ class LineItem extends \Google\Protobuf\Internal\Message
      */
     protected $order = null;
     /**
-     * Required. The name of the line item. This attribute is required and has a
-     * maximum length of 255 characters.
+     * Required. The name of the line item. This attribute has a maximum length of
+     * 255 characters.
      *
      * Generated from protobuf field <code>optional string display_name = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $display_name = null;
+    /**
+     * Optional. An identifier for the LineItem that is meaningful to the
+     * publisher. This attribute has a maximum length of 255 characters.
+     *
+     * Generated from protobuf field <code>optional string external_line_item_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $external_line_item_id = null;
+    /**
+     * Output only. The name of the Order.
+     *
+     * Generated from protobuf field <code>optional string order_display_name = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $order_display_name = null;
     /**
      * Required. The date and time on which the LineItem is enabled to begin
      * serving. This attribute is required and must be in the future.
@@ -46,27 +59,253 @@ class LineItem extends \Google\Protobuf\Internal\Message
      */
     protected $start_time = null;
     /**
+     * Optional. The target end time of the line item. This attribute is required
+     * unless
+     * [end_time_unlimited][google.ads.admanager.v1.LineItem.end_time_unlimited]
+     * is set to true. If specified, it must be after the
+     * [start_time][google.ads.admanager.v1.LineItem.start_time]. This does not
+     * include auto extension days.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.Timestamp target_end_time = 95 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $target_end_time = null;
+    /**
      * Output only. The timestamp when the LineItem will stop serving. This
-     * attribute is read-only and includes auto extension days.
+     * attribute includes auto extension days.
      *
      * Generated from protobuf field <code>optional .google.protobuf.Timestamp end_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $end_time = null;
     /**
-     * Required. Indicates the line item type of a LineItem. This attribute is
-     * required. The line item type determines the default priority of the line
-     * item. More information can be found at
-     * https://support.google.com/admanager/answer/177279.
+     * Optional. The number of days to allow a line item to deliver past its
+     * [target_end_time][google.ads.admanager.v1.LineItem.target_end_time]. A
+     * maximum of 7 days is allowed. This is feature is only available for Ad
+     * Manager 360 accounts.
+     *
+     * Generated from protobuf field <code>optional int32 auto_extension_days = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $auto_extension_days = null;
+    /**
+     * Optional. Non-empty default. Specifies whether or not the LineItem has an
+     * end time. This attribute defaults to false. It can be be set to true for
+     * only line items of type SPONSORSHIP, NETWORK, PRICE_PRIORITY and HOUSE.
+     *
+     * Generated from protobuf field <code>optional bool end_time_unlimited = 9 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = NON_EMPTY_DEFAULT];</code>
+     */
+    protected $end_time_unlimited = null;
+    /**
+     * Required. The strategy used for displaying multiple Creative objects that
+     * are associated with the LineItem.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.CreativeRotationTypeEnum.CreativeRotationType creative_rotation_type = 10 [(.google.api.field_behavior) = REQUIRED];</code>
+     */
+    protected $creative_rotation_type = null;
+    /**
+     * Optional. Non-empty default. The strategy for delivering ads over the
+     * course of the line item's duration. This attribute defaults to EVENLY or
+     * FRONTLOADED depending on the network's configuration.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.LineItemDeliveryRateTypeEnum.LineItemDeliveryRateType delivery_rate_type = 11 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = NON_EMPTY_DEFAULT];</code>
+     */
+    protected $delivery_rate_type = null;
+    /**
+     * Optional. Non-empty default. Strategy for choosing forecasted traffic
+     * shapes to pace line items. This field defaults to HISTORICAL.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.LineItemDeliveryForecastSourceEnum.LineItemDeliveryForecastSource delivery_forecast_source = 12 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = NON_EMPTY_DEFAULT];</code>
+     */
+    protected $delivery_forecast_source = null;
+    /**
+     * Optional. The curve that is used to pace the line item's delivery. This
+     * field is required if and only if the delivery forecast source is
+     * CUSTOM_PACING_CURVE.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.CustomPacingCurve custom_pacing_curve = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $custom_pacing_curve = null;
+    /**
+     * Optional. Non-empty default. The strategy for serving roadblocked
+     * creatives, that is, instances where multiple creatives must be served
+     * together on a single web page. This attribute defaults to ONE_OR_MORE.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.RoadblockingTypeEnum.RoadblockingType roadblocking_type = 14 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = NON_EMPTY_DEFAULT];</code>
+     */
+    protected $roadblocking_type = null;
+    /**
+     * Optional. Non-empty default. The nature of the line item's creatives'
+     * skippability. This attribute is only applicable for video line items, and
+     * defaults to NOT_SKIPPABLE.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.SkippableAdTypeEnum.SkippableAdType skippable_ad_type = 15 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = NON_EMPTY_DEFAULT];</code>
+     */
+    protected $skippable_ad_type = null;
+    /**
+     * Optional. The set of frequency capping units for this LineItem.
+     *
+     * Generated from protobuf field <code>repeated .google.ads.admanager.v1.FrequencyCap frequency_caps = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $frequency_caps;
+    /**
+     * Required. Indicates the line item type of a LineItem. The line item type
+     * determines the default priority of the line item. More information can be
+     * found at https://support.google.com/admanager/answer/177279.
      *
      * Generated from protobuf field <code>optional .google.ads.admanager.v1.LineItemTypeEnum.LineItemType line_item_type = 17 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $line_item_type = null;
+    /**
+     * Optional. Non-empty default. The priority for the line item. Valid values
+     * range from 1 to 16. This field defaults to the default priority of the
+     * LineItemType. The following list shows the default, minimum, and maximum
+     * priority values are for each line item type:
+     *   - LineItemType: default priority (minimum priority, maximum priority)
+     *   - SPONSORSHIP: 4 (2, 5)
+     *   - STANDARD: 8 (6, 10)
+     *   - NETWORK: 12 (11, 14)
+     *   - BULK: 12 (11, 14)
+     *   - PRICE_PRIORITY: 12 (11, 14)
+     *   - HOUSE: 16 (15, 16)
+     *   - CLICK_TRACKING: 16 (1, 16)
+     *   - AD_EXCHANGE: 12 (1, 16)
+     *   - ADSENSE: 12 (1, 16)
+     *   - BUMPER: 16 (15, 16)
+     *   - ADMOB: 21 (1, 16)
+     *   - PREFERRED_DEAL: 12 (12, 12)
+     * This field can only be edited by certain networks, otherwise a
+     * PermissionError will occur.
+     *
+     * Generated from protobuf field <code>optional int32 priority = 19 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = NON_EMPTY_DEFAULT];</code>
+     */
+    protected $priority = null;
     /**
      * Required. The amount of money to spend per impression or click.
      *
      * Generated from protobuf field <code>optional .google.type.Money rate = 20 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $rate = null;
+    /**
+     * Optional. Non-empty default. An amount to help the adserver rank inventory.
+     * [value_cpm][google.ads.admanager.v1.LineItem.value_cpm] artificially raises
+     * the value of inventory over the
+     * [rate][google.ads.admanager.v1.LineItem.rate] but avoids raising the actual
+     * [rate][google.ads.admanager.v1.LineItem.rate]. This attribute defaults to a
+     * Money object in the local currency with units and nanos set to 0.
+     *
+     * Generated from protobuf field <code>optional .google.type.Money value_cpm = 21 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = NON_EMPTY_DEFAULT];</code>
+     */
+    protected $value_cpm = null;
+    /**
+     * Required. The method used for billing this LineItem.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.LineItemCostTypeEnum.LineItemCostType cost_type = 22 [(.google.api.field_behavior) = REQUIRED];</code>
+     */
+    protected $cost_type = null;
+    /**
+     * Optional. Discount information for the line item.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.LineItemDiscount discount = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $discount = null;
+    /**
+     * Optional. This attribute is only applicable for certain line item types and
+     * acts as an "FYI" or note, which does not impact adserving or other backend
+     * systems. For SPONSORSHIP line items, this represents the minimum quantity,
+     * which is a lifetime impression volume goal for reporting purposes only. For
+     * STANDARD line items, this represent the contracted quantity, which is the
+     * number of units specified in the contract the advertiser has bought for
+     * this LineItem. This field is just a "FYI" for traffickers to manually
+     * intervene with the LineItem when needed. This attribute is only available
+     * for STANDARD line items if you have this feature enabled on your network.
+     *
+     * Generated from protobuf field <code>optional int64 contracted_units_bought = 24 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $contracted_units_bought = null;
+    /**
+     * Required. Details about the creatives that are expected to serve through
+     * this LineItem.
+     *
+     * Generated from protobuf field <code>repeated .google.ads.admanager.v1.CreativePlaceholder creative_placeholders = 25 [(.google.api.field_behavior) = REQUIRED];</code>
+     */
+    private $creative_placeholders;
+    /**
+     * Optional. Non-empty default. The environment that the LineItem is
+     * targeting. The default value is BROWSER. If this value is VIDEO_PLAYER,
+     * then this line item can only target AdUnits that have AdUnitSizes whose
+     * environmentType is also VIDEO_PLAYER.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.EnvironmentTypeEnum.EnvironmentType environment_type = 26 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = NON_EMPTY_DEFAULT];</code>
+     */
+    protected $environment_type = null;
+    /**
+     * Optional. The delivery option for companions. Setting this field is only
+     * meaningful if the following conditions are met:
+     *   - The "Guaranteed roadblocks" feature is enabled on your network.
+     *   - One of the following is true (both cannot be true, these are mutually
+     *   exclusive).
+     *     - The environmentType is VIDEO_PLAYER.
+     *     - The roadblockingType is CREATIVE_SET.
+     * This field defaults to OPTIONAL if the conditions are met.
+     * In all other cases it defaults to UNKNOWN and is not meaningful.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.CompanionDeliveryOptionEnum.CompanionDeliveryOption companion_delivery_option = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $companion_delivery_option = null;
+    /**
+     * Input only. The flag indicates whether overbooking should be allowed when
+     * creating or updating reservations of line item types SPONSORSHIP and
+     * STANDARD. When true, operations on this line item will never
+     * trigger a ForecastError, which corresponds to an overbook warning in the
+     * UI. The default value is false.  Note: this field won't persist on the
+     * line item itself, and the value will only affect the current request.
+     *
+     * Generated from protobuf field <code>optional bool allow_overbook = 28 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     */
+    protected $allow_overbook = null;
+    /**
+     * Input only. The flag indicates whether the inventory check should be
+     * skipped when creating or updating a line item. The default value is false.
+     * Note: this field won't persist on the line item itself, and the value will
+     * only affect the current request.
+     *
+     * Generated from protobuf field <code>optional bool skip_inventory_check = 29 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     */
+    protected $skip_inventory_check = null;
+    /**
+     * Input only. True to skip checks for warnings from rules applied to line
+     * items targeting inventory shared by a distributor partner for cross selling
+     * when performing an action on this line item. The default is false. Note:
+     * this field won't persist on the line item itself, and the value will only
+     * affect the current request.
+     *
+     * Generated from protobuf field <code>optional bool skip_cross_selling_rule_warning_checks = 30 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     */
+    protected $skip_cross_selling_rule_warning_checks = null;
+    /**
+     * Input only. The flag indicates whether inventory should be reserved when
+     * creating a line item of types SPONSORSHIP and STANDARD in an unapproved
+     * Order. The default value is false.
+     *
+     * Generated from protobuf field <code>optional bool reserve_on_creation = 31 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     */
+    protected $reserve_on_creation = null;
+    /**
+     * Output only. Contains trafficking statistics for the line item. This will
+     * be empty in case there are no statistics for a line item yet.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.LineItemStats stats = 32 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $stats = null;
+    /**
+     * Output only. Indicates how well the line item has been performing. This
+     * will be empty if the delivery indicator information is not available due to
+     * one of the following reasons:
+     *   - The line item is not delivering.
+     *   - The line item has an unlimited goal or cap.
+     *   - The line item has a percentage based goal or cap.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.DeliveryIndicator delivery_indicator = 33 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $delivery_indicator = null;
     /**
      * Output only. The amount of money allocated to the LineItem. This attribute
      * is readonly and is populated by Google. The currency code is readonly.
@@ -75,11 +314,136 @@ class LineItem extends \Google\Protobuf\Internal\Message
      */
     protected $budget = null;
     /**
+     * Output only. The status of the LineItem.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.LineItemComputedStatusEnum.LineItemComputedStatus status = 36 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $status = null;
+    /**
+     * Output only. Describes whether or not inventory has been reserved for the
+     * LineItem.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.LineItemReservationStatusEnum.LineItemReservationStatus reservation_status = 38 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $reservation_status = null;
+    /**
+     * Output only. The archival status of the LineItem.
+     *
+     * Generated from protobuf field <code>optional bool archived = 39 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $archived = null;
+    /**
+     * Optional. The web property code used for dynamic allocation line items.
+     * This web property is only required with line item types AD_EXCHANGE and
+     * ADSENSE.
+     *
+     * Generated from protobuf field <code>optional string web_property_code = 49 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $web_property_code = null;
+    /**
+     * Optional. The set of labels applied directly to this line item.
+     *
+     * Generated from protobuf field <code>repeated .google.ads.admanager.v1.AppliedLabel applied_labels = 50 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $applied_labels;
+    /**
+     * Output only. Contains the set of labels inherited from the order that
+     * contains this line item and the advertiser that owns the order. If a label
+     * has been negated, only the negated label is returned.
+     *
+     * Generated from protobuf field <code>repeated .google.ads.admanager.v1.AppliedLabel effective_applied_labels = 51 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $effective_applied_labels;
+    /**
+     * Optional. If a line item has a series of competitive exclusions on it, it
+     * could be blocked from serving with line items from the same advertiser.
+     * Setting this to true will allow line items from the same advertiser to
+     * serve regardless of the other competitive exclusion labels being applied.
+     *
+     * Generated from protobuf field <code>optional bool same_advertiser_exception_enabled = 52 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $same_advertiser_exception_enabled = null;
+    /**
+     * Output only. The application that last modified this line item.
+     *
+     * Generated from protobuf field <code>optional string update_source = 53 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $update_source = null;
+    /**
+     * Optional. Provides any additional notes that may annotate the LineItem.
+     * This attribute has a maximum length of 65,535 characters.
+     *
+     * Generated from protobuf field <code>optional string notes = 54 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $notes = null;
+    /**
+     * Optional. Non-empty default. The CompetitiveConstraintScope for the
+     * competitive exclusion labels assigned to this line item. This field
+     * defaults to POD.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.ExclusionScopeEnum.ExclusionScope competitive_constraint_scope = 56 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = NON_EMPTY_DEFAULT];</code>
+     */
+    protected $competitive_constraint_scope = null;
+    /**
+     * Output only. The time this line item was last modified.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.Timestamp update_time = 57 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $update_time = null;
+    /**
+     * Output only. The time this line item was created.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.Timestamp create_time = 58 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $create_time = null;
+    /**
      * Optional. The values of the custom fields associated with this line item.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.CustomFieldValue custom_field_values = 59 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $custom_field_values;
+    /**
+     * Output only. Indicates if a LineItem is missing any Creative creatives for
+     * the creativePlaceholders specified.  Creative Creatives can be considered
+     * missing for several reasons including:
+     *  - Not enough Creative creatives of a certain size have been uploaded, as
+     *    determined by
+     *    [expected_creative_count][google.ads.admanager.v1.CreativePlaceholder.expected_creative_count].
+     *    For example a LineItem specifies 750x350, 400x200 but only a 750x350 was
+     *    uploaded. Or LineItem specifies 750x350 with an expected count of 2, but
+     *    only one was uploaded.
+     *  - The [Creative.applied_labels][] of an associated Creative don't match
+     *    the
+     *    [CreativePlaceholder.applied_labels][google.ads.admanager.v1.CreativePlaceholder.applied_labels]
+     *    of the LineItem. For example LineItem specifies 750x350 with a Foo
+     *    AppliedLabel but a 750x350 creative without a AppliedLabel was uploaded.
+     *
+     * Generated from protobuf field <code>optional bool missing_creatives = 61 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $missing_creatives = null;
+    /**
+     * Optional. Third party auto-pixeling settings for cross-sell Partners.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.ThirdPartyMeasurementSettings third_party_measurement_settings = 67 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $third_party_measurement_settings = null;
+    /**
+     * Optional. Designates this line item as intended for YT Kids app. If true,
+     * all creatives associated with this line item must be reviewed and approved.
+     * See the help center article for more information:
+     * https://support.google.com/yt-partner-sales/answer/10015534.
+     *
+     * Generated from protobuf field <code>optional bool youtube_kids_restricted = 74 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $youtube_kids_restricted = null;
+    /**
+     * Optional. The max duration of a video creative associated with this
+     * LineItem. This attribute is only meaningful for video line items. This
+     * attribute is required for video line items and must be greater than 0.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.Duration max_video_creative_duration = 75 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $max_video_creative_duration = null;
     /**
      * Optional. The primary goal that this LineItem is associated with, which is
      * used in its pacing and budgeting.
@@ -87,6 +451,94 @@ class LineItem extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional .google.ads.admanager.v1.Goal goal = 76 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $goal = null;
+    /**
+     * Optional. The secondary goals that this LineItem is associated with. This
+     * is required and meaningful only if the
+     * [line_item_type][google.ads.admanager.v1.LineItem.line_item_type] is
+     * SPONSORSHIP and [cost_type][google.ads.admanager.v1.LineItem.cost_type] is
+     * CPM.
+     *
+     * Generated from protobuf field <code>repeated .google.ads.admanager.v1.Goal secondary_goals = 100 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $secondary_goals;
+    /**
+     * Optional. Contains the information for a line item which has a target GRP
+     * demographic.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.GrpSettings grp_settings = 78 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $grp_settings = null;
+    /**
+     * Optional. The deal information associated with this line item, if it is
+     * programmatic.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.LineItemDealInfo deal_info = 79 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $deal_info = null;
+    /**
+     * Optional. Optional IDs of the Company that provide ad verification for this
+     * line item.
+     *
+     * Generated from protobuf field <code>repeated string viewability_provider_companies = 85 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     */
+    private $viewability_provider_companies;
+    /**
+     * Optional. Non-empty default. Child content eligibility designation for this
+     * line item. This field defaults to DISALLOWED.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.ChildContentEligibilityEnum.ChildContentEligibility child_content_eligibility = 86 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = NON_EMPTY_DEFAULT];</code>
+     */
+    protected $child_content_eligibility = null;
+    /**
+     * Optional. Custom XML to be rendered in a custom VAST response at serving
+     * time.
+     *
+     * Generated from protobuf field <code>optional string custom_vast_extension = 88 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $custom_vast_extension = null;
+    /**
+     * Optional. Whether the line item is enabled for sponsorship exclusivity.  If
+     * true, only exclusive sponsorships can be served on inventory targeted by
+     * this LineItem. This control should only be available for 100% video
+     * sponsorships.
+     *
+     * Generated from protobuf field <code>optional bool sponsorship_exclusivity_enabled = 89 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $sponsorship_exclusivity_enabled = null;
+    /**
+     * Optional. Indicates whether repeated creative serving is enabled for this
+     * line item.
+     *
+     * Generated from protobuf field <code>optional bool repeated_creative_serving_enabled = 90 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $repeated_creative_serving_enabled = null;
+    /**
+     * Required. Contains the targeting criteria for the ad campaign.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.Targeting targeting = 93 [(.google.api.field_behavior) = REQUIRED];</code>
+     */
+    protected $targeting = null;
+    /**
+     * Optional. A list of CreativeTargeting objects that can be used to specify
+     * creative level targeting for this line item. Creative level targeting is
+     * specified in a
+     * [CreativePlaceholder.creative_targeting_display_name][google.ads.admanager.v1.CreativePlaceholder.creative_targeting_display_name]
+     * field by referencing the [CreativeTargeting.display_name][] field. It also
+     * needs to be re-specified in the
+     * [LineItemCreativeAssociation.targeting_display_name][] field when
+     * associating a line item with a creative that fits into that placeholder.
+     *
+     * Generated from protobuf field <code>repeated .google.ads.admanager.v1.CreativeTargeting creative_targetings = 94 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $creative_targetings;
+    /**
+     * Optional. The set of allowed formats for this line item.
+     * If empty, all formats are allowed. This property only applies
+     * to programmatic video line items.
+     *
+     * Generated from protobuf field <code>repeated .google.ads.admanager.v1.LineItemAllowedFormatEnum.LineItemAllowedFormat allowed_formats = 112 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $allowed_formats;
 
     /**
      * Constructor.
@@ -101,29 +553,269 @@ class LineItem extends \Google\Protobuf\Internal\Message
      *           Required. Immutable. The ID of the Order to which the LineItem belongs.
      *           Format: `networks/{network_code}/orders/{order}`
      *     @type string $display_name
-     *           Required. The name of the line item. This attribute is required and has a
-     *           maximum length of 255 characters.
+     *           Required. The name of the line item. This attribute has a maximum length of
+     *           255 characters.
+     *     @type string $external_line_item_id
+     *           Optional. An identifier for the LineItem that is meaningful to the
+     *           publisher. This attribute has a maximum length of 255 characters.
+     *     @type string $order_display_name
+     *           Output only. The name of the Order.
      *     @type \Google\Protobuf\Timestamp $start_time
      *           Required. The date and time on which the LineItem is enabled to begin
      *           serving. This attribute is required and must be in the future.
+     *     @type \Google\Protobuf\Timestamp $target_end_time
+     *           Optional. The target end time of the line item. This attribute is required
+     *           unless
+     *           [end_time_unlimited][google.ads.admanager.v1.LineItem.end_time_unlimited]
+     *           is set to true. If specified, it must be after the
+     *           [start_time][google.ads.admanager.v1.LineItem.start_time]. This does not
+     *           include auto extension days.
      *     @type \Google\Protobuf\Timestamp $end_time
      *           Output only. The timestamp when the LineItem will stop serving. This
-     *           attribute is read-only and includes auto extension days.
+     *           attribute includes auto extension days.
+     *     @type int $auto_extension_days
+     *           Optional. The number of days to allow a line item to deliver past its
+     *           [target_end_time][google.ads.admanager.v1.LineItem.target_end_time]. A
+     *           maximum of 7 days is allowed. This is feature is only available for Ad
+     *           Manager 360 accounts.
+     *     @type bool $end_time_unlimited
+     *           Optional. Non-empty default. Specifies whether or not the LineItem has an
+     *           end time. This attribute defaults to false. It can be be set to true for
+     *           only line items of type SPONSORSHIP, NETWORK, PRICE_PRIORITY and HOUSE.
+     *     @type int $creative_rotation_type
+     *           Required. The strategy used for displaying multiple Creative objects that
+     *           are associated with the LineItem.
+     *     @type int $delivery_rate_type
+     *           Optional. Non-empty default. The strategy for delivering ads over the
+     *           course of the line item's duration. This attribute defaults to EVENLY or
+     *           FRONTLOADED depending on the network's configuration.
+     *     @type int $delivery_forecast_source
+     *           Optional. Non-empty default. Strategy for choosing forecasted traffic
+     *           shapes to pace line items. This field defaults to HISTORICAL.
+     *     @type \Google\Ads\AdManager\V1\CustomPacingCurve $custom_pacing_curve
+     *           Optional. The curve that is used to pace the line item's delivery. This
+     *           field is required if and only if the delivery forecast source is
+     *           CUSTOM_PACING_CURVE.
+     *     @type int $roadblocking_type
+     *           Optional. Non-empty default. The strategy for serving roadblocked
+     *           creatives, that is, instances where multiple creatives must be served
+     *           together on a single web page. This attribute defaults to ONE_OR_MORE.
+     *     @type int $skippable_ad_type
+     *           Optional. Non-empty default. The nature of the line item's creatives'
+     *           skippability. This attribute is only applicable for video line items, and
+     *           defaults to NOT_SKIPPABLE.
+     *     @type \Google\Ads\AdManager\V1\FrequencyCap[] $frequency_caps
+     *           Optional. The set of frequency capping units for this LineItem.
      *     @type int $line_item_type
-     *           Required. Indicates the line item type of a LineItem. This attribute is
-     *           required. The line item type determines the default priority of the line
-     *           item. More information can be found at
-     *           https://support.google.com/admanager/answer/177279.
+     *           Required. Indicates the line item type of a LineItem. The line item type
+     *           determines the default priority of the line item. More information can be
+     *           found at https://support.google.com/admanager/answer/177279.
+     *     @type int $priority
+     *           Optional. Non-empty default. The priority for the line item. Valid values
+     *           range from 1 to 16. This field defaults to the default priority of the
+     *           LineItemType. The following list shows the default, minimum, and maximum
+     *           priority values are for each line item type:
+     *             - LineItemType: default priority (minimum priority, maximum priority)
+     *             - SPONSORSHIP: 4 (2, 5)
+     *             - STANDARD: 8 (6, 10)
+     *             - NETWORK: 12 (11, 14)
+     *             - BULK: 12 (11, 14)
+     *             - PRICE_PRIORITY: 12 (11, 14)
+     *             - HOUSE: 16 (15, 16)
+     *             - CLICK_TRACKING: 16 (1, 16)
+     *             - AD_EXCHANGE: 12 (1, 16)
+     *             - ADSENSE: 12 (1, 16)
+     *             - BUMPER: 16 (15, 16)
+     *             - ADMOB: 21 (1, 16)
+     *             - PREFERRED_DEAL: 12 (12, 12)
+     *           This field can only be edited by certain networks, otherwise a
+     *           PermissionError will occur.
      *     @type \Google\Type\Money $rate
      *           Required. The amount of money to spend per impression or click.
+     *     @type \Google\Type\Money $value_cpm
+     *           Optional. Non-empty default. An amount to help the adserver rank inventory.
+     *           [value_cpm][google.ads.admanager.v1.LineItem.value_cpm] artificially raises
+     *           the value of inventory over the
+     *           [rate][google.ads.admanager.v1.LineItem.rate] but avoids raising the actual
+     *           [rate][google.ads.admanager.v1.LineItem.rate]. This attribute defaults to a
+     *           Money object in the local currency with units and nanos set to 0.
+     *     @type int $cost_type
+     *           Required. The method used for billing this LineItem.
+     *     @type \Google\Ads\AdManager\V1\LineItemDiscount $discount
+     *           Optional. Discount information for the line item.
+     *     @type int|string $contracted_units_bought
+     *           Optional. This attribute is only applicable for certain line item types and
+     *           acts as an "FYI" or note, which does not impact adserving or other backend
+     *           systems. For SPONSORSHIP line items, this represents the minimum quantity,
+     *           which is a lifetime impression volume goal for reporting purposes only. For
+     *           STANDARD line items, this represent the contracted quantity, which is the
+     *           number of units specified in the contract the advertiser has bought for
+     *           this LineItem. This field is just a "FYI" for traffickers to manually
+     *           intervene with the LineItem when needed. This attribute is only available
+     *           for STANDARD line items if you have this feature enabled on your network.
+     *     @type \Google\Ads\AdManager\V1\CreativePlaceholder[] $creative_placeholders
+     *           Required. Details about the creatives that are expected to serve through
+     *           this LineItem.
+     *     @type int $environment_type
+     *           Optional. Non-empty default. The environment that the LineItem is
+     *           targeting. The default value is BROWSER. If this value is VIDEO_PLAYER,
+     *           then this line item can only target AdUnits that have AdUnitSizes whose
+     *           environmentType is also VIDEO_PLAYER.
+     *     @type int $companion_delivery_option
+     *           Optional. The delivery option for companions. Setting this field is only
+     *           meaningful if the following conditions are met:
+     *             - The "Guaranteed roadblocks" feature is enabled on your network.
+     *             - One of the following is true (both cannot be true, these are mutually
+     *             exclusive).
+     *               - The environmentType is VIDEO_PLAYER.
+     *               - The roadblockingType is CREATIVE_SET.
+     *           This field defaults to OPTIONAL if the conditions are met.
+     *           In all other cases it defaults to UNKNOWN and is not meaningful.
+     *     @type bool $allow_overbook
+     *           Input only. The flag indicates whether overbooking should be allowed when
+     *           creating or updating reservations of line item types SPONSORSHIP and
+     *           STANDARD. When true, operations on this line item will never
+     *           trigger a ForecastError, which corresponds to an overbook warning in the
+     *           UI. The default value is false.  Note: this field won't persist on the
+     *           line item itself, and the value will only affect the current request.
+     *     @type bool $skip_inventory_check
+     *           Input only. The flag indicates whether the inventory check should be
+     *           skipped when creating or updating a line item. The default value is false.
+     *           Note: this field won't persist on the line item itself, and the value will
+     *           only affect the current request.
+     *     @type bool $skip_cross_selling_rule_warning_checks
+     *           Input only. True to skip checks for warnings from rules applied to line
+     *           items targeting inventory shared by a distributor partner for cross selling
+     *           when performing an action on this line item. The default is false. Note:
+     *           this field won't persist on the line item itself, and the value will only
+     *           affect the current request.
+     *     @type bool $reserve_on_creation
+     *           Input only. The flag indicates whether inventory should be reserved when
+     *           creating a line item of types SPONSORSHIP and STANDARD in an unapproved
+     *           Order. The default value is false.
+     *     @type \Google\Ads\AdManager\V1\LineItemStats $stats
+     *           Output only. Contains trafficking statistics for the line item. This will
+     *           be empty in case there are no statistics for a line item yet.
+     *     @type \Google\Ads\AdManager\V1\DeliveryIndicator $delivery_indicator
+     *           Output only. Indicates how well the line item has been performing. This
+     *           will be empty if the delivery indicator information is not available due to
+     *           one of the following reasons:
+     *             - The line item is not delivering.
+     *             - The line item has an unlimited goal or cap.
+     *             - The line item has a percentage based goal or cap.
      *     @type \Google\Type\Money $budget
      *           Output only. The amount of money allocated to the LineItem. This attribute
      *           is readonly and is populated by Google. The currency code is readonly.
+     *     @type int $status
+     *           Output only. The status of the LineItem.
+     *     @type int $reservation_status
+     *           Output only. Describes whether or not inventory has been reserved for the
+     *           LineItem.
+     *     @type bool $archived
+     *           Output only. The archival status of the LineItem.
+     *     @type string $web_property_code
+     *           Optional. The web property code used for dynamic allocation line items.
+     *           This web property is only required with line item types AD_EXCHANGE and
+     *           ADSENSE.
+     *     @type \Google\Ads\AdManager\V1\AppliedLabel[] $applied_labels
+     *           Optional. The set of labels applied directly to this line item.
+     *     @type \Google\Ads\AdManager\V1\AppliedLabel[] $effective_applied_labels
+     *           Output only. Contains the set of labels inherited from the order that
+     *           contains this line item and the advertiser that owns the order. If a label
+     *           has been negated, only the negated label is returned.
+     *     @type bool $same_advertiser_exception_enabled
+     *           Optional. If a line item has a series of competitive exclusions on it, it
+     *           could be blocked from serving with line items from the same advertiser.
+     *           Setting this to true will allow line items from the same advertiser to
+     *           serve regardless of the other competitive exclusion labels being applied.
+     *     @type string $update_source
+     *           Output only. The application that last modified this line item.
+     *     @type string $notes
+     *           Optional. Provides any additional notes that may annotate the LineItem.
+     *           This attribute has a maximum length of 65,535 characters.
+     *     @type int $competitive_constraint_scope
+     *           Optional. Non-empty default. The CompetitiveConstraintScope for the
+     *           competitive exclusion labels assigned to this line item. This field
+     *           defaults to POD.
+     *     @type \Google\Protobuf\Timestamp $update_time
+     *           Output only. The time this line item was last modified.
+     *     @type \Google\Protobuf\Timestamp $create_time
+     *           Output only. The time this line item was created.
      *     @type \Google\Ads\AdManager\V1\CustomFieldValue[] $custom_field_values
      *           Optional. The values of the custom fields associated with this line item.
+     *     @type bool $missing_creatives
+     *           Output only. Indicates if a LineItem is missing any Creative creatives for
+     *           the creativePlaceholders specified.  Creative Creatives can be considered
+     *           missing for several reasons including:
+     *            - Not enough Creative creatives of a certain size have been uploaded, as
+     *              determined by
+     *              [expected_creative_count][google.ads.admanager.v1.CreativePlaceholder.expected_creative_count].
+     *              For example a LineItem specifies 750x350, 400x200 but only a 750x350 was
+     *              uploaded. Or LineItem specifies 750x350 with an expected count of 2, but
+     *              only one was uploaded.
+     *            - The [Creative.applied_labels][] of an associated Creative don't match
+     *              the
+     *              [CreativePlaceholder.applied_labels][google.ads.admanager.v1.CreativePlaceholder.applied_labels]
+     *              of the LineItem. For example LineItem specifies 750x350 with a Foo
+     *              AppliedLabel but a 750x350 creative without a AppliedLabel was uploaded.
+     *     @type \Google\Ads\AdManager\V1\ThirdPartyMeasurementSettings $third_party_measurement_settings
+     *           Optional. Third party auto-pixeling settings for cross-sell Partners.
+     *     @type bool $youtube_kids_restricted
+     *           Optional. Designates this line item as intended for YT Kids app. If true,
+     *           all creatives associated with this line item must be reviewed and approved.
+     *           See the help center article for more information:
+     *           https://support.google.com/yt-partner-sales/answer/10015534.
+     *     @type \Google\Protobuf\Duration $max_video_creative_duration
+     *           Optional. The max duration of a video creative associated with this
+     *           LineItem. This attribute is only meaningful for video line items. This
+     *           attribute is required for video line items and must be greater than 0.
      *     @type \Google\Ads\AdManager\V1\Goal $goal
      *           Optional. The primary goal that this LineItem is associated with, which is
      *           used in its pacing and budgeting.
+     *     @type \Google\Ads\AdManager\V1\Goal[] $secondary_goals
+     *           Optional. The secondary goals that this LineItem is associated with. This
+     *           is required and meaningful only if the
+     *           [line_item_type][google.ads.admanager.v1.LineItem.line_item_type] is
+     *           SPONSORSHIP and [cost_type][google.ads.admanager.v1.LineItem.cost_type] is
+     *           CPM.
+     *     @type \Google\Ads\AdManager\V1\GrpSettings $grp_settings
+     *           Optional. Contains the information for a line item which has a target GRP
+     *           demographic.
+     *     @type \Google\Ads\AdManager\V1\LineItemDealInfo $deal_info
+     *           Optional. The deal information associated with this line item, if it is
+     *           programmatic.
+     *     @type string[] $viewability_provider_companies
+     *           Optional. Optional IDs of the Company that provide ad verification for this
+     *           line item.
+     *     @type int $child_content_eligibility
+     *           Optional. Non-empty default. Child content eligibility designation for this
+     *           line item. This field defaults to DISALLOWED.
+     *     @type string $custom_vast_extension
+     *           Optional. Custom XML to be rendered in a custom VAST response at serving
+     *           time.
+     *     @type bool $sponsorship_exclusivity_enabled
+     *           Optional. Whether the line item is enabled for sponsorship exclusivity.  If
+     *           true, only exclusive sponsorships can be served on inventory targeted by
+     *           this LineItem. This control should only be available for 100% video
+     *           sponsorships.
+     *     @type bool $repeated_creative_serving_enabled
+     *           Optional. Indicates whether repeated creative serving is enabled for this
+     *           line item.
+     *     @type \Google\Ads\AdManager\V1\Targeting $targeting
+     *           Required. Contains the targeting criteria for the ad campaign.
+     *     @type \Google\Ads\AdManager\V1\CreativeTargeting[] $creative_targetings
+     *           Optional. A list of CreativeTargeting objects that can be used to specify
+     *           creative level targeting for this line item. Creative level targeting is
+     *           specified in a
+     *           [CreativePlaceholder.creative_targeting_display_name][google.ads.admanager.v1.CreativePlaceholder.creative_targeting_display_name]
+     *           field by referencing the [CreativeTargeting.display_name][] field. It also
+     *           needs to be re-specified in the
+     *           [LineItemCreativeAssociation.targeting_display_name][] field when
+     *           associating a line item with a creative that fits into that placeholder.
+     *     @type int[] $allowed_formats
+     *           Optional. The set of allowed formats for this line item.
+     *           If empty, all formats are allowed. This property only applies
+     *           to programmatic video line items.
      * }
      */
     public function __construct($data = NULL) {
@@ -198,8 +890,8 @@ class LineItem extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the line item. This attribute is required and has a
-     * maximum length of 255 characters.
+     * Required. The name of the line item. This attribute has a maximum length of
+     * 255 characters.
      *
      * Generated from protobuf field <code>optional string display_name = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -220,8 +912,8 @@ class LineItem extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the line item. This attribute is required and has a
-     * maximum length of 255 characters.
+     * Required. The name of the line item. This attribute has a maximum length of
+     * 255 characters.
      *
      * Generated from protobuf field <code>optional string display_name = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -231,6 +923,80 @@ class LineItem extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->display_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. An identifier for the LineItem that is meaningful to the
+     * publisher. This attribute has a maximum length of 255 characters.
+     *
+     * Generated from protobuf field <code>optional string external_line_item_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getExternalLineItemId()
+    {
+        return isset($this->external_line_item_id) ? $this->external_line_item_id : '';
+    }
+
+    public function hasExternalLineItemId()
+    {
+        return isset($this->external_line_item_id);
+    }
+
+    public function clearExternalLineItemId()
+    {
+        unset($this->external_line_item_id);
+    }
+
+    /**
+     * Optional. An identifier for the LineItem that is meaningful to the
+     * publisher. This attribute has a maximum length of 255 characters.
+     *
+     * Generated from protobuf field <code>optional string external_line_item_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setExternalLineItemId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->external_line_item_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The name of the Order.
+     *
+     * Generated from protobuf field <code>optional string order_display_name = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getOrderDisplayName()
+    {
+        return isset($this->order_display_name) ? $this->order_display_name : '';
+    }
+
+    public function hasOrderDisplayName()
+    {
+        return isset($this->order_display_name);
+    }
+
+    public function clearOrderDisplayName()
+    {
+        unset($this->order_display_name);
+    }
+
+    /**
+     * Output only. The name of the Order.
+     *
+     * Generated from protobuf field <code>optional string order_display_name = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setOrderDisplayName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->order_display_name = $var;
 
         return $this;
     }
@@ -274,8 +1040,54 @@ class LineItem extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. The target end time of the line item. This attribute is required
+     * unless
+     * [end_time_unlimited][google.ads.admanager.v1.LineItem.end_time_unlimited]
+     * is set to true. If specified, it must be after the
+     * [start_time][google.ads.admanager.v1.LineItem.start_time]. This does not
+     * include auto extension days.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.Timestamp target_end_time = 95 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getTargetEndTime()
+    {
+        return $this->target_end_time;
+    }
+
+    public function hasTargetEndTime()
+    {
+        return isset($this->target_end_time);
+    }
+
+    public function clearTargetEndTime()
+    {
+        unset($this->target_end_time);
+    }
+
+    /**
+     * Optional. The target end time of the line item. This attribute is required
+     * unless
+     * [end_time_unlimited][google.ads.admanager.v1.LineItem.end_time_unlimited]
+     * is set to true. If specified, it must be after the
+     * [start_time][google.ads.admanager.v1.LineItem.start_time]. This does not
+     * include auto extension days.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.Timestamp target_end_time = 95 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setTargetEndTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->target_end_time = $var;
+
+        return $this;
+    }
+
+    /**
      * Output only. The timestamp when the LineItem will stop serving. This
-     * attribute is read-only and includes auto extension days.
+     * attribute includes auto extension days.
      *
      * Generated from protobuf field <code>optional .google.protobuf.Timestamp end_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -297,7 +1109,7 @@ class LineItem extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The timestamp when the LineItem will stop serving. This
-     * attribute is read-only and includes auto extension days.
+     * attribute includes auto extension days.
      *
      * Generated from protobuf field <code>optional .google.protobuf.Timestamp end_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -312,10 +1124,353 @@ class LineItem extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Indicates the line item type of a LineItem. This attribute is
-     * required. The line item type determines the default priority of the line
-     * item. More information can be found at
-     * https://support.google.com/admanager/answer/177279.
+     * Optional. The number of days to allow a line item to deliver past its
+     * [target_end_time][google.ads.admanager.v1.LineItem.target_end_time]. A
+     * maximum of 7 days is allowed. This is feature is only available for Ad
+     * Manager 360 accounts.
+     *
+     * Generated from protobuf field <code>optional int32 auto_extension_days = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getAutoExtensionDays()
+    {
+        return isset($this->auto_extension_days) ? $this->auto_extension_days : 0;
+    }
+
+    public function hasAutoExtensionDays()
+    {
+        return isset($this->auto_extension_days);
+    }
+
+    public function clearAutoExtensionDays()
+    {
+        unset($this->auto_extension_days);
+    }
+
+    /**
+     * Optional. The number of days to allow a line item to deliver past its
+     * [target_end_time][google.ads.admanager.v1.LineItem.target_end_time]. A
+     * maximum of 7 days is allowed. This is feature is only available for Ad
+     * Manager 360 accounts.
+     *
+     * Generated from protobuf field <code>optional int32 auto_extension_days = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setAutoExtensionDays($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->auto_extension_days = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Non-empty default. Specifies whether or not the LineItem has an
+     * end time. This attribute defaults to false. It can be be set to true for
+     * only line items of type SPONSORSHIP, NETWORK, PRICE_PRIORITY and HOUSE.
+     *
+     * Generated from protobuf field <code>optional bool end_time_unlimited = 9 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = NON_EMPTY_DEFAULT];</code>
+     * @return bool
+     */
+    public function getEndTimeUnlimited()
+    {
+        return isset($this->end_time_unlimited) ? $this->end_time_unlimited : false;
+    }
+
+    public function hasEndTimeUnlimited()
+    {
+        return isset($this->end_time_unlimited);
+    }
+
+    public function clearEndTimeUnlimited()
+    {
+        unset($this->end_time_unlimited);
+    }
+
+    /**
+     * Optional. Non-empty default. Specifies whether or not the LineItem has an
+     * end time. This attribute defaults to false. It can be be set to true for
+     * only line items of type SPONSORSHIP, NETWORK, PRICE_PRIORITY and HOUSE.
+     *
+     * Generated from protobuf field <code>optional bool end_time_unlimited = 9 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = NON_EMPTY_DEFAULT];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEndTimeUnlimited($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->end_time_unlimited = $var;
+
+        return $this;
+    }
+
+    /**
+     * Required. The strategy used for displaying multiple Creative objects that
+     * are associated with the LineItem.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.CreativeRotationTypeEnum.CreativeRotationType creative_rotation_type = 10 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @return int
+     */
+    public function getCreativeRotationType()
+    {
+        return isset($this->creative_rotation_type) ? $this->creative_rotation_type : 0;
+    }
+
+    public function hasCreativeRotationType()
+    {
+        return isset($this->creative_rotation_type);
+    }
+
+    public function clearCreativeRotationType()
+    {
+        unset($this->creative_rotation_type);
+    }
+
+    /**
+     * Required. The strategy used for displaying multiple Creative objects that
+     * are associated with the LineItem.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.CreativeRotationTypeEnum.CreativeRotationType creative_rotation_type = 10 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setCreativeRotationType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Ads\AdManager\V1\CreativeRotationTypeEnum\CreativeRotationType::class);
+        $this->creative_rotation_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Non-empty default. The strategy for delivering ads over the
+     * course of the line item's duration. This attribute defaults to EVENLY or
+     * FRONTLOADED depending on the network's configuration.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.LineItemDeliveryRateTypeEnum.LineItemDeliveryRateType delivery_rate_type = 11 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = NON_EMPTY_DEFAULT];</code>
+     * @return int
+     */
+    public function getDeliveryRateType()
+    {
+        return isset($this->delivery_rate_type) ? $this->delivery_rate_type : 0;
+    }
+
+    public function hasDeliveryRateType()
+    {
+        return isset($this->delivery_rate_type);
+    }
+
+    public function clearDeliveryRateType()
+    {
+        unset($this->delivery_rate_type);
+    }
+
+    /**
+     * Optional. Non-empty default. The strategy for delivering ads over the
+     * course of the line item's duration. This attribute defaults to EVENLY or
+     * FRONTLOADED depending on the network's configuration.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.LineItemDeliveryRateTypeEnum.LineItemDeliveryRateType delivery_rate_type = 11 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = NON_EMPTY_DEFAULT];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setDeliveryRateType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Ads\AdManager\V1\LineItemDeliveryRateTypeEnum\LineItemDeliveryRateType::class);
+        $this->delivery_rate_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Non-empty default. Strategy for choosing forecasted traffic
+     * shapes to pace line items. This field defaults to HISTORICAL.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.LineItemDeliveryForecastSourceEnum.LineItemDeliveryForecastSource delivery_forecast_source = 12 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = NON_EMPTY_DEFAULT];</code>
+     * @return int
+     */
+    public function getDeliveryForecastSource()
+    {
+        return isset($this->delivery_forecast_source) ? $this->delivery_forecast_source : 0;
+    }
+
+    public function hasDeliveryForecastSource()
+    {
+        return isset($this->delivery_forecast_source);
+    }
+
+    public function clearDeliveryForecastSource()
+    {
+        unset($this->delivery_forecast_source);
+    }
+
+    /**
+     * Optional. Non-empty default. Strategy for choosing forecasted traffic
+     * shapes to pace line items. This field defaults to HISTORICAL.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.LineItemDeliveryForecastSourceEnum.LineItemDeliveryForecastSource delivery_forecast_source = 12 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = NON_EMPTY_DEFAULT];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setDeliveryForecastSource($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Ads\AdManager\V1\LineItemDeliveryForecastSourceEnum\LineItemDeliveryForecastSource::class);
+        $this->delivery_forecast_source = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The curve that is used to pace the line item's delivery. This
+     * field is required if and only if the delivery forecast source is
+     * CUSTOM_PACING_CURVE.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.CustomPacingCurve custom_pacing_curve = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Ads\AdManager\V1\CustomPacingCurve|null
+     */
+    public function getCustomPacingCurve()
+    {
+        return $this->custom_pacing_curve;
+    }
+
+    public function hasCustomPacingCurve()
+    {
+        return isset($this->custom_pacing_curve);
+    }
+
+    public function clearCustomPacingCurve()
+    {
+        unset($this->custom_pacing_curve);
+    }
+
+    /**
+     * Optional. The curve that is used to pace the line item's delivery. This
+     * field is required if and only if the delivery forecast source is
+     * CUSTOM_PACING_CURVE.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.CustomPacingCurve custom_pacing_curve = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Ads\AdManager\V1\CustomPacingCurve $var
+     * @return $this
+     */
+    public function setCustomPacingCurve($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Ads\AdManager\V1\CustomPacingCurve::class);
+        $this->custom_pacing_curve = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Non-empty default. The strategy for serving roadblocked
+     * creatives, that is, instances where multiple creatives must be served
+     * together on a single web page. This attribute defaults to ONE_OR_MORE.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.RoadblockingTypeEnum.RoadblockingType roadblocking_type = 14 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = NON_EMPTY_DEFAULT];</code>
+     * @return int
+     */
+    public function getRoadblockingType()
+    {
+        return isset($this->roadblocking_type) ? $this->roadblocking_type : 0;
+    }
+
+    public function hasRoadblockingType()
+    {
+        return isset($this->roadblocking_type);
+    }
+
+    public function clearRoadblockingType()
+    {
+        unset($this->roadblocking_type);
+    }
+
+    /**
+     * Optional. Non-empty default. The strategy for serving roadblocked
+     * creatives, that is, instances where multiple creatives must be served
+     * together on a single web page. This attribute defaults to ONE_OR_MORE.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.RoadblockingTypeEnum.RoadblockingType roadblocking_type = 14 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = NON_EMPTY_DEFAULT];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setRoadblockingType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Ads\AdManager\V1\RoadblockingTypeEnum\RoadblockingType::class);
+        $this->roadblocking_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Non-empty default. The nature of the line item's creatives'
+     * skippability. This attribute is only applicable for video line items, and
+     * defaults to NOT_SKIPPABLE.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.SkippableAdTypeEnum.SkippableAdType skippable_ad_type = 15 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = NON_EMPTY_DEFAULT];</code>
+     * @return int
+     */
+    public function getSkippableAdType()
+    {
+        return isset($this->skippable_ad_type) ? $this->skippable_ad_type : 0;
+    }
+
+    public function hasSkippableAdType()
+    {
+        return isset($this->skippable_ad_type);
+    }
+
+    public function clearSkippableAdType()
+    {
+        unset($this->skippable_ad_type);
+    }
+
+    /**
+     * Optional. Non-empty default. The nature of the line item's creatives'
+     * skippability. This attribute is only applicable for video line items, and
+     * defaults to NOT_SKIPPABLE.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.SkippableAdTypeEnum.SkippableAdType skippable_ad_type = 15 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = NON_EMPTY_DEFAULT];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setSkippableAdType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Ads\AdManager\V1\SkippableAdTypeEnum\SkippableAdType::class);
+        $this->skippable_ad_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The set of frequency capping units for this LineItem.
+     *
+     * Generated from protobuf field <code>repeated .google.ads.admanager.v1.FrequencyCap frequency_caps = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return RepeatedField<\Google\Ads\AdManager\V1\FrequencyCap>
+     */
+    public function getFrequencyCaps()
+    {
+        return $this->frequency_caps;
+    }
+
+    /**
+     * Optional. The set of frequency capping units for this LineItem.
+     *
+     * Generated from protobuf field <code>repeated .google.ads.admanager.v1.FrequencyCap frequency_caps = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Ads\AdManager\V1\FrequencyCap[] $var
+     * @return $this
+     */
+    public function setFrequencyCaps($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Ads\AdManager\V1\FrequencyCap::class);
+        $this->frequency_caps = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Required. Indicates the line item type of a LineItem. The line item type
+     * determines the default priority of the line item. More information can be
+     * found at https://support.google.com/admanager/answer/177279.
      *
      * Generated from protobuf field <code>optional .google.ads.admanager.v1.LineItemTypeEnum.LineItemType line_item_type = 17 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
@@ -336,10 +1491,9 @@ class LineItem extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Indicates the line item type of a LineItem. This attribute is
-     * required. The line item type determines the default priority of the line
-     * item. More information can be found at
-     * https://support.google.com/admanager/answer/177279.
+     * Required. Indicates the line item type of a LineItem. The line item type
+     * determines the default priority of the line item. More information can be
+     * found at https://support.google.com/admanager/answer/177279.
      *
      * Generated from protobuf field <code>optional .google.ads.admanager.v1.LineItemTypeEnum.LineItemType line_item_type = 17 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
@@ -349,6 +1503,78 @@ class LineItem extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Ads\AdManager\V1\LineItemTypeEnum\LineItemType::class);
         $this->line_item_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Non-empty default. The priority for the line item. Valid values
+     * range from 1 to 16. This field defaults to the default priority of the
+     * LineItemType. The following list shows the default, minimum, and maximum
+     * priority values are for each line item type:
+     *   - LineItemType: default priority (minimum priority, maximum priority)
+     *   - SPONSORSHIP: 4 (2, 5)
+     *   - STANDARD: 8 (6, 10)
+     *   - NETWORK: 12 (11, 14)
+     *   - BULK: 12 (11, 14)
+     *   - PRICE_PRIORITY: 12 (11, 14)
+     *   - HOUSE: 16 (15, 16)
+     *   - CLICK_TRACKING: 16 (1, 16)
+     *   - AD_EXCHANGE: 12 (1, 16)
+     *   - ADSENSE: 12 (1, 16)
+     *   - BUMPER: 16 (15, 16)
+     *   - ADMOB: 21 (1, 16)
+     *   - PREFERRED_DEAL: 12 (12, 12)
+     * This field can only be edited by certain networks, otherwise a
+     * PermissionError will occur.
+     *
+     * Generated from protobuf field <code>optional int32 priority = 19 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = NON_EMPTY_DEFAULT];</code>
+     * @return int
+     */
+    public function getPriority()
+    {
+        return isset($this->priority) ? $this->priority : 0;
+    }
+
+    public function hasPriority()
+    {
+        return isset($this->priority);
+    }
+
+    public function clearPriority()
+    {
+        unset($this->priority);
+    }
+
+    /**
+     * Optional. Non-empty default. The priority for the line item. Valid values
+     * range from 1 to 16. This field defaults to the default priority of the
+     * LineItemType. The following list shows the default, minimum, and maximum
+     * priority values are for each line item type:
+     *   - LineItemType: default priority (minimum priority, maximum priority)
+     *   - SPONSORSHIP: 4 (2, 5)
+     *   - STANDARD: 8 (6, 10)
+     *   - NETWORK: 12 (11, 14)
+     *   - BULK: 12 (11, 14)
+     *   - PRICE_PRIORITY: 12 (11, 14)
+     *   - HOUSE: 16 (15, 16)
+     *   - CLICK_TRACKING: 16 (1, 16)
+     *   - AD_EXCHANGE: 12 (1, 16)
+     *   - ADSENSE: 12 (1, 16)
+     *   - BUMPER: 16 (15, 16)
+     *   - ADMOB: 21 (1, 16)
+     *   - PREFERRED_DEAL: 12 (12, 12)
+     * This field can only be edited by certain networks, otherwise a
+     * PermissionError will occur.
+     *
+     * Generated from protobuf field <code>optional int32 priority = 19 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = NON_EMPTY_DEFAULT];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setPriority($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->priority = $var;
 
         return $this;
     }
@@ -385,6 +1611,554 @@ class LineItem extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Type\Money::class);
         $this->rate = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Non-empty default. An amount to help the adserver rank inventory.
+     * [value_cpm][google.ads.admanager.v1.LineItem.value_cpm] artificially raises
+     * the value of inventory over the
+     * [rate][google.ads.admanager.v1.LineItem.rate] but avoids raising the actual
+     * [rate][google.ads.admanager.v1.LineItem.rate]. This attribute defaults to a
+     * Money object in the local currency with units and nanos set to 0.
+     *
+     * Generated from protobuf field <code>optional .google.type.Money value_cpm = 21 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = NON_EMPTY_DEFAULT];</code>
+     * @return \Google\Type\Money|null
+     */
+    public function getValueCpm()
+    {
+        return $this->value_cpm;
+    }
+
+    public function hasValueCpm()
+    {
+        return isset($this->value_cpm);
+    }
+
+    public function clearValueCpm()
+    {
+        unset($this->value_cpm);
+    }
+
+    /**
+     * Optional. Non-empty default. An amount to help the adserver rank inventory.
+     * [value_cpm][google.ads.admanager.v1.LineItem.value_cpm] artificially raises
+     * the value of inventory over the
+     * [rate][google.ads.admanager.v1.LineItem.rate] but avoids raising the actual
+     * [rate][google.ads.admanager.v1.LineItem.rate]. This attribute defaults to a
+     * Money object in the local currency with units and nanos set to 0.
+     *
+     * Generated from protobuf field <code>optional .google.type.Money value_cpm = 21 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = NON_EMPTY_DEFAULT];</code>
+     * @param \Google\Type\Money $var
+     * @return $this
+     */
+    public function setValueCpm($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Type\Money::class);
+        $this->value_cpm = $var;
+
+        return $this;
+    }
+
+    /**
+     * Required. The method used for billing this LineItem.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.LineItemCostTypeEnum.LineItemCostType cost_type = 22 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @return int
+     */
+    public function getCostType()
+    {
+        return isset($this->cost_type) ? $this->cost_type : 0;
+    }
+
+    public function hasCostType()
+    {
+        return isset($this->cost_type);
+    }
+
+    public function clearCostType()
+    {
+        unset($this->cost_type);
+    }
+
+    /**
+     * Required. The method used for billing this LineItem.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.LineItemCostTypeEnum.LineItemCostType cost_type = 22 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setCostType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Ads\AdManager\V1\LineItemCostTypeEnum\LineItemCostType::class);
+        $this->cost_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Discount information for the line item.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.LineItemDiscount discount = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Ads\AdManager\V1\LineItemDiscount|null
+     */
+    public function getDiscount()
+    {
+        return $this->discount;
+    }
+
+    public function hasDiscount()
+    {
+        return isset($this->discount);
+    }
+
+    public function clearDiscount()
+    {
+        unset($this->discount);
+    }
+
+    /**
+     * Optional. Discount information for the line item.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.LineItemDiscount discount = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Ads\AdManager\V1\LineItemDiscount $var
+     * @return $this
+     */
+    public function setDiscount($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Ads\AdManager\V1\LineItemDiscount::class);
+        $this->discount = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. This attribute is only applicable for certain line item types and
+     * acts as an "FYI" or note, which does not impact adserving or other backend
+     * systems. For SPONSORSHIP line items, this represents the minimum quantity,
+     * which is a lifetime impression volume goal for reporting purposes only. For
+     * STANDARD line items, this represent the contracted quantity, which is the
+     * number of units specified in the contract the advertiser has bought for
+     * this LineItem. This field is just a "FYI" for traffickers to manually
+     * intervene with the LineItem when needed. This attribute is only available
+     * for STANDARD line items if you have this feature enabled on your network.
+     *
+     * Generated from protobuf field <code>optional int64 contracted_units_bought = 24 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int|string
+     */
+    public function getContractedUnitsBought()
+    {
+        return isset($this->contracted_units_bought) ? $this->contracted_units_bought : 0;
+    }
+
+    public function hasContractedUnitsBought()
+    {
+        return isset($this->contracted_units_bought);
+    }
+
+    public function clearContractedUnitsBought()
+    {
+        unset($this->contracted_units_bought);
+    }
+
+    /**
+     * Optional. This attribute is only applicable for certain line item types and
+     * acts as an "FYI" or note, which does not impact adserving or other backend
+     * systems. For SPONSORSHIP line items, this represents the minimum quantity,
+     * which is a lifetime impression volume goal for reporting purposes only. For
+     * STANDARD line items, this represent the contracted quantity, which is the
+     * number of units specified in the contract the advertiser has bought for
+     * this LineItem. This field is just a "FYI" for traffickers to manually
+     * intervene with the LineItem when needed. This attribute is only available
+     * for STANDARD line items if you have this feature enabled on your network.
+     *
+     * Generated from protobuf field <code>optional int64 contracted_units_bought = 24 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setContractedUnitsBought($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->contracted_units_bought = $var;
+
+        return $this;
+    }
+
+    /**
+     * Required. Details about the creatives that are expected to serve through
+     * this LineItem.
+     *
+     * Generated from protobuf field <code>repeated .google.ads.admanager.v1.CreativePlaceholder creative_placeholders = 25 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @return RepeatedField<\Google\Ads\AdManager\V1\CreativePlaceholder>
+     */
+    public function getCreativePlaceholders()
+    {
+        return $this->creative_placeholders;
+    }
+
+    /**
+     * Required. Details about the creatives that are expected to serve through
+     * this LineItem.
+     *
+     * Generated from protobuf field <code>repeated .google.ads.admanager.v1.CreativePlaceholder creative_placeholders = 25 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @param \Google\Ads\AdManager\V1\CreativePlaceholder[] $var
+     * @return $this
+     */
+    public function setCreativePlaceholders($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Ads\AdManager\V1\CreativePlaceholder::class);
+        $this->creative_placeholders = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Non-empty default. The environment that the LineItem is
+     * targeting. The default value is BROWSER. If this value is VIDEO_PLAYER,
+     * then this line item can only target AdUnits that have AdUnitSizes whose
+     * environmentType is also VIDEO_PLAYER.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.EnvironmentTypeEnum.EnvironmentType environment_type = 26 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = NON_EMPTY_DEFAULT];</code>
+     * @return int
+     */
+    public function getEnvironmentType()
+    {
+        return isset($this->environment_type) ? $this->environment_type : 0;
+    }
+
+    public function hasEnvironmentType()
+    {
+        return isset($this->environment_type);
+    }
+
+    public function clearEnvironmentType()
+    {
+        unset($this->environment_type);
+    }
+
+    /**
+     * Optional. Non-empty default. The environment that the LineItem is
+     * targeting. The default value is BROWSER. If this value is VIDEO_PLAYER,
+     * then this line item can only target AdUnits that have AdUnitSizes whose
+     * environmentType is also VIDEO_PLAYER.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.EnvironmentTypeEnum.EnvironmentType environment_type = 26 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = NON_EMPTY_DEFAULT];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setEnvironmentType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Ads\AdManager\V1\EnvironmentTypeEnum\EnvironmentType::class);
+        $this->environment_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The delivery option for companions. Setting this field is only
+     * meaningful if the following conditions are met:
+     *   - The "Guaranteed roadblocks" feature is enabled on your network.
+     *   - One of the following is true (both cannot be true, these are mutually
+     *   exclusive).
+     *     - The environmentType is VIDEO_PLAYER.
+     *     - The roadblockingType is CREATIVE_SET.
+     * This field defaults to OPTIONAL if the conditions are met.
+     * In all other cases it defaults to UNKNOWN and is not meaningful.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.CompanionDeliveryOptionEnum.CompanionDeliveryOption companion_delivery_option = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getCompanionDeliveryOption()
+    {
+        return isset($this->companion_delivery_option) ? $this->companion_delivery_option : 0;
+    }
+
+    public function hasCompanionDeliveryOption()
+    {
+        return isset($this->companion_delivery_option);
+    }
+
+    public function clearCompanionDeliveryOption()
+    {
+        unset($this->companion_delivery_option);
+    }
+
+    /**
+     * Optional. The delivery option for companions. Setting this field is only
+     * meaningful if the following conditions are met:
+     *   - The "Guaranteed roadblocks" feature is enabled on your network.
+     *   - One of the following is true (both cannot be true, these are mutually
+     *   exclusive).
+     *     - The environmentType is VIDEO_PLAYER.
+     *     - The roadblockingType is CREATIVE_SET.
+     * This field defaults to OPTIONAL if the conditions are met.
+     * In all other cases it defaults to UNKNOWN and is not meaningful.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.CompanionDeliveryOptionEnum.CompanionDeliveryOption companion_delivery_option = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setCompanionDeliveryOption($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Ads\AdManager\V1\CompanionDeliveryOptionEnum\CompanionDeliveryOption::class);
+        $this->companion_delivery_option = $var;
+
+        return $this;
+    }
+
+    /**
+     * Input only. The flag indicates whether overbooking should be allowed when
+     * creating or updating reservations of line item types SPONSORSHIP and
+     * STANDARD. When true, operations on this line item will never
+     * trigger a ForecastError, which corresponds to an overbook warning in the
+     * UI. The default value is false.  Note: this field won't persist on the
+     * line item itself, and the value will only affect the current request.
+     *
+     * Generated from protobuf field <code>optional bool allow_overbook = 28 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getAllowOverbook()
+    {
+        return isset($this->allow_overbook) ? $this->allow_overbook : false;
+    }
+
+    public function hasAllowOverbook()
+    {
+        return isset($this->allow_overbook);
+    }
+
+    public function clearAllowOverbook()
+    {
+        unset($this->allow_overbook);
+    }
+
+    /**
+     * Input only. The flag indicates whether overbooking should be allowed when
+     * creating or updating reservations of line item types SPONSORSHIP and
+     * STANDARD. When true, operations on this line item will never
+     * trigger a ForecastError, which corresponds to an overbook warning in the
+     * UI. The default value is false.  Note: this field won't persist on the
+     * line item itself, and the value will only affect the current request.
+     *
+     * Generated from protobuf field <code>optional bool allow_overbook = 28 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setAllowOverbook($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->allow_overbook = $var;
+
+        return $this;
+    }
+
+    /**
+     * Input only. The flag indicates whether the inventory check should be
+     * skipped when creating or updating a line item. The default value is false.
+     * Note: this field won't persist on the line item itself, and the value will
+     * only affect the current request.
+     *
+     * Generated from protobuf field <code>optional bool skip_inventory_check = 29 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSkipInventoryCheck()
+    {
+        return isset($this->skip_inventory_check) ? $this->skip_inventory_check : false;
+    }
+
+    public function hasSkipInventoryCheck()
+    {
+        return isset($this->skip_inventory_check);
+    }
+
+    public function clearSkipInventoryCheck()
+    {
+        unset($this->skip_inventory_check);
+    }
+
+    /**
+     * Input only. The flag indicates whether the inventory check should be
+     * skipped when creating or updating a line item. The default value is false.
+     * Note: this field won't persist on the line item itself, and the value will
+     * only affect the current request.
+     *
+     * Generated from protobuf field <code>optional bool skip_inventory_check = 29 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSkipInventoryCheck($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->skip_inventory_check = $var;
+
+        return $this;
+    }
+
+    /**
+     * Input only. True to skip checks for warnings from rules applied to line
+     * items targeting inventory shared by a distributor partner for cross selling
+     * when performing an action on this line item. The default is false. Note:
+     * this field won't persist on the line item itself, and the value will only
+     * affect the current request.
+     *
+     * Generated from protobuf field <code>optional bool skip_cross_selling_rule_warning_checks = 30 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getSkipCrossSellingRuleWarningChecks()
+    {
+        return isset($this->skip_cross_selling_rule_warning_checks) ? $this->skip_cross_selling_rule_warning_checks : false;
+    }
+
+    public function hasSkipCrossSellingRuleWarningChecks()
+    {
+        return isset($this->skip_cross_selling_rule_warning_checks);
+    }
+
+    public function clearSkipCrossSellingRuleWarningChecks()
+    {
+        unset($this->skip_cross_selling_rule_warning_checks);
+    }
+
+    /**
+     * Input only. True to skip checks for warnings from rules applied to line
+     * items targeting inventory shared by a distributor partner for cross selling
+     * when performing an action on this line item. The default is false. Note:
+     * this field won't persist on the line item itself, and the value will only
+     * affect the current request.
+     *
+     * Generated from protobuf field <code>optional bool skip_cross_selling_rule_warning_checks = 30 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSkipCrossSellingRuleWarningChecks($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->skip_cross_selling_rule_warning_checks = $var;
+
+        return $this;
+    }
+
+    /**
+     * Input only. The flag indicates whether inventory should be reserved when
+     * creating a line item of types SPONSORSHIP and STANDARD in an unapproved
+     * Order. The default value is false.
+     *
+     * Generated from protobuf field <code>optional bool reserve_on_creation = 31 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getReserveOnCreation()
+    {
+        return isset($this->reserve_on_creation) ? $this->reserve_on_creation : false;
+    }
+
+    public function hasReserveOnCreation()
+    {
+        return isset($this->reserve_on_creation);
+    }
+
+    public function clearReserveOnCreation()
+    {
+        unset($this->reserve_on_creation);
+    }
+
+    /**
+     * Input only. The flag indicates whether inventory should be reserved when
+     * creating a line item of types SPONSORSHIP and STANDARD in an unapproved
+     * Order. The default value is false.
+     *
+     * Generated from protobuf field <code>optional bool reserve_on_creation = 31 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setReserveOnCreation($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->reserve_on_creation = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Contains trafficking statistics for the line item. This will
+     * be empty in case there are no statistics for a line item yet.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.LineItemStats stats = 32 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Ads\AdManager\V1\LineItemStats|null
+     */
+    public function getStats()
+    {
+        return $this->stats;
+    }
+
+    public function hasStats()
+    {
+        return isset($this->stats);
+    }
+
+    public function clearStats()
+    {
+        unset($this->stats);
+    }
+
+    /**
+     * Output only. Contains trafficking statistics for the line item. This will
+     * be empty in case there are no statistics for a line item yet.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.LineItemStats stats = 32 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Ads\AdManager\V1\LineItemStats $var
+     * @return $this
+     */
+    public function setStats($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Ads\AdManager\V1\LineItemStats::class);
+        $this->stats = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Indicates how well the line item has been performing. This
+     * will be empty if the delivery indicator information is not available due to
+     * one of the following reasons:
+     *   - The line item is not delivering.
+     *   - The line item has an unlimited goal or cap.
+     *   - The line item has a percentage based goal or cap.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.DeliveryIndicator delivery_indicator = 33 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Ads\AdManager\V1\DeliveryIndicator|null
+     */
+    public function getDeliveryIndicator()
+    {
+        return $this->delivery_indicator;
+    }
+
+    public function hasDeliveryIndicator()
+    {
+        return isset($this->delivery_indicator);
+    }
+
+    public function clearDeliveryIndicator()
+    {
+        unset($this->delivery_indicator);
+    }
+
+    /**
+     * Output only. Indicates how well the line item has been performing. This
+     * will be empty if the delivery indicator information is not available due to
+     * one of the following reasons:
+     *   - The line item is not delivering.
+     *   - The line item has an unlimited goal or cap.
+     *   - The line item has a percentage based goal or cap.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.DeliveryIndicator delivery_indicator = 33 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Ads\AdManager\V1\DeliveryIndicator $var
+     * @return $this
+     */
+    public function setDeliveryIndicator($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Ads\AdManager\V1\DeliveryIndicator::class);
+        $this->delivery_indicator = $var;
 
         return $this;
     }
@@ -428,6 +2202,440 @@ class LineItem extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Output only. The status of the LineItem.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.LineItemComputedStatusEnum.LineItemComputedStatus status = 36 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getStatus()
+    {
+        return isset($this->status) ? $this->status : 0;
+    }
+
+    public function hasStatus()
+    {
+        return isset($this->status);
+    }
+
+    public function clearStatus()
+    {
+        unset($this->status);
+    }
+
+    /**
+     * Output only. The status of the LineItem.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.LineItemComputedStatusEnum.LineItemComputedStatus status = 36 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setStatus($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Ads\AdManager\V1\LineItemComputedStatusEnum\LineItemComputedStatus::class);
+        $this->status = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Describes whether or not inventory has been reserved for the
+     * LineItem.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.LineItemReservationStatusEnum.LineItemReservationStatus reservation_status = 38 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getReservationStatus()
+    {
+        return isset($this->reservation_status) ? $this->reservation_status : 0;
+    }
+
+    public function hasReservationStatus()
+    {
+        return isset($this->reservation_status);
+    }
+
+    public function clearReservationStatus()
+    {
+        unset($this->reservation_status);
+    }
+
+    /**
+     * Output only. Describes whether or not inventory has been reserved for the
+     * LineItem.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.LineItemReservationStatusEnum.LineItemReservationStatus reservation_status = 38 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setReservationStatus($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Ads\AdManager\V1\LineItemReservationStatusEnum\LineItemReservationStatus::class);
+        $this->reservation_status = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The archival status of the LineItem.
+     *
+     * Generated from protobuf field <code>optional bool archived = 39 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getArchived()
+    {
+        return isset($this->archived) ? $this->archived : false;
+    }
+
+    public function hasArchived()
+    {
+        return isset($this->archived);
+    }
+
+    public function clearArchived()
+    {
+        unset($this->archived);
+    }
+
+    /**
+     * Output only. The archival status of the LineItem.
+     *
+     * Generated from protobuf field <code>optional bool archived = 39 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setArchived($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->archived = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The web property code used for dynamic allocation line items.
+     * This web property is only required with line item types AD_EXCHANGE and
+     * ADSENSE.
+     *
+     * Generated from protobuf field <code>optional string web_property_code = 49 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getWebPropertyCode()
+    {
+        return isset($this->web_property_code) ? $this->web_property_code : '';
+    }
+
+    public function hasWebPropertyCode()
+    {
+        return isset($this->web_property_code);
+    }
+
+    public function clearWebPropertyCode()
+    {
+        unset($this->web_property_code);
+    }
+
+    /**
+     * Optional. The web property code used for dynamic allocation line items.
+     * This web property is only required with line item types AD_EXCHANGE and
+     * ADSENSE.
+     *
+     * Generated from protobuf field <code>optional string web_property_code = 49 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setWebPropertyCode($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->web_property_code = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The set of labels applied directly to this line item.
+     *
+     * Generated from protobuf field <code>repeated .google.ads.admanager.v1.AppliedLabel applied_labels = 50 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return RepeatedField<\Google\Ads\AdManager\V1\AppliedLabel>
+     */
+    public function getAppliedLabels()
+    {
+        return $this->applied_labels;
+    }
+
+    /**
+     * Optional. The set of labels applied directly to this line item.
+     *
+     * Generated from protobuf field <code>repeated .google.ads.admanager.v1.AppliedLabel applied_labels = 50 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Ads\AdManager\V1\AppliedLabel[] $var
+     * @return $this
+     */
+    public function setAppliedLabels($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Ads\AdManager\V1\AppliedLabel::class);
+        $this->applied_labels = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Contains the set of labels inherited from the order that
+     * contains this line item and the advertiser that owns the order. If a label
+     * has been negated, only the negated label is returned.
+     *
+     * Generated from protobuf field <code>repeated .google.ads.admanager.v1.AppliedLabel effective_applied_labels = 51 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return RepeatedField<\Google\Ads\AdManager\V1\AppliedLabel>
+     */
+    public function getEffectiveAppliedLabels()
+    {
+        return $this->effective_applied_labels;
+    }
+
+    /**
+     * Output only. Contains the set of labels inherited from the order that
+     * contains this line item and the advertiser that owns the order. If a label
+     * has been negated, only the negated label is returned.
+     *
+     * Generated from protobuf field <code>repeated .google.ads.admanager.v1.AppliedLabel effective_applied_labels = 51 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Ads\AdManager\V1\AppliedLabel[] $var
+     * @return $this
+     */
+    public function setEffectiveAppliedLabels($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Ads\AdManager\V1\AppliedLabel::class);
+        $this->effective_applied_labels = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If a line item has a series of competitive exclusions on it, it
+     * could be blocked from serving with line items from the same advertiser.
+     * Setting this to true will allow line items from the same advertiser to
+     * serve regardless of the other competitive exclusion labels being applied.
+     *
+     * Generated from protobuf field <code>optional bool same_advertiser_exception_enabled = 52 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getSameAdvertiserExceptionEnabled()
+    {
+        return isset($this->same_advertiser_exception_enabled) ? $this->same_advertiser_exception_enabled : false;
+    }
+
+    public function hasSameAdvertiserExceptionEnabled()
+    {
+        return isset($this->same_advertiser_exception_enabled);
+    }
+
+    public function clearSameAdvertiserExceptionEnabled()
+    {
+        unset($this->same_advertiser_exception_enabled);
+    }
+
+    /**
+     * Optional. If a line item has a series of competitive exclusions on it, it
+     * could be blocked from serving with line items from the same advertiser.
+     * Setting this to true will allow line items from the same advertiser to
+     * serve regardless of the other competitive exclusion labels being applied.
+     *
+     * Generated from protobuf field <code>optional bool same_advertiser_exception_enabled = 52 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSameAdvertiserExceptionEnabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->same_advertiser_exception_enabled = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The application that last modified this line item.
+     *
+     * Generated from protobuf field <code>optional string update_source = 53 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getUpdateSource()
+    {
+        return isset($this->update_source) ? $this->update_source : '';
+    }
+
+    public function hasUpdateSource()
+    {
+        return isset($this->update_source);
+    }
+
+    public function clearUpdateSource()
+    {
+        unset($this->update_source);
+    }
+
+    /**
+     * Output only. The application that last modified this line item.
+     *
+     * Generated from protobuf field <code>optional string update_source = 53 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setUpdateSource($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->update_source = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Provides any additional notes that may annotate the LineItem.
+     * This attribute has a maximum length of 65,535 characters.
+     *
+     * Generated from protobuf field <code>optional string notes = 54 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getNotes()
+    {
+        return isset($this->notes) ? $this->notes : '';
+    }
+
+    public function hasNotes()
+    {
+        return isset($this->notes);
+    }
+
+    public function clearNotes()
+    {
+        unset($this->notes);
+    }
+
+    /**
+     * Optional. Provides any additional notes that may annotate the LineItem.
+     * This attribute has a maximum length of 65,535 characters.
+     *
+     * Generated from protobuf field <code>optional string notes = 54 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setNotes($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->notes = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Non-empty default. The CompetitiveConstraintScope for the
+     * competitive exclusion labels assigned to this line item. This field
+     * defaults to POD.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.ExclusionScopeEnum.ExclusionScope competitive_constraint_scope = 56 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = NON_EMPTY_DEFAULT];</code>
+     * @return int
+     */
+    public function getCompetitiveConstraintScope()
+    {
+        return isset($this->competitive_constraint_scope) ? $this->competitive_constraint_scope : 0;
+    }
+
+    public function hasCompetitiveConstraintScope()
+    {
+        return isset($this->competitive_constraint_scope);
+    }
+
+    public function clearCompetitiveConstraintScope()
+    {
+        unset($this->competitive_constraint_scope);
+    }
+
+    /**
+     * Optional. Non-empty default. The CompetitiveConstraintScope for the
+     * competitive exclusion labels assigned to this line item. This field
+     * defaults to POD.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.ExclusionScopeEnum.ExclusionScope competitive_constraint_scope = 56 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = NON_EMPTY_DEFAULT];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setCompetitiveConstraintScope($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Ads\AdManager\V1\ExclusionScopeEnum\ExclusionScope::class);
+        $this->competitive_constraint_scope = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The time this line item was last modified.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.Timestamp update_time = 57 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getUpdateTime()
+    {
+        return $this->update_time;
+    }
+
+    public function hasUpdateTime()
+    {
+        return isset($this->update_time);
+    }
+
+    public function clearUpdateTime()
+    {
+        unset($this->update_time);
+    }
+
+    /**
+     * Output only. The time this line item was last modified.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.Timestamp update_time = 57 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setUpdateTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->update_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The time this line item was created.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.Timestamp create_time = 58 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getCreateTime()
+    {
+        return $this->create_time;
+    }
+
+    public function hasCreateTime()
+    {
+        return isset($this->create_time);
+    }
+
+    public function clearCreateTime()
+    {
+        unset($this->create_time);
+    }
+
+    /**
+     * Output only. The time this line item was created.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.Timestamp create_time = 58 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setCreateTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->create_time = $var;
+
+        return $this;
+    }
+
+    /**
      * Optional. The values of the custom fields associated with this line item.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.CustomFieldValue custom_field_values = 59 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -449,6 +2657,186 @@ class LineItem extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Ads\AdManager\V1\CustomFieldValue::class);
         $this->custom_field_values = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Indicates if a LineItem is missing any Creative creatives for
+     * the creativePlaceholders specified.  Creative Creatives can be considered
+     * missing for several reasons including:
+     *  - Not enough Creative creatives of a certain size have been uploaded, as
+     *    determined by
+     *    [expected_creative_count][google.ads.admanager.v1.CreativePlaceholder.expected_creative_count].
+     *    For example a LineItem specifies 750x350, 400x200 but only a 750x350 was
+     *    uploaded. Or LineItem specifies 750x350 with an expected count of 2, but
+     *    only one was uploaded.
+     *  - The [Creative.applied_labels][] of an associated Creative don't match
+     *    the
+     *    [CreativePlaceholder.applied_labels][google.ads.admanager.v1.CreativePlaceholder.applied_labels]
+     *    of the LineItem. For example LineItem specifies 750x350 with a Foo
+     *    AppliedLabel but a 750x350 creative without a AppliedLabel was uploaded.
+     *
+     * Generated from protobuf field <code>optional bool missing_creatives = 61 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getMissingCreatives()
+    {
+        return isset($this->missing_creatives) ? $this->missing_creatives : false;
+    }
+
+    public function hasMissingCreatives()
+    {
+        return isset($this->missing_creatives);
+    }
+
+    public function clearMissingCreatives()
+    {
+        unset($this->missing_creatives);
+    }
+
+    /**
+     * Output only. Indicates if a LineItem is missing any Creative creatives for
+     * the creativePlaceholders specified.  Creative Creatives can be considered
+     * missing for several reasons including:
+     *  - Not enough Creative creatives of a certain size have been uploaded, as
+     *    determined by
+     *    [expected_creative_count][google.ads.admanager.v1.CreativePlaceholder.expected_creative_count].
+     *    For example a LineItem specifies 750x350, 400x200 but only a 750x350 was
+     *    uploaded. Or LineItem specifies 750x350 with an expected count of 2, but
+     *    only one was uploaded.
+     *  - The [Creative.applied_labels][] of an associated Creative don't match
+     *    the
+     *    [CreativePlaceholder.applied_labels][google.ads.admanager.v1.CreativePlaceholder.applied_labels]
+     *    of the LineItem. For example LineItem specifies 750x350 with a Foo
+     *    AppliedLabel but a 750x350 creative without a AppliedLabel was uploaded.
+     *
+     * Generated from protobuf field <code>optional bool missing_creatives = 61 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setMissingCreatives($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->missing_creatives = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Third party auto-pixeling settings for cross-sell Partners.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.ThirdPartyMeasurementSettings third_party_measurement_settings = 67 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Ads\AdManager\V1\ThirdPartyMeasurementSettings|null
+     */
+    public function getThirdPartyMeasurementSettings()
+    {
+        return $this->third_party_measurement_settings;
+    }
+
+    public function hasThirdPartyMeasurementSettings()
+    {
+        return isset($this->third_party_measurement_settings);
+    }
+
+    public function clearThirdPartyMeasurementSettings()
+    {
+        unset($this->third_party_measurement_settings);
+    }
+
+    /**
+     * Optional. Third party auto-pixeling settings for cross-sell Partners.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.ThirdPartyMeasurementSettings third_party_measurement_settings = 67 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Ads\AdManager\V1\ThirdPartyMeasurementSettings $var
+     * @return $this
+     */
+    public function setThirdPartyMeasurementSettings($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Ads\AdManager\V1\ThirdPartyMeasurementSettings::class);
+        $this->third_party_measurement_settings = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Designates this line item as intended for YT Kids app. If true,
+     * all creatives associated with this line item must be reviewed and approved.
+     * See the help center article for more information:
+     * https://support.google.com/yt-partner-sales/answer/10015534.
+     *
+     * Generated from protobuf field <code>optional bool youtube_kids_restricted = 74 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getYoutubeKidsRestricted()
+    {
+        return isset($this->youtube_kids_restricted) ? $this->youtube_kids_restricted : false;
+    }
+
+    public function hasYoutubeKidsRestricted()
+    {
+        return isset($this->youtube_kids_restricted);
+    }
+
+    public function clearYoutubeKidsRestricted()
+    {
+        unset($this->youtube_kids_restricted);
+    }
+
+    /**
+     * Optional. Designates this line item as intended for YT Kids app. If true,
+     * all creatives associated with this line item must be reviewed and approved.
+     * See the help center article for more information:
+     * https://support.google.com/yt-partner-sales/answer/10015534.
+     *
+     * Generated from protobuf field <code>optional bool youtube_kids_restricted = 74 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setYoutubeKidsRestricted($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->youtube_kids_restricted = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The max duration of a video creative associated with this
+     * LineItem. This attribute is only meaningful for video line items. This
+     * attribute is required for video line items and must be greater than 0.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.Duration max_video_creative_duration = 75 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Duration|null
+     */
+    public function getMaxVideoCreativeDuration()
+    {
+        return $this->max_video_creative_duration;
+    }
+
+    public function hasMaxVideoCreativeDuration()
+    {
+        return isset($this->max_video_creative_duration);
+    }
+
+    public function clearMaxVideoCreativeDuration()
+    {
+        unset($this->max_video_creative_duration);
+    }
+
+    /**
+     * Optional. The max duration of a video creative associated with this
+     * LineItem. This attribute is only meaningful for video line items. This
+     * attribute is required for video line items and must be greater than 0.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.Duration max_video_creative_duration = 75 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\Duration $var
+     * @return $this
+     */
+    public function setMaxVideoCreativeDuration($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
+        $this->max_video_creative_duration = $var;
 
         return $this;
     }
@@ -487,6 +2875,406 @@ class LineItem extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Ads\AdManager\V1\Goal::class);
         $this->goal = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The secondary goals that this LineItem is associated with. This
+     * is required and meaningful only if the
+     * [line_item_type][google.ads.admanager.v1.LineItem.line_item_type] is
+     * SPONSORSHIP and [cost_type][google.ads.admanager.v1.LineItem.cost_type] is
+     * CPM.
+     *
+     * Generated from protobuf field <code>repeated .google.ads.admanager.v1.Goal secondary_goals = 100 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return RepeatedField<\Google\Ads\AdManager\V1\Goal>
+     */
+    public function getSecondaryGoals()
+    {
+        return $this->secondary_goals;
+    }
+
+    /**
+     * Optional. The secondary goals that this LineItem is associated with. This
+     * is required and meaningful only if the
+     * [line_item_type][google.ads.admanager.v1.LineItem.line_item_type] is
+     * SPONSORSHIP and [cost_type][google.ads.admanager.v1.LineItem.cost_type] is
+     * CPM.
+     *
+     * Generated from protobuf field <code>repeated .google.ads.admanager.v1.Goal secondary_goals = 100 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Ads\AdManager\V1\Goal[] $var
+     * @return $this
+     */
+    public function setSecondaryGoals($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Ads\AdManager\V1\Goal::class);
+        $this->secondary_goals = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Contains the information for a line item which has a target GRP
+     * demographic.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.GrpSettings grp_settings = 78 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Ads\AdManager\V1\GrpSettings|null
+     */
+    public function getGrpSettings()
+    {
+        return $this->grp_settings;
+    }
+
+    public function hasGrpSettings()
+    {
+        return isset($this->grp_settings);
+    }
+
+    public function clearGrpSettings()
+    {
+        unset($this->grp_settings);
+    }
+
+    /**
+     * Optional. Contains the information for a line item which has a target GRP
+     * demographic.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.GrpSettings grp_settings = 78 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Ads\AdManager\V1\GrpSettings $var
+     * @return $this
+     */
+    public function setGrpSettings($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Ads\AdManager\V1\GrpSettings::class);
+        $this->grp_settings = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The deal information associated with this line item, if it is
+     * programmatic.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.LineItemDealInfo deal_info = 79 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Ads\AdManager\V1\LineItemDealInfo|null
+     */
+    public function getDealInfo()
+    {
+        return $this->deal_info;
+    }
+
+    public function hasDealInfo()
+    {
+        return isset($this->deal_info);
+    }
+
+    public function clearDealInfo()
+    {
+        unset($this->deal_info);
+    }
+
+    /**
+     * Optional. The deal information associated with this line item, if it is
+     * programmatic.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.LineItemDealInfo deal_info = 79 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Ads\AdManager\V1\LineItemDealInfo $var
+     * @return $this
+     */
+    public function setDealInfo($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Ads\AdManager\V1\LineItemDealInfo::class);
+        $this->deal_info = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Optional IDs of the Company that provide ad verification for this
+     * line item.
+     *
+     * Generated from protobuf field <code>repeated string viewability_provider_companies = 85 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return RepeatedField<string>
+     */
+    public function getViewabilityProviderCompanies()
+    {
+        return $this->viewability_provider_companies;
+    }
+
+    /**
+     * Optional. Optional IDs of the Company that provide ad verification for this
+     * line item.
+     *
+     * Generated from protobuf field <code>repeated string viewability_provider_companies = 85 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param string[] $var
+     * @return $this
+     */
+    public function setViewabilityProviderCompanies($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->viewability_provider_companies = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Non-empty default. Child content eligibility designation for this
+     * line item. This field defaults to DISALLOWED.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.ChildContentEligibilityEnum.ChildContentEligibility child_content_eligibility = 86 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = NON_EMPTY_DEFAULT];</code>
+     * @return int
+     */
+    public function getChildContentEligibility()
+    {
+        return isset($this->child_content_eligibility) ? $this->child_content_eligibility : 0;
+    }
+
+    public function hasChildContentEligibility()
+    {
+        return isset($this->child_content_eligibility);
+    }
+
+    public function clearChildContentEligibility()
+    {
+        unset($this->child_content_eligibility);
+    }
+
+    /**
+     * Optional. Non-empty default. Child content eligibility designation for this
+     * line item. This field defaults to DISALLOWED.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.ChildContentEligibilityEnum.ChildContentEligibility child_content_eligibility = 86 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = NON_EMPTY_DEFAULT];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setChildContentEligibility($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Ads\AdManager\V1\ChildContentEligibilityEnum\ChildContentEligibility::class);
+        $this->child_content_eligibility = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Custom XML to be rendered in a custom VAST response at serving
+     * time.
+     *
+     * Generated from protobuf field <code>optional string custom_vast_extension = 88 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getCustomVastExtension()
+    {
+        return isset($this->custom_vast_extension) ? $this->custom_vast_extension : '';
+    }
+
+    public function hasCustomVastExtension()
+    {
+        return isset($this->custom_vast_extension);
+    }
+
+    public function clearCustomVastExtension()
+    {
+        unset($this->custom_vast_extension);
+    }
+
+    /**
+     * Optional. Custom XML to be rendered in a custom VAST response at serving
+     * time.
+     *
+     * Generated from protobuf field <code>optional string custom_vast_extension = 88 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCustomVastExtension($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->custom_vast_extension = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Whether the line item is enabled for sponsorship exclusivity.  If
+     * true, only exclusive sponsorships can be served on inventory targeted by
+     * this LineItem. This control should only be available for 100% video
+     * sponsorships.
+     *
+     * Generated from protobuf field <code>optional bool sponsorship_exclusivity_enabled = 89 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getSponsorshipExclusivityEnabled()
+    {
+        return isset($this->sponsorship_exclusivity_enabled) ? $this->sponsorship_exclusivity_enabled : false;
+    }
+
+    public function hasSponsorshipExclusivityEnabled()
+    {
+        return isset($this->sponsorship_exclusivity_enabled);
+    }
+
+    public function clearSponsorshipExclusivityEnabled()
+    {
+        unset($this->sponsorship_exclusivity_enabled);
+    }
+
+    /**
+     * Optional. Whether the line item is enabled for sponsorship exclusivity.  If
+     * true, only exclusive sponsorships can be served on inventory targeted by
+     * this LineItem. This control should only be available for 100% video
+     * sponsorships.
+     *
+     * Generated from protobuf field <code>optional bool sponsorship_exclusivity_enabled = 89 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSponsorshipExclusivityEnabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->sponsorship_exclusivity_enabled = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Indicates whether repeated creative serving is enabled for this
+     * line item.
+     *
+     * Generated from protobuf field <code>optional bool repeated_creative_serving_enabled = 90 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getRepeatedCreativeServingEnabled()
+    {
+        return isset($this->repeated_creative_serving_enabled) ? $this->repeated_creative_serving_enabled : false;
+    }
+
+    public function hasRepeatedCreativeServingEnabled()
+    {
+        return isset($this->repeated_creative_serving_enabled);
+    }
+
+    public function clearRepeatedCreativeServingEnabled()
+    {
+        unset($this->repeated_creative_serving_enabled);
+    }
+
+    /**
+     * Optional. Indicates whether repeated creative serving is enabled for this
+     * line item.
+     *
+     * Generated from protobuf field <code>optional bool repeated_creative_serving_enabled = 90 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setRepeatedCreativeServingEnabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->repeated_creative_serving_enabled = $var;
+
+        return $this;
+    }
+
+    /**
+     * Required. Contains the targeting criteria for the ad campaign.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.Targeting targeting = 93 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @return \Google\Ads\AdManager\V1\Targeting|null
+     */
+    public function getTargeting()
+    {
+        return $this->targeting;
+    }
+
+    public function hasTargeting()
+    {
+        return isset($this->targeting);
+    }
+
+    public function clearTargeting()
+    {
+        unset($this->targeting);
+    }
+
+    /**
+     * Required. Contains the targeting criteria for the ad campaign.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.Targeting targeting = 93 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @param \Google\Ads\AdManager\V1\Targeting $var
+     * @return $this
+     */
+    public function setTargeting($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Ads\AdManager\V1\Targeting::class);
+        $this->targeting = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. A list of CreativeTargeting objects that can be used to specify
+     * creative level targeting for this line item. Creative level targeting is
+     * specified in a
+     * [CreativePlaceholder.creative_targeting_display_name][google.ads.admanager.v1.CreativePlaceholder.creative_targeting_display_name]
+     * field by referencing the [CreativeTargeting.display_name][] field. It also
+     * needs to be re-specified in the
+     * [LineItemCreativeAssociation.targeting_display_name][] field when
+     * associating a line item with a creative that fits into that placeholder.
+     *
+     * Generated from protobuf field <code>repeated .google.ads.admanager.v1.CreativeTargeting creative_targetings = 94 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return RepeatedField<\Google\Ads\AdManager\V1\CreativeTargeting>
+     */
+    public function getCreativeTargetings()
+    {
+        return $this->creative_targetings;
+    }
+
+    /**
+     * Optional. A list of CreativeTargeting objects that can be used to specify
+     * creative level targeting for this line item. Creative level targeting is
+     * specified in a
+     * [CreativePlaceholder.creative_targeting_display_name][google.ads.admanager.v1.CreativePlaceholder.creative_targeting_display_name]
+     * field by referencing the [CreativeTargeting.display_name][] field. It also
+     * needs to be re-specified in the
+     * [LineItemCreativeAssociation.targeting_display_name][] field when
+     * associating a line item with a creative that fits into that placeholder.
+     *
+     * Generated from protobuf field <code>repeated .google.ads.admanager.v1.CreativeTargeting creative_targetings = 94 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Ads\AdManager\V1\CreativeTargeting[] $var
+     * @return $this
+     */
+    public function setCreativeTargetings($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Ads\AdManager\V1\CreativeTargeting::class);
+        $this->creative_targetings = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The set of allowed formats for this line item.
+     * If empty, all formats are allowed. This property only applies
+     * to programmatic video line items.
+     *
+     * Generated from protobuf field <code>repeated .google.ads.admanager.v1.LineItemAllowedFormatEnum.LineItemAllowedFormat allowed_formats = 112 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return RepeatedField<int>
+     */
+    public function getAllowedFormats()
+    {
+        return $this->allowed_formats;
+    }
+
+    /**
+     * Optional. The set of allowed formats for this line item.
+     * If empty, all formats are allowed. This property only applies
+     * to programmatic video line items.
+     *
+     * Generated from protobuf field <code>repeated .google.ads.admanager.v1.LineItemAllowedFormatEnum.LineItemAllowedFormat allowed_formats = 112 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int[] $var
+     * @return $this
+     */
+    public function setAllowedFormats($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::ENUM, \Google\Ads\AdManager\V1\LineItemAllowedFormatEnum\LineItemAllowedFormat::class);
+        $this->allowed_formats = $arr;
 
         return $this;
     }

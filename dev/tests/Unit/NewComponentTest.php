@@ -111,4 +111,60 @@ class NewComponentTest extends TestCase
             ],
         ];
     }
+
+    public function testFromOptions()
+    {
+        $options = [
+            'component-name' => 'Speech',
+            'php-namespace' => 'Google\Cloud\Speech\V2',
+            'proto-package' => 'google.cloud.speech.v2',
+            'api-short-name' => 'speech',
+            'api-version' => 'v2',
+        ];
+        $new = NewComponent::fromOptions($options);
+        $this->assertEquals('google.cloud.speech.v2', $new->protoPackage);
+        $this->assertEquals('Google\Cloud\Speech\V2', $new->phpNamespace);
+        $this->assertEquals('Google Cloud Speech V2', $new->displayName);
+        $this->assertEquals('Speech', $new->componentName);
+        $this->assertEquals('google/cloud-speech-v2', $new->composerPackage);
+        $this->assertEquals('googleapis/google-cloud-php-speech-v2', $new->githubRepo);
+        $this->assertEquals('GPBMetadata\Google\Cloud\Speech\V2', $new->gpbMetadataNamespace);
+        $this->assertEquals('speech', $new->shortName);
+        $this->assertEquals('v2', $new->version);
+        $this->assertEquals('', $new->protoPath);
+    }
+
+    public function testFromOptionsWithUnversionedApi()
+    {
+        $options = [
+            'component-name' => 'Speech',
+            'php-namespace' => 'Google\Cloud\Speech',
+            'proto-package' => 'google.cloud.speech',
+            'api-short-name' => 'speech',
+            'api-version' => null,
+        ];
+        $new = NewComponent::fromOptions($options);
+        $this->assertNull($new->version);
+        $this->assertEquals('Google\Cloud\Speech', $new->phpNamespace);
+        $this->assertEquals('Google Cloud Speech', $new->displayName);
+    }
+
+    public function testFromProtoWithOptionOverrides()
+    {
+        $options = [
+            'component-name' => 'CustomSpeechName',
+        ];
+        $protoContents = <<<EOF
+            package google.cloud.speech.v2;
+            option (google.api.default_host) = "speech.googleapis.com";
+            option php_namespace = "Google\\\\Cloud\\\\Speech\\\\V2";
+EOF;
+        $new = NewComponent::fromProto($protoContents, 'google/cloud/speech/v2/speech.proto', $options);
+        $this->assertEquals('CustomSpeechName', $new->componentName);
+        $this->assertEquals('google.cloud.speech', $new->protoPackage);
+        $this->assertEquals('Google\Cloud\Speech', $new->phpNamespace);
+        $this->assertEquals('speech', $new->shortName);
+        $this->assertEquals('v2', $new->version);
+        $this->assertEquals('google/cloud/speech/(v2)', $new->protoPath);
+    }
 }

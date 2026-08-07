@@ -792,6 +792,20 @@ class DatabaseTest extends TestCase
         $this->database->runTransaction($this->noop());
     }
 
+    public function testRunTransactionNoCommitWithTag()
+    {
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage('Transactions must be rolled back or committed.');
+
+        $sql = $this->createStreamingAPIArgs()['sql'];
+        $this->stubExecuteStreamingSql();
+        $this->spannerClient->rollback(Argument::cetera())->shouldBeCalled();
+
+        $this->database->runTransaction(function (Transaction $t) use ($sql) {
+            $t->execute($sql);
+        }, ['tag' => self::TRANSACTION_TAG]);
+    }
+
     public function testRunTransactionNestedTransaction()
     {
         $this->expectException(BadMethodCallException::class);
@@ -2285,6 +2299,28 @@ class DatabaseTest extends TestCase
         $this->database->runTransaction(function (Transaction $t) use ($sql) {
             $t->execute($sql);
             $t->rollback();
+        }, ['tag' => self::TRANSACTION_TAG]);
+    }
+
+    public function testRunTransactionRollsBackOnException()
+    {
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage('Callback exception');
+
+        $sql = $this->createStreamingAPIArgs()['sql'];
+
+        $this->stubExecuteStreamingSql();
+        $this->spannerClient->rollback(
+            Argument::that(function ($request) use ($sql) {
+                return $request->getTransactionId() == self::TRANSACTION;
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce();
+
+        $this->database->runTransaction(function (Transaction $t) use ($sql) {
+            $t->execute($sql);
+            throw new \RuntimeException('Callback exception');
         }, ['tag' => self::TRANSACTION_TAG]);
     }
 

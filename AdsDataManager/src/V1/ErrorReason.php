@@ -773,6 +773,20 @@ class ErrorReason
      * Generated from protobuf enum <code>INSIGHTS_MISSING_FOR_DIMENSION = 123;</code>
      */
     const INSIGHTS_MISSING_FOR_DIMENSION = 123;
+    /**
+     * A required prerequisite link (such as a Google Ads link) must exist for
+     * the Google Analytics property to perform this operation.
+     *
+     * Generated from protobuf enum <code>REQUIRED_PREREQUISITE_LINK_MISSING = 124;</code>
+     */
+    const REQUIRED_PREREQUISITE_LINK_MISSING = 124;
+    /**
+     * The remove as of time must be in the past or present. Future timestamps are
+     * not permitted for removing audience members.
+     *
+     * Generated from protobuf enum <code>INVALID_REMOVE_AS_OF_TIME = 125;</code>
+     */
+    const INVALID_REMOVE_AS_OF_TIME = 125;
 
     private static $valueToName = [
         self::ERROR_REASON_UNSPECIFIED => 'ERROR_REASON_UNSPECIFIED',
@@ -898,6 +912,8 @@ class ErrorReason
         self::CUSTOM_VARIABLE_NOT_FOUND => 'CUSTOM_VARIABLE_NOT_FOUND',
         self::BASELINE_LOCATION_AUTO_DETECTION_FAILED => 'BASELINE_LOCATION_AUTO_DETECTION_FAILED',
         self::INSIGHTS_MISSING_FOR_DIMENSION => 'INSIGHTS_MISSING_FOR_DIMENSION',
+        self::REQUIRED_PREREQUISITE_LINK_MISSING => 'REQUIRED_PREREQUISITE_LINK_MISSING',
+        self::INVALID_REMOVE_AS_OF_TIME => 'INVALID_REMOVE_AS_OF_TIME',
     ];
 
     public static function name($value)

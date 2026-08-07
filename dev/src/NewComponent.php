@@ -37,20 +37,43 @@ class NewComponent
     public string $protoPath;
     public ?string $version;
 
-    public static function fromProto(string $protoContents, string $protoFilename): self
+    public static function fromProto(string $protoContents, string $protoFilename, array $options = []): self
     {
         $new = new self();
-        $new->protoPackage = self::extractPackageNameFromProtoContents($protoContents);
-        $new->phpNamespace = self::extractPhpNamespaceFromProtoContents($protoContents)
-            ?: self::derivePhpNamespaceFromProtoPackage($new->protoPackage);
+        $new->protoPackage = $options['proto-package']
+            ?? self::extractPackageNameFromProtoContents($protoContents);
+        $new->phpNamespace = $options['php-namespace']
+            ?? (self::extractPhpNamespaceFromProtoContents($protoContents)
+                ?: self::derivePhpNamespaceFromProtoPackage($new->protoPackage));
         $new->displayName = self::getDisplayName($new->phpNamespace);
-        $new->componentName = self::getComponentName($new->displayName);
+        $new->componentName = $options['component-name']
+            ?? self::getComponentName($new->displayName);
         $new->composerPackage = self::getComposerPackageFromProtoPackage($new->protoPackage);
         $new->githubRepo = self::getGithubRepo($new->composerPackage);
         $new->gpbMetadataNamespace = self::getGpbMetadataNamespace($new->protoPackage);
-        $new->shortName = self::extractShortNameFromProtoContents($protoContents);
-        $new->version = self::extractVersionFromProtoFilename($protoFilename);
+        $new->shortName = $options['api-short-name']
+            ?? self::extractShortNameFromProtoContents($protoContents);
+        $new->version = array_key_exists('api-version', $options)
+            ? $options['api-version']
+            : self::extractVersionFromProtoFilename($protoFilename);
         $new->protoPath = self::getProtoPath($protoFilename, $new->version);
+
+        return $new;
+    }
+
+    public static function fromOptions(array $options): self
+    {
+        $new = new self();
+        $new->protoPackage = $options['proto-package'] ?? '';
+        $new->phpNamespace = $options['php-namespace'] ?? '';
+        $new->displayName = self::getDisplayName($new->phpNamespace);
+        $new->componentName = $options['component-name'] ?? '';
+        $new->composerPackage = self::getComposerPackageFromProtoPackage($new->protoPackage);
+        $new->githubRepo = self::getGithubRepo($new->composerPackage);
+        $new->gpbMetadataNamespace = self::getGpbMetadataNamespace($new->protoPackage);
+        $new->shortName = $options['api-short-name'] ?? '';
+        $new->version = $options['api-version'] ?? null;
+        $new->protoPath = '';
 
         return $new;
     }

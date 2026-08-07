@@ -54,6 +54,7 @@ class ListOrdersRequest extends \Google\Protobuf\Internal\Message
      *   <li><code>displayName</code></li>
      *   <li><code>endTime</code></li>
      *   <li><code>externalOrderId</code></li>
+     *   <li><code>impressionsDelivered</code></li>
      *   <li><code>name</code></li>
      *   <li><code>orderId</code></li>
      *   <li><code>poNumber</code></li>
@@ -63,6 +64,8 @@ class ListOrdersRequest extends \Google\Protobuf\Internal\Message
      *   <li><code>secondaryTraffickers</code></li>
      *   <li><code>startTime</code></li>
      *   <li><code>status</code></li>
+     *   <li><code>totalClicksDelivered</code></li>
+     *   <li><code>totalViewableImpressionsDelivered</code></li>
      *   <li><code>trafficker</code></li>
      *   <li><code>updateTime</code></li>
      * </ul>
@@ -133,6 +136,7 @@ class ListOrdersRequest extends \Google\Protobuf\Internal\Message
      *             <li><code>displayName</code></li>
      *             <li><code>endTime</code></li>
      *             <li><code>externalOrderId</code></li>
+     *             <li><code>impressionsDelivered</code></li>
      *             <li><code>name</code></li>
      *             <li><code>orderId</code></li>
      *             <li><code>poNumber</code></li>
@@ -142,6 +146,8 @@ class ListOrdersRequest extends \Google\Protobuf\Internal\Message
      *             <li><code>secondaryTraffickers</code></li>
      *             <li><code>startTime</code></li>
      *             <li><code>status</code></li>
+     *             <li><code>totalClicksDelivered</code></li>
+     *             <li><code>totalViewableImpressionsDelivered</code></li>
      *             <li><code>trafficker</code></li>
      *             <li><code>updateTime</code></li>
      *           </ul>
@@ -264,6 +270,7 @@ class ListOrdersRequest extends \Google\Protobuf\Internal\Message
      *   <li><code>displayName</code></li>
      *   <li><code>endTime</code></li>
      *   <li><code>externalOrderId</code></li>
+     *   <li><code>impressionsDelivered</code></li>
      *   <li><code>name</code></li>
      *   <li><code>orderId</code></li>
      *   <li><code>poNumber</code></li>
@@ -273,6 +280,8 @@ class ListOrdersRequest extends \Google\Protobuf\Internal\Message
      *   <li><code>secondaryTraffickers</code></li>
      *   <li><code>startTime</code></li>
      *   <li><code>status</code></li>
+     *   <li><code>totalClicksDelivered</code></li>
+     *   <li><code>totalViewableImpressionsDelivered</code></li>
      *   <li><code>trafficker</code></li>
      *   <li><code>updateTime</code></li>
      * </ul>
@@ -299,6 +308,7 @@ class ListOrdersRequest extends \Google\Protobuf\Internal\Message
      *   <li><code>displayName</code></li>
      *   <li><code>endTime</code></li>
      *   <li><code>externalOrderId</code></li>
+     *   <li><code>impressionsDelivered</code></li>
      *   <li><code>name</code></li>
      *   <li><code>orderId</code></li>
      *   <li><code>poNumber</code></li>
@@ -308,6 +318,8 @@ class ListOrdersRequest extends \Google\Protobuf\Internal\Message
      *   <li><code>secondaryTraffickers</code></li>
      *   <li><code>startTime</code></li>
      *   <li><code>status</code></li>
+     *   <li><code>totalClicksDelivered</code></li>
+     *   <li><code>totalViewableImpressionsDelivered</code></li>
      *   <li><code>trafficker</code></li>
      *   <li><code>updateTime</code></li>
      * </ul>

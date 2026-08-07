@@ -44,6 +44,11 @@
                     "retry_codes_name": "no_retry_codes",
                     "retry_params_name": "no_retry_params"
                 },
+                "RemoveAllAudienceMembers": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
                 "RemoveAudienceMembers": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "no_retry_codes",
