@@ -96,8 +96,7 @@ trait ResumableUploadTrait
         return new ResumableUploadClient(
             $transport,
             $this->credentialsWrapper,
-            $this->agentHeader,
-            $options['apiEndpoint'] ?? ''
+            $this->agentHeader
         );
     }
 }

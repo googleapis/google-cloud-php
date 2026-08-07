@@ -80,8 +80,7 @@ class ResumableUploadClientTest extends TestCase
         $requestBuilder = $this->prophesize(\Google\ApiCore\RequestBuilder::class)->reveal();
         $client = new ResumableUploadClient(
             $this->createStubTransport($requestBuilder, $httpHandler),
-            $credentialsWrapper,
-            serviceAddress: 'test.googleapis.com'
+            $credentialsWrapper
         );
 
         $ref = new \ReflectionClass($client);
@@ -126,7 +125,6 @@ class ResumableUploadClientTest extends TestCase
             $this->createStubTransport($requestBuilder->reveal(), $httpHandler),
             $this->prophesize(CredentialsWrapper::class)->reveal(),
             [],
-            'test.googleapis.com',
             '/resumable/upload'
         );
 
@@ -200,7 +198,6 @@ class ResumableUploadClientTest extends TestCase
             $this->createStubTransport($requestBuilder->reveal(), $httpHandler),
             $credentialsWrapper->reveal(),
             [],
-            'test.googleapis.com',
             '/resumable/upload'
         );
 
@@ -605,8 +602,7 @@ class ResumableUploadClientTest extends TestCase
 
         $client = new ResumableUploadClient(
             $this->createStubTransport($requestBuilder->reveal(), $httpHandler),
-            $this->prophesize(CredentialsWrapper::class)->reveal(),
-            serviceAddress: 'test.googleapis.com'
+            $this->prophesize(CredentialsWrapper::class)->reveal()
         );
 
         $call = new Call('test.method', Timestamp::class, new Timestamp(), [], Call::RESUMABLE_UPLOAD_CALL);

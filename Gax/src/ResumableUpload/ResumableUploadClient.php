@@ -72,7 +72,6 @@ class ResumableUploadClient
      * @param ResumableUploadTransportInterface $transport Transport implementing buildRequest and sendRawRequest.
      * @param CredentialsWrapper $credentialsWrapper The credentials wrapper from GAPIC client.
      * @param array $headers Custom headers to include with the initial upload request.
-     * @param string $serviceAddress Service address or API endpoint.
      * @param string $uploadPrefix Resumable upload path prefix (default: '/resumable/upload').
      */
     private ?ResponseInterface $finalResponse = null;
@@ -81,17 +80,8 @@ class ResumableUploadClient
         private ResumableUploadTransportInterface $transport,
         private CredentialsWrapper $credentialsWrapper,
         private array $headers = [],
-        private string $serviceAddress = '',
         private string $uploadPrefix = '/resumable/upload'
     ) {
-    }
-
-    /**
-     * @return string
-     */
-    public function getServiceAddress(): string
-    {
-        return $this->serviceAddress;
     }
 
     /**
