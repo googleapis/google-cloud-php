@@ -8,7 +8,7 @@
         "ContactCenterInsights": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ContactCenterInsightsGapicClient",
+                    "libraryClient": "ContactCenterInsightsClient",
                     "rpcs": {
                         "BulkAnalyzeConversations": {
                             "methods": [

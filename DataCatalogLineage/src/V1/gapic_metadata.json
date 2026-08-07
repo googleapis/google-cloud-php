@@ -8,7 +8,7 @@
         "Lineage": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "LineageGapicClient",
+                    "libraryClient": "LineageClient",
                     "rpcs": {
                         "BatchSearchLinkProcesses": {
                             "methods": [

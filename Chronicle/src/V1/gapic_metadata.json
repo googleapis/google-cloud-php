@@ -8,7 +8,7 @@
         "BigQueryExportService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "BigQueryExportServiceGapicClient",
+                    "libraryClient": "BigQueryExportServiceClient",
                     "rpcs": {
                         "GetBigQueryExport": {
                             "methods": [
@@ -32,7 +32,7 @@
         "DashboardQueryService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "DashboardQueryServiceGapicClient",
+                    "libraryClient": "DashboardQueryServiceClient",
                     "rpcs": {
                         "ExecuteDashboardQuery": {
                             "methods": [
@@ -51,7 +51,7 @@
         "DashboardChartService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "DashboardChartServiceGapicClient",
+                    "libraryClient": "DashboardChartServiceClient",
                     "rpcs": {
                         "BatchGetDashboardCharts": {
                             "methods": [
@@ -70,7 +70,7 @@
         "DataAccessControlService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "DataAccessControlServiceGapicClient",
+                    "libraryClient": "DataAccessControlServiceClient",
                     "rpcs": {
                         "CreateDataAccessLabel": {
                             "methods": [
@@ -129,7 +129,7 @@
         "DataTableService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "DataTableServiceGapicClient",
+                    "libraryClient": "DataTableServiceClient",
                     "rpcs": {
                         "BulkCreateDataTableRows": {
                             "methods": [
@@ -213,7 +213,7 @@
         "EntityService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "EntityServiceGapicClient",
+                    "libraryClient": "EntityServiceClient",
                     "rpcs": {
                         "CreateWatchlist": {
                             "methods": [
@@ -247,7 +247,7 @@
         "NativeDashboardService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "NativeDashboardServiceGapicClient",
+                    "libraryClient": "NativeDashboardServiceClient",
                     "rpcs": {
                         "AddChart": {
                             "methods": [
@@ -316,7 +316,7 @@
         "FeaturedContentNativeDashboardService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "FeaturedContentNativeDashboardServiceGapicClient",
+                    "libraryClient": "FeaturedContentNativeDashboardServiceClient",
                     "rpcs": {
                         "GetFeaturedContentNativeDashboard": {
                             "methods": [
@@ -340,7 +340,7 @@
         "FindingsRefinementService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "FindingsRefinementServiceGapicClient",
+                    "libraryClient": "FindingsRefinementServiceClient",
                     "rpcs": {
                         "ComputeAllFindingsRefinementActivities": {
                             "methods": [
@@ -394,7 +394,7 @@
         "InstanceService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "InstanceServiceGapicClient",
+                    "libraryClient": "InstanceServiceClient",
                     "rpcs": {
                         "GetInstance": {
                             "methods": [
@@ -408,7 +408,7 @@
         "ReferenceListService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ReferenceListServiceGapicClient",
+                    "libraryClient": "ReferenceListServiceClient",
                     "rpcs": {
                         "CreateReferenceList": {
                             "methods": [
@@ -442,7 +442,7 @@
         "RuleService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "RuleServiceGapicClient",
+                    "libraryClient": "RuleServiceClient",
                     "rpcs": {
                         "CreateRetrohunt": {
                             "methods": [
@@ -516,7 +516,7 @@
         "RuleExecutionErrorService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "RuleExecutionErrorServiceGapicClient",
+                    "libraryClient": "RuleExecutionErrorServiceClient",
                     "rpcs": {
                         "ListRuleExecutionErrors": {
                             "methods": [
