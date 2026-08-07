@@ -1861,6 +1861,7 @@ class GapicClientTraitTest extends TestCase
             use GapicClientTrait {
                 buildClientOptions as public;
                 setClientOptions as public;
+                getCredentialsWrapper as public;
             }
             use ClientDefaultsTrait {
                 ClientDefaultsTrait::getClientDefaults insteadof GapicClientTrait;
@@ -1881,6 +1882,10 @@ class GapicClientTraitTest extends TestCase
         $gapic->setClientOptions($options);
 
         $this->assertTrue($gapic->hasEmulator);
+        $this->assertInstanceOf(
+            \Google\ApiCore\InsecureCredentialsWrapper::class,
+            $gapic->getCredentialsWrapper()
+        );
     }
 
     public function testGetServiceScopes()
