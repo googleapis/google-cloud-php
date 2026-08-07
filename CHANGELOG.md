@@ -1,5 +1,165 @@
 # Changelog
 
+## 0.340.0
+
+<details><summary>googleads/ad-manager 0.9.0</summary>
+
+
+
+### Features
+
+* [AdsAdManager] Added additional LineItem fields ([#9386](https://github.com/googleapis/google-cloud-php/issues/9386)) ([16c7f18](https://github.com/googleapis/google-cloud-php/commit/16c7f18c43e45833c12e3f91421c49e2a7a5b580))
+
+</details>
+
+<details><summary>googleads/data-manager 0.7.0</summary>
+
+
+
+### Features
+
+* [AdsDataManager] add google_user_id_data and partner_provided_id_data to AudienceMember ([#9421](https://github.com/googleapis/google-cloud-php/issues/9421)) ([7d2a9ce](https://github.com/googleapis/google-cloud-php/commit/7d2a9ceb1f21e47d8ee50bdbc42517e2604f0a55))
+
+</details>
+
+<details><summary>google/cloud-bigquery 1.39.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-core 1.73.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-dataform 0.13.0</summary>
+
+
+
+### Features
+
+* [Dataform] add workflow trigger configuration support ([#9423](https://github.com/googleapis/google-cloud-php/issues/9423)) ([7bf222b](https://github.com/googleapis/google-cloud-php/commit/7bf222bc597082812b6d723fb1819664942cf94b))
+
+</details>
+
+<details><summary>google/cloud-datastore 2.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-firestore 2.2.0</summary>
+
+
+
+### Features
+
+* [Firestore] add RequestOptions and request_options to Firestore v1 protos ([#9422](https://github.com/googleapis/google-cloud-php/issues/9422)) ([8676435](https://github.com/googleapis/google-cloud-php/commit/8676435f5ce25bccb33394cdae346ac1b0e5ffeb))
+
+</details>
+
+<details><summary>google/grafeas 1.8.0</summary>
+
+
+
+### Features
+
+* [Grafeas] A new field `attack_requirements` is added to message `.grafeas.v1.CVSS` ([#9396](https://github.com/googleapis/google-cloud-php/issues/9396)) ([103cdd1](https://github.com/googleapis/google-cloud-php/commit/103cdd1e31dc6910f2b5f0e22b5328e3befbe29c))
+
+</details>
+
+<details><summary>google/cloud-language 1.2.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-logging 2.1.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-networkservices 0.11.0</summary>
+
+
+
+### Features
+
+* [NetworkServices] deprecate client_tls_policy field from Endpoint Policy proto ([#9399](https://github.com/googleapis/google-cloud-php/issues/9399)) ([ef1f7f9](https://github.com/googleapis/google-cloud-php/commit/ef1f7f96dcaec451ef566d018c6d88db0fcc4887))
+
+</details>
+
+<details><summary>google/cloud-pubsub 2.19.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-spanner 2.10.4</summary>
+
+
+
+### Bug Fixes
+
+* **Spanner:** ensure active transaction is rolled back on exception ([#9416](https://github.com/googleapis/google-cloud-php/issues/9416)) ([7912a78](https://github.com/googleapis/google-cloud-php/commit/7912a78c4522fe17c90964a1627d52fff90af375))
+
+</details>
+
+<details><summary>google/cloud-speech 2.5.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-storage 2.5.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-support 1.8.0</summary>
+
+
+
+### Features
+
+* [Support] A new method `ExpungeSupportEventSubscription` is added to service `SupportEventSubscriptionService` ([#9397](https://github.com/googleapis/google-cloud-php/issues/9397)) ([dbf8232](https://github.com/googleapis/google-cloud-php/commit/dbf8232a0e62a9f06e542880835bda58a515ebab))
+* A new message `ExpungeSupportEventSubscriptionRequest` is added ([dbf8232](https://github.com/googleapis/google-cloud-php/commit/dbf8232a0e62a9f06e542880835bda58a515ebab))
+
+
+### Bug Fixes
+
+* align HTTP paths with enforced matching ([dbf8232](https://github.com/googleapis/google-cloud-php/commit/dbf8232a0e62a9f06e542880835bda58a515ebab))
+* align HTTP paths with enforced matching ([dbf8232](https://github.com/googleapis/google-cloud-php/commit/dbf8232a0e62a9f06e542880835bda58a515ebab))
+
+
+### Documentation
+
+* A comment for method `ListSupportEventSubscriptions` in service `SupportEventSubscriptionService` is changed ([dbf8232](https://github.com/googleapis/google-cloud-php/commit/dbf8232a0e62a9f06e542880835bda58a515ebab))
+
+</details>
+
+<details><summary>google/cloud-trace 2.0.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-translate 2.3.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-vision 2.2.2</summary>
+
+
+
+</details>
+
 ## 0.339.0
 
 <details><summary>google/apps-chat 0.24.0</summary>
