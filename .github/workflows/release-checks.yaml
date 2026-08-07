@@ -30,18 +30,12 @@ jobs:
           repository: ${{ github.repository }}
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: "Check for BC breaks"
-        id: check-bc
-        continue-on-error: ${{ github.event.pull_request.user.login == 'release-please[bot]' }}
+        if: github.event.pull_request.user.login != 'release-please[bot]'
         run: |
           git config --global user.name "Github Actions"
           git config --global user.email "actions@github.com"
 
-          # Determine base ref for git diff
-          IS_RELEASE_PR="${{ github.event.pull_request.user.login == 'release-please[bot]' }}"
-          if [ "${IS_RELEASE_PR}" = "true" ]; then
-            BASE_REF="${{ steps.latest-release.outputs.release }}"
-          fi
-          BASE_REF=${BASE_REF:-origin/main}
+          BASE_REF="origin/main"
 
           # Find changed component directories
           CHANGED_COMPONENTS=$(git diff ${BASE_REF} --name-only | grep -E '^[A-Z][a-zA-Z0-9]*/' | cut -d'/' -f1 | sort -u || true)
