@@ -17,7 +17,11 @@
 
 namespace Google\ApiCore\Testing;
 
+use Google\ApiCore\Serializer;
+use Google\Protobuf\DescriptorPool;
+use Google\Protobuf\Internal\MapField;
 use Google\Protobuf\Internal\Message;
+use Google\Protobuf\Internal\RepeatedField;
 use SebastianBergmann\Comparator\Comparator;
 use SebastianBergmann\Comparator\ComparisonFailure;
 use SebastianBergmann\Exporter\Exporter;
@@ -65,29 +69,119 @@ class ProtobufMessageComparator extends Comparator
      */
     public function assertEquals($expected, $actual, $delta = 0, $canonicalize = false, $ignoreCase = false)
     {
-        if (get_class($expected) === get_class($actual)) {
-            if ($expected->serializeToString() === $actual->serializeToString()) {
-                return;
+        if (!self::isProtobufEquals($expected, $actual)) {
+            throw new ComparisonFailure(
+                $expected,
+                $actual,
+                $this->exporter->shortenedExport($expected),
+                $this->exporter->shortenedExport($actual),
+                false,
+                'Given 2 Message objects are not the same'
+            );
+        }
+    }
+
+    /**
+     * Checks if two protobuf messages or values are equal.
+     *
+     * @param mixed $expected
+     * @param mixed $actual
+     * @return bool
+     */
+    public static function isProtobufEquals($expected, $actual): bool
+    {
+        if ($expected === $actual) {
+            return true;
+        }
+
+        if (gettype($expected) !== gettype($actual)) {
+            return false;
+        }
+
+        if (is_object($expected)) {
+            if (get_class($expected) !== get_class($actual)) {
+                return false;
             }
 
-            try {
-                $expectedJson = json_decode($expected->serializeToJsonString(), true);
-                $actualJson = json_decode($actual->serializeToJsonString(), true);
-                if ($expectedJson == $actualJson) {
-                    return;
+            if ($expected instanceof Message) {
+                if ($expected->serializeToString() === $actual->serializeToString()) {
+                    return true;
                 }
-            } catch (\Throwable $e) {
-                // Fall through to throw ComparisonFailure
+
+                $pool = DescriptorPool::getGeneratedPool();
+                $descriptor = $pool->getDescriptorByClassName(get_class($expected));
+                if (!$descriptor) {
+                    return false;
+                }
+
+                $oneofCount = $descriptor->getOneofDeclCount();
+                for ($i = 0; $i < $oneofCount; $i++) {
+                    $oneof = $descriptor->getOneofDecl($i);
+                    $getter = Serializer::getGetter($oneof->getName());
+                    if ($expected->$getter() !== $actual->$getter()) {
+                        return false;
+                    }
+                }
+
+                $fieldCount = $descriptor->getFieldCount();
+                for ($i = 0; $i < $fieldCount; $i++) {
+                    $field = $descriptor->getField($i);
+                    $getter = Serializer::getGetter($field->getName());
+                    $expectedVal = $expected->$getter();
+                    $actualVal = $actual->$getter();
+
+                    if (!self::isProtobufEquals($expectedVal, $actualVal)) {
+                        return false;
+                    }
+                }
+
+                return true;
+            }
+
+            if ($expected instanceof MapField) {
+                if (count($expected) !== count($actual)) {
+                    return false;
+                }
+                foreach ($expected as $k => $v) {
+                    if (!isset($actual[$k])) {
+                        return false;
+                    }
+                    if (!self::isProtobufEquals($v, $actual[$k])) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+
+            if ($expected instanceof RepeatedField) {
+                if (count($expected) !== count($actual)) {
+                    return false;
+                }
+                $count = count($expected);
+                for ($i = 0; $i < $count; $i++) {
+                    if (!self::isProtobufEquals($expected[$i], $actual[$i])) {
+                        return false;
+                    }
+                }
+                return true;
             }
         }
 
-        throw new ComparisonFailure(
-            $expected,
-            $actual,
-            $this->exporter->shortenedExport($expected),
-            $this->exporter->shortenedExport($actual),
-            false,
-            'Given 2 Message objects are not the same'
-        );
+        if (is_array($expected)) {
+            if (count($expected) !== count($actual)) {
+                return false;
+            }
+            foreach ($expected as $k => $v) {
+                if (!array_key_exists($k, $actual)) {
+                    return false;
+                }
+                if (!self::isProtobufEquals($v, $actual[$k])) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        return $expected === $actual;
     }
 }
