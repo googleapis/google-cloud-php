@@ -41,26 +41,11 @@
             }
         },
         "gapic-generator": {
-            "type": "package",
+            "type": "git",
+            "url": "https://github.com/googleapis/gapic-generator-php.git",
             "only": ["google/gapic-generator"],
-            "package": {
-                "name": "google/gapic-generator",
-                "version": "dev-main",
-                "source": {
-                    "url": "https://github.com/googleapis/gapic-generator-php.git",
-                    "type": "git",
-                    "reference": "main"
-                },
-                "autoload": {
-                    "psr-4": {
-                        "Google\\PostProcessor\\": "src/PostProcessor",
-                        "Google\\Generator\\": "src",
-                        "Google\\Generator\\Tests\\": "tests",
-                        "Google\\": "generated/Google",
-                        "Grpc\\": "generated/Grpc",
-                        "GPBMetadata\\": "generated/GPBMetadata"
-                    }
-                }
+            "options": {
+                "submodules": true
             }
         },
         "gapic-showcase": {
