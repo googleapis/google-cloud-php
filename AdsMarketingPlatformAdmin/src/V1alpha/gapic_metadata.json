@@ -8,7 +8,7 @@
         "MarketingplatformAdminService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "MarketingplatformAdminServiceGapicClient",
+                    "libraryClient": "MarketingplatformAdminServiceClient",
                     "rpcs": {
                         "CreateAnalyticsAccountLink": {
                             "methods": [
