@@ -8,7 +8,7 @@
         "IdentityAwareProxyAdminService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "IdentityAwareProxyAdminServiceGapicClient",
+                    "libraryClient": "IdentityAwareProxyAdminServiceClient",
                     "rpcs": {
                         "CreateTunnelDestGroup": {
                             "methods": [
@@ -72,7 +72,7 @@
         "IdentityAwareProxyOAuthService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "IdentityAwareProxyOAuthServiceGapicClient",
+                    "libraryClient": "IdentityAwareProxyOAuthServiceClient",
                     "rpcs": {
                         "CreateBrand": {
                             "methods": [

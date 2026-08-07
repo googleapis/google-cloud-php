@@ -8,7 +8,7 @@
         "Policies": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "PoliciesGapicClient",
+                    "libraryClient": "PoliciesClient",
                     "rpcs": {
                         "CreatePolicy": {
                             "methods": [
