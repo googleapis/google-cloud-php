@@ -8,7 +8,7 @@
         "BigtableInstanceAdmin": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "BigtableInstanceAdminGapicClient",
+                    "libraryClient": "BigtableInstanceAdminClient",
                     "rpcs": {
                         "CreateAppProfile": {
                             "methods": [
@@ -172,7 +172,7 @@
         "BigtableTableAdmin": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "BigtableTableAdminGapicClient",
+                    "libraryClient": "BigtableTableAdminClient",
                     "rpcs": {
                         "CheckConsistency": {
                             "methods": [

@@ -2814,7 +2814,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     public function getInstanceGroupUrls()
     {
-        if ($this->instance_group_urls->count() !== 0) {
+        if (count($this->instance_group_urls) !== 0) {
             @trigger_error('instance_group_urls is deprecated.', E_USER_DEPRECATED);
         }
         return $this->instance_group_urls;
