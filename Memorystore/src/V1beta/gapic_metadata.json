@@ -8,7 +8,7 @@
         "Memorystore": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "MemorystoreGapicClient",
+                    "libraryClient": "MemorystoreClient",
                     "rpcs": {
                         "AddAuthToken": {
                             "methods": [
