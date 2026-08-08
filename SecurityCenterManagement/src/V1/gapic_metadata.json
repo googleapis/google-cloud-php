@@ -8,7 +8,7 @@
         "SecurityCenterManagement": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "SecurityCenterManagementGapicClient",
+                    "libraryClient": "SecurityCenterManagementClient",
                     "rpcs": {
                         "CreateEventThreatDetectionCustomModule": {
                             "methods": [
