@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,37 +34,29 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
-use Google\Cloud\Compute\V1\AggregatedListInterconnectAttachmentsRequest;
-use Google\Cloud\Compute\V1\DeleteInterconnectAttachmentRequest;
-use Google\Cloud\Compute\V1\GetInterconnectAttachmentRequest;
-use Google\Cloud\Compute\V1\InsertInterconnectAttachmentRequest;
-use Google\Cloud\Compute\V1\InterconnectAttachment;
-use Google\Cloud\Compute\V1\ListInterconnectAttachmentsRequest;
-use Google\Cloud\Compute\V1\PatchInterconnectAttachmentRequest;
-use Google\Cloud\Compute\V1\SetLabelsInterconnectAttachmentRequest;
+use Google\Cloud\Compute\V1\GetHostRequest;
+use Google\Cloud\Compute\V1\GetVersionHostRequest;
+use Google\Cloud\Compute\V1\Host;
+use Google\Cloud\Compute\V1\ListHostsRequest;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
 
 /**
- * Service Description: The InterconnectAttachments API.
+ * Service Description: The Hosts API.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface<PagedListResponse> aggregatedListAsync(AggregatedListInterconnectAttachmentsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<OperationResponse> deleteAsync(DeleteInterconnectAttachmentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<InterconnectAttachment> getAsync(GetInterconnectAttachmentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<OperationResponse> insertAsync(InsertInterconnectAttachmentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<PagedListResponse> listAsync(ListInterconnectAttachmentsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<OperationResponse> patchAsync(PatchInterconnectAttachmentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<OperationResponse> setLabelsAsync(SetLabelsInterconnectAttachmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Host> getAsync(GetHostRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> getVersionAsync(GetVersionHostRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListHostsRequest $request, array $optionalArgs = [])
  */
-final class InterconnectAttachmentsClient
+final class HostsClient
 {
     use GapicClientTrait;
 
     /** The name of the service. */
-    private const SERVICE_NAME = 'google.cloud.compute.v1.InterconnectAttachments';
+    private const SERVICE_NAME = 'google.cloud.compute.v1.Hosts';
 
     /**
      * The default address of the service.
@@ -99,15 +91,15 @@ final class InterconnectAttachmentsClient
         return [
             'serviceName' => self::SERVICE_NAME,
             'apiEndpoint' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
-            'clientConfig' => __DIR__ . '/../resources/interconnect_attachments_client_config.json',
-            'descriptorsConfigPath' => __DIR__ . '/../resources/interconnect_attachments_descriptor_config.php',
+            'clientConfig' => __DIR__ . '/../resources/hosts_client_config.json',
+            'descriptorsConfigPath' => __DIR__ . '/../resources/hosts_descriptor_config.php',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
                 'useJwtAccessWithScope' => false,
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/interconnect_attachments_rest_client_config.php',
+                    'restClientConfigPath' => __DIR__ . '/../resources/hosts_rest_client_config.php',
                 ],
             ],
         ];
@@ -126,9 +118,9 @@ final class InterconnectAttachmentsClient
     }
 
     /**
-     * Return an RegionOperationsClient object with the same endpoint as $this.
+     * Return an ZoneOperationsClient object with the same endpoint as $this.
      *
-     * @return RegionOperationsClient
+     * @return ZoneOperationsClient
      */
     public function getOperationsClient()
     {
@@ -139,7 +131,7 @@ final class InterconnectAttachmentsClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => ['getProject', 'getRegion'],
+            'additionalArgumentMethods' => ['getProject', 'getZone'],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -148,9 +140,9 @@ final class InterconnectAttachmentsClient
             'operationNameMethod' => 'getName',
             'operationStatusMethod' => 'getStatus',
             'operationStatusDoneValue' => \Google\Cloud\Compute\V1\Operation\Status::DONE,
-            'getOperationRequest' => '\Google\Cloud\Compute\V1\GetRegionOperationRequest',
+            'getOperationRequest' => '\Google\Cloud\Compute\V1\GetZoneOperationRequest',
             'cancelOperationRequest' => null,
-            'deleteOperationRequest' => '\Google\Cloud\Compute\V1\DeleteRegionOperationRequest',
+            'deleteOperationRequest' => '\Google\Cloud\Compute\V1\DeleteZoneOperationRequest',
         ];
     }
 
@@ -181,7 +173,7 @@ final class InterconnectAttachmentsClient
      *
      * @param array $options ClientOptions for the client.
      *
-     * @return RegionOperationsClient
+     * @return ZoneOperationsClient
      */
     private function createOperationsClient(array $options)
     {
@@ -192,7 +184,7 @@ final class InterconnectAttachmentsClient
             return $options['operationsClient'];
         }
 
-        return new RegionOperationsClient($options);
+        return new ZoneOperationsClient($options);
     }
 
     /**
@@ -215,9 +207,9 @@ final class InterconnectAttachmentsClient
      *           of your systems and data. It is recommended to create the credentials explicitly
      *           ```
      *           use Google\Auth\Credentials\ServiceAccountCredentials;
-     *           use Google\Cloud\Compute\V1\InterconnectAttachmentsClient;
+     *           use Google\Cloud\Compute\V1\HostsClient;
      *           $creds = new ServiceAccountCredentials($scopes, $json);
-     *           $options = new InterconnectAttachmentsClient(['credentials' => $creds]);
+     *           $options = new HostsClient(['credentials' => $creds]);
      *           ```
      *           {@see
      *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
@@ -279,18 +271,14 @@ final class InterconnectAttachmentsClient
     }
 
     /**
-     * Retrieves an aggregated list of interconnect attachments.
+     * Retrieves information about the specified host.
      *
-     * To prevent failure, Google recommends that you set the
-     * `returnPartialSuccess` parameter to `true`.
+     * The async variant is {@see HostsClient::getAsync()} .
      *
-     * The async variant is {@see InterconnectAttachmentsClient::aggregatedListAsync()}
-     * .
+     * @example samples/V1/HostsClient/get.php
      *
-     * @example samples/V1/InterconnectAttachmentsClient/aggregated_list.php
-     *
-     * @param AggregatedListInterconnectAttachmentsRequest $request     A request to house fields associated with the call.
-     * @param array                                        $callOptions {
+     * @param GetHostRequest $request     A request to house fields associated with the call.
+     * @param array          $callOptions {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
@@ -299,79 +287,24 @@ final class InterconnectAttachmentsClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return PagedListResponse
+     * @return Host
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function aggregatedList(
-        AggregatedListInterconnectAttachmentsRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
-        return $this->startApiCall('AggregatedList', $request, $callOptions);
-    }
-
-    /**
-     * Deletes the specified interconnect attachment.
-     *
-     * The async variant is {@see InterconnectAttachmentsClient::deleteAsync()} .
-     *
-     * @example samples/V1/InterconnectAttachmentsClient/delete.php
-     *
-     * @param DeleteInterconnectAttachmentRequest $request     A request to house fields associated with the call.
-     * @param array                               $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return OperationResponse
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function delete(DeleteInterconnectAttachmentRequest $request, array $callOptions = []): OperationResponse
-    {
-        return $this->startApiCall('Delete', $request, $callOptions)->wait();
-    }
-
-    /**
-     * Returns the specified interconnect attachment.
-     *
-     * The async variant is {@see InterconnectAttachmentsClient::getAsync()} .
-     *
-     * @example samples/V1/InterconnectAttachmentsClient/get.php
-     *
-     * @param GetInterconnectAttachmentRequest $request     A request to house fields associated with the call.
-     * @param array                            $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return InterconnectAttachment
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function get(GetInterconnectAttachmentRequest $request, array $callOptions = []): InterconnectAttachment
+    public function get(GetHostRequest $request, array $callOptions = []): Host
     {
         return $this->startApiCall('Get', $request, $callOptions)->wait();
     }
 
     /**
-     * Creates an InterconnectAttachment in the specified project using the data
-     * included in the request.
+     * Allows customers to get SBOM versions of a host.
      *
-     * The async variant is {@see InterconnectAttachmentsClient::insertAsync()} .
+     * The async variant is {@see HostsClient::getVersionAsync()} .
      *
-     * @example samples/V1/InterconnectAttachmentsClient/insert.php
+     * @example samples/V1/HostsClient/get_version.php
      *
-     * @param InsertInterconnectAttachmentRequest $request     A request to house fields associated with the call.
-     * @param array                               $callOptions {
+     * @param GetVersionHostRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
@@ -384,21 +317,20 @@ final class InterconnectAttachmentsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function insert(InsertInterconnectAttachmentRequest $request, array $callOptions = []): OperationResponse
+    public function getVersion(GetVersionHostRequest $request, array $callOptions = []): OperationResponse
     {
-        return $this->startApiCall('Insert', $request, $callOptions)->wait();
+        return $this->startApiCall('GetVersion', $request, $callOptions)->wait();
     }
 
     /**
-     * Retrieves the list of interconnect attachments contained within
-     * the specified region.
+     * Retrieves a list of hosts.
      *
-     * The async variant is {@see InterconnectAttachmentsClient::listAsync()} .
+     * The async variant is {@see HostsClient::listAsync()} .
      *
-     * @example samples/V1/InterconnectAttachmentsClient/list.php
+     * @example samples/V1/HostsClient/list.php
      *
-     * @param ListInterconnectAttachmentsRequest $request     A request to house fields associated with the call.
-     * @param array                              $callOptions {
+     * @param ListHostsRequest $request     A request to house fields associated with the call.
+     * @param array            $callOptions {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
@@ -411,67 +343,8 @@ final class InterconnectAttachmentsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function list(ListInterconnectAttachmentsRequest $request, array $callOptions = []): PagedListResponse
+    public function list(ListHostsRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('List', $request, $callOptions);
-    }
-
-    /**
-     * Updates the specified interconnect attachment with the data included in the
-     * request. This method supportsPATCH
-     * semantics and uses theJSON merge
-     * patch format and processing rules.
-     *
-     * The async variant is {@see InterconnectAttachmentsClient::patchAsync()} .
-     *
-     * @example samples/V1/InterconnectAttachmentsClient/patch.php
-     *
-     * @param PatchInterconnectAttachmentRequest $request     A request to house fields associated with the call.
-     * @param array                              $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return OperationResponse
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function patch(PatchInterconnectAttachmentRequest $request, array $callOptions = []): OperationResponse
-    {
-        return $this->startApiCall('Patch', $request, $callOptions)->wait();
-    }
-
-    /**
-     * Sets the labels on an InterconnectAttachment. To learn more about labels,
-     * read the Labeling
-     * Resources documentation.
-     *
-     * The async variant is {@see InterconnectAttachmentsClient::setLabelsAsync()} .
-     *
-     * @example samples/V1/InterconnectAttachmentsClient/set_labels.php
-     *
-     * @param SetLabelsInterconnectAttachmentRequest $request     A request to house fields associated with the call.
-     * @param array                                  $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return OperationResponse
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function setLabels(
-        SetLabelsInterconnectAttachmentRequest $request,
-        array $callOptions = []
-    ): OperationResponse {
-        return $this->startApiCall('SetLabels', $request, $callOptions)->wait();
     }
 }

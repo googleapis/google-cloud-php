@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,34 +33,27 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
-use Google\Cloud\Compute\V1\AggregatedListGlobalOperationsRequest;
-use Google\Cloud\Compute\V1\DeleteGlobalOperationRequest;
-use Google\Cloud\Compute\V1\DeleteGlobalOperationResponse;
-use Google\Cloud\Compute\V1\GetGlobalOperationRequest;
-use Google\Cloud\Compute\V1\ListGlobalOperationsRequest;
-use Google\Cloud\Compute\V1\Operation;
-use Google\Cloud\Compute\V1\WaitGlobalOperationRequest;
+use Google\Cloud\Compute\V1\GetReliabilityRiskRequest;
+use Google\Cloud\Compute\V1\ListReliabilityRisksRequest;
+use Google\Cloud\Compute\V1\ReliabilityRisk;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
 
 /**
- * Service Description: The GlobalOperations API.
+ * Service Description: The ReliabilityRisks API.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface<PagedListResponse> aggregatedListAsync(AggregatedListGlobalOperationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<DeleteGlobalOperationResponse> deleteAsync(DeleteGlobalOperationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<Operation> getAsync(GetGlobalOperationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<PagedListResponse> listAsync(ListGlobalOperationsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<Operation> waitAsync(WaitGlobalOperationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ReliabilityRisk> getAsync(GetReliabilityRiskRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListReliabilityRisksRequest $request, array $optionalArgs = [])
  */
-final class GlobalOperationsClient
+final class ReliabilityRisksClient
 {
     use GapicClientTrait;
 
     /** The name of the service. */
-    private const SERVICE_NAME = 'google.cloud.compute.v1.GlobalOperations';
+    private const SERVICE_NAME = 'google.cloud.compute.v1.ReliabilityRisks';
 
     /**
      * The default address of the service.
@@ -84,6 +77,7 @@ final class GlobalOperationsClient
      * @internal
      */
     public static $serviceScopes = [
+        'https://www.googleapis.com/auth/compute.readonly',
         'https://www.googleapis.com/auth/compute',
         'https://www.googleapis.com/auth/cloud-platform',
     ];
@@ -93,15 +87,15 @@ final class GlobalOperationsClient
         return [
             'serviceName' => self::SERVICE_NAME,
             'apiEndpoint' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
-            'clientConfig' => __DIR__ . '/../resources/global_operations_client_config.json',
-            'descriptorsConfigPath' => __DIR__ . '/../resources/global_operations_descriptor_config.php',
+            'clientConfig' => __DIR__ . '/../resources/reliability_risks_client_config.json',
+            'descriptorsConfigPath' => __DIR__ . '/../resources/reliability_risks_descriptor_config.php',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
                 'useJwtAccessWithScope' => false,
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/global_operations_rest_client_config.php',
+                    'restClientConfigPath' => __DIR__ . '/../resources/reliability_risks_rest_client_config.php',
                 ],
             ],
         ];
@@ -139,9 +133,9 @@ final class GlobalOperationsClient
      *           of your systems and data. It is recommended to create the credentials explicitly
      *           ```
      *           use Google\Auth\Credentials\ServiceAccountCredentials;
-     *           use Google\Cloud\Compute\V1\GlobalOperationsClient;
+     *           use Google\Cloud\Compute\V1\ReliabilityRisksClient;
      *           $creds = new ServiceAccountCredentials($scopes, $json);
-     *           $options = new GlobalOperationsClient(['credentials' => $creds]);
+     *           $options = new ReliabilityRisksClient(['credentials' => $creds]);
      *           ```
      *           {@see
      *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
@@ -202,72 +196,13 @@ final class GlobalOperationsClient
     }
 
     /**
-     * Retrieves an aggregated list of all operations.
+     * Returns the specified ReliabilityRisk resource.
      *
-     * To prevent failure, Google recommends that you set the
-     * `returnPartialSuccess` parameter to `true`.
+     * The async variant is {@see ReliabilityRisksClient::getAsync()} .
      *
-     * The async variant is {@see GlobalOperationsClient::aggregatedListAsync()} .
+     * @example samples/V1/ReliabilityRisksClient/get.php
      *
-     * @example samples/V1/GlobalOperationsClient/aggregated_list.php
-     *
-     * @param AggregatedListGlobalOperationsRequest $request     A request to house fields associated with the call.
-     * @param array                                 $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return PagedListResponse
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function aggregatedList(
-        AggregatedListGlobalOperationsRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
-        return $this->startApiCall('AggregatedList', $request, $callOptions);
-    }
-
-    /**
-     * Deletes the specified Operations resource.
-     *
-     * The async variant is {@see GlobalOperationsClient::deleteAsync()} .
-     *
-     * @example samples/V1/GlobalOperationsClient/delete.php
-     *
-     * @param DeleteGlobalOperationRequest $request     A request to house fields associated with the call.
-     * @param array                        $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return DeleteGlobalOperationResponse
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function delete(
-        DeleteGlobalOperationRequest $request,
-        array $callOptions = []
-    ): DeleteGlobalOperationResponse {
-        return $this->startApiCall('Delete', $request, $callOptions)->wait();
-    }
-
-    /**
-     * Retrieves the specified Operations resource.
-     *
-     * The async variant is {@see GlobalOperationsClient::getAsync()} .
-     *
-     * @example samples/V1/GlobalOperationsClient/get.php
-     *
-     * @param GetGlobalOperationRequest $request     A request to house fields associated with the call.
+     * @param GetReliabilityRiskRequest $request     A request to house fields associated with the call.
      * @param array                     $callOptions {
      *     Optional.
      *
@@ -277,24 +212,23 @@ final class GlobalOperationsClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return Operation
+     * @return ReliabilityRisk
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function get(GetGlobalOperationRequest $request, array $callOptions = []): Operation
+    public function get(GetReliabilityRiskRequest $request, array $callOptions = []): ReliabilityRisk
     {
         return $this->startApiCall('Get', $request, $callOptions)->wait();
     }
 
     /**
-     * Retrieves a list of Operation resources contained within the specified
-     * project.
+     * Retrieves the list of reliabilityRisks available in the specified project.
      *
-     * The async variant is {@see GlobalOperationsClient::listAsync()} .
+     * The async variant is {@see ReliabilityRisksClient::listAsync()} .
      *
-     * @example samples/V1/GlobalOperationsClient/list.php
+     * @example samples/V1/ReliabilityRisksClient/list.php
      *
-     * @param ListGlobalOperationsRequest $request     A request to house fields associated with the call.
+     * @param ListReliabilityRisksRequest $request     A request to house fields associated with the call.
      * @param array                       $callOptions {
      *     Optional.
      *
@@ -308,49 +242,8 @@ final class GlobalOperationsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function list(ListGlobalOperationsRequest $request, array $callOptions = []): PagedListResponse
+    public function list(ListReliabilityRisksRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('List', $request, $callOptions);
-    }
-
-    /**
-     * Waits for the specified Operation resource to return as `DONE`
-     * or for the request to approach the 2 minute deadline, and retrieves the
-     * specified Operation resource. This method differs from the
-     * `GET` method in that it waits for no more than the default
-     * deadline (2 minutes) and then returns the current state of the operation,
-     * which might be `DONE` or still in progress.
-     *
-     * This method is called on a best-effort basis. Specifically:
-     *
-     *
-     * - In uncommon cases, when the server is overloaded, the request might
-     * return before the default deadline is reached, or might return after zero
-     * seconds.
-     * - If the default deadline is reached, there is no guarantee that the
-     * operation is actually done when the method returns. Be prepared to retry
-     * if the operation is not `DONE`.
-     *
-     * The async variant is {@see GlobalOperationsClient::waitAsync()} .
-     *
-     * @example samples/V1/GlobalOperationsClient/wait.php
-     *
-     * @param WaitGlobalOperationRequest $request     A request to house fields associated with the call.
-     * @param array                      $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return Operation
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function wait(WaitGlobalOperationRequest $request, array $callOptions = []): Operation
-    {
-        return $this->startApiCall('Wait', $request, $callOptions)->wait();
     }
 }
