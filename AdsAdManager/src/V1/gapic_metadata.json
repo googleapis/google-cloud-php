@@ -8,7 +8,7 @@
         "AdBreakService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "AdBreakServiceGapicClient",
+                    "libraryClient": "AdBreakServiceClient",
                     "rpcs": {
                         "CreateAdBreak": {
                             "methods": [
@@ -42,7 +42,7 @@
         "AdReviewCenterAdService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "AdReviewCenterAdServiceGapicClient",
+                    "libraryClient": "AdReviewCenterAdServiceClient",
                     "rpcs": {
                         "BatchAllowAdReviewCenterAds": {
                             "methods": [
@@ -66,7 +66,7 @@
         "AdRuleService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "AdRuleServiceGapicClient",
+                    "libraryClient": "AdRuleServiceClient",
                     "rpcs": {
                         "BatchActivateAdRules": {
                             "methods": [
@@ -120,7 +120,7 @@
         "AdSpotService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "AdSpotServiceGapicClient",
+                    "libraryClient": "AdSpotServiceClient",
                     "rpcs": {
                         "BatchCreateAdSpots": {
                             "methods": [
@@ -159,7 +159,7 @@
         "AdUnitService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "AdUnitServiceGapicClient",
+                    "libraryClient": "AdUnitServiceClient",
                     "rpcs": {
                         "BatchActivateAdUnits": {
                             "methods": [
@@ -218,7 +218,7 @@
         "ApplicationService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ApplicationServiceGapicClient",
+                    "libraryClient": "ApplicationServiceClient",
                     "rpcs": {
                         "BatchArchiveApplications": {
                             "methods": [
@@ -267,7 +267,7 @@
         "AudienceSegmentService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "AudienceSegmentServiceGapicClient",
+                    "libraryClient": "AudienceSegmentServiceClient",
                     "rpcs": {
                         "GetAudienceSegment": {
                             "methods": [
@@ -286,7 +286,7 @@
         "BandwidthGroupService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "BandwidthGroupServiceGapicClient",
+                    "libraryClient": "BandwidthGroupServiceClient",
                     "rpcs": {
                         "GetBandwidthGroup": {
                             "methods": [
@@ -305,7 +305,7 @@
         "BrowserLanguageService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "BrowserLanguageServiceGapicClient",
+                    "libraryClient": "BrowserLanguageServiceClient",
                     "rpcs": {
                         "GetBrowserLanguage": {
                             "methods": [
@@ -324,7 +324,7 @@
         "BrowserService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "BrowserServiceGapicClient",
+                    "libraryClient": "BrowserServiceClient",
                     "rpcs": {
                         "GetBrowser": {
                             "methods": [
@@ -343,7 +343,7 @@
         "CdnConfigService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "CdnConfigServiceGapicClient",
+                    "libraryClient": "CdnConfigServiceClient",
                     "rpcs": {
                         "BatchActivateCdnConfigs": {
                             "methods": [
@@ -392,7 +392,7 @@
         "CmsMetadataKeyService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "CmsMetadataKeyServiceGapicClient",
+                    "libraryClient": "CmsMetadataKeyServiceClient",
                     "rpcs": {
                         "BatchActivateCmsMetadataKeys": {
                             "methods": [
@@ -421,7 +421,7 @@
         "CmsMetadataValueService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "CmsMetadataValueServiceGapicClient",
+                    "libraryClient": "CmsMetadataValueServiceClient",
                     "rpcs": {
                         "BatchActivateCmsMetadataValues": {
                             "methods": [
@@ -450,7 +450,7 @@
         "CompanyService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "CompanyServiceGapicClient",
+                    "libraryClient": "CompanyServiceClient",
                     "rpcs": {
                         "GetCompany": {
                             "methods": [
@@ -469,7 +469,7 @@
         "ContactService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ContactServiceGapicClient",
+                    "libraryClient": "ContactServiceClient",
                     "rpcs": {
                         "BatchCreateContacts": {
                             "methods": [
@@ -508,7 +508,7 @@
         "ContentBundleService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ContentBundleServiceGapicClient",
+                    "libraryClient": "ContentBundleServiceClient",
                     "rpcs": {
                         "BatchActivateContentBundles": {
                             "methods": [
@@ -537,7 +537,7 @@
         "ContentLabelService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ContentLabelServiceGapicClient",
+                    "libraryClient": "ContentLabelServiceClient",
                     "rpcs": {
                         "GetContentLabel": {
                             "methods": [
@@ -556,7 +556,7 @@
         "ContentService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ContentServiceGapicClient",
+                    "libraryClient": "ContentServiceClient",
                     "rpcs": {
                         "GetContent": {
                             "methods": [
@@ -575,7 +575,7 @@
         "CreativeSetService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "CreativeSetServiceGapicClient",
+                    "libraryClient": "CreativeSetServiceClient",
                     "rpcs": {
                         "CreateCreativeSet": {
                             "methods": [
@@ -604,7 +604,7 @@
         "CreativeTemplateService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "CreativeTemplateServiceGapicClient",
+                    "libraryClient": "CreativeTemplateServiceClient",
                     "rpcs": {
                         "GetCreativeTemplate": {
                             "methods": [
@@ -623,7 +623,7 @@
         "CustomFieldService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "CustomFieldServiceGapicClient",
+                    "libraryClient": "CustomFieldServiceClient",
                     "rpcs": {
                         "BatchActivateCustomFields": {
                             "methods": [
@@ -672,7 +672,7 @@
         "CustomTargetingKeyService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "CustomTargetingKeyServiceGapicClient",
+                    "libraryClient": "CustomTargetingKeyServiceClient",
                     "rpcs": {
                         "BatchActivateCustomTargetingKeys": {
                             "methods": [
@@ -721,7 +721,7 @@
         "CustomTargetingValueService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "CustomTargetingValueServiceGapicClient",
+                    "libraryClient": "CustomTargetingValueServiceClient",
                     "rpcs": {
                         "BatchActivateCustomTargetingValues": {
                             "methods": [
@@ -770,7 +770,7 @@
         "DeviceCapabilityService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "DeviceCapabilityServiceGapicClient",
+                    "libraryClient": "DeviceCapabilityServiceClient",
                     "rpcs": {
                         "GetDeviceCapability": {
                             "methods": [
@@ -789,7 +789,7 @@
         "DeviceCategoryService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "DeviceCategoryServiceGapicClient",
+                    "libraryClient": "DeviceCategoryServiceClient",
                     "rpcs": {
                         "GetDeviceCategory": {
                             "methods": [
@@ -808,7 +808,7 @@
         "DeviceManufacturerService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "DeviceManufacturerServiceGapicClient",
+                    "libraryClient": "DeviceManufacturerServiceClient",
                     "rpcs": {
                         "GetDeviceManufacturer": {
                             "methods": [
@@ -827,7 +827,7 @@
         "EntitySignalsMappingService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "EntitySignalsMappingServiceGapicClient",
+                    "libraryClient": "EntitySignalsMappingServiceClient",
                     "rpcs": {
                         "BatchCreateEntitySignalsMappings": {
                             "methods": [
@@ -866,7 +866,7 @@
         "GeoTargetService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "GeoTargetServiceGapicClient",
+                    "libraryClient": "GeoTargetServiceClient",
                     "rpcs": {
                         "GetGeoTarget": {
                             "methods": [
@@ -885,7 +885,7 @@
         "LabelService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "LabelServiceGapicClient",
+                    "libraryClient": "LabelServiceClient",
                     "rpcs": {
                         "BatchActivateLabels": {
                             "methods": [
@@ -934,7 +934,7 @@
         "LineItemService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "LineItemServiceGapicClient",
+                    "libraryClient": "LineItemServiceClient",
                     "rpcs": {
                         "GetLineItem": {
                             "methods": [
@@ -953,7 +953,7 @@
         "LinkedDeviceService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "LinkedDeviceServiceGapicClient",
+                    "libraryClient": "LinkedDeviceServiceClient",
                     "rpcs": {
                         "GetLinkedDevice": {
                             "methods": [
@@ -972,7 +972,7 @@
         "LiveStreamService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "LiveStreamServiceGapicClient",
+                    "libraryClient": "LiveStreamServiceClient",
                     "rpcs": {
                         "BatchActivateLiveStreams": {
                             "methods": [
@@ -1036,7 +1036,7 @@
         "McmEarningsService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "McmEarningsServiceGapicClient",
+                    "libraryClient": "McmEarningsServiceClient",
                     "rpcs": {
                         "FetchMcmEarnings": {
                             "methods": [
@@ -1050,7 +1050,7 @@
         "MobileCarrierService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "MobileCarrierServiceGapicClient",
+                    "libraryClient": "MobileCarrierServiceClient",
                     "rpcs": {
                         "GetMobileCarrier": {
                             "methods": [
@@ -1069,7 +1069,7 @@
         "MobileDeviceService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "MobileDeviceServiceGapicClient",
+                    "libraryClient": "MobileDeviceServiceClient",
                     "rpcs": {
                         "GetMobileDevice": {
                             "methods": [
@@ -1088,7 +1088,7 @@
         "MobileDeviceSubmodelService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "MobileDeviceSubmodelServiceGapicClient",
+                    "libraryClient": "MobileDeviceSubmodelServiceClient",
                     "rpcs": {
                         "GetMobileDeviceSubmodel": {
                             "methods": [
@@ -1107,7 +1107,7 @@
         "NetworkService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "NetworkServiceGapicClient",
+                    "libraryClient": "NetworkServiceClient",
                     "rpcs": {
                         "GetNetwork": {
                             "methods": [
@@ -1126,7 +1126,7 @@
         "OperatingSystemService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "OperatingSystemServiceGapicClient",
+                    "libraryClient": "OperatingSystemServiceClient",
                     "rpcs": {
                         "GetOperatingSystem": {
                             "methods": [
@@ -1145,7 +1145,7 @@
         "OperatingSystemVersionService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "OperatingSystemVersionServiceGapicClient",
+                    "libraryClient": "OperatingSystemVersionServiceClient",
                     "rpcs": {
                         "GetOperatingSystemVersion": {
                             "methods": [
@@ -1164,7 +1164,7 @@
         "OrderService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "OrderServiceGapicClient",
+                    "libraryClient": "OrderServiceClient",
                     "rpcs": {
                         "BatchApproveAndOverbookOrders": {
                             "methods": [
@@ -1273,7 +1273,7 @@
         "PlacementService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "PlacementServiceGapicClient",
+                    "libraryClient": "PlacementServiceClient",
                     "rpcs": {
                         "BatchActivatePlacements": {
                             "methods": [
@@ -1327,7 +1327,7 @@
         "PrivateAuctionDealService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "PrivateAuctionDealServiceGapicClient",
+                    "libraryClient": "PrivateAuctionDealServiceClient",
                     "rpcs": {
                         "CreatePrivateAuctionDeal": {
                             "methods": [
@@ -1356,7 +1356,7 @@
         "PrivateAuctionService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "PrivateAuctionServiceGapicClient",
+                    "libraryClient": "PrivateAuctionServiceClient",
                     "rpcs": {
                         "CreatePrivateAuction": {
                             "methods": [
@@ -1385,7 +1385,7 @@
         "ProgrammaticBuyerService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ProgrammaticBuyerServiceGapicClient",
+                    "libraryClient": "ProgrammaticBuyerServiceClient",
                     "rpcs": {
                         "GetProgrammaticBuyer": {
                             "methods": [
@@ -1404,7 +1404,7 @@
         "ReportService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ReportServiceGapicClient",
+                    "libraryClient": "ReportServiceClient",
                     "rpcs": {
                         "CreateReport": {
                             "methods": [
@@ -1443,7 +1443,7 @@
         "RichMediaAdsCompanyService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "RichMediaAdsCompanyServiceGapicClient",
+                    "libraryClient": "RichMediaAdsCompanyServiceClient",
                     "rpcs": {
                         "GetRichMediaAdsCompany": {
                             "methods": [
@@ -1462,7 +1462,7 @@
         "RoleService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "RoleServiceGapicClient",
+                    "libraryClient": "RoleServiceClient",
                     "rpcs": {
                         "GetRole": {
                             "methods": [
@@ -1481,7 +1481,7 @@
         "SiteService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "SiteServiceGapicClient",
+                    "libraryClient": "SiteServiceClient",
                     "rpcs": {
                         "BatchCreateSites": {
                             "methods": [
@@ -1530,7 +1530,7 @@
         "SlateService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "SlateServiceGapicClient",
+                    "libraryClient": "SlateServiceClient",
                     "rpcs": {
                         "BatchArchiveSlates": {
                             "methods": [
@@ -1579,7 +1579,7 @@
         "SuggestedAdUnitService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "SuggestedAdUnitServiceGapicClient",
+                    "libraryClient": "SuggestedAdUnitServiceClient",
                     "rpcs": {
                         "BatchApproveSuggestedAdUnits": {
                             "methods": [
@@ -1603,7 +1603,7 @@
         "TargetingPresetService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "TargetingPresetServiceGapicClient",
+                    "libraryClient": "TargetingPresetServiceClient",
                     "rpcs": {
                         "BatchCreateTargetingPresets": {
                             "methods": [
@@ -1647,7 +1647,7 @@
         "TaxonomyCategoryService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "TaxonomyCategoryServiceGapicClient",
+                    "libraryClient": "TaxonomyCategoryServiceClient",
                     "rpcs": {
                         "GetTaxonomyCategory": {
                             "methods": [
@@ -1666,7 +1666,7 @@
         "TeamService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "TeamServiceGapicClient",
+                    "libraryClient": "TeamServiceClient",
                     "rpcs": {
                         "BatchActivateTeams": {
                             "methods": [
@@ -1715,7 +1715,7 @@
         "ThirdPartyCompanyService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ThirdPartyCompanyServiceGapicClient",
+                    "libraryClient": "ThirdPartyCompanyServiceClient",
                     "rpcs": {
                         "GetThirdPartyCompany": {
                             "methods": [
@@ -1734,7 +1734,7 @@
         "UserService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "UserServiceGapicClient",
+                    "libraryClient": "UserServiceClient",
                     "rpcs": {
                         "GetUser": {
                             "methods": [
