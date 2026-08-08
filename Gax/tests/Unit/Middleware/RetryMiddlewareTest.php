@@ -135,8 +135,8 @@ class RetryMiddlewareTest extends TestCase
             ->with([
                 'retriesEnabled' => true,
                 'retryableCodes' => [ApiStatus::CANCELLED],
-                'initialRpcTimeoutMillis' => 500,
-                'totalTimeoutMillis' => 1000,
+                'initialRpcTimeoutMillis' => 50,
+                'totalTimeoutMillis' => 100,
             ]);
         $handler = function (Call $call, $options) {
             return new Promise(function () use ($options) {
@@ -225,9 +225,9 @@ class RetryMiddlewareTest extends TestCase
             $callCount += 1;
             $observedTimeouts[] = $options['timeoutMillis'];
             return $promise = new Promise(function () use (&$promise, $callCount) {
-                // each call needs to take at least 1 millisecond otherwise the rounded timeout will
-                // not decrease with each step of the test.
-                usleep(1000);
+                // each call needs to take enough time (> 15ms) so that the rounded timeout will
+                // decrease with each step of the test even on systems with lower timer resolution.
+                usleep(20000);
                 if ($callCount < 3) {
                     throw new ApiException('Cancelled!', Code::CANCELLED, ApiStatus::CANCELLED);
                 }
@@ -340,7 +340,7 @@ class RetryMiddlewareTest extends TestCase
                 'retriesEnabled' => true,
                 'totalTimeoutMillis' => 100,
                 'retryFunction' => function ($ex, $options) {
-                    usleep(50001);
+                    usleep(70000);
                     return true;
                 }
             ]);
@@ -359,7 +359,7 @@ class RetryMiddlewareTest extends TestCase
             $this->fail('Expected an exception, but didn\'t receive any');
         } catch (ApiException $e) {
             $this->assertEquals('Retry total timeout exceeded.', $e->getMessage());
-            // we used a total timeout of 100ms and every retry sleeps for 50ms
+            // we used a total timeout of 100ms and every retry sleeps for 70ms
             // This means that the call count should be 2 (original call and 1 retry)
             $this->assertEquals(2, $callCount);
         }
