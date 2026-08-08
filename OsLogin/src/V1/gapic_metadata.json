@@ -8,7 +8,7 @@
         "OsLoginService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "OsLoginServiceGapicClient",
+                    "libraryClient": "OsLoginServiceClient",
                     "rpcs": {
                         "CreateSshPublicKey": {
                             "methods": [
