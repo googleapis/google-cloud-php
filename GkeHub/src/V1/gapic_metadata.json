@@ -8,7 +8,7 @@
         "GkeHub": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "GkeHubGapicClient",
+                    "libraryClient": "GkeHubClient",
                     "rpcs": {
                         "CreateFeature": {
                             "methods": [
