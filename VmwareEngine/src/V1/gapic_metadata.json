@@ -8,7 +8,7 @@
         "VmwareEngine": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "VmwareEngineGapicClient",
+                    "libraryClient": "VmwareEngineClient",
                     "rpcs": {
                         "CreateCluster": {
                             "methods": [
