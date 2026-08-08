@@ -8,14 +8,14 @@
         "SqlAvailableDatabaseVersionsService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "SqlAvailableDatabaseVersionsServiceGapicClient"
+                    "libraryClient": "SqlAvailableDatabaseVersionsServiceClient"
                 }
             }
         },
         "SqlBackupRunsService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "SqlBackupRunsServiceGapicClient",
+                    "libraryClient": "SqlBackupRunsServiceClient",
                     "rpcs": {
                         "Delete": {
                             "methods": [
@@ -44,7 +44,7 @@
         "SqlInstancesService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "SqlInstancesServiceGapicClient",
+                    "libraryClient": "SqlInstancesServiceClient",
                     "rpcs": {
                         "AcquireSsrsLease": {
                             "methods": [
@@ -268,7 +268,7 @@
         "SqlBackupsService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "SqlBackupsServiceGapicClient",
+                    "libraryClient": "SqlBackupsServiceClient",
                     "rpcs": {
                         "CreateBackup": {
                             "methods": [
@@ -302,7 +302,7 @@
         "SqlConnectService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "SqlConnectServiceGapicClient",
+                    "libraryClient": "SqlConnectServiceClient",
                     "rpcs": {
                         "GenerateEphemeralCert": {
                             "methods": [
@@ -326,7 +326,7 @@
         "SqlDatabasesService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "SqlDatabasesServiceGapicClient",
+                    "libraryClient": "SqlDatabasesServiceClient",
                     "rpcs": {
                         "Delete": {
                             "methods": [
@@ -365,21 +365,21 @@
         "SqlEventsService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "SqlEventsServiceGapicClient"
+                    "libraryClient": "SqlEventsServiceClient"
                 }
             }
         },
         "SqlFeatureEligibilityService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "SqlFeatureEligibilityServiceGapicClient"
+                    "libraryClient": "SqlFeatureEligibilityServiceClient"
                 }
             }
         },
         "SqlFlagsService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "SqlFlagsServiceGapicClient",
+                    "libraryClient": "SqlFlagsServiceClient",
                     "rpcs": {
                         "List": {
                             "methods": [
@@ -393,21 +393,21 @@
         "SqlIamPoliciesService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "SqlIamPoliciesServiceGapicClient"
+                    "libraryClient": "SqlIamPoliciesServiceClient"
                 }
             }
         },
         "SqlInstanceNamesService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "SqlInstanceNamesServiceGapicClient"
+                    "libraryClient": "SqlInstanceNamesServiceClient"
                 }
             }
         },
         "SqlOperationsService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "SqlOperationsServiceGapicClient",
+                    "libraryClient": "SqlOperationsServiceClient",
                     "rpcs": {
                         "Cancel": {
                             "methods": [
@@ -431,14 +431,14 @@
         "SqlRegionsService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "SqlRegionsServiceGapicClient"
+                    "libraryClient": "SqlRegionsServiceClient"
                 }
             }
         },
         "SqlSslCertsService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "SqlSslCertsServiceGapicClient",
+                    "libraryClient": "SqlSslCertsServiceClient",
                     "rpcs": {
                         "Delete": {
                             "methods": [
@@ -467,7 +467,7 @@
         "SqlTiersService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "SqlTiersServiceGapicClient",
+                    "libraryClient": "SqlTiersServiceClient",
                     "rpcs": {
                         "List": {
                             "methods": [
@@ -481,7 +481,7 @@
         "SqlUsersService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "SqlUsersServiceGapicClient",
+                    "libraryClient": "SqlUsersServiceClient",
                     "rpcs": {
                         "Delete": {
                             "methods": [
