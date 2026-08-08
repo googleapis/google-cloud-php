@@ -8,7 +8,7 @@
         "BatchService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "BatchServiceGapicClient",
+                    "libraryClient": "BatchServiceClient",
                     "rpcs": {
                         "CancelJob": {
                             "methods": [
