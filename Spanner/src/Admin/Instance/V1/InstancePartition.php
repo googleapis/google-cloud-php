@@ -543,7 +543,7 @@ class InstancePartition extends \Google\Protobuf\Internal\Message
      */
     public function getReferencingBackups()
     {
-        if ($this->referencing_backups->count() !== 0) {
+        if (count($this->referencing_backups) !== 0) {
             @trigger_error('referencing_backups is deprecated.', E_USER_DEPRECATED);
         }
         return $this->referencing_backups;
@@ -564,7 +564,7 @@ class InstancePartition extends \Google\Protobuf\Internal\Message
     public function setReferencingBackups($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
-        if ($arr->count() !== 0) {
+        if (count($arr) !== 0) {
             @trigger_error('referencing_backups is deprecated.', E_USER_DEPRECATED);
         }
         $this->referencing_backups = $arr;
