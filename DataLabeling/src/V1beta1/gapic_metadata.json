@@ -8,7 +8,7 @@
         "DataLabelingService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "DataLabelingServiceGapicClient",
+                    "libraryClient": "DataLabelingServiceClient",
                     "rpcs": {
                         "CreateAnnotationSpecSet": {
                             "methods": [
