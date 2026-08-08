@@ -8,7 +8,7 @@
         "ClientGatewaysService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ClientGatewaysServiceGapicClient",
+                    "libraryClient": "ClientGatewaysServiceClient",
                     "rpcs": {
                         "CreateClientGateway": {
                             "methods": [
