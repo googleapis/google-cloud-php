@@ -188,7 +188,11 @@ final class ChatServiceClient
     /** The name of the code generator, to be included in the agent header. */
     private const CODEGEN_NAME = 'gapic';
 
-    /** The default scopes required by the service. */
+    /**
+     * The default scopes required by the service.
+     *
+     * @internal
+     */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/chat.admin.delete',
         'https://www.googleapis.com/auth/chat.admin.memberships',
@@ -2452,17 +2456,28 @@ final class ChatServiceClient
     }
 
     /**
-     * Returns a list of spaces in a Google Workspace organization based on an
-     * administrator's search. In the request, set `use_admin_access` to `true`.
-     * For an example, see [Search for and manage
+     * Returns a list of spaces in a Google Workspace organization. For an
+     * example, see [Search for and manage
      * spaces](https://developers.google.com/workspace/chat/search-manage-admin).
      *
-     * Requires [user
+     * When `use_admin_access` is set to `false`, the results are limited to
+     * spaces where the calling user is a joined member. To search with
+     * administrator privileges, set `use_admin_access` to `true`.
+     *
+     * Supports the following types of
+     * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize):
+     *
+     * - [User
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+     * with one of the following authorization scopes:
+     * - `https://www.googleapis.com/auth/chat.spaces.readonly`
+     * - `https://www.googleapis.com/auth/chat.spaces`
+     *
+     * - [User
      * authentication with administrator
      * privileges](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user#admin-privileges)
      * and one of the following [authorization
      * scopes](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes):
-     *
      * - `https://www.googleapis.com/auth/chat.admin.spaces.readonly`
      * - `https://www.googleapis.com/auth/chat.admin.spaces`
      *
