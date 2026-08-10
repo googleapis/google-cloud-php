@@ -8,7 +8,7 @@
         "ConversionSourcesService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ConversionSourcesServiceGapicClient",
+                    "libraryClient": "ConversionSourcesServiceClient",
                     "rpcs": {
                         "CreateConversionSource": {
                             "methods": [

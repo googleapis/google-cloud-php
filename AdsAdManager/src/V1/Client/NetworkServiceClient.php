@@ -78,7 +78,11 @@ final class NetworkServiceClient
     /** The name of the code generator, to be included in the agent header. */
     private const CODEGEN_NAME = 'gapic';
 
-    /** The default scopes required by the service. */
+    /**
+     * The default scopes required by the service.
+     *
+     * @internal
+     */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/admanager',
         'https://www.googleapis.com/auth/admanager.readonly',
@@ -237,7 +241,7 @@ final class NetworkServiceClient
     }
 
     /**
-     * API to retrieve a Network object.
+     * Retrieves a `Network` object.
      *
      * The async variant is {@see NetworkServiceClient::getNetworkAsync()} .
      *
@@ -263,7 +267,7 @@ final class NetworkServiceClient
     }
 
     /**
-     * API to retrieve all the networks the current user has access to.
+     * Retrieves all the networks the current user has access to.
      *
      * The async variant is {@see NetworkServiceClient::listNetworksAsync()} .
      *

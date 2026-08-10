@@ -8,7 +8,7 @@
         "MerchantReviewsService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "MerchantReviewsServiceGapicClient",
+                    "libraryClient": "MerchantReviewsServiceClient",
                     "rpcs": {
                         "DeleteMerchantReview": {
                             "methods": [
@@ -37,7 +37,7 @@
         "ProductReviewsService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ProductReviewsServiceGapicClient",
+                    "libraryClient": "ProductReviewsServiceClient",
                     "rpcs": {
                         "DeleteProductReview": {
                             "methods": [

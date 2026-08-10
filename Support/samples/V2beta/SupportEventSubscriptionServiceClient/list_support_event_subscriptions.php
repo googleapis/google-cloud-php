@@ -30,7 +30,7 @@ use Google\Cloud\Support\V2beta\ListSupportEventSubscriptionsRequest;
 use Google\Cloud\Support\V2beta\SupportEventSubscription;
 
 /**
- * Lists support event subscriptions.
+ * Lists support event subscriptions for an organization.
  *
  * @param string $formattedParent The fully qualified name of the Cloud resource to list support
  *                                event subscriptions under. Format: organizations/{organization_id}

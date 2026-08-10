@@ -78,7 +78,11 @@ final class RoleServiceClient
     /** The name of the code generator, to be included in the agent header. */
     private const CODEGEN_NAME = 'gapic';
 
-    /** The default scopes required by the service. */
+    /**
+     * The default scopes required by the service.
+     *
+     * @internal
+     */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/admanager',
         'https://www.googleapis.com/auth/admanager.readonly',
@@ -255,7 +259,7 @@ final class RoleServiceClient
     }
 
     /**
-     * API to retrieve a `Role` object.
+     * Retrieves a `Role` object.
      *
      * The async variant is {@see RoleServiceClient::getRoleAsync()} .
      *
@@ -281,7 +285,7 @@ final class RoleServiceClient
     }
 
     /**
-     * API to retrieve a list of `Role` objects.
+     * Lists `Role` objects.
      *
      * The async variant is {@see RoleServiceClient::listRolesAsync()} .
      *

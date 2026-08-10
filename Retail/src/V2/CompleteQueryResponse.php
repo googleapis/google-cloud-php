@@ -189,7 +189,7 @@ class CompleteQueryResponse extends \Google\Protobuf\Internal\Message
      */
     public function getRecentSearchResults()
     {
-        if ($this->recent_search_results->count() !== 0) {
+        if (count($this->recent_search_results) !== 0) {
             @trigger_error('recent_search_results is deprecated.', E_USER_DEPRECATED);
         }
         return $this->recent_search_results;

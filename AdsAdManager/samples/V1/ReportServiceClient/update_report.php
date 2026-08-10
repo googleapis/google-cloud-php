@@ -34,7 +34,7 @@ use Google\Ads\AdManager\V1\UpdateReportRequest;
 use Google\ApiCore\ApiException;
 
 /**
- * API to update a `Report` object.
+ * Updates a `Report` object.
  *
  * @param int $reportReportDefinitionDimensionsElement The list of dimensions to report on. If empty, the report will
  *                                                     have no dimensions, and any metrics will be totals.

@@ -7,27 +7,49 @@ namespace Grafeas\V1\CVSS;
 use UnexpectedValueException;
 
 /**
+ * User Interaction.
+ *
  * Protobuf type <code>grafeas.v1.CVSS.UserInteraction</code>
  */
 class UserInteraction
 {
     /**
+     * Unspecified.
+     *
      * Generated from protobuf enum <code>USER_INTERACTION_UNSPECIFIED = 0;</code>
      */
     const USER_INTERACTION_UNSPECIFIED = 0;
     /**
+     * No user interaction required (UI:N). Defined in CVSS v3, v4.
+     *
      * Generated from protobuf enum <code>USER_INTERACTION_NONE = 1;</code>
      */
     const USER_INTERACTION_NONE = 1;
     /**
+     * User interaction required (UI:R). Defined in CVSS v3.
+     *
      * Generated from protobuf enum <code>USER_INTERACTION_REQUIRED = 2;</code>
      */
     const USER_INTERACTION_REQUIRED = 2;
+    /**
+     * Passive user interaction required (UI:P). Defined in CVSS v4.
+     *
+     * Generated from protobuf enum <code>USER_INTERACTION_PASSIVE = 3;</code>
+     */
+    const USER_INTERACTION_PASSIVE = 3;
+    /**
+     * Active user interaction required (UI:A). Defined in CVSS v4.
+     *
+     * Generated from protobuf enum <code>USER_INTERACTION_ACTIVE = 4;</code>
+     */
+    const USER_INTERACTION_ACTIVE = 4;
 
     private static $valueToName = [
         self::USER_INTERACTION_UNSPECIFIED => 'USER_INTERACTION_UNSPECIFIED',
         self::USER_INTERACTION_NONE => 'USER_INTERACTION_NONE',
         self::USER_INTERACTION_REQUIRED => 'USER_INTERACTION_REQUIRED',
+        self::USER_INTERACTION_PASSIVE => 'USER_INTERACTION_PASSIVE',
+        self::USER_INTERACTION_ACTIVE => 'USER_INTERACTION_ACTIVE',
     ];
 
     public static function name($value)

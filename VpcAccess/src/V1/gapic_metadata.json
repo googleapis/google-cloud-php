@@ -8,7 +8,7 @@
         "VpcAccessService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "VpcAccessServiceGapicClient",
+                    "libraryClient": "VpcAccessServiceClient",
                     "rpcs": {
                         "CreateConnector": {
                             "methods": [

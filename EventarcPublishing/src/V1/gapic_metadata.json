@@ -8,7 +8,7 @@
         "Publisher": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "PublisherGapicClient",
+                    "libraryClient": "PublisherClient",
                     "rpcs": {
                         "Publish": {
                             "methods": [

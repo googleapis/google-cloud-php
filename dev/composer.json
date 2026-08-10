@@ -12,6 +12,7 @@
         "twig/twig": "^3.5",
         "phpstan/phpstan": "^2.0",
         "symfony/finder": "^6.2",
+        "phpdocumentor/reflection": "^6.3",
         "nikic/php-parser": "v5.8.0",
         "kcs/class-finder": "^0.6.1"
     },
@@ -26,7 +27,6 @@
         "phpunit/phpunit": "^9.0",
         "phpspec/prophecy-phpunit": "^2.0",
         "swaggest/json-schema": "^0.12.0",
-        "phpdocumentor/reflection": "^6.3",
         "erusev/parsedown": "^1.7",
         "dg/bypass-finals": "^1.7"
     },
@@ -41,7 +41,7 @@
             }
         },
         "gapic-generator": {
-            "type": "vcs",
+            "type": "git",
             "url": "https://github.com/googleapis/gapic-generator-php.git",
             "only": ["google/gapic-generator"],
             "options": {
