@@ -17,6 +17,8 @@
 
 namespace Google\Auth\Tests\Credentials;
 
+use Google\Auth\Tests\HelperTrait;
+
 use COM;
 use Exception;
 use Google\Auth\Credentials\GCECredentials;
@@ -40,7 +42,15 @@ use ReflectionClass;
  */
 class GCECredentialsTest extends BaseTest
 {
+    use HelperTrait;
+
     use ProphecyTrait;
+
+    protected function tearDown(): void
+    {
+        $this->skipResidencyCheck(false);
+        parent::tearDown();
+    }
 
     public function testOnGceMetadataFlavorHeader()
     {
@@ -76,8 +86,10 @@ class GCECredentialsTest extends BaseTest
 
     public function testOnGCEIsFalseOnClientErrorStatus()
     {
+        $this->skipResidencyCheck();
+
         // simulate retry attempts by returning multiple 400s
-        $httpHandler = getHandler([
+        $httpHandler = $this->getHandler([
             new Response(400),
             new Response(400),
             new Response(400)
@@ -87,8 +99,10 @@ class GCECredentialsTest extends BaseTest
 
     public function testOnGCEIsFalseOnServerErrorStatus()
     {
+        $this->skipResidencyCheck();
+
         // simulate retry attempts by returning multiple 500s
-        $httpHandler = getHandler([
+        $httpHandler = $this->getHandler([
             new Response(500),
             new Response(500),
             new Response(500)
@@ -98,8 +112,10 @@ class GCECredentialsTest extends BaseTest
 
     public function testOnGCEIsFalseOnNetworkError()
     {
+        $this->skipResidencyCheck();
+
         // simulate retry attempts by returning multiple network errors
-        $httpHandler = getHandler([
+        $httpHandler = $this->getHandler([
             new ConnectException('Connection refused', new Request('GET', 'test')),
             new ConnectException('Connection refused', new Request('GET', 'test')),
             new ConnectException('Connection refused', new Request('GET', 'test')),
@@ -198,7 +214,7 @@ class GCECredentialsTest extends BaseTest
 
     public function testOnGCEIsFalseOnOkStatusWithoutExpectedHeader()
     {
-        $httpHandler = getHandler([
+        $httpHandler = $this->getHandler([
             new Response(200),
         ]);
         $this->assertFalse(GCECredentials::onGCE($httpHandler));
@@ -206,7 +222,7 @@ class GCECredentialsTest extends BaseTest
 
     public function testOnGCEIsOkIfGoogleIsTheFlavor()
     {
-        $httpHandler = getHandler([
+        $httpHandler = $this->getHandler([
             new Response(200, [GCECredentials::FLAVOR_HEADER => 'Google']),
         ]);
         $this->assertTrue(GCECredentials::onGCE($httpHandler));
@@ -235,8 +251,10 @@ class GCECredentialsTest extends BaseTest
 
     public function testFetchAuthTokenShouldBeEmptyIfNotOnGCE()
     {
+        $this->skipResidencyCheck();
+
         // simulate retry attempts by returning multiple 500s
-        $httpHandler = getHandler([
+        $httpHandler = $this->getHandler([
             new Response(500),
             new Response(500),
             new Response(500)
@@ -251,7 +269,7 @@ class GCECredentialsTest extends BaseTest
         $this->expectExceptionMessage('Invalid JSON response');
 
         $notJson = '{"foo": , this is cannot be passed as json" "bar"}';
-        $httpHandler = getHandler([
+        $httpHandler = $this->getHandler([
             new Response(200, [GCECredentials::FLAVOR_HEADER => 'Google']),
             new Response(200, [], $notJson),
         ]);
@@ -267,7 +285,7 @@ class GCECredentialsTest extends BaseTest
             'token_type' => 'Bearer',
         ];
         $jsonTokens = json_encode($wantedTokens);
-        $httpHandler = getHandler([
+        $httpHandler = $this->getHandler([
             new Response(200, [GCECredentials::FLAVOR_HEADER => 'Google']),
             new Response(200, [], Utils::streamFor($jsonTokens)),
         ]);
@@ -361,7 +379,7 @@ class GCECredentialsTest extends BaseTest
     public function testGetLastReceivedTokenShouldWorkWithIdToken()
     {
         $idToken = '123asdfghjkl';
-        $httpHandler = getHandler([
+        $httpHandler = $this->getHandler([
             new Response(200, [GCECredentials::FLAVOR_HEADER => 'Google']),
             new Response(200, [], Utils::streamFor($idToken)),
         ]);
@@ -377,7 +395,7 @@ class GCECredentialsTest extends BaseTest
     {
         $expected = 'foobar';
 
-        $httpHandler = getHandler([
+        $httpHandler = $this->getHandler([
             new Response(200, [GCECredentials::FLAVOR_HEADER => 'Google']),
             new Response(200, [], Utils::streamFor($expected)),
             new Response(200, [], Utils::streamFor('notexpected'))
@@ -392,8 +410,10 @@ class GCECredentialsTest extends BaseTest
 
     public function testGetClientNameShouldBeEmptyIfNotOnGCE()
     {
+        $this->skipResidencyCheck();
+
         // simulate retry attempts by returning multiple 500s
-        $httpHandler = getHandler([
+        $httpHandler = $this->getHandler([
             new Response(500),
             new Response(500),
             new Response(500)
@@ -587,7 +607,7 @@ class GCECredentialsTest extends BaseTest
         $this->expectException(ClientException::class);
         $this->expectExceptionMessage('408 Request Time-out');
 
-        $httpHandler = getHandler([new Response(408)]);
+        $httpHandler = $this->getHandler([new Response(408)]);
         $creds = new GCECredentials();
         $creds->setIsOnGce(true);
         $creds->fetchAuthToken($httpHandler);
@@ -728,7 +748,7 @@ class GCECredentialsTest extends BaseTest
         $creds->setIsOnGce(true);
 
         // Pretend we are on GCE and mock the MDS returning a 404 for the universe domain.
-        $httpHandler = getHandler([
+        $httpHandler = $this->getHandler([
             new Response(404),
         ]);
 

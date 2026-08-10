@@ -17,6 +17,8 @@
 
 namespace Google\Auth\Tests\Credentials;
 
+use Google\Auth\Tests\HelperTrait;
+
 use Google\Auth\Credentials\ExternalAccountCredentials;
 use Google\Auth\CredentialSource\AwsNativeSource;
 use Google\Auth\CredentialSource\FileSource;
@@ -39,6 +41,8 @@ use Psr\Http\Message\StreamInterface;
  */
 class ExternalAccountCredentialsTest extends TestCase
 {
+    use HelperTrait;
+
     use ProphecyTrait;
     private $baseCreds = [
         'type' => 'external_account',
@@ -651,7 +655,7 @@ class ExternalAccountCredentialsTest extends TestCase
 
     public function testUpdateMetadataWithRegionalAccessBoundary()
     {
-        $httpHandler = getHandler([
+        $httpHandler = $this->getHandler([
             new Response(200, [], '{"access_token": "source-token", "expires_in": 3600}'),
             new Response(200, [], '{"locations": [], "encodedLocations": "foo"}'),
         ]);

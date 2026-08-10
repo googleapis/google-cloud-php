@@ -17,6 +17,8 @@
 
 namespace Google\Auth\Tests\Credentials;
 
+use Google\Auth\Tests\HelperTrait;
+
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 use Google\Auth\ApplicationDefaultCredentials;
@@ -31,6 +33,8 @@ use UnexpectedValueException;
 
 class ServiceAccountJwtAccessCredentialsTest extends TestCase
 {
+    use HelperTrait;
+
     private function createTestJson()
     {
         return [
@@ -127,7 +131,7 @@ class ServiceAccountJwtAccessCredentialsTest extends TestCase
         );
         $this->assertNotNull($sa);
 
-        $httpHandler = getHandler([
+        $httpHandler = $this->getHandler([
             new Response(200),
         ]);
         $result = $sa->fetchAuthToken($httpHandler); // authUri has not been set
@@ -555,7 +559,7 @@ class ServiceAccountJwtAccessCredentialsTest extends TestCase
 
     public function testUpdateMetadataWithRegionalAccessBoundary()
     {
-        $httpHandler = getHandler([
+        $httpHandler = $this->getHandler([
             new Response(200, [], '{"locations": [], "encodedLocations": "foo"}'),
         ]);
 

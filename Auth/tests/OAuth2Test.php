@@ -32,6 +32,8 @@ use UnexpectedValueException;
 
 class OAuth2Test extends TestCase
 {
+    use HelperTrait;
+
     private $minimal = [
         'authorizationUri' => 'https://accounts.test.org/insecure/url',
         'redirectUri' => 'https://accounts.test.org/redirect/url',
@@ -895,7 +897,7 @@ class OAuth2Test extends TestCase
         $this->expectException(\GuzzleHttp\Exception\ClientException::class);
 
         $testConfig = $this->fetchAuthTokenMinimal;
-        $httpHandler = getHandler([
+        $httpHandler = $this->getHandler([
             new Response(400),
         ]);
         $o = new OAuth2($testConfig);
@@ -910,7 +912,7 @@ class OAuth2Test extends TestCase
         $this->expectException(\GuzzleHttp\Exception\ServerException::class);
 
         $testConfig = $this->fetchAuthTokenMinimal;
-        $httpHandler = getHandler([
+        $httpHandler = $this->getHandler([
             new Response(500),
         ]);
         $o = new OAuth2($testConfig);
@@ -927,7 +929,7 @@ class OAuth2Test extends TestCase
 
         $testConfig = $this->fetchAuthTokenMinimal;
         $notJson = '{"foo": , this is cannot be passed as json" "bar"}';
-        $httpHandler = getHandler([
+        $httpHandler = $this->getHandler([
             new Response(200, [], Utils::streamFor($notJson)),
         ]);
         $o = new OAuth2($testConfig);
@@ -941,7 +943,7 @@ class OAuth2Test extends TestCase
     {
         $testConfig = $this->fetchAuthTokenMinimal;
         $json = '{"foo": "bar"}';
-        $httpHandler = getHandler([
+        $httpHandler = $this->getHandler([
             new Response(200, [], Utils::streamFor($json)),
         ]);
         $o = new OAuth2($testConfig);
@@ -956,7 +958,7 @@ class OAuth2Test extends TestCase
     {
         $testConfig = $this->fetchAuthTokenMinimal;
         $json = 'foo=bar&spice=nice';
-        $httpHandler = getHandler([
+        $httpHandler = $this->getHandler([
             new Response(
                 200,
                 ['Content-Type' => 'application/x-www-form-urlencoded'],
@@ -985,7 +987,7 @@ class OAuth2Test extends TestCase
             'scope' => 'scope1 scope2',
         ];
         $json = json_encode($wanted_updates);
-        $httpHandler = getHandler([
+        $httpHandler = $this->getHandler([
             new Response(200, [], Utils::streamFor($json)),
         ]);
         $o = new OAuth2($testConfig);
@@ -1020,7 +1022,7 @@ class OAuth2Test extends TestCase
             'id_token' => 'an_id_token',
         ];
         $json = json_encode($wanted_updates);
-        $httpHandler = getHandler([
+        $httpHandler = $this->getHandler([
             new Response(200, [], Utils::streamFor($json)),
         ]);
         $o = new OAuth2($testConfig);
