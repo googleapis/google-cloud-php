@@ -53,7 +53,7 @@ class ClarificationMessage extends \Google\Protobuf\Internal\Message
      */
     public function getQuestions()
     {
-        if ($this->questions->count() !== 0) {
+        if (count($this->questions) !== 0) {
             @trigger_error('questions is deprecated.', E_USER_DEPRECATED);
         }
         return $this->questions;
@@ -71,7 +71,7 @@ class ClarificationMessage extends \Google\Protobuf\Internal\Message
     public function setQuestions($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\GeminiDataAnalytics\V1beta\ClarificationQuestion::class);
-        if ($arr->count() !== 0) {
+        if (count($arr) !== 0) {
             @trigger_error('questions is deprecated.', E_USER_DEPRECATED);
         }
         $this->questions = $arr;

@@ -8,7 +8,7 @@
         "ApiKeys": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ApiKeysGapicClient",
+                    "libraryClient": "ApiKeysClient",
                     "rpcs": {
                         "CreateKey": {
                             "methods": [

@@ -590,7 +590,7 @@ class Transition extends \Google\Protobuf\Internal\Message
      */
     public function getLoads()
     {
-        if ($this->loads->count() !== 0) {
+        if (count($this->loads) !== 0) {
             @trigger_error('loads is deprecated.', E_USER_DEPRECATED);
         }
         return $this->loads;

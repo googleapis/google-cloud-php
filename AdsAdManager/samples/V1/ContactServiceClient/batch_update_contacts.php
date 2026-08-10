@@ -31,7 +31,7 @@ use Google\Ads\AdManager\V1\UpdateContactRequest;
 use Google\ApiCore\ApiException;
 
 /**
- * API to batch update `Contact` objects.
+ * Batch updates `Contact` objects.
  *
  * @param string $formattedParent                 The parent resource where `Contacts` will be updated.
  *                                                Format: `networks/{network_code}`

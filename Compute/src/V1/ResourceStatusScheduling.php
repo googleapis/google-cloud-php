@@ -22,6 +22,19 @@ class ResourceStatusScheduling extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional int32 availability_domain = 252514344;</code>
      */
     protected $availability_domain = null;
+    /**
+     * Output only. Specifies the timestamp, when the instance will start graceful shutdown
+     * process, in RFC3339 text format.
+     *
+     * Generated from protobuf field <code>optional string graceful_shutdown_timestamp = 403022375;</code>
+     */
+    protected $graceful_shutdown_timestamp = null;
+    /**
+     * Time in future when the instance will be terminated inRFC3339 text format.
+     *
+     * Generated from protobuf field <code>optional string termination_timestamp = 364180891;</code>
+     */
+    protected $termination_timestamp = null;
 
     /**
      * Constructor.
@@ -33,6 +46,11 @@ class ResourceStatusScheduling extends \Google\Protobuf\Internal\Message
      *           Specifies the availability domain to place the instance in. The value
      *           must be a number between 1 and the number of availability domains
      *           specified in the spread placement policy attached to the instance.
+     *     @type string $graceful_shutdown_timestamp
+     *           Output only. Specifies the timestamp, when the instance will start graceful shutdown
+     *           process, in RFC3339 text format.
+     *     @type string $termination_timestamp
+     *           Time in future when the instance will be terminated inRFC3339 text format.
      * }
      */
     public function __construct($data = NULL) {
@@ -76,6 +94,80 @@ class ResourceStatusScheduling extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->availability_domain = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Specifies the timestamp, when the instance will start graceful shutdown
+     * process, in RFC3339 text format.
+     *
+     * Generated from protobuf field <code>optional string graceful_shutdown_timestamp = 403022375;</code>
+     * @return string
+     */
+    public function getGracefulShutdownTimestamp()
+    {
+        return isset($this->graceful_shutdown_timestamp) ? $this->graceful_shutdown_timestamp : '';
+    }
+
+    public function hasGracefulShutdownTimestamp()
+    {
+        return isset($this->graceful_shutdown_timestamp);
+    }
+
+    public function clearGracefulShutdownTimestamp()
+    {
+        unset($this->graceful_shutdown_timestamp);
+    }
+
+    /**
+     * Output only. Specifies the timestamp, when the instance will start graceful shutdown
+     * process, in RFC3339 text format.
+     *
+     * Generated from protobuf field <code>optional string graceful_shutdown_timestamp = 403022375;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setGracefulShutdownTimestamp($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->graceful_shutdown_timestamp = $var;
+
+        return $this;
+    }
+
+    /**
+     * Time in future when the instance will be terminated inRFC3339 text format.
+     *
+     * Generated from protobuf field <code>optional string termination_timestamp = 364180891;</code>
+     * @return string
+     */
+    public function getTerminationTimestamp()
+    {
+        return isset($this->termination_timestamp) ? $this->termination_timestamp : '';
+    }
+
+    public function hasTerminationTimestamp()
+    {
+        return isset($this->termination_timestamp);
+    }
+
+    public function clearTerminationTimestamp()
+    {
+        unset($this->termination_timestamp);
+    }
+
+    /**
+     * Time in future when the instance will be terminated inRFC3339 text format.
+     *
+     * Generated from protobuf field <code>optional string termination_timestamp = 364180891;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setTerminationTimestamp($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->termination_timestamp = $var;
 
         return $this;
     }

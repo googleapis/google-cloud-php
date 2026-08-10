@@ -8,7 +8,7 @@
         "ParameterManager": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ParameterManagerGapicClient",
+                    "libraryClient": "ParameterManagerClient",
                     "rpcs": {
                         "CreateParameter": {
                             "methods": [

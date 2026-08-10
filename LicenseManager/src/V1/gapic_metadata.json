@@ -8,7 +8,7 @@
         "LicenseManager": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "LicenseManagerGapicClient",
+                    "libraryClient": "LicenseManagerClient",
                     "rpcs": {
                         "AggregateUsage": {
                             "methods": [

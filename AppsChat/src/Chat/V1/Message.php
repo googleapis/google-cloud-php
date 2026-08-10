@@ -783,7 +783,7 @@ class Message extends \Google\Protobuf\Internal\Message
      */
     public function getCards()
     {
-        if ($this->cards->count() !== 0) {
+        if (count($this->cards) !== 0) {
             @trigger_error('cards is deprecated.', E_USER_DEPRECATED);
         }
         return $this->cards;

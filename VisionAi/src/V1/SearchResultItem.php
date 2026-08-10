@@ -142,7 +142,7 @@ class SearchResultItem extends \Google\Protobuf\Internal\Message
      */
     public function getSegments()
     {
-        if ($this->segments->count() !== 0) {
+        if (count($this->segments) !== 0) {
             @trigger_error('segments is deprecated.', E_USER_DEPRECATED);
         }
         return $this->segments;
@@ -160,7 +160,7 @@ class SearchResultItem extends \Google\Protobuf\Internal\Message
     public function setSegments($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\VisionAI\V1\Partition\TemporalPartition::class);
-        if ($arr->count() !== 0) {
+        if (count($arr) !== 0) {
             @trigger_error('segments is deprecated.', E_USER_DEPRECATED);
         }
         $this->segments = $arr;

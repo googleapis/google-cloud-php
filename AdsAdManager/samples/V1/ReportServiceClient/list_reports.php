@@ -29,7 +29,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 
 /**
- * API to retrieve a list of `Report` objects.
+ * Lists `Report` objects.
  *
  * @param string $formattedParent The parent, which owns this collection of reports.
  *                                Format: `networks/{network_code}`

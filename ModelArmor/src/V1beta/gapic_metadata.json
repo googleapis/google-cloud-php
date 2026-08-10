@@ -8,7 +8,7 @@
         "ModelArmor": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ModelArmorGapicClient",
+                    "libraryClient": "ModelArmorClient",
                     "rpcs": {
                         "CreateTemplate": {
                             "methods": [

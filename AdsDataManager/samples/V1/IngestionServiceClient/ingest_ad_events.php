@@ -26,6 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\Ads\DataManager\V1\AdEvent;
 use Google\Ads\DataManager\V1\AdEvent\EventType;
 use Google\Ads\DataManager\V1\Client\IngestionServiceClient;
+use Google\Ads\DataManager\V1\DeviceInfo;
+use Google\Ads\DataManager\V1\EncryptionInfo;
 use Google\Ads\DataManager\V1\IngestAdEventsRequest;
 use Google\Ads\DataManager\V1\IngestAdEventsResponse;
 use Google\Ads\DataManager\V1\ViewType;
@@ -46,7 +48,6 @@ use Google\Protobuf\Timestamp;
  * @param int    $adEventsEventType               The type of the event.
  * @param string $adEventsCampaignId              The ID of the associated campaign.
  * @param string $adEventsCampaignName            The name of the associated campaign.
- * @param string $adEventsRegionCode              The ISO 3166-2 country plus subdivision.
  * @param string $adEventsSource                  The platform source of the ad, akin to the Google Analytics
  *                                                source.
  * @param string $adEventsMedium                  The medium of the ad, akin to the Google Analytics medium.
@@ -57,7 +58,6 @@ function ingest_ad_events_sample(
     int $adEventsEventType,
     string $adEventsCampaignId,
     string $adEventsCampaignName,
-    string $adEventsRegionCode,
     string $adEventsSource,
     string $adEventsMedium,
     int $adEventsViewabilityInfoViewType
@@ -67,21 +67,24 @@ function ingest_ad_events_sample(
 
     // Prepare the request message.
     $adEventsTimestamp = new Timestamp();
+    $adEventsDeviceInfo = new DeviceInfo();
     $adEventsViewabilityInfo = (new ViewabilityInfo())
         ->setViewType($adEventsViewabilityInfoViewType);
     $adEvent = (new AdEvent())
         ->setAdvertiserId($adEventsAdvertiserId)
         ->setEventType($adEventsEventType)
         ->setTimestamp($adEventsTimestamp)
+        ->setDeviceInfo($adEventsDeviceInfo)
         ->setCampaignId($adEventsCampaignId)
         ->setCampaignName($adEventsCampaignName)
-        ->setRegionCode($adEventsRegionCode)
         ->setSource($adEventsSource)
         ->setMedium($adEventsMedium)
         ->setViewabilityInfo($adEventsViewabilityInfo);
     $adEvents = [$adEvent,];
+    $encryptionInfo = new EncryptionInfo();
     $request = (new IngestAdEventsRequest())
-        ->setAdEvents($adEvents);
+        ->setAdEvents($adEvents)
+        ->setEncryptionInfo($encryptionInfo);
 
     // Call the API and handle any network failures.
     try {
@@ -108,7 +111,6 @@ function callSample(): void
     $adEventsEventType = EventType::EVENT_TYPE_UNSPECIFIED;
     $adEventsCampaignId = '[CAMPAIGN_ID]';
     $adEventsCampaignName = '[CAMPAIGN_NAME]';
-    $adEventsRegionCode = '[REGION_CODE]';
     $adEventsSource = '[SOURCE]';
     $adEventsMedium = '[MEDIUM]';
     $adEventsViewabilityInfoViewType = ViewType::VIEW_TYPE_UNSPECIFIED;
@@ -118,7 +120,6 @@ function callSample(): void
         $adEventsEventType,
         $adEventsCampaignId,
         $adEventsCampaignName,
-        $adEventsRegionCode,
         $adEventsSource,
         $adEventsMedium,
         $adEventsViewabilityInfoViewType

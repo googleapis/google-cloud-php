@@ -8,7 +8,7 @@
         "DataFusion": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "DataFusionGapicClient",
+                    "libraryClient": "DataFusionClient",
                     "rpcs": {
                         "CreateInstance": {
                             "methods": [
