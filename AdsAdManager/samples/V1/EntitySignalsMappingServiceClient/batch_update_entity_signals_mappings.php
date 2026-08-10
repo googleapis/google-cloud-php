@@ -31,7 +31,7 @@ use Google\Ads\AdManager\V1\UpdateEntitySignalsMappingRequest;
 use Google\ApiCore\ApiException;
 
 /**
- * API to batch update `EntitySignalsMapping` objects.
+ * Batch updates `EntitySignalsMapping` objects.
  *
  * @param string $formattedParent The parent resource where `EntitySignalsMappings` will be
  *                                updated. Format: `networks/{network_code}` The parent field in the

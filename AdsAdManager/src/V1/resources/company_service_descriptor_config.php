@@ -23,6 +23,42 @@
 return [
     'interfaces' => [
         'google.ads.admanager.v1.CompanyService' => [
+            'BatchCreateCompanies' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Ads\AdManager\V1\BatchCreateCompaniesResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchUpdateCompanies' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Ads\AdManager\V1\BatchUpdateCompaniesResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateCompany' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Ads\AdManager\V1\Company',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'GetCompany' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Ads\AdManager\V1\Company',
@@ -55,9 +91,25 @@ return [
                     ],
                 ],
             ],
+            'UpdateCompany' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Ads\AdManager\V1\Company',
+                'headerParams' => [
+                    [
+                        'keyName' => 'company.name',
+                        'fieldAccessors' => [
+                            'getCompany',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'templateMap' => [
                 'company' => 'networks/{network_code}/companies/{company}',
+                'contact' => 'networks/{network_code}/contacts/{contact}',
+                'label' => 'networks/{network_code}/labels/{label}',
                 'network' => 'networks/{network_code}',
+                'team' => 'networks/{network_code}/teams/{team}',
             ],
         ],
     ],

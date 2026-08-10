@@ -44,31 +44,29 @@ class ListOrdersRequest extends \Google\Protobuf\Internal\Message
      * Optional. Expression to filter the response.
      *  See syntax details at
      *  https://developers.google.com/ad-manager/api/beta/filters
-     * <b>Filterable fields:</b>
-     * <ul style="list-style-type:none">
-     *   <li><code>advertiser</code></li>
-     *   <li><code>agency</code></li>
-     *   <li><code>appliedTeams</code></li>
-     *   <li><code>archived</code></li>
-     *   <li><code>creator</code></li>
-     *   <li><code>displayName</code></li>
-     *   <li><code>endTime</code></li>
-     *   <li><code>externalOrderId</code></li>
-     *   <li><code>impressionsDelivered</code></li>
-     *   <li><code>name</code></li>
-     *   <li><code>orderId</code></li>
-     *   <li><code>poNumber</code></li>
-     *   <li><code>programmatic</code></li>
-     *   <li><code>salesperson</code></li>
-     *   <li><code>secondarySalespeople</code></li>
-     *   <li><code>secondaryTraffickers</code></li>
-     *   <li><code>startTime</code></li>
-     *   <li><code>status</code></li>
-     *   <li><code>totalClicksDelivered</code></li>
-     *   <li><code>totalViewableImpressionsDelivered</code></li>
-     *   <li><code>trafficker</code></li>
-     *   <li><code>updateTime</code></li>
-     * </ul>
+     * **Filterable fields:**
+     * * `advertiser`
+     * * `agency`
+     * * `appliedTeams`
+     * * `archived`
+     * * `creator`
+     * * `displayName`
+     * * `endTime`
+     * * `externalOrderId`
+     * * `impressionsDelivered`
+     * * `name`
+     * * `orderId`
+     * * `poNumber`
+     * * `programmatic`
+     * * `salesperson`
+     * * `secondarySalespeople`
+     * * `secondaryTraffickers`
+     * * `startTime`
+     * * `status`
+     * * `totalClicksDelivered`
+     * * `totalViewableImpressionsDelivered`
+     * * `trafficker`
+     * * `updateTime`
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -126,31 +124,29 @@ class ListOrdersRequest extends \Google\Protobuf\Internal\Message
      *           Optional. Expression to filter the response.
      *            See syntax details at
      *            https://developers.google.com/ad-manager/api/beta/filters
-     *           <b>Filterable fields:</b>
-     *           <ul style="list-style-type:none">
-     *             <li><code>advertiser</code></li>
-     *             <li><code>agency</code></li>
-     *             <li><code>appliedTeams</code></li>
-     *             <li><code>archived</code></li>
-     *             <li><code>creator</code></li>
-     *             <li><code>displayName</code></li>
-     *             <li><code>endTime</code></li>
-     *             <li><code>externalOrderId</code></li>
-     *             <li><code>impressionsDelivered</code></li>
-     *             <li><code>name</code></li>
-     *             <li><code>orderId</code></li>
-     *             <li><code>poNumber</code></li>
-     *             <li><code>programmatic</code></li>
-     *             <li><code>salesperson</code></li>
-     *             <li><code>secondarySalespeople</code></li>
-     *             <li><code>secondaryTraffickers</code></li>
-     *             <li><code>startTime</code></li>
-     *             <li><code>status</code></li>
-     *             <li><code>totalClicksDelivered</code></li>
-     *             <li><code>totalViewableImpressionsDelivered</code></li>
-     *             <li><code>trafficker</code></li>
-     *             <li><code>updateTime</code></li>
-     *           </ul>
+     *           **Filterable fields:**
+     *           * `advertiser`
+     *           * `agency`
+     *           * `appliedTeams`
+     *           * `archived`
+     *           * `creator`
+     *           * `displayName`
+     *           * `endTime`
+     *           * `externalOrderId`
+     *           * `impressionsDelivered`
+     *           * `name`
+     *           * `orderId`
+     *           * `poNumber`
+     *           * `programmatic`
+     *           * `salesperson`
+     *           * `secondarySalespeople`
+     *           * `secondaryTraffickers`
+     *           * `startTime`
+     *           * `status`
+     *           * `totalClicksDelivered`
+     *           * `totalViewableImpressionsDelivered`
+     *           * `trafficker`
+     *           * `updateTime`
      *     @type string $order_by
      *           Optional. Expression to specify sorting order.
      *           See syntax details at
@@ -260,31 +256,29 @@ class ListOrdersRequest extends \Google\Protobuf\Internal\Message
      * Optional. Expression to filter the response.
      *  See syntax details at
      *  https://developers.google.com/ad-manager/api/beta/filters
-     * <b>Filterable fields:</b>
-     * <ul style="list-style-type:none">
-     *   <li><code>advertiser</code></li>
-     *   <li><code>agency</code></li>
-     *   <li><code>appliedTeams</code></li>
-     *   <li><code>archived</code></li>
-     *   <li><code>creator</code></li>
-     *   <li><code>displayName</code></li>
-     *   <li><code>endTime</code></li>
-     *   <li><code>externalOrderId</code></li>
-     *   <li><code>impressionsDelivered</code></li>
-     *   <li><code>name</code></li>
-     *   <li><code>orderId</code></li>
-     *   <li><code>poNumber</code></li>
-     *   <li><code>programmatic</code></li>
-     *   <li><code>salesperson</code></li>
-     *   <li><code>secondarySalespeople</code></li>
-     *   <li><code>secondaryTraffickers</code></li>
-     *   <li><code>startTime</code></li>
-     *   <li><code>status</code></li>
-     *   <li><code>totalClicksDelivered</code></li>
-     *   <li><code>totalViewableImpressionsDelivered</code></li>
-     *   <li><code>trafficker</code></li>
-     *   <li><code>updateTime</code></li>
-     * </ul>
+     * **Filterable fields:**
+     * * `advertiser`
+     * * `agency`
+     * * `appliedTeams`
+     * * `archived`
+     * * `creator`
+     * * `displayName`
+     * * `endTime`
+     * * `externalOrderId`
+     * * `impressionsDelivered`
+     * * `name`
+     * * `orderId`
+     * * `poNumber`
+     * * `programmatic`
+     * * `salesperson`
+     * * `secondarySalespeople`
+     * * `secondaryTraffickers`
+     * * `startTime`
+     * * `status`
+     * * `totalClicksDelivered`
+     * * `totalViewableImpressionsDelivered`
+     * * `trafficker`
+     * * `updateTime`
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -298,31 +292,29 @@ class ListOrdersRequest extends \Google\Protobuf\Internal\Message
      * Optional. Expression to filter the response.
      *  See syntax details at
      *  https://developers.google.com/ad-manager/api/beta/filters
-     * <b>Filterable fields:</b>
-     * <ul style="list-style-type:none">
-     *   <li><code>advertiser</code></li>
-     *   <li><code>agency</code></li>
-     *   <li><code>appliedTeams</code></li>
-     *   <li><code>archived</code></li>
-     *   <li><code>creator</code></li>
-     *   <li><code>displayName</code></li>
-     *   <li><code>endTime</code></li>
-     *   <li><code>externalOrderId</code></li>
-     *   <li><code>impressionsDelivered</code></li>
-     *   <li><code>name</code></li>
-     *   <li><code>orderId</code></li>
-     *   <li><code>poNumber</code></li>
-     *   <li><code>programmatic</code></li>
-     *   <li><code>salesperson</code></li>
-     *   <li><code>secondarySalespeople</code></li>
-     *   <li><code>secondaryTraffickers</code></li>
-     *   <li><code>startTime</code></li>
-     *   <li><code>status</code></li>
-     *   <li><code>totalClicksDelivered</code></li>
-     *   <li><code>totalViewableImpressionsDelivered</code></li>
-     *   <li><code>trafficker</code></li>
-     *   <li><code>updateTime</code></li>
-     * </ul>
+     * **Filterable fields:**
+     * * `advertiser`
+     * * `agency`
+     * * `appliedTeams`
+     * * `archived`
+     * * `creator`
+     * * `displayName`
+     * * `endTime`
+     * * `externalOrderId`
+     * * `impressionsDelivered`
+     * * `name`
+     * * `orderId`
+     * * `poNumber`
+     * * `programmatic`
+     * * `salesperson`
+     * * `secondarySalespeople`
+     * * `secondaryTraffickers`
+     * * `startTime`
+     * * `status`
+     * * `totalClicksDelivered`
+     * * `totalViewableImpressionsDelivered`
+     * * `trafficker`
+     * * `updateTime`
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
