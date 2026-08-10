@@ -18,6 +18,8 @@
 
 namespace Google\Auth\Tests\Credentials;
 
+use Google\Auth\Tests\HelperTrait;
+
 use Google\Auth\Credentials\ExternalAccountAuthorizedUserCredentials;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;

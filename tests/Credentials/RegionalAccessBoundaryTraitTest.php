@@ -20,6 +20,8 @@ use Psr\Cache\CacheItemPoolInterface;
 
 class RegionalAccessBoundaryTraitTest extends TestCase
 {
+    use HelperTrait;
+
     use ProphecyTrait;
 
     private RegionalAccessBoundaryTraitImpl $impl;
@@ -42,7 +44,7 @@ class RegionalAccessBoundaryTraitTest extends TestCase
     {
         $responseBody =
             '{"locations": ["us-central1", "us-east1", "europe-west1", "asia-east1"], "enodedLocations": ""0xA30"}';
-        $handler = getHandler([
+        $handler = $this->getHandler([
             new Response(200, [], $responseBody),
         ]);
         $result = $this->impl->lookupRegionalAccessBoundary($handler, 'default', ['Bearer xyz']);
@@ -51,7 +53,7 @@ class RegionalAccessBoundaryTraitTest extends TestCase
 
     public function testLookupRegionalAccessBoundary404()
     {
-        $handler = getHandler([
+        $handler = $this->getHandler([
             new Response(404)
         ]);
         $result = $this->impl->lookupRegionalAccessBoundary($handler, 'default', ['Bearer xyz']);
@@ -135,7 +137,7 @@ class RegionalAccessBoundaryTraitTest extends TestCase
         $this->impl->setCache($cache);
         $responseBody =
             '{"locations": ["us-central1", "us-east1", "europe-west1", "asia-east1"], "encodedLocations": "0xA30"}';
-        $handler = getHandler([
+        $handler = $this->getHandler([
             new Response(200, [], $responseBody),
         ]);
 
@@ -149,7 +151,7 @@ class RegionalAccessBoundaryTraitTest extends TestCase
         $this->assertEquals(json_decode($responseBody, true), $result1);
 
         // Second call, should return from cache
-        $handler = getHandler([
+        $handler = $this->getHandler([
             new Response(500), // This should not be called
         ]);
         $result2 = $this->impl->getRegionalAccessBoundary(
@@ -189,7 +191,7 @@ class RegionalAccessBoundaryTraitTest extends TestCase
         // Second call, should return from HTTP call
         $responseBody =
             '{"locations": ["noncached-locations"], "encodedLocations": "0xA30"}';
-        $handler = getHandler([
+        $handler = $this->getHandler([
             new Response(200, [], $responseBody),
         ]);
 
@@ -225,7 +227,7 @@ class RegionalAccessBoundaryTraitTest extends TestCase
 
         $responseBody =
             '{"locations": ["us-central1", "us-east1", "europe-west1", "asia-east1"], "encodedLocations": "0xA30"}';
-        $handler = getHandler([
+        $handler = $this->getHandler([
             new Response(200, [], $responseBody)
         ]);
         // First call, should fetch and cache
@@ -284,7 +286,7 @@ class RegionalAccessBoundaryTraitTest extends TestCase
 
         $result = $this->impl->getRegionalAccessBoundary(
             GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN,
-            getHandler([new Response(200, [], '{"encodedLocations": "0xA30"}')]),
+            $this->getHandler([new Response(200, [], '{"encodedLocations": "0xA30"}')]),
             'default',
             ['authorization' => ['xyz']]
         );
@@ -373,7 +375,7 @@ class RegionalAccessBoundaryTraitTest extends TestCase
     public function testMalformedResponseFromAllowLocationsLookup(int $statusCode, string $responseBody)
     {
         $this->impl->setCache(new MemoryCacheItemPool());
-        $handler = getHandler([
+        $handler = $this->getHandler([
             new Response($statusCode, [], $responseBody),
         ]);
         $result = $this->impl->getRegionalAccessBoundary(

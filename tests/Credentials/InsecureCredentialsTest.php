@@ -17,6 +17,8 @@
 
 namespace Google\Auth\Tests\Credentials;
 
+use Google\Auth\Tests\HelperTrait;
+
 use Google\Auth\Credentials\InsecureCredentials;
 use PHPUnit\Framework\TestCase;
 

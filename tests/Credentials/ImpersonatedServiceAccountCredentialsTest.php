@@ -18,6 +18,8 @@
 
 namespace Google\Auth\Tests\Credentials;
 
+use Google\Auth\Tests\HelperTrait;
+
 use Google\Auth\Credentials\ExternalAccountCredentials;
 use Google\Auth\Credentials\ImpersonatedServiceAccountCredentials;
 use Google\Auth\Credentials\ServiceAccountCredentials;
@@ -38,6 +40,8 @@ use ReflectionClass;
 
 class ImpersonatedServiceAccountCredentialsTest extends TestCase
 {
+    use HelperTrait;
+
     use ProphecyTrait;
 
     private const SCOPE = ['scope/1', 'scope/2'];
@@ -470,7 +474,7 @@ class ImpersonatedServiceAccountCredentialsTest extends TestCase
         $credentials = new ImpersonatedServiceAccountCredentials(null, self::USER_TO_SERVICE_ACCOUNT_JSON, $targetAudience);
 
         // this handler is for the middleware constructor, which will pass it to the ISAC to fetch tokens
-        $httpHandler = getHandler([
+        $httpHandler = $this->getHandler([
             new Response(200, ['Content-Type' => 'application/json'], '{"access_token":"this.is.an.access.token"}'),
             new Response(200, ['Content-Type' => 'application/json'], '{"token":"this.is.an.id.token"}'),
         ]);
@@ -560,7 +564,7 @@ class ImpersonatedServiceAccountCredentialsTest extends TestCase
 
     public function testUpdateMetadataWithRegionalAccessBoundary()
     {
-        $httpHandler = getHandler([
+        $httpHandler = $this->getHandler([
             new Response(200, [], '{"access_token": "source-token", "expires_in": 3600}'),
             new Response(200, [], '{"accessToken": "impersonated-token", "expireTime": "2026-01-01"}'),
             new Response(200, [], '{"locations": [], "encodedLocations": "foo"}'),
@@ -588,7 +592,7 @@ class ImpersonatedServiceAccountCredentialsTest extends TestCase
 
     public function testUpdateMetadataWithRegionalAccessBoundarySuppressedWithUniverseDomain()
     {
-        $httpHandler = getHandler([
+        $httpHandler = $this->getHandler([
             new Response(200, [], '{"accessToken": "impersonated-token", "expireTime": "2026-01-01"}'),
         ]);
 

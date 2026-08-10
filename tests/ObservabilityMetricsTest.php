@@ -30,6 +30,8 @@ use Prophecy\PhpUnit\ProphecyTrait;
 
 class ObservabilityMetricsTest extends TestCase
 {
+    use HelperTrait;
+
     use ProphecyTrait;
 
     private static $headerKey = 'x-goog-api-client';
@@ -60,7 +62,7 @@ class ObservabilityMetricsTest extends TestCase
     {
         $handlerCalled = false;
         $jsonTokens = $this->jsonTokens;
-        $handler = getHandler([
+        $handler = $this->getHandler([
             new Response(200, [GCECredentials::FLAVOR_HEADER => 'Google']),
             function ($request, $options) use (
                 $jsonTokens,
@@ -122,7 +124,7 @@ class ObservabilityMetricsTest extends TestCase
         $keyFile = __DIR__ . '/fixtures/fixtures5/.config/gcloud/application_default_credentials.json';
         $handlerCalled = false;
         $responseFromIam = json_encode(['accessToken' => '1/abdef1234567890', 'expireTime' => '2024-01-01T00:00:00Z']);
-        $handler = getHandler([
+        $handler = $this->getHandler([
             $this->getExpectedRequest('imp', 'auth-request-type/at', $handlerCalled, $this->jsonTokens),
             $this->getExpectedRequest('imp', 'auth-request-type/at', $handlerCalled, $responseFromIam),
         ]);
@@ -136,7 +138,7 @@ class ObservabilityMetricsTest extends TestCase
         $keyFile = __DIR__ . '/fixtures/fixtures5/.config/gcloud/application_default_credentials.json';
         $handlerCalled = false;
         $responseFromIam = json_encode(['token' => '1/abdef1234567890']);
-        $handler = getHandler([
+        $handler = $this->getHandler([
             $this->getExpectedRequest('imp', 'auth-request-type/at', $handlerCalled, $this->jsonTokens),
             $this->getExpectedRequest('imp', 'auth-request-type/it', $handlerCalled, $responseFromIam),
         ]);
@@ -198,7 +200,7 @@ class ObservabilityMetricsTest extends TestCase
      */
     private function getCustomHandler($credShortform, $requestTypeHeaderValue, &$handlerCalled)
     {
-        return getHandler([
+        return $this->getHandler([
             $this->getExpectedRequest(
                 $credShortform,
                 $requestTypeHeaderValue,
