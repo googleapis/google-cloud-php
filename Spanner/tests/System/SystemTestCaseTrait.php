@@ -44,6 +44,9 @@ trait SystemTestCaseTrait
         if (self::$client) {
             return self::$client;
         }
+        if (TestDatabaseManager::$client) {
+            return self::$client = TestDatabaseManager::$client;
+        }
 
         $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
 
@@ -68,6 +71,7 @@ trait SystemTestCaseTrait
             ]
         ];
         $clientConfig = [
+            'projectId' => getenv('GOOGLE_CLOUD_PROJECT') ?: null,
             'keyFilePath' => $keyFilePath,
             'enableBuiltInMetrics' => false, // Disabling the metrics for general tests
         ];
@@ -93,7 +97,13 @@ trait SystemTestCaseTrait
 
     private static function setUpTestDatabase(): void
     {
-        if (self::$hasSetUp) {
+        self::setupQueue();
+        if (TestDatabaseManager::$sqlHasSetUp) {
+            self::$client = TestDatabaseManager::$client;
+            self::$instance = TestDatabaseManager::$instance;
+            self::$database = TestDatabaseManager::$sqlDatabase;
+            self::$dbName = TestDatabaseManager::$sqlDbName;
+            self::$hasSetUp = true;
             return;
         }
 
@@ -101,44 +111,144 @@ trait SystemTestCaseTrait
 
         if (!self::$dbName = getenv('GOOGLE_CLOUD_SPANNER_TEST_DATABASE')) {
             self::$dbName = uniqid(self::TESTING_PREFIX);
-            self::$deletionQueue->add(function () {
+            register_shutdown_function(function () {
                 self::getDatabaseInstance(self::$dbName)->drop();
             });
         }
+
+        if ($token = getenv('TEST_TOKEN')) {
+            self::$dbName .= '-' . $token;
+        }
+        
         self::$database = self::getDatabaseInstance(self::$dbName);
 
         if (!self::$database->exists()) {
             $op = self::$instance->createDatabase(self::$dbName);
             $op->pollUntilComplete();
-            $op = self::$database->updateDdlBatch(
-                [
-                    'CREATE TABLE ' . self::TEST_TABLE_NAME . ' (
+        }
+
+        $op = self::$database->updateDdlBatch(
+            [
+                'CREATE TABLE IF NOT EXISTS BatchTest (
+                    id INT64 NOT NULL,
+                    decade INT64 NOT NULL
+                ) PRIMARY KEY (id)',
+                'CREATE TABLE IF NOT EXISTS Singers (
+                    SingerId   INT64 NOT NULL,
+                    FirstName  STRING(1024),
+                    LastName   STRING(1024)
+                ) PRIMARY KEY (SingerId)',
+                'CREATE TABLE IF NOT EXISTS Albums (
+                    SingerId     INT64 NOT NULL,
+                    AlbumId      INT64 NOT NULL,
+                    AlbumTitle   STRING(1024)
+                ) PRIMARY KEY (SingerId, AlbumId),
+                INTERLEAVE IN PARENT Singers ON DELETE CASCADE',
+                'CREATE TABLE IF NOT EXISTS LargeReadTable (
+                    id INT64 NOT NULL,
+                    stringColumn STRING(MAX) NOT NULL,
+                    bytesColumn BYTES(MAX) NOT NULL,
+                    stringArrayColumn ARRAY<STRING(MAX)> NOT NULL,
+                    bytesArrayColumn ARRAY<BYTES(MAX)> NOT NULL
+                ) PRIMARY KEY (id)',
+                'CREATE TABLE IF NOT EXISTS partitionedDml (
+                    id INT64 NOT NULL,
+                    stringField STRING(MAX),
+                    boolField BOOL
+                ) PRIMARY KEY (id)',
+                'CREATE TABLE IF NOT EXISTS ReadTable (
+                    id INT64 NOT NULL,
+                    val STRING(MAX) NOT NULL
+                ) PRIMARY KEY (id)',
+                'CREATE UNIQUE INDEX IF NOT EXISTS ReadTable_Idx1 ON ReadTable (id)',
+                'CREATE UNIQUE INDEX IF NOT EXISTS ReadTable_Idx2 ON ReadTable (id, val)',
+                'CREATE TABLE IF NOT EXISTS RangeTable (
+                    id INT64 NOT NULL,
+                    val STRING(MAX) NOT NULL
+                ) PRIMARY KEY (id)',
+                'CREATE UNIQUE INDEX IF NOT EXISTS RangeTable_Idx1 ON RangeTable (id)',
+                'CREATE UNIQUE INDEX IF NOT EXISTS RangeTable_Idx2 ON RangeTable (id, val)',
+                'CREATE TABLE IF NOT EXISTS Snapshots (
+                    id INT64 NOT NULL,
+                    number INT64 NOT NULL
+                ) PRIMARY KEY (id)',
+                'CREATE TABLE IF NOT EXISTS Transactions (
+                    id INT64 NOT NULL,
+                    number INT64 NOT NULL
+                ) PRIMARY KEY (id)',
+                'CREATE TABLE IF NOT EXISTS UniverseDomainTest (
                     id INT64 NOT NULL,
                     name STRING(MAX) NOT NULL,
                     birthday DATE
-                    ) PRIMARY KEY (id)',
-                    'CREATE UNIQUE INDEX ' . self::TEST_INDEX_NAME . '
-                    ON ' . self::TEST_TABLE_NAME . ' (name)',
-                ]
-            );
-            $op->pollUntilComplete();
-
-            if (self::$database->info()['databaseDialect'] == DatabaseDialect::GOOGLE_STANDARD_SQL
-                && !self::isEmulatorUsed()
-            ) {
-                self::$database->updateDdlBatch(
-                    [
-                        'CREATE ROLE ' . self::DATABASE_ROLE,
-                        'CREATE ROLE ' . self::RESTRICTIVE_DATABASE_ROLE,
-                        'GRANT SELECT ON TABLE ' . self::TEST_TABLE_NAME .
-                        ' TO ROLE ' . self::DATABASE_ROLE,
-                        'GRANT SELECT(id, name), INSERT(id, name), UPDATE(id, name) ON TABLE '
-                        . self::TEST_TABLE_NAME . ' TO ROLE ' . self::RESTRICTIVE_DATABASE_ROLE,
-                    ]
-                )->pollUntilComplete();
-            }
+                ) PRIMARY KEY (id)',
+                'CREATE PROTO BUNDLE (
+                    testing.data.User,
+                    testing.data.User.Address,
+                    testing.data.Book
+                )',
+                'CREATE TABLE IF NOT EXISTS Writes (
+                    id INT64 NOT NULL,
+                    arrayField ARRAY<INT64>,
+                    arrayBoolField ARRAY<BOOL>,
+                    arrayFloatField ARRAY<FLOAT64>,
+                    arrayFloat32Field ARRAY<FLOAT32>,
+                    arrayStringField ARRAY<STRING(MAX)>,
+                    arrayBytesField ARRAY<BYTES(MAX)>,
+                    arrayTimestampField ARRAY<TIMESTAMP>,
+                    arrayDateField ARRAY<DATE>,
+                    arrayNumericField ARRAY<NUMERIC>,
+                    arrayProtoField ARRAY<`testing.data.User`>,
+                    boolField BOOL,
+                    bytesField BYTES(MAX),
+                    dateField DATE,
+                    floatField FLOAT64,
+                    float32Field FLOAT32,
+                    intField INT64,
+                    stringField STRING(MAX),
+                    timestampField TIMESTAMP,
+                    numericField NUMERIC,
+                    uuidField STRING(36),
+                    arrayUuidField ARRAY<STRING(36)>,
+                    protoField `testing.data.User`
+                ) PRIMARY KEY (id)',
+                'CREATE TABLE IF NOT EXISTS CommitTimestamps (
+                    id INT64 NOT NULL,
+                    commitTimestamp TIMESTAMP NOT NULL OPTIONS
+                        (allow_commit_timestamp=true)
+                ) PRIMARY KEY (id, commitTimestamp DESC)',
+                'CREATE TABLE IF NOT EXISTS ' . self::TEST_TABLE_NAME . ' (
+                id INT64 NOT NULL,
+                name STRING(MAX) NOT NULL,
+                birthday DATE
+                ) PRIMARY KEY (id)',
+                'CREATE UNIQUE INDEX IF NOT EXISTS ' . self::TEST_INDEX_NAME . '
+                ON ' . self::TEST_TABLE_NAME . ' (name)',
+            ],
+            ['protoDescriptors' => file_get_contents(__DIR__ . '/../data/proto/user.pb')]
+        );
+        $op->pollUntilComplete();
+            
+        if (self::$database->info()['databaseDialect'] == DatabaseDialect::GOOGLE_STANDARD_SQL
+            && !self::isEmulatorUsed()
+        ) {
+            self::$database->updateDdlBatch([
+                'CREATE ROLE ' . self::DATABASE_ROLE,
+                'CREATE ROLE ' . self::RESTRICTIVE_DATABASE_ROLE
+            ])->pollUntilComplete();
+            self::$database->updateDdlBatch([
+                'GRANT SELECT ON TABLE ' . self::TEST_TABLE_NAME . ' TO ROLE ' . self::DATABASE_ROLE,
+                'GRANT SELECT(id, name), INSERT(id, name), UPDATE(id, name) ON TABLE '
+                . self::TEST_TABLE_NAME . ' TO ROLE ' . self::RESTRICTIVE_DATABASE_ROLE,
+                'GRANT SELECT(id) ON TABLE BatchTest TO ROLE ' . self::RESTRICTIVE_DATABASE_ROLE,
+                'GRANT SELECT ON TABLE BatchTest TO ROLE ' . self::DATABASE_ROLE,
+            ])->pollUntilComplete();
         }
 
+        TestDatabaseManager::$sqlHasSetUp = true;
+        TestDatabaseManager::$client = self::$client;
+        TestDatabaseManager::$instance = self::$instance;
+        TestDatabaseManager::$sqlDatabase = self::$database;
+        TestDatabaseManager::$sqlDbName = self::$dbName;
         self::$hasSetUp = true;
     }
 

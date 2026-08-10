@@ -31,12 +31,13 @@ use InvalidArgumentException;
  */
 class PgTransactionTest extends SystemTestCase
 {
+    const TABLE_NAME = 'PgTransactionTest';
     use DatabaseRoleTrait;
     use PgSystemTestCaseTrait;
 
     private static $row = [];
 
-    private static $tableName;
+    
     private static $id1;
     private static $isSetup = false;
 
@@ -50,17 +51,7 @@ class PgTransactionTest extends SystemTestCase
         }
         self::setUpTestDatabase();
 
-        self::$tableName = 'transactions_test';
-
-        self::$database->updateDdlBatch([
-            'CREATE TABLE IF NOT EXISTS ' . self::$tableName . ' (
-                    id bigint NOT NULL,
-                    number bigint NOT NULL,
-                    PRIMARY KEY (id)
-                )'
-        ])->pollUntilComplete();
-
-        self::$id1 = rand(1000, 9999);
+        self::$id1 = self::randId();
         self::$row = [
             'id' => self::$id1,
             'name' => uniqid(self::TESTING_PREFIX),
@@ -76,7 +67,7 @@ class PgTransactionTest extends SystemTestCase
         $db = self::$database;
 
         $db->runTransaction(function ($t) {
-            $id = rand(1, 346464);
+            $id = self::randId();
             $t->insertOrUpdate(self::TEST_TABLE_NAME, [
                 'id' => $id,
                 'name' => uniqid(self::TESTING_PREFIX),
@@ -105,7 +96,7 @@ class PgTransactionTest extends SystemTestCase
         $ex = false;
         try {
             $db->runTransaction(function ($t) {
-                $t->execute('SELECT * FROM ' . self::$tableName);
+                $t->execute('SELECT * FROM ' . self::TABLE_NAME);
             });
         } catch (\RuntimeException $e) {
             $this->assertEquals('Transactions must be rolled back or committed.', $e->getMessage());
@@ -155,7 +146,7 @@ class PgTransactionTest extends SystemTestCase
 
         try {
             $db->runTransaction(function ($t) use ($values) {
-                $id = rand(1, 346464);
+                $id = self::randId();
                 $t->insert(self::TEST_TABLE_NAME, $values);
 
                 $t->commit();
