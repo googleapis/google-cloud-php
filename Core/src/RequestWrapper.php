@@ -477,11 +477,9 @@ class RequestWrapper
      */
     private function getRequestOptions(array $options)
     {
-        $perCallRestOptions = $options['restOptions'] ?? [];
-        $headers = ($perCallRestOptions['headers'] ?? []) + ($this->restOptions['headers'] ?? []);
-        $restOptions = $perCallRestOptions + $this->restOptions;
+        $restOptions = ($options['restOptions'] ?? []) + $this->restOptions;
 
-        if ($headers) {
+        if ($headers = ($options['restOptions']['headers'] ?? []) + ($this->restOptions['headers'] ?? [])) {
             $restOptions['headers'] = $headers;
         }
 
