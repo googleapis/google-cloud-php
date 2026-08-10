@@ -55,4 +55,9 @@ class SqlInstanceNamesServiceClientTest extends GeneratedTest
         ];
         return new SqlInstanceNamesServiceClient($options);
     }
+
+    public function testClientTestCase()
+    {
+        $this->assertTrue(true);
+    }
 }

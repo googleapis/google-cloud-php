@@ -8,7 +8,7 @@
         "DataObjectSearchService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "DataObjectSearchServiceGapicClient",
+                    "libraryClient": "DataObjectSearchServiceClient",
                     "rpcs": {
                         "AggregateDataObjects": {
                             "methods": [
@@ -47,7 +47,7 @@
         "DataObjectService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "DataObjectServiceGapicClient",
+                    "libraryClient": "DataObjectServiceClient",
                     "rpcs": {
                         "BatchCreateDataObjects": {
                             "methods": [
@@ -101,7 +101,7 @@
         "VectorSearchService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "VectorSearchServiceGapicClient",
+                    "libraryClient": "VectorSearchServiceClient",
                     "rpcs": {
                         "CreateCollection": {
                             "methods": [

@@ -8,7 +8,7 @@
         "SchemaService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "SchemaServiceGapicClient",
+                    "libraryClient": "SchemaServiceClient",
                     "rpcs": {
                         "CommitSchema": {
                             "methods": [
@@ -82,7 +82,7 @@
         "Publisher": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "PublisherGapicClient",
+                    "libraryClient": "PublisherClient",
                     "rpcs": {
                         "CreateTopic": {
                             "methods": [
@@ -151,7 +151,7 @@
         "Subscriber": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "SubscriberGapicClient",
+                    "libraryClient": "SubscriberClient",
                     "rpcs": {
                         "Acknowledge": {
                             "methods": [

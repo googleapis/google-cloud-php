@@ -8,7 +8,7 @@
         "MigrationCenter": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "MigrationCenterGapicClient",
+                    "libraryClient": "MigrationCenterClient",
                     "rpcs": {
                         "AddAssetsToGroup": {
                             "methods": [

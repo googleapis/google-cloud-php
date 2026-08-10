@@ -232,7 +232,7 @@ class SummarizationEvaluationResult extends \Google\Protobuf\Internal\Message
      */
     public function getDecompositions()
     {
-        if ($this->decompositions->count() !== 0) {
+        if (count($this->decompositions) !== 0) {
             @trigger_error('decompositions is deprecated.', E_USER_DEPRECATED);
         }
         return $this->decompositions;

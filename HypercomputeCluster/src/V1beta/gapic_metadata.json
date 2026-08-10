@@ -8,7 +8,7 @@
         "HypercomputeCluster": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "HypercomputeClusterGapicClient",
+                    "libraryClient": "HypercomputeClusterClient",
                     "rpcs": {
                         "CreateCluster": {
                             "methods": [

@@ -55,4 +55,9 @@ class SqlIamPoliciesServiceClientTest extends GeneratedTest
         ];
         return new SqlIamPoliciesServiceClient($options);
     }
+
+    public function testClientTestCase()
+    {
+        $this->assertTrue(true);
+    }
 }

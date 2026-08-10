@@ -8,7 +8,7 @@
         "Pages": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "PagesGapicClient",
+                    "libraryClient": "PagesClient",
                     "rpcs": {
                         "CreatePage": {
                             "methods": [
@@ -52,7 +52,7 @@
         "Flows": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "FlowsGapicClient",
+                    "libraryClient": "FlowsClient",
                     "rpcs": {
                         "CreateFlow": {
                             "methods": [
@@ -121,7 +121,7 @@
         "Agents": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "AgentsGapicClient",
+                    "libraryClient": "AgentsClient",
                     "rpcs": {
                         "CreateAgent": {
                             "methods": [
@@ -195,7 +195,7 @@
         "Changelogs": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ChangelogsGapicClient",
+                    "libraryClient": "ChangelogsClient",
                     "rpcs": {
                         "GetChangelog": {
                             "methods": [
@@ -224,7 +224,7 @@
         "Deployments": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "DeploymentsGapicClient",
+                    "libraryClient": "DeploymentsClient",
                     "rpcs": {
                         "GetDeployment": {
                             "methods": [
@@ -253,7 +253,7 @@
         "EntityTypes": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "EntityTypesGapicClient",
+                    "libraryClient": "EntityTypesClient",
                     "rpcs": {
                         "CreateEntityType": {
                             "methods": [
@@ -307,7 +307,7 @@
         "Intents": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "IntentsGapicClient",
+                    "libraryClient": "IntentsClient",
                     "rpcs": {
                         "CreateIntent": {
                             "methods": [
@@ -361,7 +361,7 @@
         "SessionEntityTypes": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "SessionEntityTypesGapicClient",
+                    "libraryClient": "SessionEntityTypesClient",
                     "rpcs": {
                         "CreateSessionEntityType": {
                             "methods": [
@@ -405,7 +405,7 @@
         "Sessions": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "SessionsGapicClient",
+                    "libraryClient": "SessionsClient",
                     "rpcs": {
                         "DetectIntent": {
                             "methods": [
@@ -454,7 +454,7 @@
         "TransitionRouteGroups": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "TransitionRouteGroupsGapicClient",
+                    "libraryClient": "TransitionRouteGroupsClient",
                     "rpcs": {
                         "CreateTransitionRouteGroup": {
                             "methods": [
@@ -498,7 +498,7 @@
         "TestCases": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "TestCasesGapicClient",
+                    "libraryClient": "TestCasesClient",
                     "rpcs": {
                         "BatchDeleteTestCases": {
                             "methods": [
@@ -577,7 +577,7 @@
         "Webhooks": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "WebhooksGapicClient",
+                    "libraryClient": "WebhooksClient",
                     "rpcs": {
                         "CreateWebhook": {
                             "methods": [
@@ -621,7 +621,7 @@
         "Environments": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "EnvironmentsGapicClient",
+                    "libraryClient": "EnvironmentsClient",
                     "rpcs": {
                         "CreateEnvironment": {
                             "methods": [
@@ -685,7 +685,7 @@
         "Examples": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ExamplesGapicClient",
+                    "libraryClient": "ExamplesClient",
                     "rpcs": {
                         "CreateExample": {
                             "methods": [
@@ -729,7 +729,7 @@
         "Experiments": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ExperimentsGapicClient",
+                    "libraryClient": "ExperimentsClient",
                     "rpcs": {
                         "CreateExperiment": {
                             "methods": [
@@ -783,7 +783,7 @@
         "Generators": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "GeneratorsGapicClient",
+                    "libraryClient": "GeneratorsClient",
                     "rpcs": {
                         "CreateGenerator": {
                             "methods": [
@@ -827,7 +827,7 @@
         "Playbooks": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "PlaybooksGapicClient",
+                    "libraryClient": "PlaybooksClient",
                     "rpcs": {
                         "CreatePlaybook": {
                             "methods": [
@@ -906,7 +906,7 @@
         "SecuritySettingsService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "SecuritySettingsServiceGapicClient",
+                    "libraryClient": "SecuritySettingsServiceClient",
                     "rpcs": {
                         "CreateSecuritySettings": {
                             "methods": [
@@ -950,7 +950,7 @@
         "Tools": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ToolsGapicClient",
+                    "libraryClient": "ToolsClient",
                     "rpcs": {
                         "CreateTool": {
                             "methods": [
@@ -1019,7 +1019,7 @@
         "Versions": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "VersionsGapicClient",
+                    "libraryClient": "VersionsClient",
                     "rpcs": {
                         "CompareVersions": {
                             "methods": [

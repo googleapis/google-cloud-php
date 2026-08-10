@@ -107,10 +107,11 @@ run_package_test() {
     fi
     echo ""
     if ! composer -q --no-interaction --no-ansi --no-progress ${PREFER_LOWEST} update -d "${DIR}"; then
-        echo "${DIR}: composer install failed" >> "${FAILED_FILE}"
-        # run again but without "-q" so we can see the error
-        composer --no-interaction --no-ansi --no-progress ${PREFER_LOWEST} update -d "${DIR}"
-        return 1
+        # Retry once without -q to see error and heal transient parallel cache contention
+        if ! composer --no-interaction --no-ansi --no-progress ${PREFER_LOWEST} update -d "${DIR}"; then
+            echo "${DIR}: composer install failed" >> "${FAILED_FILE}"
+            return 1
+        fi
     fi
 
     echo "Running ${DIR} Unit Tests"
@@ -159,7 +160,7 @@ export FAILED_FILE
 MAX_JOBS=${MAX_JOBS:-$(nproc 2>/dev/null || echo 8)}
 
 # Run the test suites concurrently using xargs -P
-printf "%s\n" ${DIRS} | xargs -P "${MAX_JOBS}" -I {} bash -c 'run_package_test_parallel "$@"' _ {}
+printf "%s\n" ${DIRS} | xargs -P "${MAX_JOBS}" -I {} bash -c 'run_package_test_parallel "$@"' _ {} || true
 
 if [ -f "${FAILED_FILE}" ]; then
     echo "--------- Failed tests --------------"

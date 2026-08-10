@@ -31,6 +31,15 @@ class ProtobufBandaidTest extends GeneratedTest
         $this->assertEquals($expected, $actual);
     }
 
+    /**
+     * @dataProvider protobufMessageNotEqualProvider
+     */
+    public function testCompareNotEqual($expected, $actual)
+    {
+        $this->expectException(\PHPUnit\Framework\ExpectationFailedException::class);
+        $this->assertEquals($expected, $actual);
+    }
+
     public function protobufMessageProvider()
     {
         $this->autoloadTestdata('generated');
@@ -38,9 +47,44 @@ class ProtobufBandaidTest extends GeneratedTest
 
         $msg1 = new MyMessage();
         $msg2 = new Mymessage();
+
+        $v1 = new \Google\Protobuf\Value();
+        $v1->setStringValue('TEST');
+        $v2 = new \Google\Protobuf\Value();
+        $v2->setStringValue('test');
+
+        $struct1 = new \Google\Protobuf\Struct();
+        $struct1->setFields(['TEST' => $v1, 'test' => $v2]);
+
+        $struct2 = new \Google\Protobuf\Struct();
+        $struct2->setFields(['test' => $v2, 'TEST' => $v1]);
+
         return [
             [$msg1, $msg2],
-            [[$msg1, $msg2], [$msg1, $msg2]]
+            [[$msg1, $msg2], [$msg1, $msg2]],
+            [$struct1, $struct2],
+        ];
+    }
+
+    public function protobufMessageNotEqualProvider()
+    {
+        $v1 = new \Google\Protobuf\Value();
+        $v1->setStringValue('TEST');
+        $v2 = new \Google\Protobuf\Value();
+        $v2->setStringValue('test');
+
+        $struct1 = new \Google\Protobuf\Struct();
+        $struct1->setFields(['TEST' => $v1]);
+
+        $struct2 = new \Google\Protobuf\Struct();
+        $struct2->setFields(['test' => $v2]);
+
+        $status = new \Google\Rpc\Status();
+        $color = new \Google\Type\Color();
+
+        return [
+            [$struct1, $struct2],
+            [$status, $color],
         ];
     }
 }

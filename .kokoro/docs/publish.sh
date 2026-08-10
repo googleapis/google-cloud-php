@@ -16,8 +16,8 @@ PROJECT_DIR=$(dirname $(dirname $SCRIPT_DIR))
 phpdoc --version
 
 # Run "composer install" if it hasn't been run yet
-if [ ! -d 'dev/vendor/' ]; then
-    composer install -d $PROJECT_DIR/dev
+if [ ! -d "$PROJECT_DIR/dev/vendor" ]; then
+    composer install --no-dev -d "$PROJECT_DIR/dev"
 fi
 STAGING_FLAG="";
 if [ "$STAGING_BUCKET" != "" ]; then

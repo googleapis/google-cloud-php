@@ -8,7 +8,7 @@
         "StorageControl": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "StorageControlGapicClient",
+                    "libraryClient": "StorageControlClient",
                     "rpcs": {
                         "CreateAnywhereCache": {
                             "methods": [

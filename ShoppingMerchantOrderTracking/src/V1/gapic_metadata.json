@@ -8,7 +8,7 @@
         "OrderTrackingSignalsService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "OrderTrackingSignalsServiceGapicClient",
+                    "libraryClient": "OrderTrackingSignalsServiceClient",
                     "rpcs": {
                         "CreateOrderTrackingSignal": {
                             "methods": [

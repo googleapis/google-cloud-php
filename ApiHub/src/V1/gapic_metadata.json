@@ -8,7 +8,7 @@
         "ApiHub": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ApiHubGapicClient",
+                    "libraryClient": "ApiHubClient",
                     "rpcs": {
                         "CreateApi": {
                             "methods": [
@@ -217,7 +217,7 @@
         "ApiHubDependencies": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ApiHubDependenciesGapicClient",
+                    "libraryClient": "ApiHubDependenciesClient",
                     "rpcs": {
                         "CreateDependency": {
                             "methods": [
@@ -261,7 +261,7 @@
         "ApiHubCollect": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ApiHubCollectGapicClient",
+                    "libraryClient": "ApiHubCollectClient",
                     "rpcs": {
                         "CollectApiData": {
                             "methods": [
@@ -285,7 +285,7 @@
         "ApiHubCurate": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ApiHubCurateGapicClient",
+                    "libraryClient": "ApiHubCurateClient",
                     "rpcs": {
                         "CreateCuration": {
                             "methods": [
@@ -329,7 +329,7 @@
         "ApiHubDiscovery": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ApiHubDiscoveryGapicClient",
+                    "libraryClient": "ApiHubDiscoveryClient",
                     "rpcs": {
                         "GetDiscoveredApiObservation": {
                             "methods": [
@@ -368,7 +368,7 @@
         "HostProjectRegistrationService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "HostProjectRegistrationServiceGapicClient",
+                    "libraryClient": "HostProjectRegistrationServiceClient",
                     "rpcs": {
                         "CreateHostProjectRegistration": {
                             "methods": [
@@ -402,7 +402,7 @@
         "LintingService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "LintingServiceGapicClient",
+                    "libraryClient": "LintingServiceClient",
                     "rpcs": {
                         "GetStyleGuide": {
                             "methods": [
@@ -441,7 +441,7 @@
         "ApiHubPlugin": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ApiHubPluginGapicClient",
+                    "libraryClient": "ApiHubPluginClient",
                     "rpcs": {
                         "CreatePlugin": {
                             "methods": [
@@ -530,7 +530,7 @@
         "Provisioning": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ProvisioningGapicClient",
+                    "libraryClient": "ProvisioningClient",
                     "rpcs": {
                         "CreateApiHubInstance": {
                             "methods": [
@@ -569,7 +569,7 @@
         "RuntimeProjectAttachmentService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "RuntimeProjectAttachmentServiceGapicClient",
+                    "libraryClient": "RuntimeProjectAttachmentServiceClient",
                     "rpcs": {
                         "CreateRuntimeProjectAttachment": {
                             "methods": [

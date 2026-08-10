@@ -8,7 +8,7 @@
         "IngestionService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "IngestionServiceGapicClient",
+                    "libraryClient": "IngestionServiceClient",
                     "rpcs": {
                         "IngestAdEvents": {
                             "methods": [
@@ -47,7 +47,7 @@
         "MarketingDataInsightsService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "MarketingDataInsightsServiceGapicClient",
+                    "libraryClient": "MarketingDataInsightsServiceClient",
                     "rpcs": {
                         "RetrieveInsights": {
                             "methods": [
@@ -61,7 +61,7 @@
         "PartnerLinkService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "PartnerLinkServiceGapicClient",
+                    "libraryClient": "PartnerLinkServiceClient",
                     "rpcs": {
                         "CreatePartnerLink": {
                             "methods": [
@@ -85,7 +85,7 @@
         "UserListDirectLicenseService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "UserListDirectLicenseServiceGapicClient",
+                    "libraryClient": "UserListDirectLicenseServiceClient",
                     "rpcs": {
                         "CreateUserListDirectLicense": {
                             "methods": [
@@ -114,7 +114,7 @@
         "UserListGlobalLicenseService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "UserListGlobalLicenseServiceGapicClient",
+                    "libraryClient": "UserListGlobalLicenseServiceClient",
                     "rpcs": {
                         "CreateUserListGlobalLicense": {
                             "methods": [
@@ -148,7 +148,7 @@
         "UserListService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "UserListServiceGapicClient",
+                    "libraryClient": "UserListServiceClient",
                     "rpcs": {
                         "CreateUserList": {
                             "methods": [
