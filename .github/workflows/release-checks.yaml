@@ -4,8 +4,8 @@ on:
     types: [opened, synchronize, reopened, edited]
     branches: ['main']
 permissions:
-  contents: read
-  pull-requests: write
+contents: read
+  issue: write
 jobs:
   # More info at https://github.com/Roave/BackwardCompatibilityCheck.
   backwards-compatibility-check:
