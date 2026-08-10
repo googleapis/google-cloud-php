@@ -22,7 +22,7 @@ GOOGLE_CLOUD_SPANNER_TEST_BACKUP_DATABASE=test-backup-database
 ### For sequential execution: run PHPUnit
 
 ```
-vendor/bin/phpunit -c phpunit-system.xml.dist  --stop-on-failure tests/System/BatchTest.php
+vendor/bin/phpunit -c phpunit-system.xml.dist
 ```
 
 ### For parallel execution: run paratest
