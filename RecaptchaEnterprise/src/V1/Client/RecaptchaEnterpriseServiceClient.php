@@ -48,6 +48,7 @@ use Google\Cloud\RecaptchaEnterprise\V1\FirewallPolicy;
 use Google\Cloud\RecaptchaEnterprise\V1\GetFirewallPolicyRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\GetKeyRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\GetMetricsRequest;
+use Google\Cloud\RecaptchaEnterprise\V1\GetPolicyRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\Key;
 use Google\Cloud\RecaptchaEnterprise\V1\ListFirewallPoliciesRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\ListIpOverridesRequest;
@@ -56,6 +57,7 @@ use Google\Cloud\RecaptchaEnterprise\V1\ListRelatedAccountGroupMembershipsReques
 use Google\Cloud\RecaptchaEnterprise\V1\ListRelatedAccountGroupsRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\Metrics;
 use Google\Cloud\RecaptchaEnterprise\V1\MigrateKeyRequest;
+use Google\Cloud\RecaptchaEnterprise\V1\Policy;
 use Google\Cloud\RecaptchaEnterprise\V1\RemoveIpOverrideRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\RemoveIpOverrideResponse;
 use Google\Cloud\RecaptchaEnterprise\V1\ReorderFirewallPoliciesRequest;
@@ -65,6 +67,7 @@ use Google\Cloud\RecaptchaEnterprise\V1\RetrieveLegacySecretKeyResponse;
 use Google\Cloud\RecaptchaEnterprise\V1\SearchRelatedAccountGroupMembershipsRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\UpdateFirewallPolicyRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\UpdateKeyRequest;
+use Google\Cloud\RecaptchaEnterprise\V1\UpdatePolicyRequest;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
 
@@ -89,6 +92,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<FirewallPolicy> getFirewallPolicyAsync(GetFirewallPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Key> getKeyAsync(GetKeyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Metrics> getMetricsAsync(GetMetricsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getPolicyAsync(GetPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listFirewallPoliciesAsync(ListFirewallPoliciesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listIpOverridesAsync(ListIpOverridesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listKeysAsync(ListKeysRequest $request, array $optionalArgs = [])
@@ -101,6 +105,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<PagedListResponse> searchRelatedAccountGroupMembershipsAsync(SearchRelatedAccountGroupMembershipsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<FirewallPolicy> updateFirewallPolicyAsync(UpdateFirewallPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Key> updateKeyAsync(UpdateKeyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> updatePolicyAsync(UpdatePolicyRequest $request, array $optionalArgs = [])
  */
 final class RecaptchaEnterpriseServiceClient
 {
@@ -222,6 +227,23 @@ final class RecaptchaEnterpriseServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a policy
+     * resource.
+     *
+     * @param string $project
+     * @param string $key
+     *
+     * @return string The formatted policy resource.
+     */
+    public static function policyName(string $project, string $key): string
+    {
+        return self::getPathTemplate('policy')->render([
+            'project' => $project,
+            'key' => $key,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a project
      * resource.
      *
@@ -261,6 +283,7 @@ final class RecaptchaEnterpriseServiceClient
      * - firewallPolicy: projects/{project}/firewallpolicies/{firewallpolicy}
      * - key: projects/{project}/keys/{key}
      * - metrics: projects/{project}/keys/{key}/metrics
+     * - policy: projects/{project}/keys/{key}/policy
      * - project: projects/{project}
      * - relatedAccountGroup: projects/{project}/relatedaccountgroups/{relatedaccountgroup}
      *
@@ -640,6 +663,32 @@ final class RecaptchaEnterpriseServiceClient
     }
 
     /**
+     * Get the policy for a key.
+     *
+     * The async variant is {@see RecaptchaEnterpriseServiceClient::getPolicyAsync()} .
+     *
+     * @example samples/V1/RecaptchaEnterpriseServiceClient/get_policy.php
+     *
+     * @param GetPolicyRequest $request     A request to house fields associated with the call.
+     * @param array            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Policy
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getPolicy(GetPolicyRequest $request, array $callOptions = []): Policy
+    {
+        return $this->startApiCall('GetPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
      * Returns the list of all firewall policies that belong to a project.
      *
      * The async variant is
@@ -986,5 +1035,32 @@ final class RecaptchaEnterpriseServiceClient
     public function updateKey(UpdateKeyRequest $request, array $callOptions = []): Key
     {
         return $this->startApiCall('UpdateKey', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates the policy for a key.
+     *
+     * The async variant is
+     * {@see RecaptchaEnterpriseServiceClient::updatePolicyAsync()} .
+     *
+     * @example samples/V1/RecaptchaEnterpriseServiceClient/update_policy.php
+     *
+     * @param UpdatePolicyRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Policy
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updatePolicy(UpdatePolicyRequest $request, array $callOptions = []): Policy
+    {
+        return $this->startApiCall('UpdatePolicy', $request, $callOptions)->wait();
     }
 }

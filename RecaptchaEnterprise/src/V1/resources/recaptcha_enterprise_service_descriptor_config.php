@@ -143,6 +143,18 @@ return [
                     ],
                 ],
             ],
+            'GetPolicy' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\RecaptchaEnterprise\V1\Policy',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'ListFirewallPolicies' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
@@ -337,11 +349,25 @@ return [
                     ],
                 ],
             ],
+            'UpdatePolicy' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\RecaptchaEnterprise\V1\Policy',
+                'headerParams' => [
+                    [
+                        'keyName' => 'policy.name',
+                        'fieldAccessors' => [
+                            'getPolicy',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'templateMap' => [
                 'assessment' => 'projects/{project}/assessments/{assessment}',
                 'firewallPolicy' => 'projects/{project}/firewallpolicies/{firewallpolicy}',
                 'key' => 'projects/{project}/keys/{key}',
                 'metrics' => 'projects/{project}/keys/{key}/metrics',
+                'policy' => 'projects/{project}/keys/{key}/policy',
                 'project' => 'projects/{project}',
                 'relatedAccountGroup' => 'projects/{project}/relatedaccountgroups/{relatedaccountgroup}',
             ],

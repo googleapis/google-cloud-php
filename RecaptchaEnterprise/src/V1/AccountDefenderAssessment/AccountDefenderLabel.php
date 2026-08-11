@@ -7,7 +7,7 @@ namespace Google\Cloud\RecaptchaEnterprise\V1\AccountDefenderAssessment;
 use UnexpectedValueException;
 
 /**
- * Labels returned by account defender for this request.
+ * Labels returned by Account defense for this request.
  * Ensure that applications can handle values not explicitly listed.
  *
  * Protobuf type <code>google.cloud.recaptchaenterprise.v1.AccountDefenderAssessment.AccountDefenderLabel</code>
@@ -21,7 +21,7 @@ class AccountDefenderLabel
      */
     const ACCOUNT_DEFENDER_LABEL_UNSPECIFIED = 0;
     /**
-     * The request matches a known good profile for the user.
+     * The request matches a trusted profile associated with this account.
      *
      * Generated from protobuf enum <code>PROFILE_MATCH = 1;</code>
      */

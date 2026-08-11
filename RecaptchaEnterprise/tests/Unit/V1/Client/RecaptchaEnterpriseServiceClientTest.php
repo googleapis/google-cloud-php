@@ -32,6 +32,7 @@ use Google\Cloud\RecaptchaEnterprise\V1\AnnotateAssessmentRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\AnnotateAssessmentRequest\Annotation;
 use Google\Cloud\RecaptchaEnterprise\V1\AnnotateAssessmentResponse;
 use Google\Cloud\RecaptchaEnterprise\V1\Assessment;
+use Google\Cloud\RecaptchaEnterprise\V1\ClientSettings;
 use Google\Cloud\RecaptchaEnterprise\V1\Client\RecaptchaEnterpriseServiceClient;
 use Google\Cloud\RecaptchaEnterprise\V1\CreateAssessmentRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\CreateFirewallPolicyRequest;
@@ -42,6 +43,7 @@ use Google\Cloud\RecaptchaEnterprise\V1\FirewallPolicy;
 use Google\Cloud\RecaptchaEnterprise\V1\GetFirewallPolicyRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\GetKeyRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\GetMetricsRequest;
+use Google\Cloud\RecaptchaEnterprise\V1\GetPolicyRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\IpOverrideData;
 use Google\Cloud\RecaptchaEnterprise\V1\IpOverrideData\OverrideType;
 use Google\Cloud\RecaptchaEnterprise\V1\Key;
@@ -57,6 +59,7 @@ use Google\Cloud\RecaptchaEnterprise\V1\ListRelatedAccountGroupsRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\ListRelatedAccountGroupsResponse;
 use Google\Cloud\RecaptchaEnterprise\V1\Metrics;
 use Google\Cloud\RecaptchaEnterprise\V1\MigrateKeyRequest;
+use Google\Cloud\RecaptchaEnterprise\V1\Policy;
 use Google\Cloud\RecaptchaEnterprise\V1\RelatedAccountGroup;
 use Google\Cloud\RecaptchaEnterprise\V1\RelatedAccountGroupMembership;
 use Google\Cloud\RecaptchaEnterprise\V1\RemoveIpOverrideRequest;
@@ -69,6 +72,7 @@ use Google\Cloud\RecaptchaEnterprise\V1\SearchRelatedAccountGroupMembershipsRequ
 use Google\Cloud\RecaptchaEnterprise\V1\SearchRelatedAccountGroupMembershipsResponse;
 use Google\Cloud\RecaptchaEnterprise\V1\UpdateFirewallPolicyRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\UpdateKeyRequest;
+use Google\Cloud\RecaptchaEnterprise\V1\UpdatePolicyRequest;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
@@ -801,6 +805,71 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $request = (new GetMetricsRequest())->setName($formattedName);
         try {
             $gapicClient->getMetrics($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getPolicyTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $expectedResponse = new Policy();
+        $expectedResponse->setName($name2);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->policyName('[PROJECT]', '[KEY]');
+        $request = (new GetPolicyRequest())->setName($formattedName);
+        $response = $gapicClient->getPolicy($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService/GetPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getPolicyExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->policyName('[PROJECT]', '[KEY]');
+        $request = (new GetPolicyRequest())->setName($formattedName);
+        try {
+            $gapicClient->getPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1673,6 +1742,78 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $request = (new UpdateKeyRequest())->setKey($key);
         try {
             $gapicClient->updateKey($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updatePolicyTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $expectedResponse = new Policy();
+        $expectedResponse->setName($name);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $policy = new Policy();
+        $policyClientSettings = new ClientSettings();
+        $policy->setClientSettings($policyClientSettings);
+        $request = (new UpdatePolicyRequest())->setPolicy($policy);
+        $response = $gapicClient->updatePolicy($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.recaptchaenterprise.v1.RecaptchaEnterpriseService/UpdatePolicy',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getPolicy();
+        $this->assertProtobufEquals($policy, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updatePolicyExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $policy = new Policy();
+        $policyClientSettings = new ClientSettings();
+        $policy->setClientSettings($policyClientSettings);
+        $request = (new UpdatePolicyRequest())->setPolicy($policy);
+        try {
+            $gapicClient->updatePolicy($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
