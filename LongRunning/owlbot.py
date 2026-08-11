@@ -78,5 +78,5 @@ subprocess.run([
     '--write',
     '--parser=php',
     '--single-quote',
-    '--print-width=80'])
+    '--print-width=120'])
 
