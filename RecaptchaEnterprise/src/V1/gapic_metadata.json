@@ -8,7 +8,7 @@
         "RecaptchaEnterpriseService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "RecaptchaEnterpriseServiceGapicClient",
+                    "libraryClient": "RecaptchaEnterpriseServiceClient",
                     "rpcs": {
                         "AddIpOverride": {
                             "methods": [

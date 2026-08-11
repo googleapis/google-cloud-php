@@ -35,7 +35,7 @@ class SnapshotTest extends SystemTestCase
 
     const TABLE_NAME = 'Snapshots';
 
-    private static $tableName;
+    
 
     /**
      * @beforeClass
@@ -43,21 +43,8 @@ class SnapshotTest extends SystemTestCase
     public static function setUpTestFixtures(): void
     {
         self::setUpTestDatabase();
-
-        self::$tableName = uniqid(self::TABLE_NAME);
-
-        self::$database->updateDdl(
-            'CREATE TABLE ' . self::$tableName . ' (
-                id INT64 NOT NULL,
-                number INT64 NOT NULL
-            ) PRIMARY KEY (id)'
-        )->pollUntilComplete();
     }
 
-    /**
-     * covers 63
-     * covers 68
-     */
     public function testSnapshotStrongRead()
     {
         $db = self::$database;
@@ -68,13 +55,13 @@ class SnapshotTest extends SystemTestCase
             'number' => 1
         ];
 
-        $db->insert(self::$tableName, $row);
+        $db->insert(self::TABLE_NAME, $row);
 
         $snapshot = $db->snapshot(['strong' => true, 'returnReadTimestamp' => true]);
 
         $newRow = $row;
         $newRow['number'] = 2;
-        $db->replace(self::$tableName, $newRow);
+        $db->replace(self::TABLE_NAME, $newRow);
 
         $res = $this->getRow($snapshot, $id);
         $this->assertEquals($res, $row);
@@ -95,14 +82,14 @@ class SnapshotTest extends SystemTestCase
             'number' => 1
         ];
 
-        $db->insert(self::$tableName, $row);
+        $db->insert(self::TABLE_NAME, $row);
         sleep(1);
         $ts = new Timestamp(new \DateTimeImmutable());
         sleep(1);
 
         $newRow = $row;
         $newRow['number'] = 2;
-        $db->replace(self::$tableName, $newRow);
+        $db->replace(self::TABLE_NAME, $newRow);
 
         $snapshot = $db->snapshot([
             'readTimestamp' => $ts,
@@ -128,14 +115,14 @@ class SnapshotTest extends SystemTestCase
             'number' => 1
         ];
 
-        $db->insert(self::$tableName, $row);
+        $db->insert(self::TABLE_NAME, $row);
         sleep(1);
         $ts = new Timestamp(new \DateTimeImmutable('now', new \DateTimeZone('UTC')));
         sleep(2);
 
         $newRow = $row;
         $newRow['number'] = 2;
-        $db->replace(self::$tableName, $newRow);
+        $db->replace(self::TABLE_NAME, $newRow);
 
         $snapshot = $db->snapshot([
             'minReadTimestamp' => $ts,
@@ -160,14 +147,14 @@ class SnapshotTest extends SystemTestCase
             'number' => 1
         ];
 
-        $db->insert(self::$tableName, $row);
+        $db->insert(self::TABLE_NAME, $row);
         sleep(1);
         $ts = new Timestamp(new \DateTimeImmutable());
         sleep(1);
 
         $newRow = $row;
         $newRow['number'] = 2;
-        $db->replace(self::$tableName, $newRow);
+        $db->replace(self::TABLE_NAME, $newRow);
 
         $duration = new Duration(['seconds' => 1, 'nanos' => 0]);
 
@@ -198,14 +185,14 @@ class SnapshotTest extends SystemTestCase
             'number' => 1
         ];
 
-        $db->insert(self::$tableName, $row);
+        $db->insert(self::TABLE_NAME, $row);
         sleep(1);
         $ts = new Timestamp(new \DateTimeImmutable());
         sleep(1);
 
         $newRow = $row;
         $newRow['number'] = 2;
-        $db->replace(self::$tableName, $newRow);
+        $db->replace(self::TABLE_NAME, $newRow);
 
         $duration = new Duration(['seconds' => 1, 'nanos' => 0]);
 
@@ -251,13 +238,13 @@ class SnapshotTest extends SystemTestCase
     {
         $db = self::$database;
 
-        $db->insertBatch(self::$tableName, [
+        $db->insertOrUpdateBatch(self::TABLE_NAME, [
             [
-                'id' => rand(1, 346464),
+                'id' => self::randId(),
                 'number' => 1
             ],
             [
-                'id' => rand(1, 346464),
+                'id' => self::randId(),
                 'number' => 2
             ]
         ]);
@@ -272,7 +259,7 @@ class SnapshotTest extends SystemTestCase
         ];
 
         $snapshot = $db->snapshot();
-        $res = $snapshot->read(self::$tableName, $keySet, $cols, $options);
+        $res = $snapshot->read(self::TABLE_NAME, $keySet, $cols, $options);
         $rows = iterator_to_array($res->rows());
 
         // Assert that the returned rows are sorted by the 'id' property.
@@ -303,13 +290,13 @@ class SnapshotTest extends SystemTestCase
         ];
 
         $snapshot = $db->snapshot();
-        $res = $snapshot->read(self::$tableName, $keySet, $cols, $options);
+        $res = $snapshot->read(self::TABLE_NAME, $keySet, $cols, $options);
         $rows = iterator_to_array($res->rows());
     }
 
     private function getRow($client, $id)
     {
-        $result = $client->execute('SELECT * FROM ' . self::$tableName . ' WHERE id=@id', [
+        $result = $client->execute('SELECT * FROM ' . self::TABLE_NAME . ' WHERE id=@id', [
             'parameters' => [
                 'id' => $id
             ]

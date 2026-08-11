@@ -670,7 +670,7 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
      */
     public function getInternalCheckers()
     {
-        if ($this->internal_checkers->count() !== 0) {
+        if (count($this->internal_checkers) !== 0) {
             @trigger_error('internal_checkers is deprecated.', E_USER_DEPRECATED);
         }
         return $this->internal_checkers;

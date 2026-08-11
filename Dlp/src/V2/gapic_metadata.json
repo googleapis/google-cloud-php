@@ -8,7 +8,7 @@
         "DlpService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "DlpServiceGapicClient",
+                    "libraryClient": "DlpServiceClient",
                     "rpcs": {
                         "ActivateJobTrigger": {
                             "methods": [

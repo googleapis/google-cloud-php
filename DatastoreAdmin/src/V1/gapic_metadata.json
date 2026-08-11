@@ -8,7 +8,7 @@
         "DatastoreAdmin": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "DatastoreAdminGapicClient",
+                    "libraryClient": "DatastoreAdminClient",
                     "rpcs": {
                         "CreateIndex": {
                             "methods": [

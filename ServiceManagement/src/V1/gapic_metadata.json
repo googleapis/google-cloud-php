@@ -8,7 +8,7 @@
         "ServiceManager": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ServiceManagerGapicClient",
+                    "libraryClient": "ServiceManagerClient",
                     "rpcs": {
                         "CreateService": {
                             "methods": [

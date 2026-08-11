@@ -8,7 +8,7 @@
         "OracleDatabase": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "OracleDatabaseGapicClient",
+                    "libraryClient": "OracleDatabaseClient",
                     "rpcs": {
                         "ConfigureExascaleCloudExadataInfrastructure": {
                             "methods": [

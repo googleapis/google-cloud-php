@@ -8,7 +8,7 @@
         "SubscriptionsService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "SubscriptionsServiceGapicClient",
+                    "libraryClient": "SubscriptionsServiceClient",
                     "rpcs": {
                         "CreateSubscription": {
                             "methods": [

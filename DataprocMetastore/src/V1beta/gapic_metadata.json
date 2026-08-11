@@ -8,7 +8,7 @@
         "DataprocMetastore": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "DataprocMetastoreGapicClient",
+                    "libraryClient": "DataprocMetastoreClient",
                     "rpcs": {
                         "AlterMetadataResourceLocation": {
                             "methods": [
@@ -137,7 +137,7 @@
         "DataprocMetastoreFederation": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "DataprocMetastoreFederationGapicClient",
+                    "libraryClient": "DataprocMetastoreFederationClient",
                     "rpcs": {
                         "CreateFederation": {
                             "methods": [

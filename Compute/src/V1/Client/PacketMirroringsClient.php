@@ -83,7 +83,11 @@ final class PacketMirroringsClient
     /** The name of the code generator, to be included in the agent header. */
     private const CODEGEN_NAME = 'gapic';
 
-    /** The default scopes required by the service. */
+    /**
+     * The default scopes required by the service.
+     *
+     * @internal
+     */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/compute',
         'https://www.googleapis.com/auth/cloud-platform',
@@ -164,7 +168,10 @@ final class PacketMirroringsClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = $this->descriptors[$methodName]['longRunning'] ?? $this->getDefaultOperationDescriptor();
+        $options =
+            $methodName && isset($this->descriptors[$methodName]['longRunning'])
+                ? $this->descriptors[$methodName]['longRunning']
+                : $this->getDefaultOperationDescriptor();
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;

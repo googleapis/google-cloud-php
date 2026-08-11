@@ -193,6 +193,12 @@ class Type
      */
     const MEMORY_OPTIMIZED_X4_960_16T = 424752534;
     /**
+     * CUD bucket for C4N (dual Diorite) machines.
+     *
+     * Generated from protobuf enum <code>NETWORK_OPTIMIZED_C4N = 147027572;</code>
+     */
+    const NETWORK_OPTIMIZED_C4N = 147027572;
+    /**
      * Generated from protobuf enum <code>STORAGE_OPTIMIZED_Z3 = 316796085;</code>
      */
     const STORAGE_OPTIMIZED_Z3 = 316796085;
@@ -245,6 +251,7 @@ class Type
         self::MEMORY_OPTIMIZED_X4_480_8T => 'MEMORY_OPTIMIZED_X4_480_8T',
         self::MEMORY_OPTIMIZED_X4_960_12T => 'MEMORY_OPTIMIZED_X4_960_12T',
         self::MEMORY_OPTIMIZED_X4_960_16T => 'MEMORY_OPTIMIZED_X4_960_16T',
+        self::NETWORK_OPTIMIZED_C4N => 'NETWORK_OPTIMIZED_C4N',
         self::STORAGE_OPTIMIZED_Z3 => 'STORAGE_OPTIMIZED_Z3',
         self::TYPE_UNSPECIFIED => 'TYPE_UNSPECIFIED',
     ];

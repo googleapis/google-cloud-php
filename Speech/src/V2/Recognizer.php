@@ -393,7 +393,7 @@ class Recognizer extends \Google\Protobuf\Internal\Message
      */
     public function getLanguageCodes()
     {
-        if ($this->language_codes->count() !== 0) {
+        if (count($this->language_codes) !== 0) {
             @trigger_error('language_codes is deprecated.', E_USER_DEPRECATED);
         }
         return $this->language_codes;

@@ -38,6 +38,12 @@ class InstanceStatus
      */
     const PENDING = 35394935;
     /**
+     * The instance is gracefully shutting down.
+     *
+     * Generated from protobuf enum <code>PENDING_STOP = 362509770;</code>
+     */
+    const PENDING_STOP = 362509770;
+    /**
      * Resources are being allocated for the instance.
      *
      * Generated from protobuf enum <code>PROVISIONING = 290896621;</code>
@@ -94,6 +100,7 @@ class InstanceStatus
         self::UNDEFINED_INSTANCE_STATUS => 'UNDEFINED_INSTANCE_STATUS',
         self::DEPROVISIONING => 'DEPROVISIONING',
         self::PENDING => 'PENDING',
+        self::PENDING_STOP => 'PENDING_STOP',
         self::PROVISIONING => 'PROVISIONING',
         self::REPAIRING => 'REPAIRING',
         self::RUNNING => 'RUNNING',

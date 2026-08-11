@@ -145,7 +145,7 @@ class TextChange extends \Google\Protobuf\Internal\Message
      */
     public function getProvenance()
     {
-        if ($this->provenance->count() !== 0) {
+        if (count($this->provenance) !== 0) {
             @trigger_error('provenance is deprecated.', E_USER_DEPRECATED);
         }
         return $this->provenance;

@@ -55,4 +55,9 @@ class SqlFeatureEligibilityServiceClientTest extends GeneratedTest
         ];
         return new SqlFeatureEligibilityServiceClient($options);
     }
+
+    public function testClientTestCase()
+    {
+        $this->assertTrue(true);
+    }
 }

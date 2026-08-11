@@ -8,7 +8,7 @@
         "PolicyTroubleshooter": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "PolicyTroubleshooterGapicClient",
+                    "libraryClient": "PolicyTroubleshooterClient",
                     "rpcs": {
                         "TroubleshootIamPolicy": {
                             "methods": [

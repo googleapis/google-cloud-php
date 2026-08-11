@@ -8,7 +8,7 @@
         "StorageBatchOperations": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "StorageBatchOperationsGapicClient",
+                    "libraryClient": "StorageBatchOperationsClient",
                     "rpcs": {
                         "CancelJob": {
                             "methods": [

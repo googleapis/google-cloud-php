@@ -8,7 +8,7 @@
         "DataAgentService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "DataAgentServiceGapicClient",
+                    "libraryClient": "DataAgentServiceClient",
                     "rpcs": {
                         "CreateDataAgent": {
                             "methods": [
@@ -82,7 +82,7 @@
         "DataChatService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "DataChatServiceGapicClient",
+                    "libraryClient": "DataChatServiceClient",
                     "rpcs": {
                         "Chat": {
                             "methods": [
