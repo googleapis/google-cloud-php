@@ -89,6 +89,24 @@ class DbSystemShape extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int32 min_db_node_storage_per_node_gb = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $min_db_node_storage_per_node_gb = 0;
+    /**
+     * Optional. Minimum core count per node.
+     *
+     * Generated from protobuf field <code>int32 minimum_core_count = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $minimum_core_count = 0;
+    /**
+     * Optional. Available core count.
+     *
+     * Generated from protobuf field <code>int32 available_core_count = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $available_core_count = 0;
+    /**
+     * Optional. Core count increment.
+     *
+     * Generated from protobuf field <code>int32 core_count_increment = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $core_count_increment = 0;
 
     /**
      * Constructor.
@@ -121,6 +139,12 @@ class DbSystemShape extends \Google\Protobuf\Internal\Message
      *           Optional. Minimum memory per node in gigabytes.
      *     @type int $min_db_node_storage_per_node_gb
      *           Optional. Minimum node storage per database server in gigabytes.
+     *     @type int $minimum_core_count
+     *           Optional. Minimum core count per node.
+     *     @type int $available_core_count
+     *           Optional. Available core count.
+     *     @type int $core_count_increment
+     *           Optional. Core count increment.
      * }
      */
     public function __construct($data = NULL) {
@@ -438,6 +462,84 @@ class DbSystemShape extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->min_db_node_storage_per_node_gb = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Minimum core count per node.
+     *
+     * Generated from protobuf field <code>int32 minimum_core_count = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getMinimumCoreCount()
+    {
+        return $this->minimum_core_count;
+    }
+
+    /**
+     * Optional. Minimum core count per node.
+     *
+     * Generated from protobuf field <code>int32 minimum_core_count = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setMinimumCoreCount($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->minimum_core_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Available core count.
+     *
+     * Generated from protobuf field <code>int32 available_core_count = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getAvailableCoreCount()
+    {
+        return $this->available_core_count;
+    }
+
+    /**
+     * Optional. Available core count.
+     *
+     * Generated from protobuf field <code>int32 available_core_count = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setAvailableCoreCount($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->available_core_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Core count increment.
+     *
+     * Generated from protobuf field <code>int32 core_count_increment = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getCoreCountIncrement()
+    {
+        return $this->core_count_increment;
+    }
+
+    /**
+     * Optional. Core count increment.
+     *
+     * Generated from protobuf field <code>int32 core_count_increment = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setCoreCountIncrement($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->core_count_increment = $var;
 
         return $this;
     }
