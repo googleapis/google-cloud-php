@@ -16,8 +16,8 @@ use Google\Protobuf\RepeatedField;
 class User extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. Unique account identifier for this user. If using account
-     * defender, this should match the hashed_account_id field. Otherwise, a
+     * Optional. Unique account identifier for this user. If using Account
+     * defense, this should match the hashed_account_id field. Otherwise, a
      * unique and persistent identifier for this account.
      *
      * Generated from protobuf field <code>string account_id = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -63,8 +63,8 @@ class User extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $account_id
-     *           Optional. Unique account identifier for this user. If using account
-     *           defender, this should match the hashed_account_id field. Otherwise, a
+     *           Optional. Unique account identifier for this user. If using Account
+     *           defense, this should match the hashed_account_id field. Otherwise, a
      *           unique and persistent identifier for this account.
      *     @type int|string $creation_ms
      *           Optional. The epoch milliseconds of the user's account creation.
@@ -86,8 +86,8 @@ class User extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Unique account identifier for this user. If using account
-     * defender, this should match the hashed_account_id field. Otherwise, a
+     * Optional. Unique account identifier for this user. If using Account
+     * defense, this should match the hashed_account_id field. Otherwise, a
      * unique and persistent identifier for this account.
      *
      * Generated from protobuf field <code>string account_id = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -99,8 +99,8 @@ class User extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Unique account identifier for this user. If using account
-     * defender, this should match the hashed_account_id field. Otherwise, a
+     * Optional. Unique account identifier for this user. If using Account
+     * defense, this should match the hashed_account_id field. Otherwise, a
      * unique and persistent identifier for this account.
      *
      * Generated from protobuf field <code>string account_id = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
