@@ -78,7 +78,11 @@ final class CompanyServiceClient
     /** The name of the code generator, to be included in the agent header. */
     private const CODEGEN_NAME = 'gapic';
 
-    /** The default scopes required by the service. */
+    /**
+     * The default scopes required by the service.
+     *
+     * @internal
+     */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/admanager',
         'https://www.googleapis.com/auth/admanager.readonly',
@@ -255,7 +259,7 @@ final class CompanyServiceClient
     }
 
     /**
-     * API to retrieve a `Company` object.
+     * Retrieves a `Company` object.
      *
      * The async variant is {@see CompanyServiceClient::getCompanyAsync()} .
      *
@@ -281,7 +285,7 @@ final class CompanyServiceClient
     }
 
     /**
-     * API to retrieve a list of `Company` objects.
+     * Lists `Company` objects.
      *
      * The async variant is {@see CompanyServiceClient::listCompaniesAsync()} .
      *

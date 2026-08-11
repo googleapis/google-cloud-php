@@ -8,7 +8,7 @@
         "NotebookService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "NotebookServiceGapicClient",
+                    "libraryClient": "NotebookServiceClient",
                     "rpcs": {
                         "CheckInstanceUpgradability": {
                             "methods": [

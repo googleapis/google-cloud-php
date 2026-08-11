@@ -8,7 +8,7 @@
         "DepService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "DepServiceGapicClient",
+                    "libraryClient": "DepServiceClient",
                     "rpcs": {
                         "CreateAuthzExtension": {
                             "methods": [
@@ -142,7 +142,7 @@
         "NetworkServices": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "NetworkServicesGapicClient",
+                    "libraryClient": "NetworkServicesClient",
                     "rpcs": {
                         "CreateAgentGateway": {
                             "methods": [

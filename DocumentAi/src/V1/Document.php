@@ -376,7 +376,7 @@ class Document extends \Google\Protobuf\Internal\Message
      */
     public function getTextStyles()
     {
-        if ($this->text_styles->count() !== 0) {
+        if (count($this->text_styles) !== 0) {
             @trigger_error('text_styles is deprecated.', E_USER_DEPRECATED);
         }
         return $this->text_styles;

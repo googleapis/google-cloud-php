@@ -55,4 +55,9 @@ class SqlRegionsServiceClientTest extends GeneratedTest
         ];
         return new SqlRegionsServiceClient($options);
     }
+
+    public function testClientTestCase()
+    {
+        $this->assertTrue(true);
+    }
 }

@@ -8,7 +8,7 @@
         "AttachedClusters": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "AttachedClustersGapicClient",
+                    "libraryClient": "AttachedClustersClient",
                     "rpcs": {
                         "CreateAttachedCluster": {
                             "methods": [
@@ -62,7 +62,7 @@
         "AwsClusters": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "AwsClustersGapicClient",
+                    "libraryClient": "AwsClustersClient",
                     "rpcs": {
                         "CreateAwsCluster": {
                             "methods": [
@@ -151,7 +151,7 @@
         "AzureClusters": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "AzureClustersGapicClient",
+                    "libraryClient": "AzureClustersClient",
                     "rpcs": {
                         "CreateAzureClient": {
                             "methods": [

@@ -35,6 +35,10 @@ return [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Ads\DataManager\V1\IngestEventsResponse',
             ],
+            'RemoveAllAudienceMembers' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Ads\DataManager\V1\RemoveAllAudienceMembersResponse',
+            ],
             'RemoveAudienceMembers' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Ads\DataManager\V1\RemoveAudienceMembersResponse',

@@ -94,7 +94,11 @@ final class TeamServiceClient
     /** The name of the code generator, to be included in the agent header. */
     private const CODEGEN_NAME = 'gapic';
 
-    /** The default scopes required by the service. */
+    /**
+     * The default scopes required by the service.
+     *
+     * @internal
+     */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/admanager',
         'https://www.googleapis.com/auth/admanager.readonly',
@@ -271,7 +275,7 @@ final class TeamServiceClient
     }
 
     /**
-     * API to batch activate `Team` objects.
+     * Batch activates `Team` objects.
      *
      * The async variant is {@see TeamServiceClient::batchActivateTeamsAsync()} .
      *
@@ -299,7 +303,7 @@ final class TeamServiceClient
     }
 
     /**
-     * API to batch create `Team` objects.
+     * Creates `Team` objects.
      *
      * The async variant is {@see TeamServiceClient::batchCreateTeamsAsync()} .
      *
@@ -327,7 +331,7 @@ final class TeamServiceClient
     }
 
     /**
-     * API to batch deactivate `Team` objects.
+     * Batch deactivates `Team` objects.
      *
      * The async variant is {@see TeamServiceClient::batchDeactivateTeamsAsync()} .
      *
@@ -355,7 +359,7 @@ final class TeamServiceClient
     }
 
     /**
-     * API to batch update `Team` objects.
+     * Batch updates `Team` objects.
      *
      * The async variant is {@see TeamServiceClient::batchUpdateTeamsAsync()} .
      *
@@ -383,7 +387,7 @@ final class TeamServiceClient
     }
 
     /**
-     * API to create a `Team` object.
+     * Creates a `Team` object.
      *
      * The async variant is {@see TeamServiceClient::createTeamAsync()} .
      *
@@ -409,7 +413,7 @@ final class TeamServiceClient
     }
 
     /**
-     * API to retrieve a `Team` object.
+     * Retrieves a `Team` object.
      *
      * The async variant is {@see TeamServiceClient::getTeamAsync()} .
      *
@@ -435,7 +439,7 @@ final class TeamServiceClient
     }
 
     /**
-     * API to retrieve a list of `Team` objects.
+     * Lists `Team` objects.
      *
      * The async variant is {@see TeamServiceClient::listTeamsAsync()} .
      *
@@ -461,7 +465,7 @@ final class TeamServiceClient
     }
 
     /**
-     * API to update a `Team` object.
+     * Updates a `Team` object.
      *
      * The async variant is {@see TeamServiceClient::updateTeamAsync()} .
      *

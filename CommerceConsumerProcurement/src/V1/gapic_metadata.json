@@ -8,7 +8,7 @@
         "LicenseManagementService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "LicenseManagementServiceGapicClient",
+                    "libraryClient": "LicenseManagementServiceClient",
                     "rpcs": {
                         "Assign": {
                             "methods": [
@@ -42,7 +42,7 @@
         "ConsumerProcurementService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ConsumerProcurementServiceGapicClient",
+                    "libraryClient": "ConsumerProcurementServiceClient",
                     "rpcs": {
                         "CancelOrder": {
                             "methods": [

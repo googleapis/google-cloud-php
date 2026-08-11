@@ -38,21 +38,6 @@ class PgBatchWriteTest extends SystemTestCase
         // against the emulator.
         self::skipEmulatorTests();
         self::setUpTestDatabase();
-
-        self::$database->updateDdlBatch([
-            'CREATE TABLE Singers (
-                singerid   bigint NOT NULL,
-                firstname  varchar(1024),
-                lastname   varchar(1024),
-                PRIMARY KEY (singerid)
-            )',
-            'CREATE TABLE Albums (
-                singerid     bigint NOT NULL,
-                albumid      bigint NOT NULL,
-                albumtitle   varchar(1024),
-                PRIMARY KEY (singerid, albumid)
-            ) INTERLEAVE IN PARENT singers ON DELETE CASCADE'
-        ])->pollUntilComplete();
     }
 
     public function testBatchWrite()

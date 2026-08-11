@@ -8,7 +8,7 @@
         "AnalyticsService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "AnalyticsServiceGapicClient",
+                    "libraryClient": "AnalyticsServiceClient",
                     "rpcs": {
                         "ExportAnalyticsMetrics": {
                             "methods": [
@@ -22,7 +22,7 @@
         "CatalogService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "CatalogServiceGapicClient",
+                    "libraryClient": "CatalogServiceClient",
                     "rpcs": {
                         "AddCatalogAttribute": {
                             "methods": [
@@ -86,7 +86,7 @@
         "CompletionService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "CompletionServiceGapicClient",
+                    "libraryClient": "CompletionServiceClient",
                     "rpcs": {
                         "CompleteQuery": {
                             "methods": [
@@ -105,7 +105,7 @@
         "ControlService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ControlServiceGapicClient",
+                    "libraryClient": "ControlServiceClient",
                     "rpcs": {
                         "CreateControl": {
                             "methods": [
@@ -139,7 +139,7 @@
         "SearchService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "SearchServiceGapicClient",
+                    "libraryClient": "SearchServiceClient",
                     "rpcs": {
                         "Search": {
                             "methods": [
@@ -153,7 +153,7 @@
         "ConversationalSearchService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ConversationalSearchServiceGapicClient",
+                    "libraryClient": "ConversationalSearchServiceClient",
                     "rpcs": {
                         "ConversationalSearch": {
                             "methods": [
@@ -167,7 +167,7 @@
         "GenerativeQuestionService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "GenerativeQuestionServiceGapicClient",
+                    "libraryClient": "GenerativeQuestionServiceClient",
                     "rpcs": {
                         "BatchUpdateGenerativeQuestionConfigs": {
                             "methods": [
@@ -201,7 +201,7 @@
         "ModelService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ModelServiceGapicClient",
+                    "libraryClient": "ModelServiceClient",
                     "rpcs": {
                         "CreateModel": {
                             "methods": [
@@ -250,7 +250,7 @@
         "PredictionService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "PredictionServiceGapicClient",
+                    "libraryClient": "PredictionServiceClient",
                     "rpcs": {
                         "Predict": {
                             "methods": [
@@ -264,7 +264,7 @@
         "ProductService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ProductServiceGapicClient",
+                    "libraryClient": "ProductServiceClient",
                     "rpcs": {
                         "AddFulfillmentPlaces": {
                             "methods": [
@@ -333,7 +333,7 @@
         "ServingConfigService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ServingConfigServiceGapicClient",
+                    "libraryClient": "ServingConfigServiceClient",
                     "rpcs": {
                         "AddControl": {
                             "methods": [
@@ -377,7 +377,7 @@
         "UserEventService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "UserEventServiceGapicClient",
+                    "libraryClient": "UserEventServiceClient",
                     "rpcs": {
                         "CollectUserEvent": {
                             "methods": [

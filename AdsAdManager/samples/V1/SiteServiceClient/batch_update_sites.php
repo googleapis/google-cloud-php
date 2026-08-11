@@ -31,7 +31,7 @@ use Google\Ads\AdManager\V1\UpdateSiteRequest;
 use Google\ApiCore\ApiException;
 
 /**
- * API to batch update `Site` objects.
+ * Batch updates `Site` objects.
  *
  * @param string $formattedParent The parent resource where `Sites` will be updated.
  *                                Format: `networks/{network_code}`

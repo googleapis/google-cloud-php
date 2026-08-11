@@ -21,6 +21,13 @@ class InstallNpmPackagesRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string workspace = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $workspace = '';
+    /**
+     * Optional. The pipeline options which defines the pipeline type and path
+     * within the Git repository.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.PipelineConfig pipeline_config = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $pipeline_config = null;
 
     /**
      * Constructor.
@@ -30,6 +37,9 @@ class InstallNpmPackagesRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $workspace
      *           Required. The workspace's name.
+     *     @type \Google\Cloud\Dataform\V1beta1\PipelineConfig $pipeline_config
+     *           Optional. The pipeline options which defines the pipeline type and path
+     *           within the Git repository.
      * }
      */
     public function __construct($data = NULL) {
@@ -59,6 +69,44 @@ class InstallNpmPackagesRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->workspace = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The pipeline options which defines the pipeline type and path
+     * within the Git repository.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.PipelineConfig pipeline_config = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dataform\V1beta1\PipelineConfig|null
+     */
+    public function getPipelineConfig()
+    {
+        return $this->pipeline_config;
+    }
+
+    public function hasPipelineConfig()
+    {
+        return isset($this->pipeline_config);
+    }
+
+    public function clearPipelineConfig()
+    {
+        unset($this->pipeline_config);
+    }
+
+    /**
+     * Optional. The pipeline options which defines the pipeline type and path
+     * within the Git repository.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.PipelineConfig pipeline_config = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dataform\V1beta1\PipelineConfig $var
+     * @return $this
+     */
+    public function setPipelineConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataform\V1beta1\PipelineConfig::class);
+        $this->pipeline_config = $var;
 
         return $this;
     }

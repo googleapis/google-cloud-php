@@ -8,7 +8,7 @@
         "Datastore": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "DatastoreGapicClient",
+                    "libraryClient": "DatastoreClient",
                     "rpcs": {
                         "AllocateIds": {
                             "methods": [

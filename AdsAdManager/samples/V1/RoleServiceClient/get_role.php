@@ -29,7 +29,7 @@ use Google\Ads\AdManager\V1\Role;
 use Google\ApiCore\ApiException;
 
 /**
- * API to retrieve a `Role` object.
+ * Retrieves a `Role` object.
  *
  * @param string $formattedName The resource name of the Role.
  *                              Format: `networks/{network_code}/roles/{role_id}`

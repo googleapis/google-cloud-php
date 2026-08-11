@@ -30,6 +30,12 @@ class NotebookAction extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string job_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $job_id = '';
+    /**
+     * Output only. The path to the notebook file in the repository.
+     *
+     * Generated from protobuf field <code>string file_path = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $file_path = '';
 
     /**
      * Constructor.
@@ -44,6 +50,8 @@ class NotebookAction extends \Google\Protobuf\Internal\Message
      *           executed the notebook in contents and also the ID used for the outputs
      *           created in Google Cloud Storage buckets. Only set once the job has
      *           started to run.
+     *     @type string $file_path
+     *           Output only. The path to the notebook file in the repository.
      * }
      */
     public function __construct($data = NULL) {
@@ -105,6 +113,32 @@ class NotebookAction extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->job_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The path to the notebook file in the repository.
+     *
+     * Generated from protobuf field <code>string file_path = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getFilePath()
+    {
+        return $this->file_path;
+    }
+
+    /**
+     * Output only. The path to the notebook file in the repository.
+     *
+     * Generated from protobuf field <code>string file_path = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setFilePath($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->file_path = $var;
 
         return $this;
     }
