@@ -57,6 +57,11 @@ return [
                         'uriTemplate' => '/v1/{scope=projects/*/locations/*}/auditReports:generate',
                         'body' => '*',
                     ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{scope=organizations/*/locations/*}/auditReports:generate',
+                        'body' => '*',
+                    ],
                 ],
                 'placeholders' => [
                     'scope' => [
@@ -76,6 +81,11 @@ return [
                         'uriTemplate' => '/v1/{scope=projects/*/locations/*}/auditScopeReports:generate',
                         'body' => '*',
                     ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{scope=organizations/*/locations/*}/auditScopeReports:generate',
+                        'body' => '*',
+                    ],
                 ],
                 'placeholders' => [
                     'scope' => [
@@ -92,6 +102,10 @@ return [
                     [
                         'method' => 'get',
                         'uriTemplate' => '/v1/{name=projects/*/locations/*/auditReports/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=organizations/*/locations/*/auditReports/*}',
                     ],
                 ],
                 'placeholders' => [
