@@ -70,6 +70,7 @@ use Google\Cloud\Storage\Control\V2\ListIntelligenceFindingsRequest;
 use Google\Cloud\Storage\Control\V2\ListManagedFoldersRequest;
 use Google\Cloud\Storage\Control\V2\ListRapidCachesRequest;
 use Google\Cloud\Storage\Control\V2\ManagedFolder;
+use Google\Cloud\Storage\Control\V2\ObjectFullContext;
 use Google\Cloud\Storage\Control\V2\PauseAnywhereCacheRequest;
 use Google\Cloud\Storage\Control\V2\RapidCache;
 use Google\Cloud\Storage\Control\V2\RenameFolderRequest;
@@ -82,6 +83,7 @@ use Google\Cloud\Storage\Control\V2\UpdateManagedFolderRequest;
 use Google\Cloud\Storage\Control\V2\UpdateOrganizationIntelligenceConfigRequest;
 use Google\Cloud\Storage\Control\V2\UpdateProjectIntelligenceConfigRequest;
 use Google\Cloud\Storage\Control\V2\UpdateRapidCacheRequest;
+use Google\Cloud\Storage\Control\V2\ViewObjectFullContextRequest;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
@@ -135,6 +137,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<IntelligenceConfig> updateOrganizationIntelligenceConfigAsync(UpdateOrganizationIntelligenceConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<IntelligenceConfig> updateProjectIntelligenceConfigAsync(UpdateProjectIntelligenceConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateRapidCacheAsync(UpdateRapidCacheRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ObjectFullContext> viewObjectFullContextAsync(ViewObjectFullContextRequest $request, array $optionalArgs = [])
  */
 final class StorageControlClient
 {
@@ -418,6 +421,25 @@ final class StorageControlClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a object
+     * resource.
+     *
+     * @param string $project
+     * @param string $bucket
+     * @param string $object
+     *
+     * @return string The formatted object resource.
+     */
+    public static function objectName(string $project, string $bucket, string $object): string
+    {
+        return self::getPathTemplate('object')->render([
+            'project' => $project,
+            'bucket' => $bucket,
+            'object' => $object,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a
      * org_location_intelligenceConfig resource.
      *
@@ -500,6 +522,7 @@ final class StorageControlClient
      * - intelligenceFindingRevision: projects/{project}/locations/{location}/intelligenceFindings/{intelligence_finding}/revisions/{revision}
      * - location: projects/{project}/locations/{location}
      * - managedFolder: projects/{project}/buckets/{bucket}/managedFolders/{managed_folder=**}
+     * - object: projects/{project}/buckets/{bucket}/objects/{object}
      * - orgLocationIntelligenceConfig: organizations/{org}/locations/{location}/intelligenceConfig
      * - projectLocationIntelligenceConfig: projects/{project}/locations/{location}/intelligenceConfig
      * - rapidCache: projects/{project}/buckets/{bucket}/rapidCaches/{rapid_cache}
@@ -1630,5 +1653,41 @@ final class StorageControlClient
     public function updateRapidCache(UpdateRapidCacheRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('UpdateRapidCache', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Retrieves the full content of an object context, including its key, value,
+     * and any associated extended data for a given context key.
+     *
+     * Object contexts can optionally contain extended data. If an object context
+     * contains extended data, the metadata payload structure will contain only
+     * its type URL. To retrieve the full extended data, call this method.
+     *
+     * Returns the complete representation of the context as an
+     * [`ObjectFullContext`][google.storage.control.v2.ObjectFullContext].
+     *
+     * The async variant is {@see StorageControlClient::viewObjectFullContextAsync()} .
+     *
+     * @example samples/V2/StorageControlClient/view_object_full_context.php
+     *
+     * @param ViewObjectFullContextRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return ObjectFullContext
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function viewObjectFullContext(
+        ViewObjectFullContextRequest $request,
+        array $callOptions = []
+    ): ObjectFullContext {
+        return $this->startApiCall('ViewObjectFullContext', $request, $callOptions)->wait();
     }
 }

@@ -252,6 +252,17 @@ return [
                     'update_mask',
                 ],
             ],
+            'ViewObjectFullContext' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{name=projects/*/buckets/*/objects/**}:viewFullContext',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
         ],
     ],
 ];

@@ -677,6 +677,21 @@ return [
                     ],
                 ],
             ],
+            'ViewObjectFullContext' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Storage\Control\V2\ObjectFullContext',
+                'headerParams' => [
+                    [
+                        'keyName' => 'bucket',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                        'matchers' => [
+                            '/^(?<bucket>projects\/[^\/]+\/buckets\/[^\/]+)(?:\/.*)?$/',
+                        ],
+                    ],
+                ],
+            ],
             'templateMap' => [
                 'anywhereCache' => 'projects/{project}/buckets/{bucket}/anywhereCaches/{anywhere_cache}',
                 'bucket' => 'projects/{project}/buckets/{bucket}',
@@ -687,6 +702,7 @@ return [
                 'intelligenceFindingRevision' => 'projects/{project}/locations/{location}/intelligenceFindings/{intelligence_finding}/revisions/{revision}',
                 'location' => 'projects/{project}/locations/{location}',
                 'managedFolder' => 'projects/{project}/buckets/{bucket}/managedFolders/{managed_folder=**}',
+                'object' => 'projects/{project}/buckets/{bucket}/objects/{object}',
                 'orgLocationIntelligenceConfig' => 'organizations/{org}/locations/{location}/intelligenceConfig',
                 'projectLocationIntelligenceConfig' => 'projects/{project}/locations/{location}/intelligenceConfig',
                 'rapidCache' => 'projects/{project}/buckets/{bucket}/rapidCaches/{rapid_cache}',
