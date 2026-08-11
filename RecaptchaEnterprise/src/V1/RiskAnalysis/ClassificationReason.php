@@ -53,15 +53,23 @@ class ClassificationReason
      */
     const LOW_CONFIDENCE_SCORE = 5;
     /**
-     * The request matches behavioral characteristics of a carding attack.
+     * Deprecated: Use
+     * [FraudPreventionAssessment.transaction_risk][google.cloud.recaptchaenterprise.v1.FraudPreventionAssessment.transaction_risk]
+     * and
+     * [FraudPreventionAssessment.RiskReason.Reason.EXCESSIVE_ENUMERATION_PATTERN][google.cloud.recaptchaenterprise.v1.FraudPreventionAssessment.RiskReason.Reason.EXCESSIVE_ENUMERATION_PATTERN]
+     * instead.
      *
-     * Generated from protobuf enum <code>SUSPECTED_CARDING = 6;</code>
+     * Generated from protobuf enum <code>SUSPECTED_CARDING = 6 [deprecated = true];</code>
      */
     const SUSPECTED_CARDING = 6;
     /**
-     * The request matches behavioral characteristics of chargebacks for fraud.
+     * Deprecated: Use
+     * [FraudPreventionAssessment.transaction_risk][google.cloud.recaptchaenterprise.v1.FraudPreventionAssessment.transaction_risk]
+     * and
+     * [FraudPreventionAssessment.RiskReason.Reason.ASSOCIATED_WITH_FRAUD_CLUSTER][google.cloud.recaptchaenterprise.v1.FraudPreventionAssessment.RiskReason.Reason.ASSOCIATED_WITH_FRAUD_CLUSTER]
+     * instead.
      *
-     * Generated from protobuf enum <code>SUSPECTED_CHARGEBACK = 7;</code>
+     * Generated from protobuf enum <code>SUSPECTED_CHARGEBACK = 7 [deprecated = true];</code>
      */
     const SUSPECTED_CHARGEBACK = 7;
 
