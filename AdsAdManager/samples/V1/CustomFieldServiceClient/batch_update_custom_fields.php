@@ -34,7 +34,7 @@ use Google\Ads\AdManager\V1\UpdateCustomFieldRequest;
 use Google\ApiCore\ApiException;
 
 /**
- * API to batch update `CustomField` objects.
+ * Batch updates `CustomField` objects.
  *
  * @param string $formattedParent                The parent resource where `CustomFields` will be updated.
  *                                               Format: `networks/{network_code}`

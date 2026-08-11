@@ -78,7 +78,11 @@ final class MobileDeviceSubmodelServiceClient
     /** The name of the code generator, to be included in the agent header. */
     private const CODEGEN_NAME = 'gapic';
 
-    /** The default scopes required by the service. */
+    /**
+     * The default scopes required by the service.
+     *
+     * @internal
+     */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/admanager',
         'https://www.googleapis.com/auth/admanager.readonly',
@@ -256,7 +260,7 @@ final class MobileDeviceSubmodelServiceClient
     }
 
     /**
-     * API to retrieve a `MobileDeviceSubmodel` object.
+     * Retrieves a `MobileDeviceSubmodel` object.
      *
      * The async variant is
      * {@see MobileDeviceSubmodelServiceClient::getMobileDeviceSubmodelAsync()} .
@@ -285,7 +289,7 @@ final class MobileDeviceSubmodelServiceClient
     }
 
     /**
-     * API to retrieve a list of `MobileDeviceSubmodel` objects.
+     * Lists `MobileDeviceSubmodel` objects.
      *
      * The async variant is
      * {@see MobileDeviceSubmodelServiceClient::listMobileDeviceSubmodelsAsync()} .

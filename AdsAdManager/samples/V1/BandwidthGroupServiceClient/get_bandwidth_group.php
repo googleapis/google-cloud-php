@@ -29,7 +29,7 @@ use Google\Ads\AdManager\V1\GetBandwidthGroupRequest;
 use Google\ApiCore\ApiException;
 
 /**
- * API to retrieve a `BandwidthGroup` object.
+ * Retrieves a `BandwidthGroup` object.
  *
  * @param string $formattedName The resource name of the BandwidthGroup.
  *                              Format: `networks/{network_code}/bandwidthGroups/{bandwidth_group_id}`

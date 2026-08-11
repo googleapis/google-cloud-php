@@ -94,7 +94,11 @@ final class SiteServiceClient
     /** The name of the code generator, to be included in the agent header. */
     private const CODEGEN_NAME = 'gapic';
 
-    /** The default scopes required by the service. */
+    /**
+     * The default scopes required by the service.
+     *
+     * @internal
+     */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/admanager',
         'https://www.googleapis.com/auth/admanager.readonly',
@@ -271,7 +275,7 @@ final class SiteServiceClient
     }
 
     /**
-     * API to batch create `Site` objects.
+     * Creates `Site` objects.
      *
      * The async variant is {@see SiteServiceClient::batchCreateSitesAsync()} .
      *
@@ -356,7 +360,7 @@ final class SiteServiceClient
     }
 
     /**
-     * API to batch update `Site` objects.
+     * Batch updates `Site` objects.
      *
      * The async variant is {@see SiteServiceClient::batchUpdateSitesAsync()} .
      *
@@ -384,7 +388,7 @@ final class SiteServiceClient
     }
 
     /**
-     * API to create a `Site` object.
+     * Creates a `Site` object.
      *
      * The async variant is {@see SiteServiceClient::createSiteAsync()} .
      *
@@ -410,7 +414,7 @@ final class SiteServiceClient
     }
 
     /**
-     * API to retrieve a `Site` object.
+     * Retrieves a `Site` object.
      *
      * The async variant is {@see SiteServiceClient::getSiteAsync()} .
      *
@@ -436,7 +440,7 @@ final class SiteServiceClient
     }
 
     /**
-     * API to retrieve a list of `Site` objects.
+     * Lists `Site` objects.
      *
      * The async variant is {@see SiteServiceClient::listSitesAsync()} .
      *
@@ -462,7 +466,7 @@ final class SiteServiceClient
     }
 
     /**
-     * API to update a `Site` object.
+     * Updates a `Site` object.
      *
      * The async variant is {@see SiteServiceClient::updateSiteAsync()} .
      *

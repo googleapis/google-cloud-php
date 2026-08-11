@@ -29,7 +29,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 
 /**
- * API to retrieve a list of `Order` objects.
+ * Lists `Order` objects.
  *
  * Fields used for literal matching in filter string:
  * * `order_id`

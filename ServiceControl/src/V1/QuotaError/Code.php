@@ -25,7 +25,8 @@ class Code
     const UNSPECIFIED = 0;
     /**
      * Quota allocation failed.
-     * Same as [google.rpc.Code.RESOURCE_EXHAUSTED][google.rpc.Code.RESOURCE_EXHAUSTED].
+     * Same as
+     * [google.rpc.Code.RESOURCE_EXHAUSTED][google.rpc.Code.RESOURCE_EXHAUSTED].
      *
      * Generated from protobuf enum <code>RESOURCE_EXHAUSTED = 8;</code>
      */

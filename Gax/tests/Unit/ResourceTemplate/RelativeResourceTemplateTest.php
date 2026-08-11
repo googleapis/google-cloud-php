@@ -281,6 +281,10 @@ class RelativeResourceTemplateTest extends TestCase
                 'foo/bar', // Missing middle wildcard
             ],
             [
+                'a/**/{y=*}/{x=*}/f',
+                'a/e/f', // Missing segments for double wildcard and variables
+            ],
+            [
                 'buckets',
                 'bouquets', // Wrong literal
             ],

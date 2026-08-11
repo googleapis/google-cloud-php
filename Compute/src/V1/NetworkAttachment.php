@@ -88,15 +88,17 @@ class NetworkAttachment extends \Google\Protobuf\Internal\Message
      */
     protected $network = null;
     /**
-     * Projects that are allowed to connect to this network attachment.
-     * The project can be specified using its id or number.
+     * Projects or service class ids that are allowed to connect to this network
+     * attachment. The project can be specified using its id or number. Service
+     * class id can be specified as "serviceclasses/{service_class_id}".
      *
      * Generated from protobuf field <code>repeated string producer_accept_lists = 202804523;</code>
      */
     private $producer_accept_lists;
     /**
-     * Projects that are not allowed to connect to this network attachment.
-     * The project can be specified using its id or number.
+     * Projects or service class ids that are not allowed to connect to this
+     * network attachment. The project can be specified using its id or number.
+     * Service class id can be specified as "serviceclasses/{service_class_id}".
      *
      * Generated from protobuf field <code>repeated string producer_reject_lists = 4112002;</code>
      */
@@ -173,11 +175,13 @@ class NetworkAttachment extends \Google\Protobuf\Internal\Message
      *           be from the same network, it is assured that the Network Attachment belongs
      *           to the same network as all the subnetworks.
      *     @type string[] $producer_accept_lists
-     *           Projects that are allowed to connect to this network attachment.
-     *           The project can be specified using its id or number.
+     *           Projects or service class ids that are allowed to connect to this network
+     *           attachment. The project can be specified using its id or number. Service
+     *           class id can be specified as "serviceclasses/{service_class_id}".
      *     @type string[] $producer_reject_lists
-     *           Projects that are not allowed to connect to this network attachment.
-     *           The project can be specified using its id or number.
+     *           Projects or service class ids that are not allowed to connect to this
+     *           network attachment. The project can be specified using its id or number.
+     *           Service class id can be specified as "serviceclasses/{service_class_id}".
      *     @type string $region
      *           Output only. [Output Only] URL of the region where the network attachment resides.
      *           This field applies only to the region resource. You must specify this
@@ -547,8 +551,9 @@ class NetworkAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Projects that are allowed to connect to this network attachment.
-     * The project can be specified using its id or number.
+     * Projects or service class ids that are allowed to connect to this network
+     * attachment. The project can be specified using its id or number. Service
+     * class id can be specified as "serviceclasses/{service_class_id}".
      *
      * Generated from protobuf field <code>repeated string producer_accept_lists = 202804523;</code>
      * @return RepeatedField<string>
@@ -559,8 +564,9 @@ class NetworkAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Projects that are allowed to connect to this network attachment.
-     * The project can be specified using its id or number.
+     * Projects or service class ids that are allowed to connect to this network
+     * attachment. The project can be specified using its id or number. Service
+     * class id can be specified as "serviceclasses/{service_class_id}".
      *
      * Generated from protobuf field <code>repeated string producer_accept_lists = 202804523;</code>
      * @param string[] $var
@@ -575,8 +581,9 @@ class NetworkAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Projects that are not allowed to connect to this network attachment.
-     * The project can be specified using its id or number.
+     * Projects or service class ids that are not allowed to connect to this
+     * network attachment. The project can be specified using its id or number.
+     * Service class id can be specified as "serviceclasses/{service_class_id}".
      *
      * Generated from protobuf field <code>repeated string producer_reject_lists = 4112002;</code>
      * @return RepeatedField<string>
@@ -587,8 +594,9 @@ class NetworkAttachment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Projects that are not allowed to connect to this network attachment.
-     * The project can be specified using its id or number.
+     * Projects or service class ids that are not allowed to connect to this
+     * network attachment. The project can be specified using its id or number.
+     * Service class id can be specified as "serviceclasses/{service_class_id}".
      *
      * Generated from protobuf field <code>repeated string producer_reject_lists = 4112002;</code>
      * @param string[] $var

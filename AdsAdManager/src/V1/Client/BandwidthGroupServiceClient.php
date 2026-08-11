@@ -78,7 +78,11 @@ final class BandwidthGroupServiceClient
     /** The name of the code generator, to be included in the agent header. */
     private const CODEGEN_NAME = 'gapic';
 
-    /** The default scopes required by the service. */
+    /**
+     * The default scopes required by the service.
+     *
+     * @internal
+     */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/admanager',
         'https://www.googleapis.com/auth/admanager.readonly',
@@ -255,7 +259,7 @@ final class BandwidthGroupServiceClient
     }
 
     /**
-     * API to retrieve a `BandwidthGroup` object.
+     * Retrieves a `BandwidthGroup` object.
      *
      * The async variant is
      * {@see BandwidthGroupServiceClient::getBandwidthGroupAsync()} .
@@ -282,7 +286,7 @@ final class BandwidthGroupServiceClient
     }
 
     /**
-     * API to retrieve a list of `BandwidthGroup` objects.
+     * Lists `BandwidthGroup` objects.
      *
      * The async variant is
      * {@see BandwidthGroupServiceClient::listBandwidthGroupsAsync()} .

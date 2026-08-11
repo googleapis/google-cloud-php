@@ -78,7 +78,11 @@ final class ProgrammaticBuyerServiceClient
     /** The name of the code generator, to be included in the agent header. */
     private const CODEGEN_NAME = 'gapic';
 
-    /** The default scopes required by the service. */
+    /**
+     * The default scopes required by the service.
+     *
+     * @internal
+     */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/admanager',
         'https://www.googleapis.com/auth/admanager.readonly',
@@ -256,7 +260,7 @@ final class ProgrammaticBuyerServiceClient
     }
 
     /**
-     * API to retrieve a `ProgrammaticBuyer` object.
+     * Retrieves a `ProgrammaticBuyer` object.
      *
      * The async variant is
      * {@see ProgrammaticBuyerServiceClient::getProgrammaticBuyerAsync()} .
@@ -285,7 +289,7 @@ final class ProgrammaticBuyerServiceClient
     }
 
     /**
-     * API to retrieve a list of `ProgrammaticBuyer` objects.
+     * Lists `ProgrammaticBuyer` objects.
      *
      * The async variant is
      * {@see ProgrammaticBuyerServiceClient::listProgrammaticBuyersAsync()} .

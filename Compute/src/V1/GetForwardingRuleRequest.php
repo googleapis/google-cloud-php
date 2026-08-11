@@ -33,6 +33,13 @@ class GetForwardingRuleRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string region = 138946292 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $region = '';
+    /**
+     * 
+     * Check the View enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string view = 3619493;</code>
+     */
+    protected $view = null;
 
     /**
      * @param string $project        Project ID for this request.
@@ -63,6 +70,9 @@ class GetForwardingRuleRequest extends \Google\Protobuf\Internal\Message
      *           Project ID for this request.
      *     @type string $region
      *           Name of the region scoping this request.
+     *     @type string $view
+     *           
+     *           Check the View enum for the list of possible values.
      * }
      */
     public function __construct($data = NULL) {
@@ -144,6 +154,44 @@ class GetForwardingRuleRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->region = $var;
+
+        return $this;
+    }
+
+    /**
+     * 
+     * Check the View enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string view = 3619493;</code>
+     * @return string
+     */
+    public function getView()
+    {
+        return isset($this->view) ? $this->view : '';
+    }
+
+    public function hasView()
+    {
+        return isset($this->view);
+    }
+
+    public function clearView()
+    {
+        unset($this->view);
+    }
+
+    /**
+     * 
+     * Check the View enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string view = 3619493;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setView($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->view = $var;
 
         return $this;
     }

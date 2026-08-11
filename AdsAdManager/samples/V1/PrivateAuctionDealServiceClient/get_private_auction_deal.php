@@ -29,7 +29,7 @@ use Google\Ads\AdManager\V1\PrivateAuctionDeal;
 use Google\ApiCore\ApiException;
 
 /**
- * API to retrieve a `PrivateAuctionDeal` object.
+ * Retrieves a `PrivateAuctionDeal` object.
  *
  * @param string $formattedName The resource name of the PrivateAuctionDeal.
  *                              Format:

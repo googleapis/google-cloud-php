@@ -8,7 +8,7 @@
         "ChatService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ChatServiceGapicClient",
+                    "libraryClient": "ChatServiceClient",
                     "rpcs": {
                         "CompleteImportSpace": {
                             "methods": [
@@ -198,6 +198,11 @@
                         "PositionSection": {
                             "methods": [
                                 "positionSection"
+                            ]
+                        },
+                        "SearchMessages": {
+                            "methods": [
+                                "searchMessages"
                             ]
                         },
                         "SearchSpaces": {

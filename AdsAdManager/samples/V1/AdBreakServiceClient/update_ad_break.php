@@ -30,7 +30,7 @@ use Google\ApiCore\ApiException;
 use Google\Protobuf\Duration;
 
 /**
- * API to update an `AdBreak` object.
+ * Updates an `AdBreak` object.
  *
  * Modify an ad break when its state is
  * [`SCHEDULED`][google.ads.admanager.v1.AdBreakStateEnum.AdBreakState.SCHEDULED].

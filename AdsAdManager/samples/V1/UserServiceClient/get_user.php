@@ -29,7 +29,7 @@ use Google\Ads\AdManager\V1\User;
 use Google\ApiCore\ApiException;
 
 /**
- * API to retrieve a User object.
+ * Retrieves a `User` object.
  *
  * To get the current user, the resource name
  * `networks/{networkCode}/users/me` can be used.

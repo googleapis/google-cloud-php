@@ -792,6 +792,20 @@ class DatabaseTest extends TestCase
         $this->database->runTransaction($this->noop());
     }
 
+    public function testRunTransactionNoCommitWithTag()
+    {
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage('Transactions must be rolled back or committed.');
+
+        $sql = $this->createStreamingAPIArgs()['sql'];
+        $this->stubExecuteStreamingSql();
+        $this->spannerClient->rollback(Argument::cetera())->shouldBeCalled();
+
+        $this->database->runTransaction(function (Transaction $t) use ($sql) {
+            $t->execute($sql);
+        }, ['tag' => self::TRANSACTION_TAG]);
+    }
+
     public function testRunTransactionNestedTransaction()
     {
         $this->expectException(BadMethodCallException::class);
@@ -1067,6 +1081,36 @@ class DatabaseTest extends TestCase
         $res = $this->database->insertBatch($table, [$row]);
         $this->assertInstanceOf(Timestamp::class, $res);
         $this->assertTimestampIsCorrect($res);
+    }
+
+    public function testInsertBatchWithOptions()
+    {
+        $table = 'foo';
+        $row = ['col' => 'val'];
+        $options = [
+            'requestOptions' => ['priority' => 1],
+            'headers' => ['custom-header' => 'value'],
+            'retrySettings' => ['retriesEnabled' => false],
+            'timeoutMillis' => 1234,
+            'transportOptions' => ['grpc' => ['timeout' => 100]],
+        ];
+
+        $this->spannerClient->commit(
+            Argument::that(function ($request) {
+                return $request->getRequestOptions()->getPriority() === 1;
+            }),
+            Argument::that(function (array $callOptions) {
+                $this->assertEquals('value', $callOptions['headers']['custom-header']);
+                $this->assertEquals(['retriesEnabled' => false], $callOptions['retrySettings']);
+                $this->assertEquals(1234, $callOptions['timeoutMillis']);
+                $this->assertEquals(['grpc' => ['timeout' => 100]], $callOptions['transportOptions']);
+                return true;
+            })
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($this->commitResponse());
+
+        $this->database->insertBatch($table, [$row], $options);
     }
 
     public function testUpdate()
@@ -2255,6 +2299,28 @@ class DatabaseTest extends TestCase
         $this->database->runTransaction(function (Transaction $t) use ($sql) {
             $t->execute($sql);
             $t->rollback();
+        }, ['tag' => self::TRANSACTION_TAG]);
+    }
+
+    public function testRunTransactionRollsBackOnException()
+    {
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage('Callback exception');
+
+        $sql = $this->createStreamingAPIArgs()['sql'];
+
+        $this->stubExecuteStreamingSql();
+        $this->spannerClient->rollback(
+            Argument::that(function ($request) use ($sql) {
+                return $request->getTransactionId() == self::TRANSACTION;
+            }),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce();
+
+        $this->database->runTransaction(function (Transaction $t) use ($sql) {
+            $t->execute($sql);
+            throw new \RuntimeException('Callback exception');
         }, ['tag' => self::TRANSACTION_TAG]);
     }
 

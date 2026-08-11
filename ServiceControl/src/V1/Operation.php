@@ -113,6 +113,14 @@ class Operation extends \Google\Protobuf\Internal\Message
      */
     protected $importance = 0;
     /**
+     * Private Preview. This feature is only available for approved services.
+     * User defined labels for the resource that this operation is associated
+     * with.
+     *
+     * Generated from protobuf field <code>map<string, string> user_labels = 12;</code>
+     */
+    private $user_labels;
+    /**
      * Unimplemented.
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Any extensions = 16;</code>
@@ -186,6 +194,10 @@ class Operation extends \Google\Protobuf\Internal\Message
      *           Represents information to be logged.
      *     @type int $importance
      *           DO NOT USE. This is an experimental field.
+     *     @type array|\Google\Protobuf\Internal\MapField $user_labels
+     *           Private Preview. This feature is only available for approved services.
+     *           User defined labels for the resource that this operation is associated
+     *           with.
      *     @type \Google\Protobuf\Any[] $extensions
      *           Unimplemented.
      * }
@@ -531,6 +543,36 @@ class Operation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\ServiceControl\V1\Operation\Importance::class);
         $this->importance = $var;
+
+        return $this;
+    }
+
+    /**
+     * Private Preview. This feature is only available for approved services.
+     * User defined labels for the resource that this operation is associated
+     * with.
+     *
+     * Generated from protobuf field <code>map<string, string> user_labels = 12;</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getUserLabels()
+    {
+        return $this->user_labels;
+    }
+
+    /**
+     * Private Preview. This feature is only available for approved services.
+     * User defined labels for the resource that this operation is associated
+     * with.
+     *
+     * Generated from protobuf field <code>map<string, string> user_labels = 12;</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setUserLabels($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->user_labels = $arr;
 
         return $this;
     }

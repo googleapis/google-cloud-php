@@ -1,4 +1,4 @@
-FROM gcr.io/gcp-runtimes/ubuntu_20_0_4
+FROM gcr.io/gcp-runtimes/ubuntu_20_0_4@sha256:666805a878d9cd58ce9dfd6f423e2d0e3bdf01eea0cddd2be3a88244c1d4dfa5
 ENV PHP_DIR=/opt/php82
 ENV PHP_VERSION=8.2.30
 ENV PHP_SRC_DIR=/usr/local/src/php82-build
@@ -123,6 +123,11 @@ RUN wget -O /tmp/get-pip.py 'https://bootstrap.pypa.io/get-pip.py' \
   && rm /tmp/get-pip.py \
   && python3.11 -m pip
 
+# Define the prefix argument, default to backend build environment.
+# Override this locally by using the following:
+#     docker build --build-arg PATH_PREFIX="." .
+ARG PATH_PREFIX="git/build-dir/.kokoro/docs/docker"
+
 # Install docsuploader
-COPY requirements.txt .
+COPY ${PATH_PREFIX}/requirements.txt .
 RUN python3.11 -m pip install --require-hashes -r requirements.txt

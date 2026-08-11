@@ -29,7 +29,7 @@ use Google\Ads\AdManager\V1\GetContentLabelRequest;
 use Google\ApiCore\ApiException;
 
 /**
- * API to retrieve a `ContentLabel` object.
+ * Retrieves a `ContentLabel` object.
  *
  * @param string $formattedName The resource name of the ContentLabel.
  *                              Format: `networks/{network_code}/contentLabels/{content_label_id}`

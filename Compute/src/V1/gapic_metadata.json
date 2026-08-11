@@ -8,7 +8,7 @@
         "AcceleratorTypes": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "AcceleratorTypesGapicClient",
+                    "libraryClient": "AcceleratorTypesClient",
                     "rpcs": {
                         "AggregatedList": {
                             "methods": [
@@ -32,7 +32,7 @@
         "Addresses": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "AddressesGapicClient",
+                    "libraryClient": "AddressesClient",
                     "rpcs": {
                         "AggregatedList": {
                             "methods": [
@@ -81,7 +81,7 @@
         "Advice": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "AdviceGapicClient",
+                    "libraryClient": "AdviceClient",
                     "rpcs": {
                         "CalendarMode": {
                             "methods": [
@@ -95,7 +95,7 @@
         "Autoscalers": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "AutoscalersGapicClient",
+                    "libraryClient": "AutoscalersClient",
                     "rpcs": {
                         "AggregatedList": {
                             "methods": [
@@ -144,7 +144,7 @@
         "BackendBuckets": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "BackendBucketsGapicClient",
+                    "libraryClient": "BackendBucketsClient",
                     "rpcs": {
                         "AddSignedUrlKey": {
                             "methods": [
@@ -223,7 +223,7 @@
         "BackendServices": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "BackendServicesGapicClient",
+                    "libraryClient": "BackendServicesClient",
                     "rpcs": {
                         "AddSignedUrlKey": {
                             "methods": [
@@ -317,7 +317,7 @@
         "CrossSiteNetworks": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "CrossSiteNetworksGapicClient",
+                    "libraryClient": "CrossSiteNetworksClient",
                     "rpcs": {
                         "Delete": {
                             "methods": [
@@ -351,7 +351,7 @@
         "DiskTypes": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "DiskTypesGapicClient",
+                    "libraryClient": "DiskTypesClient",
                     "rpcs": {
                         "AggregatedList": {
                             "methods": [
@@ -375,7 +375,7 @@
         "Disks": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "DisksGapicClient",
+                    "libraryClient": "DisksClient",
                     "rpcs": {
                         "AddResourcePolicies": {
                             "methods": [
@@ -484,7 +484,7 @@
         "ExternalVpnGateways": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ExternalVpnGatewaysGapicClient",
+                    "libraryClient": "ExternalVpnGatewaysClient",
                     "rpcs": {
                         "Delete": {
                             "methods": [
@@ -523,7 +523,7 @@
         "FirewallPolicies": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "FirewallPoliciesGapicClient",
+                    "libraryClient": "FirewallPoliciesClient",
                     "rpcs": {
                         "AddAssociation": {
                             "methods": [
@@ -622,7 +622,7 @@
         "Firewalls": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "FirewallsGapicClient",
+                    "libraryClient": "FirewallsClient",
                     "rpcs": {
                         "Delete": {
                             "methods": [
@@ -666,7 +666,7 @@
         "ForwardingRules": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ForwardingRulesGapicClient",
+                    "libraryClient": "ForwardingRulesClient",
                     "rpcs": {
                         "AggregatedList": {
                             "methods": [
@@ -715,7 +715,7 @@
         "FutureReservations": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "FutureReservationsGapicClient",
+                    "libraryClient": "FutureReservationsClient",
                     "rpcs": {
                         "AggregatedList": {
                             "methods": [
@@ -759,7 +759,7 @@
         "GlobalAddresses": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "GlobalAddressesGapicClient",
+                    "libraryClient": "GlobalAddressesClient",
                     "rpcs": {
                         "Delete": {
                             "methods": [
@@ -803,7 +803,7 @@
         "GlobalForwardingRules": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "GlobalForwardingRulesGapicClient",
+                    "libraryClient": "GlobalForwardingRulesClient",
                     "rpcs": {
                         "Delete": {
                             "methods": [
@@ -847,7 +847,7 @@
         "GlobalNetworkEndpointGroups": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "GlobalNetworkEndpointGroupsGapicClient",
+                    "libraryClient": "GlobalNetworkEndpointGroupsClient",
                     "rpcs": {
                         "AttachNetworkEndpoints": {
                             "methods": [
@@ -891,7 +891,7 @@
         "GlobalOperations": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "GlobalOperationsGapicClient",
+                    "libraryClient": "GlobalOperationsClient",
                     "rpcs": {
                         "AggregatedList": {
                             "methods": [
@@ -925,7 +925,7 @@
         "GlobalOrganizationOperations": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "GlobalOrganizationOperationsGapicClient",
+                    "libraryClient": "GlobalOrganizationOperationsClient",
                     "rpcs": {
                         "Delete": {
                             "methods": [
@@ -949,7 +949,7 @@
         "GlobalPublicDelegatedPrefixes": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "GlobalPublicDelegatedPrefixesGapicClient",
+                    "libraryClient": "GlobalPublicDelegatedPrefixesClient",
                     "rpcs": {
                         "Delete": {
                             "methods": [
@@ -983,7 +983,7 @@
         "GlobalVmExtensionPolicies": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "GlobalVmExtensionPoliciesGapicClient",
+                    "libraryClient": "GlobalVmExtensionPoliciesClient",
                     "rpcs": {
                         "AggregatedList": {
                             "methods": [
@@ -1022,7 +1022,7 @@
         "HealthChecks": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "HealthChecksGapicClient",
+                    "libraryClient": "HealthChecksClient",
                     "rpcs": {
                         "AggregatedList": {
                             "methods": [
@@ -1068,10 +1068,34 @@
                 }
             }
         },
+        "Hosts": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "HostsClient",
+                    "rpcs": {
+                        "Get": {
+                            "methods": [
+                                "get"
+                            ]
+                        },
+                        "GetVersion": {
+                            "methods": [
+                                "getVersion"
+                            ]
+                        },
+                        "List": {
+                            "methods": [
+                                "list"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "ImageFamilyViews": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ImageFamilyViewsGapicClient",
+                    "libraryClient": "ImageFamilyViewsClient",
                     "rpcs": {
                         "Get": {
                             "methods": [
@@ -1085,7 +1109,7 @@
         "Images": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ImagesGapicClient",
+                    "libraryClient": "ImagesClient",
                     "rpcs": {
                         "Delete": {
                             "methods": [
@@ -1149,7 +1173,7 @@
         "InstanceGroupManagerResizeRequests": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "InstanceGroupManagerResizeRequestsGapicClient",
+                    "libraryClient": "InstanceGroupManagerResizeRequestsClient",
                     "rpcs": {
                         "Cancel": {
                             "methods": [
@@ -1183,7 +1207,7 @@
         "InstanceGroupManagers": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "InstanceGroupManagersGapicClient",
+                    "libraryClient": "InstanceGroupManagersClient",
                     "rpcs": {
                         "AbandonInstances": {
                             "methods": [
@@ -1312,7 +1336,7 @@
         "InstanceGroups": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "InstanceGroupsGapicClient",
+                    "libraryClient": "InstanceGroupsClient",
                     "rpcs": {
                         "AddInstances": {
                             "methods": [
@@ -1371,7 +1395,7 @@
         "InstanceSettingsService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "InstanceSettingsServiceGapicClient",
+                    "libraryClient": "InstanceSettingsServiceClient",
                     "rpcs": {
                         "Get": {
                             "methods": [
@@ -1390,7 +1414,7 @@
         "InstanceTemplates": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "InstanceTemplatesGapicClient",
+                    "libraryClient": "InstanceTemplatesClient",
                     "rpcs": {
                         "AggregatedList": {
                             "methods": [
@@ -1439,7 +1463,7 @@
         "Instances": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "InstancesGapicClient",
+                    "libraryClient": "InstancesClient",
                     "rpcs": {
                         "AddAccessConfig": {
                             "methods": [
@@ -1703,7 +1727,7 @@
         "InstantSnapshotGroups": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "InstantSnapshotGroupsGapicClient",
+                    "libraryClient": "InstantSnapshotGroupsClient",
                     "rpcs": {
                         "Delete": {
                             "methods": [
@@ -1747,7 +1771,7 @@
         "InstantSnapshots": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "InstantSnapshotsGapicClient",
+                    "libraryClient": "InstantSnapshotsClient",
                     "rpcs": {
                         "AggregatedList": {
                             "methods": [
@@ -1801,7 +1825,7 @@
         "InterconnectAttachmentGroups": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "InterconnectAttachmentGroupsGapicClient",
+                    "libraryClient": "InterconnectAttachmentGroupsClient",
                     "rpcs": {
                         "Delete": {
                             "methods": [
@@ -1855,7 +1879,7 @@
         "InterconnectAttachments": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "InterconnectAttachmentsGapicClient",
+                    "libraryClient": "InterconnectAttachmentsClient",
                     "rpcs": {
                         "AggregatedList": {
                             "methods": [
@@ -1899,7 +1923,7 @@
         "InterconnectGroups": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "InterconnectGroupsGapicClient",
+                    "libraryClient": "InterconnectGroupsClient",
                     "rpcs": {
                         "CreateMembers": {
                             "methods": [
@@ -1958,7 +1982,7 @@
         "InterconnectLocations": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "InterconnectLocationsGapicClient",
+                    "libraryClient": "InterconnectLocationsClient",
                     "rpcs": {
                         "Get": {
                             "methods": [
@@ -1977,7 +2001,7 @@
         "InterconnectRemoteLocations": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "InterconnectRemoteLocationsGapicClient",
+                    "libraryClient": "InterconnectRemoteLocationsClient",
                     "rpcs": {
                         "Get": {
                             "methods": [
@@ -1996,7 +2020,7 @@
         "Interconnects": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "InterconnectsGapicClient",
+                    "libraryClient": "InterconnectsClient",
                     "rpcs": {
                         "Delete": {
                             "methods": [
@@ -2045,7 +2069,7 @@
         "LicenseCodes": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "LicenseCodesGapicClient",
+                    "libraryClient": "LicenseCodesClient",
                     "rpcs": {
                         "Get": {
                             "methods": [
@@ -2074,7 +2098,7 @@
         "Licenses": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "LicensesGapicClient",
+                    "libraryClient": "LicensesClient",
                     "rpcs": {
                         "Delete": {
                             "methods": [
@@ -2123,7 +2147,7 @@
         "MachineImages": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "MachineImagesGapicClient",
+                    "libraryClient": "MachineImagesClient",
                     "rpcs": {
                         "Delete": {
                             "methods": [
@@ -2172,7 +2196,7 @@
         "MachineTypes": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "MachineTypesGapicClient",
+                    "libraryClient": "MachineTypesClient",
                     "rpcs": {
                         "AggregatedList": {
                             "methods": [
@@ -2196,7 +2220,7 @@
         "NetworkAttachments": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "NetworkAttachmentsGapicClient",
+                    "libraryClient": "NetworkAttachmentsClient",
                     "rpcs": {
                         "AggregatedList": {
                             "methods": [
@@ -2250,7 +2274,7 @@
         "NetworkEdgeSecurityServices": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "NetworkEdgeSecurityServicesGapicClient",
+                    "libraryClient": "NetworkEdgeSecurityServicesClient",
                     "rpcs": {
                         "AggregatedList": {
                             "methods": [
@@ -2284,7 +2308,7 @@
         "NetworkEndpointGroups": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "NetworkEndpointGroupsGapicClient",
+                    "libraryClient": "NetworkEndpointGroupsClient",
                     "rpcs": {
                         "AggregatedList": {
                             "methods": [
@@ -2338,7 +2362,7 @@
         "NetworkFirewallPolicies": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "NetworkFirewallPoliciesGapicClient",
+                    "libraryClient": "NetworkFirewallPoliciesClient",
                     "rpcs": {
                         "AddAssociation": {
                             "methods": [
@@ -2452,7 +2476,7 @@
         "NetworkProfiles": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "NetworkProfilesGapicClient",
+                    "libraryClient": "NetworkProfilesClient",
                     "rpcs": {
                         "Get": {
                             "methods": [
@@ -2471,7 +2495,7 @@
         "Networks": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "NetworksGapicClient",
+                    "libraryClient": "NetworksClient",
                     "rpcs": {
                         "AddPeering": {
                             "methods": [
@@ -2545,7 +2569,7 @@
         "NodeGroups": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "NodeGroupsGapicClient",
+                    "libraryClient": "NodeGroupsClient",
                     "rpcs": {
                         "AddNodes": {
                             "methods": [
@@ -2629,7 +2653,7 @@
         "NodeTemplates": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "NodeTemplatesGapicClient",
+                    "libraryClient": "NodeTemplatesClient",
                     "rpcs": {
                         "AggregatedList": {
                             "methods": [
@@ -2678,7 +2702,7 @@
         "NodeTypes": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "NodeTypesGapicClient",
+                    "libraryClient": "NodeTypesClient",
                     "rpcs": {
                         "AggregatedList": {
                             "methods": [
@@ -2702,7 +2726,7 @@
         "OrganizationSecurityPolicies": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "OrganizationSecurityPoliciesGapicClient",
+                    "libraryClient": "OrganizationSecurityPoliciesClient",
                     "rpcs": {
                         "AddAssociation": {
                             "methods": [
@@ -2791,7 +2815,7 @@
         "PacketMirrorings": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "PacketMirroringsGapicClient",
+                    "libraryClient": "PacketMirroringsClient",
                     "rpcs": {
                         "AggregatedList": {
                             "methods": [
@@ -2835,7 +2859,7 @@
         "PreviewFeatures": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "PreviewFeaturesGapicClient",
+                    "libraryClient": "PreviewFeaturesClient",
                     "rpcs": {
                         "Get": {
                             "methods": [
@@ -2859,7 +2883,7 @@
         "Projects": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ProjectsGapicClient",
+                    "libraryClient": "ProjectsClient",
                     "rpcs": {
                         "DisableXpnHost": {
                             "methods": [
@@ -2938,7 +2962,7 @@
         "PublicAdvertisedPrefixes": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "PublicAdvertisedPrefixesGapicClient",
+                    "libraryClient": "PublicAdvertisedPrefixesClient",
                     "rpcs": {
                         "Announce": {
                             "methods": [
@@ -2982,7 +3006,7 @@
         "PublicDelegatedPrefixes": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "PublicDelegatedPrefixesGapicClient",
+                    "libraryClient": "PublicDelegatedPrefixesClient",
                     "rpcs": {
                         "AggregatedList": {
                             "methods": [
@@ -3031,7 +3055,7 @@
         "RegionAutoscalers": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "RegionAutoscalersGapicClient",
+                    "libraryClient": "RegionAutoscalersClient",
                     "rpcs": {
                         "Delete": {
                             "methods": [
@@ -3075,7 +3099,7 @@
         "RegionBackendBuckets": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "RegionBackendBucketsGapicClient",
+                    "libraryClient": "RegionBackendBucketsClient",
                     "rpcs": {
                         "Delete": {
                             "methods": [
@@ -3129,7 +3153,7 @@
         "RegionBackendServices": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "RegionBackendServicesGapicClient",
+                    "libraryClient": "RegionBackendServicesClient",
                     "rpcs": {
                         "Delete": {
                             "methods": [
@@ -3198,7 +3222,7 @@
         "RegionCommitments": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "RegionCommitmentsGapicClient",
+                    "libraryClient": "RegionCommitmentsClient",
                     "rpcs": {
                         "AggregatedList": {
                             "methods": [
@@ -3232,7 +3256,7 @@
         "RegionCompositeHealthChecks": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "RegionCompositeHealthChecksGapicClient",
+                    "libraryClient": "RegionCompositeHealthChecksClient",
                     "rpcs": {
                         "AggregatedList": {
                             "methods": [
@@ -3281,7 +3305,7 @@
         "RegionDiskTypes": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "RegionDiskTypesGapicClient",
+                    "libraryClient": "RegionDiskTypesClient",
                     "rpcs": {
                         "Get": {
                             "methods": [
@@ -3300,7 +3324,7 @@
         "RegionDisks": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "RegionDisksGapicClient",
+                    "libraryClient": "RegionDisksClient",
                     "rpcs": {
                         "AddResourcePolicies": {
                             "methods": [
@@ -3399,7 +3423,7 @@
         "RegionHealthAggregationPolicies": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "RegionHealthAggregationPoliciesGapicClient",
+                    "libraryClient": "RegionHealthAggregationPoliciesClient",
                     "rpcs": {
                         "AggregatedList": {
                             "methods": [
@@ -3443,7 +3467,7 @@
         "RegionHealthCheckServices": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "RegionHealthCheckServicesGapicClient",
+                    "libraryClient": "RegionHealthCheckServicesClient",
                     "rpcs": {
                         "AggregatedList": {
                             "methods": [
@@ -3487,7 +3511,7 @@
         "RegionHealthChecks": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "RegionHealthChecksGapicClient",
+                    "libraryClient": "RegionHealthChecksClient",
                     "rpcs": {
                         "Delete": {
                             "methods": [
@@ -3531,7 +3555,7 @@
         "RegionHealthSources": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "RegionHealthSourcesGapicClient",
+                    "libraryClient": "RegionHealthSourcesClient",
                     "rpcs": {
                         "AggregatedList": {
                             "methods": [
@@ -3580,7 +3604,7 @@
         "RegionInstanceGroupManagerResizeRequests": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "RegionInstanceGroupManagerResizeRequestsGapicClient",
+                    "libraryClient": "RegionInstanceGroupManagerResizeRequestsClient",
                     "rpcs": {
                         "Cancel": {
                             "methods": [
@@ -3614,7 +3638,7 @@
         "RegionInstanceGroupManagers": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "RegionInstanceGroupManagersGapicClient",
+                    "libraryClient": "RegionInstanceGroupManagersClient",
                     "rpcs": {
                         "AbandonInstances": {
                             "methods": [
@@ -3738,7 +3762,7 @@
         "RegionInstanceGroups": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "RegionInstanceGroupsGapicClient",
+                    "libraryClient": "RegionInstanceGroupsClient",
                     "rpcs": {
                         "Get": {
                             "methods": [
@@ -3772,7 +3796,7 @@
         "RegionInstanceTemplates": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "RegionInstanceTemplatesGapicClient",
+                    "libraryClient": "RegionInstanceTemplatesClient",
                     "rpcs": {
                         "Delete": {
                             "methods": [
@@ -3801,7 +3825,7 @@
         "RegionInstances": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "RegionInstancesGapicClient",
+                    "libraryClient": "RegionInstancesClient",
                     "rpcs": {
                         "BulkInsert": {
                             "methods": [
@@ -3815,7 +3839,7 @@
         "RegionInstantSnapshotGroups": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "RegionInstantSnapshotGroupsGapicClient",
+                    "libraryClient": "RegionInstantSnapshotGroupsClient",
                     "rpcs": {
                         "Delete": {
                             "methods": [
@@ -3859,7 +3883,7 @@
         "RegionInstantSnapshots": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "RegionInstantSnapshotsGapicClient",
+                    "libraryClient": "RegionInstantSnapshotsClient",
                     "rpcs": {
                         "Delete": {
                             "methods": [
@@ -3908,7 +3932,7 @@
         "RegionNetworkEndpointGroups": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "RegionNetworkEndpointGroupsGapicClient",
+                    "libraryClient": "RegionNetworkEndpointGroupsClient",
                     "rpcs": {
                         "AttachNetworkEndpoints": {
                             "methods": [
@@ -3952,7 +3976,7 @@
         "RegionNetworkFirewallPolicies": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "RegionNetworkFirewallPoliciesGapicClient",
+                    "libraryClient": "RegionNetworkFirewallPoliciesClient",
                     "rpcs": {
                         "AddAssociation": {
                             "methods": [
@@ -4046,7 +4070,7 @@
         "RegionNotificationEndpoints": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "RegionNotificationEndpointsGapicClient",
+                    "libraryClient": "RegionNotificationEndpointsClient",
                     "rpcs": {
                         "AggregatedList": {
                             "methods": [
@@ -4085,7 +4109,7 @@
         "RegionOperations": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "RegionOperationsGapicClient",
+                    "libraryClient": "RegionOperationsClient",
                     "rpcs": {
                         "Delete": {
                             "methods": [
@@ -4114,7 +4138,7 @@
         "RegionSecurityPolicies": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "RegionSecurityPoliciesGapicClient",
+                    "libraryClient": "RegionSecurityPoliciesClient",
                     "rpcs": {
                         "AddRule": {
                             "methods": [
@@ -4173,7 +4197,7 @@
         "RegionSnapshotSettings": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "RegionSnapshotSettingsGapicClient",
+                    "libraryClient": "RegionSnapshotSettingsClient",
                     "rpcs": {
                         "Get": {
                             "methods": [
@@ -4192,7 +4216,7 @@
         "RegionSnapshots": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "RegionSnapshotsGapicClient",
+                    "libraryClient": "RegionSnapshotsClient",
                     "rpcs": {
                         "Delete": {
                             "methods": [
@@ -4246,7 +4270,7 @@
         "RegionSslCertificates": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "RegionSslCertificatesGapicClient",
+                    "libraryClient": "RegionSslCertificatesClient",
                     "rpcs": {
                         "Delete": {
                             "methods": [
@@ -4275,7 +4299,7 @@
         "RegionSslPolicies": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "RegionSslPoliciesGapicClient",
+                    "libraryClient": "RegionSslPoliciesClient",
                     "rpcs": {
                         "Delete": {
                             "methods": [
@@ -4314,7 +4338,7 @@
         "RegionTargetHttpProxies": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "RegionTargetHttpProxiesGapicClient",
+                    "libraryClient": "RegionTargetHttpProxiesClient",
                     "rpcs": {
                         "Delete": {
                             "methods": [
@@ -4348,7 +4372,7 @@
         "RegionTargetHttpsProxies": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "RegionTargetHttpsProxiesGapicClient",
+                    "libraryClient": "RegionTargetHttpsProxiesClient",
                     "rpcs": {
                         "Delete": {
                             "methods": [
@@ -4392,7 +4416,7 @@
         "RegionTargetTcpProxies": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "RegionTargetTcpProxiesGapicClient",
+                    "libraryClient": "RegionTargetTcpProxiesClient",
                     "rpcs": {
                         "Delete": {
                             "methods": [
@@ -4421,7 +4445,7 @@
         "RegionUrlMaps": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "RegionUrlMapsGapicClient",
+                    "libraryClient": "RegionUrlMapsClient",
                     "rpcs": {
                         "Delete": {
                             "methods": [
@@ -4465,7 +4489,7 @@
         "RegionZones": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "RegionZonesGapicClient",
+                    "libraryClient": "RegionZonesClient",
                     "rpcs": {
                         "List": {
                             "methods": [
@@ -4479,7 +4503,26 @@
         "Regions": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "RegionsGapicClient",
+                    "libraryClient": "RegionsClient",
+                    "rpcs": {
+                        "Get": {
+                            "methods": [
+                                "get"
+                            ]
+                        },
+                        "List": {
+                            "methods": [
+                                "list"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "ReliabilityRisks": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ReliabilityRisksClient",
                     "rpcs": {
                         "Get": {
                             "methods": [
@@ -4498,7 +4541,7 @@
         "ReservationBlocks": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ReservationBlocksGapicClient",
+                    "libraryClient": "ReservationBlocksClient",
                     "rpcs": {
                         "Get": {
                             "methods": [
@@ -4537,7 +4580,7 @@
         "ReservationSlots": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ReservationSlotsGapicClient",
+                    "libraryClient": "ReservationSlotsClient",
                     "rpcs": {
                         "Get": {
                             "methods": [
@@ -4566,7 +4609,7 @@
         "ReservationSubBlocks": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ReservationSubBlocksGapicClient",
+                    "libraryClient": "ReservationSubBlocksClient",
                     "rpcs": {
                         "Get": {
                             "methods": [
@@ -4615,7 +4658,7 @@
         "Reservations": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ReservationsGapicClient",
+                    "libraryClient": "ReservationsClient",
                     "rpcs": {
                         "AggregatedList": {
                             "methods": [
@@ -4679,7 +4722,7 @@
         "ResourcePolicies": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ResourcePoliciesGapicClient",
+                    "libraryClient": "ResourcePoliciesClient",
                     "rpcs": {
                         "AggregatedList": {
                             "methods": [
@@ -4733,7 +4776,7 @@
         "RolloutPlans": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "RolloutPlansGapicClient",
+                    "libraryClient": "RolloutPlansClient",
                     "rpcs": {
                         "Delete": {
                             "methods": [
@@ -4762,8 +4805,13 @@
         "Rollouts": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "RolloutsGapicClient",
+                    "libraryClient": "RolloutsClient",
                     "rpcs": {
+                        "Advance": {
+                            "methods": [
+                                "advance"
+                            ]
+                        },
                         "Cancel": {
                             "methods": [
                                 "cancel"
@@ -4783,6 +4831,16 @@
                             "methods": [
                                 "list"
                             ]
+                        },
+                        "Pause": {
+                            "methods": [
+                                "pause"
+                            ]
+                        },
+                        "Resume": {
+                            "methods": [
+                                "resume"
+                            ]
                         }
                     }
                 }
@@ -4791,7 +4849,7 @@
         "Routers": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "RoutersGapicClient",
+                    "libraryClient": "RoutersClient",
                     "rpcs": {
                         "AggregatedList": {
                             "methods": [
@@ -4803,6 +4861,11 @@
                                 "delete"
                             ]
                         },
+                        "DeleteNamedSet": {
+                            "methods": [
+                                "deleteNamedSet"
+                            ]
+                        },
                         "DeleteRoutePolicy": {
                             "methods": [
                                 "deleteRoutePolicy"
@@ -4811,6 +4874,11 @@
                         "Get": {
                             "methods": [
                                 "get"
+                            ]
+                        },
+                        "GetNamedSet": {
+                            "methods": [
+                                "getNamedSet"
                             ]
                         },
                         "GetNatIpInfo": {
@@ -4848,6 +4916,11 @@
                                 "listBgpRoutes"
                             ]
                         },
+                        "ListNamedSets": {
+                            "methods": [
+                                "listNamedSets"
+                            ]
+                        },
                         "ListRoutePolicies": {
                             "methods": [
                                 "listRoutePolicies"
@@ -4856,6 +4929,11 @@
                         "Patch": {
                             "methods": [
                                 "patch"
+                            ]
+                        },
+                        "PatchNamedSet": {
+                            "methods": [
+                                "patchNamedSet"
                             ]
                         },
                         "PatchRoutePolicy": {
@@ -4873,6 +4951,11 @@
                                 "update"
                             ]
                         },
+                        "UpdateNamedSet": {
+                            "methods": [
+                                "updateNamedSet"
+                            ]
+                        },
                         "UpdateRoutePolicy": {
                             "methods": [
                                 "updateRoutePolicy"
@@ -4885,7 +4968,7 @@
         "Routes": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "RoutesGapicClient",
+                    "libraryClient": "RoutesClient",
                     "rpcs": {
                         "Delete": {
                             "methods": [
@@ -4919,7 +5002,7 @@
         "SecurityPolicies": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "SecurityPoliciesGapicClient",
+                    "libraryClient": "SecurityPoliciesClient",
                     "rpcs": {
                         "AddRule": {
                             "methods": [
@@ -4988,7 +5071,7 @@
         "ServiceAttachments": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ServiceAttachmentsGapicClient",
+                    "libraryClient": "ServiceAttachmentsClient",
                     "rpcs": {
                         "AggregatedList": {
                             "methods": [
@@ -5042,7 +5125,7 @@
         "SnapshotSettingsService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "SnapshotSettingsServiceGapicClient",
+                    "libraryClient": "SnapshotSettingsServiceClient",
                     "rpcs": {
                         "Get": {
                             "methods": [
@@ -5061,7 +5144,7 @@
         "Snapshots": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "SnapshotsGapicClient",
+                    "libraryClient": "SnapshotsClient",
                     "rpcs": {
                         "Delete": {
                             "methods": [
@@ -5115,7 +5198,7 @@
         "SslCertificates": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "SslCertificatesGapicClient",
+                    "libraryClient": "SslCertificatesClient",
                     "rpcs": {
                         "AggregatedList": {
                             "methods": [
@@ -5149,7 +5232,7 @@
         "SslPolicies": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "SslPoliciesGapicClient",
+                    "libraryClient": "SslPoliciesClient",
                     "rpcs": {
                         "AggregatedList": {
                             "methods": [
@@ -5193,7 +5276,7 @@
         "StoragePoolTypes": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "StoragePoolTypesGapicClient",
+                    "libraryClient": "StoragePoolTypesClient",
                     "rpcs": {
                         "AggregatedList": {
                             "methods": [
@@ -5217,7 +5300,7 @@
         "StoragePools": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "StoragePoolsGapicClient",
+                    "libraryClient": "StoragePoolsClient",
                     "rpcs": {
                         "AggregatedList": {
                             "methods": [
@@ -5276,7 +5359,7 @@
         "Subnetworks": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "SubnetworksGapicClient",
+                    "libraryClient": "SubnetworksClient",
                     "rpcs": {
                         "AggregatedList": {
                             "methods": [
@@ -5345,7 +5428,7 @@
         "TargetGrpcProxies": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "TargetGrpcProxiesGapicClient",
+                    "libraryClient": "TargetGrpcProxiesClient",
                     "rpcs": {
                         "Delete": {
                             "methods": [
@@ -5379,7 +5462,7 @@
         "TargetHttpProxies": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "TargetHttpProxiesGapicClient",
+                    "libraryClient": "TargetHttpProxiesClient",
                     "rpcs": {
                         "AggregatedList": {
                             "methods": [
@@ -5423,7 +5506,7 @@
         "TargetHttpsProxies": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "TargetHttpsProxiesGapicClient",
+                    "libraryClient": "TargetHttpsProxiesClient",
                     "rpcs": {
                         "AggregatedList": {
                             "methods": [
@@ -5487,7 +5570,7 @@
         "TargetInstances": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "TargetInstancesGapicClient",
+                    "libraryClient": "TargetInstancesClient",
                     "rpcs": {
                         "AggregatedList": {
                             "methods": [
@@ -5531,7 +5614,7 @@
         "TargetPools": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "TargetPoolsGapicClient",
+                    "libraryClient": "TargetPoolsClient",
                     "rpcs": {
                         "AddHealthCheck": {
                             "methods": [
@@ -5605,7 +5688,7 @@
         "TargetSslProxies": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "TargetSslProxiesGapicClient",
+                    "libraryClient": "TargetSslProxiesClient",
                     "rpcs": {
                         "Delete": {
                             "methods": [
@@ -5664,7 +5747,7 @@
         "TargetTcpProxies": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "TargetTcpProxiesGapicClient",
+                    "libraryClient": "TargetTcpProxiesClient",
                     "rpcs": {
                         "AggregatedList": {
                             "methods": [
@@ -5713,7 +5796,7 @@
         "TargetVpnGateways": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "TargetVpnGatewaysGapicClient",
+                    "libraryClient": "TargetVpnGatewaysClient",
                     "rpcs": {
                         "AggregatedList": {
                             "methods": [
@@ -5752,7 +5835,7 @@
         "UrlMaps": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "UrlMapsGapicClient",
+                    "libraryClient": "UrlMapsClient",
                     "rpcs": {
                         "AggregatedList": {
                             "methods": [
@@ -5811,7 +5894,7 @@
         "VpnGateways": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "VpnGatewaysGapicClient",
+                    "libraryClient": "VpnGatewaysClient",
                     "rpcs": {
                         "AggregatedList": {
                             "methods": [
@@ -5860,7 +5943,7 @@
         "VpnTunnels": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "VpnTunnelsGapicClient",
+                    "libraryClient": "VpnTunnelsClient",
                     "rpcs": {
                         "AggregatedList": {
                             "methods": [
@@ -5899,7 +5982,7 @@
         "WireGroups": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "WireGroupsGapicClient",
+                    "libraryClient": "WireGroupsClient",
                     "rpcs": {
                         "Delete": {
                             "methods": [
@@ -5933,7 +6016,7 @@
         "ZoneOperations": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ZoneOperationsGapicClient",
+                    "libraryClient": "ZoneOperationsClient",
                     "rpcs": {
                         "Delete": {
                             "methods": [
@@ -5962,7 +6045,7 @@
         "ZoneVmExtensionPolicies": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ZoneVmExtensionPoliciesGapicClient",
+                    "libraryClient": "ZoneVmExtensionPoliciesClient",
                     "rpcs": {
                         "Delete": {
                             "methods": [
@@ -5996,7 +6079,7 @@
         "Zones": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ZonesGapicClient",
+                    "libraryClient": "ZonesClient",
                     "rpcs": {
                         "Get": {
                             "methods": [

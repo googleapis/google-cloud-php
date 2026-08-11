@@ -181,6 +181,18 @@ return [
                     ],
                 ],
             ],
+            'ExportTrustedKeyWrappedCryptoKeyVersion' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Kms\V1\ExportTrustedKeyWrappedCryptoKeyVersionResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GenerateRandomBytes' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Kms\V1\GenerateRandomBytesResponse',
@@ -266,6 +278,18 @@ return [
                 ],
             ],
             'ImportCryptoKeyVersion' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Kms\V1\CryptoKeyVersion',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ImportTrustedKeyWrappedCryptoKeyVersion' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Kms\V1\CryptoKeyVersion',
                 'headerParams' => [

@@ -30,7 +30,7 @@ use Google\ApiCore\ApiException;
 use Google\Protobuf\Duration;
 
 /**
- * API to create an `AdBreak` object.
+ * Creates an `AdBreak` object.
  *
  * Informs DAI of an upcoming ad break for a live stream event, with an
  * optional expected start time. DAI will begin decisioning ads for the break

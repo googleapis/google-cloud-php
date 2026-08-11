@@ -106,7 +106,11 @@ final class BackendServicesClient
     /** The name of the code generator, to be included in the agent header. */
     private const CODEGEN_NAME = 'gapic';
 
-    /** The default scopes required by the service. */
+    /**
+     * The default scopes required by the service.
+     *
+     * @internal
+     */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/compute',
         'https://www.googleapis.com/auth/cloud-platform',
@@ -187,7 +191,10 @@ final class BackendServicesClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = $this->descriptors[$methodName]['longRunning'] ?? $this->getDefaultOperationDescriptor();
+        $options =
+            $methodName && isset($this->descriptors[$methodName]['longRunning'])
+                ? $this->descriptors[$methodName]['longRunning']
+                : $this->getDefaultOperationDescriptor();
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -584,7 +591,10 @@ final class BackendServicesClient
     }
 
     /**
-     * Retrieves a list of all usable backend services in the specified project.
+     * Retrieves a list of all usable backend services for Application Load
+     * Balancers and Proxy Network Load Balancers in the specified project.
+     * Backend services for external and internal passthrough Network Load
+     * Balancers are not included in the response.
      *
      * The async variant is {@see BackendServicesClient::listUsableAsync()} .
      *

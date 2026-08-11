@@ -53,6 +53,14 @@ class Membership extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp delete_time = 8 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $delete_time = null;
+    /**
+     * Output only. A user's relationship to the Workspace organization that owns
+     * the space. In spaces owned by consumer accounts, the affiliation of all
+     * members is `EXTERNAL`.
+     *
+     * Generated from protobuf field <code>.google.chat.v1.Membership.Affiliation affiliation = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $affiliation = 0;
     protected $memberType;
 
     /**
@@ -89,6 +97,10 @@ class Membership extends \Google\Protobuf\Internal\Message
      *           Optional. Immutable. The deletion time of the membership, such as when a
      *           member left or was removed from a space. This field is output only, except
      *           when used to import historical memberships in import mode spaces.
+     *     @type int $affiliation
+     *           Output only. A user's relationship to the Workspace organization that owns
+     *           the space. In spaces owned by consumer accounts, the affiliation of all
+     *           members is `EXTERNAL`.
      * }
      */
     public function __construct($data = NULL) {
@@ -332,6 +344,36 @@ class Membership extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->delete_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. A user's relationship to the Workspace organization that owns
+     * the space. In spaces owned by consumer accounts, the affiliation of all
+     * members is `EXTERNAL`.
+     *
+     * Generated from protobuf field <code>.google.chat.v1.Membership.Affiliation affiliation = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getAffiliation()
+    {
+        return $this->affiliation;
+    }
+
+    /**
+     * Output only. A user's relationship to the Workspace organization that owns
+     * the space. In spaces owned by consumer accounts, the affiliation of all
+     * members is `EXTERNAL`.
+     *
+     * Generated from protobuf field <code>.google.chat.v1.Membership.Affiliation affiliation = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setAffiliation($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Apps\Chat\V1\Membership\Affiliation::class);
+        $this->affiliation = $var;
 
         return $this;
     }

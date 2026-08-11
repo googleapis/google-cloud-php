@@ -1882,6 +1882,14 @@ class GapicClientTraitTest extends TestCase
 
         $this->assertTrue($gapic->hasEmulator);
     }
+
+    public function testGetServiceScopes()
+    {
+        $this->assertEquals(
+            ['default-scope-1', 'default-scope-2'],
+            DefaultScopeAndAudienceGapicClient::getServiceScopes()
+        );
+    }
 }
 
 class StubGapicClient

@@ -31,7 +31,7 @@ use Google\Ads\AdManager\V1\CreateApplicationRequest;
 use Google\ApiCore\ApiException;
 
 /**
- * API to batch create `Application` objects.
+ * Creates `Application` objects.
  *
  * @param string $formattedParent                The parent resource where `Applications` will be created.
  *                                               Format: `networks/{network_code}`

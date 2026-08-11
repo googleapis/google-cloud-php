@@ -40,6 +40,10 @@ class Type
      */
     const BARE_METAL_LINUX_COMPATIBLE = 354232740;
     /**
+     * Generated from protobuf enum <code>CCA_CAPABLE = 79012270;</code>
+     */
+    const CCA_CAPABLE = 79012270;
+    /**
      * Generated from protobuf enum <code>FEATURE_TYPE_UNSPECIFIED = 531767259;</code>
      */
     const FEATURE_TYPE_UNSPECIFIED = 531767259;
@@ -99,6 +103,7 @@ class Type
     private static $valueToName = [
         self::UNDEFINED_TYPE => 'UNDEFINED_TYPE',
         self::BARE_METAL_LINUX_COMPATIBLE => 'BARE_METAL_LINUX_COMPATIBLE',
+        self::CCA_CAPABLE => 'CCA_CAPABLE',
         self::FEATURE_TYPE_UNSPECIFIED => 'FEATURE_TYPE_UNSPECIFIED',
         self::GVNIC => 'GVNIC',
         self::IDPF => 'IDPF',

@@ -8,7 +8,7 @@
         "Spanner": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "SpannerGapicClient",
+                    "libraryClient": "SpannerClient",
                     "rpcs": {
                         "BatchCreateSessions": {
                             "methods": [

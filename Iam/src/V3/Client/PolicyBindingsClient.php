@@ -90,7 +90,11 @@ final class PolicyBindingsClient
     /** The name of the code generator, to be included in the agent header. */
     private const CODEGEN_NAME = 'gapic';
 
-    /** The default scopes required by the service. */
+    /**
+     * The default scopes required by the service.
+     *
+     * @internal
+     */
     public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
@@ -137,7 +141,10 @@ final class PolicyBindingsClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
+        $options =
+            $methodName && isset($this->descriptors[$methodName]['longRunning'])
+                ? $this->descriptors[$methodName]['longRunning']
+                : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -417,7 +424,7 @@ final class PolicyBindingsClient
     /**
      * Creates a policy binding and returns a long-running operation.
      * Callers will need the IAM permissions on both the policy and target.
-     * Once the binding is created, the policy is applied to the target.
+     * After the binding is created, the policy is applied to the target.
      *
      * The async variant is {@see PolicyBindingsClient::createPolicyBindingAsync()} .
      *
@@ -445,7 +452,7 @@ final class PolicyBindingsClient
     /**
      * Deletes a policy binding and returns a long-running operation.
      * Callers will need the IAM permissions on both the policy and target.
-     * Once the binding is deleted, the policy no longer applies to the target.
+     * After the binding is deleted, the policy no longer applies to the target.
      *
      * The async variant is {@see PolicyBindingsClient::deletePolicyBindingAsync()} .
      *
@@ -555,9 +562,7 @@ final class PolicyBindingsClient
     /**
      * Updates a policy binding and returns a long-running operation.
      * Callers will need the IAM permissions on the policy and target in the
-     * binding to update, and the IAM permission to remove the existing policy
-     * from the binding. Target is immutable and cannot be updated. Once the
-     * binding is updated, the new policy is applied to the target.
+     * binding to update. Target and policy are immutable and cannot be updated.
      *
      * The async variant is {@see PolicyBindingsClient::updatePolicyBindingAsync()} .
      *

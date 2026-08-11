@@ -8,7 +8,7 @@
         "WorkflowsServiceV2Beta": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "WorkflowsServiceV2BetaGapicClient",
+                    "libraryClient": "WorkflowsServiceV2BetaClient",
                     "rpcs": {
                         "RunPipeline": {
                             "methods": [

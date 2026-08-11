@@ -26,6 +26,8 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
+use Google\Developers\DeveloperKnowledge\V1\AnswerQueryRequest;
+use Google\Developers\DeveloperKnowledge\V1\AnswerQueryResponse;
 use Google\Developers\DeveloperKnowledge\V1\BatchGetDocumentsRequest;
 use Google\Developers\DeveloperKnowledge\V1\BatchGetDocumentsResponse;
 use Google\Developers\DeveloperKnowledge\V1\Client\DeveloperKnowledgeClient;
@@ -65,6 +67,69 @@ class DeveloperKnowledgeClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ];
         return new DeveloperKnowledgeClient($options);
+    }
+
+    /** @test */
+    public function answerQueryTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new AnswerQueryResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $query = 'query107944136';
+        $request = (new AnswerQueryRequest())->setQuery($query);
+        $response = $gapicClient->answerQuery($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.developers.knowledge.v1.DeveloperKnowledge/AnswerQuery', $actualFuncCall);
+        $actualValue = $actualRequestObject->getQuery();
+        $this->assertProtobufEquals($query, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function answerQueryExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $query = 'query107944136';
+        $request = (new AnswerQueryRequest())->setQuery($query);
+        try {
+            $gapicClient->answerQuery($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
@@ -145,6 +210,7 @@ class DeveloperKnowledgeClientTest extends GeneratedTest
         $description = 'description-1724546052';
         $dataSource = 'dataSource-1333894576';
         $title = 'title110371416';
+        $contentLengthBytes = 228531160;
         $expectedResponse = new Document();
         $expectedResponse->setName($name2);
         $expectedResponse->setUri($uri);
@@ -152,6 +218,7 @@ class DeveloperKnowledgeClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setDataSource($dataSource);
         $expectedResponse->setTitle($title);
+        $expectedResponse->setContentLengthBytes($contentLengthBytes);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->documentName('[DOCUMENT]');
@@ -277,7 +344,7 @@ class DeveloperKnowledgeClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function batchGetDocumentsAsyncTest()
+    public function answerQueryAsyncTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -285,20 +352,20 @@ class DeveloperKnowledgeClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
-        $expectedResponse = new BatchGetDocumentsResponse();
+        $expectedResponse = new AnswerQueryResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedNames = [$gapicClient->documentName('[DOCUMENT]')];
-        $request = (new BatchGetDocumentsRequest())->setNames($formattedNames);
-        $response = $gapicClient->batchGetDocumentsAsync($request)->wait();
+        $query = 'query107944136';
+        $request = (new AnswerQueryRequest())->setQuery($query);
+        $response = $gapicClient->answerQueryAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.developers.knowledge.v1.DeveloperKnowledge/BatchGetDocuments', $actualFuncCall);
-        $actualValue = $actualRequestObject->getNames();
-        $this->assertProtobufEquals($formattedNames, $actualValue);
+        $this->assertSame('/google.developers.knowledge.v1.DeveloperKnowledge/AnswerQuery', $actualFuncCall);
+        $actualValue = $actualRequestObject->getQuery();
+        $this->assertProtobufEquals($query, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

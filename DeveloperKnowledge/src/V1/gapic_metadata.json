@@ -8,8 +8,13 @@
         "DeveloperKnowledge": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "DeveloperKnowledgeGapicClient",
+                    "libraryClient": "DeveloperKnowledgeClient",
                     "rpcs": {
+                        "AnswerQuery": {
+                            "methods": [
+                                "answerQuery"
+                            ]
+                        },
                         "BatchGetDocuments": {
                             "methods": [
                                 "batchGetDocuments"

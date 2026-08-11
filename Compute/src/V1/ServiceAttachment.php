@@ -133,6 +133,13 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
      */
     protected $name = null;
     /**
+     * The number of NAT IP addresses to be allocated per connected endpoint.
+     * If not specified, the default value is 1.
+     *
+     * Generated from protobuf field <code>optional uint32 nat_ips_per_endpoint = 371459848;</code>
+     */
+    protected $nat_ips_per_endpoint = null;
+    /**
      * An array of URLs where each entry is the URL of a subnet provided
      * by the service producer to use for NAT in this service attachment.
      *
@@ -273,6 +280,9 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
      *           character must be a lowercase letter, and all following characters must
      *           be a dash, lowercase letter, or digit, except the last character, which
      *           cannot be a dash.
+     *     @type int $nat_ips_per_endpoint
+     *           The number of NAT IP addresses to be allocated per connected endpoint.
+     *           If not specified, the default value is 1.
      *     @type string[] $nat_subnets
      *           An array of URLs where each entry is the URL of a subnet provided
      *           by the service producer to use for NAT in this service attachment.
@@ -805,6 +815,44 @@ class ServiceAttachment extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * The number of NAT IP addresses to be allocated per connected endpoint.
+     * If not specified, the default value is 1.
+     *
+     * Generated from protobuf field <code>optional uint32 nat_ips_per_endpoint = 371459848;</code>
+     * @return int
+     */
+    public function getNatIpsPerEndpoint()
+    {
+        return isset($this->nat_ips_per_endpoint) ? $this->nat_ips_per_endpoint : 0;
+    }
+
+    public function hasNatIpsPerEndpoint()
+    {
+        return isset($this->nat_ips_per_endpoint);
+    }
+
+    public function clearNatIpsPerEndpoint()
+    {
+        unset($this->nat_ips_per_endpoint);
+    }
+
+    /**
+     * The number of NAT IP addresses to be allocated per connected endpoint.
+     * If not specified, the default value is 1.
+     *
+     * Generated from protobuf field <code>optional uint32 nat_ips_per_endpoint = 371459848;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setNatIpsPerEndpoint($var)
+    {
+        GPBUtil::checkUint32($var);
+        $this->nat_ips_per_endpoint = $var;
 
         return $this;
     }

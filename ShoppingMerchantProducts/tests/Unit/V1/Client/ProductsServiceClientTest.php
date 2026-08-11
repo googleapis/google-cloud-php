@@ -81,6 +81,7 @@ class ProductsServiceClientTest extends GeneratedTest
         $feedLabel = 'feedLabel574920979';
         $dataSource = 'dataSource-1333894576';
         $versionNumber = 135927952;
+        $archived = true;
         $expectedResponse = new Product();
         $expectedResponse->setName($name2);
         $expectedResponse->setBase64EncodedName($base64EncodedName);
@@ -90,6 +91,7 @@ class ProductsServiceClientTest extends GeneratedTest
         $expectedResponse->setFeedLabel($feedLabel);
         $expectedResponse->setDataSource($dataSource);
         $expectedResponse->setVersionNumber($versionNumber);
+        $expectedResponse->setArchived($archived);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->productName('[ACCOUNT]', '[PRODUCT]');
@@ -231,6 +233,7 @@ class ProductsServiceClientTest extends GeneratedTest
         $feedLabel = 'feedLabel574920979';
         $dataSource = 'dataSource-1333894576';
         $versionNumber = 135927952;
+        $archived = true;
         $expectedResponse = new Product();
         $expectedResponse->setName($name2);
         $expectedResponse->setBase64EncodedName($base64EncodedName);
@@ -240,6 +243,7 @@ class ProductsServiceClientTest extends GeneratedTest
         $expectedResponse->setFeedLabel($feedLabel);
         $expectedResponse->setDataSource($dataSource);
         $expectedResponse->setVersionNumber($versionNumber);
+        $expectedResponse->setArchived($archived);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->productName('[ACCOUNT]', '[PRODUCT]');

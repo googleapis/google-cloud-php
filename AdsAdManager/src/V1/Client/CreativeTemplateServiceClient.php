@@ -78,7 +78,11 @@ final class CreativeTemplateServiceClient
     /** The name of the code generator, to be included in the agent header. */
     private const CODEGEN_NAME = 'gapic';
 
-    /** The default scopes required by the service. */
+    /**
+     * The default scopes required by the service.
+     *
+     * @internal
+     */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/admanager',
         'https://www.googleapis.com/auth/admanager.readonly',
@@ -256,7 +260,7 @@ final class CreativeTemplateServiceClient
     }
 
     /**
-     * API to retrieve a `CreativeTemplate` object.
+     * Retrieves a `CreativeTemplate` object.
      *
      * The async variant is
      * {@see CreativeTemplateServiceClient::getCreativeTemplateAsync()} .
@@ -283,7 +287,7 @@ final class CreativeTemplateServiceClient
     }
 
     /**
-     * API to retrieve a list of `CreativeTemplate` objects.
+     * Lists `CreativeTemplate` objects.
      *
      * The async variant is
      * {@see CreativeTemplateServiceClient::listCreativeTemplatesAsync()} .

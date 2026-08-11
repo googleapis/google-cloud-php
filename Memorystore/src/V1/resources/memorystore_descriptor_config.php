@@ -23,6 +23,44 @@
 return [
     'interfaces' => [
         'google.cloud.memorystore.v1.Memorystore' => [
+            'AddAuthToken' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Memorystore\V1\TokenAuthUser',
+                    'metadataReturnType' => '\Google\Cloud\Memorystore\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'token_auth_user',
+                        'fieldAccessors' => [
+                            'getTokenAuthUser',
+                        ],
+                    ],
+                ],
+            ],
+            'AddTokenAuthUser' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Memorystore\V1\Instance',
+                    'metadataReturnType' => '\Google\Cloud\Memorystore\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'instance',
+                        'fieldAccessors' => [
+                            'getInstance',
+                        ],
+                    ],
+                ],
+            ],
             'BackupInstance' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Memorystore\V1\Instance',
@@ -61,6 +99,25 @@ return [
                     ],
                 ],
             ],
+            'DeleteAuthToken' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
+                    'metadataReturnType' => '\Google\Cloud\Memorystore\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteBackup' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Protobuf\GPBEmpty',
@@ -81,6 +138,25 @@ return [
                 ],
             ],
             'DeleteInstance' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
+                    'metadataReturnType' => '\Google\Cloud\Memorystore\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteTokenAuthUser' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Protobuf\GPBEmpty',
                     'metadataReturnType' => '\Google\Cloud\Memorystore\V1\OperationMetadata',
@@ -195,6 +271,18 @@ return [
                     ],
                 ],
             ],
+            'GetAuthToken' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Memorystore\V1\AuthToken',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetBackup' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Memorystore\V1\Backup',
@@ -251,6 +339,38 @@ return [
                         'keyName' => 'name',
                         'fieldAccessors' => [
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetTokenAuthUser' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Memorystore\V1\TokenAuthUser',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListAuthTokens' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getAuthTokens',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Memorystore\V1\ListAuthTokensResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
                         ],
                     ],
                 ],
@@ -315,6 +435,26 @@ return [
                     ],
                 ],
             ],
+            'ListTokenAuthUsers' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getTokenAuthUsers',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Memorystore\V1\ListTokenAuthUsersResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'GetLocation' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Location\Location',
@@ -350,6 +490,7 @@ return [
                 'interfaceOverride' => 'google.cloud.location.Locations',
             ],
             'templateMap' => [
+                'authToken' => 'projects/{project}/locations/{location}/instances/{instance}/tokenAuthUsers/{token_auth_user}/authTokens/{auth_token}',
                 'backup' => 'projects/{project}/locations/{location}/backupCollections/{backup_collection}/backups/{backup}',
                 'backupCollection' => 'projects/{project}/locations/{location}/backupCollections/{backup_collection}',
                 'caPool' => 'projects/{project}/locations/{location}/caPools/{ca_pool}',
@@ -362,6 +503,7 @@ return [
                 'networkAttachment' => 'projects/{project}/regions/{region}/networkAttachments/{network_attachment}',
                 'serviceAttachment' => 'projects/{project}/regions/{region}/serviceAttachments/{service_attachment}',
                 'sharedRegionalCertificateAuthority' => 'projects/{project}/locations/{location}/sharedRegionalCertificateAuthority',
+                'tokenAuthUser' => 'projects/{project}/locations/{location}/instances/{instance}/tokenAuthUsers/{token_auth_user}',
             ],
         ],
     ],

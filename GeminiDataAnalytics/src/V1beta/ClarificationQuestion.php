@@ -156,7 +156,7 @@ class ClarificationQuestion extends \Google\Protobuf\Internal\Message
      */
     public function getOptions()
     {
-        if ($this->options->count() !== 0) {
+        if (count($this->options) !== 0) {
             @trigger_error('options is deprecated.', E_USER_DEPRECATED);
         }
         return $this->options;
@@ -175,7 +175,7 @@ class ClarificationQuestion extends \Google\Protobuf\Internal\Message
     public function setOptions($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
-        if ($arr->count() !== 0) {
+        if (count($arr) !== 0) {
             @trigger_error('options is deprecated.', E_USER_DEPRECATED);
         }
         $this->options = $arr;

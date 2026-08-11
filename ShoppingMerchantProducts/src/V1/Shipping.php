@@ -146,6 +146,32 @@ class Shipping extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string handling_cutoff_timezone = 13;</code>
      */
     protected $handling_cutoff_timezone = null;
+    /**
+     * Optional. The label of the [loyalty
+     * program](https://support.google.com/merchants/answer/6324484).
+     * Must match one of the program labels set in
+     * [loyalty_programs][google.shopping.merchant.products.v1.LoyaltyProgram].
+     * When set (in combination with
+     * [loyalty_tier_label](https://support.google.com/merchants/answer/6324484)),
+     * this shipping option is only applicable to loyalty program members of the
+     * specified tier.
+     *
+     * Generated from protobuf field <code>string loyalty_program_label = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $loyalty_program_label = '';
+    /**
+     * Optional. The label of the [loyalty
+     * tier](https://support.google.com/merchants/answer/6324484) within the
+     * loyalty program. Must match one of the tiers set in the
+     * [loyalty_programs][google.shopping.merchant.products.v1.LoyaltyProgram].
+     * When set (in combination with
+     * [loyalty_program_label](https://support.google.com/merchants/answer/6324484)),
+     * this shipping option is only applicable to loyalty program members of the
+     * specified tier.
+     *
+     * Generated from protobuf field <code>string loyalty_tier_label = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $loyalty_tier_label = '';
 
     /**
      * Constructor.
@@ -232,6 +258,24 @@ class Shipping extends \Google\Protobuf\Internal\Message
      *           `handling_cutoff_time` is set. If `handling_cutoff_time` is set but this
      *           field is not set, the shipping destination timezone will be used. If both
      *           fields are not set, the handling cutoff time will default to 8AM PST.
+     *     @type string $loyalty_program_label
+     *           Optional. The label of the [loyalty
+     *           program](https://support.google.com/merchants/answer/6324484).
+     *           Must match one of the program labels set in
+     *           [loyalty_programs][google.shopping.merchant.products.v1.LoyaltyProgram].
+     *           When set (in combination with
+     *           [loyalty_tier_label](https://support.google.com/merchants/answer/6324484)),
+     *           this shipping option is only applicable to loyalty program members of the
+     *           specified tier.
+     *     @type string $loyalty_tier_label
+     *           Optional. The label of the [loyalty
+     *           tier](https://support.google.com/merchants/answer/6324484) within the
+     *           loyalty program. Must match one of the tiers set in the
+     *           [loyalty_programs][google.shopping.merchant.products.v1.LoyaltyProgram].
+     *           When set (in combination with
+     *           [loyalty_program_label](https://support.google.com/merchants/answer/6324484)),
+     *           this shipping option is only applicable to loyalty program members of the
+     *           specified tier.
      * }
      */
     public function __construct($data = NULL) {
@@ -749,6 +793,86 @@ class Shipping extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->handling_cutoff_timezone = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The label of the [loyalty
+     * program](https://support.google.com/merchants/answer/6324484).
+     * Must match one of the program labels set in
+     * [loyalty_programs][google.shopping.merchant.products.v1.LoyaltyProgram].
+     * When set (in combination with
+     * [loyalty_tier_label](https://support.google.com/merchants/answer/6324484)),
+     * this shipping option is only applicable to loyalty program members of the
+     * specified tier.
+     *
+     * Generated from protobuf field <code>string loyalty_program_label = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getLoyaltyProgramLabel()
+    {
+        return $this->loyalty_program_label;
+    }
+
+    /**
+     * Optional. The label of the [loyalty
+     * program](https://support.google.com/merchants/answer/6324484).
+     * Must match one of the program labels set in
+     * [loyalty_programs][google.shopping.merchant.products.v1.LoyaltyProgram].
+     * When set (in combination with
+     * [loyalty_tier_label](https://support.google.com/merchants/answer/6324484)),
+     * this shipping option is only applicable to loyalty program members of the
+     * specified tier.
+     *
+     * Generated from protobuf field <code>string loyalty_program_label = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setLoyaltyProgramLabel($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->loyalty_program_label = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The label of the [loyalty
+     * tier](https://support.google.com/merchants/answer/6324484) within the
+     * loyalty program. Must match one of the tiers set in the
+     * [loyalty_programs][google.shopping.merchant.products.v1.LoyaltyProgram].
+     * When set (in combination with
+     * [loyalty_program_label](https://support.google.com/merchants/answer/6324484)),
+     * this shipping option is only applicable to loyalty program members of the
+     * specified tier.
+     *
+     * Generated from protobuf field <code>string loyalty_tier_label = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getLoyaltyTierLabel()
+    {
+        return $this->loyalty_tier_label;
+    }
+
+    /**
+     * Optional. The label of the [loyalty
+     * tier](https://support.google.com/merchants/answer/6324484) within the
+     * loyalty program. Must match one of the tiers set in the
+     * [loyalty_programs][google.shopping.merchant.products.v1.LoyaltyProgram].
+     * When set (in combination with
+     * [loyalty_program_label](https://support.google.com/merchants/answer/6324484)),
+     * this shipping option is only applicable to loyalty program members of the
+     * specified tier.
+     *
+     * Generated from protobuf field <code>string loyalty_tier_label = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setLoyaltyTierLabel($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->loyalty_tier_label = $var;
 
         return $this;
     }

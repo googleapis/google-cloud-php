@@ -29,7 +29,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 
 /**
- * API to retrieve a list of `GeoTarget` objects.
+ * Lists `GeoTarget` objects.
  *
  * @param string $formattedParent The parent, which owns this collection of GeoTargets.
  *                                Format: `networks/{network_code}`

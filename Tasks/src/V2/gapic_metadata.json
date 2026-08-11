@@ -8,7 +8,7 @@
         "CloudTasks": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "CloudTasksGapicClient",
+                    "libraryClient": "CloudTasksClient",
                     "rpcs": {
                         "CreateQueue": {
                             "methods": [

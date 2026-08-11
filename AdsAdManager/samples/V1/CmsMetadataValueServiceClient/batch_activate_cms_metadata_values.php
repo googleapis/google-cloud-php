@@ -29,7 +29,7 @@ use Google\Ads\AdManager\V1\Client\CmsMetadataValueServiceClient;
 use Google\ApiCore\ApiException;
 
 /**
- * API to activate a list of `CmsMetadataValue` objects.
+ * Activates a list of `CmsMetadataValue` objects.
  *
  * @param string $formattedParent       The parent resource where `CmsMetadataValues` will be activated.
  *                                      Format: `networks/{network_code}`

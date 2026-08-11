@@ -31,7 +31,7 @@ use Google\Ads\AdManager\V1\UpdateCustomTargetingKeyRequest;
 use Google\ApiCore\ApiException;
 
 /**
- * API to update a `CustomTargetingKey` object.
+ * Updates a `CustomTargetingKey` object.
  *
  * @param int $customTargetingKeyType           Indicates whether users will select from predefined values or
  *                                              create new targeting values, while specifying targeting criteria for a line

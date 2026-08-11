@@ -30,8 +30,8 @@ use Google\Cloud\Storage\Control\V2\FindingSummary;
 use Google\Cloud\Storage\Control\V2\SummarizeIntelligenceFindingsRequest;
 
 /**
- * Summarize the intelligence findings for the specified scope(org, folder or
- * project).
+ * Summarizes the intelligence findings for the specified scope (organization,
+ * folder or project).
  *
  * @param string $parent The scope to summarize the findings for.
  *                       Format:

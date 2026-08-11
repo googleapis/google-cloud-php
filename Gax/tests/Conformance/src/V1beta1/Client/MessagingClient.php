@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,6 +32,7 @@ use Google\ApiCore\ClientStream;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
@@ -52,7 +53,9 @@ use Google\Showcase\V1beta1\ListBlurbsRequest;
 use Google\Showcase\V1beta1\ListRoomsRequest;
 use Google\Showcase\V1beta1\Room;
 use Google\Showcase\V1beta1\SearchBlurbsRequest;
+use Google\Showcase\V1beta1\SearchBlurbsResponse;
 use Google\Showcase\V1beta1\StreamBlurbsRequest;
+use Google\Showcase\V1beta1\StreamBlurbsResponse;
 use Google\Showcase\V1beta1\UpdateBlurbRequest;
 use Google\Showcase\V1beta1\UpdateRoomRequest;
 use GuzzleHttp\Promise\PromiseInterface;
@@ -103,7 +106,11 @@ final class MessagingClient
     /** The name of the code generator, to be included in the agent header. */
     private const CODEGEN_NAME = 'gapic';
 
-    /** The default scopes required by the service. */
+    /**
+     * The default scopes required by the service.
+     *
+     * @internal
+     */
     public static $serviceScopes = [];
 
     private $operationsClient;
@@ -154,7 +161,7 @@ final class MessagingClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -184,16 +191,18 @@ final class MessagingClient
      * resource.
      *
      * @param string $user
+     * @param string $legacyUser
      * @param string $blurb
      *
      * @return string The formatted blurb resource.
      *
      * @experimental
      */
-    public static function blurbName(string $user, string $blurb): string
+    public static function blurbName(string $user, string $legacyUser, string $blurb): string
     {
         return self::getPathTemplate('blurb')->render([
             'user' => $user,
+            'legacy_user' => $legacyUser,
             'blurb' => $blurb,
         ]);
     }
@@ -231,25 +240,6 @@ final class MessagingClient
         return self::getPathTemplate('roomBlurb')->render([
             'room' => $room,
             'blurb' => $blurb,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent a
-     * room_legacy_room resource.
-     *
-     * @param string $room
-     * @param string $legacyRoom
-     *
-     * @return string The formatted room_legacy_room resource.
-     *
-     * @experimental
-     */
-    public static function roomLegacyRoomName(string $room, string $legacyRoom): string
-    {
-        return self::getPathTemplate('roomLegacyRoom')->render([
-            'room' => $room,
-            'legacy_room' => $legacyRoom,
         ]);
     }
 
@@ -312,22 +302,22 @@ final class MessagingClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
-     * user_blurb_legacy_user resource.
+     * user_legacy_user_blurb resource.
      *
      * @param string $user
-     * @param string $blurb
      * @param string $legacyUser
+     * @param string $blurb
      *
-     * @return string The formatted user_blurb_legacy_user resource.
+     * @return string The formatted user_legacy_user_blurb resource.
      *
      * @experimental
      */
-    public static function userBlurbLegacyUserName(string $user, string $blurb, string $legacyUser): string
+    public static function userLegacyUserBlurbName(string $user, string $legacyUser, string $blurb): string
     {
-        return self::getPathTemplate('userBlurbLegacyUser')->render([
+        return self::getPathTemplate('userLegacyUserBlurb')->render([
             'user' => $user,
-            'blurb' => $blurb,
             'legacy_user' => $legacyUser,
+            'blurb' => $blurb,
         ]);
     }
 
@@ -335,14 +325,13 @@ final class MessagingClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
-     * - blurb: users/{user}/blurbs/{blurb}
+     * - blurb: users/{user}/profile/blurbs/legacy/{legacy_user}~{blurb}
      * - room: rooms/{room}
      * - roomBlurb: rooms/{room}/blurbs/{blurb}
-     * - roomLegacyRoom: rooms/{room}/legacy_room/{legacy_room}
-     * - roomLegacyRoomBlurb: rooms/{room}/legacy_room/{legacy_room}/blurbs/{blurb}
+     * - roomLegacyRoomBlurb: rooms/{room}/blurbs/legacy/{legacy_room}.{blurb}
      * - user: users/{user}
-     * - userBlurb: users/{user}/blurbs/{blurb}
-     * - userBlurbLegacyUser: users/{user}/blurbs/{blurb}/legacy/{legacy_user}
+     * - userBlurb: users/{user}/profile/blurbs/{blurb}
+     * - userLegacyUserBlurb: users/{user}/profile/blurbs/legacy/{legacy_user}~{blurb}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -367,25 +356,28 @@ final class MessagingClient
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'localhost:7469:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
-     *           *Important*: If you accept a credential configuration (credential
-     *           JSON/File/Stream) from an external source for authentication to Google Cloud
-     *           Platform, you must validate it before providing it to any Google API or library.
-     *           Providing an unvalidated credential configuration to Google APIs can compromise
-     *           the security of your systems and data. For more information {@see
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Showcase\V1beta1\MessagingClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new MessagingClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
      *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
@@ -423,13 +415,15 @@ final class MessagingClient
      *     @type false|LoggerInterface $logger
      *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
      *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      *
      * @experimental
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
@@ -452,8 +446,6 @@ final class MessagingClient
      * are being created after the stream has started and sends requests to create
      * blurbs. If an invalid blurb is requested to be created, the stream will
      * close with an error.
-     *
-     * @example samples/V1beta1/MessagingClient/connect.php
      *
      * @param array $callOptions {
      *     Optional.
@@ -479,8 +471,6 @@ final class MessagingClient
      * to be a post on the profile.
      *
      * The async variant is {@see MessagingClient::createBlurbAsync()} .
-     *
-     * @example samples/V1beta1/MessagingClient/create_blurb.php
      *
      * @param CreateBlurbRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -508,8 +498,6 @@ final class MessagingClient
      *
      * The async variant is {@see MessagingClient::createRoomAsync()} .
      *
-     * @example samples/V1beta1/MessagingClient/create_room.php
-     *
      * @param CreateRoomRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -536,8 +524,6 @@ final class MessagingClient
      *
      * The async variant is {@see MessagingClient::deleteBlurbAsync()} .
      *
-     * @example samples/V1beta1/MessagingClient/delete_blurb.php
-     *
      * @param DeleteBlurbRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
      *     Optional.
@@ -562,8 +548,6 @@ final class MessagingClient
      *
      * The async variant is {@see MessagingClient::deleteRoomAsync()} .
      *
-     * @example samples/V1beta1/MessagingClient/delete_room.php
-     *
      * @param DeleteRoomRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -587,8 +571,6 @@ final class MessagingClient
      * Retrieves the Blurb with the given resource name.
      *
      * The async variant is {@see MessagingClient::getBlurbAsync()} .
-     *
-     * @example samples/V1beta1/MessagingClient/get_blurb.php
      *
      * @param GetBlurbRequest $request     A request to house fields associated with the call.
      * @param array           $callOptions {
@@ -615,8 +597,6 @@ final class MessagingClient
      * Retrieves the Room with the given resource name.
      *
      * The async variant is {@see MessagingClient::getRoomAsync()} .
-     *
-     * @example samples/V1beta1/MessagingClient/get_room.php
      *
      * @param GetRoomRequest $request     A request to house fields associated with the call.
      * @param array          $callOptions {
@@ -645,8 +625,6 @@ final class MessagingClient
      *
      * The async variant is {@see MessagingClient::listBlurbsAsync()} .
      *
-     * @example samples/V1beta1/MessagingClient/list_blurbs.php
-     *
      * @param ListBlurbsRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {
      *     Optional.
@@ -672,8 +650,6 @@ final class MessagingClient
      * Lists all chat rooms.
      *
      * The async variant is {@see MessagingClient::listRoomsAsync()} .
-     *
-     * @example samples/V1beta1/MessagingClient/list_rooms.php
      *
      * @param ListRoomsRequest $request     A request to house fields associated with the call.
      * @param array            $callOptions {
@@ -703,8 +679,6 @@ final class MessagingClient
      *
      * The async variant is {@see MessagingClient::searchBlurbsAsync()} .
      *
-     * @example samples/V1beta1/MessagingClient/search_blurbs.php
-     *
      * @param SearchBlurbsRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -715,7 +689,7 @@ final class MessagingClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return OperationResponse<SearchBlurbsResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      *
@@ -729,8 +703,6 @@ final class MessagingClient
     /**
      * This is a stream to create multiple blurbs. If an invalid blurb is
      * requested to be created, the stream will close with an error.
-     *
-     * @example samples/V1beta1/MessagingClient/send_blurbs.php
      *
      * @param array $callOptions {
      *     Optional.
@@ -754,8 +726,6 @@ final class MessagingClient
      * This returns a stream that emits the blurbs that are created for a
      * particular chat room or user profile.
      *
-     * @example samples/V1beta1/MessagingClient/stream_blurbs.php
-     *
      * @param StreamBlurbsRequest $request     A request to house fields associated with the call.
      * @param array               $callOptions {
      *     Optional.
@@ -764,7 +734,7 @@ final class MessagingClient
      *           Timeout to use for this call.
      * }
      *
-     * @return ServerStream
+     * @return ServerStream<StreamBlurbsResponse>
      *
      * @throws ApiException Thrown if the API call fails.
      *
@@ -779,8 +749,6 @@ final class MessagingClient
      * Updates a blurb.
      *
      * The async variant is {@see MessagingClient::updateBlurbAsync()} .
-     *
-     * @example samples/V1beta1/MessagingClient/update_blurb.php
      *
      * @param UpdateBlurbRequest $request     A request to house fields associated with the call.
      * @param array              $callOptions {
@@ -807,8 +775,6 @@ final class MessagingClient
      * Updates a room.
      *
      * The async variant is {@see MessagingClient::updateRoomAsync()} .
-     *
-     * @example samples/V1beta1/MessagingClient/update_room.php
      *
      * @param UpdateRoomRequest $request     A request to house fields associated with the call.
      * @param array             $callOptions {

@@ -782,6 +782,9 @@ return [
             'templateMap' => [
                 'backup' => 'projects/{project}/backups/{backup}',
                 'network' => 'projects/{project}/global/networks/{network}',
+                'projectLocationSecretSecretVersion' => 'projects/{project}/locations/{location}/secrets/{secret}/versions/{secret_version}',
+                'projectSecretSecretVersion' => 'projects/{project}/secrets/{secret}/versions/{secret_version}',
+                'secretVersion' => 'projects/{project}/secrets/{secret}/versions/{secret_version}',
                 'serviceConnectionPolicy' => 'projects/{project}/regions/{region}/serviceConnectionPolicies/{service_connection_policy}',
             ],
         ],

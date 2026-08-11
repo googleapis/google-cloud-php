@@ -51,9 +51,11 @@ use Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseRequest;
 use Google\Cloud\Spanner\Session\SessionCache;
 use Google\Cloud\Spanner\V1\BatchWriteRequest;
 use Google\Cloud\Spanner\V1\Client\SpannerClient;
+use Google\Cloud\Spanner\V1\ExecuteSqlRequest;
 use Google\Cloud\Spanner\V1\Mutation;
 use Google\Cloud\Spanner\V1\Mutation\Delete;
 use Google\Cloud\Spanner\V1\Mutation\Write;
+use Google\Cloud\Spanner\V1\ReadRequest;
 use Google\Cloud\Spanner\V1\TransactionOptions\IsolationLevel;
 use Google\Cloud\Spanner\V1\TransactionOptions\ReadWrite\ReadLockMode;
 use Google\Cloud\Spanner\V1\TypeCode;
@@ -738,7 +740,6 @@ class Database
      *           up front. Instead, the transaction will be considered
      *           "single-use", and may be used for only a single operation.
      *           **Defaults to** `false`.
-     *     @type array $sessionOptions Session configuration and request options.
      *           Session labels may be applied using the `labels` key.
      * }
      * @return TransactionalReadInterface
@@ -791,7 +792,6 @@ class Database
      *           up front. Instead, the transaction will be considered
      *           "single-use", and may be used for only a single operation.
      *           **Defaults to** `false`.
-     *     @type array $sessionOptions Session configuration and request options.
      *           Session labels may be applied using the `labels` key.
      *     @type string $tag A transaction tag. Requests made using this transaction will
      *           use this as the transaction tag.
@@ -892,7 +892,6 @@ class Database
      *           that in a single-use transaction, only a single operation may
      *           be executed, and rollback is not available. **Defaults to**
      *           `false`.
-     *     @type array $sessionOptions Session configuration and request options.
      *           Session labels may be applied using the `labels` key.
      *     @type string $tag A transaction tag. Requests made using this transaction will
      *           use this as the transaction tag.
@@ -965,6 +964,17 @@ class Database
             $this->isRunningTransaction = true;
             try {
                 $res = call_user_func($operation, $transaction);
+            } catch (\Throwable $e) {
+                $active = $transaction->state() === Transaction::STATE_ACTIVE;
+                $singleUse = $transaction->type() === Transaction::TYPE_SINGLE_USE;
+                if ($active && !$singleUse) {
+                    try {
+                        $transaction->rollback();
+                    } catch (\Throwable $rollbackException) {
+                        // ignore rollback failure and bubble up the original exception
+                    }
+                }
+                throw $e;
             } finally {
                 $this->isRunningTransaction = false;
             }
@@ -972,7 +982,7 @@ class Database
             $active = $transaction->state() === Transaction::STATE_ACTIVE;
             $singleUse = $transaction->type() === Transaction::TYPE_SINGLE_USE;
             if ($active && !$singleUse) {
-                $transaction->rollback($options);
+                $transaction->rollback();
                 throw new \RuntimeException('Transactions must be rolled back or committed.');
             }
 
@@ -1018,6 +1028,10 @@ class Database
      *         on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      *         Please note, the `transactionTag` setting will be ignored as it is not supported for single-use
      *         transactions.
+     *     @type array $headers Headers to be set with the request.
+     *     @type array|RetrySettings $retrySettings Retry settings to be used with the request.
+     *     @type int $timeoutMillis Timeout to be used with the request.
+     *     @type array $transportOptions Transport options to be used with the request.
      * }
      * @return Timestamp The commit Timestamp.
      */
@@ -1067,6 +1081,10 @@ class Database
      *         on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      *         Please note, the `transactionTag` setting will be ignored as it is not supported for single-use
      *         transactions.
+     *     @type array $headers Headers to be set with the request.
+     *     @type array|RetrySettings $retrySettings Retry settings to be used with the request.
+     *     @type int $timeoutMillis Timeout to be used with the request.
+     *     @type array $transportOptions Transport options to be used with the request.
      * }
      * @return Timestamp The commit Timestamp.
      */
@@ -1113,6 +1131,10 @@ class Database
      *         on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      *         Please note, the `transactionTag` setting will be ignored as it is not supported for single-use
      *         transactions.
+     *     @type array $headers Headers to be set with the request.
+     *     @type array|RetrySettings $retrySettings Retry settings to be used with the request.
+     *     @type int $timeoutMillis Timeout to be used with the request.
+     *     @type array $transportOptions Transport options to be used with the request.
      * }
      * @return Timestamp The commit Timestamp.
      */
@@ -1159,6 +1181,10 @@ class Database
      *         on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      *         Please note, the `transactionTag` setting will be ignored as it is not supported for single-use
      *         transactions.
+     *     @type array $headers Headers to be set with the request.
+     *     @type array|RetrySettings $retrySettings Retry settings to be used with the request.
+     *     @type int $timeoutMillis Timeout to be used with the request.
+     *     @type array $transportOptions Transport options to be used with the request.
      * }
      * @return Timestamp The commit Timestamp.
      */
@@ -1206,6 +1232,10 @@ class Database
      *         on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      *         Please note, the `transactionTag` setting will be ignored as it is not supported for single-use
      *         transactions.
+     *     @type array $headers Headers to be set with the request.
+     *     @type array|RetrySettings $retrySettings Retry settings to be used with the request.
+     *     @type int $timeoutMillis Timeout to be used with the request.
+     *     @type array $transportOptions Transport options to be used with the request.
      * }
      * @return Timestamp The commit Timestamp.
      */
@@ -1254,6 +1284,10 @@ class Database
      *         on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      *         Please note, the `transactionTag` setting will be ignored as it is not supported for single-use
      *         transactions.
+     *     @type array $headers Headers to be set with the request.
+     *     @type array|RetrySettings $retrySettings Retry settings to be used with the request.
+     *     @type int $timeoutMillis Timeout to be used with the request.
+     *     @type array $transportOptions Transport options to be used with the request.
      * }
      * @return Timestamp The commit Timestamp.
      */
@@ -1301,6 +1335,10 @@ class Database
      *         on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      *         Please note, the `transactionTag` setting will be ignored as it is not supported for single-use
      *         transactions.
+     *     @type array $headers Headers to be set with the request.
+     *     @type array|RetrySettings $retrySettings Retry settings to be used with the request.
+     *     @type int $timeoutMillis Timeout to be used with the request.
+     *     @type array $transportOptions Transport options to be used with the request.
      * }
      * @return Timestamp The commit Timestamp.
      */
@@ -1349,6 +1387,10 @@ class Database
      *         on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      *         Please note, the `transactionTag` setting will be ignored as it is not supported for single-use
      *         transactions.
+     *     @type array $headers Headers to be set with the request.
+     *     @type array|RetrySettings $retrySettings Retry settings to be used with the request.
+     *     @type int $timeoutMillis Timeout to be used with the request.
+     *     @type array $transportOptions Transport options to be used with the request.
      * }
      * @return Timestamp The commit Timestamp.
      */
@@ -1399,6 +1441,10 @@ class Database
      *         on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      *         Please note, the `transactionTag` setting will be ignored as it is not supported for single-use
      *         transactions.
+     *     @type array $headers Headers to be set with the request.
+     *     @type array|RetrySettings $retrySettings Retry settings to be used with the request.
+     *     @type int $timeoutMillis Timeout to be used with the request.
+     *     @type array $transportOptions Transport options to be used with the request.
      * }
      * @return Timestamp The commit Timestamp.
      */
@@ -1632,7 +1678,6 @@ class Database
      *           chosen, any snapshot options will be disregarded. If `$begin`
      *           is false, transaction type MUST be `Database::CONTEXT_READ`.
      *           **Defaults to** `Database::CONTEXT_READ`.
-     *     @type array $sessionOptions Session configuration and request options.
      *           Session labels may be applied using the `labels` key.
      *     @type array $queryOptions Query optimizer configuration.
      *     @type string $queryOptions.optimizerVersion An option to control the
@@ -1654,6 +1699,12 @@ class Database
      *           on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      *           Please note, the `transactionTag` setting will be ignored as it is not supported for read-only
      *           transactions.
+     *     @type array $headers Headers to be set with the request.
+     *     @type array|RetrySettings $retrySettings Retry settings to be used with the request.
+     *     @type int $timeoutMillis Timeout in milliseconds to be used for the API request.
+     *     @type array $transportOptions Transport options to be used with the request.
+     *           For more information on available call options, please see
+     *           [CallOptions](https://docs.cloud.google.com/php/docs/reference/gax/latest/Options.CallOptions).
      *     @type array $directedReadOptions Directed read options.
      *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions}
      *           If using the `replicaSelection::type` setting, utilize the constants available in
@@ -1675,13 +1726,18 @@ class Database
         );
 
         $session = $options['session'] ?? $this->session;
-        $executeOptions = $this->pluckArray(['parameters', 'types'], $options);
-        return $this->operation->execute($session, $sql, $executeOptions + [
-            'transaction' => $txnOptions,
-            'transactionContext' => $txnContext,
-            'directedReadOptions' => $directedReadOptions,
-            'route-to-leader' => $txnContext === Database::CONTEXT_READWRITE
-        ]);
+        $executeOptions = $this->optionsValidator->stripUnknownOptions(
+            $options,
+            ['parameters', 'types'],
+            CallOptions::class,
+            ExecuteSqlRequest::class
+        );
+        $executeOptions['transaction'] = $txnOptions;
+        $executeOptions['transactionContext'] = $txnContext;
+        $executeOptions['directedReadOptions'] = $directedReadOptions;
+        $executeOptions['route-to-leader'] = $txnContext === Database::CONTEXT_READWRITE;
+
+        return $this->operation->execute($session, $sql, $executeOptions);
     }
 
     /**
@@ -1915,10 +1971,10 @@ class Database
 
         $transaction = $this->operation->transaction($this->session, $beginTransactionOptions);
 
-        return $this->operation->executeUpdate($this->session, $transaction, $statement, [
-            'statsItem' => 'rowCountLowerBound',
-            'route-to-leader' => true,
-        ] + $options);
+        $options['statsItem'] = 'rowCountLowerBound';
+        $options['route-to-leader'] = true;
+
+        return $this->operation->executeUpdate($this->session, $transaction, $statement, $options);
     }
 
     /**
@@ -2022,7 +2078,6 @@ class Database
      *           chosen, any snapshot options will be disregarded. If `$begin`
      *           is false, transaction type MUST be `Database::CONTEXT_READ`.
      *           **Defaults to** `Database::CONTEXT_READ`.
-     *     @type array $sessionOptions Session configuration and request options.
      *           Session labels may be applied using the `labels` key.
      *     @type array $requestOptions Request options.
      *           For more information on available options, please see
@@ -2030,6 +2085,12 @@ class Database
      *           Please note, if using the `priority` setting you may utilize the constants available
      *           on {@see \Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
      *           Please note, the `transactionTag` setting will be ignored as it is not supported for read-only transactions.
+     *     @type array $headers Headers to be set with the request.
+     *     @type array|RetrySettings $retrySettings Retry settings to be used with the request.
+     *     @type int $timeoutMillis Timeout in milliseconds to be used for the API request.
+     *     @type array $transportOptions Transport options to be used with the request.
+     *           For more information on available call options, please see
+     *           [CallOptions](https://docs.cloud.google.com/php/docs/reference/gax/latest/Options.CallOptions).
      *     @type array $directedReadOptions Directed read options.
      *           {@see \Google\Cloud\Spanner\V1\DirectedReadOptions}
      *           If using the `replicaSelection::type` setting, utilize the constants available in
@@ -2048,22 +2109,20 @@ class Database
     {
         [$txnOptions, $txnContext] = $this->transactionOptionsBuilder->transactionSelector($options);
 
-        $readOptions = $this->pluckArray(
-            ['index', 'limit', 'orderBy', 'lockHint', 'directedReadOptions'],
-            $options
+        $readOptions = $this->optionsValidator->stripUnknownOptions(
+            $options,
+            CallOptions::class,
+            ReadRequest::class
         );
-        $readOptions += [
-            'transactionContext' => $txnContext,
-            'directedReadOptions' => $this->transactionOptionsBuilder->configureDirectedReadOptions(
-                ['transaction' => $txnOptions] + $readOptions,
-                $this->directedReadOptions
-            ),
-            'transaction' => $txnOptions,
-        ];
+        $readOptions['transactionContext'] = $txnContext;
+        $readOptions['directedReadOptions'] = $this->transactionOptionsBuilder->configureDirectedReadOptions(
+            ['transaction' => $txnOptions] + $readOptions,
+            $this->directedReadOptions
+        );
+        $readOptions['transaction'] = $txnOptions;
 
-        return $this->operation->read($this->session, $table, $keySet, $columns, $readOptions + [
-            'route-to-leader' => $txnContext === Database::CONTEXT_READ
-        ]);
+        $readOptions['route-to-leader'] = $txnContext === Database::CONTEXT_READ;
+        return $this->operation->read($this->session, $table, $keySet, $columns, $readOptions);
     }
 
     /**

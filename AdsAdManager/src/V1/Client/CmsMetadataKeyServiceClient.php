@@ -84,7 +84,11 @@ final class CmsMetadataKeyServiceClient
     /** The name of the code generator, to be included in the agent header. */
     private const CODEGEN_NAME = 'gapic';
 
-    /** The default scopes required by the service. */
+    /**
+     * The default scopes required by the service.
+     *
+     * @internal
+     */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/admanager',
         'https://www.googleapis.com/auth/admanager.readonly',
@@ -261,7 +265,7 @@ final class CmsMetadataKeyServiceClient
     }
 
     /**
-     * API to activate a list of `CmsMetadataKey` objects.
+     * Activates a list of `CmsMetadataKey` objects.
      *
      * The async variant is
      * {@see CmsMetadataKeyServiceClient::batchActivateCmsMetadataKeysAsync()} .
@@ -290,7 +294,7 @@ final class CmsMetadataKeyServiceClient
     }
 
     /**
-     * API to deactivate a list of `CmsMetadataKey` objects.
+     * Deactivates a list of `CmsMetadataKey` objects.
      *
      * The async variant is
      * {@see CmsMetadataKeyServiceClient::batchDeactivateCmsMetadataKeysAsync()} .
@@ -319,7 +323,7 @@ final class CmsMetadataKeyServiceClient
     }
 
     /**
-     * API to retrieve a `CmsMetadataKey` object.
+     * Retrieves a `CmsMetadataKey` object.
      *
      * The async variant is
      * {@see CmsMetadataKeyServiceClient::getCmsMetadataKeyAsync()} .
@@ -346,7 +350,7 @@ final class CmsMetadataKeyServiceClient
     }
 
     /**
-     * API to retrieve a list of `CmsMetadataKey` objects.
+     * Lists `CmsMetadataKey` objects.
      *
      * The async variant is
      * {@see CmsMetadataKeyServiceClient::listCmsMetadataKeysAsync()} .

@@ -49,7 +49,8 @@ class AnywhereCache extends \Google\Protobuf\Internal\Message
      */
     protected $admission_policy = '';
     /**
-     * Output only. Cache state including RUNNING, CREATING, DISABLED and PAUSED.
+     * Output only. Cache state including `running`, `creating`, `disabled` and
+     * `paused`.
      *
      * Generated from protobuf field <code>string state = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -75,6 +76,13 @@ class AnywhereCache extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool pending_update = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $pending_update = false;
+    /**
+     * Optional. Specifies whether objects are ingested into the cache upon write.
+     * Defaults to false.
+     *
+     * Generated from protobuf field <code>optional bool ingest_on_write = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $ingest_on_write = null;
 
     /**
      * Constructor.
@@ -100,7 +108,8 @@ class AnywhereCache extends \Google\Protobuf\Internal\Message
      *           `admit-on-first-miss`. Default value is applied if not specified in the
      *           create request.
      *     @type string $state
-     *           Output only. Cache state including RUNNING, CREATING, DISABLED and PAUSED.
+     *           Output only. Cache state including `running`, `creating`, `disabled` and
+     *           `paused`.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Time when Anywhere cache instance is allocated.
      *     @type \Google\Protobuf\Timestamp $update_time
@@ -110,6 +119,9 @@ class AnywhereCache extends \Google\Protobuf\Internal\Message
      *           Output only. True if there is an active update operation against this cache
      *           instance. Subsequential update requests will be rejected if this field is
      *           true. Output only.
+     *     @type bool $ingest_on_write
+     *           Optional. Specifies whether objects are ingested into the cache upon write.
+     *           Defaults to false.
      * }
      */
     public function __construct($data = NULL) {
@@ -250,7 +262,8 @@ class AnywhereCache extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Cache state including RUNNING, CREATING, DISABLED and PAUSED.
+     * Output only. Cache state including `running`, `creating`, `disabled` and
+     * `paused`.
      *
      * Generated from protobuf field <code>string state = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -261,7 +274,8 @@ class AnywhereCache extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Cache state including RUNNING, CREATING, DISABLED and PAUSED.
+     * Output only. Cache state including `running`, `creating`, `disabled` and
+     * `paused`.
      *
      * Generated from protobuf field <code>string state = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -375,6 +389,44 @@ class AnywhereCache extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->pending_update = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies whether objects are ingested into the cache upon write.
+     * Defaults to false.
+     *
+     * Generated from protobuf field <code>optional bool ingest_on_write = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getIngestOnWrite()
+    {
+        return isset($this->ingest_on_write) ? $this->ingest_on_write : false;
+    }
+
+    public function hasIngestOnWrite()
+    {
+        return isset($this->ingest_on_write);
+    }
+
+    public function clearIngestOnWrite()
+    {
+        unset($this->ingest_on_write);
+    }
+
+    /**
+     * Optional. Specifies whether objects are ingested into the cache upon write.
+     * Defaults to false.
+     *
+     * Generated from protobuf field <code>optional bool ingest_on_write = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setIngestOnWrite($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->ingest_on_write = $var;
 
         return $this;
     }

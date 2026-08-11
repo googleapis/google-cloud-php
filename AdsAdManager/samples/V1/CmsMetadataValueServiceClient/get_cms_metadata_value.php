@@ -29,7 +29,7 @@ use Google\Ads\AdManager\V1\GetCmsMetadataValueRequest;
 use Google\ApiCore\ApiException;
 
 /**
- * API to retrieve a `CmsMetadataValue` object.
+ * Retrieves a `CmsMetadataValue` object.
  *
  * @param string $formattedName The resource name of the CmsMetadataValue.
  *                              Format: `networks/{network_code}/cmsMetadataValues/{cms_metadata_value_id}`

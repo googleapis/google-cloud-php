@@ -31,6 +31,7 @@ class DocumentView
      * - `description`
      * - `update_time`
      * - `view`
+     * - `content_length_bytes`
      * This is the default of view for
      * [DeveloperKnowledge.SearchDocumentChunks][google.developers.knowledge.v1.DeveloperKnowledge.SearchDocumentChunks].
      *

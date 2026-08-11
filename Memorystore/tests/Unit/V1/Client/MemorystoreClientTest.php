@@ -30,33 +30,45 @@ use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\ListLocationsResponse;
 use Google\Cloud\Location\Location;
+use Google\Cloud\Memorystore\V1\AddAuthTokenRequest;
+use Google\Cloud\Memorystore\V1\AddTokenAuthUserRequest;
+use Google\Cloud\Memorystore\V1\AuthToken;
 use Google\Cloud\Memorystore\V1\Backup;
 use Google\Cloud\Memorystore\V1\BackupCollection;
 use Google\Cloud\Memorystore\V1\BackupInstanceRequest;
 use Google\Cloud\Memorystore\V1\CertificateAuthority;
 use Google\Cloud\Memorystore\V1\Client\MemorystoreClient;
 use Google\Cloud\Memorystore\V1\CreateInstanceRequest;
+use Google\Cloud\Memorystore\V1\DeleteAuthTokenRequest;
 use Google\Cloud\Memorystore\V1\DeleteBackupRequest;
 use Google\Cloud\Memorystore\V1\DeleteInstanceRequest;
+use Google\Cloud\Memorystore\V1\DeleteTokenAuthUserRequest;
 use Google\Cloud\Memorystore\V1\ExportBackupRequest;
 use Google\Cloud\Memorystore\V1\FinishMigrationRequest;
+use Google\Cloud\Memorystore\V1\GetAuthTokenRequest;
 use Google\Cloud\Memorystore\V1\GetBackupCollectionRequest;
 use Google\Cloud\Memorystore\V1\GetBackupRequest;
 use Google\Cloud\Memorystore\V1\GetCertificateAuthorityRequest;
 use Google\Cloud\Memorystore\V1\GetInstanceRequest;
 use Google\Cloud\Memorystore\V1\GetSharedRegionalCertificateAuthorityRequest;
+use Google\Cloud\Memorystore\V1\GetTokenAuthUserRequest;
 use Google\Cloud\Memorystore\V1\Instance;
+use Google\Cloud\Memorystore\V1\ListAuthTokensRequest;
+use Google\Cloud\Memorystore\V1\ListAuthTokensResponse;
 use Google\Cloud\Memorystore\V1\ListBackupCollectionsRequest;
 use Google\Cloud\Memorystore\V1\ListBackupCollectionsResponse;
 use Google\Cloud\Memorystore\V1\ListBackupsRequest;
 use Google\Cloud\Memorystore\V1\ListBackupsResponse;
 use Google\Cloud\Memorystore\V1\ListInstancesRequest;
 use Google\Cloud\Memorystore\V1\ListInstancesResponse;
+use Google\Cloud\Memorystore\V1\ListTokenAuthUsersRequest;
+use Google\Cloud\Memorystore\V1\ListTokenAuthUsersResponse;
 use Google\Cloud\Memorystore\V1\RescheduleMaintenanceRequest;
 use Google\Cloud\Memorystore\V1\RescheduleMaintenanceRequest\RescheduleType;
 use Google\Cloud\Memorystore\V1\SelfManagedSource;
 use Google\Cloud\Memorystore\V1\SharedRegionalCertificateAuthority;
 use Google\Cloud\Memorystore\V1\StartMigrationRequest;
+use Google\Cloud\Memorystore\V1\TokenAuthUser;
 use Google\Cloud\Memorystore\V1\UpdateInstanceRequest;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
@@ -94,6 +106,306 @@ class MemorystoreClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ];
         return new MemorystoreClient($options);
+    }
+
+    /** @test */
+    public function addAuthTokenTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/addAuthTokenTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $expectedResponse = new TokenAuthUser();
+        $expectedResponse->setName($name);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/addAuthTokenTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedTokenAuthUser = $gapicClient->tokenAuthUserName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[INSTANCE]',
+            '[TOKEN_AUTH_USER]'
+        );
+        $authToken = new AuthToken();
+        $request = (new AddAuthTokenRequest())->setTokenAuthUser($formattedTokenAuthUser)->setAuthToken($authToken);
+        $response = $gapicClient->addAuthToken($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.memorystore.v1.Memorystore/AddAuthToken', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getTokenAuthUser();
+        $this->assertProtobufEquals($formattedTokenAuthUser, $actualValue);
+        $actualValue = $actualApiRequestObject->getAuthToken();
+        $this->assertProtobufEquals($authToken, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/addAuthTokenTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function addAuthTokenExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/addAuthTokenTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedTokenAuthUser = $gapicClient->tokenAuthUserName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[INSTANCE]',
+            '[TOKEN_AUTH_USER]'
+        );
+        $authToken = new AuthToken();
+        $request = (new AddAuthTokenRequest())->setTokenAuthUser($formattedTokenAuthUser)->setAuthToken($authToken);
+        $response = $gapicClient->addAuthToken($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/addAuthTokenTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function addTokenAuthUserTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/addTokenAuthUserTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name = 'name3373707';
+        $uid = 'uid115792';
+        $replicaCount = 564075208;
+        $shardCount = 495377042;
+        $engineVersion = 'engineVersion-618177573';
+        $deletionProtectionEnabled = true;
+        $simulateMaintenanceEvent = false;
+        $ondemandMaintenance = true;
+        $satisfiesPzs = false;
+        $satisfiesPzi = false;
+        $asyncInstanceEndpointsDeletionEnabled = true;
+        $kmsKey = 'kmsKey-591635343';
+        $backupCollection = 'backupCollection-1182285509';
+        $maintenanceVersion = 'maintenanceVersion-588975188';
+        $effectiveMaintenanceVersion = 'effectiveMaintenanceVersion1518555412';
+        $allowFewerZonesDeployment = false;
+        $serverCaPool = 'serverCaPool-1294323103';
+        $rotateServerCertificate = false;
+        $expectedResponse = new Instance();
+        $expectedResponse->setName($name);
+        $expectedResponse->setUid($uid);
+        $expectedResponse->setReplicaCount($replicaCount);
+        $expectedResponse->setShardCount($shardCount);
+        $expectedResponse->setEngineVersion($engineVersion);
+        $expectedResponse->setDeletionProtectionEnabled($deletionProtectionEnabled);
+        $expectedResponse->setSimulateMaintenanceEvent($simulateMaintenanceEvent);
+        $expectedResponse->setOndemandMaintenance($ondemandMaintenance);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
+        $expectedResponse->setAsyncInstanceEndpointsDeletionEnabled($asyncInstanceEndpointsDeletionEnabled);
+        $expectedResponse->setKmsKey($kmsKey);
+        $expectedResponse->setBackupCollection($backupCollection);
+        $expectedResponse->setMaintenanceVersion($maintenanceVersion);
+        $expectedResponse->setEffectiveMaintenanceVersion($effectiveMaintenanceVersion);
+        $expectedResponse->setAllowFewerZonesDeployment($allowFewerZonesDeployment);
+        $expectedResponse->setServerCaPool($serverCaPool);
+        $expectedResponse->setRotateServerCertificate($rotateServerCertificate);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/addTokenAuthUserTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedInstance = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+        $tokenAuthUser = 'tokenAuthUser1493852476';
+        $request = (new AddTokenAuthUserRequest())->setInstance($formattedInstance)->setTokenAuthUser($tokenAuthUser);
+        $response = $gapicClient->addTokenAuthUser($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.memorystore.v1.Memorystore/AddTokenAuthUser', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getInstance();
+        $this->assertProtobufEquals($formattedInstance, $actualValue);
+        $actualValue = $actualApiRequestObject->getTokenAuthUser();
+        $this->assertProtobufEquals($tokenAuthUser, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/addTokenAuthUserTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function addTokenAuthUserExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/addTokenAuthUserTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedInstance = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+        $tokenAuthUser = 'tokenAuthUser1493852476';
+        $request = (new AddTokenAuthUserRequest())->setInstance($formattedInstance)->setTokenAuthUser($tokenAuthUser);
+        $response = $gapicClient->addTokenAuthUser($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/addTokenAuthUserTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /** @test */
@@ -427,6 +739,140 @@ class MemorystoreClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function deleteAuthTokenTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/deleteAuthTokenTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $expectedResponse = new GPBEmpty();
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/deleteAuthTokenTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedName = $gapicClient->authTokenName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[INSTANCE]',
+            '[TOKEN_AUTH_USER]',
+            '[AUTH_TOKEN]'
+        );
+        $request = (new DeleteAuthTokenRequest())->setName($formattedName);
+        $response = $gapicClient->deleteAuthToken($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.memorystore.v1.Memorystore/DeleteAuthToken', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/deleteAuthTokenTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteAuthTokenExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/deleteAuthTokenTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->authTokenName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[INSTANCE]',
+            '[TOKEN_AUTH_USER]',
+            '[AUTH_TOKEN]'
+        );
+        $request = (new DeleteAuthTokenRequest())->setName($formattedName);
+        $response = $gapicClient->deleteAuthToken($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/deleteAuthTokenTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
     public function deleteBackupTest()
     {
         $operationsTransport = $this->createTransport();
@@ -653,6 +1099,128 @@ class MemorystoreClientTest extends GeneratedTest
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/deleteInstanceTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteTokenAuthUserTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/deleteTokenAuthUserTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $expectedResponse = new GPBEmpty();
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/deleteTokenAuthUserTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedName = $gapicClient->tokenAuthUserName('[PROJECT]', '[LOCATION]', '[INSTANCE]', '[TOKEN_AUTH_USER]');
+        $request = (new DeleteTokenAuthUserRequest())->setName($formattedName);
+        $response = $gapicClient->deleteTokenAuthUser($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.memorystore.v1.Memorystore/DeleteTokenAuthUser', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/deleteTokenAuthUserTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function deleteTokenAuthUserExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/deleteTokenAuthUserTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->tokenAuthUserName('[PROJECT]', '[LOCATION]', '[INSTANCE]', '[TOKEN_AUTH_USER]');
+        $request = (new DeleteTokenAuthUserRequest())->setName($formattedName);
+        $response = $gapicClient->deleteTokenAuthUser($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/deleteTokenAuthUserTest');
         try {
             $response->pollUntilComplete([
                 'initialPollDelayMillis' => 1,
@@ -964,6 +1532,85 @@ class MemorystoreClientTest extends GeneratedTest
         $operationsTransport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
         $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function getAuthTokenTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $token = 'token110541305';
+        $expectedResponse = new AuthToken();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setToken($token);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->authTokenName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[INSTANCE]',
+            '[TOKEN_AUTH_USER]',
+            '[AUTH_TOKEN]'
+        );
+        $request = (new GetAuthTokenRequest())->setName($formattedName);
+        $response = $gapicClient->getAuthToken($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.memorystore.v1.Memorystore/GetAuthToken', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getAuthTokenExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->authTokenName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[INSTANCE]',
+            '[TOKEN_AUTH_USER]',
+            '[AUTH_TOKEN]'
+        );
+        $request = (new GetAuthTokenRequest())->setName($formattedName);
+        try {
+            $gapicClient->getAuthToken($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
@@ -1355,6 +2002,152 @@ class MemorystoreClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function getTokenAuthUserTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $expectedResponse = new TokenAuthUser();
+        $expectedResponse->setName($name2);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->tokenAuthUserName('[PROJECT]', '[LOCATION]', '[INSTANCE]', '[TOKEN_AUTH_USER]');
+        $request = (new GetTokenAuthUserRequest())->setName($formattedName);
+        $response = $gapicClient->getTokenAuthUser($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.memorystore.v1.Memorystore/GetTokenAuthUser', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getTokenAuthUserExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->tokenAuthUserName('[PROJECT]', '[LOCATION]', '[INSTANCE]', '[TOKEN_AUTH_USER]');
+        $request = (new GetTokenAuthUserRequest())->setName($formattedName);
+        try {
+            $gapicClient->getTokenAuthUser($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listAuthTokensTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $authTokensElement = new AuthToken();
+        $authTokens = [$authTokensElement];
+        $expectedResponse = new ListAuthTokensResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setAuthTokens($authTokens);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->tokenAuthUserName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[INSTANCE]',
+            '[TOKEN_AUTH_USER]'
+        );
+        $request = (new ListAuthTokensRequest())->setParent($formattedParent);
+        $response = $gapicClient->listAuthTokens($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getAuthTokens()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.memorystore.v1.Memorystore/ListAuthTokens', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listAuthTokensExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->tokenAuthUserName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[INSTANCE]',
+            '[TOKEN_AUTH_USER]'
+        );
+        $request = (new ListAuthTokensRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->listAuthTokens($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function listBackupCollectionsTest()
     {
         $transport = $this->createTransport();
@@ -1556,6 +2349,77 @@ class MemorystoreClientTest extends GeneratedTest
         $request = (new ListInstancesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listInstances($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listTokenAuthUsersTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $tokenAuthUsersElement = new TokenAuthUser();
+        $tokenAuthUsers = [$tokenAuthUsersElement];
+        $expectedResponse = new ListTokenAuthUsersResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setTokenAuthUsers($tokenAuthUsers);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+        $request = (new ListTokenAuthUsersRequest())->setParent($formattedParent);
+        $response = $gapicClient->listTokenAuthUsers($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getTokenAuthUsers()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.memorystore.v1.Memorystore/ListTokenAuthUsers', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listTokenAuthUsersExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+        $request = (new ListTokenAuthUsersRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->listTokenAuthUsers($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2198,7 +3062,7 @@ class MemorystoreClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function backupInstanceAsyncTest()
+    public function addAuthTokenAsyncTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
@@ -2215,57 +3079,29 @@ class MemorystoreClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
         $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/backupInstanceTest');
+        $incompleteOperation->setName('operations/addAuthTokenTest');
         $incompleteOperation->setDone(false);
         $transport->addResponse($incompleteOperation);
-        $name2 = 'name2-1052831874';
-        $uid = 'uid115792';
-        $replicaCount = 564075208;
-        $shardCount = 495377042;
-        $engineVersion = 'engineVersion-618177573';
-        $deletionProtectionEnabled = true;
-        $simulateMaintenanceEvent = false;
-        $ondemandMaintenance = true;
-        $satisfiesPzs = false;
-        $satisfiesPzi = false;
-        $asyncInstanceEndpointsDeletionEnabled = true;
-        $kmsKey = 'kmsKey-591635343';
-        $backupCollection = 'backupCollection-1182285509';
-        $maintenanceVersion = 'maintenanceVersion-588975188';
-        $effectiveMaintenanceVersion = 'effectiveMaintenanceVersion1518555412';
-        $allowFewerZonesDeployment = false;
-        $serverCaPool = 'serverCaPool-1294323103';
-        $rotateServerCertificate = false;
-        $expectedResponse = new Instance();
-        $expectedResponse->setName($name2);
-        $expectedResponse->setUid($uid);
-        $expectedResponse->setReplicaCount($replicaCount);
-        $expectedResponse->setShardCount($shardCount);
-        $expectedResponse->setEngineVersion($engineVersion);
-        $expectedResponse->setDeletionProtectionEnabled($deletionProtectionEnabled);
-        $expectedResponse->setSimulateMaintenanceEvent($simulateMaintenanceEvent);
-        $expectedResponse->setOndemandMaintenance($ondemandMaintenance);
-        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
-        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
-        $expectedResponse->setAsyncInstanceEndpointsDeletionEnabled($asyncInstanceEndpointsDeletionEnabled);
-        $expectedResponse->setKmsKey($kmsKey);
-        $expectedResponse->setBackupCollection($backupCollection);
-        $expectedResponse->setMaintenanceVersion($maintenanceVersion);
-        $expectedResponse->setEffectiveMaintenanceVersion($effectiveMaintenanceVersion);
-        $expectedResponse->setAllowFewerZonesDeployment($allowFewerZonesDeployment);
-        $expectedResponse->setServerCaPool($serverCaPool);
-        $expectedResponse->setRotateServerCertificate($rotateServerCertificate);
+        $name = 'name3373707';
+        $expectedResponse = new TokenAuthUser();
+        $expectedResponse->setName($name);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
-        $completeOperation->setName('operations/backupInstanceTest');
+        $completeOperation->setName('operations/addAuthTokenTest');
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $request = (new BackupInstanceRequest())->setName($formattedName);
-        $response = $gapicClient->backupInstanceAsync($request)->wait();
+        $formattedTokenAuthUser = $gapicClient->tokenAuthUserName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[INSTANCE]',
+            '[TOKEN_AUTH_USER]'
+        );
+        $authToken = new AuthToken();
+        $request = (new AddAuthTokenRequest())->setTokenAuthUser($formattedTokenAuthUser)->setAuthToken($authToken);
+        $response = $gapicClient->addAuthTokenAsync($request)->wait();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -2274,11 +3110,13 @@ class MemorystoreClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.memorystore.v1.Memorystore/BackupInstance', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertSame('/google.cloud.memorystore.v1.Memorystore/AddAuthToken', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getTokenAuthUser();
+        $this->assertProtobufEquals($formattedTokenAuthUser, $actualValue);
+        $actualValue = $actualApiRequestObject->getAuthToken();
+        $this->assertProtobufEquals($authToken, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
-        $expectedOperationsRequestObject->setName('operations/backupInstanceTest');
+        $expectedOperationsRequestObject->setName('operations/addAuthTokenTest');
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);

@@ -8,7 +8,7 @@
         "IDS": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "IDSGapicClient",
+                    "libraryClient": "IDSClient",
                     "rpcs": {
                         "CreateEndpoint": {
                             "methods": [

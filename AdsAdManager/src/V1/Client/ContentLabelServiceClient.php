@@ -78,7 +78,11 @@ final class ContentLabelServiceClient
     /** The name of the code generator, to be included in the agent header. */
     private const CODEGEN_NAME = 'gapic';
 
-    /** The default scopes required by the service. */
+    /**
+     * The default scopes required by the service.
+     *
+     * @internal
+     */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/admanager',
         'https://www.googleapis.com/auth/admanager.readonly',
@@ -255,7 +259,7 @@ final class ContentLabelServiceClient
     }
 
     /**
-     * API to retrieve a `ContentLabel` object.
+     * Retrieves a `ContentLabel` object.
      *
      * The async variant is {@see ContentLabelServiceClient::getContentLabelAsync()} .
      *
@@ -281,7 +285,7 @@ final class ContentLabelServiceClient
     }
 
     /**
-     * API to retrieve a list of `ContentLabel` objects.
+     * Lists `ContentLabel` objects.
      *
      * The async variant is {@see ContentLabelServiceClient::listContentLabelsAsync()}
      * .

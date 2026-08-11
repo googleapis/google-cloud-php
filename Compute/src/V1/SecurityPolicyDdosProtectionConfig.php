@@ -16,6 +16,32 @@ class SecurityPolicyDdosProtectionConfig extends \Google\Protobuf\Internal\Messa
 {
     /**
      * 
+     * Check the DdosAdaptiveProtection enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string ddos_adaptive_protection = 96895463;</code>
+     */
+    protected $ddos_adaptive_protection = null;
+    /**
+     * DDoS Protection for Network Load Balancers (and VMs with public IPs)
+     * builds DDoS mitigations that minimize collateral damage. It quantifies
+     * this as the fraction of a non-abuse baseline that's inadvertently
+     * blocked.
+     * Rules whose collateral damage exceeds ddosImpactedBaselineThreshold will
+     * not be deployed. Using a lower value will prioritize keeping collateral
+     * damage low, possibly at the cost of its effectiveness in rate limiting
+     * some or all of the attack. It should typically be unset, so Advanced DDoS
+     * (and Adaptive Protection) uses the best mitigation it can find. Setting
+     * the threshold is advised if there are logs for false positive detections
+     * with high collateral damage, and will cause Advanced DDoS to attempt to
+     * find a less aggressive rule that satisfies the constraint. If a suitable
+     * rule cannot be found, the system falls back to either no mitigation for
+     * smaller attacks or broader network throttles for larger ones.
+     *
+     * Generated from protobuf field <code>optional float ddos_impacted_baseline_threshold = 192689584;</code>
+     */
+    protected $ddos_impacted_baseline_threshold = null;
+    /**
+     * 
      * Check the DdosProtection enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string ddos_protection = 275173268;</code>
@@ -28,6 +54,24 @@ class SecurityPolicyDdosProtectionConfig extends \Google\Protobuf\Internal\Messa
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type string $ddos_adaptive_protection
+     *           
+     *           Check the DdosAdaptiveProtection enum for the list of possible values.
+     *     @type float $ddos_impacted_baseline_threshold
+     *           DDoS Protection for Network Load Balancers (and VMs with public IPs)
+     *           builds DDoS mitigations that minimize collateral damage. It quantifies
+     *           this as the fraction of a non-abuse baseline that's inadvertently
+     *           blocked.
+     *           Rules whose collateral damage exceeds ddosImpactedBaselineThreshold will
+     *           not be deployed. Using a lower value will prioritize keeping collateral
+     *           damage low, possibly at the cost of its effectiveness in rate limiting
+     *           some or all of the attack. It should typically be unset, so Advanced DDoS
+     *           (and Adaptive Protection) uses the best mitigation it can find. Setting
+     *           the threshold is advised if there are logs for false positive detections
+     *           with high collateral damage, and will cause Advanced DDoS to attempt to
+     *           find a less aggressive rule that satisfies the constraint. If a suitable
+     *           rule cannot be found, the system falls back to either no mitigation for
+     *           smaller attacks or broader network throttles for larger ones.
      *     @type string $ddos_protection
      *           
      *           Check the DdosProtection enum for the list of possible values.
@@ -36,6 +80,106 @@ class SecurityPolicyDdosProtectionConfig extends \Google\Protobuf\Internal\Messa
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Compute\V1\Compute::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * 
+     * Check the DdosAdaptiveProtection enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string ddos_adaptive_protection = 96895463;</code>
+     * @return string
+     */
+    public function getDdosAdaptiveProtection()
+    {
+        return isset($this->ddos_adaptive_protection) ? $this->ddos_adaptive_protection : '';
+    }
+
+    public function hasDdosAdaptiveProtection()
+    {
+        return isset($this->ddos_adaptive_protection);
+    }
+
+    public function clearDdosAdaptiveProtection()
+    {
+        unset($this->ddos_adaptive_protection);
+    }
+
+    /**
+     * 
+     * Check the DdosAdaptiveProtection enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string ddos_adaptive_protection = 96895463;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDdosAdaptiveProtection($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->ddos_adaptive_protection = $var;
+
+        return $this;
+    }
+
+    /**
+     * DDoS Protection for Network Load Balancers (and VMs with public IPs)
+     * builds DDoS mitigations that minimize collateral damage. It quantifies
+     * this as the fraction of a non-abuse baseline that's inadvertently
+     * blocked.
+     * Rules whose collateral damage exceeds ddosImpactedBaselineThreshold will
+     * not be deployed. Using a lower value will prioritize keeping collateral
+     * damage low, possibly at the cost of its effectiveness in rate limiting
+     * some or all of the attack. It should typically be unset, so Advanced DDoS
+     * (and Adaptive Protection) uses the best mitigation it can find. Setting
+     * the threshold is advised if there are logs for false positive detections
+     * with high collateral damage, and will cause Advanced DDoS to attempt to
+     * find a less aggressive rule that satisfies the constraint. If a suitable
+     * rule cannot be found, the system falls back to either no mitigation for
+     * smaller attacks or broader network throttles for larger ones.
+     *
+     * Generated from protobuf field <code>optional float ddos_impacted_baseline_threshold = 192689584;</code>
+     * @return float
+     */
+    public function getDdosImpactedBaselineThreshold()
+    {
+        return isset($this->ddos_impacted_baseline_threshold) ? $this->ddos_impacted_baseline_threshold : 0.0;
+    }
+
+    public function hasDdosImpactedBaselineThreshold()
+    {
+        return isset($this->ddos_impacted_baseline_threshold);
+    }
+
+    public function clearDdosImpactedBaselineThreshold()
+    {
+        unset($this->ddos_impacted_baseline_threshold);
+    }
+
+    /**
+     * DDoS Protection for Network Load Balancers (and VMs with public IPs)
+     * builds DDoS mitigations that minimize collateral damage. It quantifies
+     * this as the fraction of a non-abuse baseline that's inadvertently
+     * blocked.
+     * Rules whose collateral damage exceeds ddosImpactedBaselineThreshold will
+     * not be deployed. Using a lower value will prioritize keeping collateral
+     * damage low, possibly at the cost of its effectiveness in rate limiting
+     * some or all of the attack. It should typically be unset, so Advanced DDoS
+     * (and Adaptive Protection) uses the best mitigation it can find. Setting
+     * the threshold is advised if there are logs for false positive detections
+     * with high collateral damage, and will cause Advanced DDoS to attempt to
+     * find a less aggressive rule that satisfies the constraint. If a suitable
+     * rule cannot be found, the system falls back to either no mitigation for
+     * smaller attacks or broader network throttles for larger ones.
+     *
+     * Generated from protobuf field <code>optional float ddos_impacted_baseline_threshold = 192689584;</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setDdosImpactedBaselineThreshold($var)
+    {
+        GPBUtil::checkFloat($var);
+        $this->ddos_impacted_baseline_threshold = $var;
+
+        return $this;
     }
 
     /**

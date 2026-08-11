@@ -31,7 +31,7 @@ use Google\Ads\AdManager\V1\UpdateAdUnitRequest;
 use Google\ApiCore\ApiException;
 
 /**
- * API to batch update `AdUnit` objects.
+ * Batch updates `AdUnit` objects.
  *
  * @param string $formattedParent                     The parent resource where `AdUnits` will be updated.
  *                                                    Format: `networks/{network_code}`

@@ -29,7 +29,7 @@ use Google\Ads\AdManager\V1\PrivateAuction;
 use Google\ApiCore\ApiException;
 
 /**
- * API to create a `PrivateAuction` object.
+ * Creates a `PrivateAuction` object.
  *
  * @param string $formattedParent           The parent resource where this `PrivateAuction` will be
  *                                          created. Format: `networks/{network_code}`

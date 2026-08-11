@@ -900,4 +900,24 @@ class SpannerClientTest extends TestCase
             'enableBuiltInMetrics' => true,
         ]);
     }
+
+    /**
+     * @runInSeparateProcess
+     */
+    public function testSpannerClientInstantiatesWithoutDelayWhenMetricsDisabled()
+    {
+        // This test ensures that the SpannerClient does not hit the GCE metadata server
+        // when enableBuiltInMetrics is false, which prevents a 1.5 second delay.
+        // It's run in a separate process to ensure the GCE static cache is empty.
+        $start = microtime(true);
+        new SpannerClient([
+            'projectId' => self::PROJECT,
+            'credentials' => Fixtures::KEYFILE_STUB_FIXTURE()
+        ]);
+        $end = microtime(true);
+        
+        // Assert that the client instantiated quickly.
+        // If it probed the GCE metadata server without a mock, it would take ~1.5s to time out.
+        $this->assertLessThan(1.0, $end - $start);
+    }
 }

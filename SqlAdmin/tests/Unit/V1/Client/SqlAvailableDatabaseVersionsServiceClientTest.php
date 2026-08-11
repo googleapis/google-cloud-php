@@ -55,4 +55,9 @@ class SqlAvailableDatabaseVersionsServiceClientTest extends GeneratedTest
         ];
         return new SqlAvailableDatabaseVersionsServiceClient($options);
     }
+
+    public function testClientTestCase()
+    {
+        $this->assertTrue(true);
+    }
 }

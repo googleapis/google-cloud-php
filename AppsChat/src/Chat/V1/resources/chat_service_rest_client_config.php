@@ -414,6 +414,18 @@ return [
                     ],
                 ],
             ],
+            'SearchMessages' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=spaces/*}/messages:search',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'SearchSpaces' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/spaces:search',

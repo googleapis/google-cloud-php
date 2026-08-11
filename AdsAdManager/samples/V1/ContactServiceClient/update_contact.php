@@ -29,7 +29,7 @@ use Google\Ads\AdManager\V1\UpdateContactRequest;
 use Google\ApiCore\ApiException;
 
 /**
- * API to update a `Contact` object.
+ * Updates a `Contact` object.
  *
  * @param string $contactDisplayName      The name of the contact. This attribute has a maximum length of
  *                                        127 characters.

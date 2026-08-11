@@ -109,6 +109,12 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
      */
     protected $allow_psc_global_access = null;
     /**
+     * Output only. [Output Only]. The extensions that are attached to this ForwardingRule.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ForwardingRuleAttachedExtension attached_extensions = 385226127;</code>
+     */
+    private $attached_extensions;
+    /**
      * Identifies the backend service to which the forwarding rule sends traffic.
      * Required for internal and external passthrough Network Load Balancers;
      * must be omitted for all other load balancer types.
@@ -545,6 +551,8 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
      *     @type bool $allow_psc_global_access
      *           This is used in PSC consumer ForwardingRule to control whether the PSC
      *           endpoint can be accessed from another region.
+     *     @type \Google\Cloud\Compute\V1\ForwardingRuleAttachedExtension[] $attached_extensions
+     *           Output only. [Output Only]. The extensions that are attached to this ForwardingRule.
      *     @type string $backend_service
      *           Identifies the backend service to which the forwarding rule sends traffic.
      *           Required for internal and external passthrough Network Load Balancers;
@@ -1068,6 +1076,32 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->allow_psc_global_access = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. [Output Only]. The extensions that are attached to this ForwardingRule.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ForwardingRuleAttachedExtension attached_extensions = 385226127;</code>
+     * @return RepeatedField<\Google\Cloud\Compute\V1\ForwardingRuleAttachedExtension>
+     */
+    public function getAttachedExtensions()
+    {
+        return $this->attached_extensions;
+    }
+
+    /**
+     * Output only. [Output Only]. The extensions that are attached to this ForwardingRule.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ForwardingRuleAttachedExtension attached_extensions = 385226127;</code>
+     * @param \Google\Cloud\Compute\V1\ForwardingRuleAttachedExtension[] $var
+     * @return $this
+     */
+    public function setAttachedExtensions($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Compute\V1\ForwardingRuleAttachedExtension::class);
+        $this->attached_extensions = $arr;
 
         return $this;
     }

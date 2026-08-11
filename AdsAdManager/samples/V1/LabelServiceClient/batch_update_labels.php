@@ -32,7 +32,7 @@ use Google\Ads\AdManager\V1\UpdateLabelRequest;
 use Google\ApiCore\ApiException;
 
 /**
- * API to batch update `Label` objects.
+ * Batch updates `Label` objects.
  *
  * @param string $formattedParent           The parent resource where `Labels` will be updated.
  *                                          Format: `networks/{network_code}`

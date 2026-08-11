@@ -32,7 +32,7 @@ use Google\Ads\AdManager\V1\UpdateCustomFieldRequest;
 use Google\ApiCore\ApiException;
 
 /**
- * API to update a `CustomField` object.
+ * Updates a `CustomField` object.
  *
  * @param string $customFieldDisplayName Name of the CustomField. The max length is 127 characters.
  * @param int    $customFieldEntityType  The type of entity the `CustomField` can be applied to.

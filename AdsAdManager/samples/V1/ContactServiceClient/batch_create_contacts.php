@@ -31,7 +31,7 @@ use Google\Ads\AdManager\V1\CreateContactRequest;
 use Google\ApiCore\ApiException;
 
 /**
- * API to batch create `Contact` objects.
+ * Creates `Contact` objects.
  *
  * @param string $formattedParent                 The parent resource where `Contacts` will be created.
  *                                                Format: `networks/{network_code}`

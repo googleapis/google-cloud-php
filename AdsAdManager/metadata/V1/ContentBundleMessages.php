@@ -14,10 +14,12 @@ class ContentBundleMessages
         if (static::$is_initialized == true) {
           return;
         }
+        \GPBMetadata\Google\Ads\Admanager\V1\ContentBundleEnums::initOnce();
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
+        \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
-            "\x0A\x8B\x04\x0A5google/ads/admanager/v1/content_bundle_messages.proto\x12\x17google.ads.admanager.v1\x1A\x19google/api/resource.proto\"\xC4\x01\x0A\x0DContentBundle\x12\x11\x0A\x04name\x18\x01 \x01(\x09B\x03\xE0A\x08\x12\x19\x0A\x0Cdisplay_name\x18\x03 \x01(\x09B\x03\xE0A\x02:\x84\x01\xEAA\x80\x01\x0A&admanager.googleapis.com/ContentBundle\x127networks/{network_code}/contentBundles/{content_bundle}*\x0EcontentBundles2\x0DcontentBundleB\xCE\x01\x0A\x1Bcom.google.ads.admanager.v1B\x1AContentBundleMessagesProtoP\x01Z@google.golang.org/genproto/googleapis/ads/admanager/v1;admanager\xAA\x02\x17Google.Ads.AdManager.V1\xCA\x02\x17Google\\Ads\\AdManager\\V1\xEA\x02\x1AGoogle::Ads::AdManager::V1b\x06proto3"
+            "\x0A\xDE\x05\x0A5google/ads/admanager/v1/content_bundle_messages.proto\x12\x17google.ads.admanager.v1\x1A\x1Fgoogle/api/field_behavior.proto\x1A\x19google/api/resource.proto\x1A\x1Fgoogle/protobuf/timestamp.proto\"\xD5\x02\x0A\x0DContentBundle\x12\x11\x0A\x04name\x18\x01 \x01(\x09B\x03\xE0A\x08\x12\x19\x0A\x0Cdisplay_name\x18\x03 \x01(\x09B\x03\xE0A\x02\x12Y\x0A\x06status\x18\x04 \x01(\x0E2D.google.ads.admanager.v1.ContentBundleStatusEnum.ContentBundleStatusB\x03\xE0A\x03\x124\x0A\x0Bupdate_time\x18\x07 \x01(\x0B2\x1A.google.protobuf.TimestampB\x03\xE0A\x03:\x84\x01\xEAA\x80\x01\x0A&admanager.googleapis.com/ContentBundle\x127networks/{network_code}/contentBundles/{content_bundle}*\x0EcontentBundles2\x0DcontentBundleB\xCE\x01\x0A\x1Bcom.google.ads.admanager.v1B\x1AContentBundleMessagesProtoP\x01Z@google.golang.org/genproto/googleapis/ads/admanager/v1;admanager\xAA\x02\x17Google.Ads.AdManager.V1\xCA\x02\x17Google\\Ads\\AdManager\\V1\xEA\x02\x1AGoogle::Ads::AdManager::V1b\x06proto3"
         , true);
 
         static::$is_initialized = true;

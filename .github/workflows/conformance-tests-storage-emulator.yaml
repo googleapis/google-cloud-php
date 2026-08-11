@@ -10,22 +10,26 @@ on:
       - 'Storage/**'
       - '.github/workflows/conformance-tests-storage-emulator.yaml'
 name: Run Storage Retry Conformance Tests With Emulator
+permissions:
+  contents: read
 jobs:
   test:
     runs-on: 'ubuntu-24.04'
 
     services:
       emulator:
-        image: gcr.io/cloud-devrel-public-resources/storage-testbench:v0.63.0
+        image: gcr.io/cloud-devrel-public-resources/storage-testbench:v0.63.0@sha256:600fa5c3cfc8be26435c38591cc094fb4ef648f760ffabf77f93237b1ebee027
         ports:
           - 9000:9000
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
 
       - name: Setup PHP
-        uses: shivammathur/setup-php@v2
+        uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # v2
         with:
           php-version: '8.1'
 

@@ -46,8 +46,21 @@ class ListContentRequest extends \Google\Protobuf\Internal\Message
      *  https://developers.google.com/ad-manager/api/beta/filters
      * <b>Filterable fields:</b>
      * <ul style="list-style-type:none">
+     *   <li><code>cmsMetadataValues</code></li>
+     *   <li><code>cmsSources.contentSource</code></li>
+     *   <li><code>cmsSources.contentSourceDisplayName</code></li>
+     *   <li><code>contentBundles</code></li>
+     *   <li><code>contentStatusSource</code></li>
+     *   <li><code>dashIngestStatus</code></li>
      *   <li><code>displayName</code></li>
+     *   <li><code>duration</code></li>
+     *   <li><code>hlsIngestStatus</code></li>
+     *   <li><code>importTime</code></li>
+     *   <li><code>lastDashIngestTime</code></li>
+     *   <li><code>lastHlsIngestTime</code></li>
      *   <li><code>name</code></li>
+     *   <li><code>status</code></li>
+     *   <li><code>updateTime</code></li>
      * </ul>
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -108,8 +121,21 @@ class ListContentRequest extends \Google\Protobuf\Internal\Message
      *            https://developers.google.com/ad-manager/api/beta/filters
      *           <b>Filterable fields:</b>
      *           <ul style="list-style-type:none">
+     *             <li><code>cmsMetadataValues</code></li>
+     *             <li><code>cmsSources.contentSource</code></li>
+     *             <li><code>cmsSources.contentSourceDisplayName</code></li>
+     *             <li><code>contentBundles</code></li>
+     *             <li><code>contentStatusSource</code></li>
+     *             <li><code>dashIngestStatus</code></li>
      *             <li><code>displayName</code></li>
+     *             <li><code>duration</code></li>
+     *             <li><code>hlsIngestStatus</code></li>
+     *             <li><code>importTime</code></li>
+     *             <li><code>lastDashIngestTime</code></li>
+     *             <li><code>lastHlsIngestTime</code></li>
      *             <li><code>name</code></li>
+     *             <li><code>status</code></li>
+     *             <li><code>updateTime</code></li>
      *           </ul>
      *     @type string $order_by
      *           Optional. Expression to specify sorting order.
@@ -222,8 +248,21 @@ class ListContentRequest extends \Google\Protobuf\Internal\Message
      *  https://developers.google.com/ad-manager/api/beta/filters
      * <b>Filterable fields:</b>
      * <ul style="list-style-type:none">
+     *   <li><code>cmsMetadataValues</code></li>
+     *   <li><code>cmsSources.contentSource</code></li>
+     *   <li><code>cmsSources.contentSourceDisplayName</code></li>
+     *   <li><code>contentBundles</code></li>
+     *   <li><code>contentStatusSource</code></li>
+     *   <li><code>dashIngestStatus</code></li>
      *   <li><code>displayName</code></li>
+     *   <li><code>duration</code></li>
+     *   <li><code>hlsIngestStatus</code></li>
+     *   <li><code>importTime</code></li>
+     *   <li><code>lastDashIngestTime</code></li>
+     *   <li><code>lastHlsIngestTime</code></li>
      *   <li><code>name</code></li>
+     *   <li><code>status</code></li>
+     *   <li><code>updateTime</code></li>
      * </ul>
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -240,8 +279,21 @@ class ListContentRequest extends \Google\Protobuf\Internal\Message
      *  https://developers.google.com/ad-manager/api/beta/filters
      * <b>Filterable fields:</b>
      * <ul style="list-style-type:none">
+     *   <li><code>cmsMetadataValues</code></li>
+     *   <li><code>cmsSources.contentSource</code></li>
+     *   <li><code>cmsSources.contentSourceDisplayName</code></li>
+     *   <li><code>contentBundles</code></li>
+     *   <li><code>contentStatusSource</code></li>
+     *   <li><code>dashIngestStatus</code></li>
      *   <li><code>displayName</code></li>
+     *   <li><code>duration</code></li>
+     *   <li><code>hlsIngestStatus</code></li>
+     *   <li><code>importTime</code></li>
+     *   <li><code>lastDashIngestTime</code></li>
+     *   <li><code>lastHlsIngestTime</code></li>
      *   <li><code>name</code></li>
+     *   <li><code>status</code></li>
+     *   <li><code>updateTime</code></li>
      * </ul>
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>

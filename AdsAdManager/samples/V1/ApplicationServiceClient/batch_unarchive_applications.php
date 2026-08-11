@@ -29,7 +29,7 @@ use Google\Ads\AdManager\V1\Client\ApplicationServiceClient;
 use Google\ApiCore\ApiException;
 
 /**
- * / API to batch unarchive `Application` objects.
+ * Batch unarchives `Application` objects.
  *
  * @param string $formattedParent       The parent resource shared by all `Applications` to Unarchive.
  *                                      Format: `networks/{network_code}`

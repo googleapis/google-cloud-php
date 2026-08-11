@@ -48,6 +48,8 @@ class ListContentBundlesRequest extends \Google\Protobuf\Internal\Message
      * <ul style="list-style-type:none">
      *   <li><code>displayName</code></li>
      *   <li><code>name</code></li>
+     *   <li><code>status</code></li>
+     *   <li><code>updateTime</code></li>
      * </ul>
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -110,6 +112,8 @@ class ListContentBundlesRequest extends \Google\Protobuf\Internal\Message
      *           <ul style="list-style-type:none">
      *             <li><code>displayName</code></li>
      *             <li><code>name</code></li>
+     *             <li><code>status</code></li>
+     *             <li><code>updateTime</code></li>
      *           </ul>
      *     @type string $order_by
      *           Optional. Expression to specify sorting order.
@@ -224,6 +228,8 @@ class ListContentBundlesRequest extends \Google\Protobuf\Internal\Message
      * <ul style="list-style-type:none">
      *   <li><code>displayName</code></li>
      *   <li><code>name</code></li>
+     *   <li><code>status</code></li>
+     *   <li><code>updateTime</code></li>
      * </ul>
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -242,6 +248,8 @@ class ListContentBundlesRequest extends \Google\Protobuf\Internal\Message
      * <ul style="list-style-type:none">
      *   <li><code>displayName</code></li>
      *   <li><code>name</code></li>
+     *   <li><code>status</code></li>
+     *   <li><code>updateTime</code></li>
      * </ul>
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>

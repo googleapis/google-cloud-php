@@ -22,16 +22,17 @@ class IngestAdEventsRequest extends \Google\Protobuf\Internal\Message
      */
     private $ad_events;
     /**
-     * Optional. Information about encryption keys which are used to encrypt the
+     * Required. Information about encryption keys which are used to encrypt the
      * data.
      *
-     * Generated from protobuf field <code>.google.ads.datamanager.v1.EncryptionInfo encryption_info = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.ads.datamanager.v1.EncryptionInfo encryption_info = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $encryption_info = null;
     /**
      * Optional. If true, the request is validated, but not executed.
      *
-     * Generated from protobuf field <code>bool validate_only = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bool validate_only = 3 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @deprecated
      */
     protected $validate_only = false;
 
@@ -44,7 +45,7 @@ class IngestAdEventsRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Ads\DataManager\V1\AdEvent[] $ad_events
      *           Required. Required (at least 1). A list of ad events.
      *     @type \Google\Ads\DataManager\V1\EncryptionInfo $encryption_info
-     *           Optional. Information about encryption keys which are used to encrypt the
+     *           Required. Information about encryption keys which are used to encrypt the
      *           data.
      *     @type bool $validate_only
      *           Optional. If true, the request is validated, but not executed.
@@ -82,10 +83,10 @@ class IngestAdEventsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Information about encryption keys which are used to encrypt the
+     * Required. Information about encryption keys which are used to encrypt the
      * data.
      *
-     * Generated from protobuf field <code>.google.ads.datamanager.v1.EncryptionInfo encryption_info = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.ads.datamanager.v1.EncryptionInfo encryption_info = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Ads\DataManager\V1\EncryptionInfo|null
      */
     public function getEncryptionInfo()
@@ -104,10 +105,10 @@ class IngestAdEventsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Information about encryption keys which are used to encrypt the
+     * Required. Information about encryption keys which are used to encrypt the
      * data.
      *
-     * Generated from protobuf field <code>.google.ads.datamanager.v1.EncryptionInfo encryption_info = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.ads.datamanager.v1.EncryptionInfo encryption_info = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Ads\DataManager\V1\EncryptionInfo $var
      * @return $this
      */
@@ -122,23 +123,29 @@ class IngestAdEventsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. If true, the request is validated, but not executed.
      *
-     * Generated from protobuf field <code>bool validate_only = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bool validate_only = 3 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
+     * @deprecated
      */
     public function getValidateOnly()
     {
+        if ($this->validate_only !== false) {
+            @trigger_error('validate_only is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->validate_only;
     }
 
     /**
      * Optional. If true, the request is validated, but not executed.
      *
-     * Generated from protobuf field <code>bool validate_only = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bool validate_only = 3 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
+     * @deprecated
      */
     public function setValidateOnly($var)
     {
+        @trigger_error('validate_only is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkBool($var);
         $this->validate_only = $var;
 

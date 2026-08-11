@@ -29,7 +29,7 @@ use Google\Ads\AdManager\V1\Placement;
 use Google\ApiCore\ApiException;
 
 /**
- * API to create an `Placement` object.
+ * Creates an `Placement` object.
  *
  * @param string $formattedParent      The parent resource where this `Placement` will be created.
  *                                     Format: `networks/{network_code}`

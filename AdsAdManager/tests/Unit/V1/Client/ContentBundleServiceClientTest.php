@@ -22,6 +22,10 @@
 
 namespace Google\Ads\AdManager\Tests\Unit\V1\Client;
 
+use Google\Ads\AdManager\V1\BatchActivateContentBundlesRequest;
+use Google\Ads\AdManager\V1\BatchActivateContentBundlesResponse;
+use Google\Ads\AdManager\V1\BatchDeactivateContentBundlesRequest;
+use Google\Ads\AdManager\V1\BatchDeactivateContentBundlesResponse;
 use Google\Ads\AdManager\V1\Client\ContentBundleServiceClient;
 use Google\Ads\AdManager\V1\ContentBundle;
 use Google\Ads\AdManager\V1\GetContentBundleRequest;
@@ -62,6 +66,143 @@ class ContentBundleServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ];
         return new ContentBundleServiceClient($options);
+    }
+
+    /** @test */
+    public function batchActivateContentBundlesTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new BatchActivateContentBundlesResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
+        $formattedNames = [$gapicClient->contentBundleName('[NETWORK_CODE]', '[CONTENT_BUNDLE]')];
+        $request = (new BatchActivateContentBundlesRequest())->setParent($formattedParent)->setNames($formattedNames);
+        $response = $gapicClient->batchActivateContentBundles($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.ads.admanager.v1.ContentBundleService/BatchActivateContentBundles', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getNames();
+        $this->assertProtobufEquals($formattedNames, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function batchActivateContentBundlesExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
+        $formattedNames = [$gapicClient->contentBundleName('[NETWORK_CODE]', '[CONTENT_BUNDLE]')];
+        $request = (new BatchActivateContentBundlesRequest())->setParent($formattedParent)->setNames($formattedNames);
+        try {
+            $gapicClient->batchActivateContentBundles($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function batchDeactivateContentBundlesTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new BatchDeactivateContentBundlesResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
+        $formattedNames = [$gapicClient->contentBundleName('[NETWORK_CODE]', '[CONTENT_BUNDLE]')];
+        $request = (new BatchDeactivateContentBundlesRequest())->setParent($formattedParent)->setNames($formattedNames);
+        $response = $gapicClient->batchDeactivateContentBundles($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.ads.admanager.v1.ContentBundleService/BatchDeactivateContentBundles',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getNames();
+        $this->assertProtobufEquals($formattedNames, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function batchDeactivateContentBundlesExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
+        $formattedNames = [$gapicClient->contentBundleName('[NETWORK_CODE]', '[CONTENT_BUNDLE]')];
+        $request = (new BatchDeactivateContentBundlesRequest())->setParent($formattedParent)->setNames($formattedNames);
+        try {
+            $gapicClient->batchDeactivateContentBundles($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
@@ -205,7 +346,7 @@ class ContentBundleServiceClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function getContentBundleAsyncTest()
+    public function batchActivateContentBundlesAsyncTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -213,24 +354,23 @@ class ContentBundleServiceClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
-        $name2 = 'name2-1052831874';
-        $displayName = 'displayName1615086568';
-        $expectedResponse = new ContentBundle();
-        $expectedResponse->setName($name2);
-        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse = new BatchActivateContentBundlesResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->contentBundleName('[NETWORK_CODE]', '[CONTENT_BUNDLE]');
-        $request = (new GetContentBundleRequest())->setName($formattedName);
-        $response = $gapicClient->getContentBundleAsync($request)->wait();
+        $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
+        $formattedNames = [$gapicClient->contentBundleName('[NETWORK_CODE]', '[CONTENT_BUNDLE]')];
+        $request = (new BatchActivateContentBundlesRequest())->setParent($formattedParent)->setNames($formattedNames);
+        $response = $gapicClient->batchActivateContentBundlesAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.ads.admanager.v1.ContentBundleService/GetContentBundle', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertSame('/google.ads.admanager.v1.ContentBundleService/BatchActivateContentBundles', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getNames();
+        $this->assertProtobufEquals($formattedNames, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

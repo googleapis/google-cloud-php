@@ -145,6 +145,16 @@ class Product extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.shopping.merchant.products.v1.AutomatedDiscounts automated_discounts = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $automated_discounts = null;
+    /**
+     * Output only. Determines whether the product is
+     * [archived](https://support.google.com/merchants/answer/11909930).
+     * To archive or restore your product, visit Merchant Center products page.
+     * Learn also more about [offer
+     * visibility](https://support.google.com/merchants/answer/12488713).
+     *
+     * Generated from protobuf field <code>bool archived = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $archived = false;
 
     /**
      * Constructor.
@@ -223,6 +233,12 @@ class Product extends \Google\Protobuf\Internal\Message
      *           information about a product computed asynchronously.
      *     @type \Google\Shopping\Merchant\Products\V1\AutomatedDiscounts $automated_discounts
      *           Output only. The automated discounts information for the product.
+     *     @type bool $archived
+     *           Output only. Determines whether the product is
+     *           [archived](https://support.google.com/merchants/answer/11909930).
+     *           To archive or restore your product, visit Merchant Center products page.
+     *           Learn also more about [offer
+     *           visibility](https://support.google.com/merchants/answer/12488713).
      * }
      */
     public function __construct($data = NULL) {
@@ -672,6 +688,40 @@ class Product extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Shopping\Merchant\Products\V1\AutomatedDiscounts::class);
         $this->automated_discounts = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Determines whether the product is
+     * [archived](https://support.google.com/merchants/answer/11909930).
+     * To archive or restore your product, visit Merchant Center products page.
+     * Learn also more about [offer
+     * visibility](https://support.google.com/merchants/answer/12488713).
+     *
+     * Generated from protobuf field <code>bool archived = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getArchived()
+    {
+        return $this->archived;
+    }
+
+    /**
+     * Output only. Determines whether the product is
+     * [archived](https://support.google.com/merchants/answer/11909930).
+     * To archive or restore your product, visit Merchant Center products page.
+     * Learn also more about [offer
+     * visibility](https://support.google.com/merchants/answer/12488713).
+     *
+     * Generated from protobuf field <code>bool archived = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setArchived($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->archived = $var;
 
         return $this;
     }

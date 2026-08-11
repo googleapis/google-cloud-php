@@ -30,7 +30,7 @@ use Google\Ads\AdManager\V1\UpdateLabelRequest;
 use Google\ApiCore\ApiException;
 
 /**
- * API to update a `Label` object.
+ * Updates a `Label` object.
  *
  * @param string $labelDisplayName  Display name of the Label. This attribute has a maximum length of
  *                                  127 characters.

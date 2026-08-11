@@ -7,23 +7,33 @@ namespace Grafeas\V1\CVSS;
 use UnexpectedValueException;
 
 /**
+ * Authentication.
+ *
  * Protobuf type <code>grafeas.v1.CVSS.Authentication</code>
  */
 class Authentication
 {
     /**
+     * Unspecified.
+     *
      * Generated from protobuf enum <code>AUTHENTICATION_UNSPECIFIED = 0;</code>
      */
     const AUTHENTICATION_UNSPECIFIED = 0;
     /**
+     * Multiple authentication required (Au:M). Defined in CVSS v2.
+     *
      * Generated from protobuf enum <code>AUTHENTICATION_MULTIPLE = 1;</code>
      */
     const AUTHENTICATION_MULTIPLE = 1;
     /**
+     * Single authentication required (Au:S). Defined in CVSS v2.
+     *
      * Generated from protobuf enum <code>AUTHENTICATION_SINGLE = 2;</code>
      */
     const AUTHENTICATION_SINGLE = 2;
     /**
+     * No authentication required (Au:N). Defined in CVSS v2.
+     *
      * Generated from protobuf enum <code>AUTHENTICATION_NONE = 3;</code>
      */
     const AUTHENTICATION_NONE = 3;
