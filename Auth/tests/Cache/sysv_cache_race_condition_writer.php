@@ -1,6 +1,10 @@
 <?php
 
-require_once __DIR__ . '/../../vendor/autoload.php';
+$dir = __DIR__;
+while ($dir !== dirname($dir) && !file_exists($dir . '/vendor/autoload.php')) {
+    $dir = dirname($dir);
+}
+require_once $dir . '/vendor/autoload.php';
 
 use Google\Auth\Cache\SysVCacheItemPool;
 
