@@ -35,16 +35,11 @@ use Exception;
 use Google\ApiCore\Call;
 use Google\ApiCore\ValidationException;
 use Google\Auth\HttpHandler\HttpHandlerFactory;
-use Google\Protobuf\Internal\Message;
-use Psr\Http\Message\RequestInterface;
 use Psr\Log\LoggerInterface;
 
 /**
  * A trait for shared functionality between transports that support only unary RPCs using simple
  * HTTP requests.
- *
- * @property string $baseUri
- * @property \Google\ApiCore\RequestBuilder $requestBuilder
  *
  * @internal
  */
@@ -172,45 +167,5 @@ trait HttpUnaryTransportTrait
 
         // the key and the cert are returned in one temporary file
         return [$certFile, $keyFile];
-    }
-
-    /**
-     * Sends a raw PSR-7 request.
-     *
-     * @param RequestInterface $request
-     * @param array            $options
-     * @return \Psr\Http\Message\ResponseInterface|\GuzzleHttp\Promise\PromiseInterface
-     */
-    public function sendRawRequest(RequestInterface $request, array $options = [])
-    {
-        return ($this->httpHandler)($request, $options);
-    }
-
-    /**
-     * Builds a PSR-7 request.
-     *
-     * @param string   $method
-     * @param ?Message $message
-     * @param array    $headers
-     * @return RequestInterface
-     */
-    public function buildRequest(string $method, ?Message $message = null, array $headers = []): RequestInterface
-    {
-        if (isset($this->requestBuilder)) {
-            return $this->requestBuilder->build($method, $message, $headers);
-        }
-
-        $headers = ['Content-Type' => 'application/x-protobuf'] + $headers;
-        $headers += ['x-goog-api-client' => []];
-        $headers['x-goog-api-client'][] = 'grpc-web';
-        $baseUri = property_exists($this, 'baseUri') ? $this->baseUri : '';
-        $uri = "https://{$baseUri}/\$rpc/{$method}";
-
-        return new \GuzzleHttp\Psr7\Request(
-            'POST',
-            $uri,
-            $headers,
-            $message ? $message->serializeToString() : null
-        );
     }
 }

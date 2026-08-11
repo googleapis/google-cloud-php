@@ -34,7 +34,6 @@ namespace Google\ApiCore\Transport;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\ApiStatus;
 use Google\ApiCore\Call;
-use Google\ApiCore\ResumableUpload\ResumableUploadTransportInterface;
 use Google\ApiCore\ServiceAddressTrait;
 use Google\ApiCore\ValidationException;
 use Google\ApiCore\ValidationTrait;
@@ -49,7 +48,7 @@ use Psr\Http\Message\ResponseInterface;
  * A transport that sends protobuf over HTTP 1.1 that can be used when full gRPC support
  * is not available.
  */
-class GrpcFallbackTransport implements TransportInterface, ResumableUploadTransportInterface
+class GrpcFallbackTransport implements TransportInterface
 {
     use ValidationTrait;
     use ServiceAddressTrait;

@@ -47,6 +47,7 @@ use GuzzleHttp\Psr7\Request;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
+use Throwable;
 
 /**
  * Manages the REST transport and authentication credentials for resumable upload RPCs,
@@ -66,14 +67,14 @@ class ResumableUploadClient
     private const DEFAULT_TOTAL_TIMEOUT_MILLIS = 600000;
     private const MAX_RECOVERY_ATTEMPTS = 3;
 
+    private ?ResponseInterface $finalResponse = null;
+
     /**
      * @param ResumableUploadTransportInterface $transport Transport implementing buildRequest and sendRawRequest.
      * @param CredentialsWrapper $credentialsWrapper The credentials wrapper from GAPIC client.
      * @param array $headers Custom headers to include with the initial upload request.
      * @param string $uploadPrefix Resumable upload path prefix (default: '/resumable/upload').
      */
-    private ?ResponseInterface $finalResponse = null;
-
     public function __construct(
         private ResumableUploadTransportInterface $transport,
         private CredentialsWrapper $credentialsWrapper,
@@ -156,7 +157,7 @@ class ResumableUploadClient
                     self::PHASE_RECOVERY => $this->phaseRecovery($state, $upload, $dataStream),
                     default => throw new ApiException("Unexpected phase: {$state->phase}", 0, ApiStatus::INTERNAL),
                 };
-            } catch (\Throwable $e) {
+            } catch (Throwable $e) {
                 $state->phase = $this->handleException(
                     $e,
                     $state,

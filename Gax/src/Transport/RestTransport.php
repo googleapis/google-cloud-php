@@ -226,6 +226,31 @@ class RestTransport implements TransportInterface, ResumableUploadTransportInter
     }
 
     /**
+     * Sends a raw PSR-7 request.
+     *
+     * @param RequestInterface $request
+     * @param array            $options
+     * @return \Psr\Http\Message\ResponseInterface|\GuzzleHttp\Promise\PromiseInterface
+     */
+    public function sendRawRequest(RequestInterface $request, array $options = [])
+    {
+        return ($this->httpHandler)($request, $options);
+    }
+
+    /**
+     * Builds a PSR-7 request.
+     *
+     * @param string   $method
+     * @param ?Message $message
+     * @param array    $headers
+     * @return RequestInterface
+     */
+    public function buildRequest(string $method, ?Message $message = null, array $headers = []): RequestInterface
+    {
+        return $this->requestBuilder->build($method, $message, $headers);
+    }
+
+    /**
      * Creates and starts a RestServerStreamingCall.
      *
      * @param callable $httpHandler The HTTP Handler to invoke the request with.
