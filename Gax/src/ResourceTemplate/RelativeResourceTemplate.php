@@ -134,7 +134,7 @@ class RelativeResourceTemplate implements ResourceTemplateInterface
                             if ($innerSegment->getSegmentType() === Segment::WILDCARD_SEGMENT) {
                                 if ($wildcardValue === '.' || $wildcardValue === '..') {
                                     throw new \InvalidArgumentException(sprintf(
-                                        "Invalid value %s for %s.",
+                                        'Invalid value %s for %s.',
                                         $wildcardValue,
                                         $key
                                     ));
@@ -144,7 +144,7 @@ class RelativeResourceTemplate implements ResourceTemplateInterface
                                 foreach ($parts as $part) {
                                     if ($part === '.' || $part === '..') {
                                         throw new \InvalidArgumentException(sprintf(
-                                            "Value for %s must not contain segments that are exactly . or .. .",
+                                            'Value for %s must not contain segments that are exactly . or .. .',
                                             $key
                                         ));
                                     }
@@ -160,7 +160,7 @@ class RelativeResourceTemplate implements ResourceTemplateInterface
                         if ($segment->getSegmentType() === Segment::WILDCARD_SEGMENT) {
                             if ($value === '.' || $value === '..') {
                                 throw new \InvalidArgumentException(sprintf(
-                                    "Invalid value %s for %s.",
+                                    'Invalid value %s for %s.',
                                     $value,
                                     $key
                                 ));
@@ -170,7 +170,7 @@ class RelativeResourceTemplate implements ResourceTemplateInterface
                             foreach ($parts as $part) {
                                 if ($part === '.' || $part === '..') {
                                     throw new \InvalidArgumentException(sprintf(
-                                        "Value for %s must not contain segments that are exactly . or .. .",
+                                        'Value for %s must not contain segments that are exactly . or .. .',
                                         $key
                                     ));
                                 }
