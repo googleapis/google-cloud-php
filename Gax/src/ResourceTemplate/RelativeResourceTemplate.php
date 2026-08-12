@@ -101,7 +101,7 @@ class RelativeResourceTemplate implements ResourceTemplateInterface
     /**
      * @inheritdoc
      */
-    public function render(array $bindings)
+    public function render(array $bindings, bool $urlEncode = false)
     {
         $literalSegments = [];
         $keySegmentTuples = self::buildKeySegmentTuples($this->segments);
@@ -180,7 +180,7 @@ class RelativeResourceTemplate implements ResourceTemplateInterface
                 }
 
                 if ($matches) {
-                    $encodedValue = self::encodeValue($value);
+                    $encodedValue = $urlEncode ? self::encodeValue($value) : $value;
 
                     $literalSegments[] = new Segment(
                         Segment::LITERAL_SEGMENT,

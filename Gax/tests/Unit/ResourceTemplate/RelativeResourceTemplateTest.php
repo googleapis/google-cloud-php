@@ -451,7 +451,7 @@ class RelativeResourceTemplateTest extends TestCase
     public function testRenderEncoding($pathTemplate, $expectedPath, $bindings)
     {
         $template = new RelativeResourceTemplate($pathTemplate);
-        $this->assertEquals($expectedPath, $template->render($bindings));
+        $this->assertEquals($expectedPath, $template->render($bindings, true));
     }
 
     public function renderEncodingData()

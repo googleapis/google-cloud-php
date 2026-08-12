@@ -163,7 +163,8 @@ class PathTemplateTest extends TestCase
     {
         $template = new PathTemplate('/buckets/*/*/*/objects/*:action');
         $url = $template->render(
-            ['$0' => 'f', '$1' => 'o', '$2' => 'o', '$3' => 'google.com:a-b']
+            ['$0' => 'f', '$1' => 'o', '$2' => 'o', '$3' => 'google.com:a-b'],
+            true
         );
         $this->assertEquals($url, '/buckets/f/o/o/objects/google.com%3Aa-b:action');
     }
@@ -206,7 +207,8 @@ class PathTemplateTest extends TestCase
     {
         $template = new PathTemplate('buckets/*/*/*/objects/*');
         $url = $template->render(
-            ['$0' => 'f', '$1' => 'o', '$2' => 'o', '$3' => 'google.com:a-b']
+            ['$0' => 'f', '$1' => 'o', '$2' => 'o', '$3' => 'google.com:a-b'],
+            true
         );
         $this->assertEquals($url, 'buckets/f/o/o/objects/google.com%3Aa-b');
     }
@@ -254,7 +256,8 @@ class PathTemplateTest extends TestCase
     {
         $template = new PathTemplate('projects/{project}/topics/{topic}');
         $url = $template->render(
-            ['project' => 'google.com:proj-test', 'topic' => 'some-topic']
+            ['project' => 'google.com:proj-test', 'topic' => 'some-topic'],
+            true
         );
         $this->assertEquals(
             $url,
@@ -262,7 +265,8 @@ class PathTemplateTest extends TestCase
         );
         $template = new PathTemplate('projects/{project}/topics/{topic}');
         $url = $template->render(
-            ['project' => 'g.,;:~`!@#$%^&()+-', 'topic' => 'sdf<>,.?[]']
+            ['project' => 'g.,;:~`!@#$%^&()+-', 'topic' => 'sdf<>,.?[]'],
+            true
         );
         $this->assertEquals(
             $url,
