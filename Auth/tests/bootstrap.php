@@ -18,25 +18,3 @@
 error_reporting(E_ALL);
 require dirname(__DIR__) . '/vendor/autoload.php';
 date_default_timezone_set('UTC');
-
-function getHandler(array $mockResponses = [])
-{
-    $mock = new \GuzzleHttp\Handler\MockHandler($mockResponses);
-
-    $handler = \GuzzleHttp\HandlerStack::create($mock);
-    $client = new \GuzzleHttp\Client(['handler' => $handler]);
-
-    return new \Google\Auth\HttpHandler\Guzzle6HttpHandler($client);
-}
-
-function setHomeEnv(string|null $value): void
-{
-    $assigment = sprintf(
-        '%s%s%s',
-        PHP_OS_FAMILY === 'Windows' ? 'APPDATA' : 'HOME',
-        $value === null ? '' : '=',
-        (string) $value
-    );
-
-    putenv($assigment);
-}
