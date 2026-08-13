@@ -48,8 +48,18 @@ class GenerateAuditReportRequest extends \Google\Protobuf\Internal\Message
      */
     protected $compliance_framework = '';
     /**
-     * Optional. If `true`, only validate the request and don't generate the audit
-     * report.
+     * Optional. If `true`, only validates the request and does not generate the
+     * audit report. This executes standard request validation (such as schema,
+     * framework existence, scope, and IAM checks) and skips the apply phase.
+     * Use this field for the following purposes:
+     * * **Infrastructure as Code (IaC)**: Allow tools like Terraform to run
+     *   dry-run mutations (e.g., `terraform plan`) without creating real
+     *   resources or incurring costs.
+     * * **User Interface Validation**: Enable real-time form and permission
+     *   validation in custom UIs before submitting requests.
+     * * **CI/CD & Automation**: Test your scripts, permissions, and parameters
+     *   safely without triggering expensive Long-Running Operations (LROs) or
+     *   consuming resource quotas.
      *
      * Generated from protobuf field <code>bool validate_only = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -110,8 +120,18 @@ class GenerateAuditReportRequest extends \Google\Protobuf\Internal\Message
      *           Required. The framework that's used for the audit report. For example,
      *           `NIST_800_53`.
      *     @type bool $validate_only
-     *           Optional. If `true`, only validate the request and don't generate the audit
-     *           report.
+     *           Optional. If `true`, only validates the request and does not generate the
+     *           audit report. This executes standard request validation (such as schema,
+     *           framework existence, scope, and IAM checks) and skips the apply phase.
+     *           Use this field for the following purposes:
+     *           * **Infrastructure as Code (IaC)**: Allow tools like Terraform to run
+     *             dry-run mutations (e.g., `terraform plan`) without creating real
+     *             resources or incurring costs.
+     *           * **User Interface Validation**: Enable real-time form and permission
+     *             validation in custom UIs before submitting requests.
+     *           * **CI/CD & Automation**: Test your scripts, permissions, and parameters
+     *             safely without triggering expensive Long-Running Operations (LROs) or
+     *             consuming resource quotas.
      * }
      */
     public function __construct($data = NULL) {
@@ -277,8 +297,18 @@ class GenerateAuditReportRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If `true`, only validate the request and don't generate the audit
-     * report.
+     * Optional. If `true`, only validates the request and does not generate the
+     * audit report. This executes standard request validation (such as schema,
+     * framework existence, scope, and IAM checks) and skips the apply phase.
+     * Use this field for the following purposes:
+     * * **Infrastructure as Code (IaC)**: Allow tools like Terraform to run
+     *   dry-run mutations (e.g., `terraform plan`) without creating real
+     *   resources or incurring costs.
+     * * **User Interface Validation**: Enable real-time form and permission
+     *   validation in custom UIs before submitting requests.
+     * * **CI/CD & Automation**: Test your scripts, permissions, and parameters
+     *   safely without triggering expensive Long-Running Operations (LROs) or
+     *   consuming resource quotas.
      *
      * Generated from protobuf field <code>bool validate_only = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -289,8 +319,18 @@ class GenerateAuditReportRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If `true`, only validate the request and don't generate the audit
-     * report.
+     * Optional. If `true`, only validates the request and does not generate the
+     * audit report. This executes standard request validation (such as schema,
+     * framework existence, scope, and IAM checks) and skips the apply phase.
+     * Use this field for the following purposes:
+     * * **Infrastructure as Code (IaC)**: Allow tools like Terraform to run
+     *   dry-run mutations (e.g., `terraform plan`) without creating real
+     *   resources or incurring costs.
+     * * **User Interface Validation**: Enable real-time form and permission
+     *   validation in custom UIs before submitting requests.
+     * * **CI/CD & Automation**: Test your scripts, permissions, and parameters
+     *   safely without triggering expensive Long-Running Operations (LROs) or
+     *   consuming resource quotas.
      *
      * Generated from protobuf field <code>bool validate_only = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
