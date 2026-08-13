@@ -459,6 +459,14 @@
         "library_type": "GAPIC_AUTO",
         "api_shortname": "cloudcommerceconsumerprocurement"
     },
+    "CommerceProducer": {
+        "language": "php",
+        "distribution_name": "google/cloud-commerceproducer",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-commerceproducer/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "commerceproducer"
+    },
     "CommonProtos": {
         "language": "php",
         "distribution_name": "google/common-protos",

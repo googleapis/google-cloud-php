@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/cloud/commerceproducer/(v1beta)/.*-php/(.*)
+      dest: /owl-bot-staging/CommerceProducer/$1/$2
+api-name: CommerceProducer
