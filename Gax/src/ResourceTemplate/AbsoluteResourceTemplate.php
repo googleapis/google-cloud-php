@@ -88,9 +88,9 @@ class AbsoluteResourceTemplate implements ResourceTemplateInterface
     /**
      * @inheritdoc
      */
-    public function render(array $bindings)
+    public function render(array $bindings, bool $urlEncode = false)
     {
-        return sprintf('/%s%s', $this->resourceTemplate->render($bindings), $this->renderVerb());
+        return sprintf('/%s%s', $this->resourceTemplate->render($bindings, $urlEncode), $this->renderVerb());
     }
 
     /**
