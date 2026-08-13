@@ -122,7 +122,7 @@ class RelativeResourceTemplate implements ResourceTemplateInterface
                 );
             }
 
-            if (!$this->matchAndValidateSegment($segment, (string)$value, (string)$key)) {
+            if (!$this->matchAndValidateSegment($segment, (string) $value, (string) $key)) {
                 throw $this->renderingException(
                     $bindings,
                     "expected binding '$key' to match segment '$segment', instead got '$value'"
@@ -146,7 +146,7 @@ class RelativeResourceTemplate implements ResourceTemplateInterface
         if ($segment->getSegmentType() === Segment::VARIABLE_SEGMENT) {
             try {
                 $wildcardBindings = $segment->getTemplate()->match($value);
-                
+
                 // Validate wildcard bindings for . and ..
                 $innerTuples = self::buildKeySegmentTuples($segment->getTemplate()->segments);
                 foreach ($innerTuples as list($innerKey, $innerSegment)) {
@@ -167,7 +167,7 @@ class RelativeResourceTemplate implements ResourceTemplateInterface
         if ($matches) {
             self::validateDotSegments($segment->getSegmentType(), $value, $key);
         }
-        
+
         return $matches;
     }
 
