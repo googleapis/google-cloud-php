@@ -115,91 +115,83 @@ class RelativeResourceTemplate implements ResourceTemplateInterface
                 throw $this->renderingException($bindings, "missing required binding '$key' for segment '$segment'");
             }
             $value = $bindings[$key];
-            if (!is_null($value)) {
-                $matches = false;
-                if ($segment->getSegmentType() === Segment::VARIABLE_SEGMENT) {
-                    try {
-                        $wildcardBindings = $segment->getTemplate()->match($value);
-                        $matches = true;
-
-                        // Validate wildcard bindings for . and ..
-                        $innerTuples = self::buildKeySegmentTuples($segment->getTemplate()->segments);
-                        foreach ($innerTuples as list($innerKey, $innerSegment)) {
-                            if ($innerKey === null || !isset($wildcardBindings[$innerKey])) {
-                                continue;
-                            }
-                            /** @var Segment $innerSegment */
-                            $wildcardValue = $wildcardBindings[$innerKey];
-
-                            if ($innerSegment->getSegmentType() === Segment::WILDCARD_SEGMENT) {
-                                if ($wildcardValue === '.' || $wildcardValue === '..') {
-                                    throw new \InvalidArgumentException(sprintf(
-                                        'Invalid value %s for %s.',
-                                        $wildcardValue,
-                                        $key
-                                    ));
-                                }
-                            } elseif ($innerSegment->getSegmentType() === Segment::DOUBLE_WILDCARD_SEGMENT) {
-                                $parts = explode('/', $wildcardValue);
-                                foreach ($parts as $part) {
-                                    if ($part === '.' || $part === '..') {
-                                        throw new \InvalidArgumentException(sprintf(
-                                            'Value for %s must not contain segments that are exactly . or .. .',
-                                            $key
-                                        ));
-                                    }
-                                }
-                            }
-                        }
-                    } catch (ValidationException $e) {
-                        $matches = false;
-                    }
-                } else {
-                    $matches = $segment->matches($value);
-                    if ($matches) {
-                        if ($segment->getSegmentType() === Segment::WILDCARD_SEGMENT) {
-                            if ($value === '.' || $value === '..') {
-                                throw new \InvalidArgumentException(sprintf(
-                                    'Invalid value %s for %s.',
-                                    $value,
-                                    $key
-                                ));
-                            }
-                        } elseif ($segment->getSegmentType() === Segment::DOUBLE_WILDCARD_SEGMENT) {
-                            $parts = explode('/', $value);
-                            foreach ($parts as $part) {
-                                if ($part === '.' || $part === '..') {
-                                    throw new \InvalidArgumentException(sprintf(
-                                        'Value for %s must not contain segments that are exactly . or .. .',
-                                        $key
-                                    ));
-                                }
-                            }
-                        }
-                    }
-                }
-
-                if ($matches) {
-                    $encodedValue = $urlEncode ? self::encodeValue($value) : $value;
-
-                    $literalSegments[] = new Segment(
-                        Segment::LITERAL_SEGMENT,
-                        $encodedValue,
-                        $segment->getValue(),
-                        $segment->getTemplate(),
-                        $segment->getSeparator()
-                    );
-                    continue;
-                }
+            if (is_null($value)) {
+                throw $this->renderingException(
+                    $bindings,
+                    "expected binding '$key' to match segment '$segment', instead got null"
+                );
             }
 
-            $valueString = is_null($value) ? 'null' : "'$value'";
-            throw $this->renderingException(
-                $bindings,
-                "expected binding '$key' to match segment '$segment', instead got $valueString"
+            if (!$this->matchAndValidateSegment($segment, (string)$value, (string)$key)) {
+                throw $this->renderingException(
+                    $bindings,
+                    "expected binding '$key' to match segment '$segment', instead got '$value'"
+                );
+            }
+
+            $encodedValue = $urlEncode ? self::encodeValue($value) : $value;
+            $literalSegments[] = new Segment(
+                Segment::LITERAL_SEGMENT,
+                $encodedValue,
+                $segment->getValue(),
+                $segment->getTemplate(),
+                $segment->getSeparator()
             );
         }
         return self::renderSegments($literalSegments);
+    }
+
+    private function matchAndValidateSegment(Segment $segment, string $value, string $key): bool
+    {
+        if ($segment->getSegmentType() === Segment::VARIABLE_SEGMENT) {
+            try {
+                $wildcardBindings = $segment->getTemplate()->match($value);
+                
+                // Validate wildcard bindings for . and ..
+                $innerTuples = self::buildKeySegmentTuples($segment->getTemplate()->segments);
+                foreach ($innerTuples as list($innerKey, $innerSegment)) {
+                    if ($innerKey === null || !isset($wildcardBindings[$innerKey])) {
+                        continue;
+                    }
+                    /** @var Segment $innerSegment */
+                    $wildcardValue = $wildcardBindings[$innerKey];
+                    self::validateDotSegments($innerSegment->getSegmentType(), $wildcardValue, $key);
+                }
+                return true;
+            } catch (ValidationException $e) {
+                return false;
+            }
+        }
+
+        $matches = $segment->matches($value);
+        if ($matches) {
+            self::validateDotSegments($segment->getSegmentType(), $value, $key);
+        }
+        
+        return $matches;
+    }
+
+    private static function validateDotSegments(int $segmentType, string $value, string $key): void
+    {
+        if ($segmentType === Segment::WILDCARD_SEGMENT) {
+            if ($value === '.' || $value === '..') {
+                throw new \InvalidArgumentException(sprintf(
+                    'Invalid value %s for %s.',
+                    $value,
+                    $key
+                ));
+            }
+        } elseif ($segmentType === Segment::DOUBLE_WILDCARD_SEGMENT) {
+            $parts = explode('/', $value);
+            foreach ($parts as $part) {
+                if ($part === '.' || $part === '..') {
+                    throw new \InvalidArgumentException(sprintf(
+                        'Value for %s must not contain segments that are exactly . or .. .',
+                        $key
+                    ));
+                }
+            }
+        }
     }
 
     /**
