@@ -1,5 +1,124 @@
 # Changelog
 
+## 0.342.0
+
+<details><summary>google/cloud-commerceproducer 0.1.0</summary>
+
+
+
+### Features
+
+* introduce CommerceProducer ([#9477](https://github.com/googleapis/google-cloud-php/issues/9477)) ([753a0b9](https://github.com/googleapis/google-cloud-php/commit/753a0b9f68625a2497c35fabd5eaa9644d7b0058))
+
+</details>
+
+<details><summary>google/cloud-core 1.73.2</summary>
+
+
+
+### Bug Fixes
+
+* **cs:** fix style issues in BatchTest.php ([dfbfbba](https://github.com/googleapis/google-cloud-php/commit/dfbfbba9c228ac9630d1f593c881a25b52628e63))
+* **cs:** format multi-line args ([dfbfbba](https://github.com/googleapis/google-cloud-php/commit/dfbfbba9c228ac9630d1f593c881a25b52628e63))
+* move seedTable back to its original location ([dfbfbba](https://github.com/googleapis/google-cloud-php/commit/dfbfbba9c228ac9630d1f593c881a25b52628e63))
+* **spanner:** fix PgReadTest index creation on shared database ([dfbfbba](https://github.com/googleapis/google-cloud-php/commit/dfbfbba9c228ac9630d1f593c881a25b52628e63))
+* **Spanner:** Make System Tests Work & Work Faster ([#9401](https://github.com/googleapis/google-cloud-php/issues/9401)) ([dfbfbba](https://github.com/googleapis/google-cloud-php/commit/dfbfbba9c228ac9630d1f593c881a25b52628e63))
+
+</details>
+
+<details><summary>google/gax 1.48.0</summary>
+
+
+
+### Features
+
+* **gax:** implement REST URI percent-encoding and dot segment validation ([#9484](https://github.com/googleapis/google-cloud-php/issues/9484)) ([f3a7276](https://github.com/googleapis/google-cloud-php/commit/f3a72769a39fd4998734f5d7ee4dc985bc55194b))
+* **Gax:** Resumable Uploads ([#9456](https://github.com/googleapis/google-cloud-php/issues/9456)) ([e225b30](https://github.com/googleapis/google-cloud-php/commit/e225b30dfc315f24393c3a39244572add2402bd6))
+
+</details>
+
+<details><summary>google/longrunning 0.8.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-oracledatabase 0.11.0</summary>
+
+
+
+### Features
+
+* [OracleDatabase] Expand Oracle Database v1 API to add support for Exascale CMEK, VM Storage options ([#9480](https://github.com/googleapis/google-cloud-php/issues/9480)) ([487d4b6](https://github.com/googleapis/google-cloud-php/commit/487d4b68a6312026272bedc94a69df2a2c8e1a84))
+
+</details>
+
+<details><summary>google/cloud-recaptcha-enterprise 2.5.0</summary>
+
+
+
+### Features
+
+* [RecaptchaEnterprise] A comment for field `account_defender_assessment` in message `.google.cloud.recaptchaenterprise.v1.Assessment` is changed ([#9482](https://github.com/googleapis/google-cloud-php/issues/9482)) ([89ed314](https://github.com/googleapis/google-cloud-php/commit/89ed3148eaca541b1acf580dd0b156c1634c0331))
+
+</details>
+
+<details><summary>google/shopping-common-protos 0.5.1</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-merchant-inventories 1.5.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-spanner 2.10.6</summary>
+
+
+
+### Bug Fixes
+
+* **cs:** fix style issues in BatchTest.php ([dfbfbba](https://github.com/googleapis/google-cloud-php/commit/dfbfbba9c228ac9630d1f593c881a25b52628e63))
+* **cs:** format multi-line args ([dfbfbba](https://github.com/googleapis/google-cloud-php/commit/dfbfbba9c228ac9630d1f593c881a25b52628e63))
+* move seedTable back to its original location ([dfbfbba](https://github.com/googleapis/google-cloud-php/commit/dfbfbba9c228ac9630d1f593c881a25b52628e63))
+* **spanner:** fix PgReadTest index creation on shared database ([dfbfbba](https://github.com/googleapis/google-cloud-php/commit/dfbfbba9c228ac9630d1f593c881a25b52628e63))
+* **Spanner:** Make System Tests Work & Work Faster ([#9401](https://github.com/googleapis/google-cloud-php/issues/9401)) ([dfbfbba](https://github.com/googleapis/google-cloud-php/commit/dfbfbba9c228ac9630d1f593c881a25b52628e63))
+
+</details>
+
+<details><summary>google/cloud-storage 2.5.2</summary>
+
+
+
+### Bug Fixes
+
+* **Storage:** restore error handler in StreamWrapperTest ([#9489](https://github.com/googleapis/google-cloud-php/issues/9489)) ([9942b2c](https://github.com/googleapis/google-cloud-php/commit/9942b2c94498fd33a30b8e767f60b7fc016a13e0))
+
+</details>
+
+<details><summary>google/cloud-storage-control 1.11.0</summary>
+
+
+
+### Features
+
+* [StorageControl] add ViewObjectFullContext RPC and RapidCacheInfo in Storage Control v2 ([#9481](https://github.com/googleapis/google-cloud-php/issues/9481)) ([b35ec14](https://github.com/googleapis/google-cloud-php/commit/b35ec14248fa1b92117df9b8eec5ab595b966a75))
+
+</details>
+
+<details><summary>google/cloud-workloadidentity 0.1.0</summary>
+
+
+
+### Features
+
+* introduce the WorkloadIdentity component ([#9488](https://github.com/googleapis/google-cloud-php/issues/9488)) ([1abc161](https://github.com/googleapis/google-cloud-php/commit/1abc161c15cd1ec0c8734cd6c9e984aba3906865))
+
+</details>
+
 ## 0.341.0
 
 <details><summary>google/cloud-access-approval 2.2.0</summary>
