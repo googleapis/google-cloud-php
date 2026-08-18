@@ -46,7 +46,7 @@ subprocess.run([
     '--package=@prettier/plugin-php@^0.19',
     '--',
     'prettier',
-    '**/src/**/Client/*',
+    '**/Client/*',
     '--write',
     '--parser=php',
     '--single-quote',
