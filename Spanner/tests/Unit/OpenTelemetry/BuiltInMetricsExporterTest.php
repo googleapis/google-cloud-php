@@ -17,8 +17,6 @@
 
 namespace Google\Cloud\Spanner\Tests\Unit\OpenTelemetry;
 
-use Google\Cloud\Monitoring\V3\Client\MetricServiceClient;
-use Google\Cloud\Monitoring\V3\CreateTimeSeriesRequest;
 use Google\Cloud\Spanner\OpenTelemetry\MetricsExporter;
 use OpenTelemetry\SDK\Common\Attribute\Attributes;
 use OpenTelemetry\SDK\Common\Instrumentation\InstrumentationScope;
@@ -27,6 +25,7 @@ use OpenTelemetry\SDK\Metrics\Data\NumberDataPoint;
 use OpenTelemetry\SDK\Metrics\Data\Sum;
 use OpenTelemetry\SDK\Metrics\Data\Temporality;
 use OpenTelemetry\SDK\Resource\ResourceInfo;
+use OpenTelemetry\SDK\Metrics\PushMetricExporterInterface;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -48,35 +47,38 @@ class BuiltInMetricsExporterTest extends TestCase
      */
     public function testGenerateClientHash($clientUid, $expected)
     {
-        $client = $this->prophesize(MetricServiceClient::class);
-        $exporter = new MetricsExporter($client->reveal(), self::PROJECT_ID, self::CLIENT_ID, self::DEFAULT_TIMEOUT);
-
-        $reflection = new ReflectionClass(MetricsExporter::class);
+        $reflection = new ReflectionClass(\Google\Cloud\Spanner\SpannerClient::class);
         $method = $reflection->getMethod('generateClientHash');
         $method->setAccessible(true);
 
-        $result = $method->invoke($exporter, $clientUid);
+        $client = new ReflectionClass(\Google\Cloud\Spanner\SpannerClient::class);
+        $instance = $client->newInstanceWithoutConstructor();
+
+        $result = $method->invoke($instance, $clientUid);
         $this->assertEquals($expected, $result);
     }
 
     public function hashDataProvider()
     {
         return [
-            ['exampleUID', '00006b'],
+            ['exampleUID', '000194'],
             ['', '000000'],
-            ['!@#$%^&*()', '000389'],
-            ['aVeryLongUniqueIdentifierThatExceedsNormalLength', '000125'],
-            ['1234567890', '00003e'],
+            ['!@#$%^&*()', '000129'],
+            ['aVeryLongUniqueIdentifierThatExceedsNormalLength', '00008e'],
+            ['1234567890', '00018d'],
         ];
     }
 
     public function testExport()
     {
-        $client = $this->prophesize(MetricServiceClient::class);
-        $exporter = new MetricsExporter($client->reveal(), self::PROJECT_ID, self::CLIENT_ID, 100);
+        $mockOtlpExporter = $this->prophesize(PushMetricExporterInterface::class);
+        $exporter = new MetricsExporter(self::PROJECT_ID, 100, [], $mockOtlpExporter->reveal());
 
         $scope = new InstrumentationScope('google-cloud-spanner', '1.0.0', null, Attributes::create([]));
-        $resource = ResourceInfo::create(Attributes::create(['service.name' => 'spanner']));
+        $resource = ResourceInfo::create(Attributes::create([
+            'gcp.resource_type' => 'spanner_instance_client',
+            'client_hash' => '000212'
+        ]));
 
         $attributes = Attributes::create([
             'method' => 'ExecuteSql',
@@ -93,70 +95,39 @@ class BuiltInMetricsExporterTest extends TestCase
         );
 
         $sum = new Sum([$point], Temporality::CUMULATIVE, true);
-        $metric = new OTelMetric($scope, $resource, 'attempt_count', '1', 'desc', $sum);
+        $metric = new OTelMetric($scope, $resource, 'spanner.googleapis.com/internal/client/attempt_count', '1', 'desc', $sum);
 
-        $client->createServiceTimeSeries(Argument::that(function ($request) {
-            if (!$request instanceof CreateTimeSeriesRequest) {
-                return false;
-            }
-
-            $projectName = MetricServiceClient::projectName(self::PROJECT_ID);
-            if ($request->getName() !== $projectName) {
-                return false;
-            }
-
-            $timeSeries = $request->getTimeSeries()[0];
-
-            // Verify Metric Type
-            $expectedMetric = 'spanner.googleapis.com/internal/client/attempt_count';
-            if ($timeSeries->getMetric()->getType() !== $expectedMetric) {
-                return false;
-            }
-
-            // Verify Labels
-            $labels = $timeSeries->getMetric()->getLabels();
-            if ($labels['method'] !== 'ExecuteSql' ||
-                $labels['status'] !== 'OK' ||
-                $labels['database'] !== 'my-db') {
-                return false;
-            }
-
-            // Verify Resource
-            $resLabels = $timeSeries->getResource()->getLabels();
-            if ($resLabels['instance_id'] !== 'my-instance') {
-                return false;
-            }
-
-            // Verify Client Hash
-            if ($resLabels['client_hash'] !== '000369') {
-                return false;
-            }
-
-            return true;
-        }), Argument::withEntry('timeoutMillis', 100))->shouldBeCalled();
+        $mockOtlpExporter->export(Argument::type('iterable'))->shouldBeCalled()->willReturn(true);
 
         $this->assertTrue($exporter->export([$metric]));
     }
 
     public function testExportCustomTimeout()
     {
-        $client = $this->prophesize(MetricServiceClient::class);
+        $mockOtlpExporter = $this->prophesize(PushMetricExporterInterface::class);
         $timeout = 500;
-        $exporter = new MetricsExporter($client->reveal(), self::PROJECT_ID, self::CLIENT_ID, $timeout);
+        $exporter = new MetricsExporter(self::PROJECT_ID, $timeout, [], $mockOtlpExporter->reveal());
 
         $scope = new InstrumentationScope('google-cloud-spanner', '1.0.0', null, Attributes::create([]));
-        $resource = ResourceInfo::create(Attributes::create(['service.name' => 'spanner']));
+        $resource = ResourceInfo::create(Attributes::create([]));
 
         $attributes = Attributes::create([]);
         $point = new NumberDataPoint(1, $attributes, 1711368000000000000, 1711368060000000000);
         $sum = new Sum([$point], Temporality::CUMULATIVE, true);
-        $metric = new OTelMetric($scope, $resource, 'attempt_count', '1', 'desc', $sum);
+        $metric = new OTelMetric($scope, $resource, 'spanner.googleapis.com/internal/client/attempt_count', '1', 'desc', $sum);
 
-        $client->createServiceTimeSeries(
-            Argument::type(CreateTimeSeriesRequest::class),
-            Argument::withEntry('timeoutMillis', $timeout)
-        )->shouldBeCalled();
+        $mockOtlpExporter->export(Argument::any())->shouldBeCalled()->willReturn(true);
 
-        $exporter->export([$metric]);
+        $this->assertTrue($exporter->export([$metric]));
+    }
+
+    public function testConstructWithCustomMetricsCredentials()
+    {
+        $mockCredentials = $this->prophesize(\Google\Auth\FetchAuthTokenInterface::class);
+        $exporter = new MetricsExporter(self::PROJECT_ID, 5000, [
+            'metricsCredentials' => $mockCredentials->reveal()
+        ]);
+
+        $this->assertInstanceOf(MetricsExporter::class, $exporter);
     }
 }
