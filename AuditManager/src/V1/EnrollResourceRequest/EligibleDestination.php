@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * The destination details where the audit report must be uploaded.
+ * Details about the bucket where you want to upload the audit report.
  *
  * Generated from protobuf message <code>google.cloud.auditmanager.v1.EnrollResourceRequest.EligibleDestination</code>
  */
@@ -24,8 +24,10 @@ class EligibleDestination extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $eligible_gcs_bucket
-     *           The Cloud Storage bucket location where the audit report and evidences
-     *           can be uploaded during the `GenerateAuditReport` API call.
+     *           The location of the Cloud Storage bucket where you want to upload the
+     *           audit report and evidence during the
+     *           [GenerateAuditReport][google.cloud.auditmanager.v1.AuditManager.GenerateAuditReport]
+     *           API call.
      * }
      */
     public function __construct($data = NULL) {
@@ -34,8 +36,10 @@ class EligibleDestination extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Cloud Storage bucket location where the audit report and evidences
-     * can be uploaded during the `GenerateAuditReport` API call.
+     * The location of the Cloud Storage bucket where you want to upload the
+     * audit report and evidence during the
+     * [GenerateAuditReport][google.cloud.auditmanager.v1.AuditManager.GenerateAuditReport]
+     * API call.
      *
      * Generated from protobuf field <code>string eligible_gcs_bucket = 3;</code>
      * @return string
@@ -51,8 +55,10 @@ class EligibleDestination extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Cloud Storage bucket location where the audit report and evidences
-     * can be uploaded during the `GenerateAuditReport` API call.
+     * The location of the Cloud Storage bucket where you want to upload the
+     * audit report and evidence during the
+     * [GenerateAuditReport][google.cloud.auditmanager.v1.AuditManager.GenerateAuditReport]
+     * API call.
      *
      * Generated from protobuf field <code>string eligible_gcs_bucket = 3;</code>
      * @param string $var

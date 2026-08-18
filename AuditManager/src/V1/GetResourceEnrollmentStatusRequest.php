@@ -9,27 +9,31 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * Message for getting the enrollment status of a resource.
+ * Request message for
+ * [GetResourceEnrollmentStatus][google.cloud.auditmanager.v1.AuditManager.GetResourceEnrollmentStatus].
  *
  * Generated from protobuf message <code>google.cloud.auditmanager.v1.GetResourceEnrollmentStatusRequest</code>
  */
 class GetResourceEnrollmentStatusRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Format
-     * folders/{folder}/locations/{location}/resourceEnrollmentStatuses/{resource_enrollment_status},
-     * projects/{project}/locations/{location}/resourceEnrollmentStatuses/{resource_enrollment_status},
-     * organizations/{organization}/locations/{location}/resourceEnrollmentStatuses/{resource_enrollment_status}
+     * Required. Name of the resource enrollment status, in one of the following
+     * formats:
+     * * `folders/{folder}/locations/{location}/resourceEnrollmentStatuses/{resource_enrollment_status}`
+     * * `projects/{project}/locations/{location}/resourceEnrollmentStatuses/{resource_enrollment_status}`
+     * * `organizations/{organization}/locations/{location}/resourceEnrollmentStatuses/{resource_enrollment_status}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $name = '';
 
     /**
-     * @param string $name Required. Format
-     *                     folders/{folder}/locations/{location}/resourceEnrollmentStatuses/{resource_enrollment_status},
-     *                     projects/{project}/locations/{location}/resourceEnrollmentStatuses/{resource_enrollment_status},
-     *                     organizations/{organization}/locations/{location}/resourceEnrollmentStatuses/{resource_enrollment_status}
+     * @param string $name Required. Name of the resource enrollment status, in one of the following
+     *                     formats:
+     *
+     *                     * `folders/{folder}/locations/{location}/resourceEnrollmentStatuses/{resource_enrollment_status}`
+     *                     * `projects/{project}/locations/{location}/resourceEnrollmentStatuses/{resource_enrollment_status}`
+     *                     * `organizations/{organization}/locations/{location}/resourceEnrollmentStatuses/{resource_enrollment_status}`
      *                     Please see {@see AuditManagerClient::resourceEnrollmentStatusName()} for help formatting this field.
      *
      * @return \Google\Cloud\AuditManager\V1\GetResourceEnrollmentStatusRequest
@@ -49,10 +53,11 @@ class GetResourceEnrollmentStatusRequest extends \Google\Protobuf\Internal\Messa
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. Format
-     *           folders/{folder}/locations/{location}/resourceEnrollmentStatuses/{resource_enrollment_status},
-     *           projects/{project}/locations/{location}/resourceEnrollmentStatuses/{resource_enrollment_status},
-     *           organizations/{organization}/locations/{location}/resourceEnrollmentStatuses/{resource_enrollment_status}
+     *           Required. Name of the resource enrollment status, in one of the following
+     *           formats:
+     *           * `folders/{folder}/locations/{location}/resourceEnrollmentStatuses/{resource_enrollment_status}`
+     *           * `projects/{project}/locations/{location}/resourceEnrollmentStatuses/{resource_enrollment_status}`
+     *           * `organizations/{organization}/locations/{location}/resourceEnrollmentStatuses/{resource_enrollment_status}`
      * }
      */
     public function __construct($data = NULL) {
@@ -61,10 +66,11 @@ class GetResourceEnrollmentStatusRequest extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * Required. Format
-     * folders/{folder}/locations/{location}/resourceEnrollmentStatuses/{resource_enrollment_status},
-     * projects/{project}/locations/{location}/resourceEnrollmentStatuses/{resource_enrollment_status},
-     * organizations/{organization}/locations/{location}/resourceEnrollmentStatuses/{resource_enrollment_status}
+     * Required. Name of the resource enrollment status, in one of the following
+     * formats:
+     * * `folders/{folder}/locations/{location}/resourceEnrollmentStatuses/{resource_enrollment_status}`
+     * * `projects/{project}/locations/{location}/resourceEnrollmentStatuses/{resource_enrollment_status}`
+     * * `organizations/{organization}/locations/{location}/resourceEnrollmentStatuses/{resource_enrollment_status}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -75,10 +81,11 @@ class GetResourceEnrollmentStatusRequest extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * Required. Format
-     * folders/{folder}/locations/{location}/resourceEnrollmentStatuses/{resource_enrollment_status},
-     * projects/{project}/locations/{location}/resourceEnrollmentStatuses/{resource_enrollment_status},
-     * organizations/{organization}/locations/{location}/resourceEnrollmentStatuses/{resource_enrollment_status}
+     * Required. Name of the resource enrollment status, in one of the following
+     * formats:
+     * * `folders/{folder}/locations/{location}/resourceEnrollmentStatuses/{resource_enrollment_status}`
+     * * `projects/{project}/locations/{location}/resourceEnrollmentStatuses/{resource_enrollment_status}`
+     * * `organizations/{organization}/locations/{location}/resourceEnrollmentStatuses/{resource_enrollment_status}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
