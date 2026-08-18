@@ -13,6 +13,12 @@
         },
         {
             "matchPackageNames": [
+                "brianium/paratest"
+            ],
+            "allowedVersions": "< 7.0"
+        },
+        {
+            "matchPackageNames": [
                 "squizlabs/php_codesniffer"
             ],
             "allowedVersions": "< 3.0"
