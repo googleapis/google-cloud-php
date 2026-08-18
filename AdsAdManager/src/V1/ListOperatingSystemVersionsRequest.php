@@ -46,13 +46,11 @@ class ListOperatingSystemVersionsRequest extends \Google\Protobuf\Internal\Messa
      * Optional. Expression to filter the response.
      *  See syntax details at
      *  https://developers.google.com/ad-manager/api/beta/filters
-     * <b>Filterable fields:</b>
-     * <ul style="list-style-type:none">
-     *   <li><code>majorVersion</code></li>
-     *   <li><code>microVersion</code></li>
-     *   <li><code>minorVersion</code></li>
-     *   <li><code>name</code></li>
-     * </ul>
+     * **Filterable fields:**
+     * * `majorVersion`
+     * * `microVersion`
+     * * `minorVersion`
+     * * `name`
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -112,13 +110,11 @@ class ListOperatingSystemVersionsRequest extends \Google\Protobuf\Internal\Messa
      *           Optional. Expression to filter the response.
      *            See syntax details at
      *            https://developers.google.com/ad-manager/api/beta/filters
-     *           <b>Filterable fields:</b>
-     *           <ul style="list-style-type:none">
-     *             <li><code>majorVersion</code></li>
-     *             <li><code>microVersion</code></li>
-     *             <li><code>minorVersion</code></li>
-     *             <li><code>name</code></li>
-     *           </ul>
+     *           **Filterable fields:**
+     *           * `majorVersion`
+     *           * `microVersion`
+     *           * `minorVersion`
+     *           * `name`
      *     @type string $order_by
      *           Optional. Expression to specify sorting order.
      *           See syntax details at
@@ -232,13 +228,11 @@ class ListOperatingSystemVersionsRequest extends \Google\Protobuf\Internal\Messa
      * Optional. Expression to filter the response.
      *  See syntax details at
      *  https://developers.google.com/ad-manager/api/beta/filters
-     * <b>Filterable fields:</b>
-     * <ul style="list-style-type:none">
-     *   <li><code>majorVersion</code></li>
-     *   <li><code>microVersion</code></li>
-     *   <li><code>minorVersion</code></li>
-     *   <li><code>name</code></li>
-     * </ul>
+     * **Filterable fields:**
+     * * `majorVersion`
+     * * `microVersion`
+     * * `minorVersion`
+     * * `name`
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -252,13 +246,11 @@ class ListOperatingSystemVersionsRequest extends \Google\Protobuf\Internal\Messa
      * Optional. Expression to filter the response.
      *  See syntax details at
      *  https://developers.google.com/ad-manager/api/beta/filters
-     * <b>Filterable fields:</b>
-     * <ul style="list-style-type:none">
-     *   <li><code>majorVersion</code></li>
-     *   <li><code>microVersion</code></li>
-     *   <li><code>minorVersion</code></li>
-     *   <li><code>name</code></li>
-     * </ul>
+     * **Filterable fields:**
+     * * `majorVersion`
+     * * `microVersion`
+     * * `minorVersion`
+     * * `name`
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
