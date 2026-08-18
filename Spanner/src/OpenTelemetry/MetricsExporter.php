@@ -32,291 +32,134 @@
 
 namespace Google\Cloud\Spanner\OpenTelemetry;
 
-use Google\Api\Distribution;
-use Google\Api\Distribution\BucketOptions;
-use Google\Api\Distribution\BucketOptions\Explicit;
-use Google\Api\Metric;
-use Google\Api\MetricDescriptor\MetricKind;
-use Google\Api\MetricDescriptor\ValueType;
-use Google\Api\MonitoredResource;
-use Google\Cloud\Monitoring\V3\Client\MetricServiceClient;
-use Google\Cloud\Monitoring\V3\CreateTimeSeriesRequest;
-use Google\Cloud\Monitoring\V3\Point;
-use Google\Cloud\Monitoring\V3\TimeInterval;
-use Google\Cloud\Monitoring\V3\TimeSeries;
-use Google\Cloud\Monitoring\V3\TypedValue;
-use Google\Protobuf\Timestamp;
+use Google\Auth\ApplicationDefaultCredentials;
+use Google\Auth\Middleware\AuthTokenMiddleware;
+use GuzzleHttp\Client as GuzzleClient;
+use GuzzleHttp\HandlerStack;
+use OpenTelemetry\Contrib\Otlp\MetricExporter as OtlpMetricExporter;
+use OpenTelemetry\SDK\Common\Export\Http\PsrTransportFactory;
 use OpenTelemetry\SDK\Metrics\AggregationTemporalitySelectorInterface;
-use OpenTelemetry\SDK\Metrics\Data\DataInterface;
-use OpenTelemetry\SDK\Metrics\Data\Histogram;
-use OpenTelemetry\SDK\Metrics\Data\HistogramDataPoint;
 use OpenTelemetry\SDK\Metrics\Data\Metric as OTelMetric;
-use OpenTelemetry\SDK\Metrics\Data\NumberDataPoint;
-use OpenTelemetry\SDK\Metrics\Data\Sum;
 use OpenTelemetry\SDK\Metrics\Data\Temporality;
 use OpenTelemetry\SDK\Metrics\MetricMetadataInterface;
 use OpenTelemetry\SDK\Metrics\PushMetricExporterInterface;
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
+use Throwable;
 
 /**
- * MetricsExporter exports Spanner client metrics to Google Cloud Monitoring
- * using the internal service endpoint.
+ * MetricsExporter encapsulates the standard OpenTelemetry OTLP MetricExporter
+ * targeting Google Cloud Telemetry endpoint.
+ *
+ * @internal
  */
 class MetricsExporter implements PushMetricExporterInterface, AggregationTemporalitySelectorInterface
 {
-    private const SPANNER_RESOURCE_TYPE = 'spanner_instance_client';
-    private const NATIVE_METRICS_PREFIX = 'spanner.googleapis.com/internal/client/';
-    private const SEND_BATCH_SIZE = 200;
+    private const DEFAULT_ENDPOINT = 'https://telemetry.googleapis.com/v1/metrics';
+    private const MONITORING_WRITE_SCOPE = 'https://www.googleapis.com/auth/monitoring.write';
+    private const CLOUD_PLATFORM_SCOPE = 'https://www.googleapis.com/auth/cloud-platform';
 
-    /**
-     * Labels that belong to the MonitoredResource rather than the Metric.
-     */
-    private static array $MONITORED_RES_LABELS = [
-        'project_id' => true,
-        'instance_id' => true,
-        'instance_config' => true,
-        'location' => true,
-        'client_hash' => true,
-    ];
-
-    private MetricServiceClient $client;
     private string $projectId;
-    private string $clientHash;
-    private int $timeoutMillis;
+    private PushMetricExporterInterface $otlpExporter;
 
     /**
-     * @param MetricServiceClient $client The monitoring client.
      * @param string $projectId The GCP project ID metrics will be written to.
-     * @param string $clientUid The unique client identifier.
      * @param int $timeoutMillis The timeout defined for the metrics client during export.
+     * @param array $options Optional configuration parameters.
+     * @param PushMetricExporterInterface|null $otlpExporter Optional inner exporter for testing.
      */
-    public function __construct(MetricServiceClient $client, string $projectId, string $clientUid, int $timeoutMillis)
-    {
-        $this->client = $client;
+    public function __construct(
+        string $projectId,
+        int $timeoutMillis = 5000,
+        array $options = [],
+        ?PushMetricExporterInterface $otlpExporter = null
+    ) {
         $this->projectId = $projectId;
-        $this->clientHash = $this->generateClientHash($clientUid);
-        $this->timeoutMillis = $timeoutMillis;
+
+        if ($otlpExporter !== null) {
+            $this->otlpExporter = $otlpExporter;
+            return;
+        }
+
+        $endpoint = $options['endpoint'] ?? self::DEFAULT_ENDPOINT;
+
+        $handlerStack = HandlerStack::create();
+        try {
+            $fetcher = ApplicationDefaultCredentials::getCredentials([
+                self::MONITORING_WRITE_SCOPE,
+                self::CLOUD_PLATFORM_SCOPE
+            ]);
+
+            $handlerStack->push(new AuthTokenMiddleware($fetcher));
+        } catch (Throwable $e) {
+            // Proceed without auth middleware if ADC is unavailable
+        }
+
+        $guzzleClient = $options['guzzleClient'] ?? new GuzzleClient([
+            'handler' => $handlerStack,
+            'auth' => 'google_auth',
+            'timeout' => $timeoutMillis / 1000,
+        ]);
+
+        $transport = (new PsrTransportFactory($guzzleClient))->create(
+            $endpoint,
+            'application/x-protobuf'
+        );
+
+        $this->otlpExporter = new OtlpMetricExporter($transport, Temporality::CUMULATIVE);
     }
 
     /**
-     * Exports a batch of OTel metrics to Cloud Monitoring.
+     * Exports a batch of OTel metrics using the inner OTLP exporter.
      *
      * @param iterable<OTelMetric> $batch
      * @return bool
      */
     public function export(iterable $batch): bool
     {
-        $timeSeriesList = [];
-        foreach ($batch as $otelMetric) {
-            $timeSeriesList = array_merge($timeSeriesList, $this->mapMetric($otelMetric));
+        try {
+            return $this->otlpExporter->export($batch);
+        } catch (Throwable $e) {
+            return false;
         }
-
-        if (empty($timeSeriesList)) {
-            return true;
-        }
-
-        $projectName = MetricServiceClient::projectName($this->projectId);
-        $chunks = array_chunk($timeSeriesList, self::SEND_BATCH_SIZE);
-
-        foreach ($chunks as $chunk) {
-            $request = new CreateTimeSeriesRequest();
-            $request->setName($projectName);
-            $request->setTimeSeries($chunk);
-
-            try {
-                $this->client->createServiceTimeSeries($request, [
-                    'timeoutMillis' => $this->timeoutMillis
-                ]);
-            } catch (\Exception $e) {
-                // Fail silently during shutdown to avoid user-visible errors.
-            }
-        }
-
-        return true;
     }
 
     /**
-     * Implementation of the forcePush method for PushMetricExporter interface.
+     * Implementation of forceFlush method for PushMetricExporterInterface.
      *
-     * @return true
+     * @return bool
      */
     public function forceFlush(): bool
     {
-        return true;
+        try {
+            return $this->otlpExporter->forceFlush();
+        } catch (Throwable $e) {
+            return false;
+        }
     }
 
     /**
-     * Implementation of the shutdown method for PushMetricExporterInterface.
+     * Implementation of shutdown method for PushMetricExporterInterface.
      *
-     * @return true
+     * @return bool
      */
     public function shutdown(): bool
     {
-        $this->client->close();
-        return true;
+        try {
+            return $this->otlpExporter->shutdown();
+        } catch (Throwable $e) {
+            return false;
+        }
     }
 
     /**
      * Returns the aggregation temporality for the given metric.
      *
-     * @param MetricMetadataInterface $metadata
-     * @return string
+     * @param MetricMetadataInterface $metric
+     * @return Temporality|string|null
      */
-    public function temporality(MetricMetadataInterface $metadata): string
+    public function temporality(MetricMetadataInterface $metric): Temporality|string|null
     {
         return Temporality::CUMULATIVE;
-    }
-
-    /**
-     * Maps an OTel Metric object to one or more GCM TimeSeries objects.
-     *
-     * @param OTelMetric $otelMetric
-     */
-    private function mapMetric(OTelMetric $otelMetric): array
-    {
-        $timeSeriesList = [];
-        $metricType = $this->formatMetricName($otelMetric->name);
-
-        $data = $otelMetric->data;
-        if ($data instanceof Sum || $data instanceof Histogram) {
-            foreach ($data->dataPoints as $point) {
-                $timeSeriesList[] = $this->createTimeSeries($metricType, $point, $otelMetric->unit, $data);
-            }
-        }
-
-        return $timeSeriesList;
-    }
-
-    /**
-     * Creates a single GCM TimeSeries from an OTel DataPoint.
-     *
-     * @param string $metricType
-     * @param NumberDataPoint|HistogramDataPoint $otelPoint
-     * @param string|null $unit
-     * @param DataInterface $otelData
-     * @return TimeSeries
-     */
-    private function createTimeSeries(
-        string $metricType,
-        NumberDataPoint|HistogramDataPoint $otelPoint,
-        ?string $unit,
-        DataInterface $otelData
-    ): TimeSeries {
-        $ts = new TimeSeries();
-        $unit = $unit ?? '1';
-
-        $metricLabels = [];
-        $resourceLabels = [
-            'client_hash' => $this->clientHash,
-        ];
-
-        // Distribute attributes between Resource and Metric labels
-        foreach ($otelPoint->attributes as $key => $value) {
-            $labelKey = str_replace('.', '_', $key);
-            if (isset(self::$MONITORED_RES_LABELS[$labelKey])) {
-                $resourceLabels[$labelKey] = (string) $value;
-            } else {
-                $metricLabels[$labelKey] = (string) $value;
-            }
-        }
-
-        $metric = new Metric();
-        $metric->setType($metricType);
-        $metric->setLabels($metricLabels);
-        $ts->setMetric($metric);
-
-        $resource = new MonitoredResource();
-        $resource->setType(self::SPANNER_RESOURCE_TYPE);
-        $resource->setLabels($resourceLabels);
-        $ts->setResource($resource);
-
-        $ts->setUnit($unit);
-
-        $point = new Point();
-        $interval = new TimeInterval();
-
-        // Convert nanoseconds to Protobuf Timestamp
-        $interval->setStartTime($this->toTimestamp($otelPoint->startTimestamp));
-        $interval->setEndTime($this->toTimestamp($otelPoint->timestamp));
-        $point->setInterval($interval);
-
-        $value = new TypedValue();
-        if ($otelData instanceof Sum) {
-            $ts->setMetricKind($otelData->monotonic ? MetricKind::CUMULATIVE : MetricKind::GAUGE);
-            if (is_int($otelPoint->value)) {
-                $value->setInt64Value($otelPoint->value);
-                $ts->setValueType(ValueType::INT64);
-            } else {
-                $value->setDoubleValue((float) $otelPoint->value);
-                $ts->setValueType(ValueType::DOUBLE);
-            }
-        } elseif ($otelData instanceof Histogram) {
-            $ts->setMetricKind(MetricKind::CUMULATIVE);
-            $ts->setValueType(ValueType::DISTRIBUTION);
-
-            $dist = new Distribution();
-            $dist->setCount($otelPoint->count);
-            if ($otelPoint->count > 0) {
-                $dist->setMean($otelPoint->sum / $otelPoint->count);
-            }
-            $dist->setBucketCounts($otelPoint->bucketCounts);
-
-            $bucketOptions = new BucketOptions();
-            $explicit = new Explicit();
-            $explicit->setBounds($otelPoint->explicitBounds);
-            $bucketOptions->setExplicitBuckets($explicit);
-            $dist->setBucketOptions($bucketOptions);
-
-            $value->setDistributionValue($dist);
-        }
-
-        $point->setValue($value);
-        $ts->setPoints([$point]);
-
-        return $ts;
-    }
-
-    /**
-     * Formats the metric name for Cloud Monitoring.
-     * Built-in metrics MUST use the specific internal namespace.
-     *
-     * @param string $name The OTel instrument name.
-     * @return string The fully qualified GCM metric type.
-     */
-    private function formatMetricName(string $name): string
-    {
-        return self::NATIVE_METRICS_PREFIX . $name;
-    }
-
-    /**
-     * Converts nanoseconds to a php Timestamp
-     *
-     * @param int $nanos
-     * @return Timestamp
-     */
-    private function toTimestamp(int $nanos): Timestamp
-    {
-        $timestamp = new Timestamp();
-        $timestamp->setSeconds((int) ($nanos / 1_000_000_000));
-        $timestamp->setNanos((int) ($nanos % 1_000_000_000));
-        return $timestamp;
-    }
-
-    /**
-     * Returns a hash of the client UUID for the metrics
-     *
-     * @param string $clientUid
-     * @return string
-     */
-    private function generateClientHash(string $clientUid): string
-    {
-        if ($clientUid === '') {
-            return '000000';
-        }
-
-        $hashHex = hash('fnv164', $clientUid);
-        $firstFour = substr($hashHex, 0, 4);
-        $intVal = hexdec($firstFour);
-        $tenBits = $intVal >> 6;
-        return sprintf('%06x', $tenBits);
     }
 }

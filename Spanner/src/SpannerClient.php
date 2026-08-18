@@ -33,7 +33,6 @@ use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\LongRunning\LongRunningClientConnection;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\OptionsValidator;
-use Google\Cloud\Monitoring\V3\Client\MetricServiceClient;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig;
@@ -54,9 +53,11 @@ use Google\LongRunning\Operation as OperationProto;
 use Google\Protobuf\Duration;
 use OpenTelemetry\API\Metrics\MeterInterface;
 use OpenTelemetry\API\Metrics\MeterProviderInterface;
+use OpenTelemetry\SDK\Common\Attribute\Attributes;
 use OpenTelemetry\SDK\Common\Util\ShutdownHandler;
 use OpenTelemetry\SDK\Metrics\MeterProvider;
 use OpenTelemetry\SDK\Metrics\MetricReader\ExportingReader;
+use OpenTelemetry\SDK\Resource\ResourceInfo;
 use Psr\Cache\CacheItemPoolInterface;
 use Psr\Http\Message\StreamInterface;
 use Ramsey\Uuid\Uuid as RUUID;
@@ -1055,42 +1056,28 @@ class SpannerClient
 
     private function configureMetrics(array $options): void
     {
-        $metricsClient = $this->pluck('metricServiceClient', $options, false);
-        $timeoutMillis = $this->pluck('metricsTimeoutMillis', $options, false) ?? 100;
+        $timeoutMillis = $this->pluck('metricsTimeoutMillis', $options, false) ?? 5000;
 
         if (!$this->pluck('enableBuiltInMetrics', $options, false)) {
             return;
         }
 
-        if (!$metricsClient) {
-            $metricsOptions = [
-                'projectId' => $this->projectId,
-                'keyFile' => $options['keyFile'] ?? null,
-                'keyFilePath' => $options['keyFilePath'] ?? null,
-                'credentials' => $options['credentials'] ?? null,
-                'credentialsConfig' => $options['credentialsConfig'] ?? null,
-                'universeDomain' => $options['universeDomain'] ?? null,
-                'transport' => $options['transport'] ?? null,
-                'transportConfig' => $options['transportConfig'] ?? null
-            ];
-
-            try {
-                $metricsClient = new MetricServiceClient(array_filter($metricsOptions));
-            } catch (ValidationException $e) {
-                // If we cannot instantiate the metrics client, we should not stop the execution
-                return;
-            }
-        }
-
-        if (!$metricsClient instanceof MetricServiceClient) {
-            throw new ValidationException('The "metricServiceClient" option must be a MetricServiceClient instance.');
-        }
-
         $location = $this->getLocation();
         $metricsClientId = RUUID::uuid4()->toString() . '-' . getmypid();
-        $exporter = new MetricsExporter($metricsClient, $this->projectId, $metricsClientId, $timeoutMillis);
+        $clientHash = $this->generateClientHash($metricsClientId);
+
+        $resource = ResourceInfo::create(Attributes::create([
+            'gcp.resource_type' => 'spanner_instance_client',
+            'gcp.project_id'    => $this->projectId,
+            'project_id'        => $this->projectId,
+            'client_hash'       => $clientHash,
+            'location'          => $location !== 'global' ? $location : 'us-central1',
+        ]));
+
+        $exporter = new MetricsExporter($this->projectId, $timeoutMillis, $options);
         $reader = new ExportingReader($exporter);
         $this->meterProvider = MeterProvider::builder()
+            ->setResource($resource)
             ->addReader($reader)
             ->build();
 
@@ -1102,9 +1089,7 @@ class SpannerClient
                 $handler,
                 $this->meter,
                 $metricsClientId,
-                $this->projectId,
-                $this->clientVersion(),
-                $location
+                $this->clientVersion()
             );
         };
 
@@ -1113,9 +1098,7 @@ class SpannerClient
                 $handler,
                 $this->meter,
                 $metricsClientId,
-                $this->projectId,
-                $this->clientVersion(),
-                $location
+                $this->clientVersion()
             );
         };
 
@@ -1171,5 +1154,24 @@ class SpannerClient
         }
 
         return $location;
+    }
+
+    /**
+     * Returns a hash of the client UUID for the metrics.
+     *
+     * @param string $clientUid
+     * @return string
+     */
+    private function generateClientHash(string $clientUid): string
+    {
+        if ($clientUid === '') {
+            return '000000';
+        }
+
+        $hashHex = hash('fnv1a64', $clientUid);
+        $firstFour = substr($hashHex, 0, 4);
+        $intVal = hexdec($firstFour);
+        $tenBits = $intVal >> 6;
+        return sprintf('%06x', $tenBits);
     }
 }
