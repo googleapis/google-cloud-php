@@ -107,6 +107,7 @@ libraries:
       - path: google/iam/v1
         php:
           common_resources: false
+          generate_gapic: false
           staging_subdir: iam
       - path: google/api
         php:
@@ -114,14 +115,20 @@ libraries:
       - path: google/cloud
         php:
           common_resources: false
+          excluded_protos:
+            - google/cloud/common_resources.proto
           staging_subdir: extendedoperations
       - path: google/rpc
         php:
           common_resources: false
+          excluded_protos:
+            - google/rpc/http.proto
       - path: google/type
         php:
           common_resources: false
       - path: google/cloud/location
+        php:
+          generate_gapic: false
       - path: google/logging/type
         php:
           common_resources: false
