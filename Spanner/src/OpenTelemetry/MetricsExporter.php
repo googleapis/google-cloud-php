@@ -33,11 +33,8 @@
 namespace Google\Cloud\Spanner\OpenTelemetry;
 
 use Google\ApiCore\CredentialsWrapper;
-use Google\Auth\ApplicationDefaultCredentials;
-use Google\Auth\Middleware\AuthTokenMiddleware;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\HandlerStack;
-use GuzzleHttp\Psr7\Request;
 use OpenTelemetry\Contrib\Otlp\MetricExporter as OtlpMetricExporter;
 use OpenTelemetry\SDK\Common\Export\Http\PsrTransportFactory;
 use OpenTelemetry\SDK\Metrics\AggregationTemporalitySelectorInterface;
@@ -46,7 +43,6 @@ use OpenTelemetry\SDK\Metrics\Data\Temporality;
 use OpenTelemetry\SDK\Metrics\MetricMetadataInterface;
 use OpenTelemetry\SDK\Metrics\PushMetricExporterInterface;
 use Psr\Http\Message\RequestInterface;
-use Psr\Http\Message\ResponseInterface;
 use Throwable;
 
 /**
@@ -61,25 +57,20 @@ class MetricsExporter implements PushMetricExporterInterface, AggregationTempora
     public const MONITORING_WRITE_SCOPE = 'https://www.googleapis.com/auth/monitoring.write';
     public const CLOUD_PLATFORM_SCOPE = 'https://www.googleapis.com/auth/cloud-platform';
 
-    private string $projectId;
     private PushMetricExporterInterface $otlpExporter;
 
     /**
      * @param CredentialsWrapper $metricsCredentials The credentials wrapper for metric export.
-     * @param string $projectId The GCP project ID metrics will be written to.
      * @param int $timeoutMillis The timeout defined for the metrics client during export.
      * @param array $options Optional configuration parameters.
      * @param PushMetricExporterInterface|null $otlpExporter Optional inner exporter for testing.
      */
     public function __construct(
         CredentialsWrapper $metricsCredentials,
-        string $projectId,
         int $timeoutMillis = 5000,
         array $options = [],
         ?PushMetricExporterInterface $otlpExporter = null
     ) {
-        $this->projectId = $projectId;
-
         if ($otlpExporter !== null) {
             $this->otlpExporter = $otlpExporter;
             return;
