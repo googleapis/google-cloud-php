@@ -1083,7 +1083,7 @@ class SpannerClient
 
         $metricsCredentials = $this->buildMetricsCredentials($options);
 
-        $exporter = new MetricsExporter($metricsCredentials, $this->projectId, $timeoutMillis, $options);
+        $exporter = new MetricsExporter($metricsCredentials, $timeoutMillis, $options);
         $reader = new ExportingReader($exporter);
         $this->meterProvider = MeterProvider::builder()
             ->setResource($resource)
@@ -1093,7 +1093,7 @@ class SpannerClient
         $this->meter = $this->meterProvider->getMeter('google-cloud-spanner');
         ShutdownHandler::register([$this->meterProvider, 'shutdown']);
 
-        $attemptMetricsMiddleware = function (MiddlewareInterface $handler) use ($metricsClientId, $location) {
+        $attemptMetricsMiddleware = function (MiddlewareInterface $handler) use ($metricsClientId) {
             return new MetricsAttemptMiddleware(
                 $handler,
                 $this->meter,
@@ -1102,7 +1102,7 @@ class SpannerClient
             );
         };
 
-        $operationMetricsMiddleware = function (MiddlewareInterface $handler) use ($metricsClientId, $location) {
+        $operationMetricsMiddleware = function (MiddlewareInterface $handler) use ($metricsClientId) {
             return new MetricsOperationMiddleware(
                 $handler,
                 $this->meter,
