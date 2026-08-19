@@ -270,7 +270,7 @@ final class EntitySignalsMappingServiceClient
     }
 
     /**
-     * API to batch create `EntitySignalsMapping` objects.
+     * Creates `EntitySignalsMapping` objects.
      *
      * The async variant is
      * {@see EntitySignalsMappingServiceClient::batchCreateEntitySignalsMappingsAsync()}
@@ -300,7 +300,7 @@ final class EntitySignalsMappingServiceClient
     }
 
     /**
-     * API to batch update `EntitySignalsMapping` objects.
+     * Batch updates `EntitySignalsMapping` objects.
      *
      * The async variant is
      * {@see EntitySignalsMappingServiceClient::batchUpdateEntitySignalsMappingsAsync()}
@@ -330,7 +330,7 @@ final class EntitySignalsMappingServiceClient
     }
 
     /**
-     * API to create an `EntitySignalsMapping` object.
+     * Creates an `EntitySignalsMapping` object.
      *
      * The async variant is
      * {@see EntitySignalsMappingServiceClient::createEntitySignalsMappingAsync()} .
@@ -359,7 +359,7 @@ final class EntitySignalsMappingServiceClient
     }
 
     /**
-     * API to retrieve a `EntitySignalsMapping` object.
+     * Retrieves a `EntitySignalsMapping` object.
      *
      * The async variant is
      * {@see EntitySignalsMappingServiceClient::getEntitySignalsMappingAsync()} .
@@ -388,7 +388,7 @@ final class EntitySignalsMappingServiceClient
     }
 
     /**
-     * API to retrieve a list of `EntitySignalsMapping` objects.
+     * Lists `EntitySignalsMapping` objects.
      *
      * The async variant is
      * {@see EntitySignalsMappingServiceClient::listEntitySignalsMappingsAsync()} .
@@ -417,7 +417,7 @@ final class EntitySignalsMappingServiceClient
     }
 
     /**
-     * API to update an `EntitySignalsMapping` object.
+     * Updates an `EntitySignalsMapping` object.
      *
      * The async variant is
      * {@see EntitySignalsMappingServiceClient::updateEntitySignalsMappingAsync()} .

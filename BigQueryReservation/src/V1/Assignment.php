@@ -83,6 +83,26 @@ class Assignment extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string principal = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $principal = '';
+    /**
+     * Optional. Specifies the priority precedence for this assignment. Used to
+     * resolve ambiguity when multiple assignments match a single job. Higher
+     * numerical values represent higher priority (e.g., 20 is higher than 10). If
+     * unspecified, it defaults to 0. Multiple assignments can share the same
+     * precedence, but it is recommended to use unique precedence values for
+     * assignments within the same assignee scope.
+     *
+     * Generated from protobuf field <code>int64 precedence = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $precedence = 0;
+    /**
+     * Optional. Common Expression Language (CEL) condition that defines the
+     * matching criteria for this assignment.
+     * The condition must resolve to a boolean value.
+     * Supported variables will be added later.
+     *
+     * Generated from protobuf field <code>.google.type.Expr condition = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $condition = null;
 
     /**
      * Constructor.
@@ -128,6 +148,18 @@ class Assignment extends \Google\Protobuf\Internal\Message
      *             for workload identity pool identities.
      *           * The special value `unknown_or_deleted_user` represents principals which
      *             cannot be read from the user info service, for example deleted users.
+     *     @type int|string $precedence
+     *           Optional. Specifies the priority precedence for this assignment. Used to
+     *           resolve ambiguity when multiple assignments match a single job. Higher
+     *           numerical values represent higher priority (e.g., 20 is higher than 10). If
+     *           unspecified, it defaults to 0. Multiple assignments can share the same
+     *           precedence, but it is recommended to use unique precedence values for
+     *           assignments within the same assignee scope.
+     *     @type \Google\Type\Expr $condition
+     *           Optional. Common Expression Language (CEL) condition that defines the
+     *           matching criteria for this assignment.
+     *           The condition must resolve to a boolean value.
+     *           Supported variables will be added later.
      * }
      */
     public function __construct($data = NULL) {
@@ -377,6 +409,84 @@ class Assignment extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->principal = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies the priority precedence for this assignment. Used to
+     * resolve ambiguity when multiple assignments match a single job. Higher
+     * numerical values represent higher priority (e.g., 20 is higher than 10). If
+     * unspecified, it defaults to 0. Multiple assignments can share the same
+     * precedence, but it is recommended to use unique precedence values for
+     * assignments within the same assignee scope.
+     *
+     * Generated from protobuf field <code>int64 precedence = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int|string
+     */
+    public function getPrecedence()
+    {
+        return $this->precedence;
+    }
+
+    /**
+     * Optional. Specifies the priority precedence for this assignment. Used to
+     * resolve ambiguity when multiple assignments match a single job. Higher
+     * numerical values represent higher priority (e.g., 20 is higher than 10). If
+     * unspecified, it defaults to 0. Multiple assignments can share the same
+     * precedence, but it is recommended to use unique precedence values for
+     * assignments within the same assignee scope.
+     *
+     * Generated from protobuf field <code>int64 precedence = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setPrecedence($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->precedence = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Common Expression Language (CEL) condition that defines the
+     * matching criteria for this assignment.
+     * The condition must resolve to a boolean value.
+     * Supported variables will be added later.
+     *
+     * Generated from protobuf field <code>.google.type.Expr condition = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Type\Expr|null
+     */
+    public function getCondition()
+    {
+        return $this->condition;
+    }
+
+    public function hasCondition()
+    {
+        return isset($this->condition);
+    }
+
+    public function clearCondition()
+    {
+        unset($this->condition);
+    }
+
+    /**
+     * Optional. Common Expression Language (CEL) condition that defines the
+     * matching criteria for this assignment.
+     * The condition must resolve to a boolean value.
+     * Supported variables will be added later.
+     *
+     * Generated from protobuf field <code>.google.type.Expr condition = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Type\Expr $var
+     * @return $this
+     */
+    public function setCondition($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Type\Expr::class);
+        $this->condition = $var;
 
         return $this;
     }
