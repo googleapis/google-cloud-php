@@ -71,8 +71,9 @@ class BuiltInMetricsExporterTest extends TestCase
 
     public function testExport()
     {
+        $mockCredentials = $this->prophesize(\Google\ApiCore\CredentialsWrapper::class);
         $mockOtlpExporter = $this->prophesize(PushMetricExporterInterface::class);
-        $exporter = new MetricsExporter(self::PROJECT_ID, 100, [], $mockOtlpExporter->reveal());
+        $exporter = new MetricsExporter($mockCredentials->reveal(), self::PROJECT_ID, 100, [], $mockOtlpExporter->reveal());
 
         $scope = new InstrumentationScope('google-cloud-spanner', '1.0.0', null, Attributes::create([]));
         $resource = ResourceInfo::create(Attributes::create([
@@ -104,9 +105,10 @@ class BuiltInMetricsExporterTest extends TestCase
 
     public function testExportCustomTimeout()
     {
+        $mockCredentials = $this->prophesize(\Google\ApiCore\CredentialsWrapper::class);
         $mockOtlpExporter = $this->prophesize(PushMetricExporterInterface::class);
         $timeout = 500;
-        $exporter = new MetricsExporter(self::PROJECT_ID, $timeout, [], $mockOtlpExporter->reveal());
+        $exporter = new MetricsExporter($mockCredentials->reveal(), self::PROJECT_ID, $timeout, [], $mockOtlpExporter->reveal());
 
         $scope = new InstrumentationScope('google-cloud-spanner', '1.0.0', null, Attributes::create([]));
         $resource = ResourceInfo::create(Attributes::create([]));
@@ -123,11 +125,50 @@ class BuiltInMetricsExporterTest extends TestCase
 
     public function testConstructWithCustomMetricsCredentials()
     {
-        $mockCredentials = $this->prophesize(\Google\Auth\FetchAuthTokenInterface::class);
-        $exporter = new MetricsExporter(self::PROJECT_ID, 5000, [
-            'metricsCredentials' => $mockCredentials->reveal()
-        ]);
+        $mockCredentials = $this->prophesize(\Google\ApiCore\CredentialsWrapper::class);
+        $exporter = new MetricsExporter($mockCredentials->reveal(), self::PROJECT_ID, 5000, []);
 
         $this->assertInstanceOf(MetricsExporter::class, $exporter);
+    }
+
+    public function testGuzzleMiddlewareAttachesAuthorizationAndQuotaProjectHeaders()
+    {
+        $mockCredentials = $this->prophesize(\Google\ApiCore\CredentialsWrapper::class);
+        $mockCredentials->getAuthorizationHeaderCallback()->willReturn(function () {
+            return ['authorization' => ['Bearer test-metric-token']];
+        });
+        $mockCredentials->getQuotaProject()->willReturn('test-quota-project-id');
+
+        $recordedRequests = [];
+        $mockHandler = new \GuzzleHttp\Handler\MockHandler([
+            new \GuzzleHttp\Psr7\Response(200, [], '')
+        ]);
+        $handlerStack = \GuzzleHttp\HandlerStack::create($mockHandler);
+
+        $exporter = new MetricsExporter(
+            $mockCredentials->reveal(),
+            self::PROJECT_ID,
+            5000,
+            ['handlerStack' => $handlerStack]
+        );
+
+        $scope = new InstrumentationScope('google-cloud-spanner', '1.0.0', null, Attributes::create([]));
+        $resource = ResourceInfo::create(Attributes::create([]));
+        $point = new NumberDataPoint(1, Attributes::create([]), 1711368000000000000, 1711368060000000000);
+        $sum = new Sum([$point], Temporality::CUMULATIVE, true);
+        $metric = new OTelMetric($scope, $resource, 'spanner.googleapis.com/internal/client/attempt_count', '1', 'desc', $sum);
+
+        // Access the internal otlpExporter via reflection to trigger HTTP call through transport
+        $reflection = new ReflectionClass(MetricsExporter::class);
+        $property = $reflection->getProperty('otlpExporter');
+        $property->setAccessible(true);
+        $otlpExporter = $property->getValue($exporter);
+
+        $otlpExporter->export([$metric]);
+
+        $lastRequest = $mockHandler->getLastRequest();
+        $this->assertNotNull($lastRequest);
+        $this->assertEquals(['Bearer test-metric-token'], $lastRequest->getHeader('authorization'));
+        $this->assertEquals(['test-quota-project-id'], $lastRequest->getHeader('x-goog-user-project'));
     }
 }

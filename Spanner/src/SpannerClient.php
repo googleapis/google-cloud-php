@@ -19,10 +19,12 @@ namespace Google\Cloud\Spanner;
 
 use Exception;
 use Google\ApiCore\ClientOptionsTrait;
+use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Middleware\MiddlewareInterface;
 use Google\ApiCore\Options\CallOptions;
 use Google\ApiCore\ValidationException;
 use Google\Auth\Credentials\GCECredentials;
+use Google\Auth\GetUniverseDomainInterface;
 use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\Compute\Metadata;
 use Google\Cloud\Core\DetectProjectIdTrait;
@@ -205,10 +207,10 @@ class SpannerClient
      *     @type CacheItemPoolInterface $cacheItemPool
      *     @type bool $enableBuiltInMetrics If true, built-in metrics collection will be enabled.
      *           **Defaults to** false.
-     *     @type int $metricsTimeoutMillis The timeout in milliseconds for the internal
-     *           `MetricServiceClient` used to export metrics. **Defaults to** 100.
-     *     @type MetricServiceClient $metricServiceClient An explicit instance of
-     *           `MetricServiceClient` to use for exporting metrics.
+     *     @type int $metricsTimeoutMillis The timeout in milliseconds for exporting metrics.
+     *           **Defaults to** 5000.
+     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $metricsCredentials
+     *           Optional dedicated credentials to use for exporting built-in metrics.
      * }
      * @throws GoogleException If the gRPC extension is not enabled.
      */
@@ -252,6 +254,10 @@ class SpannerClient
         } else {
             $options['credentialsConfig']['scopes'] = $scopes;
         }
+
+        $metricsCredentials = $options['metricsCredentials']
+            ?? $options['credentials']
+            ?? null;
 
         if ($emulatorHost) {
             $emulatorConfig = $this->emulatorGapicConfig($emulatorHost);
@@ -300,6 +306,7 @@ class SpannerClient
         $this->instanceAdminClient->addMiddleware($middleware);
         $this->databaseAdminClient->addMiddleware($middleware);
 
+        $options['metricsCredentials'] = $metricsCredentials;
         $this->configureMetrics($options);
 
         $this->projectName = InstanceAdminClient::projectName($this->projectId);
@@ -1074,7 +1081,9 @@ class SpannerClient
             'location'          => $location !== 'global' ? $location : 'us-central1',
         ]));
 
-        $exporter = new MetricsExporter($this->projectId, $timeoutMillis, $options);
+        $metricsCredentials = $this->buildMetricsCredentials($options);
+
+        $exporter = new MetricsExporter($metricsCredentials, $this->projectId, $timeoutMillis, $options);
         $reader = new ExportingReader($exporter);
         $this->meterProvider = MeterProvider::builder()
             ->setResource($resource)
@@ -1173,5 +1182,25 @@ class SpannerClient
         $intVal = hexdec($firstFour);
         $tenBits = $intVal >> 6;
         return sprintf('%06x', $tenBits);
+    }
+
+    private function buildMetricsCredentials(array $options): CredentialsWrapper
+    {
+        $metricsCredentials = $options['metricsCredentials']
+            ?? $options['credentials']
+            ?? null;
+
+        $credentialsConfig = [
+            'scopes' => [
+                MetricsExporter::MONITORING_WRITE_SCOPE,
+                MetricsExporter::CLOUD_PLATFORM_SCOPE
+            ]
+        ];
+
+        $universeDomain = $options['universeDomain'] ?? GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN;
+
+        $credentialsWrapper = $this->createCredentialsWrapper($metricsCredentials, $credentialsConfig, $universeDomain);
+
+        return $credentialsWrapper;
     }
 }

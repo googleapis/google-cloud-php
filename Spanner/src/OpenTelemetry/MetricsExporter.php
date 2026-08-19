@@ -32,10 +32,12 @@
 
 namespace Google\Cloud\Spanner\OpenTelemetry;
 
+use Google\ApiCore\CredentialsWrapper;
 use Google\Auth\ApplicationDefaultCredentials;
 use Google\Auth\Middleware\AuthTokenMiddleware;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Psr7\Request;
 use OpenTelemetry\Contrib\Otlp\MetricExporter as OtlpMetricExporter;
 use OpenTelemetry\SDK\Common\Export\Http\PsrTransportFactory;
 use OpenTelemetry\SDK\Metrics\AggregationTemporalitySelectorInterface;
@@ -56,19 +58,21 @@ use Throwable;
 class MetricsExporter implements PushMetricExporterInterface, AggregationTemporalitySelectorInterface
 {
     private const DEFAULT_ENDPOINT = 'https://telemetry.googleapis.com/v1/metrics';
-    private const MONITORING_WRITE_SCOPE = 'https://www.googleapis.com/auth/monitoring.write';
-    private const CLOUD_PLATFORM_SCOPE = 'https://www.googleapis.com/auth/cloud-platform';
+    public const MONITORING_WRITE_SCOPE = 'https://www.googleapis.com/auth/monitoring.write';
+    public const CLOUD_PLATFORM_SCOPE = 'https://www.googleapis.com/auth/cloud-platform';
 
     private string $projectId;
     private PushMetricExporterInterface $otlpExporter;
 
     /**
+     * @param CredentialsWrapper $metricsCredentials The credentials wrapper for metric export.
      * @param string $projectId The GCP project ID metrics will be written to.
      * @param int $timeoutMillis The timeout defined for the metrics client during export.
      * @param array $options Optional configuration parameters.
      * @param PushMetricExporterInterface|null $otlpExporter Optional inner exporter for testing.
      */
     public function __construct(
+        CredentialsWrapper $metricsCredentials,
         string $projectId,
         int $timeoutMillis = 5000,
         array $options = [],
@@ -81,19 +85,21 @@ class MetricsExporter implements PushMetricExporterInterface, AggregationTempora
             return;
         }
 
-        $endpoint = $options['endpoint'] ?? self::DEFAULT_ENDPOINT;
-
-        $handlerStack = HandlerStack::create();
-        try {
-            $fetcher = ApplicationDefaultCredentials::getCredentials([
-                self::MONITORING_WRITE_SCOPE,
-                self::CLOUD_PLATFORM_SCOPE
-            ]);
-
-            $handlerStack->push(new AuthTokenMiddleware($fetcher));
-        } catch (Throwable $e) {
-            // Proceed without auth middleware if ADC is unavailable
-        }
+        $authCallback = $metricsCredentials->getAuthorizationHeaderCallback();
+        $quotaProject = $metricsCredentials->getQuotaProject();
+        $handlerStack = $options['handlerStack'] ?? HandlerStack::create();
+        $handlerStack->push(function (callable $handler) use ($authCallback, $quotaProject) {
+            return function (RequestInterface $request, array $options) use ($authCallback, $handler, $quotaProject) {
+                $headers = $authCallback ? $authCallback() : [];
+                foreach ($headers as $name => $values) {
+                    $request = $request->withHeader($name, $values);
+                }
+                if ($quotaProject) {
+                    $request = $request->withHeader('x-goog-user-project', $quotaProject);
+                }
+                return $handler($request, $options);
+            };
+        });
 
         $guzzleClient = $options['guzzleClient'] ?? new GuzzleClient([
             'handler' => $handlerStack,
@@ -102,7 +108,7 @@ class MetricsExporter implements PushMetricExporterInterface, AggregationTempora
         ]);
 
         $transport = (new PsrTransportFactory($guzzleClient))->create(
-            $endpoint,
+            self::DEFAULT_ENDPOINT,
             'application/x-protobuf'
         );
 
