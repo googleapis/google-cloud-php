@@ -1008,11 +1008,16 @@ libraries:
     output: Logging
   - name: longrunning
     version: 0.8.1
+    keep:
+      - src/LongRunning/Gapic/OperationsGapicClient.php
+      - src/LongRunning/OperationsClient.php
+      - tests/Unit/OperationsClientTest.php
     apis:
       - path: google/longrunning
         php:
           common_resources: false
-          staging_subdir: src/LongRunning
+          samples: false
+          staging_subdir: .
     output: LongRunning
   - name: lustre
     version: 0.5.0

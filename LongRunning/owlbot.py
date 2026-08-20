@@ -15,7 +15,9 @@
 """This script is used to synthesize generated parts of this library."""
 
 import logging
+import os
 from pathlib import Path
+import shutil
 import subprocess
 
 import synthtool as s
@@ -40,6 +42,18 @@ php.owlbot_copy_version(
     ],
     version_string="longrunning",
 )
+
+# move GAPIC generated files to src/LongRunning if present (for librarian backwards compatibility)
+for path in ["src/Client", "src/resources"]:
+    if os.path.isdir(path):
+        s.move(path, f"src/LongRunning/{os.path.basename(path)}")
+        shutil.rmtree(path, ignore_errors=True)
+
+if os.path.isfile("src/gapic_metadata.json"):
+    s.move("src/gapic_metadata.json", "src/LongRunning/gapic_metadata.json")
+    if os.path.exists("src/gapic_metadata.json"):
+        os.remove("src/gapic_metadata.json")
+
 
 ### [START] protoc backwards compatibility fixes
 
