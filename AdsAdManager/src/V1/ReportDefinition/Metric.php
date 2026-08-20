@@ -2193,6 +2193,19 @@ class Metric
      */
     const CTR = 3;
     /**
+     * For standard ads, your ad clickthrough rate (CTR) is the number of ad
+     *  clicks divided by the number of individual ad impressions expressed as a
+     *  fraction. Ad CTR = Clicks / Ad impressions. Counts companion impressions
+     *  in the number of ad impressions.
+     * Corresponds to "Total CTR with companion" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`,
+     * `ADS_TRAFFIC_NAVIGATOR`, `AD_SPEED`
+     * Data format: `PERCENT`
+     *
+     * Generated from protobuf enum <code>CTR_WITH_COMPANION = 742;</code>
+     */
+    const CTR_WITH_COMPANION = 742;
+    /**
      * Number of bids received for a deal.
      * Corresponds to "Deals bids" in the Ad Manager UI.
      * Compatible with the following report types: `HISTORICAL`
@@ -2577,6 +2590,17 @@ class Metric
      * Generated from protobuf enum <code>IMPRESSIONS = 1;</code>
      */
     const IMPRESSIONS = 1;
+    /**
+     * Total impressions from the Google Ad Manager server, AdSense,
+     *  Ad Exchange, and yield group partners, including companion ads.
+     * Corresponds to "Total impressions with companion" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`,
+     * `ADS_TRAFFIC_NAVIGATOR`, `AD_SPEED`
+     * Data format: `INTEGER`
+     *
+     * Generated from protobuf enum <code>IMPRESSIONS_WITH_COMPANION = 741;</code>
+     */
+    const IMPRESSIONS_WITH_COMPANION = 741;
     /**
      * The number of impressions (via begin to render methodology) considered
      *  inactive, as defined by served to a device receiving ad or bid requests
@@ -3149,6 +3173,33 @@ class Metric
      * Generated from protobuf enum <code>PARTNER_SOLD_IMPRESSIONS = 123;</code>
      */
     const PARTNER_SOLD_IMPRESSIONS = 123;
+    /**
+     * Total pod eCPM.
+     * Corresponds to "Total pod eCPM" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `MONEY`
+     *
+     * Generated from protobuf enum <code>POD_ECPM = 738;</code>
+     */
+    const POD_ECPM = 738;
+    /**
+     * Total pod eCPM without CPD.
+     * Corresponds to "Total pod eCPM without CPD" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `MONEY`
+     *
+     * Generated from protobuf enum <code>POD_ECPM_WITHOUT_CPD = 739;</code>
+     */
+    const POD_ECPM_WITHOUT_CPD = 739;
+    /**
+     * Total pod views.
+     * Corresponds to "Total pod views" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `INTEGER`
+     *
+     * Generated from protobuf enum <code>POD_VIEWS = 740;</code>
+     */
+    const POD_VIEWS = 740;
     /**
      * The total number of ad requests eligible for programmatic inventory,
      *  including Programmatic Guaranteed, Preferred Deals, backfill, and open
@@ -5415,6 +5466,7 @@ class Metric
         self::CREATIVE_LOAD_TIME_500_1000_PERCENT => 'CREATIVE_LOAD_TIME_500_1000_PERCENT',
         self::CREATIVE_LOAD_TIME_GT_8000_PERCENT => 'CREATIVE_LOAD_TIME_GT_8000_PERCENT',
         self::CTR => 'CTR',
+        self::CTR_WITH_COMPANION => 'CTR_WITH_COMPANION',
         self::DEALS_BIDS => 'DEALS_BIDS',
         self::DEALS_BID_RATE => 'DEALS_BID_RATE',
         self::DEALS_BID_REQUESTS => 'DEALS_BID_REQUESTS',
@@ -5455,6 +5507,7 @@ class Metric
         self::GOOGLE_SOLD_RESERVATION_COVIEWED_IMPRESSIONS => 'GOOGLE_SOLD_RESERVATION_COVIEWED_IMPRESSIONS',
         self::GOOGLE_SOLD_RESERVATION_IMPRESSIONS => 'GOOGLE_SOLD_RESERVATION_IMPRESSIONS',
         self::IMPRESSIONS => 'IMPRESSIONS',
+        self::IMPRESSIONS_WITH_COMPANION => 'IMPRESSIONS_WITH_COMPANION',
         self::INACTIVE_BEGIN_TO_RENDER_IMPRESSIONS => 'INACTIVE_BEGIN_TO_RENDER_IMPRESSIONS',
         self::INVENTORY_SHARES => 'INVENTORY_SHARES',
         self::INVENTORY_SHARE_PARTNER_UNFILLED_OPPORTUNITIES => 'INVENTORY_SHARE_PARTNER_UNFILLED_OPPORTUNITIES',
@@ -5514,6 +5567,9 @@ class Metric
         self::PARTNER_SOLD_CODE_SERVED => 'PARTNER_SOLD_CODE_SERVED',
         self::PARTNER_SOLD_COVIEWED_IMPRESSIONS => 'PARTNER_SOLD_COVIEWED_IMPRESSIONS',
         self::PARTNER_SOLD_IMPRESSIONS => 'PARTNER_SOLD_IMPRESSIONS',
+        self::POD_ECPM => 'POD_ECPM',
+        self::POD_ECPM_WITHOUT_CPD => 'POD_ECPM_WITHOUT_CPD',
+        self::POD_VIEWS => 'POD_VIEWS',
         self::PROGRAMMATIC_ELIGIBLE_AD_REQUESTS => 'PROGRAMMATIC_ELIGIBLE_AD_REQUESTS',
         self::PROGRAMMATIC_MATCH_RATE => 'PROGRAMMATIC_MATCH_RATE',
         self::PROGRAMMATIC_RESPONSES_SERVED => 'PROGRAMMATIC_RESPONSES_SERVED',
