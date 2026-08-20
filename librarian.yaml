@@ -14,8 +14,8 @@
 language: php
 sources:
   googleapis:
-    commit: 6145fa8cc2b137bf4c0ed114e2e39c1157ea9722
-    sha256: 489923d12c766c9e323b42de057037977b03f20c8a874bc8553d29f9dd3f0e3b
+    commit: 89040d1713699bad4878bd9a6ef94ca792a5b83d
+    sha256: e62fc9c8077ab89ec571fa85a1511d1381536b68962ee0b5565d68cc5254b063
 tools:
   composer:
     - name: google-cloud-php/dev
@@ -77,6 +77,43 @@ libraries:
           additional_protos:
             - google/cloud/location/locations.proto
             - google/iam/v1/iam_policy.proto
+          excluded_protos:
+            - google/cloud/aiplatform/v1/schema/predict/instance/image_classification.proto
+            - google/cloud/aiplatform/v1/schema/predict/instance/image_object_detection.proto
+            - google/cloud/aiplatform/v1/schema/predict/instance/image_segmentation.proto
+            - google/cloud/aiplatform/v1/schema/predict/instance/text_classification.proto
+            - google/cloud/aiplatform/v1/schema/predict/instance/text_extraction.proto
+            - google/cloud/aiplatform/v1/schema/predict/instance/text_sentiment.proto
+            - google/cloud/aiplatform/v1/schema/predict/instance/video_action_recognition.proto
+            - google/cloud/aiplatform/v1/schema/predict/instance/video_classification.proto
+            - google/cloud/aiplatform/v1/schema/predict/instance/video_object_tracking.proto
+            - google/cloud/aiplatform/v1/schema/predict/params/image_classification.proto
+            - google/cloud/aiplatform/v1/schema/predict/params/image_object_detection.proto
+            - google/cloud/aiplatform/v1/schema/predict/params/image_segmentation.proto
+            - google/cloud/aiplatform/v1/schema/predict/params/video_action_recognition.proto
+            - google/cloud/aiplatform/v1/schema/predict/params/video_classification.proto
+            - google/cloud/aiplatform/v1/schema/predict/params/video_object_tracking.proto
+            - google/cloud/aiplatform/v1/schema/predict/prediction/classification.proto
+            - google/cloud/aiplatform/v1/schema/predict/prediction/image_object_detection.proto
+            - google/cloud/aiplatform/v1/schema/predict/prediction/image_segmentation.proto
+            - google/cloud/aiplatform/v1/schema/predict/prediction/tabular_classification.proto
+            - google/cloud/aiplatform/v1/schema/predict/prediction/tabular_regression.proto
+            - google/cloud/aiplatform/v1/schema/predict/prediction/text_extraction.proto
+            - google/cloud/aiplatform/v1/schema/predict/prediction/text_sentiment.proto
+            - google/cloud/aiplatform/v1/schema/predict/prediction/video_action_recognition.proto
+            - google/cloud/aiplatform/v1/schema/predict/prediction/video_classification.proto
+            - google/cloud/aiplatform/v1/schema/predict/prediction/video_object_tracking.proto
+            - google/cloud/aiplatform/v1/schema/trainingjob/definition/automl_image_classification.proto
+            - google/cloud/aiplatform/v1/schema/trainingjob/definition/automl_image_object_detection.proto
+            - google/cloud/aiplatform/v1/schema/trainingjob/definition/automl_image_segmentation.proto
+            - google/cloud/aiplatform/v1/schema/trainingjob/definition/automl_tables.proto
+            - google/cloud/aiplatform/v1/schema/trainingjob/definition/automl_text_classification.proto
+            - google/cloud/aiplatform/v1/schema/trainingjob/definition/automl_text_extraction.proto
+            - google/cloud/aiplatform/v1/schema/trainingjob/definition/automl_text_sentiment.proto
+            - google/cloud/aiplatform/v1/schema/trainingjob/definition/automl_video_action_recognition.proto
+            - google/cloud/aiplatform/v1/schema/trainingjob/definition/automl_video_classification.proto
+            - google/cloud/aiplatform/v1/schema/trainingjob/definition/automl_video_object_tracking.proto
+            - google/cloud/aiplatform/v1/schema/trainingjob/definition/export_evaluated_data_items_config.proto
     output: AiPlatform
     php:
       component_name: AiPlatform
@@ -1008,16 +1045,16 @@ libraries:
     output: Logging
   - name: longrunning
     version: 0.8.1
-    keep:
-      - src/LongRunning/Gapic/OperationsGapicClient.php
-      - src/LongRunning/OperationsClient.php
-      - tests/Unit/OperationsClientTest.php
     apis:
       - path: google/longrunning
         php:
           common_resources: false
           samples: false
           staging_subdir: .
+    keep:
+      - src/LongRunning/Gapic/OperationsGapicClient.php
+      - src/LongRunning/OperationsClient.php
+      - tests/Unit/OperationsClientTest.php
     output: LongRunning
   - name: lustre
     version: 0.5.0
