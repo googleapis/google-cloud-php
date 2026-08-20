@@ -1,7 +1,7 @@
 name: Test Suite
 on:
   push:
-    branches: [ main, move-auth ]
+    branches: [ main ]
   pull_request:
   workflow_dispatch:
 
@@ -121,4 +121,3 @@ jobs:
       run: dev/vendor/bin/phpunit -c dev/phpunit.xml.dist
     - name: Run Dev Snippet Test Suite
       run: dev/vendor/bin/phpunit -c dev/phpunit-snippets.xml.dist
-
