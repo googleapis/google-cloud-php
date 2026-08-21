@@ -58,6 +58,15 @@ class State
      * Generated from protobuf enum <code>TOO_MANY_OBJECTS = 5;</code>
      */
     const TOO_MANY_OBJECTS = 5;
+    /**
+     * Indicates an error state where the ingestion source cannot be
+     * processed because the selected ingestion region is not permitted
+     * by the Regional Access Boundary (RAB) restrictions on the project's
+     * service account.
+     *
+     * Generated from protobuf enum <code>CONFLICTING_REGION_CONSTRAINTS = 8;</code>
+     */
+    const CONFLICTING_REGION_CONSTRAINTS = 8;
 
     private static $valueToName = [
         self::STATE_UNSPECIFIED => 'STATE_UNSPECIFIED',
@@ -66,6 +75,7 @@ class State
         self::PUBLISH_PERMISSION_DENIED => 'PUBLISH_PERMISSION_DENIED',
         self::BUCKET_NOT_FOUND => 'BUCKET_NOT_FOUND',
         self::TOO_MANY_OBJECTS => 'TOO_MANY_OBJECTS',
+        self::CONFLICTING_REGION_CONSTRAINTS => 'CONFLICTING_REGION_CONSTRAINTS',
     ];
 
     public static function name($value)

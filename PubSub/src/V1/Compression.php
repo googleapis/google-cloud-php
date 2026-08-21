@@ -21,13 +21,13 @@ class Compression extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.pubsub.v1.Compression.CompressionAlgorithm compression_algorithm = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $compression_algorithm = 0;
+    private $compression_algorithm = 0;
     /**
      * Required. Specifies whether to compress or decompress the message.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.Compression.CompressionMode compression_mode = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $compression_mode = 0;
+    private $compression_mode = 0;
 
     /**
      * Constructor.

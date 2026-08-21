@@ -20,13 +20,13 @@ class CompiledProtoSchema extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string root_message = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $root_message = '';
+    private $root_message = '';
     /**
      * Required. The compiled FileDescriptorSet binary.
      *
      * Generated from protobuf field <code>bytes compiled_bytes = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $compiled_bytes = '';
+    private $compiled_bytes = '';
 
     /**
      * Constructor.

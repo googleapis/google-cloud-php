@@ -41,11 +41,13 @@ class BigQueryConfig extends \Google\Protobuf\Internal\Message
      */
     private $write_metadata = false;
     /**
-     * Optional. When true and use_topic_schema is true, any fields that are a
-     * part of the topic schema that are not part of the BigQuery table schema are
-     * dropped when writing to BigQuery. Otherwise, the schemas must be kept in
-     * sync and any messages with extra fields are not written and remain in the
-     * subscription's backlog.
+     * Optional. If true and `use_topic_schema` is true, drops any fields that are
+     * part of the topic schema that are not part of the BigQuery table schema
+     * when writing to BigQuery. Otherwise, the schemas must be kept in sync and
+     * any messages with extra fields are not written and remain in the
+     * subscription's backlog. If true and `use_table_schema` is true, drops any
+     * fields in the message that are not part of the BigQuery table schema when
+     * writing to BigQuery. Otherwise, the write to BigQuery will fail.
      *
      * Generated from protobuf field <code>bool drop_unknown_fields = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -97,11 +99,13 @@ class BigQueryConfig extends \Google\Protobuf\Internal\Message
      *           columns while all other message properties (other than data) are written to
      *           a JSON object in the attributes column.
      *     @type bool $drop_unknown_fields
-     *           Optional. When true and use_topic_schema is true, any fields that are a
-     *           part of the topic schema that are not part of the BigQuery table schema are
-     *           dropped when writing to BigQuery. Otherwise, the schemas must be kept in
-     *           sync and any messages with extra fields are not written and remain in the
-     *           subscription's backlog.
+     *           Optional. If true and `use_topic_schema` is true, drops any fields that are
+     *           part of the topic schema that are not part of the BigQuery table schema
+     *           when writing to BigQuery. Otherwise, the schemas must be kept in sync and
+     *           any messages with extra fields are not written and remain in the
+     *           subscription's backlog. If true and `use_table_schema` is true, drops any
+     *           fields in the message that are not part of the BigQuery table schema when
+     *           writing to BigQuery. Otherwise, the write to BigQuery will fail.
      *     @type int $state
      *           Output only. An output-only field that indicates whether or not the
      *           subscription can receive messages.
@@ -216,11 +220,13 @@ class BigQueryConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. When true and use_topic_schema is true, any fields that are a
-     * part of the topic schema that are not part of the BigQuery table schema are
-     * dropped when writing to BigQuery. Otherwise, the schemas must be kept in
-     * sync and any messages with extra fields are not written and remain in the
-     * subscription's backlog.
+     * Optional. If true and `use_topic_schema` is true, drops any fields that are
+     * part of the topic schema that are not part of the BigQuery table schema
+     * when writing to BigQuery. Otherwise, the schemas must be kept in sync and
+     * any messages with extra fields are not written and remain in the
+     * subscription's backlog. If true and `use_table_schema` is true, drops any
+     * fields in the message that are not part of the BigQuery table schema when
+     * writing to BigQuery. Otherwise, the write to BigQuery will fail.
      *
      * Generated from protobuf field <code>bool drop_unknown_fields = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -231,11 +237,13 @@ class BigQueryConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. When true and use_topic_schema is true, any fields that are a
-     * part of the topic schema that are not part of the BigQuery table schema are
-     * dropped when writing to BigQuery. Otherwise, the schemas must be kept in
-     * sync and any messages with extra fields are not written and remain in the
-     * subscription's backlog.
+     * Optional. If true and `use_topic_schema` is true, drops any fields that are
+     * part of the topic schema that are not part of the BigQuery table schema
+     * when writing to BigQuery. Otherwise, the schemas must be kept in sync and
+     * any messages with extra fields are not written and remain in the
+     * subscription's backlog. If true and `use_table_schema` is true, drops any
+     * fields in the message that are not part of the BigQuery table schema when
+     * writing to BigQuery. Otherwise, the write to BigQuery will fail.
      *
      * Generated from protobuf field <code>bool drop_unknown_fields = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
