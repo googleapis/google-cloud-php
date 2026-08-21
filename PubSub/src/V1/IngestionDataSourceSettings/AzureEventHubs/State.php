@@ -63,6 +63,15 @@ class State
      * Generated from protobuf enum <code>RESOURCE_GROUP_NOT_FOUND = 7;</code>
      */
     const RESOURCE_GROUP_NOT_FOUND = 7;
+    /**
+     * Indicates an error state where the ingestion source cannot be
+     * processed because the selected ingestion region is not permitted
+     * by the Regional Access Boundary (RAB) restrictions on the project's
+     * service account.
+     *
+     * Generated from protobuf enum <code>CONFLICTING_REGION_CONSTRAINTS = 8;</code>
+     */
+    const CONFLICTING_REGION_CONSTRAINTS = 8;
 
     private static $valueToName = [
         self::STATE_UNSPECIFIED => 'STATE_UNSPECIFIED',
@@ -73,6 +82,7 @@ class State
         self::EVENT_HUB_NOT_FOUND => 'EVENT_HUB_NOT_FOUND',
         self::SUBSCRIPTION_NOT_FOUND => 'SUBSCRIPTION_NOT_FOUND',
         self::RESOURCE_GROUP_NOT_FOUND => 'RESOURCE_GROUP_NOT_FOUND',
+        self::CONFLICTING_REGION_CONSTRAINTS => 'CONFLICTING_REGION_CONSTRAINTS',
     ];
 
     public static function name($value)
