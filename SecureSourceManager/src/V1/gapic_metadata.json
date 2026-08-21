@@ -8,7 +8,7 @@
         "SecureSourceManager": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "SecureSourceManagerGapicClient",
+                    "libraryClient": "SecureSourceManagerClient",
                     "rpcs": {
                         "BatchCreatePullRequestComments": {
                             "methods": [

@@ -96,10 +96,12 @@ final class WorkflowsClient
     /** The name of the code generator, to be included in the agent header. */
     private const CODEGEN_NAME = 'gapic';
 
-    /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    /**
+     * The default scopes required by the service.
+     *
+     * @internal
+     */
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
 
@@ -145,7 +147,10 @@ final class WorkflowsClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
+        $options =
+            $methodName && isset($this->descriptors[$methodName]['longRunning'])
+                ? $this->descriptors[$methodName]['longRunning']
+                : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -203,8 +208,13 @@ final class WorkflowsClient
      *
      * @return string The formatted crypto_key_version resource.
      */
-    public static function cryptoKeyVersionName(string $project, string $location, string $keyRing, string $cryptoKey, string $cryptoKeyVersion): string
-    {
+    public static function cryptoKeyVersionName(
+        string $project,
+        string $location,
+        string $keyRing,
+        string $cryptoKey,
+        string $cryptoKeyVersion
+    ): string {
         return self::getPathTemplate('cryptoKeyVersion')->render([
             'project' => $project,
             'location' => $location,
@@ -466,8 +476,10 @@ final class WorkflowsClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listWorkflowRevisions(ListWorkflowRevisionsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listWorkflowRevisions(
+        ListWorkflowRevisionsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListWorkflowRevisions', $request, $callOptions);
     }
 

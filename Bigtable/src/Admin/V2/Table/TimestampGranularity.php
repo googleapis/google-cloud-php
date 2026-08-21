@@ -27,10 +27,17 @@ class TimestampGranularity
      * Generated from protobuf enum <code>MILLIS = 1;</code>
      */
     const MILLIS = 1;
+    /**
+     * The table keeps data versioned at a granularity of 1us.
+     *
+     * Generated from protobuf enum <code>MICROS = 2;</code>
+     */
+    const MICROS = 2;
 
     private static $valueToName = [
         self::TIMESTAMP_GRANULARITY_UNSPECIFIED => 'TIMESTAMP_GRANULARITY_UNSPECIFIED',
         self::MILLIS => 'MILLIS',
+        self::MICROS => 'MICROS',
     ];
 
     public static function name($value)

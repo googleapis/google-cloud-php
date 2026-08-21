@@ -16,6 +16,7 @@ use Google\Protobuf\RepeatedField;
 class Ranker extends \Google\Protobuf\Internal\Message
 {
     protected $ranker;
+    protected $reranker;
 
     /**
      * Constructor.
@@ -25,6 +26,8 @@ class Ranker extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\VectorSearch\V1\ReciprocalRankFusion $rrf
      *           Reciprocal Rank Fusion ranking.
+     *     @type \Google\Cloud\VectorSearch\V1\VertexRanker $vertex_ranker
+     *           Optional. Vertex AI ranking.
      * }
      */
     public function __construct($data = NULL) {
@@ -64,11 +67,50 @@ class Ranker extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. Vertex AI ranking.
+     *
+     * Generated from protobuf field <code>.google.cloud.vectorsearch.v1.VertexRanker vertex_ranker = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\VectorSearch\V1\VertexRanker|null
+     */
+    public function getVertexRanker()
+    {
+        return $this->readOneof(2);
+    }
+
+    public function hasVertexRanker()
+    {
+        return $this->hasOneof(2);
+    }
+
+    /**
+     * Optional. Vertex AI ranking.
+     *
+     * Generated from protobuf field <code>.google.cloud.vectorsearch.v1.VertexRanker vertex_ranker = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\VectorSearch\V1\VertexRanker $var
+     * @return $this
+     */
+    public function setVertexRanker($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\VectorSearch\V1\VertexRanker::class);
+        $this->writeOneof(2, $var);
+
+        return $this;
+    }
+
+    /**
      * @return string
      */
     public function getRanker()
     {
         return $this->whichOneof("ranker");
+    }
+
+    /**
+     * @return string
+     */
+    public function getReranker()
+    {
+        return $this->whichOneof("reranker");
     }
 
 }

@@ -601,7 +601,7 @@ class Settings extends \Google\Protobuf\Internal\Message
      */
     public function getAuthorizedGaeApplications()
     {
-        if ($this->authorized_gae_applications->count() !== 0) {
+        if (count($this->authorized_gae_applications) !== 0) {
             @trigger_error('authorized_gae_applications is deprecated.', E_USER_DEPRECATED);
         }
         return $this->authorized_gae_applications;

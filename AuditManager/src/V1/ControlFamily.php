@@ -9,20 +9,23 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * The regulatory family of the control.
+ * Regulatory family of the control.
  *
  * Generated from protobuf message <code>google.cloud.auditmanager.v1.ControlFamily</code>
  */
 class ControlFamily extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The ID of the regulatory control family.
+     * ID of the regulatory control family. To find the list of supported
+     * control families, use the
+     * [ListControls][google.cloud.auditmanager.v1.AuditManager.ListControls]
+     * method and review the `control_family` field in the response.
      *
      * Generated from protobuf field <code>string family_id = 1;</code>
      */
     protected $family_id = '';
     /**
-     * The display name of the regulatory control family.
+     * Display name of the regulatory control family.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      */
@@ -35,9 +38,12 @@ class ControlFamily extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $family_id
-     *           The ID of the regulatory control family.
+     *           ID of the regulatory control family. To find the list of supported
+     *           control families, use the
+     *           [ListControls][google.cloud.auditmanager.v1.AuditManager.ListControls]
+     *           method and review the `control_family` field in the response.
      *     @type string $display_name
-     *           The display name of the regulatory control family.
+     *           Display name of the regulatory control family.
      * }
      */
     public function __construct($data = NULL) {
@@ -46,7 +52,10 @@ class ControlFamily extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The ID of the regulatory control family.
+     * ID of the regulatory control family. To find the list of supported
+     * control families, use the
+     * [ListControls][google.cloud.auditmanager.v1.AuditManager.ListControls]
+     * method and review the `control_family` field in the response.
      *
      * Generated from protobuf field <code>string family_id = 1;</code>
      * @return string
@@ -57,7 +66,10 @@ class ControlFamily extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The ID of the regulatory control family.
+     * ID of the regulatory control family. To find the list of supported
+     * control families, use the
+     * [ListControls][google.cloud.auditmanager.v1.AuditManager.ListControls]
+     * method and review the `control_family` field in the response.
      *
      * Generated from protobuf field <code>string family_id = 1;</code>
      * @param string $var
@@ -72,7 +84,7 @@ class ControlFamily extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The display name of the regulatory control family.
+     * Display name of the regulatory control family.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      * @return string
@@ -83,7 +95,7 @@ class ControlFamily extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The display name of the regulatory control family.
+     * Display name of the regulatory control family.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      * @param string $var

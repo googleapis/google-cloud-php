@@ -29,7 +29,7 @@ use Google\Ads\AdManager\V1\EntitySignalsMapping;
 use Google\ApiCore\ApiException;
 
 /**
- * API to create an `EntitySignalsMapping` object.
+ * Creates an `EntitySignalsMapping` object.
  *
  * @param string $formattedParent The parent resource where this EntitySignalsMapping will be
  *                                created. Format: `networks/{network_code}`

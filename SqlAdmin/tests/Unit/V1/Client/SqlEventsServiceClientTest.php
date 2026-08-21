@@ -55,4 +55,9 @@ class SqlEventsServiceClientTest extends GeneratedTest
         ];
         return new SqlEventsServiceClient($options);
     }
+
+    public function testClientTestCase()
+    {
+        $this->assertTrue(true);
+    }
 }

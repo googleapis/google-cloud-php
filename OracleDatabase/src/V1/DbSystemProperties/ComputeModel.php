@@ -26,9 +26,10 @@ class ComputeModel
      */
     const ECPU = 1;
     /**
+     * Deprecated: This option is not supported. Please use ECPU instead.
      * The compute model is physical.
      *
-     * Generated from protobuf enum <code>OCPU = 2;</code>
+     * Generated from protobuf enum <code>OCPU = 2 [deprecated = true];</code>
      */
     const OCPU = 2;
 

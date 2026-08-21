@@ -380,6 +380,17 @@ return [
                     ],
                 ],
             ],
+            'GetAutonomousDatabaseRefreshableClones' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/autonomousDatabases/*}:getRefreshableClones',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetCloudExadataInfrastructure' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/cloudExadataInfrastructures/*}',
@@ -833,6 +844,18 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'RefreshAutonomousDatabase' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/autonomousDatabases/*}:refresh',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
                         ],
                     ],
                 ],

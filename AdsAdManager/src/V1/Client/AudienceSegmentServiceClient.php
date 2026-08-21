@@ -259,7 +259,7 @@ final class AudienceSegmentServiceClient
     }
 
     /**
-     * API to retrieve an `AudienceSegment` object.
+     * Retrieves an `AudienceSegment` object.
      *
      * The async variant is
      * {@see AudienceSegmentServiceClient::getAudienceSegmentAsync()} .
@@ -286,7 +286,7 @@ final class AudienceSegmentServiceClient
     }
 
     /**
-     * API to retrieve a list of `AudienceSegment` objects.
+     * Lists `AudienceSegment` objects.
      *
      * The async variant is
      * {@see AudienceSegmentServiceClient::listAudienceSegmentsAsync()} .

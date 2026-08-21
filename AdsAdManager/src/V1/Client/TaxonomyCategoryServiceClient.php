@@ -260,7 +260,7 @@ final class TaxonomyCategoryServiceClient
     }
 
     /**
-     * API to retrieve a `TaxonomyCategory` object.
+     * Retrieves a `TaxonomyCategory` object.
      *
      * The async variant is
      * {@see TaxonomyCategoryServiceClient::getTaxonomyCategoryAsync()} .
@@ -287,7 +287,7 @@ final class TaxonomyCategoryServiceClient
     }
 
     /**
-     * API to retrieve a list of `TaxonomyCategory` objects.
+     * Lists `TaxonomyCategory` objects.
      *
      * The async variant is
      * {@see TaxonomyCategoryServiceClient::listTaxonomyCategoriesAsync()} .

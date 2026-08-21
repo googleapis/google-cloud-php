@@ -38,6 +38,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\RequestBuilder;
+use Google\ApiCore\ResumableUpload\ResumableUploadTransportInterface;
 use Google\ApiCore\Testing\MockRequest;
 use Google\ApiCore\Testing\MockResponse;
 use Google\ApiCore\Tests\Unit\TestTrait;
@@ -584,5 +585,100 @@ class RestTransportTest extends TestCase
 
         $this->getTransport()
             ->startUnaryCall($this->call, $options);
+    }
+
+    public function testImplementsResumableUploadTransportInterface()
+    {
+        $transport = $this->getTransport();
+        $this->assertInstanceOf(ResumableUploadTransportInterface::class, $transport);
+    }
+
+    public function testSendRawRequest()
+    {
+        $expectedRequest = new Request('POST', 'http://www.example.com/resumable/upload', ['foo' => 'bar'], 'body');
+        $expectedOptions = ['timeout' => 30];
+        $expectedResponse = new Response(200, ['header' => 'val'], 'response body');
+
+        $httpHandler = function (
+            RequestInterface $request,
+            array $options = []
+        ) use (
+            $expectedRequest,
+            $expectedOptions,
+            $expectedResponse
+        ) {
+            $this->assertSame($expectedRequest, $request);
+            $this->assertEquals($expectedOptions, $options);
+            return $expectedResponse;
+        };
+
+        $transport = $this->getTransport($httpHandler);
+        $response = $transport->sendRawRequest($expectedRequest, $expectedOptions);
+
+        $this->assertSame($expectedResponse, $response);
+    }
+
+    public function testSendRawRequestWithDefaultOptions()
+    {
+        $expectedRequest = new Request('GET', 'http://www.example.com/status');
+        $expectedResponse = new Response(200, [], 'ok');
+
+        $httpHandler = function (
+            RequestInterface $request,
+            array $options = []
+        ) use (
+            $expectedRequest,
+            $expectedResponse
+        ) {
+            $this->assertSame($expectedRequest, $request);
+            $this->assertEquals([], $options);
+            return $expectedResponse;
+        };
+
+        $transport = $this->getTransport($httpHandler);
+        $response = $transport->sendRawRequest($expectedRequest);
+
+        $this->assertSame($expectedResponse, $response);
+    }
+
+    public function testBuildRequest()
+    {
+        $method = 'v1/test:create';
+        $message = new MockRequest();
+        $headers = ['custom-header' => ['value1']];
+        $expectedRequest = new Request('POST', 'http://www.example.com/v1/test:create', $headers);
+
+        $requestBuilder = $this->prophesize(RequestBuilder::class);
+        $requestBuilder->build($method, $message, $headers)
+            ->shouldBeCalledOnce()
+            ->willReturn($expectedRequest);
+
+        $transport = new RestTransport(
+            $requestBuilder->reveal(),
+            HttpHandlerFactory::build()
+        );
+
+        $actualRequest = $transport->buildRequest($method, $message, $headers);
+        $this->assertSame($expectedRequest, $actualRequest);
+    }
+
+    public function testBuildRequestWithDefaultHeaders()
+    {
+        $method = 'v1/test:get';
+        $message = new MockRequest();
+        $expectedRequest = new Request('GET', 'http://www.example.com/v1/test:get');
+
+        $requestBuilder = $this->prophesize(RequestBuilder::class);
+        $requestBuilder->build($method, $message, [])
+            ->shouldBeCalledOnce()
+            ->willReturn($expectedRequest);
+
+        $transport = new RestTransport(
+            $requestBuilder->reveal(),
+            HttpHandlerFactory::build()
+        );
+
+        $actualRequest = $transport->buildRequest($method, $message);
+        $this->assertSame($expectedRequest, $actualRequest);
     }
 }

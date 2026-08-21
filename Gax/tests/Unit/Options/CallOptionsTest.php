@@ -56,6 +56,18 @@ class CallOptionsTest extends TestCase
         $this->assertSame($callback, $optionsArray['metadataCallback']);
     }
 
+    public function testMiddlewareOptions()
+    {
+        $middlewareOptions = ['metricsContext' => 'testValue'];
+        $options = new CallOptions([
+            'middlewareOptions' => $middlewareOptions,
+        ]);
+
+        $optionsArray = $options->toArray();
+        $this->assertArrayHasKey('middlewareOptions', $optionsArray);
+        $this->assertEquals($middlewareOptions, $optionsArray['middlewareOptions']);
+    }
+
     public function testUnrecognizedOptionsAreIgnored()
     {
         $options = new CallOptions([

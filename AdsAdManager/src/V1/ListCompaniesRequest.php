@@ -9,22 +9,22 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * Request object for `ListCompanies` method.
+ * Request object for [ListCompanies][] method.
  *
  * Generated from protobuf message <code>google.ads.admanager.v1.ListCompaniesRequest</code>
  */
 class ListCompaniesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The parent, which owns this collection of Companies.
+     * Required. The parent, which owns this collection of [Companies][].
      * Format: `networks/{network_code}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $parent = '';
     /**
-     * Optional. The maximum number of `Companies` to return. The service may
-     * return fewer than this value. If unspecified, at most 50 `Companies` will
+     * Optional. The maximum number of [Companies][] to return. The service may
+     * return fewer than this value. If unspecified, at most 50 [Companies][] will
      * be returned. The maximum value is 1000; values greater than 1000 will be
      * coerced to 1000.
      *
@@ -32,9 +32,9 @@ class ListCompaniesRequest extends \Google\Protobuf\Internal\Message
      */
     protected $page_size = 0;
     /**
-     * Optional. A page token, received from a previous `ListCompanies` call.
+     * Optional. A page token, received from a previous [ListCompanies][] call.
      * Provide this to retrieve the subsequent page.
-     * When paginating, all other parameters provided to `ListCompanies` must
+     * When paginating, all other parameters provided to [ListCompanies][] must
      * match the call that provided the page token.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -44,22 +44,20 @@ class ListCompaniesRequest extends \Google\Protobuf\Internal\Message
      * Optional. Expression to filter the response.
      *  See syntax details at
      *  https://developers.google.com/ad-manager/api/beta/filters
-     * <b>Filterable fields:</b>
-     * <ul style="list-style-type:none">
-     *   <li><code>address</code></li>
-     *   <li><code>comment</code></li>
-     *   <li><code>companyId</code></li>
-     *   <li><code>creditStatus</code></li>
-     *   <li><code>displayName</code></li>
-     *   <li><code>email</code></li>
-     *   <li><code>externalId</code></li>
-     *   <li><code>fax</code></li>
-     *   <li><code>name</code></li>
-     *   <li><code>phone</code></li>
-     *   <li><code>thirdPartyCompanyId</code></li>
-     *   <li><code>type</code></li>
-     *   <li><code>updateTime</code></li>
-     * </ul>
+     * **Filterable fields:**
+     * * `address`
+     * * `comment`
+     * * `companyId`
+     * * `creditStatus`
+     * * `displayName`
+     * * `email`
+     * * `externalId`
+     * * `fax`
+     * * `name`
+     * * `phone`
+     * * `thirdPartyCompanyId`
+     * * `type`
+     * * `updateTime`
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -80,7 +78,7 @@ class ListCompaniesRequest extends \Google\Protobuf\Internal\Message
     protected $skip = 0;
 
     /**
-     * @param string $parent Required. The parent, which owns this collection of Companies.
+     * @param string $parent Required. The parent, which owns this collection of [Companies][].
      *                       Format: `networks/{network_code}`
      *                       Please see {@see CompanyServiceClient::networkName()} for help formatting this field.
      *
@@ -101,38 +99,36 @@ class ListCompaniesRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The parent, which owns this collection of Companies.
+     *           Required. The parent, which owns this collection of [Companies][].
      *           Format: `networks/{network_code}`
      *     @type int $page_size
-     *           Optional. The maximum number of `Companies` to return. The service may
-     *           return fewer than this value. If unspecified, at most 50 `Companies` will
+     *           Optional. The maximum number of [Companies][] to return. The service may
+     *           return fewer than this value. If unspecified, at most 50 [Companies][] will
      *           be returned. The maximum value is 1000; values greater than 1000 will be
      *           coerced to 1000.
      *     @type string $page_token
-     *           Optional. A page token, received from a previous `ListCompanies` call.
+     *           Optional. A page token, received from a previous [ListCompanies][] call.
      *           Provide this to retrieve the subsequent page.
-     *           When paginating, all other parameters provided to `ListCompanies` must
+     *           When paginating, all other parameters provided to [ListCompanies][] must
      *           match the call that provided the page token.
      *     @type string $filter
      *           Optional. Expression to filter the response.
      *            See syntax details at
      *            https://developers.google.com/ad-manager/api/beta/filters
-     *           <b>Filterable fields:</b>
-     *           <ul style="list-style-type:none">
-     *             <li><code>address</code></li>
-     *             <li><code>comment</code></li>
-     *             <li><code>companyId</code></li>
-     *             <li><code>creditStatus</code></li>
-     *             <li><code>displayName</code></li>
-     *             <li><code>email</code></li>
-     *             <li><code>externalId</code></li>
-     *             <li><code>fax</code></li>
-     *             <li><code>name</code></li>
-     *             <li><code>phone</code></li>
-     *             <li><code>thirdPartyCompanyId</code></li>
-     *             <li><code>type</code></li>
-     *             <li><code>updateTime</code></li>
-     *           </ul>
+     *           **Filterable fields:**
+     *           * `address`
+     *           * `comment`
+     *           * `companyId`
+     *           * `creditStatus`
+     *           * `displayName`
+     *           * `email`
+     *           * `externalId`
+     *           * `fax`
+     *           * `name`
+     *           * `phone`
+     *           * `thirdPartyCompanyId`
+     *           * `type`
+     *           * `updateTime`
      *     @type string $order_by
      *           Optional. Expression to specify sorting order.
      *           See syntax details at
@@ -147,7 +143,7 @@ class ListCompaniesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent, which owns this collection of Companies.
+     * Required. The parent, which owns this collection of [Companies][].
      * Format: `networks/{network_code}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -159,7 +155,7 @@ class ListCompaniesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent, which owns this collection of Companies.
+     * Required. The parent, which owns this collection of [Companies][].
      * Format: `networks/{network_code}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -175,8 +171,8 @@ class ListCompaniesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum number of `Companies` to return. The service may
-     * return fewer than this value. If unspecified, at most 50 `Companies` will
+     * Optional. The maximum number of [Companies][] to return. The service may
+     * return fewer than this value. If unspecified, at most 50 [Companies][] will
      * be returned. The maximum value is 1000; values greater than 1000 will be
      * coerced to 1000.
      *
@@ -189,8 +185,8 @@ class ListCompaniesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum number of `Companies` to return. The service may
-     * return fewer than this value. If unspecified, at most 50 `Companies` will
+     * Optional. The maximum number of [Companies][] to return. The service may
+     * return fewer than this value. If unspecified, at most 50 [Companies][] will
      * be returned. The maximum value is 1000; values greater than 1000 will be
      * coerced to 1000.
      *
@@ -207,9 +203,9 @@ class ListCompaniesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A page token, received from a previous `ListCompanies` call.
+     * Optional. A page token, received from a previous [ListCompanies][] call.
      * Provide this to retrieve the subsequent page.
-     * When paginating, all other parameters provided to `ListCompanies` must
+     * When paginating, all other parameters provided to [ListCompanies][] must
      * match the call that provided the page token.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -221,9 +217,9 @@ class ListCompaniesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A page token, received from a previous `ListCompanies` call.
+     * Optional. A page token, received from a previous [ListCompanies][] call.
      * Provide this to retrieve the subsequent page.
-     * When paginating, all other parameters provided to `ListCompanies` must
+     * When paginating, all other parameters provided to [ListCompanies][] must
      * match the call that provided the page token.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -242,22 +238,20 @@ class ListCompaniesRequest extends \Google\Protobuf\Internal\Message
      * Optional. Expression to filter the response.
      *  See syntax details at
      *  https://developers.google.com/ad-manager/api/beta/filters
-     * <b>Filterable fields:</b>
-     * <ul style="list-style-type:none">
-     *   <li><code>address</code></li>
-     *   <li><code>comment</code></li>
-     *   <li><code>companyId</code></li>
-     *   <li><code>creditStatus</code></li>
-     *   <li><code>displayName</code></li>
-     *   <li><code>email</code></li>
-     *   <li><code>externalId</code></li>
-     *   <li><code>fax</code></li>
-     *   <li><code>name</code></li>
-     *   <li><code>phone</code></li>
-     *   <li><code>thirdPartyCompanyId</code></li>
-     *   <li><code>type</code></li>
-     *   <li><code>updateTime</code></li>
-     * </ul>
+     * **Filterable fields:**
+     * * `address`
+     * * `comment`
+     * * `companyId`
+     * * `creditStatus`
+     * * `displayName`
+     * * `email`
+     * * `externalId`
+     * * `fax`
+     * * `name`
+     * * `phone`
+     * * `thirdPartyCompanyId`
+     * * `type`
+     * * `updateTime`
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -271,22 +265,20 @@ class ListCompaniesRequest extends \Google\Protobuf\Internal\Message
      * Optional. Expression to filter the response.
      *  See syntax details at
      *  https://developers.google.com/ad-manager/api/beta/filters
-     * <b>Filterable fields:</b>
-     * <ul style="list-style-type:none">
-     *   <li><code>address</code></li>
-     *   <li><code>comment</code></li>
-     *   <li><code>companyId</code></li>
-     *   <li><code>creditStatus</code></li>
-     *   <li><code>displayName</code></li>
-     *   <li><code>email</code></li>
-     *   <li><code>externalId</code></li>
-     *   <li><code>fax</code></li>
-     *   <li><code>name</code></li>
-     *   <li><code>phone</code></li>
-     *   <li><code>thirdPartyCompanyId</code></li>
-     *   <li><code>type</code></li>
-     *   <li><code>updateTime</code></li>
-     * </ul>
+     * **Filterable fields:**
+     * * `address`
+     * * `comment`
+     * * `companyId`
+     * * `creditStatus`
+     * * `displayName`
+     * * `email`
+     * * `externalId`
+     * * `fax`
+     * * `name`
+     * * `phone`
+     * * `thirdPartyCompanyId`
+     * * `type`
+     * * `updateTime`
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

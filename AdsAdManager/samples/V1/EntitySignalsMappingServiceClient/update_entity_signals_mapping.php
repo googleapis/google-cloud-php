@@ -29,7 +29,7 @@ use Google\Ads\AdManager\V1\UpdateEntitySignalsMappingRequest;
 use Google\ApiCore\ApiException;
 
 /**
- * API to update an `EntitySignalsMapping` object.
+ * Updates an `EntitySignalsMapping` object.
  *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:
