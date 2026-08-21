@@ -64,9 +64,7 @@ class WorkflowsClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
     /** @return WorkflowsClient */
@@ -188,15 +186,12 @@ class WorkflowsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode(
-            [
-                'message' => 'internal error',
-                'code' => Code::DATA_LOSS,
-                'status' => 'DATA_LOSS',
-                'details' => [],
-            ],
-            JSON_PRETTY_PRINT
-        );
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -259,7 +254,8 @@ class WorkflowsClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->workflowName('[PROJECT]', '[LOCATION]', '[WORKFLOW]');
-        $request = (new DeleteWorkflowRequest())->setName($formattedName);
+        $request = (new DeleteWorkflowRequest())
+            ->setName($formattedName);
         $response = $gapicClient->deleteWorkflow($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -315,19 +311,17 @@ class WorkflowsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode(
-            [
-                'message' => 'internal error',
-                'code' => Code::DATA_LOSS,
-                'status' => 'DATA_LOSS',
-                'details' => [],
-            ],
-            JSON_PRETTY_PRINT
-        );
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->workflowName('[PROJECT]', '[LOCATION]', '[WORKFLOW]');
-        $request = (new DeleteWorkflowRequest())->setName($formattedName);
+        $request = (new DeleteWorkflowRequest())
+            ->setName($formattedName);
         $response = $gapicClient->deleteWorkflow($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -377,7 +371,8 @@ class WorkflowsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->workflowName('[PROJECT]', '[LOCATION]', '[WORKFLOW]');
-        $request = (new GetWorkflowRequest())->setName($formattedName);
+        $request = (new GetWorkflowRequest())
+            ->setName($formattedName);
         $response = $gapicClient->getWorkflow($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -401,19 +396,17 @@ class WorkflowsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode(
-            [
-                'message' => 'internal error',
-                'code' => Code::DATA_LOSS,
-                'status' => 'DATA_LOSS',
-                'details' => [],
-            ],
-            JSON_PRETTY_PRINT
-        );
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->workflowName('[PROJECT]', '[LOCATION]', '[WORKFLOW]');
-        $request = (new GetWorkflowRequest())->setName($formattedName);
+        $request = (new GetWorkflowRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->getWorkflow($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -438,14 +431,17 @@ class WorkflowsClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $workflowsElement = new Workflow();
-        $workflows = [$workflowsElement];
+        $workflows = [
+            $workflowsElement,
+        ];
         $expectedResponse = new ListWorkflowRevisionsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setWorkflows($workflows);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->workflowName('[PROJECT]', '[LOCATION]', '[WORKFLOW]');
-        $request = (new ListWorkflowRevisionsRequest())->setName($formattedName);
+        $request = (new ListWorkflowRevisionsRequest())
+            ->setName($formattedName);
         $response = $gapicClient->listWorkflowRevisions($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -472,19 +468,17 @@ class WorkflowsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode(
-            [
-                'message' => 'internal error',
-                'code' => Code::DATA_LOSS,
-                'status' => 'DATA_LOSS',
-                'details' => [],
-            ],
-            JSON_PRETTY_PRINT
-        );
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->workflowName('[PROJECT]', '[LOCATION]', '[WORKFLOW]');
-        $request = (new ListWorkflowRevisionsRequest())->setName($formattedName);
+        $request = (new ListWorkflowRevisionsRequest())
+            ->setName($formattedName);
         try {
             $gapicClient->listWorkflowRevisions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -509,14 +503,17 @@ class WorkflowsClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $workflowsElement = new Workflow();
-        $workflows = [$workflowsElement];
+        $workflows = [
+            $workflowsElement,
+        ];
         $expectedResponse = new ListWorkflowsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setWorkflows($workflows);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListWorkflowsRequest())->setParent($formattedParent);
+        $request = (new ListWorkflowsRequest())
+            ->setParent($formattedParent);
         $response = $gapicClient->listWorkflows($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -543,19 +540,17 @@ class WorkflowsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode(
-            [
-                'message' => 'internal error',
-                'code' => Code::DATA_LOSS,
-                'status' => 'DATA_LOSS',
-                'details' => [],
-            ],
-            JSON_PRETTY_PRINT
-        );
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $request = (new ListWorkflowsRequest())->setParent($formattedParent);
+        $request = (new ListWorkflowsRequest())
+            ->setParent($formattedParent);
         try {
             $gapicClient->listWorkflows($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -614,7 +609,8 @@ class WorkflowsClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $workflow = new Workflow();
-        $request = (new UpdateWorkflowRequest())->setWorkflow($workflow);
+        $request = (new UpdateWorkflowRequest())
+            ->setWorkflow($workflow);
         $response = $gapicClient->updateWorkflow($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -670,19 +666,17 @@ class WorkflowsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode(
-            [
-                'message' => 'internal error',
-                'code' => Code::DATA_LOSS,
-                'status' => 'DATA_LOSS',
-                'details' => [],
-            ],
-            JSON_PRETTY_PRINT
-        );
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $workflow = new Workflow();
-        $request = (new UpdateWorkflowRequest())->setWorkflow($workflow);
+        $request = (new UpdateWorkflowRequest())
+            ->setWorkflow($workflow);
         $response = $gapicClient->updateWorkflow($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -744,15 +738,12 @@ class WorkflowsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode(
-            [
-                'message' => 'internal error',
-                'code' => Code::DATA_LOSS,
-                'status' => 'DATA_LOSS',
-                'details' => [],
-            ],
-            JSON_PRETTY_PRINT
-        );
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         $request = new GetLocationRequest();
         try {
@@ -779,7 +770,9 @@ class WorkflowsClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $locationsElement = new Location();
-        $locations = [$locationsElement];
+        $locations = [
+            $locationsElement,
+        ];
         $expectedResponse = new ListLocationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLocations($locations);
@@ -809,15 +802,12 @@ class WorkflowsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode(
-            [
-                'message' => 'internal error',
-                'code' => Code::DATA_LOSS,
-                'status' => 'DATA_LOSS',
-                'details' => [],
-            ],
-            JSON_PRETTY_PRINT
-        );
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         $request = new ListLocationsRequest();
         try {
