@@ -68,6 +68,25 @@ return [
                     ],
                 ],
             ],
+            'CompleteControlPlaneUpgrade' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/clusters/*}:completeControlPlaneUpgrade',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{name=projects/*/zones/*/clusters/*}:completeControlPlaneUpgrade',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'CompleteIPRotation' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/clusters/*}:completeIpRotation',

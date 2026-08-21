@@ -50,6 +50,11 @@
                                 "disableAnywhereCache"
                             ]
                         },
+                        "DisableRapidCache": {
+                            "methods": [
+                                "disableRapidCache"
+                            ]
+                        },
                         "GetAnywhereCache": {
                             "methods": [
                                 "getAnywhereCache"

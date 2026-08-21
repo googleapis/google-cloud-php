@@ -89,6 +89,28 @@ return [
                     'requestId' => \Google\Api\FieldInfo\Format::UUID4,
                 ],
             ],
+            'DisableRapidCache' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Storage\Control\V2\RapidCache',
+                    'metadataReturnType' => '\Google\Cloud\Storage\Control\V2\DisableRapidCacheMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'bucket',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                        'matchers' => [
+                            '/^(?<bucket>projects\/[^\/]+\/buckets\/[^\/]+)(?:\/.*)?$/',
+                        ],
+                    ],
+                ],
+            ],
             'RenameFolder' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Storage\Control\V2\Folder',

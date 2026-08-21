@@ -22,36 +22,32 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START developerknowledge_v1_generated_DeveloperKnowledge_GetDocument_sync]
+// [START container_v1_generated_ClusterManager_CompleteControlPlaneUpgrade_sync]
 use Google\ApiCore\ApiException;
-use Google\Developers\DeveloperKnowledge\V1\Client\DeveloperKnowledgeClient;
-use Google\Developers\DeveloperKnowledge\V1\Document;
-use Google\Developers\DeveloperKnowledge\V1\GetDocumentRequest;
+use Google\Cloud\Container\V1\Client\ClusterManagerClient;
+use Google\Cloud\Container\V1\CompleteControlPlaneUpgradeRequest;
+use Google\Cloud\Container\V1\Operation;
 
 /**
- * Retrieves a single document with its full Markdown content.
+ * CompleteControlPlaneUpgrade completes the rollback-safe upgrade by
+ * performing the step two upgrade for a specific cluster.
  *
- * @param string $formattedName Specifies the name of the document to retrieve.
- *                              Format: `documents/{uri_without_scheme}`
- *                              Example: `documents/docs.cloud.google.com/storage/docs/creating-buckets`
- *
- *                              The name must not exceed 500 characters; values longer than 500 characters
- *                              will result in an `INVALID_ARGUMENT` error. Please see
- *                              {@see DeveloperKnowledgeClient::documentName()} for help formatting this field.
+ * @param string $name The name (project, location, cluster) of the cluster to complete
+ *                     upgrade. Specified in the format `projects/&#42;/locations/&#42;/clusters/*`.
  */
-function get_document_sample(string $formattedName): void
+function complete_control_plane_upgrade_sample(string $name): void
 {
     // Create a client.
-    $developerKnowledgeClient = new DeveloperKnowledgeClient();
+    $clusterManagerClient = new ClusterManagerClient();
 
     // Prepare the request message.
-    $request = (new GetDocumentRequest())
-        ->setName($formattedName);
+    $request = (new CompleteControlPlaneUpgradeRequest())
+        ->setName($name);
 
     // Call the API and handle any network failures.
     try {
-        /** @var Document $response */
-        $response = $developerKnowledgeClient->getDocument($request);
+        /** @var Operation $response */
+        $response = $clusterManagerClient->completeControlPlaneUpgrade($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
@@ -69,8 +65,8 @@ function get_document_sample(string $formattedName): void
  */
 function callSample(): void
 {
-    $formattedName = DeveloperKnowledgeClient::documentName('[DOCUMENT]');
+    $name = '[NAME]';
 
-    get_document_sample($formattedName);
+    complete_control_plane_upgrade_sample($name);
 }
-// [END developerknowledge_v1_generated_DeveloperKnowledge_GetDocument_sync]
+// [END container_v1_generated_ClusterManager_CompleteControlPlaneUpgrade_sync]
