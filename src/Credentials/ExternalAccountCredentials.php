@@ -156,8 +156,7 @@ class ExternalAccountCredentials implements
             );
         }
 
-        if (
-            isset($credentialSource['environment_id'])
+        if (isset($credentialSource['environment_id'])
             && 1 === preg_match('/^aws(\d+)$/', $credentialSource['environment_id'], $matches)
         ) {
             if ($matches[1] !== '1') {
