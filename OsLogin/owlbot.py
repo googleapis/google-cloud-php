@@ -30,6 +30,13 @@ dest = Path().resolve()
 # Added so that we can pass copy_excludes in the owlbot_main() call
 _tracked_paths.add(src)
 
+# copy "common" protos
+php.owlbot_copy_version(
+    src=src / "common-protos",
+    dest=dest,
+    version_string="common",
+)
+
 php.owlbot_main(src=src, dest=dest)
 
 # format generated clients
