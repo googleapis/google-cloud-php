@@ -122,7 +122,7 @@ class PageTest extends TestCase
             __DIR__ . '/../../fixtures/phpdoc/auth.xml',
             'Google\Auth',
             'Google Auth',
-            __DIR__ . '/../../../vendor/google/auth',
+            __DIR__ . '/../../../../Auth',
             [],
         );
 
@@ -141,7 +141,7 @@ class PageTest extends TestCase
             __DIR__ . '/../../fixtures/phpdoc/auth.xml',
             'Google\Auth',
             'Google Auth',
-            __DIR__ . '/../../../vendor/google/auth',
+            __DIR__ . '/../../../../Auth',
             [],
         );
 
