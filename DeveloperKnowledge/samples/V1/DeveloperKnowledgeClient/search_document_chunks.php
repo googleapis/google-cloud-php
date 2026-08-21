@@ -44,7 +44,9 @@ use Google\Developers\DeveloperKnowledge\V1\SearchDocumentChunksRequest;
  * [SearchDocumentChunksResponse.results][google.developers.knowledge.v1.SearchDocumentChunksResponse.results].
  *
  * @param string $query Provides the raw query string provided by the user, such as "How
- *                      to create a Cloud Storage bucket?".
+ *                      to create a Cloud Storage bucket?". The query must not exceed 500
+ *                      characters; values longer than 500 characters will result in an
+ *                      `INVALID_ARGUMENT` error.
  */
 function search_document_chunks_sample(string $query): void
 {

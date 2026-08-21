@@ -38,12 +38,20 @@ class Type
      * Generated from protobuf enum <code>SPECIFIC_RESERVATION = 3;</code>
      */
     const SPECIFIC_RESERVATION = 3;
+    /**
+     * Consume any reservation available. If no reservation is available, fail
+     * the node creation.
+     *
+     * Generated from protobuf enum <code>ANY_RESERVATION_THEN_FAIL = 4;</code>
+     */
+    const ANY_RESERVATION_THEN_FAIL = 4;
 
     private static $valueToName = [
         self::UNSPECIFIED => 'UNSPECIFIED',
         self::NO_RESERVATION => 'NO_RESERVATION',
         self::ANY_RESERVATION => 'ANY_RESERVATION',
         self::SPECIFIC_RESERVATION => 'SPECIFIC_RESERVATION',
+        self::ANY_RESERVATION_THEN_FAIL => 'ANY_RESERVATION_THEN_FAIL',
     ];
 
     public static function name($value)
