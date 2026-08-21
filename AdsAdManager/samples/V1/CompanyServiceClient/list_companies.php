@@ -29,9 +29,9 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 
 /**
- * Lists `Company` objects.
+ * Lists [Company][google.ads.admanager.v1.Company] objects.
  *
- * @param string $formattedParent The parent, which owns this collection of Companies.
+ * @param string $formattedParent The parent, which owns this collection of [Companies][].
  *                                Format: `networks/{network_code}`
  *                                Please see {@see CompanyServiceClient::networkName()} for help formatting this field.
  */

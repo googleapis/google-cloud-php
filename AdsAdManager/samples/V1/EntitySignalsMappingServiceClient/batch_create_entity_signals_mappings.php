@@ -31,7 +31,7 @@ use Google\Ads\AdManager\V1\EntitySignalsMapping;
 use Google\ApiCore\ApiException;
 
 /**
- * API to batch create `EntitySignalsMapping` objects.
+ * Creates `EntitySignalsMapping` objects.
  *
  * @param string $formattedParent         The parent resource where `EntitySignalsMappings` will be
  *                                        created. Format: `networks/{network_code}` The parent field in the

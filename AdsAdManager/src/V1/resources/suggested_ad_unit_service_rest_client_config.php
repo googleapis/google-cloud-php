@@ -25,7 +25,7 @@ return [
         'google.ads.admanager.v1.SuggestedAdUnitService' => [
             'BatchApproveSuggestedAdUnits' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1/{parent=networks/*}/suggestedAdUnit:batchApprove',
+                'uriTemplate' => '/v1/{parent=networks/*}/suggestedAdUnits:batchApprove',
                 'body' => '*',
                 'placeholders' => [
                     'parent' => [

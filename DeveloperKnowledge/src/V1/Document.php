@@ -9,7 +9,9 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * A Document represents a piece of content from the Developer Knowledge corpus.
+ * A Document represents a page of documentation in the Developer Knowledge
+ * corpus, like the page at
+ * https://docs.cloud.google.com/storage/docs/creating-buckets.
  *
  * Generated from protobuf message <code>google.developers.knowledge.v1.Document</code>
  */

@@ -24,9 +24,15 @@
 
 namespace Google\Ads\AdManager\V1\Client;
 
+use Google\Ads\AdManager\V1\BatchCreateCompaniesRequest;
+use Google\Ads\AdManager\V1\BatchCreateCompaniesResponse;
+use Google\Ads\AdManager\V1\BatchUpdateCompaniesRequest;
+use Google\Ads\AdManager\V1\BatchUpdateCompaniesResponse;
 use Google\Ads\AdManager\V1\Company;
+use Google\Ads\AdManager\V1\CreateCompanyRequest;
 use Google\Ads\AdManager\V1\GetCompanyRequest;
 use Google\Ads\AdManager\V1\ListCompaniesRequest;
+use Google\Ads\AdManager\V1\UpdateCompanyRequest;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
@@ -41,7 +47,8 @@ use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
 
 /**
- * Service Description: Provides methods for handling `Company` objects.
+ * Service Description: Provides methods for handling [Company][google.ads.admanager.v1.Company]
+ * objects.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
@@ -51,8 +58,12 @@ use Psr\Log\LoggerInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
+ * @method PromiseInterface<BatchCreateCompaniesResponse> batchCreateCompaniesAsync(BatchCreateCompaniesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchUpdateCompaniesResponse> batchUpdateCompaniesAsync(BatchUpdateCompaniesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Company> createCompanyAsync(CreateCompanyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Company> getCompanyAsync(GetCompanyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listCompaniesAsync(ListCompaniesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Company> updateCompanyAsync(UpdateCompanyRequest $request, array $optionalArgs = [])
  */
 final class CompanyServiceClient
 {
@@ -137,6 +148,40 @@ final class CompanyServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a contact
+     * resource.
+     *
+     * @param string $networkCode
+     * @param string $contact
+     *
+     * @return string The formatted contact resource.
+     */
+    public static function contactName(string $networkCode, string $contact): string
+    {
+        return self::getPathTemplate('contact')->render([
+            'network_code' => $networkCode,
+            'contact' => $contact,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a label
+     * resource.
+     *
+     * @param string $networkCode
+     * @param string $label
+     *
+     * @return string The formatted label resource.
+     */
+    public static function labelName(string $networkCode, string $label): string
+    {
+        return self::getPathTemplate('label')->render([
+            'network_code' => $networkCode,
+            'label' => $label,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a network
      * resource.
      *
@@ -152,11 +197,31 @@ final class CompanyServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a team
+     * resource.
+     *
+     * @param string $networkCode
+     * @param string $team
+     *
+     * @return string The formatted team resource.
+     */
+    public static function teamName(string $networkCode, string $team): string
+    {
+        return self::getPathTemplate('team')->render([
+            'network_code' => $networkCode,
+            'team' => $team,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - company: networks/{network_code}/companies/{company}
+     * - contact: networks/{network_code}/contacts/{contact}
+     * - label: networks/{network_code}/labels/{label}
      * - network: networks/{network_code}
+     * - team: networks/{network_code}/teams/{team}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -259,7 +324,89 @@ final class CompanyServiceClient
     }
 
     /**
-     * Retrieves a `Company` object.
+     * Creates [Company][google.ads.admanager.v1.Company] objects.
+     *
+     * The async variant is {@see CompanyServiceClient::batchCreateCompaniesAsync()} .
+     *
+     * @example samples/V1/CompanyServiceClient/batch_create_companies.php
+     *
+     * @param BatchCreateCompaniesRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchCreateCompaniesResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchCreateCompanies(
+        BatchCreateCompaniesRequest $request,
+        array $callOptions = []
+    ): BatchCreateCompaniesResponse {
+        return $this->startApiCall('BatchCreateCompanies', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Batch updates [Company][google.ads.admanager.v1.Company] objects.
+     *
+     * The async variant is {@see CompanyServiceClient::batchUpdateCompaniesAsync()} .
+     *
+     * @example samples/V1/CompanyServiceClient/batch_update_companies.php
+     *
+     * @param BatchUpdateCompaniesRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchUpdateCompaniesResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchUpdateCompanies(
+        BatchUpdateCompaniesRequest $request,
+        array $callOptions = []
+    ): BatchUpdateCompaniesResponse {
+        return $this->startApiCall('BatchUpdateCompanies', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates a [Company][google.ads.admanager.v1.Company] object.
+     *
+     * The async variant is {@see CompanyServiceClient::createCompanyAsync()} .
+     *
+     * @example samples/V1/CompanyServiceClient/create_company.php
+     *
+     * @param CreateCompanyRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Company
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createCompany(CreateCompanyRequest $request, array $callOptions = []): Company
+    {
+        return $this->startApiCall('CreateCompany', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Retrieves a [Company][google.ads.admanager.v1.Company] object.
      *
      * The async variant is {@see CompanyServiceClient::getCompanyAsync()} .
      *
@@ -285,7 +432,7 @@ final class CompanyServiceClient
     }
 
     /**
-     * Lists `Company` objects.
+     * Lists [Company][google.ads.admanager.v1.Company] objects.
      *
      * The async variant is {@see CompanyServiceClient::listCompaniesAsync()} .
      *
@@ -308,5 +455,31 @@ final class CompanyServiceClient
     public function listCompanies(ListCompaniesRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('ListCompanies', $request, $callOptions);
+    }
+
+    /**
+     * Updates a [Company][google.ads.admanager.v1.Company] object.
+     *
+     * The async variant is {@see CompanyServiceClient::updateCompanyAsync()} .
+     *
+     * @example samples/V1/CompanyServiceClient/update_company.php
+     *
+     * @param UpdateCompanyRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Company
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateCompany(UpdateCompanyRequest $request, array $callOptions = []): Company
+    {
+        return $this->startApiCall('UpdateCompany', $request, $callOptions)->wait();
     }
 }

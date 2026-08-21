@@ -7,64 +7,62 @@ namespace Google\Cloud\AuditManager\V1;
 use UnexpectedValueException;
 
 /**
- * The different execution states of the Audit Manager service.
+ * Different execution states of the Audit Manager service.
  *
  * Protobuf type <code>google.cloud.auditmanager.v1.OperationState</code>
  */
 class OperationState
 {
     /**
-     * Unspecified. Invalid state.
+     * Default value. This value is unused.
      *
      * Generated from protobuf enum <code>OPERATION_STATE_UNSPECIFIED = 0;</code>
      */
     const OPERATION_STATE_UNSPECIFIED = 0;
     /**
-     * Audit report generation process has not started.
+     * Audit generation process hasn't started.
      *
      * Generated from protobuf enum <code>OPERATION_STATE_NOT_STARTED = 10;</code>
      */
     const OPERATION_STATE_NOT_STARTED = 10;
     /**
-     * Audit Manager is currently evaluating the workloads against specific
-     * standard.
+     * Evaluation process is in progress.
      *
      * Generated from protobuf enum <code>OPERATION_STATE_EVALUATION_IN_PROGRESS = 20;</code>
      */
     const OPERATION_STATE_EVALUATION_IN_PROGRESS = 20;
     /**
-     * Audit Manager has completed Evaluation for the workload.
+     * Evaluation process is completed.
      *
      * Generated from protobuf enum <code>OPERATION_STATE_EVALUATION_DONE = 21;</code>
      */
     const OPERATION_STATE_EVALUATION_DONE = 21;
     /**
-     * Audit Manager is creating audit report from the evaluated data.
+     * Report generation process is in progress.
      *
      * Generated from protobuf enum <code>OPERATION_STATE_EVIDENCE_REPORT_GENERATION_IN_PROGRESS = 30;</code>
      */
     const OPERATION_STATE_EVIDENCE_REPORT_GENERATION_IN_PROGRESS = 30;
     /**
-     * Audit Manager has completed generation of the audit report.
+     * Report generation process is completed.
      *
      * Generated from protobuf enum <code>OPERATION_STATE_EVIDENCE_REPORT_GENERATION_DONE = 31;</code>
      */
     const OPERATION_STATE_EVIDENCE_REPORT_GENERATION_DONE = 31;
     /**
-     * Audit Manager is uploading the audit report and evidences to the customer
-     * provided destination.
+     * The audit report and evidence are being uploaded to your bucket.
      *
      * Generated from protobuf enum <code>OPERATION_STATE_EVIDENCE_UPLOAD_IN_PROGRESS = 40;</code>
      */
     const OPERATION_STATE_EVIDENCE_UPLOAD_IN_PROGRESS = 40;
     /**
-     * Audit report generation process is completed.
+     * The audit report and evidence are uploaded to your bucket.
      *
      * Generated from protobuf enum <code>OPERATION_STATE_DONE = 50;</code>
      */
     const OPERATION_STATE_DONE = 50;
     /**
-     * Audit report generation process has failed.
+     * Audit report generation process failed.
      *
      * Generated from protobuf enum <code>OPERATION_STATE_FAILED = 60;</code>
      */

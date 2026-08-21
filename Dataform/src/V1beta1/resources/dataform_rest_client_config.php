@@ -35,6 +35,18 @@ return [
                     ],
                 ],
             ],
+            'CheckoutWorkspaceBranch' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/repositories/*/workspaces/*}:checkout',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'CommitRepositoryChanges' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/repositories/*}:commit',
@@ -178,6 +190,18 @@ return [
                     'workspace_id',
                 ],
             ],
+            'DeleteBranch' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/repositories/*/workspaces/*}:deleteBranch',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteFolder' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/folders/*}',
@@ -291,6 +315,17 @@ return [
                     ],
                 ],
             ],
+            'FetchCurrentWorkspaceBranch' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/repositories/*/workspaces/*}:fetchCurrentBranch',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'FetchFileDiff' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1beta1/{workspace=projects/*/locations/*/repositories/*/workspaces/*}:fetchFileDiff',
@@ -338,6 +373,17 @@ return [
             'FetchRepositoryHistory' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/repositories/*}:fetchHistory',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'FetchWorkspaceBranches' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/repositories/*/workspaces/*}:fetchBranches',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -814,6 +860,18 @@ return [
                     'resource' => [
                         'getters' => [
                             'getResource',
+                        ],
+                    ],
+                ],
+            ],
+            'SyncWorkspaceRefs' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/repositories/*/workspaces/*}:syncWorkspaceRefs',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
                         ],
                     ],
                 ],

@@ -138,6 +138,17 @@ return [
                     ],
                 ],
             ],
+            'GetPolicy' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/keys/*/policy}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'ListFirewallPolicies' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*}/firewallpolicies',
@@ -273,6 +284,19 @@ return [
                     'key.name' => [
                         'getters' => [
                             'getKey',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdatePolicy' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{policy.name=projects/*/keys/*/policy}',
+                'body' => 'policy',
+                'placeholders' => [
+                    'policy.name' => [
+                        'getters' => [
+                            'getPolicy',
                             'getName',
                         ],
                     ],

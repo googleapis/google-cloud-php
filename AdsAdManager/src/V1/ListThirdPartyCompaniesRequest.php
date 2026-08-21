@@ -44,13 +44,11 @@ class ListThirdPartyCompaniesRequest extends \Google\Protobuf\Internal\Message
      * Optional. Expression to filter the response.
      *  See syntax details at
      *  https://developers.google.com/ad-manager/api/beta/filters
-     * <b>Filterable fields:</b>
-     * <ul style="list-style-type:none">
-     *   <li><code>displayName</code></li>
-     *   <li><code>name</code></li>
-     *   <li><code>status</code></li>
-     *   <li><code>type</code></li>
-     * </ul>
+     * **Filterable fields:**
+     * * `displayName`
+     * * `name`
+     * * `status`
+     * * `type`
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -108,13 +106,11 @@ class ListThirdPartyCompaniesRequest extends \Google\Protobuf\Internal\Message
      *           Optional. Expression to filter the response.
      *            See syntax details at
      *            https://developers.google.com/ad-manager/api/beta/filters
-     *           <b>Filterable fields:</b>
-     *           <ul style="list-style-type:none">
-     *             <li><code>displayName</code></li>
-     *             <li><code>name</code></li>
-     *             <li><code>status</code></li>
-     *             <li><code>type</code></li>
-     *           </ul>
+     *           **Filterable fields:**
+     *           * `displayName`
+     *           * `name`
+     *           * `status`
+     *           * `type`
      *     @type string $order_by
      *           Optional. Expression to specify sorting order.
      *           See syntax details at
@@ -224,13 +220,11 @@ class ListThirdPartyCompaniesRequest extends \Google\Protobuf\Internal\Message
      * Optional. Expression to filter the response.
      *  See syntax details at
      *  https://developers.google.com/ad-manager/api/beta/filters
-     * <b>Filterable fields:</b>
-     * <ul style="list-style-type:none">
-     *   <li><code>displayName</code></li>
-     *   <li><code>name</code></li>
-     *   <li><code>status</code></li>
-     *   <li><code>type</code></li>
-     * </ul>
+     * **Filterable fields:**
+     * * `displayName`
+     * * `name`
+     * * `status`
+     * * `type`
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -244,13 +238,11 @@ class ListThirdPartyCompaniesRequest extends \Google\Protobuf\Internal\Message
      * Optional. Expression to filter the response.
      *  See syntax details at
      *  https://developers.google.com/ad-manager/api/beta/filters
-     * <b>Filterable fields:</b>
-     * <ul style="list-style-type:none">
-     *   <li><code>displayName</code></li>
-     *   <li><code>name</code></li>
-     *   <li><code>status</code></li>
-     *   <li><code>type</code></li>
-     * </ul>
+     * **Filterable fields:**
+     * * `displayName`
+     * * `name`
+     * * `status`
+     * * `type`
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

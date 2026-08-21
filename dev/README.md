@@ -31,3 +31,22 @@ Additionally, there are scripts in the `sh` directory which are used in our CI:
 | ------------------- | --------------------------- |
 | `sh/static-analysis`| Run phpstan static ananlysis|
 | `sh/style-fix`      | Run phpcs style check       |
+
+## Installation & Troubleshooting
+
+When installing dependencies in the `dev` directory:
+
+```sh
+composer install -d dev/
+```
+
+If running `composer install` fails with:
+> `No valid composer.json was found in any branch or tag of https://github.com/googleapis/gapic-generator-php.git`
+
+This occurs on machines (such as gLinux or security-hardened Linux setups) where Git enforces `safe.bareRepository = explicit` by default, blocking Composer from accessing its VCS bare repository cache (`~/.cache/composer/vcs/`).
+
+To resolve this safely without changing your global Git security configuration, pass the Git parameter inline when running `composer`:
+
+```sh
+GIT_CONFIG_PARAMETERS="'safe.bareRepository=all'" composer install -d dev/
+```
