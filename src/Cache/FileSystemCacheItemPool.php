@@ -60,7 +60,7 @@ class FileSystemCacheItemPool implements CacheItemPoolInterface
     {
         if (!$this->validKey($key)) {
             throw new InvalidArgumentException(
-                'The key ' . $key . ' is not valid. The key should follow the pattern |^[a-zA-Z0-9_\.! ]+$|'
+                'The key \'' . $key . '\' is not valid. The key should follow the pattern |^[a-zA-Z0-9_\.! ]+$|'
             );
         }
 
@@ -169,7 +169,7 @@ class FileSystemCacheItemPool implements CacheItemPoolInterface
     {
         if (!$this->validKey($key)) {
             throw new InvalidArgumentException(
-                'The key ' . $key . ' is not valid. The key should follow the pattern |^[a-zA-Z0-9_\.! ]+$|'
+                'The key \'' . $key . '\' is not valid. The key should follow the pattern |^[a-zA-Z0-9_\.! ]+$|'
             );
         }
 
