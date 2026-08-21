@@ -1,5 +1,353 @@
 # Changelog
 
+## 0.343.0
+
+<details><summary>googleads/ad-manager 0.11.0</summary>
+
+
+
+### Features
+
+* [AdsAdManager] Added `PartnerService` ([#9472](https://github.com/googleapis/google-cloud-php/issues/9472)) ([4d11908](https://github.com/googleapis/google-cloud-php/commit/4d119085226f1a9c97b84212a62f81804837f355))
+
+</details>
+
+<details><summary>google/cloud-ai-platform 1.65.0</summary>
+
+
+
+### Features
+
+* [AiPlatform] add build configuration support to Vertex AI Reasoning Engine ([#9485](https://github.com/googleapis/google-cloud-php/issues/9485)) ([3eba383](https://github.com/googleapis/google-cloud-php/commit/3eba38351e307cb4c6de26bf19e99474084b762c))
+
+</details>
+
+<details><summary>google/cloud-alloydb 1.8.1</summary>
+
+
+
+</details>
+
+<details><summary>google/apps-chat 0.26.0</summary>
+
+
+
+### Features
+
+* [AppsChat] Removal of beta visibility labels on markup_syntax ([#9487](https://github.com/googleapis/google-cloud-php/issues/9487)) ([8111352](https://github.com/googleapis/google-cloud-php/commit/81113528ebf67ef98d85c750b567a37a3581eac4))
+
+</details>
+
+<details><summary>google/cloud-artifact-registry 1.8.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-auditmanager 0.3.0</summary>
+
+
+
+### Features
+
+* [AuditManager] Update documentation for validate_only ([#9479](https://github.com/googleapis/google-cloud-php/issues/9479)) ([e06c02c](https://github.com/googleapis/google-cloud-php/commit/e06c02c755bd67b21d9fc0e1091d6bce2fed1cb7))
+
+</details>
+
+<details><summary>google/cloud-automl 2.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-batch 1.5.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-bigquery-datapolicies 1.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-bigquery-reservation 2.9.0</summary>
+
+
+
+### Features
+
+* [BigQueryReservation] Add a new field `precedence` to `bigqueryreservation.googleapis.com/Assignment`,  it specifies the priority precedence for this assignment. Used to resolve ambiguity when multiple assignments match a single job. Higher numer... ([#9486](https://github.com/googleapis/google-cloud-php/issues/9486)) ([1ea5246](https://github.com/googleapis/google-cloud-php/commit/1ea5246bcd64da8d1c606312c3c42d83526bd2b8))
+* Add a new field `condition` to `bigqueryreservation.googleapis.com/Assignment`, it is Common Expression Language (CEL) condition that defines the matching criteria for this assignment. ([1ea5246](https://github.com/googleapis/google-cloud-php/commit/1ea5246bcd64da8d1c606312c3c42d83526bd2b8))
+
+
+### Documentation
+
+* [BigQueryReservation] A comment for field `principal` in message `.google.cloud.bigquery.reservation.v1.Assignment` is changed ([#9535](https://github.com/googleapis/google-cloud-php/issues/9535)) ([9130592](https://github.com/googleapis/google-cloud-php/commit/91305929aaf149d525b31f1a989f65c7e9a360e0))
+
+</details>
+
+<details><summary>google/cloud-bigquery-storage 2.5.0</summary>
+
+
+
+### Features
+
+* [BigQueryStorage] add support for client-side metrics in AppendRowsRequest ([#9492](https://github.com/googleapis/google-cloud-php/issues/9492)) ([9388c99](https://github.com/googleapis/google-cloud-php/commit/9388c99c492c3aa0366cee632035d0a22b0fbfd2))
+
+</details>
+
+<details><summary>google/cloud-bigtable 2.27.0</summary>
+
+
+
+### Features
+
+* [Bigtable] add microsecond_timestamp feature flag ([#9473](https://github.com/googleapis/google-cloud-php/issues/9473)) ([985b2d5](https://github.com/googleapis/google-cloud-php/commit/985b2d5775b2a25323568b710c152779a6a6104f))
+
+</details>
+
+<details><summary>google/cloud-billing-budgets 2.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-binary-authorization 1.3.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-build 1.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-capacityplanner 0.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-config 1.10.0</summary>
+
+
+
+### Features
+
+* [Config] add indicator if early apply results are available ([#9534](https://github.com/googleapis/google-cloud-php/issues/9534)) ([1b6c6d2](https://github.com/googleapis/google-cloud-php/commit/1b6c6d2330f0239ad14de2fe3dd2c21dc5c0323c))
+
+</details>
+
+<details><summary>google/cloud-container 2.12.0</summary>
+
+
+
+### Features
+
+* [Container] support for rollback-safe upgrade ([#9509](https://github.com/googleapis/google-cloud-php/issues/9509)) ([292bd43](https://github.com/googleapis/google-cloud-php/commit/292bd43599e5b80b5d6107b21c9a9ab5893be783))
+
+</details>
+
+<details><summary>google/cloud-dataform 0.15.0</summary>
+
+
+
+### Features
+
+* [Dataform] Add fields `original_branch`, `enable_branch_management`, `depth`, and `shallow` to message `.google.cloud.dataform.v1beta1.Workspace` ([#9494](https://github.com/googleapis/google-cloud-php/issues/9494)) ([981b044](https://github.com/googleapis/google-cloud-php/commit/981b0447597f51318af4d9f2105006b931062832))
+
+</details>
+
+<details><summary>google/developer-knowledge 0.3.1</summary>
+
+
+
+### Documentation
+
+* [DeveloperKnowledge] You can now filter by `content_length_bytes` ([#9513](https://github.com/googleapis/google-cloud-php/issues/9513)) ([027c09c](https://github.com/googleapis/google-cloud-php/commit/027c09c6c17c29f916c619aad0d9be2be1cd1674))
+
+</details>
+
+<details><summary>google/cloud-discoveryengine 1.14.0</summary>
+
+
+
+### Features
+
+* [DiscoveryEngine] expose StreamAssistRequest agents_spec and agent_id ([#9531](https://github.com/googleapis/google-cloud-php/issues/9531)) ([db51fc7](https://github.com/googleapis/google-cloud-php/commit/db51fc709c1b6a469d6da2d45e964026522998c5))
+
+</details>
+
+<details><summary>google/cloud-domains 1.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/gax 1.49.0</summary>
+
+
+
+### Features
+
+* **Gax:** add the middlewareOptions property to CallOptions class ([#9501](https://github.com/googleapis/google-cloud-php/issues/9501)) ([75be657](https://github.com/googleapis/google-cloud-php/commit/75be657f6e66fb58ae5190b1fcb743a86d84d54d))
+
+</details>
+
+<details><summary>google/longrunning 0.8.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-memcache 2.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-network-security 1.5.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-notebooks 1.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-secret-manager 2.5.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-security-center 2.6.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-security-private-ca 2.4.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-security-public-ca 1.2.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-service-directory 2.2.2</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-css 0.8.4</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-merchant-inventories 1.5.4</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-speech 2.5.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-sql-admin 1.11.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-storage-control 1.12.0</summary>
+
+
+
+### Features
+
+* [StorageControl] add disable rapid cache operation ([#9517](https://github.com/googleapis/google-cloud-php/issues/9517)) ([fc5f21a](https://github.com/googleapis/google-cloud-php/commit/fc5f21a983e09ab88a16bab155483b3abc35bc73))
+
+</details>
+
+<details><summary>google/cloud-support 1.8.2</summary>
+
+
+
+### Documentation
+
+* [Support] Added Terraform and gcloud links for support event subscription service ([#9491](https://github.com/googleapis/google-cloud-php/issues/9491)) ([7bd170c](https://github.com/googleapis/google-cloud-php/commit/7bd170ca4b4851bb712053f3c678cc9f7a38e8a6))
+
+</details>
+
+<details><summary>google/cloud-talent 2.3.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-tasks 2.2.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-tpu 2.3.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-vectorsearch 0.7.0</summary>
+
+
+
+### Features
+
+* [VectorSearch] add VertexRanker reranker support to vector search ([#9475](https://github.com/googleapis/google-cloud-php/issues/9475)) ([d27c61f](https://github.com/googleapis/google-cloud-php/commit/d27c61fc8602703973e0a2b036b0d51171a9962b))
+
+</details>
+
+<details><summary>google/cloud-videointelligence 2.3.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-web-risk 2.4.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-web-security-scanner 1.3.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-workflows 1.4.1</summary>
+
+
+
+</details>
+
 ## 0.342.0
 
 <details><summary>google/cloud-commerceproducer 0.1.0</summary>
