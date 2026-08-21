@@ -47,15 +47,13 @@ class ListCustomTargetingValuesRequest extends \Google\Protobuf\Internal\Message
      * Optional. Expression to filter the response.
      *  See syntax details at
      *  https://developers.google.com/ad-manager/api/beta/filters
-     * <b>Filterable fields:</b>
-     * <ul style="list-style-type:none">
-     *   <li><code>adTagName</code></li>
-     *   <li><code>customTargetingKey</code></li>
-     *   <li><code>displayName</code></li>
-     *   <li><code>matchType</code></li>
-     *   <li><code>name</code></li>
-     *   <li><code>status</code></li>
-     * </ul>
+     * **Filterable fields:**
+     * * `adTagName`
+     * * `customTargetingKey`
+     * * `displayName`
+     * * `matchType`
+     * * `name`
+     * * `status`
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -117,15 +115,13 @@ class ListCustomTargetingValuesRequest extends \Google\Protobuf\Internal\Message
      *           Optional. Expression to filter the response.
      *            See syntax details at
      *            https://developers.google.com/ad-manager/api/beta/filters
-     *           <b>Filterable fields:</b>
-     *           <ul style="list-style-type:none">
-     *             <li><code>adTagName</code></li>
-     *             <li><code>customTargetingKey</code></li>
-     *             <li><code>displayName</code></li>
-     *             <li><code>matchType</code></li>
-     *             <li><code>name</code></li>
-     *             <li><code>status</code></li>
-     *           </ul>
+     *           **Filterable fields:**
+     *           * `adTagName`
+     *           * `customTargetingKey`
+     *           * `displayName`
+     *           * `matchType`
+     *           * `name`
+     *           * `status`
      *     @type string $order_by
      *           Optional. Expression to specify sorting order.
      *           See syntax details at
@@ -241,15 +237,13 @@ class ListCustomTargetingValuesRequest extends \Google\Protobuf\Internal\Message
      * Optional. Expression to filter the response.
      *  See syntax details at
      *  https://developers.google.com/ad-manager/api/beta/filters
-     * <b>Filterable fields:</b>
-     * <ul style="list-style-type:none">
-     *   <li><code>adTagName</code></li>
-     *   <li><code>customTargetingKey</code></li>
-     *   <li><code>displayName</code></li>
-     *   <li><code>matchType</code></li>
-     *   <li><code>name</code></li>
-     *   <li><code>status</code></li>
-     * </ul>
+     * **Filterable fields:**
+     * * `adTagName`
+     * * `customTargetingKey`
+     * * `displayName`
+     * * `matchType`
+     * * `name`
+     * * `status`
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -263,15 +257,13 @@ class ListCustomTargetingValuesRequest extends \Google\Protobuf\Internal\Message
      * Optional. Expression to filter the response.
      *  See syntax details at
      *  https://developers.google.com/ad-manager/api/beta/filters
-     * <b>Filterable fields:</b>
-     * <ul style="list-style-type:none">
-     *   <li><code>adTagName</code></li>
-     *   <li><code>customTargetingKey</code></li>
-     *   <li><code>displayName</code></li>
-     *   <li><code>matchType</code></li>
-     *   <li><code>name</code></li>
-     *   <li><code>status</code></li>
-     * </ul>
+     * **Filterable fields:**
+     * * `adTagName`
+     * * `customTargetingKey`
+     * * `displayName`
+     * * `matchType`
+     * * `name`
+     * * `status`
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

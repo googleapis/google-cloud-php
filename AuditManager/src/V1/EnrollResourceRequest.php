@@ -9,48 +9,51 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * Request message to subscribe the Audit Manager service for given resource.
+ * Request message for
+ * [EnrollResource][google.cloud.auditmanager.v1.AuditManager.EnrollResource].
  *
  * Generated from protobuf message <code>google.cloud.auditmanager.v1.EnrollResourceRequest</code>
  */
 class EnrollResourceRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource to be enrolled to the audit manager. Scope format
-     * should be resource_type/resource_identifier Eg:
-     * projects/{project}/locations/{location},
-     * folders/{folder}/locations/{location}
-     * organizations/{organization}/locations/{location}
+     * Required. Organization, folder, or project to enroll in Audit Manager, in
+     * one of the following formats:
+     * * `projects/{project}/locations/{location}`
+     * * `folders/{folder}/locations/{location}`
+     * * `organizations/{organization}/locations/{location}`
      *
      * Generated from protobuf field <code>string scope = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $scope = '';
     /**
-     * Required. List of destination among which customer can choose to upload
-     * their reports during the audit process. While enrolling at a
-     * organization/folder level, customer can choose Cloud storage bucket in any
-     * project. If the audit is triggered at project level using the service agent
-     * at organization/folder level, all the destination options associated with
-     * respective organization/folder level service agent will be available to
-     * auditing projects.
+     * Required. Cloud Storage buckets that you can upload your audit reports to
+     * during the audit process.
+     * When you enroll an organization or folder, you can choose a Cloud Storage
+     * bucket from any project in the organization or folder. If you run an audit
+     * at the project level using the service agent at the organization or folder
+     * level, all the buckets that are associated with the service agent are
+     * available.
      *
      * Generated from protobuf field <code>repeated .google.cloud.auditmanager.v1.EnrollResourceRequest.EligibleDestination destinations = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $destinations;
 
     /**
-     * @param string                                                                    $scope        Required. The resource to be enrolled to the audit manager. Scope format
-     *                                                                                                should be resource_type/resource_identifier Eg:
-     *                                                                                                projects/{project}/locations/{location},
-     *                                                                                                folders/{folder}/locations/{location}
-     *                                                                                                organizations/{organization}/locations/{location}
-     * @param \Google\Cloud\AuditManager\V1\EnrollResourceRequest\EligibleDestination[] $destinations Required. List of destination among which customer can choose to upload
-     *                                                                                                their reports during the audit process. While enrolling at a
-     *                                                                                                organization/folder level, customer can choose Cloud storage bucket in any
-     *                                                                                                project. If the audit is triggered at project level using the service agent
-     *                                                                                                at organization/folder level, all the destination options associated with
-     *                                                                                                respective organization/folder level service agent will be available to
-     *                                                                                                auditing projects.
+     * @param string                                                                    $scope        Required. Organization, folder, or project to enroll in Audit Manager, in
+     *                                                                                                one of the following formats:
+     *
+     *                                                                                                * `projects/{project}/locations/{location}`
+     *                                                                                                * `folders/{folder}/locations/{location}`
+     *                                                                                                * `organizations/{organization}/locations/{location}`
+     * @param \Google\Cloud\AuditManager\V1\EnrollResourceRequest\EligibleDestination[] $destinations Required. Cloud Storage buckets that you can upload your audit reports to
+     *                                                                                                during the audit process.
+     *
+     *                                                                                                When you enroll an organization or folder, you can choose a Cloud Storage
+     *                                                                                                bucket from any project in the organization or folder. If you run an audit
+     *                                                                                                at the project level using the service agent at the organization or folder
+     *                                                                                                level, all the buckets that are associated with the service agent are
+     *                                                                                                available.
      *
      * @return \Google\Cloud\AuditManager\V1\EnrollResourceRequest
      *
@@ -70,19 +73,19 @@ class EnrollResourceRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $scope
-     *           Required. The resource to be enrolled to the audit manager. Scope format
-     *           should be resource_type/resource_identifier Eg:
-     *           projects/{project}/locations/{location},
-     *           folders/{folder}/locations/{location}
-     *           organizations/{organization}/locations/{location}
+     *           Required. Organization, folder, or project to enroll in Audit Manager, in
+     *           one of the following formats:
+     *           * `projects/{project}/locations/{location}`
+     *           * `folders/{folder}/locations/{location}`
+     *           * `organizations/{organization}/locations/{location}`
      *     @type \Google\Cloud\AuditManager\V1\EnrollResourceRequest\EligibleDestination[] $destinations
-     *           Required. List of destination among which customer can choose to upload
-     *           their reports during the audit process. While enrolling at a
-     *           organization/folder level, customer can choose Cloud storage bucket in any
-     *           project. If the audit is triggered at project level using the service agent
-     *           at organization/folder level, all the destination options associated with
-     *           respective organization/folder level service agent will be available to
-     *           auditing projects.
+     *           Required. Cloud Storage buckets that you can upload your audit reports to
+     *           during the audit process.
+     *           When you enroll an organization or folder, you can choose a Cloud Storage
+     *           bucket from any project in the organization or folder. If you run an audit
+     *           at the project level using the service agent at the organization or folder
+     *           level, all the buckets that are associated with the service agent are
+     *           available.
      * }
      */
     public function __construct($data = NULL) {
@@ -91,11 +94,11 @@ class EnrollResourceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource to be enrolled to the audit manager. Scope format
-     * should be resource_type/resource_identifier Eg:
-     * projects/{project}/locations/{location},
-     * folders/{folder}/locations/{location}
-     * organizations/{organization}/locations/{location}
+     * Required. Organization, folder, or project to enroll in Audit Manager, in
+     * one of the following formats:
+     * * `projects/{project}/locations/{location}`
+     * * `folders/{folder}/locations/{location}`
+     * * `organizations/{organization}/locations/{location}`
      *
      * Generated from protobuf field <code>string scope = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -106,11 +109,11 @@ class EnrollResourceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource to be enrolled to the audit manager. Scope format
-     * should be resource_type/resource_identifier Eg:
-     * projects/{project}/locations/{location},
-     * folders/{folder}/locations/{location}
-     * organizations/{organization}/locations/{location}
+     * Required. Organization, folder, or project to enroll in Audit Manager, in
+     * one of the following formats:
+     * * `projects/{project}/locations/{location}`
+     * * `folders/{folder}/locations/{location}`
+     * * `organizations/{organization}/locations/{location}`
      *
      * Generated from protobuf field <code>string scope = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -125,13 +128,13 @@ class EnrollResourceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. List of destination among which customer can choose to upload
-     * their reports during the audit process. While enrolling at a
-     * organization/folder level, customer can choose Cloud storage bucket in any
-     * project. If the audit is triggered at project level using the service agent
-     * at organization/folder level, all the destination options associated with
-     * respective organization/folder level service agent will be available to
-     * auditing projects.
+     * Required. Cloud Storage buckets that you can upload your audit reports to
+     * during the audit process.
+     * When you enroll an organization or folder, you can choose a Cloud Storage
+     * bucket from any project in the organization or folder. If you run an audit
+     * at the project level using the service agent at the organization or folder
+     * level, all the buckets that are associated with the service agent are
+     * available.
      *
      * Generated from protobuf field <code>repeated .google.cloud.auditmanager.v1.EnrollResourceRequest.EligibleDestination destinations = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return RepeatedField<\Google\Cloud\AuditManager\V1\EnrollResourceRequest\EligibleDestination>
@@ -142,13 +145,13 @@ class EnrollResourceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. List of destination among which customer can choose to upload
-     * their reports during the audit process. While enrolling at a
-     * organization/folder level, customer can choose Cloud storage bucket in any
-     * project. If the audit is triggered at project level using the service agent
-     * at organization/folder level, all the destination options associated with
-     * respective organization/folder level service agent will be available to
-     * auditing projects.
+     * Required. Cloud Storage buckets that you can upload your audit reports to
+     * during the audit process.
+     * When you enroll an organization or folder, you can choose a Cloud Storage
+     * bucket from any project in the organization or folder. If you run an audit
+     * at the project level using the service agent at the organization or folder
+     * level, all the buckets that are associated with the service agent are
+     * available.
      *
      * Generated from protobuf field <code>repeated .google.cloud.auditmanager.v1.EnrollResourceRequest.EligibleDestination destinations = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\AuditManager\V1\EnrollResourceRequest\EligibleDestination[] $var

@@ -29,7 +29,7 @@ use Google\Ads\AdManager\V1\GetCompanyRequest;
 use Google\ApiCore\ApiException;
 
 /**
- * Retrieves a `Company` object.
+ * Retrieves a [Company][google.ads.admanager.v1.Company] object.
  *
  * @param string $formattedName The resource name of the Company.
  *                              Format: `networks/{network_code}/companies/{company_id}`

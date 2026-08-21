@@ -29,7 +29,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 
 /**
- * API to retrieve a list of `AudienceSegment` objects.
+ * Lists `AudienceSegment` objects.
  *
  * @param string $formattedParent The parent publisher network associated with these audience
  *                                segments. Format: `networks/{network_code}`

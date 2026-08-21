@@ -29,7 +29,7 @@ use Google\Ads\AdManager\V1\GetAudienceSegmentRequest;
 use Google\ApiCore\ApiException;
 
 /**
- * API to retrieve an `AudienceSegment` object.
+ * Retrieves an `AudienceSegment` object.
  *
  * @param string $formattedName The resource name of the AudienceSegment.
  *                              Format: `networks/{network_code}/audienceSegments/{audience_segment_id}`

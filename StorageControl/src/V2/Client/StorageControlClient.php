@@ -49,6 +49,7 @@ use Google\Cloud\Storage\Control\V2\DeleteFolderRecursiveRequest;
 use Google\Cloud\Storage\Control\V2\DeleteFolderRequest;
 use Google\Cloud\Storage\Control\V2\DeleteManagedFolderRequest;
 use Google\Cloud\Storage\Control\V2\DisableAnywhereCacheRequest;
+use Google\Cloud\Storage\Control\V2\DisableRapidCacheRequest;
 use Google\Cloud\Storage\Control\V2\Folder;
 use Google\Cloud\Storage\Control\V2\GetAnywhereCacheRequest;
 use Google\Cloud\Storage\Control\V2\GetFolderIntelligenceConfigRequest;
@@ -108,6 +109,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<OperationResponse> deleteFolderRecursiveAsync(DeleteFolderRecursiveRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteManagedFolderAsync(DeleteManagedFolderRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<AnywhereCache> disableAnywhereCacheAsync(DisableAnywhereCacheRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> disableRapidCacheAsync(DisableRapidCacheRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<AnywhereCache> getAnywhereCacheAsync(GetAnywhereCacheRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Folder> getFolderAsync(GetFolderRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<IntelligenceConfig> getFolderIntelligenceConfigAsync(GetFolderIntelligenceConfigRequest $request, array $optionalArgs = [])
@@ -842,6 +844,32 @@ final class StorageControlClient
     public function disableAnywhereCache(DisableAnywhereCacheRequest $request, array $callOptions = []): AnywhereCache
     {
         return $this->startApiCall('DisableAnywhereCache', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Disables a Rapid Cache instance.
+     *
+     * The async variant is {@see StorageControlClient::disableRapidCacheAsync()} .
+     *
+     * @example samples/V2/StorageControlClient/disable_rapid_cache.php
+     *
+     * @param DisableRapidCacheRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<RapidCache>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function disableRapidCache(DisableRapidCacheRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DisableRapidCache', $request, $callOptions)->wait();
     }
 
     /**

@@ -16,38 +16,47 @@ use Google\Protobuf\RepeatedField;
 class AuditReport extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Identifier. The name of this Audit Report, in the format of scope given in
-     * request.
+     * Identifier. Name of the audit report, in one of the following formats:
+     * * `projects/{project}/locations/{location}/auditReports/{audit_report}`
+     * * `folders/{folder}/locations/{location}/auditReports/{audit_report}`
+     * * `organizations/{organization}/locations/{location}/auditReports/{audit_report}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
-     * Output only. Report summary with compliance, violation counts etc.
+     * Output only. Report summary that includes information about compliance and
+     * violation counts.
      *
      * Generated from protobuf field <code>.google.cloud.auditmanager.v1.ReportSummary report_summary = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $report_summary = null;
     /**
-     * Output only. ClientOperationId
+     * Output only. Client operation ID for the audit report.
      *
      * Generated from protobuf field <code>string operation_id = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $operation_id = '';
     /**
-     * Output only. The location where the generated report will be uploaded.
+     * Output only. Cloud Storage bucket where the audit report is uploaded to.
      *
      * Generated from protobuf field <code>.google.cloud.auditmanager.v1.DestinationDetails destination_details = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $destination_details = null;
     /**
-     * Output only. Compliance Standard.
+     * Output only. Deprecated. Compliance standard to be audited against.
+     * Use the `compliance_framework` field instead.
      *
-     * Generated from protobuf field <code>string compliance_standard = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string compliance_standard = 5 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @deprecated
      */
     protected $compliance_standard = '';
     /**
-     * Output only. The parent scope on which the report was generated.
+     * Output only. Organization, folder, or project that the report is generated
+     * for, in one of the following formats:
+     * * `projects/{project}/locations/{location}`
+     * * `folders/{folder}/locations/{location}`
+     * * `organizations/{organization}/locations/{location}`
      *
      * Generated from protobuf field <code>string scope = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -59,26 +68,27 @@ class AuditReport extends \Google\Protobuf\Internal\Message
      */
     protected $create_time = null;
     /**
-     * Output only. The overall status of controls
+     * Output only. Overall status of the controls.
      *
      * Generated from protobuf field <code>repeated .google.cloud.auditmanager.v1.ControlDetails control_details = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $control_details;
     /**
-     * Output only. The state of Audit Report Generation.
+     * Output only. State of audit report generation.
      *
      * Generated from protobuf field <code>.google.cloud.auditmanager.v1.AuditReport.ReportGenerationState report_generation_state = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $report_generation_state = 0;
     /**
-     * Output only. Compliance Framework of Audit Report
+     * Output only. Compliance framework to use for the audit report. For example,
+     * `CIS_GCP_FOUNDATIONS_V1_2_0`.
      *
      * Generated from protobuf field <code>string compliance_framework = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $compliance_framework = '';
     /**
-     * Output only. The ID/ Number for the scope on which the audit report was
-     * generated.
+     * Output only. Project number, folder ID, or organization ID that the audit
+     * report was generated for.
      *
      * Generated from protobuf field <code>string scope_id = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -91,29 +101,38 @@ class AuditReport extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Identifier. The name of this Audit Report, in the format of scope given in
-     *           request.
+     *           Identifier. Name of the audit report, in one of the following formats:
+     *           * `projects/{project}/locations/{location}/auditReports/{audit_report}`
+     *           * `folders/{folder}/locations/{location}/auditReports/{audit_report}`
+     *           * `organizations/{organization}/locations/{location}/auditReports/{audit_report}`
      *     @type \Google\Cloud\AuditManager\V1\ReportSummary $report_summary
-     *           Output only. Report summary with compliance, violation counts etc.
+     *           Output only. Report summary that includes information about compliance and
+     *           violation counts.
      *     @type string $operation_id
-     *           Output only. ClientOperationId
+     *           Output only. Client operation ID for the audit report.
      *     @type \Google\Cloud\AuditManager\V1\DestinationDetails $destination_details
-     *           Output only. The location where the generated report will be uploaded.
+     *           Output only. Cloud Storage bucket where the audit report is uploaded to.
      *     @type string $compliance_standard
-     *           Output only. Compliance Standard.
+     *           Output only. Deprecated. Compliance standard to be audited against.
+     *           Use the `compliance_framework` field instead.
      *     @type string $scope
-     *           Output only. The parent scope on which the report was generated.
+     *           Output only. Organization, folder, or project that the report is generated
+     *           for, in one of the following formats:
+     *           * `projects/{project}/locations/{location}`
+     *           * `folders/{folder}/locations/{location}`
+     *           * `organizations/{organization}/locations/{location}`
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Creation time of the audit report.
      *     @type \Google\Cloud\AuditManager\V1\ControlDetails[] $control_details
-     *           Output only. The overall status of controls
+     *           Output only. Overall status of the controls.
      *     @type int $report_generation_state
-     *           Output only. The state of Audit Report Generation.
+     *           Output only. State of audit report generation.
      *     @type string $compliance_framework
-     *           Output only. Compliance Framework of Audit Report
+     *           Output only. Compliance framework to use for the audit report. For example,
+     *           `CIS_GCP_FOUNDATIONS_V1_2_0`.
      *     @type string $scope_id
-     *           Output only. The ID/ Number for the scope on which the audit report was
-     *           generated.
+     *           Output only. Project number, folder ID, or organization ID that the audit
+     *           report was generated for.
      * }
      */
     public function __construct($data = NULL) {
@@ -122,8 +141,10 @@ class AuditReport extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Identifier. The name of this Audit Report, in the format of scope given in
-     * request.
+     * Identifier. Name of the audit report, in one of the following formats:
+     * * `projects/{project}/locations/{location}/auditReports/{audit_report}`
+     * * `folders/{folder}/locations/{location}/auditReports/{audit_report}`
+     * * `organizations/{organization}/locations/{location}/auditReports/{audit_report}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
@@ -134,8 +155,10 @@ class AuditReport extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Identifier. The name of this Audit Report, in the format of scope given in
-     * request.
+     * Identifier. Name of the audit report, in one of the following formats:
+     * * `projects/{project}/locations/{location}/auditReports/{audit_report}`
+     * * `folders/{folder}/locations/{location}/auditReports/{audit_report}`
+     * * `organizations/{organization}/locations/{location}/auditReports/{audit_report}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
@@ -150,7 +173,8 @@ class AuditReport extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Report summary with compliance, violation counts etc.
+     * Output only. Report summary that includes information about compliance and
+     * violation counts.
      *
      * Generated from protobuf field <code>.google.cloud.auditmanager.v1.ReportSummary report_summary = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\AuditManager\V1\ReportSummary|null
@@ -171,7 +195,8 @@ class AuditReport extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Report summary with compliance, violation counts etc.
+     * Output only. Report summary that includes information about compliance and
+     * violation counts.
      *
      * Generated from protobuf field <code>.google.cloud.auditmanager.v1.ReportSummary report_summary = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\AuditManager\V1\ReportSummary $var
@@ -186,7 +211,7 @@ class AuditReport extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. ClientOperationId
+     * Output only. Client operation ID for the audit report.
      *
      * Generated from protobuf field <code>string operation_id = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -197,7 +222,7 @@ class AuditReport extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. ClientOperationId
+     * Output only. Client operation ID for the audit report.
      *
      * Generated from protobuf field <code>string operation_id = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -212,7 +237,7 @@ class AuditReport extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The location where the generated report will be uploaded.
+     * Output only. Cloud Storage bucket where the audit report is uploaded to.
      *
      * Generated from protobuf field <code>.google.cloud.auditmanager.v1.DestinationDetails destination_details = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\AuditManager\V1\DestinationDetails|null
@@ -233,7 +258,7 @@ class AuditReport extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The location where the generated report will be uploaded.
+     * Output only. Cloud Storage bucket where the audit report is uploaded to.
      *
      * Generated from protobuf field <code>.google.cloud.auditmanager.v1.DestinationDetails destination_details = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\AuditManager\V1\DestinationDetails $var
@@ -248,25 +273,33 @@ class AuditReport extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Compliance Standard.
+     * Output only. Deprecated. Compliance standard to be audited against.
+     * Use the `compliance_framework` field instead.
      *
-     * Generated from protobuf field <code>string compliance_standard = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string compliance_standard = 5 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
+     * @deprecated
      */
     public function getComplianceStandard()
     {
+        if ($this->compliance_standard !== '') {
+            @trigger_error('compliance_standard is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->compliance_standard;
     }
 
     /**
-     * Output only. Compliance Standard.
+     * Output only. Deprecated. Compliance standard to be audited against.
+     * Use the `compliance_framework` field instead.
      *
-     * Generated from protobuf field <code>string compliance_standard = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string compliance_standard = 5 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
+     * @deprecated
      */
     public function setComplianceStandard($var)
     {
+        @trigger_error('compliance_standard is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkString($var, True);
         $this->compliance_standard = $var;
 
@@ -274,7 +307,11 @@ class AuditReport extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The parent scope on which the report was generated.
+     * Output only. Organization, folder, or project that the report is generated
+     * for, in one of the following formats:
+     * * `projects/{project}/locations/{location}`
+     * * `folders/{folder}/locations/{location}`
+     * * `organizations/{organization}/locations/{location}`
      *
      * Generated from protobuf field <code>string scope = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -285,7 +322,11 @@ class AuditReport extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The parent scope on which the report was generated.
+     * Output only. Organization, folder, or project that the report is generated
+     * for, in one of the following formats:
+     * * `projects/{project}/locations/{location}`
+     * * `folders/{folder}/locations/{location}`
+     * * `organizations/{organization}/locations/{location}`
      *
      * Generated from protobuf field <code>string scope = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -336,7 +377,7 @@ class AuditReport extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The overall status of controls
+     * Output only. Overall status of the controls.
      *
      * Generated from protobuf field <code>repeated .google.cloud.auditmanager.v1.ControlDetails control_details = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return RepeatedField<\Google\Cloud\AuditManager\V1\ControlDetails>
@@ -347,7 +388,7 @@ class AuditReport extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The overall status of controls
+     * Output only. Overall status of the controls.
      *
      * Generated from protobuf field <code>repeated .google.cloud.auditmanager.v1.ControlDetails control_details = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\AuditManager\V1\ControlDetails[] $var
@@ -362,7 +403,7 @@ class AuditReport extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The state of Audit Report Generation.
+     * Output only. State of audit report generation.
      *
      * Generated from protobuf field <code>.google.cloud.auditmanager.v1.AuditReport.ReportGenerationState report_generation_state = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
@@ -373,7 +414,7 @@ class AuditReport extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The state of Audit Report Generation.
+     * Output only. State of audit report generation.
      *
      * Generated from protobuf field <code>.google.cloud.auditmanager.v1.AuditReport.ReportGenerationState report_generation_state = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
@@ -388,7 +429,8 @@ class AuditReport extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Compliance Framework of Audit Report
+     * Output only. Compliance framework to use for the audit report. For example,
+     * `CIS_GCP_FOUNDATIONS_V1_2_0`.
      *
      * Generated from protobuf field <code>string compliance_framework = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -399,7 +441,8 @@ class AuditReport extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Compliance Framework of Audit Report
+     * Output only. Compliance framework to use for the audit report. For example,
+     * `CIS_GCP_FOUNDATIONS_V1_2_0`.
      *
      * Generated from protobuf field <code>string compliance_framework = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -414,8 +457,8 @@ class AuditReport extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The ID/ Number for the scope on which the audit report was
-     * generated.
+     * Output only. Project number, folder ID, or organization ID that the audit
+     * report was generated for.
      *
      * Generated from protobuf field <code>string scope_id = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -426,8 +469,8 @@ class AuditReport extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The ID/ Number for the scope on which the audit report was
-     * generated.
+     * Output only. Project number, folder ID, or organization ID that the audit
+     * report was generated for.
      *
      * Generated from protobuf field <code>string scope_id = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

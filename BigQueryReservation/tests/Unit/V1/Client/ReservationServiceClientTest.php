@@ -117,11 +117,13 @@ class ReservationServiceClientTest extends GeneratedTest
         $assignee = 'assignee-369881649';
         $enableGeminiInBigquery = true;
         $principal = 'principal-1812041682';
+        $precedence = 159695370;
         $expectedResponse = new Assignment();
         $expectedResponse->setName($name);
         $expectedResponse->setAssignee($assignee);
         $expectedResponse->setEnableGeminiInBigquery($enableGeminiInBigquery);
         $expectedResponse->setPrincipal($principal);
+        $expectedResponse->setPrecedence($precedence);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->reservationName('[PROJECT]', '[LOCATION]', '[RESERVATION]');
@@ -1490,11 +1492,13 @@ class ReservationServiceClientTest extends GeneratedTest
         $assignee = 'assignee-369881649';
         $enableGeminiInBigquery = true;
         $principal = 'principal-1812041682';
+        $precedence = 159695370;
         $expectedResponse = new Assignment();
         $expectedResponse->setName($name2);
         $expectedResponse->setAssignee($assignee);
         $expectedResponse->setEnableGeminiInBigquery($enableGeminiInBigquery);
         $expectedResponse->setPrincipal($principal);
+        $expectedResponse->setPrecedence($precedence);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->assignmentName('[PROJECT]', '[LOCATION]', '[RESERVATION]', '[ASSIGNMENT]');
@@ -1916,11 +1920,13 @@ class ReservationServiceClientTest extends GeneratedTest
         $assignee = 'assignee-369881649';
         $enableGeminiInBigquery = true;
         $principal = 'principal-1812041682';
+        $precedence = 159695370;
         $expectedResponse = new Assignment();
         $expectedResponse->setName($name);
         $expectedResponse->setAssignee($assignee);
         $expectedResponse->setEnableGeminiInBigquery($enableGeminiInBigquery);
         $expectedResponse->setPrincipal($principal);
+        $expectedResponse->setPrecedence($precedence);
         $transport->addResponse($expectedResponse);
         $request = new UpdateAssignmentRequest();
         $response = $gapicClient->updateAssignment($request);
@@ -2193,11 +2199,13 @@ class ReservationServiceClientTest extends GeneratedTest
         $assignee = 'assignee-369881649';
         $enableGeminiInBigquery = true;
         $principal = 'principal-1812041682';
+        $precedence = 159695370;
         $expectedResponse = new Assignment();
         $expectedResponse->setName($name);
         $expectedResponse->setAssignee($assignee);
         $expectedResponse->setEnableGeminiInBigquery($enableGeminiInBigquery);
         $expectedResponse->setPrincipal($principal);
+        $expectedResponse->setPrecedence($precedence);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->reservationName('[PROJECT]', '[LOCATION]', '[RESERVATION]');

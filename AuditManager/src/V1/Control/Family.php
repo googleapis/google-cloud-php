@@ -7,122 +7,122 @@ namespace Google\Cloud\AuditManager\V1\Control;
 use UnexpectedValueException;
 
 /**
- * The family of the control. For example, Access Control.
+ * Category of the control.
  *
  * Protobuf type <code>google.cloud.auditmanager.v1.Control.Family</code>
  */
 class Family
 {
     /**
-     * Unspecified. Invalid state.
+     * Default value. This value is unused.
      *
      * Generated from protobuf enum <code>FAMILY_UNSPECIFIED = 0;</code>
      */
     const FAMILY_UNSPECIFIED = 0;
     /**
-     * Access Control
+     * Access control.
      *
      * Generated from protobuf enum <code>AC = 1;</code>
      */
     const AC = 1;
     /**
-     * Awareness and Training
+     * Awareness and training.
      *
      * Generated from protobuf enum <code>AT = 2;</code>
      */
     const AT = 2;
     /**
-     * Audit and Accountability
+     * Audit and accountability.
      *
      * Generated from protobuf enum <code>AU = 3;</code>
      */
     const AU = 3;
     /**
-     * Certification, Accreditation and Security Assessments
+     * Certification, accreditation and security assessments.
      *
      * Generated from protobuf enum <code>CA = 4;</code>
      */
     const CA = 4;
     /**
-     * Configuration Management
+     * Configuration management and change control.
      *
      * Generated from protobuf enum <code>CM = 5;</code>
      */
     const CM = 5;
     /**
-     * Contingency Planning
+     * Contingency planning and disaster recovery.
      *
      * Generated from protobuf enum <code>CP = 6;</code>
      */
     const CP = 6;
     /**
-     * Identification and Authentication
+     * Identification and authentication.
      *
      * Generated from protobuf enum <code>IA = 7;</code>
      */
     const IA = 7;
     /**
-     * Incident Response
+     * Incident response.
      *
      * Generated from protobuf enum <code>IR = 8;</code>
      */
     const IR = 8;
     /**
-     * Maintenance
+     * Maintenance.
      *
      * Generated from protobuf enum <code>MA = 9;</code>
      */
     const MA = 9;
     /**
-     * Media Protection
+     * Media protection.
      *
      * Generated from protobuf enum <code>MP = 10;</code>
      */
     const MP = 10;
     /**
-     * Physical and Environmental Protection
+     * Physical and environmental protection.
      *
      * Generated from protobuf enum <code>PE = 11;</code>
      */
     const PE = 11;
     /**
-     * Security Planning
+     * Security planning.
      *
      * Generated from protobuf enum <code>PL = 12;</code>
      */
     const PL = 12;
     /**
-     * Personnel Security
+     * Personnel security.
      *
      * Generated from protobuf enum <code>PS = 13;</code>
      */
     const PS = 13;
     /**
-     * Risk Assessment
+     * Risk assessment.
      *
      * Generated from protobuf enum <code>RA = 14;</code>
      */
     const RA = 14;
     /**
-     * System Services and Acquisition
+     * System services and acquisition.
      *
      * Generated from protobuf enum <code>SA = 15;</code>
      */
     const SA = 15;
     /**
-     * System and Communications Protection
+     * System and communications protection.
      *
      * Generated from protobuf enum <code>SC = 16;</code>
      */
     const SC = 16;
     /**
-     * System and Information Integrity
+     * System and information integrity.
      *
      * Generated from protobuf enum <code>SI = 17;</code>
      */
     const SI = 17;
     /**
-     * Supply Chain Risk Management
+     * Supply chain risk management.
      *
      * Generated from protobuf enum <code>SR = 18;</code>
      */

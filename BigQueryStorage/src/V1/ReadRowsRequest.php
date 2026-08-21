@@ -29,6 +29,7 @@ class ReadRowsRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int64 offset = 2;</code>
      */
     protected $offset = 0;
+    protected $output_format_serialization_options;
 
     /**
      * @param string $readStream Required. Stream to read rows from. Please see
@@ -60,6 +61,9 @@ class ReadRowsRequest extends \Google\Protobuf\Internal\Message
      *           The offset requested must be less than the last row read from Read.
      *           Requesting a larger offset is undefined. If not specified, start reading
      *           from offset zero.
+     *     @type \Google\Cloud\BigQuery\Storage\V1\ArrowSerializationOptions $arrow_serialization_options
+     *           Optional. Options specific to the Apache Arrow output format.
+     *           This feature is not yet available.
      * }
      */
     public function __construct($data = NULL) {
@@ -121,6 +125,47 @@ class ReadRowsRequest extends \Google\Protobuf\Internal\Message
         $this->offset = $var;
 
         return $this;
+    }
+
+    /**
+     * Optional. Options specific to the Apache Arrow output format.
+     * This feature is not yet available.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.ArrowSerializationOptions arrow_serialization_options = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\BigQuery\Storage\V1\ArrowSerializationOptions|null
+     */
+    public function getArrowSerializationOptions()
+    {
+        return $this->readOneof(5);
+    }
+
+    public function hasArrowSerializationOptions()
+    {
+        return $this->hasOneof(5);
+    }
+
+    /**
+     * Optional. Options specific to the Apache Arrow output format.
+     * This feature is not yet available.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.ArrowSerializationOptions arrow_serialization_options = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\BigQuery\Storage\V1\ArrowSerializationOptions $var
+     * @return $this
+     */
+    public function setArrowSerializationOptions($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\Storage\V1\ArrowSerializationOptions::class);
+        $this->writeOneof(5, $var);
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getOutputFormatSerializationOptions()
+    {
+        return $this->whichOneof("output_format_serialization_options");
     }
 
 }

@@ -22,6 +22,8 @@ class BatchGetDocumentsRequest extends \Google\Protobuf\Internal\Message
      * same order as the `names` in the request.
      * Format: `documents/{uri_without_scheme}`
      * Example: `documents/docs.cloud.google.com/storage/docs/creating-buckets`
+     * Each name must not exceed 500 characters; values longer than 500 characters
+     * will result in an `INVALID_ARGUMENT` error.
      *
      * Generated from protobuf field <code>repeated string names = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -49,6 +51,8 @@ class BatchGetDocumentsRequest extends \Google\Protobuf\Internal\Message
      *           same order as the `names` in the request.
      *           Format: `documents/{uri_without_scheme}`
      *           Example: `documents/docs.cloud.google.com/storage/docs/creating-buckets`
+     *           Each name must not exceed 500 characters; values longer than 500 characters
+     *           will result in an `INVALID_ARGUMENT` error.
      *     @type int $view
      *           Optional. Specifies the
      *           [DocumentView][google.developers.knowledge.v1.DocumentView] of the
@@ -68,6 +72,8 @@ class BatchGetDocumentsRequest extends \Google\Protobuf\Internal\Message
      * same order as the `names` in the request.
      * Format: `documents/{uri_without_scheme}`
      * Example: `documents/docs.cloud.google.com/storage/docs/creating-buckets`
+     * Each name must not exceed 500 characters; values longer than 500 characters
+     * will result in an `INVALID_ARGUMENT` error.
      *
      * Generated from protobuf field <code>repeated string names = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return RepeatedField<string>
@@ -83,6 +89,8 @@ class BatchGetDocumentsRequest extends \Google\Protobuf\Internal\Message
      * same order as the `names` in the request.
      * Format: `documents/{uri_without_scheme}`
      * Example: `documents/docs.cloud.google.com/storage/docs/creating-buckets`
+     * Each name must not exceed 500 characters; values longer than 500 characters
+     * will result in an `INVALID_ARGUMENT` error.
      *
      * Generated from protobuf field <code>repeated string names = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string[] $var
