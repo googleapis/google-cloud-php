@@ -90,9 +90,7 @@ final class RegionalInventoryServiceClient
      *
      * @internal
      */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/content',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/content'];
 
     private static function getClientDefaults()
     {
@@ -107,7 +105,8 @@ final class RegionalInventoryServiceClient
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/regional_inventory_service_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ . '/../resources/regional_inventory_service_rest_client_config.php',
                 ],
             ],
         ];
@@ -330,8 +329,10 @@ final class RegionalInventoryServiceClient
      *
      * @experimental
      */
-    public function insertRegionalInventory(InsertRegionalInventoryRequest $request, array $callOptions = []): RegionalInventory
-    {
+    public function insertRegionalInventory(
+        InsertRegionalInventoryRequest $request,
+        array $callOptions = []
+    ): RegionalInventory {
         return $this->startApiCall('InsertRegionalInventory', $request, $callOptions)->wait();
     }
 
@@ -364,8 +365,10 @@ final class RegionalInventoryServiceClient
      *
      * @experimental
      */
-    public function listRegionalInventories(ListRegionalInventoriesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listRegionalInventories(
+        ListRegionalInventoriesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListRegionalInventories', $request, $callOptions);
     }
 }
