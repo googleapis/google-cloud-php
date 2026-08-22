@@ -20,6 +20,8 @@ class GetDocumentRequest extends \Google\Protobuf\Internal\Message
      * Required. Specifies the name of the document to retrieve.
      * Format: `documents/{uri_without_scheme}`
      * Example: `documents/docs.cloud.google.com/storage/docs/creating-buckets`
+     * The name must not exceed 500 characters; values longer than 500 characters
+     * will result in an `INVALID_ARGUMENT` error.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -39,7 +41,10 @@ class GetDocumentRequest extends \Google\Protobuf\Internal\Message
      * @param string $name Required. Specifies the name of the document to retrieve.
      *                     Format: `documents/{uri_without_scheme}`
      *                     Example: `documents/docs.cloud.google.com/storage/docs/creating-buckets`
-     *                     Please see {@see DeveloperKnowledgeClient::documentName()} for help formatting this field.
+     *
+     *                     The name must not exceed 500 characters; values longer than 500 characters
+     *                     will result in an `INVALID_ARGUMENT` error. Please see
+     *                     {@see DeveloperKnowledgeClient::documentName()} for help formatting this field.
      *
      * @return \Google\Developers\DeveloperKnowledge\V1\GetDocumentRequest
      *
@@ -61,6 +66,8 @@ class GetDocumentRequest extends \Google\Protobuf\Internal\Message
      *           Required. Specifies the name of the document to retrieve.
      *           Format: `documents/{uri_without_scheme}`
      *           Example: `documents/docs.cloud.google.com/storage/docs/creating-buckets`
+     *           The name must not exceed 500 characters; values longer than 500 characters
+     *           will result in an `INVALID_ARGUMENT` error.
      *     @type int $view
      *           Optional. Specifies the
      *           [DocumentView][google.developers.knowledge.v1.DocumentView] of the
@@ -78,6 +85,8 @@ class GetDocumentRequest extends \Google\Protobuf\Internal\Message
      * Required. Specifies the name of the document to retrieve.
      * Format: `documents/{uri_without_scheme}`
      * Example: `documents/docs.cloud.google.com/storage/docs/creating-buckets`
+     * The name must not exceed 500 characters; values longer than 500 characters
+     * will result in an `INVALID_ARGUMENT` error.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -91,6 +100,8 @@ class GetDocumentRequest extends \Google\Protobuf\Internal\Message
      * Required. Specifies the name of the document to retrieve.
      * Format: `documents/{uri_without_scheme}`
      * Example: `documents/docs.cloud.google.com/storage/docs/creating-buckets`
+     * The name must not exceed 500 characters; values longer than 500 characters
+     * will result in an `INVALID_ARGUMENT` error.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

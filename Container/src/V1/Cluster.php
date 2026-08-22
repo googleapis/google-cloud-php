@@ -383,6 +383,21 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     protected $current_master_version = '';
     /**
+     * Output only. The current emulated version of the master endpoint.
+     * The version is in minor version format, e.g. 1.30.
+     * No value or empty string means the cluster has no emulated version.
+     *
+     * Generated from protobuf field <code>string current_emulated_version = 167 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $current_emulated_version = '';
+    /**
+     * Optional. The rollback safe upgrade information of the cluster.
+     * This field is used when user manually triggers a rollback safe upgrade.
+     *
+     * Generated from protobuf field <code>.google.container.v1.RollbackSafeUpgrade rollback_safe_upgrade = 170 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $rollback_safe_upgrade = null;
+    /**
      * Output only. Deprecated, use
      * [NodePools.version](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters.nodePools)
      * instead. The current version of the node software components. If they are
@@ -861,6 +876,13 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *           - "","-": picks the default Kubernetes version
      *     @type string $current_master_version
      *           Output only. The current software version of the master endpoint.
+     *     @type string $current_emulated_version
+     *           Output only. The current emulated version of the master endpoint.
+     *           The version is in minor version format, e.g. 1.30.
+     *           No value or empty string means the cluster has no emulated version.
+     *     @type \Google\Cloud\Container\V1\RollbackSafeUpgrade $rollback_safe_upgrade
+     *           Optional. The rollback safe upgrade information of the cluster.
+     *           This field is used when user manually triggers a rollback safe upgrade.
      *     @type string $current_node_version
      *           Output only. Deprecated, use
      *           [NodePools.version](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters.nodePools)
@@ -2605,6 +2627,74 @@ class Cluster extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->current_master_version = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The current emulated version of the master endpoint.
+     * The version is in minor version format, e.g. 1.30.
+     * No value or empty string means the cluster has no emulated version.
+     *
+     * Generated from protobuf field <code>string current_emulated_version = 167 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getCurrentEmulatedVersion()
+    {
+        return $this->current_emulated_version;
+    }
+
+    /**
+     * Output only. The current emulated version of the master endpoint.
+     * The version is in minor version format, e.g. 1.30.
+     * No value or empty string means the cluster has no emulated version.
+     *
+     * Generated from protobuf field <code>string current_emulated_version = 167 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCurrentEmulatedVersion($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->current_emulated_version = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The rollback safe upgrade information of the cluster.
+     * This field is used when user manually triggers a rollback safe upgrade.
+     *
+     * Generated from protobuf field <code>.google.container.v1.RollbackSafeUpgrade rollback_safe_upgrade = 170 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Container\V1\RollbackSafeUpgrade|null
+     */
+    public function getRollbackSafeUpgrade()
+    {
+        return $this->rollback_safe_upgrade;
+    }
+
+    public function hasRollbackSafeUpgrade()
+    {
+        return isset($this->rollback_safe_upgrade);
+    }
+
+    public function clearRollbackSafeUpgrade()
+    {
+        unset($this->rollback_safe_upgrade);
+    }
+
+    /**
+     * Optional. The rollback safe upgrade information of the cluster.
+     * This field is used when user manually triggers a rollback safe upgrade.
+     *
+     * Generated from protobuf field <code>.google.container.v1.RollbackSafeUpgrade rollback_safe_upgrade = 170 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Container\V1\RollbackSafeUpgrade $var
+     * @return $this
+     */
+    public function setRollbackSafeUpgrade($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\RollbackSafeUpgrade::class);
+        $this->rollback_safe_upgrade = $var;
 
         return $this;
     }
