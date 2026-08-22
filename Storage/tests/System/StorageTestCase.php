@@ -45,6 +45,8 @@ class StorageTestCase extends SystemTestCase
      */
     public static function setUpTestFixtures(): void
     {
+        self::setupQueue();
+        
         $config = [
             'keyFilePath' => getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH'),
             'transport' => 'rest'
