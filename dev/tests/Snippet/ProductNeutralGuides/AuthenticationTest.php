@@ -82,7 +82,10 @@ class AuthenticationTest extends SnippetTestCase
         $this->assertInstanceOf(StorageClient::class, $client);
         $connection = (new ReflectionClass($client))->getProperty('connection')->getValue($client);
         $requestWrapper = (new ReflectionClass($connection))->getProperty('requestWrapper')->getValue($connection);
-        $creds = (new ReflectionClass($requestWrapper))->getProperty('credentialsFetcher')->getValue($requestWrapper);
+        $requestWrapperReflection = new ReflectionClass(\Google\Cloud\Core\RequestWrapper::class);
+        $credentialsFetcherProperty = $requestWrapperReflection->getProperty('credentialsFetcher');
+        $credentialsFetcherProperty->setAccessible(true);
+        $creds = $credentialsFetcherProperty->getValue($requestWrapper);
         $this->assertInstanceOf(ServiceAccountCredentials::class, $creds);
         $this->assertEquals($clientEmail, $creds->getClientName());
     }
