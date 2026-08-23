@@ -5,8 +5,8 @@
 namespace Google\Cloud\OsLogin\Common;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The SSH public key information associated with a Google account.
@@ -17,8 +17,7 @@ class SshPublicKey extends \Google\Protobuf\Internal\Message
 {
     /**
      * Public key text in SSH format, defined by
-     * <a href="https://www.ietf.org/rfc/rfc4253.txt" target="_blank">RFC4253</a>
-     * section 6.6.
+     * [RFC4253](https://www.ietf.org/rfc/rfc4253.txt) section 6.6.
      *
      * Generated from protobuf field <code>string key = 1;</code>
      */
@@ -50,8 +49,7 @@ class SshPublicKey extends \Google\Protobuf\Internal\Message
      *
      *     @type string $key
      *           Public key text in SSH format, defined by
-     *           <a href="https://www.ietf.org/rfc/rfc4253.txt" target="_blank">RFC4253</a>
-     *           section 6.6.
+     *           [RFC4253](https://www.ietf.org/rfc/rfc4253.txt) section 6.6.
      *     @type int|string $expiration_time_usec
      *           An expiration time in microseconds since epoch.
      *     @type string $fingerprint
@@ -67,8 +65,7 @@ class SshPublicKey extends \Google\Protobuf\Internal\Message
 
     /**
      * Public key text in SSH format, defined by
-     * <a href="https://www.ietf.org/rfc/rfc4253.txt" target="_blank">RFC4253</a>
-     * section 6.6.
+     * [RFC4253](https://www.ietf.org/rfc/rfc4253.txt) section 6.6.
      *
      * Generated from protobuf field <code>string key = 1;</code>
      * @return string
@@ -80,8 +77,7 @@ class SshPublicKey extends \Google\Protobuf\Internal\Message
 
     /**
      * Public key text in SSH format, defined by
-     * <a href="https://www.ietf.org/rfc/rfc4253.txt" target="_blank">RFC4253</a>
-     * section 6.6.
+     * [RFC4253](https://www.ietf.org/rfc/rfc4253.txt) section 6.6.
      *
      * Generated from protobuf field <code>string key = 1;</code>
      * @param string $var
