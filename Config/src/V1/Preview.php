@@ -44,10 +44,10 @@ class Preview extends \Google\Protobuf\Internal\Message
      */
     protected $state = 0;
     /**
-     * Optional. Optional deployment reference. If specified, the preview will be
-     * performed using the provided deployment's current state and use any
-     * relevant fields from the deployment unless explicitly specified in the
-     * preview create request.
+     * Optional. Deployment reference. If specified, the preview will be performed
+     * using the provided deployment's current state and use any relevant fields
+     * from the deployment unless explicitly specified in the preview create
+     * request.
      *
      * Generated from protobuf field <code>string deployment = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
@@ -67,7 +67,7 @@ class Preview extends \Google\Protobuf\Internal\Message
      */
     protected $service_account = '';
     /**
-     * Optional. User-defined location of Cloud Build logs, artifacts, and
+     * User-defined location of Cloud Build logs, artifacts, and
      * in Google Cloud Storage.
      * Format: `gs://{bucket}/{folder}`
      * A default bucket will be bootstrapped if the field is not set or empty
@@ -78,18 +78,18 @@ class Preview extends \Google\Protobuf\Internal\Message
      * If omitted and deployment resource ref provided has artifacts_gcs_bucket
      * defined, that artifact bucket is used.
      *
-     * Generated from protobuf field <code>optional string artifacts_gcs_bucket = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string artifacts_gcs_bucket = 8;</code>
      */
     protected $artifacts_gcs_bucket = null;
     /**
-     * Optional. The user-specified Worker Pool resource in which the Cloud Build
-     * job will execute. Format
-     * projects/{project}/locations/{location}/workerPools/{workerPoolId} If this
-     * field is unspecified, the default Cloud Build worker pool will be used. If
-     * omitted and deployment resource ref provided has worker_pool defined, that
-     * worker pool is used.
+     * The user-specified Worker Pool resource in which the Cloud Build job will
+     * execute.
+     * Format projects/{project}/locations/{location}/workerPools/{workerPoolId}
+     * If this field is unspecified, the default Cloud Build worker pool will be
+     * used. If omitted and deployment resource ref provided has worker_pool
+     * defined, that worker pool is used.
      *
-     * Generated from protobuf field <code>optional string worker_pool = 9 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>optional string worker_pool = 9 [(.google.api.resource_reference) = {</code>
      */
     protected $worker_pool = null;
     /**
@@ -145,10 +145,10 @@ class Preview extends \Google\Protobuf\Internal\Message
      */
     protected $tf_version = '';
     /**
-     * Optional. The user-specified Terraform version constraint.
+     * The user-specified Terraform version constraint.
      * Example: "=1.3.10".
      *
-     * Generated from protobuf field <code>optional string tf_version_constraint = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string tf_version_constraint = 19;</code>
      */
     protected $tf_version_constraint = null;
     /**
@@ -187,10 +187,10 @@ class Preview extends \Google\Protobuf\Internal\Message
      *     @type int $state
      *           Output only. Current state of the preview.
      *     @type string $deployment
-     *           Optional. Optional deployment reference. If specified, the preview will be
-     *           performed using the provided deployment's current state and use any
-     *           relevant fields from the deployment unless explicitly specified in the
-     *           preview create request.
+     *           Optional. Deployment reference. If specified, the preview will be performed
+     *           using the provided deployment's current state and use any relevant fields
+     *           from the deployment unless explicitly specified in the preview create
+     *           request.
      *     @type int $preview_mode
      *           Optional. Current mode of preview.
      *     @type string $service_account
@@ -198,7 +198,7 @@ class Preview extends \Google\Protobuf\Internal\Message
      *           previewing resources.
      *           Format: `projects/{projectID}/serviceAccounts/{serviceAccount}`
      *     @type string $artifacts_gcs_bucket
-     *           Optional. User-defined location of Cloud Build logs, artifacts, and
+     *           User-defined location of Cloud Build logs, artifacts, and
      *           in Google Cloud Storage.
      *           Format: `gs://{bucket}/{folder}`
      *           A default bucket will be bootstrapped if the field is not set or empty
@@ -209,12 +209,12 @@ class Preview extends \Google\Protobuf\Internal\Message
      *           If omitted and deployment resource ref provided has artifacts_gcs_bucket
      *           defined, that artifact bucket is used.
      *     @type string $worker_pool
-     *           Optional. The user-specified Worker Pool resource in which the Cloud Build
-     *           job will execute. Format
-     *           projects/{project}/locations/{location}/workerPools/{workerPoolId} If this
-     *           field is unspecified, the default Cloud Build worker pool will be used. If
-     *           omitted and deployment resource ref provided has worker_pool defined, that
-     *           worker pool is used.
+     *           The user-specified Worker Pool resource in which the Cloud Build job will
+     *           execute.
+     *           Format projects/{project}/locations/{location}/workerPools/{workerPoolId}
+     *           If this field is unspecified, the default Cloud Build worker pool will be
+     *           used. If omitted and deployment resource ref provided has worker_pool
+     *           defined, that worker pool is used.
      *     @type int $error_code
      *           Output only. Code describing any errors that may have occurred.
      *     @type \Google\Rpc\Status $error_status
@@ -236,7 +236,7 @@ class Preview extends \Google\Protobuf\Internal\Message
      *           Output only. The current Terraform version set on the preview.
      *           It is in the format of "Major.Minor.Patch", for example, "1.3.10".
      *     @type string $tf_version_constraint
-     *           Optional. The user-specified Terraform version constraint.
+     *           The user-specified Terraform version constraint.
      *           Example: "=1.3.10".
      *     @type array|\Google\Protobuf\Internal\MapField $annotations
      *           Optional. Arbitrary key-value metadata storage e.g. to help client tools
@@ -402,10 +402,10 @@ class Preview extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Optional deployment reference. If specified, the preview will be
-     * performed using the provided deployment's current state and use any
-     * relevant fields from the deployment unless explicitly specified in the
-     * preview create request.
+     * Optional. Deployment reference. If specified, the preview will be performed
+     * using the provided deployment's current state and use any relevant fields
+     * from the deployment unless explicitly specified in the preview create
+     * request.
      *
      * Generated from protobuf field <code>string deployment = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
@@ -416,10 +416,10 @@ class Preview extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Optional deployment reference. If specified, the preview will be
-     * performed using the provided deployment's current state and use any
-     * relevant fields from the deployment unless explicitly specified in the
-     * preview create request.
+     * Optional. Deployment reference. If specified, the preview will be performed
+     * using the provided deployment's current state and use any relevant fields
+     * from the deployment unless explicitly specified in the preview create
+     * request.
      *
      * Generated from protobuf field <code>string deployment = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -490,7 +490,7 @@ class Preview extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. User-defined location of Cloud Build logs, artifacts, and
+     * User-defined location of Cloud Build logs, artifacts, and
      * in Google Cloud Storage.
      * Format: `gs://{bucket}/{folder}`
      * A default bucket will be bootstrapped if the field is not set or empty
@@ -501,7 +501,7 @@ class Preview extends \Google\Protobuf\Internal\Message
      * If omitted and deployment resource ref provided has artifacts_gcs_bucket
      * defined, that artifact bucket is used.
      *
-     * Generated from protobuf field <code>optional string artifacts_gcs_bucket = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string artifacts_gcs_bucket = 8;</code>
      * @return string
      */
     public function getArtifactsGcsBucket()
@@ -520,7 +520,7 @@ class Preview extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. User-defined location of Cloud Build logs, artifacts, and
+     * User-defined location of Cloud Build logs, artifacts, and
      * in Google Cloud Storage.
      * Format: `gs://{bucket}/{folder}`
      * A default bucket will be bootstrapped if the field is not set or empty
@@ -531,7 +531,7 @@ class Preview extends \Google\Protobuf\Internal\Message
      * If omitted and deployment resource ref provided has artifacts_gcs_bucket
      * defined, that artifact bucket is used.
      *
-     * Generated from protobuf field <code>optional string artifacts_gcs_bucket = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string artifacts_gcs_bucket = 8;</code>
      * @param string $var
      * @return $this
      */
@@ -544,14 +544,14 @@ class Preview extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The user-specified Worker Pool resource in which the Cloud Build
-     * job will execute. Format
-     * projects/{project}/locations/{location}/workerPools/{workerPoolId} If this
-     * field is unspecified, the default Cloud Build worker pool will be used. If
-     * omitted and deployment resource ref provided has worker_pool defined, that
-     * worker pool is used.
+     * The user-specified Worker Pool resource in which the Cloud Build job will
+     * execute.
+     * Format projects/{project}/locations/{location}/workerPools/{workerPoolId}
+     * If this field is unspecified, the default Cloud Build worker pool will be
+     * used. If omitted and deployment resource ref provided has worker_pool
+     * defined, that worker pool is used.
      *
-     * Generated from protobuf field <code>optional string worker_pool = 9 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>optional string worker_pool = 9 [(.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getWorkerPool()
@@ -570,14 +570,14 @@ class Preview extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The user-specified Worker Pool resource in which the Cloud Build
-     * job will execute. Format
-     * projects/{project}/locations/{location}/workerPools/{workerPoolId} If this
-     * field is unspecified, the default Cloud Build worker pool will be used. If
-     * omitted and deployment resource ref provided has worker_pool defined, that
-     * worker pool is used.
+     * The user-specified Worker Pool resource in which the Cloud Build job will
+     * execute.
+     * Format projects/{project}/locations/{location}/workerPools/{workerPoolId}
+     * If this field is unspecified, the default Cloud Build worker pool will be
+     * used. If omitted and deployment resource ref provided has worker_pool
+     * defined, that worker pool is used.
      *
-     * Generated from protobuf field <code>optional string worker_pool = 9 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>optional string worker_pool = 9 [(.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -826,10 +826,10 @@ class Preview extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The user-specified Terraform version constraint.
+     * The user-specified Terraform version constraint.
      * Example: "=1.3.10".
      *
-     * Generated from protobuf field <code>optional string tf_version_constraint = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string tf_version_constraint = 19;</code>
      * @return string
      */
     public function getTfVersionConstraint()
@@ -848,10 +848,10 @@ class Preview extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The user-specified Terraform version constraint.
+     * The user-specified Terraform version constraint.
      * Example: "=1.3.10".
      *
-     * Generated from protobuf field <code>optional string tf_version_constraint = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string tf_version_constraint = 19;</code>
      * @param string $var
      * @return $this
      */

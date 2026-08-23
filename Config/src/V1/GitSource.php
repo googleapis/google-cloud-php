@@ -16,23 +16,23 @@ use Google\Protobuf\RepeatedField;
 class GitSource extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. Repository URL.
+     * Repository URL.
      * Example: 'https://github.com/kubernetes/examples.git'
      *
-     * Generated from protobuf field <code>optional string repo = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string repo = 1;</code>
      */
     protected $repo = null;
     /**
-     * Optional. Subdirectory inside the repository.
+     * Subdirectory inside the repository.
      * Example: 'staging/my-package'
      *
-     * Generated from protobuf field <code>optional string directory = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string directory = 2;</code>
      */
     protected $directory = null;
     /**
-     * Optional. Git reference (e.g. branch or tag).
+     * Git reference (e.g. branch or tag).
      *
-     * Generated from protobuf field <code>optional string ref = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string ref = 3;</code>
      */
     protected $ref = null;
 
@@ -43,13 +43,13 @@ class GitSource extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $repo
-     *           Optional. Repository URL.
+     *           Repository URL.
      *           Example: 'https://github.com/kubernetes/examples.git'
      *     @type string $directory
-     *           Optional. Subdirectory inside the repository.
+     *           Subdirectory inside the repository.
      *           Example: 'staging/my-package'
      *     @type string $ref
-     *           Optional. Git reference (e.g. branch or tag).
+     *           Git reference (e.g. branch or tag).
      * }
      */
     public function __construct($data = NULL) {
@@ -58,10 +58,10 @@ class GitSource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Repository URL.
+     * Repository URL.
      * Example: 'https://github.com/kubernetes/examples.git'
      *
-     * Generated from protobuf field <code>optional string repo = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string repo = 1;</code>
      * @return string
      */
     public function getRepo()
@@ -80,10 +80,10 @@ class GitSource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Repository URL.
+     * Repository URL.
      * Example: 'https://github.com/kubernetes/examples.git'
      *
-     * Generated from protobuf field <code>optional string repo = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string repo = 1;</code>
      * @param string $var
      * @return $this
      */
@@ -96,10 +96,10 @@ class GitSource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Subdirectory inside the repository.
+     * Subdirectory inside the repository.
      * Example: 'staging/my-package'
      *
-     * Generated from protobuf field <code>optional string directory = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string directory = 2;</code>
      * @return string
      */
     public function getDirectory()
@@ -118,10 +118,10 @@ class GitSource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Subdirectory inside the repository.
+     * Subdirectory inside the repository.
      * Example: 'staging/my-package'
      *
-     * Generated from protobuf field <code>optional string directory = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string directory = 2;</code>
      * @param string $var
      * @return $this
      */
@@ -134,9 +134,9 @@ class GitSource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Git reference (e.g. branch or tag).
+     * Git reference (e.g. branch or tag).
      *
-     * Generated from protobuf field <code>optional string ref = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string ref = 3;</code>
      * @return string
      */
     public function getRef()
@@ -155,9 +155,9 @@ class GitSource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Git reference (e.g. branch or tag).
+     * Git reference (e.g. branch or tag).
      *
-     * Generated from protobuf field <code>optional string ref = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string ref = 3;</code>
      * @param string $var
      * @return $this
      */
