@@ -656,11 +656,13 @@ libraries:
           additional_protos:
             - google/cloud/location/locations.proto
             - google/iam/v1/iam_policy.proto
+            - google/longrunning/operations.proto
       - path: google/cloud/dataform/v1beta1
         php:
           additional_protos:
             - google/cloud/location/locations.proto
             - google/iam/v1/iam_policy.proto
+            - google/longrunning/operations.proto
     output: Dataform
   - name: datafusion
     version: 1.2.0
