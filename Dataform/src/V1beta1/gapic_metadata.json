@@ -405,6 +405,26 @@
                                 "writeFile"
                             ]
                         },
+                        "CancelOperation": {
+                            "methods": [
+                                "cancelOperation"
+                            ]
+                        },
+                        "DeleteOperation": {
+                            "methods": [
+                                "deleteOperation"
+                            ]
+                        },
+                        "GetOperation": {
+                            "methods": [
+                                "getOperation"
+                            ]
+                        },
+                        "ListOperations": {
+                            "methods": [
+                                "listOperations"
+                            ]
+                        },
                         "GetLocation": {
                             "methods": [
                                 "getLocation"

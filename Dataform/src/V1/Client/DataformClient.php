@@ -142,7 +142,11 @@ use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
+use Google\LongRunning\CancelOperationRequest;
 use Google\LongRunning\Client\OperationsClient;
+use Google\LongRunning\DeleteOperationRequest;
+use Google\LongRunning\GetOperationRequest;
+use Google\LongRunning\ListOperationsRequest;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
@@ -232,6 +236,10 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<TeamFolder> updateTeamFolderAsync(UpdateTeamFolderRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<WorkflowConfig> updateWorkflowConfigAsync(UpdateWorkflowConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<WriteFileResponse> writeFileAsync(WriteFileRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> cancelOperationAsync(CancelOperationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteOperationAsync(DeleteOperationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> getOperationAsync(GetOperationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listOperationsAsync(ListOperationsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
@@ -2776,6 +2784,122 @@ final class DataformClient
     public function writeFile(WriteFileRequest $request, array $callOptions = []): WriteFileResponse
     {
         return $this->startApiCall('WriteFile', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Starts asynchronous cancellation on a long-running operation.  The server
+     * makes a best effort to cancel the operation, but success is not
+     * guaranteed.  If the server doesn't support this method, it returns
+     * `google.rpc.Code.UNIMPLEMENTED`.  Clients can use
+     * [Operations.GetOperation][google.longrunning.Operations.GetOperation] or
+     * other methods to check whether the cancellation succeeded or whether the
+     * operation completed despite cancellation. On successful cancellation,
+     * the operation is not deleted; instead, it becomes an operation with
+     * an [Operation.error][google.longrunning.Operation.error] value with a
+     * [google.rpc.Status.code][google.rpc.Status.code] of `1`, corresponding to
+     * `Code.CANCELLED`.
+     *
+     * The async variant is {@see DataformClient::cancelOperationAsync()} .
+     *
+     * @example samples/V1/DataformClient/cancel_operation.php
+     *
+     * @param CancelOperationRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function cancelOperation(CancelOperationRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('CancelOperation', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a long-running operation. This method indicates that the client is
+     * no longer interested in the operation result. It does not cancel the
+     * operation. If the server doesn't support this method, it returns
+     * `google.rpc.Code.UNIMPLEMENTED`.
+     *
+     * The async variant is {@see DataformClient::deleteOperationAsync()} .
+     *
+     * @example samples/V1/DataformClient/delete_operation.php
+     *
+     * @param DeleteOperationRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteOperation(DeleteOperationRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('DeleteOperation', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets the latest state of a long-running operation.  Clients can use this
+     * method to poll the operation result at intervals as recommended by the API
+     * service.
+     *
+     * The async variant is {@see DataformClient::getOperationAsync()} .
+     *
+     * @example samples/V1/DataformClient/get_operation.php
+     *
+     * @param GetOperationRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Operation
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getOperation(GetOperationRequest $request, array $callOptions = []): Operation
+    {
+        return $this->startApiCall('GetOperation', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Lists operations that match the specified filter in the request. If the
+     * server doesn't support this method, it returns `UNIMPLEMENTED`.
+     *
+     * The async variant is {@see DataformClient::listOperationsAsync()} .
+     *
+     * @example samples/V1/DataformClient/list_operations.php
+     *
+     * @param ListOperationsRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listOperations(ListOperationsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListOperations', $request, $callOptions);
     }
 
     /**
