@@ -34,6 +34,7 @@ use Google\Cloud\Container\V1\Client\ClusterManagerClient;
 use Google\Cloud\Container\V1\Cluster;
 use Google\Cloud\Container\V1\ClusterUpdate;
 use Google\Cloud\Container\V1\ClusterUpgradeInfo;
+use Google\Cloud\Container\V1\CompleteControlPlaneUpgradeRequest;
 use Google\Cloud\Container\V1\CompleteIPRotationRequest;
 use Google\Cloud\Container\V1\CompleteNodePoolUpgradeRequest;
 use Google\Cloud\Container\V1\CreateClusterRequest;
@@ -221,6 +222,87 @@ class ClusterManagerClientTest extends GeneratedTest
         $request = new CheckAutopilotCompatibilityRequest();
         try {
             $gapicClient->checkAutopilotCompatibility($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function completeControlPlaneUpgradeTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $zone = 'zone3744684';
+        $detail = 'detail-1335224239';
+        $statusMessage = 'statusMessage-239442758';
+        $selfLink = 'selfLink-1691268851';
+        $targetLink = 'targetLink-2084812312';
+        $location = 'location1901043637';
+        $startTime = 'startTime-1573145462';
+        $endTime = 'endTime1725551537';
+        $expectedResponse = new Operation();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setZone($zone);
+        $expectedResponse->setDetail($detail);
+        $expectedResponse->setStatusMessage($statusMessage);
+        $expectedResponse->setSelfLink($selfLink);
+        $expectedResponse->setTargetLink($targetLink);
+        $expectedResponse->setLocation($location);
+        $expectedResponse->setStartTime($startTime);
+        $expectedResponse->setEndTime($endTime);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $name = 'name3373707';
+        $request = (new CompleteControlPlaneUpgradeRequest())->setName($name);
+        $response = $gapicClient->completeControlPlaneUpgrade($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.container.v1.ClusterManager/CompleteControlPlaneUpgrade', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($name, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function completeControlPlaneUpgradeExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $name = 'name3373707';
+        $request = (new CompleteControlPlaneUpgradeRequest())->setName($name);
+        try {
+            $gapicClient->completeControlPlaneUpgrade($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -841,6 +923,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $endpoint = 'endpoint1741102485';
         $initialClusterVersion = 'initialClusterVersion-276373352';
         $currentMasterVersion = 'currentMasterVersion-920953983';
+        $currentEmulatedVersion = 'currentEmulatedVersion233454192';
         $currentNodeVersion = 'currentNodeVersion-407476063';
         $createTime = 'createTime-493574096';
         $statusMessage = 'statusMessage-239442758';
@@ -871,6 +954,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setEndpoint($endpoint);
         $expectedResponse->setInitialClusterVersion($initialClusterVersion);
         $expectedResponse->setCurrentMasterVersion($currentMasterVersion);
+        $expectedResponse->setCurrentEmulatedVersion($currentEmulatedVersion);
         $expectedResponse->setCurrentNodeVersion($currentNodeVersion);
         $expectedResponse->setCreateTime($createTime);
         $expectedResponse->setStatusMessage($statusMessage);
