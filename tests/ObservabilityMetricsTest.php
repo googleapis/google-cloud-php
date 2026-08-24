@@ -64,7 +64,10 @@ class ObservabilityMetricsTest extends TestCase
         $jsonTokens = $this->jsonTokens;
         $handler = $this->getHandler([
             new Response(200, [GCECredentials::FLAVOR_HEADER => 'Google']),
-            function ($request, $options) use (
+            function (
+                $request,
+                $options
+            ) use (
                 $jsonTokens,
                 &$handlerCalled,
                 $requestTypeHeaderValue
@@ -226,7 +229,10 @@ class ObservabilityMetricsTest extends TestCase
         bool &$handlerCalled,
         string $jsonTokens
     ): callable {
-        return function ($request, $options) use (
+        return function (
+            $request,
+            $options
+        ) use (
             $jsonTokens,
             &$handlerCalled,
             $requestTypeHeaderValue,

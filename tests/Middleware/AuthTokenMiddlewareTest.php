@@ -93,7 +93,6 @@ class AuthTokenMiddlewareTest extends BaseTest
             ->willReturn($this->mockRequest->reveal());
 
         $this->runTestCase($this->mockFetcher->reveal());
-
     }
 
     public function testUsesCachedAccessToken()

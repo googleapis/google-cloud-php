@@ -24,6 +24,8 @@ use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
 use RuntimeException;
 
+// phpcs:disable Generic.Files.LineLength
+
 /**
  * @group credentialsource
  * @group credentialsource-executable

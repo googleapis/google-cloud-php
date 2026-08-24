@@ -321,7 +321,9 @@ class RegionalAccessBoundaryTraitTest extends TestCase
         $cooldownCacheItem = $this->prophesize(CacheItemInterface::class);
         $cooldownCacheItem->isHit()->shouldBeCalledOnce()->willReturn(false);
         $cooldownCacheItem->set(true)->shouldBeCalledOnce()->willReturn($cooldownCacheItem->reveal());
-        $cooldownCacheItem->expiresAfter($expectedExpiry)->shouldBeCalledOnce()->willReturn($cooldownCacheItem->reveal());
+        $cooldownCacheItem->expiresAfter($expectedExpiry)
+            ->shouldBeCalledOnce()
+            ->willReturn($cooldownCacheItem->reveal());
         $cache->getItem('testkeyrabcooldown')
             ->shouldBeCalledTimes(2)
             ->willReturn($cooldownCacheItem->reveal());
@@ -334,8 +336,12 @@ class RegionalAccessBoundaryTraitTest extends TestCase
             $cooldownCacheItemAttempt->isHit()->shouldBeCalledOnce()->willReturn(true);
             $cooldownCacheItemAttempt->get()->shouldBeCalledOnce()->willReturn($attempt);
         }
-        $cooldownCacheItemAttempt->set($attempt + 1)->shouldBeCalledOnce()->willReturn($cooldownCacheItemAttempt->reveal());
-        $cooldownCacheItemAttempt->expiresAfter($expectedExpiry * 2)->shouldBeCalledOnce()->willReturn($cooldownCacheItemAttempt->reveal());
+        $cooldownCacheItemAttempt->set($attempt + 1)
+            ->shouldBeCalledOnce()
+            ->willReturn($cooldownCacheItemAttempt->reveal());
+        $cooldownCacheItemAttempt->expiresAfter($expectedExpiry * 2)
+            ->shouldBeCalledOnce()
+            ->willReturn($cooldownCacheItemAttempt->reveal());
         $cache->getItem('testkeyrabcooldownattempt')
             ->shouldBeCalledTimes(2)
             ->willReturn($cooldownCacheItemAttempt->reveal());

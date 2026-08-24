@@ -103,7 +103,13 @@ class ExternalAccountCredentialsTest extends TestCase
                 ],
             ],
             [
-                ['file' => 'path/to/credsfile.json', 'format' => ['type' => 'json', 'subject_token_field_name' => 'token']],
+                ['file' =>
+                    'path/to/credsfile.json',
+                    'format' => [
+                        'type' => 'json',
+                        'subject_token_field_name' => 'token'
+                    ]
+                ],
                 FileSource::class,
                 [
                     'format' => 'json',
@@ -176,23 +182,44 @@ class ExternalAccountCredentialsTest extends TestCase
                 'json key is missing the credential_source field'
             ],
             [
-                ['type' => 'external_account', 'token_url' => '', 'audience' => '', 'subject_token_type' => '', 'credential_source' => []],
+                [
+                    'type' => 'external_account',
+                    'token_url' => '',
+                    'audience' => '',
+                    'subject_token_type' => '',
+                    'credential_source' => []
+                ],
                 'Unable to determine credential source from json key'
             ],
             [
-                ['type' => 'external_account', 'token_url' => '', 'audience' => '', 'subject_token_type' => '', 'credential_source' => [
+                [
+                    'type' => 'external_account',
+                    'token_url' => '',
+                    'audience' => '',
+                    'subject_token_type' => '',
+                    'credential_source' => [
                     'environment_id' => 'aws2',
                 ]],
                 'aws version "2" is not supported in the current build.'
             ],
             [
-                ['type' => 'external_account', 'token_url' => '', 'audience' => '', 'subject_token_type' => '', 'credential_source' => [
+                [
+                    'type' => 'external_account',
+                    'token_url' => '',
+                    'audience' => '',
+                    'subject_token_type' => '',
+                    'credential_source' => [
                     'environment_id' => 'aws1',
                 ]],
                 'The regional_cred_verification_url field is required for aws1 credential source.'
             ],
             [
-                ['type' => 'external_account', 'token_url' => '', 'audience' => '', 'subject_token_type' => '', 'credential_source' => [
+                [
+                    'type' => 'external_account',
+                    'token_url' => '',
+                    'audience' => '',
+                    'subject_token_type' => '',
+                    'credential_source' => [
                     'environment_id' => 'aws1',
                     'region_url' => '',
                 ]],
@@ -379,7 +406,8 @@ class ExternalAccountCredentialsTest extends TestCase
             // from audience
             [
                 [
-                    'audience' => '//iam.googleapis.com/projects/1234/locations/global/workloadIdentityPools/foo/providers/bar',
+                    'audience' => '//iam.googleapis.com/projects/1234/locations/global/'
+                        . 'workloadIdentityPools/foo/providers/bar',
                 ] + $this->baseCreds,
                 '1234'
             ],
@@ -468,7 +496,9 @@ class ExternalAccountCredentialsTest extends TestCase
     public function testWorkforcePoolWithNonWorkforceAudienceThrowsException()
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('workforce_pool_user_project should not be set for non-workforce pool credentials.');
+        $this->expectExceptionMessage(
+            'workforce_pool_user_project should not be set for non-workforce pool credentials.'
+        );
 
         $jsonCreds = [
             'audience' => '//iam.googleapis.com/projects/1234/locations/global/workloadIdentityPools/foo/providers/bar',
@@ -666,7 +696,8 @@ class ExternalAccountCredentialsTest extends TestCase
             'type' => 'external_account',
             'private_key' => file_get_contents(__DIR__ . '/../fixtures/fixtures1/private.pem'),
             'client_email' => 'test@example.com',
-            'audience' => '//iam.googleapis.com/projects/PROJECT_NUMBER/locations/global/workloadIdentityPools/POOL_ID/providers/PROJECT_ID',
+            'audience' => '//iam.googleapis.com/projects/PROJECT_NUMBER/locations/global/'
+                . 'workloadIdentityPools/POOL_ID/providers/PROJECT_ID',
             'subject_token_type' => 'urn:ietf:params:oauth:token-type:jwt',
             'token_url' => 'https://sts.googleapis.com/v1/token',
             'credential_source' => ['file' => $tokenFile]
@@ -702,11 +733,13 @@ class ExternalAccountCredentialsTest extends TestCase
         $jsonKey = [
             'type' => 'external_account',
             'client_email' => 'test@example.com',
-            'audience' => '//iam.googleapis.com/projects/PROJECT_NUMBER/locations/global/workloadIdentityPools/POOL_ID/providers/PROJECT_ID',
+            'audience' => '//iam.googleapis.com/projects/PROJECT_NUMBER/locations/global/'
+                . 'workloadIdentityPools/POOL_ID/providers/PROJECT_ID',
             'subject_token_type' => 'urn:ietf:params:oauth:token-type:jwt',
             'token_url' => 'https://sts.googleapis.com/v1/token',
             'credential_source' => ['file' => $tokenFile],
-            'service_account_impersonation_url' => 'https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/test@example.com:generateAccessToken',
+            'service_account_impersonation_url' => 'https://iamcredentials.googleapis.com/v1/'
+                . 'projects/-/serviceAccounts/test@example.com:generateAccessToken',
         ];
         $serviceAccountCreds = new ExternalAccountCredentials(
             'a-scope',
