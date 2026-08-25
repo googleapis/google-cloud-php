@@ -327,8 +327,10 @@ final class SpannerClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function batchCreateSessions(BatchCreateSessionsRequest $request, array $callOptions = []): BatchCreateSessionsResponse
-    {
+    public function batchCreateSessions(
+        BatchCreateSessionsRequest $request,
+        array $callOptions = []
+    ): BatchCreateSessionsResponse {
         return $this->startApiCall('BatchCreateSessions', $request, $callOptions)->wait();
     }
 

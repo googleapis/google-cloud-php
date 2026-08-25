@@ -160,6 +160,24 @@ class FutureReservation extends \Google\Protobuf\Internal\Message
      */
     protected $reservation_name = null;
     /**
+     * Output only. Contains standard resource metadata for an FutureReservation
+     * resource. It is populated for each instance of the FutureReservation
+     * resource, and includes the api_version the
+     * instance was retrieved through, and its canonical
+     * resource_type name.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourceMetadata resource_metadata = 99063872;</code>
+     */
+    protected $resource_metadata = null;
+    /**
+     * Name of the resource intended to be delivered. Name should conform to
+     * RFC1035. This will be the name of storage pool or Exapool for persistent
+     * disk FRs.
+     *
+     * Generated from protobuf field <code>optional string resource_name = 442550300;</code>
+     */
+    protected $resource_name = null;
+    /**
      * Maintenance information for this reservation
      * Check the SchedulingType enum for the list of possible values.
      *
@@ -205,6 +223,12 @@ class FutureReservation extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.FutureReservationStatus status = 181260274;</code>
      */
     protected $status = null;
+    /**
+     * Storage pool details for the future reservation.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.FutureReservationStoragePoolProperties storage_pool_properties = 71410546;</code>
+     */
+    protected $storage_pool_properties = null;
     /**
      * Time window for this Future Reservation.
      *
@@ -297,6 +321,16 @@ class FutureReservation extends \Google\Protobuf\Internal\Message
      *           does not exist already, it is created automatically at the time of Approval
      *           with INACTIVE state till specified start-time. Either provide the
      *           reservation_name or a name_prefix.
+     *     @type \Google\Cloud\Compute\V1\ResourceMetadata $resource_metadata
+     *           Output only. Contains standard resource metadata for an FutureReservation
+     *           resource. It is populated for each instance of the FutureReservation
+     *           resource, and includes the api_version the
+     *           instance was retrieved through, and its canonical
+     *           resource_type name.
+     *     @type string $resource_name
+     *           Name of the resource intended to be delivered. Name should conform to
+     *           RFC1035. This will be the name of storage pool or Exapool for persistent
+     *           disk FRs.
      *     @type string $scheduling_type
      *           Maintenance information for this reservation
      *           Check the SchedulingType enum for the list of possible values.
@@ -315,6 +349,8 @@ class FutureReservation extends \Google\Protobuf\Internal\Message
      *           total count.
      *     @type \Google\Cloud\Compute\V1\FutureReservationStatus $status
      *           Output only. [Output only] Status of the Future Reservation
+     *     @type \Google\Cloud\Compute\V1\FutureReservationStoragePoolProperties $storage_pool_properties
+     *           Storage pool details for the future reservation.
      *     @type \Google\Cloud\Compute\V1\FutureReservationTimeWindow $time_window
      *           Time window for this Future Reservation.
      *     @type string $zone
@@ -1049,6 +1085,90 @@ class FutureReservation extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Output only. Contains standard resource metadata for an FutureReservation
+     * resource. It is populated for each instance of the FutureReservation
+     * resource, and includes the api_version the
+     * instance was retrieved through, and its canonical
+     * resource_type name.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourceMetadata resource_metadata = 99063872;</code>
+     * @return \Google\Cloud\Compute\V1\ResourceMetadata|null
+     */
+    public function getResourceMetadata()
+    {
+        return $this->resource_metadata;
+    }
+
+    public function hasResourceMetadata()
+    {
+        return isset($this->resource_metadata);
+    }
+
+    public function clearResourceMetadata()
+    {
+        unset($this->resource_metadata);
+    }
+
+    /**
+     * Output only. Contains standard resource metadata for an FutureReservation
+     * resource. It is populated for each instance of the FutureReservation
+     * resource, and includes the api_version the
+     * instance was retrieved through, and its canonical
+     * resource_type name.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourceMetadata resource_metadata = 99063872;</code>
+     * @param \Google\Cloud\Compute\V1\ResourceMetadata $var
+     * @return $this
+     */
+    public function setResourceMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\ResourceMetadata::class);
+        $this->resource_metadata = $var;
+
+        return $this;
+    }
+
+    /**
+     * Name of the resource intended to be delivered. Name should conform to
+     * RFC1035. This will be the name of storage pool or Exapool for persistent
+     * disk FRs.
+     *
+     * Generated from protobuf field <code>optional string resource_name = 442550300;</code>
+     * @return string
+     */
+    public function getResourceName()
+    {
+        return isset($this->resource_name) ? $this->resource_name : '';
+    }
+
+    public function hasResourceName()
+    {
+        return isset($this->resource_name);
+    }
+
+    public function clearResourceName()
+    {
+        unset($this->resource_name);
+    }
+
+    /**
+     * Name of the resource intended to be delivered. Name should conform to
+     * RFC1035. This will be the name of storage pool or Exapool for persistent
+     * disk FRs.
+     *
+     * Generated from protobuf field <code>optional string resource_name = 442550300;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setResourceName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->resource_name = $var;
+
+        return $this;
+    }
+
+    /**
      * Maintenance information for this reservation
      * Check the SchedulingType enum for the list of possible values.
      *
@@ -1304,6 +1424,42 @@ class FutureReservation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\FutureReservationStatus::class);
         $this->status = $var;
+
+        return $this;
+    }
+
+    /**
+     * Storage pool details for the future reservation.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.FutureReservationStoragePoolProperties storage_pool_properties = 71410546;</code>
+     * @return \Google\Cloud\Compute\V1\FutureReservationStoragePoolProperties|null
+     */
+    public function getStoragePoolProperties()
+    {
+        return $this->storage_pool_properties;
+    }
+
+    public function hasStoragePoolProperties()
+    {
+        return isset($this->storage_pool_properties);
+    }
+
+    public function clearStoragePoolProperties()
+    {
+        unset($this->storage_pool_properties);
+    }
+
+    /**
+     * Storage pool details for the future reservation.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.FutureReservationStoragePoolProperties storage_pool_properties = 71410546;</code>
+     * @param \Google\Cloud\Compute\V1\FutureReservationStoragePoolProperties $var
+     * @return $this
+     */
+    public function setStoragePoolProperties($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\FutureReservationStoragePoolProperties::class);
+        $this->storage_pool_properties = $var;
 
         return $this;
     }
