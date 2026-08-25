@@ -43,7 +43,7 @@ php.owlbot_main(
 )
 
 # First copy the Bigtable Admin
-admin_library = Path(f"../{php.STAGING_DIR}/Bigtable/v2/Admin").resolve()
+admin_library = Path(f"../{php.STAGING_DIR}/Bigtable/Admin/v2").resolve()
 
 # copy gapic src, samples, and tests
 s.move(admin_library / f'src', 'src/Admin', merge=preserve_copyright_year)
