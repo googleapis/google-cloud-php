@@ -81,6 +81,12 @@ class GrpcRequestWrapper
         ];
 
         $this->authHttpHandler = $config['authHttpHandler'] ?: HttpHandlerFactory::build();
+        if (isset($config['tracerProvider'])) {
+            $this->authHttpHandler = new \Google\Cloud\Core\Telemetry\AuthTracingMiddleware(
+                $this->authHttpHandler,
+                $config['tracerProvider']
+            );
+        }
         $this->serializer = $config['serializer'];
         $this->grpcOptions = $config['grpcOptions'];
     }
