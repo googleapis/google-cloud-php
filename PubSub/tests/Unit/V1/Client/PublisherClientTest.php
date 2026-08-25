@@ -67,7 +67,9 @@ class PublisherClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return PublisherClient */
@@ -98,8 +100,7 @@ class PublisherClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $name = 'name3373707';
-        $request = (new Topic())
-            ->setName($name);
+        $request = (new Topic())->setName($name);
         $response = $gapicClient->createTopic($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -123,17 +124,19 @@ class PublisherClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $name = 'name3373707';
-        $request = (new Topic())
-            ->setName($name);
+        $request = (new Topic())->setName($name);
         try {
             $gapicClient->createTopic($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -160,8 +163,7 @@ class PublisherClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedTopic = $gapicClient->topicName('[PROJECT]', '[TOPIC]');
-        $request = (new DeleteTopicRequest())
-            ->setTopic($formattedTopic);
+        $request = (new DeleteTopicRequest())->setTopic($formattedTopic);
         $gapicClient->deleteTopic($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -184,17 +186,19 @@ class PublisherClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedTopic = $gapicClient->topicName('[PROJECT]', '[TOPIC]');
-        $request = (new DeleteTopicRequest())
-            ->setTopic($formattedTopic);
+        $request = (new DeleteTopicRequest())->setTopic($formattedTopic);
         try {
             $gapicClient->deleteTopic($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -221,8 +225,7 @@ class PublisherClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedSubscription = $gapicClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
-        $request = (new DetachSubscriptionRequest())
-            ->setSubscription($formattedSubscription);
+        $request = (new DetachSubscriptionRequest())->setSubscription($formattedSubscription);
         $response = $gapicClient->detachSubscription($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -246,17 +249,19 @@ class PublisherClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedSubscription = $gapicClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
-        $request = (new DetachSubscriptionRequest())
-            ->setSubscription($formattedSubscription);
+        $request = (new DetachSubscriptionRequest())->setSubscription($formattedSubscription);
         try {
             $gapicClient->detachSubscription($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -289,8 +294,7 @@ class PublisherClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedTopic = $gapicClient->topicName('[PROJECT]', '[TOPIC]');
-        $request = (new GetTopicRequest())
-            ->setTopic($formattedTopic);
+        $request = (new GetTopicRequest())->setTopic($formattedTopic);
         $response = $gapicClient->getTopic($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -314,17 +318,19 @@ class PublisherClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedTopic = $gapicClient->topicName('[PROJECT]', '[TOPIC]');
-        $request = (new GetTopicRequest())
-            ->setTopic($formattedTopic);
+        $request = (new GetTopicRequest())->setTopic($formattedTopic);
         try {
             $gapicClient->getTopic($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -349,17 +355,14 @@ class PublisherClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $snapshotsElement = 'snapshotsElement1339034092';
-        $snapshots = [
-            $snapshotsElement,
-        ];
+        $snapshots = [$snapshotsElement];
         $expectedResponse = new ListTopicSnapshotsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSnapshots($snapshots);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedTopic = $gapicClient->topicName('[PROJECT]', '[TOPIC]');
-        $request = (new ListTopicSnapshotsRequest())
-            ->setTopic($formattedTopic);
+        $request = (new ListTopicSnapshotsRequest())->setTopic($formattedTopic);
         $response = $gapicClient->listTopicSnapshots($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -386,17 +389,19 @@ class PublisherClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedTopic = $gapicClient->topicName('[PROJECT]', '[TOPIC]');
-        $request = (new ListTopicSnapshotsRequest())
-            ->setTopic($formattedTopic);
+        $request = (new ListTopicSnapshotsRequest())->setTopic($formattedTopic);
         try {
             $gapicClient->listTopicSnapshots($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -421,17 +426,14 @@ class PublisherClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $subscriptionsElement = 'subscriptionsElement1698708147';
-        $subscriptions = [
-            $subscriptionsElement,
-        ];
+        $subscriptions = [$subscriptionsElement];
         $expectedResponse = new ListTopicSubscriptionsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSubscriptions($subscriptions);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedTopic = $gapicClient->topicName('[PROJECT]', '[TOPIC]');
-        $request = (new ListTopicSubscriptionsRequest())
-            ->setTopic($formattedTopic);
+        $request = (new ListTopicSubscriptionsRequest())->setTopic($formattedTopic);
         $response = $gapicClient->listTopicSubscriptions($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -458,17 +460,19 @@ class PublisherClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedTopic = $gapicClient->topicName('[PROJECT]', '[TOPIC]');
-        $request = (new ListTopicSubscriptionsRequest())
-            ->setTopic($formattedTopic);
+        $request = (new ListTopicSubscriptionsRequest())->setTopic($formattedTopic);
         try {
             $gapicClient->listTopicSubscriptions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -493,17 +497,14 @@ class PublisherClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $topicsElement = new Topic();
-        $topics = [
-            $topicsElement,
-        ];
+        $topics = [$topicsElement];
         $expectedResponse = new ListTopicsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setTopics($topics);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedProject = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListTopicsRequest())
-            ->setProject($formattedProject);
+        $request = (new ListTopicsRequest())->setProject($formattedProject);
         $response = $gapicClient->listTopics($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -530,17 +531,19 @@ class PublisherClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedProject = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListTopicsRequest())
-            ->setProject($formattedProject);
+        $request = (new ListTopicsRequest())->setProject($formattedProject);
         try {
             $gapicClient->listTopics($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -568,9 +571,7 @@ class PublisherClientTest extends GeneratedTest
         // Mock request
         $formattedTopic = $gapicClient->topicName('[PROJECT]', '[TOPIC]');
         $messages = [];
-        $request = (new PublishRequest())
-            ->setTopic($formattedTopic)
-            ->setMessages($messages);
+        $request = (new PublishRequest())->setTopic($formattedTopic)->setMessages($messages);
         $response = $gapicClient->publish($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -596,19 +597,20 @@ class PublisherClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedTopic = $gapicClient->topicName('[PROJECT]', '[TOPIC]');
         $messages = [];
-        $request = (new PublishRequest())
-            ->setTopic($formattedTopic)
-            ->setMessages($messages);
+        $request = (new PublishRequest())->setTopic($formattedTopic)->setMessages($messages);
         try {
             $gapicClient->publish($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -644,9 +646,7 @@ class PublisherClientTest extends GeneratedTest
         $topicName = 'topicName388205658';
         $topic->setName($topicName);
         $updateMask = new FieldMask();
-        $request = (new UpdateTopicRequest())
-            ->setTopic($topic)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateTopicRequest())->setTopic($topic)->setUpdateMask($updateMask);
         $response = $gapicClient->updateTopic($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -672,21 +672,22 @@ class PublisherClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $topic = new Topic();
         $topicName = 'topicName388205658';
         $topic->setName($topicName);
         $updateMask = new FieldMask();
-        $request = (new UpdateTopicRequest())
-            ->setTopic($topic)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateTopicRequest())->setTopic($topic)->setUpdateMask($updateMask);
         try {
             $gapicClient->updateTopic($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -717,8 +718,7 @@ class PublisherClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -742,17 +742,19 @@ class PublisherClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -784,9 +786,7 @@ class PublisherClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -812,19 +812,20 @@ class PublisherClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -852,9 +853,7 @@ class PublisherClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -880,19 +879,20 @@ class PublisherClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -925,8 +925,7 @@ class PublisherClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $name = 'name3373707';
-        $request = (new Topic())
-            ->setName($name);
+        $request = (new Topic())->setName($name);
         $response = $gapicClient->createTopicAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();

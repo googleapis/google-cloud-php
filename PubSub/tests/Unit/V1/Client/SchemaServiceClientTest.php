@@ -67,7 +67,9 @@ class SchemaServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return SchemaServiceClient */
@@ -101,9 +103,7 @@ class SchemaServiceClientTest extends GeneratedTest
         $schema = new Schema();
         $schemaName = 'schemaName-448762932';
         $schema->setName($schemaName);
-        $request = (new CommitSchemaRequest())
-            ->setName($formattedName)
-            ->setSchema($schema);
+        $request = (new CommitSchemaRequest())->setName($formattedName)->setSchema($schema);
         $response = $gapicClient->commitSchema($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -129,21 +129,22 @@ class SchemaServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->schemaName('[PROJECT]', '[SCHEMA]');
         $schema = new Schema();
         $schemaName = 'schemaName-448762932';
         $schema->setName($schemaName);
-        $request = (new CommitSchemaRequest())
-            ->setName($formattedName)
-            ->setSchema($schema);
+        $request = (new CommitSchemaRequest())->setName($formattedName)->setSchema($schema);
         try {
             $gapicClient->commitSchema($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -179,9 +180,7 @@ class SchemaServiceClientTest extends GeneratedTest
         $schema = new Schema();
         $schemaName = 'schemaName-448762932';
         $schema->setName($schemaName);
-        $request = (new CreateSchemaRequest())
-            ->setParent($formattedParent)
-            ->setSchema($schema);
+        $request = (new CreateSchemaRequest())->setParent($formattedParent)->setSchema($schema);
         $response = $gapicClient->createSchema($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -207,21 +206,22 @@ class SchemaServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
         $schema = new Schema();
         $schemaName = 'schemaName-448762932';
         $schema->setName($schemaName);
-        $request = (new CreateSchemaRequest())
-            ->setParent($formattedParent)
-            ->setSchema($schema);
+        $request = (new CreateSchemaRequest())->setParent($formattedParent)->setSchema($schema);
         try {
             $gapicClient->createSchema($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -248,8 +248,7 @@ class SchemaServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->schemaName('[PROJECT]', '[SCHEMA]');
-        $request = (new DeleteSchemaRequest())
-            ->setName($formattedName);
+        $request = (new DeleteSchemaRequest())->setName($formattedName);
         $gapicClient->deleteSchema($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -272,17 +271,19 @@ class SchemaServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->schemaName('[PROJECT]', '[SCHEMA]');
-        $request = (new DeleteSchemaRequest())
-            ->setName($formattedName);
+        $request = (new DeleteSchemaRequest())->setName($formattedName);
         try {
             $gapicClient->deleteSchema($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -316,9 +317,7 @@ class SchemaServiceClientTest extends GeneratedTest
         // Mock request
         $formattedName = $gapicClient->schemaName('[PROJECT]', '[SCHEMA]');
         $revisionId = 'revisionId513861631';
-        $request = (new DeleteSchemaRevisionRequest())
-            ->setName($formattedName)
-            ->setRevisionId($revisionId);
+        $request = (new DeleteSchemaRevisionRequest())->setName($formattedName)->setRevisionId($revisionId);
         $response = $gapicClient->deleteSchemaRevision($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -344,19 +343,20 @@ class SchemaServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->schemaName('[PROJECT]', '[SCHEMA]');
         $revisionId = 'revisionId513861631';
-        $request = (new DeleteSchemaRevisionRequest())
-            ->setName($formattedName)
-            ->setRevisionId($revisionId);
+        $request = (new DeleteSchemaRevisionRequest())->setName($formattedName)->setRevisionId($revisionId);
         try {
             $gapicClient->deleteSchemaRevision($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -389,8 +389,7 @@ class SchemaServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->schemaName('[PROJECT]', '[SCHEMA]');
-        $request = (new GetSchemaRequest())
-            ->setName($formattedName);
+        $request = (new GetSchemaRequest())->setName($formattedName);
         $response = $gapicClient->getSchema($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -414,17 +413,19 @@ class SchemaServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->schemaName('[PROJECT]', '[SCHEMA]');
-        $request = (new GetSchemaRequest())
-            ->setName($formattedName);
+        $request = (new GetSchemaRequest())->setName($formattedName);
         try {
             $gapicClient->getSchema($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -449,17 +450,14 @@ class SchemaServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $schemasElement = new Schema();
-        $schemas = [
-            $schemasElement,
-        ];
+        $schemas = [$schemasElement];
         $expectedResponse = new ListSchemaRevisionsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSchemas($schemas);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->schemaName('[PROJECT]', '[SCHEMA]');
-        $request = (new ListSchemaRevisionsRequest())
-            ->setName($formattedName);
+        $request = (new ListSchemaRevisionsRequest())->setName($formattedName);
         $response = $gapicClient->listSchemaRevisions($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -486,17 +484,19 @@ class SchemaServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->schemaName('[PROJECT]', '[SCHEMA]');
-        $request = (new ListSchemaRevisionsRequest())
-            ->setName($formattedName);
+        $request = (new ListSchemaRevisionsRequest())->setName($formattedName);
         try {
             $gapicClient->listSchemaRevisions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -521,17 +521,14 @@ class SchemaServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $schemasElement = new Schema();
-        $schemas = [
-            $schemasElement,
-        ];
+        $schemas = [$schemasElement];
         $expectedResponse = new ListSchemasResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSchemas($schemas);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListSchemasRequest())
-            ->setParent($formattedParent);
+        $request = (new ListSchemasRequest())->setParent($formattedParent);
         $response = $gapicClient->listSchemas($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -558,17 +555,19 @@ class SchemaServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListSchemasRequest())
-            ->setParent($formattedParent);
+        $request = (new ListSchemasRequest())->setParent($formattedParent);
         try {
             $gapicClient->listSchemas($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -602,9 +601,7 @@ class SchemaServiceClientTest extends GeneratedTest
         // Mock request
         $formattedName = $gapicClient->schemaName('[PROJECT]', '[SCHEMA]');
         $revisionId = 'revisionId513861631';
-        $request = (new RollbackSchemaRequest())
-            ->setName($formattedName)
-            ->setRevisionId($revisionId);
+        $request = (new RollbackSchemaRequest())->setName($formattedName)->setRevisionId($revisionId);
         $response = $gapicClient->rollbackSchema($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -630,19 +627,20 @@ class SchemaServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->schemaName('[PROJECT]', '[SCHEMA]');
         $revisionId = 'revisionId513861631';
-        $request = (new RollbackSchemaRequest())
-            ->setName($formattedName)
-            ->setRevisionId($revisionId);
+        $request = (new RollbackSchemaRequest())->setName($formattedName)->setRevisionId($revisionId);
         try {
             $gapicClient->rollbackSchema($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -669,8 +667,7 @@ class SchemaServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ValidateMessageRequest())
-            ->setParent($formattedParent);
+        $request = (new ValidateMessageRequest())->setParent($formattedParent);
         $response = $gapicClient->validateMessage($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -694,17 +691,19 @@ class SchemaServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ValidateMessageRequest())
-            ->setParent($formattedParent);
+        $request = (new ValidateMessageRequest())->setParent($formattedParent);
         try {
             $gapicClient->validateMessage($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -734,9 +733,7 @@ class SchemaServiceClientTest extends GeneratedTest
         $schema = new Schema();
         $schemaName = 'schemaName-448762932';
         $schema->setName($schemaName);
-        $request = (new ValidateSchemaRequest())
-            ->setParent($formattedParent)
-            ->setSchema($schema);
+        $request = (new ValidateSchemaRequest())->setParent($formattedParent)->setSchema($schema);
         $response = $gapicClient->validateSchema($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -762,21 +759,22 @@ class SchemaServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
         $schema = new Schema();
         $schemaName = 'schemaName-448762932';
         $schema->setName($schemaName);
-        $request = (new ValidateSchemaRequest())
-            ->setParent($formattedParent)
-            ->setSchema($schema);
+        $request = (new ValidateSchemaRequest())->setParent($formattedParent)->setSchema($schema);
         try {
             $gapicClient->validateSchema($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -807,8 +805,7 @@ class SchemaServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -832,17 +829,19 @@ class SchemaServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -874,9 +873,7 @@ class SchemaServiceClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -902,19 +899,20 @@ class SchemaServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -942,9 +940,7 @@ class SchemaServiceClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -970,19 +966,20 @@ class SchemaServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1018,9 +1015,7 @@ class SchemaServiceClientTest extends GeneratedTest
         $schema = new Schema();
         $schemaName = 'schemaName-448762932';
         $schema->setName($schemaName);
-        $request = (new CommitSchemaRequest())
-            ->setName($formattedName)
-            ->setSchema($schema);
+        $request = (new CommitSchemaRequest())->setName($formattedName)->setSchema($schema);
         $response = $gapicClient->commitSchemaAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
