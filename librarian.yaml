@@ -1606,6 +1606,11 @@ libraries:
         php:
           additional_protos:
             - google/cloud/location/locations.proto
+    keep:
+      - tests/data/generated/GPBMetadata/Data/User.php
+      - tests/data/generated/Testing/Data/Book.php
+      - tests/data/generated/Testing/Data/User.php
+      - tests/data/generated/Testing/Data/User/Address.php
     output: Speech
   - name: sql
     version: 1.11.1
