@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright 2023 Google LLC
  * All rights reserved.
@@ -99,6 +100,12 @@ class ClientOptions implements ArrayAccess, OptionsInterface
 
     private null|false|LoggerInterface $logger;
 
+    /** @var \OpenTelemetry\API\Trace\TracerProviderInterface|null */
+    private $tracerProvider;
+
+    /** @var \OpenTelemetry\API\Logs\LoggerProviderInterface|null */
+    private $loggerProvider;
+
     /**
      * @param array $options {
      *     @type string $apiEndpoint
@@ -169,6 +176,10 @@ class ClientOptions implements ArrayAccess, OptionsInterface
      *          The API key to be used for the client.
      *     @type null|false|LoggerInterface
      *           A PSR-3 compliant logger.
+     *     @type \OpenTelemetry\API\Trace\TracerProviderInterface|null $tracerProvider
+     *           A tracer provider for OpenTelemetry.
+     *     @type \OpenTelemetry\API\Logs\LoggerProviderInterface|null $loggerProvider
+     *           A logger provider for OpenTelemetry.
      * }
      */
     public function __construct(array $options)
@@ -200,6 +211,8 @@ class ClientOptions implements ArrayAccess, OptionsInterface
         $this->setUniverseDomain($arr['universeDomain'] ?? null);
         $this->setApiKey($arr['apiKey'] ?? null);
         $this->setLogger($arr['logger'] ?? null);
+        $this->setTracerProvider($arr['tracerProvider'] ?? null);
+        $this->setLoggerProvider($arr['loggerProvider'] ?? null);
     }
 
     /**
@@ -417,5 +430,45 @@ class ClientOptions implements ArrayAccess, OptionsInterface
         $this->logger = $logger;
 
         return $this;
+    }
+
+    /**
+     * @param \OpenTelemetry\API\Trace\TracerProviderInterface|null $tracerProvider
+     *
+     * @return $this
+     */
+    public function setTracerProvider($tracerProvider): self
+    {
+        $this->tracerProvider = $tracerProvider;
+
+        return $this;
+    }
+
+    /**
+     * @param \OpenTelemetry\API\Logs\LoggerProviderInterface|null $loggerProvider
+     *
+     * @return $this
+     */
+    public function setLoggerProvider($loggerProvider): self
+    {
+        $this->loggerProvider = $loggerProvider;
+
+        return $this;
+    }
+
+    /**
+     * @return \OpenTelemetry\API\Trace\TracerProviderInterface|null
+     */
+    public function getTracerProvider()
+    {
+        return $this->tracerProvider;
+    }
+
+    /**
+     * @return \OpenTelemetry\API\Logs\LoggerProviderInterface|null
+     */
+    public function getLoggerProvider()
+    {
+        return $this->loggerProvider;
     }
 }
