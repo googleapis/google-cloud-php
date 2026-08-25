@@ -176,6 +176,14 @@ class RequestWrapper
         $this->calcDelayFunction = $config['restCalcDelayFunction'];
         $this->httpHandler = $config['httpHandler'] ?: HttpHandlerFactory::build();
         $this->authHttpHandler = $config['authHttpHandler'] ?: $this->httpHandler;
+
+        if (isset($config['tracerProvider'])) {
+            $this->authHttpHandler = new \Google\Cloud\Core\Telemetry\AuthTracingMiddleware(
+                $this->authHttpHandler,
+                $config['tracerProvider']
+            );
+        }
+
         $this->asyncHttpHandler = $config['asyncHttpHandler'] ?: $this->buildDefaultAsyncHandler();
         $this->universeDomain = $config['universeDomain'];
 
