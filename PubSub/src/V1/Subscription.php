@@ -9,9 +9,10 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * A subscription resource. If none of `push_config`, `bigquery_config`, or
- * `cloud_storage_config` is set, then the subscriber will pull and ack messages
- * using API methods. At most one of these fields may be set.
+ * A subscription resource. If none of `push_config`, `bigquery_config`,
+ * `cloud_storage_config`, or `bigtable_config` is set, then the subscriber will
+ * pull and ack messages using API methods. At most one of these fields may be
+ * set.
  *
  * Generated from protobuf message <code>google.pubsub.v1.Subscription</code>
  */
@@ -230,8 +231,9 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * resource. For example:
      *   "123/environment": "production",
      *   "123/costCenter": "marketing"
-     * See https://docs.cloud.google.com/pubsub/docs/tags for more information on
-     * using tags with Pub/Sub resources.
+     * See
+     * https://{$universe.dns_names.final_documentation_domain}/pubsub/docs/tags
+     * for more information on using tags with Pub/Sub resources.
      *
      * Generated from protobuf field <code>map<string, string> tags = 26 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -419,8 +421,9 @@ class Subscription extends \Google\Protobuf\Internal\Message
      *           resource. For example:
      *             "123/environment": "production",
      *             "123/costCenter": "marketing"
-     *           See https://docs.cloud.google.com/pubsub/docs/tags for more information on
-     *           using tags with Pub/Sub resources.
+     *           See
+     *           https://{$universe.dns_names.final_documentation_domain}/pubsub/docs/tags
+     *           for more information on using tags with Pub/Sub resources.
      * }
      */
     public function __construct($data = NULL) {
@@ -1243,8 +1246,9 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * resource. For example:
      *   "123/environment": "production",
      *   "123/costCenter": "marketing"
-     * See https://docs.cloud.google.com/pubsub/docs/tags for more information on
-     * using tags with Pub/Sub resources.
+     * See
+     * https://{$universe.dns_names.final_documentation_domain}/pubsub/docs/tags
+     * for more information on using tags with Pub/Sub resources.
      *
      * Generated from protobuf field <code>map<string, string> tags = 26 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -1259,8 +1263,9 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * resource. For example:
      *   "123/environment": "production",
      *   "123/costCenter": "marketing"
-     * See https://docs.cloud.google.com/pubsub/docs/tags for more information on
-     * using tags with Pub/Sub resources.
+     * See
+     * https://{$universe.dns_names.final_documentation_domain}/pubsub/docs/tags
+     * for more information on using tags with Pub/Sub resources.
      *
      * Generated from protobuf field <code>map<string, string> tags = 26 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
