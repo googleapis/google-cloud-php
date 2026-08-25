@@ -370,6 +370,13 @@ trait GapicClientTrait
             );
         }
 
+        $telemetryOptions = [
+            'tracerProvider' => $options['tracerProvider'] ?? null,
+            'loggerProvider' => $options['loggerProvider'] ?? null,
+            'gcp.client.service' => $this->serviceName,
+            'gcp.client.version' => $options['libVersion'] ?? null,
+        ];
+
         $transport = $options['transport'] ?: self::defaultTransport();
         $this->transport = $transport instanceof TransportInterface
             ? $transport
@@ -378,7 +385,8 @@ trait GapicClientTrait
                 $transport,
                 $options['transportConfig'],
                 $options['clientCertSource'],
-                $hasEmulator
+                $hasEmulator,
+                $telemetryOptions
             );
     }
 
@@ -396,7 +404,8 @@ trait GapicClientTrait
         $transport,
         $transportConfig,
         ?callable $clientCertSource = null,
-        bool $hasEmulator = false
+        bool $hasEmulator = false,
+        array $telemetryOptions = []
     ) {
         if (!is_string($transport)) {
             throw new ValidationException(
@@ -419,6 +428,7 @@ trait GapicClientTrait
             $configForSpecifiedTransport->setClientCertSource($clientCertSource);
             $configForSpecifiedTransport = $configForSpecifiedTransport->toArray();
         }
+        $configForSpecifiedTransport += $telemetryOptions;
         switch ($transport) {
             case 'grpc':
                 // Setting the user agent for gRPC requires special handling
