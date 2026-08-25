@@ -1598,6 +1598,11 @@ libraries:
       - path: google/spanner/admin/instance/v1
         php:
           staging_subdir: v1/Admin/Instance/v1
+    keep:
+      - tests/data/generated/GPBMetadata/Data/User.php
+      - tests/data/generated/Testing/Data/Book.php
+      - tests/data/generated/Testing/Data/User.php
+      - tests/data/generated/Testing/Data/User/Address.php
     output: Spanner
   - name: speech
     version: 2.5.4
@@ -1606,11 +1611,6 @@ libraries:
         php:
           additional_protos:
             - google/cloud/location/locations.proto
-    keep:
-      - tests/data/generated/GPBMetadata/Data/User.php
-      - tests/data/generated/Testing/Data/Book.php
-      - tests/data/generated/Testing/Data/User.php
-      - tests/data/generated/Testing/Data/User/Address.php
     output: Speech
   - name: sql
     version: 1.11.1
