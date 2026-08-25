@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright 2023 Google LLC
  * All rights reserved.
@@ -38,6 +39,8 @@ use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\Auth\FetchAuthTokenInterface;
 use InvalidArgumentException;
+use OpenTelemetry\API\Logs\LoggerProviderInterface;
+use OpenTelemetry\API\Trace\TracerProviderInterface;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -98,6 +101,12 @@ class ClientOptions implements ArrayAccess, OptionsInterface
     private ?string $apiKey;
 
     private null|false|LoggerInterface $logger;
+
+    /** @var TracerProviderInterface|null */
+    private $tracerProvider;
+
+    /** @var LoggerProviderInterface|null */
+    private $loggerProvider;
 
     /**
      * @param array $options {
@@ -169,6 +178,10 @@ class ClientOptions implements ArrayAccess, OptionsInterface
      *          The API key to be used for the client.
      *     @type null|false|LoggerInterface
      *           A PSR-3 compliant logger.
+     *     @type TracerProviderInterface|null $tracerProvider
+     *           A tracer provider for OpenTelemetry.
+     *     @type LoggerProviderInterface|null $loggerProvider
+     *           A logger provider for OpenTelemetry.
      * }
      */
     public function __construct(array $options)
@@ -200,6 +213,8 @@ class ClientOptions implements ArrayAccess, OptionsInterface
         $this->setUniverseDomain($arr['universeDomain'] ?? null);
         $this->setApiKey($arr['apiKey'] ?? null);
         $this->setLogger($arr['logger'] ?? null);
+        $this->setTracerProvider($arr['tracerProvider'] ?? null);
+        $this->setLoggerProvider($arr['loggerProvider'] ?? null);
     }
 
     /**
@@ -417,5 +432,45 @@ class ClientOptions implements ArrayAccess, OptionsInterface
         $this->logger = $logger;
 
         return $this;
+    }
+
+    /**
+     * @param TracerProviderInterface|null $tracerProvider
+     *
+     * @return $this
+     */
+    public function setTracerProvider($tracerProvider): self
+    {
+        $this->tracerProvider = $tracerProvider;
+
+        return $this;
+    }
+
+    /**
+     * @param LoggerProviderInterface|null $loggerProvider
+     *
+     * @return $this
+     */
+    public function setLoggerProvider($loggerProvider): self
+    {
+        $this->loggerProvider = $loggerProvider;
+
+        return $this;
+    }
+
+    /**
+     * @return TracerProviderInterface|null
+     */
+    public function getTracerProvider()
+    {
+        return $this->tracerProvider;
+    }
+
+    /**
+     * @return LoggerProviderInterface|null
+     */
+    public function getLoggerProvider()
+    {
+        return $this->loggerProvider;
     }
 }
