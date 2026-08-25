@@ -76,7 +76,9 @@ class BigtableClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return BigtableClient */
@@ -104,9 +106,7 @@ class BigtableClientTest extends GeneratedTest
         // Mock request
         $formattedTableName = $gapicClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
         $rowKey = '122';
-        $request = (new CheckAndMutateRowRequest())
-            ->setTableName($formattedTableName)
-            ->setRowKey($rowKey);
+        $request = (new CheckAndMutateRowRequest())->setTableName($formattedTableName)->setRowKey($rowKey);
         $response = $gapicClient->checkAndMutateRow($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -132,19 +132,20 @@ class BigtableClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedTableName = $gapicClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
         $rowKey = '122';
-        $request = (new CheckAndMutateRowRequest())
-            ->setTableName($formattedTableName)
-            ->setRowKey($rowKey);
+        $request = (new CheckAndMutateRowRequest())->setTableName($formattedTableName)->setRowKey($rowKey);
         try {
             $gapicClient->checkAndMutateRow($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -216,12 +217,15 @@ class BigtableClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->setStreamingStatus($status);
         $this->assertTrue($transport->isExhausted());
         // Mock request
@@ -267,8 +271,7 @@ class BigtableClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse3);
         // Mock request
         $formattedTableName = $gapicClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
-        $request = (new GenerateInitialChangeStreamPartitionsRequest())
-            ->setTableName($formattedTableName);
+        $request = (new GenerateInitialChangeStreamPartitionsRequest())->setTableName($formattedTableName);
         $serverStream = $gapicClient->generateInitialChangeStreamPartitions($request);
         $this->assertInstanceOf(ServerStream::class, $serverStream);
         $responses = iterator_to_array($serverStream->readAll());
@@ -297,18 +300,20 @@ class BigtableClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->setStreamingStatus($status);
         $this->assertTrue($transport->isExhausted());
         // Mock request
         $formattedTableName = $gapicClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
-        $request = (new GenerateInitialChangeStreamPartitionsRequest())
-            ->setTableName($formattedTableName);
+        $request = (new GenerateInitialChangeStreamPartitionsRequest())->setTableName($formattedTableName);
         $serverStream = $gapicClient->generateInitialChangeStreamPartitions($request);
         $results = $serverStream->readAll();
         try {
@@ -339,8 +344,7 @@ class BigtableClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedInstanceName = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
-        $request = (new GetClientConfigurationRequest())
-            ->setInstanceName($formattedInstanceName);
+        $request = (new GetClientConfigurationRequest())->setInstanceName($formattedInstanceName);
         $response = $gapicClient->getClientConfiguration($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -364,17 +368,19 @@ class BigtableClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedInstanceName = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
-        $request = (new GetClientConfigurationRequest())
-            ->setInstanceName($formattedInstanceName);
+        $request = (new GetClientConfigurationRequest())->setInstanceName($formattedInstanceName);
         try {
             $gapicClient->getClientConfiguration($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -434,12 +440,15 @@ class BigtableClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedTableName = $gapicClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
@@ -480,9 +489,7 @@ class BigtableClientTest extends GeneratedTest
         // Mock request
         $formattedTableName = $gapicClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
         $entries = [];
-        $request = (new MutateRowsRequest())
-            ->setTableName($formattedTableName)
-            ->setEntries($entries);
+        $request = (new MutateRowsRequest())->setTableName($formattedTableName)->setEntries($entries);
         $serverStream = $gapicClient->mutateRows($request);
         $this->assertInstanceOf(ServerStream::class, $serverStream);
         $responses = iterator_to_array($serverStream->readAll());
@@ -513,20 +520,21 @@ class BigtableClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->setStreamingStatus($status);
         $this->assertTrue($transport->isExhausted());
         // Mock request
         $formattedTableName = $gapicClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
         $entries = [];
-        $request = (new MutateRowsRequest())
-            ->setTableName($formattedTableName)
-            ->setEntries($entries);
+        $request = (new MutateRowsRequest())->setTableName($formattedTableName)->setEntries($entries);
         $serverStream = $gapicClient->mutateRows($request);
         $results = $serverStream->readAll();
         try {
@@ -566,10 +574,7 @@ class BigtableClientTest extends GeneratedTest
         $bidi->write($request);
         $responses = [];
         $responses[] = $bidi->read();
-        $bidi->writeAll([
-            $request2,
-            $request3,
-        ]);
+        $bidi->writeAll([$request2, $request3]);
         foreach ($bidi->closeWriteAndReadAll() as $response) {
             $responses[] = $response;
         }
@@ -607,12 +612,15 @@ class BigtableClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->setStreamingStatus($status);
         $this->assertTrue($transport->isExhausted());
         $bidi = $gapicClient->openAuthorizedView();
@@ -654,10 +662,7 @@ class BigtableClientTest extends GeneratedTest
         $bidi->write($request);
         $responses = [];
         $responses[] = $bidi->read();
-        $bidi->writeAll([
-            $request2,
-            $request3,
-        ]);
+        $bidi->writeAll([$request2, $request3]);
         foreach ($bidi->closeWriteAndReadAll() as $response) {
             $responses[] = $response;
         }
@@ -695,12 +700,15 @@ class BigtableClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->setStreamingStatus($status);
         $this->assertTrue($transport->isExhausted());
         $bidi = $gapicClient->openMaterializedView();
@@ -742,10 +750,7 @@ class BigtableClientTest extends GeneratedTest
         $bidi->write($request);
         $responses = [];
         $responses[] = $bidi->read();
-        $bidi->writeAll([
-            $request2,
-            $request3,
-        ]);
+        $bidi->writeAll([$request2, $request3]);
         foreach ($bidi->closeWriteAndReadAll() as $response) {
             $responses[] = $response;
         }
@@ -783,12 +788,15 @@ class BigtableClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->setStreamingStatus($status);
         $this->assertTrue($transport->isExhausted());
         $bidi = $gapicClient->openTable();
@@ -819,8 +827,7 @@ class BigtableClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
-        $request = (new PingAndWarmRequest())
-            ->setName($formattedName);
+        $request = (new PingAndWarmRequest())->setName($formattedName);
         $response = $gapicClient->pingAndWarm($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -844,17 +851,19 @@ class BigtableClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
-        $request = (new PingAndWarmRequest())
-            ->setName($formattedName);
+        $request = (new PingAndWarmRequest())->setName($formattedName);
         try {
             $gapicClient->pingAndWarm($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -919,12 +928,15 @@ class BigtableClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedInstanceName = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
@@ -967,8 +979,7 @@ class BigtableClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse3);
         // Mock request
         $formattedTableName = $gapicClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
-        $request = (new ReadChangeStreamRequest())
-            ->setTableName($formattedTableName);
+        $request = (new ReadChangeStreamRequest())->setTableName($formattedTableName);
         $serverStream = $gapicClient->readChangeStream($request);
         $this->assertInstanceOf(ServerStream::class, $serverStream);
         $responses = iterator_to_array($serverStream->readAll());
@@ -997,18 +1008,20 @@ class BigtableClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->setStreamingStatus($status);
         $this->assertTrue($transport->isExhausted());
         // Mock request
         $formattedTableName = $gapicClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
-        $request = (new ReadChangeStreamRequest())
-            ->setTableName($formattedTableName);
+        $request = (new ReadChangeStreamRequest())->setTableName($formattedTableName);
         $serverStream = $gapicClient->readChangeStream($request);
         $results = $serverStream->readAll();
         try {
@@ -1070,12 +1083,15 @@ class BigtableClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedTableName = $gapicClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
@@ -1121,8 +1137,7 @@ class BigtableClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse3);
         // Mock request
         $formattedTableName = $gapicClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
-        $request = (new ReadRowsRequest())
-            ->setTableName($formattedTableName);
+        $request = (new ReadRowsRequest())->setTableName($formattedTableName);
         $serverStream = $gapicClient->readRows($request);
         $this->assertInstanceOf(ServerStream::class, $serverStream);
         $responses = iterator_to_array($serverStream->readAll());
@@ -1151,18 +1166,20 @@ class BigtableClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->setStreamingStatus($status);
         $this->assertTrue($transport->isExhausted());
         // Mock request
         $formattedTableName = $gapicClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
-        $request = (new ReadRowsRequest())
-            ->setTableName($formattedTableName);
+        $request = (new ReadRowsRequest())->setTableName($formattedTableName);
         $serverStream = $gapicClient->readRows($request);
         $results = $serverStream->readAll();
         try {
@@ -1207,8 +1224,7 @@ class BigtableClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse3);
         // Mock request
         $formattedTableName = $gapicClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
-        $request = (new SampleRowKeysRequest())
-            ->setTableName($formattedTableName);
+        $request = (new SampleRowKeysRequest())->setTableName($formattedTableName);
         $serverStream = $gapicClient->sampleRowKeys($request);
         $this->assertInstanceOf(ServerStream::class, $serverStream);
         $responses = iterator_to_array($serverStream->readAll());
@@ -1237,18 +1253,20 @@ class BigtableClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->setStreamingStatus($status);
         $this->assertTrue($transport->isExhausted());
         // Mock request
         $formattedTableName = $gapicClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
-        $request = (new SampleRowKeysRequest())
-            ->setTableName($formattedTableName);
+        $request = (new SampleRowKeysRequest())->setTableName($formattedTableName);
         $serverStream = $gapicClient->sampleRowKeys($request);
         $results = $serverStream->readAll();
         try {
@@ -1280,9 +1298,7 @@ class BigtableClientTest extends GeneratedTest
         // Mock request
         $formattedTableName = $gapicClient->tableName('[PROJECT]', '[INSTANCE]', '[TABLE]');
         $rowKey = '122';
-        $request = (new CheckAndMutateRowRequest())
-            ->setTableName($formattedTableName)
-            ->setRowKey($rowKey);
+        $request = (new CheckAndMutateRowRequest())->setTableName($formattedTableName)->setRowKey($rowKey);
         $response = $gapicClient->checkAndMutateRowAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
