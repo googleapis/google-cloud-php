@@ -199,6 +199,24 @@ class Type
      */
     const NETWORK_OPTIMIZED_C4N = 147027572;
     /**
+     * CUD bucket for NETWORK_OPTIMIZED_U4C machines.
+     *
+     * Generated from protobuf enum <code>NETWORK_OPTIMIZED_U4C = 147044859;</code>
+     */
+    const NETWORK_OPTIMIZED_U4C = 147044859;
+    /**
+     * CUD bucket for NETWORK_OPTIMIZED_U4P machines.
+     *
+     * Generated from protobuf enum <code>NETWORK_OPTIMIZED_U4P = 147044872;</code>
+     */
+    const NETWORK_OPTIMIZED_U4P = 147044872;
+    /**
+     * CUD bucket for NETWORK_OPTIMIZED_U4S machines.
+     *
+     * Generated from protobuf enum <code>NETWORK_OPTIMIZED_U4S = 147044875;</code>
+     */
+    const NETWORK_OPTIMIZED_U4S = 147044875;
+    /**
      * Generated from protobuf enum <code>STORAGE_OPTIMIZED_Z3 = 316796085;</code>
      */
     const STORAGE_OPTIMIZED_Z3 = 316796085;
@@ -252,6 +270,9 @@ class Type
         self::MEMORY_OPTIMIZED_X4_960_12T => 'MEMORY_OPTIMIZED_X4_960_12T',
         self::MEMORY_OPTIMIZED_X4_960_16T => 'MEMORY_OPTIMIZED_X4_960_16T',
         self::NETWORK_OPTIMIZED_C4N => 'NETWORK_OPTIMIZED_C4N',
+        self::NETWORK_OPTIMIZED_U4C => 'NETWORK_OPTIMIZED_U4C',
+        self::NETWORK_OPTIMIZED_U4P => 'NETWORK_OPTIMIZED_U4P',
+        self::NETWORK_OPTIMIZED_U4S => 'NETWORK_OPTIMIZED_U4S',
         self::STORAGE_OPTIMIZED_Z3 => 'STORAGE_OPTIMIZED_Z3',
         self::TYPE_UNSPECIFIED => 'TYPE_UNSPECIFIED',
     ];

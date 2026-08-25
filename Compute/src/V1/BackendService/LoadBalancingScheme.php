@@ -9,8 +9,8 @@ use UnexpectedValueException;
 /**
  * Specifies the load balancer type. A backend service
  * created for one type of load balancer cannot be used with another.
- * For more information, refer toChoosing
- * a load balancer.
+ * For more information, refer to
+ * Backend services product and scheme table.
  *
  * Protobuf type <code>google.cloud.compute.v1.BackendService.LoadBalancingScheme</code>
  */
