@@ -69,7 +69,8 @@
         "google/protobuf": "^4.31||^5.34",
         "google/grpc-gcp": "^0.4",
         "ramsey/uuid": "^4.0",
-        "open-telemetry/sdk": "^1.13"
+        "open-telemetry/sdk": "^1.13",
+        "open-telemetry/api": "^1.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.6",
