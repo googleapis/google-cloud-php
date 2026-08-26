@@ -258,6 +258,11 @@ class Component
         $this->namespaces = $namespaces;
 
         $this->componentDependencies = [];
+
+        if ($this->name !== 'auth') {
+            $this->componentDependencies[] = new Component('Auth');
+        }
+
         // find dependencies which are google/cloud components
         foreach ($composerJson['require'] ?? [] as $name => $version) {
             if ($componentName = key(array_filter(
