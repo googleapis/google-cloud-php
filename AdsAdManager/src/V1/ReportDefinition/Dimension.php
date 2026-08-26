@@ -2174,7 +2174,8 @@ class Dimension
      * Demand subchannel.
      * Corresponds to "Demand subchannel value" in the Ad Manager UI (when
      * showing API fields).
-     * Compatible with the following report types: `HISTORICAL`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `ON_PLATFORM_MULTICALL`
      * Data format: `ENUM`
      *
      * Generated from protobuf enum <code>DEMAND_SUBCHANNEL = 22;</code>
@@ -2183,7 +2184,8 @@ class Dimension
     /**
      * Demand subchannel name.
      * Corresponds to "Demand subchannel" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `ON_PLATFORM_MULTICALL`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>DEMAND_SUBCHANNEL_NAME = 23;</code>
@@ -2500,6 +2502,15 @@ class Dimension
      * Generated from protobuf enum <code>HEADER_BIDDER_INTEGRATION_TYPE_NAME = 719;</code>
      */
     const HEADER_BIDDER_INTEGRATION_TYPE_NAME = 719;
+    /**
+     * High engagement ads allowed.
+     * Corresponds to "High engagement ads allowed" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `BOOLEAN`
+     *
+     * Generated from protobuf enum <code>HIGH_ENGAGEMENT_ADS_ALLOWED = 838;</code>
+     */
+    const HIGH_ENGAGEMENT_ADS_ALLOWED = 838;
     /**
      * Breaks down reporting data by hour in one day.
      * Corresponds to "Hour" in the Ad Manager UI.
@@ -5179,6 +5190,25 @@ class Dimension
      */
     const VIDEO_STITCHER_TYPE_NAME = 753;
     /**
+     * Web interstitial trigger type.
+     * Corresponds to "Web interstitial trigger type value" in the Ad Manager UI
+     * (when showing API fields).
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `ENUM`
+     *
+     * Generated from protobuf enum <code>WEB_INTERSTITIAL_TRIGGER_TYPE = 826;</code>
+     */
+    const WEB_INTERSTITIAL_TRIGGER_TYPE = 826;
+    /**
+     * Localized name of the web interstitial trigger type.
+     * Corresponds to "Web interstitial trigger type" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `STRING`
+     *
+     * Generated from protobuf enum <code>WEB_INTERSTITIAL_TRIGGER_TYPE_NAME = 827;</code>
+     */
+    const WEB_INTERSTITIAL_TRIGGER_TYPE_NAME = 827;
+    /**
      * Web property code
      * Corresponds to "Web property code" in the Ad Manager UI.
      * Compatible with the following report types: `HISTORICAL`
@@ -7495,6 +7525,7 @@ class Dimension
         self::HBT_YIELD_PARTNER_NAME => 'HBT_YIELD_PARTNER_NAME',
         self::HEADER_BIDDER_INTEGRATION_TYPE => 'HEADER_BIDDER_INTEGRATION_TYPE',
         self::HEADER_BIDDER_INTEGRATION_TYPE_NAME => 'HEADER_BIDDER_INTEGRATION_TYPE_NAME',
+        self::HIGH_ENGAGEMENT_ADS_ALLOWED => 'HIGH_ENGAGEMENT_ADS_ALLOWED',
         self::HOUR => 'HOUR',
         self::IMPRESSION_COUNTING_METHOD => 'IMPRESSION_COUNTING_METHOD',
         self::IMPRESSION_COUNTING_METHOD_NAME => 'IMPRESSION_COUNTING_METHOD_NAME',
@@ -7766,6 +7797,8 @@ class Dimension
         self::VIDEO_SDK_VERSION_NAME => 'VIDEO_SDK_VERSION_NAME',
         self::VIDEO_STITCHER_TYPE => 'VIDEO_STITCHER_TYPE',
         self::VIDEO_STITCHER_TYPE_NAME => 'VIDEO_STITCHER_TYPE_NAME',
+        self::WEB_INTERSTITIAL_TRIGGER_TYPE => 'WEB_INTERSTITIAL_TRIGGER_TYPE',
+        self::WEB_INTERSTITIAL_TRIGGER_TYPE_NAME => 'WEB_INTERSTITIAL_TRIGGER_TYPE_NAME',
         self::WEB_PROPERTY_CODE => 'WEB_PROPERTY_CODE',
         self::WEEK => 'WEEK',
         self::YIELD_GROUP_BUYER_NAME => 'YIELD_GROUP_BUYER_NAME',

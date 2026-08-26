@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,21 +22,21 @@
 
 namespace Google\Ads\AdManager\Tests\Unit\V1\Client;
 
-use Google\Ads\AdManager\V1\AudienceSegment;
-use Google\Ads\AdManager\V1\BatchActivateAudienceSegmentsRequest;
-use Google\Ads\AdManager\V1\BatchActivateAudienceSegmentsResponse;
-use Google\Ads\AdManager\V1\BatchApproveAudienceSegmentsRequest;
-use Google\Ads\AdManager\V1\BatchApproveAudienceSegmentsResponse;
-use Google\Ads\AdManager\V1\BatchDeactivateAudienceSegmentsRequest;
-use Google\Ads\AdManager\V1\BatchDeactivateAudienceSegmentsResponse;
-use Google\Ads\AdManager\V1\BatchPopulateAudienceSegmentsRequest;
-use Google\Ads\AdManager\V1\BatchPopulateAudienceSegmentsResponse;
-use Google\Ads\AdManager\V1\BatchRejectAudienceSegmentsRequest;
-use Google\Ads\AdManager\V1\BatchRejectAudienceSegmentsResponse;
-use Google\Ads\AdManager\V1\Client\AudienceSegmentServiceClient;
-use Google\Ads\AdManager\V1\GetAudienceSegmentRequest;
-use Google\Ads\AdManager\V1\ListAudienceSegmentsRequest;
-use Google\Ads\AdManager\V1\ListAudienceSegmentsResponse;
+use Google\Ads\AdManager\V1\BatchActivateNativeStylesRequest;
+use Google\Ads\AdManager\V1\BatchActivateNativeStylesResponse;
+use Google\Ads\AdManager\V1\BatchArchiveNativeStylesRequest;
+use Google\Ads\AdManager\V1\BatchArchiveNativeStylesResponse;
+use Google\Ads\AdManager\V1\BatchCreateNativeStylesRequest;
+use Google\Ads\AdManager\V1\BatchCreateNativeStylesResponse;
+use Google\Ads\AdManager\V1\BatchDeactivateNativeStylesRequest;
+use Google\Ads\AdManager\V1\BatchDeactivateNativeStylesResponse;
+use Google\Ads\AdManager\V1\BatchUpdateNativeStylesRequest;
+use Google\Ads\AdManager\V1\BatchUpdateNativeStylesResponse;
+use Google\Ads\AdManager\V1\Client\NativeStyleServiceClient;
+use Google\Ads\AdManager\V1\GetNativeStyleRequest;
+use Google\Ads\AdManager\V1\ListNativeStylesRequest;
+use Google\Ads\AdManager\V1\ListNativeStylesResponse;
+use Google\Ads\AdManager\V1\NativeStyle;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
@@ -49,7 +49,7 @@ use stdClass;
  *
  * @group gapic
  */
-class AudienceSegmentServiceClientTest extends GeneratedTest
+class NativeStyleServiceClientTest extends GeneratedTest
 {
     /** @return TransportInterface */
     private function createTransport($deserialize = null)
@@ -65,17 +65,17 @@ class AudienceSegmentServiceClientTest extends GeneratedTest
             ->getMock();
     }
 
-    /** @return AudienceSegmentServiceClient */
+    /** @return NativeStyleServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
             'credentials' => $this->createCredentials(),
         ];
-        return new AudienceSegmentServiceClient($options);
+        return new NativeStyleServiceClient($options);
     }
 
     /** @test */
-    public function batchActivateAudienceSegmentsTest()
+    public function batchActivateNativeStylesTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -83,24 +83,19 @@ class AudienceSegmentServiceClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
-        $changeCount = 235488192;
-        $expectedResponse = new BatchActivateAudienceSegmentsResponse();
-        $expectedResponse->setChangeCount($changeCount);
+        $expectedResponse = new BatchActivateNativeStylesResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
-        $formattedNames = [$gapicClient->audienceSegmentName('[NETWORK_CODE]', '[AUDIENCE_SEGMENT]')];
-        $request = (new BatchActivateAudienceSegmentsRequest())->setParent($formattedParent)->setNames($formattedNames);
-        $response = $gapicClient->batchActivateAudienceSegments($request);
+        $formattedNames = [$gapicClient->nativeStyleName('[NETWORK_CODE]', '[NATIVE_STYLE]')];
+        $request = (new BatchActivateNativeStylesRequest())->setParent($formattedParent)->setNames($formattedNames);
+        $response = $gapicClient->batchActivateNativeStyles($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame(
-            '/google.ads.admanager.v1.AudienceSegmentService/BatchActivateAudienceSegments',
-            $actualFuncCall
-        );
+        $this->assertSame('/google.ads.admanager.v1.NativeStyleService/BatchActivateNativeStyles', $actualFuncCall);
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualRequestObject->getNames();
@@ -109,7 +104,7 @@ class AudienceSegmentServiceClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function batchActivateAudienceSegmentsExceptionTest()
+    public function batchActivateNativeStylesExceptionTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -131,10 +126,10 @@ class AudienceSegmentServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
-        $formattedNames = [$gapicClient->audienceSegmentName('[NETWORK_CODE]', '[AUDIENCE_SEGMENT]')];
-        $request = (new BatchActivateAudienceSegmentsRequest())->setParent($formattedParent)->setNames($formattedNames);
+        $formattedNames = [$gapicClient->nativeStyleName('[NETWORK_CODE]', '[NATIVE_STYLE]')];
+        $request = (new BatchActivateNativeStylesRequest())->setParent($formattedParent)->setNames($formattedNames);
         try {
-            $gapicClient->batchActivateAudienceSegments($request);
+            $gapicClient->batchActivateNativeStyles($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -147,7 +142,7 @@ class AudienceSegmentServiceClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function batchApproveAudienceSegmentsTest()
+    public function batchArchiveNativeStylesTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -155,24 +150,19 @@ class AudienceSegmentServiceClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
-        $changeCount = 235488192;
-        $expectedResponse = new BatchApproveAudienceSegmentsResponse();
-        $expectedResponse->setChangeCount($changeCount);
+        $expectedResponse = new BatchArchiveNativeStylesResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
-        $formattedNames = [$gapicClient->audienceSegmentName('[NETWORK_CODE]', '[AUDIENCE_SEGMENT]')];
-        $request = (new BatchApproveAudienceSegmentsRequest())->setParent($formattedParent)->setNames($formattedNames);
-        $response = $gapicClient->batchApproveAudienceSegments($request);
+        $formattedNames = [$gapicClient->nativeStyleName('[NETWORK_CODE]', '[NATIVE_STYLE]')];
+        $request = (new BatchArchiveNativeStylesRequest())->setParent($formattedParent)->setNames($formattedNames);
+        $response = $gapicClient->batchArchiveNativeStyles($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame(
-            '/google.ads.admanager.v1.AudienceSegmentService/BatchApproveAudienceSegments',
-            $actualFuncCall
-        );
+        $this->assertSame('/google.ads.admanager.v1.NativeStyleService/BatchArchiveNativeStyles', $actualFuncCall);
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualRequestObject->getNames();
@@ -181,7 +171,7 @@ class AudienceSegmentServiceClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function batchApproveAudienceSegmentsExceptionTest()
+    public function batchArchiveNativeStylesExceptionTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -203,10 +193,10 @@ class AudienceSegmentServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
-        $formattedNames = [$gapicClient->audienceSegmentName('[NETWORK_CODE]', '[AUDIENCE_SEGMENT]')];
-        $request = (new BatchApproveAudienceSegmentsRequest())->setParent($formattedParent)->setNames($formattedNames);
+        $formattedNames = [$gapicClient->nativeStyleName('[NETWORK_CODE]', '[NATIVE_STYLE]')];
+        $request = (new BatchArchiveNativeStylesRequest())->setParent($formattedParent)->setNames($formattedNames);
         try {
-            $gapicClient->batchApproveAudienceSegments($request);
+            $gapicClient->batchArchiveNativeStyles($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -219,7 +209,7 @@ class AudienceSegmentServiceClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function batchDeactivateAudienceSegmentsTest()
+    public function batchCreateNativeStylesTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -227,35 +217,28 @@ class AudienceSegmentServiceClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
-        $changeCount = 235488192;
-        $expectedResponse = new BatchDeactivateAudienceSegmentsResponse();
-        $expectedResponse->setChangeCount($changeCount);
+        $expectedResponse = new BatchCreateNativeStylesResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
-        $formattedNames = [$gapicClient->audienceSegmentName('[NETWORK_CODE]', '[AUDIENCE_SEGMENT]')];
-        $request = (new BatchDeactivateAudienceSegmentsRequest())
-            ->setParent($formattedParent)
-            ->setNames($formattedNames);
-        $response = $gapicClient->batchDeactivateAudienceSegments($request);
+        $requests = [];
+        $request = (new BatchCreateNativeStylesRequest())->setParent($formattedParent)->setRequests($requests);
+        $response = $gapicClient->batchCreateNativeStyles($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame(
-            '/google.ads.admanager.v1.AudienceSegmentService/BatchDeactivateAudienceSegments',
-            $actualFuncCall
-        );
+        $this->assertSame('/google.ads.admanager.v1.NativeStyleService/BatchCreateNativeStyles', $actualFuncCall);
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getNames();
-        $this->assertProtobufEquals($formattedNames, $actualValue);
+        $actualValue = $actualRequestObject->getRequests();
+        $this->assertProtobufEquals($requests, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
-    public function batchDeactivateAudienceSegmentsExceptionTest()
+    public function batchCreateNativeStylesExceptionTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -277,12 +260,10 @@ class AudienceSegmentServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
-        $formattedNames = [$gapicClient->audienceSegmentName('[NETWORK_CODE]', '[AUDIENCE_SEGMENT]')];
-        $request = (new BatchDeactivateAudienceSegmentsRequest())
-            ->setParent($formattedParent)
-            ->setNames($formattedNames);
+        $requests = [];
+        $request = (new BatchCreateNativeStylesRequest())->setParent($formattedParent)->setRequests($requests);
         try {
-            $gapicClient->batchDeactivateAudienceSegments($request);
+            $gapicClient->batchCreateNativeStyles($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -295,7 +276,7 @@ class AudienceSegmentServiceClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function batchPopulateAudienceSegmentsTest()
+    public function batchDeactivateNativeStylesTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -303,24 +284,19 @@ class AudienceSegmentServiceClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
-        $changeCount = 235488192;
-        $expectedResponse = new BatchPopulateAudienceSegmentsResponse();
-        $expectedResponse->setChangeCount($changeCount);
+        $expectedResponse = new BatchDeactivateNativeStylesResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
-        $formattedNames = [$gapicClient->audienceSegmentName('[NETWORK_CODE]', '[AUDIENCE_SEGMENT]')];
-        $request = (new BatchPopulateAudienceSegmentsRequest())->setParent($formattedParent)->setNames($formattedNames);
-        $response = $gapicClient->batchPopulateAudienceSegments($request);
+        $formattedNames = [$gapicClient->nativeStyleName('[NETWORK_CODE]', '[NATIVE_STYLE]')];
+        $request = (new BatchDeactivateNativeStylesRequest())->setParent($formattedParent)->setNames($formattedNames);
+        $response = $gapicClient->batchDeactivateNativeStyles($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame(
-            '/google.ads.admanager.v1.AudienceSegmentService/BatchPopulateAudienceSegments',
-            $actualFuncCall
-        );
+        $this->assertSame('/google.ads.admanager.v1.NativeStyleService/BatchDeactivateNativeStyles', $actualFuncCall);
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualRequestObject->getNames();
@@ -329,7 +305,7 @@ class AudienceSegmentServiceClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function batchPopulateAudienceSegmentsExceptionTest()
+    public function batchDeactivateNativeStylesExceptionTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -351,10 +327,10 @@ class AudienceSegmentServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
-        $formattedNames = [$gapicClient->audienceSegmentName('[NETWORK_CODE]', '[AUDIENCE_SEGMENT]')];
-        $request = (new BatchPopulateAudienceSegmentsRequest())->setParent($formattedParent)->setNames($formattedNames);
+        $formattedNames = [$gapicClient->nativeStyleName('[NETWORK_CODE]', '[NATIVE_STYLE]')];
+        $request = (new BatchDeactivateNativeStylesRequest())->setParent($formattedParent)->setNames($formattedNames);
         try {
-            $gapicClient->batchPopulateAudienceSegments($request);
+            $gapicClient->batchDeactivateNativeStyles($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -367,7 +343,7 @@ class AudienceSegmentServiceClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function batchRejectAudienceSegmentsTest()
+    public function batchUpdateNativeStylesTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -375,33 +351,28 @@ class AudienceSegmentServiceClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
-        $changeCount = 235488192;
-        $expectedResponse = new BatchRejectAudienceSegmentsResponse();
-        $expectedResponse->setChangeCount($changeCount);
+        $expectedResponse = new BatchUpdateNativeStylesResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
-        $formattedNames = [$gapicClient->audienceSegmentName('[NETWORK_CODE]', '[AUDIENCE_SEGMENT]')];
-        $request = (new BatchRejectAudienceSegmentsRequest())->setParent($formattedParent)->setNames($formattedNames);
-        $response = $gapicClient->batchRejectAudienceSegments($request);
+        $requests = [];
+        $request = (new BatchUpdateNativeStylesRequest())->setParent($formattedParent)->setRequests($requests);
+        $response = $gapicClient->batchUpdateNativeStyles($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame(
-            '/google.ads.admanager.v1.AudienceSegmentService/BatchRejectAudienceSegments',
-            $actualFuncCall
-        );
+        $this->assertSame('/google.ads.admanager.v1.NativeStyleService/BatchUpdateNativeStyles', $actualFuncCall);
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualRequestObject->getNames();
-        $this->assertProtobufEquals($formattedNames, $actualValue);
+        $actualValue = $actualRequestObject->getRequests();
+        $this->assertProtobufEquals($requests, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
-    public function batchRejectAudienceSegmentsExceptionTest()
+    public function batchUpdateNativeStylesExceptionTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -423,10 +394,10 @@ class AudienceSegmentServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
-        $formattedNames = [$gapicClient->audienceSegmentName('[NETWORK_CODE]', '[AUDIENCE_SEGMENT]')];
-        $request = (new BatchRejectAudienceSegmentsRequest())->setParent($formattedParent)->setNames($formattedNames);
+        $requests = [];
+        $request = (new BatchUpdateNativeStylesRequest())->setParent($formattedParent)->setRequests($requests);
         try {
-            $gapicClient->batchRejectAudienceSegments($request);
+            $gapicClient->batchUpdateNativeStyles($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -439,7 +410,7 @@ class AudienceSegmentServiceClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function getAudienceSegmentTest()
+    public function getNativeStyleTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -448,44 +419,34 @@ class AudienceSegmentServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name2 = 'name2-1052831874';
-        $sharedId = 1581568203;
+        $creativeTemplate = 'creativeTemplate-1585462518';
         $displayName = 'displayName1615086568';
-        $description = 'description-1724546052';
-        $size = 3530753;
-        $mobileWebSize = 1281165047;
-        $idfaSize = 582571914;
-        $adIdSize = 1772250249;
-        $ppidSize = 1292388699;
-        $dataProviderDisplayName = 'dataProviderDisplayName-1756607327';
-        $expectedResponse = new AudienceSegment();
+        $htmlSnippet = 'htmlSnippet966640777';
+        $cssSnippet = 'cssSnippet-36018463';
+        $expectedResponse = new NativeStyle();
         $expectedResponse->setName($name2);
-        $expectedResponse->setSharedId($sharedId);
+        $expectedResponse->setCreativeTemplate($creativeTemplate);
         $expectedResponse->setDisplayName($displayName);
-        $expectedResponse->setDescription($description);
-        $expectedResponse->setSize($size);
-        $expectedResponse->setMobileWebSize($mobileWebSize);
-        $expectedResponse->setIdfaSize($idfaSize);
-        $expectedResponse->setAdIdSize($adIdSize);
-        $expectedResponse->setPpidSize($ppidSize);
-        $expectedResponse->setDataProviderDisplayName($dataProviderDisplayName);
+        $expectedResponse->setHtmlSnippet($htmlSnippet);
+        $expectedResponse->setCssSnippet($cssSnippet);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->audienceSegmentName('[NETWORK_CODE]', '[AUDIENCE_SEGMENT]');
-        $request = (new GetAudienceSegmentRequest())->setName($formattedName);
-        $response = $gapicClient->getAudienceSegment($request);
+        $formattedName = $gapicClient->nativeStyleName('[NETWORK_CODE]', '[NATIVE_STYLE]');
+        $request = (new GetNativeStyleRequest())->setName($formattedName);
+        $response = $gapicClient->getNativeStyle($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.ads.admanager.v1.AudienceSegmentService/GetAudienceSegment', $actualFuncCall);
+        $this->assertSame('/google.ads.admanager.v1.NativeStyleService/GetNativeStyle', $actualFuncCall);
         $actualValue = $actualRequestObject->getName();
         $this->assertProtobufEquals($formattedName, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
-    public function getAudienceSegmentExceptionTest()
+    public function getNativeStyleExceptionTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -506,10 +467,10 @@ class AudienceSegmentServiceClientTest extends GeneratedTest
         );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->audienceSegmentName('[NETWORK_CODE]', '[AUDIENCE_SEGMENT]');
-        $request = (new GetAudienceSegmentRequest())->setName($formattedName);
+        $formattedName = $gapicClient->nativeStyleName('[NETWORK_CODE]', '[NATIVE_STYLE]');
+        $request = (new GetNativeStyleRequest())->setName($formattedName);
         try {
-            $gapicClient->getAudienceSegment($request);
+            $gapicClient->getNativeStyle($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -522,7 +483,7 @@ class AudienceSegmentServiceClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function listAudienceSegmentsTest()
+    public function listNativeStylesTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -532,33 +493,33 @@ class AudienceSegmentServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $totalSize = 705419236;
-        $audienceSegmentsElement = new AudienceSegment();
-        $audienceSegments = [$audienceSegmentsElement];
-        $expectedResponse = new ListAudienceSegmentsResponse();
+        $nativeStylesElement = new NativeStyle();
+        $nativeStyles = [$nativeStylesElement];
+        $expectedResponse = new ListNativeStylesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setTotalSize($totalSize);
-        $expectedResponse->setAudienceSegments($audienceSegments);
+        $expectedResponse->setNativeStyles($nativeStyles);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
-        $request = (new ListAudienceSegmentsRequest())->setParent($formattedParent);
-        $response = $gapicClient->listAudienceSegments($request);
+        $request = (new ListNativeStylesRequest())->setParent($formattedParent);
+        $response = $gapicClient->listNativeStyles($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
-        $this->assertEquals($expectedResponse->getAudienceSegments()[0], $resources[0]);
+        $this->assertEquals($expectedResponse->getNativeStyles()[0], $resources[0]);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.ads.admanager.v1.AudienceSegmentService/ListAudienceSegments', $actualFuncCall);
+        $this->assertSame('/google.ads.admanager.v1.NativeStyleService/ListNativeStyles', $actualFuncCall);
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
-    public function listAudienceSegmentsExceptionTest()
+    public function listNativeStylesExceptionTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -580,9 +541,9 @@ class AudienceSegmentServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
-        $request = (new ListAudienceSegmentsRequest())->setParent($formattedParent);
+        $request = (new ListNativeStylesRequest())->setParent($formattedParent);
         try {
-            $gapicClient->listAudienceSegments($request);
+            $gapicClient->listNativeStyles($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -595,7 +556,7 @@ class AudienceSegmentServiceClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function batchActivateAudienceSegmentsAsyncTest()
+    public function batchActivateNativeStylesAsyncTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -603,24 +564,19 @@ class AudienceSegmentServiceClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
-        $changeCount = 235488192;
-        $expectedResponse = new BatchActivateAudienceSegmentsResponse();
-        $expectedResponse->setChangeCount($changeCount);
+        $expectedResponse = new BatchActivateNativeStylesResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
-        $formattedNames = [$gapicClient->audienceSegmentName('[NETWORK_CODE]', '[AUDIENCE_SEGMENT]')];
-        $request = (new BatchActivateAudienceSegmentsRequest())->setParent($formattedParent)->setNames($formattedNames);
-        $response = $gapicClient->batchActivateAudienceSegmentsAsync($request)->wait();
+        $formattedNames = [$gapicClient->nativeStyleName('[NETWORK_CODE]', '[NATIVE_STYLE]')];
+        $request = (new BatchActivateNativeStylesRequest())->setParent($formattedParent)->setNames($formattedNames);
+        $response = $gapicClient->batchActivateNativeStylesAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame(
-            '/google.ads.admanager.v1.AudienceSegmentService/BatchActivateAudienceSegments',
-            $actualFuncCall
-        );
+        $this->assertSame('/google.ads.admanager.v1.NativeStyleService/BatchActivateNativeStyles', $actualFuncCall);
         $actualValue = $actualRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
         $actualValue = $actualRequestObject->getNames();
