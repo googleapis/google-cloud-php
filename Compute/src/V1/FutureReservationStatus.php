@@ -30,6 +30,12 @@ class FutureReservationStatus extends \Google\Protobuf\Internal\Message
      */
     private $auto_created_reservations;
     /**
+     * Output only. Exapool provisioned capacities for each SKU type.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.StoragePoolExapoolProvisionedCapacityGb exapool_provisioned_capacity_gb = 345174240;</code>
+     */
+    protected $exapool_provisioned_capacity_gb = null;
+    /**
      * Output only. [Output Only] Represents the existing matching usage for the future
      * reservation.
      *
@@ -75,6 +81,12 @@ class FutureReservationStatus extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.FutureReservationStatusSpecificSKUProperties specific_sku_properties = 108887106;</code>
      */
     protected $specific_sku_properties = null;
+    /**
+     * Output only. Storage pool provisioned capacities for each SKU type.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.FutureReservationStoragePoolProvisionedCapacity storage_pool_provisioned_capacity = 135892964;</code>
+     */
+    protected $storage_pool_provisioned_capacity = null;
 
     /**
      * Constructor.
@@ -88,6 +100,8 @@ class FutureReservationStatus extends \Google\Protobuf\Internal\Message
      *     @type string[] $auto_created_reservations
      *           Output only. Fully qualified urls of the automatically created reservations at
      *           start_time.
+     *     @type \Google\Cloud\Compute\V1\StoragePoolExapoolProvisionedCapacityGb $exapool_provisioned_capacity_gb
+     *           Output only. Exapool provisioned capacities for each SKU type.
      *     @type \Google\Cloud\Compute\V1\FutureReservationStatusExistingMatchingUsageInfo $existing_matching_usage_info
      *           Output only. [Output Only] Represents the existing matching usage for the future
      *           reservation.
@@ -111,6 +125,8 @@ class FutureReservationStatus extends \Google\Protobuf\Internal\Message
      *           Output only. Current state of this Future Reservation
      *           Check the ProcurementStatus enum for the list of possible values.
      *     @type \Google\Cloud\Compute\V1\FutureReservationStatusSpecificSKUProperties $specific_sku_properties
+     *     @type \Google\Cloud\Compute\V1\FutureReservationStoragePoolProvisionedCapacity $storage_pool_provisioned_capacity
+     *           Output only. Storage pool provisioned capacities for each SKU type.
      * }
      */
     public function __construct($data = NULL) {
@@ -180,6 +196,42 @@ class FutureReservationStatus extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->auto_created_reservations = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Exapool provisioned capacities for each SKU type.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.StoragePoolExapoolProvisionedCapacityGb exapool_provisioned_capacity_gb = 345174240;</code>
+     * @return \Google\Cloud\Compute\V1\StoragePoolExapoolProvisionedCapacityGb|null
+     */
+    public function getExapoolProvisionedCapacityGb()
+    {
+        return $this->exapool_provisioned_capacity_gb;
+    }
+
+    public function hasExapoolProvisionedCapacityGb()
+    {
+        return isset($this->exapool_provisioned_capacity_gb);
+    }
+
+    public function clearExapoolProvisionedCapacityGb()
+    {
+        unset($this->exapool_provisioned_capacity_gb);
+    }
+
+    /**
+     * Output only. Exapool provisioned capacities for each SKU type.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.StoragePoolExapoolProvisionedCapacityGb exapool_provisioned_capacity_gb = 345174240;</code>
+     * @param \Google\Cloud\Compute\V1\StoragePoolExapoolProvisionedCapacityGb $var
+     * @return $this
+     */
+    public function setExapoolProvisionedCapacityGb($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\StoragePoolExapoolProvisionedCapacityGb::class);
+        $this->exapool_provisioned_capacity_gb = $var;
 
         return $this;
     }
@@ -416,6 +468,42 @@ class FutureReservationStatus extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\FutureReservationStatusSpecificSKUProperties::class);
         $this->specific_sku_properties = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Storage pool provisioned capacities for each SKU type.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.FutureReservationStoragePoolProvisionedCapacity storage_pool_provisioned_capacity = 135892964;</code>
+     * @return \Google\Cloud\Compute\V1\FutureReservationStoragePoolProvisionedCapacity|null
+     */
+    public function getStoragePoolProvisionedCapacity()
+    {
+        return $this->storage_pool_provisioned_capacity;
+    }
+
+    public function hasStoragePoolProvisionedCapacity()
+    {
+        return isset($this->storage_pool_provisioned_capacity);
+    }
+
+    public function clearStoragePoolProvisionedCapacity()
+    {
+        unset($this->storage_pool_provisioned_capacity);
+    }
+
+    /**
+     * Output only. Storage pool provisioned capacities for each SKU type.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.FutureReservationStoragePoolProvisionedCapacity storage_pool_provisioned_capacity = 135892964;</code>
+     * @param \Google\Cloud\Compute\V1\FutureReservationStoragePoolProvisionedCapacity $var
+     * @return $this
+     */
+    public function setStoragePoolProvisionedCapacity($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\FutureReservationStoragePoolProvisionedCapacity::class);
+        $this->storage_pool_provisioned_capacity = $var;
 
         return $this;
     }

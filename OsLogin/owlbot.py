@@ -15,6 +15,7 @@
 """This script is used to synthesize generated parts of this library."""
 
 import logging
+import shutil
 from pathlib import Path
 import subprocess
 
@@ -30,6 +31,23 @@ dest = Path().resolve()
 # Added so that we can pass copy_excludes in the owlbot_main() call
 _tracked_paths.add(src)
 
+# 1. Handle common protos if staged separately (Librarian pipeline)
+if (src / "common-protos").exists():
+    php.owlbot_copy_version(
+        src=src / "common-protos",
+        dest=dest,
+        version_string="common",
+    )
+# 2. Handle common protos bundled inside v1 staging (Legacy OwlBot pipeline)
+proto_common = src / "v1/proto/src/Google/Cloud/OsLogin/Common"
+metadata_common = src / "v1/proto/src/GPBMetadata/Google/Cloud/Oslogin/Common"
+if proto_common.exists():
+    s.move([proto_common], dest / "src/Common", merge=php._merge)
+    shutil.rmtree(proto_common)
+if metadata_common.exists():
+    s.move([metadata_common], dest / "metadata/Common", merge=php._merge)
+    shutil.rmtree(metadata_common)
+# 3. Copy V1 protos and GAPIC files
 php.owlbot_main(src=src, dest=dest)
 
 # format generated clients
