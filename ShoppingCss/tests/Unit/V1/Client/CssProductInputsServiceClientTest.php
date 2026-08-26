@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -51,7 +51,9 @@ class CssProductInputsServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return CssProductInputsServiceClient */
@@ -76,8 +78,7 @@ class CssProductInputsServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->cssProductInputName('[ACCOUNT]', '[CSS_PRODUCT_INPUT]');
-        $request = (new DeleteCssProductInputRequest())
-            ->setName($formattedName);
+        $request = (new DeleteCssProductInputRequest())->setName($formattedName);
         $gapicClient->deleteCssProductInput($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -100,17 +101,19 @@ class CssProductInputsServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->cssProductInputName('[ACCOUNT]', '[CSS_PRODUCT_INPUT]');
-        $request = (new DeleteCssProductInputRequest())
-            ->setName($formattedName);
+        $request = (new DeleteCssProductInputRequest())->setName($formattedName);
         try {
             $gapicClient->deleteCssProductInput($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -182,12 +185,15 @@ class CssProductInputsServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->accountName('[ACCOUNT]');
@@ -243,8 +249,7 @@ class CssProductInputsServiceClientTest extends GeneratedTest
         $cssProductInput->setContentLanguage($cssProductInputContentLanguage);
         $cssProductInputFeedLabel = 'cssProductInputFeedLabel664498136';
         $cssProductInput->setFeedLabel($cssProductInputFeedLabel);
-        $request = (new UpdateCssProductInputRequest())
-            ->setCssProductInput($cssProductInput);
+        $request = (new UpdateCssProductInputRequest())->setCssProductInput($cssProductInput);
         $response = $gapicClient->updateCssProductInput($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -268,12 +273,15 @@ class CssProductInputsServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $cssProductInput = new CssProductInput();
@@ -283,8 +291,7 @@ class CssProductInputsServiceClientTest extends GeneratedTest
         $cssProductInput->setContentLanguage($cssProductInputContentLanguage);
         $cssProductInputFeedLabel = 'cssProductInputFeedLabel664498136';
         $cssProductInput->setFeedLabel($cssProductInputFeedLabel);
-        $request = (new UpdateCssProductInputRequest())
-            ->setCssProductInput($cssProductInput);
+        $request = (new UpdateCssProductInputRequest())->setCssProductInput($cssProductInput);
         try {
             $gapicClient->updateCssProductInput($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -311,8 +318,7 @@ class CssProductInputsServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->cssProductInputName('[ACCOUNT]', '[CSS_PRODUCT_INPUT]');
-        $request = (new DeleteCssProductInputRequest())
-            ->setName($formattedName);
+        $request = (new DeleteCssProductInputRequest())->setName($formattedName);
         $gapicClient->deleteCssProductInputAsync($request)->wait();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
