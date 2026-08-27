@@ -8,7 +8,7 @@
         "GatewayControl": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "GatewayControlGapicClient",
+                    "libraryClient": "GatewayControlClient",
                     "rpcs": {
                         "GenerateCredentials": {
                             "methods": [

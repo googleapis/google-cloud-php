@@ -30,7 +30,5 @@
   <php>
     <ini name="memory_limit" value="2048M"/>
   </php>
-  <listeners>
-    <listener class="Google\Cloud\Core\Testing\GcTestListener" file="Core/src/Testing/GcTestListener.php"/>
-  </listeners>
+
 </phpunit>

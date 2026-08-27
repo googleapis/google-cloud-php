@@ -33,7 +33,7 @@ use Google\Ads\AdManager\V1\UpdateCustomTargetingKeyRequest;
 use Google\ApiCore\ApiException;
 
 /**
- * API to batch update `CustomTargetingKey` objects.
+ * Batch updates `CustomTargetingKey` objects.
  *
  * @param string $formattedParent                          The parent resource where `CustomTargetingKeys` will be updated.
  *                                                         Format: `networks/{network_code}`

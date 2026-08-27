@@ -79,6 +79,18 @@ class Repository extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.securesourcemanager.v1.Repository.InitialConfig initial_config = 10 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      */
     protected $initial_config = null;
+    /**
+     * Optional. Repository level service account (BYOSA).
+     *
+     * Generated from protobuf field <code>string service_account = 11 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     */
+    protected $service_account = '';
+    /**
+     * Optional. Provides configuration for scanning.
+     *
+     * Generated from protobuf field <code>.google.cloud.securesourcemanager.v1.Repository.ScanConfig scan_config = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $scan_config = null;
 
     /**
      * Constructor.
@@ -114,6 +126,10 @@ class Repository extends \Google\Protobuf\Internal\Message
      *           Output only. URIs for the repository.
      *     @type \Google\Cloud\SecureSourceManager\V1\Repository\InitialConfig $initial_config
      *           Input only. Initial configurations for the repository.
+     *     @type string $service_account
+     *           Optional. Repository level service account (BYOSA).
+     *     @type \Google\Cloud\SecureSourceManager\V1\Repository\ScanConfig $scan_config
+     *           Optional. Provides configuration for scanning.
      * }
      */
     public function __construct($data = NULL) {
@@ -411,6 +427,68 @@ class Repository extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\SecureSourceManager\V1\Repository\InitialConfig::class);
         $this->initial_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Repository level service account (BYOSA).
+     *
+     * Generated from protobuf field <code>string service_account = 11 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getServiceAccount()
+    {
+        return $this->service_account;
+    }
+
+    /**
+     * Optional. Repository level service account (BYOSA).
+     *
+     * Generated from protobuf field <code>string service_account = 11 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setServiceAccount($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->service_account = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Provides configuration for scanning.
+     *
+     * Generated from protobuf field <code>.google.cloud.securesourcemanager.v1.Repository.ScanConfig scan_config = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\SecureSourceManager\V1\Repository\ScanConfig|null
+     */
+    public function getScanConfig()
+    {
+        return $this->scan_config;
+    }
+
+    public function hasScanConfig()
+    {
+        return isset($this->scan_config);
+    }
+
+    public function clearScanConfig()
+    {
+        unset($this->scan_config);
+    }
+
+    /**
+     * Optional. Provides configuration for scanning.
+     *
+     * Generated from protobuf field <code>.google.cloud.securesourcemanager.v1.Repository.ScanConfig scan_config = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\SecureSourceManager\V1\Repository\ScanConfig $var
+     * @return $this
+     */
+    public function setScanConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\SecureSourceManager\V1\Repository\ScanConfig::class);
+        $this->scan_config = $var;
 
         return $this;
     }

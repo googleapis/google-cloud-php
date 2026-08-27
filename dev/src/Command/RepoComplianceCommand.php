@@ -49,12 +49,19 @@ class RepoComplianceCommand extends Command
             ->addOption(
                 'component',
                 'c',
-                InputOption::VALUE_REQUIRED|InputOption::VALUE_IS_ARRAY,
+                InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY,
                 'If specified, display repo info for this component only'
             )
             ->addOption('token', 't', InputOption::VALUE_REQUIRED, 'Github token to use for authentication')
             ->addOption('format', 'f', InputOption::VALUE_REQUIRED, 'can be "ci" or "table"', 'table')
             ->addOption('packagist-token', 'p', InputOption::VALUE_REQUIRED, 'Packagist token for the webhook')
+            ->addOption(
+                'skip',
+                null,
+                InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY,
+                'key:value pair of component to compliance type to skip. Compliance types are ' .
+                'repo, packagist, webhook, and teams. For example: "--skip Gax:teams,repo --skip Bigtable:teams"'
+            )
         ;
     }
 
@@ -62,7 +69,7 @@ class RepoComplianceCommand extends Command
     {
         // Create github client wrapper
         $http = new Client();
-        $this->github = new GitHub(new RunShell(), $http, $input->getOption('token'), $output);
+        $this->github = new GitHub(new RunShell(), $http, (string) $input->getOption('token'), $output);
         $this->packagist = new Packagist($http, self::PACKAGIST_USERNAME, $input->getOption('packagist-token') ?? '');
 
         $format = $input->getOption('format');
@@ -82,6 +89,13 @@ class RepoComplianceCommand extends Command
         ];
         (clone $table)->setHeaders($headers)->render();
 
+        // Allow skipping checks via --skip option
+        $skips = array_reduce($input->getOption('skip'), function ($list, $pair) {
+            [$key, $val] = explode(':', $pair);
+            $list[$key] = explode(',', $val);
+            return $list;
+        });
+
         $components = $input->getOption('component')
             ? array_map(fn ($c) => new Component($c), $input->getOption('component'))
             : Component::getComponents();
@@ -95,37 +109,40 @@ class RepoComplianceCommand extends Command
             do {
                 $refreshDetails = false;
                 if (!$details = $this->getRepoDetails($component)) {
-                    $settingsCheck = $packagistCheck = $webhookCheck = $teamCheck = false;
+                    $repoCheck = $packagistCheck = $webhookCheck = $teamsCheck = false;
                     $details = array_fill(0, count($headers) - 1, '**REPO NOT FOUND**');
                     $details[0] = str_replace('googleapis/', '', $component->getRepoName());
                     continue;
                 }
-                $settingsCheck = $packagistCheck = $webhookCheck = $teamCheck = true;
-                if (!$this->checkSettingsCompliance($details)) {
-                    $settingsCheck = false;
+                [$repoCheck, $packagistCheck, $webhookCheck, $teamsCheck] = array_map(
+                    fn($type) => in_array($type, $skips[$component->getName()] ?? []) ? 'skipped' : true,
+                    ['repo', 'packagist', 'webhook', 'teams']
+                );
+                if ($repoCheck !== 'skipped' && !$this->checkSettingsCompliance($details)) {
+                    $repoCheck = false;
                     $refreshDetails |= $this->askFixSettingsCompliance($input, $output, $details);
                 }
-                if (!$this->checkWebhookCompliance($details)) {
+                if ($webhookCheck !== 'skipped' && !$this->checkWebhookCompliance($details)) {
                     $webhookCheck = $this->github->token ? ($isNewComponent ? 'skipped' : false) : null;
                     $refreshDetails |= $this->askFixWebhookCompliance($input, $output, $details);
                 }
-                if (!$this->checkPackagistCompliance($details)) {
+                if ($packagistCheck !== 'skipped' && !$this->checkPackagistCompliance($details)) {
                     // New components don't have packagist config, so bypass for CI.
                     $packagistCheck = $isNewComponent ? 'skipped' : false;
                     $refreshDetails |= $this->askFixPackagistCompliance($input, $output, $details);
                     $details['packagist_config'] ??= '**PACKAGE NOT FOUND**';
                 }
-                if (!$this->checkTeamCompliance($details)) {
-                    $teamCheck = $this->github->token ? false : null;
+                if ($teamsCheck !== 'skipped' && !$this->checkTeamCompliance($details)) {
+                    $teamsCheck = $this->github->token ? false : null;
                     $refreshDetails |= $this->askFixTeamCompliance($input, $output, $component->getRepoName());
                 }
             } while ($refreshDetails);
 
             $details['compliant'] = implode("\n", [
-                sprintf('%s Issues, Projects, Wiki, Pages, and Discussion are disabled', $emoji($settingsCheck)),
-                sprintf('%s Packagist webhook is configured', $emoji($webhookCheck)),
-                sprintf('%s Packagist maintainer is "google-cloud"', $emoji($packagistCheck)),
-                sprintf('%s Github teams permissions are configured correctly', $emoji($teamCheck)),
+                sprintf('%s [repo] Issues, Projects, Wiki, Pages, and Discussion are disabled', $emoji($repoCheck)),
+                sprintf('%s [webhook] Packagist webhook is configured', $emoji($webhookCheck)),
+                sprintf('%s [packagist] Packagist maintainer is "google-cloud"', $emoji($packagistCheck)),
+                sprintf('%s [teams] Github teams permissions are configured correctly', $emoji($teamsCheck)),
                 '',
             ]);
             if ($format == 'ci') {
@@ -134,7 +151,7 @@ class RepoComplianceCommand extends Command
             $componentTable = (clone $table);
             $componentTable->addRow($details)->render();
 
-            if (!($settingsCheck && $webhookCheck && $packagistCheck && $teamCheck)) {
+            if (!($repoCheck && $webhookCheck && $packagistCheck && $teamsCheck)) {
                 $failed[] = $componentTable;
             }
         }

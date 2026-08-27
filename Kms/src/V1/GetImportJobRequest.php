@@ -23,6 +23,20 @@ class GetImportJobRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $name = '';
+    /**
+     * Optional. Specifies the [WrappingPublicKey][] format.
+     * If not specified:
+     *   * For RSA-based import methods, the wrapping key will be returned in PEM
+     *   format
+     *   * For pure ML-KEM-based import methods, the wrapping key will be returned
+     *   in the raw bytes format specified in FIPS-203
+     *   * For X-Wing-based import methods, the wrapping key will be returned in
+     *   the raw bytes format specified in
+     *   https://datatracker.ietf.org/doc/draft-connolly-cfrg-xwing-kem.
+     *
+     * Generated from protobuf field <code>.google.cloud.kms.v1.PublicKey.PublicKeyFormat public_key_format = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $public_key_format = 0;
 
     /**
      * @param string $name Required. The [name][google.cloud.kms.v1.ImportJob.name] of the
@@ -48,6 +62,16 @@ class GetImportJobRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. The [name][google.cloud.kms.v1.ImportJob.name] of the
      *           [ImportJob][google.cloud.kms.v1.ImportJob] to get.
+     *     @type int $public_key_format
+     *           Optional. Specifies the [WrappingPublicKey][] format.
+     *           If not specified:
+     *             * For RSA-based import methods, the wrapping key will be returned in PEM
+     *             format
+     *             * For pure ML-KEM-based import methods, the wrapping key will be returned
+     *             in the raw bytes format specified in FIPS-203
+     *             * For X-Wing-based import methods, the wrapping key will be returned in
+     *             the raw bytes format specified in
+     *             https://datatracker.ietf.org/doc/draft-connolly-cfrg-xwing-kem.
      * }
      */
     public function __construct($data = NULL) {
@@ -79,6 +103,48 @@ class GetImportJobRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies the [WrappingPublicKey][] format.
+     * If not specified:
+     *   * For RSA-based import methods, the wrapping key will be returned in PEM
+     *   format
+     *   * For pure ML-KEM-based import methods, the wrapping key will be returned
+     *   in the raw bytes format specified in FIPS-203
+     *   * For X-Wing-based import methods, the wrapping key will be returned in
+     *   the raw bytes format specified in
+     *   https://datatracker.ietf.org/doc/draft-connolly-cfrg-xwing-kem.
+     *
+     * Generated from protobuf field <code>.google.cloud.kms.v1.PublicKey.PublicKeyFormat public_key_format = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getPublicKeyFormat()
+    {
+        return $this->public_key_format;
+    }
+
+    /**
+     * Optional. Specifies the [WrappingPublicKey][] format.
+     * If not specified:
+     *   * For RSA-based import methods, the wrapping key will be returned in PEM
+     *   format
+     *   * For pure ML-KEM-based import methods, the wrapping key will be returned
+     *   in the raw bytes format specified in FIPS-203
+     *   * For X-Wing-based import methods, the wrapping key will be returned in
+     *   the raw bytes format specified in
+     *   https://datatracker.ietf.org/doc/draft-connolly-cfrg-xwing-kem.
+     *
+     * Generated from protobuf field <code>.google.cloud.kms.v1.PublicKey.PublicKeyFormat public_key_format = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setPublicKeyFormat($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Kms\V1\PublicKey\PublicKeyFormat::class);
+        $this->public_key_format = $var;
 
         return $this;
     }

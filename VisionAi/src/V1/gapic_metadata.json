@@ -8,7 +8,7 @@
         "LiveVideoAnalytics": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "LiveVideoAnalyticsGapicClient",
+                    "libraryClient": "LiveVideoAnalyticsClient",
                     "rpcs": {
                         "BatchRunProcess": {
                             "methods": [
@@ -117,7 +117,7 @@
         "AppPlatform": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "AppPlatformGapicClient",
+                    "libraryClient": "AppPlatformClient",
                     "rpcs": {
                         "AddApplicationStreamInput": {
                             "methods": [
@@ -266,7 +266,7 @@
         "StreamingService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "StreamingServiceGapicClient",
+                    "libraryClient": "StreamingServiceClient",
                     "rpcs": {
                         "AcquireLease": {
                             "methods": [
@@ -315,7 +315,7 @@
         "StreamsService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "StreamsServiceGapicClient",
+                    "libraryClient": "StreamsServiceClient",
                     "rpcs": {
                         "CreateCluster": {
                             "methods": [
@@ -449,7 +449,7 @@
         "Warehouse": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "WarehouseGapicClient",
+                    "libraryClient": "WarehouseClient",
                     "rpcs": {
                         "AddCollectionItem": {
                             "methods": [
@@ -783,7 +783,7 @@
         "HealthCheckService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "HealthCheckServiceGapicClient",
+                    "libraryClient": "HealthCheckServiceClient",
                     "rpcs": {
                         "HealthCheck": {
                             "methods": [

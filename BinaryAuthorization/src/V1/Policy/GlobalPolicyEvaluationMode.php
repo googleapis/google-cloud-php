@@ -12,7 +12,7 @@ use UnexpectedValueException;
 class GlobalPolicyEvaluationMode
 {
     /**
-     * Not specified: DISABLE is assumed.
+     * Not specified: `DISABLE` is assumed.
      *
      * Generated from protobuf enum <code>GLOBAL_POLICY_EVALUATION_MODE_UNSPECIFIED = 0;</code>
      */

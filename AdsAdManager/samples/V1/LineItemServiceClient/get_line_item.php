@@ -29,7 +29,7 @@ use Google\Ads\AdManager\V1\LineItem;
 use Google\ApiCore\ApiException;
 
 /**
- * API to retrieve a `LineItem` object.
+ * Retrieves a `LineItem` object.
  *
  * @param string $formattedName The resource name of the LineItem.
  *                              Format: `networks/{network_code}/lineItems/{line_item_id}`

@@ -107,6 +107,18 @@ class ImportCryptoKeyVersionRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bytes wrapped_key = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $wrapped_key = '';
+    /**
+     * Optional. Whether trusted wrapping will be enabled on the imported
+     * [CryptoKeyVersion]. This field is only supported for keys with
+     * [CryptoKeyVersionTemplate.protection_level][google.cloud.kms.v1.CryptoKeyVersionTemplate.protection_level]
+     * [HSM_SINGLE_TENANT][google.cloud.kms.v1.ProtectionLevel.HSM_SINGLE_TENANT].
+     * This field is supported for all
+     * [CryptoKeyPurposes][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose] besides
+     * [ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT].
+     *
+     * Generated from protobuf field <code>bool trusted_wrapping_enabled = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $trusted_wrapping_enabled = false;
     protected $wrapped_key_material;
 
     /**
@@ -191,6 +203,14 @@ class ImportCryptoKeyVersionRequest extends \Google\Protobuf\Internal\Message
      *           [wrapped_key][google.cloud.kms.v1.ImportCryptoKeyVersionRequest.wrapped_key].
      *           Prefer to use that field in new work. Either that field or this field
      *           (but not both) must be specified.
+     *     @type bool $trusted_wrapping_enabled
+     *           Optional. Whether trusted wrapping will be enabled on the imported
+     *           [CryptoKeyVersion]. This field is only supported for keys with
+     *           [CryptoKeyVersionTemplate.protection_level][google.cloud.kms.v1.CryptoKeyVersionTemplate.protection_level]
+     *           [HSM_SINGLE_TENANT][google.cloud.kms.v1.ProtectionLevel.HSM_SINGLE_TENANT].
+     *           This field is supported for all
+     *           [CryptoKeyPurposes][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose] besides
+     *           [ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT].
      * }
      */
     public function __construct($data = NULL) {
@@ -483,6 +503,44 @@ class ImportCryptoKeyVersionRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, False);
         $this->writeOneof(5, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. Whether trusted wrapping will be enabled on the imported
+     * [CryptoKeyVersion]. This field is only supported for keys with
+     * [CryptoKeyVersionTemplate.protection_level][google.cloud.kms.v1.CryptoKeyVersionTemplate.protection_level]
+     * [HSM_SINGLE_TENANT][google.cloud.kms.v1.ProtectionLevel.HSM_SINGLE_TENANT].
+     * This field is supported for all
+     * [CryptoKeyPurposes][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose] besides
+     * [ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT].
+     *
+     * Generated from protobuf field <code>bool trusted_wrapping_enabled = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getTrustedWrappingEnabled()
+    {
+        return $this->trusted_wrapping_enabled;
+    }
+
+    /**
+     * Optional. Whether trusted wrapping will be enabled on the imported
+     * [CryptoKeyVersion]. This field is only supported for keys with
+     * [CryptoKeyVersionTemplate.protection_level][google.cloud.kms.v1.CryptoKeyVersionTemplate.protection_level]
+     * [HSM_SINGLE_TENANT][google.cloud.kms.v1.ProtectionLevel.HSM_SINGLE_TENANT].
+     * This field is supported for all
+     * [CryptoKeyPurposes][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose] besides
+     * [ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT].
+     *
+     * Generated from protobuf field <code>bool trusted_wrapping_enabled = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setTrustedWrappingEnabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->trusted_wrapping_enabled = $var;
 
         return $this;
     }

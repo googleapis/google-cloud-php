@@ -145,6 +145,34 @@ class CredentialsWrapperTest extends TestCase
                     quotaProject: $quotaProject
                 )),
             ],
+            [
+                ['enableRegionalAccessBoundary' => true],
+                new CredentialsWrapper(ApplicationDefaultCredentials::getCredentials(
+                    null,
+                    $authHttpHandler,
+                    null,
+                    $defaultAuthCache,
+                    null,
+                    null,
+                    null,
+                    null,
+                    true, // $enableRegionalAccessBoundary
+                )),
+            ],
+            [
+                ['enableRegionalAccessBoundary' => false],
+                new CredentialsWrapper(ApplicationDefaultCredentials::getCredentials(
+                    null,
+                    $authHttpHandler,
+                    null,
+                    $defaultAuthCache,
+                    null,
+                    null,
+                    null,
+                    null,
+                    false, // $enableRegionalAccessBoundary
+                )),
+            ],
         ];
 
         $this->setEnv('GOOGLE_APPLICATION_CREDENTIALS', $appDefaultCreds);

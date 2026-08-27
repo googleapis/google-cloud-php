@@ -181,12 +181,24 @@ class App extends \Google\Protobuf\Internal\Message
      */
     protected $client_certificate_settings = null;
     /**
+     * Optional. VPC-SC settings for the app.
+     *
+     * Generated from protobuf field <code>.google.cloud.ces.v1.VpcScSettings vpc_sc_settings = 26 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $vpc_sc_settings = null;
+    /**
      * Optional. Indicates whether the app is locked for changes. If the app is
      * locked, modifications to the app resources will be rejected.
      *
      * Generated from protobuf field <code>bool locked = 29 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $locked = false;
+    /**
+     * Output only. Misconfigurations or warnings in the app.
+     *
+     * Generated from protobuf field <code>repeated string validation_errors = 39 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $validation_errors;
 
     /**
      * Constructor.
@@ -256,9 +268,13 @@ class App extends \Google\Protobuf\Internal\Message
      *           Output only. Number of deployments in the app.
      *     @type \Google\Cloud\Ces\V1\ClientCertificateSettings $client_certificate_settings
      *           Optional. The default client certificate settings for the app.
+     *     @type \Google\Cloud\Ces\V1\VpcScSettings $vpc_sc_settings
+     *           Optional. VPC-SC settings for the app.
      *     @type bool $locked
      *           Optional. Indicates whether the app is locked for changes. If the app is
      *           locked, modifications to the app resources will be rejected.
+     *     @type string[] $validation_errors
+     *           Output only. Misconfigurations or warnings in the app.
      * }
      */
     public function __construct($data = NULL) {
@@ -1061,6 +1077,42 @@ class App extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. VPC-SC settings for the app.
+     *
+     * Generated from protobuf field <code>.google.cloud.ces.v1.VpcScSettings vpc_sc_settings = 26 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Ces\V1\VpcScSettings|null
+     */
+    public function getVpcScSettings()
+    {
+        return $this->vpc_sc_settings;
+    }
+
+    public function hasVpcScSettings()
+    {
+        return isset($this->vpc_sc_settings);
+    }
+
+    public function clearVpcScSettings()
+    {
+        unset($this->vpc_sc_settings);
+    }
+
+    /**
+     * Optional. VPC-SC settings for the app.
+     *
+     * Generated from protobuf field <code>.google.cloud.ces.v1.VpcScSettings vpc_sc_settings = 26 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Ces\V1\VpcScSettings $var
+     * @return $this
+     */
+    public function setVpcScSettings($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Ces\V1\VpcScSettings::class);
+        $this->vpc_sc_settings = $var;
+
+        return $this;
+    }
+
+    /**
      * Optional. Indicates whether the app is locked for changes. If the app is
      * locked, modifications to the app resources will be rejected.
      *
@@ -1084,6 +1136,32 @@ class App extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->locked = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Misconfigurations or warnings in the app.
+     *
+     * Generated from protobuf field <code>repeated string validation_errors = 39 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return RepeatedField<string>
+     */
+    public function getValidationErrors()
+    {
+        return $this->validation_errors;
+    }
+
+    /**
+     * Output only. Misconfigurations or warnings in the app.
+     *
+     * Generated from protobuf field <code>repeated string validation_errors = 39 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string[] $var
+     * @return $this
+     */
+    public function setValidationErrors($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->validation_errors = $arr;
 
         return $this;
     }

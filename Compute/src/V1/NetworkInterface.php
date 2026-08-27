@@ -31,6 +31,13 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
      */
     private $alias_ip_ranges;
     /**
+     * An array of alias IPv6 ranges for this network interface.
+     * You can only specify this field for network interfaces in VPC networks.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AliasIpRange alias_ipv6_ranges = 104028351;</code>
+     */
+    private $alias_ipv6_ranges;
+    /**
      * Optional. If true, DNS resolution will be enabled over this interface. Only valid
      * with network_attachment.
      *
@@ -210,6 +217,9 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Compute\V1\AliasIpRange[] $alias_ip_ranges
      *           An array of alias IP ranges for this network interface.
      *           You can only specify this field for network interfaces in VPC networks.
+     *     @type \Google\Cloud\Compute\V1\AliasIpRange[] $alias_ipv6_ranges
+     *           An array of alias IPv6 ranges for this network interface.
+     *           You can only specify this field for network interfaces in VPC networks.
      *     @type bool $enable_vpc_scoped_dns
      *           Optional. If true, DNS resolution will be enabled over this interface. Only valid
      *           with network_attachment.
@@ -361,6 +371,34 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Compute\V1\AliasIpRange::class);
         $this->alias_ip_ranges = $arr;
+
+        return $this;
+    }
+
+    /**
+     * An array of alias IPv6 ranges for this network interface.
+     * You can only specify this field for network interfaces in VPC networks.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AliasIpRange alias_ipv6_ranges = 104028351;</code>
+     * @return RepeatedField<\Google\Cloud\Compute\V1\AliasIpRange>
+     */
+    public function getAliasIpv6Ranges()
+    {
+        return $this->alias_ipv6_ranges;
+    }
+
+    /**
+     * An array of alias IPv6 ranges for this network interface.
+     * You can only specify this field for network interfaces in VPC networks.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AliasIpRange alias_ipv6_ranges = 104028351;</code>
+     * @param \Google\Cloud\Compute\V1\AliasIpRange[] $var
+     * @return $this
+     */
+    public function setAliasIpv6Ranges($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Compute\V1\AliasIpRange::class);
+        $this->alias_ipv6_ranges = $arr;
 
         return $this;
     }

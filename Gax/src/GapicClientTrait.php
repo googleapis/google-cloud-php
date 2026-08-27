@@ -45,6 +45,7 @@ use Google\ApiCore\Middleware\TransportCallMiddleware;
 use Google\ApiCore\Options\CallOptions;
 use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\Options\TransportOptions;
+use Google\ApiCore\ResumableUpload\ResumableUpload;
 use Google\ApiCore\Transport\GrpcFallbackTransport;
 use Google\ApiCore\Transport\GrpcTransport;
 use Google\ApiCore\Transport\RestTransport;
@@ -158,6 +159,16 @@ trait GapicClientTrait
     public function prependMiddleware(callable $middlewareCallable): void
     {
         $this->prependMiddlewareCallables[] = $middlewareCallable;
+    }
+
+    /**
+     * Get the default scopes required by the service.
+     *
+     * @return array
+     */
+    public static function getServiceScopes(): array
+    {
+        return self::$serviceScopes;
     }
 
     /**
@@ -327,10 +338,18 @@ trait GapicClientTrait
                 $options['credentialsConfig']['quotaProject'] ?? null
             );
         } else {
+            $enableRegionalAccessBoundary = filter_var(
+                getenv('GOOGLE_AUTH_TRUST_BOUNDARY_ENABLE_EXPERIMENT'),
+                FILTER_VALIDATE_BOOLEAN
+            );
+            $isRegional = str_ends_with($options['apiEndpoint'], '.rep.googleapis.com')
+                || str_ends_with($options['apiEndpoint'], '.rep.sandbox.googleapis.com');
             $this->credentialsWrapper = $this->createCredentialsWrapper(
                 $options['credentials'],
-                $options['credentialsConfig'],
-                $options['universeDomain']
+                $options['credentialsConfig'] + [
+                    'enableRegionalAccessBoundary' => $enableRegionalAccessBoundary && !$isRegional
+                ],
+                $options['universeDomain'],
             );
         }
 
@@ -532,6 +551,7 @@ trait GapicClientTrait
             case Call::SERVER_STREAMING_CALL:
             case Call::CLIENT_STREAMING_CALL:
             case Call::BIDI_STREAMING_CALL:
+            case Call::RESUMABLE_UPLOAD_CALL:
                 throw new ValidationException("Call type '$callType' of requested method " .
                     "'$methodName' is not supported for async execution.");
         }
@@ -592,6 +612,10 @@ trait GapicClientTrait
 
         if ($callType == Call::PAGINATED_CALL) {
             return $this->getPagedListResponse($methodName, $optionalArgs, $decodeType, $request, $interfaceName);
+        }
+
+        if ($callType == Call::RESUMABLE_UPLOAD_CALL) {
+            return $this->startResumableUploadCall($methodName, $optionalArgs, $decodeType, $request, $interfaceName);
         }
 
         // Unary, and all Streaming types handled by startCall.
@@ -840,6 +864,38 @@ trait GapicClientTrait
             $request,
             $interfaceName
         )->wait();
+    }
+
+    /**
+     * @param string $methodName
+     * @param array $optionalArgs
+     * @param string $decodeType
+     * @param Message|null $request
+     * @param string|null $interfaceName
+     *
+     * @return ResumableUpload
+     */
+    private function startResumableUploadCall(
+        string $methodName,
+        array $optionalArgs,
+        string $decodeType,
+        ?Message $request,
+        ?string $interfaceName = null
+    ) {
+        $call = new Call(
+            $this->buildMethod($interfaceName, $methodName),
+            $decodeType,
+            $request,
+            $this->descriptors[$methodName] ?? [],
+            Call::RESUMABLE_UPLOAD_CALL
+        );
+
+        return new ResumableUpload(
+            $this->resumableUploadClient,
+            $call,
+            $optionalArgs,
+            $optionalArgs['uploadUrl'] ?? null
+        );
     }
 
     /**

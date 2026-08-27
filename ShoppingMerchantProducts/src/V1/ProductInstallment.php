@@ -45,6 +45,12 @@ class ProductInstallment extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional double annual_percentage_rate = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $annual_percentage_rate = null;
+    /**
+     * Optional. Total amount the buyer has to pay, including interest.
+     *
+     * Generated from protobuf field <code>optional .google.shopping.type.Price total_amount = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $total_amount = null;
 
     /**
      * Constructor.
@@ -62,6 +68,8 @@ class ProductInstallment extends \Google\Protobuf\Internal\Message
      *           Type of installment payments.
      *     @type float $annual_percentage_rate
      *           Optional. Annual percentage rate for `credit_type` finance
+     *     @type \Google\Shopping\Type\Price $total_amount
+     *           Optional. Total amount the buyer has to pay, including interest.
      * }
      */
     public function __construct($data = NULL) {
@@ -235,6 +243,42 @@ class ProductInstallment extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkDouble($var);
         $this->annual_percentage_rate = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Total amount the buyer has to pay, including interest.
+     *
+     * Generated from protobuf field <code>optional .google.shopping.type.Price total_amount = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Shopping\Type\Price|null
+     */
+    public function getTotalAmount()
+    {
+        return $this->total_amount;
+    }
+
+    public function hasTotalAmount()
+    {
+        return isset($this->total_amount);
+    }
+
+    public function clearTotalAmount()
+    {
+        unset($this->total_amount);
+    }
+
+    /**
+     * Optional. Total amount the buyer has to pay, including interest.
+     *
+     * Generated from protobuf field <code>optional .google.shopping.type.Price total_amount = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Shopping\Type\Price $var
+     * @return $this
+     */
+    public function setTotalAmount($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Shopping\Type\Price::class);
+        $this->total_amount = $var;
 
         return $this;
     }

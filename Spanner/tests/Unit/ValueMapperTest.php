@@ -1365,7 +1365,7 @@ class ValueMapperTest extends TestCase
             'type' => array_filter([
                 'code' => $code,
                 'typeAnnotation' => $typeAnnotationCode,
-                $type => $typeObj
+                (string) $type => $typeObj
             ])
         ]];
     }

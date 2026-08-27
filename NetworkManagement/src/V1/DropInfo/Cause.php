@@ -280,6 +280,12 @@ class Cause
      */
     const DROPPED_INSIDE_CLOUD_SQL_SERVICE = 19;
     /**
+     * Packet was dropped inside DMS Private Connection.
+     *
+     * Generated from protobuf enum <code>DROPPED_INSIDE_DMS_PRIVATE_CONNECTION = 114;</code>
+     */
+    const DROPPED_INSIDE_DMS_PRIVATE_CONNECTION = 114;
+    /**
      * Packet was dropped because there is no peering between the originating
      * network and the Google Managed Services Network.
      *
@@ -749,6 +755,13 @@ class Cause
      * Generated from protobuf enum <code>NO_VALID_ROUTE_FROM_GOOGLE_MANAGED_NETWORK_TO_DESTINATION = 110;</code>
      */
     const NO_VALID_ROUTE_FROM_GOOGLE_MANAGED_NETWORK_TO_DESTINATION = 110;
+    /**
+     * Packet is dropped due to no running instance found for private
+     * connection.
+     *
+     * Generated from protobuf enum <code>PRIVATE_CONNECTION_NO_RUNNING_INSTANCE = 111;</code>
+     */
+    const PRIVATE_CONNECTION_NO_RUNNING_INSTANCE = 111;
 
     private static $valueToName = [
         self::CAUSE_UNSPECIFIED => 'CAUSE_UNSPECIFIED',
@@ -790,6 +803,7 @@ class Cause
         self::CLOUD_SQL_INSTANCE_UNAUTHORIZED_ACCESS => 'CLOUD_SQL_INSTANCE_UNAUTHORIZED_ACCESS',
         self::DROPPED_INSIDE_GKE_SERVICE => 'DROPPED_INSIDE_GKE_SERVICE',
         self::DROPPED_INSIDE_CLOUD_SQL_SERVICE => 'DROPPED_INSIDE_CLOUD_SQL_SERVICE',
+        self::DROPPED_INSIDE_DMS_PRIVATE_CONNECTION => 'DROPPED_INSIDE_DMS_PRIVATE_CONNECTION',
         self::GOOGLE_MANAGED_SERVICE_NO_PEERING => 'GOOGLE_MANAGED_SERVICE_NO_PEERING',
         self::GOOGLE_MANAGED_SERVICE_NO_PSC_ENDPOINT => 'GOOGLE_MANAGED_SERVICE_NO_PSC_ENDPOINT',
         self::GKE_PSC_ENDPOINT_MISSING => 'GKE_PSC_ENDPOINT_MISSING',
@@ -857,6 +871,7 @@ class Cause
         self::HYBRID_SUBNET_NO_ROUTE => 'HYBRID_SUBNET_NO_ROUTE',
         self::GKE_NETWORK_POLICY => 'GKE_NETWORK_POLICY',
         self::NO_VALID_ROUTE_FROM_GOOGLE_MANAGED_NETWORK_TO_DESTINATION => 'NO_VALID_ROUTE_FROM_GOOGLE_MANAGED_NETWORK_TO_DESTINATION',
+        self::PRIVATE_CONNECTION_NO_RUNNING_INSTANCE => 'PRIVATE_CONNECTION_NO_RUNNING_INSTANCE',
     ];
 
     public static function name($value)

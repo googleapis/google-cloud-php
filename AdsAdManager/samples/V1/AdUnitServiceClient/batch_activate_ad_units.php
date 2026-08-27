@@ -29,7 +29,7 @@ use Google\Ads\AdManager\V1\Client\AdUnitServiceClient;
 use Google\ApiCore\ApiException;
 
 /**
- * API to batch activate `AdUnit` objects.
+ * Batch activates `AdUnit` objects.
  *
  * @param string $formattedParent       Format: `networks/{network_code}`
  *                                      Please see {@see AdUnitServiceClient::networkName()} for help formatting this field.

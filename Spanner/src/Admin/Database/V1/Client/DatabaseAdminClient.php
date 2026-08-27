@@ -152,7 +152,11 @@ final class DatabaseAdminClient
     /** The name of the code generator, to be included in the agent header. */
     private const CODEGEN_NAME = 'gapic';
 
-    /** The default scopes required by the service. */
+    /**
+     * The default scopes required by the service.
+     *
+     * @internal
+     */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
         'https://www.googleapis.com/auth/spanner.admin',
@@ -202,7 +206,10 @@ final class DatabaseAdminClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
+        $options =
+            $methodName && isset($this->descriptors[$methodName]['longRunning'])
+                ? $this->descriptors[$methodName]['longRunning']
+                : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -257,8 +264,12 @@ final class DatabaseAdminClient
      *
      * @return string The formatted backup_schedule resource.
      */
-    public static function backupScheduleName(string $project, string $instance, string $database, string $schedule): string
-    {
+    public static function backupScheduleName(
+        string $project,
+        string $instance,
+        string $database,
+        string $schedule
+    ): string {
         return self::getPathTemplate('backupSchedule')->render([
             'project' => $project,
             'instance' => $instance,
@@ -300,8 +311,13 @@ final class DatabaseAdminClient
      *
      * @return string The formatted crypto_key_version resource.
      */
-    public static function cryptoKeyVersionName(string $project, string $location, string $keyRing, string $cryptoKey, string $cryptoKeyVersion): string
-    {
+    public static function cryptoKeyVersionName(
+        string $project,
+        string $location,
+        string $keyRing,
+        string $cryptoKey,
+        string $cryptoKeyVersion
+    ): string {
         return self::getPathTemplate('cryptoKeyVersion')->render([
             'project' => $project,
             'location' => $location,
@@ -887,8 +903,10 @@ final class DatabaseAdminClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function internalUpdateGraphOperation(InternalUpdateGraphOperationRequest $request, array $callOptions = []): InternalUpdateGraphOperationResponse
-    {
+    public function internalUpdateGraphOperation(
+        InternalUpdateGraphOperationRequest $request,
+        array $callOptions = []
+    ): InternalUpdateGraphOperationResponse {
         return $this->startApiCall('InternalUpdateGraphOperation', $request, $callOptions)->wait();
     }
 
@@ -922,8 +940,10 @@ final class DatabaseAdminClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listBackupOperations(ListBackupOperationsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listBackupOperations(
+        ListBackupOperationsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListBackupOperations', $request, $callOptions);
     }
 
@@ -1009,8 +1029,10 @@ final class DatabaseAdminClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listDatabaseOperations(ListDatabaseOperationsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listDatabaseOperations(
+        ListDatabaseOperationsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListDatabaseOperations', $request, $callOptions);
     }
 
@@ -1170,8 +1192,10 @@ final class DatabaseAdminClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 

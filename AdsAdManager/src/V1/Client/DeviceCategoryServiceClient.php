@@ -78,7 +78,11 @@ final class DeviceCategoryServiceClient
     /** The name of the code generator, to be included in the agent header. */
     private const CODEGEN_NAME = 'gapic';
 
-    /** The default scopes required by the service. */
+    /**
+     * The default scopes required by the service.
+     *
+     * @internal
+     */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/admanager',
         'https://www.googleapis.com/auth/admanager.readonly',
@@ -255,7 +259,7 @@ final class DeviceCategoryServiceClient
     }
 
     /**
-     * API to retrieve a `DeviceCategory` object.
+     * Retrieves a `DeviceCategory` object.
      *
      * The async variant is
      * {@see DeviceCategoryServiceClient::getDeviceCategoryAsync()} .
@@ -282,7 +286,7 @@ final class DeviceCategoryServiceClient
     }
 
     /**
-     * API to retrieve a list of `DeviceCategory` objects.
+     * Lists `DeviceCategory` objects.
      *
      * The async variant is
      * {@see DeviceCategoryServiceClient::listDeviceCategoriesAsync()} .

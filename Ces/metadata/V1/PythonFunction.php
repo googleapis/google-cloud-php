@@ -15,8 +15,9 @@ class PythonFunction
           return;
         }
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
+        \GPBMetadata\Google\Cloud\Ces\V1\Common::initOnce();
         $pool->internalAddGeneratedFile(
-            "\x0A\xFE\x01\x0A)google/cloud/ces/v1/python_function.proto\x12\x13google.cloud.ces.v1\"W\x0A\x0EPythonFunction\x12\x11\x0A\x04name\x18\x01 \x01(\x09B\x03\xE0A\x01\x12\x18\x0A\x0Bpython_code\x18\x02 \x01(\x09B\x03\xE0A\x01\x12\x18\x0A\x0Bdescription\x18\x03 \x01(\x09B\x03\xE0A\x03B[\x0A\x17com.google.cloud.ces.v1B\x13PythonFunctionProtoP\x01Z)cloud.google.com/go/ces/apiv1/cespb;cespbb\x06proto3"
+            "\x0A\xF5\x02\x0A)google/cloud/ces/v1/python_function.proto\x12\x13google.cloud.ces.v1\x1A google/cloud/ces/v1/common.proto\"\xAB\x01\x0A\x0EPythonFunction\x12\x11\x0A\x04name\x18\x01 \x01(\x09B\x03\xE0A\x01\x12\x18\x0A\x0Bpython_code\x18\x02 \x01(\x09B\x03\xE0A\x01\x12\x18\x0A\x0Bdescription\x18\x03 \x01(\x09B\x03\xE0A\x03\x12R\x0A\x18service_directory_config\x18\x04 \x01(\x0B2+.google.cloud.ces.v1.ServiceDirectoryConfigB\x03\xE0A\x01B[\x0A\x17com.google.cloud.ces.v1B\x13PythonFunctionProtoP\x01Z)cloud.google.com/go/ces/apiv1/cespb;cespbb\x06proto3"
         , true);
 
         static::$is_initialized = true;

@@ -9,8 +9,9 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * An [user owned Grafeas note][google.cloud.binaryauthorization.v1.UserOwnedGrafeasNote] references a Grafeas
- * Attestation.Authority Note created by the user.
+ * An [user owned Grafeas
+ * note][google.cloud.binaryauthorization.v1.UserOwnedGrafeasNote] references a
+ * Grafeas Attestation.Authority Note created by the user.
  *
  * Generated from protobuf message <code>google.cloud.binaryauthorization.v1.UserOwnedGrafeasNote</code>
  */
@@ -18,8 +19,8 @@ class UserOwnedGrafeasNote extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The Grafeas resource name of a Attestation.Authority Note,
-     * created by the user, in the format: `projects/{@*}notes/*`. This field may
-     * not be updated.
+     * created by the user, in the format: `projects/[PROJECT_ID]/notes/*`. This
+     * field may not be updated. A project ID must be used, not a project number.
      * An attestation by this attestor is stored as a Grafeas
      * Attestation.Authority Occurrence that names a container image and that
      * links to this Note. Grafeas is an external dependency.
@@ -41,11 +42,12 @@ class UserOwnedGrafeasNote extends \Google\Protobuf\Internal\Message
     private $public_keys;
     /**
      * Output only. This field will contain the service account email address
-     * that this Attestor will use as the principal when querying Container
+     * that this attestor will use as the principal when querying Container
      * Analysis. Attestor administrators must grant this service account the
-     * IAM role needed to read attestations from the [note_reference][Note] in
-     * Container Analysis (`containeranalysis.notes.occurrences.viewer`).
-     * This email address is fixed for the lifetime of the Attestor, but callers
+     * IAM role needed to read attestations from the
+     * [note_reference][google.cloud.binaryauthorization.v1.UserOwnedGrafeasNote.note_reference]
+     * in Container Analysis (`containeranalysis.notes.occurrences.viewer`).
+     * This email address is fixed for the lifetime of the attestor, but callers
      * should not make any other assumptions about the service account email;
      * future versions may use an email based on a different naming pattern.
      *
@@ -61,8 +63,8 @@ class UserOwnedGrafeasNote extends \Google\Protobuf\Internal\Message
      *
      *     @type string $note_reference
      *           Required. The Grafeas resource name of a Attestation.Authority Note,
-     *           created by the user, in the format: `projects/{@*}notes/*`. This field may
-     *           not be updated.
+     *           created by the user, in the format: `projects/[PROJECT_ID]/notes/*`. This
+     *           field may not be updated. A project ID must be used, not a project number.
      *           An attestation by this attestor is stored as a Grafeas
      *           Attestation.Authority Occurrence that names a container image and that
      *           links to this Note. Grafeas is an external dependency.
@@ -76,11 +78,12 @@ class UserOwnedGrafeasNote extends \Google\Protobuf\Internal\Message
      *           valid attestations exist.
      *     @type string $delegation_service_account_email
      *           Output only. This field will contain the service account email address
-     *           that this Attestor will use as the principal when querying Container
+     *           that this attestor will use as the principal when querying Container
      *           Analysis. Attestor administrators must grant this service account the
-     *           IAM role needed to read attestations from the [note_reference][Note] in
-     *           Container Analysis (`containeranalysis.notes.occurrences.viewer`).
-     *           This email address is fixed for the lifetime of the Attestor, but callers
+     *           IAM role needed to read attestations from the
+     *           [note_reference][google.cloud.binaryauthorization.v1.UserOwnedGrafeasNote.note_reference]
+     *           in Container Analysis (`containeranalysis.notes.occurrences.viewer`).
+     *           This email address is fixed for the lifetime of the attestor, but callers
      *           should not make any other assumptions about the service account email;
      *           future versions may use an email based on a different naming pattern.
      * }
@@ -92,8 +95,8 @@ class UserOwnedGrafeasNote extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The Grafeas resource name of a Attestation.Authority Note,
-     * created by the user, in the format: `projects/{@*}notes/*`. This field may
-     * not be updated.
+     * created by the user, in the format: `projects/[PROJECT_ID]/notes/*`. This
+     * field may not be updated. A project ID must be used, not a project number.
      * An attestation by this attestor is stored as a Grafeas
      * Attestation.Authority Occurrence that names a container image and that
      * links to this Note. Grafeas is an external dependency.
@@ -108,8 +111,8 @@ class UserOwnedGrafeasNote extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The Grafeas resource name of a Attestation.Authority Note,
-     * created by the user, in the format: `projects/{@*}notes/*`. This field may
-     * not be updated.
+     * created by the user, in the format: `projects/[PROJECT_ID]/notes/*`. This
+     * field may not be updated. A project ID must be used, not a project number.
      * An attestation by this attestor is stored as a Grafeas
      * Attestation.Authority Occurrence that names a container image and that
      * links to this Note. Grafeas is an external dependency.
@@ -166,11 +169,12 @@ class UserOwnedGrafeasNote extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. This field will contain the service account email address
-     * that this Attestor will use as the principal when querying Container
+     * that this attestor will use as the principal when querying Container
      * Analysis. Attestor administrators must grant this service account the
-     * IAM role needed to read attestations from the [note_reference][Note] in
-     * Container Analysis (`containeranalysis.notes.occurrences.viewer`).
-     * This email address is fixed for the lifetime of the Attestor, but callers
+     * IAM role needed to read attestations from the
+     * [note_reference][google.cloud.binaryauthorization.v1.UserOwnedGrafeasNote.note_reference]
+     * in Container Analysis (`containeranalysis.notes.occurrences.viewer`).
+     * This email address is fixed for the lifetime of the attestor, but callers
      * should not make any other assumptions about the service account email;
      * future versions may use an email based on a different naming pattern.
      *
@@ -184,11 +188,12 @@ class UserOwnedGrafeasNote extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. This field will contain the service account email address
-     * that this Attestor will use as the principal when querying Container
+     * that this attestor will use as the principal when querying Container
      * Analysis. Attestor administrators must grant this service account the
-     * IAM role needed to read attestations from the [note_reference][Note] in
-     * Container Analysis (`containeranalysis.notes.occurrences.viewer`).
-     * This email address is fixed for the lifetime of the Attestor, but callers
+     * IAM role needed to read attestations from the
+     * [note_reference][google.cloud.binaryauthorization.v1.UserOwnedGrafeasNote.note_reference]
+     * in Container Analysis (`containeranalysis.notes.occurrences.viewer`).
+     * This email address is fixed for the lifetime of the attestor, but callers
      * should not make any other assumptions about the service account email;
      * future versions may use an email based on a different naming pattern.
      *

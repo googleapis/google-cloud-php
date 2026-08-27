@@ -85,6 +85,18 @@ class Rollout extends \Google\Protobuf\Internal\Message
      */
     protected $name = null;
     /**
+     * Output only. The timestamp at which the Rollout was paused.
+     *
+     * Generated from protobuf field <code>optional string pause_time = 489697142;</code>
+     */
+    protected $pause_time = null;
+    /**
+     * Output only. The timestamp at which the Rollout was resumed.
+     *
+     * Generated from protobuf field <code>optional string resume_time = 457856927;</code>
+     */
+    protected $resume_time = null;
+    /**
      * Required. The resource being rolled out.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.RolloutRolloutEntity rollout_entity = 70633009;</code>
@@ -159,6 +171,10 @@ class Rollout extends \Google\Protobuf\Internal\Message
      *           which means the first character must be a lowercase letter, and all
      *           following characters must be a dash, lowercase letter, or digit, except
      *           the last character, which cannot be a dash.
+     *     @type string $pause_time
+     *           Output only. The timestamp at which the Rollout was paused.
+     *     @type string $resume_time
+     *           Output only. The timestamp at which the Rollout was resumed.
      *     @type \Google\Cloud\Compute\V1\RolloutRolloutEntity $rollout_entity
      *           Required. The resource being rolled out.
      *     @type string $rollout_plan
@@ -524,6 +540,78 @@ class Rollout extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The timestamp at which the Rollout was paused.
+     *
+     * Generated from protobuf field <code>optional string pause_time = 489697142;</code>
+     * @return string
+     */
+    public function getPauseTime()
+    {
+        return isset($this->pause_time) ? $this->pause_time : '';
+    }
+
+    public function hasPauseTime()
+    {
+        return isset($this->pause_time);
+    }
+
+    public function clearPauseTime()
+    {
+        unset($this->pause_time);
+    }
+
+    /**
+     * Output only. The timestamp at which the Rollout was paused.
+     *
+     * Generated from protobuf field <code>optional string pause_time = 489697142;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPauseTime($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->pause_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The timestamp at which the Rollout was resumed.
+     *
+     * Generated from protobuf field <code>optional string resume_time = 457856927;</code>
+     * @return string
+     */
+    public function getResumeTime()
+    {
+        return isset($this->resume_time) ? $this->resume_time : '';
+    }
+
+    public function hasResumeTime()
+    {
+        return isset($this->resume_time);
+    }
+
+    public function clearResumeTime()
+    {
+        unset($this->resume_time);
+    }
+
+    /**
+     * Output only. The timestamp at which the Rollout was resumed.
+     *
+     * Generated from protobuf field <code>optional string resume_time = 457856927;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setResumeTime($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->resume_time = $var;
 
         return $this;
     }

@@ -112,6 +112,12 @@ class PrivateAuctionDeal extends \Google\Protobuf\Internal\Message
      */
     protected $buyer_data = null;
     /**
+     * Optional. The priority of the deal across all non-guaranteed deals.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.NonGuaranteedDealPriority deal_priority = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $deal_priority = null;
+    /**
      * Output only. The instant at which the `PrivateAuctionDeal` was created.
      *
      * Generated from protobuf field <code>optional .google.protobuf.Timestamp create_time = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -166,6 +172,8 @@ class PrivateAuctionDeal extends \Google\Protobuf\Internal\Message
      *           among all buyers under the same bidder.
      *     @type \Google\Ads\AdManager\V1\PrivateAuctionDeal\BuyerData $buyer_data
      *           Optional. The buyer data required by the Marketplace API.
+     *     @type \Google\Ads\AdManager\V1\NonGuaranteedDealPriority $deal_priority
+     *           Optional. The priority of the deal across all non-guaranteed deals.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The instant at which the `PrivateAuctionDeal` was created.
      *     @type \Google\Protobuf\Timestamp $update_time
@@ -714,6 +722,42 @@ class PrivateAuctionDeal extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Ads\AdManager\V1\PrivateAuctionDeal\BuyerData::class);
         $this->buyer_data = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The priority of the deal across all non-guaranteed deals.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.NonGuaranteedDealPriority deal_priority = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Ads\AdManager\V1\NonGuaranteedDealPriority|null
+     */
+    public function getDealPriority()
+    {
+        return $this->deal_priority;
+    }
+
+    public function hasDealPriority()
+    {
+        return isset($this->deal_priority);
+    }
+
+    public function clearDealPriority()
+    {
+        unset($this->deal_priority);
+    }
+
+    /**
+     * Optional. The priority of the deal across all non-guaranteed deals.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.NonGuaranteedDealPriority deal_priority = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Ads\AdManager\V1\NonGuaranteedDealPriority $var
+     * @return $this
+     */
+    public function setDealPriority($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Ads\AdManager\V1\NonGuaranteedDealPriority::class);
+        $this->deal_priority = $var;
 
         return $this;
     }

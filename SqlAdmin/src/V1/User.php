@@ -105,6 +105,12 @@ class User extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string database_roles = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $database_roles;
+    /**
+     * Optional. The server roles for the SQL Server login.
+     *
+     * Generated from protobuf field <code>repeated string server_roles = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $server_roles;
     protected $user_details;
 
     /**
@@ -152,6 +158,8 @@ class User extends \Google\Protobuf\Internal\Message
      *           Indicates if a group is active or inactive for IAM database authentication.
      *     @type string[] $database_roles
      *           Optional. Role memberships of the user
+     *     @type string[] $server_roles
+     *           Optional. The server roles for the SQL Server login.
      * }
      */
     public function __construct($data = NULL) {
@@ -574,6 +582,32 @@ class User extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->database_roles = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The server roles for the SQL Server login.
+     *
+     * Generated from protobuf field <code>repeated string server_roles = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return RepeatedField<string>
+     */
+    public function getServerRoles()
+    {
+        return $this->server_roles;
+    }
+
+    /**
+     * Optional. The server roles for the SQL Server login.
+     *
+     * Generated from protobuf field <code>repeated string server_roles = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string[] $var
+     * @return $this
+     */
+    public function setServerRoles($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->server_roles = $arr;
 
         return $this;
     }

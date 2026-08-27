@@ -56,6 +56,22 @@ return [
                     ],
                 ],
             ],
+            'ResolveConnectSettings' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/locations/{location}/dns/{dns_name}:resolveConnectSettings',
+                'placeholders' => [
+                    'dns_name' => [
+                        'getters' => [
+                            'getDnsName',
+                        ],
+                    ],
+                    'location' => [
+                        'getters' => [
+                            'getLocation',
+                        ],
+                    ],
+                ],
+            ],
         ],
     ],
     'numericEnums' => true,

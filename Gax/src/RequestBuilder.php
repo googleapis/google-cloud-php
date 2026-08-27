@@ -261,7 +261,7 @@ class RequestBuilder
         $template = new AbsoluteResourceTemplate($uriTemplate);
 
         try {
-            return $template->render($bindings);
+            return $template->render($bindings, true);
         } catch (ValidationException $e) {
             return null;
         }

@@ -53,6 +53,8 @@ use Google\Cloud\Kms\V1\DestroyCryptoKeyVersionRequest;
 use Google\Cloud\Kms\V1\Digest;
 use Google\Cloud\Kms\V1\EncryptRequest;
 use Google\Cloud\Kms\V1\EncryptResponse;
+use Google\Cloud\Kms\V1\ExportTrustedKeyWrappedCryptoKeyVersionRequest;
+use Google\Cloud\Kms\V1\ExportTrustedKeyWrappedCryptoKeyVersionResponse;
 use Google\Cloud\Kms\V1\GenerateRandomBytesRequest;
 use Google\Cloud\Kms\V1\GenerateRandomBytesResponse;
 use Google\Cloud\Kms\V1\GetCryptoKeyRequest;
@@ -64,6 +66,7 @@ use Google\Cloud\Kms\V1\GetRetiredResourceRequest;
 use Google\Cloud\Kms\V1\ImportCryptoKeyVersionRequest;
 use Google\Cloud\Kms\V1\ImportJob;
 use Google\Cloud\Kms\V1\ImportJob\ImportMethod;
+use Google\Cloud\Kms\V1\ImportTrustedKeyWrappedCryptoKeyVersionRequest;
 use Google\Cloud\Kms\V1\KeyRing;
 use Google\Cloud\Kms\V1\ListCryptoKeyVersionsRequest;
 use Google\Cloud\Kms\V1\ListCryptoKeyVersionsResponse;
@@ -401,6 +404,8 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $generationFailureReason = 'generationFailureReason1749803168';
         $externalDestructionFailureReason = 'externalDestructionFailureReason-2122384710';
         $reimportEligible = true;
+        $trustedWrappingEnabled = true;
+        $hsmTrusted = true;
         $expectedResponse = new CryptoKeyVersion();
         $expectedResponse->setName($name);
         $expectedResponse->setImportJob($importJob);
@@ -408,6 +413,8 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $expectedResponse->setGenerationFailureReason($generationFailureReason);
         $expectedResponse->setExternalDestructionFailureReason($externalDestructionFailureReason);
         $expectedResponse->setReimportEligible($reimportEligible);
+        $expectedResponse->setTrustedWrappingEnabled($trustedWrappingEnabled);
+        $expectedResponse->setHsmTrusted($hsmTrusted);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->cryptoKeyName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]');
@@ -1066,6 +1073,8 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $generationFailureReason = 'generationFailureReason1749803168';
         $externalDestructionFailureReason = 'externalDestructionFailureReason-2122384710';
         $reimportEligible = true;
+        $trustedWrappingEnabled = true;
+        $hsmTrusted = true;
         $expectedResponse = new CryptoKeyVersion();
         $expectedResponse->setName($name2);
         $expectedResponse->setImportJob($importJob);
@@ -1073,6 +1082,8 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $expectedResponse->setGenerationFailureReason($generationFailureReason);
         $expectedResponse->setExternalDestructionFailureReason($externalDestructionFailureReason);
         $expectedResponse->setReimportEligible($reimportEligible);
+        $expectedResponse->setTrustedWrappingEnabled($trustedWrappingEnabled);
+        $expectedResponse->setHsmTrusted($hsmTrusted);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->cryptoKeyVersionName(
@@ -1202,6 +1213,106 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $request = (new EncryptRequest())->setName($name)->setPlaintext($plaintext);
         try {
             $gapicClient->encrypt($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function exportTrustedKeyWrappedCryptoKeyVersionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $wrappedKey = '-91';
+        $expectedResponse = new ExportTrustedKeyWrappedCryptoKeyVersionResponse();
+        $expectedResponse->setWrappedKey($wrappedKey);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->cryptoKeyVersionName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[KEY_RING]',
+            '[CRYPTO_KEY]',
+            '[CRYPTO_KEY_VERSION]'
+        );
+        $formattedWrappingKey = $gapicClient->cryptoKeyVersionName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[KEY_RING]',
+            '[CRYPTO_KEY]',
+            '[CRYPTO_KEY_VERSION]'
+        );
+        $request = (new ExportTrustedKeyWrappedCryptoKeyVersionRequest())
+            ->setName($formattedName)
+            ->setWrappingKey($formattedWrappingKey);
+        $response = $gapicClient->exportTrustedKeyWrappedCryptoKeyVersion($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.kms.v1.KeyManagementService/ExportTrustedKeyWrappedCryptoKeyVersion',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualRequestObject->getWrappingKey();
+        $this->assertProtobufEquals($formattedWrappingKey, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function exportTrustedKeyWrappedCryptoKeyVersionExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->cryptoKeyVersionName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[KEY_RING]',
+            '[CRYPTO_KEY]',
+            '[CRYPTO_KEY_VERSION]'
+        );
+        $formattedWrappingKey = $gapicClient->cryptoKeyVersionName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[KEY_RING]',
+            '[CRYPTO_KEY]',
+            '[CRYPTO_KEY_VERSION]'
+        );
+        $request = (new ExportTrustedKeyWrappedCryptoKeyVersionRequest())
+            ->setName($formattedName)
+            ->setWrappingKey($formattedWrappingKey);
+        try {
+            $gapicClient->exportTrustedKeyWrappedCryptoKeyVersion($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1356,6 +1467,8 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $generationFailureReason = 'generationFailureReason1749803168';
         $externalDestructionFailureReason = 'externalDestructionFailureReason-2122384710';
         $reimportEligible = true;
+        $trustedWrappingEnabled = true;
+        $hsmTrusted = true;
         $expectedResponse = new CryptoKeyVersion();
         $expectedResponse->setName($name2);
         $expectedResponse->setImportJob($importJob);
@@ -1363,6 +1476,8 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $expectedResponse->setGenerationFailureReason($generationFailureReason);
         $expectedResponse->setExternalDestructionFailureReason($externalDestructionFailureReason);
         $expectedResponse->setReimportEligible($reimportEligible);
+        $expectedResponse->setTrustedWrappingEnabled($trustedWrappingEnabled);
+        $expectedResponse->setHsmTrusted($hsmTrusted);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->cryptoKeyVersionName(
@@ -1723,6 +1838,8 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $generationFailureReason = 'generationFailureReason1749803168';
         $externalDestructionFailureReason = 'externalDestructionFailureReason-2122384710';
         $reimportEligible = true;
+        $trustedWrappingEnabled2 = false;
+        $hsmTrusted = true;
         $expectedResponse = new CryptoKeyVersion();
         $expectedResponse->setName($name);
         $expectedResponse->setImportJob($importJob2);
@@ -1730,6 +1847,8 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $expectedResponse->setGenerationFailureReason($generationFailureReason);
         $expectedResponse->setExternalDestructionFailureReason($externalDestructionFailureReason);
         $expectedResponse->setReimportEligible($reimportEligible);
+        $expectedResponse->setTrustedWrappingEnabled($trustedWrappingEnabled2);
+        $expectedResponse->setHsmTrusted($hsmTrusted);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->cryptoKeyName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]');
@@ -1786,6 +1905,108 @@ class KeyManagementServiceClientTest extends GeneratedTest
             ->setImportJob($importJob);
         try {
             $gapicClient->importCryptoKeyVersion($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function importTrustedKeyWrappedCryptoKeyVersionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $importJob = 'importJob2125587491';
+        $importFailureReason = 'importFailureReason-494073229';
+        $generationFailureReason = 'generationFailureReason1749803168';
+        $externalDestructionFailureReason = 'externalDestructionFailureReason-2122384710';
+        $reimportEligible = true;
+        $trustedWrappingEnabled = true;
+        $hsmTrusted = true;
+        $expectedResponse = new CryptoKeyVersion();
+        $expectedResponse->setName($name);
+        $expectedResponse->setImportJob($importJob);
+        $expectedResponse->setImportFailureReason($importFailureReason);
+        $expectedResponse->setGenerationFailureReason($generationFailureReason);
+        $expectedResponse->setExternalDestructionFailureReason($externalDestructionFailureReason);
+        $expectedResponse->setReimportEligible($reimportEligible);
+        $expectedResponse->setTrustedWrappingEnabled($trustedWrappingEnabled);
+        $expectedResponse->setHsmTrusted($hsmTrusted);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $parent = 'parent-995424086';
+        $importingKey = 'importingKey-1228620483';
+        $wrappedKey = '-91';
+        $algorithm = CryptoKeyVersionAlgorithm::CRYPTO_KEY_VERSION_ALGORITHM_UNSPECIFIED;
+        $request = (new ImportTrustedKeyWrappedCryptoKeyVersionRequest())
+            ->setParent($parent)
+            ->setImportingKey($importingKey)
+            ->setWrappedKey($wrappedKey)
+            ->setAlgorithm($algorithm);
+        $response = $gapicClient->importTrustedKeyWrappedCryptoKeyVersion($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.kms.v1.KeyManagementService/ImportTrustedKeyWrappedCryptoKeyVersion',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($parent, $actualValue);
+        $actualValue = $actualRequestObject->getImportingKey();
+        $this->assertProtobufEquals($importingKey, $actualValue);
+        $actualValue = $actualRequestObject->getWrappedKey();
+        $this->assertProtobufEquals($wrappedKey, $actualValue);
+        $actualValue = $actualRequestObject->getAlgorithm();
+        $this->assertProtobufEquals($algorithm, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function importTrustedKeyWrappedCryptoKeyVersionExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $parent = 'parent-995424086';
+        $importingKey = 'importingKey-1228620483';
+        $wrappedKey = '-91';
+        $algorithm = CryptoKeyVersionAlgorithm::CRYPTO_KEY_VERSION_ALGORITHM_UNSPECIFIED;
+        $request = (new ImportTrustedKeyWrappedCryptoKeyVersionRequest())
+            ->setParent($parent)
+            ->setImportingKey($importingKey)
+            ->setWrappedKey($wrappedKey)
+            ->setAlgorithm($algorithm);
+        try {
+            $gapicClient->importTrustedKeyWrappedCryptoKeyVersion($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2527,6 +2748,8 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $generationFailureReason = 'generationFailureReason1749803168';
         $externalDestructionFailureReason = 'externalDestructionFailureReason-2122384710';
         $reimportEligible = true;
+        $trustedWrappingEnabled = true;
+        $hsmTrusted = true;
         $expectedResponse = new CryptoKeyVersion();
         $expectedResponse->setName($name2);
         $expectedResponse->setImportJob($importJob);
@@ -2534,6 +2757,8 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $expectedResponse->setGenerationFailureReason($generationFailureReason);
         $expectedResponse->setExternalDestructionFailureReason($externalDestructionFailureReason);
         $expectedResponse->setReimportEligible($reimportEligible);
+        $expectedResponse->setTrustedWrappingEnabled($trustedWrappingEnabled);
+        $expectedResponse->setHsmTrusted($hsmTrusted);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->cryptoKeyVersionName(
@@ -2764,6 +2989,8 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $generationFailureReason = 'generationFailureReason1749803168';
         $externalDestructionFailureReason = 'externalDestructionFailureReason-2122384710';
         $reimportEligible = true;
+        $trustedWrappingEnabled = true;
+        $hsmTrusted = true;
         $expectedResponse = new CryptoKeyVersion();
         $expectedResponse->setName($name);
         $expectedResponse->setImportJob($importJob);
@@ -2771,6 +2998,8 @@ class KeyManagementServiceClientTest extends GeneratedTest
         $expectedResponse->setGenerationFailureReason($generationFailureReason);
         $expectedResponse->setExternalDestructionFailureReason($externalDestructionFailureReason);
         $expectedResponse->setReimportEligible($reimportEligible);
+        $expectedResponse->setTrustedWrappingEnabled($trustedWrappingEnabled);
+        $expectedResponse->setHsmTrusted($hsmTrusted);
         $transport->addResponse($expectedResponse);
         // Mock request
         $cryptoKeyVersion = new CryptoKeyVersion();

@@ -31,6 +31,15 @@ class InstanceSelection extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int32 rank = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $rank = 0;
+    /**
+     * Optional. Disk configuration to apply to the instances in this instance
+     * selection. If specified on any entry in instanceSelectionList, then it
+     * must be specified on every entry in instanceSelectionList and the
+     * instanceGroupConfig must not specify any diskConfig.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.DiskConfig disk_config = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $disk_config = null;
 
     /**
      * Constructor.
@@ -46,6 +55,11 @@ class InstanceSelection extends \Google\Protobuf\Internal\Message
      *           machine-type with priority rank and fallback to next rank based on
      *           availability. Machine types and instance selections with the same
      *           priority have the same preference.
+     *     @type \Google\Cloud\Dataproc\V1\DiskConfig $disk_config
+     *           Optional. Disk configuration to apply to the instances in this instance
+     *           selection. If specified on any entry in instanceSelectionList, then it
+     *           must be specified on every entry in instanceSelectionList and the
+     *           instanceGroupConfig must not specify any diskConfig.
      * }
      */
     public function __construct($data = NULL) {
@@ -109,6 +123,48 @@ class InstanceSelection extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->rank = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Disk configuration to apply to the instances in this instance
+     * selection. If specified on any entry in instanceSelectionList, then it
+     * must be specified on every entry in instanceSelectionList and the
+     * instanceGroupConfig must not specify any diskConfig.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.DiskConfig disk_config = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dataproc\V1\DiskConfig|null
+     */
+    public function getDiskConfig()
+    {
+        return $this->disk_config;
+    }
+
+    public function hasDiskConfig()
+    {
+        return isset($this->disk_config);
+    }
+
+    public function clearDiskConfig()
+    {
+        unset($this->disk_config);
+    }
+
+    /**
+     * Optional. Disk configuration to apply to the instances in this instance
+     * selection. If specified on any entry in instanceSelectionList, then it
+     * must be specified on every entry in instanceSelectionList and the
+     * instanceGroupConfig must not specify any diskConfig.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.DiskConfig disk_config = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dataproc\V1\DiskConfig $var
+     * @return $this
+     */
+    public function setDiskConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1\DiskConfig::class);
+        $this->disk_config = $var;
 
         return $this;
     }

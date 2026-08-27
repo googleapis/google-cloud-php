@@ -104,7 +104,11 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
     protected $name = null;
     /**
      * The URL of the network to which all network endpoints in the NEG belong.
-     * Uses default project network if unspecified.
+     * For networkEndpointType GCE_VM_IP_PORT,GCE_VM_IP_PORTMAP or NON_GCP_PRIVATE_IP_PORT,
+     * if this field is not specified, a default network will be used.
+     * This field cannot be set for NEGs with networkEndpointType set toSERVERLESS or PRIVATE_SERVICE_CONNECT and for
+     * global NEGs.
+     * For all other network endpoint types, this field is required.
      *
      * Generated from protobuf field <code>optional string network = 232872494;</code>
      */
@@ -205,7 +209,11 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
      *           be a dash.
      *     @type string $network
      *           The URL of the network to which all network endpoints in the NEG belong.
-     *           Uses default project network if unspecified.
+     *           For networkEndpointType GCE_VM_IP_PORT,GCE_VM_IP_PORTMAP or NON_GCP_PRIVATE_IP_PORT,
+     *           if this field is not specified, a default network will be used.
+     *           This field cannot be set for NEGs with networkEndpointType set toSERVERLESS or PRIVATE_SERVICE_CONNECT and for
+     *           global NEGs.
+     *           For all other network endpoint types, this field is required.
      *     @type string $network_endpoint_type
      *           Type of network endpoints in this network endpoint group. Can be one ofGCE_VM_IP, GCE_VM_IP_PORT,NON_GCP_PRIVATE_IP_PORT, INTERNET_FQDN_PORT,INTERNET_IP_PORT, SERVERLESS,PRIVATE_SERVICE_CONNECT, GCE_VM_IP_PORTMAP.
      *           Check the NetworkEndpointType enum for the list of possible values.
@@ -612,7 +620,11 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
 
     /**
      * The URL of the network to which all network endpoints in the NEG belong.
-     * Uses default project network if unspecified.
+     * For networkEndpointType GCE_VM_IP_PORT,GCE_VM_IP_PORTMAP or NON_GCP_PRIVATE_IP_PORT,
+     * if this field is not specified, a default network will be used.
+     * This field cannot be set for NEGs with networkEndpointType set toSERVERLESS or PRIVATE_SERVICE_CONNECT and for
+     * global NEGs.
+     * For all other network endpoint types, this field is required.
      *
      * Generated from protobuf field <code>optional string network = 232872494;</code>
      * @return string
@@ -634,7 +646,11 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
 
     /**
      * The URL of the network to which all network endpoints in the NEG belong.
-     * Uses default project network if unspecified.
+     * For networkEndpointType GCE_VM_IP_PORT,GCE_VM_IP_PORTMAP or NON_GCP_PRIVATE_IP_PORT,
+     * if this field is not specified, a default network will be used.
+     * This field cannot be set for NEGs with networkEndpointType set toSERVERLESS or PRIVATE_SERVICE_CONNECT and for
+     * global NEGs.
+     * For all other network endpoint types, this field is required.
      *
      * Generated from protobuf field <code>optional string network = 232872494;</code>
      * @param string $var

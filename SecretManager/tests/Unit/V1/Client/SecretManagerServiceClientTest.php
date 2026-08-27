@@ -39,6 +39,7 @@ use Google\Cloud\SecretManager\V1\CreateSecretRequest;
 use Google\Cloud\SecretManager\V1\DeleteSecretRequest;
 use Google\Cloud\SecretManager\V1\DestroySecretVersionRequest;
 use Google\Cloud\SecretManager\V1\DisableSecretVersionRequest;
+use Google\Cloud\SecretManager\V1\EnableManagedRotationRequest;
 use Google\Cloud\SecretManager\V1\EnableSecretVersionRequest;
 use Google\Cloud\SecretManager\V1\GetSecretRequest;
 use Google\Cloud\SecretManager\V1\GetSecretVersionRequest;
@@ -46,6 +47,7 @@ use Google\Cloud\SecretManager\V1\ListSecretVersionsRequest;
 use Google\Cloud\SecretManager\V1\ListSecretVersionsResponse;
 use Google\Cloud\SecretManager\V1\ListSecretsRequest;
 use Google\Cloud\SecretManager\V1\ListSecretsResponse;
+use Google\Cloud\SecretManager\V1\RotateSecretRequest;
 use Google\Cloud\SecretManager\V1\Secret;
 use Google\Cloud\SecretManager\V1\SecretPayload;
 use Google\Cloud\SecretManager\V1\SecretVersion;
@@ -505,6 +507,75 @@ class SecretManagerServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function enableManagedRotationTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $etag = 'etag3123477';
+        $clientSpecifiedPayloadChecksum = false;
+        $expectedResponse = new SecretVersion();
+        $expectedResponse->setName($name);
+        $expectedResponse->setEtag($etag);
+        $expectedResponse->setClientSpecifiedPayloadChecksum($clientSpecifiedPayloadChecksum);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->secretName('[PROJECT]', '[SECRET]');
+        $request = (new EnableManagedRotationRequest())->setParent($formattedParent);
+        $response = $gapicClient->enableManagedRotation($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.secretmanager.v1.SecretManagerService/EnableManagedRotation', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function enableManagedRotationExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->secretName('[PROJECT]', '[SECRET]');
+        $request = (new EnableManagedRotationRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->enableManagedRotation($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function enableSecretVersionTest()
     {
         $transport = $this->createTransport();
@@ -911,6 +982,75 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $request = (new ListSecretsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listSecrets($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function rotateSecretTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $etag = 'etag3123477';
+        $clientSpecifiedPayloadChecksum = false;
+        $expectedResponse = new SecretVersion();
+        $expectedResponse->setName($name);
+        $expectedResponse->setEtag($etag);
+        $expectedResponse->setClientSpecifiedPayloadChecksum($clientSpecifiedPayloadChecksum);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->secretName('[PROJECT]', '[SECRET]');
+        $request = (new RotateSecretRequest())->setParent($formattedParent);
+        $response = $gapicClient->rotateSecret($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.secretmanager.v1.SecretManagerService/RotateSecret', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function rotateSecretExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->secretName('[PROJECT]', '[SECRET]');
+        $request = (new RotateSecretRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->rotateSecret($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

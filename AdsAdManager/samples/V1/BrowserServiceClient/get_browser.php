@@ -29,7 +29,7 @@ use Google\Ads\AdManager\V1\GetBrowserRequest;
 use Google\ApiCore\ApiException;
 
 /**
- * API to retrieve a `Browser` object.
+ * Retrieves a `Browser` object.
  *
  * @param string $formattedName The resource name of the Browser.
  *                              Format: `networks/{network_code}/browsers/{browser_id}`

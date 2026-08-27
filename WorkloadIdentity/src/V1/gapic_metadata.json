@@ -1,0 +1,33 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.workloadidentity.v1",
+    "libraryPackage": "Google\\Cloud\\WorkloadIdentity\\V1",
+    "services": {
+        "WorkloadIdentity": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "WorkloadIdentityClient",
+                    "rpcs": {
+                        "GenerateServiceAgents": {
+                            "methods": [
+                                "generateServiceAgents"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

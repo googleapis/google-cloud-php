@@ -29,7 +29,7 @@ use Google\Ads\AdManager\V1\Client\LabelServiceClient;
 use Google\ApiCore\ApiException;
 
 /**
- * API to deactivate `Label` objects.
+ * Deactivates `Label` objects.
  *
  * @param string $formattedParent       Format: `networks/{network_code}`
  *                                      Please see {@see LabelServiceClient::networkName()} for help formatting this field.

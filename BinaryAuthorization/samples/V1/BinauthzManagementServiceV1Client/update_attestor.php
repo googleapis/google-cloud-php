@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,7 +30,8 @@ use Google\Cloud\BinaryAuthorization\V1\UpdateAttestorRequest;
 
 /**
  * Updates an [attestor][google.cloud.binaryauthorization.v1.Attestor].
- * Returns NOT_FOUND if the [attestor][google.cloud.binaryauthorization.v1.Attestor] does not exist.
+ * Returns `NOT_FOUND` if the
+ * [attestor][google.cloud.binaryauthorization.v1.Attestor] does not exist.
  *
  * @param string $attestorName The resource name, in the format:
  *                             `projects/&#42;/attestors/*`. This field may not be updated.

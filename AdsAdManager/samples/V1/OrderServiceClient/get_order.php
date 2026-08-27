@@ -29,7 +29,7 @@ use Google\Ads\AdManager\V1\Order;
 use Google\ApiCore\ApiException;
 
 /**
- * API to retrieve an Order object.
+ * Retrieves an `Order` object.
  *
  * @param string $formattedName The resource name of the Order.
  *                              Format: `networks/{network_code}/orders/{order_id}`

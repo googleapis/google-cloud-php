@@ -109,6 +109,15 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      */
     protected $gke_pod = '';
     /**
+     * A [DMS Private
+     * Connection](https://docs.cloud.google.com/database-migration/docs/reference/rest/v1/projects.locations.privateConnections)
+     * name format:
+     * projects/{project}/locations/{location}/privateConnections/{privateConnection}.
+     *
+     * Generated from protobuf field <code>string dms_private_connection = 22;</code>
+     */
+    protected $dms_private_connection = '';
+    /**
      * A [Cloud Function](https://cloud.google.com/functions). Applicable only to
      * source endpoint.
      *
@@ -212,6 +221,11 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      *     @type string $gke_pod
      *           A [GKE Pod](https://cloud.google.com/kubernetes-engine/docs/concepts/pod)
      *           URI.
+     *     @type string $dms_private_connection
+     *           A [DMS Private
+     *           Connection](https://docs.cloud.google.com/database-migration/docs/reference/rest/v1/projects.locations.privateConnections)
+     *           name format:
+     *           projects/{project}/locations/{location}/privateConnections/{privateConnection}.
      *     @type \Google\Cloud\NetworkManagement\V1\Endpoint\CloudFunctionEndpoint $cloud_function
      *           A [Cloud Function](https://cloud.google.com/functions). Applicable only to
      *           source endpoint.
@@ -641,6 +655,38 @@ class Endpoint extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->gke_pod = $var;
+
+        return $this;
+    }
+
+    /**
+     * A [DMS Private
+     * Connection](https://docs.cloud.google.com/database-migration/docs/reference/rest/v1/projects.locations.privateConnections)
+     * name format:
+     * projects/{project}/locations/{location}/privateConnections/{privateConnection}.
+     *
+     * Generated from protobuf field <code>string dms_private_connection = 22;</code>
+     * @return string
+     */
+    public function getDmsPrivateConnection()
+    {
+        return $this->dms_private_connection;
+    }
+
+    /**
+     * A [DMS Private
+     * Connection](https://docs.cloud.google.com/database-migration/docs/reference/rest/v1/projects.locations.privateConnections)
+     * name format:
+     * projects/{project}/locations/{location}/privateConnections/{privateConnection}.
+     *
+     * Generated from protobuf field <code>string dms_private_connection = 22;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDmsPrivateConnection($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->dms_private_connection = $var;
 
         return $this;
     }

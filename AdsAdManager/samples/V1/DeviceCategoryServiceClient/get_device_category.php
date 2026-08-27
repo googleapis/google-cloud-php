@@ -29,7 +29,7 @@ use Google\Ads\AdManager\V1\GetDeviceCategoryRequest;
 use Google\ApiCore\ApiException;
 
 /**
- * API to retrieve a `DeviceCategory` object.
+ * Retrieves a `DeviceCategory` object.
  *
  * @param string $formattedName The resource name of the DeviceCategory.
  *                              Format: `networks/{network_code}/deviceCategories/{device_category_id}`

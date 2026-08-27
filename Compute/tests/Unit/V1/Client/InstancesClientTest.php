@@ -1479,6 +1479,7 @@ class InstancesClientTest extends GeneratedTest
         $lastStartTimestamp = 'lastStartTimestamp-629911088';
         $lastStopTimestamp = 'lastStopTimestamp-1197789726';
         $lastSuspendedTimestamp = 'lastSuspendedTimestamp893146249';
+        $localSsdEncryptionMode = 'localSsdEncryptionMode-952159792';
         $machineType = 'machineType1838323762';
         $minCpuPlatform = 'minCpuPlatform-1367699977';
         $name = 'name3373707';
@@ -1506,6 +1507,7 @@ class InstancesClientTest extends GeneratedTest
         $expectedResponse->setLastStartTimestamp($lastStartTimestamp);
         $expectedResponse->setLastStopTimestamp($lastStopTimestamp);
         $expectedResponse->setLastSuspendedTimestamp($lastSuspendedTimestamp);
+        $expectedResponse->setLocalSsdEncryptionMode($localSsdEncryptionMode);
         $expectedResponse->setMachineType($machineType);
         $expectedResponse->setMinCpuPlatform($minCpuPlatform);
         $expectedResponse->setName($name);

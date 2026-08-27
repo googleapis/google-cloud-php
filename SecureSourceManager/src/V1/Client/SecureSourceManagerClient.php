@@ -204,7 +204,11 @@ final class SecureSourceManagerClient
     /** The name of the code generator, to be included in the agent header. */
     private const CODEGEN_NAME = 'gapic';
 
-    /** The default scopes required by the service. */
+    /**
+     * The default scopes required by the service.
+     *
+     * @internal
+     */
     public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
@@ -251,7 +255,10 @@ final class SecureSourceManagerClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
+        $options =
+            $methodName && isset($this->descriptors[$methodName]['longRunning'])
+                ? $this->descriptors[$methodName]['longRunning']
+                : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -359,6 +366,25 @@ final class SecureSourceManagerClient
             'location' => $location,
             'repository' => $repository,
             'hook' => $hook,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * inspect_template resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $inspectTemplate
+     *
+     * @return string The formatted inspect_template resource.
+     */
+    public static function inspectTemplateName(string $project, string $location, string $inspectTemplate): string
+    {
+        return self::getPathTemplate('inspectTemplate')->render([
+            'project' => $project,
+            'location' => $location,
+            'inspect_template' => $inspectTemplate,
         ]);
     }
 
@@ -521,6 +547,23 @@ final class SecureSourceManagerClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * service_account resource.
+     *
+     * @param string $project
+     * @param string $serviceAccount
+     *
+     * @return string The formatted service_account resource.
+     */
+    public static function serviceAccountName(string $project, string $serviceAccount): string
+    {
+        return self::getPathTemplate('serviceAccount')->render([
+            'project' => $project,
+            'service_account' => $serviceAccount,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * service_attachment resource.
      *
      * @param string $project
@@ -546,6 +589,7 @@ final class SecureSourceManagerClient
      * - caPool: projects/{project}/locations/{location}/caPools/{ca_pool}
      * - cryptoKey: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}
      * - hook: projects/{project}/locations/{location}/repositories/{repository}/hooks/{hook}
+     * - inspectTemplate: projects/{project}/locations/{location}/inspectTemplates/{inspect_template}
      * - instance: projects/{project}/locations/{location}/instances/{instance}
      * - issue: projects/{project}/locations/{location}/repositories/{repository}/issues/{issue}
      * - issueComment: projects/{project}/locations/{location}/repositories/{repository}/issues/{issue}/issueComments/{comment}
@@ -553,6 +597,7 @@ final class SecureSourceManagerClient
      * - pullRequest: projects/{project}/locations/{location}/repositories/{repository}/pullRequests/{pull_request}
      * - pullRequestComment: projects/{project}/locations/{location}/repositories/{repository}/pullRequests/{pull_request}/pullRequestComments/{comment}
      * - repository: projects/{project}/locations/{location}/repositories/{repository}
+     * - serviceAccount: projects/{project}/serviceAccounts/{service_account}
      * - serviceAttachment: projects/{project}/regions/{region}/serviceAttachments/{service_attachment}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
@@ -2190,9 +2235,8 @@ final class SecureSourceManagerClient
      * Lists information about the supported locations for this service.
      *
      * This method lists locations based on the resource scope provided in
-     * the [ListLocationsRequest.name] field:
-     *
-     * * **Global locations**: If `name` is empty, the method lists the
+     * the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+     * **Global locations**: If `name` is empty, the method lists the
      * public locations available to all projects. * **Project-specific
      * locations**: If `name` follows the format
      * `projects/{project}`, the method lists locations visible to that

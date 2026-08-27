@@ -278,6 +278,12 @@ class SqlDatabaseVersion
      */
     const POSTGRES_19 = 684;
     /**
+     * The database version is PostgreSQL 20.
+     *
+     * Generated from protobuf enum <code>POSTGRES_20 = 781;</code>
+     */
+    const POSTGRES_20 = 781;
+    /**
      * The database version is SQL Server 2019 Standard.
      *
      * Generated from protobuf enum <code>SQLSERVER_2019_STANDARD = 26;</code>
@@ -389,6 +395,7 @@ class SqlDatabaseVersion
         self::POSTGRES_17 => 'POSTGRES_17',
         self::POSTGRES_18 => 'POSTGRES_18',
         self::POSTGRES_19 => 'POSTGRES_19',
+        self::POSTGRES_20 => 'POSTGRES_20',
         self::SQLSERVER_2019_STANDARD => 'SQLSERVER_2019_STANDARD',
         self::SQLSERVER_2019_ENTERPRISE => 'SQLSERVER_2019_ENTERPRISE',
         self::SQLSERVER_2019_EXPRESS => 'SQLSERVER_2019_EXPRESS',

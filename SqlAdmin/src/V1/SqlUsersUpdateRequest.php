@@ -53,6 +53,22 @@ class SqlUsersUpdateRequest extends \Google\Protobuf\Internal\Message
      */
     protected $revoke_existing_roles = null;
     /**
+     * Optional. The server roles to grant to the SQL Server login. Existing
+     * server roles will not be revoked if revoke_existing_roles is false.
+     * body.server_roles will be ignored for update request.
+     *
+     * Generated from protobuf field <code>repeated string server_roles = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $server_roles;
+    /**
+     * Optional. Specifies whether to revoke existing roles that are not present
+     * in the `server_roles` field. If `false` or unset, the server roles
+     * specified in `server_roles` are added to the user's existing server roles.
+     *
+     * Generated from protobuf field <code>optional bool revoke_existing_server_roles = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $revoke_existing_server_roles = null;
+    /**
      * Generated from protobuf field <code>.google.cloud.sql.v1.User body = 100;</code>
      */
     protected $body = null;
@@ -78,6 +94,14 @@ class SqlUsersUpdateRequest extends \Google\Protobuf\Internal\Message
      *           Optional. Specifies whether to revoke existing roles that are not present
      *           in the `database_roles` field. If `false` or unset, the database roles
      *           specified in `database_roles` are added to the user's existing roles.
+     *     @type string[] $server_roles
+     *           Optional. The server roles to grant to the SQL Server login. Existing
+     *           server roles will not be revoked if revoke_existing_roles is false.
+     *           body.server_roles will be ignored for update request.
+     *     @type bool $revoke_existing_server_roles
+     *           Optional. Specifies whether to revoke existing roles that are not present
+     *           in the `server_roles` field. If `false` or unset, the server roles
+     *           specified in `server_roles` are added to the user's existing server roles.
      *     @type \Google\Cloud\Sql\V1\User $body
      * }
      */
@@ -254,6 +278,76 @@ class SqlUsersUpdateRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->revoke_existing_roles = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The server roles to grant to the SQL Server login. Existing
+     * server roles will not be revoked if revoke_existing_roles is false.
+     * body.server_roles will be ignored for update request.
+     *
+     * Generated from protobuf field <code>repeated string server_roles = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return RepeatedField<string>
+     */
+    public function getServerRoles()
+    {
+        return $this->server_roles;
+    }
+
+    /**
+     * Optional. The server roles to grant to the SQL Server login. Existing
+     * server roles will not be revoked if revoke_existing_roles is false.
+     * body.server_roles will be ignored for update request.
+     *
+     * Generated from protobuf field <code>repeated string server_roles = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string[] $var
+     * @return $this
+     */
+    public function setServerRoles($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->server_roles = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies whether to revoke existing roles that are not present
+     * in the `server_roles` field. If `false` or unset, the server roles
+     * specified in `server_roles` are added to the user's existing server roles.
+     *
+     * Generated from protobuf field <code>optional bool revoke_existing_server_roles = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getRevokeExistingServerRoles()
+    {
+        return isset($this->revoke_existing_server_roles) ? $this->revoke_existing_server_roles : false;
+    }
+
+    public function hasRevokeExistingServerRoles()
+    {
+        return isset($this->revoke_existing_server_roles);
+    }
+
+    public function clearRevokeExistingServerRoles()
+    {
+        unset($this->revoke_existing_server_roles);
+    }
+
+    /**
+     * Optional. Specifies whether to revoke existing roles that are not present
+     * in the `server_roles` field. If `false` or unset, the server roles
+     * specified in `server_roles` are added to the user's existing server roles.
+     *
+     * Generated from protobuf field <code>optional bool revoke_existing_server_roles = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setRevokeExistingServerRoles($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->revoke_existing_server_roles = $var;
 
         return $this;
     }

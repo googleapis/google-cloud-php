@@ -52,7 +52,7 @@ class FindingSummary extends \Google\Protobuf\Internal\Message
     /**
      * Severity of the finding.
      *
-     * Generated from protobuf field <code>.google.storage.control.v2.FindingSeverity severity = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>.google.storage.control.v2.FindingSeverity severity = 7;</code>
      */
     protected $severity = 0;
     /**
@@ -254,7 +254,7 @@ class FindingSummary extends \Google\Protobuf\Internal\Message
     /**
      * Severity of the finding.
      *
-     * Generated from protobuf field <code>.google.storage.control.v2.FindingSeverity severity = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>.google.storage.control.v2.FindingSeverity severity = 7;</code>
      * @return int
      */
     public function getSeverity()
@@ -265,7 +265,7 @@ class FindingSummary extends \Google\Protobuf\Internal\Message
     /**
      * Severity of the finding.
      *
-     * Generated from protobuf field <code>.google.storage.control.v2.FindingSeverity severity = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>.google.storage.control.v2.FindingSeverity severity = 7;</code>
      * @param int $var
      * @return $this
      */

@@ -9,14 +9,16 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * Request message for [BinauthzManagementService.CreateAttestor][].
+ * Request message for
+ * [BinauthzManagementServiceV1.CreateAttestor][google.cloud.binaryauthorization.v1.BinauthzManagementServiceV1.CreateAttestor].
  *
  * Generated from protobuf message <code>google.cloud.binaryauthorization.v1.CreateAttestorRequest</code>
  */
 class CreateAttestorRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The parent of this [attestor][google.cloud.binaryauthorization.v1.Attestor].
+     * Required. The parent of this
+     * [attestor][google.cloud.binaryauthorization.v1.Attestor].
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -28,21 +30,26 @@ class CreateAttestorRequest extends \Google\Protobuf\Internal\Message
      */
     protected $attestor_id = '';
     /**
-     * Required. The initial [attestor][google.cloud.binaryauthorization.v1.Attestor] value. The service will
-     * overwrite the [attestor name][google.cloud.binaryauthorization.v1.Attestor.name] field with the resource name,
-     * in the format `projects/{@*}attestors/*`.
+     * Required. The initial
+     * [attestor][google.cloud.binaryauthorization.v1.Attestor] value. The service
+     * will overwrite the [attestor
+     * name][google.cloud.binaryauthorization.v1.Attestor.name] field with the
+     * resource name, in the format `projects/{@*}attestors/*`.
      *
      * Generated from protobuf field <code>.google.cloud.binaryauthorization.v1.Attestor attestor = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $attestor = null;
 
     /**
-     * @param string                                        $parent     Required. The parent of this [attestor][google.cloud.binaryauthorization.v1.Attestor]. Please see
+     * @param string                                        $parent     Required. The parent of this
+     *                                                                  [attestor][google.cloud.binaryauthorization.v1.Attestor]. Please see
      *                                                                  {@see BinauthzManagementServiceV1Client::projectName()} for help formatting this field.
      * @param string                                        $attestorId Required. The [attestors][google.cloud.binaryauthorization.v1.Attestor] ID.
-     * @param \Google\Cloud\BinaryAuthorization\V1\Attestor $attestor   Required. The initial [attestor][google.cloud.binaryauthorization.v1.Attestor] value. The service will
-     *                                                                  overwrite the [attestor name][google.cloud.binaryauthorization.v1.Attestor.name] field with the resource name,
-     *                                                                  in the format `projects/&#42;/attestors/*`.
+     * @param \Google\Cloud\BinaryAuthorization\V1\Attestor $attestor   Required. The initial
+     *                                                                  [attestor][google.cloud.binaryauthorization.v1.Attestor] value. The service
+     *                                                                  will overwrite the [attestor
+     *                                                                  name][google.cloud.binaryauthorization.v1.Attestor.name] field with the
+     *                                                                  resource name, in the format `projects/&#42;/attestors/*`.
      *
      * @return \Google\Cloud\BinaryAuthorization\V1\CreateAttestorRequest
      *
@@ -63,13 +70,16 @@ class CreateAttestorRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The parent of this [attestor][google.cloud.binaryauthorization.v1.Attestor].
+     *           Required. The parent of this
+     *           [attestor][google.cloud.binaryauthorization.v1.Attestor].
      *     @type string $attestor_id
      *           Required. The [attestors][google.cloud.binaryauthorization.v1.Attestor] ID.
      *     @type \Google\Cloud\BinaryAuthorization\V1\Attestor $attestor
-     *           Required. The initial [attestor][google.cloud.binaryauthorization.v1.Attestor] value. The service will
-     *           overwrite the [attestor name][google.cloud.binaryauthorization.v1.Attestor.name] field with the resource name,
-     *           in the format `projects/{@*}attestors/*`.
+     *           Required. The initial
+     *           [attestor][google.cloud.binaryauthorization.v1.Attestor] value. The service
+     *           will overwrite the [attestor
+     *           name][google.cloud.binaryauthorization.v1.Attestor.name] field with the
+     *           resource name, in the format `projects/{@*}attestors/*`.
      * }
      */
     public function __construct($data = NULL) {
@@ -78,7 +88,8 @@ class CreateAttestorRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent of this [attestor][google.cloud.binaryauthorization.v1.Attestor].
+     * Required. The parent of this
+     * [attestor][google.cloud.binaryauthorization.v1.Attestor].
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -89,7 +100,8 @@ class CreateAttestorRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent of this [attestor][google.cloud.binaryauthorization.v1.Attestor].
+     * Required. The parent of this
+     * [attestor][google.cloud.binaryauthorization.v1.Attestor].
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -130,9 +142,11 @@ class CreateAttestorRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The initial [attestor][google.cloud.binaryauthorization.v1.Attestor] value. The service will
-     * overwrite the [attestor name][google.cloud.binaryauthorization.v1.Attestor.name] field with the resource name,
-     * in the format `projects/{@*}attestors/*`.
+     * Required. The initial
+     * [attestor][google.cloud.binaryauthorization.v1.Attestor] value. The service
+     * will overwrite the [attestor
+     * name][google.cloud.binaryauthorization.v1.Attestor.name] field with the
+     * resource name, in the format `projects/{@*}attestors/*`.
      *
      * Generated from protobuf field <code>.google.cloud.binaryauthorization.v1.Attestor attestor = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\BinaryAuthorization\V1\Attestor|null
@@ -153,9 +167,11 @@ class CreateAttestorRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The initial [attestor][google.cloud.binaryauthorization.v1.Attestor] value. The service will
-     * overwrite the [attestor name][google.cloud.binaryauthorization.v1.Attestor.name] field with the resource name,
-     * in the format `projects/{@*}attestors/*`.
+     * Required. The initial
+     * [attestor][google.cloud.binaryauthorization.v1.Attestor] value. The service
+     * will overwrite the [attestor
+     * name][google.cloud.binaryauthorization.v1.Attestor.name] field with the
+     * resource name, in the format `projects/{@*}attestors/*`.
      *
      * Generated from protobuf field <code>.google.cloud.binaryauthorization.v1.Attestor attestor = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\BinaryAuthorization\V1\Attestor $var

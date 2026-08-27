@@ -1,24 +1,24 @@
 {
     "extends": [
-        "config:base"
+        "config:best-practices"
     ],
-    "pinVersions": false,
-    "rebaseStalePrs": true,
+    "rangeStrategy": "replace",
+    "rebaseWhen": "behind-base-branch",
     "packageRules": [
         {
-            "packageNames": [
+            "matchPackageNames": [
                 "phpunit/phpunit"
             ],
             "allowedVersions": "< 5.0"
         },
         {
-            "packageNames": [
+            "matchPackageNames": [
                 "squizlabs/php_codesniffer"
             ],
             "allowedVersions": "< 3.0"
         },
         {
-            "packageNames": [
+            "matchPackageNames": [
                 "symfony/console"
             ],
             "allowedVersions": "< 4.0"

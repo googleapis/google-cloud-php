@@ -56,6 +56,77 @@ class PerformanceCaptureConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional int32 transaction_duration_threshold = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $transaction_duration_threshold = null;
+    /**
+     * Optional. Specifies the minimum percentage of CPU utilization to trigger
+     * the performance capture. Valid integers range from `10` to `99`. Enter `0`
+     * to disable the check.
+     *
+     * Generated from protobuf field <code>optional int32 cpu_utilization_threshold_percent = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $cpu_utilization_threshold_percent = null;
+    /**
+     * Optional. Specifies the minimum percentage of memory usage to trigger the
+     * performance capture.
+     * Valid integers range from `10` to `99`. Enter `0` to disable the check.
+     *
+     * Generated from protobuf field <code>optional int32 memory_usage_threshold_percent = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $memory_usage_threshold_percent = null;
+    /**
+     * Optional. Specifies the minimum allowed number of transactions in lock wait
+     * state to trigger the performance capture. Valid integers range from `10` to
+     * `10000`. Enter `0` to disable the check.
+     *
+     * Generated from protobuf field <code>optional int32 transaction_lock_wait_threshold_count = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $transaction_lock_wait_threshold_count = null;
+    /**
+     * Optional. Specifies the minimum allowed number of semaphore waits to
+     * trigger the performance capture. Valid integers range from `10` to `10000`.
+     * Enter `0` to disable the check.
+     *
+     * Generated from protobuf field <code>optional int32 semaphore_wait_threshold_count = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $semaphore_wait_threshold_count = null;
+    /**
+     * Optional. Specifies the minimum number of undo log entries in the history
+     * list length to trigger the performance capture. Valid integers range from
+     * `10000` to `10000000`. Enter `0` to disable the check.
+     *
+     * Generated from protobuf field <code>optional int32 history_list_length_threshold_count = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $history_list_length_threshold_count = null;
+    /**
+     * Optional. Specifies the amount of time in seconds that a transaction needs
+     * to have been open before the watcher starts terminating it. Valid integers
+     * range from `60` to `604800` (7 days). Enter `0` to disable. If enabled
+     * (i.e., > 0), this value must be greater than or equal to
+     * `transaction_duration_threshold`. Configurations where
+     * `0 < transaction_kill_threshold_seconds < transaction_duration_threshold`
+     * will be rejected.
+     *
+     * Generated from protobuf field <code>optional int32 transaction_kill_threshold_seconds = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $transaction_kill_threshold_seconds = null;
+    /**
+     * Optional. Specifies a customer-defined list of users to exclude from
+     * transaction termination. Entries can be in the format 'user\@host' or just
+     * 'user'. A standalone 'user' implies 'user\@%', excluding the user from any
+     * host. Wildcard '%' is allowed in the host part of the 'user\@host' format.
+     * Example: `["app_user", "db_admin\@10.1.2.3", "report_user\@%"]`
+     *
+     * Generated from protobuf field <code>repeated string transaction_kill_excluded_user_hosts = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $transaction_kill_excluded_user_hosts;
+    /**
+     * Optional. Determines which transactions are allowed to be terminated when
+     * they exceed `transaction_kill_threshold_seconds`. This allows protecting
+     * write-heavy transactions from auto-termination if desired. Defaults to
+     * `READ_ONLY_TRANSACTIONS` if unspecified.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.sql.v1.PerformanceCaptureConfig.TransactionKillType transaction_kill_type = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $transaction_kill_type = null;
 
     /**
      * Constructor.
@@ -80,6 +151,45 @@ class PerformanceCaptureConfig extends \Google\Protobuf\Internal\Message
      *     @type int $transaction_duration_threshold
      *           Optional. Specifies the amount of time in seconds that a transaction needs
      *           to have been open before the watcher starts recording it.
+     *     @type int $cpu_utilization_threshold_percent
+     *           Optional. Specifies the minimum percentage of CPU utilization to trigger
+     *           the performance capture. Valid integers range from `10` to `99`. Enter `0`
+     *           to disable the check.
+     *     @type int $memory_usage_threshold_percent
+     *           Optional. Specifies the minimum percentage of memory usage to trigger the
+     *           performance capture.
+     *           Valid integers range from `10` to `99`. Enter `0` to disable the check.
+     *     @type int $transaction_lock_wait_threshold_count
+     *           Optional. Specifies the minimum allowed number of transactions in lock wait
+     *           state to trigger the performance capture. Valid integers range from `10` to
+     *           `10000`. Enter `0` to disable the check.
+     *     @type int $semaphore_wait_threshold_count
+     *           Optional. Specifies the minimum allowed number of semaphore waits to
+     *           trigger the performance capture. Valid integers range from `10` to `10000`.
+     *           Enter `0` to disable the check.
+     *     @type int $history_list_length_threshold_count
+     *           Optional. Specifies the minimum number of undo log entries in the history
+     *           list length to trigger the performance capture. Valid integers range from
+     *           `10000` to `10000000`. Enter `0` to disable the check.
+     *     @type int $transaction_kill_threshold_seconds
+     *           Optional. Specifies the amount of time in seconds that a transaction needs
+     *           to have been open before the watcher starts terminating it. Valid integers
+     *           range from `60` to `604800` (7 days). Enter `0` to disable. If enabled
+     *           (i.e., > 0), this value must be greater than or equal to
+     *           `transaction_duration_threshold`. Configurations where
+     *           `0 < transaction_kill_threshold_seconds < transaction_duration_threshold`
+     *           will be rejected.
+     *     @type string[] $transaction_kill_excluded_user_hosts
+     *           Optional. Specifies a customer-defined list of users to exclude from
+     *           transaction termination. Entries can be in the format 'user\@host' or just
+     *           'user'. A standalone 'user' implies 'user\@%', excluding the user from any
+     *           host. Wildcard '%' is allowed in the host part of the 'user\@host' format.
+     *           Example: `["app_user", "db_admin\@10.1.2.3", "report_user\@%"]`
+     *     @type int $transaction_kill_type
+     *           Optional. Determines which transactions are allowed to be terminated when
+     *           they exceed `transaction_kill_threshold_seconds`. This allows protecting
+     *           write-heavy transactions from auto-termination if desired. Defaults to
+     *           `READ_ONLY_TRANSACTIONS` if unspecified.
      * }
      */
     public function __construct($data = NULL) {
@@ -309,6 +419,330 @@ class PerformanceCaptureConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->transaction_duration_threshold = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies the minimum percentage of CPU utilization to trigger
+     * the performance capture. Valid integers range from `10` to `99`. Enter `0`
+     * to disable the check.
+     *
+     * Generated from protobuf field <code>optional int32 cpu_utilization_threshold_percent = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getCpuUtilizationThresholdPercent()
+    {
+        return isset($this->cpu_utilization_threshold_percent) ? $this->cpu_utilization_threshold_percent : 0;
+    }
+
+    public function hasCpuUtilizationThresholdPercent()
+    {
+        return isset($this->cpu_utilization_threshold_percent);
+    }
+
+    public function clearCpuUtilizationThresholdPercent()
+    {
+        unset($this->cpu_utilization_threshold_percent);
+    }
+
+    /**
+     * Optional. Specifies the minimum percentage of CPU utilization to trigger
+     * the performance capture. Valid integers range from `10` to `99`. Enter `0`
+     * to disable the check.
+     *
+     * Generated from protobuf field <code>optional int32 cpu_utilization_threshold_percent = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setCpuUtilizationThresholdPercent($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->cpu_utilization_threshold_percent = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies the minimum percentage of memory usage to trigger the
+     * performance capture.
+     * Valid integers range from `10` to `99`. Enter `0` to disable the check.
+     *
+     * Generated from protobuf field <code>optional int32 memory_usage_threshold_percent = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getMemoryUsageThresholdPercent()
+    {
+        return isset($this->memory_usage_threshold_percent) ? $this->memory_usage_threshold_percent : 0;
+    }
+
+    public function hasMemoryUsageThresholdPercent()
+    {
+        return isset($this->memory_usage_threshold_percent);
+    }
+
+    public function clearMemoryUsageThresholdPercent()
+    {
+        unset($this->memory_usage_threshold_percent);
+    }
+
+    /**
+     * Optional. Specifies the minimum percentage of memory usage to trigger the
+     * performance capture.
+     * Valid integers range from `10` to `99`. Enter `0` to disable the check.
+     *
+     * Generated from protobuf field <code>optional int32 memory_usage_threshold_percent = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setMemoryUsageThresholdPercent($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->memory_usage_threshold_percent = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies the minimum allowed number of transactions in lock wait
+     * state to trigger the performance capture. Valid integers range from `10` to
+     * `10000`. Enter `0` to disable the check.
+     *
+     * Generated from protobuf field <code>optional int32 transaction_lock_wait_threshold_count = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getTransactionLockWaitThresholdCount()
+    {
+        return isset($this->transaction_lock_wait_threshold_count) ? $this->transaction_lock_wait_threshold_count : 0;
+    }
+
+    public function hasTransactionLockWaitThresholdCount()
+    {
+        return isset($this->transaction_lock_wait_threshold_count);
+    }
+
+    public function clearTransactionLockWaitThresholdCount()
+    {
+        unset($this->transaction_lock_wait_threshold_count);
+    }
+
+    /**
+     * Optional. Specifies the minimum allowed number of transactions in lock wait
+     * state to trigger the performance capture. Valid integers range from `10` to
+     * `10000`. Enter `0` to disable the check.
+     *
+     * Generated from protobuf field <code>optional int32 transaction_lock_wait_threshold_count = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setTransactionLockWaitThresholdCount($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->transaction_lock_wait_threshold_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies the minimum allowed number of semaphore waits to
+     * trigger the performance capture. Valid integers range from `10` to `10000`.
+     * Enter `0` to disable the check.
+     *
+     * Generated from protobuf field <code>optional int32 semaphore_wait_threshold_count = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getSemaphoreWaitThresholdCount()
+    {
+        return isset($this->semaphore_wait_threshold_count) ? $this->semaphore_wait_threshold_count : 0;
+    }
+
+    public function hasSemaphoreWaitThresholdCount()
+    {
+        return isset($this->semaphore_wait_threshold_count);
+    }
+
+    public function clearSemaphoreWaitThresholdCount()
+    {
+        unset($this->semaphore_wait_threshold_count);
+    }
+
+    /**
+     * Optional. Specifies the minimum allowed number of semaphore waits to
+     * trigger the performance capture. Valid integers range from `10` to `10000`.
+     * Enter `0` to disable the check.
+     *
+     * Generated from protobuf field <code>optional int32 semaphore_wait_threshold_count = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setSemaphoreWaitThresholdCount($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->semaphore_wait_threshold_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies the minimum number of undo log entries in the history
+     * list length to trigger the performance capture. Valid integers range from
+     * `10000` to `10000000`. Enter `0` to disable the check.
+     *
+     * Generated from protobuf field <code>optional int32 history_list_length_threshold_count = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getHistoryListLengthThresholdCount()
+    {
+        return isset($this->history_list_length_threshold_count) ? $this->history_list_length_threshold_count : 0;
+    }
+
+    public function hasHistoryListLengthThresholdCount()
+    {
+        return isset($this->history_list_length_threshold_count);
+    }
+
+    public function clearHistoryListLengthThresholdCount()
+    {
+        unset($this->history_list_length_threshold_count);
+    }
+
+    /**
+     * Optional. Specifies the minimum number of undo log entries in the history
+     * list length to trigger the performance capture. Valid integers range from
+     * `10000` to `10000000`. Enter `0` to disable the check.
+     *
+     * Generated from protobuf field <code>optional int32 history_list_length_threshold_count = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setHistoryListLengthThresholdCount($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->history_list_length_threshold_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies the amount of time in seconds that a transaction needs
+     * to have been open before the watcher starts terminating it. Valid integers
+     * range from `60` to `604800` (7 days). Enter `0` to disable. If enabled
+     * (i.e., > 0), this value must be greater than or equal to
+     * `transaction_duration_threshold`. Configurations where
+     * `0 < transaction_kill_threshold_seconds < transaction_duration_threshold`
+     * will be rejected.
+     *
+     * Generated from protobuf field <code>optional int32 transaction_kill_threshold_seconds = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getTransactionKillThresholdSeconds()
+    {
+        return isset($this->transaction_kill_threshold_seconds) ? $this->transaction_kill_threshold_seconds : 0;
+    }
+
+    public function hasTransactionKillThresholdSeconds()
+    {
+        return isset($this->transaction_kill_threshold_seconds);
+    }
+
+    public function clearTransactionKillThresholdSeconds()
+    {
+        unset($this->transaction_kill_threshold_seconds);
+    }
+
+    /**
+     * Optional. Specifies the amount of time in seconds that a transaction needs
+     * to have been open before the watcher starts terminating it. Valid integers
+     * range from `60` to `604800` (7 days). Enter `0` to disable. If enabled
+     * (i.e., > 0), this value must be greater than or equal to
+     * `transaction_duration_threshold`. Configurations where
+     * `0 < transaction_kill_threshold_seconds < transaction_duration_threshold`
+     * will be rejected.
+     *
+     * Generated from protobuf field <code>optional int32 transaction_kill_threshold_seconds = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setTransactionKillThresholdSeconds($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->transaction_kill_threshold_seconds = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies a customer-defined list of users to exclude from
+     * transaction termination. Entries can be in the format 'user\@host' or just
+     * 'user'. A standalone 'user' implies 'user\@%', excluding the user from any
+     * host. Wildcard '%' is allowed in the host part of the 'user\@host' format.
+     * Example: `["app_user", "db_admin\@10.1.2.3", "report_user\@%"]`
+     *
+     * Generated from protobuf field <code>repeated string transaction_kill_excluded_user_hosts = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return RepeatedField<string>
+     */
+    public function getTransactionKillExcludedUserHosts()
+    {
+        return $this->transaction_kill_excluded_user_hosts;
+    }
+
+    /**
+     * Optional. Specifies a customer-defined list of users to exclude from
+     * transaction termination. Entries can be in the format 'user\@host' or just
+     * 'user'. A standalone 'user' implies 'user\@%', excluding the user from any
+     * host. Wildcard '%' is allowed in the host part of the 'user\@host' format.
+     * Example: `["app_user", "db_admin\@10.1.2.3", "report_user\@%"]`
+     *
+     * Generated from protobuf field <code>repeated string transaction_kill_excluded_user_hosts = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string[] $var
+     * @return $this
+     */
+    public function setTransactionKillExcludedUserHosts($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->transaction_kill_excluded_user_hosts = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Determines which transactions are allowed to be terminated when
+     * they exceed `transaction_kill_threshold_seconds`. This allows protecting
+     * write-heavy transactions from auto-termination if desired. Defaults to
+     * `READ_ONLY_TRANSACTIONS` if unspecified.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.sql.v1.PerformanceCaptureConfig.TransactionKillType transaction_kill_type = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getTransactionKillType()
+    {
+        return isset($this->transaction_kill_type) ? $this->transaction_kill_type : 0;
+    }
+
+    public function hasTransactionKillType()
+    {
+        return isset($this->transaction_kill_type);
+    }
+
+    public function clearTransactionKillType()
+    {
+        unset($this->transaction_kill_type);
+    }
+
+    /**
+     * Optional. Determines which transactions are allowed to be terminated when
+     * they exceed `transaction_kill_threshold_seconds`. This allows protecting
+     * write-heavy transactions from auto-termination if desired. Defaults to
+     * `READ_ONLY_TRANSACTIONS` if unspecified.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.sql.v1.PerformanceCaptureConfig.TransactionKillType transaction_kill_type = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setTransactionKillType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Sql\V1\PerformanceCaptureConfig\TransactionKillType::class);
+        $this->transaction_kill_type = $var;
 
         return $this;
     }

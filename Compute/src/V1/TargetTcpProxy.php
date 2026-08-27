@@ -47,6 +47,13 @@ class TargetTcpProxy extends \Google\Protobuf\Internal\Message
      */
     protected $kind = null;
     /**
+     * Specifies the type of load balancing scheme used by this target proxy.
+     * Check the LoadBalancingScheme enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string load_balancing_scheme = 363890244;</code>
+     */
+    protected $load_balancing_scheme = null;
+    /**
      * Name of the resource. Provided by the client when the resource is created.
      * The name must be 1-63 characters long, and comply withRFC1035.
      * Specifically, the name must be 1-63 characters long and match the regular
@@ -118,6 +125,9 @@ class TargetTcpProxy extends \Google\Protobuf\Internal\Message
      *           defined by the server.
      *     @type string $kind
      *           Output only. [Output Only] Type of the resource. Alwayscompute#targetTcpProxy for target TCP proxies.
+     *     @type string $load_balancing_scheme
+     *           Specifies the type of load balancing scheme used by this target proxy.
+     *           Check the LoadBalancingScheme enum for the list of possible values.
      *     @type string $name
      *           Name of the resource. Provided by the client when the resource is created.
      *           The name must be 1-63 characters long, and comply withRFC1035.
@@ -301,6 +311,44 @@ class TargetTcpProxy extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->kind = $var;
+
+        return $this;
+    }
+
+    /**
+     * Specifies the type of load balancing scheme used by this target proxy.
+     * Check the LoadBalancingScheme enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string load_balancing_scheme = 363890244;</code>
+     * @return string
+     */
+    public function getLoadBalancingScheme()
+    {
+        return isset($this->load_balancing_scheme) ? $this->load_balancing_scheme : '';
+    }
+
+    public function hasLoadBalancingScheme()
+    {
+        return isset($this->load_balancing_scheme);
+    }
+
+    public function clearLoadBalancingScheme()
+    {
+        unset($this->load_balancing_scheme);
+    }
+
+    /**
+     * Specifies the type of load balancing scheme used by this target proxy.
+     * Check the LoadBalancingScheme enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string load_balancing_scheme = 363890244;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setLoadBalancingScheme($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->load_balancing_scheme = $var;
 
         return $this;
     }

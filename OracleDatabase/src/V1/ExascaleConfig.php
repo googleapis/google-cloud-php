@@ -27,6 +27,18 @@ class ExascaleConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int32 available_storage_size_gb = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $available_storage_size_gb = 0;
+    /**
+     * Output only. Storage size needed for VM storage on Exascale in GBs.
+     *
+     * Generated from protobuf field <code>int32 total_vm_storage_size_gb = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $total_vm_storage_size_gb = 0;
+    /**
+     * Output only. Available storage size for VM storage on Exascale in GBs.
+     *
+     * Generated from protobuf field <code>int32 available_vm_storage_size_gb = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $available_vm_storage_size_gb = 0;
 
     /**
      * Constructor.
@@ -38,6 +50,10 @@ class ExascaleConfig extends \Google\Protobuf\Internal\Message
      *           Output only. Total storage size needed for Exascale in GBs.
      *     @type int $available_storage_size_gb
      *           Output only. Available storage size for Exascale in GBs.
+     *     @type int $total_vm_storage_size_gb
+     *           Output only. Storage size needed for VM storage on Exascale in GBs.
+     *     @type int $available_vm_storage_size_gb
+     *           Output only. Available storage size for VM storage on Exascale in GBs.
      * }
      */
     public function __construct($data = NULL) {
@@ -93,6 +109,58 @@ class ExascaleConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->available_storage_size_gb = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Storage size needed for VM storage on Exascale in GBs.
+     *
+     * Generated from protobuf field <code>int32 total_vm_storage_size_gb = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getTotalVmStorageSizeGb()
+    {
+        return $this->total_vm_storage_size_gb;
+    }
+
+    /**
+     * Output only. Storage size needed for VM storage on Exascale in GBs.
+     *
+     * Generated from protobuf field <code>int32 total_vm_storage_size_gb = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setTotalVmStorageSizeGb($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->total_vm_storage_size_gb = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Available storage size for VM storage on Exascale in GBs.
+     *
+     * Generated from protobuf field <code>int32 available_vm_storage_size_gb = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getAvailableVmStorageSizeGb()
+    {
+        return $this->available_vm_storage_size_gb;
+    }
+
+    /**
+     * Output only. Available storage size for VM storage on Exascale in GBs.
+     *
+     * Generated from protobuf field <code>int32 available_vm_storage_size_gb = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setAvailableVmStorageSizeGb($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->available_vm_storage_size_gb = $var;
 
         return $this;
     }

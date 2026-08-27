@@ -30,7 +30,7 @@ use Google\ApiCore\ApiException;
 use Google\Type\Money;
 
 /**
- * API to create a `PrivateAuctionDeal` object.
+ * Creates a `PrivateAuctionDeal` object.
  *
  * @param string $formattedParent The parent resource where this `PrivateAuctionDeal` will be
  *                                created. Format: `networks/{network_code}`

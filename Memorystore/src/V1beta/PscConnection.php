@@ -16,10 +16,10 @@ use Google\Protobuf\RepeatedField;
 class PscConnection extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The PSC connection id of the forwarding rule connected to the
+     * Required. The PSC connection id of the forwarding rule connected to the
      * service attachment.
      *
-     * Generated from protobuf field <code>string psc_connection_id = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string psc_connection_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $psc_connection_id = '';
     /**
@@ -46,7 +46,7 @@ class PscConnection extends \Google\Protobuf\Internal\Message
     protected $project_id = '';
     /**
      * Required. The consumer network where the IP address resides, in the form of
-     * projects/{project_id}/global/networks/{network_id}.
+     * projects/{project_id}/global/networks/{network_name}.
      *
      * Generated from protobuf field <code>string network = 5 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -74,6 +74,7 @@ class PscConnection extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.memorystore.v1beta.ConnectionType connection_type = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $connection_type = 0;
+    protected $ports;
 
     /**
      * Constructor.
@@ -81,8 +82,10 @@ class PscConnection extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type int $port
+     *           Optional. port will only be set for Primary/Reader or Discovery endpoint.
      *     @type string $psc_connection_id
-     *           Output only. The PSC connection id of the forwarding rule connected to the
+     *           Required. The PSC connection id of the forwarding rule connected to the
      *           service attachment.
      *     @type string $ip_address
      *           Required. The IP allocated on the consumer network for the PSC forwarding
@@ -96,7 +99,7 @@ class PscConnection extends \Google\Protobuf\Internal\Message
      *           from.
      *     @type string $network
      *           Required. The consumer network where the IP address resides, in the form of
-     *           projects/{project_id}/global/networks/{network_id}.
+     *           projects/{project_id}/global/networks/{network_name}.
      *     @type string $service_attachment
      *           Required. The service attachment which is the target of the PSC connection,
      *           in the form of
@@ -116,10 +119,41 @@ class PscConnection extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The PSC connection id of the forwarding rule connected to the
+     * Optional. port will only be set for Primary/Reader or Discovery endpoint.
+     *
+     * Generated from protobuf field <code>int32 port = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getPort()
+    {
+        return $this->readOneof(9);
+    }
+
+    public function hasPort()
+    {
+        return $this->hasOneof(9);
+    }
+
+    /**
+     * Optional. port will only be set for Primary/Reader or Discovery endpoint.
+     *
+     * Generated from protobuf field <code>int32 port = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setPort($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->writeOneof(9, $var);
+
+        return $this;
+    }
+
+    /**
+     * Required. The PSC connection id of the forwarding rule connected to the
      * service attachment.
      *
-     * Generated from protobuf field <code>string psc_connection_id = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string psc_connection_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getPscConnectionId()
@@ -128,10 +162,10 @@ class PscConnection extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The PSC connection id of the forwarding rule connected to the
+     * Required. The PSC connection id of the forwarding rule connected to the
      * service attachment.
      *
-     * Generated from protobuf field <code>string psc_connection_id = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string psc_connection_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -231,7 +265,7 @@ class PscConnection extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The consumer network where the IP address resides, in the form of
-     * projects/{project_id}/global/networks/{network_id}.
+     * projects/{project_id}/global/networks/{network_name}.
      *
      * Generated from protobuf field <code>string network = 5 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -243,7 +277,7 @@ class PscConnection extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The consumer network where the IP address resides, in the form of
-     * projects/{project_id}/global/networks/{network_id}.
+     * projects/{project_id}/global/networks/{network_name}.
      *
      * Generated from protobuf field <code>string network = 5 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -343,6 +377,14 @@ class PscConnection extends \Google\Protobuf\Internal\Message
         $this->connection_type = $var;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPorts()
+    {
+        return $this->whichOneof("ports");
     }
 
 }

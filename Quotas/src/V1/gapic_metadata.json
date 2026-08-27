@@ -8,7 +8,7 @@
         "CloudQuotas": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "CloudQuotasGapicClient",
+                    "libraryClient": "CloudQuotasClient",
                     "rpcs": {
                         "CreateQuotaPreference": {
                             "methods": [
@@ -38,6 +38,25 @@
                         "UpdateQuotaPreference": {
                             "methods": [
                                 "updateQuotaPreference"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "QuotaAdjusterSettingsManager": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "QuotaAdjusterSettingsManagerClient",
+                    "rpcs": {
+                        "GetQuotaAdjusterSettings": {
+                            "methods": [
+                                "getQuotaAdjusterSettings"
+                            ]
+                        },
+                        "UpdateQuotaAdjusterSettings": {
+                            "methods": [
+                                "updateQuotaAdjusterSettings"
                             ]
                         }
                     }

@@ -8,7 +8,7 @@
         "Executions": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ExecutionsGapicClient",
+                    "libraryClient": "ExecutionsClient",
                     "rpcs": {
                         "CancelExecution": {
                             "methods": [

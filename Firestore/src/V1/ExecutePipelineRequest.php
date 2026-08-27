@@ -31,6 +31,12 @@ class ExecutePipelineRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool auto_commit_transaction = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $auto_commit_transaction = false;
+    /**
+     * Optional. Any additional options for the request.
+     *
+     * Generated from protobuf field <code>.google.firestore.v1.RequestOptions request_options = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $request_options = null;
     protected $pipeline_type;
     protected $consistency_selector;
 
@@ -61,6 +67,8 @@ class ExecutePipelineRequest extends \Google\Protobuf\Internal\Message
      *           Optional. Automatically commits the transaction after the pipeline has been
      *           executed. Only permitted in combination with `transaction` or
      *           `new_transaction`.
+     *     @type \Google\Cloud\Firestore\V1\RequestOptions $request_options
+     *           Optional. Any additional options for the request.
      * }
      */
     public function __construct($data = NULL) {
@@ -258,6 +266,42 @@ class ExecutePipelineRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->auto_commit_transaction = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Any additional options for the request.
+     *
+     * Generated from protobuf field <code>.google.firestore.v1.RequestOptions request_options = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Firestore\V1\RequestOptions|null
+     */
+    public function getRequestOptions()
+    {
+        return $this->request_options;
+    }
+
+    public function hasRequestOptions()
+    {
+        return isset($this->request_options);
+    }
+
+    public function clearRequestOptions()
+    {
+        unset($this->request_options);
+    }
+
+    /**
+     * Optional. Any additional options for the request.
+     *
+     * Generated from protobuf field <code>.google.firestore.v1.RequestOptions request_options = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Firestore\V1\RequestOptions $var
+     * @return $this
+     */
+    public function setRequestOptions($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Firestore\V1\RequestOptions::class);
+        $this->request_options = $var;
 
         return $this;
     }

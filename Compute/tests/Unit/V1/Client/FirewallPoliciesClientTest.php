@@ -815,6 +815,7 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $ruleName = 'ruleName-2092197394';
         $ruleTupleCount = 388342037;
         $securityProfileGroup = 'securityProfileGroup-329459286';
+        $targetType = 'targetType-2084558552';
         $tlsInspect = true;
         $expectedResponse = new FirewallPolicyRule();
         $expectedResponse->setAction($action);
@@ -827,6 +828,7 @@ class FirewallPoliciesClientTest extends GeneratedTest
         $expectedResponse->setRuleName($ruleName);
         $expectedResponse->setRuleTupleCount($ruleTupleCount);
         $expectedResponse->setSecurityProfileGroup($securityProfileGroup);
+        $expectedResponse->setTargetType($targetType);
         $expectedResponse->setTlsInspect($tlsInspect);
         $transport->addResponse($expectedResponse);
         // Mock request

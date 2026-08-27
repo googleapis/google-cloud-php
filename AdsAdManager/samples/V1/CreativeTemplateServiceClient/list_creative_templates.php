@@ -29,7 +29,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 
 /**
- * API to retrieve a list of `CreativeTemplate` objects.
+ * Lists `CreativeTemplate` objects.
  *
  * @param string $formattedParent The parent, which owns this collection of CreativeTemplates.
  *                                Format: `networks/{network_code}`

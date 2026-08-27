@@ -9,17 +9,18 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * Specifies the config of disk options for a group of VM instances.
+ * Specifies the config of boot disk and attached disk options for a group of VM
+ * instances.
  *
  * Generated from protobuf message <code>google.cloud.dataproc.v1.DiskConfig</code>
  */
 class DiskConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. Type of the boot disk (default is "pd-standard").
-     * Valid values: "pd-balanced" (Persistent Disk Balanced Solid State Drive),
-     * "pd-ssd" (Persistent Disk Solid State Drive),
-     * or "pd-standard" (Persistent Disk Hard Disk Drive).
+     * Optional. Type of the boot disk (default is `pd-standard`).
+     * Valid values: `pd-balanced` (Persistent Disk Balanced Solid State Drive),
+     * `pd-ssd` (Persistent Disk Solid State Drive),
+     * or `pd-standard` (Persistent Disk Hard Disk Drive).
      * See [Disk types](https://cloud.google.com/compute/docs/disks#disk-types).
      *
      * Generated from protobuf field <code>string boot_disk_type = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -45,9 +46,9 @@ class DiskConfig extends \Google\Protobuf\Internal\Message
      */
     protected $num_local_ssds = 0;
     /**
-     * Optional. Interface type of local SSDs (default is "scsi").
-     * Valid values: "scsi" (Small Computer System Interface),
-     * "nvme" (Non-Volatile Memory Express).
+     * Optional. Interface type of local SSDs (default is `scsi`).
+     * Valid values: `scsi` (Small Computer System Interface),
+     * `nvme` (Non-Volatile Memory Express).
      * See [local SSD
      * performance](https://cloud.google.com/compute/docs/disks/local-ssd#performance).
      *
@@ -56,8 +57,10 @@ class DiskConfig extends \Google\Protobuf\Internal\Message
     protected $local_ssd_interface = '';
     /**
      * Optional. Indicates how many IOPS to provision for the disk. This sets the
-     * number of I/O operations per second that the disk can handle. Note: This
-     * field is only supported if boot_disk_type is hyperdisk-balanced.
+     * number of I/O operations per second that the disk can handle.
+     * **This field is supported only if
+     * [boot_disk_type][google.cloud.dataproc.v1.DiskConfig.boot_disk_type] is
+     * `hyperdisk-balanced`.**
      *
      * Generated from protobuf field <code>optional int64 boot_disk_provisioned_iops = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -65,12 +68,19 @@ class DiskConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Indicates how much throughput to provision for the disk. This
      * sets the number of throughput mb per second that the disk can handle.
-     * Values must be greater than or equal to 1. Note: This field is only
-     * supported if boot_disk_type is hyperdisk-balanced.
+     * Values must be greater than or equal to 1. **This field is supported only
+     * if [boot_disk_type][google.cloud.dataproc.v1.DiskConfig.boot_disk_type] is
+     * `hyperdisk-balanced`.**
      *
      * Generated from protobuf field <code>optional int64 boot_disk_provisioned_throughput = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $boot_disk_provisioned_throughput = null;
+    /**
+     * Optional. A list of attached disk configs for a group of VM instances.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.AttachedDiskConfig attached_disk_configs = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $attached_disk_configs;
 
     /**
      * Constructor.
@@ -79,10 +89,10 @@ class DiskConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $boot_disk_type
-     *           Optional. Type of the boot disk (default is "pd-standard").
-     *           Valid values: "pd-balanced" (Persistent Disk Balanced Solid State Drive),
-     *           "pd-ssd" (Persistent Disk Solid State Drive),
-     *           or "pd-standard" (Persistent Disk Hard Disk Drive).
+     *           Optional. Type of the boot disk (default is `pd-standard`).
+     *           Valid values: `pd-balanced` (Persistent Disk Balanced Solid State Drive),
+     *           `pd-ssd` (Persistent Disk Solid State Drive),
+     *           or `pd-standard` (Persistent Disk Hard Disk Drive).
      *           See [Disk types](https://cloud.google.com/compute/docs/disks#disk-types).
      *     @type int $boot_disk_size_gb
      *           Optional. Size in GB of the boot disk (default is 500GB).
@@ -96,20 +106,25 @@ class DiskConfig extends \Google\Protobuf\Internal\Message
      *           Note: Local SSD options may vary by machine type and number of vCPUs
      *           selected.
      *     @type string $local_ssd_interface
-     *           Optional. Interface type of local SSDs (default is "scsi").
-     *           Valid values: "scsi" (Small Computer System Interface),
-     *           "nvme" (Non-Volatile Memory Express).
+     *           Optional. Interface type of local SSDs (default is `scsi`).
+     *           Valid values: `scsi` (Small Computer System Interface),
+     *           `nvme` (Non-Volatile Memory Express).
      *           See [local SSD
      *           performance](https://cloud.google.com/compute/docs/disks/local-ssd#performance).
      *     @type int|string $boot_disk_provisioned_iops
      *           Optional. Indicates how many IOPS to provision for the disk. This sets the
-     *           number of I/O operations per second that the disk can handle. Note: This
-     *           field is only supported if boot_disk_type is hyperdisk-balanced.
+     *           number of I/O operations per second that the disk can handle.
+     *           **This field is supported only if
+     *           [boot_disk_type][google.cloud.dataproc.v1.DiskConfig.boot_disk_type] is
+     *           `hyperdisk-balanced`.**
      *     @type int|string $boot_disk_provisioned_throughput
      *           Optional. Indicates how much throughput to provision for the disk. This
      *           sets the number of throughput mb per second that the disk can handle.
-     *           Values must be greater than or equal to 1. Note: This field is only
-     *           supported if boot_disk_type is hyperdisk-balanced.
+     *           Values must be greater than or equal to 1. **This field is supported only
+     *           if [boot_disk_type][google.cloud.dataproc.v1.DiskConfig.boot_disk_type] is
+     *           `hyperdisk-balanced`.**
+     *     @type \Google\Cloud\Dataproc\V1\AttachedDiskConfig[] $attached_disk_configs
+     *           Optional. A list of attached disk configs for a group of VM instances.
      * }
      */
     public function __construct($data = NULL) {
@@ -118,10 +133,10 @@ class DiskConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Type of the boot disk (default is "pd-standard").
-     * Valid values: "pd-balanced" (Persistent Disk Balanced Solid State Drive),
-     * "pd-ssd" (Persistent Disk Solid State Drive),
-     * or "pd-standard" (Persistent Disk Hard Disk Drive).
+     * Optional. Type of the boot disk (default is `pd-standard`).
+     * Valid values: `pd-balanced` (Persistent Disk Balanced Solid State Drive),
+     * `pd-ssd` (Persistent Disk Solid State Drive),
+     * or `pd-standard` (Persistent Disk Hard Disk Drive).
      * See [Disk types](https://cloud.google.com/compute/docs/disks#disk-types).
      *
      * Generated from protobuf field <code>string boot_disk_type = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -133,10 +148,10 @@ class DiskConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Type of the boot disk (default is "pd-standard").
-     * Valid values: "pd-balanced" (Persistent Disk Balanced Solid State Drive),
-     * "pd-ssd" (Persistent Disk Solid State Drive),
-     * or "pd-standard" (Persistent Disk Hard Disk Drive).
+     * Optional. Type of the boot disk (default is `pd-standard`).
+     * Valid values: `pd-balanced` (Persistent Disk Balanced Solid State Drive),
+     * `pd-ssd` (Persistent Disk Solid State Drive),
+     * or `pd-standard` (Persistent Disk Hard Disk Drive).
      * See [Disk types](https://cloud.google.com/compute/docs/disks#disk-types).
      *
      * Generated from protobuf field <code>string boot_disk_type = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -218,9 +233,9 @@ class DiskConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Interface type of local SSDs (default is "scsi").
-     * Valid values: "scsi" (Small Computer System Interface),
-     * "nvme" (Non-Volatile Memory Express).
+     * Optional. Interface type of local SSDs (default is `scsi`).
+     * Valid values: `scsi` (Small Computer System Interface),
+     * `nvme` (Non-Volatile Memory Express).
      * See [local SSD
      * performance](https://cloud.google.com/compute/docs/disks/local-ssd#performance).
      *
@@ -233,9 +248,9 @@ class DiskConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Interface type of local SSDs (default is "scsi").
-     * Valid values: "scsi" (Small Computer System Interface),
-     * "nvme" (Non-Volatile Memory Express).
+     * Optional. Interface type of local SSDs (default is `scsi`).
+     * Valid values: `scsi` (Small Computer System Interface),
+     * `nvme` (Non-Volatile Memory Express).
      * See [local SSD
      * performance](https://cloud.google.com/compute/docs/disks/local-ssd#performance).
      *
@@ -253,8 +268,10 @@ class DiskConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Indicates how many IOPS to provision for the disk. This sets the
-     * number of I/O operations per second that the disk can handle. Note: This
-     * field is only supported if boot_disk_type is hyperdisk-balanced.
+     * number of I/O operations per second that the disk can handle.
+     * **This field is supported only if
+     * [boot_disk_type][google.cloud.dataproc.v1.DiskConfig.boot_disk_type] is
+     * `hyperdisk-balanced`.**
      *
      * Generated from protobuf field <code>optional int64 boot_disk_provisioned_iops = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int|string
@@ -276,8 +293,10 @@ class DiskConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Indicates how many IOPS to provision for the disk. This sets the
-     * number of I/O operations per second that the disk can handle. Note: This
-     * field is only supported if boot_disk_type is hyperdisk-balanced.
+     * number of I/O operations per second that the disk can handle.
+     * **This field is supported only if
+     * [boot_disk_type][google.cloud.dataproc.v1.DiskConfig.boot_disk_type] is
+     * `hyperdisk-balanced`.**
      *
      * Generated from protobuf field <code>optional int64 boot_disk_provisioned_iops = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int|string $var
@@ -294,8 +313,9 @@ class DiskConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Indicates how much throughput to provision for the disk. This
      * sets the number of throughput mb per second that the disk can handle.
-     * Values must be greater than or equal to 1. Note: This field is only
-     * supported if boot_disk_type is hyperdisk-balanced.
+     * Values must be greater than or equal to 1. **This field is supported only
+     * if [boot_disk_type][google.cloud.dataproc.v1.DiskConfig.boot_disk_type] is
+     * `hyperdisk-balanced`.**
      *
      * Generated from protobuf field <code>optional int64 boot_disk_provisioned_throughput = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int|string
@@ -318,8 +338,9 @@ class DiskConfig extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Indicates how much throughput to provision for the disk. This
      * sets the number of throughput mb per second that the disk can handle.
-     * Values must be greater than or equal to 1. Note: This field is only
-     * supported if boot_disk_type is hyperdisk-balanced.
+     * Values must be greater than or equal to 1. **This field is supported only
+     * if [boot_disk_type][google.cloud.dataproc.v1.DiskConfig.boot_disk_type] is
+     * `hyperdisk-balanced`.**
      *
      * Generated from protobuf field <code>optional int64 boot_disk_provisioned_throughput = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int|string $var
@@ -329,6 +350,32 @@ class DiskConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt64($var);
         $this->boot_disk_provisioned_throughput = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. A list of attached disk configs for a group of VM instances.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.AttachedDiskConfig attached_disk_configs = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return RepeatedField<\Google\Cloud\Dataproc\V1\AttachedDiskConfig>
+     */
+    public function getAttachedDiskConfigs()
+    {
+        return $this->attached_disk_configs;
+    }
+
+    /**
+     * Optional. A list of attached disk configs for a group of VM instances.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.AttachedDiskConfig attached_disk_configs = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dataproc\V1\AttachedDiskConfig[] $var
+     * @return $this
+     */
+    public function setAttachedDiskConfigs($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dataproc\V1\AttachedDiskConfig::class);
+        $this->attached_disk_configs = $arr;
 
         return $this;
     }

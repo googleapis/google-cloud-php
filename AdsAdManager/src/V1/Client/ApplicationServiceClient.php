@@ -94,7 +94,11 @@ final class ApplicationServiceClient
     /** The name of the code generator, to be included in the agent header. */
     private const CODEGEN_NAME = 'gapic';
 
-    /** The default scopes required by the service. */
+    /**
+     * The default scopes required by the service.
+     *
+     * @internal
+     */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/admanager',
         'https://www.googleapis.com/auth/admanager.readonly',
@@ -271,7 +275,7 @@ final class ApplicationServiceClient
     }
 
     /**
-     * / API to batch archive `Application` objects.
+     * Batch archives `Application` objects.
      *
      * The async variant is
      * {@see ApplicationServiceClient::batchArchiveApplicationsAsync()} .
@@ -300,7 +304,7 @@ final class ApplicationServiceClient
     }
 
     /**
-     * API to batch create `Application` objects.
+     * Creates `Application` objects.
      *
      * The async variant is
      * {@see ApplicationServiceClient::batchCreateApplicationsAsync()} .
@@ -329,7 +333,7 @@ final class ApplicationServiceClient
     }
 
     /**
-     * / API to batch unarchive `Application` objects.
+     * Batch unarchives `Application` objects.
      *
      * The async variant is
      * {@see ApplicationServiceClient::batchUnarchiveApplicationsAsync()} .
@@ -358,7 +362,7 @@ final class ApplicationServiceClient
     }
 
     /**
-     * API to batch update `Application` objects.
+     * Batch updates `Application` objects.
      *
      * The async variant is
      * {@see ApplicationServiceClient::batchUpdateApplicationsAsync()} .
@@ -387,7 +391,7 @@ final class ApplicationServiceClient
     }
 
     /**
-     * API to create a `Application` object.
+     * Creates a `Application` object.
      *
      * The async variant is {@see ApplicationServiceClient::createApplicationAsync()} .
      *
@@ -413,7 +417,7 @@ final class ApplicationServiceClient
     }
 
     /**
-     * API to retrieve a `Application` object.
+     * Retrieves a `Application` object.
      *
      * The async variant is {@see ApplicationServiceClient::getApplicationAsync()} .
      *
@@ -439,7 +443,7 @@ final class ApplicationServiceClient
     }
 
     /**
-     * API to retrieve a list of `Application` objects.
+     * Lists `Application` objects.
      *
      * The async variant is {@see ApplicationServiceClient::listApplicationsAsync()} .
      *
@@ -465,7 +469,7 @@ final class ApplicationServiceClient
     }
 
     /**
-     * API to update a `Application` object.
+     * Updates a `Application` object.
      *
      * The async variant is {@see ApplicationServiceClient::updateApplicationAsync()} .
      *

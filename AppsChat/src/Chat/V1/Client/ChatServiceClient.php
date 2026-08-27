@@ -34,6 +34,7 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Apps\Chat\V1\Attachment;
+use Google\Apps\Chat\V1\Availability;
 use Google\Apps\Chat\V1\CompleteImportSpaceRequest;
 use Google\Apps\Chat\V1\CompleteImportSpaceResponse;
 use Google\Apps\Chat\V1\CreateCustomEmojiRequest;
@@ -52,6 +53,7 @@ use Google\Apps\Chat\V1\DeleteSpaceRequest;
 use Google\Apps\Chat\V1\FindDirectMessageRequest;
 use Google\Apps\Chat\V1\FindGroupChatsRequest;
 use Google\Apps\Chat\V1\GetAttachmentRequest;
+use Google\Apps\Chat\V1\GetAvailabilityRequest;
 use Google\Apps\Chat\V1\GetCustomEmojiRequest;
 use Google\Apps\Chat\V1\GetMembershipRequest;
 use Google\Apps\Chat\V1\GetMessageRequest;
@@ -68,6 +70,9 @@ use Google\Apps\Chat\V1\ListSectionItemsRequest;
 use Google\Apps\Chat\V1\ListSectionsRequest;
 use Google\Apps\Chat\V1\ListSpaceEventsRequest;
 use Google\Apps\Chat\V1\ListSpacesRequest;
+use Google\Apps\Chat\V1\MarkAsActiveRequest;
+use Google\Apps\Chat\V1\MarkAsAwayRequest;
+use Google\Apps\Chat\V1\MarkAsDoNotDisturbRequest;
 use Google\Apps\Chat\V1\Membership;
 use Google\Apps\Chat\V1\Message;
 use Google\Apps\Chat\V1\MoveSectionItemRequest;
@@ -75,6 +80,7 @@ use Google\Apps\Chat\V1\MoveSectionItemResponse;
 use Google\Apps\Chat\V1\PositionSectionRequest;
 use Google\Apps\Chat\V1\PositionSectionResponse;
 use Google\Apps\Chat\V1\Reaction;
+use Google\Apps\Chat\V1\SearchMessagesRequest;
 use Google\Apps\Chat\V1\SearchSpacesRequest;
 use Google\Apps\Chat\V1\Section;
 use Google\Apps\Chat\V1\SetUpSpaceRequest;
@@ -83,6 +89,7 @@ use Google\Apps\Chat\V1\SpaceEvent;
 use Google\Apps\Chat\V1\SpaceNotificationSetting;
 use Google\Apps\Chat\V1\SpaceReadState;
 use Google\Apps\Chat\V1\ThreadReadState;
+use Google\Apps\Chat\V1\UpdateAvailabilityRequest;
 use Google\Apps\Chat\V1\UpdateMembershipRequest;
 use Google\Apps\Chat\V1\UpdateMessageRequest;
 use Google\Apps\Chat\V1\UpdateSectionRequest;
@@ -123,6 +130,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<Space> findDirectMessageAsync(FindDirectMessageRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> findGroupChatsAsync(FindGroupChatsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Attachment> getAttachmentAsync(GetAttachmentRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Availability> getAvailabilityAsync(GetAvailabilityRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<CustomEmoji> getCustomEmojiAsync(GetCustomEmojiRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Membership> getMembershipAsync(GetMembershipRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Message> getMessageAsync(GetMessageRequest $request, array $optionalArgs = [])
@@ -139,10 +147,15 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<PagedListResponse> listSectionsAsync(ListSectionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listSpaceEventsAsync(ListSpaceEventsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listSpacesAsync(ListSpacesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Availability> markAsActiveAsync(MarkAsActiveRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Availability> markAsAwayAsync(MarkAsAwayRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Availability> markAsDoNotDisturbAsync(MarkAsDoNotDisturbRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<MoveSectionItemResponse> moveSectionItemAsync(MoveSectionItemRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PositionSectionResponse> positionSectionAsync(PositionSectionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> searchMessagesAsync(SearchMessagesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> searchSpacesAsync(SearchSpacesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Space> setUpSpaceAsync(SetUpSpaceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Availability> updateAvailabilityAsync(UpdateAvailabilityRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Membership> updateMembershipAsync(UpdateMembershipRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Message> updateMessageAsync(UpdateMessageRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Section> updateSectionAsync(UpdateSectionRequest $request, array $optionalArgs = [])
@@ -175,13 +188,20 @@ final class ChatServiceClient
     /** The name of the code generator, to be included in the agent header. */
     private const CODEGEN_NAME = 'gapic';
 
-    /** The default scopes required by the service. */
+    /**
+     * The default scopes required by the service.
+     *
+     * @internal
+     */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/chat.admin.delete',
         'https://www.googleapis.com/auth/chat.admin.memberships',
         'https://www.googleapis.com/auth/chat.admin.memberships.readonly',
         'https://www.googleapis.com/auth/chat.admin.spaces',
         'https://www.googleapis.com/auth/chat.admin.spaces.readonly',
+        'https://www.googleapis.com/auth/chat.app.all.memberships.readonly',
+        'https://www.googleapis.com/auth/chat.app.all.messages.readonly',
+        'https://www.googleapis.com/auth/chat.app.all.spaces.readonly',
         'https://www.googleapis.com/auth/chat.app.delete',
         'https://www.googleapis.com/auth/chat.app.memberships',
         'https://www.googleapis.com/auth/chat.app.memberships.readonly',
@@ -206,6 +226,8 @@ final class ChatServiceClient
         'https://www.googleapis.com/auth/chat.spaces',
         'https://www.googleapis.com/auth/chat.spaces.create',
         'https://www.googleapis.com/auth/chat.spaces.readonly',
+        'https://www.googleapis.com/auth/chat.users.availability',
+        'https://www.googleapis.com/auth/chat.users.availability.readonly',
         'https://www.googleapis.com/auth/chat.users.readstate',
         'https://www.googleapis.com/auth/chat.users.readstate.readonly',
         'https://www.googleapis.com/auth/chat.users.sections',
@@ -248,6 +270,21 @@ final class ChatServiceClient
             'space' => $space,
             'message' => $message,
             'attachment' => $attachment,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a availability
+     * resource.
+     *
+     * @param string $user
+     *
+     * @return string The formatted availability resource.
+     */
+    public static function availabilityName(string $user): string
+    {
+        return self::getPathTemplate('availability')->render([
+            'user' => $user,
         ]);
     }
 
@@ -499,6 +536,7 @@ final class ChatServiceClient
      * The following name formats are supported:
      * Template: Pattern
      * - attachment: spaces/{space}/messages/{message}/attachments/{attachment}
+     * - availability: users/{user}/availability
      * - customEmoji: customEmojis/{custom_emoji}
      * - membership: spaces/{space}/members/{member}
      * - message: spaces/{space}/messages/{message}
@@ -1383,6 +1421,44 @@ final class ChatServiceClient
     }
 
     /**
+     * Returns availability information for a human user in Google Chat. For
+     * example, this can be used to check if a user is online or away, or to
+     * retrieve their custom status message.
+     *
+     * This method only retrieves the authenticated user's availability.
+     *
+     * Requires [user
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+     * with one of the following [authorization
+     * scopes](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes):
+     *
+     * - `https://www.googleapis.com/auth/chat.users.availability.readonly`
+     * - `https://www.googleapis.com/auth/chat.users.availability`
+     *
+     * The async variant is {@see ChatServiceClient::getAvailabilityAsync()} .
+     *
+     * @example samples/V1/ChatServiceClient/get_availability.php
+     *
+     * @param GetAvailabilityRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Availability
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getAvailability(GetAvailabilityRequest $request, array $callOptions = []): Availability
+    {
+        return $this->startApiCall('GetAvailability', $request, $callOptions)->wait();
+    }
+
+    /**
      * Returns details about a custom emoji.
      *
      * Custom emojis are only available for Google Workspace accounts, and the
@@ -2144,6 +2220,123 @@ final class ChatServiceClient
     }
 
     /**
+     * Marks user as `ACTIVE` in Google Chat.
+     *
+     * Sets the user's availability state to `ACTIVE`. The `ACTIVE` state
+     * lasts until the specified expiration, at which point the user's state
+     * becomes `AWAY`. Note that if the user is actively using Chat, the `ACTIVE`
+     * state duration may extend beyond the provided expiration.
+     *
+     * This method only updates the authenticated user's availability.
+     *
+     * Requires [user
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+     * with [authorization
+     * scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes):
+     *
+     * - `https://www.googleapis.com/auth/chat.users.availability`
+     *
+     * The async variant is {@see ChatServiceClient::markAsActiveAsync()} .
+     *
+     * @example samples/V1/ChatServiceClient/mark_as_active.php
+     *
+     * @param MarkAsActiveRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Availability
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function markAsActive(MarkAsActiveRequest $request, array $callOptions = []): Availability
+    {
+        return $this->startApiCall('MarkAsActive', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Marks user as `AWAY` in Google Chat.
+     *
+     * Sets the user's state to away and is not affected by the user's
+     * activity.
+     *
+     * This method only updates the authenticated user's availability.
+     *
+     * Requires [user
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+     * with [authorization
+     * scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes):
+     *
+     * - `https://www.googleapis.com/auth/chat.users.availability`
+     *
+     * The async variant is {@see ChatServiceClient::markAsAwayAsync()} .
+     *
+     * @example samples/V1/ChatServiceClient/mark_as_away.php
+     *
+     * @param MarkAsAwayRequest $request     A request to house fields associated with the call.
+     * @param array             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Availability
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function markAsAway(MarkAsAwayRequest $request, array $callOptions = []): Availability
+    {
+        return $this->startApiCall('MarkAsAway', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Marks user as `DO_NOT_DISTURB` in Google Chat.
+     *
+     * Sets a user's availability state to `DO_NOT_DISTURB` until a specified
+     * expiration time.
+     * When in `DO_NOT_DISTURB`, users typically won't receive notifications.
+     *
+     * This method only updates the authenticated user's availability.
+     *
+     * Requires [user
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+     * with [authorization
+     * scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes):
+     *
+     * - `https://www.googleapis.com/auth/chat.users.availability`
+     *
+     * The async variant is {@see ChatServiceClient::markAsDoNotDisturbAsync()} .
+     *
+     * @example samples/V1/ChatServiceClient/mark_as_do_not_disturb.php
+     *
+     * @param MarkAsDoNotDisturbRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Availability
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function markAsDoNotDisturb(MarkAsDoNotDisturbRequest $request, array $callOptions = []): Availability
+    {
+        return $this->startApiCall('MarkAsDoNotDisturb', $request, $callOptions)->wait();
+    }
+
+    /**
      * Moves an item from one section to another. For example, if a section
      * contains spaces, this method can be used to move a space to a different
      * section. For details, see [Create and organize sections in Google
@@ -2214,17 +2407,80 @@ final class ChatServiceClient
     }
 
     /**
-     * Returns a list of spaces in a Google Workspace organization based on an
-     * administrator's search. In the request, set `use_admin_access` to `true`.
-     * For an example, see [Search for and manage
-     * spaces](https://developers.google.com/workspace/chat/search-manage-admin).
+     * Searches for messages in Google Chat that the calling user has access to.
+     * Returns a list of messages matching the search criteria.
+     *
+     * To search across all spaces the user has access to, set `parent` to
+     * `spaces/-`. Using any other value for `parent` results in an
+     * `INVALID_ARGUMENT` error. The returned messages have their `name` field
+     * populated with the full resource name, which includes the specific `space`
+     * in which the message resides.
+     *
+     * This API doesn't return all message types. The types of messages listed
+     * below aren't included in the response. Use
+     * [ListMessages][google.chat.v1.ChatService.ListMessages] to list all
+     * messages.
+     *
+     * - Private Messages that are visible to the authenticated user.
+     * - Messages posted by Chat apps in spaces or group chats.
+     * - Messages in a Chat app DM.
+     * - Messages from blocked users.
+     * - Messages in spaces that the caller has muted.
      *
      * Requires [user
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+     * with one of the following [authorization
+     * scopes](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes):
+     *
+     * - `https://www.googleapis.com/auth/chat.messages.readonly`
+     * - `https://www.googleapis.com/auth/chat.messages`
+     *
+     * The async variant is {@see ChatServiceClient::searchMessagesAsync()} .
+     *
+     * @example samples/V1/ChatServiceClient/search_messages.php
+     *
+     * @param SearchMessagesRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function searchMessages(SearchMessagesRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('SearchMessages', $request, $callOptions);
+    }
+
+    /**
+     * Returns a list of spaces in a Google Workspace organization. For an
+     * example, see [Search for and manage
+     * spaces](https://developers.google.com/workspace/chat/search-manage-admin).
+     *
+     * When `use_admin_access` is set to `false`, the results are limited to
+     * spaces where the calling user is a joined member. To search with
+     * administrator privileges, set `use_admin_access` to `true`.
+     *
+     * Supports the following types of
+     * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize):
+     *
+     * - [User
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+     * with one of the following authorization scopes:
+     * - `https://www.googleapis.com/auth/chat.spaces.readonly`
+     * - `https://www.googleapis.com/auth/chat.spaces`
+     *
+     * - [User
      * authentication with administrator
      * privileges](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user#admin-privileges)
      * and one of the following [authorization
      * scopes](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes):
-     *
      * - `https://www.googleapis.com/auth/chat.admin.spaces.readonly`
      * - `https://www.googleapis.com/auth/chat.admin.spaces`
      *
@@ -2331,6 +2587,42 @@ final class ChatServiceClient
     public function setUpSpace(SetUpSpaceRequest $request, array $callOptions = []): Space
     {
         return $this->startApiCall('SetUpSpace', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates availability information for a human user. Only the `custom_status`
+     * field can be updated through this method.
+     *
+     * This method only updates the authenticated user's availability.
+     *
+     * Requires [user
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+     * with one of the following [authorization
+     * scopes](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes):
+     *
+     * - `https://www.googleapis.com/auth/chat.users.availability`
+     *
+     * The async variant is {@see ChatServiceClient::updateAvailabilityAsync()} .
+     *
+     * @example samples/V1/ChatServiceClient/update_availability.php
+     *
+     * @param UpdateAvailabilityRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Availability
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateAvailability(UpdateAvailabilityRequest $request, array $callOptions = []): Availability
+    {
+        return $this->startApiCall('UpdateAvailability', $request, $callOptions)->wait();
     }
 
     /**

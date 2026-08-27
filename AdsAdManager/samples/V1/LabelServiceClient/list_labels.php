@@ -29,7 +29,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 
 /**
- * API to retrieve a list of `Label` objects.
+ * Lists `Label` objects.
  *
  * @param string $formattedParent The parent, which owns this collection of Labels.
  *                                Format: `networks/{network_code}`

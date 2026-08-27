@@ -12,7 +12,8 @@
         "twig/twig": "^3.5",
         "phpstan/phpstan": "^2.0",
         "symfony/finder": "^6.2",
-        "nikic/php-parser": "v5.7.0",
+        "phpdocumentor/reflection": "^6.3",
+        "nikic/php-parser": "v5.8.0",
         "kcs/class-finder": "^0.6.1"
     },
     "autoload": {
@@ -21,10 +22,11 @@
         }
     },
     "require-dev": {
+        "google/gapic-generator": "dev-main",
+        "google/gapic-showcase": "dev-main",
         "phpunit/phpunit": "^9.0",
         "phpspec/prophecy-phpunit": "^2.0",
         "swaggest/json-schema": "^0.12.0",
-        "phpdocumentor/reflection": "^6.3",
         "erusev/parsedown": "^1.7",
         "dg/bypass-finals": "^1.7"
     },
@@ -35,6 +37,27 @@
             "options": {
                 "versions": {
                     "google/cloud": "dev-parent"
+                }
+            }
+        },
+        "gapic-generator": {
+            "type": "git",
+            "url": "https://github.com/googleapis/gapic-generator-php.git",
+            "only": ["google/gapic-generator"],
+            "options": {
+                "submodules": true
+            }
+        },
+        "gapic-showcase": {
+            "type": "package",
+            "only": ["google/gapic-showcase"],
+            "package": {
+                "name": "google/gapic-showcase",
+                "version": "dev-main",
+                "source": {
+                    "url": "https://github.com/googleapis/gapic-showcase.git",
+                    "type": "git",
+                    "reference": "main"
                 }
             }
         }

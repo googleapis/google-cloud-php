@@ -61,12 +61,12 @@ class ToolCallResult extends \Google\Protobuf\Internal\Message
      *     @type string $action
      *           Optional. The name of the tool's action associated with this call.
      *     @type \Google\Cloud\Dialogflow\V2\ToolCallResult\Error $error
-     *           The tool call's error.
+     *           Optional. The tool call's error.
      *     @type string $raw_content
-     *           Only populated if the response content is not utf-8 encoded.
+     *           Optional. Only populated if the response content is not utf-8 encoded.
      *           (by definition byte fields are base64 encoded).
      *     @type string $content
-     *           Only populated if the response content is utf-8 encoded.
+     *           Optional. Only populated if the response content is utf-8 encoded.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Create time of the tool call result.
      *     @type string $answer_record
@@ -245,9 +245,9 @@ class ToolCallResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The tool call's error.
+     * Optional. The tool call's error.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.ToolCallResult.Error error = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.ToolCallResult.Error error = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Dialogflow\V2\ToolCallResult\Error|null
      */
     public function getError()
@@ -261,9 +261,9 @@ class ToolCallResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The tool call's error.
+     * Optional. The tool call's error.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.ToolCallResult.Error error = 3;</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.ToolCallResult.Error error = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Dialogflow\V2\ToolCallResult\Error $var
      * @return $this
      */
@@ -276,10 +276,10 @@ class ToolCallResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Only populated if the response content is not utf-8 encoded.
+     * Optional. Only populated if the response content is not utf-8 encoded.
      * (by definition byte fields are base64 encoded).
      *
-     * Generated from protobuf field <code>bytes raw_content = 5;</code>
+     * Generated from protobuf field <code>bytes raw_content = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getRawContent()
@@ -293,10 +293,10 @@ class ToolCallResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Only populated if the response content is not utf-8 encoded.
+     * Optional. Only populated if the response content is not utf-8 encoded.
      * (by definition byte fields are base64 encoded).
      *
-     * Generated from protobuf field <code>bytes raw_content = 5;</code>
+     * Generated from protobuf field <code>bytes raw_content = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -309,9 +309,9 @@ class ToolCallResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Only populated if the response content is utf-8 encoded.
+     * Optional. Only populated if the response content is utf-8 encoded.
      *
-     * Generated from protobuf field <code>string content = 6;</code>
+     * Generated from protobuf field <code>string content = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getContent()
@@ -325,9 +325,9 @@ class ToolCallResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Only populated if the response content is utf-8 encoded.
+     * Optional. Only populated if the response content is utf-8 encoded.
      *
-     * Generated from protobuf field <code>string content = 6;</code>
+     * Generated from protobuf field <code>string content = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

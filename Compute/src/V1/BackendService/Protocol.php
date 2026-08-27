@@ -7,12 +7,12 @@ namespace Google\Cloud\Compute\V1\BackendService;
 use UnexpectedValueException;
 
 /**
- * The protocol this BackendService uses to communicate
- * with backends.
- * Possible values are HTTP, HTTPS, HTTP2, H2C, TCP, SSL, UDP or GRPC.
- * depending on the chosen load balancer or Traffic Director configuration.
- * Refer to the documentation for the load balancers or for Traffic Director
- * for more information.
+ * The protocol this BackendService uses to communicate with backends.
+ * Possible values are HTTP, HTTPS, HTTP2, H2C, TCP, SSL, UDP, GRPC, or
+ * UNSPECIFIED, depending on the chosen load balancer or Traffic Director
+ * configuration.
+ * Refer to
+ * Load balancing features for more information.
  * Must be set to GRPC when the backend service is referenced by a URL map
  * that is bound to target gRPC proxy.
  *

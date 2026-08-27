@@ -16,11 +16,11 @@ use Google\Protobuf\RepeatedField;
 class BargeInConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. Disables user barge-in while the agent is speaking. If true, user
-     * input during agent response playback will be ignored.
-     * Deprecated: `disable_barge_in` is deprecated in favor of
+     * Optional. Deprecated: `disable_barge_in` is deprecated in favor of
      * [`disable_barge_in_control`][google.cloud.ces.v1.ChannelProfile.disable_barge_in_control]
      * in ChannelProfile.
+     * Disables user barge-in while the agent is speaking. If true, user input
+     * during agent response playback will be ignored.
      *
      * Generated from protobuf field <code>bool disable_barge_in = 1 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @deprecated
@@ -43,11 +43,11 @@ class BargeInConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $disable_barge_in
-     *           Optional. Disables user barge-in while the agent is speaking. If true, user
-     *           input during agent response playback will be ignored.
-     *           Deprecated: `disable_barge_in` is deprecated in favor of
+     *           Optional. Deprecated: `disable_barge_in` is deprecated in favor of
      *           [`disable_barge_in_control`][google.cloud.ces.v1.ChannelProfile.disable_barge_in_control]
      *           in ChannelProfile.
+     *           Disables user barge-in while the agent is speaking. If true, user input
+     *           during agent response playback will be ignored.
      *     @type bool $barge_in_awareness
      *           Optional. If enabled, the agent will adapt its next response based on the
      *           assumption that the user hasn't heard the full preceding agent message.
@@ -61,11 +61,11 @@ class BargeInConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Disables user barge-in while the agent is speaking. If true, user
-     * input during agent response playback will be ignored.
-     * Deprecated: `disable_barge_in` is deprecated in favor of
+     * Optional. Deprecated: `disable_barge_in` is deprecated in favor of
      * [`disable_barge_in_control`][google.cloud.ces.v1.ChannelProfile.disable_barge_in_control]
      * in ChannelProfile.
+     * Disables user barge-in while the agent is speaking. If true, user input
+     * during agent response playback will be ignored.
      *
      * Generated from protobuf field <code>bool disable_barge_in = 1 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -80,11 +80,11 @@ class BargeInConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Disables user barge-in while the agent is speaking. If true, user
-     * input during agent response playback will be ignored.
-     * Deprecated: `disable_barge_in` is deprecated in favor of
+     * Optional. Deprecated: `disable_barge_in` is deprecated in favor of
      * [`disable_barge_in_control`][google.cloud.ces.v1.ChannelProfile.disable_barge_in_control]
      * in ChannelProfile.
+     * Disables user barge-in while the agent is speaking. If true, user input
+     * during agent response playback will be ignored.
      *
      * Generated from protobuf field <code>bool disable_barge_in = 1 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var

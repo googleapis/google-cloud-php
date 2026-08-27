@@ -16,9 +16,9 @@ use Google\Protobuf\RepeatedField;
 class QuotaOperation extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Identity of the operation. This is expected to be unique within the scope
-     * of the service that generated the operation, and guarantees idempotency in
-     * case of retries.
+     * Identity of the operation. For Allocation Quota, this is expected to be
+     * unique within the scope of the service that generated the operation, and
+     * guarantees idempotency in case of retries.
      * In order to ensure best performance and latency in the Quota backends,
      * operation_ids are optimally associated with time, so that related
      * operations can be accessed fast in storage. For this reason, the
@@ -86,9 +86,9 @@ class QuotaOperation extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $operation_id
-     *           Identity of the operation. This is expected to be unique within the scope
-     *           of the service that generated the operation, and guarantees idempotency in
-     *           case of retries.
+     *           Identity of the operation. For Allocation Quota, this is expected to be
+     *           unique within the scope of the service that generated the operation, and
+     *           guarantees idempotency in case of retries.
      *           In order to ensure best performance and latency in the Quota backends,
      *           operation_ids are optimally associated with time, so that related
      *           operations can be accessed fast in storage. For this reason, the
@@ -132,9 +132,9 @@ class QuotaOperation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Identity of the operation. This is expected to be unique within the scope
-     * of the service that generated the operation, and guarantees idempotency in
-     * case of retries.
+     * Identity of the operation. For Allocation Quota, this is expected to be
+     * unique within the scope of the service that generated the operation, and
+     * guarantees idempotency in case of retries.
      * In order to ensure best performance and latency in the Quota backends,
      * operation_ids are optimally associated with time, so that related
      * operations can be accessed fast in storage. For this reason, the
@@ -150,9 +150,9 @@ class QuotaOperation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Identity of the operation. This is expected to be unique within the scope
-     * of the service that generated the operation, and guarantees idempotency in
-     * case of retries.
+     * Identity of the operation. For Allocation Quota, this is expected to be
+     * unique within the scope of the service that generated the operation, and
+     * guarantees idempotency in case of retries.
      * In order to ensure best performance and latency in the Quota backends,
      * operation_ids are optimally associated with time, so that related
      * operations can be accessed fast in storage. For this reason, the

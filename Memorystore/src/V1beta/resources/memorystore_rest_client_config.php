@@ -47,6 +47,42 @@ return [
             ],
         ],
         'google.cloud.memorystore.v1beta.Memorystore' => [
+            'AddAuthToken' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta/{token_auth_user=projects/*/locations/*/instances/*/tokenAuthUsers/*}:addAuthToken',
+                'body' => '*',
+                'placeholders' => [
+                    'token_auth_user' => [
+                        'getters' => [
+                            'getTokenAuthUser',
+                        ],
+                    ],
+                ],
+            ],
+            'AddTokenAuthUser' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta/{instance=projects/*/locations/*/instances/*}:addTokenAuthUser',
+                'body' => '*',
+                'placeholders' => [
+                    'instance' => [
+                        'getters' => [
+                            'getInstance',
+                        ],
+                    ],
+                ],
+            ],
+            'BackupInstance' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta/{name=projects/*/locations/*/instances/*}:backup',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'CreateInstance' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1beta/{parent=projects/*/locations/*}/instances',
@@ -62,9 +98,99 @@ return [
                     'instance_id',
                 ],
             ],
+            'DeleteAuthToken' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1beta/{name=projects/*/locations/*/instances/*/tokenAuthUsers/*/authTokens/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteBackup' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1beta/{name=projects/*/locations/*/backupCollections/*/backups/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteInstance' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1beta/{name=projects/*/locations/*/instances/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteTokenAuthUser' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1beta/{name=projects/*/locations/*/instances/*/tokenAuthUsers/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ExportBackup' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta/{name=projects/*/locations/*/backupCollections/*/backups/*}:export',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'FinishMigration' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta/{name=projects/*/locations/*/instances/*}:finishMigration',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetAuthToken' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta/{name=projects/*/locations/*/instances/*/tokenAuthUsers/*/authTokens/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetBackup' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta/{name=projects/*/locations/*/backupCollections/*/backups/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetBackupCollection' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta/{name=projects/*/locations/*/backupCollections/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -106,6 +232,50 @@ return [
                     ],
                 ],
             ],
+            'GetTokenAuthUser' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta/{name=projects/*/locations/*/instances/*/tokenAuthUsers/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListAuthTokens' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta/{parent=projects/*/locations/*/instances/*/tokenAuthUsers/*}/authTokens',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListBackupCollections' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta/{parent=projects/*/locations/*}/backupCollections',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListBackups' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta/{parent=projects/*/locations/*/backupCollections/*}/backups',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListInstances' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1beta/{parent=projects/*/locations/*}/instances',
@@ -113,6 +283,41 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListTokenAuthUsers' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta/{parent=projects/*/locations/*/instances/*}/tokenAuthUsers',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'RescheduleMaintenance' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta/{name=projects/*/locations/*/instances/*}:rescheduleMaintenance',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'StartMigration' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta/{name=projects/*/locations/*/instances/*}:startMigration',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
                         ],
                     ],
                 ],

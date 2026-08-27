@@ -153,7 +153,11 @@ final class InstanceAdminClient
     /** The name of the code generator, to be included in the agent header. */
     private const CODEGEN_NAME = 'gapic';
 
-    /** The default scopes required by the service. */
+    /**
+     * The default scopes required by the service.
+     *
+     * @internal
+     */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
         'https://www.googleapis.com/auth/spanner.admin',
@@ -203,7 +207,10 @@ final class InstanceAdminClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
+        $options =
+            $methodName && isset($this->descriptors[$methodName]['longRunning'])
+                ? $this->descriptors[$methodName]['longRunning']
+                : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -534,8 +541,10 @@ final class InstanceAdminClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createInstanceConfig(CreateInstanceConfigRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createInstanceConfig(
+        CreateInstanceConfigRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateInstanceConfig', $request, $callOptions)->wait();
     }
 
@@ -597,8 +606,10 @@ final class InstanceAdminClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createInstancePartition(CreateInstancePartitionRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createInstancePartition(
+        CreateInstancePartitionRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateInstancePartition', $request, $callOptions)->wait();
     }
 
@@ -801,8 +812,10 @@ final class InstanceAdminClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getInstancePartition(GetInstancePartitionRequest $request, array $callOptions = []): InstancePartition
-    {
+    public function getInstancePartition(
+        GetInstancePartitionRequest $request,
+        array $callOptions = []
+    ): InstancePartition {
         return $this->startApiCall('GetInstancePartition', $request, $callOptions)->wait();
     }
 
@@ -838,8 +851,10 @@ final class InstanceAdminClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listInstanceConfigOperations(ListInstanceConfigOperationsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listInstanceConfigOperations(
+        ListInstanceConfigOperationsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListInstanceConfigOperations', $request, $callOptions);
     }
 
@@ -907,8 +922,10 @@ final class InstanceAdminClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listInstancePartitionOperations(ListInstancePartitionOperationsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listInstancePartitionOperations(
+        ListInstancePartitionOperationsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListInstancePartitionOperations', $request, $callOptions);
     }
 
@@ -933,8 +950,10 @@ final class InstanceAdminClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listInstancePartitions(ListInstancePartitionsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listInstancePartitions(
+        ListInstancePartitionsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListInstancePartitions', $request, $callOptions);
     }
 
@@ -1106,8 +1125,10 @@ final class InstanceAdminClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 
@@ -1239,8 +1260,10 @@ final class InstanceAdminClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateInstanceConfig(UpdateInstanceConfigRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function updateInstanceConfig(
+        UpdateInstanceConfigRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('UpdateInstanceConfig', $request, $callOptions)->wait();
     }
 
@@ -1308,8 +1331,10 @@ final class InstanceAdminClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateInstancePartition(UpdateInstancePartitionRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function updateInstancePartition(
+        UpdateInstancePartitionRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('UpdateInstancePartition', $request, $callOptions)->wait();
     }
 

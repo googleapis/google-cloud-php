@@ -39,6 +39,7 @@ use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
 use Google\Cloud\OracleDatabase\V1\AutonomousDatabase;
+use Google\Cloud\OracleDatabase\V1\AutonomousDatabaseRefreshableClones;
 use Google\Cloud\OracleDatabase\V1\CloudExadataInfrastructure;
 use Google\Cloud\OracleDatabase\V1\CloudVmCluster;
 use Google\Cloud\OracleDatabase\V1\ConfigureExascaleCloudExadataInfrastructureRequest;
@@ -71,6 +72,7 @@ use Google\Cloud\OracleDatabase\V1\ExascaleDbStorageVault;
 use Google\Cloud\OracleDatabase\V1\FailoverAutonomousDatabaseRequest;
 use Google\Cloud\OracleDatabase\V1\GenerateAutonomousDatabaseWalletRequest;
 use Google\Cloud\OracleDatabase\V1\GenerateAutonomousDatabaseWalletResponse;
+use Google\Cloud\OracleDatabase\V1\GetAutonomousDatabaseRefreshableClonesRequest;
 use Google\Cloud\OracleDatabase\V1\GetAutonomousDatabaseRequest;
 use Google\Cloud\OracleDatabase\V1\GetCloudExadataInfrastructureRequest;
 use Google\Cloud\OracleDatabase\V1\GetCloudVmClusterRequest;
@@ -119,6 +121,7 @@ use Google\Cloud\OracleDatabase\V1\ListPluggableDatabasesRequest;
 use Google\Cloud\OracleDatabase\V1\OdbNetwork;
 use Google\Cloud\OracleDatabase\V1\OdbSubnet;
 use Google\Cloud\OracleDatabase\V1\PluggableDatabase;
+use Google\Cloud\OracleDatabase\V1\RefreshAutonomousDatabaseRequest;
 use Google\Cloud\OracleDatabase\V1\RemoveVirtualMachineExadbVmClusterRequest;
 use Google\Cloud\OracleDatabase\V1\RestartAutonomousDatabaseRequest;
 use Google\Cloud\OracleDatabase\V1\RestoreAutonomousDatabaseRequest;
@@ -173,6 +176,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<OperationResponse> failoverAutonomousDatabaseAsync(FailoverAutonomousDatabaseRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<GenerateAutonomousDatabaseWalletResponse> generateAutonomousDatabaseWalletAsync(GenerateAutonomousDatabaseWalletRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<AutonomousDatabase> getAutonomousDatabaseAsync(GetAutonomousDatabaseRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AutonomousDatabaseRefreshableClones> getAutonomousDatabaseRefreshableClonesAsync(GetAutonomousDatabaseRefreshableClonesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<CloudExadataInfrastructure> getCloudExadataInfrastructureAsync(GetCloudExadataInfrastructureRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<CloudVmCluster> getCloudVmClusterAsync(GetCloudVmClusterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Database> getDatabaseAsync(GetDatabaseRequest $request, array $optionalArgs = [])
@@ -214,6 +218,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<PagedListResponse> listOdbNetworksAsync(ListOdbNetworksRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listOdbSubnetsAsync(ListOdbSubnetsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listPluggableDatabasesAsync(ListPluggableDatabasesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> refreshAutonomousDatabaseAsync(RefreshAutonomousDatabaseRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> removeVirtualMachineExadbVmClusterAsync(RemoveVirtualMachineExadbVmClusterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> restartAutonomousDatabaseAsync(RestartAutonomousDatabaseRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> restoreAutonomousDatabaseAsync(RestoreAutonomousDatabaseRequest $request, array $optionalArgs = [])
@@ -252,7 +257,11 @@ final class OracleDatabaseClient
     /** The name of the code generator, to be included in the agent header. */
     private const CODEGEN_NAME = 'gapic';
 
-    /** The default scopes required by the service. */
+    /**
+     * The default scopes required by the service.
+     *
+     * @internal
+     */
     public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private $operationsClient;
@@ -299,7 +308,10 @@ final class OracleDatabaseClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
+        $options =
+            $methodName && isset($this->descriptors[$methodName]['longRunning'])
+                ? $this->descriptors[$methodName]['longRunning']
+                : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -340,6 +352,28 @@ final class OracleDatabaseClient
             'project' => $project,
             'location' => $location,
             'autonomous_database' => $autonomousDatabase,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * autonomous_database_backup resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $autonomousDatabaseBackup
+     *
+     * @return string The formatted autonomous_database_backup resource.
+     */
+    public static function autonomousDatabaseBackupName(
+        string $project,
+        string $location,
+        string $autonomousDatabaseBackup
+    ): string {
+        return self::getPathTemplate('autonomousDatabaseBackup')->render([
+            'project' => $project,
+            'location' => $location,
+            'autonomous_database_backup' => $autonomousDatabaseBackup,
         ]);
     }
 
@@ -690,6 +724,7 @@ final class OracleDatabaseClient
      * The following name formats are supported:
      * Template: Pattern
      * - autonomousDatabase: projects/{project}/locations/{location}/autonomousDatabases/{autonomous_database}
+     * - autonomousDatabaseBackup: projects/{project}/locations/{location}/autonomousDatabaseBackups/{autonomous_database_backup}
      * - cloudExadataInfrastructure: projects/{project}/locations/{location}/cloudExadataInfrastructures/{cloud_exadata_infrastructure}
      * - cloudVmCluster: projects/{project}/locations/{location}/cloudVmClusters/{cloud_vm_cluster}
      * - cryptoKey: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}
@@ -1544,6 +1579,35 @@ final class OracleDatabaseClient
         array $callOptions = []
     ): AutonomousDatabase {
         return $this->startApiCall('GetAutonomousDatabase', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets the refreshable clones for a given Autonomous Database.
+     *
+     * The async variant is
+     * {@see OracleDatabaseClient::getAutonomousDatabaseRefreshableClonesAsync()} .
+     *
+     * @example samples/V1/OracleDatabaseClient/get_autonomous_database_refreshable_clones.php
+     *
+     * @param GetAutonomousDatabaseRefreshableClonesRequest $request     A request to house fields associated with the call.
+     * @param array                                         $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return AutonomousDatabaseRefreshableClones
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getAutonomousDatabaseRefreshableClones(
+        GetAutonomousDatabaseRefreshableClonesRequest $request,
+        array $callOptions = []
+    ): AutonomousDatabaseRefreshableClones {
+        return $this->startApiCall('GetAutonomousDatabaseRefreshableClones', $request, $callOptions)->wait();
     }
 
     /**
@@ -2682,6 +2746,35 @@ final class OracleDatabaseClient
         array $callOptions = []
     ): PagedListResponse {
         return $this->startApiCall('ListPluggableDatabases', $request, $callOptions);
+    }
+
+    /**
+     * Refreshes the refreshable clone of an Autonomous Database.
+     *
+     * The async variant is
+     * {@see OracleDatabaseClient::refreshAutonomousDatabaseAsync()} .
+     *
+     * @example samples/V1/OracleDatabaseClient/refresh_autonomous_database.php
+     *
+     * @param RefreshAutonomousDatabaseRequest $request     A request to house fields associated with the call.
+     * @param array                            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<AutonomousDatabase>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function refreshAutonomousDatabase(
+        RefreshAutonomousDatabaseRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('RefreshAutonomousDatabase', $request, $callOptions)->wait();
     }
 
     /**

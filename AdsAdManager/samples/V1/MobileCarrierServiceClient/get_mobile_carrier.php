@@ -29,7 +29,7 @@ use Google\Ads\AdManager\V1\MobileCarrier;
 use Google\ApiCore\ApiException;
 
 /**
- * API to retrieve a `MobileCarrier` object.
+ * Retrieves a `MobileCarrier` object.
  *
  * @param string $formattedName The resource name of the MobileCarrier.
  *                              Format: `networks/{network_code}/mobileCarriers/{mobile_carrier_id}`

@@ -31,7 +31,7 @@ use Google\Ads\AdManager\V1\UpdateApplicationRequest;
 use Google\ApiCore\ApiException;
 
 /**
- * API to batch update `Application` objects.
+ * Batch updates `Application` objects.
  *
  * @param string $formattedParent                The parent resource where `Applications` will be updated.
  *                                               Format: `networks/{network_code}`

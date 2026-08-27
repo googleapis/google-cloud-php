@@ -23,6 +23,14 @@ class SelfManaged extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string resource_uri = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
     protected $resource_uri = '';
+    /**
+     * Optional. List of supported Google Cloud networking proxies in the Project and
+     * Location.
+     * resource_uris is mutually exclusive with resource_uri.
+     *
+     * Generated from protobuf field <code>repeated string resource_uris = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     */
+    private $resource_uris;
 
     /**
      * Constructor.
@@ -33,6 +41,10 @@ class SelfManaged extends \Google\Protobuf\Internal\Message
      *     @type string $resource_uri
      *           Optional. A supported Google Cloud networking proxy in the Project and
      *           Location
+     *     @type string[] $resource_uris
+     *           Optional. List of supported Google Cloud networking proxies in the Project and
+     *           Location.
+     *           resource_uris is mutually exclusive with resource_uri.
      * }
      */
     public function __construct($data = NULL) {
@@ -64,6 +76,36 @@ class SelfManaged extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->resource_uri = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. List of supported Google Cloud networking proxies in the Project and
+     * Location.
+     * resource_uris is mutually exclusive with resource_uri.
+     *
+     * Generated from protobuf field <code>repeated string resource_uris = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return RepeatedField<string>
+     */
+    public function getResourceUris()
+    {
+        return $this->resource_uris;
+    }
+
+    /**
+     * Optional. List of supported Google Cloud networking proxies in the Project and
+     * Location.
+     * resource_uris is mutually exclusive with resource_uri.
+     *
+     * Generated from protobuf field <code>repeated string resource_uris = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param string[] $var
+     * @return $this
+     */
+    public function setResourceUris($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->resource_uris = $arr;
 
         return $this;
     }

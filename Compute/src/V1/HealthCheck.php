@@ -132,7 +132,7 @@ class HealthCheck extends \Google\Protobuf\Internal\Message
      * If this list is non-empty, then there are restrictions
      * on what other health check fields are supported and what other resources
      * can use this health check:
-     *    - SSL, HTTP2, and GRPC protocols are not supported.
+     *    - SSL, HTTP2, GRPC, and GRPC_WITH_TLS protocols are not supported.
      *    - The TCP request field is not supported.
      *    - The proxyHeader field for HTTP, HTTPS, and TCP is not
      *    supported.
@@ -160,8 +160,9 @@ class HealthCheck extends \Google\Protobuf\Internal\Message
      */
     protected $timeout_sec = null;
     /**
-     * Specifies the type of the healthCheck, either TCP,SSL, HTTP, HTTPS,HTTP2 or GRPC. Exactly one of the
-     * protocol-specific health check fields must be specified, which must matchtype field.
+     * Specifies the type of the healthCheck, either TCP,SSL, HTTP, HTTPS,HTTP2, GRPC or GRPC_WITH_TLS.
+     * Exactly one of the protocol-specific health check fields must be specified,
+     * which must match type field.
      * Check the Type enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string type = 3575610;</code>
@@ -226,7 +227,7 @@ class HealthCheck extends \Google\Protobuf\Internal\Message
      *           If this list is non-empty, then there are restrictions
      *           on what other health check fields are supported and what other resources
      *           can use this health check:
-     *              - SSL, HTTP2, and GRPC protocols are not supported.
+     *              - SSL, HTTP2, GRPC, and GRPC_WITH_TLS protocols are not supported.
      *              - The TCP request field is not supported.
      *              - The proxyHeader field for HTTP, HTTPS, and TCP is not
      *              supported.
@@ -240,8 +241,9 @@ class HealthCheck extends \Google\Protobuf\Internal\Message
      *           5 seconds. It is invalid for timeoutSec to have greater
      *           value than checkIntervalSec.
      *     @type string $type
-     *           Specifies the type of the healthCheck, either TCP,SSL, HTTP, HTTPS,HTTP2 or GRPC. Exactly one of the
-     *           protocol-specific health check fields must be specified, which must matchtype field.
+     *           Specifies the type of the healthCheck, either TCP,SSL, HTTP, HTTPS,HTTP2, GRPC or GRPC_WITH_TLS.
+     *           Exactly one of the protocol-specific health check fields must be specified,
+     *           which must match type field.
      *           Check the Type enum for the list of possible values.
      *     @type int $unhealthy_threshold
      *           A so-far healthy instance will be marked unhealthy after this many
@@ -805,7 +807,7 @@ class HealthCheck extends \Google\Protobuf\Internal\Message
      * If this list is non-empty, then there are restrictions
      * on what other health check fields are supported and what other resources
      * can use this health check:
-     *    - SSL, HTTP2, and GRPC protocols are not supported.
+     *    - SSL, HTTP2, GRPC, and GRPC_WITH_TLS protocols are not supported.
      *    - The TCP request field is not supported.
      *    - The proxyHeader field for HTTP, HTTPS, and TCP is not
      *    supported.
@@ -829,7 +831,7 @@ class HealthCheck extends \Google\Protobuf\Internal\Message
      * If this list is non-empty, then there are restrictions
      * on what other health check fields are supported and what other resources
      * can use this health check:
-     *    - SSL, HTTP2, and GRPC protocols are not supported.
+     *    - SSL, HTTP2, GRPC, and GRPC_WITH_TLS protocols are not supported.
      *    - The TCP request field is not supported.
      *    - The proxyHeader field for HTTP, HTTPS, and TCP is not
      *    supported.
@@ -954,8 +956,9 @@ class HealthCheck extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the type of the healthCheck, either TCP,SSL, HTTP, HTTPS,HTTP2 or GRPC. Exactly one of the
-     * protocol-specific health check fields must be specified, which must matchtype field.
+     * Specifies the type of the healthCheck, either TCP,SSL, HTTP, HTTPS,HTTP2, GRPC or GRPC_WITH_TLS.
+     * Exactly one of the protocol-specific health check fields must be specified,
+     * which must match type field.
      * Check the Type enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string type = 3575610;</code>
@@ -977,8 +980,9 @@ class HealthCheck extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the type of the healthCheck, either TCP,SSL, HTTP, HTTPS,HTTP2 or GRPC. Exactly one of the
-     * protocol-specific health check fields must be specified, which must matchtype field.
+     * Specifies the type of the healthCheck, either TCP,SSL, HTTP, HTTPS,HTTP2, GRPC or GRPC_WITH_TLS.
+     * Exactly one of the protocol-specific health check fields must be specified,
+     * which must match type field.
      * Check the Type enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string type = 3575610;</code>

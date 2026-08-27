@@ -85,7 +85,11 @@ final class SqlBackupsServiceClient
     /** The name of the code generator, to be included in the agent header. */
     private const CODEGEN_NAME = 'gapic';
 
-    /** The default scopes required by the service. */
+    /**
+     * The default scopes required by the service.
+     *
+     * @internal
+     */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
         'https://www.googleapis.com/auth/sqlservice.admin',
@@ -143,11 +147,34 @@ final class SqlBackupsServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * service_connection_policy resource.
+     *
+     * @param string $project
+     * @param string $region
+     * @param string $serviceConnectionPolicy
+     *
+     * @return string The formatted service_connection_policy resource.
+     */
+    public static function serviceConnectionPolicyName(
+        string $project,
+        string $region,
+        string $serviceConnectionPolicy
+    ): string {
+        return self::getPathTemplate('serviceConnectionPolicy')->render([
+            'project' => $project,
+            'region' => $region,
+            'service_connection_policy' => $serviceConnectionPolicy,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - backup: projects/{project}/backups/{backup}
      * - project: projects/{project}
+     * - serviceConnectionPolicy: projects/{project}/regions/{region}/serviceConnectionPolicies/{service_connection_policy}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is

@@ -29,7 +29,7 @@ use Google\Ads\AdManager\V1\GetCustomFieldRequest;
 use Google\ApiCore\ApiException;
 
 /**
- * API to retrieve a `CustomField` object.
+ * Retrieves a `CustomField` object.
  *
  * @param string $formattedName The resource name of the CustomField.
  *                              Format: `networks/{network_code}/customFields/{custom_field_id}`

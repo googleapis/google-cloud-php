@@ -60,7 +60,6 @@ class CredentialsWrapper implements HeaderCredentialsInterface, ProjectIdProvide
     /** @var callable $authHttpHandle */
     private $authHttpHandler;
 
-    private string $universeDomain;
     private bool $hasCheckedUniverse = false;
 
     /** @var int */
@@ -78,14 +77,13 @@ class CredentialsWrapper implements HeaderCredentialsInterface, ProjectIdProvide
     public function __construct(
         FetchAuthTokenInterface $credentialsFetcher,
         ?callable $authHttpHandler = null,
-        string $universeDomain = GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN
+        private string $universeDomain = GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN,
     ) {
         $this->credentialsFetcher = $credentialsFetcher;
         $this->authHttpHandler = $authHttpHandler;
         if (empty($universeDomain)) {
             throw new ValidationException('The universe domain cannot be empty');
         }
-        $this->universeDomain = $universeDomain;
     }
 
     /**
@@ -118,6 +116,9 @@ class CredentialsWrapper implements HeaderCredentialsInterface, ProjectIdProvide
      *     @type bool $useJwtAccessWithScope
      *           Ensures service account credentials use JWT Access (also known as self-signed
      *           JWTs), even when user-defined scopes are supplied.
+     *     @type bool $enableRegionalAccessBoundary
+     *           Enable the Regional Access Boundary lookup in the credentials which sets the
+     *           `x-allowed-locations` header in the request.
      * }
      * @param string $universeDomain The expected universe of the credentials. Defaults to
      *                               "googleapis.com"
@@ -138,6 +139,7 @@ class CredentialsWrapper implements HeaderCredentialsInterface, ProjectIdProvide
             'quotaProject'      => null,
             'defaultScopes'     => null,
             'useJwtAccessWithScope' => true,
+            'enableRegionalAccessBoundary' => false,
         ];
 
         $keyFile = $args['keyFile'];
@@ -149,7 +151,8 @@ class CredentialsWrapper implements HeaderCredentialsInterface, ProjectIdProvide
                 $args['authCacheOptions'],
                 $args['authCache'],
                 $args['quotaProject'],
-                $args['defaultScopes']
+                $args['defaultScopes'],
+                $args['enableRegionalAccessBoundary'],
             );
             if ($loader instanceof FetchAuthTokenCache) {
                 $loader = $loader->getFetcher();
@@ -169,7 +172,8 @@ class CredentialsWrapper implements HeaderCredentialsInterface, ProjectIdProvide
             $loader = CredentialsLoader::makeCredentials(
                 $args['scopes'],
                 $keyFile,
-                $args['defaultScopes']
+                $args['defaultScopes'],
+                $args['enableRegionalAccessBoundary'],
             );
         }
 
@@ -306,7 +310,8 @@ class CredentialsWrapper implements HeaderCredentialsInterface, ProjectIdProvide
         ?array $authCacheOptions = null,
         ?CacheItemPoolInterface $authCache = null,
         $quotaProject = null,
-        ?array $defaultScopes = null
+        ?array $defaultScopes = null,
+        bool $enableRegionalAccessBoundary = true,
     ) {
         try {
             return ApplicationDefaultCredentials::getCredentials(
@@ -315,7 +320,10 @@ class CredentialsWrapper implements HeaderCredentialsInterface, ProjectIdProvide
                 $authCacheOptions,
                 $authCache,
                 $quotaProject,
-                $defaultScopes
+                $defaultScopes,
+                null, // $universeDomain
+                null, // $logger
+                $enableRegionalAccessBoundary,
             );
         } catch (DomainException $ex) {
             throw new ValidationException('Could not construct ApplicationDefaultCredentials', $ex->getCode(), $ex);

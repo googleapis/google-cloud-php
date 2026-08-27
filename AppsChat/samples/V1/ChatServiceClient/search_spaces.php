@@ -30,23 +30,35 @@ use Google\Apps\Chat\V1\SearchSpacesRequest;
 use Google\Apps\Chat\V1\Space;
 
 /**
- * Returns a list of spaces in a Google Workspace organization based on an
- * administrator's search. In the request, set `use_admin_access` to `true`.
- * For an example, see [Search for and manage
+ * Returns a list of spaces in a Google Workspace organization. For an
+ * example, see [Search for and manage
  * spaces](https://developers.google.com/workspace/chat/search-manage-admin).
  *
- * Requires [user
+ * When `use_admin_access` is set to `false`, the results are limited to
+ * spaces where the calling user is a joined member. To search with
+ * administrator privileges, set `use_admin_access` to `true`.
+ *
+ * Supports the following types of
+ * [authentication](https://developers.google.com/workspace/chat/authenticate-authorize):
+ *
+ * - [User
+ * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+ * with one of the following authorization scopes:
+ * - `https://www.googleapis.com/auth/chat.spaces.readonly`
+ * - `https://www.googleapis.com/auth/chat.spaces`
+ *
+ * - [User
  * authentication with administrator
  * privileges](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user#admin-privileges)
  * and one of the following [authorization
  * scopes](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes):
- *
  * - `https://www.googleapis.com/auth/chat.admin.spaces.readonly`
  * - `https://www.googleapis.com/auth/chat.admin.spaces`
  *
  * @param string $query A search query.
  *
- *                      You can search by using the following parameters:
+ *                      You can search by using the following parameters when `useAdminAccess`
+ *                      is set to `true`:
  *
  *                      - `create_time`
  *                      - `customer`
@@ -56,18 +68,27 @@ use Google\Apps\Chat\V1\Space;
  *                      - `space_history_state`
  *                      - `space_type`
  *
+ *                      When `useAdminAccess` is set to `false`:
+ *
+ *                      - `display_name`
+ *                      - `external_user_allowed`
+ *                      - `space_type`
+ *
  *                      `create_time` and `last_active_time` accept a timestamp in
  *                      [RFC-3339](https://www.rfc-editor.org/rfc/rfc3339) format and the supported
  *                      comparison operators are: `=`, `<`, `>`, `<=`, `>=`.
  *
- *                      `customer` is required and is used to indicate which customer
- *                      to fetch spaces from. `customers/my_customer` is the only supported value.
+ *                      `customer` is required when `useAdminAccess` is set to `true`, and is
+ *                      used to indicate which customer to fetch spaces from.
+ *                      `customers/my_customer` is the only supported value.
  *
  *                      `display_name` only accepts the `HAS` (`:`) operator. The text to
  *                      match is first tokenized into tokens and each token is prefix-matched
  *                      case-insensitively and independently as a substring anywhere in the space's
  *                      `display_name`. For example, `Fun Eve` matches `Fun event` or `The
- *                      evening was fun`, but not `notFun event` or `even`.
+ *                      evening was fun`, but not `notFun event` or `even`. When `useAdminAccess`
+ *                      is set to `false`, `display_name` is required to retrieve meaningful
+ *                      results. Otherwise, the default behavior is to return an empty response.
  *
  *                      `external_user_allowed` accepts either `true` or `false`.
  *
@@ -90,7 +111,8 @@ use Google\Apps\Chat\V1\Space;
  *                      < "2022-01-01T00:00:00+00:00" AND last_active_time >
  *                      "2023-01-01T00:00:00+00:00"`.
  *
- *                      The following example queries are valid:
+ *                      The following example queries are valid when `useAdminAccess` is set to
+ *                      `true`:
  *
  *                      ```
  *                      customer = "customers/my_customer" AND space_type = "SPACE"
@@ -111,6 +133,21 @@ use Google\Apps\Chat\V1\Space;
  *                      (create_time > "2019-01-01T00:00:00+00:00" AND create_time <
  *                      "2020-01-01T00:00:00+00:00") AND (external_user_allowed = "true") AND
  *                      (space_history_state = "HISTORY_ON" OR space_history_state = "HISTORY_OFF")
+ *                      ```
+ *
+ *                      The following example queries are valid when `useAdminAccess` is set to
+ *                      `false`:
+ *
+ *                      ```
+ *                      display_name:"Hello World" AND space_type = "SPACE"
+ *
+ *                      (display_name:"Hello" OR display_name:"Fun") AND space_type = "SPACE"
+ *
+ *                      (external_user_allowed = "true" AND space_type = "SPACE") // Returns an
+ *                      empty response.
+ *
+ *                      (external_user_allowed = "true" AND display_name:"Hello" AND space_type =
+ *                      "SPACE")
  *                      ```
  */
 function search_spaces_sample(string $query): void

@@ -124,6 +124,7 @@ class CloudRedisClusterClientTest extends GeneratedTest
         $deletionProtectionEnabled = true;
         $backupCollection = 'backupCollection-1182285509';
         $kmsKey = 'kmsKey-591635343';
+        $asyncClusterEndpointsDeletionEnabled = false;
         $serverCaPool = 'serverCaPool-1294323103';
         $rotateServerCertificate = false;
         $expectedResponse = new Cluster();
@@ -136,6 +137,7 @@ class CloudRedisClusterClientTest extends GeneratedTest
         $expectedResponse->setDeletionProtectionEnabled($deletionProtectionEnabled);
         $expectedResponse->setBackupCollection($backupCollection);
         $expectedResponse->setKmsKey($kmsKey);
+        $expectedResponse->setAsyncClusterEndpointsDeletionEnabled($asyncClusterEndpointsDeletionEnabled);
         $expectedResponse->setServerCaPool($serverCaPool);
         $expectedResponse->setRotateServerCertificate($rotateServerCertificate);
         $anyResponse = new Any();
@@ -268,6 +270,7 @@ class CloudRedisClusterClientTest extends GeneratedTest
         $deletionProtectionEnabled = true;
         $backupCollection = 'backupCollection-1182285509';
         $kmsKey = 'kmsKey-591635343';
+        $asyncClusterEndpointsDeletionEnabled = false;
         $serverCaPool = 'serverCaPool-1294323103';
         $rotateServerCertificate = false;
         $expectedResponse = new Cluster();
@@ -280,6 +283,7 @@ class CloudRedisClusterClientTest extends GeneratedTest
         $expectedResponse->setDeletionProtectionEnabled($deletionProtectionEnabled);
         $expectedResponse->setBackupCollection($backupCollection);
         $expectedResponse->setKmsKey($kmsKey);
+        $expectedResponse->setAsyncClusterEndpointsDeletionEnabled($asyncClusterEndpointsDeletionEnabled);
         $expectedResponse->setServerCaPool($serverCaPool);
         $expectedResponse->setRotateServerCertificate($rotateServerCertificate);
         $anyResponse = new Any();
@@ -952,6 +956,7 @@ class CloudRedisClusterClientTest extends GeneratedTest
         $deletionProtectionEnabled = true;
         $backupCollection = 'backupCollection-1182285509';
         $kmsKey = 'kmsKey-591635343';
+        $asyncClusterEndpointsDeletionEnabled = false;
         $serverCaPool = 'serverCaPool-1294323103';
         $rotateServerCertificate = false;
         $expectedResponse = new Cluster();
@@ -964,6 +969,7 @@ class CloudRedisClusterClientTest extends GeneratedTest
         $expectedResponse->setDeletionProtectionEnabled($deletionProtectionEnabled);
         $expectedResponse->setBackupCollection($backupCollection);
         $expectedResponse->setKmsKey($kmsKey);
+        $expectedResponse->setAsyncClusterEndpointsDeletionEnabled($asyncClusterEndpointsDeletionEnabled);
         $expectedResponse->setServerCaPool($serverCaPool);
         $expectedResponse->setRotateServerCertificate($rotateServerCertificate);
         $transport->addResponse($expectedResponse);
@@ -1398,6 +1404,7 @@ class CloudRedisClusterClientTest extends GeneratedTest
         $deletionProtectionEnabled = true;
         $backupCollection = 'backupCollection-1182285509';
         $kmsKey = 'kmsKey-591635343';
+        $asyncClusterEndpointsDeletionEnabled = false;
         $serverCaPool = 'serverCaPool-1294323103';
         $rotateServerCertificate = false;
         $expectedResponse = new Cluster();
@@ -1410,6 +1417,7 @@ class CloudRedisClusterClientTest extends GeneratedTest
         $expectedResponse->setDeletionProtectionEnabled($deletionProtectionEnabled);
         $expectedResponse->setBackupCollection($backupCollection);
         $expectedResponse->setKmsKey($kmsKey);
+        $expectedResponse->setAsyncClusterEndpointsDeletionEnabled($asyncClusterEndpointsDeletionEnabled);
         $expectedResponse->setServerCaPool($serverCaPool);
         $expectedResponse->setRotateServerCertificate($rotateServerCertificate);
         $anyResponse = new Any();
@@ -1553,6 +1561,7 @@ class CloudRedisClusterClientTest extends GeneratedTest
         $deletionProtectionEnabled = true;
         $backupCollection = 'backupCollection-1182285509';
         $kmsKey = 'kmsKey-591635343';
+        $asyncClusterEndpointsDeletionEnabled = false;
         $serverCaPool = 'serverCaPool-1294323103';
         $rotateServerCertificate = false;
         $expectedResponse = new Cluster();
@@ -1565,6 +1574,7 @@ class CloudRedisClusterClientTest extends GeneratedTest
         $expectedResponse->setDeletionProtectionEnabled($deletionProtectionEnabled);
         $expectedResponse->setBackupCollection($backupCollection);
         $expectedResponse->setKmsKey($kmsKey);
+        $expectedResponse->setAsyncClusterEndpointsDeletionEnabled($asyncClusterEndpointsDeletionEnabled);
         $expectedResponse->setServerCaPool($serverCaPool);
         $expectedResponse->setRotateServerCertificate($rotateServerCertificate);
         $anyResponse = new Any();
@@ -1833,6 +1843,7 @@ class CloudRedisClusterClientTest extends GeneratedTest
         $deletionProtectionEnabled = true;
         $backupCollection = 'backupCollection-1182285509';
         $kmsKey = 'kmsKey-591635343';
+        $asyncClusterEndpointsDeletionEnabled = false;
         $serverCaPool = 'serverCaPool-1294323103';
         $rotateServerCertificate = false;
         $expectedResponse = new Cluster();
@@ -1845,6 +1856,7 @@ class CloudRedisClusterClientTest extends GeneratedTest
         $expectedResponse->setDeletionProtectionEnabled($deletionProtectionEnabled);
         $expectedResponse->setBackupCollection($backupCollection);
         $expectedResponse->setKmsKey($kmsKey);
+        $expectedResponse->setAsyncClusterEndpointsDeletionEnabled($asyncClusterEndpointsDeletionEnabled);
         $expectedResponse->setServerCaPool($serverCaPool);
         $expectedResponse->setRotateServerCertificate($rotateServerCertificate);
         $anyResponse = new Any();

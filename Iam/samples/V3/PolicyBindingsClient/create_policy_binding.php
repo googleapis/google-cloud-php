@@ -34,7 +34,7 @@ use Google\Rpc\Status;
 /**
  * Creates a policy binding and returns a long-running operation.
  * Callers will need the IAM permissions on both the policy and target.
- * Once the binding is created, the policy is applied to the target.
+ * After the binding is created, the policy is applied to the target.
  *
  * @param string $formattedParent     The parent resource where this policy binding will be created.
  *                                    The binding parent is the closest Resource Manager resource (project,

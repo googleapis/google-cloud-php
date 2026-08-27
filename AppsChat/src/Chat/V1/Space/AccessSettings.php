@@ -49,6 +49,14 @@ class AccessSettings extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string audience = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $audience = '';
+    /**
+     * Optional. Access permission settings for the space.
+     * To set the target audience when creating a space, specify the
+     * `accessSettings.audience` field in your request.
+     *
+     * Generated from protobuf field <code>.google.chat.v1.Space.AccessPermissionSettings access_permission_settings = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $access_permission_settings = null;
 
     /**
      * Constructor.
@@ -81,6 +89,10 @@ class AccessSettings extends \Google\Protobuf\Internal\Message
      *           authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app).
      *           Setting the target audience requires [user
      *           authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+     *     @type \Google\Apps\Chat\V1\Space\AccessPermissionSettings $access_permission_settings
+     *           Optional. Access permission settings for the space.
+     *           To set the target audience when creating a space, specify the
+     *           `accessSettings.audience` field in your request.
      * }
      */
     public function __construct($data = NULL) {
@@ -178,6 +190,46 @@ class AccessSettings extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->audience = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Access permission settings for the space.
+     * To set the target audience when creating a space, specify the
+     * `accessSettings.audience` field in your request.
+     *
+     * Generated from protobuf field <code>.google.chat.v1.Space.AccessPermissionSettings access_permission_settings = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Apps\Chat\V1\Space\AccessPermissionSettings|null
+     */
+    public function getAccessPermissionSettings()
+    {
+        return $this->access_permission_settings;
+    }
+
+    public function hasAccessPermissionSettings()
+    {
+        return isset($this->access_permission_settings);
+    }
+
+    public function clearAccessPermissionSettings()
+    {
+        unset($this->access_permission_settings);
+    }
+
+    /**
+     * Optional. Access permission settings for the space.
+     * To set the target audience when creating a space, specify the
+     * `accessSettings.audience` field in your request.
+     *
+     * Generated from protobuf field <code>.google.chat.v1.Space.AccessPermissionSettings access_permission_settings = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Apps\Chat\V1\Space\AccessPermissionSettings $var
+     * @return $this
+     */
+    public function setAccessPermissionSettings($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Apps\Chat\V1\Space\AccessPermissionSettings::class);
+        $this->access_permission_settings = $var;
 
         return $this;
     }

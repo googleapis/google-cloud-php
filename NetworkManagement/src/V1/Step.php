@@ -137,6 +137,8 @@ class Step extends \Google\Protobuf\Internal\Message
      *           only for return traces.
      *     @type \Google\Cloud\NetworkManagement\V1\NgfwPacketInspectionInfo $ngfw_packet_inspection
      *           Display information of a layer 7 packet inspection by the firewall.
+     *     @type \Google\Cloud\NetworkManagement\V1\PrivateConnectionInfo $dms_private_connection
+     *           Display information of a DMS Private Connection.
      * }
      */
     public function __construct($data = NULL) {
@@ -1414,6 +1416,37 @@ class Step extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\NetworkManagement\V1\NgfwPacketInspectionInfo::class);
         $this->writeOneof(42, $var);
+
+        return $this;
+    }
+
+    /**
+     * Display information of a DMS Private Connection.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.PrivateConnectionInfo dms_private_connection = 43;</code>
+     * @return \Google\Cloud\NetworkManagement\V1\PrivateConnectionInfo|null
+     */
+    public function getDmsPrivateConnection()
+    {
+        return $this->readOneof(43);
+    }
+
+    public function hasDmsPrivateConnection()
+    {
+        return $this->hasOneof(43);
+    }
+
+    /**
+     * Display information of a DMS Private Connection.
+     *
+     * Generated from protobuf field <code>.google.cloud.networkmanagement.v1.PrivateConnectionInfo dms_private_connection = 43;</code>
+     * @param \Google\Cloud\NetworkManagement\V1\PrivateConnectionInfo $var
+     * @return $this
+     */
+    public function setDmsPrivateConnection($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\NetworkManagement\V1\PrivateConnectionInfo::class);
+        $this->writeOneof(43, $var);
 
         return $this;
     }

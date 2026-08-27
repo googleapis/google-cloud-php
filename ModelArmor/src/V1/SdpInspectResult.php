@@ -55,6 +55,12 @@ class SdpInspectResult extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool findings_truncated = 5;</code>
      */
     protected $findings_truncated = false;
+    /**
+     * Contains text extracted from the image, if applicable.
+     *
+     * Generated from protobuf field <code>string extracted_image_text = 6;</code>
+     */
+    protected $extracted_image_text = '';
 
     /**
      * Constructor.
@@ -82,6 +88,8 @@ class SdpInspectResult extends \Google\Protobuf\Internal\Message
      *           list might be truncated because the input items were too large, or because
      *           the server reached the maximum amount of resources allowed for a single API
      *           call.
+     *     @type string $extracted_image_text
+     *           Contains text extracted from the image, if applicable.
      * }
      */
     public function __construct($data = NULL) {
@@ -235,6 +243,32 @@ class SdpInspectResult extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->findings_truncated = $var;
+
+        return $this;
+    }
+
+    /**
+     * Contains text extracted from the image, if applicable.
+     *
+     * Generated from protobuf field <code>string extracted_image_text = 6;</code>
+     * @return string
+     */
+    public function getExtractedImageText()
+    {
+        return $this->extracted_image_text;
+    }
+
+    /**
+     * Contains text extracted from the image, if applicable.
+     *
+     * Generated from protobuf field <code>string extracted_image_text = 6;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setExtractedImageText($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->extracted_image_text = $var;
 
         return $this;
     }

@@ -94,7 +94,11 @@ final class LabelServiceClient
     /** The name of the code generator, to be included in the agent header. */
     private const CODEGEN_NAME = 'gapic';
 
-    /** The default scopes required by the service. */
+    /**
+     * The default scopes required by the service.
+     *
+     * @internal
+     */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/admanager',
         'https://www.googleapis.com/auth/admanager.readonly',
@@ -271,7 +275,7 @@ final class LabelServiceClient
     }
 
     /**
-     * API to activate `Label` objects.
+     * Activates `Label` objects.
      *
      * The async variant is {@see LabelServiceClient::batchActivateLabelsAsync()} .
      *
@@ -299,7 +303,7 @@ final class LabelServiceClient
     }
 
     /**
-     * API to batch create `Label` objects.
+     * Creates `Label` objects.
      *
      * The async variant is {@see LabelServiceClient::batchCreateLabelsAsync()} .
      *
@@ -327,7 +331,7 @@ final class LabelServiceClient
     }
 
     /**
-     * API to deactivate `Label` objects.
+     * Deactivates `Label` objects.
      *
      * The async variant is {@see LabelServiceClient::batchDeactivateLabelsAsync()} .
      *
@@ -355,7 +359,7 @@ final class LabelServiceClient
     }
 
     /**
-     * API to batch update `Label` objects.
+     * Batch updates `Label` objects.
      *
      * The async variant is {@see LabelServiceClient::batchUpdateLabelsAsync()} .
      *
@@ -383,7 +387,7 @@ final class LabelServiceClient
     }
 
     /**
-     * API to create a `Label` object.
+     * Creates a `Label` object.
      *
      * The async variant is {@see LabelServiceClient::createLabelAsync()} .
      *
@@ -409,7 +413,7 @@ final class LabelServiceClient
     }
 
     /**
-     * API to retrieve a `Label` object.
+     * Retrieves a `Label` object.
      *
      * The async variant is {@see LabelServiceClient::getLabelAsync()} .
      *
@@ -435,7 +439,7 @@ final class LabelServiceClient
     }
 
     /**
-     * API to retrieve a list of `Label` objects.
+     * Lists `Label` objects.
      *
      * The async variant is {@see LabelServiceClient::listLabelsAsync()} .
      *
@@ -461,7 +465,7 @@ final class LabelServiceClient
     }
 
     /**
-     * API to update a `Label` object.
+     * Updates a `Label` object.
      *
      * The async variant is {@see LabelServiceClient::updateLabelAsync()} .
      *

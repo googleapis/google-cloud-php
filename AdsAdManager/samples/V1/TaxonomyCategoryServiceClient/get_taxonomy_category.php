@@ -29,7 +29,7 @@ use Google\Ads\AdManager\V1\TaxonomyCategory;
 use Google\ApiCore\ApiException;
 
 /**
- * API to retrieve a `TaxonomyCategory` object.
+ * Retrieves a `TaxonomyCategory` object.
  *
  * @param string $formattedName The resource name of the TaxonomyCategory.
  *                              Format: `networks/{network_code}/taxonomyCategories/{taxonomy_category_id}`

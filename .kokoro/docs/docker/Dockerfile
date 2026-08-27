@@ -1,4 +1,4 @@
-FROM gcr.io/gcp-runtimes/ubuntu_20_0_4
+FROM gcr.io/gcp-runtimes/ubuntu_20_0_4@sha256:666805a878d9cd58ce9dfd6f423e2d0e3bdf01eea0cddd2be3a88244c1d4dfa5
 ENV PHP_DIR=/opt/php82
 ENV PHP_VERSION=8.2.30
 ENV PHP_SRC_DIR=/usr/local/src/php82-build
@@ -82,8 +82,15 @@ RUN ln -s /usr/lib/libc-client.a /usr/lib/x86_64-linux-gnu/libc-client.a && \
         make install && \
         cp php.ini-production ${PHP_DIR}/lib/php.ini
 
+RUN apt-get update && apt-get install -y \
+    gcc-10 \
+    g++-10 \
+    && rm -rf /var/lib/apt/lists/*
+
 # Install gRPC
-RUN pecl install grpc && \
+# 2. Export CC and CXX to use GCC 10 during PECL compilation
+RUN export CC=gcc-10 && export CXX=g++-10 && \
+    pecl install grpc && \
     echo 'extension=grpc.so' >> ${PHP_DIR}/lib/conf.d/ext-grpc.ini
 
 # Install composer
@@ -101,18 +108,26 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" &&
 RUN wget -O /usr/local/bin/phpdoc "https://github.com/phpDocumentor/phpDocumentor/releases/download/v3.5.3/phpDocumentor.phar" \
   && chmod +x /usr/local/bin/phpdoc
 
-# Install Python3
-RUN wget https://www.python.org/ftp/python/3.9.14/Python-3.9.14.tgz \
-    && tar -xvf Python-3.9.14.tgz \
-    && ./Python-3.9.14/configure --enable-optimizations \
-    && make altinstall
+# Install Python3 (Optimized Source Build for Docker)
+RUN wget https://www.python.org/ftp/python/3.11.15/Python-3.11.15.tgz \
+    && tar -xvf Python-3.11.15.tgz \
+    && cd Python-3.11.15 \
+    && ./configure \
+    && make altinstall \
+    && cd .. \
+    && rm -rf Python-3.11.15 Python-3.11.15.tgz
 
 # Install pip
 RUN wget -O /tmp/get-pip.py 'https://bootstrap.pypa.io/get-pip.py' \
-  && python3.9 /tmp/get-pip.py \
+  && python3.11 /tmp/get-pip.py \
   && rm /tmp/get-pip.py \
-  && python3.9 -m pip
+  && python3.11 -m pip
+
+# Define the prefix argument, default to backend build environment.
+# Override this locally by using the following:
+#     docker build --build-arg PATH_PREFIX="." .
+ARG PATH_PREFIX="git/build-dir/.kokoro/docs/docker"
 
 # Install docsuploader
-COPY requirements.txt .
-RUN python3.9 -m pip install --require-hashes -r requirements.txt
+COPY ${PATH_PREFIX}/requirements.txt .
+RUN python3.11 -m pip install --require-hashes -r requirements.txt

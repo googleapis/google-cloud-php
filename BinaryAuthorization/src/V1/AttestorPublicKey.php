@@ -9,8 +9,9 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * An [attestor public key][google.cloud.binaryauthorization.v1.AttestorPublicKey] that will be used to verify
- * attestations signed by this attestor.
+ * An [attestor public
+ * key][google.cloud.binaryauthorization.v1.AttestorPublicKey] that will be used
+ * to verify attestations signed by this attestor.
  *
  * Generated from protobuf message <code>google.cloud.binaryauthorization.v1.AttestorPublicKey</code>
  */
@@ -24,12 +25,11 @@ class AttestorPublicKey extends \Google\Protobuf\Internal\Message
     protected $comment = '';
     /**
      * The ID of this public key.
-     * Signatures verified by BinAuthz must include the ID of the public key that
-     * can be used to verify them, and that ID must match the contents of this
-     * field exactly.
-     * Additional restrictions on this field can be imposed based on which public
-     * key type is encapsulated. See the documentation on `public_key` cases below
-     * for details.
+     * Signatures verified by Binary Authorization must include the ID of the
+     * public key that can be used to verify them, and that ID must match the
+     * contents of this field exactly. Additional restrictions on this field can
+     * be imposed based on which public key type is encapsulated. See the
+     * documentation on `public_key` cases below for details.
      *
      * Generated from protobuf field <code>string id = 2;</code>
      */
@@ -46,21 +46,20 @@ class AttestorPublicKey extends \Google\Protobuf\Internal\Message
      *           Optional. A descriptive comment. This field may be updated.
      *     @type string $id
      *           The ID of this public key.
-     *           Signatures verified by BinAuthz must include the ID of the public key that
-     *           can be used to verify them, and that ID must match the contents of this
-     *           field exactly.
-     *           Additional restrictions on this field can be imposed based on which public
-     *           key type is encapsulated. See the documentation on `public_key` cases below
-     *           for details.
+     *           Signatures verified by Binary Authorization must include the ID of the
+     *           public key that can be used to verify them, and that ID must match the
+     *           contents of this field exactly. Additional restrictions on this field can
+     *           be imposed based on which public key type is encapsulated. See the
+     *           documentation on `public_key` cases below for details.
      *     @type string $ascii_armored_pgp_public_key
      *           ASCII-armored representation of a PGP public key, as the entire output by
      *           the command `gpg --export --armor foo\@example.com` (either LF or CRLF
      *           line endings).
-     *           When using this field, `id` should be left blank.  The BinAuthz API
-     *           handlers will calculate the ID and fill it in automatically.  BinAuthz
-     *           computes this ID as the OpenPGP RFC4880 V4 fingerprint, represented as
-     *           upper-case hex.  If `id` is provided by the caller, it will be
-     *           overwritten by the API-calculated ID.
+     *           When using this field, `id` should be left blank.  The Binary
+     *           Authorization API handlers will calculate the ID and fill it in
+     *           automatically.  Binary Authorization computes this ID as the OpenPGP
+     *           RFC4880 V4 fingerprint, represented as upper-case hex.  If `id` is
+     *           provided by the caller, it will be overwritten by the API-calculated ID.
      *     @type \Google\Cloud\BinaryAuthorization\V1\PkixPublicKey $pkix_public_key
      *           A raw PKIX SubjectPublicKeyInfo format public key.
      *           NOTE: `id` may be explicitly provided by the caller when using this
@@ -102,12 +101,11 @@ class AttestorPublicKey extends \Google\Protobuf\Internal\Message
 
     /**
      * The ID of this public key.
-     * Signatures verified by BinAuthz must include the ID of the public key that
-     * can be used to verify them, and that ID must match the contents of this
-     * field exactly.
-     * Additional restrictions on this field can be imposed based on which public
-     * key type is encapsulated. See the documentation on `public_key` cases below
-     * for details.
+     * Signatures verified by Binary Authorization must include the ID of the
+     * public key that can be used to verify them, and that ID must match the
+     * contents of this field exactly. Additional restrictions on this field can
+     * be imposed based on which public key type is encapsulated. See the
+     * documentation on `public_key` cases below for details.
      *
      * Generated from protobuf field <code>string id = 2;</code>
      * @return string
@@ -119,12 +117,11 @@ class AttestorPublicKey extends \Google\Protobuf\Internal\Message
 
     /**
      * The ID of this public key.
-     * Signatures verified by BinAuthz must include the ID of the public key that
-     * can be used to verify them, and that ID must match the contents of this
-     * field exactly.
-     * Additional restrictions on this field can be imposed based on which public
-     * key type is encapsulated. See the documentation on `public_key` cases below
-     * for details.
+     * Signatures verified by Binary Authorization must include the ID of the
+     * public key that can be used to verify them, and that ID must match the
+     * contents of this field exactly. Additional restrictions on this field can
+     * be imposed based on which public key type is encapsulated. See the
+     * documentation on `public_key` cases below for details.
      *
      * Generated from protobuf field <code>string id = 2;</code>
      * @param string $var
@@ -142,11 +139,11 @@ class AttestorPublicKey extends \Google\Protobuf\Internal\Message
      * ASCII-armored representation of a PGP public key, as the entire output by
      * the command `gpg --export --armor foo\@example.com` (either LF or CRLF
      * line endings).
-     * When using this field, `id` should be left blank.  The BinAuthz API
-     * handlers will calculate the ID and fill it in automatically.  BinAuthz
-     * computes this ID as the OpenPGP RFC4880 V4 fingerprint, represented as
-     * upper-case hex.  If `id` is provided by the caller, it will be
-     * overwritten by the API-calculated ID.
+     * When using this field, `id` should be left blank.  The Binary
+     * Authorization API handlers will calculate the ID and fill it in
+     * automatically.  Binary Authorization computes this ID as the OpenPGP
+     * RFC4880 V4 fingerprint, represented as upper-case hex.  If `id` is
+     * provided by the caller, it will be overwritten by the API-calculated ID.
      *
      * Generated from protobuf field <code>string ascii_armored_pgp_public_key = 3;</code>
      * @return string
@@ -165,11 +162,11 @@ class AttestorPublicKey extends \Google\Protobuf\Internal\Message
      * ASCII-armored representation of a PGP public key, as the entire output by
      * the command `gpg --export --armor foo\@example.com` (either LF or CRLF
      * line endings).
-     * When using this field, `id` should be left blank.  The BinAuthz API
-     * handlers will calculate the ID and fill it in automatically.  BinAuthz
-     * computes this ID as the OpenPGP RFC4880 V4 fingerprint, represented as
-     * upper-case hex.  If `id` is provided by the caller, it will be
-     * overwritten by the API-calculated ID.
+     * When using this field, `id` should be left blank.  The Binary
+     * Authorization API handlers will calculate the ID and fill it in
+     * automatically.  Binary Authorization computes this ID as the OpenPGP
+     * RFC4880 V4 fingerprint, represented as upper-case hex.  If `id` is
+     * provided by the caller, it will be overwritten by the API-calculated ID.
      *
      * Generated from protobuf field <code>string ascii_armored_pgp_public_key = 3;</code>
      * @param string $var

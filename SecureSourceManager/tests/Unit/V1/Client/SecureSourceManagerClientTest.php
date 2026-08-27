@@ -1577,12 +1577,14 @@ class SecureSourceManagerClientTest extends GeneratedTest
         $instance = 'instance555127957';
         $uid = 'uid115792';
         $etag = 'etag3123477';
+        $serviceAccount = 'serviceAccount-1948028253';
         $expectedResponse = new Repository();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
         $expectedResponse->setInstance($instance);
         $expectedResponse->setUid($uid);
         $expectedResponse->setEtag($etag);
+        $expectedResponse->setServiceAccount($serviceAccount);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -3342,12 +3344,14 @@ class SecureSourceManagerClientTest extends GeneratedTest
         $instance = 'instance555127957';
         $uid = 'uid115792';
         $etag = 'etag3123477';
+        $serviceAccount = 'serviceAccount-1948028253';
         $expectedResponse = new Repository();
         $expectedResponse->setName($name2);
         $expectedResponse->setDescription($description);
         $expectedResponse->setInstance($instance);
         $expectedResponse->setUid($uid);
         $expectedResponse->setEtag($etag);
+        $expectedResponse->setServiceAccount($serviceAccount);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
@@ -5720,12 +5724,14 @@ class SecureSourceManagerClientTest extends GeneratedTest
         $instance = 'instance555127957';
         $uid = 'uid115792';
         $etag = 'etag3123477';
+        $serviceAccount = 'serviceAccount-1948028253';
         $expectedResponse = new Repository();
         $expectedResponse->setName($name);
         $expectedResponse->setDescription($description);
         $expectedResponse->setInstance($instance);
         $expectedResponse->setUid($uid);
         $expectedResponse->setEtag($etag);
+        $expectedResponse->setServiceAccount($serviceAccount);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();

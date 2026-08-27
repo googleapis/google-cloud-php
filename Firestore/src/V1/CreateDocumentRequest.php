@@ -52,6 +52,12 @@ class CreateDocumentRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.firestore.v1.DocumentMask mask = 5;</code>
      */
     private $mask = null;
+    /**
+     * Optional. Any additional options for the request.
+     *
+     * Generated from protobuf field <code>.google.firestore.v1.RequestOptions request_options = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $request_options = null;
 
     /**
      * Constructor.
@@ -75,6 +81,8 @@ class CreateDocumentRequest extends \Google\Protobuf\Internal\Message
      *           The fields to return. If not set, returns all fields.
      *           If the document has a field that is not present in this mask, that field
      *           will not be returned in the response.
+     *     @type \Google\Cloud\Firestore\V1\RequestOptions $request_options
+     *           Optional. Any additional options for the request.
      * }
      */
     public function __construct($data = NULL) {
@@ -240,6 +248,42 @@ class CreateDocumentRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Firestore\V1\DocumentMask::class);
         $this->mask = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Any additional options for the request.
+     *
+     * Generated from protobuf field <code>.google.firestore.v1.RequestOptions request_options = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Firestore\V1\RequestOptions|null
+     */
+    public function getRequestOptions()
+    {
+        return $this->request_options;
+    }
+
+    public function hasRequestOptions()
+    {
+        return isset($this->request_options);
+    }
+
+    public function clearRequestOptions()
+    {
+        unset($this->request_options);
+    }
+
+    /**
+     * Optional. Any additional options for the request.
+     *
+     * Generated from protobuf field <code>.google.firestore.v1.RequestOptions request_options = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Firestore\V1\RequestOptions $var
+     * @return $this
+     */
+    public function setRequestOptions($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Firestore\V1\RequestOptions::class);
+        $this->request_options = $var;
 
         return $this;
     }

@@ -18,6 +18,7 @@
 namespace Google\Cloud\Spanner;
 
 use Google\ApiCore\ArrayTrait;
+use Google\Cloud\Core\OptionsValidator;
 use Google\Cloud\Spanner\Session\SessionCache;
 use Google\Cloud\Spanner\V1\TransactionOptions;
 
@@ -71,6 +72,7 @@ trait SnapshotTrait
         );
         $this->transactionOptions = $options['transactionOptions'] ?? new TransactionOptions();
         $this->transactionOptionsBuilder = new TransactionOptionsBuilder();
+        $this->optionsValidator = new OptionsValidator();
     }
 
     /**

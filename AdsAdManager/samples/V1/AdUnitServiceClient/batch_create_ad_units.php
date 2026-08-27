@@ -31,7 +31,7 @@ use Google\Ads\AdManager\V1\CreateAdUnitRequest;
 use Google\ApiCore\ApiException;
 
 /**
- * API to batch create `AdUnit` objects.
+ * Creates `AdUnit` objects.
  *
  * @param string $formattedParent                     The parent resource where `AdUnits` will be created.
  *                                                    Format: `networks/{network_code}`

@@ -31,7 +31,7 @@ use Google\Ads\AdManager\V1\Placement;
 use Google\ApiCore\ApiException;
 
 /**
- * API to batch create `Placement` objects.
+ * Creates `Placement` objects.
  *
  * @param string $formattedParent              The parent resource where the `Placement`s will be created.
  *                                             Format: `networks/{network_code}`

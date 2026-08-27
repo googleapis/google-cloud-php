@@ -36,6 +36,12 @@ class PythonFunction extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string description = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $description = '';
+    /**
+     * Optional. Service Directory configuration for the tool.
+     *
+     * Generated from protobuf field <code>.google.cloud.ces.v1.ServiceDirectoryConfig service_directory_config = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $service_directory_config = null;
 
     /**
      * Constructor.
@@ -52,6 +58,8 @@ class PythonFunction extends \Google\Protobuf\Internal\Message
      *     @type string $description
      *           Output only. The description of the Python function, parsed from the python
      *           code's docstring.
+     *     @type \Google\Cloud\Ces\V1\ServiceDirectoryConfig $service_directory_config
+     *           Optional. Service Directory configuration for the tool.
      * }
      */
     public function __construct($data = NULL) {
@@ -139,6 +147,42 @@ class PythonFunction extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->description = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Service Directory configuration for the tool.
+     *
+     * Generated from protobuf field <code>.google.cloud.ces.v1.ServiceDirectoryConfig service_directory_config = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Ces\V1\ServiceDirectoryConfig|null
+     */
+    public function getServiceDirectoryConfig()
+    {
+        return $this->service_directory_config;
+    }
+
+    public function hasServiceDirectoryConfig()
+    {
+        return isset($this->service_directory_config);
+    }
+
+    public function clearServiceDirectoryConfig()
+    {
+        unset($this->service_directory_config);
+    }
+
+    /**
+     * Optional. Service Directory configuration for the tool.
+     *
+     * Generated from protobuf field <code>.google.cloud.ces.v1.ServiceDirectoryConfig service_directory_config = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Ces\V1\ServiceDirectoryConfig $var
+     * @return $this
+     */
+    public function setServiceDirectoryConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Ces\V1\ServiceDirectoryConfig::class);
+        $this->service_directory_config = $var;
 
         return $this;
     }

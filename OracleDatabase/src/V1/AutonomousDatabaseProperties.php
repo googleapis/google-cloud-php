@@ -462,6 +462,14 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional int32 local_adg_auto_failover_max_data_loss_limit_duration = 72 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $local_adg_auto_failover_max_data_loss_limit_duration = null;
+    /**
+     * Optional. Indicates if the Autonomous Database is a refreshable clone. This
+     * field is used in update flow to connect / disconnect a refreshable clone
+     * from its source database.
+     *
+     * Generated from protobuf field <code>optional bool refreshable_clone = 73 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $refreshable_clone = null;
 
     /**
      * Constructor.
@@ -654,6 +662,10 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
      *     @type int $local_adg_auto_failover_max_data_loss_limit_duration
      *           Optional. This field indicates the maximum data loss limit for an
      *           Autonomous Database, in seconds.
+     *     @type bool $refreshable_clone
+     *           Optional. Indicates if the Autonomous Database is a refreshable clone. This
+     *           field is used in update flow to connect / disconnect a refreshable clone
+     *           from its source database.
      * }
      */
     public function __construct($data = NULL) {
@@ -2609,6 +2621,46 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->local_adg_auto_failover_max_data_loss_limit_duration = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Indicates if the Autonomous Database is a refreshable clone. This
+     * field is used in update flow to connect / disconnect a refreshable clone
+     * from its source database.
+     *
+     * Generated from protobuf field <code>optional bool refreshable_clone = 73 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getRefreshableClone()
+    {
+        return isset($this->refreshable_clone) ? $this->refreshable_clone : false;
+    }
+
+    public function hasRefreshableClone()
+    {
+        return isset($this->refreshable_clone);
+    }
+
+    public function clearRefreshableClone()
+    {
+        unset($this->refreshable_clone);
+    }
+
+    /**
+     * Optional. Indicates if the Autonomous Database is a refreshable clone. This
+     * field is used in update flow to connect / disconnect a refreshable clone
+     * from its source database.
+     *
+     * Generated from protobuf field <code>optional bool refreshable_clone = 73 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setRefreshableClone($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->refreshable_clone = $var;
 
         return $this;
     }

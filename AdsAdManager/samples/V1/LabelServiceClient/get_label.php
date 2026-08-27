@@ -29,7 +29,7 @@ use Google\Ads\AdManager\V1\Label;
 use Google\ApiCore\ApiException;
 
 /**
- * API to retrieve a `Label` object.
+ * Retrieves a `Label` object.
  *
  * @param string $formattedName The resource name of the Label.
  *                              Format: `networks/{network_code}/labels/{label_id}`

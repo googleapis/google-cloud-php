@@ -29,7 +29,7 @@ use Google\Ads\AdManager\V1\UpdatePrivateAuctionRequest;
 use Google\ApiCore\ApiException;
 
 /**
- * API to update a `PrivateAuction` object.
+ * Updates a `PrivateAuction` object.
  *
  * @param string $privateAuctionDisplayName Display name of the `PrivateAuction`. This attribute has a
  *                                          maximum length of 255 bytes.

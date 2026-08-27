@@ -32,7 +32,7 @@ use Google\Cloud\Dataform\V1\QueryTeamFolderContentsResponse\TeamFolderContentsE
 /**
  * Returns the contents of a given TeamFolder.
  *
- * @param string $formattedTeamFolder Name of the team_folder whose contents to list.
+ * @param string $formattedTeamFolder Resource name of the TeamFolder to list contents for.
  *                                    Format: `projects/&#42;/locations/&#42;/teamFolders/*`. Please see
  *                                    {@see DataformClient::teamFolderName()} for help formatting this field.
  */

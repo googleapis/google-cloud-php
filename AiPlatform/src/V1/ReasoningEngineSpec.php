@@ -57,6 +57,21 @@ class ReasoningEngineSpec extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string agent_framework = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $agent_framework = '';
+    /**
+     * Optional. The identity type to use for the Reasoning Engine. If not
+     * specified, the `service_account` field will be used if set, otherwise the
+     * default Vertex AI Reasoning Engine Service Agent in the project will be
+     * used.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ReasoningEngineSpec.IdentityType identity_type = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $identity_type = 0;
+    /**
+     * Optional. Configuration for building container image.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ReasoningEngineSpec.BuildSpec build_spec = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $build_spec = null;
     protected $deployment_source;
 
     /**
@@ -91,6 +106,13 @@ class ReasoningEngineSpec extends \Google\Protobuf\Internal\Message
      *           Optional. The OSS agent framework used to develop the agent.
      *           Currently supported values: "google-adk", "langchain", "langgraph", "ag2",
      *           "llama-index", "custom".
+     *     @type int $identity_type
+     *           Optional. The identity type to use for the Reasoning Engine. If not
+     *           specified, the `service_account` field will be used if set, otherwise the
+     *           default Vertex AI Reasoning Engine Service Agent in the project will be
+     *           used.
+     *     @type \Google\Cloud\AIPlatform\V1\ReasoningEngineSpec\BuildSpec $build_spec
+     *           Optional. Configuration for building container image.
      * }
      */
     public function __construct($data = NULL) {
@@ -340,6 +362,74 @@ class ReasoningEngineSpec extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->agent_framework = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The identity type to use for the Reasoning Engine. If not
+     * specified, the `service_account` field will be used if set, otherwise the
+     * default Vertex AI Reasoning Engine Service Agent in the project will be
+     * used.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ReasoningEngineSpec.IdentityType identity_type = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getIdentityType()
+    {
+        return $this->identity_type;
+    }
+
+    /**
+     * Optional. The identity type to use for the Reasoning Engine. If not
+     * specified, the `service_account` field will be used if set, otherwise the
+     * default Vertex AI Reasoning Engine Service Agent in the project will be
+     * used.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ReasoningEngineSpec.IdentityType identity_type = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setIdentityType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\AIPlatform\V1\ReasoningEngineSpec\IdentityType::class);
+        $this->identity_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Configuration for building container image.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ReasoningEngineSpec.BuildSpec build_spec = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AIPlatform\V1\ReasoningEngineSpec\BuildSpec|null
+     */
+    public function getBuildSpec()
+    {
+        return $this->build_spec;
+    }
+
+    public function hasBuildSpec()
+    {
+        return isset($this->build_spec);
+    }
+
+    public function clearBuildSpec()
+    {
+        unset($this->build_spec);
+    }
+
+    /**
+     * Optional. Configuration for building container image.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ReasoningEngineSpec.BuildSpec build_spec = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AIPlatform\V1\ReasoningEngineSpec\BuildSpec $var
+     * @return $this
+     */
+    public function setBuildSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\ReasoningEngineSpec\BuildSpec::class);
+        $this->build_spec = $var;
 
         return $this;
     }

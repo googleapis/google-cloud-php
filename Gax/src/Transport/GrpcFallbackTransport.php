@@ -110,7 +110,7 @@ class GrpcFallbackTransport implements TransportInterface
         $options['requestId'] = crc32((string) spl_object_id($call) . getmypid());
 
         return $httpHandler(
-            $this->buildRequest($call, $options),
+            $this->buildGrpcFallbackRequest($call, $options),
             $this->getCallOptions($options)
         )->then(
             function (ResponseInterface $response) use ($options) {
@@ -135,7 +135,7 @@ class GrpcFallbackTransport implements TransportInterface
      * @param array $options
      * @return RequestInterface
      */
-    private function buildRequest(Call $call, array $options)
+    private function buildGrpcFallbackRequest(Call $call, array $options)
     {
         // Build common headers and set the content type to 'application/x-protobuf'
         $headers = ['Content-Type' => 'application/x-protobuf'] + self::buildCommonHeaders($options);
@@ -205,7 +205,9 @@ class GrpcFallbackTransport implements TransportInterface
      */
     private function transformException(\Exception $ex)
     {
-        if ($ex instanceof RequestException && $ex->hasResponse()) {
+        // Guzzle 7 carries the response on RequestException, Guzzle 8 only on
+        // its ResponseException subclass, hence the method_exists() check.
+        if ($ex instanceof RequestException && method_exists($ex, 'getResponse') && $ex->getResponse()) {
             $res = $ex->getResponse();
             $body = (string) $res->getBody();
             $status = new Status();

@@ -5,8 +5,8 @@
 namespace Google\Cloud\OsLogin\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The user profile information used for logging in to a virtual machine on
@@ -43,7 +43,7 @@ class LoginProfile extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. A unique user ID.
-     *     @type array<\Google\Cloud\OsLogin\Common\PosixAccount>|\Google\Protobuf\Internal\RepeatedField $posix_accounts
+     *     @type \Google\Cloud\OsLogin\Common\PosixAccount[] $posix_accounts
      *           The list of POSIX accounts associated with the user.
      *     @type array|\Google\Protobuf\Internal\MapField $ssh_public_keys
      *           A map from SSH public key fingerprint to the associated key object.
@@ -84,7 +84,7 @@ class LoginProfile extends \Google\Protobuf\Internal\Message
      * The list of POSIX accounts associated with the user.
      *
      * Generated from protobuf field <code>repeated .google.cloud.oslogin.common.PosixAccount posix_accounts = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\OsLogin\Common\PosixAccount>
      */
     public function getPosixAccounts()
     {
@@ -95,7 +95,7 @@ class LoginProfile extends \Google\Protobuf\Internal\Message
      * The list of POSIX accounts associated with the user.
      *
      * Generated from protobuf field <code>repeated .google.cloud.oslogin.common.PosixAccount posix_accounts = 2;</code>
-     * @param array<\Google\Cloud\OsLogin\Common\PosixAccount>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\OsLogin\Common\PosixAccount[] $var
      * @return $this
      */
     public function setPosixAccounts($var)

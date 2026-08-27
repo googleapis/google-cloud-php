@@ -110,7 +110,11 @@ final class PlaybooksClient
     /** The name of the code generator, to be included in the agent header. */
     private const CODEGEN_NAME = 'gapic';
 
-    /** The default scopes required by the service. */
+    /**
+     * The default scopes required by the service.
+     *
+     * @internal
+     */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
         'https://www.googleapis.com/auth/dialogflow',
@@ -160,7 +164,10 @@ final class PlaybooksClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
+        $options =
+            $methodName && isset($this->descriptors[$methodName]['longRunning'])
+                ? $this->descriptors[$methodName]['longRunning']
+                : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -830,9 +837,8 @@ final class PlaybooksClient
      * Lists information about the supported locations for this service.
      *
      * This method lists locations based on the resource scope provided in
-     * the [ListLocationsRequest.name] field:
-     *
-     * * **Global locations**: If `name` is empty, the method lists the
+     * the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+     * **Global locations**: If `name` is empty, the method lists the
      * public locations available to all projects. * **Project-specific
      * locations**: If `name` follows the format
      * `projects/{project}`, the method lists locations visible to that

@@ -823,7 +823,7 @@ class Shipment extends \Google\Protobuf\Internal\Message
      */
     public function getDemands()
     {
-        if ($this->demands->count() !== 0) {
+        if (count($this->demands) !== 0) {
             @trigger_error('demands is deprecated.', E_USER_DEPRECATED);
         }
         return $this->demands;

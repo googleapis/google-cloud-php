@@ -29,7 +29,7 @@ use Google\Ads\AdManager\V1\Client\CmsMetadataKeyServiceClient;
 use Google\ApiCore\ApiException;
 
 /**
- * API to activate a list of `CmsMetadataKey` objects.
+ * Activates a list of `CmsMetadataKey` objects.
  *
  * @param string $formattedParent       The parent resource where `CmsMetadataKeys` will be activated.
  *                                      Format: `networks/{network_code}`

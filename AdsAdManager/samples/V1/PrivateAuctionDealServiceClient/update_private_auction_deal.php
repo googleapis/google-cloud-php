@@ -30,7 +30,7 @@ use Google\ApiCore\ApiException;
 use Google\Type\Money;
 
 /**
- * API to update a `PrivateAuctionDeal` object.
+ * Updates a `PrivateAuctionDeal` object.
  *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:

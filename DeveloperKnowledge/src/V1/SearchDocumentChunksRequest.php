@@ -18,7 +18,9 @@ class SearchDocumentChunksRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Provides the raw query string provided by the user, such as "How
-     * to create a Cloud Storage bucket?".
+     * to create a Cloud Storage bucket?". The query must not exceed 500
+     * characters; values longer than 500 characters will result in an
+     * `INVALID_ARGUMENT` error.
      *
      * Generated from protobuf field <code>string query = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -27,8 +29,7 @@ class SearchDocumentChunksRequest extends \Google\Protobuf\Internal\Message
      * Optional. Specifies the maximum number of results to return. The service
      * may return fewer than this value.
      * If unspecified, at most 5 results will be returned.
-     * The maximum value is 20; values above 20 will result in an INVALID_ARGUMENT
-     * error.
+     * The maximum value is 100; values above 100 will be coerced to 100.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -47,6 +48,8 @@ class SearchDocumentChunksRequest extends \Google\Protobuf\Internal\Message
      * [DocumentChunk][google.developers.knowledge.v1.DocumentChunk]s, the filter
      * is applied to `DocumentChunk.document` fields.
      * Supported fields for filtering:
+     * * `content_length_bytes` (INTEGER): The length of the `Document.content`
+     *   field in bytes.
      * * `data_source` (STRING): The source of the document, e.g.
      *   `docs.cloud.google.com`. See
      *   https://developers.google.com/knowledge/reference/corpus-reference for
@@ -56,21 +59,27 @@ class SearchDocumentChunksRequest extends \Google\Protobuf\Internal\Message
      *   markdown content or metadata.
      * * `uri` (STRING): The document URI, e.g.
      *   `https://docs.cloud.google.com/bigquery/docs/tables`.
+     * INTEGER fields support `=`, `<`, `<=`, `>`, and `>=` operators.
      * STRING fields support `=` (equals) and `!=` (not equals) operators for
      * **exact match** on the whole string. Partial match, prefix match, and
      * regexp match are not supported.
      * TIMESTAMP fields support `=`, `<`, `<=`, `>`, and `>=` operators.
      * Timestamps must be in RFC-3339 format, e.g., `"2025-01-01T00:00:00Z"`.
+     * Note: Field names must be in `snake_case` (e.g., `data_source`). Values on
+     * the right-hand side of filtering expressions must be string literals
+     * enclosed in double quotes (e.g., `"docs.cloud.google.com"`).
      * You can combine expressions using `AND`, `OR`, and `NOT` (or `-`) logical
      * operators. `OR` has higher precedence than `AND`. Use parentheses for
      * explicit precedence grouping.
      * Examples:
+     * * Filter by `Document.content_length_bytes`:
+     *   `content_length_bytes < 50000`
      * * `data_source = "docs.cloud.google.com" OR data_source =
-     * "firebase.google.com"`
+     *   "firebase.google.com"`
      * * `data_source != "firebase.google.com"`
      * * `update_time < "2024-01-01T00:00:00Z"`
      * * `update_time >= "2025-01-22T00:00:00Z" AND (data_source =
-     * "developer.chrome.com" OR data_source = "web.dev")`
+     *   "developer.chrome.com" OR data_source = "web.dev")`
      * * `uri = "https://docs.cloud.google.com/release-notes"`
      * The `filter` string must not exceed 500 characters; values longer than 500
      * characters will result in an `INVALID_ARGUMENT` error.
@@ -87,13 +96,14 @@ class SearchDocumentChunksRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $query
      *           Required. Provides the raw query string provided by the user, such as "How
-     *           to create a Cloud Storage bucket?".
+     *           to create a Cloud Storage bucket?". The query must not exceed 500
+     *           characters; values longer than 500 characters will result in an
+     *           `INVALID_ARGUMENT` error.
      *     @type int $page_size
      *           Optional. Specifies the maximum number of results to return. The service
      *           may return fewer than this value.
      *           If unspecified, at most 5 results will be returned.
-     *           The maximum value is 20; values above 20 will result in an INVALID_ARGUMENT
-     *           error.
+     *           The maximum value is 100; values above 100 will be coerced to 100.
      *     @type string $page_token
      *           Optional. Contains a page token, received from a previous
      *           `SearchDocumentChunks` call. Provide this to retrieve the subsequent page.
@@ -104,6 +114,8 @@ class SearchDocumentChunksRequest extends \Google\Protobuf\Internal\Message
      *           [DocumentChunk][google.developers.knowledge.v1.DocumentChunk]s, the filter
      *           is applied to `DocumentChunk.document` fields.
      *           Supported fields for filtering:
+     *           * `content_length_bytes` (INTEGER): The length of the `Document.content`
+     *             field in bytes.
      *           * `data_source` (STRING): The source of the document, e.g.
      *             `docs.cloud.google.com`. See
      *             https://developers.google.com/knowledge/reference/corpus-reference for
@@ -113,21 +125,27 @@ class SearchDocumentChunksRequest extends \Google\Protobuf\Internal\Message
      *             markdown content or metadata.
      *           * `uri` (STRING): The document URI, e.g.
      *             `https://docs.cloud.google.com/bigquery/docs/tables`.
+     *           INTEGER fields support `=`, `<`, `<=`, `>`, and `>=` operators.
      *           STRING fields support `=` (equals) and `!=` (not equals) operators for
      *           **exact match** on the whole string. Partial match, prefix match, and
      *           regexp match are not supported.
      *           TIMESTAMP fields support `=`, `<`, `<=`, `>`, and `>=` operators.
      *           Timestamps must be in RFC-3339 format, e.g., `"2025-01-01T00:00:00Z"`.
+     *           Note: Field names must be in `snake_case` (e.g., `data_source`). Values on
+     *           the right-hand side of filtering expressions must be string literals
+     *           enclosed in double quotes (e.g., `"docs.cloud.google.com"`).
      *           You can combine expressions using `AND`, `OR`, and `NOT` (or `-`) logical
      *           operators. `OR` has higher precedence than `AND`. Use parentheses for
      *           explicit precedence grouping.
      *           Examples:
+     *           * Filter by `Document.content_length_bytes`:
+     *             `content_length_bytes < 50000`
      *           * `data_source = "docs.cloud.google.com" OR data_source =
-     *           "firebase.google.com"`
+     *             "firebase.google.com"`
      *           * `data_source != "firebase.google.com"`
      *           * `update_time < "2024-01-01T00:00:00Z"`
      *           * `update_time >= "2025-01-22T00:00:00Z" AND (data_source =
-     *           "developer.chrome.com" OR data_source = "web.dev")`
+     *             "developer.chrome.com" OR data_source = "web.dev")`
      *           * `uri = "https://docs.cloud.google.com/release-notes"`
      *           The `filter` string must not exceed 500 characters; values longer than 500
      *           characters will result in an `INVALID_ARGUMENT` error.
@@ -140,7 +158,9 @@ class SearchDocumentChunksRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Provides the raw query string provided by the user, such as "How
-     * to create a Cloud Storage bucket?".
+     * to create a Cloud Storage bucket?". The query must not exceed 500
+     * characters; values longer than 500 characters will result in an
+     * `INVALID_ARGUMENT` error.
      *
      * Generated from protobuf field <code>string query = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -152,7 +172,9 @@ class SearchDocumentChunksRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Provides the raw query string provided by the user, such as "How
-     * to create a Cloud Storage bucket?".
+     * to create a Cloud Storage bucket?". The query must not exceed 500
+     * characters; values longer than 500 characters will result in an
+     * `INVALID_ARGUMENT` error.
      *
      * Generated from protobuf field <code>string query = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -170,8 +192,7 @@ class SearchDocumentChunksRequest extends \Google\Protobuf\Internal\Message
      * Optional. Specifies the maximum number of results to return. The service
      * may return fewer than this value.
      * If unspecified, at most 5 results will be returned.
-     * The maximum value is 20; values above 20 will result in an INVALID_ARGUMENT
-     * error.
+     * The maximum value is 100; values above 100 will be coerced to 100.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -185,8 +206,7 @@ class SearchDocumentChunksRequest extends \Google\Protobuf\Internal\Message
      * Optional. Specifies the maximum number of results to return. The service
      * may return fewer than this value.
      * If unspecified, at most 5 results will be returned.
-     * The maximum value is 20; values above 20 will result in an INVALID_ARGUMENT
-     * error.
+     * The maximum value is 100; values above 100 will be coerced to 100.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -235,6 +255,8 @@ class SearchDocumentChunksRequest extends \Google\Protobuf\Internal\Message
      * [DocumentChunk][google.developers.knowledge.v1.DocumentChunk]s, the filter
      * is applied to `DocumentChunk.document` fields.
      * Supported fields for filtering:
+     * * `content_length_bytes` (INTEGER): The length of the `Document.content`
+     *   field in bytes.
      * * `data_source` (STRING): The source of the document, e.g.
      *   `docs.cloud.google.com`. See
      *   https://developers.google.com/knowledge/reference/corpus-reference for
@@ -244,21 +266,27 @@ class SearchDocumentChunksRequest extends \Google\Protobuf\Internal\Message
      *   markdown content or metadata.
      * * `uri` (STRING): The document URI, e.g.
      *   `https://docs.cloud.google.com/bigquery/docs/tables`.
+     * INTEGER fields support `=`, `<`, `<=`, `>`, and `>=` operators.
      * STRING fields support `=` (equals) and `!=` (not equals) operators for
      * **exact match** on the whole string. Partial match, prefix match, and
      * regexp match are not supported.
      * TIMESTAMP fields support `=`, `<`, `<=`, `>`, and `>=` operators.
      * Timestamps must be in RFC-3339 format, e.g., `"2025-01-01T00:00:00Z"`.
+     * Note: Field names must be in `snake_case` (e.g., `data_source`). Values on
+     * the right-hand side of filtering expressions must be string literals
+     * enclosed in double quotes (e.g., `"docs.cloud.google.com"`).
      * You can combine expressions using `AND`, `OR`, and `NOT` (or `-`) logical
      * operators. `OR` has higher precedence than `AND`. Use parentheses for
      * explicit precedence grouping.
      * Examples:
+     * * Filter by `Document.content_length_bytes`:
+     *   `content_length_bytes < 50000`
      * * `data_source = "docs.cloud.google.com" OR data_source =
-     * "firebase.google.com"`
+     *   "firebase.google.com"`
      * * `data_source != "firebase.google.com"`
      * * `update_time < "2024-01-01T00:00:00Z"`
      * * `update_time >= "2025-01-22T00:00:00Z" AND (data_source =
-     * "developer.chrome.com" OR data_source = "web.dev")`
+     *   "developer.chrome.com" OR data_source = "web.dev")`
      * * `uri = "https://docs.cloud.google.com/release-notes"`
      * The `filter` string must not exceed 500 characters; values longer than 500
      * characters will result in an `INVALID_ARGUMENT` error.
@@ -278,6 +306,8 @@ class SearchDocumentChunksRequest extends \Google\Protobuf\Internal\Message
      * [DocumentChunk][google.developers.knowledge.v1.DocumentChunk]s, the filter
      * is applied to `DocumentChunk.document` fields.
      * Supported fields for filtering:
+     * * `content_length_bytes` (INTEGER): The length of the `Document.content`
+     *   field in bytes.
      * * `data_source` (STRING): The source of the document, e.g.
      *   `docs.cloud.google.com`. See
      *   https://developers.google.com/knowledge/reference/corpus-reference for
@@ -287,21 +317,27 @@ class SearchDocumentChunksRequest extends \Google\Protobuf\Internal\Message
      *   markdown content or metadata.
      * * `uri` (STRING): The document URI, e.g.
      *   `https://docs.cloud.google.com/bigquery/docs/tables`.
+     * INTEGER fields support `=`, `<`, `<=`, `>`, and `>=` operators.
      * STRING fields support `=` (equals) and `!=` (not equals) operators for
      * **exact match** on the whole string. Partial match, prefix match, and
      * regexp match are not supported.
      * TIMESTAMP fields support `=`, `<`, `<=`, `>`, and `>=` operators.
      * Timestamps must be in RFC-3339 format, e.g., `"2025-01-01T00:00:00Z"`.
+     * Note: Field names must be in `snake_case` (e.g., `data_source`). Values on
+     * the right-hand side of filtering expressions must be string literals
+     * enclosed in double quotes (e.g., `"docs.cloud.google.com"`).
      * You can combine expressions using `AND`, `OR`, and `NOT` (or `-`) logical
      * operators. `OR` has higher precedence than `AND`. Use parentheses for
      * explicit precedence grouping.
      * Examples:
+     * * Filter by `Document.content_length_bytes`:
+     *   `content_length_bytes < 50000`
      * * `data_source = "docs.cloud.google.com" OR data_source =
-     * "firebase.google.com"`
+     *   "firebase.google.com"`
      * * `data_source != "firebase.google.com"`
      * * `update_time < "2024-01-01T00:00:00Z"`
      * * `update_time >= "2025-01-22T00:00:00Z" AND (data_source =
-     * "developer.chrome.com" OR data_source = "web.dev")`
+     *   "developer.chrome.com" OR data_source = "web.dev")`
      * * `uri = "https://docs.cloud.google.com/release-notes"`
      * The `filter` string must not exceed 500 characters; values longer than 500
      * characters will result in an `INVALID_ARGUMENT` error.

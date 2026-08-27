@@ -50,6 +50,12 @@ class ChannelType
      */
     const CONTACT_CENTER_AS_A_SERVICE = 6;
     /**
+     * Contact Center as a Service (CCaaS Chat) channel.
+     *
+     * Generated from protobuf enum <code>CONTACT_CENTER_AS_A_SERVICE_CHAT = 11;</code>
+     */
+    const CONTACT_CENTER_AS_A_SERVICE_CHAT = 11;
+    /**
      * Five9 channel.
      *
      * Generated from protobuf enum <code>FIVE9 = 7;</code>
@@ -61,6 +67,18 @@ class ChannelType
      * Generated from protobuf enum <code>CONTACT_CENTER_INTEGRATION = 8;</code>
      */
     const CONTACT_CENTER_INTEGRATION = 8;
+    /**
+     * WhatsApp channel.
+     *
+     * Generated from protobuf enum <code>WHATSAPP = 9;</code>
+     */
+    const WHATSAPP = 9;
+    /**
+     * Instagram channel.
+     *
+     * Generated from protobuf enum <code>INSTAGRAM = 10;</code>
+     */
+    const INSTAGRAM = 10;
 
     private static $valueToName = [
         self::UNKNOWN => 'UNKNOWN',
@@ -69,8 +87,11 @@ class ChannelType
         self::TWILIO => 'TWILIO',
         self::GOOGLE_TELEPHONY_PLATFORM => 'GOOGLE_TELEPHONY_PLATFORM',
         self::CONTACT_CENTER_AS_A_SERVICE => 'CONTACT_CENTER_AS_A_SERVICE',
+        self::CONTACT_CENTER_AS_A_SERVICE_CHAT => 'CONTACT_CENTER_AS_A_SERVICE_CHAT',
         self::FIVE9 => 'FIVE9',
         self::CONTACT_CENTER_INTEGRATION => 'CONTACT_CENTER_INTEGRATION',
+        self::WHATSAPP => 'WHATSAPP',
+        self::INSTAGRAM => 'INSTAGRAM',
     ];
 
     public static function name($value)

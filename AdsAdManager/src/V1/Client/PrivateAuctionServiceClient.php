@@ -82,7 +82,11 @@ final class PrivateAuctionServiceClient
     /** The name of the code generator, to be included in the agent header. */
     private const CODEGEN_NAME = 'gapic';
 
-    /** The default scopes required by the service. */
+    /**
+     * The default scopes required by the service.
+     *
+     * @internal
+     */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/admanager',
         'https://www.googleapis.com/auth/admanager.readonly',
@@ -277,7 +281,7 @@ final class PrivateAuctionServiceClient
     }
 
     /**
-     * API to create a `PrivateAuction` object.
+     * Creates a `PrivateAuction` object.
      *
      * The async variant is
      * {@see PrivateAuctionServiceClient::createPrivateAuctionAsync()} .
@@ -304,7 +308,7 @@ final class PrivateAuctionServiceClient
     }
 
     /**
-     * API to retrieve a `PrivateAuction` object.
+     * Retrieves a `PrivateAuction` object.
      *
      * The async variant is
      * {@see PrivateAuctionServiceClient::getPrivateAuctionAsync()} .
@@ -331,7 +335,7 @@ final class PrivateAuctionServiceClient
     }
 
     /**
-     * API to retrieve a list of `PrivateAuction` objects.
+     * Lists `PrivateAuction` objects.
      *
      * The async variant is
      * {@see PrivateAuctionServiceClient::listPrivateAuctionsAsync()} .
@@ -358,7 +362,7 @@ final class PrivateAuctionServiceClient
     }
 
     /**
-     * API to update a `PrivateAuction` object.
+     * Updates a `PrivateAuction` object.
      *
      * The async variant is
      * {@see PrivateAuctionServiceClient::updatePrivateAuctionAsync()} .

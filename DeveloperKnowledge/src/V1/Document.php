@@ -9,7 +9,9 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * A Document represents a piece of content from the Developer Knowledge corpus.
+ * A Document represents a page of documentation in the Developer Knowledge
+ * corpus, like the page at
+ * https://docs.cloud.google.com/storage/docs/creating-buckets.
  *
  * Generated from protobuf message <code>google.developers.knowledge.v1.Document</code>
  */
@@ -70,6 +72,12 @@ class Document extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.developers.knowledge.v1.DocumentView view = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $view = 0;
+    /**
+     * Output only. The length of the `content` field in bytes.
+     *
+     * Generated from protobuf field <code>int32 content_length_bytes = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $content_length_bytes = 0;
 
     /**
      * Constructor.
@@ -100,6 +108,8 @@ class Document extends \Google\Protobuf\Internal\Message
      *           Output only. Specifies the
      *           [DocumentView][google.developers.knowledge.v1.DocumentView] of the
      *           document.
+     *     @type int $content_length_bytes
+     *           Output only. The length of the `content` field in bytes.
      * }
      */
     public function __construct($data = NULL) {
@@ -335,6 +345,32 @@ class Document extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Developers\DeveloperKnowledge\V1\DocumentView::class);
         $this->view = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The length of the `content` field in bytes.
+     *
+     * Generated from protobuf field <code>int32 content_length_bytes = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getContentLengthBytes()
+    {
+        return $this->content_length_bytes;
+    }
+
+    /**
+     * Output only. The length of the `content` field in bytes.
+     *
+     * Generated from protobuf field <code>int32 content_length_bytes = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setContentLengthBytes($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->content_length_bytes = $var;
 
         return $this;
     }

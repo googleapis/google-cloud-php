@@ -17,7 +17,13 @@ use Google\Protobuf\RepeatedField;
 class RunQueryResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * A batch of query results (always present).
+     * A batch of query results. This is always present unless running a
+     * query under explain-only
+     * mode:
+     * [RunQueryRequest.explain_options][google.datastore.v1.RunQueryRequest.explain_options]
+     * was provided and
+     * [ExplainOptions.analyze][google.datastore.v1.ExplainOptions.analyze] was
+     * set to false.
      *
      * Generated from protobuf field <code>.google.datastore.v1.QueryResultBatch batch = 1;</code>
      */
@@ -55,7 +61,13 @@ class RunQueryResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Datastore\V1\QueryResultBatch $batch
-     *           A batch of query results (always present).
+     *           A batch of query results. This is always present unless running a
+     *           query under explain-only
+     *           mode:
+     *           [RunQueryRequest.explain_options][google.datastore.v1.RunQueryRequest.explain_options]
+     *           was provided and
+     *           [ExplainOptions.analyze][google.datastore.v1.ExplainOptions.analyze] was
+     *           set to false.
      *     @type \Google\Cloud\Datastore\V1\Query $query
      *           The parsed form of the `GqlQuery` from the request, if it was set.
      *     @type string $transaction
@@ -77,7 +89,13 @@ class RunQueryResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A batch of query results (always present).
+     * A batch of query results. This is always present unless running a
+     * query under explain-only
+     * mode:
+     * [RunQueryRequest.explain_options][google.datastore.v1.RunQueryRequest.explain_options]
+     * was provided and
+     * [ExplainOptions.analyze][google.datastore.v1.ExplainOptions.analyze] was
+     * set to false.
      *
      * Generated from protobuf field <code>.google.datastore.v1.QueryResultBatch batch = 1;</code>
      * @return \Google\Cloud\Datastore\V1\QueryResultBatch|null
@@ -98,7 +116,13 @@ class RunQueryResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A batch of query results (always present).
+     * A batch of query results. This is always present unless running a
+     * query under explain-only
+     * mode:
+     * [RunQueryRequest.explain_options][google.datastore.v1.RunQueryRequest.explain_options]
+     * was provided and
+     * [ExplainOptions.analyze][google.datastore.v1.ExplainOptions.analyze] was
+     * set to false.
      *
      * Generated from protobuf field <code>.google.datastore.v1.QueryResultBatch batch = 1;</code>
      * @param \Google\Cloud\Datastore\V1\QueryResultBatch $var

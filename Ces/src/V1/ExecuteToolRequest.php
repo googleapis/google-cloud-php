@@ -30,6 +30,14 @@ class ExecuteToolRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Struct args = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $args = null;
+    /**
+     * Optional. Mock configuration for the tool execution.
+     * If this field is set, tools that call other tools will be
+     * mocked based on the provided patterns and responses.
+     *
+     * Generated from protobuf field <code>.google.cloud.ces.v1.MockConfig mock_config = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $mock_config = null;
     protected $tool_identifier;
     protected $tool_execution_context;
 
@@ -58,6 +66,10 @@ class ExecuteToolRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Struct $args
      *           Optional. The input parameters and values for the tool in JSON object
      *           format.
+     *     @type \Google\Cloud\Ces\V1\MockConfig $mock_config
+     *           Optional. Mock configuration for the tool execution.
+     *           If this field is set, tools that call other tools will be
+     *           mocked based on the provided patterns and responses.
      * }
      */
     public function __construct($data = NULL) {
@@ -261,6 +273,46 @@ class ExecuteToolRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Struct::class);
         $this->args = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Mock configuration for the tool execution.
+     * If this field is set, tools that call other tools will be
+     * mocked based on the provided patterns and responses.
+     *
+     * Generated from protobuf field <code>.google.cloud.ces.v1.MockConfig mock_config = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Ces\V1\MockConfig|null
+     */
+    public function getMockConfig()
+    {
+        return $this->mock_config;
+    }
+
+    public function hasMockConfig()
+    {
+        return isset($this->mock_config);
+    }
+
+    public function clearMockConfig()
+    {
+        unset($this->mock_config);
+    }
+
+    /**
+     * Optional. Mock configuration for the tool execution.
+     * If this field is set, tools that call other tools will be
+     * mocked based on the provided patterns and responses.
+     *
+     * Generated from protobuf field <code>.google.cloud.ces.v1.MockConfig mock_config = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Ces\V1\MockConfig $var
+     * @return $this
+     */
+    public function setMockConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Ces\V1\MockConfig::class);
+        $this->mock_config = $var;
 
         return $this;
     }

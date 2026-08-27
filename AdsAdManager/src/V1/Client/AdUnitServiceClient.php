@@ -99,7 +99,11 @@ final class AdUnitServiceClient
     /** The name of the code generator, to be included in the agent header. */
     private const CODEGEN_NAME = 'gapic';
 
-    /** The default scopes required by the service. */
+    /**
+     * The default scopes required by the service.
+     *
+     * @internal
+     */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/admanager',
         'https://www.googleapis.com/auth/admanager.readonly',
@@ -312,7 +316,7 @@ final class AdUnitServiceClient
     }
 
     /**
-     * API to batch activate `AdUnit` objects.
+     * Batch activates `AdUnit` objects.
      *
      * The async variant is {@see AdUnitServiceClient::batchActivateAdUnitsAsync()} .
      *
@@ -368,7 +372,7 @@ final class AdUnitServiceClient
     }
 
     /**
-     * API to batch create `AdUnit` objects.
+     * Creates `AdUnit` objects.
      *
      * The async variant is {@see AdUnitServiceClient::batchCreateAdUnitsAsync()} .
      *
@@ -424,7 +428,7 @@ final class AdUnitServiceClient
     }
 
     /**
-     * API to batch update `AdUnit` objects.
+     * Batch updates `AdUnit` objects.
      *
      * The async variant is {@see AdUnitServiceClient::batchUpdateAdUnitsAsync()} .
      *
@@ -452,7 +456,7 @@ final class AdUnitServiceClient
     }
 
     /**
-     * API to create an `AdUnit` object.
+     * Creates an `AdUnit` object.
      *
      * The async variant is {@see AdUnitServiceClient::createAdUnitAsync()} .
      *
@@ -478,7 +482,7 @@ final class AdUnitServiceClient
     }
 
     /**
-     * API to retrieve an AdUnit object.
+     * Retrieves an `AdUnit` object.
      *
      * The async variant is {@see AdUnitServiceClient::getAdUnitAsync()} .
      *
@@ -504,7 +508,7 @@ final class AdUnitServiceClient
     }
 
     /**
-     * API to retrieve a list of AdUnitSize objects.
+     * Lists `AdUnitSize` objects.
      *
      * The async variant is {@see AdUnitServiceClient::listAdUnitSizesAsync()} .
      *
@@ -530,7 +534,7 @@ final class AdUnitServiceClient
     }
 
     /**
-     * API to retrieve a list of AdUnit objects.
+     * Lists `AdUnit` objects.
      *
      * The async variant is {@see AdUnitServiceClient::listAdUnitsAsync()} .
      *
@@ -556,7 +560,7 @@ final class AdUnitServiceClient
     }
 
     /**
-     * API to update an `AdUnit` object.
+     * Updates an `AdUnit` object.
      *
      * The async variant is {@see AdUnitServiceClient::updateAdUnitAsync()} .
      *

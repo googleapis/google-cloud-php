@@ -8,7 +8,7 @@
         "ChatService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ChatServiceGapicClient",
+                    "libraryClient": "ChatServiceClient",
                     "rpcs": {
                         "CompleteImportSpace": {
                             "methods": [
@@ -88,6 +88,11 @@
                         "GetAttachment": {
                             "methods": [
                                 "getAttachment"
+                            ]
+                        },
+                        "GetAvailability": {
+                            "methods": [
+                                "getAvailability"
                             ]
                         },
                         "GetCustomEmoji": {
@@ -170,6 +175,21 @@
                                 "listSpaces"
                             ]
                         },
+                        "MarkAsActive": {
+                            "methods": [
+                                "markAsActive"
+                            ]
+                        },
+                        "MarkAsAway": {
+                            "methods": [
+                                "markAsAway"
+                            ]
+                        },
+                        "MarkAsDoNotDisturb": {
+                            "methods": [
+                                "markAsDoNotDisturb"
+                            ]
+                        },
                         "MoveSectionItem": {
                             "methods": [
                                 "moveSectionItem"
@@ -180,6 +200,11 @@
                                 "positionSection"
                             ]
                         },
+                        "SearchMessages": {
+                            "methods": [
+                                "searchMessages"
+                            ]
+                        },
                         "SearchSpaces": {
                             "methods": [
                                 "searchSpaces"
@@ -188,6 +213,11 @@
                         "SetUpSpace": {
                             "methods": [
                                 "setUpSpace"
+                            ]
+                        },
+                        "UpdateAvailability": {
+                            "methods": [
+                                "updateAvailability"
                             ]
                         },
                         "UpdateMembership": {

@@ -303,6 +303,56 @@ class GrpcTransportTest extends TestCase
         $this->assertNotEmpty($unserializedBuffer);
         $this->assertNotEmpty($unserializedBuffer['rpcName']);
         $this->assertEquals($rpcName, $unserializedBuffer['rpcName']);
+        $this->assertNotEmpty($unserializedBuffer['jsonPayload']);
+        $this->assertEquals('grpc://', $unserializedBuffer['jsonPayload']['request.url']);
+    }
+
+    public function testServerStreamingRequestLogsUrl()
+    {
+        $rpcName = 'takeAction';
+        $serverStreamingCall = $this->prophesize(\Grpc\ServerStreamingCall::class);
+        $message = $this->createMockRequest();
+
+        $transport = new MockGrpcTransport(
+            $serverStreamingCall->reveal(),
+            logger: new StdOutLogger()
+        );
+
+        $stream = $transport->startServerStreamingCall(
+            new Call($rpcName, null, $message),
+            ['headers' => []]
+        );
+
+        $buffer = $this->getActualOutput();
+        $unserializedBuffer = json_decode($buffer, true);
+
+        $this->assertNotEmpty($unserializedBuffer);
+        $this->assertNotEmpty($unserializedBuffer['jsonPayload']);
+        $this->assertEquals('grpc://', $unserializedBuffer['jsonPayload']['request.url']);
+    }
+
+    public function testUnaryRequestLogsUrl()
+    {
+        $rpcName = 'takeAction';
+        $unaryCall = $this->prophesize(\Grpc\UnaryCall::class);
+        $message = $this->createMockRequest();
+
+        $transport = new MockGrpcTransport(
+            $unaryCall->reveal(),
+            logger: new StdOutLogger()
+        );
+
+        $transport->startUnaryCall(
+            new Call($rpcName, null, $message),
+            ['headers' => []]
+        );
+
+        $buffer = $this->getActualOutput();
+        $unserializedBuffer = json_decode($buffer, true);
+
+        $this->assertNotEmpty($unserializedBuffer);
+        $this->assertNotEmpty($unserializedBuffer['jsonPayload']);
+        $this->assertEquals('grpc://', $unserializedBuffer['jsonPayload']['request.url']);
     }
 
     public function testBidiStreamingSuccessObject()

@@ -61,11 +61,11 @@ class Dimension
     const ADVERTISER_CREDIT_STATUS_NAME = 476;
     /**
      * The domain name of the advertiser.
-     * Corresponds to "Advertiser domain" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`
+     * Corresponds to "Landing page domain" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`, `REACH`
      * Data format: `STRING`
      *
-     * Generated from protobuf enum <code>ADVERTISER_DOMAIN_NAME = 242;</code>
+     * Generated from protobuf enum <code>ADVERTISER_DOMAIN_NAME = 242 [deprecated = true];</code>
      */
     const ADVERTISER_DOMAIN_NAME = 242;
     /**
@@ -1479,7 +1479,8 @@ class Dimension
     /**
      * The criteria ID of the city in which the ad served.
      * Corresponds to "City ID" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`,
+     * `OFF_PROPERTY_CAMPAIGNS`
      * Data format: `IDENTIFIER`
      *
      * Generated from protobuf enum <code>CITY_ID = 459;</code>
@@ -1498,7 +1499,8 @@ class Dimension
      * The ID of an advertiser, classified by Google, associated with a creative
      *  transacted
      * Corresponds to "Advertiser ID (classified)" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`,
+     * `REACH`
      * Data format: `IDENTIFIER`
      *
      * Generated from protobuf enum <code>CLASSIFIED_ADVERTISER_ID = 133;</code>
@@ -1508,7 +1510,8 @@ class Dimension
      * The name of an advertiser, classified by Google, associated with a
      *  creative transacted
      * Corresponds to "Advertiser (classified)" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`,
+     * `REACH`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>CLASSIFIED_ADVERTISER_NAME = 134;</code>
@@ -1739,7 +1742,8 @@ class Dimension
      *  normal creative.
      * Corresponds to "Creative or creative set value" in the Ad Manager UI
      * (when showing API fields).
-     * Compatible with the following report types: `HISTORICAL`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `REAL_TIME_VIDEO`
      * Data format: `ENUM`
      *
      * Generated from protobuf enum <code>CREATIVE_OR_CREATIVE_SET = 682;</code>
@@ -1749,7 +1753,8 @@ class Dimension
      * Localized string name of whether the creative is part of a creative set
      *  or a normal creative.
      * Corresponds to "Creative or creative set" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `REAL_TIME_VIDEO`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>CREATIVE_OR_CREATIVE_SET_NAME = 683;</code>
@@ -2088,6 +2093,15 @@ class Dimension
      */
     const DEAL_NAME = 437;
     /**
+     * The declared domain of the advertiser.
+     * Corresponds to "Declared advertiser domain" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `STRING`
+     *
+     * Generated from protobuf enum <code>DECLARED_ADVERTISER_DOMAIN = 796;</code>
+     */
+    const DECLARED_ADVERTISER_DOMAIN = 796;
+    /**
      * The ID of the secure signals that were sent to the bidder who won the
      *  impression.
      * Corresponds to "Secure signal ID (delivered)" in the Ad Manager UI.
@@ -2112,7 +2126,7 @@ class Dimension
      * Corresponds to "Demand channel value" in the Ad Manager UI (when showing
      * API fields).
      * Compatible with the following report types: `HISTORICAL`, `REACH`,
-     * `REVENUE_VERIFICATION`, `AD_SPEED`
+     * `REVENUE_VERIFICATION`, `AD_SPEED`, `ON_PLATFORM_MULTICALL`
      * Data format: `ENUM`
      *
      * Generated from protobuf enum <code>DEMAND_CHANNEL = 9;</code>
@@ -2122,7 +2136,7 @@ class Dimension
      * Demand channel name.
      * Corresponds to "Demand channel" in the Ad Manager UI.
      * Compatible with the following report types: `HISTORICAL`, `REACH`,
-     * `REVENUE_VERIFICATION`, `AD_SPEED`
+     * `REVENUE_VERIFICATION`, `AD_SPEED`, `ON_PLATFORM_MULTICALL`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>DEMAND_CHANNEL_NAME = 10;</code>
@@ -2160,7 +2174,8 @@ class Dimension
      * Demand subchannel.
      * Corresponds to "Demand subchannel value" in the Ad Manager UI (when
      * showing API fields).
-     * Compatible with the following report types: `HISTORICAL`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `ON_PLATFORM_MULTICALL`
      * Data format: `ENUM`
      *
      * Generated from protobuf enum <code>DEMAND_SUBCHANNEL = 22;</code>
@@ -2169,7 +2184,8 @@ class Dimension
     /**
      * Demand subchannel name.
      * Corresponds to "Demand subchannel" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `ON_PLATFORM_MULTICALL`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>DEMAND_SUBCHANNEL_NAME = 23;</code>
@@ -2487,6 +2503,15 @@ class Dimension
      */
     const HEADER_BIDDER_INTEGRATION_TYPE_NAME = 719;
     /**
+     * High engagement ads allowed.
+     * Corresponds to "High engagement ads allowed" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `BOOLEAN`
+     *
+     * Generated from protobuf enum <code>HIGH_ENGAGEMENT_ADS_ALLOWED = 838;</code>
+     */
+    const HIGH_ENGAGEMENT_ADS_ALLOWED = 838;
+    /**
      * Breaks down reporting data by hour in one day.
      * Corresponds to "Hour" in the Ad Manager UI.
      * Compatible with the following report types: `HISTORICAL`,
@@ -2711,7 +2736,8 @@ class Dimension
     /**
      * The Custom Targeting Value ID
      * Corresponds to "Key-values ID" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`
      * Data format: `IDENTIFIER`
      *
      * Generated from protobuf enum <code>KEY_VALUES_ID = 214;</code>
@@ -2720,7 +2746,8 @@ class Dimension
     /**
      * The Custom Targeting Value formatted like `{keyName}={valueName}`
      * Corresponds to "Key-values" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`
+     * Compatible with the following report types: `HISTORICAL`,
+     * `FUTURE_SELL_THROUGH`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>KEY_VALUES_NAME = 215;</code>
@@ -2729,12 +2756,19 @@ class Dimension
     /**
      * The custom criteria key-values specified in ad requests.
      * Corresponds to "Key-values" in the Ad Manager UI.
-     * Compatible with the following report types: `FUTURE_SELL_THROUGH`
+     * Compatible with the following report types:
      * Data format: `STRING_LIST`
      *
      * Generated from protobuf enum <code>KEY_VALUES_SET = 713;</code>
      */
     const KEY_VALUES_SET = 713;
+    /**
+     * The landing page domain name of the advertiser.
+     * This will eventually replace ADVERTISER_DOMAIN_NAME.
+     *
+     * Generated from protobuf enum <code>LANDING_PAGE_DOMAIN = 242;</code>
+     */
+    const LANDING_PAGE_DOMAIN = 242;
     /**
      * The agency of the order associated with the line item.
      * Corresponds to "Line item agency" in the Ad Manager UI.
@@ -3417,7 +3451,8 @@ class Dimension
     /**
      * The criteria ID of the metro area in which the ad served.
      * Corresponds to "Metro ID" in the Ad Manager UI.
-     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`
+     * Compatible with the following report types: `HISTORICAL`, `AD_SPEED`,
+     * `OFF_PROPERTY_CAMPAIGNS`
      * Data format: `IDENTIFIER`
      *
      * Generated from protobuf enum <code>METRO_ID = 453;</code>
@@ -3720,6 +3755,15 @@ class Dimension
      * Generated from protobuf enum <code>NO_FILL_REASON_CATEGORY_NAME = 587;</code>
      */
     const NO_FILL_REASON_CATEGORY_NAME = 587;
+    /**
+     * Number of ads served in a pod response.
+     * Corresponds to "Number of ads in pod" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `INTEGER`
+     *
+     * Generated from protobuf enum <code>NUM_ADS_IN_POD = 804;</code>
+     */
+    const NUM_ADS_IN_POD = 804;
     /**
      * Operating system category.
      * Corresponds to "Operating system category value" in the Ad Manager UI
@@ -4546,6 +4590,25 @@ class Dimension
      */
     const REQUESTED_AD_SIZES = 352;
     /**
+     * The orientation of the creative requested.
+     * Corresponds to "Requested creative orientation value" in the Ad Manager
+     * UI (when showing API fields).
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `ENUM_LIST`
+     *
+     * Generated from protobuf enum <code>REQUESTED_CREATIVE_ORIENTATION = 828;</code>
+     */
+    const REQUESTED_CREATIVE_ORIENTATION = 828;
+    /**
+     * Localized name of the requested creative orientation.
+     * Corresponds to "Requested creative orientation" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `STRING_LIST`
+     *
+     * Generated from protobuf enum <code>REQUESTED_CREATIVE_ORIENTATION_NAME = 829;</code>
+     */
+    const REQUESTED_CREATIVE_ORIENTATION_NAME = 829;
+    /**
      * Request type ENUM
      * Corresponds to "Request type value" in the Ad Manager UI (when showing
      * API fields).
@@ -4970,7 +5033,7 @@ class Dimension
      */
     const VIDEO_FALLBACK_POSITION = 530;
     /**
-     * The duration of the ad break in seconds for a live stream event.
+     * The expected duration of the ad break in seconds for a live stream event.
      * Corresponds to "Ad break duration (seconds)" in the Ad Manager UI.
      * Compatible with the following report types: `HISTORICAL`
      * Data format: `INTEGER`
@@ -5080,7 +5143,7 @@ class Dimension
      *  mid-roll, post-roll.
      * Corresponds to "Position of pod" in the Ad Manager UI.
      * Compatible with the following report types: `HISTORICAL`,
-     * `REAL_TIME_VIDEO`
+     * `REAL_TIME_VIDEO`, `OFF_PROPERTY_CAMPAIGNS`
      * Data format: `STRING`
      *
      * Generated from protobuf enum <code>VIDEO_POSITION_OF_POD = 539;</code>
@@ -5126,6 +5189,25 @@ class Dimension
      * Generated from protobuf enum <code>VIDEO_STITCHER_TYPE_NAME = 753;</code>
      */
     const VIDEO_STITCHER_TYPE_NAME = 753;
+    /**
+     * Web interstitial trigger type.
+     * Corresponds to "Web interstitial trigger type value" in the Ad Manager UI
+     * (when showing API fields).
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `ENUM`
+     *
+     * Generated from protobuf enum <code>WEB_INTERSTITIAL_TRIGGER_TYPE = 826;</code>
+     */
+    const WEB_INTERSTITIAL_TRIGGER_TYPE = 826;
+    /**
+     * Localized name of the web interstitial trigger type.
+     * Corresponds to "Web interstitial trigger type" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `STRING`
+     *
+     * Generated from protobuf enum <code>WEB_INTERSTITIAL_TRIGGER_TYPE_NAME = 827;</code>
+     */
+    const WEB_INTERSTITIAL_TRIGGER_TYPE_NAME = 827;
     /**
      * Web property code
      * Corresponds to "Web property code" in the Ad Manager UI.
@@ -7401,6 +7483,7 @@ class Dimension
         self::DEAL_ID => 'DEAL_ID',
         self::DEAL_ID_ALL => 'DEAL_ID_ALL',
         self::DEAL_NAME => 'DEAL_NAME',
+        self::DECLARED_ADVERTISER_DOMAIN => 'DECLARED_ADVERTISER_DOMAIN',
         self::DELIVERED_SECURE_SIGNAL_ID => 'DELIVERED_SECURE_SIGNAL_ID',
         self::DELIVERED_SECURE_SIGNAL_NAME => 'DELIVERED_SECURE_SIGNAL_NAME',
         self::DEMAND_CHANNEL => 'DEMAND_CHANNEL',
@@ -7442,6 +7525,7 @@ class Dimension
         self::HBT_YIELD_PARTNER_NAME => 'HBT_YIELD_PARTNER_NAME',
         self::HEADER_BIDDER_INTEGRATION_TYPE => 'HEADER_BIDDER_INTEGRATION_TYPE',
         self::HEADER_BIDDER_INTEGRATION_TYPE_NAME => 'HEADER_BIDDER_INTEGRATION_TYPE_NAME',
+        self::HIGH_ENGAGEMENT_ADS_ALLOWED => 'HIGH_ENGAGEMENT_ADS_ALLOWED',
         self::HOUR => 'HOUR',
         self::IMPRESSION_COUNTING_METHOD => 'IMPRESSION_COUNTING_METHOD',
         self::IMPRESSION_COUNTING_METHOD_NAME => 'IMPRESSION_COUNTING_METHOD_NAME',
@@ -7468,6 +7552,7 @@ class Dimension
         self::KEY_VALUES_ID => 'KEY_VALUES_ID',
         self::KEY_VALUES_NAME => 'KEY_VALUES_NAME',
         self::KEY_VALUES_SET => 'KEY_VALUES_SET',
+        self::LANDING_PAGE_DOMAIN => 'LANDING_PAGE_DOMAIN',
         self::LINE_ITEM_AGENCY => 'LINE_ITEM_AGENCY',
         self::LINE_ITEM_ARCHIVED => 'LINE_ITEM_ARCHIVED',
         self::LINE_ITEM_AVERAGE_NUMBER_OF_VIEWERS => 'LINE_ITEM_AVERAGE_NUMBER_OF_VIEWERS',
@@ -7565,6 +7650,7 @@ class Dimension
         self::NIELSEN_SEGMENT => 'NIELSEN_SEGMENT',
         self::NIELSEN_SITE_URL => 'NIELSEN_SITE_URL',
         self::NO_FILL_REASON_CATEGORY_NAME => 'NO_FILL_REASON_CATEGORY_NAME',
+        self::NUM_ADS_IN_POD => 'NUM_ADS_IN_POD',
         self::OPERATING_SYSTEM_CATEGORY => 'OPERATING_SYSTEM_CATEGORY',
         self::OPERATING_SYSTEM_CATEGORY_NAME => 'OPERATING_SYSTEM_CATEGORY_NAME',
         self::OPERATING_SYSTEM_VERSION_ID => 'OPERATING_SYSTEM_VERSION_ID',
@@ -7649,6 +7735,8 @@ class Dimension
         self::REJECTION_CLASS_CATEGORY_NAME => 'REJECTION_CLASS_CATEGORY_NAME',
         self::RENDERED_CREATIVE_SIZE => 'RENDERED_CREATIVE_SIZE',
         self::REQUESTED_AD_SIZES => 'REQUESTED_AD_SIZES',
+        self::REQUESTED_CREATIVE_ORIENTATION => 'REQUESTED_CREATIVE_ORIENTATION',
+        self::REQUESTED_CREATIVE_ORIENTATION_NAME => 'REQUESTED_CREATIVE_ORIENTATION_NAME',
         self::REQUEST_TYPE => 'REQUEST_TYPE',
         self::REQUEST_TYPE_NAME => 'REQUEST_TYPE_NAME',
         self::REVENUE_VERIFICATION_ID => 'REVENUE_VERIFICATION_ID',
@@ -7709,6 +7797,8 @@ class Dimension
         self::VIDEO_SDK_VERSION_NAME => 'VIDEO_SDK_VERSION_NAME',
         self::VIDEO_STITCHER_TYPE => 'VIDEO_STITCHER_TYPE',
         self::VIDEO_STITCHER_TYPE_NAME => 'VIDEO_STITCHER_TYPE_NAME',
+        self::WEB_INTERSTITIAL_TRIGGER_TYPE => 'WEB_INTERSTITIAL_TRIGGER_TYPE',
+        self::WEB_INTERSTITIAL_TRIGGER_TYPE_NAME => 'WEB_INTERSTITIAL_TRIGGER_TYPE_NAME',
         self::WEB_PROPERTY_CODE => 'WEB_PROPERTY_CODE',
         self::WEEK => 'WEEK',
         self::YIELD_GROUP_BUYER_NAME => 'YIELD_GROUP_BUYER_NAME',

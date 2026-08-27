@@ -10,9 +10,10 @@ use UnexpectedValueException;
  * Represents a signature algorithm and other information necessary to verify
  * signatures with a given public key.
  * This is based primarily on the public key types supported by Tink's
- * PemKeyType, which is in turn based on KMS's supported signing algorithms.
- * See https://cloud.google.com/kms/docs/algorithms. In the future, BinAuthz
- * might support additional public key types independently of Tink and/or KMS.
+ * PemKeyType, which is in turn based on KMS's supported signing
+ * [algorithms](https://cloud.google.com/kms/docs/algorithms). In the future,
+ * Binary Authorization might support additional public key types
+ * independently of Tink and/or KMS.
  *
  * Protobuf type <code>google.cloud.binaryauthorization.v1.PkixPublicKey.SignatureAlgorithm</code>
  */
@@ -31,11 +32,23 @@ class SignatureAlgorithm
      */
     const RSA_PSS_2048_SHA256 = 1;
     /**
+     * RSASSA-PSS 2048 bit key with a SHA256 digest.
+     *
+     * Generated from protobuf enum <code>RSA_SIGN_PSS_2048_SHA256 = 1;</code>
+     */
+    const RSA_SIGN_PSS_2048_SHA256 = 1;
+    /**
      * RSASSA-PSS 3072 bit key with a SHA256 digest.
      *
      * Generated from protobuf enum <code>RSA_PSS_3072_SHA256 = 2;</code>
      */
     const RSA_PSS_3072_SHA256 = 2;
+    /**
+     * RSASSA-PSS 3072 bit key with a SHA256 digest.
+     *
+     * Generated from protobuf enum <code>RSA_SIGN_PSS_3072_SHA256 = 2;</code>
+     */
+    const RSA_SIGN_PSS_3072_SHA256 = 2;
     /**
      * RSASSA-PSS 4096 bit key with a SHA256 digest.
      *
@@ -43,11 +56,23 @@ class SignatureAlgorithm
      */
     const RSA_PSS_4096_SHA256 = 3;
     /**
+     * RSASSA-PSS 4096 bit key with a SHA256 digest.
+     *
+     * Generated from protobuf enum <code>RSA_SIGN_PSS_4096_SHA256 = 3;</code>
+     */
+    const RSA_SIGN_PSS_4096_SHA256 = 3;
+    /**
      * RSASSA-PSS 4096 bit key with a SHA512 digest.
      *
      * Generated from protobuf enum <code>RSA_PSS_4096_SHA512 = 4;</code>
      */
     const RSA_PSS_4096_SHA512 = 4;
+    /**
+     * RSASSA-PSS 4096 bit key with a SHA512 digest.
+     *
+     * Generated from protobuf enum <code>RSA_SIGN_PSS_4096_SHA512 = 4;</code>
+     */
+    const RSA_SIGN_PSS_4096_SHA512 = 4;
     /**
      * RSASSA-PKCS1-v1_5 with a 2048 bit key and a SHA256 digest.
      *
@@ -108,13 +133,23 @@ class SignatureAlgorithm
      * Generated from protobuf enum <code>EC_SIGN_P521_SHA512 = 11;</code>
      */
     const EC_SIGN_P521_SHA512 = 11;
+    /**
+     * ML-DSA-65 Post-Quantum Cryptography signature algorithm.
+     *
+     * Generated from protobuf enum <code>ML_DSA_65 = 13;</code>
+     */
+    const ML_DSA_65 = 13;
 
     private static $valueToName = [
         self::SIGNATURE_ALGORITHM_UNSPECIFIED => 'SIGNATURE_ALGORITHM_UNSPECIFIED',
         self::RSA_PSS_2048_SHA256 => 'RSA_PSS_2048_SHA256',
+        self::RSA_SIGN_PSS_2048_SHA256 => 'RSA_SIGN_PSS_2048_SHA256',
         self::RSA_PSS_3072_SHA256 => 'RSA_PSS_3072_SHA256',
+        self::RSA_SIGN_PSS_3072_SHA256 => 'RSA_SIGN_PSS_3072_SHA256',
         self::RSA_PSS_4096_SHA256 => 'RSA_PSS_4096_SHA256',
+        self::RSA_SIGN_PSS_4096_SHA256 => 'RSA_SIGN_PSS_4096_SHA256',
         self::RSA_PSS_4096_SHA512 => 'RSA_PSS_4096_SHA512',
+        self::RSA_SIGN_PSS_4096_SHA512 => 'RSA_SIGN_PSS_4096_SHA512',
         self::RSA_SIGN_PKCS1_2048_SHA256 => 'RSA_SIGN_PKCS1_2048_SHA256',
         self::RSA_SIGN_PKCS1_3072_SHA256 => 'RSA_SIGN_PKCS1_3072_SHA256',
         self::RSA_SIGN_PKCS1_4096_SHA256 => 'RSA_SIGN_PKCS1_4096_SHA256',
@@ -125,6 +160,7 @@ class SignatureAlgorithm
         self::EC_SIGN_P384_SHA384 => 'EC_SIGN_P384_SHA384',
         self::ECDSA_P521_SHA512 => 'ECDSA_P521_SHA512',
         self::EC_SIGN_P521_SHA512 => 'EC_SIGN_P521_SHA512',
+        self::ML_DSA_65 => 'ML_DSA_65',
     ];
 
     public static function name($value)

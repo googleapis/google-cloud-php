@@ -39,8 +39,8 @@ class ListGiVersionsRequest extends \Google\Protobuf\Internal\Message
     protected $page_token = '';
     /**
      * Optional. An expression for filtering the results of the request. Only the
-     * shape, gcp_oracle_zone and gi_version fields are supported in this format:
-     * `shape="{shape}"`.
+     * `shape` and `gcp_oracle_zone_id` fields are supported in the following
+     * format: `shape="{shape}" AND gcp_oracle_zone_id="{gcp_oracle_zone_id}"`.
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -79,8 +79,8 @@ class ListGiVersionsRequest extends \Google\Protobuf\Internal\Message
      *           Optional. A token identifying a page of results the server should return.
      *     @type string $filter
      *           Optional. An expression for filtering the results of the request. Only the
-     *           shape, gcp_oracle_zone and gi_version fields are supported in this format:
-     *           `shape="{shape}"`.
+     *           `shape` and `gcp_oracle_zone_id` fields are supported in the following
+     *           format: `shape="{shape}" AND gcp_oracle_zone_id="{gcp_oracle_zone_id}"`.
      * }
      */
     public function __construct($data = NULL) {
@@ -176,8 +176,8 @@ class ListGiVersionsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. An expression for filtering the results of the request. Only the
-     * shape, gcp_oracle_zone and gi_version fields are supported in this format:
-     * `shape="{shape}"`.
+     * `shape` and `gcp_oracle_zone_id` fields are supported in the following
+     * format: `shape="{shape}" AND gcp_oracle_zone_id="{gcp_oracle_zone_id}"`.
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -189,8 +189,8 @@ class ListGiVersionsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. An expression for filtering the results of the request. Only the
-     * shape, gcp_oracle_zone and gi_version fields are supported in this format:
-     * `shape="{shape}"`.
+     * `shape` and `gcp_oracle_zone_id` fields are supported in the following
+     * format: `shape="{shape}" AND gcp_oracle_zone_id="{gcp_oracle_zone_id}"`.
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

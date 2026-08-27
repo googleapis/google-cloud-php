@@ -78,7 +78,11 @@ final class TaxonomyCategoryServiceClient
     /** The name of the code generator, to be included in the agent header. */
     private const CODEGEN_NAME = 'gapic';
 
-    /** The default scopes required by the service. */
+    /**
+     * The default scopes required by the service.
+     *
+     * @internal
+     */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/admanager',
         'https://www.googleapis.com/auth/admanager.readonly',
@@ -256,7 +260,7 @@ final class TaxonomyCategoryServiceClient
     }
 
     /**
-     * API to retrieve a `TaxonomyCategory` object.
+     * Retrieves a `TaxonomyCategory` object.
      *
      * The async variant is
      * {@see TaxonomyCategoryServiceClient::getTaxonomyCategoryAsync()} .
@@ -283,7 +287,7 @@ final class TaxonomyCategoryServiceClient
     }
 
     /**
-     * API to retrieve a list of `TaxonomyCategory` objects.
+     * Lists `TaxonomyCategory` objects.
      *
      * The async variant is
      * {@see TaxonomyCategoryServiceClient::listTaxonomyCategoriesAsync()} .

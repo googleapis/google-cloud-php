@@ -2,7 +2,7 @@
 declare(strict_types=1);
 
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -204,14 +204,13 @@ return [
                 ],
             ],
             'templateMap' => [
-                'blurb' => 'users/{user}/blurbs/{blurb}',
+                'blurb' => 'users/{user}/profile/blurbs/legacy/{legacy_user}~{blurb}',
                 'room' => 'rooms/{room}',
                 'roomBlurb' => 'rooms/{room}/blurbs/{blurb}',
-                'roomLegacyRoom' => 'rooms/{room}/legacy_room/{legacy_room}',
-                'roomLegacyRoomBlurb' => 'rooms/{room}/legacy_room/{legacy_room}/blurbs/{blurb}',
+                'roomLegacyRoomBlurb' => 'rooms/{room}/blurbs/legacy/{legacy_room}.{blurb}',
                 'user' => 'users/{user}',
-                'userBlurb' => 'users/{user}/blurbs/{blurb}',
-                'userBlurbLegacyUser' => 'users/{user}/blurbs/{blurb}/legacy/{legacy_user}',
+                'userBlurb' => 'users/{user}/profile/blurbs/{blurb}',
+                'userLegacyUserBlurb' => 'users/{user}/profile/blurbs/legacy/{legacy_user}~{blurb}',
             ],
         ],
     ],

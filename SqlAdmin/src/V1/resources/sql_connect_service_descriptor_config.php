@@ -59,6 +59,24 @@ return [
                     ],
                 ],
             ],
+            'ResolveConnectSettings' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Sql\V1\ConnectSettings',
+                'headerParams' => [
+                    [
+                        'keyName' => 'location',
+                        'fieldAccessors' => [
+                            'getLocation',
+                        ],
+                    ],
+                    [
+                        'keyName' => 'dns_name',
+                        'fieldAccessors' => [
+                            'getDnsName',
+                        ],
+                    ],
+                ],
+            ],
         ],
     ],
 ];

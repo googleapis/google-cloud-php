@@ -16,15 +16,16 @@ use Google\Protobuf\RepeatedField;
 class TextSearch extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The query text.
+     * Optional. The query text. Required when using the default text search mode.
      *
-     * Generated from protobuf field <code>string search_text = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string search_text = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $search_text = '';
     /**
-     * Required. The data field names to search.
+     * Optional. The data field names to search. Required when using the default
+     * text search mode.
      *
-     * Generated from protobuf field <code>repeated string data_field_names = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>repeated string data_field_names = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $data_field_names;
     /**
@@ -54,9 +55,10 @@ class TextSearch extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $search_text
-     *           Required. The query text.
+     *           Optional. The query text. Required when using the default text search mode.
      *     @type string[] $data_field_names
-     *           Required. The data field names to search.
+     *           Optional. The data field names to search. Required when using the default
+     *           text search mode.
      *     @type \Google\Cloud\VectorSearch\V1\OutputFields $output_fields
      *           Optional. The fields to return in the search results.
      *     @type int $top_k
@@ -72,9 +74,9 @@ class TextSearch extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The query text.
+     * Optional. The query text. Required when using the default text search mode.
      *
-     * Generated from protobuf field <code>string search_text = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string search_text = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getSearchText()
@@ -83,9 +85,9 @@ class TextSearch extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The query text.
+     * Optional. The query text. Required when using the default text search mode.
      *
-     * Generated from protobuf field <code>string search_text = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string search_text = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -98,9 +100,10 @@ class TextSearch extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The data field names to search.
+     * Optional. The data field names to search. Required when using the default
+     * text search mode.
      *
-     * Generated from protobuf field <code>repeated string data_field_names = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>repeated string data_field_names = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return RepeatedField<string>
      */
     public function getDataFieldNames()
@@ -109,9 +112,10 @@ class TextSearch extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The data field names to search.
+     * Optional. The data field names to search. Required when using the default
+     * text search mode.
      *
-     * Generated from protobuf field <code>repeated string data_field_names = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>repeated string data_field_names = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string[] $var
      * @return $this
      */

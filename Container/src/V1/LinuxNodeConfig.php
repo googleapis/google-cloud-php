@@ -51,6 +51,7 @@ class LinuxNodeConfig extends \Google\Protobuf\Internal\Message
      * kernel.shmmni
      * kernel.shmmax
      * kernel.shmall
+     * kernel.core_pattern
      * kernel.perf_event_paranoid
      * kernel.sched_rt_runtime_us
      * kernel.softlockup_panic
@@ -142,6 +143,18 @@ class LinuxNodeConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional .google.container.v1.LinuxNodeConfig.AccurateTimeConfig accurate_time_config = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $accurate_time_config = null;
+    /**
+     * Optional. Contains VFIO-related configurations for this node.
+     *
+     * Generated from protobuf field <code>.google.container.v1.LinuxNodeConfig.NodeVfioConfig node_vfio_config = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $node_vfio_config = null;
+    /**
+     * Optional. Controls the configuration for the disk IO scheduler.
+     *
+     * Generated from protobuf field <code>.google.container.v1.DiskIoScheduler disk_io_scheduler = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $disk_io_scheduler = null;
 
     /**
      * Constructor.
@@ -185,6 +198,7 @@ class LinuxNodeConfig extends \Google\Protobuf\Internal\Message
      *           kernel.shmmni
      *           kernel.shmmax
      *           kernel.shmall
+     *           kernel.core_pattern
      *           kernel.perf_event_paranoid
      *           kernel.sched_rt_runtime_us
      *           kernel.softlockup_panic
@@ -240,6 +254,10 @@ class LinuxNodeConfig extends \Google\Protobuf\Internal\Message
      *           OS image that enforces kernel module signature verification.
      *     @type \Google\Cloud\Container\V1\LinuxNodeConfig\AccurateTimeConfig $accurate_time_config
      *           Optional. The accurate time configuration for the node pool.
+     *     @type \Google\Cloud\Container\V1\LinuxNodeConfig\NodeVfioConfig $node_vfio_config
+     *           Optional. Contains VFIO-related configurations for this node.
+     *     @type \Google\Cloud\Container\V1\DiskIoScheduler $disk_io_scheduler
+     *           Optional. Controls the configuration for the disk IO scheduler.
      * }
      */
     public function __construct($data = NULL) {
@@ -283,6 +301,7 @@ class LinuxNodeConfig extends \Google\Protobuf\Internal\Message
      * kernel.shmmni
      * kernel.shmmax
      * kernel.shmall
+     * kernel.core_pattern
      * kernel.perf_event_paranoid
      * kernel.sched_rt_runtime_us
      * kernel.softlockup_panic
@@ -353,6 +372,7 @@ class LinuxNodeConfig extends \Google\Protobuf\Internal\Message
      * kernel.shmmni
      * kernel.shmmax
      * kernel.shmall
+     * kernel.core_pattern
      * kernel.perf_event_paranoid
      * kernel.sched_rt_runtime_us
      * kernel.softlockup_panic
@@ -673,6 +693,78 @@ class LinuxNodeConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\LinuxNodeConfig\AccurateTimeConfig::class);
         $this->accurate_time_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Contains VFIO-related configurations for this node.
+     *
+     * Generated from protobuf field <code>.google.container.v1.LinuxNodeConfig.NodeVfioConfig node_vfio_config = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Container\V1\LinuxNodeConfig\NodeVfioConfig|null
+     */
+    public function getNodeVfioConfig()
+    {
+        return $this->node_vfio_config;
+    }
+
+    public function hasNodeVfioConfig()
+    {
+        return isset($this->node_vfio_config);
+    }
+
+    public function clearNodeVfioConfig()
+    {
+        unset($this->node_vfio_config);
+    }
+
+    /**
+     * Optional. Contains VFIO-related configurations for this node.
+     *
+     * Generated from protobuf field <code>.google.container.v1.LinuxNodeConfig.NodeVfioConfig node_vfio_config = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Container\V1\LinuxNodeConfig\NodeVfioConfig $var
+     * @return $this
+     */
+    public function setNodeVfioConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\LinuxNodeConfig\NodeVfioConfig::class);
+        $this->node_vfio_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Controls the configuration for the disk IO scheduler.
+     *
+     * Generated from protobuf field <code>.google.container.v1.DiskIoScheduler disk_io_scheduler = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Container\V1\DiskIoScheduler|null
+     */
+    public function getDiskIoScheduler()
+    {
+        return $this->disk_io_scheduler;
+    }
+
+    public function hasDiskIoScheduler()
+    {
+        return isset($this->disk_io_scheduler);
+    }
+
+    public function clearDiskIoScheduler()
+    {
+        unset($this->disk_io_scheduler);
+    }
+
+    /**
+     * Optional. Controls the configuration for the disk IO scheduler.
+     *
+     * Generated from protobuf field <code>.google.container.v1.DiskIoScheduler disk_io_scheduler = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Container\V1\DiskIoScheduler $var
+     * @return $this
+     */
+    public function setDiskIoScheduler($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\DiskIoScheduler::class);
+        $this->disk_io_scheduler = $var;
 
         return $this;
     }

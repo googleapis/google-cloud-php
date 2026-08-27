@@ -8,7 +8,7 @@
         "BinauthzManagementServiceV1": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "BinauthzManagementServiceV1GapicClient",
+                    "libraryClient": "BinauthzManagementServiceV1Client",
                     "rpcs": {
                         "CreateAttestor": {
                             "methods": [
@@ -44,6 +44,21 @@
                             "methods": [
                                 "updatePolicy"
                             ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
                         }
                     }
                 }
@@ -52,11 +67,26 @@
         "SystemPolicyV1": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "SystemPolicyV1GapicClient",
+                    "libraryClient": "SystemPolicyV1Client",
                     "rpcs": {
                         "GetSystemPolicy": {
                             "methods": [
                                 "getSystemPolicy"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
                             ]
                         }
                     }
@@ -66,11 +96,26 @@
         "ValidationHelperV1": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ValidationHelperV1GapicClient",
+                    "libraryClient": "ValidationHelperV1Client",
                     "rpcs": {
                         "ValidateAttestationOccurrence": {
                             "methods": [
                                 "validateAttestationOccurrence"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
                             ]
                         }
                     }

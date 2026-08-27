@@ -29,7 +29,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 
 /**
- * API to retrieve a list of `AdBreak` objects.
+ * Lists `AdBreak` objects.
  *
  * By default, when no `orderBy` query parameter is specified, ad breaks are
  * ordered reverse chronologically. However, ad breaks with a 'breakState' of

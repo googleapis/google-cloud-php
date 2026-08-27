@@ -342,6 +342,14 @@ class SqlOperationType
      * Generated from protobuf enum <code>PRE_CHECK_MAJOR_VERSION_UPGRADE = 54;</code>
      */
     const PRE_CHECK_MAJOR_VERSION_UPGRADE = 54;
+    /**
+     * This operation type represents individual steps in a multi-step setup
+     * migration workflow: including configuration, replication,
+     * switchover/back, and data reseeding, as defined by operation's intent.
+     *
+     * Generated from protobuf enum <code>SETUP_MIGRATION = 55;</code>
+     */
+    const SETUP_MIGRATION = 55;
 
     private static $valueToName = [
         self::SQL_OPERATION_TYPE_UNSPECIFIED => 'SQL_OPERATION_TYPE_UNSPECIFIED',
@@ -397,6 +405,7 @@ class SqlOperationType
         self::REPAIR_READ_POOL => 'REPAIR_READ_POOL',
         self::CREATE_READ_POOL => 'CREATE_READ_POOL',
         self::PRE_CHECK_MAJOR_VERSION_UPGRADE => 'PRE_CHECK_MAJOR_VERSION_UPGRADE',
+        self::SETUP_MIGRATION => 'SETUP_MIGRATION',
     ];
 
     public static function name($value)

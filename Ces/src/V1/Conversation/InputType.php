@@ -20,37 +20,43 @@ class InputType
      */
     const INPUT_TYPE_UNSPECIFIED = 0;
     /**
-     * The input message is text.
+     * Text input.
      *
      * Generated from protobuf enum <code>INPUT_TYPE_TEXT = 1;</code>
      */
     const INPUT_TYPE_TEXT = 1;
     /**
-     * The input message is audio.
+     * Event input.
+     *
+     * Generated from protobuf enum <code>INPUT_TYPE_EVENT = 7;</code>
+     */
+    const INPUT_TYPE_EVENT = 7;
+    /**
+     * Audio input.
      *
      * Generated from protobuf enum <code>INPUT_TYPE_AUDIO = 2;</code>
      */
     const INPUT_TYPE_AUDIO = 2;
     /**
-     * The input message is image.
+     * Image input.
      *
      * Generated from protobuf enum <code>INPUT_TYPE_IMAGE = 3;</code>
      */
     const INPUT_TYPE_IMAGE = 3;
     /**
-     * The input message is blob file.
+     * Blob input.
      *
      * Generated from protobuf enum <code>INPUT_TYPE_BLOB = 4;</code>
      */
     const INPUT_TYPE_BLOB = 4;
     /**
-     * The input message is client function tool response.
+     * Client function tool response input.
      *
      * Generated from protobuf enum <code>INPUT_TYPE_TOOL_RESPONSE = 5;</code>
      */
     const INPUT_TYPE_TOOL_RESPONSE = 5;
     /**
-     * The input message are variables.
+     * Variables input.
      *
      * Generated from protobuf enum <code>INPUT_TYPE_VARIABLES = 6;</code>
      */
@@ -59,6 +65,7 @@ class InputType
     private static $valueToName = [
         self::INPUT_TYPE_UNSPECIFIED => 'INPUT_TYPE_UNSPECIFIED',
         self::INPUT_TYPE_TEXT => 'INPUT_TYPE_TEXT',
+        self::INPUT_TYPE_EVENT => 'INPUT_TYPE_EVENT',
         self::INPUT_TYPE_AUDIO => 'INPUT_TYPE_AUDIO',
         self::INPUT_TYPE_IMAGE => 'INPUT_TYPE_IMAGE',
         self::INPUT_TYPE_BLOB => 'INPUT_TYPE_BLOB',
