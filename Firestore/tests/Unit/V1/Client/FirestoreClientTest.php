@@ -81,7 +81,9 @@ class FirestoreClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return FirestoreClient */
@@ -123,9 +125,7 @@ class FirestoreClientTest extends GeneratedTest
         // Mock request
         $database = 'database1789464955';
         $documents = [];
-        $request = (new BatchGetDocumentsRequest())
-            ->setDatabase($database)
-            ->setDocuments($documents);
+        $request = (new BatchGetDocumentsRequest())->setDatabase($database)->setDocuments($documents);
         $serverStream = $gapicClient->batchGetDocuments($request);
         $this->assertInstanceOf(ServerStream::class, $serverStream);
         $responses = iterator_to_array($serverStream->readAll());
@@ -156,20 +156,21 @@ class FirestoreClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->setStreamingStatus($status);
         $this->assertTrue($transport->isExhausted());
         // Mock request
         $database = 'database1789464955';
         $documents = [];
-        $request = (new BatchGetDocumentsRequest())
-            ->setDatabase($database)
-            ->setDocuments($documents);
+        $request = (new BatchGetDocumentsRequest())->setDatabase($database)->setDocuments($documents);
         $serverStream = $gapicClient->batchGetDocuments($request);
         $results = $serverStream->readAll();
         try {
@@ -218,12 +219,15 @@ class FirestoreClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new BatchWriteRequest();
         try {
@@ -254,8 +258,7 @@ class FirestoreClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $database = 'database1789464955';
-        $request = (new BeginTransactionRequest())
-            ->setDatabase($database);
+        $request = (new BeginTransactionRequest())->setDatabase($database);
         $response = $gapicClient->beginTransaction($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -279,17 +282,19 @@ class FirestoreClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $database = 'database1789464955';
-        $request = (new BeginTransactionRequest())
-            ->setDatabase($database);
+        $request = (new BeginTransactionRequest())->setDatabase($database);
         try {
             $gapicClient->beginTransaction($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -317,9 +322,7 @@ class FirestoreClientTest extends GeneratedTest
         // Mock request
         $database = 'database1789464955';
         $writes = [];
-        $request = (new CommitRequest())
-            ->setDatabase($database)
-            ->setWrites($writes);
+        $request = (new CommitRequest())->setDatabase($database)->setWrites($writes);
         $response = $gapicClient->commit($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -345,19 +348,20 @@ class FirestoreClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $database = 'database1789464955';
         $writes = [];
-        $request = (new CommitRequest())
-            ->setDatabase($database)
-            ->setWrites($writes);
+        $request = (new CommitRequest())->setDatabase($database)->setWrites($writes);
         try {
             $gapicClient->commit($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -423,12 +427,15 @@ class FirestoreClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $parent = 'parent-995424086';
@@ -466,8 +473,7 @@ class FirestoreClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $name = 'name3373707';
-        $request = (new DeleteDocumentRequest())
-            ->setName($name);
+        $request = (new DeleteDocumentRequest())->setName($name);
         $gapicClient->deleteDocument($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -490,17 +496,19 @@ class FirestoreClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $name = 'name3373707';
-        $request = (new DeleteDocumentRequest())
-            ->setName($name);
+        $request = (new DeleteDocumentRequest())->setName($name);
         try {
             $gapicClient->deleteDocument($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -537,8 +545,7 @@ class FirestoreClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse3);
         // Mock request
         $database = 'database1789464955';
-        $request = (new ExecutePipelineRequest())
-            ->setDatabase($database);
+        $request = (new ExecutePipelineRequest())->setDatabase($database);
         $serverStream = $gapicClient->executePipeline($request);
         $this->assertInstanceOf(ServerStream::class, $serverStream);
         $responses = iterator_to_array($serverStream->readAll());
@@ -567,18 +574,20 @@ class FirestoreClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->setStreamingStatus($status);
         $this->assertTrue($transport->isExhausted());
         // Mock request
         $database = 'database1789464955';
-        $request = (new ExecutePipelineRequest())
-            ->setDatabase($database);
+        $request = (new ExecutePipelineRequest())->setDatabase($database);
         $serverStream = $gapicClient->executePipeline($request);
         $results = $serverStream->readAll();
         try {
@@ -609,8 +618,7 @@ class FirestoreClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $name = 'name3373707';
-        $request = (new GetDocumentRequest())
-            ->setName($name);
+        $request = (new GetDocumentRequest())->setName($name);
         $response = $gapicClient->getDocument($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -634,17 +642,19 @@ class FirestoreClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $name = 'name3373707';
-        $request = (new GetDocumentRequest())
-            ->setName($name);
+        $request = (new GetDocumentRequest())->setName($name);
         try {
             $gapicClient->getDocument($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -669,17 +679,14 @@ class FirestoreClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $collectionIdsElement = 'collectionIdsElement1368994900';
-        $collectionIds = [
-            $collectionIdsElement,
-        ];
+        $collectionIds = [$collectionIdsElement];
         $expectedResponse = new ListCollectionIdsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setCollectionIds($collectionIds);
         $transport->addResponse($expectedResponse);
         // Mock request
         $parent = 'parent-995424086';
-        $request = (new ListCollectionIdsRequest())
-            ->setParent($parent);
+        $request = (new ListCollectionIdsRequest())->setParent($parent);
         $response = $gapicClient->listCollectionIds($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -706,17 +713,19 @@ class FirestoreClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $parent = 'parent-995424086';
-        $request = (new ListCollectionIdsRequest())
-            ->setParent($parent);
+        $request = (new ListCollectionIdsRequest())->setParent($parent);
         try {
             $gapicClient->listCollectionIds($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -741,9 +750,7 @@ class FirestoreClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $documentsElement = new Document();
-        $documents = [
-            $documentsElement,
-        ];
+        $documents = [$documentsElement];
         $expectedResponse = new ListDocumentsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setDocuments($documents);
@@ -751,9 +758,7 @@ class FirestoreClientTest extends GeneratedTest
         // Mock request
         $parent = 'parent-995424086';
         $collectionId = 'collectionId-821242276';
-        $request = (new ListDocumentsRequest())
-            ->setParent($parent)
-            ->setCollectionId($collectionId);
+        $request = (new ListDocumentsRequest())->setParent($parent)->setCollectionId($collectionId);
         $response = $gapicClient->listDocuments($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -782,19 +787,20 @@ class FirestoreClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $parent = 'parent-995424086';
         $collectionId = 'collectionId-821242276';
-        $request = (new ListDocumentsRequest())
-            ->setParent($parent)
-            ->setCollectionId($collectionId);
+        $request = (new ListDocumentsRequest())->setParent($parent)->setCollectionId($collectionId);
         try {
             $gapicClient->listDocuments($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -838,10 +844,7 @@ class FirestoreClientTest extends GeneratedTest
         $bidi->write($request);
         $responses = [];
         $responses[] = $bidi->read();
-        $bidi->writeAll([
-            $request2,
-            $request3,
-        ]);
+        $bidi->writeAll([$request2, $request3]);
         foreach ($bidi->closeWriteAndReadAll() as $response) {
             $responses[] = $response;
         }
@@ -879,12 +882,15 @@ class FirestoreClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->setStreamingStatus($status);
         $this->assertTrue($transport->isExhausted());
         $bidi = $gapicClient->listen();
@@ -913,9 +919,7 @@ class FirestoreClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $partitionsElement = new Cursor();
-        $partitions = [
-            $partitionsElement,
-        ];
+        $partitions = [$partitionsElement];
         $expectedResponse = new PartitionQueryResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setPartitions($partitions);
@@ -945,12 +949,15 @@ class FirestoreClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new PartitionQueryRequest();
         try {
@@ -980,9 +987,7 @@ class FirestoreClientTest extends GeneratedTest
         // Mock request
         $database = 'database1789464955';
         $transaction = '-34';
-        $request = (new RollbackRequest())
-            ->setDatabase($database)
-            ->setTransaction($transaction);
+        $request = (new RollbackRequest())->setDatabase($database)->setTransaction($transaction);
         $gapicClient->rollback($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1007,19 +1012,20 @@ class FirestoreClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $database = 'database1789464955';
         $transaction = '-34';
-        $request = (new RollbackRequest())
-            ->setDatabase($database)
-            ->setTransaction($transaction);
+        $request = (new RollbackRequest())->setDatabase($database)->setTransaction($transaction);
         try {
             $gapicClient->rollback($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1056,8 +1062,7 @@ class FirestoreClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse3);
         // Mock request
         $parent = 'parent-995424086';
-        $request = (new RunAggregationQueryRequest())
-            ->setParent($parent);
+        $request = (new RunAggregationQueryRequest())->setParent($parent);
         $serverStream = $gapicClient->runAggregationQuery($request);
         $this->assertInstanceOf(ServerStream::class, $serverStream);
         $responses = iterator_to_array($serverStream->readAll());
@@ -1086,18 +1091,20 @@ class FirestoreClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->setStreamingStatus($status);
         $this->assertTrue($transport->isExhausted());
         // Mock request
         $parent = 'parent-995424086';
-        $request = (new RunAggregationQueryRequest())
-            ->setParent($parent);
+        $request = (new RunAggregationQueryRequest())->setParent($parent);
         $serverStream = $gapicClient->runAggregationQuery($request);
         $results = $serverStream->readAll();
         try {
@@ -1148,8 +1155,7 @@ class FirestoreClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse3);
         // Mock request
         $parent = 'parent-995424086';
-        $request = (new RunQueryRequest())
-            ->setParent($parent);
+        $request = (new RunQueryRequest())->setParent($parent);
         $serverStream = $gapicClient->runQuery($request);
         $this->assertInstanceOf(ServerStream::class, $serverStream);
         $responses = iterator_to_array($serverStream->readAll());
@@ -1178,18 +1184,20 @@ class FirestoreClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->setStreamingStatus($status);
         $this->assertTrue($transport->isExhausted());
         // Mock request
         $parent = 'parent-995424086';
-        $request = (new RunQueryRequest())
-            ->setParent($parent);
+        $request = (new RunQueryRequest())->setParent($parent);
         $serverStream = $gapicClient->runQuery($request);
         $results = $serverStream->readAll();
         try {
@@ -1221,9 +1229,7 @@ class FirestoreClientTest extends GeneratedTest
         // Mock request
         $document = new Document();
         $updateMask = new DocumentMask();
-        $request = (new UpdateDocumentRequest())
-            ->setDocument($document)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateDocumentRequest())->setDocument($document)->setUpdateMask($updateMask);
         $response = $gapicClient->updateDocument($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1249,19 +1255,20 @@ class FirestoreClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $document = new Document();
         $updateMask = new DocumentMask();
-        $request = (new UpdateDocumentRequest())
-            ->setDocument($document)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateDocumentRequest())->setDocument($document)->setUpdateMask($updateMask);
         try {
             $gapicClient->updateDocument($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1317,10 +1324,7 @@ class FirestoreClientTest extends GeneratedTest
         $bidi->write($request);
         $responses = [];
         $responses[] = $bidi->read();
-        $bidi->writeAll([
-            $request2,
-            $request3,
-        ]);
+        $bidi->writeAll([$request2, $request3]);
         foreach ($bidi->closeWriteAndReadAll() as $response) {
             $responses[] = $response;
         }
@@ -1358,12 +1362,15 @@ class FirestoreClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->setStreamingStatus($status);
         $this->assertTrue($transport->isExhausted());
         $bidi = $gapicClient->write();

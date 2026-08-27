@@ -45,5 +45,11 @@ jobs:
         command: composer --no-interaction --no-ansi --no-progress update -d dev
     - name: Run DocFX Unit Test Suite
       run: dev/vendor/bin/phpunit -c dev/phpunit-docfx.xml.dist
+    - name: Install Dependencies (--no-dev)
+      uses: nick-invision/retry@ad984534de44a9489a53aefd81eb77f87c70dc60 # v4
+      with:
+        timeout_minutes: 10
+        max_attempts: 3
+        command: composer --no-interaction --no-ansi --no-progress --no-dev update -d dev
     - name: Run Docs Generator (Dry Run)
       run: .kokoro/docs/publish.sh

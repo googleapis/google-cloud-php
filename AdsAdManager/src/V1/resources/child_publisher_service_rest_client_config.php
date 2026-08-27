@@ -35,9 +35,57 @@ return [
                     ],
                 ],
             ],
+            'BatchRejectChildPublishers' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/childPublishers:batchReject',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchRenegotiateChildPublisherAgreements' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/childPublishers:batchRenegotiateAgreements',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchResendChildPublisherInvitationEmails' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/childPublishers:batchResendInvitationEmails',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'BatchUpdateChildPublishers' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=networks/*}/childPublishers:batchUpdate',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchWithdrawChildPublishers' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/childPublishers:batchWithdraw',
                 'body' => '*',
                 'placeholders' => [
                     'parent' => [

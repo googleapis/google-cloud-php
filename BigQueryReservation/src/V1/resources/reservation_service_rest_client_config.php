@@ -383,6 +383,19 @@ return [
                     ],
                 ],
             ],
+            'UpdateReservationGroup' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{reservation_group.name=projects/*/locations/*/reservationGroups/*}',
+                'body' => 'reservation_group',
+                'placeholders' => [
+                    'reservation_group.name' => [
+                        'getters' => [
+                            'getReservationGroup',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
         ],
     ],
     'numericEnums' => true,

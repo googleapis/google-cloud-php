@@ -23,6 +23,66 @@
 return [
     'interfaces' => [
         'google.ads.admanager.v1.AudienceSegmentService' => [
+            'BatchActivateAudienceSegments' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/audienceSegments:batchActivate',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchApproveAudienceSegments' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/audienceSegments:batchApprove',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchDeactivateAudienceSegments' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/audienceSegments:batchDeactivate',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchPopulateAudienceSegments' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/audienceSegments:batchPopulate',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchRejectAudienceSegments' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/audienceSegments:batchReject',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'GetAudienceSegment' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=networks/*/audienceSegments/*}',
