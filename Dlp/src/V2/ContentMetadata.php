@@ -21,6 +21,12 @@ class ContentMetadata extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.KeyValueMetadataProperty properties = 2;</code>
      */
     private $properties;
+    /**
+     * Optional. The file labels associated with the content.
+     *
+     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FileLabel file_labels = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $file_labels;
 
     /**
      * Constructor.
@@ -30,6 +36,8 @@ class ContentMetadata extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Dlp\V2\KeyValueMetadataProperty[] $properties
      *           User provided key-value pairs of content metadata.
+     *     @type \Google\Cloud\Dlp\V2\FileLabel[] $file_labels
+     *           Optional. The file labels associated with the content.
      * }
      */
     public function __construct($data = NULL) {
@@ -59,6 +67,32 @@ class ContentMetadata extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dlp\V2\KeyValueMetadataProperty::class);
         $this->properties = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The file labels associated with the content.
+     *
+     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FileLabel file_labels = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return RepeatedField<\Google\Cloud\Dlp\V2\FileLabel>
+     */
+    public function getFileLabels()
+    {
+        return $this->file_labels;
+    }
+
+    /**
+     * Optional. The file labels associated with the content.
+     *
+     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FileLabel file_labels = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dlp\V2\FileLabel[] $var
+     * @return $this
+     */
+    public function setFileLabels($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dlp\V2\FileLabel::class);
+        $this->file_labels = $arr;
 
         return $this;
     }

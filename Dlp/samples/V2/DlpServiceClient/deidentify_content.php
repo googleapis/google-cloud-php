@@ -32,7 +32,7 @@ use Google\Cloud\Dlp\V2\DeidentifyContentResponse;
  * De-identifies potentially sensitive info from a ContentItem.
  * This method has limits on input size and output size.
  * See
- * https://cloud.google.com/sensitive-data-protection/docs/deidentify-sensitive-data
+ * https://docs.cloud.google.com/sensitive-data-protection/docs/deidentify-sensitive-data
  * to learn more.
  *
  * When no InfoTypes or CustomInfoTypes are specified in this request, the
