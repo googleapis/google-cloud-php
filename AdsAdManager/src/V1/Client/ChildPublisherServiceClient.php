@@ -26,8 +26,16 @@ namespace Google\Ads\AdManager\V1\Client;
 
 use Google\Ads\AdManager\V1\BatchCreateChildPublishersRequest;
 use Google\Ads\AdManager\V1\BatchCreateChildPublishersResponse;
+use Google\Ads\AdManager\V1\BatchRejectChildPublishersRequest;
+use Google\Ads\AdManager\V1\BatchRejectChildPublishersResponse;
+use Google\Ads\AdManager\V1\BatchRenegotiateChildPublisherAgreementsRequest;
+use Google\Ads\AdManager\V1\BatchRenegotiateChildPublisherAgreementsResponse;
+use Google\Ads\AdManager\V1\BatchResendChildPublisherInvitationEmailsRequest;
+use Google\Ads\AdManager\V1\BatchResendChildPublisherInvitationEmailsResponse;
 use Google\Ads\AdManager\V1\BatchUpdateChildPublishersRequest;
 use Google\Ads\AdManager\V1\BatchUpdateChildPublishersResponse;
+use Google\Ads\AdManager\V1\BatchWithdrawChildPublishersRequest;
+use Google\Ads\AdManager\V1\BatchWithdrawChildPublishersResponse;
 use Google\Ads\AdManager\V1\ChildPublisher;
 use Google\Ads\AdManager\V1\CreateChildPublisherRequest;
 use Google\Ads\AdManager\V1\GetChildPublisherRequest;
@@ -59,7 +67,11 @@ use Psr\Log\LoggerInterface;
  * contained within formatted names that are returned by the API.
  *
  * @method PromiseInterface<BatchCreateChildPublishersResponse> batchCreateChildPublishersAsync(BatchCreateChildPublishersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchRejectChildPublishersResponse> batchRejectChildPublishersAsync(BatchRejectChildPublishersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchRenegotiateChildPublisherAgreementsResponse> batchRenegotiateChildPublisherAgreementsAsync(BatchRenegotiateChildPublisherAgreementsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchResendChildPublisherInvitationEmailsResponse> batchResendChildPublisherInvitationEmailsAsync(BatchResendChildPublisherInvitationEmailsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<BatchUpdateChildPublishersResponse> batchUpdateChildPublishersAsync(BatchUpdateChildPublishersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchWithdrawChildPublishersResponse> batchWithdrawChildPublishersAsync(BatchWithdrawChildPublishersRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ChildPublisher> createChildPublisherAsync(CreateChildPublisherRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ChildPublisher> getChildPublisherAsync(GetChildPublisherRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listChildPublishersAsync(ListChildPublishersRequest $request, array $optionalArgs = [])
@@ -299,6 +311,120 @@ final class ChildPublisherServiceClient
     }
 
     /**
+     * Batch rejects [ChildPublisher][google.ads.admanager.v1.ChildPublisher]s.
+     *
+     * Only pending or active
+     * [ChildPublisher][google.ads.admanager.v1.ChildPublisher]s can be rejected.
+     * Expired, rejected, and withdrawn
+     * [ChildPublisher][google.ads.admanager.v1.ChildPublisher]s will be ignored.
+     *
+     * This method is only intended to be called in response to a child user
+     * rejecting an invitation and exists to support the rejection of
+     * [ChildPublisher][google.ads.admanager.v1.ChildPublisher]s that are not yet
+     * associated with an Ad Manager network.
+     *
+     * To sever the relationship from the parent publisher's side, use
+     * [BatchWithdrawChildPublisher][].
+     *
+     * The async variant is
+     * {@see ChildPublisherServiceClient::batchRejectChildPublishersAsync()} .
+     *
+     * @example samples/V1/ChildPublisherServiceClient/batch_reject_child_publishers.php
+     *
+     * @param BatchRejectChildPublishersRequest $request     A request to house fields associated with the call.
+     * @param array                             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchRejectChildPublishersResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchRejectChildPublishers(
+        BatchRejectChildPublishersRequest $request,
+        array $callOptions = []
+    ): BatchRejectChildPublishersResponse {
+        return $this->startApiCall('BatchRejectChildPublishers', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Batch renegotiates [ChildPublisher][google.ads.admanager.v1.ChildPublisher]
+     * agreements (i.e., invite with updated terms).
+     *
+     * Only the agreements of rejected or withdrawn
+     * [ChildPublisher][google.ads.admanager.v1.ChildPublisher]s can be
+     * renegotiated. Expired, pending, and accepted
+     * [ChildPublisher][google.ads.admanager.v1.ChildPublisher]s will be ignored.
+     *
+     * The async variant is
+     * {@see ChildPublisherServiceClient::batchRenegotiateChildPublisherAgreementsAsync()}
+     * .
+     *
+     * @example samples/V1/ChildPublisherServiceClient/batch_renegotiate_child_publisher_agreements.php
+     *
+     * @param BatchRenegotiateChildPublisherAgreementsRequest $request     A request to house fields associated with the call.
+     * @param array                                           $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchRenegotiateChildPublisherAgreementsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchRenegotiateChildPublisherAgreements(
+        BatchRenegotiateChildPublisherAgreementsRequest $request,
+        array $callOptions = []
+    ): BatchRenegotiateChildPublisherAgreementsResponse {
+        return $this->startApiCall('BatchRenegotiateChildPublisherAgreements', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Batch resends invitation emails to
+     * [ChildPublisher][google.ads.admanager.v1.ChildPublisher]s.
+     *
+     * Only expired and pending
+     * [ChildPublisher][google.ads.admanager.v1.ChildPublisher]s can be sent
+     * invitation emails. Rejected, withdrawn, and accepted
+     * [ChildPublisher][google.ads.admanager.v1.ChildPublisher]s will be ignored.
+     *
+     * The async variant is
+     * {@see ChildPublisherServiceClient::batchResendChildPublisherInvitationEmailsAsync()}
+     * .
+     *
+     * @example samples/V1/ChildPublisherServiceClient/batch_resend_child_publisher_invitation_emails.php
+     *
+     * @param BatchResendChildPublisherInvitationEmailsRequest $request     A request to house fields associated with the call.
+     * @param array                                            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchResendChildPublisherInvitationEmailsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchResendChildPublisherInvitationEmails(
+        BatchResendChildPublisherInvitationEmailsRequest $request,
+        array $callOptions = []
+    ): BatchResendChildPublisherInvitationEmailsResponse {
+        return $this->startApiCall('BatchResendChildPublisherInvitationEmails', $request, $callOptions)->wait();
+    }
+
+    /**
      * Batch updates [ChildPublisher][google.ads.admanager.v1.ChildPublisher]
      * objects.
      *
@@ -326,6 +452,40 @@ final class ChildPublisherServiceClient
         array $callOptions = []
     ): BatchUpdateChildPublishersResponse {
         return $this->startApiCall('BatchUpdateChildPublishers', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Batch withdraws [ChildPublisher][google.ads.admanager.v1.ChildPublisher]s.
+     *
+     * Only expired, pending, and accepted
+     * [ChildPublisher][google.ads.admanager.v1.ChildPublisher]s can be withdrawn.
+     * Rejected or withdrawn
+     * [ChildPublisher][google.ads.admanager.v1.ChildPublisher]s will be ignored.
+     *
+     * The async variant is
+     * {@see ChildPublisherServiceClient::batchWithdrawChildPublishersAsync()} .
+     *
+     * @example samples/V1/ChildPublisherServiceClient/batch_withdraw_child_publishers.php
+     *
+     * @param BatchWithdrawChildPublishersRequest $request     A request to house fields associated with the call.
+     * @param array                               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchWithdrawChildPublishersResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchWithdrawChildPublishers(
+        BatchWithdrawChildPublishersRequest $request,
+        array $callOptions = []
+    ): BatchWithdrawChildPublishersResponse {
+        return $this->startApiCall('BatchWithdrawChildPublishers', $request, $callOptions)->wait();
     }
 
     /**
