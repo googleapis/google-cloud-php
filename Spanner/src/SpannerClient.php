@@ -47,7 +47,7 @@ use Google\Cloud\Spanner\Middleware\MetricsAttemptMiddleware;
 use Google\Cloud\Spanner\Middleware\MetricsOperationMiddleware;
 use Google\Cloud\Spanner\Middleware\RequestIdHeaderMiddleware;
 use Google\Cloud\Spanner\Middleware\SpannerMiddleware;
-use Google\Cloud\Spanner\OpenTelemetry\MetricsExporter;
+use Google\Cloud\Spanner\OpenTelemetry\OtlpMetricsExporter;
 use Google\Cloud\Spanner\V1\Client\SpannerClient as GapicSpannerClient;
 use Google\Cloud\Spanner\V1\TransactionOptions\IsolationLevel;
 use Google\Cloud\Spanner\V1\TransactionOptions\ReadWrite\ReadLockMode;
@@ -1083,7 +1083,7 @@ class SpannerClient
 
         $metricsCredentials = $this->buildMetricsCredentials($options);
 
-        $exporter = new MetricsExporter($metricsCredentials, $timeoutMillis, $options);
+        $exporter = new OtlpMetricsExporter($metricsCredentials, $timeoutMillis, $options);
         $reader = new ExportingReader($exporter);
         $this->meterProvider = MeterProvider::builder()
             ->setResource($resource)
@@ -1192,8 +1192,8 @@ class SpannerClient
 
         $credentialsConfig = [
             'scopes' => [
-                MetricsExporter::MONITORING_WRITE_SCOPE,
-                MetricsExporter::CLOUD_PLATFORM_SCOPE
+                OtlpMetricsExporter::MONITORING_WRITE_SCOPE,
+                OtlpMetricsExporter::CLOUD_PLATFORM_SCOPE
             ]
         ];
 
