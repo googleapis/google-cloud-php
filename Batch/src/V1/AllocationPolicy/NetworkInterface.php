@@ -49,6 +49,12 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool no_external_ip_address = 3;</code>
      */
     protected $no_external_ip_address = false;
+    /**
+     * Optional. The NIC type of the network interface.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.batch.v1.AllocationPolicy.NetworkInterface.NicType nic_type = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $nic_type = null;
 
     /**
      * Constructor.
@@ -78,6 +84,8 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
      *           https://cloud.google.com/vpc/docs/configure-private-google-access and
      *           https://cloud.google.com/nat/docs/gce-example#create-nat for more
      *           information.
+     *     @type int $nic_type
+     *           Optional. The NIC type of the network interface.
      * }
      */
     public function __construct($data = NULL) {
@@ -191,6 +199,42 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->no_external_ip_address = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The NIC type of the network interface.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.batch.v1.AllocationPolicy.NetworkInterface.NicType nic_type = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getNicType()
+    {
+        return isset($this->nic_type) ? $this->nic_type : 0;
+    }
+
+    public function hasNicType()
+    {
+        return isset($this->nic_type);
+    }
+
+    public function clearNicType()
+    {
+        unset($this->nic_type);
+    }
+
+    /**
+     * Optional. The NIC type of the network interface.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.batch.v1.AllocationPolicy.NetworkInterface.NicType nic_type = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setNicType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Batch\V1\AllocationPolicy\NetworkInterface\NicType::class);
+        $this->nic_type = $var;
 
         return $this;
     }
