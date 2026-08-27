@@ -15,7 +15,7 @@
         "phpdocumentor/reflection": "^6.0",
         "phpdocumentor/reflection-docblock": "^5.3.3",
         "erusev/parsedown": "^1.6",
-        "phpseclib/phpseclib": "^2.0||^3.0",
+        "phpseclib/phpseclib": "4.0.1",
         "google/cloud-pubsub": "^2.0",
         "nikic/php-parser": "^5"
     },
