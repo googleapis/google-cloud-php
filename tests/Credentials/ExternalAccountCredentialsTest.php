@@ -198,8 +198,9 @@ class ExternalAccountCredentialsTest extends TestCase
                     'audience' => '',
                     'subject_token_type' => '',
                     'credential_source' => [
-                    'environment_id' => 'aws2',
-                ]],
+                        'environment_id' => 'aws2',
+                    ]
+                ],
                 'aws version "2" is not supported in the current build.'
             ],
             [
@@ -209,8 +210,9 @@ class ExternalAccountCredentialsTest extends TestCase
                     'audience' => '',
                     'subject_token_type' => '',
                     'credential_source' => [
-                    'environment_id' => 'aws1',
-                ]],
+                        'environment_id' => 'aws1',
+                    ]
+                ],
                 'The regional_cred_verification_url field is required for aws1 credential source.'
             ],
             [
@@ -220,9 +222,10 @@ class ExternalAccountCredentialsTest extends TestCase
                     'audience' => '',
                     'subject_token_type' => '',
                     'credential_source' => [
-                    'environment_id' => 'aws1',
-                    'region_url' => '',
-                ]],
+                        'environment_id' => 'aws1',
+                        'region_url' => '',
+                    ]
+                ],
                 'The regional_cred_verification_url field is required for aws1 credential source.'
             ],
         ];

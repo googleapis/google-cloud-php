@@ -24,11 +24,11 @@ class RegionalAccessBoundaryTraitTest extends TestCase
 
     use ProphecyTrait;
 
-    private RegionalAccessBoundaryTraitImpl $impl;
+    private $impl;
 
     public function setUp(): void
     {
-        $this->impl = new RegionalAccessBoundaryTraitImpl();
+        $this->impl = $this->getRegionalAccessBoundaryTraitImpl();
     }
 
     public function testBuildRegionalAccessBoundaryLookupUrl()
@@ -394,40 +394,42 @@ class RegionalAccessBoundaryTraitTest extends TestCase
         $this->assertNull($result);
         $this->assertTrue($this->impl->cooldownIsActive());
     }
-}
 
-class RegionalAccessBoundaryTraitImpl
-{
-    use RegionalAccessBoundaryTrait {
-        buildRegionalAccessBoundaryLookupUrl as public;
-        lookupRegionalAccessBoundary as public;
-        getRegionalAccessBoundary as public;
-    }
-
-    private $cache;
-    private $cacheConfig;
-
-    public function __construct(array $config = [])
+    private function getRegionalAccessBoundaryTraitImpl(array $config = [])
     {
-        $this->cacheConfig = [
-            'prefix' => '',
-            'lifetime' => 1000,
-        ];
-        $this->enableRegionalAccessBoundary = true;
-    }
+        return new class($config) {
+            use RegionalAccessBoundaryTrait {
+                buildRegionalAccessBoundaryLookupUrl as public;
+                lookupRegionalAccessBoundary as public;
+                getRegionalAccessBoundary as public;
+            }
 
-    public function getCacheKey()
-    {
-        return 'test-key';
-    }
+            private $cache;
+            private $cacheConfig;
 
-    public function setCache($cache)
-    {
-        $this->cache = $cache;
-    }
+            public function __construct(array $config = [])
+            {
+                $this->cacheConfig = [
+                    'prefix' => '',
+                    'lifetime' => 1000,
+                ];
+                $this->enableRegionalAccessBoundary = true;
+            }
 
-    public function cooldownIsActive(): bool
-    {
-        return (bool) $this->getCachedValue($this->getCacheKey() . ':rab:cooldown');
+            public function getCacheKey()
+            {
+                return 'test-key';
+            }
+
+            public function setCache($cache)
+            {
+                $this->cache = $cache;
+            }
+
+            public function cooldownIsActive(): bool
+            {
+                return (bool) $this->getCachedValue($this->getCacheKey() . ':rab:cooldown');
+            }
+        };
     }
 }
