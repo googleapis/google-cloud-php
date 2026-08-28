@@ -275,6 +275,7 @@ class ProxyService implements Testproxy\CloudBigtableV2TestProxyInterface
             'appProfileId' => $config->getAppProfileId(),
         ]);
 
+        $timeoutMillis = $this->getTimeoutMillis($config->getPerOperationTimeout());
         try {
             $table->mutateRow(
                 $request->getRowKey(),
