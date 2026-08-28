@@ -47,11 +47,11 @@ class MockGrpcTransport extends GrpcTransport
     /**
      * @param mixed $mockCall
      */
-    public function __construct($mockCall = null, ?LoggerInterface $logger = null)
+    public function __construct($mockCall = null, ?LoggerInterface $logger = null, array $telemetryOptions = [])
     {
         $this->mockCall = $mockCall;
         $opts = ['credentials' => ChannelCredentials::createSsl()];
-        parent::__construct('', $opts, logger: $logger);
+        parent::__construct('', $opts, logger: $logger, telemetryOptions: $telemetryOptions);
     }
 
     /**

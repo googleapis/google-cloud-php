@@ -18,6 +18,7 @@
 namespace Google\Cloud\Core;
 
 use Google\Auth\FetchAuthTokenCache;
+
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Auth\GetQuotaProjectInterface;
 use Google\Auth\GetUniverseDomainInterface;
@@ -26,6 +27,7 @@ use Google\Auth\HttpHandler\HttpHandlerFactory;
 use Google\Auth\UpdateMetadataInterface;
 use Google\Cloud\Core\Exception\GoogleException;
 use Google\Cloud\Core\Exception\ServiceException;
+use Google\Cloud\Core\Telemetry\AuthTracingMiddleware;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\Psr7\Utils;
@@ -176,6 +178,14 @@ class RequestWrapper
         $this->calcDelayFunction = $config['restCalcDelayFunction'];
         $this->httpHandler = $config['httpHandler'] ?: HttpHandlerFactory::build();
         $this->authHttpHandler = $config['authHttpHandler'] ?: $this->httpHandler;
+
+        if (isset($config['openTelemetryTracerProvider'])) {
+            $this->authHttpHandler = new AuthTracingMiddleware(
+                $this->authHttpHandler,
+                $config['openTelemetryTracerProvider']
+            );
+        }
+
         $this->asyncHttpHandler = $config['asyncHttpHandler'] ?: $this->buildDefaultAsyncHandler();
         $this->universeDomain = $config['universeDomain'];
 

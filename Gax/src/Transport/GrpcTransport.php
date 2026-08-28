@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright 2018 Google LLC
  * All rights reserved.
@@ -52,6 +53,7 @@ use Grpc\Channel;
 use Grpc\ChannelCredentials;
 use Grpc\Interceptor;
 use GuzzleHttp\Promise\Promise;
+use OpenTelemetry\API\Logs\LoggerProviderInterface;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -65,6 +67,10 @@ class GrpcTransport extends BaseStub implements TransportInterface
     use LoggingTrait;
 
     private null|LoggerInterface $logger;
+    /** @var LoggerProviderInterface|null */
+    private $openTelemetryLoggerProvider;
+    private string $clientService = '';
+    private string $clientVersion = '';
 
     /**
      * @param string $hostname
@@ -82,6 +88,7 @@ class GrpcTransport extends BaseStub implements TransportInterface
      *        `UnaryInterceptorInterface` implementations over to a class which
      *        extends {@see Grpc\Interceptor}.
      * @param null|false|LoggerInterface $logger A PSR-3 Compliant logger.
+     * @param array $telemetryOptions Telemetry options for OpenTelemetry.
      * @throws Exception
      */
     public function __construct(
@@ -89,7 +96,8 @@ class GrpcTransport extends BaseStub implements TransportInterface
         array $opts,
         ?Channel $channel = null,
         array $interceptors = [],
-        null|false|LoggerInterface $logger = null
+        null|false|LoggerInterface $logger = null,
+        array $telemetryOptions = []
     ) {
         if ($interceptors) {
             $channel = Interceptor::intercept(
@@ -100,6 +108,9 @@ class GrpcTransport extends BaseStub implements TransportInterface
 
         parent::__construct($hostname, $opts, $channel);
         $this->logger = $logger;
+        $this->openTelemetryLoggerProvider = $telemetryOptions['openTelemetryLoggerProvider'] ?? null;
+        $this->clientService = $telemetryOptions['gcp.client.service'] ?? '';
+        $this->clientVersion = $telemetryOptions['gcp.client.version'] ?? '';
     }
 
     /**
@@ -136,6 +147,9 @@ class GrpcTransport extends BaseStub implements TransportInterface
             'interceptors'     => [],
             'clientCertSource' => null,
             'logger'           => null,
+            'openTelemetryLoggerProvider'   => null,
+            'gcp.client.service' => '',
+            'gcp.client.version' => '',
         ];
         list($addr, $port) = self::normalizeServiceAddress($apiEndpoint);
         $host = "$addr:$port";
@@ -161,7 +175,14 @@ class GrpcTransport extends BaseStub implements TransportInterface
             if ($config['logger'] === false) {
                 $config['logger'] = null;
             }
-            return new GrpcTransport($host, $stubOpts, $channel, $config['interceptors'], $config['logger']);
+            return new GrpcTransport(
+                $host,
+                $stubOpts,
+                $channel,
+                $config['interceptors'],
+                $config['logger'],
+                $config
+            );
         } catch (Exception $ex) {
             throw new ValidationException(
                 'Failed to build GrpcTransport: ' . $ex->getMessage(),
@@ -328,6 +349,15 @@ class GrpcTransport extends BaseStub implements TransportInterface
                     }
                     $promise->resolve($response);
                 } else {
+                    if ($this->openTelemetryLoggerProvider) {
+                        $this->openTelemetryLoggerProvider->getLogger('google-cloud-php', $this->clientVersion)
+                            ->logRecordBuilder()
+                            ->setSeverityNumber(9) // INFO
+                            ->setBody($status->details)
+                            ->setAttribute('rpc.grpc.status_code', $status->code)
+                            ->setAttribute('gcp.client.service', $this->clientService)
+                            ->emit();
+                    }
                     throw ApiException::createFromStdClass($status);
                 }
             },

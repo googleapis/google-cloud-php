@@ -32,6 +32,10 @@
 
 namespace Google\ApiCore\Tests\Unit\Transport;
 
+use OpenTelemetry\API\Logs\LoggerProviderInterface;
+use OpenTelemetry\API\Logs\LoggerInterface as OTelLoggerInterface;
+use OpenTelemetry\API\Logs\LogRecordBuilderInterface;
+
 use BadMethodCallException;
 use Exception;
 use Google\ApiCore\ApiException;
@@ -680,5 +684,65 @@ class RestTransportTest extends TestCase
 
         $actualRequest = $transport->buildRequest($method, $message);
         $this->assertSame($expectedRequest, $actualRequest);
+    }
+
+    public function testRestTransportLoggerProvider()
+    {
+        $openTelemetryLoggerProvider = $this->createMock(LoggerProviderInterface::class);
+        $logger = $this->createMock(OTelLoggerInterface::class);
+        $logRecordBuilder = $this->createMock(LogRecordBuilderInterface::class);
+
+        $openTelemetryLoggerProvider->expects($this->once())
+            ->method('getLogger')
+            ->with('google-cloud-php', '1.0.0')
+            ->willReturn($logger);
+
+        $logger->expects($this->once())
+            ->method('logRecordBuilder')
+            ->willReturn($logRecordBuilder);
+
+        $logRecordBuilder->expects($this->once())
+            ->method('setSeverityNumber')
+            ->with(9) // INFO
+            ->willReturnSelf();
+
+        $logRecordBuilder->expects($this->once())
+            ->method('setBody')
+            ->willReturnSelf();
+
+        $logRecordBuilder->expects($this->exactly(2))
+            ->method('setAttribute')
+            ->willReturnSelf();
+
+        $logRecordBuilder->expects($this->once())
+            ->method('emit');
+
+        $httpHandler = function ($request, $options) {
+            return new \GuzzleHttp\Promise\RejectedPromise(new \Exception('Test exception'));
+        };
+
+        $requestBuilder = $this->createMock(\Google\ApiCore\RequestBuilder::class);
+        $requestBuilder->method('build')->willReturn(new \GuzzleHttp\Psr7\Request('GET', '/'));
+
+        $transport = new \Google\ApiCore\Transport\RestTransport(
+            $requestBuilder,
+            $httpHandler,
+            [
+                'openTelemetryLoggerProvider' => $openTelemetryLoggerProvider,
+                'gcp.client.service' => 'test-service',
+                'gcp.client.version' => '1.0.0'
+            ]
+        );
+
+        $call = $this->createMock(\Google\ApiCore\Call::class);
+        $call->method('getMethod')->willReturn('Test/Method');
+        $call->method('getMessage')->willReturn(new \Google\ApiCore\Testing\MockRequest());
+
+        try {
+            $transport->startUnaryCall($call, [])->wait();
+            $this->fail('Expected exception');
+        } catch (\Exception $e) {
+            $this->assertEquals('Test exception', $e->getMessage());
+        }
     }
 }
