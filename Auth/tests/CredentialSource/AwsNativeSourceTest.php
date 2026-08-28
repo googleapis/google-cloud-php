@@ -33,7 +33,8 @@ class AwsNativeSourceTest extends TestCase
 {
     use ProphecyTrait;
 
-    private string $audience = '"//iam.googleapis.com/projects/PROJECT_NUMBER/locations/global/workloadIdentityPools/byoid-pool-php/providers/PROJECT_ID';
+    private string $audience = '"//iam.googleapis.com/projects/PROJECT_NUMBER/locations/global/'
+        . 'workloadIdentityPools/byoid-pool-php/providers/PROJECT_ID';
     private string $regionUrl = 'https://test.regional.url';
     private string $regionalCredVerificationUrl = 'https://{region}.regional.cred.verification.url';
     private string $securityCredentialsUrl = 'https://test.security.credentials.url';

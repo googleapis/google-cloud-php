@@ -28,7 +28,22 @@ class CredentialsLoaderTest extends TestCase
 
     public function testUpdateMetadataSkipsWhenAuthenticationisSet()
     {
-        $creds = new TestCredentialsLoader();
+        $creds = new class() extends CredentialsLoader {
+            public function getCacheKey()
+            {
+                return 'test';
+            }
+
+            public function fetchAuthToken(?callable $httpHandler = null)
+            {
+                return 'test';
+            }
+
+            public function getLastReceivedToken()
+            {
+                return null;
+            }
+        };
         $metadata = $creds->updateMetadata(['authentication' => 'foo']);
         $this->assertArrayHasKey('authentication', $metadata);
         $this->assertEquals('foo', $metadata['authentication']);
@@ -195,23 +210,5 @@ class CredentialsLoaderTest extends TestCase
 
         $this->assertArrayHasKey('type', $json);
         $this->assertEquals('getenv', $json['type']);
-    }
-}
-
-class TestCredentialsLoader extends CredentialsLoader
-{
-    public function getCacheKey()
-    {
-        return 'test';
-    }
-
-    public function fetchAuthToken(?callable $httpHandler = null)
-    {
-        return 'test';
-    }
-
-    public function getLastReceivedToken()
-    {
-        return null;
     }
 }
