@@ -92,7 +92,7 @@ class OtlpMetricsExporter implements PushMetricExporterInterface, AggregationTem
             };
         });
 
-        $guzzleClient = $options['guzzleClient'] ?? new GuzzleClient([
+        $guzzleClient = new GuzzleClient([
             'handler' => $handlerStack,
             'auth' => 'google_auth',
             'timeout' => $timeoutMillis / 1000,

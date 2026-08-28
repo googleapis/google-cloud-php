@@ -124,8 +124,7 @@ class BuiltInMetricsExporterTest extends TestCase
 
             // Verify Labels
             $labels = $timeSeries->getMetric()->getLabels();
-            if (
-                $labels['method'] !== 'ExecuteSql' ||
+            if ($labels['method'] !== 'ExecuteSql' ||
                 $labels['status'] !== 'OK' ||
                 $labels['database'] !== 'my-db'
             ) {
