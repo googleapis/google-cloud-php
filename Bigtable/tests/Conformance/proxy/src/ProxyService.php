@@ -279,7 +279,11 @@ class ProxyService implements Testproxy\CloudBigtableV2TestProxyInterface
             $table->mutateRow(
                 $request->getRowKey(),
                 $this->protoToMutations($request->getMutations()),
-                ['timeoutMillis' => $this->getTimeoutMillis($config->getPerOperationTimeout())],
+                [
+                    'retrySettings' => [
+                        'totalTimeoutMillis' => $timeoutMillis,
+                    ],
+                ]
             );
         } catch (\Google\ApiCore\ApiException $e) {
             return $out->setStatus(new Status([
