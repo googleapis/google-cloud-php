@@ -275,16 +275,20 @@ class ProxyService implements Testproxy\CloudBigtableV2TestProxyInterface
             'appProfileId' => $config->getAppProfileId(),
         ]);
 
-        $timeoutMillis = $this->getTimeoutMillis($config->getPerOperationTimeout());
+        $options = [];
+        if ($timeoutMillis = $this->getTimeoutMillis($config->getPerOperationTimeout())) {
+            $options = [
+                'timeoutMillis' => $timeoutMillis,
+                'retrySettings' => [
+                    'totalTimeoutMillis' => $timeoutMillis,
+                ],
+            ];
+        }
         try {
             $table->mutateRow(
                 $request->getRowKey(),
                 $this->protoToMutations($request->getMutations()),
-                [
-                    'retrySettings' => [
-                        'totalTimeoutMillis' => $timeoutMillis,
-                    ],
-                ]
+                $options
             );
         } catch (\Google\ApiCore\ApiException $e) {
             return $out->setStatus(new Status([
