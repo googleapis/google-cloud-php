@@ -1,2 +1,2 @@
 docker:
-    image: gcr.io/cloud-devrel-public-resources/owlbot-php:latest
+  image: gcr.io/cloud-devrel-public-resources/owlbot-php:latest

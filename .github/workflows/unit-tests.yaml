@@ -32,93 +32,93 @@ jobs:
     runs-on: ${{ matrix.platform }}
     continue-on-error: true
     steps:
-    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
-      with:
-        persist-credentials: false
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
 
-    - name: Setup cache environment
-      id: extcache
-      uses: shivammathur/cache-extensions@de3c642a5fce0ef91581a1c9831e229f525196d6 # v1
-      with:
-        php-version: ${{ matrix.php }}
-        extensions: sodium, sysvshm, ${{ matrix.extensions }}
-        key: cache-key-1 # increment to bust the cache
+      - name: Setup cache environment
+        id: extcache
+        uses: shivammathur/cache-extensions@de3c642a5fce0ef91581a1c9831e229f525196d6 # v1
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: sodium, sysvshm, ${{ matrix.extensions }}
+          key: cache-key-1 # increment to bust the cache
 
-    - name: Cache extensions
-      uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
-      with:
-        path: ${{ steps.extcache.outputs.dir }}
-        key: ${{ steps.extcache.outputs.key }}
-        restore-keys: ${{ steps.extcache.outputs.key }}
+      - name: Cache extensions
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        with:
+          path: ${{ steps.extcache.outputs.dir }}
+          key: ${{ steps.extcache.outputs.key }}
+          restore-keys: ${{ steps.extcache.outputs.key }}
 
-    - name: Setup PHP
-      uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # v2
-      with:
-        php-version: ${{ matrix.php }}
-        extensions: sodium, sysvshm, ${{ matrix.extensions }}
+      - name: Setup PHP
+        uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: sodium, sysvshm, ${{ matrix.extensions }}
 
-    - name: Install Dependencies
-      uses: nick-invision/retry@ad984534de44a9489a53aefd81eb77f87c70dc60 # v4
-      with:
-        timeout_minutes: 10
-        max_attempts: 3
-        command: composer --no-interaction --no-ansi --no-progress update
+      - name: Install Dependencies
+        uses: nick-invision/retry@ad984534de44a9489a53aefd81eb77f87c70dc60 # v4
+        with:
+          timeout_minutes: 10
+          max_attempts: 3
+          command: composer --no-interaction --no-ansi --no-progress update
 
-    - name: Run Unit Test Suite ${{ matrix.platform != 'windows-latest' || '(Windows)' }}
-      run: |
-        vendor/bin/phpunit -c phpunit.xml.dist
-    - if: ${{ matrix.platform != 'windows-latest' && matrix.php != '8.5' }}
-      name: Run Snippet Test Suite
-      run: |
-        vendor/bin/phpunit -c phpunit-snippets.xml.dist --verbose
+      - name: Run Unit Test Suite ${{ matrix.platform != 'windows-latest' || '(Windows)' }}
+        run: |
+          vendor/bin/phpunit -c phpunit.xml.dist
+      - if: ${{ matrix.platform != 'windows-latest' && matrix.php != '8.5' }}
+        name: Run Snippet Test Suite
+        run: |
+          vendor/bin/phpunit -c phpunit-snippets.xml.dist --verbose
 
   test_packages:
     name: Package Tests
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
-      with:
-        persist-credentials: false
-    - name: Setup PHP
-      uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # v2
-      with:
-        php-version: '8.1'
-        extensions: grpc
-    - name: Run Package Test Suites
-      run: bash .github/run-package-tests.sh
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - name: Setup PHP
+        uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # v2
+        with:
+          php-version: '8.1'
+          extensions: grpc
+      - name: Run Package Test Suites
+        run: bash .github/run-package-tests.sh
 
   test_packages_lowest:
     name: Package Tests (Lowest Dependencies)
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
-      with:
-        persist-credentials: false
-    - name: Setup PHP
-      uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # v2
-      with:
-        php-version: '8.1'
-        extensions: grpc
-    - name: Run Package Test Suites
-      env:
-        PREFER_LOWEST: ${{ github.event.pull_request.user.login == 'release-please[bot]' && '--prefer-lowest-strict' || '--prefer-lowest' }}
-      run: bash .github/run-package-tests.sh $PREFER_LOWEST
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - name: Setup PHP
+        uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # v2
+        with:
+          php-version: '8.1'
+          extensions: grpc
+      - name: Run Package Test Suites
+        env:
+          PREFER_LOWEST: ${{ github.event.pull_request.user.login == 'release-please[bot]' && '--prefer-lowest-strict' || '--prefer-lowest' }}
+        run: bash .github/run-package-tests.sh $PREFER_LOWEST
 
   test_dev_commands:
     name: Dev Commands Unit Tests
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
-      with:
-        persist-credentials: false
-    - name: Setup PHP
-      uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # v2
-      with:
-        php-version: "8.2"
-    - name: "Install dependencies"
-      run: composer  --no-interaction --no-ansi --no-progress update -d dev
-    - name: Run Dev Unit Test Suite
-      run: dev/vendor/bin/phpunit -c dev/phpunit.xml.dist
-    - name: Run Dev Snippet Test Suite
-      run: dev/vendor/bin/phpunit -c dev/phpunit-snippets.xml.dist
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - name: Setup PHP
+        uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # v2
+        with:
+          php-version: "8.2"
+      - name: "Install dependencies"
+        run: composer  --no-interaction --no-ansi --no-progress update -d dev
+      - name: Run Dev Unit Test Suite
+        run: dev/vendor/bin/phpunit -c dev/phpunit.xml.dist
+      - name: Run Dev Snippet Test Suite
+        run: dev/vendor/bin/phpunit -c dev/phpunit-snippets.xml.dist
 
