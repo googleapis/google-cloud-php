@@ -75,7 +75,7 @@
         "phpunit/phpunit": "^9.6",
         "phpdocumentor/reflection": "^6.0",
         "erusev/parsedown": "^1.6",
-        "phpseclib/phpseclib": "^3.0",
+        "phpseclib/phpseclib": "^4.0",
         "google/cloud-tools": "^0.16.0",
         "opis/closure": "^3.7||^4.0",
         "flix-tech/avro-php": "^5.0.0",
