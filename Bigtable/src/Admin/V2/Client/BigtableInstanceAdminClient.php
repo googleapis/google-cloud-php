@@ -208,7 +208,10 @@ final class BigtableInstanceAdminClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = $methodName && isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options =
+            $methodName && isset($this->descriptors[$methodName]['longRunning'])
+                ? $this->descriptors[$methodName]['longRunning']
+                : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -641,8 +644,10 @@ final class BigtableInstanceAdminClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createMaterializedView(CreateMaterializedViewRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createMaterializedView(
+        CreateMaterializedViewRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateMaterializedView', $request, $callOptions)->wait();
     }
 
@@ -1082,8 +1087,10 @@ final class BigtableInstanceAdminClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listMaterializedViews(ListMaterializedViewsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listMaterializedViews(
+        ListMaterializedViewsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListMaterializedViews', $request, $callOptions);
     }
 
@@ -1120,8 +1127,10 @@ final class BigtableInstanceAdminClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function partialUpdateCluster(PartialUpdateClusterRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function partialUpdateCluster(
+        PartialUpdateClusterRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('PartialUpdateCluster', $request, $callOptions)->wait();
     }
 
@@ -1148,8 +1157,10 @@ final class BigtableInstanceAdminClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function partialUpdateInstance(PartialUpdateInstanceRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function partialUpdateInstance(
+        PartialUpdateInstanceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('PartialUpdateInstance', $request, $callOptions)->wait();
     }
 
@@ -1202,8 +1213,10 @@ final class BigtableInstanceAdminClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 
@@ -1341,8 +1354,10 @@ final class BigtableInstanceAdminClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateMaterializedView(UpdateMaterializedViewRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function updateMaterializedView(
+        UpdateMaterializedViewRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('UpdateMaterializedView', $request, $callOptions)->wait();
     }
 

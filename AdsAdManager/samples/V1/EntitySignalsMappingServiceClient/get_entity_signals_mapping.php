@@ -29,7 +29,7 @@ use Google\Ads\AdManager\V1\GetEntitySignalsMappingRequest;
 use Google\ApiCore\ApiException;
 
 /**
- * API to retrieve a `EntitySignalsMapping` object.
+ * Retrieves a `EntitySignalsMapping` object.
  *
  * @param string $formattedName The resource name of the EntitySignalsMapping.
  *                              Format:

@@ -34,23 +34,31 @@ use UnexpectedValueException;
  *    If set, the Backend Service responses are expected to contain non-standard
  *    HTTP response header field Endpoint-Load-Metrics. The reported
  *    metrics to use for computing the weights are specified via thecustomMetrics field.
- *    This field is applicable to either:
- *       - A regional backend service with the service protocol set to HTTP,
- *       HTTPS, HTTP2 or H2C, and load_balancing_scheme set to
- *       INTERNAL_MANAGED.
- *       - A global backend service with the
- *       load_balancing_scheme set to INTERNAL_SELF_MANAGED, INTERNAL_MANAGED, or
- *       EXTERNAL_MANAGED.
- *    If sessionAffinity is not configured—that is, if session
- *    affinity remains at the default value of NONE—then the
- *    default value for localityLbPolicy
- *    is ROUND_ROBIN. If session affinity is set to a value other
- *    than NONE,
- *    then the default value for localityLbPolicy isMAGLEV.
- *    Only ROUND_ROBIN and RING_HASH are supported
- *    when the backend service is referenced by a URL map that is bound to
- *    target gRPC proxy that has validateForProxyless field set to true.
- *    localityLbPolicy cannot be specified with haPolicy.
+ *    - WEIGHTED_MAGLEV: Per-endpoint weighted load balancing via
+ *    health check reported weights. If set, the backend service must configure
+ *    an HTTP-based Health Check, and health check replies are expected to
+ *    contain the non-standard HTTP response header fieldX-Load-Balancing-Endpoint-Weight to specify the per-endpoint
+ *    weights. If set, load balancing is weighted based on the per-endpoint
+ *    weights reported in the last processed health check replies, as long as
+ *    every instance either reported a valid weight or had UNAVAILABLE_WEIGHT.
+ *    Otherwise, load balancing remains equal-weight.
+ * This field is applicable to either:
+ *    - A regional backend service with the service protocol set to HTTP,
+ *    HTTPS, HTTP2 or H2C, and load_balancing_scheme set to
+ *    INTERNAL_MANAGED.
+ *    - A global backend service with the
+ *    load_balancing_scheme set to INTERNAL_SELF_MANAGED, INTERNAL_MANAGED, or
+ *    EXTERNAL_MANAGED.
+ * If sessionAffinity is not configured—that is, if session
+ * affinity remains at the default value of NONE—then the
+ * default value for localityLbPolicy
+ * is ROUND_ROBIN. If session affinity is set to a value other
+ * than NONE,
+ * then the default value for localityLbPolicy isMAGLEV.
+ * Only ROUND_ROBIN and RING_HASH are supported
+ * when the backend service is referenced by a URL map that is bound to
+ * target gRPC proxy that has validateForProxyless field set to true.
+ * localityLbPolicy cannot be specified with haPolicy.
  *
  * Protobuf type <code>google.cloud.compute.v1.BackendService.LocalityLbPolicy</code>
  */

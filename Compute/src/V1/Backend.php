@@ -19,7 +19,8 @@ class Backend extends \Google\Protobuf\Internal\Message
      * Specifies how to determine whether the backend of a load balancer can
      * handle additional traffic or is fully loaded. For usage guidelines, see
      * Connection balancing mode.
-     * Backends must use compatible balancing modes. For more information, see
+     * Backends must use compatible balancing modes. Backends of a backend
+     * service may use different balancing modes. For more information, see
      * Supported balancing modes and target capacity settings and
      * Restrictions and guidance for instance groups.
      * Note: Currently, if you use the API to configure incompatible balancing
@@ -65,6 +66,8 @@ class Backend extends \Google\Protobuf\Internal\Message
     /**
      * This field designates whether this is a failover backend. More than one
      * failover backend can be configured for a given BackendService.
+     * This field can only be used for a regional external Passthrough Network
+     * Load Balancer or a regional internal Passthrough Network Load Balancer.
      *
      * Generated from protobuf field <code>optional bool failover = 138892530;</code>
      */
@@ -189,6 +192,11 @@ class Backend extends \Google\Protobuf\Internal\Message
      *    capacity, backends in this layer would be used and traffic would be
      *    assigned based on the load balancing algorithm you use. This is the
      *    default
+     * For global external Passthrough Network Load Balancers, the following
+     * restrictions apply:
+     *    - At most one backend can be marked as PREFERRED.
+     *    - PREFERRED and DEFAULT backends cannot reside
+     *    in the same Cloud region.
      * Check the Preference enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string preference = 150781147;</code>
@@ -212,7 +220,8 @@ class Backend extends \Google\Protobuf\Internal\Message
      *           Specifies how to determine whether the backend of a load balancer can
      *           handle additional traffic or is fully loaded. For usage guidelines, see
      *           Connection balancing mode.
-     *           Backends must use compatible balancing modes. For more information, see
+     *           Backends must use compatible balancing modes. Backends of a backend
+     *           service may use different balancing modes. For more information, see
      *           Supported balancing modes and target capacity settings and
      *           Restrictions and guidance for instance groups.
      *           Note: Currently, if you use the API to configure incompatible balancing
@@ -242,6 +251,8 @@ class Backend extends \Google\Protobuf\Internal\Message
      *     @type bool $failover
      *           This field designates whether this is a failover backend. More than one
      *           failover backend can be configured for a given BackendService.
+     *           This field can only be used for a regional external Passthrough Network
+     *           Load Balancer or a regional internal Passthrough Network Load Balancer.
      *     @type string $group
      *           The fully-qualified URL of aninstance
      *           group or network endpoint
@@ -314,6 +325,11 @@ class Backend extends \Google\Protobuf\Internal\Message
      *              capacity, backends in this layer would be used and traffic would be
      *              assigned based on the load balancing algorithm you use. This is the
      *              default
+     *           For global external Passthrough Network Load Balancers, the following
+     *           restrictions apply:
+     *              - At most one backend can be marked as PREFERRED.
+     *              - PREFERRED and DEFAULT backends cannot reside
+     *              in the same Cloud region.
      *           Check the Preference enum for the list of possible values.
      *     @type string $traffic_duration
      *           
@@ -329,7 +345,8 @@ class Backend extends \Google\Protobuf\Internal\Message
      * Specifies how to determine whether the backend of a load balancer can
      * handle additional traffic or is fully loaded. For usage guidelines, see
      * Connection balancing mode.
-     * Backends must use compatible balancing modes. For more information, see
+     * Backends must use compatible balancing modes. Backends of a backend
+     * service may use different balancing modes. For more information, see
      * Supported balancing modes and target capacity settings and
      * Restrictions and guidance for instance groups.
      * Note: Currently, if you use the API to configure incompatible balancing
@@ -361,7 +378,8 @@ class Backend extends \Google\Protobuf\Internal\Message
      * Specifies how to determine whether the backend of a load balancer can
      * handle additional traffic or is fully loaded. For usage guidelines, see
      * Connection balancing mode.
-     * Backends must use compatible balancing modes. For more information, see
+     * Backends must use compatible balancing modes. Backends of a backend
+     * service may use different balancing modes. For more information, see
      * Supported balancing modes and target capacity settings and
      * Restrictions and guidance for instance groups.
      * Note: Currently, if you use the API to configure incompatible balancing
@@ -508,6 +526,8 @@ class Backend extends \Google\Protobuf\Internal\Message
     /**
      * This field designates whether this is a failover backend. More than one
      * failover backend can be configured for a given BackendService.
+     * This field can only be used for a regional external Passthrough Network
+     * Load Balancer or a regional internal Passthrough Network Load Balancer.
      *
      * Generated from protobuf field <code>optional bool failover = 138892530;</code>
      * @return bool
@@ -530,6 +550,8 @@ class Backend extends \Google\Protobuf\Internal\Message
     /**
      * This field designates whether this is a failover backend. More than one
      * failover backend can be configured for a given BackendService.
+     * This field can only be used for a regional external Passthrough Network
+     * Load Balancer or a regional internal Passthrough Network Load Balancer.
      *
      * Generated from protobuf field <code>optional bool failover = 138892530;</code>
      * @param bool $var
@@ -1061,6 +1083,11 @@ class Backend extends \Google\Protobuf\Internal\Message
      *    capacity, backends in this layer would be used and traffic would be
      *    assigned based on the load balancing algorithm you use. This is the
      *    default
+     * For global external Passthrough Network Load Balancers, the following
+     * restrictions apply:
+     *    - At most one backend can be marked as PREFERRED.
+     *    - PREFERRED and DEFAULT backends cannot reside
+     *    in the same Cloud region.
      * Check the Preference enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string preference = 150781147;</code>
@@ -1091,6 +1118,11 @@ class Backend extends \Google\Protobuf\Internal\Message
      *    capacity, backends in this layer would be used and traffic would be
      *    assigned based on the load balancing algorithm you use. This is the
      *    default
+     * For global external Passthrough Network Load Balancers, the following
+     * restrictions apply:
+     *    - At most one backend can be marked as PREFERRED.
+     *    - PREFERRED and DEFAULT backends cannot reside
+     *    in the same Cloud region.
      * Check the Preference enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string preference = 150781147;</code>

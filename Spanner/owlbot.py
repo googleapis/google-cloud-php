@@ -41,7 +41,7 @@ php.owlbot_main(
 )
 
 # Spanner Database Admin also lives here
-admin_library = Path(f"../{php.STAGING_DIR}/Spanner/v1/Admin/Database/v1").resolve()
+admin_library = Path(f"../{php.STAGING_DIR}/Spanner/Admin/Database/v1").resolve()
 
 # copy all src except handwritten partial veneers
 s.move(admin_library / f'src/V1/Gapic', 'src/Admin/Database/V1/Gapic', merge=php._merge)
@@ -56,7 +56,7 @@ s.move(admin_library / f'tests/Unit', 'tests/Unit/Admin/Database', merge=php._me
 s.move(admin_library / f'proto/src/GPBMetadata/Google/Spanner', f'metadata/', merge=php._merge)
 
 # Spanner Instance Admin also lives here
-admin_library = Path(f"../{php.STAGING_DIR}/Spanner/v1/Admin/Instance/v1").resolve()
+admin_library = Path(f"../{php.STAGING_DIR}/Spanner/Admin/Instance/v1").resolve()
 
 # copy all src except handwritten partial veneers
 s.move(admin_library / f'src/V1/Gapic', 'src/Admin/Instance/V1/Gapic', merge=php._merge)
@@ -85,7 +85,7 @@ subprocess.run([
     '--package=@prettier/plugin-php@^0.19',
     '--',
     'prettier',
-    '**/Gapic/*',
+    '**/Client/*',
     '--write',
     '--parser=php',
     '--single-quote',

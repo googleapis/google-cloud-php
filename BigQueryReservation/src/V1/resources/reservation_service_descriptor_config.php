@@ -423,6 +423,19 @@ return [
                     ],
                 ],
             ],
+            'UpdateReservationGroup' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\BigQuery\Reservation\V1\ReservationGroup',
+                'headerParams' => [
+                    [
+                        'keyName' => 'reservation_group.name',
+                        'fieldAccessors' => [
+                            'getReservationGroup',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'templateMap' => [
                 'assignment' => 'projects/{project}/locations/{location}/reservations/{reservation}/assignments/{assignment}',
                 'biReservation' => 'projects/{project}/locations/{location}/biReservation',

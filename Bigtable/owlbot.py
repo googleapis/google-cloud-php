@@ -43,7 +43,7 @@ php.owlbot_main(
 )
 
 # First copy the Bigtable Admin
-admin_library = Path(f"../{php.STAGING_DIR}/Bigtable/v2/Admin").resolve()
+admin_library = Path(f"../{php.STAGING_DIR}/Bigtable/Admin/v2").resolve()
 
 # copy gapic src, samples, and tests
 s.move(admin_library / f'src', 'src/Admin', merge=preserve_copyright_year)
@@ -54,3 +54,16 @@ s.move(admin_library / f'samples', 'samples/', merge=preserve_copyright_year)
 s.move(admin_library / f'proto/src/Google/Cloud/Bigtable', f'src/', merge=preserve_copyright_year)
 s.move(admin_library / f'proto/src/GPBMetadata/Google/Bigtable', f'metadata/', merge=preserve_copyright_year)
 
+# format generated clients
+subprocess.run([
+    'npm',
+    'exec',
+    '--yes',
+    '--package=@prettier/plugin-php@^0.19',
+    '--',
+    'prettier',
+    '**/Client/*',
+    '--write',
+    '--parser=php',
+    '--single-quote',
+    '--print-width=120'])

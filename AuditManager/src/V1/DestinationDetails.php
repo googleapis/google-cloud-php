@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * The locations where the generated reports are saved.
+ * Cloud Storage bucket where the audit report is uploaded to.
  *
  * Generated from protobuf message <code>google.cloud.auditmanager.v1.DestinationDetails</code>
  */
@@ -24,7 +24,8 @@ class DestinationDetails extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $gcs_bucket_uri
-     *           The Cloud Storage bucket where the audit report is/will be uploaded.
+     *           URI for the Cloud Storage bucket, in the format
+     *           `gs://{bucket_name}`.
      * }
      */
     public function __construct($data = NULL) {
@@ -33,7 +34,8 @@ class DestinationDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Cloud Storage bucket where the audit report is/will be uploaded.
+     * URI for the Cloud Storage bucket, in the format
+     * `gs://{bucket_name}`.
      *
      * Generated from protobuf field <code>string gcs_bucket_uri = 1;</code>
      * @return string
@@ -49,7 +51,8 @@ class DestinationDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Cloud Storage bucket where the audit report is/will be uploaded.
+     * URI for the Cloud Storage bucket, in the format
+     * `gs://{bucket_name}`.
      *
      * Generated from protobuf field <code>string gcs_bucket_uri = 1;</code>
      * @param string $var
