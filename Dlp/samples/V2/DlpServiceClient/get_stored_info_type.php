@@ -31,7 +31,7 @@ use Google\Cloud\Dlp\V2\StoredInfoType;
 /**
  * Gets a stored infoType.
  * See
- * https://cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes
+ * https://docs.cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes
  * to learn more.
  *
  * @param string $formattedName Resource name of the organization and storedInfoType to be read,

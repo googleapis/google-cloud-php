@@ -31,7 +31,7 @@ use Google\Cloud\Dlp\V2\UpdateDeidentifyTemplateRequest;
 /**
  * Updates the DeidentifyTemplate.
  * See
- * https://cloud.google.com/sensitive-data-protection/docs/creating-templates-deid
+ * https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates-deid
  * to learn more.
  *
  * @param string $formattedName Resource name of organization and deidentify template to be

@@ -32,7 +32,7 @@ use Google\Cloud\Dlp\V2\UpdateStoredInfoTypeRequest;
  * Updates the stored infoType by creating a new version. The existing version
  * will continue to be used until the new version is ready.
  * See
- * https://cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes
+ * https://docs.cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes
  * to learn more.
  *
  * @param string $formattedName Resource name of organization and storedInfoType to be updated,

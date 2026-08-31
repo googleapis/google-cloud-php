@@ -10,7 +10,8 @@ use Google\Protobuf\RepeatedField;
 
 /**
  * A task to execute on the completion of a job.
- * See https://cloud.google.com/sensitive-data-protection/docs/concepts-actions
+ * See
+ * https://docs.cloud.google.com/sensitive-data-protection/docs/concepts-actions
  * to learn more.
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.Action</code>
@@ -42,7 +43,7 @@ class Action extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dlp\V2\Action\JobNotificationEmails $job_notification_emails
      *           Sends an email when the job completes. The email goes to IAM project
      *           owners and technical [Essential
-     *           Contacts](https://cloud.google.com/resource-manager/docs/managing-notification-contacts).
+     *           Contacts](https://docs.cloud.google.com/resource-manager/docs/managing-notification-contacts).
      *     @type \Google\Cloud\Dlp\V2\Action\PublishToStackdriver $publish_to_stackdriver
      *           Enable Stackdriver metric dlp.googleapis.com/finding_count.
      * }
@@ -254,7 +255,7 @@ class Action extends \Google\Protobuf\Internal\Message
     /**
      * Sends an email when the job completes. The email goes to IAM project
      * owners and technical [Essential
-     * Contacts](https://cloud.google.com/resource-manager/docs/managing-notification-contacts).
+     * Contacts](https://docs.cloud.google.com/resource-manager/docs/managing-notification-contacts).
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Action.JobNotificationEmails job_notification_emails = 8;</code>
      * @return \Google\Cloud\Dlp\V2\Action\JobNotificationEmails|null
@@ -272,7 +273,7 @@ class Action extends \Google\Protobuf\Internal\Message
     /**
      * Sends an email when the job completes. The email goes to IAM project
      * owners and technical [Essential
-     * Contacts](https://cloud.google.com/resource-manager/docs/managing-notification-contacts).
+     * Contacts](https://docs.cloud.google.com/resource-manager/docs/managing-notification-contacts).
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Action.JobNotificationEmails job_notification_emails = 8;</code>
      * @param \Google\Cloud\Dlp\V2\Action\JobNotificationEmails $var

@@ -33,7 +33,7 @@ class ContentItem extends \Google\Protobuf\Internal\Message
      *           String data to inspect or redact.
      *     @type \Google\Cloud\Dlp\V2\Table $table
      *           Structured content for inspection. See
-     *           https://cloud.google.com/sensitive-data-protection/docs/inspecting-text#inspecting_a_table
+     *           https://docs.cloud.google.com/sensitive-data-protection/docs/inspecting-text#inspecting_a_table
      *           to learn more.
      *     @type \Google\Cloud\Dlp\V2\ByteContentItem $byte_item
      *           Content data to inspect or redact. Replaces `type` and `data`.
@@ -85,7 +85,7 @@ class ContentItem extends \Google\Protobuf\Internal\Message
 
     /**
      * Structured content for inspection. See
-     * https://cloud.google.com/sensitive-data-protection/docs/inspecting-text#inspecting_a_table
+     * https://docs.cloud.google.com/sensitive-data-protection/docs/inspecting-text#inspecting_a_table
      * to learn more.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Table table = 4;</code>
@@ -103,7 +103,7 @@ class ContentItem extends \Google\Protobuf\Internal\Message
 
     /**
      * Structured content for inspection. See
-     * https://cloud.google.com/sensitive-data-protection/docs/inspecting-text#inspecting_a_table
+     * https://docs.cloud.google.com/sensitive-data-protection/docs/inspecting-text#inspecting_a_table
      * to learn more.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Table table = 4;</code>
