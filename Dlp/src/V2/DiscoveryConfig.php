@@ -14,18 +14,18 @@ use Google\Protobuf\RepeatedField;
  * or project.
  * The generated data profiles are retained according to the
  * [data retention policy]
- * (https://cloud.google.com/sensitive-data-protection/docs/data-profiles#retention).
+ * (https://docs.cloud.google.com/sensitive-data-protection/docs/data-profiles#retention).
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.DiscoveryConfig</code>
  */
 class DiscoveryConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Unique resource name for the DiscoveryConfig, assigned by the service when
-     * the DiscoveryConfig is created, for example
+     * Output only. Unique resource name for the DiscoveryConfig, assigned by the
+     * service when the DiscoveryConfig is created, for example
      * `projects/dlp-test-project/locations/global/discoveryConfigs/53234423`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $name = '';
     /**
@@ -59,7 +59,7 @@ class DiscoveryConfig extends \Google\Protobuf\Internal\Message
      * template is provided for a region with data, that region's data will not be
      * scanned.
      * For more information, see
-     * https://cloud.google.com/sensitive-data-protection/docs/data-profiles#data-residency.
+     * https://docs.cloud.google.com/sensitive-data-protection/docs/data-profiles#data-residency.
      *
      * Generated from protobuf field <code>repeated string inspect_templates = 3;</code>
      */
@@ -125,8 +125,8 @@ class DiscoveryConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Unique resource name for the DiscoveryConfig, assigned by the service when
-     *           the DiscoveryConfig is created, for example
+     *           Output only. Unique resource name for the DiscoveryConfig, assigned by the
+     *           service when the DiscoveryConfig is created, for example
      *           `projects/dlp-test-project/locations/global/discoveryConfigs/53234423`.
      *     @type string $display_name
      *           Display name (max 100 chars)
@@ -147,7 +147,7 @@ class DiscoveryConfig extends \Google\Protobuf\Internal\Message
      *           template is provided for a region with data, that region's data will not be
      *           scanned.
      *           For more information, see
-     *           https://cloud.google.com/sensitive-data-protection/docs/data-profiles#data-residency.
+     *           https://docs.cloud.google.com/sensitive-data-protection/docs/data-profiles#data-residency.
      *     @type \Google\Cloud\Dlp\V2\DataProfileAction[] $actions
      *           Actions to execute at the completion of scanning.
      *     @type \Google\Cloud\Dlp\V2\DiscoveryTarget[] $targets
@@ -177,11 +177,11 @@ class DiscoveryConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Unique resource name for the DiscoveryConfig, assigned by the service when
-     * the DiscoveryConfig is created, for example
+     * Output only. Unique resource name for the DiscoveryConfig, assigned by the
+     * service when the DiscoveryConfig is created, for example
      * `projects/dlp-test-project/locations/global/discoveryConfigs/53234423`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getName()
@@ -190,11 +190,11 @@ class DiscoveryConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Unique resource name for the DiscoveryConfig, assigned by the service when
-     * the DiscoveryConfig is created, for example
+     * Output only. Unique resource name for the DiscoveryConfig, assigned by the
+     * service when the DiscoveryConfig is created, for example
      * `projects/dlp-test-project/locations/global/discoveryConfigs/53234423`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -317,7 +317,7 @@ class DiscoveryConfig extends \Google\Protobuf\Internal\Message
      * template is provided for a region with data, that region's data will not be
      * scanned.
      * For more information, see
-     * https://cloud.google.com/sensitive-data-protection/docs/data-profiles#data-residency.
+     * https://docs.cloud.google.com/sensitive-data-protection/docs/data-profiles#data-residency.
      *
      * Generated from protobuf field <code>repeated string inspect_templates = 3;</code>
      * @return RepeatedField<string>
@@ -340,7 +340,7 @@ class DiscoveryConfig extends \Google\Protobuf\Internal\Message
      * template is provided for a region with data, that region's data will not be
      * scanned.
      * For more information, see
-     * https://cloud.google.com/sensitive-data-protection/docs/data-profiles#data-residency.
+     * https://docs.cloud.google.com/sensitive-data-protection/docs/data-profiles#data-residency.
      *
      * Generated from protobuf field <code>repeated string inspect_templates = 3;</code>
      * @param string[] $var
