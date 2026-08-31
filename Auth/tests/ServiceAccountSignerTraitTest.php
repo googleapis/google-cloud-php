@@ -72,4 +72,3 @@ class ServiceAccountSignerTraitTest extends TestCase
         return [[true], [false]];
     }
 }
-
