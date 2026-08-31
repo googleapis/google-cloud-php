@@ -41,7 +41,7 @@ jobs:
         uses: shivammathur/cache-extensions@de3c642a5fce0ef91581a1c9831e229f525196d6 # v1
         with:
           php-version: ${{ matrix.php }}
-          extensions: sodium, sysvshm, ${{ matrix.extensions }}
+          extensions: sodium, sysvshm, gmp, ${{ matrix.extensions }}
           key: cache-key-1 # increment to bust the cache
 
       - name: Cache extensions
@@ -55,7 +55,7 @@ jobs:
         uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # v2
         with:
           php-version: ${{ matrix.php }}
-          extensions: sodium, sysvshm, ${{ matrix.extensions }}
+          extensions: sodium, sysvshm, gmp, ${{ matrix.extensions }}
 
       - name: Install Dependencies
         uses: nick-invision/retry@ad984534de44a9489a53aefd81eb77f87c70dc60 # v4
