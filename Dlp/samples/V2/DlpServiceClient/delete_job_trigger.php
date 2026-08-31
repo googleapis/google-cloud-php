@@ -30,7 +30,7 @@ use Google\Cloud\Dlp\V2\DeleteJobTriggerRequest;
 /**
  * Deletes a job trigger.
  * See
- * https://cloud.google.com/sensitive-data-protection/docs/creating-job-triggers
+ * https://docs.cloud.google.com/sensitive-data-protection/docs/creating-job-triggers
  * to learn more.
  *
  * @param string $formattedName Resource name of the project and the triggeredJob, for example

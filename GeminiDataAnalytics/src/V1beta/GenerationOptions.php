@@ -43,6 +43,13 @@ class GenerationOptions extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool generate_disambiguation_question = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $generate_disambiguation_question = false;
+    /**
+     * Optional. If true (default to false), returns internal debugging
+     * information.
+     *
+     * Generated from protobuf field <code>bool generate_debug_info = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $generate_debug_info = false;
 
     /**
      * Constructor.
@@ -62,6 +69,9 @@ class GenerationOptions extends \Google\Protobuf\Internal\Message
      *     @type bool $generate_disambiguation_question
      *           Optional. If true (default to false), the service may return a
      *           clarifying_question if the input query is ambiguous.
+     *     @type bool $generate_debug_info
+     *           Optional. If true (default to false), returns internal debugging
+     *           information.
      * }
      */
     public function __construct($data = NULL) {
@@ -177,6 +187,34 @@ class GenerationOptions extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->generate_disambiguation_question = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If true (default to false), returns internal debugging
+     * information.
+     *
+     * Generated from protobuf field <code>bool generate_debug_info = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getGenerateDebugInfo()
+    {
+        return $this->generate_debug_info;
+    }
+
+    /**
+     * Optional. If true (default to false), returns internal debugging
+     * information.
+     *
+     * Generated from protobuf field <code>bool generate_debug_info = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setGenerateDebugInfo($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->generate_debug_info = $var;
 
         return $this;
     }

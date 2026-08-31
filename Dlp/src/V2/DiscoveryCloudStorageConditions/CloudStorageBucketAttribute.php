@@ -26,7 +26,8 @@ class CloudStorageBucketAttribute
      */
     const ALL_SUPPORTED_BUCKETS = 1;
     /**
-     * Buckets with [Autoclass](https://cloud.google.com/storage/docs/autoclass)
+     * Buckets with
+     * [Autoclass](https://docs.cloud.google.com/storage/docs/autoclass)
      * disabled. Only one of
      * AUTOCLASS_DISABLED or AUTOCLASS_ENABLED should be set.
      *
@@ -34,7 +35,8 @@ class CloudStorageBucketAttribute
      */
     const AUTOCLASS_DISABLED = 2;
     /**
-     * Buckets with [Autoclass](https://cloud.google.com/storage/docs/autoclass)
+     * Buckets with
+     * [Autoclass](https://docs.cloud.google.com/storage/docs/autoclass)
      * enabled. Only one of
      * AUTOCLASS_DISABLED or AUTOCLASS_ENABLED should be set. Scanning
      * Autoclass-enabled buckets can affect object storage classes.

@@ -31,7 +31,7 @@ use Google\Cloud\Dlp\V2\ListInfoTypesResponse;
 /**
  * Returns a list of the sensitive information types that the DLP API
  * supports. See
- * https://cloud.google.com/sensitive-data-protection/docs/infotypes-reference
+ * https://docs.cloud.google.com/sensitive-data-protection/docs/infotypes-reference
  * to learn more.
  *
  * This sample has been automatically generated and should be regarded as a code

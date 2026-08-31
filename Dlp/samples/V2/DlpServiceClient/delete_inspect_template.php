@@ -30,7 +30,7 @@ use Google\Cloud\Dlp\V2\DeleteInspectTemplateRequest;
 /**
  * Deletes an InspectTemplate.
  * See
- * https://cloud.google.com/sensitive-data-protection/docs/creating-templates
+ * https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates
  * to learn more.
  *
  * @param string $formattedName Resource name of the organization and inspectTemplate to be
