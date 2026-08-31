@@ -259,7 +259,7 @@ class Component
 
         $this->componentDependencies = [];
 
-        if ($this->name !== 'auth') {
+        if ($this->name !== 'Auth') {
             $this->componentDependencies[] = new Component('Auth');
         }
 
