@@ -544,10 +544,7 @@
             "GPBMetadata\\Google\\Monitoring\\": "Monitoring/metadata",
             "GPBMetadata\\Google\\Privacy\\Dlp\\": "Dlp/metadata",
             "GPBMetadata\\Google\\Pubsub\\": "PubSub/metadata",
-            "GPBMetadata\\Google\\Rpc\\": [
-                "CloudCommonProtos/metadata/Rpc",
-                "CommonProtos/metadata/Rpc"
-            ],
+            "GPBMetadata\\Google\\Rpc\\": "CommonProtos/metadata/Rpc",
             "GPBMetadata\\Google\\Shopping\\Css\\": "ShoppingCss/metadata",
             "GPBMetadata\\Google\\Shopping\\Merchant\\Accounts\\": "ShoppingMerchantAccounts/metadata",
             "GPBMetadata\\Google\\Shopping\\Merchant\\Conversions\\": "ShoppingMerchantConversions/metadata",

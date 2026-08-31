@@ -84,9 +84,7 @@ final class ReportErrorsServiceClient
      *
      * @internal
      */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private static function getClientDefaults()
     {
@@ -279,8 +277,10 @@ final class ReportErrorsServiceClient
      *
      * @experimental
      */
-    public function reportErrorEvent(ReportErrorEventRequest $request, array $callOptions = []): ReportErrorEventResponse
-    {
+    public function reportErrorEvent(
+        ReportErrorEventRequest $request,
+        array $callOptions = []
+    ): ReportErrorEventResponse {
         return $this->startApiCall('ReportErrorEvent', $request, $callOptions)->wait();
     }
 }
