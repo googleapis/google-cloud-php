@@ -211,7 +211,7 @@ class SpannerClient
      *           **Defaults to** false.
      *     @type int $metricsTimeoutMillis The timeout in milliseconds for exporting metrics.
      *           **Defaults to** 100.
-     *     @type MetricServiceClient @deprecated $metricServiceClient An explicit instance of
+     *     @type MetricServiceClient $metricServiceClient **[DEPRECATED]** An explicit instance of
      *           `MetricServiceClient` to use for exporting metrics.
      * }
      * @throws GoogleException If the gRPC extension is not enabled.
@@ -556,7 +556,7 @@ class SpannerClient
                     $operation->getName(),
                     [
                         'type.googleapis.com/google.spanner.admin.instance.v1.ListInstanceConfigMetadata' =>
-                        fn(InstanceConfig $config) => $this->instanceConfiguration(
+                        fn (InstanceConfig $config) => $this->instanceConfiguration(
                             $config->getName(),
                             $this->handleResponse($config)
                         ),
