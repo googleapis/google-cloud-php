@@ -95,7 +95,14 @@ class DatastoreMultipleDbTest extends DatastoreMultipleDbTestCase
             ->kind(self::$kind)
             ->order('knownDances');
 
-        $results = iterator_to_array($client->runQuery($query));
+        $results = [];
+        for ($i = 0; $i < 10; $i++) {
+            $results = iterator_to_array($client->runQuery($query));
+            if (count($results) === 4) {
+                break;
+            }
+            sleep(1);
+        }
 
         $this->assertEquals(self::$data[0], $results[0]->get());
         $this->assertEquals(self::$data[1], $results[1]->get());
