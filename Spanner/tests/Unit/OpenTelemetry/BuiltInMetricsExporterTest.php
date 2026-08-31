@@ -46,7 +46,7 @@ class BuiltInMetricsExporterTest extends TestCase
 
     protected function setUp(): void
     {
-        // This is due us removing a no longer needed dependency and we can skip the tests without removing the tests.
+        // This is due to us removing a no longer needed dependency and we can skip the tests without removing the tests.
         if (!class_exists(MetricServiceClient::class)) {
             $this->markTestSkipped('Google\Cloud\Monitoring\V3\Client\MetricServiceClient class is not available.');
         }

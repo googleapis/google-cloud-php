@@ -54,8 +54,6 @@ use Throwable;
 class OtlpMetricsExporter implements PushMetricExporterInterface, AggregationTemporalitySelectorInterface
 {
     private const DEFAULT_ENDPOINT = 'https://telemetry.googleapis.com/v1/metrics';
-    public const MONITORING_WRITE_SCOPE = 'https://www.googleapis.com/auth/monitoring.write';
-    public const CLOUD_PLATFORM_SCOPE = 'https://www.googleapis.com/auth/cloud-platform';
 
     private PushMetricExporterInterface $otlpExporter;
 
@@ -67,7 +65,7 @@ class OtlpMetricsExporter implements PushMetricExporterInterface, AggregationTem
      */
     public function __construct(
         CredentialsWrapper $metricsCredentials,
-        int $timeoutMillis = 5000,
+        int $timeoutMillis = 100,
         array $options = [],
         ?PushMetricExporterInterface $otlpExporter = null
     ) {

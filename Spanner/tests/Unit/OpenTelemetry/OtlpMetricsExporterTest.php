@@ -114,7 +114,7 @@ class OtlpMetricsExporterTest extends TestCase
     public function testConstructWithCustomMetricsCredentials()
     {
         $mockCredentials = $this->prophesize(\Google\ApiCore\CredentialsWrapper::class);
-        $exporter = new OtlpMetricsExporter($mockCredentials->reveal(), 5000, []);
+        $exporter = new OtlpMetricsExporter($mockCredentials->reveal(), 100, []);
 
         $this->assertInstanceOf(OtlpMetricsExporter::class, $exporter);
     }
@@ -134,7 +134,7 @@ class OtlpMetricsExporterTest extends TestCase
 
         $exporter = new OtlpMetricsExporter(
             $mockCredentials->reveal(),
-            5000,
+            100,
             ['handlerStack' => $handlerStack]
         );
 
@@ -163,5 +163,29 @@ class OtlpMetricsExporterTest extends TestCase
         $this->assertNotNull($lastRequest);
         $this->assertEquals(['Bearer test-metric-token'], $lastRequest->getHeader('authorization'));
         $this->assertEquals(['test-quota-project-id'], $lastRequest->getHeader('x-goog-user-project'));
+    }
+
+    public function testExportFailureReturnsFalse()
+    {
+        $mockCredentials = $this->prophesize(\Google\ApiCore\CredentialsWrapper::class);
+        $mockOtlpExporter = $this->prophesize(PushMetricExporterInterface::class);
+
+        $mockOtlpExporter->export(Argument::any())->willThrow(new \Exception('Connection failed'));
+
+        $exporter = new OtlpMetricsExporter(
+            $mockCredentials->reveal(),
+            100,
+            [],
+            $mockOtlpExporter->reveal()
+        );
+
+        $scope = new InstrumentationScope('google-cloud-spanner', '1.0.0', null, Attributes::create([]));
+        $resource = ResourceInfo::create(Attributes::create([]));
+        $point = new NumberDataPoint(1, Attributes::create([]), 1000, 2000);
+        $sum = new Sum([$point], Temporality::CUMULATIVE, true);
+        $metric = new OTelMetric($scope, $resource, 'attempt_count', '1', 'desc', $sum);
+
+        $result = $exporter->export([$metric]);
+        $this->assertFalse($result);
     }
 }

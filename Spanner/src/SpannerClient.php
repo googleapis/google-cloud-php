@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2016 Google Inc.
  *
@@ -133,6 +134,7 @@ class SpannerClient
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/spanner.data';
     const ADMIN_SCOPE = 'https://www.googleapis.com/auth/spanner.admin';
+    private const MONITORING_WRITE_SCOPE = 'https://www.googleapis.com/auth/monitoring.write';
     private const GRPC_KEEPALIVE_MILLISECONDS = 120 * 1000;
 
     private const SERVICE_NAME = 'google.spanner.v1.Spanner';
@@ -208,9 +210,9 @@ class SpannerClient
      *     @type bool $enableBuiltInMetrics If true, built-in metrics collection will be enabled.
      *           **Defaults to** false.
      *     @type int $metricsTimeoutMillis The timeout in milliseconds for exporting metrics.
-     *           **Defaults to** 5000.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $metricsCredentials
-     *           Optional dedicated credentials to use for exporting built-in metrics.
+     *           **Defaults to** 100.
+     *     @type MetricServiceClient @deprecated $metricServiceClient An explicit instance of
+     *           `MetricServiceClient` to use for exporting metrics.
      * }
      * @throws GoogleException If the gRPC extension is not enabled.
      */
@@ -255,9 +257,7 @@ class SpannerClient
             $options['credentialsConfig']['scopes'] = $scopes;
         }
 
-        $metricsCredentials = $options['metricsCredentials']
-            ?? $options['credentials']
-            ?? null;
+        $metricsCredentials = $options['credentials'] ?? null;
 
         if ($emulatorHost) {
             $emulatorConfig = $this->emulatorGapicConfig($emulatorHost);
@@ -556,10 +556,10 @@ class SpannerClient
                     $operation->getName(),
                     [
                         'type.googleapis.com/google.spanner.admin.instance.v1.ListInstanceConfigMetadata' =>
-                            fn (InstanceConfig $config) => $this->instanceConfiguration(
-                                $config->getName(),
-                                $this->handleResponse($config)
-                            ),
+                        fn(InstanceConfig $config) => $this->instanceConfiguration(
+                            $config->getName(),
+                            $this->handleResponse($config)
+                        ),
                     ],
                     $this->handleResponse($operation)
                 );
@@ -996,8 +996,8 @@ class SpannerClient
         if (!$this->isGrpcLoaded()) {
             throw new GoogleException(
                 'The requested client requires the gRPC extension. '
-                . 'Please see https://cloud.google.com/php/grpc for installation '
-                . 'instructions.'
+                    . 'Please see https://cloud.google.com/php/grpc for installation '
+                    . 'instructions.'
             );
         }
     }
@@ -1063,7 +1063,7 @@ class SpannerClient
 
     private function configureMetrics(array $options): void
     {
-        $timeoutMillis = $this->pluck('metricsTimeoutMillis', $options, false) ?? 5000;
+        $timeoutMillis = $this->pluck('metricsTimeoutMillis', $options, false) ?? 100;
 
         if (!$this->pluck('enableBuiltInMetrics', $options, false)) {
             return;
@@ -1186,14 +1186,11 @@ class SpannerClient
 
     private function buildMetricsCredentials(array $options): CredentialsWrapper
     {
-        $metricsCredentials = $options['metricsCredentials']
-            ?? $options['credentials']
-            ?? null;
+        $metricsCredentials = $options['metricsCredentials'] ?? $options['credentials'] ?? null;
 
         $credentialsConfig = [
             'scopes' => [
-                OtlpMetricsExporter::MONITORING_WRITE_SCOPE,
-                OtlpMetricsExporter::CLOUD_PLATFORM_SCOPE
+                self::MONITORING_WRITE_SCOPE
             ]
         ];
 
