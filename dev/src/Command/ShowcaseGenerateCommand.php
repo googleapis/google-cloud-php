@@ -190,7 +190,7 @@ class ShowcaseGenerateCommand extends Command
         foreach ($mappings as $source => $dest) {
             $srcDir = $tmpOutputDir . $source;
             if (is_dir($srcDir)) {
-                $this->fs->mirror($srcDir, $outDir . $dest);
+                $this->fs->mirror($srcDir, $targetDir . $dest);
             }
         }
 

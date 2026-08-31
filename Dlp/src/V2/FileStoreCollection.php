@@ -23,7 +23,7 @@ class FileStoreCollection extends \Google\Protobuf\Internal\Message
      * For a resource to match the tag filters, the resource must have all of the
      * provided tags attached. Tags refer to Resource Manager tags bound to the
      * resource or its ancestors. For more information, see [Manage
-     * schedules](https://cloud.google.com/sensitive-data-protection/docs/profile-project-cloud-storage#manage-schedules).
+     * schedules](https://docs.cloud.google.com/sensitive-data-protection/docs/profile-project-cloud-storage#manage-schedules).
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.TagFilters include_tags = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -47,7 +47,7 @@ class FileStoreCollection extends \Google\Protobuf\Internal\Message
      *           For a resource to match the tag filters, the resource must have all of the
      *           provided tags attached. Tags refer to Resource Manager tags bound to the
      *           resource or its ancestors. For more information, see [Manage
-     *           schedules](https://cloud.google.com/sensitive-data-protection/docs/profile-project-cloud-storage#manage-schedules).
+     *           schedules](https://docs.cloud.google.com/sensitive-data-protection/docs/profile-project-cloud-storage#manage-schedules).
      * }
      */
     public function __construct($data = NULL) {
@@ -96,7 +96,7 @@ class FileStoreCollection extends \Google\Protobuf\Internal\Message
      * For a resource to match the tag filters, the resource must have all of the
      * provided tags attached. Tags refer to Resource Manager tags bound to the
      * resource or its ancestors. For more information, see [Manage
-     * schedules](https://cloud.google.com/sensitive-data-protection/docs/profile-project-cloud-storage#manage-schedules).
+     * schedules](https://docs.cloud.google.com/sensitive-data-protection/docs/profile-project-cloud-storage#manage-schedules).
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.TagFilters include_tags = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Dlp\V2\TagFilters|null
@@ -124,7 +124,7 @@ class FileStoreCollection extends \Google\Protobuf\Internal\Message
      * For a resource to match the tag filters, the resource must have all of the
      * provided tags attached. Tags refer to Resource Manager tags bound to the
      * resource or its ancestors. For more information, see [Manage
-     * schedules](https://cloud.google.com/sensitive-data-protection/docs/profile-project-cloud-storage#manage-schedules).
+     * schedules](https://docs.cloud.google.com/sensitive-data-protection/docs/profile-project-cloud-storage#manage-schedules).
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.TagFilters include_tags = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Dlp\V2\TagFilters $var

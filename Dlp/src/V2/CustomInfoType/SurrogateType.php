@@ -11,7 +11,7 @@ use Google\Protobuf\RepeatedField;
 /**
  * Message for detecting output from deidentification transformations
  * such as
- * [`CryptoReplaceFfxFpeConfig`](https://cloud.google.com/sensitive-data-protection/docs/reference/rest/v2/organizations.deidentifyTemplates#cryptoreplaceffxfpeconfig).
+ * [`CryptoReplaceFfxFpeConfig`](https://docs.cloud.google.com/sensitive-data-protection/docs/reference/rest/v2/organizations.deidentifyTemplates#cryptoreplaceffxfpeconfig).
  * These types of transformations are
  * those that perform pseudonymization, thereby producing a "surrogate" as
  * output. This should be used in conjunction with a field on the

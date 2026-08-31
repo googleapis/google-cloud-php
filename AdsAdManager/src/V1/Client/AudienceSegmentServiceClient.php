@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,6 +25,16 @@
 namespace Google\Ads\AdManager\V1\Client;
 
 use Google\Ads\AdManager\V1\AudienceSegment;
+use Google\Ads\AdManager\V1\BatchActivateAudienceSegmentsRequest;
+use Google\Ads\AdManager\V1\BatchActivateAudienceSegmentsResponse;
+use Google\Ads\AdManager\V1\BatchApproveAudienceSegmentsRequest;
+use Google\Ads\AdManager\V1\BatchApproveAudienceSegmentsResponse;
+use Google\Ads\AdManager\V1\BatchDeactivateAudienceSegmentsRequest;
+use Google\Ads\AdManager\V1\BatchDeactivateAudienceSegmentsResponse;
+use Google\Ads\AdManager\V1\BatchPopulateAudienceSegmentsRequest;
+use Google\Ads\AdManager\V1\BatchPopulateAudienceSegmentsResponse;
+use Google\Ads\AdManager\V1\BatchRejectAudienceSegmentsRequest;
+use Google\Ads\AdManager\V1\BatchRejectAudienceSegmentsResponse;
 use Google\Ads\AdManager\V1\GetAudienceSegmentRequest;
 use Google\Ads\AdManager\V1\ListAudienceSegmentsRequest;
 use Google\ApiCore\ApiException;
@@ -51,6 +61,11 @@ use Psr\Log\LoggerInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
+ * @method PromiseInterface<BatchActivateAudienceSegmentsResponse> batchActivateAudienceSegmentsAsync(BatchActivateAudienceSegmentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchApproveAudienceSegmentsResponse> batchApproveAudienceSegmentsAsync(BatchApproveAudienceSegmentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchDeactivateAudienceSegmentsResponse> batchDeactivateAudienceSegmentsAsync(BatchDeactivateAudienceSegmentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchPopulateAudienceSegmentsResponse> batchPopulateAudienceSegmentsAsync(BatchPopulateAudienceSegmentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchRejectAudienceSegmentsResponse> batchRejectAudienceSegmentsAsync(BatchRejectAudienceSegmentsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<AudienceSegment> getAudienceSegmentAsync(GetAudienceSegmentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listAudienceSegmentsAsync(ListAudienceSegmentsRequest $request, array $optionalArgs = [])
  */
@@ -256,6 +271,151 @@ final class AudienceSegmentServiceClient
 
         array_unshift($args, substr($method, 0, -5));
         return call_user_func_array([$this, 'startAsyncCall'], $args);
+    }
+
+    /**
+     * Activates `AudienceSegment` objects.
+     *
+     * The async variant is
+     * {@see AudienceSegmentServiceClient::batchActivateAudienceSegmentsAsync()} .
+     *
+     * @example samples/V1/AudienceSegmentServiceClient/batch_activate_audience_segments.php
+     *
+     * @param BatchActivateAudienceSegmentsRequest $request     A request to house fields associated with the call.
+     * @param array                                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchActivateAudienceSegmentsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchActivateAudienceSegments(
+        BatchActivateAudienceSegmentsRequest $request,
+        array $callOptions = []
+    ): BatchActivateAudienceSegmentsResponse {
+        return $this->startApiCall('BatchActivateAudienceSegments', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Approves `AudienceSegment` objects.
+     *
+     * The async variant is
+     * {@see AudienceSegmentServiceClient::batchApproveAudienceSegmentsAsync()} .
+     *
+     * @example samples/V1/AudienceSegmentServiceClient/batch_approve_audience_segments.php
+     *
+     * @param BatchApproveAudienceSegmentsRequest $request     A request to house fields associated with the call.
+     * @param array                               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchApproveAudienceSegmentsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchApproveAudienceSegments(
+        BatchApproveAudienceSegmentsRequest $request,
+        array $callOptions = []
+    ): BatchApproveAudienceSegmentsResponse {
+        return $this->startApiCall('BatchApproveAudienceSegments', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deactivates `AudienceSegment` objects.
+     *
+     * The async variant is
+     * {@see AudienceSegmentServiceClient::batchDeactivateAudienceSegmentsAsync()} .
+     *
+     * @example samples/V1/AudienceSegmentServiceClient/batch_deactivate_audience_segments.php
+     *
+     * @param BatchDeactivateAudienceSegmentsRequest $request     A request to house fields associated with the call.
+     * @param array                                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchDeactivateAudienceSegmentsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchDeactivateAudienceSegments(
+        BatchDeactivateAudienceSegmentsRequest $request,
+        array $callOptions = []
+    ): BatchDeactivateAudienceSegmentsResponse {
+        return $this->startApiCall('BatchDeactivateAudienceSegments', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Populates `AudienceSegment` objects.
+     *
+     * The async variant is
+     * {@see AudienceSegmentServiceClient::batchPopulateAudienceSegmentsAsync()} .
+     *
+     * @example samples/V1/AudienceSegmentServiceClient/batch_populate_audience_segments.php
+     *
+     * @param BatchPopulateAudienceSegmentsRequest $request     A request to house fields associated with the call.
+     * @param array                                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchPopulateAudienceSegmentsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchPopulateAudienceSegments(
+        BatchPopulateAudienceSegmentsRequest $request,
+        array $callOptions = []
+    ): BatchPopulateAudienceSegmentsResponse {
+        return $this->startApiCall('BatchPopulateAudienceSegments', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Rejects `AudienceSegment` objects.
+     *
+     * The async variant is
+     * {@see AudienceSegmentServiceClient::batchRejectAudienceSegmentsAsync()} .
+     *
+     * @example samples/V1/AudienceSegmentServiceClient/batch_reject_audience_segments.php
+     *
+     * @param BatchRejectAudienceSegmentsRequest $request     A request to house fields associated with the call.
+     * @param array                              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchRejectAudienceSegmentsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchRejectAudienceSegments(
+        BatchRejectAudienceSegmentsRequest $request,
+        array $callOptions = []
+    ): BatchRejectAudienceSegmentsResponse {
+        return $this->startApiCall('BatchRejectAudienceSegments', $request, $callOptions)->wait();
     }
 
     /**

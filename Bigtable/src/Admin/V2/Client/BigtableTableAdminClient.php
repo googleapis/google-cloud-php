@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -221,7 +221,10 @@ final class BigtableTableAdminClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = $methodName && isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options =
+            $methodName && isset($this->descriptors[$methodName]['longRunning'])
+                ? $this->descriptors[$methodName]['longRunning']
+                : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -257,8 +260,12 @@ final class BigtableTableAdminClient
      *
      * @return string The formatted authorized_view resource.
      */
-    public static function authorizedViewName(string $project, string $instance, string $table, string $authorizedView): string
-    {
+    public static function authorizedViewName(
+        string $project,
+        string $instance,
+        string $table,
+        string $authorizedView
+    ): string {
         return self::getPathTemplate('authorizedView')->render([
             'project' => $project,
             'instance' => $instance,
@@ -319,8 +326,13 @@ final class BigtableTableAdminClient
      *
      * @return string The formatted crypto_key_version resource.
      */
-    public static function cryptoKeyVersionName(string $project, string $location, string $keyRing, string $cryptoKey, string $cryptoKeyVersion): string
-    {
+    public static function cryptoKeyVersionName(
+        string $project,
+        string $location,
+        string $keyRing,
+        string $cryptoKey,
+        string $cryptoKeyVersion
+    ): string {
         return self::getPathTemplate('cryptoKeyVersion')->render([
             'project' => $project,
             'location' => $location,
@@ -375,8 +387,12 @@ final class BigtableTableAdminClient
      *
      * @return string The formatted schema_bundle resource.
      */
-    public static function schemaBundleName(string $project, string $instance, string $table, string $schemaBundle): string
-    {
+    public static function schemaBundleName(
+        string $project,
+        string $instance,
+        string $table,
+        string $schemaBundle
+    ): string {
         return self::getPathTemplate('schemaBundle')->render([
             'project' => $project,
             'instance' => $instance,
@@ -571,8 +587,10 @@ final class BigtableTableAdminClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function checkConsistency(CheckConsistencyRequest $request, array $callOptions = []): CheckConsistencyResponse
-    {
+    public function checkConsistency(
+        CheckConsistencyRequest $request,
+        array $callOptions = []
+    ): CheckConsistencyResponse {
         return $this->startApiCall('CheckConsistency', $request, $callOptions)->wait();
     }
 
@@ -625,8 +643,10 @@ final class BigtableTableAdminClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createAuthorizedView(CreateAuthorizedViewRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createAuthorizedView(
+        CreateAuthorizedViewRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateAuthorizedView', $request, $callOptions)->wait();
     }
 
@@ -747,8 +767,10 @@ final class BigtableTableAdminClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function createTableFromSnapshot(CreateTableFromSnapshotRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function createTableFromSnapshot(
+        CreateTableFromSnapshotRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('CreateTableFromSnapshot', $request, $callOptions)->wait();
     }
 
@@ -931,8 +953,10 @@ final class BigtableTableAdminClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function generateConsistencyToken(GenerateConsistencyTokenRequest $request, array $callOptions = []): GenerateConsistencyTokenResponse
-    {
+    public function generateConsistencyToken(
+        GenerateConsistencyTokenRequest $request,
+        array $callOptions = []
+    ): GenerateConsistencyTokenResponse {
         return $this->startApiCall('GenerateConsistencyToken', $request, $callOptions)->wait();
     }
 
@@ -1383,8 +1407,10 @@ final class BigtableTableAdminClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function testIamPermissions(TestIamPermissionsRequest $request, array $callOptions = []): TestIamPermissionsResponse
-    {
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 
@@ -1436,8 +1462,10 @@ final class BigtableTableAdminClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function updateAuthorizedView(UpdateAuthorizedViewRequest $request, array $callOptions = []): OperationResponse
-    {
+    public function updateAuthorizedView(
+        UpdateAuthorizedViewRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
         return $this->startApiCall('UpdateAuthorizedView', $request, $callOptions)->wait();
     }
 

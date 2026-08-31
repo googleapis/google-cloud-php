@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -65,6 +65,7 @@ use Google\Cloud\BigQuery\Reservation\V1\SplitCapacityCommitmentResponse;
 use Google\Cloud\BigQuery\Reservation\V1\UpdateAssignmentRequest;
 use Google\Cloud\BigQuery\Reservation\V1\UpdateBiReservationRequest;
 use Google\Cloud\BigQuery\Reservation\V1\UpdateCapacityCommitmentRequest;
+use Google\Cloud\BigQuery\Reservation\V1\UpdateReservationGroupRequest;
 use Google\Cloud\BigQuery\Reservation\V1\UpdateReservationRequest;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
 use Google\Cloud\Iam\V1\Policy;
@@ -128,6 +129,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<BiReservation> updateBiReservationAsync(UpdateBiReservationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<CapacityCommitment> updateCapacityCommitmentAsync(UpdateCapacityCommitmentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Reservation> updateReservationAsync(UpdateReservationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ReservationGroup> updateReservationGroupAsync(UpdateReservationGroupRequest $request, array $optionalArgs = [])
  */
 final class ReservationServiceClient
 {
@@ -1373,5 +1375,34 @@ final class ReservationServiceClient
     public function updateReservation(UpdateReservationRequest $request, array $callOptions = []): Reservation
     {
         return $this->startApiCall('UpdateReservation', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates an existing reservation group resource.
+     *
+     * The async variant is
+     * {@see ReservationServiceClient::updateReservationGroupAsync()} .
+     *
+     * @example samples/V1/ReservationServiceClient/update_reservation_group.php
+     *
+     * @param UpdateReservationGroupRequest $request     A request to house fields associated with the call.
+     * @param array                         $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return ReservationGroup
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateReservationGroup(
+        UpdateReservationGroupRequest $request,
+        array $callOptions = []
+    ): ReservationGroup {
+        return $this->startApiCall('UpdateReservationGroup', $request, $callOptions)->wait();
     }
 }

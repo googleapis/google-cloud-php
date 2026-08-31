@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -72,6 +72,18 @@ return [
                         'body' => '*',
                     ],
                 ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateContentPolicy' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{parent=projects/*/locations/*}/contentPolicies',
+                'body' => '*',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -257,6 +269,17 @@ return [
                         'uriTemplate' => '/v2/{name=organizations/*/locations/*/connections/*}',
                     ],
                 ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteContentPolicy' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v2/{name=projects/*/locations/*/contentPolicies/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -467,6 +490,17 @@ return [
                         'uriTemplate' => '/v2/{name=organizations/*/locations/*/connections/*}',
                     ],
                 ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetContentPolicy' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{name=projects/*/locations/*/contentPolicies/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -725,6 +759,17 @@ return [
                         'uriTemplate' => '/v2/{parent=organizations/*/locations/*}/connections',
                     ],
                 ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListContentPolicies' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{parent=projects/*/locations/*}/contentPolicies',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -1009,6 +1054,18 @@ return [
                         'body' => '*',
                     ],
                 ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateContentPolicy' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v2/{name=projects/*/locations/*/contentPolicies/*}',
+                'body' => '*',
                 'placeholders' => [
                     'name' => [
                         'getters' => [

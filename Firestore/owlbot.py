@@ -44,7 +44,7 @@ php.owlbot_main(
 )
 
 # Firestore Admin also lives here
-admin_library = Path(f"../{php.STAGING_DIR}/Firestore/v1/Admin").resolve()
+admin_library = Path(f"../{php.STAGING_DIR}/Firestore/Admin/v1").resolve()
 
 # copy all src
 s.move(

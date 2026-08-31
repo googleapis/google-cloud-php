@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -64,6 +64,7 @@ use Google\Cloud\BigQuery\Reservation\V1\SplitCapacityCommitmentResponse;
 use Google\Cloud\BigQuery\Reservation\V1\UpdateAssignmentRequest;
 use Google\Cloud\BigQuery\Reservation\V1\UpdateBiReservationRequest;
 use Google\Cloud\BigQuery\Reservation\V1\UpdateCapacityCommitmentRequest;
+use Google\Cloud\BigQuery\Reservation\V1\UpdateReservationGroupRequest;
 use Google\Cloud\BigQuery\Reservation\V1\UpdateReservationRequest;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
 use Google\Cloud\Iam\V1\Policy;
@@ -347,8 +348,10 @@ class ReservationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name = 'name3373707';
+        $parentGroup = 'parentGroup1394981546';
         $expectedResponse = new ReservationGroup();
         $expectedResponse->setName($name);
+        $expectedResponse->setParentGroup($parentGroup);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -1063,8 +1066,10 @@ class ReservationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name2 = 'name2-1052831874';
+        $parentGroup = 'parentGroup1394981546';
         $expectedResponse = new ReservationGroup();
         $expectedResponse->setName($name2);
+        $expectedResponse->setParentGroup($parentGroup);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->reservationGroupName('[PROJECT]', '[LOCATION]', '[RESERVATION_GROUP]');
@@ -2175,6 +2180,76 @@ class ReservationServiceClientTest extends GeneratedTest
         $request = new UpdateReservationRequest();
         try {
             $gapicClient->updateReservation($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateReservationGroupTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $parentGroup = 'parentGroup1394981546';
+        $expectedResponse = new ReservationGroup();
+        $expectedResponse->setName($name);
+        $expectedResponse->setParentGroup($parentGroup);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $reservationGroup = new ReservationGroup();
+        $request = (new UpdateReservationGroupRequest())->setReservationGroup($reservationGroup);
+        $response = $gapicClient->updateReservationGroup($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.bigquery.reservation.v1.ReservationService/UpdateReservationGroup',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getReservationGroup();
+        $this->assertProtobufEquals($reservationGroup, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateReservationGroupExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $reservationGroup = new ReservationGroup();
+        $request = (new UpdateReservationGroupRequest())->setReservationGroup($reservationGroup);
+        try {
+            $gapicClient->updateReservationGroup($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

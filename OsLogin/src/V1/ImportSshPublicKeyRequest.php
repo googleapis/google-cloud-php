@@ -5,8 +5,8 @@
 namespace Google\Cloud\OsLogin\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A request message for importing an SSH public key.
@@ -88,7 +88,7 @@ class ImportSshPublicKeyRequest extends \Google\Protobuf\Internal\Message
      *           Optional. The SSH public key and expiration time.
      *     @type string $project_id
      *           The project ID of the Google Cloud Platform project.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $regions
+     *     @type string[] $regions
      *           Optional. The regions to which to assert that the key was written.
      *           If unspecified, defaults to all regions.
      *           Regions are listed at https://cloud.google.com/about/locations#region.
@@ -193,7 +193,7 @@ class ImportSshPublicKeyRequest extends \Google\Protobuf\Internal\Message
      * Regions are listed at https://cloud.google.com/about/locations#region.
      *
      * Generated from protobuf field <code>repeated string regions = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getRegions()
     {
@@ -206,7 +206,7 @@ class ImportSshPublicKeyRequest extends \Google\Protobuf\Internal\Message
      * Regions are listed at https://cloud.google.com/about/locations#region.
      *
      * Generated from protobuf field <code>repeated string regions = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setRegions($var)

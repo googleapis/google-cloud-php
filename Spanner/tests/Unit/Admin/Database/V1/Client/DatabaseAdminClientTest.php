@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -95,7 +95,9 @@ class DatabaseAdminClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return DatabaseAdminClient */
@@ -121,9 +123,7 @@ class DatabaseAdminClientTest extends GeneratedTest
         // Mock request
         $formattedDatabase = $gapicClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
         $splitPoints = [];
-        $request = (new AddSplitPointsRequest())
-            ->setDatabase($formattedDatabase)
-            ->setSplitPoints($splitPoints);
+        $request = (new AddSplitPointsRequest())->setDatabase($formattedDatabase)->setSplitPoints($splitPoints);
         $response = $gapicClient->addSplitPoints($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -149,19 +149,20 @@ class DatabaseAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedDatabase = $gapicClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
         $splitPoints = [];
-        $request = (new AddSplitPointsRequest())
-            ->setDatabase($formattedDatabase)
-            ->setSplitPoints($splitPoints);
+        $request = (new AddSplitPointsRequest())->setDatabase($formattedDatabase)->setSplitPoints($splitPoints);
         try {
             $gapicClient->addSplitPoints($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -287,12 +288,15 @@ class DatabaseAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
@@ -434,12 +438,15 @@ class DatabaseAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
@@ -519,12 +526,15 @@ class DatabaseAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
@@ -589,9 +599,7 @@ class DatabaseAdminClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
         $createStatement = 'createStatement552974828';
-        $request = (new CreateDatabaseRequest())
-            ->setParent($formattedParent)
-            ->setCreateStatement($createStatement);
+        $request = (new CreateDatabaseRequest())->setParent($formattedParent)->setCreateStatement($createStatement);
         $response = $gapicClient->createDatabase($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -649,19 +657,20 @@ class DatabaseAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
         $createStatement = 'createStatement552974828';
-        $request = (new CreateDatabaseRequest())
-            ->setParent($formattedParent)
-            ->setCreateStatement($createStatement);
+        $request = (new CreateDatabaseRequest())->setParent($formattedParent)->setCreateStatement($createStatement);
         $response = $gapicClient->createDatabase($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -697,8 +706,7 @@ class DatabaseAdminClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->backupName('[PROJECT]', '[INSTANCE]', '[BACKUP]');
-        $request = (new DeleteBackupRequest())
-            ->setName($formattedName);
+        $request = (new DeleteBackupRequest())->setName($formattedName);
         $gapicClient->deleteBackup($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -721,17 +729,19 @@ class DatabaseAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->backupName('[PROJECT]', '[INSTANCE]', '[BACKUP]');
-        $request = (new DeleteBackupRequest())
-            ->setName($formattedName);
+        $request = (new DeleteBackupRequest())->setName($formattedName);
         try {
             $gapicClient->deleteBackup($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -758,8 +768,7 @@ class DatabaseAdminClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->backupScheduleName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SCHEDULE]');
-        $request = (new DeleteBackupScheduleRequest())
-            ->setName($formattedName);
+        $request = (new DeleteBackupScheduleRequest())->setName($formattedName);
         $gapicClient->deleteBackupSchedule($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -782,17 +791,19 @@ class DatabaseAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->backupScheduleName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SCHEDULE]');
-        $request = (new DeleteBackupScheduleRequest())
-            ->setName($formattedName);
+        $request = (new DeleteBackupScheduleRequest())->setName($formattedName);
         try {
             $gapicClient->deleteBackupSchedule($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -819,8 +830,7 @@ class DatabaseAdminClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedDatabase = $gapicClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
-        $request = (new DropDatabaseRequest())
-            ->setDatabase($formattedDatabase);
+        $request = (new DropDatabaseRequest())->setDatabase($formattedDatabase);
         $gapicClient->dropDatabase($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -843,17 +853,19 @@ class DatabaseAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedDatabase = $gapicClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
-        $request = (new DropDatabaseRequest())
-            ->setDatabase($formattedDatabase);
+        $request = (new DropDatabaseRequest())->setDatabase($formattedDatabase);
         try {
             $gapicClient->dropDatabase($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -892,8 +904,7 @@ class DatabaseAdminClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->backupName('[PROJECT]', '[INSTANCE]', '[BACKUP]');
-        $request = (new GetBackupRequest())
-            ->setName($formattedName);
+        $request = (new GetBackupRequest())->setName($formattedName);
         $response = $gapicClient->getBackup($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -917,17 +928,19 @@ class DatabaseAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->backupName('[PROJECT]', '[INSTANCE]', '[BACKUP]');
-        $request = (new GetBackupRequest())
-            ->setName($formattedName);
+        $request = (new GetBackupRequest())->setName($formattedName);
         try {
             $gapicClient->getBackup($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -956,8 +969,7 @@ class DatabaseAdminClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->backupScheduleName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SCHEDULE]');
-        $request = (new GetBackupScheduleRequest())
-            ->setName($formattedName);
+        $request = (new GetBackupScheduleRequest())->setName($formattedName);
         $response = $gapicClient->getBackupSchedule($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -981,17 +993,19 @@ class DatabaseAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->backupScheduleName('[PROJECT]', '[INSTANCE]', '[DATABASE]', '[SCHEDULE]');
-        $request = (new GetBackupScheduleRequest())
-            ->setName($formattedName);
+        $request = (new GetBackupScheduleRequest())->setName($formattedName);
         try {
             $gapicClient->getBackupSchedule($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1028,8 +1042,7 @@ class DatabaseAdminClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
-        $request = (new GetDatabaseRequest())
-            ->setName($formattedName);
+        $request = (new GetDatabaseRequest())->setName($formattedName);
         $response = $gapicClient->getDatabase($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1053,17 +1066,19 @@ class DatabaseAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
-        $request = (new GetDatabaseRequest())
-            ->setName($formattedName);
+        $request = (new GetDatabaseRequest())->setName($formattedName);
         try {
             $gapicClient->getDatabase($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1092,8 +1107,7 @@ class DatabaseAdminClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedDatabase = $gapicClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
-        $request = (new GetDatabaseDdlRequest())
-            ->setDatabase($formattedDatabase);
+        $request = (new GetDatabaseDdlRequest())->setDatabase($formattedDatabase);
         $response = $gapicClient->getDatabaseDdl($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1117,17 +1131,19 @@ class DatabaseAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedDatabase = $gapicClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
-        $request = (new GetDatabaseDdlRequest())
-            ->setDatabase($formattedDatabase);
+        $request = (new GetDatabaseDdlRequest())->setDatabase($formattedDatabase);
         try {
             $gapicClient->getDatabaseDdl($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1158,8 +1174,7 @@ class DatabaseAdminClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1183,17 +1198,19 @@ class DatabaseAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
-        $request = (new GetIamPolicyRequest())
-            ->setResource($resource);
+        $request = (new GetIamPolicyRequest())->setResource($resource);
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1232,7 +1249,10 @@ class DatabaseAdminClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.spanner.admin.database.v1.DatabaseAdmin/InternalUpdateGraphOperation', $actualFuncCall);
+        $this->assertSame(
+            '/google.spanner.admin.database.v1.DatabaseAdmin/InternalUpdateGraphOperation',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getDatabase();
         $this->assertProtobufEquals($formattedDatabase, $actualValue);
         $actualValue = $actualRequestObject->getOperationId();
@@ -1253,12 +1273,15 @@ class DatabaseAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedDatabase = $gapicClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
@@ -1292,17 +1315,14 @@ class DatabaseAdminClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $operationsElement = new Operation();
-        $operations = [
-            $operationsElement,
-        ];
+        $operations = [$operationsElement];
         $expectedResponse = new ListBackupOperationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setOperations($operations);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
-        $request = (new ListBackupOperationsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListBackupOperationsRequest())->setParent($formattedParent);
         $response = $gapicClient->listBackupOperations($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1329,17 +1349,19 @@ class DatabaseAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
-        $request = (new ListBackupOperationsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListBackupOperationsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listBackupOperations($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1364,17 +1386,14 @@ class DatabaseAdminClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $backupSchedulesElement = new BackupSchedule();
-        $backupSchedules = [
-            $backupSchedulesElement,
-        ];
+        $backupSchedules = [$backupSchedulesElement];
         $expectedResponse = new ListBackupSchedulesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setBackupSchedules($backupSchedules);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
-        $request = (new ListBackupSchedulesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListBackupSchedulesRequest())->setParent($formattedParent);
         $response = $gapicClient->listBackupSchedules($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1401,17 +1420,19 @@ class DatabaseAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
-        $request = (new ListBackupSchedulesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListBackupSchedulesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listBackupSchedules($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1436,17 +1457,14 @@ class DatabaseAdminClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $backupsElement = new Backup();
-        $backups = [
-            $backupsElement,
-        ];
+        $backups = [$backupsElement];
         $expectedResponse = new ListBackupsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setBackups($backups);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
-        $request = (new ListBackupsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListBackupsRequest())->setParent($formattedParent);
         $response = $gapicClient->listBackups($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1473,17 +1491,19 @@ class DatabaseAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
-        $request = (new ListBackupsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListBackupsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listBackups($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1508,17 +1528,14 @@ class DatabaseAdminClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $operationsElement = new Operation();
-        $operations = [
-            $operationsElement,
-        ];
+        $operations = [$operationsElement];
         $expectedResponse = new ListDatabaseOperationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setOperations($operations);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
-        $request = (new ListDatabaseOperationsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListDatabaseOperationsRequest())->setParent($formattedParent);
         $response = $gapicClient->listDatabaseOperations($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1545,17 +1562,19 @@ class DatabaseAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
-        $request = (new ListDatabaseOperationsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListDatabaseOperationsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listDatabaseOperations($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1580,17 +1599,14 @@ class DatabaseAdminClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $databaseRolesElement = new DatabaseRole();
-        $databaseRoles = [
-            $databaseRolesElement,
-        ];
+        $databaseRoles = [$databaseRolesElement];
         $expectedResponse = new ListDatabaseRolesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setDatabaseRoles($databaseRoles);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
-        $request = (new ListDatabaseRolesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListDatabaseRolesRequest())->setParent($formattedParent);
         $response = $gapicClient->listDatabaseRoles($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1617,17 +1633,19 @@ class DatabaseAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
-        $request = (new ListDatabaseRolesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListDatabaseRolesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listDatabaseRoles($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1652,17 +1670,14 @@ class DatabaseAdminClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $databasesElement = new Database();
-        $databases = [
-            $databasesElement,
-        ];
+        $databases = [$databasesElement];
         $expectedResponse = new ListDatabasesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setDatabases($databases);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
-        $request = (new ListDatabasesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListDatabasesRequest())->setParent($formattedParent);
         $response = $gapicClient->listDatabases($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1689,17 +1704,19 @@ class DatabaseAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
-        $request = (new ListDatabasesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListDatabasesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listDatabases($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1755,9 +1772,7 @@ class DatabaseAdminClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
         $databaseId = 'databaseId816491103';
-        $request = (new RestoreDatabaseRequest())
-            ->setParent($formattedParent)
-            ->setDatabaseId($databaseId);
+        $request = (new RestoreDatabaseRequest())->setParent($formattedParent)->setDatabaseId($databaseId);
         $response = $gapicClient->restoreDatabase($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1815,19 +1830,20 @@ class DatabaseAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->instanceName('[PROJECT]', '[INSTANCE]');
         $databaseId = 'databaseId816491103';
-        $request = (new RestoreDatabaseRequest())
-            ->setParent($formattedParent)
-            ->setDatabaseId($databaseId);
+        $request = (new RestoreDatabaseRequest())->setParent($formattedParent)->setDatabaseId($databaseId);
         $response = $gapicClient->restoreDatabase($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -1868,9 +1884,7 @@ class DatabaseAdminClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1896,19 +1910,20 @@ class DatabaseAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $request = (new SetIamPolicyRequest())
-            ->setResource($resource)
-            ->setPolicy($policy);
+        $request = (new SetIamPolicyRequest())->setResource($resource)->setPolicy($policy);
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1936,9 +1951,7 @@ class DatabaseAdminClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1964,19 +1977,20 @@ class DatabaseAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $request = (new TestIamPermissionsRequest())
-            ->setResource($resource)
-            ->setPermissions($permissions);
+        $request = (new TestIamPermissionsRequest())->setResource($resource)->setPermissions($permissions);
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2016,9 +2030,7 @@ class DatabaseAdminClientTest extends GeneratedTest
         // Mock request
         $backup = new Backup();
         $updateMask = new FieldMask();
-        $request = (new UpdateBackupRequest())
-            ->setBackup($backup)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateBackupRequest())->setBackup($backup)->setUpdateMask($updateMask);
         $response = $gapicClient->updateBackup($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2044,19 +2056,20 @@ class DatabaseAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $backup = new Backup();
         $updateMask = new FieldMask();
-        $request = (new UpdateBackupRequest())
-            ->setBackup($backup)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateBackupRequest())->setBackup($backup)->setUpdateMask($updateMask);
         try {
             $gapicClient->updateBackup($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2086,9 +2099,7 @@ class DatabaseAdminClientTest extends GeneratedTest
         // Mock request
         $backupSchedule = new BackupSchedule();
         $updateMask = new FieldMask();
-        $request = (new UpdateBackupScheduleRequest())
-            ->setBackupSchedule($backupSchedule)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateBackupScheduleRequest())->setBackupSchedule($backupSchedule)->setUpdateMask($updateMask);
         $response = $gapicClient->updateBackupSchedule($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -2114,19 +2125,20 @@ class DatabaseAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $backupSchedule = new BackupSchedule();
         $updateMask = new FieldMask();
-        $request = (new UpdateBackupScheduleRequest())
-            ->setBackupSchedule($backupSchedule)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateBackupScheduleRequest())->setBackupSchedule($backupSchedule)->setUpdateMask($updateMask);
         try {
             $gapicClient->updateBackupSchedule($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -2184,9 +2196,7 @@ class DatabaseAdminClientTest extends GeneratedTest
         $databaseName = 'databaseName-459093338';
         $database->setName($databaseName);
         $updateMask = new FieldMask();
-        $request = (new UpdateDatabaseRequest())
-            ->setDatabase($database)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateDatabaseRequest())->setDatabase($database)->setUpdateMask($updateMask);
         $response = $gapicClient->updateDatabase($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2244,21 +2254,22 @@ class DatabaseAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $database = new Database();
         $databaseName = 'databaseName-459093338';
         $database->setName($databaseName);
         $updateMask = new FieldMask();
-        $request = (new UpdateDatabaseRequest())
-            ->setDatabase($database)
-            ->setUpdateMask($updateMask);
+        $request = (new UpdateDatabaseRequest())->setDatabase($database)->setUpdateMask($updateMask);
         $response = $gapicClient->updateDatabase($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2313,9 +2324,7 @@ class DatabaseAdminClientTest extends GeneratedTest
         // Mock request
         $formattedDatabase = $gapicClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
         $statements = [];
-        $request = (new UpdateDatabaseDdlRequest())
-            ->setDatabase($formattedDatabase)
-            ->setStatements($statements);
+        $request = (new UpdateDatabaseDdlRequest())->setDatabase($formattedDatabase)->setStatements($statements);
         $response = $gapicClient->updateDatabaseDdl($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2373,19 +2382,20 @@ class DatabaseAdminClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedDatabase = $gapicClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
         $statements = [];
-        $request = (new UpdateDatabaseDdlRequest())
-            ->setDatabase($formattedDatabase)
-            ->setStatements($statements);
+        $request = (new UpdateDatabaseDdlRequest())->setDatabase($formattedDatabase)->setStatements($statements);
         $response = $gapicClient->updateDatabaseDdl($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -2422,9 +2432,7 @@ class DatabaseAdminClientTest extends GeneratedTest
         // Mock request
         $formattedDatabase = $gapicClient->databaseName('[PROJECT]', '[INSTANCE]', '[DATABASE]');
         $splitPoints = [];
-        $request = (new AddSplitPointsRequest())
-            ->setDatabase($formattedDatabase)
-            ->setSplitPoints($splitPoints);
+        $request = (new AddSplitPointsRequest())->setDatabase($formattedDatabase)->setSplitPoints($splitPoints);
         $response = $gapicClient->addSplitPointsAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
