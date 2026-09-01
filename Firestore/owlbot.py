@@ -73,7 +73,7 @@ yearFixes = [
             "tests/**/V1beta1/*Test.php"
         ]
     }, {
-        "year": "2019",
+        "year": "2026",
         "files": [
             "src/V1/Gapic/*GapicClient.php",
             "src/V1/*Client.php",
