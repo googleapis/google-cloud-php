@@ -1,4 +1,0 @@
-deep-copy-regex:
-    - source: /google/shopping/css/(v1)/.*-php/(.*)
-      dest: /owl-bot-staging/ShoppingCss/$1/$2
-api-name: ShoppingCss

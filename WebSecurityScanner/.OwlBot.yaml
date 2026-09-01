@@ -1,4 +1,0 @@
-deep-copy-regex:
-    - source: /google/cloud/websecurityscanner/(v1)/.*-php/(.*)
-      dest: /owl-bot-staging/WebSecurityScanner/$1/$2
-api-name: WebSecurityScanner
