@@ -51,7 +51,7 @@ class MockGrpcTransport extends GrpcTransport
     {
         $this->mockCall = $mockCall;
         $opts = ['credentials' => ChannelCredentials::createSsl()];
-        parent::__construct('', $opts, logger: $logger);
+        parent::__construct('localhost', $opts, logger: $logger);
     }
 
     /**

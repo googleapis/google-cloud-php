@@ -304,7 +304,7 @@ class GrpcTransportTest extends TestCase
         $this->assertNotEmpty($unserializedBuffer['rpcName']);
         $this->assertEquals($rpcName, $unserializedBuffer['rpcName']);
         $this->assertNotEmpty($unserializedBuffer['jsonPayload']);
-        $this->assertEquals('grpc://', $unserializedBuffer['jsonPayload']['request.url']);
+        $this->assertEquals('grpc://localhost', $unserializedBuffer['jsonPayload']['request.url']);
     }
 
     public function testServerStreamingRequestLogsUrl()
@@ -328,7 +328,7 @@ class GrpcTransportTest extends TestCase
 
         $this->assertNotEmpty($unserializedBuffer);
         $this->assertNotEmpty($unserializedBuffer['jsonPayload']);
-        $this->assertEquals('grpc://', $unserializedBuffer['jsonPayload']['request.url']);
+        $this->assertEquals('grpc://localhost', $unserializedBuffer['jsonPayload']['request.url']);
     }
 
     public function testUnaryRequestLogsUrl()
@@ -352,7 +352,7 @@ class GrpcTransportTest extends TestCase
 
         $this->assertNotEmpty($unserializedBuffer);
         $this->assertNotEmpty($unserializedBuffer['jsonPayload']);
-        $this->assertEquals('grpc://', $unserializedBuffer['jsonPayload']['request.url']);
+        $this->assertEquals('grpc://localhost', $unserializedBuffer['jsonPayload']['request.url']);
     }
 
     public function testBidiStreamingSuccessObject()
@@ -481,7 +481,7 @@ class GrpcTransportTest extends TestCase
             ->shouldBeCalledOnce();
         $credentialsWrapper->getAuthorizationHeaderCallback('an-audience')
             ->shouldBeCalledOnce();
-        $hostname = '';
+        $hostname = 'localhost';
         $opts = ['credentials' => ChannelCredentials::createInsecure()];
         $transport = new GrpcTransport($hostname, $opts);
         $options = [
