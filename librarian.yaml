@@ -14,8 +14,8 @@
 language: php
 sources:
   googleapis:
-    commit: 89040d1713699bad4878bd9a6ef94ca792a5b83d
-    sha256: e62fc9c8077ab89ec571fa85a1511d1381536b68962ee0b5565d68cc5254b063
+    commit: a0cd3979560fe756f652608469ef23a09b3fdb10
+    sha256: 18503225e31ba204ed9878d8af12384784cd7b0b38a737ccb75b12a321e554f8
 tools:
   composer:
     - name: google-cloud-php/dev
@@ -51,16 +51,19 @@ libraries:
     version: 2.2.0
     apis:
       - path: google/cloud/accessapproval/v1
+    copyright_year: "2026"
     output: AccessApproval
   - name: ads-admanager
-    version: 0.10.0
+    version: 0.11.0
     apis:
       - path: google/ads/admanager/v1
+    copyright_year: "2026"
     output: AdsAdManager
   - name: ads-datamanager
     version: 0.8.0
     apis:
       - path: google/ads/datamanager/v1
+    copyright_year: "2026"
     output: AdsDataManager
   - name: advisorynotifications
     version: 1.3.0
@@ -68,9 +71,10 @@ libraries:
       - path: google/cloud/advisorynotifications/v1
         php:
           common_resources: false
+    copyright_year: "2026"
     output: AdvisoryNotifications
   - name: aiplatform
-    version: 1.64.0
+    version: 1.65.0
     apis:
       - path: google/cloud/aiplatform/v1
         php:
@@ -114,29 +118,33 @@ libraries:
             - google/cloud/aiplatform/v1/schema/trainingjob/definition/automl_video_classification.proto
             - google/cloud/aiplatform/v1/schema/trainingjob/definition/automl_video_object_tracking.proto
             - google/cloud/aiplatform/v1/schema/trainingjob/definition/export_evaluated_data_items_config.proto
+    copyright_year: "2026"
     output: AiPlatform
     php:
       component_name: AiPlatform
   - name: alloydb
-    version: 1.8.0
+    version: 1.8.1
     apis:
       - path: google/cloud/alloydb/v1
         php:
           additional_protos:
             - google/cloud/location/locations.proto
             - google/iam/v1/iam_policy.proto
+    copyright_year: "2026"
     output: AlloyDb
   - name: analytics-admin
     version: 0.34.0
     apis:
       - path: google/analytics/admin/v1beta
       - path: google/analytics/admin/v1alpha
+    copyright_year: "2026"
     output: AnalyticsAdmin
   - name: analytics-data
     version: 0.25.0
     apis:
       - path: google/analytics/data/v1beta
       - path: google/analytics/data/v1alpha
+    copyright_year: "2026"
     output: AnalyticsData
   - name: api
     version: 4.14.1
@@ -174,6 +182,7 @@ libraries:
         php:
           common_resources: false
           staging_subdir: iamlogging
+    copyright_year: "2026"
     output: CommonProtos
     php:
       component_name: CommonProtos
@@ -181,6 +190,7 @@ libraries:
     version: 1.2.0
     apis:
       - path: google/api/apikeys/v2
+    copyright_year: "2026"
     output: ApiKeys
   - name: api-cloudquotas
     version: 1.7.0
@@ -191,6 +201,7 @@ libraries:
       - path: google/api/cloudquotas/v1beta
         php:
           common_resources: false
+    copyright_year: "2026"
     output: Quotas
     php:
       component_name: Quotas
@@ -198,6 +209,7 @@ libraries:
     version: 2.3.1
     apis:
       - path: google/api/servicecontrol/v1
+    copyright_year: "2026"
     output: ServiceControl
   - name: api-servicemanagement
     version: 2.2.2
@@ -206,21 +218,25 @@ libraries:
         php:
           additional_protos:
             - google/iam/v1/iam_policy.proto
+    copyright_year: "2026"
     output: ServiceManagement
   - name: api-serviceusage
     version: 2.2.1
     apis:
       - path: google/api/serviceusage/v1
+    copyright_year: "2026"
     output: ServiceUsage
   - name: apigateway
     version: 2.2.0
     apis:
       - path: google/cloud/apigateway/v1
+    copyright_year: "2026"
     output: ApiGateway
   - name: apigeeconnect
     version: 2.2.0
     apis:
       - path: google/cloud/apigeeconnect/v1
+    copyright_year: "2026"
     output: ApigeeConnect
   - name: apihub
     version: 0.5.0
@@ -229,6 +245,7 @@ libraries:
         php:
           additional_protos:
             - google/cloud/location/locations.proto
+    copyright_year: "2026"
     output: ApiHub
   - name: apiregistry
     version: 0.2.0
@@ -241,11 +258,13 @@ libraries:
         php:
           additional_protos:
             - google/cloud/location/locations.proto
+    copyright_year: "2026"
     output: ApiRegistry
   - name: appengine
     version: 2.2.0
     apis:
       - path: google/appengine/v1
+    copyright_year: "2026"
     output: AppEngineAdmin
     php:
       component_name: AppEngineAdmin
@@ -257,6 +276,7 @@ libraries:
           additional_protos:
             - google/cloud/location/locations.proto
             - google/iam/v1/iam_policy.proto
+    copyright_year: "2026"
     output: AppHub
   - name: appoptimize
     version: 0.2.0
@@ -265,29 +285,34 @@ libraries:
         php:
           additional_protos:
             - google/cloud/location/locations.proto
+    copyright_year: "2026"
     output: AppOptimize
   - name: apps-events-subscriptions
     version: 0.5.0
     apis:
       - path: google/apps/events/subscriptions/v1
       - path: google/apps/events/subscriptions/v1beta
+    copyright_year: "2026"
     output: AppsEventsSubscriptions
   - name: apps-meet
     version: 0.6.0
     apis:
       - path: google/apps/meet/v2
       - path: google/apps/meet/v2beta
+    copyright_year: "2026"
     output: AppsMeet
   - name: asset
     version: 2.4.0
     apis:
       - path: google/cloud/asset/v1
+    copyright_year: "2026"
     output: Asset
   - name: assuredworkloads
     version: 1.2.0
     apis:
       - path: google/cloud/assuredworkloads/v1
       - path: google/cloud/assuredworkloads/v1beta1
+    copyright_year: "2026"
     output: AssuredWorkloads
   - name: audit
     version: 1.0.1
@@ -303,21 +328,24 @@ libraries:
       - path: google/cloud/common
         php:
           staging_subdir: common-protos
+    copyright_year: "2026"
     output: CloudCommonProtos
     php:
       component_name: CloudCommonProtos
   - name: auditmanager
-    version: 0.2.0
+    version: 0.3.0
     apis:
       - path: google/cloud/auditmanager/v1
         php:
           additional_protos:
             - google/cloud/location/locations.proto
+    copyright_year: "2026"
     output: AuditManager
   - name: automl
-    version: 2.2.0
+    version: 2.2.1
     apis:
       - path: google/cloud/automl/v1
+    copyright_year: "2026"
     output: AutoMl
   - name: backupdr
     version: 0.14.0
@@ -327,6 +355,7 @@ libraries:
           additional_protos:
             - google/cloud/location/locations.proto
             - google/iam/v1/iam_policy.proto
+    copyright_year: "2026"
     output: BackupDr
     php:
       component_name: BackupDr
@@ -338,15 +367,17 @@ libraries:
           additional_protos:
             - google/cloud/location/locations.proto
             - google/iam/v1/iam_policy.proto
+    copyright_year: "2026"
     output: BareMetalSolution
   - name: batch
-    version: 1.5.0
+    version: 1.5.1
     apis:
       - path: google/cloud/batch/v1
         php:
           additional_protos:
             - google/cloud/location/locations.proto
             - google/iam/v1/iam_policy.proto
+    copyright_year: "2026"
     output: Batch
   - name: beyondcorp-appconnections
     version: 1.2.0
@@ -356,6 +387,7 @@ libraries:
           additional_protos:
             - google/cloud/location/locations.proto
             - google/iam/v1/iam_policy.proto
+    copyright_year: "2026"
     output: BeyondCorpAppConnections
     php:
       component_name: BeyondCorpAppConnections
@@ -367,6 +399,7 @@ libraries:
           additional_protos:
             - google/cloud/location/locations.proto
             - google/iam/v1/iam_policy.proto
+    copyright_year: "2026"
     output: BeyondCorpAppConnectors
     php:
       component_name: BeyondCorpAppConnectors
@@ -378,6 +411,7 @@ libraries:
           additional_protos:
             - google/cloud/location/locations.proto
             - google/iam/v1/iam_policy.proto
+    copyright_year: "2026"
     output: BeyondCorpAppGateways
     php:
       component_name: BeyondCorpAppGateways
@@ -389,6 +423,7 @@ libraries:
           additional_protos:
             - google/cloud/location/locations.proto
             - google/iam/v1/iam_policy.proto
+    copyright_year: "2026"
     output: BeyondCorpClientConnectorServices
     php:
       component_name: BeyondCorpClientConnectorServices
@@ -400,6 +435,7 @@ libraries:
           additional_protos:
             - google/cloud/location/locations.proto
             - google/iam/v1/iam_policy.proto
+    copyright_year: "2026"
     output: BeyondCorpClientGateways
     php:
       component_name: BeyondCorpClientGateways
@@ -407,6 +443,7 @@ libraries:
     version: 1.6.0
     apis:
       - path: google/cloud/bigquery/analyticshub/v1
+    copyright_year: "2026"
     output: BigQueryAnalyticsHub
     php:
       component_name: BigQueryAnalyticsHub
@@ -414,6 +451,7 @@ libraries:
     version: 2.2.0
     apis:
       - path: google/cloud/bigquery/connection/v1
+    copyright_year: "2026"
     output: BigQueryConnection
     php:
       component_name: BigQueryConnection
@@ -424,13 +462,15 @@ libraries:
         php:
           additional_protos:
             - google/cloud/location/locations.proto
+    copyright_year: "2026"
     output: BigQueryDataExchange
     php:
       component_name: BigQueryDataExchange
   - name: bigquery-datapolicies
-    version: 1.2.0
+    version: 1.2.1
     apis:
       - path: google/cloud/bigquery/datapolicies/v1
+    copyright_year: "2026"
     output: BigQueryDataPolicies
     php:
       component_name: BigQueryDataPolicies
@@ -441,6 +481,7 @@ libraries:
         php:
           additional_protos:
             - google/cloud/location/locations.proto
+    copyright_year: "2026"
     output: BigQueryDataTransfer
     php:
       component_name: BigQueryDataTransfer
@@ -448,30 +489,67 @@ libraries:
     version: 1.4.0
     apis:
       - path: google/cloud/bigquery/migration/v2
+    copyright_year: "2026"
     output: BigQueryMigration
     php:
       component_name: BigQueryMigration
   - name: bigquery-reservation
-    version: 2.8.0
+    version: 2.9.0
     apis:
       - path: google/cloud/bigquery/reservation/v1
+    copyright_year: "2026"
     output: BigQueryReservation
     php:
       component_name: BigQueryReservation
   - name: bigquery-storage
-    version: 2.4.0
+    version: 2.5.0
     apis:
       - path: google/cloud/bigquery/storage/v1
+    copyright_year: "2026"
     output: BigQueryStorage
     php:
       component_name: BigQueryStorage
   - name: bigtable
-    version: 2.26.0
+    version: 2.27.0
     apis:
       - path: google/bigtable/v2
+        php:
+          skip_grpc_service_config: true
       - path: google/bigtable/admin/v2
         php:
-          staging_subdir: v2/Admin
+          gapic_yaml: google/bigtable/admin/v2/bigtableadmin_gapic.yaml
+          skip_grpc_service_config: true
+          staging_subdir: Admin/v2
+    copyright_year: "2026"
+    keep:
+      - tests/Conformance/proxy/src/GPBMetadata/Google/Bigtable/Testproxy/TestProxy.php
+      - tests/Conformance/proxy/src/Google/Bigtable/Testproxy/CheckAndMutateRowRequest.php
+      - tests/Conformance/proxy/src/Google/Bigtable/Testproxy/CheckAndMutateRowResult.php
+      - tests/Conformance/proxy/src/Google/Bigtable/Testproxy/CloseClientRequest.php
+      - tests/Conformance/proxy/src/Google/Bigtable/Testproxy/CloseClientResponse.php
+      - tests/Conformance/proxy/src/Google/Bigtable/Testproxy/CloudBigtableV2TestProxyInterface.php
+      - tests/Conformance/proxy/src/Google/Bigtable/Testproxy/OptionalFeatureConfig.php
+      - tests/Conformance/proxy/src/Google/Bigtable/Testproxy/ReadModifyWriteRowRequest.php
+      - tests/Conformance/proxy/src/Google/Bigtable/Testproxy/ReadRowRequest.php
+      - tests/Conformance/proxy/src/Google/Bigtable/Testproxy/ReadRowsRequest.php
+      - tests/Conformance/proxy/src/Google/Bigtable/Testproxy/RemoveClientRequest.php
+      - tests/Conformance/proxy/src/Google/Bigtable/Testproxy/RemoveClientResponse.php
+      - tests/Conformance/proxy/src/Google/Bigtable/Testproxy/CreateClientRequest.php
+      - tests/Conformance/proxy/src/Google/Bigtable/Testproxy/CreateClientRequest/SecurityOptions.php
+      - tests/Conformance/proxy/src/Google/Bigtable/Testproxy/CreateClientResponse.php
+      - tests/Conformance/proxy/src/Google/Bigtable/Testproxy/ExecuteQueryRequest.php
+      - tests/Conformance/proxy/src/Google/Bigtable/Testproxy/ExecuteQueryResult.php
+      - tests/Conformance/proxy/src/Google/Bigtable/Testproxy/MutateRowRequest.php
+      - tests/Conformance/proxy/src/Google/Bigtable/Testproxy/MutateRowResult.php
+      - tests/Conformance/proxy/src/Google/Bigtable/Testproxy/MutateRowsRequest.php
+      - tests/Conformance/proxy/src/Google/Bigtable/Testproxy/MutateRowsResult.php
+      - tests/Conformance/proxy/src/Google/Bigtable/Testproxy/ResultSetMetadata.php
+      - tests/Conformance/proxy/src/Google/Bigtable/Testproxy/RowResult.php
+      - tests/Conformance/proxy/src/Google/Bigtable/Testproxy/RowsResult.php
+      - tests/Conformance/proxy/src/Google/Bigtable/Testproxy/SampleRowKeysRequest.php
+      - tests/Conformance/proxy/src/Google/Bigtable/Testproxy/SampleRowKeysResult.php
+      - tests/Conformance/proxy/src/Google/Bigtable/Testproxy/SqlRow.php
+      - tests/Conformance/proxy/src/Google/Cloud/Bigtable/V2/BigtableInterface.php
     output: Bigtable
   - name: billing
     version: 2.3.0
@@ -479,26 +557,30 @@ libraries:
       - path: google/cloud/billing/v1
         php:
           common_resources: false
+    copyright_year: "2026"
     output: Billing
   - name: billing-budgets
-    version: 2.2.0
+    version: 2.2.1
     apis:
       - path: google/cloud/billing/budgets/v1
+    copyright_year: "2026"
     output: BillingBudgets
     php:
       component_name: BillingBudgets
   - name: binaryauthorization
-    version: 1.3.0
+    version: 1.3.1
     apis:
       - path: google/cloud/binaryauthorization/v1
         php:
           additional_protos:
             - google/iam/v1/iam_policy.proto
+    copyright_year: "2026"
     output: BinaryAuthorization
   - name: capacityplanner
-    version: 0.2.0
+    version: 0.2.1
     apis:
       - path: google/cloud/capacityplanner/v1beta
+    copyright_year: "2026"
     output: CapacityPlanner
   - name: certificatemanager
     version: 1.2.0
@@ -507,6 +589,7 @@ libraries:
         php:
           additional_protos:
             - google/cloud/location/locations.proto
+    copyright_year: "2026"
     output: CertificateManager
   - name: ces
     version: 0.4.0
@@ -515,30 +598,37 @@ libraries:
         php:
           additional_protos:
             - google/cloud/location/locations.proto
+    copyright_year: "2026"
     output: Ces
   - name: channel
     version: 2.5.0
     apis:
       - path: google/cloud/channel/v1
+    copyright_year: "2026"
     output: Channel
   - name: chat
-    version: 0.25.0
+    version: 0.26.0
     apis:
       - path: google/chat/v1
       - path: google/apps/card/v1
         php:
           common_resources: false
           staging_subdir: card-protos/v1
+    copyright_year: "2026"
     output: AppsChat
   - name: chronicle
     version: 0.6.0
     apis:
       - path: google/cloud/chronicle/v1
+        php:
+          gapic_yaml: google/cloud/chronicle/v1/chronicle_gapic.yaml
+    copyright_year: "2026"
     output: Chronicle
   - name: cloudcontrolspartner
     version: 0.6.0
     apis:
       - path: google/cloud/cloudcontrolspartner/v1beta
+    copyright_year: "2026"
     output: ControlsPartner
     php:
       component_name: ControlsPartner
@@ -546,6 +636,7 @@ libraries:
     version: 2.2.0
     apis:
       - path: google/cloud/clouddms/v1
+    copyright_year: "2026"
     output: Dms
     php:
       component_name: Dms
@@ -556,6 +647,7 @@ libraries:
         php:
           additional_protos:
             - google/cloud/location/locations.proto
+    copyright_year: "2026"
     output: SecurityCompliance
     php:
       component_name: SecurityCompliance
@@ -563,6 +655,7 @@ libraries:
     version: 1.4.0
     apis:
       - path: google/cloud/commerce/consumer/procurement/v1
+    copyright_year: "2026"
     output: CommerceConsumerProcurement
     php:
       component_name: CommerceConsumerProcurement
@@ -573,6 +666,7 @@ libraries:
         php:
           additional_protos:
             - google/cloud/location/locations.proto
+    copyright_year: "2026"
     output: CommerceProducer
     php:
       component_name: CommerceProducer
@@ -580,6 +674,7 @@ libraries:
     version: 2.12.0
     apis:
       - path: google/cloud/compute/v1
+    copyright_year: "2026"
     output: Compute
   - name: confidentialcomputing
     version: 1.8.0
@@ -588,15 +683,18 @@ libraries:
         php:
           additional_protos:
             - google/cloud/location/locations.proto
+    copyright_year: "2026"
     output: ConfidentialComputing
   - name: config
-    version: 1.9.0
+    version: 1.10.0
     apis:
       - path: google/cloud/config/v1
         php:
           additional_protos:
             - google/cloud/location/locations.proto
             - google/iam/v1/iam_policy.proto
+          gapic_yaml: google/cloud/config/v1/config_gapic.yaml
+    copyright_year: "2026"
     output: Config
   - name: configdelivery
     version: 0.4.0
@@ -609,21 +707,25 @@ libraries:
         php:
           additional_protos:
             - google/cloud/location/locations.proto
+    copyright_year: "2026"
     output: ConfigDelivery
   - name: contactcenterinsights
     version: 2.5.0
     apis:
       - path: google/cloud/contactcenterinsights/v1
+    copyright_year: "2026"
     output: ContactCenterInsights
   - name: container
-    version: 2.11.0
+    version: 2.12.0
     apis:
       - path: google/container/v1
+    copyright_year: "2026"
     output: Container
   - name: databasecenter
     version: 0.8.0
     apis:
       - path: google/cloud/databasecenter/v1beta
+    copyright_year: "2026"
     output: DatabaseCenter
   - name: datacatalog
     version: 2.5.0
@@ -632,6 +734,7 @@ libraries:
         php:
           additional_protos:
             - google/iam/v1/iam_policy.proto
+    copyright_year: "2026"
     output: DataCatalog
   - name: datacatalog-lineage
     version: 1.5.0
@@ -640,6 +743,7 @@ libraries:
       - path: google/cloud/datacatalog/lineage/configmanagement/v1
         php:
           staging_subdir: ConfigManagement/v1
+    copyright_year: "2026"
     output: DataCatalogLineage
     php:
       component_name: DataCatalogLineage
@@ -647,30 +751,36 @@ libraries:
     version: 0.11.0
     apis:
       - path: google/dataflow/v1beta3
+    copyright_year: "2026"
     output: Dataflow
   - name: dataform
-    version: 0.14.0
+    version: 0.15.0
     apis:
       - path: google/cloud/dataform/v1
         php:
           additional_protos:
             - google/cloud/location/locations.proto
             - google/iam/v1/iam_policy.proto
+            - google/longrunning/operations.proto
       - path: google/cloud/dataform/v1beta1
         php:
           additional_protos:
             - google/cloud/location/locations.proto
             - google/iam/v1/iam_policy.proto
+            - google/longrunning/operations.proto
+    copyright_year: "2026"
     output: Dataform
   - name: datafusion
     version: 1.2.0
     apis:
       - path: google/cloud/datafusion/v1
+    copyright_year: "2026"
     output: DataFusion
   - name: datalabeling
     version: 0.8.0
     apis:
       - path: google/cloud/datalabeling/v1beta1
+    copyright_year: "2026"
     output: DataLabeling
   - name: dataplex
     version: 1.15.0
@@ -680,6 +790,7 @@ libraries:
           additional_protos:
             - google/cloud/location/locations.proto
             - google/iam/v1/iam_policy.proto
+    copyright_year: "2026"
     output: Dataplex
   - name: dataproc
     version: 4.1.0
@@ -688,16 +799,21 @@ libraries:
         php:
           additional_protos:
             - google/iam/v1/iam_policy.proto
+    copyright_year: "2026"
     output: Dataproc
   - name: datastore
     version: 2.3.0
     apis:
       - path: google/datastore/v1
+    copyright_year: "2026"
+    keep:
+      - src/V1/TransactionOptions/ReadOnly.php
     output: Datastore
   - name: datastore-admin
     version: 1.2.0
     apis:
       - path: google/datastore/admin/v1
+    copyright_year: "2026"
     output: DatastoreAdmin
     php:
       component_name: DatastoreAdmin
@@ -709,6 +825,7 @@ libraries:
           additional_protos:
             - google/cloud/location/locations.proto
             - google/iam/v1/iam_policy.proto
+    copyright_year: "2026"
     output: Datastream
   - name: deploy
     version: 1.7.0
@@ -718,6 +835,7 @@ libraries:
           additional_protos:
             - google/cloud/location/locations.proto
             - google/iam/v1/iam_policy.proto
+    copyright_year: "2026"
     output: Deploy
   - name: developerconnect
     version: 0.7.0
@@ -726,11 +844,13 @@ libraries:
         php:
           additional_protos:
             - google/cloud/location/locations.proto
+    copyright_year: "2026"
     output: DeveloperConnect
   - name: developers-knowledge
-    version: 0.3.0
+    version: 0.3.1
     apis:
       - path: google/developers/knowledge/v1
+    copyright_year: "2026"
     output: DeveloperKnowledge
     php:
       component_name: DeveloperKnowledge
@@ -738,44 +858,53 @@ libraries:
     version: 0.3.0
     apis:
       - path: google/cloud/devicestreaming/v1
+    copyright_year: "2026"
     output: DeviceStreaming
   - name: devtools-artifactregistry
-    version: 1.8.0
+    version: 1.8.1
     apis:
       - path: google/devtools/artifactregistry/v1
         php:
           additional_protos:
             - google/cloud/location/locations.proto
+    copyright_year: "2026"
     output: ArtifactRegistry
   - name: devtools-cloudbuild
-    version: 1.2.0
+    version: 1.2.1
     apis:
       - path: google/devtools/cloudbuild/v2
         php:
           additional_protos:
             - google/cloud/location/locations.proto
             - google/iam/v1/iam_policy.proto
+    copyright_year: "2026"
     output: Build
   - name: devtools-clouderrorreporting
     version: 0.27.0
     apis:
       - path: google/devtools/clouderrorreporting/v1beta1
+    copyright_year: "2026"
+    keep:
+      - tests/System/V1beta1/ReportErrorsServiceSmokeTest.php
     output: ErrorReporting
   - name: devtools-cloudprofiler
     version: 2.2.0
     apis:
       - path: google/devtools/cloudprofiler/v2
+    copyright_year: "2026"
     output: Profiler
   - name: devtools-cloudtrace
     version: 2.0.2
     apis:
       - path: google/devtools/cloudtrace/v2
       - path: google/devtools/cloudtrace/v1
+    copyright_year: "2026"
     output: Trace
   - name: devtools-containeranalysis
     version: 1.3.0
     apis:
       - path: google/devtools/containeranalysis/v1
+    copyright_year: "2026"
     output: ContainerAnalysis
   - name: dialogflow
     version: 2.6.0
@@ -784,6 +913,7 @@ libraries:
         php:
           additional_protos:
             - google/cloud/location/locations.proto
+    copyright_year: "2026"
     output: Dialogflow
   - name: dialogflow-cx
     version: 0.12.0
@@ -792,16 +922,18 @@ libraries:
         php:
           additional_protos:
             - google/cloud/location/locations.proto
+    copyright_year: "2026"
     output: DialogflowCx
     php:
       component_name: DialogflowCx
   - name: discoveryengine
-    version: 1.13.0
+    version: 1.14.0
     apis:
       - path: google/cloud/discoveryengine/v1
         php:
           additional_protos:
             - google/cloud/location/locations.proto
+    copyright_year: "2026"
     output: DiscoveryEngine
   - name: documentai
     version: 2.8.0
@@ -810,13 +942,15 @@ libraries:
         php:
           additional_protos:
             - google/cloud/location/locations.proto
+    copyright_year: "2026"
     output: DocumentAi
     php:
       component_name: DocumentAi
   - name: domains
-    version: 1.2.0
+    version: 1.2.1
     apis:
       - path: google/cloud/domains/v1
+    copyright_year: "2026"
     output: Domains
   - name: edgenetwork
     version: 1.5.0
@@ -825,11 +959,13 @@ libraries:
         php:
           additional_protos:
             - google/cloud/location/locations.proto
+    copyright_year: "2026"
     output: EdgeNetwork
   - name: essentialcontacts
     version: 1.2.0
     apis:
       - path: google/cloud/essentialcontacts/v1
+    copyright_year: "2026"
     output: EssentialContacts
   - name: eventarc
     version: 2.4.0
@@ -839,11 +975,13 @@ libraries:
           additional_protos:
             - google/cloud/location/locations.proto
             - google/iam/v1/iam_policy.proto
+    copyright_year: "2026"
     output: Eventarc
   - name: eventarc-publishing
     version: 1.3.0
     apis:
       - path: google/cloud/eventarc/publishing/v1
+    copyright_year: "2026"
     output: EventarcPublishing
     php:
       component_name: EventarcPublishing
@@ -851,6 +989,7 @@ libraries:
     version: 2.3.0
     apis:
       - path: google/cloud/filestore/v1
+    copyright_year: "2026"
     output: Filestore
   - name: financialservices
     version: 0.3.0
@@ -859,6 +998,8 @@ libraries:
         php:
           additional_protos:
             - google/cloud/location/locations.proto
+          gapic_yaml: google/cloud/financialservices/v1/financialservices_gapic.yaml
+    copyright_year: "2026"
     output: FinancialServices
   - name: firestore
     version: 2.3.0
@@ -871,7 +1012,8 @@ libraries:
         php:
           additional_protos:
             - google/cloud/location/locations.proto
-          staging_subdir: v1/Admin
+          staging_subdir: Admin/v1
+    copyright_year: "2026"
     output: Firestore
   - name: functions
     version: 2.2.0
@@ -881,6 +1023,7 @@ libraries:
           additional_protos:
             - google/cloud/location/locations.proto
             - google/iam/v1/iam_policy.proto
+    copyright_year: "2026"
     output: Functions
   - name: geminidataanalytics
     version: 0.12.0
@@ -893,6 +1036,7 @@ libraries:
         php:
           additional_protos:
             - google/cloud/location/locations.proto
+    copyright_year: "2026"
     output: GeminiDataAnalytics
   - name: geo-type
     version: 0.2.4
@@ -901,6 +1045,7 @@ libraries:
         php:
           common_resources: false
           staging_subdir: .
+    copyright_year: "2026"
     output: GeoCommonProtos
     php:
       component_name: GeoCommonProtos
@@ -912,12 +1057,14 @@ libraries:
           additional_protos:
             - google/cloud/location/locations.proto
             - google/iam/v1/iam_policy.proto
+    copyright_year: "2026"
     output: GkeBackup
   - name: gkeconnect-gateway
     version: 1.2.0
     apis:
       - path: google/cloud/gkeconnect/gateway/v1
       - path: google/cloud/gkeconnect/gateway/v1beta1
+    copyright_year: "2026"
     output: GkeConnectGateway
     php:
       component_name: GkeConnectGateway
@@ -925,26 +1072,31 @@ libraries:
     version: 1.4.0
     apis:
       - path: google/cloud/gkehub/v1
+    copyright_year: "2026"
     output: GkeHub
   - name: gkemulticloud
     version: 1.5.0
     apis:
       - path: google/cloud/gkemulticloud/v1
+    copyright_year: "2026"
     output: GkeMultiCloud
   - name: gkerecommender
     version: 0.3.0
     apis:
       - path: google/cloud/gkerecommender/v1
+    copyright_year: "2026"
     output: GkeRecommender
   - name: grafeas
     version: 1.9.0
     apis:
       - path: grafeas/v1
+    copyright_year: "2026"
     output: Grafeas
   - name: gsuiteaddons
     version: 1.2.0
     apis:
       - path: google/cloud/gsuiteaddons/v1
+    copyright_year: "2026"
     output: GSuiteAddOns
   - name: hypercomputecluster
     version: 0.4.0
@@ -957,6 +1109,7 @@ libraries:
         php:
           additional_protos:
             - google/cloud/location/locations.proto
+    copyright_year: "2026"
     output: HypercomputeCluster
   - name: iam
     version: 1.5.0
@@ -966,11 +1119,13 @@ libraries:
           additional_protos:
             - google/cloud/location/locations.proto
       - path: google/iam/v2
+    copyright_year: "2026"
     output: Iam
   - name: iam-credentials
     version: 2.3.0
     apis:
       - path: google/iam/credentials/v1
+    copyright_year: "2026"
     output: IamCredentials
     php:
       component_name: IamCredentials
@@ -978,6 +1133,7 @@ libraries:
     version: 2.4.0
     apis:
       - path: google/cloud/iap/v1
+    copyright_year: "2026"
     output: Iap
   - name: identity-accesscontextmanager
     version: 1.2.0
@@ -987,6 +1143,7 @@ libraries:
         php:
           common_resources: false
           staging_subdir: type-protos
+    copyright_year: "2026"
     output: AccessContextManager
     php:
       component_name: AccessContextManager
@@ -994,6 +1151,9 @@ libraries:
     version: 1.3.0
     apis:
       - path: google/cloud/ids/v1
+        php:
+          gapic_yaml: google/cloud/ids/v1/ids_gapic.yaml
+    copyright_year: "2026"
     output: Ids
   - name: kms
     version: 2.12.0
@@ -1003,11 +1163,13 @@ libraries:
           additional_protos:
             - google/cloud/location/locations.proto
             - google/iam/v1/iam_policy.proto
+    copyright_year: "2026"
     output: Kms
   - name: kms-inventory
     version: 1.5.0
     apis:
       - path: google/cloud/kms/inventory/v1
+    copyright_year: "2026"
     output: KmsInventory
     php:
       component_name: KmsInventory
@@ -1016,6 +1178,7 @@ libraries:
     apis:
       - path: google/cloud/language/v2
       - path: google/cloud/language/v1
+    copyright_year: "2026"
     output: Language
   - name: licensemanager
     version: 0.4.0
@@ -1024,6 +1187,7 @@ libraries:
         php:
           additional_protos:
             - google/cloud/location/locations.proto
+    copyright_year: "2026"
     output: LicenseManager
   - name: lifesciences
     version: 0.10.0
@@ -1032,25 +1196,33 @@ libraries:
         php:
           additional_protos:
             - google/cloud/location/locations.proto
+    copyright_year: "2026"
     output: LifeSciences
   - name: locationfinder
     version: 0.3.0
     apis:
       - path: google/cloud/locationfinder/v1
+    copyright_year: "2026"
     output: LocationFinder
   - name: logging
     version: 2.2.0
     apis:
       - path: google/logging/v2
+        php:
+          gapic_yaml: google/logging/v2/logging_gapic.yaml
+    copyright_year: "2026"
+    keep:
+      - tests/System/V2/LoggingServiceV2SmokeTest.php
     output: Logging
   - name: longrunning
-    version: 0.8.1
+    version: 0.8.2
     apis:
       - path: google/longrunning
         php:
           common_resources: false
           samples: false
           staging_subdir: .
+    copyright_year: "2026"
     keep:
       - src/LongRunning/Gapic/OperationsGapicClient.php
       - src/LongRunning/OperationsClient.php
@@ -1063,6 +1235,7 @@ libraries:
         php:
           additional_protos:
             - google/cloud/location/locations.proto
+    copyright_year: "2026"
     output: Lustre
   - name: maintenance-api
     version: 0.5.0
@@ -1075,6 +1248,7 @@ libraries:
         php:
           additional_protos:
             - google/cloud/location/locations.proto
+    copyright_year: "2026"
     output: Maintenance
     php:
       component_name: Maintenance
@@ -1082,6 +1256,7 @@ libraries:
     version: 2.3.0
     apis:
       - path: google/cloud/managedidentities/v1
+    copyright_year: "2026"
     output: ManagedIdentities
   - name: managedkafka
     version: 0.9.0
@@ -1090,6 +1265,7 @@ libraries:
         php:
           additional_protos:
             - google/cloud/location/locations.proto
+    copyright_year: "2026"
     output: ManagedKafka
   - name: managedkafka-schemaregistry
     version: 0.4.0
@@ -1098,6 +1274,7 @@ libraries:
         php:
           additional_protos:
             - google/cloud/location/locations.proto
+    copyright_year: "2026"
     output: ManagedKafkaSchemaRegistry
     php:
       component_name: ManagedKafkaSchemaRegistry
@@ -1107,6 +1284,7 @@ libraries:
       - path: google/maps/fleetengine/v1
         php:
           proto_package: maps.fleetengine
+    copyright_year: "2026"
     output: MapsFleetEngine
   - name: maps-fleetengine-delivery
     version: 0.6.0
@@ -1114,11 +1292,13 @@ libraries:
       - path: google/maps/fleetengine/delivery/v1
         php:
           proto_package: maps.fleetengine.delivery
+    copyright_year: "2026"
     output: MapsFleetEngineDelivery
   - name: maps-routeoptimization
     version: 0.7.0
     apis:
       - path: google/maps/routeoptimization/v1
+    copyright_year: "2026"
     output: MapsRouteOptimization
   - name: marketingplatform-admin
     version: 0.5.0
@@ -1126,19 +1306,22 @@ libraries:
       - path: google/marketingplatform/admin/v1alpha
         php:
           common_resources: false
+    copyright_year: "2026"
     output: AdsMarketingPlatformAdmin
   - name: mediatranslation
     version: 0.7.0
     apis:
       - path: google/cloud/mediatranslation/v1beta1
+    copyright_year: "2026"
     output: MediaTranslation
   - name: memcache
-    version: 2.2.0
+    version: 2.2.1
     apis:
       - path: google/cloud/memcache/v1
         php:
           additional_protos:
             - google/cloud/location/locations.proto
+    copyright_year: "2026"
     output: Memcache
   - name: memorystore
     version: 0.13.0
@@ -1151,6 +1334,7 @@ libraries:
         php:
           additional_protos:
             - google/cloud/location/locations.proto
+    copyright_year: "2026"
     output: Memorystore
   - name: metastore
     version: 1.3.0
@@ -1170,6 +1354,7 @@ libraries:
           additional_protos:
             - google/cloud/location/locations.proto
             - google/iam/v1/iam_policy.proto
+    copyright_year: "2026"
     output: DataprocMetastore
     php:
       component_name: DataprocMetastore
@@ -1180,6 +1365,7 @@ libraries:
         php:
           additional_protos:
             - google/cloud/location/locations.proto
+    copyright_year: "2026"
     output: MigrationCenter
   - name: modelarmor
     version: 0.8.0
@@ -1192,11 +1378,13 @@ libraries:
         php:
           additional_protos:
             - google/cloud/location/locations.proto
+    copyright_year: "2026"
     output: ModelArmor
   - name: monitoring
     version: 2.3.0
     apis:
       - path: google/monitoring/v3
+    copyright_year: "2026"
     output: Monitoring
   - name: netapp
     version: 1.13.0
@@ -1205,6 +1393,7 @@ libraries:
         php:
           additional_protos:
             - google/cloud/location/locations.proto
+    copyright_year: "2026"
     output: NetApp
   - name: networkconnectivity
     version: 2.6.0
@@ -1214,6 +1403,7 @@ libraries:
           additional_protos:
             - google/cloud/location/locations.proto
             - google/iam/v1/iam_policy.proto
+    copyright_year: "2026"
     output: NetworkConnectivity
   - name: networkmanagement
     version: 2.11.0
@@ -1223,15 +1413,17 @@ libraries:
           additional_protos:
             - google/cloud/location/locations.proto
             - google/iam/v1/iam_policy.proto
+    copyright_year: "2026"
     output: NetworkManagement
   - name: networksecurity
-    version: 1.5.0
+    version: 1.5.1
     apis:
       - path: google/cloud/networksecurity/v1
         php:
           additional_protos:
             - google/cloud/location/locations.proto
             - google/iam/v1/iam_policy.proto
+    copyright_year: "2026"
     output: NetworkSecurity
   - name: networkservices
     version: 0.12.0
@@ -1241,9 +1433,10 @@ libraries:
           additional_protos:
             - google/cloud/location/locations.proto
             - google/iam/v1/iam_policy.proto
+    copyright_year: "2026"
     output: NetworkServices
   - name: notebooks
-    version: 1.2.0
+    version: 1.2.1
     apis:
       - path: google/cloud/notebooks/v2
         php:
@@ -1255,11 +1448,13 @@ libraries:
           additional_protos:
             - google/cloud/location/locations.proto
             - google/iam/v1/iam_policy.proto
+    copyright_year: "2026"
     output: Notebooks
   - name: optimization
     version: 1.2.0
     apis:
       - path: google/cloud/optimization/v1
+    copyright_year: "2026"
     output: Optimization
   - name: oracledatabase
     version: 0.11.0
@@ -1268,11 +1463,13 @@ libraries:
         php:
           additional_protos:
             - google/cloud/location/locations.proto
+    copyright_year: "2026"
     output: OracleDatabase
   - name: orchestration-airflow-service
     version: 2.3.0
     apis:
       - path: google/cloud/orchestration/airflow/service/v1
+    copyright_year: "2026"
     output: OrchestrationAirflow
     php:
       component_name: OrchestrationAirflow
@@ -1280,16 +1477,23 @@ libraries:
     version: 1.4.0
     apis:
       - path: google/cloud/orgpolicy/v2
+    copyright_year: "2026"
     output: OrgPolicy
   - name: osconfig
     version: 2.3.0
     apis:
       - path: google/cloud/osconfig/v1
+    copyright_year: "2026"
     output: OsConfig
   - name: oslogin
     version: 2.2.0
     apis:
       - path: google/cloud/oslogin/v1
+      - path: google/cloud/oslogin/common
+        php:
+          generate_gapic: false
+          staging_subdir: common-protos
+    copyright_year: "2026"
     output: OsLogin
   - name: parallelstore
     version: 0.14.0
@@ -1302,6 +1506,7 @@ libraries:
         php:
           additional_protos:
             - google/cloud/location/locations.proto
+    copyright_year: "2026"
     output: Parallelstore
   - name: parametermanager
     version: 0.6.0
@@ -1310,21 +1515,25 @@ libraries:
         php:
           additional_protos:
             - google/cloud/location/locations.proto
+    copyright_year: "2026"
     output: ParameterManager
   - name: policysimulator
     version: 1.4.0
     apis:
       - path: google/cloud/policysimulator/v1
+    copyright_year: "2026"
     output: PolicySimulator
   - name: policytroubleshooter
     version: 2.2.0
     apis:
       - path: google/cloud/policytroubleshooter/v1
+    copyright_year: "2026"
     output: PolicyTroubleshooter
   - name: policytroubleshooter-iam
     version: 0.5.0
     apis:
       - path: google/cloud/policytroubleshooter/iam/v3
+    copyright_year: "2026"
     output: PolicyTroubleshooterIam
     php:
       component_name: PolicyTroubleshooterIam
@@ -1332,11 +1541,13 @@ libraries:
     version: 2.14.0
     apis:
       - path: google/privacy/dlp/v2
+    copyright_year: "2026"
     output: Dlp
   - name: privatecatalog
     version: 0.7.0
     apis:
       - path: google/cloud/privatecatalog/v1beta1
+    copyright_year: "2026"
     output: PrivateCatalog
   - name: privilegedaccessmanager
     version: 0.5.0
@@ -1345,14 +1556,22 @@ libraries:
         php:
           additional_protos:
             - google/cloud/location/locations.proto
+          gapic_yaml: google/cloud/privilegedaccessmanager/v1/privilegedaccessmanager_gapic.yaml
+    copyright_year: "2026"
     output: PrivilegedAccessManager
   - name: pubsub
-    version: 2.20.0
+    version: 2.21.0
     apis:
       - path: google/pubsub/v1
         php:
           additional_protos:
             - google/iam/v1/iam_policy.proto
+          gapic_yaml: google/pubsub/v1/pubsub_gapic.yaml
+    copyright_year: "2026"
+    keep:
+      - tests/System/V1/PublisherSmokeTest.php
+      - tests/System/testdata/generated/Metadata.php
+      - tests/System/testdata/generated/StateProto.php
     output: PubSub
   - name: rapidmigrationassessment
     version: 1.3.0
@@ -1361,21 +1580,27 @@ libraries:
         php:
           additional_protos:
             - google/cloud/location/locations.proto
+    copyright_year: "2026"
     output: RapidMigrationAssessment
   - name: recaptchaenterprise
     version: 2.5.0
     apis:
       - path: google/cloud/recaptchaenterprise/v1
+    copyright_year: "2026"
     output: RecaptchaEnterprise
   - name: recommendationengine
     version: 0.10.0
     apis:
       - path: google/cloud/recommendationengine/v1beta1
+        php:
+          gapic_yaml: google/cloud/recommendationengine/v1beta1/recommendationengine_gapic.yaml
+    copyright_year: "2026"
     output: RecommendationEngine
   - name: recommender
     version: 2.3.0
     apis:
       - path: google/cloud/recommender/v1
+    copyright_year: "2026"
     output: Recommender
   - name: redis
     version: 2.3.0
@@ -1384,6 +1609,7 @@ libraries:
         php:
           additional_protos:
             - google/cloud/location/locations.proto
+    copyright_year: "2026"
     output: Redis
   - name: redis-cluster
     version: 0.10.0
@@ -1392,6 +1618,7 @@ libraries:
         php:
           additional_protos:
             - google/cloud/location/locations.proto
+    copyright_year: "2026"
     output: RedisCluster
     php:
       component_name: RedisCluster
@@ -1401,6 +1628,7 @@ libraries:
       - path: google/cloud/resourcemanager/v3
         php:
           common_resources: false
+    copyright_year: "2026"
     output: ResourceManager
   - name: retail
     version: 2.6.0
@@ -1409,6 +1637,7 @@ libraries:
         php:
           additional_protos:
             - google/cloud/location/locations.proto
+    copyright_year: "2026"
     output: Retail
   - name: run
     version: 1.13.0
@@ -1417,6 +1646,7 @@ libraries:
         php:
           additional_protos:
             - google/cloud/location/locations.proto
+    copyright_year: "2026"
     output: Run
   - name: scheduler
     version: 2.3.0
@@ -1425,15 +1655,17 @@ libraries:
         php:
           additional_protos:
             - google/cloud/location/locations.proto
+    copyright_year: "2026"
     output: Scheduler
   - name: secretmanager
-    version: 2.5.0
+    version: 2.5.1
     apis:
       - path: google/cloud/secretmanager/v1
       - path: google/cloud/secretmanager/v1beta2
         php:
           additional_protos:
             - google/cloud/location/locations.proto
+    copyright_year: "2026"
     output: SecretManager
   - name: securesourcemanager
     version: 1.10.0
@@ -1443,30 +1675,34 @@ libraries:
           additional_protos:
             - google/cloud/location/locations.proto
             - google/iam/v1/iam_policy.proto
+    copyright_year: "2026"
     output: SecureSourceManager
   - name: security-privateca
-    version: 2.4.2
+    version: 2.4.3
     apis:
       - path: google/cloud/security/privateca/v1
         php:
           additional_protos:
             - google/cloud/location/locations.proto
             - google/iam/v1/iam_policy.proto
+    copyright_year: "2026"
     output: SecurityPrivateCa
     php:
       component_name: SecurityPrivateCa
   - name: security-publicca
-    version: 1.2.1
+    version: 1.2.2
     apis:
       - path: google/cloud/security/publicca/v1
+    copyright_year: "2026"
     output: SecurityPublicCA
     php:
       component_name: SecurityPublicCA
   - name: securitycenter
-    version: 2.6.1
+    version: 2.6.2
     apis:
       - path: google/cloud/securitycenter/v2
       - path: google/cloud/securitycenter/v1
+    copyright_year: "2026"
     output: SecurityCenter
   - name: securitycentermanagement
     version: 1.4.1
@@ -1475,14 +1711,16 @@ libraries:
         php:
           additional_protos:
             - google/cloud/location/locations.proto
+    copyright_year: "2026"
     output: SecurityCenterManagement
   - name: servicedirectory
-    version: 2.2.1
+    version: 2.2.2
     apis:
       - path: google/cloud/servicedirectory/v1
         php:
           additional_protos:
             - google/cloud/location/locations.proto
+    copyright_year: "2026"
     output: ServiceDirectory
   - name: servicehealth
     version: 0.5.1
@@ -1491,92 +1729,108 @@ libraries:
         php:
           additional_protos:
             - google/cloud/location/locations.proto
+    copyright_year: "2026"
     output: ServiceHealth
   - name: shell
     version: 2.2.1
     apis:
       - path: google/cloud/shell/v1
+    copyright_year: "2026"
     output: Shell
   - name: shopping-css
-    version: 0.8.3
+    version: 0.8.4
     apis:
       - path: google/shopping/css/v1
+    copyright_year: "2026"
     output: ShoppingCss
   - name: shopping-merchant-accounts
     version: 1.4.3
     apis:
       - path: google/shopping/merchant/accounts/v1
       - path: google/shopping/merchant/accounts/v1beta
+    copyright_year: "2026"
     output: ShoppingMerchantAccounts
   - name: shopping-merchant-conversions
     version: 1.2.1
     apis:
       - path: google/shopping/merchant/conversions/v1
       - path: google/shopping/merchant/conversions/v1beta
+    copyright_year: "2026"
     output: ShoppingMerchantConversions
   - name: shopping-merchant-datasources
     version: 1.3.3
     apis:
       - path: google/shopping/merchant/datasources/v1
       - path: google/shopping/merchant/datasources/v1beta
+    copyright_year: "2026"
     output: ShoppingMerchantDataSources
   - name: shopping-merchant-inventories
-    version: 1.5.3
+    version: 1.5.4
     apis:
       - path: google/shopping/merchant/inventories/v1
       - path: google/shopping/merchant/inventories/v1beta
+    copyright_year: "2026"
     output: ShoppingMerchantInventories
   - name: shopping-merchant-issueresolution
     version: 1.3.3
     apis:
       - path: google/shopping/merchant/issueresolution/v1
+    copyright_year: "2026"
     output: ShoppingMerchantIssueResolution
   - name: shopping-merchant-lfp
     version: 1.2.3
     apis:
       - path: google/shopping/merchant/lfp/v1
       - path: google/shopping/merchant/lfp/v1beta
+    copyright_year: "2026"
     output: ShoppingMerchantLfp
   - name: shopping-merchant-notifications
     version: 1.2.3
     apis:
       - path: google/shopping/merchant/notifications/v1
       - path: google/shopping/merchant/notifications/v1beta
+    copyright_year: "2026"
     output: ShoppingMerchantNotifications
   - name: shopping-merchant-ordertracking
     version: 1.2.3
     apis:
       - path: google/shopping/merchant/ordertracking/v1
       - path: google/shopping/merchant/ordertracking/v1beta
+    copyright_year: "2026"
     output: ShoppingMerchantOrderTracking
   - name: shopping-merchant-products
     version: 1.7.2
     apis:
       - path: google/shopping/merchant/products/v1
       - path: google/shopping/merchant/products/v1beta
+    copyright_year: "2026"
     output: ShoppingMerchantProducts
   - name: shopping-merchant-promotions
     version: 1.2.3
     apis:
       - path: google/shopping/merchant/promotions/v1
       - path: google/shopping/merchant/promotions/v1beta
+    copyright_year: "2026"
     output: ShoppingMerchantPromotions
   - name: shopping-merchant-quota
     version: 1.3.1
     apis:
       - path: google/shopping/merchant/quota/v1
       - path: google/shopping/merchant/quota/v1beta
+    copyright_year: "2026"
     output: ShoppingMerchantQuota
   - name: shopping-merchant-reports
     version: 1.3.2
     apis:
       - path: google/shopping/merchant/reports/v1
       - path: google/shopping/merchant/reports/v1beta
+    copyright_year: "2026"
     output: ShoppingMerchantReports
   - name: shopping-merchant-reviews
     version: 0.6.3
     apis:
       - path: google/shopping/merchant/reviews/v1beta
+    copyright_year: "2026"
     output: ShoppingMerchantReviews
   - name: shopping-type
     version: 0.5.1
@@ -1585,6 +1839,7 @@ libraries:
         php:
           common_resources: false
           staging_subdir: .
+    copyright_year: "2026"
     output: ShoppingCommonProtos
     php:
       component_name: ShoppingCommonProtos
@@ -1594,33 +1849,44 @@ libraries:
       - path: google/spanner/v1
       - path: google/spanner/admin/database/v1
         php:
-          staging_subdir: v1/Admin/Database/v1
+          gapic_yaml: google/spanner/admin/database/v1/spanner_gapic.yaml
+          staging_subdir: Admin/Database/v1
       - path: google/spanner/admin/instance/v1
         php:
-          staging_subdir: v1/Admin/Instance/v1
+          gapic_yaml: google/spanner/admin/instance/v1/spanner_gapic.yaml
+          staging_subdir: Admin/Instance/v1
+    copyright_year: "2026"
+    keep:
+      - tests/data/generated/GPBMetadata/Data/User.php
+      - tests/data/generated/Testing/Data/Book.php
+      - tests/data/generated/Testing/Data/User.php
+      - tests/data/generated/Testing/Data/User/Address.php
     output: Spanner
   - name: speech
-    version: 2.5.4
+    version: 2.5.5
     apis:
       - path: google/cloud/speech/v2
         php:
           additional_protos:
             - google/cloud/location/locations.proto
+    copyright_year: "2026"
     output: Speech
   - name: sql
-    version: 1.11.1
+    version: 1.11.2
     apis:
       - path: google/cloud/sql/v1
         php:
           additional_protos:
             - google/cloud/location/locations.proto
+    copyright_year: "2026"
     output: SqlAdmin
     php:
       component_name: SqlAdmin
   - name: storage-control
-    version: 1.11.0
+    version: 1.12.0
     apis:
       - path: google/storage/control/v2
+    copyright_year: "2026"
     output: StorageControl
     php:
       component_name: StorageControl
@@ -1631,6 +1897,7 @@ libraries:
         php:
           additional_protos:
             - google/cloud/location/locations.proto
+    copyright_year: "2026"
     output: StorageBatchOperations
   - name: storageinsights
     version: 1.4.1
@@ -1639,30 +1906,35 @@ libraries:
         php:
           additional_protos:
             - google/cloud/location/locations.proto
+    copyright_year: "2026"
     output: StorageInsights
   - name: storagetransfer
     version: 2.4.1
     apis:
       - path: google/storagetransfer/v1
+    copyright_year: "2026"
     output: StorageTransfer
   - name: support
-    version: 1.8.1
+    version: 1.8.2
     apis:
       - path: google/cloud/support/v2
       - path: google/cloud/support/v2beta
+    copyright_year: "2026"
     output: Support
   - name: talent
-    version: 2.3.1
+    version: 2.3.2
     apis:
       - path: google/cloud/talent/v4
+    copyright_year: "2026"
     output: Talent
   - name: tasks
-    version: 2.2.1
+    version: 2.2.2
     apis:
       - path: google/cloud/tasks/v2
         php:
           additional_protos:
             - google/cloud/location/locations.proto
+    copyright_year: "2026"
     output: Tasks
   - name: telcoautomation
     version: 1.3.1
@@ -1671,19 +1943,22 @@ libraries:
         php:
           additional_protos:
             - google/cloud/location/locations.proto
+    copyright_year: "2026"
     output: TelcoAutomation
   - name: texttospeech
     version: 2.8.1
     apis:
       - path: google/cloud/texttospeech/v1
+    copyright_year: "2026"
     output: TextToSpeech
   - name: tpu
-    version: 2.3.1
+    version: 2.3.2
     apis:
       - path: google/cloud/tpu/v2
         php:
           additional_protos:
             - google/cloud/location/locations.proto
+    copyright_year: "2026"
     output: Tpu
   - name: translate
     version: 2.3.3
@@ -1691,14 +1966,16 @@ libraries:
       - path: google/cloud/translate/v3
         php:
           proto_package: google.cloud.translation
+    copyright_year: "2026"
     output: Translate
   - name: vectorsearch
-    version: 0.6.0
+    version: 0.7.0
     apis:
       - path: google/cloud/vectorsearch/v1
         php:
           additional_protos:
             - google/cloud/location/locations.proto
+    copyright_year: "2026"
     output: VectorSearch
   - name: video-livestream
     version: 1.5.0
@@ -1707,6 +1984,7 @@ libraries:
         php:
           additional_protos:
             - google/cloud/location/locations.proto
+    copyright_year: "2026"
     output: VideoLiveStream
     php:
       component_name: VideoLiveStream
@@ -1714,6 +1992,7 @@ libraries:
     version: 1.3.0
     apis:
       - path: google/cloud/video/stitcher/v1
+    copyright_year: "2026"
     output: VideoStitcher
     php:
       component_name: VideoStitcher
@@ -1721,18 +2000,23 @@ libraries:
     version: 1.5.0
     apis:
       - path: google/cloud/video/transcoder/v1
+    copyright_year: "2026"
     output: VideoTranscoder
     php:
       component_name: VideoTranscoder
   - name: videointelligence
-    version: 2.3.0
+    version: 2.3.1
     apis:
       - path: google/cloud/videointelligence/v1
+        php:
+          gapic_yaml: google/cloud/videointelligence/v1/videointelligence_gapic.yaml
+    copyright_year: "2026"
     output: VideoIntelligence
   - name: vision
     version: 2.3.0
     apis:
       - path: google/cloud/vision/v1
+    copyright_year: "2026"
     output: Vision
   - name: visionai
     version: 0.4.0
@@ -1742,6 +2026,7 @@ libraries:
           additional_protos:
             - google/cloud/location/locations.proto
             - google/iam/v1/iam_policy.proto
+    copyright_year: "2026"
     output: VisionAi
     php:
       component_name: VisionAi
@@ -1753,6 +2038,7 @@ libraries:
           additional_protos:
             - google/cloud/location/locations.proto
             - google/iam/v1/iam_policy.proto
+    copyright_year: "2026"
     output: VmMigration
     php:
       component_name: VmMigration
@@ -1764,6 +2050,7 @@ libraries:
           additional_protos:
             - google/cloud/location/locations.proto
             - google/iam/v1/iam_policy.proto
+    copyright_year: "2026"
     output: VmwareEngine
   - name: vpcaccess
     version: 2.3.0
@@ -1772,19 +2059,22 @@ libraries:
         php:
           additional_protos:
             - google/cloud/location/locations.proto
+    copyright_year: "2026"
     output: VpcAccess
   - name: webrisk
-    version: 2.4.0
+    version: 2.4.1
     apis:
       - path: google/cloud/webrisk/v1
+    copyright_year: "2026"
     output: WebRisk
   - name: websecurityscanner
-    version: 1.3.0
+    version: 1.3.1
     apis:
       - path: google/cloud/websecurityscanner/v1
+    copyright_year: "2026"
     output: WebSecurityScanner
   - name: workflows
-    version: 1.4.0
+    version: 1.4.1
     apis:
       - path: google/cloud/workflows/v1
         php:
@@ -1793,6 +2083,7 @@ libraries:
       - path: google/cloud/workflows/executions/v1
         php:
           staging_subdir: Executions/v1
+    copyright_year: "2026"
     output: Workflows
   - name: workloadmanager
     version: 0.3.0
@@ -1801,4 +2092,5 @@ libraries:
         php:
           additional_protos:
             - google/cloud/location/locations.proto
+    copyright_year: "2026"
     output: WorkloadManager
