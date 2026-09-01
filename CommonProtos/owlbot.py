@@ -26,6 +26,20 @@ from synthtool import _tracked_paths
 
 logging.basicConfig(level=logging.DEBUG)
 
+# Work around synthtool bug where _find_copy_target returns None prematurely
+# when recursing into non-matching sibling directories
+def _fixed_find_copy_target(src: Path, version_string: str):
+    for entry in src.iterdir():
+        if entry.name.lower() == version_string:
+            return src
+        if entry.is_dir():
+            target = _fixed_find_copy_target(entry, version_string)
+            if target is not None:
+                return target
+    return None
+
+php._find_copy_target = _fixed_find_copy_target
+
 # (dirname, version)
 protos = [
     ("api", "api"),
