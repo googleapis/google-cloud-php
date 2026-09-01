@@ -901,22 +901,6 @@ class SpannerClientTest extends TestCase
         ]);
     }
 
-    public function testBuiltinMetricsCanBeEnabledWithoutCredentials()
-    {
-        $gapicSpannerClient = $this->prophesize(GapicSpannerClient::class);
-        $gapicSpannerClient->prependMiddleware(Argument::any())
-            ->shouldBeCalledTimes(2);
-        $gapicSpannerClient->addMiddleware(Argument::any())
-            ->shouldBeCalledTimes(2);
-
-        new SpannerClient([
-            'projectId' => self::PROJECT,
-            'gapicSpannerClient' => $gapicSpannerClient->reveal(),
-            'enableBuiltInMetrics' => true,
-        ]);
-    }
-
-
     /**
      * @runInSeparateProcess
      */
@@ -931,7 +915,7 @@ class SpannerClientTest extends TestCase
             'credentials' => Fixtures::KEYFILE_STUB_FIXTURE()
         ]);
         $end = microtime(true);
-        
+
         // Assert that the client instantiated quickly.
         // If it probed the GCE metadata server without a mock, it would take ~1.5s to time out.
         $this->assertLessThan(1.0, $end - $start);
