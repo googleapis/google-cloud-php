@@ -192,7 +192,9 @@ All captured metrics are aggregated in-memory and exported synchronously during 
 
 #### Prerequisites
 
-1. **IAM Permissions & Scope**: The credentials used by your application require the `monitoring.timeSeries.create` permission (provided by the **Metric Writer** role `roles/monitoring.metricWriter`). Standard Spanner roles (`roles/spanner.databaseAdmin`, `roles/spanner.databaseUser`, and `roles/spanner.databaseReader`) already include this permission. The library automatically configures the required `https://www.googleapis.com/auth/monitoring.write` OAuth scope.
+1. **IAM Permissions & OAuth Scopes**: The credentials used by your application require the `monitoring.timeSeries.create` permission (provided by the **Metric Writer** role `roles/monitoring.metricWriter`). Standard Spanner roles (`roles/spanner.databaseAdmin`, `roles/spanner.databaseUser`, and `roles/spanner.databaseReader`) already include this permission.
+   * When using Application Default Credentials (ADC) or keyfiles, the required `https://www.googleapis.com/auth/monitoring.write` OAuth scope is automatically configured.
+   * If you supply a pre-instantiated credentials object (implementing `FetchAuthTokenInterface` or `CredentialsWrapper`), ensure that `https://www.googleapis.com/auth/monitoring.write` (or `https://www.googleapis.com/auth/cloud-platform`) scope is included when creating your credentials object.
 2. **OpenTelemetry Extension**: Installing the [`ext-opentelemetry`](https://pecl.php.net/package/opentelemetry) PHP extension is highly advised to optimize metrics collection and export performance.
 
 ### Debugging
