@@ -1,4 +1,0 @@
-deep-copy-regex:
-    - source: /google/analytics/data/(v1beta|v1alpha)/.*-php/(.*)
-      dest: /owl-bot-staging/AnalyticsData/$1/$2
-api-name: AnalyticsData
