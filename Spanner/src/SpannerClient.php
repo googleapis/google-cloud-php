@@ -25,6 +25,7 @@ use Google\ApiCore\Middleware\MiddlewareInterface;
 use Google\ApiCore\Options\CallOptions;
 use Google\ApiCore\ValidationException;
 use Google\Auth\Credentials\GCECredentials;
+use Google\Auth\FetchAuthTokenInterface;
 use Google\Auth\GetUniverseDomainInterface;
 use Google\Cloud\Core\ApiHelperTrait;
 use Google\Cloud\Core\Compute\Metadata;
@@ -1060,7 +1061,10 @@ class SpannerClient
         return $config;
     }
 
-    private function configureMetrics(array $options, mixed $rawCredentials = null): void
+    private function configureMetrics(
+        array $options,
+        string|array|FetchAuthTokenInterface|CredentialsWrapper|null $rawCredentials = null
+    ): void
     {
         $timeoutMillis = $this->pluck('metricsTimeoutMillis', $options, false) ?? 100;
 
@@ -1183,7 +1187,10 @@ class SpannerClient
         return sprintf('%06x', $tenBits);
     }
 
-    private function buildMetricsCredentials(mixed $credentials, array $options): CredentialsWrapper
+    private function buildMetricsCredentials(
+        string|array|FetchAuthTokenInterface|CredentialsWrapper|null $credentials,
+        array $options
+    ): CredentialsWrapper
     {
         $credentialsConfig = [
             'scopes' => [

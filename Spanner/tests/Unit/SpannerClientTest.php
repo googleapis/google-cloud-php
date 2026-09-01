@@ -901,6 +901,22 @@ class SpannerClientTest extends TestCase
         ]);
     }
 
+    public function testBuiltinMetricsCanBeEnabledWithoutCredentials()
+    {
+        $gapicSpannerClient = $this->prophesize(GapicSpannerClient::class);
+        $gapicSpannerClient->prependMiddleware(Argument::any())
+            ->shouldBeCalledTimes(2);
+        $gapicSpannerClient->addMiddleware(Argument::any())
+            ->shouldBeCalledTimes(2);
+
+        new SpannerClient([
+            'projectId' => self::PROJECT,
+            'gapicSpannerClient' => $gapicSpannerClient->reveal(),
+            'enableBuiltInMetrics' => true,
+        ]);
+    }
+
+
     /**
      * @runInSeparateProcess
      */
