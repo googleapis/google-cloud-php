@@ -19,10 +19,7 @@ jobs:
           persist-credentials: false
       # Version of librarian is pulled from librarian.yaml,
       # main corresponds to the action's source definition.
-      - uses: googleapis/librarian@main # zizmor: ignore[unpinned-uses]
-        with:
-          protoc-version: '33.2'
-          protoc-checksum: '8c0a8577311720cc83488f813aeb5046d69cb9824cbf39cb7447e0c5132d677952d5bb7c1130d9df381835eee7352828878d409873ebb407d7a4649ea2a4aee5'
+      - uses: googleapis/librarian@31da9b27335c41cf4d4795062c055521f49dcc51 # v0.40.0
       - name: Setup PHP
         uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # v2
         with:
