@@ -58,13 +58,13 @@ class OtlpMetricsExporter implements PushMetricExporterInterface, AggregationTem
     private PushMetricExporterInterface $otlpExporter;
 
     /**
-     * @param CredentialsWrapper $metricsCredentials The credentials wrapper for metric export.
+     * @param CredentialsWrapper $credentials The credentials wrapper for metric export.
      * @param int $timeoutMillis The timeout defined for the metrics client during export.
      * @param array $options Optional configuration parameters.
      * @param PushMetricExporterInterface|null $otlpExporter Optional inner exporter for testing.
      */
     public function __construct(
-        CredentialsWrapper $metricsCredentials,
+        CredentialsWrapper $credentials,
         int $timeoutMillis = 100,
         array $options = [],
         ?PushMetricExporterInterface $otlpExporter = null
@@ -74,8 +74,8 @@ class OtlpMetricsExporter implements PushMetricExporterInterface, AggregationTem
             return;
         }
 
-        $authCallback = $metricsCredentials->getAuthorizationHeaderCallback();
-        $quotaProject = $metricsCredentials->getQuotaProject();
+        $authCallback = $credentials->getAuthorizationHeaderCallback();
+        $quotaProject = $credentials->getQuotaProject();
         $handlerStack = $options['handlerStack'] ?? HandlerStack::create();
         $handlerStack->push(function (callable $handler) use ($authCallback, $quotaProject) {
             return function (RequestInterface $request, array $options) use ($authCallback, $handler, $quotaProject) {

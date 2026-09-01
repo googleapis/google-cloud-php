@@ -257,7 +257,7 @@ class SpannerClient
             $options['credentialsConfig']['scopes'] = $scopes;
         }
 
-        $metricsCredentials = $options['credentials'] ?? null;
+        $rawCredentials = $options['credentials'] ?? null;
 
         if ($emulatorHost) {
             $emulatorConfig = $this->emulatorGapicConfig($emulatorHost);
@@ -306,8 +306,7 @@ class SpannerClient
         $this->instanceAdminClient->addMiddleware($middleware);
         $this->databaseAdminClient->addMiddleware($middleware);
 
-        $options['metricsCredentials'] = $metricsCredentials;
-        $this->configureMetrics($options);
+        $this->configureMetrics($options, $rawCredentials);
 
         $this->projectName = InstanceAdminClient::projectName($this->projectId);
         $this->cacheItemPool = $options['cacheItemPool'];
@@ -1061,7 +1060,7 @@ class SpannerClient
         return $config;
     }
 
-    private function configureMetrics(array $options): void
+    private function configureMetrics(array $options, mixed $rawCredentials = null): void
     {
         $timeoutMillis = $this->pluck('metricsTimeoutMillis', $options, false) ?? 100;
 
@@ -1081,9 +1080,9 @@ class SpannerClient
             'location'          => $location !== 'global' ? $location : 'us-central1',
         ]));
 
-        $metricsCredentials = $this->buildMetricsCredentials($options);
+        $credentialsWrapper = $this->buildMetricsCredentials($rawCredentials, $options);
 
-        $exporter = new OtlpMetricsExporter($metricsCredentials, $timeoutMillis, $options);
+        $exporter = new OtlpMetricsExporter($credentialsWrapper, $timeoutMillis, $options);
         $reader = new ExportingReader($exporter);
         $this->meterProvider = MeterProvider::builder()
             ->setResource($resource)
@@ -1184,10 +1183,8 @@ class SpannerClient
         return sprintf('%06x', $tenBits);
     }
 
-    private function buildMetricsCredentials(array $options): CredentialsWrapper
+    private function buildMetricsCredentials(mixed $credentials, array $options): CredentialsWrapper
     {
-        $metricsCredentials = $options['metricsCredentials'] ?? $options['credentials'] ?? null;
-
         $credentialsConfig = [
             'scopes' => [
                 self::MONITORING_WRITE_SCOPE
@@ -1196,8 +1193,6 @@ class SpannerClient
 
         $universeDomain = $options['universeDomain'] ?? GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN;
 
-        $credentialsWrapper = $this->createCredentialsWrapper($metricsCredentials, $credentialsConfig, $universeDomain);
-
-        return $credentialsWrapper;
+        return $this->createCredentialsWrapper($credentials, $credentialsConfig, $universeDomain);
     }
 }

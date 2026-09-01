@@ -111,7 +111,7 @@ class OtlpMetricsExporterTest extends TestCase
         $this->assertTrue($exporter->export([$metric]));
     }
 
-    public function testConstructWithCustomMetricsCredentials()
+    public function testConstructWithCredentialsWrapper()
     {
         $mockCredentials = $this->prophesize(\Google\ApiCore\CredentialsWrapper::class);
         $exporter = new OtlpMetricsExporter($mockCredentials->reveal(), 100, []);
