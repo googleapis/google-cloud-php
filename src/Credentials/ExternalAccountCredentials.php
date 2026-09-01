@@ -68,7 +68,7 @@ class ExternalAccountCredentials implements
     private ?string $workforcePoolUserProject;
     private ?string $projectId;
     /** @var array<mixed> */
-    private ?array $lastImpersonatedAccessToken;
+    private array $lastImpersonatedAccessToken;
     private string $universeDomain;
 
     /**
@@ -345,7 +345,7 @@ class ExternalAccountCredentials implements
      * FetcherCacheKey.Scope.[ServiceAccount].[TokenType].[WorkforcePoolUserProject]
      * FetcherCacheKey.Audience.[ServiceAccount].[TokenType].[WorkforcePoolUserProject]
      *
-     * @return ?string;
+     * @return ?string
      */
     public function getCacheKey(): ?string
     {
