@@ -1064,8 +1064,7 @@ class SpannerClient
     private function configureMetrics(
         array $options,
         string|array|FetchAuthTokenInterface|CredentialsWrapper|null $rawCredentials = null
-    ): void
-    {
+    ): void {
         $timeoutMillis = $this->pluck('metricsTimeoutMillis', $options, false) ?? 100;
 
         if (!$this->pluck('enableBuiltInMetrics', $options, false)) {
@@ -1190,8 +1189,7 @@ class SpannerClient
     private function buildMetricsCredentials(
         string|array|FetchAuthTokenInterface|CredentialsWrapper|null $credentials,
         array $options
-    ): CredentialsWrapper
-    {
+    ): CredentialsWrapper {
         $credentialsConfig = [
             'scopes' => [
                 self::MONITORING_WRITE_SCOPE
