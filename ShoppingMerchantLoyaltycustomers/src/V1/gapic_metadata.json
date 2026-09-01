@@ -1,0 +1,23 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.shopping.merchant.loyaltycustomers.v1",
+    "libraryPackage": "Google\\Shopping\\Merchant\\Loyaltycustomers\\V1",
+    "services": {
+        "LoyaltyCustomerMatchService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "LoyaltyCustomerMatchServiceClient",
+                    "rpcs": {
+                        "ManageLoyaltyCustomerMatch": {
+                            "methods": [
+                                "manageLoyaltyCustomerMatch"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
