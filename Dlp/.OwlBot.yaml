@@ -1,4 +1,0 @@
-deep-copy-regex:
-    - source: /google/privacy/dlp/(v2)/.*-php/(.*)
-      dest: /owl-bot-staging/Dlp/$1/$2
-api-name: Dlp

@@ -1,4 +1,0 @@
-deep-copy-regex:
-    - source: /google/appengine/(v1)/.*-php/(.*)
-      dest: /owl-bot-staging/AppEngineAdmin/$1/$2
-api-name: AppEngineAdmin
