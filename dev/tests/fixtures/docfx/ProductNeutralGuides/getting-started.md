@@ -155,7 +155,7 @@ $spanner = new SpannerClient([
 
 ## PHP Versions Supported
 
-All client libraries support PHP 8.1 and above.
+All client libraries support PHP 8.2 and above.
 
 ## Versioning
 

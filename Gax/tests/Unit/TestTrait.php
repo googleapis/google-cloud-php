@@ -131,12 +131,6 @@ trait TestTrait
 
     private static function autoloadTestdata(string $dir, string $namespace = __NAMESPACE__)
     {
-        // This is required for tests to pass on Windows with PHP 8.1
-        // @TODO remove this once we drop PHP 8.1 support
-        if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN' && PHP_VERSION_ID < 80200) {
-            self::markTestSkipped('Skip on Windows + PHP 8.1 to avoid gRPC shutdown crash');
-        }
-
         // add mocks to autoloader
         $loader = file_exists(__DIR__ . '/../../vendor/autoload.php')
             ? require __DIR__ . '/../../vendor/autoload.php'
