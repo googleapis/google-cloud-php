@@ -26,34 +26,6 @@ from synthtool import _tracked_paths
 
 logging.basicConfig(level=logging.DEBUG)
 
-# Work around a bug in synthtool's `php._find_copy_target`:
-# When searching a directory tree for `version_string`, synthtool executes
-# `return _find_copy_target(...)` on the first subdirectory it encounters without
-# verifying that the recursive call returned a match. If that branch returns None,
-# it terminates immediately and abandons checking sibling entries.
-#
-# In CommonProtos, `google/iam/v1` generates both `Google/Cloud` (for IAM V1)
-# and `Google/Iam` (for logging/audit_data) under `.../iam/proto/src/Google/`.
-# If the filesystem directory iteration order returns `Iam` before `Cloud` (which
-# consistently happens in CI depending on the ext4 directory hash seed), synthtool
-# recurses into `Iam`, finds no "cloud" match, and returns None early—failing to
-# copy `CommonProtos/src/Cloud/Iam/V1/*.php`.
-#
-# This patched version continues the loop if `target is None`, ensuring all
-# sibling directories are searched regardless of filesystem iteration order.
-def _fixed_find_copy_target(src: Path, version_string: str):
-    for entry in src.iterdir():
-        if entry.name.lower() == version_string:
-            return src
-        if entry.is_dir():
-            target = _fixed_find_copy_target(entry, version_string)
-            if target is not None:
-                return target
-    return None
-
-
-php._find_copy_target = _fixed_find_copy_target
-
 # (dirname, version)
 protos = [
     ("api", "api"),
