@@ -914,7 +914,8 @@ trait GapicClientTrait
             $this->resumableUploadClient,
             $call,
             $optionalArgs,
-            $optionalArgs['uploadUrl'] ?? null
+            $optionalArgs['uploadUrl'] ?? null,
+            $optionalArgs['chunkSize'] ?? null
         );
     }
 
