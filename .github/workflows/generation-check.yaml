@@ -14,7 +14,7 @@ jobs:
   regeneration:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
       # Version of librarian is pulled from librarian.yaml,
@@ -43,7 +43,7 @@ jobs:
           fi
       - name: Create issue if previous step fails
         if: ${{ failure() && github.ref == 'refs/heads/main' }}
-        uses: googleapis/librarian/.github/actions/create-issue-on-failure@main # zizmor: ignore[unpinned-uses]
+        uses: googleapis/librarian/.github/actions/create-issue-on-failure@31da9b27335c41cf4d4795062c055521f49dcc51 # v0.40.0
         with:
           title: "Librarian generate diff check failed on main branch"
           body: |
