@@ -1,4 +1,0 @@
-deep-copy-regex:
-    - source: /google/cloud/capacityplanner/(v1beta)/.*-php/(.*)
-      dest: /owl-bot-staging/CapacityPlanner/$1/$2
-api-name: CapacityPlanner

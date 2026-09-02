@@ -8,7 +8,7 @@
         "CrossNetworkAutomationService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "CrossNetworkAutomationServiceGapicClient",
+                    "libraryClient": "CrossNetworkAutomationServiceClient",
                     "rpcs": {
                         "CreateServiceConnectionMap": {
                             "methods": [
@@ -132,7 +132,7 @@
         "DataTransferService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "DataTransferServiceGapicClient",
+                    "libraryClient": "DataTransferServiceClient",
                     "rpcs": {
                         "CreateDestination": {
                             "methods": [
@@ -226,7 +226,7 @@
         "HubService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "HubServiceGapicClient",
+                    "libraryClient": "HubServiceClient",
                     "rpcs": {
                         "AcceptHubSpoke": {
                             "methods": [
@@ -375,7 +375,7 @@
         "InternalRangeService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "InternalRangeServiceGapicClient",
+                    "libraryClient": "InternalRangeServiceClient",
                     "rpcs": {
                         "CreateInternalRange": {
                             "methods": [
@@ -434,7 +434,7 @@
         "PolicyBasedRoutingService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "PolicyBasedRoutingServiceGapicClient",
+                    "libraryClient": "PolicyBasedRoutingServiceClient",
                     "rpcs": {
                         "CreatePolicyBasedRoute": {
                             "methods": [

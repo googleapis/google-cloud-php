@@ -92,6 +92,13 @@ class ExadbVmCluster extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string entitlement_id = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $entitlement_id = '';
+    /**
+     * Output only. The identity connector details which will allow OCI to
+     * securely access the resources in the customer project.
+     *
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.IdentityConnector identity_connector = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $identity_connector = null;
 
     /**
      * Constructor.
@@ -134,6 +141,9 @@ class ExadbVmCluster extends \Google\Protobuf\Internal\Message
      *     @type string $entitlement_id
      *           Output only. The ID of the subscription entitlement associated with the
      *           ExadbVmCluster.
+     *     @type \Google\Cloud\OracleDatabase\V1\IdentityConnector $identity_connector
+     *           Output only. The identity connector details which will allow OCI to
+     *           securely access the resources in the customer project.
      * }
      */
     public function __construct($data = NULL) {
@@ -447,6 +457,44 @@ class ExadbVmCluster extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->entitlement_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The identity connector details which will allow OCI to
+     * securely access the resources in the customer project.
+     *
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.IdentityConnector identity_connector = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\OracleDatabase\V1\IdentityConnector|null
+     */
+    public function getIdentityConnector()
+    {
+        return $this->identity_connector;
+    }
+
+    public function hasIdentityConnector()
+    {
+        return isset($this->identity_connector);
+    }
+
+    public function clearIdentityConnector()
+    {
+        unset($this->identity_connector);
+    }
+
+    /**
+     * Output only. The identity connector details which will allow OCI to
+     * securely access the resources in the customer project.
+     *
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.IdentityConnector identity_connector = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\OracleDatabase\V1\IdentityConnector $var
+     * @return $this
+     */
+    public function setIdentityConnector($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\OracleDatabase\V1\IdentityConnector::class);
+        $this->identity_connector = $var;
 
         return $this;
     }

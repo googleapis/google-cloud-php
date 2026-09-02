@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -130,6 +130,17 @@ return [
             'GetMetrics' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/keys/*/metrics}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetPolicy' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/keys/*/policy}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -273,6 +284,19 @@ return [
                     'key.name' => [
                         'getters' => [
                             'getKey',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdatePolicy' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{policy.name=projects/*/keys/*/policy}',
+                'body' => 'policy',
+                'placeholders' => [
+                    'policy.name' => [
+                        'getters' => [
+                            'getPolicy',
                             'getName',
                         ],
                     ],

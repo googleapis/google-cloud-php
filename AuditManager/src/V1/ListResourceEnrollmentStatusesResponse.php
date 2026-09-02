@@ -9,20 +9,23 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * Response message with all the descendent resources with enrollment.
+ * Response message for
+ * [ListResourceEnrollmentStatuses][google.cloud.auditmanager.v1.AuditManager.ListResourceEnrollmentStatuses].
  *
  * Generated from protobuf message <code>google.cloud.auditmanager.v1.ListResourceEnrollmentStatusesResponse</code>
  */
 class ListResourceEnrollmentStatusesResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The resources with their enrollment status.
+     * Resources with their enrollment status.
      *
      * Generated from protobuf field <code>repeated .google.cloud.auditmanager.v1.ResourceEnrollmentStatus resource_enrollment_statuses = 1;</code>
      */
     private $resource_enrollment_statuses;
     /**
-     * Output only. The token to retrieve the next page of results.
+     * Output only. A token that you can send as the `page_token` in a subsequent
+     * request to retrieve the next page of results. If this field is empty, there
+     * are no subsequent pages.
      *
      * Generated from protobuf field <code>string next_page_token = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -35,9 +38,11 @@ class ListResourceEnrollmentStatusesResponse extends \Google\Protobuf\Internal\M
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\AuditManager\V1\ResourceEnrollmentStatus[] $resource_enrollment_statuses
-     *           The resources with their enrollment status.
+     *           Resources with their enrollment status.
      *     @type string $next_page_token
-     *           Output only. The token to retrieve the next page of results.
+     *           Output only. A token that you can send as the `page_token` in a subsequent
+     *           request to retrieve the next page of results. If this field is empty, there
+     *           are no subsequent pages.
      * }
      */
     public function __construct($data = NULL) {
@@ -46,7 +51,7 @@ class ListResourceEnrollmentStatusesResponse extends \Google\Protobuf\Internal\M
     }
 
     /**
-     * The resources with their enrollment status.
+     * Resources with their enrollment status.
      *
      * Generated from protobuf field <code>repeated .google.cloud.auditmanager.v1.ResourceEnrollmentStatus resource_enrollment_statuses = 1;</code>
      * @return RepeatedField<\Google\Cloud\AuditManager\V1\ResourceEnrollmentStatus>
@@ -57,7 +62,7 @@ class ListResourceEnrollmentStatusesResponse extends \Google\Protobuf\Internal\M
     }
 
     /**
-     * The resources with their enrollment status.
+     * Resources with their enrollment status.
      *
      * Generated from protobuf field <code>repeated .google.cloud.auditmanager.v1.ResourceEnrollmentStatus resource_enrollment_statuses = 1;</code>
      * @param \Google\Cloud\AuditManager\V1\ResourceEnrollmentStatus[] $var
@@ -72,7 +77,9 @@ class ListResourceEnrollmentStatusesResponse extends \Google\Protobuf\Internal\M
     }
 
     /**
-     * Output only. The token to retrieve the next page of results.
+     * Output only. A token that you can send as the `page_token` in a subsequent
+     * request to retrieve the next page of results. If this field is empty, there
+     * are no subsequent pages.
      *
      * Generated from protobuf field <code>string next_page_token = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -83,7 +90,9 @@ class ListResourceEnrollmentStatusesResponse extends \Google\Protobuf\Internal\M
     }
 
     /**
-     * Output only. The token to retrieve the next page of results.
+     * Output only. A token that you can send as the `page_token` in a subsequent
+     * request to retrieve the next page of results. If this field is empty, there
+     * are no subsequent pages.
      *
      * Generated from protobuf field <code>string next_page_token = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

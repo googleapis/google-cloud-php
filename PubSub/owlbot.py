@@ -42,7 +42,7 @@ php.owlbot_main(
 s.replace(
     'tests/**/V1/*Test.php',
     r'Copyright \d{4}',
-    'Copyright 2018')
+    'Copyright 2026')
 
 # fix the link to the official doc
 s.replace(
@@ -75,3 +75,17 @@ s.replace(
     r"(.{0,})\]\((/.{0,})\)",
     r"\1](https://cloud.google.com\2)"
 )
+
+# format generated clients
+subprocess.run([
+    'npm',
+    'exec',
+    '--yes',
+    '--package=@prettier/plugin-php@^0.19',
+    '--',
+    'prettier',
+    '**/Client/*',
+    '--write',
+    '--parser=php',
+    '--single-quote',
+    '--print-width=120'])

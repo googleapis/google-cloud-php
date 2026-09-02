@@ -8,7 +8,7 @@
         "CloudFilestoreManager": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "CloudFilestoreManagerGapicClient",
+                    "libraryClient": "CloudFilestoreManagerClient",
                     "rpcs": {
                         "CreateBackup": {
                             "methods": [

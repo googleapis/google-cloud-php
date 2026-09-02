@@ -274,7 +274,7 @@ class NotificationChannelDescriptor extends \Google\Protobuf\Internal\Message
      */
     public function getSupportedTiers()
     {
-        if ($this->supported_tiers->count() !== 0) {
+        if (count($this->supported_tiers) !== 0) {
             @trigger_error('supported_tiers is deprecated.', E_USER_DEPRECATED);
         }
         return $this->supported_tiers;

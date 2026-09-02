@@ -394,7 +394,7 @@ class AgentGateway extends \Google\Protobuf\Internal\Message
      */
     public function getProtocols()
     {
-        if ($this->protocols->count() !== 0) {
+        if (count($this->protocols) !== 0) {
             @trigger_error('protocols is deprecated.', E_USER_DEPRECATED);
         }
         return $this->protocols;
@@ -411,7 +411,7 @@ class AgentGateway extends \Google\Protobuf\Internal\Message
     public function setProtocols($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::ENUM, \Google\Cloud\NetworkServices\V1\AgentGateway\Protocol::class);
-        if ($arr->count() !== 0) {
+        if (count($arr) !== 0) {
             @trigger_error('protocols is deprecated.', E_USER_DEPRECATED);
         }
         $this->protocols = $arr;

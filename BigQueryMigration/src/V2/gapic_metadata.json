@@ -8,7 +8,7 @@
         "MigrationService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "MigrationServiceGapicClient",
+                    "libraryClient": "MigrationServiceClient",
                     "rpcs": {
                         "CreateMigrationWorkflow": {
                             "methods": [

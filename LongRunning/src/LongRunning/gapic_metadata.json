@@ -8,7 +8,7 @@
         "Operations": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "OperationsGapicClient",
+                    "libraryClient": "OperationsClient",
                     "rpcs": {
                         "CancelOperation": {
                             "methods": [

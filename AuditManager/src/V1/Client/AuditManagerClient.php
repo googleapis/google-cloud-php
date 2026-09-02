@@ -101,8 +101,15 @@ final class AuditManagerClient
     /** The name of the code generator, to be included in the agent header. */
     private const CODEGEN_NAME = 'gapic';
 
-    /** The default scopes required by the service. */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
+    /**
+     * The default scopes required by the service.
+     *
+     * @internal
+     */
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/cloud-auditmanager',
+        'https://www.googleapis.com/auth/cloud-platform',
+    ];
 
     private $operationsClient;
 
@@ -148,7 +155,10 @@ final class AuditManagerClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
+        $options =
+            $methodName && isset($this->descriptors[$methodName]['longRunning'])
+                ? $this->descriptors[$methodName]['longRunning']
+                : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -322,6 +332,28 @@ final class AuditManagerClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * organization_location_audit_report resource.
+     *
+     * @param string $organization
+     * @param string $location
+     * @param string $auditReport
+     *
+     * @return string The formatted organization_location_audit_report resource.
+     */
+    public static function organizationLocationAuditReportName(
+        string $organization,
+        string $location,
+        string $auditReport
+    ): string {
+        return self::getPathTemplate('organizationLocationAuditReport')->render([
+            'organization' => $organization,
+            'location' => $location,
+            'audit_report' => $auditReport,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * organization_location_resource_enrollment_status resource.
      *
      * @param string $organization
@@ -480,6 +512,7 @@ final class AuditManagerClient
      * - folderLocationStandard: folders/{folder}/locations/{location}/standards/{standard}
      * - location: projects/{project}/locations/{location}
      * - organizationLocation: organizations/{organization}/locations/{location}
+     * - organizationLocationAuditReport: organizations/{organization}/locations/{location}/auditReports/{audit_report}
      * - organizationLocationResourceEnrollmentStatus: organizations/{organization}/locations/{location}/resourceEnrollmentStatuses/{resource_enrollment_status}
      * - organizationLocationStandard: organizations/{organization}/locations/{location}/standards/{standard}
      * - projectLocationAuditReport: projects/{project}/locations/{location}/auditReports/{audit_report}
@@ -593,11 +626,11 @@ final class AuditManagerClient
     }
 
     /**
-     * Enrolls the customer resource(folder/project/organization) to the audit
-     * manager service by creating the audit managers Service Agent in customers
-     * workload and granting required permissions to the Service Agent. Please
-     * note that if enrollment request is made on the already enrolled workload
-     * then enrollment is executed overriding the existing set of destinations.
+     * Adds your project, folder, or organization to Audit
+     * Manager. This method creates the Audit Manager service agent in your
+     * workload and grants required permissions to the service agent.
+     * If you make this request on a workload that's already enrolled,
+     * then this method overrides the existing set of destinations.
      *
      * The async variant is {@see AuditManagerClient::enrollResourceAsync()} .
      *
@@ -623,8 +656,9 @@ final class AuditManagerClient
     }
 
     /**
-     * Register the Audit Report generation requests and returns the OperationId
-     * using which the customer can track the report generation progress.
+     * Registers audit report generation requests. This method returns the
+     * operation identifier that you can use to track the report generation
+     * progress.
      *
      * The async variant is {@see AuditManagerClient::generateAuditReportAsync()} .
      *
@@ -650,9 +684,14 @@ final class AuditManagerClient
     }
 
     /**
-     * Generates a demo report highlighting different responsibilities
-     * (Google/Customer/ shared) required to be fulfilled for the customer's
-     * workload to be compliant with the given standard.
+     * Generates an audit scope report for the given standard.
+     *
+     * The report includes the following:
+     *
+     * * The technical attributes and constraints that Audit Manager uses to
+     * verify your compliance with a framework.
+     * * A list of Google Cloud services and resources that are within the
+     * scope of the framework.
      *
      * The async variant is {@see AuditManagerClient::generateAuditScopeReportAsync()}
      * .
@@ -681,7 +720,7 @@ final class AuditManagerClient
     }
 
     /**
-     * Get the overall audit report
+     * Gets the full metadata and findings for an audit report.
      *
      * The async variant is {@see AuditManagerClient::getAuditReportAsync()} .
      *
@@ -707,7 +746,7 @@ final class AuditManagerClient
     }
 
     /**
-     * Get a resource along with its enrollment status.
+     * Gets a resource and its enrollment status.
      *
      * The async variant is
      * {@see AuditManagerClient::getResourceEnrollmentStatusAsync()} .
@@ -736,7 +775,8 @@ final class AuditManagerClient
     }
 
     /**
-     * Lists audit reports in the selected parent scope
+     * Lists the audit reports for the organization, folder, or project that you
+     * specify as the parent scope.
      *
      * The async variant is {@see AuditManagerClient::listAuditReportsAsync()} .
      *
@@ -762,7 +802,8 @@ final class AuditManagerClient
     }
 
     /**
-     * Gets controls needed to be implemented to be compliant to a standard.
+     * Lists the controls that you must implement to become compliant to a
+     * regulatory standard.
      *
      * The async variant is {@see AuditManagerClient::listControlsAsync()} .
      *
@@ -788,7 +829,8 @@ final class AuditManagerClient
     }
 
     /**
-     * Fetches all resources under the parent along with their enrollment.
+     * Lists all the folders and projects in an organization or folder, along with
+     * their enrollments.
      *
      * The async variant is
      * {@see AuditManagerClient::listResourceEnrollmentStatusesAsync()} .
@@ -844,13 +886,21 @@ final class AuditManagerClient
 
     /**
      * Lists information about the supported locations for this service.
-     * This method can be called in two ways:
      *
-     * *   **List all public locations:** Use the path `GET /v1/locations`.
-     * *   **List project-visible locations:** Use the path
-     * `GET /v1/projects/{project_id}/locations`. This may include public
-     * locations as well as private or other locations specifically visible
-     * to the project.
+     * This method lists locations based on the resource scope provided in
+     * the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+     * **Global locations**: If `name` is empty, the method lists the
+     * public locations available to all projects. * **Project-specific
+     * locations**: If `name` follows the format
+     * `projects/{project}`, the method lists locations visible to that
+     * specific project. This includes public, private, or other
+     * project-specific locations enabled for the project.
+     *
+     * For gRPC and client library implementations, the resource name is
+     * passed as the `name` field. For direct service calls, the resource
+     * name is
+     * incorporated into the request path based on the specific service
+     * implementation and version.
      *
      * The async variant is {@see AuditManagerClient::listLocationsAsync()} .
      *

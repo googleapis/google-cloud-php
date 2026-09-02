@@ -50,12 +50,46 @@ class Workspace extends \Google\Protobuf\Internal\Message
      */
     protected $disable_moves = null;
     /**
+     * Optional. Input only. Immutable. The name of the default upstream branch
+     * for all pull/push operations in the remote repository for this workspace.
+     * If empty, the HEAD branch from repository will be used.
+     *
+     * Generated from protobuf field <code>optional string original_branch = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE];</code>
+     */
+    protected $original_branch = null;
+    /**
      * Output only. Metadata indicating whether this resource is user-scoped. For
      * `Workspace` resources, the `user_scoped` field is always `true`.
      *
      * Generated from protobuf field <code>.google.cloud.dataform.v1beta1.PrivateResourceMetadata private_resource_metadata = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $private_resource_metadata = null;
+    /**
+     * Immutable. Controls the enablement of branch checkout for the
+     * workspace.
+     * When set to True, the workspace will be allowed to checkout branches.
+     *
+     * Generated from protobuf field <code>optional bool enable_branch_management = 9 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     */
+    protected $enable_branch_management = null;
+    /**
+     * Optional. Input only. Immutable. The maximum depth of the Git repository to
+     * checkout for this workspace. If defined and greater than 0, the Git
+     * repository will be created as a shallow clone with the given depth,
+     * otherwise a full clone will be performed. This field is available only for
+     * GitHub, Gitlab and 1p repositories with enabled branch management.
+     *
+     * Generated from protobuf field <code>int32 depth = 10 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = INPUT_ONLY];</code>
+     */
+    protected $depth = 0;
+    /**
+     * Output only. If set to true, the workspace was created as a shallow clone.
+     * Will be set to true if the depth field is set to a value greater than 0,
+     * otherwise it will be set to false.
+     *
+     * Generated from protobuf field <code>optional bool shallow = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $shallow = null;
 
     /**
      * Constructor.
@@ -77,9 +111,27 @@ class Workspace extends \Google\Protobuf\Internal\Message
      *     @type bool $disable_moves
      *           Optional. If set to true, workspaces will not be moved if its linked
      *           Repository is moved. Instead, it will be deleted.
+     *     @type string $original_branch
+     *           Optional. Input only. Immutable. The name of the default upstream branch
+     *           for all pull/push operations in the remote repository for this workspace.
+     *           If empty, the HEAD branch from repository will be used.
      *     @type \Google\Cloud\Dataform\V1beta1\PrivateResourceMetadata $private_resource_metadata
      *           Output only. Metadata indicating whether this resource is user-scoped. For
      *           `Workspace` resources, the `user_scoped` field is always `true`.
+     *     @type bool $enable_branch_management
+     *           Immutable. Controls the enablement of branch checkout for the
+     *           workspace.
+     *           When set to True, the workspace will be allowed to checkout branches.
+     *     @type int $depth
+     *           Optional. Input only. Immutable. The maximum depth of the Git repository to
+     *           checkout for this workspace. If defined and greater than 0, the Git
+     *           repository will be created as a shallow clone with the given depth,
+     *           otherwise a full clone will be performed. This field is available only for
+     *           GitHub, Gitlab and 1p repositories with enabled branch management.
+     *     @type bool $shallow
+     *           Output only. If set to true, the workspace was created as a shallow clone.
+     *           Will be set to true if the depth field is set to a value greater than 0,
+     *           otherwise it will be set to false.
      * }
      */
     public function __construct($data = NULL) {
@@ -266,6 +318,46 @@ class Workspace extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. Input only. Immutable. The name of the default upstream branch
+     * for all pull/push operations in the remote repository for this workspace.
+     * If empty, the HEAD branch from repository will be used.
+     *
+     * Generated from protobuf field <code>optional string original_branch = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * @return string
+     */
+    public function getOriginalBranch()
+    {
+        return isset($this->original_branch) ? $this->original_branch : '';
+    }
+
+    public function hasOriginalBranch()
+    {
+        return isset($this->original_branch);
+    }
+
+    public function clearOriginalBranch()
+    {
+        unset($this->original_branch);
+    }
+
+    /**
+     * Optional. Input only. Immutable. The name of the default upstream branch
+     * for all pull/push operations in the remote repository for this workspace.
+     * If empty, the HEAD branch from repository will be used.
+     *
+     * Generated from protobuf field <code>optional string original_branch = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setOriginalBranch($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->original_branch = $var;
+
+        return $this;
+    }
+
+    /**
      * Output only. Metadata indicating whether this resource is user-scoped. For
      * `Workspace` resources, the `user_scoped` field is always `true`.
      *
@@ -299,6 +391,120 @@ class Workspace extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dataform\V1beta1\PrivateResourceMetadata::class);
         $this->private_resource_metadata = $var;
+
+        return $this;
+    }
+
+    /**
+     * Immutable. Controls the enablement of branch checkout for the
+     * workspace.
+     * When set to True, the workspace will be allowed to checkout branches.
+     *
+     * Generated from protobuf field <code>optional bool enable_branch_management = 9 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @return bool
+     */
+    public function getEnableBranchManagement()
+    {
+        return isset($this->enable_branch_management) ? $this->enable_branch_management : false;
+    }
+
+    public function hasEnableBranchManagement()
+    {
+        return isset($this->enable_branch_management);
+    }
+
+    public function clearEnableBranchManagement()
+    {
+        unset($this->enable_branch_management);
+    }
+
+    /**
+     * Immutable. Controls the enablement of branch checkout for the
+     * workspace.
+     * When set to True, the workspace will be allowed to checkout branches.
+     *
+     * Generated from protobuf field <code>optional bool enable_branch_management = 9 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableBranchManagement($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_branch_management = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Input only. Immutable. The maximum depth of the Git repository to
+     * checkout for this workspace. If defined and greater than 0, the Git
+     * repository will be created as a shallow clone with the given depth,
+     * otherwise a full clone will be performed. This field is available only for
+     * GitHub, Gitlab and 1p repositories with enabled branch management.
+     *
+     * Generated from protobuf field <code>int32 depth = 10 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = INPUT_ONLY];</code>
+     * @return int
+     */
+    public function getDepth()
+    {
+        return $this->depth;
+    }
+
+    /**
+     * Optional. Input only. Immutable. The maximum depth of the Git repository to
+     * checkout for this workspace. If defined and greater than 0, the Git
+     * repository will be created as a shallow clone with the given depth,
+     * otherwise a full clone will be performed. This field is available only for
+     * GitHub, Gitlab and 1p repositories with enabled branch management.
+     *
+     * Generated from protobuf field <code>int32 depth = 10 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = INPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setDepth($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->depth = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. If set to true, the workspace was created as a shallow clone.
+     * Will be set to true if the depth field is set to a value greater than 0,
+     * otherwise it will be set to false.
+     *
+     * Generated from protobuf field <code>optional bool shallow = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getShallow()
+    {
+        return isset($this->shallow) ? $this->shallow : false;
+    }
+
+    public function hasShallow()
+    {
+        return isset($this->shallow);
+    }
+
+    public function clearShallow()
+    {
+        unset($this->shallow);
+    }
+
+    /**
+     * Output only. If set to true, the workspace was created as a shallow clone.
+     * Will be set to true if the depth field is set to a value greater than 0,
+     * otherwise it will be set to false.
+     *
+     * Generated from protobuf field <code>optional bool shallow = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setShallow($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->shallow = $var;
 
         return $this;
     }

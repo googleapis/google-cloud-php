@@ -33,7 +33,7 @@ use Google\Developers\DeveloperKnowledge\V1\SearchDocumentChunksRequest;
  * Searches for developer knowledge across Google's developer documentation.
  * Returns [DocumentChunk][google.developers.knowledge.v1.DocumentChunk]s
  * based on the user's query. There may be many chunks from the same
- * [Document][google.developers.knowledge.v1.Document].  To retrieve full
+ * [Document][google.developers.knowledge.v1.Document]. To retrieve full
  * documents, use
  * [DeveloperKnowledge.GetDocument][google.developers.knowledge.v1.DeveloperKnowledge.GetDocument]
  * or
@@ -44,7 +44,9 @@ use Google\Developers\DeveloperKnowledge\V1\SearchDocumentChunksRequest;
  * [SearchDocumentChunksResponse.results][google.developers.knowledge.v1.SearchDocumentChunksResponse.results].
  *
  * @param string $query Provides the raw query string provided by the user, such as "How
- *                      to create a Cloud Storage bucket?".
+ *                      to create a Cloud Storage bucket?". The query must not exceed 500
+ *                      characters; values longer than 500 characters will result in an
+ *                      `INVALID_ARGUMENT` error.
  */
 function search_document_chunks_sample(string $query): void
 {

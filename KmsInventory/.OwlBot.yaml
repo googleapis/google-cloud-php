@@ -1,4 +1,0 @@
-deep-copy-regex:
-    - source: /google/cloud/kms/inventory/(v1)/.*-php/(.*)
-      dest: /owl-bot-staging/KmsInventory/$1/$2
-api-name: KmsInventory

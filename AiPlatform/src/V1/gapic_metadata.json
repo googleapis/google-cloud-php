@@ -8,7 +8,7 @@
         "DataFoundryService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "DataFoundryServiceGapicClient",
+                    "libraryClient": "DataFoundryServiceClient",
                     "rpcs": {
                         "GenerateSyntheticData": {
                             "methods": [
@@ -47,7 +47,7 @@
         "DatasetService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "DatasetServiceGapicClient",
+                    "libraryClient": "DatasetServiceClient",
                     "rpcs": {
                         "CreateDataset": {
                             "methods": [
@@ -176,7 +176,7 @@
         "DeploymentResourcePoolService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "DeploymentResourcePoolServiceGapicClient",
+                    "libraryClient": "DeploymentResourcePoolServiceClient",
                     "rpcs": {
                         "CreateDeploymentResourcePool": {
                             "methods": [
@@ -240,7 +240,7 @@
         "EndpointService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "EndpointServiceGapicClient",
+                    "libraryClient": "EndpointServiceClient",
                     "rpcs": {
                         "CreateEndpoint": {
                             "methods": [
@@ -319,7 +319,7 @@
         "EvaluationService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "EvaluationServiceGapicClient",
+                    "libraryClient": "EvaluationServiceClient",
                     "rpcs": {
                         "EvaluateInstances": {
                             "methods": [
@@ -358,7 +358,7 @@
         "FeatureOnlineStoreAdminService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "FeatureOnlineStoreAdminServiceGapicClient",
+                    "libraryClient": "FeatureOnlineStoreAdminServiceClient",
                     "rpcs": {
                         "CreateFeatureOnlineStore": {
                             "methods": [
@@ -457,7 +457,7 @@
         "FeaturestoreOnlineServingService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "FeaturestoreOnlineServingServiceGapicClient",
+                    "libraryClient": "FeaturestoreOnlineServingServiceClient",
                     "rpcs": {
                         "ReadFeatureValues": {
                             "methods": [
@@ -506,7 +506,7 @@
         "FeatureOnlineStoreService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "FeatureOnlineStoreServiceGapicClient",
+                    "libraryClient": "FeatureOnlineStoreServiceClient",
                     "rpcs": {
                         "FeatureViewDirectWrite": {
                             "methods": [
@@ -560,7 +560,7 @@
         "FeaturestoreService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "FeaturestoreServiceGapicClient",
+                    "libraryClient": "FeaturestoreServiceClient",
                     "rpcs": {
                         "BatchCreateFeatures": {
                             "methods": [
@@ -699,7 +699,7 @@
         "FeatureRegistryService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "FeatureRegistryServiceGapicClient",
+                    "libraryClient": "FeatureRegistryServiceClient",
                     "rpcs": {
                         "BatchCreateFeatures": {
                             "methods": [
@@ -788,7 +788,7 @@
         "GenAiCacheService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "GenAiCacheServiceGapicClient",
+                    "libraryClient": "GenAiCacheServiceClient",
                     "rpcs": {
                         "CreateCachedContent": {
                             "methods": [
@@ -847,7 +847,7 @@
         "GenAiTuningService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "GenAiTuningServiceGapicClient",
+                    "libraryClient": "GenAiTuningServiceClient",
                     "rpcs": {
                         "CancelTuningJob": {
                             "methods": [
@@ -906,7 +906,7 @@
         "IndexEndpointService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "IndexEndpointServiceGapicClient",
+                    "libraryClient": "IndexEndpointServiceClient",
                     "rpcs": {
                         "CreateIndexEndpoint": {
                             "methods": [
@@ -980,7 +980,7 @@
         "IndexService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "IndexServiceGapicClient",
+                    "libraryClient": "IndexServiceClient",
                     "rpcs": {
                         "CreateIndex": {
                             "methods": [
@@ -1049,7 +1049,7 @@
         "JobService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "JobServiceGapicClient",
+                    "libraryClient": "JobServiceClient",
                     "rpcs": {
                         "CancelBatchPredictionJob": {
                             "methods": [
@@ -1258,7 +1258,7 @@
         "PredictionService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "PredictionServiceGapicClient",
+                    "libraryClient": "PredictionServiceClient",
                     "rpcs": {
                         "DirectPredict": {
                             "methods": [
@@ -1362,7 +1362,7 @@
         "LlmUtilityService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "LlmUtilityServiceGapicClient",
+                    "libraryClient": "LlmUtilityServiceClient",
                     "rpcs": {
                         "ComputeTokens": {
                             "methods": [
@@ -1406,7 +1406,7 @@
         "MatchService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "MatchServiceGapicClient",
+                    "libraryClient": "MatchServiceClient",
                     "rpcs": {
                         "FindNeighbors": {
                             "methods": [
@@ -1450,7 +1450,7 @@
         "MetadataService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "MetadataServiceGapicClient",
+                    "libraryClient": "MetadataServiceClient",
                     "rpcs": {
                         "AddContextArtifactsAndExecutions": {
                             "methods": [
@@ -1644,7 +1644,7 @@
         "MigrationService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "MigrationServiceGapicClient",
+                    "libraryClient": "MigrationServiceClient",
                     "rpcs": {
                         "BatchMigrateResources": {
                             "methods": [
@@ -1688,7 +1688,7 @@
         "ModelGardenService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ModelGardenServiceGapicClient",
+                    "libraryClient": "ModelGardenServiceClient",
                     "rpcs": {
                         "Deploy": {
                             "methods": [
@@ -1732,7 +1732,7 @@
         "ModelService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ModelServiceGapicClient",
+                    "libraryClient": "ModelServiceClient",
                     "rpcs": {
                         "BatchImportEvaluatedAnnotations": {
                             "methods": [
@@ -1861,7 +1861,7 @@
         "NotebookService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "NotebookServiceGapicClient",
+                    "libraryClient": "NotebookServiceClient",
                     "rpcs": {
                         "AssignNotebookRuntime": {
                             "methods": [
@@ -1975,7 +1975,7 @@
         "PersistentResourceService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "PersistentResourceServiceGapicClient",
+                    "libraryClient": "PersistentResourceServiceClient",
                     "rpcs": {
                         "CreatePersistentResource": {
                             "methods": [
@@ -2039,7 +2039,7 @@
         "PipelineService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "PipelineServiceGapicClient",
+                    "libraryClient": "PipelineServiceClient",
                     "rpcs": {
                         "BatchCancelPipelineJobs": {
                             "methods": [
@@ -2133,7 +2133,7 @@
         "ReasoningEngineExecutionService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ReasoningEngineExecutionServiceGapicClient",
+                    "libraryClient": "ReasoningEngineExecutionServiceClient",
                     "rpcs": {
                         "AsyncQueryReasoningEngine": {
                             "methods": [
@@ -2187,7 +2187,7 @@
         "ReasoningEngineService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ReasoningEngineServiceGapicClient",
+                    "libraryClient": "ReasoningEngineServiceClient",
                     "rpcs": {
                         "CreateReasoningEngine": {
                             "methods": [
@@ -2246,7 +2246,7 @@
         "ScheduleService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ScheduleServiceGapicClient",
+                    "libraryClient": "ScheduleServiceClient",
                     "rpcs": {
                         "CreateSchedule": {
                             "methods": [
@@ -2315,7 +2315,7 @@
         "SessionService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "SessionServiceGapicClient",
+                    "libraryClient": "SessionServiceClient",
                     "rpcs": {
                         "AppendEvent": {
                             "methods": [
@@ -2384,7 +2384,7 @@
         "SpecialistPoolService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "SpecialistPoolServiceGapicClient",
+                    "libraryClient": "SpecialistPoolServiceClient",
                     "rpcs": {
                         "CreateSpecialistPool": {
                             "methods": [
@@ -2443,7 +2443,7 @@
         "TensorboardService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "TensorboardServiceGapicClient",
+                    "libraryClient": "TensorboardServiceClient",
                     "rpcs": {
                         "BatchCreateTensorboardRuns": {
                             "methods": [
@@ -2627,7 +2627,7 @@
         "VertexRagDataService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "VertexRagDataServiceGapicClient",
+                    "libraryClient": "VertexRagDataServiceClient",
                     "rpcs": {
                         "CreateRagCorpus": {
                             "methods": [
@@ -2721,7 +2721,7 @@
         "VertexRagService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "VertexRagServiceGapicClient",
+                    "libraryClient": "VertexRagServiceClient",
                     "rpcs": {
                         "AskContexts": {
                             "methods": [
@@ -2780,7 +2780,7 @@
         "VizierService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "VizierServiceGapicClient",
+                    "libraryClient": "VizierServiceClient",
                     "rpcs": {
                         "AddTrialMeasurement": {
                             "methods": [

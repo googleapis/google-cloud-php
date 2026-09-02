@@ -7,8 +7,9 @@ namespace Google\Cloud\RecaptchaEnterprise\V1\RiskAnalysis;
 use UnexpectedValueException;
 
 /**
- * Challenge information for POLICY_BASED_CHALLENGE and INVISIBLE keys.
- * Ensure that applications can handle values not explicitly listed.
+ * Challenge information for Universal, `POLICY_BASED_CHALLENGE` and
+ * `INVISIBLE` keys. Ensure that applications can handle values not explicitly
+ * listed.
  *
  * Protobuf type <code>google.cloud.recaptchaenterprise.v1.RiskAnalysis.Challenge</code>
  */

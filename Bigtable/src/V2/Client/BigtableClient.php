@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -108,7 +108,11 @@ final class BigtableClient
     /** The name of the code generator, to be included in the agent header. */
     private const CODEGEN_NAME = 'gapic';
 
-    /** The default scopes required by the service. */
+    /**
+     * The default scopes required by the service.
+     *
+     * @internal
+     */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/bigtable.data',
         'https://www.googleapis.com/auth/bigtable.data.readonly',
@@ -148,8 +152,12 @@ final class BigtableClient
      *
      * @return string The formatted authorized_view resource.
      */
-    public static function authorizedViewName(string $project, string $instance, string $table, string $authorizedView): string
-    {
+    public static function authorizedViewName(
+        string $project,
+        string $instance,
+        string $table,
+        string $authorizedView
+    ): string {
         return self::getPathTemplate('authorizedView')->render([
             'project' => $project,
             'instance' => $instance,
@@ -351,8 +359,10 @@ final class BigtableClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function checkAndMutateRow(CheckAndMutateRowRequest $request, array $callOptions = []): CheckAndMutateRowResponse
-    {
+    public function checkAndMutateRow(
+        CheckAndMutateRowRequest $request,
+        array $callOptions = []
+    ): CheckAndMutateRowResponse {
         return $this->startApiCall('CheckAndMutateRow', $request, $callOptions)->wait();
     }
 
@@ -398,8 +408,10 @@ final class BigtableClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function generateInitialChangeStreamPartitions(GenerateInitialChangeStreamPartitionsRequest $request, array $callOptions = []): ServerStream
-    {
+    public function generateInitialChangeStreamPartitions(
+        GenerateInitialChangeStreamPartitionsRequest $request,
+        array $callOptions = []
+    ): ServerStream {
         return $this->startApiCall('GenerateInitialChangeStreamPartitions', $request, $callOptions);
     }
 
@@ -426,8 +438,10 @@ final class BigtableClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getClientConfiguration(GetClientConfigurationRequest $request, array $callOptions = []): ClientConfiguration
-    {
+    public function getClientConfiguration(
+        GetClientConfigurationRequest $request,
+        array $callOptions = []
+    ): ClientConfiguration {
         return $this->startApiCall('GetClientConfiguration', $request, $callOptions)->wait();
     }
 
@@ -654,8 +668,10 @@ final class BigtableClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function readModifyWriteRow(ReadModifyWriteRowRequest $request, array $callOptions = []): ReadModifyWriteRowResponse
-    {
+    public function readModifyWriteRow(
+        ReadModifyWriteRowRequest $request,
+        array $callOptions = []
+    ): ReadModifyWriteRowResponse {
         return $this->startApiCall('ReadModifyWriteRow', $request, $callOptions)->wait();
     }
 

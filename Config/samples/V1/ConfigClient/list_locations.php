@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,9 +33,8 @@ use Google\Cloud\Location\Location;
  * Lists information about the supported locations for this service.
  *
  * This method lists locations based on the resource scope provided in
- * the [ListLocationsRequest.name] field:
- *
- * * **Global locations**: If `name` is empty, the method lists the
+ * the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+ * **Global locations**: If `name` is empty, the method lists the
  * public locations available to all projects. * **Project-specific
  * locations**: If `name` follows the format
  * `projects/{project}`, the method lists locations visible to that

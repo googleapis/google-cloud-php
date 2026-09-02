@@ -31,10 +31,11 @@ class SearchDocumentChunksResponse extends \Google\Protobuf\Internal\Message
      */
     private $results;
     /**
-     * Optional. Provides a token that can be sent as `page_token` to retrieve the
-     * next page. If this field is omitted, there are no subsequent pages.
+     * Provides a token that can be sent as `page_token` to retrieve the next
+     * page.
+     * If this field is omitted, there are no subsequent pages.
      *
-     * Generated from protobuf field <code>string next_page_token = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
     protected $next_page_token = '';
 
@@ -55,8 +56,9 @@ class SearchDocumentChunksResponse extends \Google\Protobuf\Internal\Message
      *           [DeveloperKnowledge.BatchGetDocuments][google.developers.knowledge.v1.DeveloperKnowledge.BatchGetDocuments]
      *           to retrieve the full document content.
      *     @type string $next_page_token
-     *           Optional. Provides a token that can be sent as `page_token` to retrieve the
-     *           next page. If this field is omitted, there are no subsequent pages.
+     *           Provides a token that can be sent as `page_token` to retrieve the next
+     *           page.
+     *           If this field is omitted, there are no subsequent pages.
      * }
      */
     public function __construct($data = NULL) {
@@ -107,10 +109,11 @@ class SearchDocumentChunksResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Provides a token that can be sent as `page_token` to retrieve the
-     * next page. If this field is omitted, there are no subsequent pages.
+     * Provides a token that can be sent as `page_token` to retrieve the next
+     * page.
+     * If this field is omitted, there are no subsequent pages.
      *
-     * Generated from protobuf field <code>string next_page_token = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @return string
      */
     public function getNextPageToken()
@@ -119,10 +122,11 @@ class SearchDocumentChunksResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Provides a token that can be sent as `page_token` to retrieve the
-     * next page. If this field is omitted, there are no subsequent pages.
+     * Provides a token that can be sent as `page_token` to retrieve the next
+     * page.
+     * If this field is omitted, there are no subsequent pages.
      *
-     * Generated from protobuf field <code>string next_page_token = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @param string $var
      * @return $this
      */

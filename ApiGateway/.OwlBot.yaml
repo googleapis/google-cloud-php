@@ -1,4 +1,0 @@
-deep-copy-regex:
-    - source: /google/cloud/apigateway/(v1)/.*-php/(.*)
-      dest: /owl-bot-staging/ApiGateway/$1/$2
-api-name: ApiGateway

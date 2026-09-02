@@ -67,10 +67,10 @@ class Assignment extends \Google\Protobuf\Internal\Message
     protected $scheduling_policy = null;
     /**
      * Optional. Represents the principal for this assignment. If not empty, jobs
-     * run by this principal will utilize the associated reservation. Otherwise,
-     * jobs will fall back to using the reservation assigned to the project,
-     * folder, or organization (in that order). If no reservation is assigned at
-     * any of these levels, on-demand capacity will be used.
+     * run by this principal utilize the associated reservation. Otherwise, jobs
+     * fall back to using the reservation assigned to the project, folder,
+     * or organization, in that order. If no reservation is assigned at any of
+     * these levels, on-demand capacity is used.
      * The supported formats are:
      * * `principal://goog/subject/USER_EMAIL_ADDRESS` for users,
      * * `principal://iam.googleapis.com/projects/-/serviceAccounts/SA_EMAIL_ADDRESS`
@@ -78,11 +78,31 @@ class Assignment extends \Google\Protobuf\Internal\Message
      * * `principal://iam.googleapis.com/projects/PROJECT_NUMBER/locations/global/workloadIdentityPools/POOL_ID/subject/SUBJECT_ID`
      *   for workload identity pool identities.
      * * The special value `unknown_or_deleted_user` represents principals which
-     *   cannot be read from the user info service, for example deleted users.
+     *   cannot be read from the user info service, for example, deleted users.
      *
      * Generated from protobuf field <code>string principal = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $principal = '';
+    /**
+     * Optional. Specifies the priority precedence for this assignment. Used to
+     * resolve ambiguity when multiple assignments match a single job. Higher
+     * numerical values represent higher priority (e.g., 20 is higher than 10). If
+     * unspecified, it defaults to 0. Multiple assignments can share the same
+     * precedence, but it is recommended to use unique precedence values for
+     * assignments within the same assignee scope.
+     *
+     * Generated from protobuf field <code>int64 precedence = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $precedence = 0;
+    /**
+     * Optional. Common Expression Language (CEL) condition that defines the
+     * matching criteria for this assignment.
+     * The condition must resolve to a boolean value.
+     * Supported variables will be added later.
+     *
+     * Generated from protobuf field <code>.google.type.Expr condition = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $condition = null;
 
     /**
      * Constructor.
@@ -116,10 +136,10 @@ class Assignment extends \Google\Protobuf\Internal\Message
      *           This feature is not yet generally available.
      *     @type string $principal
      *           Optional. Represents the principal for this assignment. If not empty, jobs
-     *           run by this principal will utilize the associated reservation. Otherwise,
-     *           jobs will fall back to using the reservation assigned to the project,
-     *           folder, or organization (in that order). If no reservation is assigned at
-     *           any of these levels, on-demand capacity will be used.
+     *           run by this principal utilize the associated reservation. Otherwise, jobs
+     *           fall back to using the reservation assigned to the project, folder,
+     *           or organization, in that order. If no reservation is assigned at any of
+     *           these levels, on-demand capacity is used.
      *           The supported formats are:
      *           * `principal://goog/subject/USER_EMAIL_ADDRESS` for users,
      *           * `principal://iam.googleapis.com/projects/-/serviceAccounts/SA_EMAIL_ADDRESS`
@@ -127,7 +147,19 @@ class Assignment extends \Google\Protobuf\Internal\Message
      *           * `principal://iam.googleapis.com/projects/PROJECT_NUMBER/locations/global/workloadIdentityPools/POOL_ID/subject/SUBJECT_ID`
      *             for workload identity pool identities.
      *           * The special value `unknown_or_deleted_user` represents principals which
-     *             cannot be read from the user info service, for example deleted users.
+     *             cannot be read from the user info service, for example, deleted users.
+     *     @type int|string $precedence
+     *           Optional. Specifies the priority precedence for this assignment. Used to
+     *           resolve ambiguity when multiple assignments match a single job. Higher
+     *           numerical values represent higher priority (e.g., 20 is higher than 10). If
+     *           unspecified, it defaults to 0. Multiple assignments can share the same
+     *           precedence, but it is recommended to use unique precedence values for
+     *           assignments within the same assignee scope.
+     *     @type \Google\Type\Expr $condition
+     *           Optional. Common Expression Language (CEL) condition that defines the
+     *           matching criteria for this assignment.
+     *           The condition must resolve to a boolean value.
+     *           Supported variables will be added later.
      * }
      */
     public function __construct($data = NULL) {
@@ -333,10 +365,10 @@ class Assignment extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Represents the principal for this assignment. If not empty, jobs
-     * run by this principal will utilize the associated reservation. Otherwise,
-     * jobs will fall back to using the reservation assigned to the project,
-     * folder, or organization (in that order). If no reservation is assigned at
-     * any of these levels, on-demand capacity will be used.
+     * run by this principal utilize the associated reservation. Otherwise, jobs
+     * fall back to using the reservation assigned to the project, folder,
+     * or organization, in that order. If no reservation is assigned at any of
+     * these levels, on-demand capacity is used.
      * The supported formats are:
      * * `principal://goog/subject/USER_EMAIL_ADDRESS` for users,
      * * `principal://iam.googleapis.com/projects/-/serviceAccounts/SA_EMAIL_ADDRESS`
@@ -344,7 +376,7 @@ class Assignment extends \Google\Protobuf\Internal\Message
      * * `principal://iam.googleapis.com/projects/PROJECT_NUMBER/locations/global/workloadIdentityPools/POOL_ID/subject/SUBJECT_ID`
      *   for workload identity pool identities.
      * * The special value `unknown_or_deleted_user` represents principals which
-     *   cannot be read from the user info service, for example deleted users.
+     *   cannot be read from the user info service, for example, deleted users.
      *
      * Generated from protobuf field <code>string principal = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -356,10 +388,10 @@ class Assignment extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Represents the principal for this assignment. If not empty, jobs
-     * run by this principal will utilize the associated reservation. Otherwise,
-     * jobs will fall back to using the reservation assigned to the project,
-     * folder, or organization (in that order). If no reservation is assigned at
-     * any of these levels, on-demand capacity will be used.
+     * run by this principal utilize the associated reservation. Otherwise, jobs
+     * fall back to using the reservation assigned to the project, folder,
+     * or organization, in that order. If no reservation is assigned at any of
+     * these levels, on-demand capacity is used.
      * The supported formats are:
      * * `principal://goog/subject/USER_EMAIL_ADDRESS` for users,
      * * `principal://iam.googleapis.com/projects/-/serviceAccounts/SA_EMAIL_ADDRESS`
@@ -367,7 +399,7 @@ class Assignment extends \Google\Protobuf\Internal\Message
      * * `principal://iam.googleapis.com/projects/PROJECT_NUMBER/locations/global/workloadIdentityPools/POOL_ID/subject/SUBJECT_ID`
      *   for workload identity pool identities.
      * * The special value `unknown_or_deleted_user` represents principals which
-     *   cannot be read from the user info service, for example deleted users.
+     *   cannot be read from the user info service, for example, deleted users.
      *
      * Generated from protobuf field <code>string principal = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -377,6 +409,84 @@ class Assignment extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->principal = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies the priority precedence for this assignment. Used to
+     * resolve ambiguity when multiple assignments match a single job. Higher
+     * numerical values represent higher priority (e.g., 20 is higher than 10). If
+     * unspecified, it defaults to 0. Multiple assignments can share the same
+     * precedence, but it is recommended to use unique precedence values for
+     * assignments within the same assignee scope.
+     *
+     * Generated from protobuf field <code>int64 precedence = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int|string
+     */
+    public function getPrecedence()
+    {
+        return $this->precedence;
+    }
+
+    /**
+     * Optional. Specifies the priority precedence for this assignment. Used to
+     * resolve ambiguity when multiple assignments match a single job. Higher
+     * numerical values represent higher priority (e.g., 20 is higher than 10). If
+     * unspecified, it defaults to 0. Multiple assignments can share the same
+     * precedence, but it is recommended to use unique precedence values for
+     * assignments within the same assignee scope.
+     *
+     * Generated from protobuf field <code>int64 precedence = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setPrecedence($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->precedence = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Common Expression Language (CEL) condition that defines the
+     * matching criteria for this assignment.
+     * The condition must resolve to a boolean value.
+     * Supported variables will be added later.
+     *
+     * Generated from protobuf field <code>.google.type.Expr condition = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Type\Expr|null
+     */
+    public function getCondition()
+    {
+        return $this->condition;
+    }
+
+    public function hasCondition()
+    {
+        return isset($this->condition);
+    }
+
+    public function clearCondition()
+    {
+        unset($this->condition);
+    }
+
+    /**
+     * Optional. Common Expression Language (CEL) condition that defines the
+     * matching criteria for this assignment.
+     * The condition must resolve to a boolean value.
+     * Supported variables will be added later.
+     *
+     * Generated from protobuf field <code>.google.type.Expr condition = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Type\Expr $var
+     * @return $this
+     */
+    public function setCondition($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Type\Expr::class);
+        $this->condition = $var;
 
         return $this;
     }

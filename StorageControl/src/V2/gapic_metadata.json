@@ -8,7 +8,7 @@
         "StorageControl": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "StorageControlGapicClient",
+                    "libraryClient": "StorageControlClient",
                     "rpcs": {
                         "CreateAnywhereCache": {
                             "methods": [
@@ -48,6 +48,11 @@
                         "DisableAnywhereCache": {
                             "methods": [
                                 "disableAnywhereCache"
+                            ]
+                        },
+                        "DisableRapidCache": {
+                            "methods": [
+                                "disableRapidCache"
                             ]
                         },
                         "GetAnywhereCache": {
@@ -193,6 +198,11 @@
                         "UpdateRapidCache": {
                             "methods": [
                                 "updateRapidCache"
+                            ]
+                        },
+                        "ViewObjectFullContext": {
+                            "methods": [
+                                "viewObjectFullContext"
                             ]
                         }
                     }

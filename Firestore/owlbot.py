@@ -44,7 +44,7 @@ php.owlbot_main(
 )
 
 # Firestore Admin also lives here
-admin_library = Path(f"../{php.STAGING_DIR}/Firestore/v1/Admin").resolve()
+admin_library = Path(f"../{php.STAGING_DIR}/Firestore/Admin/v1").resolve()
 
 # copy all src
 s.move(
@@ -73,7 +73,7 @@ yearFixes = [
             "tests/**/V1beta1/*Test.php"
         ]
     }, {
-        "year": "2019",
+        "year": "2026",
         "files": [
             "src/V1/Gapic/*GapicClient.php",
             "src/V1/*Client.php",

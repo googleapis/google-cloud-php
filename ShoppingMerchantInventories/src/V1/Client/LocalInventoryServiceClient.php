@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -80,10 +80,12 @@ final class LocalInventoryServiceClient
     /** The name of the code generator, to be included in the agent header. */
     private const CODEGEN_NAME = 'gapic';
 
-    /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/content',
-    ];
+    /**
+     * The default scopes required by the service.
+     *
+     * @internal
+     */
+    public static $serviceScopes = ['https://www.googleapis.com/auth/content'];
 
     private static function getClientDefaults()
     {
@@ -341,8 +343,10 @@ final class LocalInventoryServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listLocalInventories(ListLocalInventoriesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listLocalInventories(
+        ListLocalInventoriesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListLocalInventories', $request, $callOptions);
     }
 }

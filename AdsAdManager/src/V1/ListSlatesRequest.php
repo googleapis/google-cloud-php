@@ -43,12 +43,10 @@ class ListSlatesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Expression to filter the response.
      *  See syntax details at https://google.aip.dev/160
-     * <b>Filterable fields:</b>
-     * <ul style="list-style-type:none">
-     *   <li><code>displayName</code></li>
-     *   <li><code>name</code></li>
-     *   <li><code>status</code></li>
-     * </ul>
+     * **Filterable fields:**
+     * * `displayName`
+     * * `name`
+     * * `status`
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -104,12 +102,10 @@ class ListSlatesRequest extends \Google\Protobuf\Internal\Message
      *     @type string $filter
      *           Optional. Expression to filter the response.
      *            See syntax details at https://google.aip.dev/160
-     *           <b>Filterable fields:</b>
-     *           <ul style="list-style-type:none">
-     *             <li><code>displayName</code></li>
-     *             <li><code>name</code></li>
-     *             <li><code>status</code></li>
-     *           </ul>
+     *           **Filterable fields:**
+     *           * `displayName`
+     *           * `name`
+     *           * `status`
      *     @type string $order_by
      *           Optional. Expression to specify sorting order.
      *           See syntax details at https://google.aip.dev/132#ordering
@@ -217,12 +213,10 @@ class ListSlatesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Expression to filter the response.
      *  See syntax details at https://google.aip.dev/160
-     * <b>Filterable fields:</b>
-     * <ul style="list-style-type:none">
-     *   <li><code>displayName</code></li>
-     *   <li><code>name</code></li>
-     *   <li><code>status</code></li>
-     * </ul>
+     * **Filterable fields:**
+     * * `displayName`
+     * * `name`
+     * * `status`
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -235,12 +229,10 @@ class ListSlatesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Expression to filter the response.
      *  See syntax details at https://google.aip.dev/160
-     * <b>Filterable fields:</b>
-     * <ul style="list-style-type:none">
-     *   <li><code>displayName</code></li>
-     *   <li><code>name</code></li>
-     *   <li><code>status</code></li>
-     * </ul>
+     * **Filterable fields:**
+     * * `displayName`
+     * * `name`
+     * * `status`
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

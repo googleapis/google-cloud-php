@@ -1,5 +1,4202 @@
 # Changelog
 
+## 0.344.0
+
+<details><summary>google/cloud-access-approval 2.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/access-context-manager 1.2.1</summary>
+
+
+
+</details>
+
+<details><summary>googleads/ad-manager 0.12.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* [AdsAdManager] remove orphaned files from previous proto refactors ([#9519](https://github.com/googleapis/google-cloud-php/issues/9519))
+
+### Features
+
+* [AdsAdManager] Added methods for activation, deactivation, approval, rejection, and population of audience segments ([#9585](https://github.com/googleapis/google-cloud-php/issues/9585)) ([4257f30](https://github.com/googleapis/google-cloud-php/commit/4257f30415af019b5c1dfeb60b85e277e003e0d1))
+
+
+### Chores
+
+* [AdsAdManager] remove orphaned files from previous proto refactors ([#9519](https://github.com/googleapis/google-cloud-php/issues/9519)) ([f5d7b3b](https://github.com/googleapis/google-cloud-php/commit/f5d7b3beb57b82cb7c736de25b6504cf16d1dfe1))
+
+</details>
+
+<details><summary>googleads/data-manager 0.8.1</summary>
+
+
+
+</details>
+
+<details><summary>googleads/marketingplatform-admin 0.5.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-advisorynotifications 1.3.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-ai-platform 1.66.0</summary>
+
+
+
+### Features
+
+* [AiPlatform] add enable_zero_data_retention to Tool.ParallelAiSearch ([#9567](https://github.com/googleapis/google-cloud-php/issues/9567)) ([14e2eea](https://github.com/googleapis/google-cloud-php/commit/14e2eea6f9f18ee2dfe821736ab05d615fcafb96))
+
+</details>
+
+<details><summary>google/cloud-alloydb 1.8.2</summary>
+
+
+
+</details>
+
+<details><summary>google/analytics-admin 0.34.1</summary>
+
+
+
+</details>
+
+<details><summary>google/analytics-data 0.26.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* [AnalyticsData] remove orphaned files from previous proto refactors ([#9521](https://github.com/googleapis/google-cloud-php/issues/9521))
+
+### Chores
+
+* [AnalyticsData] remove orphaned files from previous proto refactors ([#9521](https://github.com/googleapis/google-cloud-php/issues/9521)) ([79f9e76](https://github.com/googleapis/google-cloud-php/commit/79f9e76313d94b1a2dacd17d57928b37ce617ea8))
+
+</details>
+
+<details><summary>google/cloud-api-gateway 2.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-apihub 0.5.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-api-keys 1.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-apiregistry 0.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-apigee-connect 2.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-appengine-admin 2.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-apphub 0.5.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-appoptimize 0.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/apps-chat 0.26.1</summary>
+
+
+
+</details>
+
+<details><summary>google/apps-events-subscriptions 0.5.1</summary>
+
+
+
+</details>
+
+<details><summary>google/apps-meet 0.6.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-artifact-registry 1.8.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-asset 2.4.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-assured-workloads 1.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-auditmanager 0.3.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-automl 2.2.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-backupdr 0.14.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-bare-metal-solution 1.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-batch 1.6.0</summary>
+
+
+
+### Features
+
+* [Batch] added new NicType field to job ([#9589](https://github.com/googleapis/google-cloud-php/issues/9589)) ([84ce0fb](https://github.com/googleapis/google-cloud-php/commit/84ce0fb97ec0c864d3296e2e469827db947b03e6))
+
+</details>
+
+<details><summary>google/cloud-beyondcorp-appconnections 1.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-beyondcorp-appconnectors 1.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-beyondcorp-appgateways 1.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-beyondcorp-clientconnectorservices 1.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-beyondcorp-clientgateways 1.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-bigquery-analyticshub 1.6.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-bigquery-connection 2.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-bigquery-data-exchange 0.7.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-bigquery-datapolicies 1.2.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-bigquerydatatransfer 2.3.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-bigquery-migration 1.5.0</summary>
+
+
+
+### Features
+
+* [BigQueryMigration] promote lineage outputs to v2 ([#9606](https://github.com/googleapis/google-cloud-php/issues/9606)) ([2260418](https://github.com/googleapis/google-cloud-php/commit/2260418577389d0c2a4b9cea1e63f78f4300dd6a))
+
+</details>
+
+<details><summary>google/cloud-bigquery-reservation 2.10.0</summary>
+
+
+
+### Features
+
+* [BigQueryReservation] Add new `AUTOMATIC_MATERIALIZED_VIEW_REFRESH` reservation assignment job type ([#9568](https://github.com/googleapis/google-cloud-php/issues/9568)) ([2a56030](https://github.com/googleapis/google-cloud-php/commit/2a560308b5d8009f2cf5b6ddc68b867fc19fe027))
+* Allow for reservation groups to be updated and expose new `parent_group`, `creation_time`, and `update_time` fields on the group resource ([2a56030](https://github.com/googleapis/google-cloud-php/commit/2a560308b5d8009f2cf5b6ddc68b867fc19fe027))
+
+
+### Documentation
+
+* Mark `FLEX` commitment plan for capacity commitments as deprecated ([2a56030](https://github.com/googleapis/google-cloud-php/commit/2a560308b5d8009f2cf5b6ddc68b867fc19fe027))
+
+</details>
+
+<details><summary>google/cloud-bigquery-storage 2.5.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-bigtable 2.27.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-billing 2.3.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-billing-budgets 2.2.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-binary-authorization 1.3.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-build 1.2.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-capacityplanner 0.2.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-certificate-manager 1.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-ces 0.4.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-channel 2.5.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-chronicle 0.6.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-common-protos 1.0.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-commerce-consumer-procurement 1.4.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-commerceproducer 0.1.1</summary>
+
+
+
+</details>
+
+<details><summary>google/common-protos 4.14.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-compute 2.13.0</summary>
+
+
+
+### Features
+
+* [Compute] update Compute Engine v1 API artifacts to revision 20260807 ([#9569](https://github.com/googleapis/google-cloud-php/issues/9569)) ([e5e15a5](https://github.com/googleapis/google-cloud-php/commit/e5e15a597584992a85a9d393201ae4a868e3731d))
+* add ASN key type to security policy fingerprint ([e5e15a5](https://github.com/googleapis/google-cloud-php/commit/e5e15a597584992a85a9d393201ae4a868e3731d))
+* add FutureReservationStoragePoolProvisionedCapacity message definition ([e5e15a5](https://github.com/googleapis/google-cloud-php/commit/e5e15a597584992a85a9d393201ae4a868e3731d))
+* add min_cpu_platform field to InstanceSelection ([e5e15a5](https://github.com/googleapis/google-cloud-php/commit/e5e15a597584992a85a9d393201ae4a868e3731d))
+* add regex_rewrite field to UrlRewrite ([e5e15a5](https://github.com/googleapis/google-cloud-php/commit/e5e15a597584992a85a9d393201ae4a868e3731d))
+* add RegexRewrite message definition ([e5e15a5](https://github.com/googleapis/google-cloud-php/commit/e5e15a597584992a85a9d393201ae4a868e3731d))
+* add requested_storage_pool_provisioned_capacity and storage_pool_type fields to FutureReservation ([e5e15a5](https://github.com/googleapis/google-cloud-php/commit/e5e15a597584992a85a9d393201ae4a868e3731d))
+* add resource_metadata field to Allocation ([e5e15a5](https://github.com/googleapis/google-cloud-php/commit/e5e15a597584992a85a9d393201ae4a868e3731d))
+* add ResourceMetadata message definition ([e5e15a5](https://github.com/googleapis/google-cloud-php/commit/e5e15a597584992a85a9d393201ae4a868e3731d))
+
+
+### Documentation
+
+* update documentation in proto definitions ([e5e15a5](https://github.com/googleapis/google-cloud-php/commit/e5e15a597584992a85a9d393201ae4a868e3731d))
+
+</details>
+
+<details><summary>google/cloud-confidentialcomputing 1.8.1</summary>
+
+
+
+### Bug Fixes
+
+* **ConfidentialComputing:** remove obsolete files ([#9548](https://github.com/googleapis/google-cloud-php/issues/9548)) ([75d9972](https://github.com/googleapis/google-cloud-php/commit/75d9972c22f365da97e09d910582c10542b59e8c))
+
+</details>
+
+<details><summary>google/cloud-config 1.10.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-configdelivery 0.4.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-contact-center-insights 2.5.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-container 2.12.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-container-analysis 1.3.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-cloudcontrolspartner 0.6.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-data-catalog 2.5.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-datacatalog-lineage 1.5.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-data-fusion 1.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-datalabeling 0.8.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-databasecenter 0.8.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-dataflow 0.11.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-dataform 0.15.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-dataplex 1.15.1</summary>
+
+
+
+### Bug Fixes
+
+* **Dataplex:** remove obsolete files ([#9550](https://github.com/googleapis/google-cloud-php/issues/9550)) ([17028bb](https://github.com/googleapis/google-cloud-php/commit/17028bb6cfba3a01888a42c74fc5056c42fd6356))
+
+</details>
+
+<details><summary>google/cloud-dataproc 4.1.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-dataproc-metastore 1.3.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-datastore 2.3.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-datastore-admin 1.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-datastream 2.6.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-deploy 1.7.1</summary>
+
+
+
+### Bug Fixes
+
+* **Deploy:** remove obsolete files ([#9551](https://github.com/googleapis/google-cloud-php/issues/9551)) ([a10a5cc](https://github.com/googleapis/google-cloud-php/commit/a10a5cccdfe129221cd721a7183c471086e33bbc))
+
+</details>
+
+<details><summary>google/cloud-developerconnect 0.7.1</summary>
+
+
+
+</details>
+
+<details><summary>google/developer-knowledge 0.4.0</summary>
+
+
+
+### Features
+
+* [DeveloperKnowledge] expose filter field on AnswerQueryRequest ([#9604](https://github.com/googleapis/google-cloud-php/issues/9604)) ([81de9c6](https://github.com/googleapis/google-cloud-php/commit/81de9c623a29e4b1864ee7dbef4a743b9a93443b))
+* [DeveloperKnowledge] publish public v1 proto for DocumentChunk.relevance_score ([#9563](https://github.com/googleapis/google-cloud-php/issues/9563)) ([cceeefd](https://github.com/googleapis/google-cloud-php/commit/cceeefd63e295094b6da90eca7cfee7d54e8ec96))
+
+</details>
+
+<details><summary>google/cloud-devicestreaming 0.3.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-dialogflow 2.6.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-dialogflow-cx 0.12.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-discoveryengine 1.14.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-dlp 2.15.0</summary>
+
+
+
+### Features
+
+* [Dlp] Add ContentPolicy configuration and management APIs ([#9603](https://github.com/googleapis/google-cloud-php/issues/9603)) ([07a0816](https://github.com/googleapis/google-cloud-php/commit/07a0816dac1b291d0cdef9402c9002c9a5cfb509))
+
+</details>
+
+<details><summary>google/cloud-dms 2.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-document-ai 2.8.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-domains 1.2.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-edgenetwork 1.5.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-error-reporting 0.27.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-essential-contacts 1.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-eventarc 2.4.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-eventarc-publishing 1.3.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-filestore 2.3.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-financialservices 0.3.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-firestore 2.3.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-functions 2.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-gsuite-addons 1.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-geminidataanalytics 0.13.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* [GeminiDataAnalytics] remove obsolete ContextRetrievalService files ([#9555](https://github.com/googleapis/google-cloud-php/issues/9555))
+
+### Features
+
+* **geminidataanalytics:** [GeminiDataAnalytics] update v1beta protos for datasources and query data response ([#9600](https://github.com/googleapis/google-cloud-php/issues/9600)) ([086e5d9](https://github.com/googleapis/google-cloud-php/commit/086e5d91da58dc333e04b712a82f3be67c17b07d))
+
+
+### Bug Fixes
+
+* [GeminiDataAnalytics] remove obsolete ContextRetrievalService files ([#9555](https://github.com/googleapis/google-cloud-php/issues/9555)) ([0071379](https://github.com/googleapis/google-cloud-php/commit/0071379d5fb4ca0bedf633900225be9c45036bc0))
+
+</details>
+
+<details><summary>google/geo-common-protos 0.2.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-gke-backup 1.4.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-gke-connect-gateway 1.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-gke-hub 1.4.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-gke-multi-cloud 1.5.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-gkerecommender 0.3.1</summary>
+
+
+
+</details>
+
+<details><summary>google/grafeas 1.9.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-hypercomputecluster 0.4.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-iam 1.5.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-iam-credentials 2.3.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-iap 2.4.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-ids 1.3.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-kms 2.12.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-kms-inventory 1.5.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-language 1.3.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-licensemanager 0.4.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-life-sciences 0.10.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-locationfinder 0.3.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-logging 2.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/longrunning 0.8.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-lustre 0.5.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-maintenance 0.5.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-managed-identities 2.3.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-managedkafka 0.9.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-managedkafka-schemaregistry 0.4.1</summary>
+
+
+
+</details>
+
+<details><summary>google/maps-fleetengine 0.6.1</summary>
+
+
+
+</details>
+
+<details><summary>google/maps-fleetengine-delivery 0.6.1</summary>
+
+
+
+</details>
+
+<details><summary>google/maps-routeoptimization 0.7.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-media-translation 0.7.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-memcache 2.2.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-memorystore 0.13.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-migrationcenter 1.3.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-modelarmor 0.8.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-monitoring 2.3.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-netapp 1.13.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-network-connectivity 2.6.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-network-management 2.11.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-network-security 1.5.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-networkservices 0.12.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-notebooks 1.2.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-optimization 1.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-oracledatabase 0.12.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* **OracleDatabase:** remove obsolete GoldenGate Get API requests and samples ([#9580](https://github.com/googleapis/google-cloud-php/issues/9580))
+
+### Bug Fixes
+
+* **OracleDatabase:** remove obsolete GoldenGate Get API requests and samples ([#9580](https://github.com/googleapis/google-cloud-php/issues/9580)) ([732b953](https://github.com/googleapis/google-cloud-php/commit/732b95335c72acfdc638839f12093ac64b58bba6))
+
+</details>
+
+<details><summary>google/cloud-orchestration-airflow 2.3.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-org-policy 1.4.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-osconfig 2.3.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-oslogin 2.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-parallelstore 0.14.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-parametermanager 0.6.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-policysimulator 1.4.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-policy-troubleshooter 2.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-policytroubleshooter-iam 0.5.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-private-catalog 0.7.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-privilegedaccessmanager 0.5.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-profiler 2.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-pubsub 2.21.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-quotas 1.7.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-rapidmigrationassessment 1.3.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-recaptcha-enterprise 2.5.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-recommendations-ai 0.10.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-recommender 2.3.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-redis 2.3.1</summary>
+
+
+
+### Bug Fixes
+
+* [Redis] remove obsolete V1beta1 samples ([#9561](https://github.com/googleapis/google-cloud-php/issues/9561)) ([a256b85](https://github.com/googleapis/google-cloud-php/commit/a256b8594736ea3bc8cbcd56047b98c97d7b64f8))
+
+</details>
+
+<details><summary>google/cloud-redis-cluster 0.10.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-resource-manager 1.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-retail 2.6.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-run 1.13.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-scheduler 2.3.1</summary>
+
+
+
+### Bug Fixes
+
+* [Scheduler] remove obsolete V1beta1 samples ([#9562](https://github.com/googleapis/google-cloud-php/issues/9562)) ([f606027](https://github.com/googleapis/google-cloud-php/commit/f606027e705a30d0e491573be14e1ca3589178ea))
+
+</details>
+
+<details><summary>google/cloud-secret-manager 2.5.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-securesourcemanager 1.10.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-security-center 2.6.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-securitycentermanagement 1.4.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-securitycompliance 0.4.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-security-private-ca 2.4.4</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-security-public-ca 1.2.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-service-control 2.3.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-service-directory 2.2.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-servicehealth 0.5.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-service-management 2.2.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-service-usage 2.2.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-shell 2.2.2</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-common-protos 0.5.2</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-css 0.8.5</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-merchant-accounts 1.4.4</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-merchant-conversions 1.2.2</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-merchant-datasources 1.3.4</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-merchant-inventories 1.5.5</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-merchant-issueresolution 1.3.4</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-merchant-lfp 1.2.4</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-merchant-notifications 1.2.4</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-merchant-ordertracking 1.2.4</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-merchant-products 1.7.3</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-merchant-promotions 1.2.4</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-merchant-quota 1.3.2</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-merchant-reports 1.4.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* **ShoppingMerchantReports:** remove obsolete v1beta proto classes ([#9579](https://github.com/googleapis/google-cloud-php/issues/9579))
+
+### Bug Fixes
+
+* **ShoppingMerchantReports:** remove obsolete v1beta proto classes ([#9579](https://github.com/googleapis/google-cloud-php/issues/9579)) ([72fb7d4](https://github.com/googleapis/google-cloud-php/commit/72fb7d48b534af3d6fdd2c46a581a9b59d71a675))
+
+</details>
+
+<details><summary>google/shopping-merchant-reviews 0.6.4</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-spanner 2.10.7</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-speech 2.5.6</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-sql-admin 1.11.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-storagebatchoperations 0.7.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-storage-control 1.12.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-storageinsights 1.4.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-storage-transfer 2.4.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-support 1.8.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-talent 2.3.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-tasks 2.2.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-telcoautomation 1.3.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-text-to-speech 2.8.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-tpu 2.3.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-trace 2.0.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-translate 2.3.4</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-vectorsearch 0.8.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* **VectorSearch:** remove obsolete `DenseScannParams` proto message ([#9578](https://github.com/googleapis/google-cloud-php/issues/9578))
+
+### Bug Fixes
+
+* **VectorSearch:** remove obsolete `DenseScannParams` proto message ([#9578](https://github.com/googleapis/google-cloud-php/issues/9578)) ([071fa40](https://github.com/googleapis/google-cloud-php/commit/071fa40a91bdff5fae16b80d8e73c425aebf9d0c))
+
+</details>
+
+<details><summary>google/cloud-videointelligence 2.3.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-video-live-stream 1.5.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-video-stitcher 1.3.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-video-transcoder 1.5.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-vision 2.3.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-visionai 0.4.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-vm-migration 1.5.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-vmware-engine 1.4.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-vpc-access 2.3.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-web-risk 2.4.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-web-security-scanner 1.3.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-workflows 1.4.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-workloadidentity 0.1.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-workloadmanager 0.3.1</summary>
+
+
+
+</details>
+
+## 0.343.0
+
+<details><summary>googleads/ad-manager 0.11.0</summary>
+
+
+
+### Features
+
+* [AdsAdManager] Added `PartnerService` ([#9472](https://github.com/googleapis/google-cloud-php/issues/9472)) ([4d11908](https://github.com/googleapis/google-cloud-php/commit/4d119085226f1a9c97b84212a62f81804837f355))
+
+</details>
+
+<details><summary>google/cloud-ai-platform 1.65.0</summary>
+
+
+
+### Features
+
+* [AiPlatform] add build configuration support to Vertex AI Reasoning Engine ([#9485](https://github.com/googleapis/google-cloud-php/issues/9485)) ([3eba383](https://github.com/googleapis/google-cloud-php/commit/3eba38351e307cb4c6de26bf19e99474084b762c))
+
+</details>
+
+<details><summary>google/cloud-alloydb 1.8.1</summary>
+
+
+
+</details>
+
+<details><summary>google/apps-chat 0.26.0</summary>
+
+
+
+### Features
+
+* [AppsChat] Removal of beta visibility labels on markup_syntax ([#9487](https://github.com/googleapis/google-cloud-php/issues/9487)) ([8111352](https://github.com/googleapis/google-cloud-php/commit/81113528ebf67ef98d85c750b567a37a3581eac4))
+
+</details>
+
+<details><summary>google/cloud-artifact-registry 1.8.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-auditmanager 0.3.0</summary>
+
+
+
+### Features
+
+* [AuditManager] Update documentation for validate_only ([#9479](https://github.com/googleapis/google-cloud-php/issues/9479)) ([e06c02c](https://github.com/googleapis/google-cloud-php/commit/e06c02c755bd67b21d9fc0e1091d6bce2fed1cb7))
+
+</details>
+
+<details><summary>google/cloud-automl 2.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-batch 1.5.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-bigquery-datapolicies 1.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-bigquery-reservation 2.9.0</summary>
+
+
+
+### Features
+
+* [BigQueryReservation] Add a new field `precedence` to `bigqueryreservation.googleapis.com/Assignment`,  it specifies the priority precedence for this assignment. Used to resolve ambiguity when multiple assignments match a single job. Higher numer... ([#9486](https://github.com/googleapis/google-cloud-php/issues/9486)) ([1ea5246](https://github.com/googleapis/google-cloud-php/commit/1ea5246bcd64da8d1c606312c3c42d83526bd2b8))
+* Add a new field `condition` to `bigqueryreservation.googleapis.com/Assignment`, it is Common Expression Language (CEL) condition that defines the matching criteria for this assignment. ([1ea5246](https://github.com/googleapis/google-cloud-php/commit/1ea5246bcd64da8d1c606312c3c42d83526bd2b8))
+
+
+### Documentation
+
+* [BigQueryReservation] A comment for field `principal` in message `.google.cloud.bigquery.reservation.v1.Assignment` is changed ([#9535](https://github.com/googleapis/google-cloud-php/issues/9535)) ([9130592](https://github.com/googleapis/google-cloud-php/commit/91305929aaf149d525b31f1a989f65c7e9a360e0))
+
+</details>
+
+<details><summary>google/cloud-bigquery-storage 2.5.0</summary>
+
+
+
+### Features
+
+* [BigQueryStorage] add support for client-side metrics in AppendRowsRequest ([#9492](https://github.com/googleapis/google-cloud-php/issues/9492)) ([9388c99](https://github.com/googleapis/google-cloud-php/commit/9388c99c492c3aa0366cee632035d0a22b0fbfd2))
+
+</details>
+
+<details><summary>google/cloud-bigtable 2.27.0</summary>
+
+
+
+### Features
+
+* [Bigtable] add microsecond_timestamp feature flag ([#9473](https://github.com/googleapis/google-cloud-php/issues/9473)) ([985b2d5](https://github.com/googleapis/google-cloud-php/commit/985b2d5775b2a25323568b710c152779a6a6104f))
+
+</details>
+
+<details><summary>google/cloud-billing-budgets 2.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-binary-authorization 1.3.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-build 1.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-capacityplanner 0.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-config 1.10.0</summary>
+
+
+
+### Features
+
+* [Config] add indicator if early apply results are available ([#9534](https://github.com/googleapis/google-cloud-php/issues/9534)) ([1b6c6d2](https://github.com/googleapis/google-cloud-php/commit/1b6c6d2330f0239ad14de2fe3dd2c21dc5c0323c))
+
+</details>
+
+<details><summary>google/cloud-container 2.12.0</summary>
+
+
+
+### Features
+
+* [Container] support for rollback-safe upgrade ([#9509](https://github.com/googleapis/google-cloud-php/issues/9509)) ([292bd43](https://github.com/googleapis/google-cloud-php/commit/292bd43599e5b80b5d6107b21c9a9ab5893be783))
+
+</details>
+
+<details><summary>google/cloud-dataform 0.15.0</summary>
+
+
+
+### Features
+
+* [Dataform] Add fields `original_branch`, `enable_branch_management`, `depth`, and `shallow` to message `.google.cloud.dataform.v1beta1.Workspace` ([#9494](https://github.com/googleapis/google-cloud-php/issues/9494)) ([981b044](https://github.com/googleapis/google-cloud-php/commit/981b0447597f51318af4d9f2105006b931062832))
+
+</details>
+
+<details><summary>google/developer-knowledge 0.3.1</summary>
+
+
+
+### Documentation
+
+* [DeveloperKnowledge] You can now filter by `content_length_bytes` ([#9513](https://github.com/googleapis/google-cloud-php/issues/9513)) ([027c09c](https://github.com/googleapis/google-cloud-php/commit/027c09c6c17c29f916c619aad0d9be2be1cd1674))
+
+</details>
+
+<details><summary>google/cloud-discoveryengine 1.14.0</summary>
+
+
+
+### Features
+
+* [DiscoveryEngine] expose StreamAssistRequest agents_spec and agent_id ([#9531](https://github.com/googleapis/google-cloud-php/issues/9531)) ([db51fc7](https://github.com/googleapis/google-cloud-php/commit/db51fc709c1b6a469d6da2d45e964026522998c5))
+
+</details>
+
+<details><summary>google/cloud-domains 1.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/gax 1.49.0</summary>
+
+
+
+### Features
+
+* **Gax:** add the middlewareOptions property to CallOptions class ([#9501](https://github.com/googleapis/google-cloud-php/issues/9501)) ([75be657](https://github.com/googleapis/google-cloud-php/commit/75be657f6e66fb58ae5190b1fcb743a86d84d54d))
+
+</details>
+
+<details><summary>google/longrunning 0.8.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-memcache 2.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-network-security 1.5.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-notebooks 1.2.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-pubsub 2.21.0</summary>
+
+
+
+### Features
+
+* [PubSub] Add compiled_proto_schema to Schema for schema imports ([#9560](https://github.com/googleapis/google-cloud-php/issues/9560)) ([880dc25](https://github.com/googleapis/google-cloud-php/commit/880dc259a15600205fcb86c86859b2f04f59d194))
+
+</details>
+
+<details><summary>google/cloud-secret-manager 2.5.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-security-center 2.6.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-security-private-ca 2.4.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-security-public-ca 1.2.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-service-directory 2.2.2</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-css 0.8.4</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-merchant-inventories 1.5.4</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-speech 2.5.5</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-sql-admin 1.11.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-storage-control 1.12.0</summary>
+
+
+
+### Features
+
+* [StorageControl] add disable rapid cache operation ([#9517](https://github.com/googleapis/google-cloud-php/issues/9517)) ([fc5f21a](https://github.com/googleapis/google-cloud-php/commit/fc5f21a983e09ab88a16bab155483b3abc35bc73))
+
+</details>
+
+<details><summary>google/cloud-support 1.8.2</summary>
+
+
+
+### Documentation
+
+* [Support] Added Terraform and gcloud links for support event subscription service ([#9491](https://github.com/googleapis/google-cloud-php/issues/9491)) ([7bd170c](https://github.com/googleapis/google-cloud-php/commit/7bd170ca4b4851bb712053f3c678cc9f7a38e8a6))
+
+</details>
+
+<details><summary>google/cloud-talent 2.3.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-tasks 2.2.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-tpu 2.3.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-vectorsearch 0.7.0</summary>
+
+
+
+### Features
+
+* [VectorSearch] add VertexRanker reranker support to vector search ([#9475](https://github.com/googleapis/google-cloud-php/issues/9475)) ([d27c61f](https://github.com/googleapis/google-cloud-php/commit/d27c61fc8602703973e0a2b036b0d51171a9962b))
+
+</details>
+
+<details><summary>google/cloud-videointelligence 2.3.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-web-risk 2.4.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-web-security-scanner 1.3.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-workflows 1.4.1</summary>
+
+
+
+</details>
+
+## 0.342.0
+
+<details><summary>google/cloud-commerceproducer 0.1.0</summary>
+
+
+
+### Features
+
+* introduce CommerceProducer ([#9477](https://github.com/googleapis/google-cloud-php/issues/9477)) ([753a0b9](https://github.com/googleapis/google-cloud-php/commit/753a0b9f68625a2497c35fabd5eaa9644d7b0058))
+
+</details>
+
+<details><summary>google/cloud-core 1.73.2</summary>
+
+
+
+### Bug Fixes
+
+* **cs:** fix style issues in BatchTest.php ([dfbfbba](https://github.com/googleapis/google-cloud-php/commit/dfbfbba9c228ac9630d1f593c881a25b52628e63))
+* **cs:** format multi-line args ([dfbfbba](https://github.com/googleapis/google-cloud-php/commit/dfbfbba9c228ac9630d1f593c881a25b52628e63))
+* move seedTable back to its original location ([dfbfbba](https://github.com/googleapis/google-cloud-php/commit/dfbfbba9c228ac9630d1f593c881a25b52628e63))
+* **spanner:** fix PgReadTest index creation on shared database ([dfbfbba](https://github.com/googleapis/google-cloud-php/commit/dfbfbba9c228ac9630d1f593c881a25b52628e63))
+* **Spanner:** Make System Tests Work & Work Faster ([#9401](https://github.com/googleapis/google-cloud-php/issues/9401)) ([dfbfbba](https://github.com/googleapis/google-cloud-php/commit/dfbfbba9c228ac9630d1f593c881a25b52628e63))
+
+</details>
+
+<details><summary>google/gax 1.48.0</summary>
+
+
+
+### Features
+
+* **gax:** implement REST URI percent-encoding and dot segment validation ([#9484](https://github.com/googleapis/google-cloud-php/issues/9484)) ([f3a7276](https://github.com/googleapis/google-cloud-php/commit/f3a72769a39fd4998734f5d7ee4dc985bc55194b))
+* **Gax:** Resumable Uploads ([#9456](https://github.com/googleapis/google-cloud-php/issues/9456)) ([e225b30](https://github.com/googleapis/google-cloud-php/commit/e225b30dfc315f24393c3a39244572add2402bd6))
+
+</details>
+
+<details><summary>google/longrunning 0.8.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-oracledatabase 0.11.0</summary>
+
+
+
+### Features
+
+* [OracleDatabase] Expand Oracle Database v1 API to add support for Exascale CMEK, VM Storage options ([#9480](https://github.com/googleapis/google-cloud-php/issues/9480)) ([487d4b6](https://github.com/googleapis/google-cloud-php/commit/487d4b68a6312026272bedc94a69df2a2c8e1a84))
+
+</details>
+
+<details><summary>google/cloud-recaptcha-enterprise 2.5.0</summary>
+
+
+
+### Features
+
+* [RecaptchaEnterprise] A comment for field `account_defender_assessment` in message `.google.cloud.recaptchaenterprise.v1.Assessment` is changed ([#9482](https://github.com/googleapis/google-cloud-php/issues/9482)) ([89ed314](https://github.com/googleapis/google-cloud-php/commit/89ed3148eaca541b1acf580dd0b156c1634c0331))
+
+</details>
+
+<details><summary>google/shopping-common-protos 0.5.1</summary>
+
+
+
+</details>
+
+<details><summary>google/shopping-merchant-inventories 1.5.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-spanner 2.10.6</summary>
+
+
+
+### Bug Fixes
+
+* **cs:** fix style issues in BatchTest.php ([dfbfbba](https://github.com/googleapis/google-cloud-php/commit/dfbfbba9c228ac9630d1f593c881a25b52628e63))
+* **cs:** format multi-line args ([dfbfbba](https://github.com/googleapis/google-cloud-php/commit/dfbfbba9c228ac9630d1f593c881a25b52628e63))
+* move seedTable back to its original location ([dfbfbba](https://github.com/googleapis/google-cloud-php/commit/dfbfbba9c228ac9630d1f593c881a25b52628e63))
+* **spanner:** fix PgReadTest index creation on shared database ([dfbfbba](https://github.com/googleapis/google-cloud-php/commit/dfbfbba9c228ac9630d1f593c881a25b52628e63))
+* **Spanner:** Make System Tests Work & Work Faster ([#9401](https://github.com/googleapis/google-cloud-php/issues/9401)) ([dfbfbba](https://github.com/googleapis/google-cloud-php/commit/dfbfbba9c228ac9630d1f593c881a25b52628e63))
+
+</details>
+
+<details><summary>google/cloud-storage 2.5.2</summary>
+
+
+
+### Bug Fixes
+
+* **Storage:** restore error handler in StreamWrapperTest ([#9489](https://github.com/googleapis/google-cloud-php/issues/9489)) ([9942b2c](https://github.com/googleapis/google-cloud-php/commit/9942b2c94498fd33a30b8e767f60b7fc016a13e0))
+
+</details>
+
+<details><summary>google/cloud-storage-control 1.11.0</summary>
+
+
+
+### Features
+
+* [StorageControl] add ViewObjectFullContext RPC and RapidCacheInfo in Storage Control v2 ([#9481](https://github.com/googleapis/google-cloud-php/issues/9481)) ([b35ec14](https://github.com/googleapis/google-cloud-php/commit/b35ec14248fa1b92117df9b8eec5ab595b966a75))
+
+</details>
+
+<details><summary>google/cloud-workloadidentity 0.1.0</summary>
+
+
+
+### Features
+
+* introduce the WorkloadIdentity component ([#9488](https://github.com/googleapis/google-cloud-php/issues/9488)) ([1abc161](https://github.com/googleapis/google-cloud-php/commit/1abc161c15cd1ec0c8734cd6c9e984aba3906865))
+
+</details>
+
+## 0.341.0
+
+<details><summary>google/cloud-access-approval 2.2.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9443](https://github.com/googleapis/google-cloud-php/issues/9443)) ([b35d273](https://github.com/googleapis/google-cloud-php/commit/b35d2737a2f9e9957b45e1cfdab1bfac9f86eb98))
+
+</details>
+
+<details><summary>google/access-context-manager 1.2.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9443](https://github.com/googleapis/google-cloud-php/issues/9443)) ([b35d273](https://github.com/googleapis/google-cloud-php/commit/b35d2737a2f9e9957b45e1cfdab1bfac9f86eb98))
+
+</details>
+
+<details><summary>googleads/ad-manager 0.10.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9443](https://github.com/googleapis/google-cloud-php/issues/9443)) ([b35d273](https://github.com/googleapis/google-cloud-php/commit/b35d2737a2f9e9957b45e1cfdab1bfac9f86eb98))
+
+</details>
+
+<details><summary>googleads/data-manager 0.8.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9443](https://github.com/googleapis/google-cloud-php/issues/9443)) ([b35d273](https://github.com/googleapis/google-cloud-php/commit/b35d2737a2f9e9957b45e1cfdab1bfac9f86eb98))
+
+</details>
+
+<details><summary>googleads/marketingplatform-admin 0.5.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9443](https://github.com/googleapis/google-cloud-php/issues/9443)) ([b35d273](https://github.com/googleapis/google-cloud-php/commit/b35d2737a2f9e9957b45e1cfdab1bfac9f86eb98))
+
+</details>
+
+<details><summary>google/cloud-advisorynotifications 1.3.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9443](https://github.com/googleapis/google-cloud-php/issues/9443)) ([b35d273](https://github.com/googleapis/google-cloud-php/commit/b35d2737a2f9e9957b45e1cfdab1bfac9f86eb98))
+
+</details>
+
+<details><summary>google/cloud-ai-platform 1.64.0</summary>
+
+
+
+### Features
+
+* add internal tag to generated $serviceScopes property ([6758725](https://github.com/googleapis/google-cloud-php/commit/6758725c91b42c08597d9d8406789ffc48568d7c))
+* add Tool.ExaAiSearch to Vertex AI v1 ([6758725](https://github.com/googleapis/google-cloud-php/commit/6758725c91b42c08597d9d8406789ffc48568d7c))
+* add Tool.ExaAiSearch to Vertex AI v1beta1 ([6758725](https://github.com/googleapis/google-cloud-php/commit/6758725c91b42c08597d9d8406789ffc48568d7c))
+* Allow users to search for spaces without requiring admin privileges ([6758725](https://github.com/googleapis/google-cloud-php/commit/6758725c91b42c08597d9d8406789ffc48568d7c))
+* update Compute v1 to revision 20260722 ([6758725](https://github.com/googleapis/google-cloud-php/commit/6758725c91b42c08597d9d8406789ffc48568d7c))
+
+
+### Bug Fixes
+
+* avoid passing null as an array offset in resumeOperation ([6758725](https://github.com/googleapis/google-cloud-php/commit/6758725c91b42c08597d9d8406789ffc48568d7c))
+* **deps:** Update the Java code generator (gapic-generator-java) to v2.75.0 ([6758725](https://github.com/googleapis/google-cloud-php/commit/6758725c91b42c08597d9d8406789ffc48568d7c))
+
+
+### Documentation
+
+* A comment for field `order_by` in message `.google.chat.v1.SearchSpacesRequest` is changed ([6758725](https://github.com/googleapis/google-cloud-php/commit/6758725c91b42c08597d9d8406789ffc48568d7c))
+* A comment for field `query` in message `.google.chat.v1.SearchSpacesRequest` is changed ([6758725](https://github.com/googleapis/google-cloud-php/commit/6758725c91b42c08597d9d8406789ffc48568d7c))
+* A comment for field `spaces` in message `.google.chat.v1.SearchSpacesResponse` is changed ([6758725](https://github.com/googleapis/google-cloud-php/commit/6758725c91b42c08597d9d8406789ffc48568d7c))
+* A comment for field `use_admin_access` in message `.google.chat.v1.SearchSpacesRequest` is changed ([6758725](https://github.com/googleapis/google-cloud-php/commit/6758725c91b42c08597d9d8406789ffc48568d7c))
+* A comment for method `SearchSpaces` in service `ChatService` is changed ([6758725](https://github.com/googleapis/google-cloud-php/commit/6758725c91b42c08597d9d8406789ffc48568d7c))
+* Update copyright year ([6758725](https://github.com/googleapis/google-cloud-php/commit/6758725c91b42c08597d9d8406789ffc48568d7c))
+* update various comments ([6758725](https://github.com/googleapis/google-cloud-php/commit/6758725c91b42c08597d9d8406789ffc48568d7c))
+
+</details>
+
+<details><summary>google/cloud-alloydb 1.8.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9443](https://github.com/googleapis/google-cloud-php/issues/9443)) ([b35d273](https://github.com/googleapis/google-cloud-php/commit/b35d2737a2f9e9957b45e1cfdab1bfac9f86eb98))
+
+</details>
+
+<details><summary>google/analytics-admin 0.34.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9443](https://github.com/googleapis/google-cloud-php/issues/9443)) ([b35d273](https://github.com/googleapis/google-cloud-php/commit/b35d2737a2f9e9957b45e1cfdab1bfac9f86eb98))
+
+</details>
+
+<details><summary>google/analytics-data 0.25.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9443](https://github.com/googleapis/google-cloud-php/issues/9443)) ([b35d273](https://github.com/googleapis/google-cloud-php/commit/b35d2737a2f9e9957b45e1cfdab1bfac9f86eb98))
+
+</details>
+
+<details><summary>google/cloud-api-gateway 2.2.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9443](https://github.com/googleapis/google-cloud-php/issues/9443)) ([b35d273](https://github.com/googleapis/google-cloud-php/commit/b35d2737a2f9e9957b45e1cfdab1bfac9f86eb98))
+
+</details>
+
+<details><summary>google/cloud-apihub 0.5.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9443](https://github.com/googleapis/google-cloud-php/issues/9443)) ([b35d273](https://github.com/googleapis/google-cloud-php/commit/b35d2737a2f9e9957b45e1cfdab1bfac9f86eb98))
+
+</details>
+
+<details><summary>google/cloud-api-keys 1.2.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9443](https://github.com/googleapis/google-cloud-php/issues/9443)) ([b35d273](https://github.com/googleapis/google-cloud-php/commit/b35d2737a2f9e9957b45e1cfdab1bfac9f86eb98))
+
+</details>
+
+<details><summary>google/cloud-apiregistry 0.2.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9443](https://github.com/googleapis/google-cloud-php/issues/9443)) ([b35d273](https://github.com/googleapis/google-cloud-php/commit/b35d2737a2f9e9957b45e1cfdab1bfac9f86eb98))
+
+</details>
+
+<details><summary>google/cloud-apigee-connect 2.2.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9443](https://github.com/googleapis/google-cloud-php/issues/9443)) ([b35d273](https://github.com/googleapis/google-cloud-php/commit/b35d2737a2f9e9957b45e1cfdab1bfac9f86eb98))
+
+</details>
+
+<details><summary>google/cloud-appengine-admin 2.2.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9443](https://github.com/googleapis/google-cloud-php/issues/9443)) ([b35d273](https://github.com/googleapis/google-cloud-php/commit/b35d2737a2f9e9957b45e1cfdab1bfac9f86eb98))
+
+</details>
+
+<details><summary>google/cloud-apphub 0.5.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9443](https://github.com/googleapis/google-cloud-php/issues/9443)) ([b35d273](https://github.com/googleapis/google-cloud-php/commit/b35d2737a2f9e9957b45e1cfdab1bfac9f86eb98))
+
+</details>
+
+<details><summary>google/cloud-appoptimize 0.2.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9443](https://github.com/googleapis/google-cloud-php/issues/9443)) ([b35d273](https://github.com/googleapis/google-cloud-php/commit/b35d2737a2f9e9957b45e1cfdab1bfac9f86eb98))
+
+</details>
+
+<details><summary>google/apps-chat 0.25.0</summary>
+
+
+
+### Features
+
+* add internal tag to generated $serviceScopes property ([e29c345](https://github.com/googleapis/google-cloud-php/commit/e29c345984be35c603534f051e5588f400794ace))
+* add Tool.ExaAiSearch to Vertex AI v1 ([e29c345](https://github.com/googleapis/google-cloud-php/commit/e29c345984be35c603534f051e5588f400794ace))
+* add Tool.ExaAiSearch to Vertex AI v1beta1 ([e29c345](https://github.com/googleapis/google-cloud-php/commit/e29c345984be35c603534f051e5588f400794ace))
+* Allow users to search for spaces without requiring admin privileges ([e29c345](https://github.com/googleapis/google-cloud-php/commit/e29c345984be35c603534f051e5588f400794ace))
+* update Compute v1 to revision 20260722 ([e29c345](https://github.com/googleapis/google-cloud-php/commit/e29c345984be35c603534f051e5588f400794ace))
+
+
+### Bug Fixes
+
+* avoid passing null as an array offset in resumeOperation ([e29c345](https://github.com/googleapis/google-cloud-php/commit/e29c345984be35c603534f051e5588f400794ace))
+* **deps:** Update the Java code generator (gapic-generator-java) to v2.75.0 ([e29c345](https://github.com/googleapis/google-cloud-php/commit/e29c345984be35c603534f051e5588f400794ace))
+
+
+### Documentation
+
+* A comment for field `order_by` in message `.google.chat.v1.SearchSpacesRequest` is changed ([e29c345](https://github.com/googleapis/google-cloud-php/commit/e29c345984be35c603534f051e5588f400794ace))
+* A comment for field `query` in message `.google.chat.v1.SearchSpacesRequest` is changed ([e29c345](https://github.com/googleapis/google-cloud-php/commit/e29c345984be35c603534f051e5588f400794ace))
+* A comment for field `spaces` in message `.google.chat.v1.SearchSpacesResponse` is changed ([e29c345](https://github.com/googleapis/google-cloud-php/commit/e29c345984be35c603534f051e5588f400794ace))
+* A comment for field `use_admin_access` in message `.google.chat.v1.SearchSpacesRequest` is changed ([e29c345](https://github.com/googleapis/google-cloud-php/commit/e29c345984be35c603534f051e5588f400794ace))
+* A comment for method `SearchSpaces` in service `ChatService` is changed ([e29c345](https://github.com/googleapis/google-cloud-php/commit/e29c345984be35c603534f051e5588f400794ace))
+* Update copyright year ([e29c345](https://github.com/googleapis/google-cloud-php/commit/e29c345984be35c603534f051e5588f400794ace))
+* update various comments ([e29c345](https://github.com/googleapis/google-cloud-php/commit/e29c345984be35c603534f051e5588f400794ace))
+
+</details>
+
+<details><summary>google/apps-events-subscriptions 0.5.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9443](https://github.com/googleapis/google-cloud-php/issues/9443)) ([b35d273](https://github.com/googleapis/google-cloud-php/commit/b35d2737a2f9e9957b45e1cfdab1bfac9f86eb98))
+
+</details>
+
+<details><summary>google/apps-meet 0.6.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9443](https://github.com/googleapis/google-cloud-php/issues/9443)) ([b35d273](https://github.com/googleapis/google-cloud-php/commit/b35d2737a2f9e9957b45e1cfdab1bfac9f86eb98))
+
+</details>
+
+<details><summary>google/cloud-artifact-registry 1.8.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9443](https://github.com/googleapis/google-cloud-php/issues/9443)) ([b35d273](https://github.com/googleapis/google-cloud-php/commit/b35d2737a2f9e9957b45e1cfdab1bfac9f86eb98))
+
+</details>
+
+<details><summary>google/cloud-asset 2.4.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9444](https://github.com/googleapis/google-cloud-php/issues/9444)) ([bdfbcbc](https://github.com/googleapis/google-cloud-php/commit/bdfbcbc20c9a085c22959540c25e0c13b43920b0))
+
+</details>
+
+<details><summary>google/cloud-assured-workloads 1.2.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9444](https://github.com/googleapis/google-cloud-php/issues/9444)) ([bdfbcbc](https://github.com/googleapis/google-cloud-php/commit/bdfbcbc20c9a085c22959540c25e0c13b43920b0))
+
+</details>
+
+<details><summary>google/cloud-auditmanager 0.2.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9444](https://github.com/googleapis/google-cloud-php/issues/9444)) ([bdfbcbc](https://github.com/googleapis/google-cloud-php/commit/bdfbcbc20c9a085c22959540c25e0c13b43920b0))
+
+</details>
+
+<details><summary>google/cloud-automl 2.2.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9444](https://github.com/googleapis/google-cloud-php/issues/9444)) ([bdfbcbc](https://github.com/googleapis/google-cloud-php/commit/bdfbcbc20c9a085c22959540c25e0c13b43920b0))
+
+</details>
+
+<details><summary>google/cloud-backupdr 0.14.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9444](https://github.com/googleapis/google-cloud-php/issues/9444)) ([bdfbcbc](https://github.com/googleapis/google-cloud-php/commit/bdfbcbc20c9a085c22959540c25e0c13b43920b0))
+
+</details>
+
+<details><summary>google/cloud-bare-metal-solution 1.2.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9444](https://github.com/googleapis/google-cloud-php/issues/9444)) ([bdfbcbc](https://github.com/googleapis/google-cloud-php/commit/bdfbcbc20c9a085c22959540c25e0c13b43920b0))
+
+</details>
+
+<details><summary>google/cloud-batch 1.5.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9444](https://github.com/googleapis/google-cloud-php/issues/9444)) ([bdfbcbc](https://github.com/googleapis/google-cloud-php/commit/bdfbcbc20c9a085c22959540c25e0c13b43920b0))
+
+</details>
+
+<details><summary>google/cloud-beyondcorp-appconnections 1.2.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9444](https://github.com/googleapis/google-cloud-php/issues/9444)) ([bdfbcbc](https://github.com/googleapis/google-cloud-php/commit/bdfbcbc20c9a085c22959540c25e0c13b43920b0))
+
+</details>
+
+<details><summary>google/cloud-beyondcorp-appconnectors 1.2.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9444](https://github.com/googleapis/google-cloud-php/issues/9444)) ([bdfbcbc](https://github.com/googleapis/google-cloud-php/commit/bdfbcbc20c9a085c22959540c25e0c13b43920b0))
+
+</details>
+
+<details><summary>google/cloud-beyondcorp-appgateways 1.2.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9444](https://github.com/googleapis/google-cloud-php/issues/9444)) ([bdfbcbc](https://github.com/googleapis/google-cloud-php/commit/bdfbcbc20c9a085c22959540c25e0c13b43920b0))
+
+</details>
+
+<details><summary>google/cloud-beyondcorp-clientconnectorservices 1.2.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9444](https://github.com/googleapis/google-cloud-php/issues/9444)) ([bdfbcbc](https://github.com/googleapis/google-cloud-php/commit/bdfbcbc20c9a085c22959540c25e0c13b43920b0))
+
+</details>
+
+<details><summary>google/cloud-beyondcorp-clientgateways 1.2.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9444](https://github.com/googleapis/google-cloud-php/issues/9444)) ([bdfbcbc](https://github.com/googleapis/google-cloud-php/commit/bdfbcbc20c9a085c22959540c25e0c13b43920b0))
+
+</details>
+
+<details><summary>google/cloud-bigquery-analyticshub 1.6.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9444](https://github.com/googleapis/google-cloud-php/issues/9444)) ([bdfbcbc](https://github.com/googleapis/google-cloud-php/commit/bdfbcbc20c9a085c22959540c25e0c13b43920b0))
+
+</details>
+
+<details><summary>google/cloud-bigquery-connection 2.2.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9444](https://github.com/googleapis/google-cloud-php/issues/9444)) ([bdfbcbc](https://github.com/googleapis/google-cloud-php/commit/bdfbcbc20c9a085c22959540c25e0c13b43920b0))
+
+</details>
+
+<details><summary>google/cloud-bigquery-data-exchange 0.7.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9444](https://github.com/googleapis/google-cloud-php/issues/9444)) ([bdfbcbc](https://github.com/googleapis/google-cloud-php/commit/bdfbcbc20c9a085c22959540c25e0c13b43920b0))
+
+</details>
+
+<details><summary>google/cloud-bigquery-datapolicies 1.2.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9444](https://github.com/googleapis/google-cloud-php/issues/9444)) ([bdfbcbc](https://github.com/googleapis/google-cloud-php/commit/bdfbcbc20c9a085c22959540c25e0c13b43920b0))
+
+</details>
+
+<details><summary>google/cloud-bigquerydatatransfer 2.3.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9444](https://github.com/googleapis/google-cloud-php/issues/9444)) ([bdfbcbc](https://github.com/googleapis/google-cloud-php/commit/bdfbcbc20c9a085c22959540c25e0c13b43920b0))
+
+</details>
+
+<details><summary>google/cloud-bigquery-migration 1.4.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9444](https://github.com/googleapis/google-cloud-php/issues/9444)) ([bdfbcbc](https://github.com/googleapis/google-cloud-php/commit/bdfbcbc20c9a085c22959540c25e0c13b43920b0))
+
+</details>
+
+<details><summary>google/cloud-bigquery-reservation 2.8.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9444](https://github.com/googleapis/google-cloud-php/issues/9444)) ([bdfbcbc](https://github.com/googleapis/google-cloud-php/commit/bdfbcbc20c9a085c22959540c25e0c13b43920b0))
+
+</details>
+
+<details><summary>google/cloud-bigquery-storage 2.4.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9444](https://github.com/googleapis/google-cloud-php/issues/9444)) ([bdfbcbc](https://github.com/googleapis/google-cloud-php/commit/bdfbcbc20c9a085c22959540c25e0c13b43920b0))
+
+</details>
+
+<details><summary>google/cloud-bigtable 2.26.0</summary>
+
+
+
+### Features
+
+* [Bigtable] add microsecond timestamp precision support ([#9470](https://github.com/googleapis/google-cloud-php/issues/9470)) ([450ce7c](https://github.com/googleapis/google-cloud-php/commit/450ce7c60e73019a4cc50effba3ee343fece7f83))
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9445](https://github.com/googleapis/google-cloud-php/issues/9445)) ([6092ad1](https://github.com/googleapis/google-cloud-php/commit/6092ad16d2c5da0adaa64b79d890869a76251050))
+
+</details>
+
+<details><summary>google/cloud-billing 2.3.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9445](https://github.com/googleapis/google-cloud-php/issues/9445)) ([6092ad1](https://github.com/googleapis/google-cloud-php/commit/6092ad16d2c5da0adaa64b79d890869a76251050))
+
+</details>
+
+<details><summary>google/cloud-billing-budgets 2.2.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9445](https://github.com/googleapis/google-cloud-php/issues/9445)) ([6092ad1](https://github.com/googleapis/google-cloud-php/commit/6092ad16d2c5da0adaa64b79d890869a76251050))
+
+</details>
+
+<details><summary>google/cloud-binary-authorization 1.3.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9445](https://github.com/googleapis/google-cloud-php/issues/9445)) ([6092ad1](https://github.com/googleapis/google-cloud-php/commit/6092ad16d2c5da0adaa64b79d890869a76251050))
+
+</details>
+
+<details><summary>google/cloud-build 1.2.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9445](https://github.com/googleapis/google-cloud-php/issues/9445)) ([6092ad1](https://github.com/googleapis/google-cloud-php/commit/6092ad16d2c5da0adaa64b79d890869a76251050))
+
+</details>
+
+<details><summary>google/cloud-capacityplanner 0.2.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9445](https://github.com/googleapis/google-cloud-php/issues/9445)) ([6092ad1](https://github.com/googleapis/google-cloud-php/commit/6092ad16d2c5da0adaa64b79d890869a76251050))
+
+</details>
+
+<details><summary>google/cloud-certificate-manager 1.2.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9445](https://github.com/googleapis/google-cloud-php/issues/9445)) ([6092ad1](https://github.com/googleapis/google-cloud-php/commit/6092ad16d2c5da0adaa64b79d890869a76251050))
+
+</details>
+
+<details><summary>google/cloud-ces 0.4.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9445](https://github.com/googleapis/google-cloud-php/issues/9445)) ([6092ad1](https://github.com/googleapis/google-cloud-php/commit/6092ad16d2c5da0adaa64b79d890869a76251050))
+
+</details>
+
+<details><summary>google/cloud-channel 2.5.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9445](https://github.com/googleapis/google-cloud-php/issues/9445)) ([6092ad1](https://github.com/googleapis/google-cloud-php/commit/6092ad16d2c5da0adaa64b79d890869a76251050))
+
+</details>
+
+<details><summary>google/cloud-chronicle 0.6.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9445](https://github.com/googleapis/google-cloud-php/issues/9445)) ([6092ad1](https://github.com/googleapis/google-cloud-php/commit/6092ad16d2c5da0adaa64b79d890869a76251050))
+
+</details>
+
+<details><summary>google/cloud-common-protos 1.0.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-commerce-consumer-procurement 1.4.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9445](https://github.com/googleapis/google-cloud-php/issues/9445)) ([6092ad1](https://github.com/googleapis/google-cloud-php/commit/6092ad16d2c5da0adaa64b79d890869a76251050))
+
+</details>
+
+<details><summary>google/cloud-compute 2.12.0</summary>
+
+
+
+### Features
+
+* [Compute] add internal tag to generated $serviceScopes property ([#9442](https://github.com/googleapis/google-cloud-php/issues/9442)) ([4d96952](https://github.com/googleapis/google-cloud-php/commit/4d9695238f08d053f3339cf31f541dde7bda2161))
+* add Tool.ExaAiSearch to Vertex AI v1 ([4d96952](https://github.com/googleapis/google-cloud-php/commit/4d9695238f08d053f3339cf31f541dde7bda2161))
+* add Tool.ExaAiSearch to Vertex AI v1beta1 ([4d96952](https://github.com/googleapis/google-cloud-php/commit/4d9695238f08d053f3339cf31f541dde7bda2161))
+* Allow users to search for spaces without requiring admin privileges ([4d96952](https://github.com/googleapis/google-cloud-php/commit/4d9695238f08d053f3339cf31f541dde7bda2161))
+* update Compute v1 to revision 20260722 ([4d96952](https://github.com/googleapis/google-cloud-php/commit/4d9695238f08d053f3339cf31f541dde7bda2161))
+
+
+### Bug Fixes
+
+* avoid passing null as an array offset in resumeOperation ([4d96952](https://github.com/googleapis/google-cloud-php/commit/4d9695238f08d053f3339cf31f541dde7bda2161))
+* **deps:** Update the Java code generator (gapic-generator-java) to v2.75.0 ([4d96952](https://github.com/googleapis/google-cloud-php/commit/4d9695238f08d053f3339cf31f541dde7bda2161))
+
+
+### Documentation
+
+* A comment for field `order_by` in message `.google.chat.v1.SearchSpacesRequest` is changed ([4d96952](https://github.com/googleapis/google-cloud-php/commit/4d9695238f08d053f3339cf31f541dde7bda2161))
+* A comment for field `query` in message `.google.chat.v1.SearchSpacesRequest` is changed ([4d96952](https://github.com/googleapis/google-cloud-php/commit/4d9695238f08d053f3339cf31f541dde7bda2161))
+* A comment for field `spaces` in message `.google.chat.v1.SearchSpacesResponse` is changed ([4d96952](https://github.com/googleapis/google-cloud-php/commit/4d9695238f08d053f3339cf31f541dde7bda2161))
+* A comment for field `use_admin_access` in message `.google.chat.v1.SearchSpacesRequest` is changed ([4d96952](https://github.com/googleapis/google-cloud-php/commit/4d9695238f08d053f3339cf31f541dde7bda2161))
+* A comment for method `SearchSpaces` in service `ChatService` is changed ([4d96952](https://github.com/googleapis/google-cloud-php/commit/4d9695238f08d053f3339cf31f541dde7bda2161))
+* Update copyright year ([4d96952](https://github.com/googleapis/google-cloud-php/commit/4d9695238f08d053f3339cf31f541dde7bda2161))
+* update various comments ([4d96952](https://github.com/googleapis/google-cloud-php/commit/4d9695238f08d053f3339cf31f541dde7bda2161))
+
+</details>
+
+<details><summary>google/cloud-confidentialcomputing 1.8.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9445](https://github.com/googleapis/google-cloud-php/issues/9445)) ([6092ad1](https://github.com/googleapis/google-cloud-php/commit/6092ad16d2c5da0adaa64b79d890869a76251050))
+
+</details>
+
+<details><summary>google/cloud-config 1.9.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9445](https://github.com/googleapis/google-cloud-php/issues/9445)) ([6092ad1](https://github.com/googleapis/google-cloud-php/commit/6092ad16d2c5da0adaa64b79d890869a76251050))
+
+</details>
+
+<details><summary>google/cloud-configdelivery 0.4.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9445](https://github.com/googleapis/google-cloud-php/issues/9445)) ([6092ad1](https://github.com/googleapis/google-cloud-php/commit/6092ad16d2c5da0adaa64b79d890869a76251050))
+
+</details>
+
+<details><summary>google/cloud-contact-center-insights 2.5.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9445](https://github.com/googleapis/google-cloud-php/issues/9445)) ([6092ad1](https://github.com/googleapis/google-cloud-php/commit/6092ad16d2c5da0adaa64b79d890869a76251050))
+
+</details>
+
+<details><summary>google/cloud-container 2.11.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9445](https://github.com/googleapis/google-cloud-php/issues/9445)) ([6092ad1](https://github.com/googleapis/google-cloud-php/commit/6092ad16d2c5da0adaa64b79d890869a76251050))
+
+</details>
+
+<details><summary>google/cloud-container-analysis 1.3.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9445](https://github.com/googleapis/google-cloud-php/issues/9445)) ([6092ad1](https://github.com/googleapis/google-cloud-php/commit/6092ad16d2c5da0adaa64b79d890869a76251050))
+
+</details>
+
+<details><summary>google/cloud-cloudcontrolspartner 0.6.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9445](https://github.com/googleapis/google-cloud-php/issues/9445)) ([6092ad1](https://github.com/googleapis/google-cloud-php/commit/6092ad16d2c5da0adaa64b79d890869a76251050))
+
+</details>
+
+<details><summary>google/cloud-data-catalog 2.5.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9445](https://github.com/googleapis/google-cloud-php/issues/9445)) ([6092ad1](https://github.com/googleapis/google-cloud-php/commit/6092ad16d2c5da0adaa64b79d890869a76251050))
+
+</details>
+
+<details><summary>google/cloud-datacatalog-lineage 1.5.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9445](https://github.com/googleapis/google-cloud-php/issues/9445)) ([6092ad1](https://github.com/googleapis/google-cloud-php/commit/6092ad16d2c5da0adaa64b79d890869a76251050))
+
+</details>
+
+<details><summary>google/cloud-data-fusion 1.2.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9446](https://github.com/googleapis/google-cloud-php/issues/9446)) ([812b0a4](https://github.com/googleapis/google-cloud-php/commit/812b0a4fcee01f8fec9765e68c7a5bde78f27e23))
+
+</details>
+
+<details><summary>google/cloud-datalabeling 0.8.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9446](https://github.com/googleapis/google-cloud-php/issues/9446)) ([812b0a4](https://github.com/googleapis/google-cloud-php/commit/812b0a4fcee01f8fec9765e68c7a5bde78f27e23))
+
+</details>
+
+<details><summary>google/cloud-databasecenter 0.8.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9446](https://github.com/googleapis/google-cloud-php/issues/9446)) ([812b0a4](https://github.com/googleapis/google-cloud-php/commit/812b0a4fcee01f8fec9765e68c7a5bde78f27e23))
+
+</details>
+
+<details><summary>google/cloud-dataflow 0.11.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9446](https://github.com/googleapis/google-cloud-php/issues/9446)) ([812b0a4](https://github.com/googleapis/google-cloud-php/commit/812b0a4fcee01f8fec9765e68c7a5bde78f27e23))
+
+</details>
+
+<details><summary>google/cloud-dataform 0.14.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9446](https://github.com/googleapis/google-cloud-php/issues/9446)) ([812b0a4](https://github.com/googleapis/google-cloud-php/commit/812b0a4fcee01f8fec9765e68c7a5bde78f27e23))
+
+</details>
+
+<details><summary>google/cloud-dataplex 1.15.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9446](https://github.com/googleapis/google-cloud-php/issues/9446)) ([812b0a4](https://github.com/googleapis/google-cloud-php/commit/812b0a4fcee01f8fec9765e68c7a5bde78f27e23))
+
+</details>
+
+<details><summary>google/cloud-dataproc 4.1.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9446](https://github.com/googleapis/google-cloud-php/issues/9446)) ([812b0a4](https://github.com/googleapis/google-cloud-php/commit/812b0a4fcee01f8fec9765e68c7a5bde78f27e23))
+
+</details>
+
+<details><summary>google/cloud-dataproc-metastore 1.3.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9446](https://github.com/googleapis/google-cloud-php/issues/9446)) ([812b0a4](https://github.com/googleapis/google-cloud-php/commit/812b0a4fcee01f8fec9765e68c7a5bde78f27e23))
+
+</details>
+
+<details><summary>google/cloud-datastore 2.3.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9446](https://github.com/googleapis/google-cloud-php/issues/9446)) ([812b0a4](https://github.com/googleapis/google-cloud-php/commit/812b0a4fcee01f8fec9765e68c7a5bde78f27e23))
+
+</details>
+
+<details><summary>google/cloud-datastore-admin 1.2.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9446](https://github.com/googleapis/google-cloud-php/issues/9446)) ([812b0a4](https://github.com/googleapis/google-cloud-php/commit/812b0a4fcee01f8fec9765e68c7a5bde78f27e23))
+
+</details>
+
+<details><summary>google/cloud-datastream 2.6.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9446](https://github.com/googleapis/google-cloud-php/issues/9446)) ([812b0a4](https://github.com/googleapis/google-cloud-php/commit/812b0a4fcee01f8fec9765e68c7a5bde78f27e23))
+
+</details>
+
+<details><summary>google/cloud-deploy 1.7.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9446](https://github.com/googleapis/google-cloud-php/issues/9446)) ([812b0a4](https://github.com/googleapis/google-cloud-php/commit/812b0a4fcee01f8fec9765e68c7a5bde78f27e23))
+
+</details>
+
+<details><summary>google/cloud-developerconnect 0.7.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9446](https://github.com/googleapis/google-cloud-php/issues/9446)) ([812b0a4](https://github.com/googleapis/google-cloud-php/commit/812b0a4fcee01f8fec9765e68c7a5bde78f27e23))
+
+</details>
+
+<details><summary>google/developer-knowledge 0.3.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9446](https://github.com/googleapis/google-cloud-php/issues/9446)) ([812b0a4](https://github.com/googleapis/google-cloud-php/commit/812b0a4fcee01f8fec9765e68c7a5bde78f27e23))
+
+</details>
+
+<details><summary>google/cloud-devicestreaming 0.3.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9446](https://github.com/googleapis/google-cloud-php/issues/9446)) ([812b0a4](https://github.com/googleapis/google-cloud-php/commit/812b0a4fcee01f8fec9765e68c7a5bde78f27e23))
+
+</details>
+
+<details><summary>google/cloud-dialogflow 2.6.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9446](https://github.com/googleapis/google-cloud-php/issues/9446)) ([812b0a4](https://github.com/googleapis/google-cloud-php/commit/812b0a4fcee01f8fec9765e68c7a5bde78f27e23))
+
+</details>
+
+<details><summary>google/cloud-dialogflow-cx 0.12.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9446](https://github.com/googleapis/google-cloud-php/issues/9446)) ([812b0a4](https://github.com/googleapis/google-cloud-php/commit/812b0a4fcee01f8fec9765e68c7a5bde78f27e23))
+
+</details>
+
+<details><summary>google/cloud-discoveryengine 1.13.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9446](https://github.com/googleapis/google-cloud-php/issues/9446)) ([812b0a4](https://github.com/googleapis/google-cloud-php/commit/812b0a4fcee01f8fec9765e68c7a5bde78f27e23))
+
+</details>
+
+<details><summary>google/cloud-dlp 2.14.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9446](https://github.com/googleapis/google-cloud-php/issues/9446)) ([812b0a4](https://github.com/googleapis/google-cloud-php/commit/812b0a4fcee01f8fec9765e68c7a5bde78f27e23))
+
+</details>
+
+<details><summary>google/cloud-dms 2.2.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9446](https://github.com/googleapis/google-cloud-php/issues/9446)) ([812b0a4](https://github.com/googleapis/google-cloud-php/commit/812b0a4fcee01f8fec9765e68c7a5bde78f27e23))
+
+</details>
+
+<details><summary>google/cloud-document-ai 2.8.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9447](https://github.com/googleapis/google-cloud-php/issues/9447)) ([80678e4](https://github.com/googleapis/google-cloud-php/commit/80678e4c7235972019ced10d9be74a35149e7b9d))
+
+</details>
+
+<details><summary>google/cloud-domains 1.2.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9447](https://github.com/googleapis/google-cloud-php/issues/9447)) ([80678e4](https://github.com/googleapis/google-cloud-php/commit/80678e4c7235972019ced10d9be74a35149e7b9d))
+
+</details>
+
+<details><summary>google/cloud-edgenetwork 1.5.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9447](https://github.com/googleapis/google-cloud-php/issues/9447)) ([80678e4](https://github.com/googleapis/google-cloud-php/commit/80678e4c7235972019ced10d9be74a35149e7b9d))
+
+</details>
+
+<details><summary>google/cloud-error-reporting 0.27.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9447](https://github.com/googleapis/google-cloud-php/issues/9447)) ([80678e4](https://github.com/googleapis/google-cloud-php/commit/80678e4c7235972019ced10d9be74a35149e7b9d))
+
+</details>
+
+<details><summary>google/cloud-essential-contacts 1.2.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9447](https://github.com/googleapis/google-cloud-php/issues/9447)) ([80678e4](https://github.com/googleapis/google-cloud-php/commit/80678e4c7235972019ced10d9be74a35149e7b9d))
+
+</details>
+
+<details><summary>google/cloud-eventarc 2.4.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9447](https://github.com/googleapis/google-cloud-php/issues/9447)) ([80678e4](https://github.com/googleapis/google-cloud-php/commit/80678e4c7235972019ced10d9be74a35149e7b9d))
+
+</details>
+
+<details><summary>google/cloud-eventarc-publishing 1.3.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9447](https://github.com/googleapis/google-cloud-php/issues/9447)) ([80678e4](https://github.com/googleapis/google-cloud-php/commit/80678e4c7235972019ced10d9be74a35149e7b9d))
+
+</details>
+
+<details><summary>google/cloud-filestore 2.3.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9447](https://github.com/googleapis/google-cloud-php/issues/9447)) ([80678e4](https://github.com/googleapis/google-cloud-php/commit/80678e4c7235972019ced10d9be74a35149e7b9d))
+
+</details>
+
+<details><summary>google/cloud-financialservices 0.3.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9447](https://github.com/googleapis/google-cloud-php/issues/9447)) ([80678e4](https://github.com/googleapis/google-cloud-php/commit/80678e4c7235972019ced10d9be74a35149e7b9d))
+
+</details>
+
+<details><summary>google/cloud-firestore 2.3.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9447](https://github.com/googleapis/google-cloud-php/issues/9447)) ([80678e4](https://github.com/googleapis/google-cloud-php/commit/80678e4c7235972019ced10d9be74a35149e7b9d))
+
+</details>
+
+<details><summary>google/cloud-functions 2.2.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9447](https://github.com/googleapis/google-cloud-php/issues/9447)) ([80678e4](https://github.com/googleapis/google-cloud-php/commit/80678e4c7235972019ced10d9be74a35149e7b9d))
+
+</details>
+
+<details><summary>google/cloud-gsuite-addons 1.2.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9447](https://github.com/googleapis/google-cloud-php/issues/9447)) ([80678e4](https://github.com/googleapis/google-cloud-php/commit/80678e4c7235972019ced10d9be74a35149e7b9d))
+
+</details>
+
+<details><summary>google/gax 1.47.1</summary>
+
+
+
+### Bug Fixes
+
+* **Gax:** handle non-deterministic map field order in ProtobufMessageComparator ([#9463](https://github.com/googleapis/google-cloud-php/issues/9463)) ([33c7386](https://github.com/googleapis/google-cloud-php/commit/33c738699810142579699603a3cc406830ed930b))
+* **Gax:** reject path with insufficient segments for double wildcard ([#9466](https://github.com/googleapis/google-cloud-php/issues/9466)) ([6e40812](https://github.com/googleapis/google-cloud-php/commit/6e408122d30e0d7c9ce9675b3c2576e0388101a0))
+
+</details>
+
+<details><summary>google/cloud-geminidataanalytics 0.12.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9447](https://github.com/googleapis/google-cloud-php/issues/9447)) ([80678e4](https://github.com/googleapis/google-cloud-php/commit/80678e4c7235972019ced10d9be74a35149e7b9d))
+
+</details>
+
+<details><summary>google/cloud-gke-backup 1.4.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9447](https://github.com/googleapis/google-cloud-php/issues/9447)) ([80678e4](https://github.com/googleapis/google-cloud-php/commit/80678e4c7235972019ced10d9be74a35149e7b9d))
+
+</details>
+
+<details><summary>google/cloud-gke-connect-gateway 1.2.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9447](https://github.com/googleapis/google-cloud-php/issues/9447)) ([80678e4](https://github.com/googleapis/google-cloud-php/commit/80678e4c7235972019ced10d9be74a35149e7b9d))
+
+</details>
+
+<details><summary>google/cloud-gke-hub 1.4.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9447](https://github.com/googleapis/google-cloud-php/issues/9447)) ([80678e4](https://github.com/googleapis/google-cloud-php/commit/80678e4c7235972019ced10d9be74a35149e7b9d))
+
+</details>
+
+<details><summary>google/cloud-gke-multi-cloud 1.5.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9447](https://github.com/googleapis/google-cloud-php/issues/9447)) ([80678e4](https://github.com/googleapis/google-cloud-php/commit/80678e4c7235972019ced10d9be74a35149e7b9d))
+
+</details>
+
+<details><summary>google/cloud-gkerecommender 0.3.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9447](https://github.com/googleapis/google-cloud-php/issues/9447)) ([80678e4](https://github.com/googleapis/google-cloud-php/commit/80678e4c7235972019ced10d9be74a35149e7b9d))
+
+</details>
+
+<details><summary>google/grafeas 1.9.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9447](https://github.com/googleapis/google-cloud-php/issues/9447)) ([80678e4](https://github.com/googleapis/google-cloud-php/commit/80678e4c7235972019ced10d9be74a35149e7b9d))
+
+</details>
+
+<details><summary>google/cloud-hypercomputecluster 0.4.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9447](https://github.com/googleapis/google-cloud-php/issues/9447)) ([80678e4](https://github.com/googleapis/google-cloud-php/commit/80678e4c7235972019ced10d9be74a35149e7b9d))
+
+</details>
+
+<details><summary>google/cloud-iam 1.5.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9448](https://github.com/googleapis/google-cloud-php/issues/9448)) ([9ef9928](https://github.com/googleapis/google-cloud-php/commit/9ef9928ef02ff97a170aa3ee4da9eab2531b4cc9))
+
+</details>
+
+<details><summary>google/cloud-iam-credentials 2.3.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9448](https://github.com/googleapis/google-cloud-php/issues/9448)) ([9ef9928](https://github.com/googleapis/google-cloud-php/commit/9ef9928ef02ff97a170aa3ee4da9eab2531b4cc9))
+
+</details>
+
+<details><summary>google/cloud-iap 2.4.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9448](https://github.com/googleapis/google-cloud-php/issues/9448)) ([9ef9928](https://github.com/googleapis/google-cloud-php/commit/9ef9928ef02ff97a170aa3ee4da9eab2531b4cc9))
+
+</details>
+
+<details><summary>google/cloud-ids 1.3.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9448](https://github.com/googleapis/google-cloud-php/issues/9448)) ([9ef9928](https://github.com/googleapis/google-cloud-php/commit/9ef9928ef02ff97a170aa3ee4da9eab2531b4cc9))
+
+</details>
+
+<details><summary>google/cloud-kms 2.12.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9448](https://github.com/googleapis/google-cloud-php/issues/9448)) ([9ef9928](https://github.com/googleapis/google-cloud-php/commit/9ef9928ef02ff97a170aa3ee4da9eab2531b4cc9))
+
+</details>
+
+<details><summary>google/cloud-kms-inventory 1.5.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9448](https://github.com/googleapis/google-cloud-php/issues/9448)) ([9ef9928](https://github.com/googleapis/google-cloud-php/commit/9ef9928ef02ff97a170aa3ee4da9eab2531b4cc9))
+
+</details>
+
+<details><summary>google/cloud-language 1.3.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9448](https://github.com/googleapis/google-cloud-php/issues/9448)) ([9ef9928](https://github.com/googleapis/google-cloud-php/commit/9ef9928ef02ff97a170aa3ee4da9eab2531b4cc9))
+
+</details>
+
+<details><summary>google/cloud-licensemanager 0.4.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9448](https://github.com/googleapis/google-cloud-php/issues/9448)) ([9ef9928](https://github.com/googleapis/google-cloud-php/commit/9ef9928ef02ff97a170aa3ee4da9eab2531b4cc9))
+
+</details>
+
+<details><summary>google/cloud-life-sciences 0.10.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9448](https://github.com/googleapis/google-cloud-php/issues/9448)) ([9ef9928](https://github.com/googleapis/google-cloud-php/commit/9ef9928ef02ff97a170aa3ee4da9eab2531b4cc9))
+
+</details>
+
+<details><summary>google/cloud-locationfinder 0.3.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9448](https://github.com/googleapis/google-cloud-php/issues/9448)) ([9ef9928](https://github.com/googleapis/google-cloud-php/commit/9ef9928ef02ff97a170aa3ee4da9eab2531b4cc9))
+
+</details>
+
+<details><summary>google/cloud-logging 2.2.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9448](https://github.com/googleapis/google-cloud-php/issues/9448)) ([9ef9928](https://github.com/googleapis/google-cloud-php/commit/9ef9928ef02ff97a170aa3ee4da9eab2531b4cc9))
+
+</details>
+
+<details><summary>google/longrunning 0.8.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9448](https://github.com/googleapis/google-cloud-php/issues/9448)) ([9ef9928](https://github.com/googleapis/google-cloud-php/commit/9ef9928ef02ff97a170aa3ee4da9eab2531b4cc9))
+
+</details>
+
+<details><summary>google/cloud-lustre 0.5.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9448](https://github.com/googleapis/google-cloud-php/issues/9448)) ([9ef9928](https://github.com/googleapis/google-cloud-php/commit/9ef9928ef02ff97a170aa3ee4da9eab2531b4cc9))
+
+</details>
+
+<details><summary>google/cloud-maintenance 0.5.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9448](https://github.com/googleapis/google-cloud-php/issues/9448)) ([9ef9928](https://github.com/googleapis/google-cloud-php/commit/9ef9928ef02ff97a170aa3ee4da9eab2531b4cc9))
+
+</details>
+
+<details><summary>google/cloud-managed-identities 2.3.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9448](https://github.com/googleapis/google-cloud-php/issues/9448)) ([9ef9928](https://github.com/googleapis/google-cloud-php/commit/9ef9928ef02ff97a170aa3ee4da9eab2531b4cc9))
+
+</details>
+
+<details><summary>google/cloud-managedkafka 0.9.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9448](https://github.com/googleapis/google-cloud-php/issues/9448)) ([9ef9928](https://github.com/googleapis/google-cloud-php/commit/9ef9928ef02ff97a170aa3ee4da9eab2531b4cc9))
+
+</details>
+
+<details><summary>google/cloud-managedkafka-schemaregistry 0.4.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9448](https://github.com/googleapis/google-cloud-php/issues/9448)) ([9ef9928](https://github.com/googleapis/google-cloud-php/commit/9ef9928ef02ff97a170aa3ee4da9eab2531b4cc9))
+
+</details>
+
+<details><summary>google/maps-fleetengine 0.6.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9448](https://github.com/googleapis/google-cloud-php/issues/9448)) ([9ef9928](https://github.com/googleapis/google-cloud-php/commit/9ef9928ef02ff97a170aa3ee4da9eab2531b4cc9))
+
+</details>
+
+<details><summary>google/maps-fleetengine-delivery 0.6.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9448](https://github.com/googleapis/google-cloud-php/issues/9448)) ([9ef9928](https://github.com/googleapis/google-cloud-php/commit/9ef9928ef02ff97a170aa3ee4da9eab2531b4cc9))
+
+</details>
+
+<details><summary>google/maps-routeoptimization 0.7.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9448](https://github.com/googleapis/google-cloud-php/issues/9448)) ([9ef9928](https://github.com/googleapis/google-cloud-php/commit/9ef9928ef02ff97a170aa3ee4da9eab2531b4cc9))
+
+</details>
+
+<details><summary>google/cloud-media-translation 0.7.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9449](https://github.com/googleapis/google-cloud-php/issues/9449)) ([681a61e](https://github.com/googleapis/google-cloud-php/commit/681a61e20e172b1e059cf5deff7a8f7ae591780f))
+
+</details>
+
+<details><summary>google/cloud-memcache 2.2.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9449](https://github.com/googleapis/google-cloud-php/issues/9449)) ([681a61e](https://github.com/googleapis/google-cloud-php/commit/681a61e20e172b1e059cf5deff7a8f7ae591780f))
+
+</details>
+
+<details><summary>google/cloud-memorystore 0.13.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9449](https://github.com/googleapis/google-cloud-php/issues/9449)) ([681a61e](https://github.com/googleapis/google-cloud-php/commit/681a61e20e172b1e059cf5deff7a8f7ae591780f))
+
+</details>
+
+<details><summary>google/cloud-migrationcenter 1.3.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9449](https://github.com/googleapis/google-cloud-php/issues/9449)) ([681a61e](https://github.com/googleapis/google-cloud-php/commit/681a61e20e172b1e059cf5deff7a8f7ae591780f))
+
+</details>
+
+<details><summary>google/cloud-modelarmor 0.8.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9449](https://github.com/googleapis/google-cloud-php/issues/9449)) ([681a61e](https://github.com/googleapis/google-cloud-php/commit/681a61e20e172b1e059cf5deff7a8f7ae591780f))
+
+</details>
+
+<details><summary>google/cloud-monitoring 2.3.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9449](https://github.com/googleapis/google-cloud-php/issues/9449)) ([681a61e](https://github.com/googleapis/google-cloud-php/commit/681a61e20e172b1e059cf5deff7a8f7ae591780f))
+
+</details>
+
+<details><summary>google/cloud-netapp 1.13.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9449](https://github.com/googleapis/google-cloud-php/issues/9449)) ([681a61e](https://github.com/googleapis/google-cloud-php/commit/681a61e20e172b1e059cf5deff7a8f7ae591780f))
+
+</details>
+
+<details><summary>google/cloud-network-connectivity 2.6.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9449](https://github.com/googleapis/google-cloud-php/issues/9449)) ([681a61e](https://github.com/googleapis/google-cloud-php/commit/681a61e20e172b1e059cf5deff7a8f7ae591780f))
+
+</details>
+
+<details><summary>google/cloud-network-management 2.11.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9449](https://github.com/googleapis/google-cloud-php/issues/9449)) ([681a61e](https://github.com/googleapis/google-cloud-php/commit/681a61e20e172b1e059cf5deff7a8f7ae591780f))
+
+</details>
+
+<details><summary>google/cloud-network-security 1.5.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9449](https://github.com/googleapis/google-cloud-php/issues/9449)) ([681a61e](https://github.com/googleapis/google-cloud-php/commit/681a61e20e172b1e059cf5deff7a8f7ae591780f))
+
+</details>
+
+<details><summary>google/cloud-networkservices 0.12.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9449](https://github.com/googleapis/google-cloud-php/issues/9449)) ([681a61e](https://github.com/googleapis/google-cloud-php/commit/681a61e20e172b1e059cf5deff7a8f7ae591780f))
+
+</details>
+
+<details><summary>google/cloud-notebooks 1.2.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9449](https://github.com/googleapis/google-cloud-php/issues/9449)) ([681a61e](https://github.com/googleapis/google-cloud-php/commit/681a61e20e172b1e059cf5deff7a8f7ae591780f))
+
+</details>
+
+<details><summary>google/cloud-optimization 1.2.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9449](https://github.com/googleapis/google-cloud-php/issues/9449)) ([681a61e](https://github.com/googleapis/google-cloud-php/commit/681a61e20e172b1e059cf5deff7a8f7ae591780f))
+
+</details>
+
+<details><summary>google/cloud-oracledatabase 0.10.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9449](https://github.com/googleapis/google-cloud-php/issues/9449)) ([681a61e](https://github.com/googleapis/google-cloud-php/commit/681a61e20e172b1e059cf5deff7a8f7ae591780f))
+
+</details>
+
+<details><summary>google/cloud-orchestration-airflow 2.3.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9449](https://github.com/googleapis/google-cloud-php/issues/9449)) ([681a61e](https://github.com/googleapis/google-cloud-php/commit/681a61e20e172b1e059cf5deff7a8f7ae591780f))
+
+</details>
+
+<details><summary>google/cloud-org-policy 1.4.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9449](https://github.com/googleapis/google-cloud-php/issues/9449)) ([681a61e](https://github.com/googleapis/google-cloud-php/commit/681a61e20e172b1e059cf5deff7a8f7ae591780f))
+
+</details>
+
+<details><summary>google/cloud-osconfig 2.3.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9449](https://github.com/googleapis/google-cloud-php/issues/9449)) ([681a61e](https://github.com/googleapis/google-cloud-php/commit/681a61e20e172b1e059cf5deff7a8f7ae591780f))
+
+</details>
+
+<details><summary>google/cloud-oslogin 2.2.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9449](https://github.com/googleapis/google-cloud-php/issues/9449)) ([681a61e](https://github.com/googleapis/google-cloud-php/commit/681a61e20e172b1e059cf5deff7a8f7ae591780f))
+
+</details>
+
+<details><summary>google/cloud-parallelstore 0.14.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9449](https://github.com/googleapis/google-cloud-php/issues/9449)) ([681a61e](https://github.com/googleapis/google-cloud-php/commit/681a61e20e172b1e059cf5deff7a8f7ae591780f))
+
+</details>
+
+<details><summary>google/cloud-parametermanager 0.6.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9449](https://github.com/googleapis/google-cloud-php/issues/9449)) ([681a61e](https://github.com/googleapis/google-cloud-php/commit/681a61e20e172b1e059cf5deff7a8f7ae591780f))
+
+</details>
+
+<details><summary>google/cloud-policysimulator 1.4.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9450](https://github.com/googleapis/google-cloud-php/issues/9450)) ([e54a271](https://github.com/googleapis/google-cloud-php/commit/e54a27158a1f6325e8a20b99fb4693a87fae0208))
+
+</details>
+
+<details><summary>google/cloud-policy-troubleshooter 2.2.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9450](https://github.com/googleapis/google-cloud-php/issues/9450)) ([e54a271](https://github.com/googleapis/google-cloud-php/commit/e54a27158a1f6325e8a20b99fb4693a87fae0208))
+
+</details>
+
+<details><summary>google/cloud-policytroubleshooter-iam 0.5.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9450](https://github.com/googleapis/google-cloud-php/issues/9450)) ([e54a271](https://github.com/googleapis/google-cloud-php/commit/e54a27158a1f6325e8a20b99fb4693a87fae0208))
+
+</details>
+
+<details><summary>google/cloud-private-catalog 0.7.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9450](https://github.com/googleapis/google-cloud-php/issues/9450)) ([e54a271](https://github.com/googleapis/google-cloud-php/commit/e54a27158a1f6325e8a20b99fb4693a87fae0208))
+
+</details>
+
+<details><summary>google/cloud-privilegedaccessmanager 0.5.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9450](https://github.com/googleapis/google-cloud-php/issues/9450)) ([e54a271](https://github.com/googleapis/google-cloud-php/commit/e54a27158a1f6325e8a20b99fb4693a87fae0208))
+
+</details>
+
+<details><summary>google/cloud-profiler 2.2.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9450](https://github.com/googleapis/google-cloud-php/issues/9450)) ([e54a271](https://github.com/googleapis/google-cloud-php/commit/e54a27158a1f6325e8a20b99fb4693a87fae0208))
+
+</details>
+
+<details><summary>google/cloud-pubsub 2.20.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9450](https://github.com/googleapis/google-cloud-php/issues/9450)) ([e54a271](https://github.com/googleapis/google-cloud-php/commit/e54a27158a1f6325e8a20b99fb4693a87fae0208))
+
+</details>
+
+<details><summary>google/cloud-quotas 1.7.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9450](https://github.com/googleapis/google-cloud-php/issues/9450)) ([e54a271](https://github.com/googleapis/google-cloud-php/commit/e54a27158a1f6325e8a20b99fb4693a87fae0208))
+
+</details>
+
+<details><summary>google/cloud-rapidmigrationassessment 1.3.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9450](https://github.com/googleapis/google-cloud-php/issues/9450)) ([e54a271](https://github.com/googleapis/google-cloud-php/commit/e54a27158a1f6325e8a20b99fb4693a87fae0208))
+
+</details>
+
+<details><summary>google/cloud-recaptcha-enterprise 2.4.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9450](https://github.com/googleapis/google-cloud-php/issues/9450)) ([e54a271](https://github.com/googleapis/google-cloud-php/commit/e54a27158a1f6325e8a20b99fb4693a87fae0208))
+
+</details>
+
+<details><summary>google/cloud-recommendations-ai 0.10.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9450](https://github.com/googleapis/google-cloud-php/issues/9450)) ([e54a271](https://github.com/googleapis/google-cloud-php/commit/e54a27158a1f6325e8a20b99fb4693a87fae0208))
+
+</details>
+
+<details><summary>google/cloud-recommender 2.3.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9450](https://github.com/googleapis/google-cloud-php/issues/9450)) ([e54a271](https://github.com/googleapis/google-cloud-php/commit/e54a27158a1f6325e8a20b99fb4693a87fae0208))
+
+</details>
+
+<details><summary>google/cloud-redis 2.3.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9450](https://github.com/googleapis/google-cloud-php/issues/9450)) ([e54a271](https://github.com/googleapis/google-cloud-php/commit/e54a27158a1f6325e8a20b99fb4693a87fae0208))
+
+</details>
+
+<details><summary>google/cloud-redis-cluster 0.10.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9450](https://github.com/googleapis/google-cloud-php/issues/9450)) ([e54a271](https://github.com/googleapis/google-cloud-php/commit/e54a27158a1f6325e8a20b99fb4693a87fae0208))
+
+</details>
+
+<details><summary>google/cloud-resource-manager 1.2.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9450](https://github.com/googleapis/google-cloud-php/issues/9450)) ([e54a271](https://github.com/googleapis/google-cloud-php/commit/e54a27158a1f6325e8a20b99fb4693a87fae0208))
+
+</details>
+
+<details><summary>google/cloud-retail 2.6.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9450](https://github.com/googleapis/google-cloud-php/issues/9450)) ([e54a271](https://github.com/googleapis/google-cloud-php/commit/e54a27158a1f6325e8a20b99fb4693a87fae0208))
+
+</details>
+
+<details><summary>google/cloud-run 1.13.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9450](https://github.com/googleapis/google-cloud-php/issues/9450)) ([e54a271](https://github.com/googleapis/google-cloud-php/commit/e54a27158a1f6325e8a20b99fb4693a87fae0208))
+
+</details>
+
+<details><summary>google/cloud-scheduler 2.3.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9450](https://github.com/googleapis/google-cloud-php/issues/9450)) ([e54a271](https://github.com/googleapis/google-cloud-php/commit/e54a27158a1f6325e8a20b99fb4693a87fae0208))
+
+</details>
+
+<details><summary>google/cloud-secret-manager 2.5.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9450](https://github.com/googleapis/google-cloud-php/issues/9450)) ([e54a271](https://github.com/googleapis/google-cloud-php/commit/e54a27158a1f6325e8a20b99fb4693a87fae0208))
+
+</details>
+
+<details><summary>google/cloud-securesourcemanager 1.10.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9450](https://github.com/googleapis/google-cloud-php/issues/9450)) ([e54a271](https://github.com/googleapis/google-cloud-php/commit/e54a27158a1f6325e8a20b99fb4693a87fae0208))
+
+</details>
+
+<details><summary>google/cloud-security-center 2.6.1</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9451](https://github.com/googleapis/google-cloud-php/issues/9451)) ([cf3ebf9](https://github.com/googleapis/google-cloud-php/commit/cf3ebf9a9243a16ad95660deca1b9d82db8e45db))
+
+</details>
+
+<details><summary>google/cloud-securitycentermanagement 1.4.1</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9451](https://github.com/googleapis/google-cloud-php/issues/9451)) ([cf3ebf9](https://github.com/googleapis/google-cloud-php/commit/cf3ebf9a9243a16ad95660deca1b9d82db8e45db))
+
+</details>
+
+<details><summary>google/cloud-securitycompliance 0.4.2</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9451](https://github.com/googleapis/google-cloud-php/issues/9451)) ([cf3ebf9](https://github.com/googleapis/google-cloud-php/commit/cf3ebf9a9243a16ad95660deca1b9d82db8e45db))
+
+</details>
+
+<details><summary>google/cloud-security-private-ca 2.4.2</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9451](https://github.com/googleapis/google-cloud-php/issues/9451)) ([cf3ebf9](https://github.com/googleapis/google-cloud-php/commit/cf3ebf9a9243a16ad95660deca1b9d82db8e45db))
+
+</details>
+
+<details><summary>google/cloud-security-public-ca 1.2.1</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9451](https://github.com/googleapis/google-cloud-php/issues/9451)) ([cf3ebf9](https://github.com/googleapis/google-cloud-php/commit/cf3ebf9a9243a16ad95660deca1b9d82db8e45db))
+
+</details>
+
+<details><summary>google/cloud-service-control 2.3.1</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9451](https://github.com/googleapis/google-cloud-php/issues/9451)) ([cf3ebf9](https://github.com/googleapis/google-cloud-php/commit/cf3ebf9a9243a16ad95660deca1b9d82db8e45db))
+
+</details>
+
+<details><summary>google/cloud-service-directory 2.2.1</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9451](https://github.com/googleapis/google-cloud-php/issues/9451)) ([cf3ebf9](https://github.com/googleapis/google-cloud-php/commit/cf3ebf9a9243a16ad95660deca1b9d82db8e45db))
+
+</details>
+
+<details><summary>google/cloud-servicehealth 0.5.1</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9451](https://github.com/googleapis/google-cloud-php/issues/9451)) ([cf3ebf9](https://github.com/googleapis/google-cloud-php/commit/cf3ebf9a9243a16ad95660deca1b9d82db8e45db))
+
+</details>
+
+<details><summary>google/cloud-service-management 2.2.2</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9451](https://github.com/googleapis/google-cloud-php/issues/9451)) ([cf3ebf9](https://github.com/googleapis/google-cloud-php/commit/cf3ebf9a9243a16ad95660deca1b9d82db8e45db))
+
+</details>
+
+<details><summary>google/cloud-service-usage 2.2.1</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9451](https://github.com/googleapis/google-cloud-php/issues/9451)) ([cf3ebf9](https://github.com/googleapis/google-cloud-php/commit/cf3ebf9a9243a16ad95660deca1b9d82db8e45db))
+
+</details>
+
+<details><summary>google/cloud-shell 2.2.1</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9451](https://github.com/googleapis/google-cloud-php/issues/9451)) ([cf3ebf9](https://github.com/googleapis/google-cloud-php/commit/cf3ebf9a9243a16ad95660deca1b9d82db8e45db))
+
+</details>
+
+<details><summary>google/shopping-css 0.8.3</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9451](https://github.com/googleapis/google-cloud-php/issues/9451)) ([cf3ebf9](https://github.com/googleapis/google-cloud-php/commit/cf3ebf9a9243a16ad95660deca1b9d82db8e45db))
+
+</details>
+
+<details><summary>google/shopping-merchant-accounts 1.4.3</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9451](https://github.com/googleapis/google-cloud-php/issues/9451)) ([cf3ebf9](https://github.com/googleapis/google-cloud-php/commit/cf3ebf9a9243a16ad95660deca1b9d82db8e45db))
+
+</details>
+
+<details><summary>google/shopping-merchant-conversions 1.2.1</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9451](https://github.com/googleapis/google-cloud-php/issues/9451)) ([cf3ebf9](https://github.com/googleapis/google-cloud-php/commit/cf3ebf9a9243a16ad95660deca1b9d82db8e45db))
+
+</details>
+
+<details><summary>google/shopping-merchant-datasources 1.3.3</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9451](https://github.com/googleapis/google-cloud-php/issues/9451)) ([cf3ebf9](https://github.com/googleapis/google-cloud-php/commit/cf3ebf9a9243a16ad95660deca1b9d82db8e45db))
+
+</details>
+
+<details><summary>google/shopping-merchant-inventories 1.5.2</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9451](https://github.com/googleapis/google-cloud-php/issues/9451)) ([cf3ebf9](https://github.com/googleapis/google-cloud-php/commit/cf3ebf9a9243a16ad95660deca1b9d82db8e45db))
+
+</details>
+
+<details><summary>google/shopping-merchant-issueresolution 1.3.3</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9451](https://github.com/googleapis/google-cloud-php/issues/9451)) ([cf3ebf9](https://github.com/googleapis/google-cloud-php/commit/cf3ebf9a9243a16ad95660deca1b9d82db8e45db))
+
+</details>
+
+<details><summary>google/shopping-merchant-lfp 1.2.3</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9451](https://github.com/googleapis/google-cloud-php/issues/9451)) ([cf3ebf9](https://github.com/googleapis/google-cloud-php/commit/cf3ebf9a9243a16ad95660deca1b9d82db8e45db))
+
+</details>
+
+<details><summary>google/shopping-merchant-notifications 1.2.3</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9451](https://github.com/googleapis/google-cloud-php/issues/9451)) ([cf3ebf9](https://github.com/googleapis/google-cloud-php/commit/cf3ebf9a9243a16ad95660deca1b9d82db8e45db))
+
+</details>
+
+<details><summary>google/shopping-merchant-ordertracking 1.2.3</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9451](https://github.com/googleapis/google-cloud-php/issues/9451)) ([cf3ebf9](https://github.com/googleapis/google-cloud-php/commit/cf3ebf9a9243a16ad95660deca1b9d82db8e45db))
+
+</details>
+
+<details><summary>google/shopping-merchant-products 1.7.2</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9452](https://github.com/googleapis/google-cloud-php/issues/9452)) ([03eef97](https://github.com/googleapis/google-cloud-php/commit/03eef974191c26b2624fc6c0ca058defc13dfd10))
+
+</details>
+
+<details><summary>google/shopping-merchant-promotions 1.2.3</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9452](https://github.com/googleapis/google-cloud-php/issues/9452)) ([03eef97](https://github.com/googleapis/google-cloud-php/commit/03eef974191c26b2624fc6c0ca058defc13dfd10))
+
+</details>
+
+<details><summary>google/shopping-merchant-quota 1.3.1</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9452](https://github.com/googleapis/google-cloud-php/issues/9452)) ([03eef97](https://github.com/googleapis/google-cloud-php/commit/03eef974191c26b2624fc6c0ca058defc13dfd10))
+
+</details>
+
+<details><summary>google/shopping-merchant-reports 1.3.2</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9452](https://github.com/googleapis/google-cloud-php/issues/9452)) ([03eef97](https://github.com/googleapis/google-cloud-php/commit/03eef974191c26b2624fc6c0ca058defc13dfd10))
+
+</details>
+
+<details><summary>google/shopping-merchant-reviews 0.6.3</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9452](https://github.com/googleapis/google-cloud-php/issues/9452)) ([03eef97](https://github.com/googleapis/google-cloud-php/commit/03eef974191c26b2624fc6c0ca058defc13dfd10))
+
+</details>
+
+<details><summary>google/cloud-spanner 2.10.5</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9452](https://github.com/googleapis/google-cloud-php/issues/9452)) ([03eef97](https://github.com/googleapis/google-cloud-php/commit/03eef974191c26b2624fc6c0ca058defc13dfd10))
+* **Spanner:** Preserve dataBoostEnabled in partitioned query and read ([#9469](https://github.com/googleapis/google-cloud-php/issues/9469)) ([1b82172](https://github.com/googleapis/google-cloud-php/commit/1b82172c2e0fe87999deb20b4486c69baab7ea23))
+
+</details>
+
+<details><summary>google/cloud-speech 2.5.4</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9452](https://github.com/googleapis/google-cloud-php/issues/9452)) ([03eef97](https://github.com/googleapis/google-cloud-php/commit/03eef974191c26b2624fc6c0ca058defc13dfd10))
+
+</details>
+
+<details><summary>google/cloud-sql-admin 1.11.1</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9452](https://github.com/googleapis/google-cloud-php/issues/9452)) ([03eef97](https://github.com/googleapis/google-cloud-php/commit/03eef974191c26b2624fc6c0ca058defc13dfd10))
+
+</details>
+
+<details><summary>google/cloud-storagebatchoperations 0.7.1</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9452](https://github.com/googleapis/google-cloud-php/issues/9452)) ([03eef97](https://github.com/googleapis/google-cloud-php/commit/03eef974191c26b2624fc6c0ca058defc13dfd10))
+
+</details>
+
+<details><summary>google/cloud-storage-control 1.10.1</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9452](https://github.com/googleapis/google-cloud-php/issues/9452)) ([03eef97](https://github.com/googleapis/google-cloud-php/commit/03eef974191c26b2624fc6c0ca058defc13dfd10))
+
+</details>
+
+<details><summary>google/cloud-storageinsights 1.4.1</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9452](https://github.com/googleapis/google-cloud-php/issues/9452)) ([03eef97](https://github.com/googleapis/google-cloud-php/commit/03eef974191c26b2624fc6c0ca058defc13dfd10))
+
+</details>
+
+<details><summary>google/cloud-storage-transfer 2.4.1</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9452](https://github.com/googleapis/google-cloud-php/issues/9452)) ([03eef97](https://github.com/googleapis/google-cloud-php/commit/03eef974191c26b2624fc6c0ca058defc13dfd10))
+
+</details>
+
+<details><summary>google/cloud-support 1.8.1</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9452](https://github.com/googleapis/google-cloud-php/issues/9452)) ([03eef97](https://github.com/googleapis/google-cloud-php/commit/03eef974191c26b2624fc6c0ca058defc13dfd10))
+
+</details>
+
+<details><summary>google/cloud-talent 2.3.1</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9452](https://github.com/googleapis/google-cloud-php/issues/9452)) ([03eef97](https://github.com/googleapis/google-cloud-php/commit/03eef974191c26b2624fc6c0ca058defc13dfd10))
+
+</details>
+
+<details><summary>google/cloud-tasks 2.2.1</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9452](https://github.com/googleapis/google-cloud-php/issues/9452)) ([03eef97](https://github.com/googleapis/google-cloud-php/commit/03eef974191c26b2624fc6c0ca058defc13dfd10))
+
+</details>
+
+<details><summary>google/cloud-telcoautomation 1.3.1</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9452](https://github.com/googleapis/google-cloud-php/issues/9452)) ([03eef97](https://github.com/googleapis/google-cloud-php/commit/03eef974191c26b2624fc6c0ca058defc13dfd10))
+
+</details>
+
+<details><summary>google/cloud-text-to-speech 2.8.1</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9452](https://github.com/googleapis/google-cloud-php/issues/9452)) ([03eef97](https://github.com/googleapis/google-cloud-php/commit/03eef974191c26b2624fc6c0ca058defc13dfd10))
+
+</details>
+
+<details><summary>google/cloud-tpu 2.3.1</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9452](https://github.com/googleapis/google-cloud-php/issues/9452)) ([03eef97](https://github.com/googleapis/google-cloud-php/commit/03eef974191c26b2624fc6c0ca058defc13dfd10))
+
+</details>
+
+<details><summary>google/cloud-trace 2.0.2</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9452](https://github.com/googleapis/google-cloud-php/issues/9452)) ([03eef97](https://github.com/googleapis/google-cloud-php/commit/03eef974191c26b2624fc6c0ca058defc13dfd10))
+
+</details>
+
+<details><summary>google/cloud-translate 2.3.3</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9452](https://github.com/googleapis/google-cloud-php/issues/9452)) ([03eef97](https://github.com/googleapis/google-cloud-php/commit/03eef974191c26b2624fc6c0ca058defc13dfd10))
+
+</details>
+
+<details><summary>google/cloud-vectorsearch 0.6.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9453](https://github.com/googleapis/google-cloud-php/issues/9453)) ([fc7bc1c](https://github.com/googleapis/google-cloud-php/commit/fc7bc1c4e7f6575dadb04d20742434c80eabfde3))
+
+</details>
+
+<details><summary>google/cloud-videointelligence 2.3.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9453](https://github.com/googleapis/google-cloud-php/issues/9453)) ([fc7bc1c](https://github.com/googleapis/google-cloud-php/commit/fc7bc1c4e7f6575dadb04d20742434c80eabfde3))
+
+</details>
+
+<details><summary>google/cloud-video-live-stream 1.5.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9453](https://github.com/googleapis/google-cloud-php/issues/9453)) ([fc7bc1c](https://github.com/googleapis/google-cloud-php/commit/fc7bc1c4e7f6575dadb04d20742434c80eabfde3))
+
+</details>
+
+<details><summary>google/cloud-video-stitcher 1.3.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9453](https://github.com/googleapis/google-cloud-php/issues/9453)) ([fc7bc1c](https://github.com/googleapis/google-cloud-php/commit/fc7bc1c4e7f6575dadb04d20742434c80eabfde3))
+
+</details>
+
+<details><summary>google/cloud-video-transcoder 1.5.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9453](https://github.com/googleapis/google-cloud-php/issues/9453)) ([fc7bc1c](https://github.com/googleapis/google-cloud-php/commit/fc7bc1c4e7f6575dadb04d20742434c80eabfde3))
+
+</details>
+
+<details><summary>google/cloud-vision 2.3.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9453](https://github.com/googleapis/google-cloud-php/issues/9453)) ([fc7bc1c](https://github.com/googleapis/google-cloud-php/commit/fc7bc1c4e7f6575dadb04d20742434c80eabfde3))
+
+</details>
+
+<details><summary>google/cloud-visionai 0.4.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9453](https://github.com/googleapis/google-cloud-php/issues/9453)) ([fc7bc1c](https://github.com/googleapis/google-cloud-php/commit/fc7bc1c4e7f6575dadb04d20742434c80eabfde3))
+
+</details>
+
+<details><summary>google/cloud-vm-migration 1.5.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9453](https://github.com/googleapis/google-cloud-php/issues/9453)) ([fc7bc1c](https://github.com/googleapis/google-cloud-php/commit/fc7bc1c4e7f6575dadb04d20742434c80eabfde3))
+
+</details>
+
+<details><summary>google/cloud-vmware-engine 1.4.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9453](https://github.com/googleapis/google-cloud-php/issues/9453)) ([fc7bc1c](https://github.com/googleapis/google-cloud-php/commit/fc7bc1c4e7f6575dadb04d20742434c80eabfde3))
+
+</details>
+
+<details><summary>google/cloud-vpc-access 2.3.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9453](https://github.com/googleapis/google-cloud-php/issues/9453)) ([fc7bc1c](https://github.com/googleapis/google-cloud-php/commit/fc7bc1c4e7f6575dadb04d20742434c80eabfde3))
+
+</details>
+
+<details><summary>google/cloud-web-risk 2.4.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9453](https://github.com/googleapis/google-cloud-php/issues/9453)) ([fc7bc1c](https://github.com/googleapis/google-cloud-php/commit/fc7bc1c4e7f6575dadb04d20742434c80eabfde3))
+
+</details>
+
+<details><summary>google/cloud-web-security-scanner 1.3.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9453](https://github.com/googleapis/google-cloud-php/issues/9453)) ([fc7bc1c](https://github.com/googleapis/google-cloud-php/commit/fc7bc1c4e7f6575dadb04d20742434c80eabfde3))
+
+</details>
+
+<details><summary>google/cloud-workflows 1.4.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9453](https://github.com/googleapis/google-cloud-php/issues/9453)) ([fc7bc1c](https://github.com/googleapis/google-cloud-php/commit/fc7bc1c4e7f6575dadb04d20742434c80eabfde3))
+
+</details>
+
+<details><summary>google/cloud-workloadmanager 0.3.0</summary>
+
+
+
+### Features
+
+* [Many APIs] add internal tag to generated $serviceScopes property ([#9453](https://github.com/googleapis/google-cloud-php/issues/9453)) ([fc7bc1c](https://github.com/googleapis/google-cloud-php/commit/fc7bc1c4e7f6575dadb04d20742434c80eabfde3))
+
+</details>
+
 ## 0.340.0
 
 <details><summary>googleads/ad-manager 0.9.0</summary>

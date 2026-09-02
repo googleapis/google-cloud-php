@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,9 +29,9 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 
 /**
- * Lists `Company` objects.
+ * Lists [Company][google.ads.admanager.v1.Company] objects.
  *
- * @param string $formattedParent The parent, which owns this collection of Companies.
+ * @param string $formattedParent The parent, which owns this collection of [Companies][].
  *                                Format: `networks/{network_code}`
  *                                Please see {@see CompanyServiceClient::networkName()} for help formatting this field.
  */

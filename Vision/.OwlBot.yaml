@@ -1,4 +1,0 @@
-deep-copy-regex:
-    - source: /google/cloud/vision/(v1)/.*-php/(.*)
-      dest: /owl-bot-staging/Vision/$1/$2
-api-name: Vision

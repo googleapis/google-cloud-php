@@ -8,7 +8,7 @@
         "CloudQuotas": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "CloudQuotasGapicClient",
+                    "libraryClient": "CloudQuotasClient",
                     "rpcs": {
                         "CreateQuotaPreference": {
                             "methods": [
@@ -47,7 +47,7 @@
         "QuotaAdjusterSettingsManager": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "QuotaAdjusterSettingsManagerGapicClient",
+                    "libraryClient": "QuotaAdjusterSettingsManagerClient",
                     "rpcs": {
                         "GetQuotaAdjusterSettings": {
                             "methods": [

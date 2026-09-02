@@ -8,7 +8,7 @@
         "AML": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "AMLGapicClient",
+                    "libraryClient": "AMLClient",
                     "rpcs": {
                         "CreateBacktestResult": {
                             "methods": [
