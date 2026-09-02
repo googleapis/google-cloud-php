@@ -7,6 +7,9 @@ on:
 
 permissions:
   contents: read
+env:
+  GRPC_ENABLE_FORK_SUPPORT: 1
+
 jobs:
   test:
     strategy:

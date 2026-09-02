@@ -30,6 +30,6 @@
   </testsuites>
   <php>
     <ini name="memory_limit" value="2048M"/>
+    <env name="GRPC_ENABLE_FORK_SUPPORT" value="1"/>
   </php>
-
 </phpunit>

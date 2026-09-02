@@ -45,6 +45,11 @@ class RaceConditionTest extends TestCase
         if (!function_exists('pcntl_fork')) {
             $this->markTestSkipped('pcntl_fork is not available');
         }
+        if (extension_loaded('grpc') && !getenv('GRPC_ENABLE_FORK_SUPPORT')) {
+            $this->markTestSkipped(
+                'Cannot run fork test with grpc extension unless GRPC_ENABLE_FORK_SUPPORT=1 is set.'
+            );
+        }
         for ($i = 0; $i < 50; $i++) {
             // SysV Cache warmup to prevent segment creation race
             if ($cacheClass === SysVCacheItemPool::class) {
