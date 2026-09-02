@@ -1,4 +1,0 @@
-deep-copy-regex:
-    - source: /google/cloud/bigquery/dataexchange/(v1beta1)/.*-php/(.*)
-      dest: /owl-bot-staging/BigQueryDataExchange/$1/$2
-api-name: BigQueryDataExchange
