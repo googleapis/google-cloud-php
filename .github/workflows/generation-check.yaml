@@ -41,7 +41,7 @@ jobs:
             exit 1
           fi
       - name: Create issue if previous step fails
-        if: ${{ failure() && github.ref == 'refs/heads/main' }}
+        if: ${{ failure() && github.event_name == 'push' && github.ref == 'refs/heads/main' }}
         uses: googleapis/librarian/.github/actions/create-issue-on-failure@31da9b27335c41cf4d4795062c055521f49dcc51 # v0.40.0
         with:
           title: "Librarian generate diff check failed on main branch"
