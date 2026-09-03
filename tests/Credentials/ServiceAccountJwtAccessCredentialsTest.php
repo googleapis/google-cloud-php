@@ -17,14 +17,13 @@
 
 namespace Google\Auth\Tests\Credentials;
 
-use Google\Auth\Tests\HelperTrait;
-
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 use Google\Auth\ApplicationDefaultCredentials;
 use Google\Auth\Credentials\ServiceAccountCredentials;
 use Google\Auth\Credentials\ServiceAccountJwtAccessCredentials;
 use Google\Auth\CredentialsLoader;
+use Google\Auth\Tests\HelperTrait;
 use GuzzleHttp\Psr7\Response;
 use InvalidArgumentException;
 use LogicException;

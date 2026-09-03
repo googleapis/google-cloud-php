@@ -6,6 +6,7 @@ use Google\Auth\Cache\MemoryCacheItemPool;
 use Google\Auth\Credentials\RegionalAccessBoundaryTrait;
 use Google\Auth\GetUniverseDomainInterface;
 use Google\Auth\HttpHandler\HttpHandlerFactory;
+use Google\Auth\Tests\HelperTrait;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\RequestException;
