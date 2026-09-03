@@ -17,11 +17,14 @@
 
 namespace Google\Auth\Tests\Cache;
 
-$dir = __DIR__;
-while ($dir !== dirname($dir) && !file_exists($dir . '/vendor/autoload.php')) {
-    $dir = dirname($dir);
+$file = dirname(__DIR__, 2) . '/vendor/autoload.php';
+if (!file_exists($file)) {
+    $file = dirname(__DIR__, 4) . '/vendor/autoload.php';
+    if (!file_exists($file)) {
+        throw new \Exception('composer autoload.php not found');
+    }
 }
-require_once $dir . '/vendor/autoload.php';
+require_once $file;
 
 use Google\Auth\Cache\SysVCacheItemPool;
 use Google\Auth\Cache\TypedItem;
