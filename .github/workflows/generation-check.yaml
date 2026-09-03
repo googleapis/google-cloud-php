@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-  pull_request:
   # Allows manual triggering for debugging purpose.
   workflow_dispatch:
 permissions:
