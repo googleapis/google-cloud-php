@@ -38,7 +38,6 @@ class InterfaceNode extends ClassNode
     {
         // Project root components
         $componentDirs = array_map('realpath', glob(__DIR__ . '/../../../../*/src', GLOB_ONLYDIR));
-        $componentDirs[] = __DIR__ . '/../../../vendor/google/cloud/Auth/src';
 
         $finder = new ComposerFinder();
         $finder
