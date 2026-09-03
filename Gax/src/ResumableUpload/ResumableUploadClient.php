@@ -452,7 +452,7 @@ class ResumableUploadClient
 
     private function sendRequest(
         RequestInterface $request,
-        int|float|null $timeoutMillis = null,
+        ?int $timeoutMillis = null,
         ?RetrySettings $retrySettings = null
     ): ResponseInterface {
         $reqHeaders = $request->getHeaders();
