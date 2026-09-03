@@ -315,11 +315,11 @@ class GrpcTransport extends BaseStub implements TransportInterface
                 ->setAttribute('gcp.client.service', $this->clientService)
                 ->setAttribute('gcp.client.repo', 'googleapis/google-cloud-php')
                 ->setAttribute('gcp.client.version', $this->clientVersion);
-            
+
             if (isset($options['retryAttempt']) && $options['retryAttempt'] > 0) {
                 $spanBuilder->setAttribute('http.request.resend_count', $options['retryAttempt']);
             }
-            
+
             $span = $spanBuilder->startSpan();
         }
 
