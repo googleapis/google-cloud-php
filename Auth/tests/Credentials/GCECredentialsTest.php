@@ -17,14 +17,13 @@
 
 namespace Google\Auth\Tests\Credentials;
 
-use Google\Auth\Tests\HelperTrait;
-
 use COM;
 use Exception;
 use Google\Auth\Credentials\GCECredentials;
 use Google\Auth\GetUniverseDomainInterface;
 use Google\Auth\HttpHandler\HttpClientCache;
 use Google\Auth\Tests\BaseTest;
+use Google\Auth\Tests\HelperTrait;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Psr7;
@@ -43,7 +42,6 @@ use ReflectionClass;
 class GCECredentialsTest extends BaseTest
 {
     use HelperTrait;
-
     use ProphecyTrait;
 
     protected function tearDown(): void

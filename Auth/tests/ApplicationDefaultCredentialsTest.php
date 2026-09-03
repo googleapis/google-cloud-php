@@ -48,7 +48,6 @@ use ReflectionClass;
 class ApplicationDefaultCredentialsTest extends TestCase
 {
     use HelperTrait;
-
     use ProphecyTrait;
 
     private $originalHome;

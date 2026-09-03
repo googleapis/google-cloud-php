@@ -1,11 +1,12 @@
 <?php
 
-namespace Google\Auth\Tests;
+namespace Google\Auth\Tests\Credentials;
 
 use Google\Auth\Cache\MemoryCacheItemPool;
 use Google\Auth\Credentials\RegionalAccessBoundaryTrait;
 use Google\Auth\GetUniverseDomainInterface;
 use Google\Auth\HttpHandler\HttpHandlerFactory;
+use Google\Auth\Tests\HelperTrait;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\RequestException;
@@ -21,7 +22,6 @@ use Psr\Cache\CacheItemPoolInterface;
 class RegionalAccessBoundaryTraitTest extends TestCase
 {
     use HelperTrait;
-
     use ProphecyTrait;
 
     private $impl;

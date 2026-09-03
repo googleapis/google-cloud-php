@@ -31,7 +31,6 @@ use Prophecy\PhpUnit\ProphecyTrait;
 class ObservabilityMetricsTest extends TestCase
 {
     use HelperTrait;
-
     use ProphecyTrait;
 
     private static $headerKey = 'x-goog-api-client';

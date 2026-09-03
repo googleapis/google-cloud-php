@@ -17,8 +17,6 @@
 
 namespace Google\Auth\Tests\Credentials;
 
-use Google\Auth\Tests\HelperTrait;
-
 use Google\Auth\Credentials\ExternalAccountCredentials;
 use Google\Auth\CredentialSource\AwsNativeSource;
 use Google\Auth\CredentialSource\FileSource;
@@ -26,6 +24,7 @@ use Google\Auth\CredentialSource\UrlSource;
 use Google\Auth\FetchAuthTokenCache;
 use Google\Auth\GetUniverseDomainInterface;
 use Google\Auth\OAuth2;
+use Google\Auth\Tests\HelperTrait;
 use GuzzleHttp\Psr7\Response;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
@@ -42,8 +41,8 @@ use Psr\Http\Message\StreamInterface;
 class ExternalAccountCredentialsTest extends TestCase
 {
     use HelperTrait;
-
     use ProphecyTrait;
+
     private $baseCreds = [
         'type' => 'external_account',
         'token_url' => 'token-url.com',
