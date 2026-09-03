@@ -153,6 +153,14 @@
         "library_type": "GAPIC_AUTO",
         "api_shortname": "appoptimize"
     },
+    "AppTopology": {
+        "language": "php",
+        "distribution_name": "google/cloud-apptopology",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-apptopology/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "apptopology"
+    },
     "AppsChat": {
         "language": "php",
         "distribution_name": "google/apps-chat",
