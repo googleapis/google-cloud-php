@@ -1026,6 +1026,16 @@ libraries:
           staging_subdir: Admin/v1
     copyright_year: "2026"
     output: Firestore
+  - name: ftp
+    version: 0.0.0
+    apis:
+      - path: google/cloud/ftp/v1
+        php:
+          additional_protos:
+            - google/cloud/location/locations.proto
+          staging_subdir: v1
+    copyright_year: "2026"
+    output: Ftp
   - name: functions
     version: 2.2.1
     apis:
