@@ -49,6 +49,32 @@ return [
                     ],
                 ],
             ],
+            'GetHealth' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/{parent_name=reservations/*/reservationBlocks/*/reservationSubBlocks/*}/reservationSlots/{reservation_slot}/getHealth',
+                'placeholders' => [
+                    'parent_name' => [
+                        'getters' => [
+                            'getParentName',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'reservation_slot' => [
+                        'getters' => [
+                            'getReservationSlot',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
+                        ],
+                    ],
+                ],
+            ],
             'GetVersion' => [
                 'method' => 'post',
                 'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/{parent_name=reservations/*/reservationBlocks/*/reservationSubBlocks/*}/reservationSlots/{reservation_slot}/getVersion',

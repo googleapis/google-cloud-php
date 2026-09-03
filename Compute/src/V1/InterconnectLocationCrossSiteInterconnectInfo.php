@@ -24,6 +24,20 @@ class InterconnectLocationCrossSiteInterconnectInfo extends \Google\Protobuf\Int
      * Generated from protobuf field <code>optional string city = 3053931;</code>
      */
     protected $city = null;
+    /**
+     * Output only. The maximum unmetered bandwidth for dynamic paths allowable per
+     * WireGroup for this metro.
+     *
+     * Generated from protobuf field <code>optional int64 max_dynamic_path_bandwidth_gbps = 378021355;</code>
+     */
+    protected $max_dynamic_path_bandwidth_gbps = null;
+    /**
+     * Output only. The maximum unmetered bandwidth for fixed paths allowable per WireGroup
+     * for this metro.
+     *
+     * Generated from protobuf field <code>optional int64 max_fixed_path_bandwidth_gbps = 346138080;</code>
+     */
+    protected $max_fixed_path_bandwidth_gbps = null;
 
     /**
      * Constructor.
@@ -35,6 +49,12 @@ class InterconnectLocationCrossSiteInterconnectInfo extends \Google\Protobuf\Int
      *           Output only. The remote location for Cross-Site Interconnect wires. This specifies an
      *           InterconnectLocation city (metropolitan area designator), which itself
      *           may match multiple InterconnectLocations.
+     *     @type int|string $max_dynamic_path_bandwidth_gbps
+     *           Output only. The maximum unmetered bandwidth for dynamic paths allowable per
+     *           WireGroup for this metro.
+     *     @type int|string $max_fixed_path_bandwidth_gbps
+     *           Output only. The maximum unmetered bandwidth for fixed paths allowable per WireGroup
+     *           for this metro.
      * }
      */
     public function __construct($data = NULL) {
@@ -78,6 +98,82 @@ class InterconnectLocationCrossSiteInterconnectInfo extends \Google\Protobuf\Int
     {
         GPBUtil::checkString($var, True);
         $this->city = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The maximum unmetered bandwidth for dynamic paths allowable per
+     * WireGroup for this metro.
+     *
+     * Generated from protobuf field <code>optional int64 max_dynamic_path_bandwidth_gbps = 378021355;</code>
+     * @return int|string
+     */
+    public function getMaxDynamicPathBandwidthGbps()
+    {
+        return isset($this->max_dynamic_path_bandwidth_gbps) ? $this->max_dynamic_path_bandwidth_gbps : 0;
+    }
+
+    public function hasMaxDynamicPathBandwidthGbps()
+    {
+        return isset($this->max_dynamic_path_bandwidth_gbps);
+    }
+
+    public function clearMaxDynamicPathBandwidthGbps()
+    {
+        unset($this->max_dynamic_path_bandwidth_gbps);
+    }
+
+    /**
+     * Output only. The maximum unmetered bandwidth for dynamic paths allowable per
+     * WireGroup for this metro.
+     *
+     * Generated from protobuf field <code>optional int64 max_dynamic_path_bandwidth_gbps = 378021355;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setMaxDynamicPathBandwidthGbps($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->max_dynamic_path_bandwidth_gbps = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The maximum unmetered bandwidth for fixed paths allowable per WireGroup
+     * for this metro.
+     *
+     * Generated from protobuf field <code>optional int64 max_fixed_path_bandwidth_gbps = 346138080;</code>
+     * @return int|string
+     */
+    public function getMaxFixedPathBandwidthGbps()
+    {
+        return isset($this->max_fixed_path_bandwidth_gbps) ? $this->max_fixed_path_bandwidth_gbps : 0;
+    }
+
+    public function hasMaxFixedPathBandwidthGbps()
+    {
+        return isset($this->max_fixed_path_bandwidth_gbps);
+    }
+
+    public function clearMaxFixedPathBandwidthGbps()
+    {
+        unset($this->max_fixed_path_bandwidth_gbps);
+    }
+
+    /**
+     * Output only. The maximum unmetered bandwidth for fixed paths allowable per WireGroup
+     * for this metro.
+     *
+     * Generated from protobuf field <code>optional int64 max_fixed_path_bandwidth_gbps = 346138080;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setMaxFixedPathBandwidthGbps($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->max_fixed_path_bandwidth_gbps = $var;
 
         return $this;
     }

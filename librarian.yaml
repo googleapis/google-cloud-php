@@ -15,8 +15,8 @@ language: php
 version: v0.40.0
 sources:
   googleapis:
-    commit: a0cd3979560fe756f652608469ef23a09b3fdb10
-    sha256: 18503225e31ba204ed9878d8af12384784cd7b0b38a737ccb75b12a321e554f8
+    commit: da1f35d9096888cca86cb2c59fab46c9ea08b39e
+    sha256: 7612888645f23a9bfaebf386681f3b7f2b3b138da568f08745200498060d50db
 tools:
   composer:
     - name: google-cloud-php/dev

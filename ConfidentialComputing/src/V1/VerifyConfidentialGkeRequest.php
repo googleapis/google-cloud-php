@@ -31,6 +31,13 @@ class VerifyConfidentialGkeRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.confidentialcomputing.v1.VerifyConfidentialGkeRequest.ConfidentialGkeOptions options = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $options = null;
+    /**
+     * Optional. Optional platform security architecture hint for the verifier
+     * engine. Defaults to `VIRTUALIZED_CVM` behavior if unspecified.
+     *
+     * Generated from protobuf field <code>.google.cloud.confidentialcomputing.v1.VerifyConfidentialGkeRequest.PlatformType platform_type = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $platform_type = 0;
     protected $tee_attestation;
 
     /**
@@ -48,6 +55,9 @@ class VerifyConfidentialGkeRequest extends \Google\Protobuf\Internal\Message
      *           provided Challenge will be consumed, and cannot be used again.
      *     @type \Google\Cloud\ConfidentialComputing\V1\VerifyConfidentialGkeRequest\ConfidentialGkeOptions $options
      *           Optional. A collection of fields that modify the token output.
+     *     @type int $platform_type
+     *           Optional. Optional platform security architecture hint for the verifier
+     *           engine. Defaults to `VIRTUALIZED_CVM` behavior if unspecified.
      * }
      */
     public function __construct($data = NULL) {
@@ -150,6 +160,34 @@ class VerifyConfidentialGkeRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\ConfidentialComputing\V1\VerifyConfidentialGkeRequest\ConfidentialGkeOptions::class);
         $this->options = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Optional platform security architecture hint for the verifier
+     * engine. Defaults to `VIRTUALIZED_CVM` behavior if unspecified.
+     *
+     * Generated from protobuf field <code>.google.cloud.confidentialcomputing.v1.VerifyConfidentialGkeRequest.PlatformType platform_type = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getPlatformType()
+    {
+        return $this->platform_type;
+    }
+
+    /**
+     * Optional. Optional platform security architecture hint for the verifier
+     * engine. Defaults to `VIRTUALIZED_CVM` behavior if unspecified.
+     *
+     * Generated from protobuf field <code>.google.cloud.confidentialcomputing.v1.VerifyConfidentialGkeRequest.PlatformType platform_type = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setPlatformType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\ConfidentialComputing\V1\VerifyConfidentialGkeRequest\PlatformType::class);
+        $this->platform_type = $var;
 
         return $this;
     }
