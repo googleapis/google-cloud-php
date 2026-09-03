@@ -77,9 +77,30 @@ class ExecutableSourceTest extends TestCase
     public function provideFetchSubjectToken()
     {
         return [
-            ['{"version": 1, "success": true, "token_type": "urn:ietf:params:oauth:token-type:id_token", "id_token": "abc"}'],
-            ['{"version": 1, "success": true, "token_type": "urn:ietf:params:oauth:token-type:jwt", "id_token": "abc"}'],
-            ['{"version": 1, "success": true, "token_type": "urn:ietf:params:oauth:token-type:saml2", "saml_response": "abc"}']
+            [
+                json_encode([
+                    'version' => 1,
+                    'success' => true,
+                    'token_type' => 'urn:ietf:params:oauth:token-type:id_token',
+                    'id_token' => 'abc',
+                ]),
+            ],
+            [
+                json_encode([
+                    'version' => 1,
+                    'success' => true,
+                    'token_type' => 'urn:ietf:params:oauth:token-type:jwt',
+                    'id_token' => 'abc',
+                ]),
+            ],
+            [
+                json_encode([
+                    'version' => 1,
+                    'success' => true,
+                    'token_type' => 'urn:ietf:params:oauth:token-type:saml2',
+                    'saml_response' => 'abc',
+                ]),
+            ],
         ];
     }
 
