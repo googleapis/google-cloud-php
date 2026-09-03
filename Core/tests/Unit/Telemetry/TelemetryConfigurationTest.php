@@ -33,26 +33,26 @@ class TelemetryConfigurationTest extends TestCase
 
     public function setUp(): void
     {
-        $this->originalTracingEnabled = getenv('GOOGLE_CLOUD_TRACING_ENABLED');
-        $this->originalLoggingEnabled = getenv('GOOGLE_CLOUD_LOGGING_ENABLED');
-        $this->originalMetricsEnabled = getenv('GOOGLE_CLOUD_METRICS_ENABLED');
+        $this->originalTracingEnabled = getenv('GOOGLE_SDK_PHP_TRACING_ENABLED');
+        $this->originalLoggingEnabled = getenv('GOOGLE_SDK_PHP_LOGGING_ENABLED');
+        $this->originalMetricsEnabled = getenv('GOOGLE_SDK_PHP_METRICS_ENABLED');
         $this->originalLegacyTelemetry = getenv('GOOGLE_API_ENABLE_TELEMETRY');
-        putenv('GOOGLE_CLOUD_TRACING_ENABLED');
-        putenv('GOOGLE_CLOUD_LOGGING_ENABLED');
-        putenv('GOOGLE_CLOUD_METRICS_ENABLED');
+        putenv('GOOGLE_SDK_PHP_TRACING_ENABLED');
+        putenv('GOOGLE_SDK_PHP_LOGGING_ENABLED');
+        putenv('GOOGLE_SDK_PHP_METRICS_ENABLED');
         putenv('GOOGLE_API_ENABLE_TELEMETRY');
     }
 
     public function tearDown(): void
     {
         if ($this->originalTracingEnabled !== false) {
-            putenv("GOOGLE_CLOUD_TRACING_ENABLED={$this->originalTracingEnabled}");
+            putenv("GOOGLE_SDK_PHP_TRACING_ENABLED={$this->originalTracingEnabled}");
         }
         if ($this->originalLoggingEnabled !== false) {
-            putenv("GOOGLE_CLOUD_LOGGING_ENABLED={$this->originalLoggingEnabled}");
+            putenv("GOOGLE_SDK_PHP_LOGGING_ENABLED={$this->originalLoggingEnabled}");
         }
         if ($this->originalMetricsEnabled !== false) {
-            putenv("GOOGLE_CLOUD_METRICS_ENABLED={$this->originalMetricsEnabled}");
+            putenv("GOOGLE_SDK_PHP_METRICS_ENABLED={$this->originalMetricsEnabled}");
         }
     }
 
@@ -63,10 +63,10 @@ class TelemetryConfigurationTest extends TestCase
 
     public function testIsTracingEnabledWithSpecificEnv()
     {
-        putenv('GOOGLE_CLOUD_TRACING_ENABLED=true');
+        putenv('GOOGLE_SDK_PHP_TRACING_ENABLED=true');
         $this->assertTrue(TelemetryConfiguration::isTracingEnabled());
 
-        putenv('GOOGLE_CLOUD_TRACING_ENABLED=false');
+        putenv('GOOGLE_SDK_PHP_TRACING_ENABLED=false');
         $this->assertFalse(TelemetryConfiguration::isTracingEnabled());
     }
 }

@@ -68,6 +68,9 @@ class GrpcTransport extends BaseStub implements TransportInterface
 
     private null|LoggerInterface $logger;
     /** @var LoggerProviderInterface|null */
+    /** @var \OpenTelemetry\API\Trace\TracerProviderInterface|null */
+    private $openTelemetryTracerProvider;
+    /** @var LoggerProviderInterface|null */
     private $openTelemetryLoggerProvider;
     private string $clientService = '';
     private string $clientVersion = '';
@@ -108,6 +111,7 @@ class GrpcTransport extends BaseStub implements TransportInterface
 
         parent::__construct($hostname, $opts, $channel);
         $this->logger = $logger;
+        $this->openTelemetryTracerProvider = $telemetryOptions['openTelemetryTracerProvider'] ?? null;
         $this->openTelemetryLoggerProvider = $telemetryOptions['openTelemetryLoggerProvider'] ?? null;
         $this->clientService = $telemetryOptions['gcp.client.service'] ?? '';
         $this->clientVersion = $telemetryOptions['gcp.client.version'] ?? '';
@@ -147,6 +151,7 @@ class GrpcTransport extends BaseStub implements TransportInterface
             'interceptors'     => [],
             'clientCertSource' => null,
             'logger'           => null,
+            'openTelemetryTracerProvider'   => null,
             'openTelemetryLoggerProvider'   => null,
             'gcp.client.service' => '',
             'gcp.client.version' => '',
@@ -302,6 +307,22 @@ class GrpcTransport extends BaseStub implements TransportInterface
         $headers = $options['headers'] ?? [];
         $requestEvent = null;
 
+        $span = null;
+        if ($this->openTelemetryTracerProvider) {
+            $tracer = $this->openTelemetryTracerProvider->getTracer('google-cloud-php', $this->clientVersion);
+            $spanBuilder = $tracer->spanBuilder($call->getMethod())
+                ->setSpanKind(\OpenTelemetry\API\Trace\SpanKind::KIND_CLIENT)
+                ->setAttribute('gcp.client.service', $this->clientService)
+                ->setAttribute('gcp.client.repo', 'googleapis/google-cloud-php')
+                ->setAttribute('gcp.client.version', $this->clientVersion);
+            
+            if (isset($options['retryAttempt']) && $options['retryAttempt'] > 0) {
+                $spanBuilder->setAttribute('http.request.resend_count', $options['retryAttempt']);
+            }
+            
+            $span = $spanBuilder->startSpan();
+        }
+
         $unaryCall = $this->_simpleRequest(
             '/' . $call->getMethod(),
             $call->getMessage(),
@@ -327,7 +348,7 @@ class GrpcTransport extends BaseStub implements TransportInterface
 
         /** @var Promise $promise */
         $promise = new Promise(
-            function () use ($unaryCall, $options, &$promise, $requestEvent) {
+            function () use ($unaryCall, $options, &$promise, $requestEvent, $span) {
                 list($response, $status) = $unaryCall->wait();
 
                 if ($this->logger) {
@@ -347,8 +368,16 @@ class GrpcTransport extends BaseStub implements TransportInterface
                         $metadataCallback = $options['metadataCallback'];
                         $metadataCallback($unaryCall->getMetadata());
                     }
+                    if ($span) {
+                        $span->setStatus(\OpenTelemetry\API\Trace\StatusCode::STATUS_OK);
+                        $span->end();
+                    }
                     $promise->resolve($response);
                 } else {
+                    if ($span) {
+                        $span->setStatus(\OpenTelemetry\API\Trace\StatusCode::STATUS_ERROR, $status->details);
+                        $span->end();
+                    }
                     if ($this->openTelemetryLoggerProvider) {
                         $this->openTelemetryLoggerProvider->getLogger('google-cloud-php', $this->clientVersion)
                             ->logRecordBuilder()

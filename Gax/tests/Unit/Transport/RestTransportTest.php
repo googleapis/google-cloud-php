@@ -745,4 +745,67 @@ class RestTransportTest extends TestCase
             $this->assertEquals('Test exception', $e->getMessage());
         }
     }
+    public function testRestTransportTracerProvider()
+    {
+        $openTelemetryTracerProvider = $this->createMock(\OpenTelemetry\API\Trace\TracerProviderInterface::class);
+        $tracer = $this->createMock(\OpenTelemetry\API\Trace\TracerInterface::class);
+        $spanBuilder = $this->createMock(\OpenTelemetry\API\Trace\SpanBuilderInterface::class);
+        $span = $this->createMock(\OpenTelemetry\API\Trace\SpanInterface::class);
+
+        $openTelemetryTracerProvider->expects($this->exactly(2))
+            ->method('getTracer')
+            ->with('google-cloud-php', '1.0.0')
+            ->willReturn($tracer);
+
+        $tracer->expects($this->exactly(2)) // 1 for startUnaryCall, 1 for RequestMarshaling
+            ->method('spanBuilder')
+            ->willReturn($spanBuilder);
+
+        $spanBuilder->expects($this->exactly(2))
+            ->method('setSpanKind')
+            ->willReturnSelf();
+
+        $spanBuilder->expects($this->exactly(3))
+            ->method('setAttribute')
+            ->willReturnSelf();
+
+        $spanBuilder->expects($this->exactly(2))
+            ->method('startSpan')
+            ->willReturn($span);
+
+        $span->expects($this->once())
+            ->method('setStatus')
+            ->with(\OpenTelemetry\API\Trace\StatusCode::STATUS_OK);
+
+        $span->expects($this->exactly(2))
+            ->method('end');
+
+        $httpHandler = function ($request, $options) {
+            return new \GuzzleHttp\Promise\FulfilledPromise(new \GuzzleHttp\Psr7\Response(200, [], '{}'));
+        };
+
+        $requestBuilder = $this->createMock(\Google\ApiCore\RequestBuilder::class);
+        $requestBuilder->method('build')->willReturn(new \GuzzleHttp\Psr7\Request('GET', '/'));
+
+        $transport = new \Google\ApiCore\Transport\RestTransport(
+            $requestBuilder,
+            $httpHandler,
+            [
+                'openTelemetryTracerProvider' => $openTelemetryTracerProvider,
+                'gcp.client.service' => 'test-service',
+                'gcp.client.version' => '1.0.0'
+            ]
+        );
+
+        $call = $this->prophesize(Call::class);
+        $call->getMethod()->willReturn('Test/Method');
+        $call->getMessage()->willReturn(new MockRequest());
+        $call->getDecodeType()->willReturn(\Google\ApiCore\Testing\MockResponse::class);
+
+        $promise = $transport->startUnaryCall(
+            $call->reveal(),
+            []
+        );
+        $promise->wait();
+    }
 }

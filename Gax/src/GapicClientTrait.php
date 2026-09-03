@@ -69,6 +69,8 @@ trait GapicClientTrait
 
     private ?TransportInterface $transport = null;
     private ?HeaderCredentialsInterface $credentialsWrapper = null;
+    /** @var \OpenTelemetry\API\Trace\TracerProviderInterface|null */
+    private $openTelemetryTracerProvider;
     /** @var RetrySettings[] $retrySettings */
     private array $retrySettings = [];
     private string $serviceName = '';
@@ -370,9 +372,10 @@ trait GapicClientTrait
             );
         }
 
+        $this->openTelemetryTracerProvider = $options['openTelemetryTracerProvider'] ?? null;
         $telemetryOptions = [
-            'tracerProvider' => $options['tracerProvider'] ?? null,
-            'loggerProvider' => $options['loggerProvider'] ?? null,
+            'openTelemetryTracerProvider' => $options['openTelemetryTracerProvider'] ?? null,
+            'openTelemetryLoggerProvider' => $options['openTelemetryLoggerProvider'] ?? null,
             'gcp.client.service' => $this->serviceName,
             'gcp.client.version' => $options['libVersion'] ?? null,
         ];
@@ -741,7 +744,14 @@ trait GapicClientTrait
 
         $callStack = new CredentialsWrapperMiddleware($callStack, $this->credentialsWrapper);
         $callStack = new FixedHeaderMiddleware($callStack, $fixedHeaders, true);
-        $callStack = new RetryMiddleware($callStack, $callConstructionOptions['retrySettings']);
+        $callStack = new RetryMiddleware(
+            $callStack,
+            $callConstructionOptions['retrySettings'],
+            null,
+            0,
+            null,
+            $this->openTelemetryTracerProvider ?? null
+        );
         $callStack = new RequestAutoPopulationMiddleware(
             $callStack,
             $callConstructionOptions['autoPopulationSettings'],

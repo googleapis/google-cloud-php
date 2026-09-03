@@ -32,7 +32,7 @@ class TelemetryConfiguration
      */
     public static function isTracingEnabled()
     {
-        return self::resolveEnabled('GOOGLE_CLOUD_TRACING_ENABLED');
+        return self::resolveEnabled('GOOGLE_SDK_PHP_TRACING_ENABLED');
     }
 
     /**
@@ -42,7 +42,7 @@ class TelemetryConfiguration
      */
     public static function isLoggingEnabled()
     {
-        return self::resolveEnabled('GOOGLE_CLOUD_LOGGING_ENABLED');
+        return self::resolveEnabled('GOOGLE_SDK_PHP_LOGGING_ENABLED');
     }
 
     /**
@@ -52,7 +52,7 @@ class TelemetryConfiguration
      */
     public static function isMetricsEnabled()
     {
-        return self::resolveEnabled('GOOGLE_CLOUD_METRICS_ENABLED');
+        return self::resolveEnabled('GOOGLE_SDK_PHP_METRICS_ENABLED');
     }
 
     /**
