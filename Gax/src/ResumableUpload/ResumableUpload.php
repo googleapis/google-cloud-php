@@ -113,9 +113,15 @@ class ResumableUpload
      *           every chunk upload or query. The callback should accept two arguments:
      *           (int $bytesUploaded, ResumableUpload $upload).
      *     @type int $totalTimeoutMillis Optional. The total timeout in milliseconds for the
-     *           entire resumable upload operation. Defaults to 600000 (10 minutes).
+     *           entire resumable upload operation. Defaults to 600000 (10 minutes) when stall
+     *           control is not enabled; when stall control is enabled, no default is set.
+     *     @type int $transferStallMinimumRate Optional. The minimum data transfer speed in
+     *           MiB/s for stall control. Must be set together with transferStallTimeout.
+     *     @type int $transferStallTimeout Optional. The stall timeout interval in seconds
+     *           for stall control. Must be set together with transferStallMinimumRate.
      * }
      * @return Message
+     * @throws ApiException
      */
     public function startUpload(StreamInterface $dataStream, array $resumableUploadOptions = []): Message
     {

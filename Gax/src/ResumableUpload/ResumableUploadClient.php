@@ -68,6 +68,8 @@ class ResumableUploadClient
     private const MAX_RECOVERY_ATTEMPTS = 3;
 
     private ?ResponseInterface $finalResponse = null;
+    /** @var callable|null */
+    private $clock = null;
 
     /**
      * @param ResumableUploadTransportInterface $transport Transport implementing buildRequest and sendRawRequest.
@@ -81,6 +83,22 @@ class ResumableUploadClient
         private array $headers = [],
         private string $uploadPrefix = '/resumable/upload'
     ) {
+    }
+
+    /**
+     * For testing purposes only. Sets a custom clock callable returning float seconds.
+     *
+     * @param ?callable $clock
+     * @internal
+     */
+    public function setClock(?callable $clock): void
+    {
+        $this->clock = $clock;
+    }
+
+    private function getMicrotime(): float
+    {
+        return $this->clock ? ($this->clock)() : microtime(true);
     }
 
     /**
@@ -110,9 +128,14 @@ class ResumableUploadClient
      *           every chunk upload or query. The callback should accept two arguments:
      *           (int $bytesUploaded, ResumableUpload $upload).
      *     @type int $totalTimeoutMillis Optional. The total timeout in milliseconds for the
-     *           entire resumable upload operation. Defaults to 600000 (10 minutes).
+     *           entire resumable upload operation. Defaults to 600000 (10 minutes) when stall
+     *           control is not enabled; when stall control is enabled, no default is set.
      *     @type string $uploadUrl Optional. An existing resumable upload session URL
      *           to resume an upload across process restarts or interruptions.
+     *     @type int $transferStallMinimumRate Optional. The minimum data transfer speed in
+     *           MiB/s for stall control. Must be set together with transferStallTimeout.
+     *     @type int $transferStallTimeout Optional. The stall timeout interval in seconds
+     *           for stall control. Must be set together with transferStallMinimumRate.
      * }
      * @return Message
      * @throws ApiException
@@ -126,19 +149,35 @@ class ResumableUploadClient
     ): Message {
         $this->finalResponse = null;
         $uploadUrl = $upload->getUploadUrl() ?? $resumableUploadOptions['uploadUrl'] ?? null;
-        $totalTimeoutMillis = (float) ($resumableUploadOptions['totalTimeoutMillis']
-            ?? self::DEFAULT_TOTAL_TIMEOUT_MILLIS);
-        $deadlineMs = microtime(true) * 1000 + $totalTimeoutMillis;
+
+        $stallRate = isset($resumableUploadOptions['transferStallMinimumRate'])
+            ? (int) $resumableUploadOptions['transferStallMinimumRate']
+            : null;
+        $stallTimeout = isset($resumableUploadOptions['transferStallTimeout'])
+            ? (int) $resumableUploadOptions['transferStallTimeout']
+            : null;
+
+        $stallControlEnabled = $stallRate > 0 && $stallTimeout > 0;
+        $stallRate = $stallControlEnabled ? $stallRate : null;
+        $stallTimeout = $stallControlEnabled ? $stallTimeout : null;
+
+        $totalTimeoutMillis = $resumableUploadOptions['totalTimeoutMillis']
+            ?? ($stallControlEnabled ? null : self::DEFAULT_TOTAL_TIMEOUT_MILLIS);
+        $globalDeadlineMs = $totalTimeoutMillis !== null
+            ? $this->getMicrotime() * 1000 + (float) $totalTimeoutMillis
+            : null;
 
         $state = new ResumableUploadState(
             $resumableUploadOptions['chunkSize'] ?? self::DEFAULT_CHUNK_SIZE,
             $resumableUploadOptions['progressCallback'] ?? null,
             $uploadUrl,
-            $uploadUrl !== null ? self::PHASE_RECOVERY : self::PHASE_STARTING
+            $uploadUrl !== null ? self::PHASE_RECOVERY : self::PHASE_STARTING,
+            $stallRate,
+            $stallTimeout
         );
 
         while ($state->phase !== self::PHASE_DONE) {
-            $this->checkDeadline($deadlineMs);
+            $this->checkDeadline($state, $globalDeadlineMs);
             try {
                 $state->phase = match ($state->phase) {
                     self::PHASE_STARTING => $call->getMessage() !== null
@@ -153,15 +192,25 @@ class ResumableUploadClient
                             'A Call with request message is required when starting a new resumable upload.'
                         ),
                     self::PHASE_TRANSMITTING,
-                    self::PHASE_FINALIZING => $this->phaseUploading($state, $upload, $dataStream),
-                    self::PHASE_RECOVERY => $this->phaseRecovery($state, $upload, $dataStream),
+                    self::PHASE_FINALIZING => $this->phaseUploading(
+                        $state,
+                        $upload,
+                        $dataStream,
+                        $globalDeadlineMs
+                    ),
+                    self::PHASE_RECOVERY => $this->phaseRecovery(
+                        $state,
+                        $upload,
+                        $dataStream,
+                        $globalDeadlineMs
+                    ),
                     default => throw new ApiException("Unexpected phase: {$state->phase}", 0, ApiStatus::INTERNAL),
                 };
             } catch (Throwable $e) {
                 $state->phase = $this->handleException(
                     $e,
                     $state,
-                    $deadlineMs
+                    $globalDeadlineMs
                 );
             }
         }
@@ -243,32 +292,87 @@ class ResumableUploadClient
     private function phaseUploading(
         ResumableUploadState $state,
         ResumableUpload $upload,
-        StreamInterface $dataStream
+        StreamInterface $dataStream,
+        ?float $globalDeadlineMs = null
     ): string {
         $state->prepareBuffer($dataStream);
 
         $headers = [];
         $headers['X-Goog-Upload-Offset'] = (string) $state->committedOffset;
         $body = (string) $state->buffer;
+        $chunkBytes = strlen($body);
+        $chunkSizeMiB = $chunkBytes / 1048576.0;
 
         if ($state->isEof) {
             $phase = self::PHASE_FINALIZING;
-            $headers['X-Goog-Upload-Command'] = strlen($body) > 0 ? 'upload, finalize' : 'finalize';
+            $headers['X-Goog-Upload-Command'] = $chunkBytes > 0 ? 'upload, finalize' : 'finalize';
         } else {
             $phase = self::PHASE_TRANSMITTING;
             $headers['X-Goog-Upload-Command'] = 'upload';
         }
 
+        $now = $this->getMicrotime();
+        $timeoutMillis = null;
+
+        if ($state->isStallControlEnabled()) {
+            $rate = $state->stallMinimumRate;
+            $stallTimeout = $state->stallTimeout;
+
+            // If starting this chunk, calculate chunk deadline
+            if ($state->currentChunkDeadline === null) {
+                $state->currentChunkStartTime = $now;
+                $state->currentChunkSizeMiB = $chunkSizeMiB;
+
+                $nextChunkTimeout = ($chunkSizeMiB / $rate) - $state->lag + $stallTimeout;
+                $chunkDeadline = $now + $nextChunkTimeout;
+
+                // Chunk deadlines will be trimmed to the global deadline
+                if ($globalDeadlineMs !== null) {
+                    $globalDeadlineSec = $globalDeadlineMs / 1000.0;
+                    $chunkDeadline = min($chunkDeadline, $globalDeadlineSec);
+                }
+
+                $state->currentChunkDeadline = $chunkDeadline;
+            }
+
+            // Check if chunk deadline is already exceeded
+            $remaining = $state->currentChunkDeadline - $now;
+            if ($remaining <= 0) {
+                $this->checkDeadline($state, $globalDeadlineMs);
+            }
+
+            // Calculate attempt timeout: min(remaining, 2.0 * chunk_size / rate)
+            $maxAttemptTimeout = $chunkSizeMiB > 0
+                ? (2.0 * $chunkSizeMiB / $rate)
+                : $remaining;
+            $attemptTimeout = min($remaining, $maxAttemptTimeout);
+            $timeoutMillis = max(1, (int) round($attemptTimeout * 1000));
+        }
+
         $response = $this->sendRequest(
-            new Request('POST', (string) $state->uploadUrl, $headers, $body)
+            new Request('POST', (string) $state->uploadUrl, $headers, $body),
+            $timeoutMillis
         );
         if ($response->getStatusCode() !== 200) {
             $this->handleErrorResponse($response);
         }
 
+        if ($state->isStallControlEnabled()) {
+            $completionTime = $this->getMicrotime();
+            $elapsed = $completionTime - ($state->currentChunkStartTime ?? $now);
+            $state->recordChunkTransfer(
+                $state->currentChunkSizeMiB ?? $chunkSizeMiB,
+                $elapsed,
+                $completionTime
+            );
+            $state->currentChunkDeadline = null;
+            $state->currentChunkStartTime = null;
+            $state->currentChunkSizeMiB = null;
+        }
+
         if ($state->progressCallback && $headers['X-Goog-Upload-Command'] !== 'finalize') {
             ($state->progressCallback)(
-                $state->committedOffset + strlen($body),
+                $state->committedOffset + $chunkBytes,
                 $upload
             );
         }
@@ -285,14 +389,42 @@ class ResumableUploadClient
     private function phaseRecovery(
         ResumableUploadState $state,
         ResumableUpload $upload,
-        StreamInterface $dataStream
+        StreamInterface $dataStream,
+        ?float $globalDeadlineMs = null
     ): string {
         if (empty($state->uploadUrl)) {
             throw new ValidationException('Cannot recover resumable upload: uploadUrl is not set.');
         }
+
+        $now = $this->getMicrotime();
+        $timeoutMillis = null;
+
+        if ($state->isStallControlEnabled()) {
+            if ($state->currentChunkDeadline !== null) {
+                $remaining = $state->currentChunkDeadline - $now;
+                if ($remaining <= 0) {
+                    $this->checkDeadline($state, $globalDeadlineMs);
+                }
+                $attemptTimeout = min($remaining, max(1.0, $remaining / 2.0));
+                $timeoutMillis = max(1, (int) round($attemptTimeout * 1000));
+            } elseif ($globalDeadlineMs !== null) {
+                $remaining = ($globalDeadlineMs / 1000.0) - $now;
+                if ($remaining <= 0) {
+                    $this->checkDeadline($state, $globalDeadlineMs);
+                }
+                $stallTimeout = $state->stallTimeout;
+                $attemptTimeout = min($remaining, $stallTimeout);
+                $timeoutMillis = max(1, (int) round($attemptTimeout * 1000));
+            } else {
+                $stallTimeout = $state->stallTimeout;
+                $timeoutMillis = max(1, (int) round($stallTimeout * 1000));
+            }
+        }
+
         $headers = ['X-Goog-Upload-Command' => 'query'];
         $response = $this->sendRequest(
-            new Request('POST', (string) $state->uploadUrl, $headers, '')
+            new Request('POST', (string) $state->uploadUrl, $headers, ''),
+            $timeoutMillis
         );
         $statusCode = $response->getStatusCode();
         if ($statusCode === 200) {
@@ -320,7 +452,7 @@ class ResumableUploadClient
 
     private function sendRequest(
         RequestInterface $request,
-        ?int $timeoutMillis = null,
+        int|float|null $timeoutMillis = null,
         ?RetrySettings $retrySettings = null
     ): ResponseInterface {
         $reqHeaders = $request->getHeaders();
@@ -358,9 +490,15 @@ class ResumableUploadClient
         return $response;
     }
 
-    private function checkDeadline(float $deadlineMs, ?\Throwable $previous = null): void
-    {
-        if (microtime(true) * 1000 >= $deadlineMs) {
+    private function checkDeadline(
+        ResumableUploadState $state,
+        ?float $globalDeadlineMs,
+        ?\Throwable $previous = null
+    ): void {
+        $now = $this->getMicrotime();
+
+        // 1. Check global deadline if set
+        if ($globalDeadlineMs !== null && $now * 1000 >= $globalDeadlineMs) {
             throw new ApiException(
                 'Resumable upload total timeout exceeded.',
                 Code::DEADLINE_EXCEEDED,
@@ -368,14 +506,57 @@ class ResumableUploadClient
                 $previous ? ['previous' => $previous] : []
             );
         }
+
+        // 2. Check stall detection if stall control is active
+        if ($state->isStallControlEnabled()) {
+            $stallTimeout = $state->stallTimeout;
+
+            // Check if accumulated positive lag exceeded the stall timeout clock
+            if ($state->lag > 0 && $state->timeoutStarted !== null) {
+                if ($now > $state->timeoutStarted + $stallTimeout) {
+                    if ($globalDeadlineMs !== null && $now * 1000 >= $globalDeadlineMs) {
+                        throw new ApiException(
+                            'Resumable upload total timeout exceeded.',
+                            Code::DEADLINE_EXCEEDED,
+                            ApiStatus::DEADLINE_EXCEEDED,
+                            $previous ? ['previous' => $previous] : []
+                        );
+                    }
+                    throw new ApiException(
+                        'Upload stalled.',
+                        Code::DEADLINE_EXCEEDED,
+                        ApiStatus::DEADLINE_EXCEEDED,
+                        $previous ? ['previous' => $previous] : []
+                    );
+                }
+            }
+
+            // Check if the current chunk deadline has been exceeded
+            if ($state->currentChunkDeadline !== null && $now >= $state->currentChunkDeadline) {
+                if ($globalDeadlineMs !== null && $now * 1000 >= $globalDeadlineMs) {
+                    throw new ApiException(
+                        'Resumable upload total timeout exceeded.',
+                        Code::DEADLINE_EXCEEDED,
+                        ApiStatus::DEADLINE_EXCEEDED,
+                        $previous ? ['previous' => $previous] : []
+                    );
+                }
+                throw new ApiException(
+                    'Upload stalled.',
+                    Code::DEADLINE_EXCEEDED,
+                    ApiStatus::DEADLINE_EXCEEDED,
+                    $previous ? ['previous' => $previous] : []
+                );
+            }
+        }
     }
 
     private function handleException(
         \Throwable $e,
         ResumableUploadState $state,
-        float $deadlineMs
+        ?float $globalDeadlineMs
     ): string {
-        $this->checkDeadline($deadlineMs, $e);
+        $this->checkDeadline($state, $globalDeadlineMs, $e);
 
         $code = (int) $e->getCode();
         if ($e instanceof RequestException) {
@@ -395,6 +576,12 @@ class ResumableUploadClient
         // verify the server's received offset and resume transmitting from there, provided
         // an uploadUrl session has already been established.
         if ($state->uploadUrl !== null && in_array($code, [308, 400, 412, 416])) {
+            return self::PHASE_RECOVERY;
+        }
+
+        // If request timed out or connection was dropped during an active upload session,
+        // transition to recovery to query server for committed bytes, provided uploadUrl is set
+        if ($state->uploadUrl !== null && $e instanceof RequestException && in_array($code, [0, 408])) {
             return self::PHASE_RECOVERY;
         }
 
