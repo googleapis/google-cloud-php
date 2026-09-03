@@ -55,9 +55,6 @@ class ResumableUploadState
     public bool $isEof = false;
     public float $lag = 0.0;
     public ?float $timeoutStarted = null;
-    public ?float $currentChunkDeadline = null;
-    public ?float $currentChunkStartTime = null;
-    public ?float $currentChunkSizeMiB = null;
 
     /**
      * @param int $chunkSize
@@ -186,11 +183,8 @@ class ResumableUploadState
             $this->buffer = null;
         }
 
-        if ($this->buffer === '' || $this->buffer === null) {
+        if ($this->buffer === '') {
             $this->buffer = null;
-            $this->currentChunkDeadline = null;
-            $this->currentChunkStartTime = null;
-            $this->currentChunkSizeMiB = null;
         }
     }
 

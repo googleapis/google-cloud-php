@@ -784,13 +784,8 @@ class ResumableUploadClientTest extends TestCase
         $this->assertInstanceOf(Timestamp::class, $result);
         $this->assertCount(6, $requests);
 
-        // Per-attempt timeout for 160 MiB chunks at 10 MiB/s:
-        // 2.0 * 160 / 10 = 32s. Next chunk timeouts are 76, 66, 68, 74, 76.
-        // In all cases, min(next_chunk_timeout, 32.0) = 32.0s!
-        $this->assertCount(5, $capturedTimeouts);
-        foreach ($capturedTimeouts as $to) {
-            $this->assertEqualsWithDelta(32.0, $to, 0.001);
-        }
+        // Next chunk timeouts from Appendix 1: [76, 76, 66, 68, 74]
+        $this->assertEquals([76, 76, 66, 68, 74], $capturedTimeouts);
     }
 
     public function testStallControlUploadStalledRaisesApiException()
@@ -1004,14 +999,20 @@ class ResumableUploadClientTest extends TestCase
         }
     }
 
-    public function testStallControlPreservesChunkDeadlineAcrossRecovery()
+    public function testStallControlRecoveryAndRetryTimeouts()
     {
         $chunkBytes = 167772160; // 160 MiB
         $currentTime = 0.0;
         $capturedRecoveryTimeout = null;
+        $capturedRetryTimeout = null;
 
         $requests = [];
-        $httpHandler = function ($request, $options = []) use (&$requests, &$currentTime, &$capturedRecoveryTimeout) {
+        $httpHandler = function ($request, $options = []) use (
+            &$requests,
+            &$currentTime,
+            &$capturedRecoveryTimeout,
+            &$capturedRetryTimeout
+        ) {
             $requests[] = $request;
             $count = count($requests);
             if ($count === 1) {
@@ -1027,9 +1028,7 @@ class ResumableUploadClientTest extends TestCase
                 return \GuzzleHttp\Promise\Create::promiseFor(new \GuzzleHttp\Psr7\Response(308));
             }
             if ($count === 3) {
-                // Query recovery request at t = 10s
-                // Initial chunk deadline was 76s, so remaining timeout = 76 - 10 = 66s.
-                // Recovery per-attempt timeout should be half of remaining timeout = 66 / 2 = 33s.
+                // Query recovery request uses stallTimeout (60s)
                 $capturedRecoveryTimeout = $options['timeout'] ?? null;
                 $currentTime = 11.0;
                 return \GuzzleHttp\Promise\Create::promiseFor(new \GuzzleHttp\Psr7\Response(200, [
@@ -1038,7 +1037,8 @@ class ResumableUploadClientTest extends TestCase
                 ]));
             }
             if ($count === 4) {
-                // Re-upload finishes at t = 20s (total elapsed = 20s < 76s deadline)
+                // Retried chunk upload request uses calculated next chunk timeout (76s)
+                $capturedRetryTimeout = $options['timeout'] ?? null;
                 $currentTime = 20.0;
                 return \GuzzleHttp\Promise\Create::promiseFor(new \GuzzleHttp\Psr7\Response(200, [
                     'X-Goog-Upload-Status' => 'final'
@@ -1069,9 +1069,166 @@ class ResumableUploadClientTest extends TestCase
         ]);
 
         $this->assertInstanceOf(Timestamp::class, $result);
-        $this->assertNotNull($capturedRecoveryTimeout);
-        // Half of 66s = 33s
-        $this->assertEqualsWithDelta(33.0, $capturedRecoveryTimeout, 0.001);
+        $this->assertEquals(60, $capturedRecoveryTimeout);
+        $this->assertEquals(76, $capturedRetryTimeout);
+    }
+
+    public function testStallControlDoesNotApplyAttemptTimeoutSlicing()
+    {
+        $chunkBytes = 167772160; // 160 MiB
+        $capturedTimeout = null;
+
+        $httpHandler = function ($request, $options = []) use (&$capturedTimeout) {
+            static $count = 0;
+            $count++;
+            if ($count === 1) {
+                return \GuzzleHttp\Promise\Create::promiseFor(new \GuzzleHttp\Psr7\Response(200, [
+                    'X-Goog-Upload-Status' => 'active',
+                    'X-Goog-Upload-URL' => 'https://upload.url/123'
+                ]));
+            }
+            $capturedTimeout = $options['timeout'] ?? null;
+            return \GuzzleHttp\Promise\Create::promiseFor(new \GuzzleHttp\Psr7\Response(200, [
+                'X-Goog-Upload-Status' => 'final'
+            ], '"1970-01-01T00:00:00Z"'));
+        };
+
+        $requestBuilder = $this->prophesize(\Google\ApiCore\RequestBuilder::class);
+        $requestBuilder->build(Argument::any(), Argument::any(), Argument::any())->willReturn(
+            new \GuzzleHttp\Psr7\Request('POST', 'https://test.googleapis.com/test')
+        );
+
+        $client = new ResumableUploadClient(
+            $this->createStubTransport($requestBuilder->reveal(), $httpHandler),
+            $this->prophesize(CredentialsWrapper::class)->reveal()
+        );
+
+        $call = new Call('test.method', Timestamp::class, new Timestamp(), [], Call::RESUMABLE_UPLOAD_CALL);
+        $upload = new ResumableUpload($client, $call);
+
+        $upload->startUpload($this->createSizedStream($chunkBytes), [
+            'chunkSize' => $chunkBytes,
+            'transferStallMinimumRate' => 10.0,
+            'transferStallTimeout' => 60.0,
+        ]);
+
+        // Expected full chunk timeout: 160 / 10 + 60 = 76s.
+        // If attempt slicing (2.0 * 160 / 10 = 32s) was applied, it would have been 32.
+        $this->assertEquals(76, $capturedTimeout);
+    }
+
+    public function testStallControlChunkTimeoutTrimsToGlobalDeadline()
+    {
+        $chunkBytes = 167772160; // 160 MiB
+        $capturedTimeout = null;
+
+        $httpHandler = function ($request, $options = []) use (&$capturedTimeout) {
+            static $count = 0;
+            $count++;
+            if ($count === 1) {
+                return \GuzzleHttp\Promise\Create::promiseFor(new \GuzzleHttp\Psr7\Response(200, [
+                    'X-Goog-Upload-Status' => 'active',
+                    'X-Goog-Upload-URL' => 'https://upload.url/123'
+                ]));
+            }
+            $capturedTimeout = $options['timeout'] ?? null;
+            return \GuzzleHttp\Promise\Create::promiseFor(new \GuzzleHttp\Psr7\Response(200, [
+                'X-Goog-Upload-Status' => 'final'
+            ], '"1970-01-01T00:00:00Z"'));
+        };
+
+        $requestBuilder = $this->prophesize(\Google\ApiCore\RequestBuilder::class);
+        $requestBuilder->build(Argument::any(), Argument::any(), Argument::any())->willReturn(
+            new \GuzzleHttp\Psr7\Request('POST', 'https://test.googleapis.com/test')
+        );
+
+        $currentTime = 10.0;
+        $client = new ResumableUploadClient(
+            $this->createStubTransport($requestBuilder->reveal(), $httpHandler),
+            $this->prophesize(CredentialsWrapper::class)->reveal()
+        );
+        $client->setClock(function () use (&$currentTime) {
+            return $currentTime;
+        });
+
+        $call = new Call('test.method', Timestamp::class, new Timestamp(), [], Call::RESUMABLE_UPLOAD_CALL);
+        $upload = new ResumableUpload($client, $call);
+
+        // Global deadline started at t = 10s with totalTimeoutMillis = 40000ms => deadline at t = 50s.
+        // Chunk timeout would be 76s, but remaining global deadline is 50 - 10 = 40s.
+        $upload->startUpload($this->createSizedStream($chunkBytes), [
+            'chunkSize' => $chunkBytes,
+            'transferStallMinimumRate' => 10.0,
+            'transferStallTimeout' => 60.0,
+            'totalTimeoutMillis' => 40000,
+        ]);
+
+        $this->assertEquals(40, $capturedTimeout);
+    }
+
+    public function testStallControlRecoveryTrimsToGlobalDeadline()
+    {
+        $chunkBytes = 167772160; // 160 MiB
+        $currentTime = 0.0;
+        $capturedRecoveryTimeout = null;
+
+        $requests = [];
+        $httpHandler = function ($request, $options = []) use (&$requests, &$currentTime, &$capturedRecoveryTimeout) {
+            $requests[] = $request;
+            $count = count($requests);
+            if ($count === 1) {
+                return \GuzzleHttp\Promise\Create::promiseFor(new \GuzzleHttp\Psr7\Response(200, [
+                    'X-Goog-Upload-Status' => 'active',
+                    'X-Goog-Upload-URL' => 'https://upload.url/123',
+                    'X-Goog-Upload-Chunk-Granularity' => '1'
+                ]));
+            }
+            if ($count === 2) {
+                // Chunk 1 fails at t = 10s
+                $currentTime = 10.0;
+                return \GuzzleHttp\Promise\Create::promiseFor(new \GuzzleHttp\Psr7\Response(308));
+            }
+            if ($count === 3) {
+                // Recovery request at t = 10s.
+                // Global deadline started at t = 0 with 25s totalTimeout => expires at t = 25s.
+                // Remaining global deadline is 25 - 10 = 15s (< 60s stallTimeout).
+                $capturedRecoveryTimeout = $options['timeout'] ?? null;
+                $currentTime = 11.0;
+                return \GuzzleHttp\Promise\Create::promiseFor(new \GuzzleHttp\Psr7\Response(200, [
+                    'X-Goog-Upload-Status' => 'active',
+                    'X-Goog-Upload-Size-Received' => '0'
+                ]));
+            }
+            return \GuzzleHttp\Promise\Create::promiseFor(new \GuzzleHttp\Psr7\Response(200, [
+                'X-Goog-Upload-Status' => 'final'
+            ], '"1970-01-01T00:00:00Z"'));
+        };
+
+        $requestBuilder = $this->prophesize(\Google\ApiCore\RequestBuilder::class);
+        $requestBuilder->build(Argument::any(), Argument::any(), Argument::any())->willReturn(
+            new \GuzzleHttp\Psr7\Request('POST', 'https://test.googleapis.com/test')
+        );
+
+        $client = new ResumableUploadClient(
+            $this->createStubTransport($requestBuilder->reveal(), $httpHandler),
+            $this->prophesize(CredentialsWrapper::class)->reveal()
+        );
+        $client->setClock(function () use (&$currentTime) {
+            return $currentTime;
+        });
+
+        $call = new Call('test.method', Timestamp::class, new Timestamp(), [], Call::RESUMABLE_UPLOAD_CALL);
+        $upload = new ResumableUpload($client, $call);
+
+        $upload->startUpload($this->createSizedStream($chunkBytes), [
+            'chunkSize' => $chunkBytes,
+            'transferStallMinimumRate' => 10.0,
+            'transferStallTimeout' => 60.0,
+            'totalTimeoutMillis' => 25000, // 25s global deadline
+        ]);
+
+        // Trims 60s stallTimeout to 15s remaining global deadline
+        $this->assertEquals(15, $capturedRecoveryTimeout);
     }
 
     private function createSizedStream(int $totalBytes): StreamInterface
