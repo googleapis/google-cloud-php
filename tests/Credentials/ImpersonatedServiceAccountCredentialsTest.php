@@ -18,8 +18,6 @@
 
 namespace Google\Auth\Tests\Credentials;
 
-use Google\Auth\Tests\HelperTrait;
-
 use Google\Auth\Credentials\ExternalAccountCredentials;
 use Google\Auth\Credentials\ImpersonatedServiceAccountCredentials;
 use Google\Auth\Credentials\ServiceAccountCredentials;
@@ -28,6 +26,7 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Auth\GetUniverseDomainInterface;
 use Google\Auth\Middleware\AuthTokenMiddleware;
 use Google\Auth\OAuth2;
+use Google\Auth\Tests\HelperTrait;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use InvalidArgumentException;
@@ -41,7 +40,6 @@ use ReflectionClass;
 class ImpersonatedServiceAccountCredentialsTest extends TestCase
 {
     use HelperTrait;
-
     use ProphecyTrait;
 
     private const SCOPE = ['scope/1', 'scope/2'];

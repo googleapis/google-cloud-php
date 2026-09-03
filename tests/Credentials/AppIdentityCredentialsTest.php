@@ -17,8 +17,6 @@
 
 namespace Google\Auth\Tests\Credentials;
 
-use Google\Auth\Tests\HelperTrait;
-
 use google\appengine\api\app_identity\AppIdentityService;
 // included from tests\mocks\AppIdentityService.php
 use Google\Auth\Credentials\AppIdentityCredentials;

@@ -17,8 +17,6 @@
 
 namespace Google\Auth\Tests\Credentials;
 
-use Google\Auth\Tests\HelperTrait;
-
 use Google\Auth\Credentials\IAMCredentials;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;

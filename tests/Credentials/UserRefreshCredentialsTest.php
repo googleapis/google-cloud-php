@@ -17,12 +17,11 @@
 
 namespace Google\Auth\Tests\Credentials;
 
-use Google\Auth\Tests\HelperTrait;
-
 use DomainException;
 use Google\Auth\ApplicationDefaultCredentials;
 use Google\Auth\Credentials\UserRefreshCredentials;
 use Google\Auth\OAuth2;
+use Google\Auth\Tests\HelperTrait;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7\Utils;
 use InvalidArgumentException;

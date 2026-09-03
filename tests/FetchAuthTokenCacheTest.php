@@ -33,7 +33,6 @@ use RuntimeException;
 class FetchAuthTokenCacheTest extends BaseTest
 {
     use HelperTrait;
-
     use ProphecyTrait;
 
     private $mockFetcher;
