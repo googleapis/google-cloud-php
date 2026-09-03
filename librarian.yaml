@@ -1315,6 +1315,14 @@ libraries:
           proto_package: maps.fleetengine.delivery
     copyright_year: "2026"
     output: MapsFleetEngineDelivery
+  - name: maps-isochrones
+    version: 0.0.0
+    apis:
+      - path: google/maps/isochrones/v1
+        php:
+          staging_subdir: v1
+    copyright_year: "2026"
+    output: MapsIsochrones
   - name: maps-routeoptimization
     version: 0.7.1
     apis:
