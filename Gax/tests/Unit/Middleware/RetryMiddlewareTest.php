@@ -612,10 +612,12 @@ class RetryMiddlewareTest extends TestCase
         };
         
         $nextHandlerCalled = 0;
-        $nextHandler = function($call, $options) use (&$nextHandlerCalled) {
+        $nextHandler = function ($call, $options) use (&$nextHandlerCalled) {
             $nextHandlerCalled++;
             if ($nextHandlerCalled === 1) {
-                return new \GuzzleHttp\Promise\RejectedPromise(new \Google\ApiCore\ApiException('test', 14, \Google\Rpc\Code::UNAVAILABLE));
+                return new \GuzzleHttp\Promise\RejectedPromise(
+                    new \Google\ApiCore\ApiException('test', 14, \Google\Rpc\Code::UNAVAILABLE)
+                );
             }
             return new \GuzzleHttp\Promise\FulfilledPromise('success');
         };
