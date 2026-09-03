@@ -82,6 +82,7 @@ class ResumableUploadState
             if ($effectiveChunkSize === 0) {
                 $effectiveChunkSize = $this->chunkGranularity;
             }
+            $this->chunkSize = $effectiveChunkSize;
         }
 
         if ($this->committedOffset > 0 && $dataStream->tell() !== $this->committedOffset) {
@@ -111,7 +112,8 @@ class ResumableUploadState
                 $e
             );
         }
-        $this->isEof = $dataStream->eof();
+        $this->isEof = $dataStream->eof()
+            || ($dataStream->getSize() !== null && $dataStream->tell() >= $dataStream->getSize());
     }
 
     public function commitBuffer(): void

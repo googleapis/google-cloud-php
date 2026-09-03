@@ -44,11 +44,16 @@ trait ResumableUploadTrait
     /**
      * Resume an existing resumable upload session.
      *
+     * When resuming an upload, it is recommended that the data stream is rewound to offset 0.
+     * If the stream is not rewound and not seekable, an error may occur if unconfirmed
+     * chunks must be re-read.
+     *
      * @param string $uploadUrl The resumable upload session URL.
      * @param string $methodName The API method name.
      * @param array $optionalArgs {
      *     Optional.
      *
+     *     @type int $chunkSize Optional. The chunk size in bytes to use for resuming the upload.
      *     @type array $headers Optional. Key-value array of custom HTTP headers to
      *           include with upload requests.
      *     @type int $timeoutMillis Optional. The timeout in milliseconds for the

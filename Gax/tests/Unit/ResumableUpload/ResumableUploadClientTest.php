@@ -618,4 +618,55 @@ class ResumableUploadClientTest extends TestCase
         $this->assertEquals('upload, finalize', $requests[1]->getHeaderLine('X-Goog-Upload-Command'));
         $this->assertEquals('', $requests[1]->getHeaderLine('X-Initial-Custom-Header'));
     }
+
+    public function testStartUploadSurfacesActualChunkSizeAndAdjustsForGranularity()
+    {
+        $requests = [];
+        $httpHandler = function ($request, $options = []) use (&$requests) {
+            $requests[] = $request;
+            if (count($requests) === 1) {
+                return \GuzzleHttp\Promise\Create::promiseFor(new \GuzzleHttp\Psr7\Response(200, [
+                    'X-Goog-Upload-Status' => 'active',
+                    'X-Goog-Upload-URL' => 'https://upload.url/123',
+                    'X-Goog-Upload-Chunk-Granularity' => '256'
+                ]));
+            }
+            if (count($requests) === 2) {
+                return \GuzzleHttp\Promise\Create::promiseFor(new \GuzzleHttp\Psr7\Response(200, [
+                    'X-Goog-Upload-Status' => 'active'
+                ]));
+            }
+            return \GuzzleHttp\Promise\Create::promiseFor(new \GuzzleHttp\Psr7\Response(200, [
+                'X-Goog-Upload-Status' => 'final'
+            ], '"1970-01-01T00:00:00Z"'));
+        };
+
+        $requestBuilder = $this->prophesize(\Google\ApiCore\RequestBuilder::class);
+        $requestBuilder->build(Argument::any(), Argument::any(), Argument::any())->will(function ($args) {
+            return new \GuzzleHttp\Psr7\Request('POST', 'https://test.googleapis.com/' . $args[0], $args[2] ?? []);
+        });
+
+        $client = new ResumableUploadClient(
+            $this->createStubTransport($requestBuilder->reveal(), $httpHandler),
+            $this->prophesize(CredentialsWrapper::class)->reveal()
+        );
+
+        $call = new Call('test.method', Timestamp::class, new Timestamp(), [], Call::RESUMABLE_UPLOAD_CALL);
+        $upload = new ResumableUpload($client, $call);
+
+        // Upload 1000 bytes with requested chunkSize 600.
+        // Server specifies granularity 256. 600 adjusted down to closest multiple is 512.
+        $payload = str_repeat('a', 1000);
+        $client->startUpload($upload, Utils::streamFor($payload), $call, [], [
+            'chunkSize' => 600
+        ]);
+
+        $this->assertEquals(512, $upload->getChunkSize());
+        $this->assertCount(3, $requests);
+        $this->assertEquals('start', $requests[0]->getHeaderLine('X-Goog-Upload-Command'));
+        $this->assertEquals('upload', $requests[1]->getHeaderLine('X-Goog-Upload-Command'));
+        $this->assertSame(512, strlen((string) $requests[1]->getBody()));
+        $this->assertEquals('upload, finalize', $requests[2]->getHeaderLine('X-Goog-Upload-Command'));
+        $this->assertSame(488, strlen((string) $requests[2]->getBody()));
+    }
 }
