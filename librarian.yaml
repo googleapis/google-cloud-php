@@ -15,8 +15,8 @@ language: php
 version: v0.40.0
 sources:
   googleapis:
-    commit: a0cd3979560fe756f652608469ef23a09b3fdb10
-    sha256: 18503225e31ba204ed9878d8af12384784cd7b0b38a737ccb75b12a321e554f8
+    commit: da1f35d9096888cca86cb2c59fab46c9ea08b39e
+    sha256: 7612888645f23a9bfaebf386681f3b7f2b3b138da568f08745200498060d50db
 tools:
   composer:
     - name: google-cloud-php/dev
@@ -34,8 +34,8 @@ tools:
       entrypoint: src/PostProcessor/Main.php
   pip:
     - name: synthtool
-      version: e643ce8e20f8fe237a31a1754524ba987de72875
-      package: gcp-synthtool@git+https://github.com/googleapis/synthtool@e643ce8e20f8fe237a31a1754524ba987de72875
+      version: 5de6d98204d3a6013cacd4cbb94703fd6516a904
+      package: gcp-synthtool@git+https://github.com/googleapis/synthtool@5de6d98204d3a6013cacd4cbb94703fd6516a904
   pnpm:
     - name: '@prettier/plugin-php'
       version: 0.19.2
@@ -302,6 +302,16 @@ libraries:
       - path: google/apps/meet/v2beta
     copyright_year: "2026"
     output: AppsMeet
+  - name: apptopology
+    version: 0.0.0
+    apis:
+      - path: google/cloud/apptopology/v1
+        php:
+          additional_protos:
+            - google/cloud/location/locations.proto
+          staging_subdir: v1
+    copyright_year: "2026"
+    output: AppTopology
   - name: asset
     version: 2.4.1
     apis:
@@ -1016,6 +1026,16 @@ libraries:
           staging_subdir: Admin/v1
     copyright_year: "2026"
     output: Firestore
+  - name: ftp
+    version: 0.0.0
+    apis:
+      - path: google/cloud/ftp/v1
+        php:
+          additional_protos:
+            - google/cloud/location/locations.proto
+          staging_subdir: v1
+    copyright_year: "2026"
+    output: Ftp
   - name: functions
     version: 2.2.1
     apis:

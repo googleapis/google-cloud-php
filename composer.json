@@ -56,7 +56,7 @@
         }
     ],
     "require": {
-        "php": "^8.1",
+        "php": "^8.2",
         "rize/uri-template": "~0.3",
         "guzzlehttp/guzzle": "^7.8.2||^8.0",
         "guzzlehttp/psr7": "^2.6.3||^3.0",
@@ -72,10 +72,11 @@
         "google/protobuf": "^4.31||^5.34",
         "google/grpc-gcp": "^0.4",
         "ramsey/uuid": "^4.0",
-        "open-telemetry/sdk": "^1.13"
+        "open-telemetry/sdk": "^1.13",
+        "open-telemetry/exporter-otlp": "^1.4"
     },
     "require-dev": {
-        "phpunit/phpunit": "^9.6",
+        "phpunit/phpunit": "9.6.33",
         "phpdocumentor/reflection": "^6.0",
         "erusev/parsedown": "^1.6",
         "phpseclib/phpseclib": "^3.0",
@@ -87,7 +88,8 @@
         "squizlabs/php_codesniffer": "3.*",
         "dms/phpunit-arraysubset-asserts": "^0.5.0",
         "symfony/process": "^6.4",
-        "kelvinmo/simplejwt": "^1.1.0"
+        "kelvinmo/simplejwt": "^1.1.0",
+        "webmozart/assert": "^1.11.0"
     },
     "replace": {
         "google/access-context-manager": "1.2.1",
@@ -110,6 +112,7 @@
         "google/cloud-appengine-admin": "2.2.1",
         "google/cloud-apphub": "0.5.1",
         "google/cloud-appoptimize": "0.2.1",
+        "google/cloud-apptopology": "0.0.0",
         "google/cloud-artifact-registry": "1.8.2",
         "google/cloud-asset": "2.4.1",
         "google/cloud-assured-workloads": "1.2.1",
@@ -185,6 +188,7 @@
         "google/cloud-filestore": "2.3.1",
         "google/cloud-financialservices": "0.3.1",
         "google/cloud-firestore": "2.3.1",
+        "google/cloud-ftp": "0.0.0",
         "google/cloud-functions": "2.2.1",
         "google/cloud-geminidataanalytics": "0.13.0",
         "google/cloud-gke-backup": "1.4.1",
@@ -356,6 +360,7 @@
             "GPBMetadata\\Google\\Cloud\\Apiregistry\\": "ApiRegistry/metadata",
             "GPBMetadata\\Google\\Cloud\\Apphub\\": "AppHub/metadata",
             "GPBMetadata\\Google\\Cloud\\Appoptimize\\": "AppOptimize/metadata",
+            "GPBMetadata\\Google\\Cloud\\Apptopology\\": "AppTopology/metadata",
             "GPBMetadata\\Google\\Cloud\\Asset\\": "Asset/metadata",
             "GPBMetadata\\Google\\Cloud\\Assuredworkloads\\": "AssuredWorkloads/metadata",
             "GPBMetadata\\Google\\Cloud\\Audit\\": "CloudCommonProtos/metadata/Audit",
@@ -419,6 +424,7 @@
             "GPBMetadata\\Google\\Cloud\\Eventarc\\Publishing\\": "EventarcPublishing/metadata",
             "GPBMetadata\\Google\\Cloud\\Filestore\\": "Filestore/metadata",
             "GPBMetadata\\Google\\Cloud\\Financialservices\\": "FinancialServices/metadata",
+            "GPBMetadata\\Google\\Cloud\\Ftp\\": "Ftp/metadata",
             "GPBMetadata\\Google\\Cloud\\Functions\\": "Functions/metadata",
             "GPBMetadata\\Google\\Cloud\\Geminidataanalytics\\": "GeminiDataAnalytics/metadata",
             "GPBMetadata\\Google\\Cloud\\Gkebackup\\": "GkeBackup/metadata",
@@ -600,6 +606,7 @@
             "Google\\Cloud\\AppEngine\\": "AppEngineAdmin/src",
             "Google\\Cloud\\AppHub\\": "AppHub/src",
             "Google\\Cloud\\AppOptimize\\": "AppOptimize/src",
+            "Google\\Cloud\\AppTopology\\": "AppTopology/src",
             "Google\\Cloud\\ArtifactRegistry\\": "ArtifactRegistry/src",
             "Google\\Cloud\\Asset\\": "Asset/src",
             "Google\\Cloud\\AssuredWorkloads\\": "AssuredWorkloads/src",
@@ -675,6 +682,7 @@
             "Google\\Cloud\\Filestore\\": "Filestore/src",
             "Google\\Cloud\\FinancialServices\\": "FinancialServices/src",
             "Google\\Cloud\\Firestore\\": "Firestore/src",
+            "Google\\Cloud\\Ftp\\": "Ftp/src",
             "Google\\Cloud\\Functions\\": "Functions/src",
             "Google\\Cloud\\GSuiteAddOns\\": "GSuiteAddOns/src",
             "Google\\Cloud\\GeminiDataAnalytics\\": "GeminiDataAnalytics/src",
