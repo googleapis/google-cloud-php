@@ -35,6 +35,7 @@ namespace Google\ApiCore\ResumableUpload;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\ApiStatus;
 use Google\ApiCore\ValidationException;
+use Google\Rpc\Code;
 use Psr\Http\Message\StreamInterface;
 
 /**
@@ -52,19 +53,28 @@ class ResumableUploadState
     public ?string $previousBuffer = null;
     public int $previousOffset = 0;
     public bool $isEof = false;
+    public float $lag = 0.0;
+    public ?float $timeoutStarted = null;
+    public ?float $currentChunkDeadline = null;
+    public ?float $currentChunkStartTime = null;
+    public ?float $currentChunkSizeMiB = null;
 
     /**
      * @param int $chunkSize
      * @param callable|null $progressCallback
      * @param ?string $uploadUrl
      * @param string $phase
+     * @param ?int $stallMinimumRate
+     * @param ?int $stallTimeout
      */
     public function __construct(
         public int $chunkSize,
         /** @var callable|null $progressCallback */
         public $progressCallback,
         public ?string $uploadUrl,
-        public string $phase
+        public string $phase,
+        public ?int $stallMinimumRate = null,
+        public ?int $stallTimeout = null
     ) {
     }
 
@@ -174,6 +184,73 @@ class ResumableUploadState
             }
             $this->committedOffset = $serverOffset;
             $this->buffer = null;
+        }
+
+        if ($this->buffer === '' || $this->buffer === null) {
+            $this->buffer = null;
+            $this->currentChunkDeadline = null;
+            $this->currentChunkStartTime = null;
+            $this->currentChunkSizeMiB = null;
+        }
+    }
+
+    /**
+     * Whether stall control is active for this upload session.
+     */
+    public function isStallControlEnabled(): bool
+    {
+        return $this->stallMinimumRate !== null
+            && $this->stallMinimumRate > 0
+            && $this->stallTimeout !== null
+            && $this->stallTimeout > 0;
+    }
+
+    /**
+     * Calculates the timeout for the next chunk transfer in seconds.
+     *
+     * @param float $chunkSizeMiB
+     * @return float Timeout in seconds.
+     */
+    public function calculateNextChunkTimeout(float $chunkSizeMiB): float
+    {
+        if (!$this->isStallControlEnabled()) {
+            return 0.0;
+        }
+        $expectedTime = $chunkSizeMiB / $this->stallMinimumRate;
+        return $expectedTime - $this->lag + $this->stallTimeout;
+    }
+
+    /**
+     * Records chunk transfer completion and updates aggregate lag and stall timeout clock.
+     *
+     * @param float $chunkSizeMiB
+     * @param float $elapsed Seconds taken to transfer the chunk.
+     * @param float $currentTime Current timestamp in seconds.
+     * @throws ApiException
+     */
+    public function recordChunkTransfer(float $chunkSizeMiB, float $elapsed, float $currentTime): void
+    {
+        if (!$this->isStallControlEnabled()) {
+            return;
+        }
+        $expectedTime = $chunkSizeMiB / $this->stallMinimumRate;
+        $currentLag = $elapsed - $expectedTime;
+        $this->lag = max(0.0, $this->lag + $currentLag);
+
+        if ($this->lag > 0) {
+            if ($this->timeoutStarted === null) {
+                $this->timeoutStarted = $currentTime;
+            }
+            if ($currentTime > $this->timeoutStarted + $this->stallTimeout) {
+                throw new ApiException(
+                    'Upload stalled.',
+                    Code::DEADLINE_EXCEEDED,
+                    ApiStatus::DEADLINE_EXCEEDED
+                );
+            }
+        } else {
+            // Recovered from stall: lag is 0, exit stall detection
+            $this->timeoutStarted = null;
         }
     }
 }

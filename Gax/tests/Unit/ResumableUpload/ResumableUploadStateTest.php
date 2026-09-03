@@ -240,4 +240,83 @@ class ResumableUploadStateTest extends TestCase
         $this->expectExceptionMessage('Exhausted recovery attempts with unchanged offset');
         $state->reconcileRecoveryOffset(10, $stream, 3);
     }
+
+    public function testCalculateNextChunkTimeoutDisabledPolicy()
+    {
+        $state = new ResumableUploadState(10, null, null, 'starting');
+        $this->assertSame(0.0, $state->calculateNextChunkTimeout(160.0));
+    }
+
+    public function testCalculateNextChunkTimeoutEnabledPolicy()
+    {
+        $state = new ResumableUploadState(10, null, null, 'starting', 10, 60);
+
+        // Expected time = 160 / 10 = 16, lag = 0, timeout = 60 => 16 - 0 + 60 = 76
+        $this->assertSame(76.0, $state->calculateNextChunkTimeout(160.0));
+
+        // When lag is 10: 16 - 10 + 60 = 66
+        $state->lag = 10.0;
+        $this->assertSame(66.0, $state->calculateNextChunkTimeout(160.0));
+    }
+
+    public function testRecordChunkTransferAppendix1Walkthrough()
+    {
+        $state = new ResumableUploadState(10, null, null, 'transmitting', 10, 60);
+
+        // Initial values: lag: 0 (s), Not in stall detection
+        $this->assertSame(0.0, $state->lag);
+        $this->assertNull($state->timeoutStarted);
+        $this->assertSame(76.0, $state->calculateNextChunkTimeout(160.0));
+
+        // Chunk 1: 160 MiB in 8 seconds at t = 8.
+        $state->recordChunkTransfer(160.0, 8.0, 8.0);
+        // lag cannot go negative => lag = 0
+        $this->assertSame(0.0, $state->lag);
+        $this->assertNull($state->timeoutStarted);
+        $this->assertSame(76.0, $state->calculateNextChunkTimeout(160.0));
+
+        // Chunk 2: 160 MiB in 26 seconds at t = 34.
+        $state->recordChunkTransfer(160.0, 26.0, 34.0);
+        // lag is 10, timeout clock starts at 34
+        $this->assertSame(10.0, $state->lag);
+        $this->assertSame(34.0, $state->timeoutStarted);
+        $this->assertSame(66.0, $state->calculateNextChunkTimeout(160.0));
+
+        // Chunk 3: 160 MiB in 14 seconds at t = 48.
+        $state->recordChunkTransfer(160.0, 14.0, 48.0);
+        // lag is 8, timeoutStarted remains 34, 14s elapsed < 60s
+        $this->assertSame(8.0, $state->lag);
+        $this->assertSame(34.0, $state->timeoutStarted);
+        $this->assertSame(68.0, $state->calculateNextChunkTimeout(160.0));
+
+        // Chunk 4: 160 MiB in 10 seconds at t = 58.
+        $state->recordChunkTransfer(160.0, 10.0, 58.0);
+        // lag is 2, timeoutStarted remains 34, 24s elapsed < 60s
+        $this->assertSame(2.0, $state->lag);
+        $this->assertSame(34.0, $state->timeoutStarted);
+        $this->assertSame(74.0, $state->calculateNextChunkTimeout(160.0));
+
+        // Chunk 5: 160 MiB in 8 seconds at t = 66.
+        $state->recordChunkTransfer(160.0, 8.0, 66.0);
+        // lag is 0, exit stall detection
+        $this->assertSame(0.0, $state->lag);
+        $this->assertNull($state->timeoutStarted);
+        $this->assertSame(76.0, $state->calculateNextChunkTimeout(160.0));
+    }
+
+    public function testRecordChunkTransferThrowsStalledException()
+    {
+        $this->expectException(ApiException::class);
+        $this->expectExceptionMessage('Upload stalled.');
+
+        $state = new ResumableUploadState(10, null, null, 'transmitting', 10, 60);
+
+        // Chunk 1: slow chunk puts it into stall detection at t = 26
+        $state->recordChunkTransfer(160.0, 26.0, 26.0);
+        $this->assertSame(10.0, $state->lag);
+        $this->assertSame(26.0, $state->timeoutStarted);
+
+        // Chunk 2 finishes at t = 95 (elapsed 69s since stall began at 26; 69 > 60)
+        $state->recordChunkTransfer(160.0, 69.0, 95.0);
+    }
 }
