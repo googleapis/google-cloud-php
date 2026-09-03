@@ -34,8 +34,8 @@ tools:
       entrypoint: src/PostProcessor/Main.php
   pip:
     - name: synthtool
-      version: e643ce8e20f8fe237a31a1754524ba987de72875
-      package: gcp-synthtool@git+https://github.com/googleapis/synthtool@e643ce8e20f8fe237a31a1754524ba987de72875
+      version: 5de6d98204d3a6013cacd4cbb94703fd6516a904
+      package: gcp-synthtool@git+https://github.com/googleapis/synthtool@5de6d98204d3a6013cacd4cbb94703fd6516a904
   pnpm:
     - name: '@prettier/plugin-php'
       version: 0.19.2
