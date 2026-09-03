@@ -302,6 +302,16 @@ libraries:
       - path: google/apps/meet/v2beta
     copyright_year: "2026"
     output: AppsMeet
+  - name: apptopology
+    version: 0.0.0
+    apis:
+      - path: google/cloud/apptopology/v1
+        php:
+          additional_protos:
+            - google/cloud/location/locations.proto
+          staging_subdir: v1
+    copyright_year: "2026"
+    output: AppTopology
   - name: asset
     version: 2.4.1
     apis:
