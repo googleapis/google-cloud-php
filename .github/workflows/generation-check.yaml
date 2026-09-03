@@ -1,0 +1,54 @@
+---
+name: generation-check
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  # Allows manual triggering for debugging purpose.
+  workflow_dispatch:
+permissions:
+  contents: read
+  issues: write
+jobs:
+  regeneration:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      # Version of librarian is pulled from librarian.yaml, action version will not affect librarian version
+      # and is pinned to commit SHA to satisfy blanket security policy.
+      - uses: googleapis/librarian@31da9b27335c41cf4d4795062c055521f49dcc51 # v0.40.0
+      - name: Setup PHP
+        uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # v2
+        with:
+          php-version: '8.2'
+      - name: Setup pnpm
+        uses: pnpm/action-setup@b906affcce14559ad1aafd4ab0e942779e9f58b1 # v4
+        with:
+          version: ^7.0.0
+      - name: Install tools
+        run: librarian install
+      - name: Regenerate
+        run: |
+          librarian generate --all
+          if [ -n "$(git status --porcelain)" ]; then
+            git status
+            echo "==================== GIT DIFF ===================="
+            git diff
+            echo "=================================================="
+            echo "Regeneration failed. Please run 'librarian generate --all' to update the generated files."
+            exit 1
+          fi
+      - name: Create issue if previous step fails
+        if: ${{ failure() && github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+        uses: googleapis/librarian/.github/actions/create-issue-on-failure@31da9b27335c41cf4d4795062c055521f49dcc51 # v0.40.0
+        with:
+          title: "Librarian generate diff check failed on main branch"
+          body: |
+            The librarian generate diff check failed on main branch.
+
+            To keep the `main` branch healthy, please consider **reverting the triggering change** first. Once the revert is merged, you can investigate the failure and submit a new PR with the fix.
+
+            Please check the logs: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
