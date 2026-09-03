@@ -813,6 +813,14 @@
         "library_type": "GAPIC_COMBO",
         "api_shortname": "firestore"
     },
+    "Ftp": {
+        "language": "php",
+        "distribution_name": "google/cloud-ftp",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-ftp/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "ftp"
+    },
     "Functions": {
         "language": "php",
         "distribution_name": "google/cloud-functions",
