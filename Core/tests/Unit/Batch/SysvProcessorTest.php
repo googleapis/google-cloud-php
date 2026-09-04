@@ -193,11 +193,15 @@ class SysvProcessorTest extends TestCase
 
     private function receive(&$type, &$message, &$errorcode, $unserialize = false)
     {
+        $maxSize = is_array($stat = @msg_stat_queue($this->queue)) && isset($stat['msg_qbytes'])
+            ? $stat['msg_qbytes']
+            : 8192;
+
         return @msg_receive(
             $this->queue,
             0,
             $type,
-            8192,
+            $maxSize,
             $message,
             $unserialize,
             MSG_IPC_NOWAIT,
