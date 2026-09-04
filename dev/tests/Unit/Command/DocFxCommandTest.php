@@ -122,7 +122,7 @@ class DocFxCommandTest extends TestCase
             '--xml' => self::$fixturesDir . '/phpdoc/auth.xml',
             '--out' => $tmpDir = sys_get_temp_dir() . '/' . rand(),
             '--metadata-version' => '1.0.0',
-            '--path' => __DIR__ . '/../../../vendor/google/auth',
+            '--path' => __DIR__ . '/../../../../Auth',
             '--with-cache' => true,
         ]);
 
