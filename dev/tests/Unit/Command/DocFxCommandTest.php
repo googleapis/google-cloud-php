@@ -142,8 +142,8 @@ class DocFxCommandTest extends TestCase
             '--with-cache' => true,
         ]);
 
-        $left  = self::$fixturesDir . '/docfx/Gax/TransportInterface.yml';
-        $right = $tmpDir . '/TransportInterface.yml';
+        $left  = self::$fixturesDir . '/docfx/Gax/Transport.TransportInterface.yml';
+        $right = $tmpDir . '/Transport.TransportInterface.yml';
         $this->assertFileEqualsWithDiff($left, $right, '1' === getenv('UPDATE_FIXTURES'));
     }
 
