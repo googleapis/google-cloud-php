@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright 2023 Google LLC
  * All rights reserved.
@@ -38,6 +39,8 @@ use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\Auth\FetchAuthTokenInterface;
 use InvalidArgumentException;
+use OpenTelemetry\API\Logs\LoggerProviderInterface;
+use OpenTelemetry\API\Trace\TracerProviderInterface;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -98,6 +101,12 @@ class ClientOptions implements ArrayAccess, OptionsInterface
     private ?string $apiKey;
 
     private null|false|LoggerInterface $logger;
+
+    /** @var TracerProviderInterface|null */
+    private $openTelemetryTracerProvider;
+
+    /** @var LoggerProviderInterface|null */
+    private $openTelemetryLoggerProvider;
 
     /**
      * @param array $options {
@@ -169,6 +178,13 @@ class ClientOptions implements ArrayAccess, OptionsInterface
      *          The API key to be used for the client.
      *     @type null|false|LoggerInterface
      *           A PSR-3 compliant logger.
+     *     @type TracerProviderInterface|null $openTelemetryTracerProvider
+     *           A tracer provider for OpenTelemetry.
+     *     @type LoggerProviderInterface|null $openTelemetryLoggerProvider
+     *           A logger provider for OpenTelemetry. Unlike the PSR-3 `logger`
+     *           which is used for unstructured application logs, this provider
+     *           is used specifically for the OpenTelemetry Logs Bridge API to
+     *           emit structured logs that are perfectly correlated with Trace IDs.
      * }
      */
     public function __construct(array $options)
@@ -200,6 +216,8 @@ class ClientOptions implements ArrayAccess, OptionsInterface
         $this->setUniverseDomain($arr['universeDomain'] ?? null);
         $this->setApiKey($arr['apiKey'] ?? null);
         $this->setLogger($arr['logger'] ?? null);
+        $this->setOpenTelemetryTracerProvider($arr['openTelemetryTracerProvider'] ?? null);
+        $this->setOpenTelemetryLoggerProvider($arr['openTelemetryLoggerProvider'] ?? null);
     }
 
     /**
@@ -417,5 +435,45 @@ class ClientOptions implements ArrayAccess, OptionsInterface
         $this->logger = $logger;
 
         return $this;
+    }
+
+    /**
+     * @param TracerProviderInterface|null $openTelemetryTracerProvider
+     *
+     * @return $this
+     */
+    public function setOpenTelemetryTracerProvider($openTelemetryTracerProvider): self
+    {
+        $this->openTelemetryTracerProvider = $openTelemetryTracerProvider;
+
+        return $this;
+    }
+
+    /**
+     * @param LoggerProviderInterface|null $openTelemetryLoggerProvider
+     *
+     * @return $this
+     */
+    public function setOpenTelemetryLoggerProvider($openTelemetryLoggerProvider): self
+    {
+        $this->openTelemetryLoggerProvider = $openTelemetryLoggerProvider;
+
+        return $this;
+    }
+
+    /**
+     * @return TracerProviderInterface|null
+     */
+    public function getOpenTelemetryTracerProvider()
+    {
+        return $this->openTelemetryTracerProvider;
+    }
+
+    /**
+     * @return LoggerProviderInterface|null
+     */
+    public function getOpenTelemetryLoggerProvider()
+    {
+        return $this->openTelemetryLoggerProvider;
     }
 }

@@ -69,6 +69,8 @@ trait GapicClientTrait
 
     private ?TransportInterface $transport = null;
     private ?HeaderCredentialsInterface $credentialsWrapper = null;
+    /** @var \OpenTelemetry\API\Trace\TracerProviderInterface|null */
+    private $openTelemetryTracerProvider;
     /** @var RetrySettings[] $retrySettings */
     private array $retrySettings = [];
     private string $serviceName = '';
@@ -370,6 +372,14 @@ trait GapicClientTrait
             );
         }
 
+        $this->openTelemetryTracerProvider = $options['openTelemetryTracerProvider'] ?? null;
+        $telemetryOptions = [
+            'openTelemetryTracerProvider' => $options['openTelemetryTracerProvider'] ?? null,
+            'openTelemetryLoggerProvider' => $options['openTelemetryLoggerProvider'] ?? null,
+            'gcp.client.service' => $this->serviceName,
+            'gcp.client.version' => $options['libVersion'] ?? null,
+        ];
+
         $transport = $options['transport'] ?: self::defaultTransport();
         $this->transport = $transport instanceof TransportInterface
             ? $transport
@@ -378,7 +388,8 @@ trait GapicClientTrait
                 $transport,
                 $options['transportConfig'],
                 $options['clientCertSource'],
-                $hasEmulator
+                $hasEmulator,
+                $telemetryOptions
             );
     }
 
@@ -396,7 +407,8 @@ trait GapicClientTrait
         $transport,
         $transportConfig,
         ?callable $clientCertSource = null,
-        bool $hasEmulator = false
+        bool $hasEmulator = false,
+        array $telemetryOptions = []
     ) {
         if (!is_string($transport)) {
             throw new ValidationException(
@@ -419,6 +431,7 @@ trait GapicClientTrait
             $configForSpecifiedTransport->setClientCertSource($clientCertSource);
             $configForSpecifiedTransport = $configForSpecifiedTransport->toArray();
         }
+        $configForSpecifiedTransport += $telemetryOptions;
         switch ($transport) {
             case 'grpc':
                 // Setting the user agent for gRPC requires special handling
@@ -731,7 +744,14 @@ trait GapicClientTrait
 
         $callStack = new CredentialsWrapperMiddleware($callStack, $this->credentialsWrapper);
         $callStack = new FixedHeaderMiddleware($callStack, $fixedHeaders, true);
-        $callStack = new RetryMiddleware($callStack, $callConstructionOptions['retrySettings']);
+        $callStack = new RetryMiddleware(
+            $callStack,
+            $callConstructionOptions['retrySettings'],
+            null,
+            0,
+            null,
+            $this->openTelemetryTracerProvider ?? null
+        );
         $callStack = new RequestAutoPopulationMiddleware(
             $callStack,
             $callConstructionOptions['autoPopulationSettings'],

@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright 2018 Google LLC
  * All rights reserved.
@@ -29,6 +30,7 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+
 namespace Google\ApiCore\Transport;
 
 use Google\ApiCore\ApiException;
@@ -43,6 +45,7 @@ use Google\ApiCore\ValidationException;
 use Google\ApiCore\ValidationTrait;
 use Google\Protobuf\Internal\Message;
 use GuzzleHttp\Exception\RequestException;
+use OpenTelemetry\API\Logs\LoggerProviderInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
@@ -58,6 +61,13 @@ class RestTransport implements TransportInterface, ResumableUploadTransportInter
     }
 
     private RequestBuilder $requestBuilder;
+    /** @var LoggerProviderInterface|null */
+    /** @var \OpenTelemetry\API\Trace\TracerProviderInterface|null */
+    private $openTelemetryTracerProvider;
+    /** @var LoggerProviderInterface|null */
+    private $openTelemetryLoggerProvider;
+    private string $clientService = '';
+    private string $clientVersion = '';
 
     /**
      * @param RequestBuilder $requestBuilder A builder responsible for creating
@@ -66,11 +76,16 @@ class RestTransport implements TransportInterface, ResumableUploadTransportInter
      */
     public function __construct(
         RequestBuilder $requestBuilder,
-        callable $httpHandler
+        callable $httpHandler,
+        array $telemetryOptions = []
     ) {
         $this->requestBuilder = $requestBuilder;
         $this->httpHandler = $httpHandler;
         $this->transportName = 'REST';
+        $this->openTelemetryTracerProvider = $telemetryOptions['openTelemetryTracerProvider'] ?? null;
+        $this->openTelemetryLoggerProvider = $telemetryOptions['openTelemetryLoggerProvider'] ?? null;
+        $this->clientService = $telemetryOptions['gcp.client.service'] ?? '';
+        $this->clientVersion = $telemetryOptions['gcp.client.version'] ?? '';
     }
 
     /**
@@ -97,13 +112,17 @@ class RestTransport implements TransportInterface, ResumableUploadTransportInter
             'clientCertSource' => null,
             'hasEmulator' => false,
             'logger' => null,
+            'openTelemetryTracerProvider' => null,
+            'openTelemetryLoggerProvider' => null,
+            'gcp.client.service' => '',
+            'gcp.client.version' => '',
         ];
         list($baseUri, $port) = self::normalizeServiceAddress($apiEndpoint);
         $requestBuilder = $config['hasEmulator']
             ? new InsecureRequestBuilder("$baseUri:$port", $restConfigPath)
             : new RequestBuilder("$baseUri:$port", $restConfigPath);
         $httpHandler = $config['httpHandler'] ?: self::buildHttpHandlerAsync($config['logger']);
-        $transport = new RestTransport($requestBuilder, $httpHandler);
+        $transport = new RestTransport($requestBuilder, $httpHandler, $config);
         if ($config['clientCertSource']) {
             $transport->configureMtlsChannel($config['clientCertSource']);
         }
@@ -120,16 +139,32 @@ class RestTransport implements TransportInterface, ResumableUploadTransportInter
         // Add the $call object ID for logging
         $options['requestId'] = crc32((string) spl_object_id($call) . getmypid());
 
+        $spanMarshaling = null;
+        if ($this->openTelemetryTracerProvider) {
+            $tracer = $this->openTelemetryTracerProvider->getTracer('google-cloud-php', $this->clientVersion);
+            $spanMarshaling = $tracer->spanBuilder('RequestMarshaling')
+                ->setSpanKind(\OpenTelemetry\API\Trace\SpanKind::KIND_INTERNAL)
+                ->startSpan();
+        }
+
+        $request = $this->requestBuilder->build(
+            $call->getMethod(),
+            $call->getMessage(),
+            $headers
+        );
+
+        if ($spanMarshaling) {
+            $spanMarshaling->end();
+        }
+
         // call the HTTP handler
         $httpHandler = $this->httpHandler;
-        return $httpHandler(
-            $this->requestBuilder->build(
-                $call->getMethod(),
-                $call->getMessage(),
-                $headers
-            ),
+        $promise = $httpHandler(
+            $request,
             $this->getCallOptions($options)
-        )->then(
+        );
+
+        return $promise->then(
             function (ResponseInterface $response) use ($call, $options) {
                 $decodeType = $call->getDecodeType();
                 /** @var Message $return */
@@ -170,6 +205,20 @@ class RestTransport implements TransportInterface, ResumableUploadTransportInter
                 return $return;
             },
             function (\Throwable $ex) {
+
+                if ($this->openTelemetryLoggerProvider) {
+                    $statusCode = $ex->getCode();
+                    if ($ex instanceof RequestException && method_exists($ex, 'getResponse') && $ex->getResponse()) {
+                        $statusCode = $ex->getResponse()->getStatusCode();
+                    }
+                    $this->openTelemetryLoggerProvider->getLogger('google-cloud-php', $this->clientVersion)
+                        ->logRecordBuilder()
+                        ->setSeverityNumber(9) // INFO
+                        ->setBody($ex->getMessage())
+                        ->setAttribute('http.status_code', (int) $statusCode)
+                        ->setAttribute('gcp.client.service', $this->clientService)
+                        ->emit();
+                }
                 // Guzzle 7 carries the response on RequestException, Guzzle 8
                 // only on its ResponseException subclass, hence the
                 // method_exists() check.

@@ -565,4 +565,77 @@ class RetryMiddlewareTest extends TestCase
         $this->assertCount(3, $delays);
         $this->assertEquals([100, 130, 169], $delays);
     }
+    public function testRetryMiddlewareTracerProvider()
+    {
+        $openTelemetryTracerProvider = $this->createMock(\OpenTelemetry\API\Trace\TracerProviderInterface::class);
+        $tracer = $this->createMock(\OpenTelemetry\API\Trace\TracerInterface::class);
+        $spanBuilder = $this->createMock(\OpenTelemetry\API\Trace\SpanBuilderInterface::class);
+        $span = $this->createMock(\OpenTelemetry\API\Trace\SpanInterface::class);
+        $scope = $this->createMock(\OpenTelemetry\Context\ScopeInterface::class);
+
+        $openTelemetryTracerProvider->expects($this->once())
+            ->method('getTracer')
+            ->with('google-cloud-php')
+            ->willReturn($tracer);
+
+        $tracer->expects($this->once())
+            ->method('spanBuilder')
+            ->with('RetryDelay')
+            ->willReturn($spanBuilder);
+
+        $spanBuilder->expects($this->once())
+            ->method('setSpanKind')
+            ->with(\OpenTelemetry\API\Trace\SpanKind::KIND_INTERNAL)
+            ->willReturnSelf();
+
+        $spanBuilder->expects($this->once())
+            ->method('startSpan')
+            ->willReturn($span);
+            
+        $span->expects($this->once())
+            ->method('activate')
+            ->willReturn($scope);
+
+        $span->expects($this->once())
+            ->method('end');
+            
+        $scope->expects($this->once())
+            ->method('detach');
+
+        $retrySettings = \Google\ApiCore\RetrySettings::constructDefault()->with([
+            'retriesEnabled' => true,
+            'retryableCodes' => [\Google\Rpc\Code::UNAVAILABLE],
+        ]);
+        $delayHandlerCalled = false;
+        $delayHandler = function ($delay) use (&$delayHandlerCalled) {
+            $delayHandlerCalled = true;
+        };
+        
+        $nextHandlerCalled = 0;
+        $nextHandler = function ($call, $options) use (&$nextHandlerCalled) {
+            $nextHandlerCalled++;
+            if ($nextHandlerCalled === 1) {
+                return new \GuzzleHttp\Promise\RejectedPromise(
+                    new \Google\ApiCore\ApiException('test', 14, \Google\Rpc\Code::UNAVAILABLE)
+                );
+            }
+            return new \GuzzleHttp\Promise\FulfilledPromise('success');
+        };
+
+        $middleware = new \Google\ApiCore\Middleware\RetryMiddleware(
+            $nextHandler,
+            $retrySettings,
+            null,
+            0,
+            $delayHandler,
+            $openTelemetryTracerProvider
+        );
+
+        $call = $this->prophesize(Call::class);
+        $promise = $middleware($call->reveal(), []);
+        $promise->wait();
+        
+        $this->assertTrue($delayHandlerCalled);
+        $this->assertEquals(2, $nextHandlerCalled);
+    }
 }

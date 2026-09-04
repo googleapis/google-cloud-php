@@ -18,8 +18,10 @@
 namespace Google\Cloud\Core;
 
 use Google\ApiCore\ApiException;
+
 use Google\ApiCore\Serializer;
 use Google\Auth\HttpHandler\HttpHandlerFactory;
+use Google\Cloud\Core\Telemetry\AuthTracingMiddleware;
 use Google\Rpc\Code;
 
 /**
@@ -81,6 +83,12 @@ class GrpcRequestWrapper
         ];
 
         $this->authHttpHandler = $config['authHttpHandler'] ?: HttpHandlerFactory::build();
+        if (isset($config['openTelemetryTracerProvider'])) {
+            $this->authHttpHandler = new AuthTracingMiddleware(
+                $this->authHttpHandler,
+                $config['openTelemetryTracerProvider']
+            );
+        }
         $this->serializer = $config['serializer'];
         $this->grpcOptions = $config['grpcOptions'];
     }
