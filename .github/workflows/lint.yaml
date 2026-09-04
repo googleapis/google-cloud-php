@@ -73,12 +73,12 @@ jobs:
     name: Verify librarian.yaml is tidy
     steps:
       - name: Checkout
-        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
       # Version of librarian is pulled from librarian.yaml,
       # action is pinned to commit SHA to satisfy blanket security policy.
-      - uses: googleapis/librarian@35997441eafc2b02716804f9baba1e3f04f8a44f # v0.31.1
+      - uses: googleapis/librarian@31da9b27335c41cf4d4795062c055521f49dcc51 # v0.40.0
       - name: Run librarian tidy
         run: librarian tidy
       - name: Check for diff
