@@ -24,7 +24,7 @@
         "phpspec/prophecy-phpunit": "^2.1",
         "phpstan/phpstan": "^2.0",
         "google/cloud-tools": "^0.16.1",
-        "webmozart/assert": "^1.11.0"
+        "webmozart/assert": "^2.0.0"
     },
     "extra": {
         "component": {
