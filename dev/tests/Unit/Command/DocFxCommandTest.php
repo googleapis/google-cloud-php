@@ -131,6 +131,22 @@ class DocFxCommandTest extends TestCase
         $this->assertFileEqualsWithDiff($left, $right, '1' === getenv('UPDATE_FIXTURES'));
     }
 
+    public function testDocFxGaxInterfaceFile()
+    {
+        self::getCommandTester()->execute([
+            '--component' => 'Gax',
+            '--xml' => self::$fixturesDir . '/phpdoc/gax.xml',
+            '--out' => $tmpDir = sys_get_temp_dir() . '/' . rand(),
+            '--metadata-version' => '1.0.0',
+            '--path' => __DIR__ . '/../../../../Gax',
+            '--with-cache' => true,
+        ]);
+
+        $left  = self::$fixturesDir . '/docfx/Gax/Transport.TransportInterface.yml';
+        $right = $tmpDir . '/Transport.TransportInterface.yml';
+        $this->assertFileEqualsWithDiff($left, $right, '1' === getenv('UPDATE_FIXTURES'));
+    }
+
     /**
      * @depends testDocFxFiles
      */
