@@ -60,8 +60,6 @@ use OpenTelemetry\SDK\Metrics\PushMetricExporterInterface;
 /**
  * MetricsExporter exports Spanner client metrics to Google Cloud Monitoring
  * using the internal service endpoint.
- *
- * @deprecated
  */
 class MetricsExporter implements PushMetricExporterInterface, AggregationTemporalitySelectorInterface
 {

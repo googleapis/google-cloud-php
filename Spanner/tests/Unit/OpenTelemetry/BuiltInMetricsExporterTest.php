@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Copyright 2026 Google LLC
  *
@@ -43,15 +42,6 @@ class BuiltInMetricsExporterTest extends TestCase
     const PROJECT_ID = 'test-project';
     const CLIENT_ID = 'test-client-id';
     const DEFAULT_TIMEOUT = 100;
-
-    protected function setUp(): void
-    {
-        // This is due to us removing a no longer needed dependency
-        // and we can skip the tests without removing the tests.
-        if (!class_exists(MetricServiceClient::class)) {
-            $this->markTestSkipped('Google\Cloud\Monitoring\V3\Client\MetricServiceClient class is not available.');
-        }
-    }
 
     /**
      * @dataProvider hashDataProvider
@@ -127,8 +117,7 @@ class BuiltInMetricsExporterTest extends TestCase
             $labels = $timeSeries->getMetric()->getLabels();
             if ($labels['method'] !== 'ExecuteSql' ||
                 $labels['status'] !== 'OK' ||
-                $labels['database'] !== 'my-db'
-            ) {
+                $labels['database'] !== 'my-db') {
                 return false;
             }
 

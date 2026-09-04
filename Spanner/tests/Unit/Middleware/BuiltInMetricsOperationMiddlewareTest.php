@@ -46,14 +46,14 @@ class BuiltInMetricsOperationMiddlewareTest extends TestCase
         $this->meter = $this->prophesize(MeterInterface::class);
 
         $this->meter->createHistogram(
-            'spanner.googleapis.com/internal/client/operation_latencies',
+            'operation_latencies',
             'ms',
             Argument::any(),
             Argument::any()
         )->willReturn($this->histogram->reveal());
 
         $this->meter->createCounter(
-            'spanner.googleapis.com/internal/client/operation_count',
+            'operation_count',
             '1',
             Argument::any()
         )->willReturn($this->counter->reveal());
@@ -75,7 +75,9 @@ class BuiltInMetricsOperationMiddlewareTest extends TestCase
             $this->nextHandler,
             $this->meter->reveal(),
             $clientId,
-            $version
+            $projectId,
+            $version,
+            $location
         );
 
         $call = $this->prophesize(Call::class);
@@ -91,9 +93,13 @@ class BuiltInMetricsOperationMiddlewareTest extends TestCase
         $expectedLabels = [
             'method' => 'ExecuteSql',
             'status' => 'OK',
+            'instance_id' => 'i',
             'database' => 'd',
+            'project_id' => $projectId,
             'client_uid' => $clientId,
             'client_name' => $expectedClientName,
+            'instance_config' => 'unknown',
+            'location' => $location,
             'directpath_enabled' => 'false',
             'directpath_used' => 'false'
         ];

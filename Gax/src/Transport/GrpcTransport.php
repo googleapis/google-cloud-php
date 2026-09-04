@@ -307,21 +307,7 @@ class GrpcTransport extends BaseStub implements TransportInterface
         $headers = $options['headers'] ?? [];
         $requestEvent = null;
 
-        $span = null;
-        if ($this->openTelemetryTracerProvider) {
-            $tracer = $this->openTelemetryTracerProvider->getTracer('google-cloud-php', $this->clientVersion);
-            $spanBuilder = $tracer->spanBuilder($call->getMethod())
-                ->setSpanKind(\OpenTelemetry\API\Trace\SpanKind::KIND_CLIENT)
-                ->setAttribute('gcp.client.service', $this->clientService)
-                ->setAttribute('gcp.client.repo', 'googleapis/google-cloud-php')
-                ->setAttribute('gcp.client.version', $this->clientVersion);
-
-            if (isset($options['retryAttempt']) && $options['retryAttempt'] > 0) {
-                $spanBuilder->setAttribute('http.request.resend_count', $options['retryAttempt']);
-            }
-
-            $span = $spanBuilder->startSpan();
-        }
+        
 
         $unaryCall = $this->_simpleRequest(
             '/' . $call->getMethod(),
@@ -348,7 +334,7 @@ class GrpcTransport extends BaseStub implements TransportInterface
 
         /** @var Promise $promise */
         $promise = new Promise(
-            function () use ($unaryCall, $options, &$promise, $requestEvent, $span) {
+            function () use ($unaryCall, $options, &$promise, $requestEvent) {
                 list($response, $status) = $unaryCall->wait();
 
                 if ($this->logger) {
@@ -368,16 +354,10 @@ class GrpcTransport extends BaseStub implements TransportInterface
                         $metadataCallback = $options['metadataCallback'];
                         $metadataCallback($unaryCall->getMetadata());
                     }
-                    if ($span) {
-                        $span->setStatus(\OpenTelemetry\API\Trace\StatusCode::STATUS_OK);
-                        $span->end();
-                    }
+                    
                     $promise->resolve($response);
                 } else {
-                    if ($span) {
-                        $span->setStatus(\OpenTelemetry\API\Trace\StatusCode::STATUS_ERROR, $status->details);
-                        $span->end();
-                    }
+                    
                     if ($this->openTelemetryLoggerProvider) {
                         $this->openTelemetryLoggerProvider->getLogger('google-cloud-php', $this->clientVersion)
                             ->logRecordBuilder()

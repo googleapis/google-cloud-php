@@ -136,21 +136,7 @@ class RestTransport implements TransportInterface, ResumableUploadTransportInter
     {
         $headers = self::buildCommonHeaders($options);
 
-        $span = null;
-        if ($this->openTelemetryTracerProvider) {
-            $tracer = $this->openTelemetryTracerProvider->getTracer('google-cloud-php', $this->clientVersion);
-            $spanBuilder = $tracer->spanBuilder($call->getMethod())
-                ->setSpanKind(\OpenTelemetry\API\Trace\SpanKind::KIND_CLIENT)
-                ->setAttribute('gcp.client.service', $this->clientService)
-                ->setAttribute('gcp.client.repo', 'googleapis/google-cloud-php')
-                ->setAttribute('gcp.client.version', $this->clientVersion);
-
-            if (isset($options['retryAttempt']) && $options['retryAttempt'] > 0) {
-                $spanBuilder->setAttribute('http.request.resend_count', $options['retryAttempt']);
-            }
-
-            $span = $spanBuilder->startSpan();
-        }
+        
 
         // Add the $call object ID for logging
         $options['requestId'] = crc32((string) spl_object_id($call) . getmypid());
@@ -181,7 +167,7 @@ class RestTransport implements TransportInterface, ResumableUploadTransportInter
         );
 
         return $promise->then(
-            function (ResponseInterface $response) use ($call, $options, $span) {
+            function (ResponseInterface $response) use ($call, $options) {
                 $decodeType = $call->getDecodeType();
                 /** @var Message $return */
                 $return = new $decodeType();
@@ -218,19 +204,12 @@ class RestTransport implements TransportInterface, ResumableUploadTransportInter
                     $metadataCallback($response->getHeaders());
                 }
 
-                if ($span) {
-                    $span->setStatus(\OpenTelemetry\API\Trace\StatusCode::STATUS_OK);
-                    $span->end();
-                }
+                
 
                 return $return;
             },
-            function (\Throwable $ex) use ($span) {
-                if ($span) {
-                    $span->setStatus(\OpenTelemetry\API\Trace\StatusCode::STATUS_ERROR, $ex->getMessage());
-                    $span->recordException($ex);
-                    $span->end();
-                }
+            function (\Throwable $ex)  {
+                
                 if ($this->openTelemetryLoggerProvider) {
                     $statusCode = $ex->getCode();
                     if ($ex instanceof RequestException && method_exists($ex, 'getResponse') && $ex->getResponse()) {

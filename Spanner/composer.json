@@ -8,8 +8,8 @@
         "ext-grpc": "*",
         "google/cloud-core": "^1.73.0",
         "google/gax": "^1.41.0",
-        "open-telemetry/sdk": "^1.13",
-        "open-telemetry/exporter-otlp": "^1.4"
+        "google/cloud-monitoring": "^2.2",
+        "open-telemetry/sdk": "^1.13"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.6",

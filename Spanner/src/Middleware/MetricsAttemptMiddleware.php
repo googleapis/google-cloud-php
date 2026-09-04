@@ -63,9 +63,13 @@ class MetricsAttemptMiddleware implements MiddlewareInterface
 
     /** @var callable */
     private $nextHandler;
+    private string $projectId;
     private string $clientId;
     private string $clientName;
+    private string $location;
     private bool $directPathEnabled;
+
+    private const INSTANCE_CONFIG = 'unknown';
 
     private const BUCKET_BOUNDS = [
         0.0, 0.5, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0,
@@ -82,51 +86,57 @@ class MetricsAttemptMiddleware implements MiddlewareInterface
      * @param callable $nextHandler
      * @param MeterInterface $meter
      * @param string $clientId
+     * @param string $projectId
      * @param string $clientName
+     * @param string $location
      */
     public function __construct(
         callable $nextHandler,
         MeterInterface $meter,
         string $clientId,
-        string $clientName
+        string $projectId,
+        string $clientName,
+        string $location
     ) {
         $this->nextHandler = $nextHandler;
         $advisory = ['ExplicitBucketBoundaries' => self::BUCKET_BOUNDS];
         $this->attemptLatencyHistogram = $meter->createHistogram(
-            'spanner.googleapis.com/internal/client/attempt_latencies',
+            'attempt_latencies',
             'ms',
             'The latency of an RPC attempt',
             $advisory
         );
         $this->attemptCountCounter = $meter->createCounter(
-            'spanner.googleapis.com/internal/client/attempt_count',
+            'attempt_count',
             '1',
             'The number of RPC attempts'
         );
         $this->attemptGfeHistogram = $meter->createHistogram(
-            'spanner.googleapis.com/internal/client/gfe_latencies',
+            'gfe_latencies',
             'ms',
             'Latency between Google\'s network receiving an RPC and reading back the first byte of the response',
             $advisory
         );
         $this->gfeConnectivityErrorCounter = $meter->createCounter(
-            'spanner.googleapis.com/internal/client/gfe_connectivity_error_count',
+            'gfe_connectivity_error_count',
             '1',
             'Number of RPC attempts that failed to reach the GFE or returned no GFE headers'
         );
         $this->attemptAfeHistogram = $meter->createHistogram(
-            'spanner.googleapis.com/internal/client/afe_latencies',
+            'afe_latencies',
             'ms',
             'Latency between Spanner Spanner AFE receiving and returning a response.',
             $advisory
         );
         $this->afeConnectivityErrorCounter = $meter->createCounter(
-            'spanner.googleapis.com/internal/client/afe_connectivity_error_count',
+            'afe_connectivity_error_count',
             '1',
             'Number of connectivity errors for Spanner AFE'
         );
         $this->clientId = $clientId;
+        $this->projectId = $projectId;
         $this->clientName = 'spanner-php/' . $clientName;
+        $this->location = $location;
         $this->directPathEnabled = filter_var(
             getenv('GOOGLE_SPANNER_ENABLE_DIRECT_ACCESS'),
             FILTER_VALIDATE_BOOLEAN
@@ -313,9 +323,13 @@ class MetricsAttemptMiddleware implements MiddlewareInterface
         return [
             'method' => $methodName,
             'status' => $codeName,
+            'instance_id' => $instanceId,
             'database' => $databaseId,
+            'project_id' => $this->projectId,
             'client_uid' => $this->clientId,
             'client_name' => $this->clientName,
+            'instance_config' => self::INSTANCE_CONFIG,
+            'location' => $this->location,
             'directpath_enabled' => $this->directPathEnabled ? 'true' : 'false',
             'directpath_used' => $directPathUsed ? 'true' : 'false'
         ];
