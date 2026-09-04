@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /*
  * Copyright 2016 Google LLC
  * All rights reserved.
@@ -37,7 +39,6 @@ use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\DeleteOperationRequest;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
-use Google\LongRunning\OperationsClient as LegacyOperationsClient;
 use Google\Protobuf\Any;
 use Google\Protobuf\Internal\Message;
 use Google\Rpc\Status;
@@ -277,8 +278,10 @@ class OperationResponse
             throw new ValidationException('Cannot call reload() on a deleted operation');
         }
 
-        $requestClass = $this->isNewSurfaceOperationsClient() ? $this->getOperationRequest : null;
-        $this->lastProtoResponse = $this->operationsCall($this->getOperationMethod, $requestClass);
+        $this->lastProtoResponse = $this->operationsCall(
+            $this->getOperationMethod,
+            $this->getOperationRequest
+        );
     }
 
     /**
@@ -403,8 +406,7 @@ class OperationResponse
             throw new LogicException('The cancel operation is not supported by this API');
         }
 
-        $requestClass = $this->isNewSurfaceOperationsClient() ? $this->cancelOperationRequest : null;
-        $this->operationsCall($this->cancelOperationMethod, $requestClass);
+        $this->operationsCall($this->cancelOperationMethod, $this->cancelOperationRequest);
     }
 
     /**
@@ -424,8 +426,7 @@ class OperationResponse
             throw new LogicException('The delete operation is not supported by this API');
         }
 
-        $requestClass = $this->isNewSurfaceOperationsClient() ? $this->deleteOperationRequest : null;
-        $this->operationsCall($this->deleteOperationMethod, $requestClass);
+        $this->operationsCall($this->deleteOperationMethod, $this->deleteOperationRequest);
         $this->deleted = true;
     }
 
@@ -471,26 +472,15 @@ class OperationResponse
      * Call the operations client to perform an operation.
      *
      * @param string $method The method to call on the operations client.
-     * @param string|null $requestClass The request class to use for the call.
+     * @param string $requestClass The request class to use for the call.
      *                                  Will be null for legacy operations clients.
      */
-    private function operationsCall(string $method, ?string $requestClass)
+    private function operationsCall(string $method, string $requestClass)
     {
-        // V1 GAPIC clients have an empty $requestClass
-        if (empty($requestClass)) {
-            if ($this->additionalArgs) {
-                return $this->operationsClient->$method(
-                    $this->getName(),
-                    ...array_values($this->additionalArgs)
-                );
-            }
-            return $this->operationsClient->$method($this->getName());
-        }
-
         if (!method_exists($requestClass, 'build')) {
             throw new LogicException('Request class must support the static build method');
         }
-        // In V2 of Compute, the Request "build" methods contain the operation ID last instead
+        // In Compute, the Request "build" methods contain the operation ID last instead
         // of first. Compute is the only API which uses $additionalArgs, so switching the order
         // will not break anything.
         $request = $requestClass::build(...array_merge(
@@ -529,11 +519,5 @@ class OperationResponse
     private function hasProtoResponse()
     {
         return !is_null($this->lastProtoResponse);
-    }
-
-    private function isNewSurfaceOperationsClient(): bool
-    {
-        return !$this->operationsClient instanceof LegacyOperationsClient
-            && false !== strpos(get_class($this->operationsClient), self::NEW_CLIENT_NAMESPACE);
     }
 }

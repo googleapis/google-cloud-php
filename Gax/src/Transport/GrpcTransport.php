@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /*
  * Copyright 2018 Google LLC
  * All rights reserved.
@@ -33,15 +35,14 @@
 namespace Google\ApiCore\Transport;
 
 use Exception;
+use Google\ApiCore\ApiEndpointTrait;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\BidiStream;
 use Google\ApiCore\Call;
 use Google\ApiCore\ClientStream;
 use Google\ApiCore\GrpcSupportTrait;
 use Google\ApiCore\ServerStream;
-use Google\ApiCore\ServiceAddressTrait;
 use Google\ApiCore\Transport\Grpc\ServerStreamingCallWrapper;
-use Google\ApiCore\Transport\Grpc\UnaryInterceptorInterface;
 use Google\ApiCore\ValidationException;
 use Google\ApiCore\ValidationTrait;
 use Google\Auth\Logging\LoggingTrait;
@@ -59,9 +60,9 @@ use Psr\Log\LoggerInterface;
  */
 class GrpcTransport extends BaseStub implements TransportInterface
 {
+    use ApiEndpointTrait;
     use ValidationTrait;
     use GrpcSupportTrait;
-    use ServiceAddressTrait;
     use LoggingTrait;
 
     private null|LoggerInterface $logger;
@@ -73,14 +74,8 @@ class GrpcTransport extends BaseStub implements TransportInterface
      * metadata array, and returns an updated metadata array
      *  - 'grpc.primary_user_agent': (optional) a user-agent string
      * @param Channel $channel An already created Channel object (optional)
-     * @param Interceptor[]|UnaryInterceptorInterface[] $interceptors *EXPERIMENTAL*
+     * @param Interceptor[] $interceptors *EXPERIMENTAL*
      *        Interceptors used to intercept RPC invocations before a call starts.
-     *        Please note that implementations of
-     *        {@see \Google\ApiCore\Transport\Grpc\UnaryInterceptorInterface} are
-     *        considered deprecated and support will be removed in a future
-     *        release. To prepare for this, please take the time to convert
-     *        `UnaryInterceptorInterface` implementations over to a class which
-     *        extends {@see Grpc\Interceptor}.
      * @param null|false|LoggerInterface $logger A PSR-3 Compliant logger.
      * @throws Exception
      */
@@ -114,14 +109,8 @@ class GrpcTransport extends BaseStub implements TransportInterface
      *    @type array $stubOpts Options used to construct the gRPC stub (see
      *          {@link https://grpc.github.io/grpc/core/group__grpc__arg__keys.html}).
      *    @type Channel $channel Grpc channel to be used.
-     *    @type Interceptor[]|UnaryInterceptorInterface[] $interceptors *EXPERIMENTAL*
+     *    @type Interceptor[] $interceptors *EXPERIMENTAL*
      *          Interceptors used to intercept RPC invocations before a call starts.
-     *          Please note that implementations of
-     *          {@see \Google\ApiCore\Transport\Grpc\UnaryInterceptorInterface} are
-     *          considered deprecated and support will be removed in a future
-     *          release. To prepare for this, please take the time to convert
-     *          `UnaryInterceptorInterface` implementations over to a class which
-     *          extends {@see Grpc\Interceptor}.
      *    @type callable $clientCertSource A callable which returns the client cert as a string.
      * }
      * @return GrpcTransport
@@ -137,7 +126,7 @@ class GrpcTransport extends BaseStub implements TransportInterface
             'clientCertSource' => null,
             'logger'           => null,
         ];
-        list($addr, $port) = self::normalizeServiceAddress($apiEndpoint);
+        list($addr, $port) = self::normalizeApiEndpoint($apiEndpoint);
         $host = "$addr:$port";
         $stubOpts = $config['stubOpts'];
         // Set the required 'credentials' key in stubOpts if it is not already set. Use
