@@ -70,6 +70,7 @@
         "google/grpc-gcp": "^0.4",
         "ramsey/uuid": "^4.0",
         "open-telemetry/sdk": "^1.13",
+"open-telemetry/api": "^1.8",
         "open-telemetry/exporter-otlp": "^1.4"
     },
     "require-dev": {

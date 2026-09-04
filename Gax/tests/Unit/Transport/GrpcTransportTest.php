@@ -32,6 +32,10 @@
 
 namespace Google\ApiCore\Tests\Unit\Transport;
 
+use OpenTelemetry\API\Logs\LoggerProviderInterface;
+use OpenTelemetry\API\Logs\LoggerInterface as OTelLoggerInterface;
+use OpenTelemetry\API\Logs\LogRecordBuilderInterface;
+
 use Google\ApiCore\ApiException;
 use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
@@ -713,5 +717,75 @@ class GrpcTransportTest extends TestCase
         }
 
         return $mockCall->reveal();
+    }
+
+    
+    public function testGrpcTransportLoggerProvider()
+    {
+        $status = new stdClass();
+        $status->code = Code::INTERNAL;
+        $status->details = 'unary failure';
+
+        $unaryCall = $this->prophesize(\Grpc\UnaryCall::class);
+        $unaryCall->wait()
+            ->shouldBeCalled()
+            ->willReturn([null, $status]);
+
+        $openTelemetryLoggerProvider = $this->createMock(LoggerProviderInterface::class);
+        $logger = $this->createMock(OTelLoggerInterface::class);
+        $logRecordBuilder = $this->createMock(LogRecordBuilderInterface::class);
+
+        $openTelemetryLoggerProvider->expects($this->once())
+            ->method('getLogger')
+            ->with('google-cloud-php', '1.0.0')
+            ->willReturn($logger);
+
+        $logger->expects($this->once())
+            ->method('logRecordBuilder')
+            ->willReturn($logRecordBuilder);
+
+        $logRecordBuilder->expects($this->once())
+            ->method('setSeverityNumber')
+            ->with(9) // INFO
+            ->willReturnSelf();
+
+        $logRecordBuilder->expects($this->once())
+            ->method('setBody')
+            ->with('unary failure')
+            ->willReturnSelf();
+
+        $logRecordBuilder->expects($this->exactly(2))
+            ->method('setAttribute')
+            ->willReturnSelf();
+
+        $logRecordBuilder->expects($this->once())
+            ->method('emit');
+
+        $transport = new MockGrpcTransport(
+            $unaryCall->reveal(),
+            null,
+            [
+                'openTelemetryLoggerProvider' => $openTelemetryLoggerProvider,
+                'gcp.client.service' => 'test-service',
+                'gcp.client.version' => '1.0.0'
+            ]
+        );
+
+        $call = $this->prophesize(Call::class);
+        $call->getMethod()->willReturn('Test/Method');
+        $call->getMessage()->willReturn($this->createMockRequest());
+        $call->getDecodeType()->willReturn('stdClass');
+
+        $promise = $transport->startUnaryCall(
+            $call->reveal(),
+            []
+        );
+
+        try {
+            $promise->wait();
+            $this->fail('Expected exception');
+        } catch (\Google\ApiCore\ApiException $e) {
+            $this->assertEquals(Code::INTERNAL, $e->getCode());
+        }
     }
 }

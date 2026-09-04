@@ -50,6 +50,8 @@ class RetryMiddleware implements MiddlewareInterface
     private ?float $deadlineMs;
     /** @var callable */
     private $delayHandler;
+    /** @var \OpenTelemetry\API\Trace\TracerProviderInterface|null */
+    private $openTelemetryTracerProvider;
 
     /*
      * The number of retries that have already been attempted.
@@ -62,13 +64,15 @@ class RetryMiddleware implements MiddlewareInterface
         RetrySettings $retrySettings,
         $deadlineMs = null,
         $retryAttempts = 0,
-        ?callable $delayHandler = null
+        ?callable $delayHandler = null,
+        $openTelemetryTracerProvider = null
     ) {
         $this->nextHandler = $nextHandler;
         $this->retrySettings = $retrySettings;
         $this->deadlineMs = $deadlineMs;
         $this->retryAttempts = $retryAttempts;
         $this->delayHandler = ($delayHandler ?? [$this, 'sleepMillis']);
+        $this->openTelemetryTracerProvider = $openTelemetryTracerProvider;
     }
 
     /**
@@ -169,13 +173,33 @@ class RetryMiddleware implements MiddlewareInterface
             $this->deadlineMs,
             $this->retryAttempts + 1,
             $this->delayHandler,
+            $this->openTelemetryTracerProvider
         );
 
         // Set the timeout for the call
         $options['timeoutMillis'] = $timeoutMs;
 
-        // Sleep for the length of the delay
-        ($this->delayHandler)((int) $delayMs);
+        $span = null;
+        $scope = null;
+        if ($this->openTelemetryTracerProvider) {
+            $tracer = $this->openTelemetryTracerProvider->getTracer('google-cloud-php');
+            $span = $tracer->spanBuilder('RetryDelay')
+                ->setSpanKind(\OpenTelemetry\API\Trace\SpanKind::KIND_INTERNAL)
+                ->startSpan();
+            $scope = $span->activate();
+        }
+
+        try {
+            // Sleep for the length of the delay
+            ($this->delayHandler)((int) $delayMs);
+        } finally {
+            if ($span) {
+                $span->end();
+            }
+            if ($scope) {
+                $scope->detach();
+            }
+        }
 
         return $nextHandler(
             $call,
