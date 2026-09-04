@@ -44,8 +44,8 @@ class ImpersonatedServiceAccountCredentialsTest extends TestCase
 
     private const SCOPE = ['scope/1', 'scope/2'];
     private const TARGET_AUDIENCE = 'test-target-audience';
-    // phpcs:ignore Generic.Files.LineLength
-    private const IMPERSONATION_URL = 'https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/test@test-project.iam.gserviceaccount.com:generateAccessToken';
+    private const IMPERSONATION_URL = 'https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/'
+        . 'test@test-project.iam.gserviceaccount.com:generateAccessToken';
     private const UNIVERSE_DOMAIN = 'example.com';
 
     // User Refresh to Service Account Impersonation JSON Credentials
@@ -67,7 +67,23 @@ class ImpersonatedServiceAccountCredentialsTest extends TestCase
         'source_credentials' => [
             'client_email' => 'clientemail@clientemail.com',
             // phpcs:ignore Generic.Files.LineLength
-            'private_key' => "-----BEGIN RSA PRIVATE KEY-----\nMIIEowIBAAKCAQEA0Ttga33B1yX4w77NbpKyNYDNSVCo8j+RlZaZ9tI+KfkV1d+t\nfsvI9ZPAheP11FoN52ceBaY5ltelHW+IKwCfyT0orLdsxLgowaXki9woF1Azvcg2\nJVxQLv9aVjjAvy3CZFIG/EeN7J3nsyCXGnu1yMEbnvkWxA88//Q6HQ2K9wqfApkQ\n0LNlsK0YHz/sfjHNvRKxnbAJk7D5fUhZunPZXOPHXFgA5SvLvMaNIXduMKJh4OMf\nuoLdJowXJAR9j31Mqz/is4FMhm/9Mq7vZZ+uF09htRvIR8tRY28oJuW1gKWyg7cQ\nQpnjHgFyG3XLXWAeXclWqyh/LfjyHQjrYhyeFwIDAQABAoIBAHMqdJsWAGEVNIVB\n+792HYNXnydQr32PwemNmLeD59WglgU/9jZJoxaROjI4VLKK0wZg+uRvJ1nA3tCB\n+Hh7Anh5Im9XExaAq2ZTkqXtC2AxtBktH6iW1EfaI/Y7jNRuMoaXo+Ku3A62p7cw\nJBvepiOXL0Xko0RNguz7mBUvxCLPhYhzn7qCbM8uXLcjsXq/YhWQwQmtMqv0sd3W\nHy+8Jb2c18sqDeZIBne4dWD6qPClPEOsrq9gPTkl0DjbT27oVc2u1p4HMNm5BJIh\nu3rMSxnZHUd7Axj1FgyLIOHl63UhaiaA1aPe/fLiVIGOA1jBZrpbnjgqDy9Uxyn6\neydbiwECgYEA9mtRydz22idyUOlBCDXk+vdGBvFAucNYaNNUAXUJ2wfPmdGgFCA7\ng5eQG8JC6J/FU+2AfIuz6LGr7SxMBYcsWGjFAzGqs/sJib+zzN1dPUSRn4uJNFit\n51yQzPgBqHS6S/XBi6YAODeZDl9jiPl3FxxucqLY5NstqZFXbE0SjIECgYEA2V3r\n7xnRAK1krY1+zkPof4kcBmjqOXjnl/oRxlXP65lEXmyNJwm/ulOIko9mElWRs8CG\nAxSWKaab9Gk6lc8MHjVRbuW52RGLGKq1mp6ENr4d3IBOfrNsTvD3gtNEN1JFLeF1\njIbSsrbi2txr7VZ06Irac0C/ytro0QDOUoXkvpcCgYA8O0EzmToRWsD7e/g0XJAK\ns/Q+8CtE/LWYccc/z+7HxeH9lBqPsM07Pgmwb0xRdfQSrqPQTYl9ICiJAWHXnBG/\nzmQRgstZ0MulCuGU+qq2thLuL3oq/F4NhjeykhA9r8J1nK1hSAMXuqdDtxcqPOfa\nE03/4UQotFY181uuEiytgQKBgHQT+gjHqptH/XnJFCymiySAXdz2bg6fCF5aht95\nt/1C7gXWxlJQnHiuX0KVHZcw5wwtBePjPIWlmaceAtE5rmj7ZC9qsqK/AZ78mtql\nSEnLoTq9si1rN624dRUCKW25m4Py4MlYvm/9xovGJkSqZOhCLoJZ05JK8QWb/pKH\nOi6lAoGBAOUN6ICpMQvzMGPgIbgS0H/gvRTnpAEs59vdgrkhlCII4tzfgvBQlVae\nhRcdM6GTMq5pekBPKu45eanIzwVc88P6coT4qiWYKk2jYoLBa0UV3xEAuqBMymrj\nX4nLcSbZtO0tcDGMfMpWF2JGYOEJQNetPozL/ICGVFyIO8yzXm8U\n-----END RSA PRIVATE KEY-----\n",
+            'private_key' => "-----BEGIN RSA PRIVATE KEY-----\nMIIEowIBAAKCAQEA0Ttga33B1yX4w77NbpKyNYDNSVCo8j+RlZaZ9tI"
+            . "+KfkV1d+t\nfsvI9ZPAheP11FoN52ceBaY5ltelHW+IKwCfyT0orLdsxLgowaXki9woF1Azvcg2\nJVxQLv9aVjjAvy3CZFIG/EeN7J"
+            . "3nsyCXGnu1yMEbnvkWxA88//Q6HQ2K9wqfApkQ\n0LNlsK0YHz/sfjHNvRKxnbAJk7D5fUhZunPZXOPHXFgA5SvLvMaNIXduMKJh4OM"
+            . "f\nuoLdJowXJAR9j31Mqz/is4FMhm/9Mq7vZZ+uF09htRvIR8tRY28oJuW1gKWyg7cQ\nQpnjHgFyG3XLXWAeXclWqyh/LfjyHQjrYh"
+            . "yeFwIDAQABAoIBAHMqdJsWAGEVNIVB\n+792HYNXnydQr32PwemNmLeD59WglgU/9jZJoxaROjI4VLKK0wZg+uRvJ1nA3tCB\n+Hh7A"
+            . "nh5Im9XExaAq2ZTkqXtC2AxtBktH6iW1EfaI/Y7jNRuMoaXo+Ku3A62p7cw\nJBvepiOXL0Xko0RNguz7mBUvxCLPhYhzn7qCbM8uXL"
+            . "cjsXq/YhWQwQmtMqv0sd3W\nHy+8Jb2c18sqDeZIBne4dWD6qPClPEOsrq9gPTkl0DjbT27oVc2u1p4HMNm5BJIh\nu3rMSxnZHUd7A"
+            . "xj1FgyLIOHl63UhaiaA1aPe/fLiVIGOA1jBZrpbnjgqDy9Uxyn6\neydbiwECgYEA9mtRydz22idyUOlBCDXk+vdGBvFAucNYaNNUAX"
+            . "UJ2wfPmdGgFCA7\ng5eQG8JC6J/FU+2AfIuz6LGr7SxMBYcsWGjFAzGqs/sJib+zzN1dPUSRn4uJNFit\n51yQzPgBqHS6S/XBi6YAO"
+            . "DeZDl9jiPl3FxxucqLY5NstqZFXbE0SjIECgYEA2V3r\n7xnRAK1krY1+zkPof4kcBmjqOXjnl/oRxlXP65lEXmyNJwm/ulOIko9mEl"
+            . "WRs8CG\nAxSWKaab9Gk6lc8MHjVRbuW52RGLGKq1mp6ENr4d3IBOfrNsTvD3gtNEN1JFLeF1\njIbSsrbi2txr7VZ06Irac0C/ytro0"
+            . "QDOUoXkvpcCgYA8O0EzmToRWsD7e/g0XJAK\ns/Q+8CtE/LWYccc/z+7HxeH9lBqPsM07Pgmwb0xRdfQSrqPQTYl9ICiJAWHXnBG/\n"
+            . "zmQRgstZ0MulCuGU+qq2thLuL3oq/F4NhjeykhA9r8J1nK1hSAMXuqdDtxcqPOfa\nE03/4UQotFY181uuEiytgQKBgHQT+gjHqptH/"
+            . "XnJFCymiySAXdz2bg6fCF5aht95\nt/1C7gXWxlJQnHiuX0KVHZcw5wwtBePjPIWlmaceAtE5rmj7ZC9qsqK/AZ78mtql\nSEnLoTq9"
+            . "si1rN624dRUCKW25m4Py4MlYvm/9xovGJkSqZOhCLoJZ05JK8QWb/pKH\nOi6lAoGBAOUN6ICpMQvzMGPgIbgS0H/gvRTnpAEs59vdg"
+            . "rkhlCII4tzfgvBQlVae\nhRcdM6GTMq5pekBPKu45eanIzwVc88P6coT4qiWYKk2jYoLBa0UV3xEAuqBMymrj\nX4nLcSbZtO0tcDGM"
+            . "fMpWF2JGYOEJQNetPozL/ICGVFyIO8yzXm8U\n-----END RSA PRIVATE KEY-----\n",
             'type' => 'service_account',
         ]
     ];
