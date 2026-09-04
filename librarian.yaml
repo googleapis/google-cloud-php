@@ -74,6 +74,16 @@ libraries:
           common_resources: false
     copyright_year: "2026"
     output: AdvisoryNotifications
+  - name: agentregistry
+    version: 0.0.0
+    apis:
+      - path: google/cloud/agentregistry/v1
+        php:
+          additional_protos:
+            - google/cloud/location/locations.proto
+          staging_subdir: v1
+    copyright_year: "2026"
+    output: AgentRegistry
   - name: aiplatform
     version: 1.66.0
     apis:
