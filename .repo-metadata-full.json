@@ -1560,6 +1560,14 @@
         "library_type": "GAPIC_AUTO",
         "api_shortname": "merchantapi"
     },
+    "ShoppingMerchantLoyaltycustomers": {
+        "language": "php",
+        "distribution_name": "google/shopping-merchant-loyaltycustomers",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/shopping-merchant-loyaltycustomers/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "merchantapi"
+    },
     "ShoppingMerchantNotifications": {
         "language": "php",
         "distribution_name": "google/shopping-merchant-notifications",
