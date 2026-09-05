@@ -144,6 +144,10 @@ class BigtableClient
      */
     public function __construct(array $config = [])
     {
+        $config += [
+            'clientConfig' => __DIR__ . '/resources/bigtable_client_config.json',
+        ];
+
         if (!isset($config['transportConfig']['grpc']['stubOpts'])) {
             $config['transportConfig']['grpc']['stubOpts'] = [];
         }
@@ -196,7 +200,7 @@ class BigtableClient
     {
         if ($this->pingAndWarm && !($this->pingAndWarmCalled[$instanceId] ?? false)) {
             // The default deadline is configured by the "clientConfig" option, which uses
-            // `src/V2/resources/bigtable_client_config.json`.
+            // `src/resources/bigtable_client_config.json`.
             // This default deadline should be high enough to absorb cold connection latencies.
             list($data, $callOptions) = $this->splitOptionalArgs($options);
             $data['name'] = GapicClient::instanceName($this->projectId, $instanceId);
