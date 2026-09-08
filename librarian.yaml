@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 language: php
-version: v0.40.0
+version: v0.41.0
 sources:
   googleapis:
     commit: da1f35d9096888cca86cb2c59fab46c9ea08b39e
