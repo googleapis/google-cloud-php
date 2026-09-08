@@ -4159,6 +4159,24 @@ class Dimension
      */
     const PARTNER_MANAGEMENT_PARTNER_NAME = 656;
     /**
+     * The ID of the payment profile.
+     * Corresponds to "Payment profile ID" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `IDENTIFIER`
+     *
+     * Generated from protobuf enum <code>PAYMENT_PROFILE_ID = 858;</code>
+     */
+    const PAYMENT_PROFILE_ID = 858;
+    /**
+     * The name of the payment profile.
+     * Corresponds to "Payment profile" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `STRING`
+     *
+     * Generated from protobuf enum <code>PAYMENT_PROFILE_NAME = 857;</code>
+     */
+    const PAYMENT_PROFILE_NAME = 857;
+    /**
      * Placement ID
      * Corresponds to "Placement ID" in the Ad Manager UI.
      * Compatible with the following report types: `HISTORICAL`,
@@ -7692,6 +7710,8 @@ class Dimension
         self::PARTNER_MANAGEMENT_ASSIGNMENT_NAME => 'PARTNER_MANAGEMENT_ASSIGNMENT_NAME',
         self::PARTNER_MANAGEMENT_PARTNER_ID => 'PARTNER_MANAGEMENT_PARTNER_ID',
         self::PARTNER_MANAGEMENT_PARTNER_NAME => 'PARTNER_MANAGEMENT_PARTNER_NAME',
+        self::PAYMENT_PROFILE_ID => 'PAYMENT_PROFILE_ID',
+        self::PAYMENT_PROFILE_NAME => 'PAYMENT_PROFILE_NAME',
         self::PLACEMENT_ID => 'PLACEMENT_ID',
         self::PLACEMENT_ID_ALL => 'PLACEMENT_ID_ALL',
         self::PLACEMENT_NAME => 'PLACEMENT_NAME',

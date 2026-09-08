@@ -55,8 +55,8 @@ class AdReviewCenterAd extends \Google\Protobuf\Internal\Message
     private $manual_review_statuses;
     /**
      * Output only. The preview URL that can be embedded or accessed directly
-     * which will present the rendered contents of the ad. (This URL expires 72
-     * hours after being retrieved.).
+     * which will present the rendered contents of the ad. This URL expires 72
+     * hours after being retrieved.
      *
      * Generated from protobuf field <code>optional string preview_url = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -87,8 +87,8 @@ class AdReviewCenterAd extends \Google\Protobuf\Internal\Message
      *           for the standard mode.
      *     @type string $preview_url
      *           Output only. The preview URL that can be embedded or accessed directly
-     *           which will present the rendered contents of the ad. (This URL expires 72
-     *           hours after being retrieved.).
+     *           which will present the rendered contents of the ad. This URL expires 72
+     *           hours after being retrieved.
      * }
      */
     public function __construct($data = NULL) {
@@ -242,8 +242,8 @@ class AdReviewCenterAd extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The preview URL that can be embedded or accessed directly
-     * which will present the rendered contents of the ad. (This URL expires 72
-     * hours after being retrieved.).
+     * which will present the rendered contents of the ad. This URL expires 72
+     * hours after being retrieved.
      *
      * Generated from protobuf field <code>optional string preview_url = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -265,8 +265,8 @@ class AdReviewCenterAd extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The preview URL that can be embedded or accessed directly
-     * which will present the rendered contents of the ad. (This URL expires 72
-     * hours after being retrieved.).
+     * which will present the rendered contents of the ad. This URL expires 72
+     * hours after being retrieved.
      *
      * Generated from protobuf field <code>optional string preview_url = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
