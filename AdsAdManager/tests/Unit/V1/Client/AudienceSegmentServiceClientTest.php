@@ -27,6 +27,8 @@ use Google\Ads\AdManager\V1\BatchActivateAudienceSegmentsRequest;
 use Google\Ads\AdManager\V1\BatchActivateAudienceSegmentsResponse;
 use Google\Ads\AdManager\V1\BatchApproveAudienceSegmentsRequest;
 use Google\Ads\AdManager\V1\BatchApproveAudienceSegmentsResponse;
+use Google\Ads\AdManager\V1\BatchCreateAudienceSegmentsRequest;
+use Google\Ads\AdManager\V1\BatchCreateAudienceSegmentsResponse;
 use Google\Ads\AdManager\V1\BatchDeactivateAudienceSegmentsRequest;
 use Google\Ads\AdManager\V1\BatchDeactivateAudienceSegmentsResponse;
 use Google\Ads\AdManager\V1\BatchPopulateAudienceSegmentsRequest;
@@ -34,6 +36,7 @@ use Google\Ads\AdManager\V1\BatchPopulateAudienceSegmentsResponse;
 use Google\Ads\AdManager\V1\BatchRejectAudienceSegmentsRequest;
 use Google\Ads\AdManager\V1\BatchRejectAudienceSegmentsResponse;
 use Google\Ads\AdManager\V1\Client\AudienceSegmentServiceClient;
+use Google\Ads\AdManager\V1\CreateAudienceSegmentRequest;
 use Google\Ads\AdManager\V1\GetAudienceSegmentRequest;
 use Google\Ads\AdManager\V1\ListAudienceSegmentsRequest;
 use Google\Ads\AdManager\V1\ListAudienceSegmentsResponse;
@@ -207,6 +210,76 @@ class AudienceSegmentServiceClientTest extends GeneratedTest
         $request = (new BatchApproveAudienceSegmentsRequest())->setParent($formattedParent)->setNames($formattedNames);
         try {
             $gapicClient->batchApproveAudienceSegments($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function batchCreateAudienceSegmentsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new BatchCreateAudienceSegmentsResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
+        $requests = [];
+        $request = (new BatchCreateAudienceSegmentsRequest())->setParent($formattedParent)->setRequests($requests);
+        $response = $gapicClient->batchCreateAudienceSegments($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.ads.admanager.v1.AudienceSegmentService/BatchCreateAudienceSegments',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getRequests();
+        $this->assertProtobufEquals($requests, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function batchCreateAudienceSegmentsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
+        $requests = [];
+        $request = (new BatchCreateAudienceSegmentsRequest())->setParent($formattedParent)->setRequests($requests);
+        try {
+            $gapicClient->batchCreateAudienceSegments($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -427,6 +500,101 @@ class AudienceSegmentServiceClientTest extends GeneratedTest
         $request = (new BatchRejectAudienceSegmentsRequest())->setParent($formattedParent)->setNames($formattedNames);
         try {
             $gapicClient->batchRejectAudienceSegments($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function createAudienceSegmentTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $sharedId = 1581568203;
+        $displayName = 'displayName1615086568';
+        $description = 'description-1724546052';
+        $size = 3530753;
+        $mobileWebSize = 1281165047;
+        $idfaSize = 582571914;
+        $adIdSize = 1772250249;
+        $ppidSize = 1292388699;
+        $dataProviderDisplayName = 'dataProviderDisplayName-1756607327';
+        $expectedResponse = new AudienceSegment();
+        $expectedResponse->setName($name);
+        $expectedResponse->setSharedId($sharedId);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setSize($size);
+        $expectedResponse->setMobileWebSize($mobileWebSize);
+        $expectedResponse->setIdfaSize($idfaSize);
+        $expectedResponse->setAdIdSize($adIdSize);
+        $expectedResponse->setPpidSize($ppidSize);
+        $expectedResponse->setDataProviderDisplayName($dataProviderDisplayName);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
+        $audienceSegment = new AudienceSegment();
+        $audienceSegmentDisplayName = 'audienceSegmentDisplayName-1577509282';
+        $audienceSegment->setDisplayName($audienceSegmentDisplayName);
+        $request = (new CreateAudienceSegmentRequest())
+            ->setParent($formattedParent)
+            ->setAudienceSegment($audienceSegment);
+        $response = $gapicClient->createAudienceSegment($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.ads.admanager.v1.AudienceSegmentService/CreateAudienceSegment', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getAudienceSegment();
+        $this->assertProtobufEquals($audienceSegment, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function createAudienceSegmentExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
+        $audienceSegment = new AudienceSegment();
+        $audienceSegmentDisplayName = 'audienceSegmentDisplayName-1577509282';
+        $audienceSegment->setDisplayName($audienceSegmentDisplayName);
+        $request = (new CreateAudienceSegmentRequest())
+            ->setParent($formattedParent)
+            ->setAudienceSegment($audienceSegment);
+        try {
+            $gapicClient->createAudienceSegment($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
