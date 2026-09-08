@@ -1823,6 +1823,14 @@ libraries:
       - path: google/shopping/merchant/lfp/v1beta
     copyright_year: "2026"
     output: ShoppingMerchantLfp
+  - name: shopping-merchant-loyaltycustomers
+    version: 0.0.0
+    apis:
+      - path: google/shopping/merchant/loyaltycustomers/v1
+        php:
+          staging_subdir: v1
+    copyright_year: "2026"
+    output: ShoppingMerchantLoyaltyCustomers
   - name: shopping-merchant-notifications
     version: 1.2.4
     apis:
