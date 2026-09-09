@@ -36,8 +36,6 @@ class ComponentUpdateCommandTest extends TestCase
     private static CommandTester $commandTester;
 
     private const COMPONENT_NAME = 'Storage';
-    private const OWLBOT_PHP_IMAGE = 'gcr.io/fake-owlbot-image/owlbot-php';
-    private const OWLBOT_PHP_DIGEST = 'sha256:12345';
     private const OWLBOT_CLI_IMAGE = 'gcr.io/cloud-devrel-public-resources/owlbot-cli:latest';
     private const DEFAULT_TIMEOUT = 120;
 
@@ -48,12 +46,6 @@ class ComponentUpdateCommandTest extends TestCase
         mkdir($tmpDir . '/.github', 0777, true);
         self::$tmpDir = realpath($tmpDir);
 
-        file_put_contents(self::$tmpDir . '/.github/.OwlBot.lock.yaml', Yaml::dump([
-            'docker' => [
-                'image' => self::OWLBOT_PHP_IMAGE,
-                'digest' => self::OWLBOT_PHP_DIGEST,
-            ],
-        ]));
         $application = new Application();
         $application->add(new ComponentUpdateCommand(self::$tmpDir));
         self::$commandTester = new CommandTester($application->get('component:update'));
@@ -135,7 +127,7 @@ class ComponentUpdateCommandTest extends TestCase
             ->willReturn('/path/to/docker');
 
         list($userId, $groupId) = [posix_getuid(), posix_getgid()];
-        $owlbotPhpImage = self::OWLBOT_PHP_IMAGE . '@' . self::OWLBOT_PHP_DIGEST;
+        $owlbotPhpImage = 'gcr.io/cloud-devrel-public-resources/owlbot-php:latest';
 
         $copyCodeCommand = [
             'docker', 'run', '--rm',
