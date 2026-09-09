@@ -78,7 +78,7 @@ run_package_test() {
         "PubSub,cloud-pubsub"
         "Storage,cloud-storage,2.100"
         "ShoppingCommonProtos,shopping-common-protos"
-        "GeoCommonProtos,geo-common-protos,0.1",
+        "GeoCommonProtos,geo-common-protos,0.1"
         "Monitoring,cloud-monitoring"
     )
     for i in "${PACKAGE_DEPENDENCIES[@]}"; do
