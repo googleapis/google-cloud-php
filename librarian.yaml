@@ -496,12 +496,9 @@ libraries:
     version: 2.27.1
     apis:
       - path: google/bigtable/v2
-        php:
-          skip_grpc_service_config: true
       - path: google/bigtable/admin/v2
         php:
           gapic_yaml: google/bigtable/admin/v2/bigtableadmin_gapic.yaml
-          skip_grpc_service_config: true
           staging_subdir: Admin/v2
     copyright_year: "2026"
     keep:

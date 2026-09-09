@@ -2,178 +2,207 @@
     "interfaces": {
         "google.bigtable.admin.v2.BigtableInstanceAdmin": {
             "retry_codes": {
-                "idempotent": [
-                    "DEADLINE_EXCEEDED",
-                    "UNAVAILABLE"
+                "no_retry_codes": [],
+                "no_retry_4_codes": [],
+                "retry_policy_3_codes": [
+                    "UNAVAILABLE",
+                    "DEADLINE_EXCEEDED"
                 ],
-                "non_idempotent": []
+                "no_retry_5_codes": []
             },
             "retry_params": {
-                "default": {
-                    "initial_retry_delay_millis": 100,
-                    "retry_delay_multiplier": 1.3,
-                    "max_retry_delay_millis": 60000,
-                    "initial_rpc_timeout_millis": 20000,
+                "no_retry_params": {
+                    "initial_retry_delay_millis": 0,
+                    "retry_delay_multiplier": 0.0,
+                    "max_retry_delay_millis": 0,
+                    "initial_rpc_timeout_millis": 0,
                     "rpc_timeout_multiplier": 1.0,
-                    "max_rpc_timeout_millis": 20000,
-                    "total_timeout_millis": 600000
+                    "max_rpc_timeout_millis": 0,
+                    "total_timeout_millis": 0
+                },
+                "no_retry_4_params": {
+                    "initial_retry_delay_millis": 0,
+                    "retry_delay_multiplier": 0.0,
+                    "max_retry_delay_millis": 0,
+                    "initial_rpc_timeout_millis": 300000,
+                    "rpc_timeout_multiplier": 1.0,
+                    "max_rpc_timeout_millis": 300000,
+                    "total_timeout_millis": 300000
+                },
+                "retry_policy_3_params": {
+                    "initial_retry_delay_millis": 1000,
+                    "retry_delay_multiplier": 2.0,
+                    "max_retry_delay_millis": 60000,
+                    "initial_rpc_timeout_millis": 60000,
+                    "rpc_timeout_multiplier": 1.0,
+                    "max_rpc_timeout_millis": 60000,
+                    "total_timeout_millis": 60000
+                },
+                "no_retry_5_params": {
+                    "initial_retry_delay_millis": 0,
+                    "retry_delay_multiplier": 0.0,
+                    "max_retry_delay_millis": 0,
+                    "initial_rpc_timeout_millis": 60000,
+                    "rpc_timeout_multiplier": 1.0,
+                    "max_rpc_timeout_millis": 60000,
+                    "total_timeout_millis": 60000
                 }
             },
             "methods": {
                 "CreateAppProfile": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "non_idempotent",
-                    "retry_params_name": "default"
+                    "retry_codes_name": "no_retry_5_codes",
+                    "retry_params_name": "no_retry_5_params"
                 },
                 "CreateCluster": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "non_idempotent",
-                    "retry_params_name": "default"
+                    "retry_codes_name": "no_retry_5_codes",
+                    "retry_params_name": "no_retry_5_params"
                 },
                 "CreateInstance": {
-                    "timeout_millis": 60000,
-                    "retry_codes_name": "non_idempotent",
-                    "retry_params_name": "default"
+                    "timeout_millis": 300000,
+                    "retry_codes_name": "no_retry_4_codes",
+                    "retry_params_name": "no_retry_4_params"
                 },
                 "CreateLogicalView": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "non_idempotent",
-                    "retry_params_name": "default"
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
                 },
                 "CreateMaterializedView": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "non_idempotent",
-                    "retry_params_name": "default"
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
                 },
                 "DeleteAppProfile": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "non_idempotent",
-                    "retry_params_name": "default"
+                    "retry_codes_name": "no_retry_5_codes",
+                    "retry_params_name": "no_retry_5_params"
                 },
                 "DeleteCluster": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "non_idempotent",
-                    "retry_params_name": "default"
+                    "retry_codes_name": "no_retry_5_codes",
+                    "retry_params_name": "no_retry_5_params"
                 },
                 "DeleteInstance": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "non_idempotent",
-                    "retry_params_name": "default"
+                    "retry_codes_name": "no_retry_5_codes",
+                    "retry_params_name": "no_retry_5_params"
                 },
                 "DeleteLogicalView": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "non_idempotent",
-                    "retry_params_name": "default"
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
                 },
                 "DeleteMaterializedView": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "non_idempotent",
-                    "retry_params_name": "default"
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
                 },
                 "GetAppProfile": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "idempotent",
-                    "retry_params_name": "default"
+                    "retry_codes_name": "retry_policy_3_codes",
+                    "retry_params_name": "retry_policy_3_params"
                 },
                 "GetCluster": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "idempotent",
-                    "retry_params_name": "default"
+                    "retry_codes_name": "retry_policy_3_codes",
+                    "retry_params_name": "retry_policy_3_params"
                 },
                 "GetIamPolicy": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "non_idempotent",
-                    "retry_params_name": "default"
+                    "retry_codes_name": "retry_policy_3_codes",
+                    "retry_params_name": "retry_policy_3_params"
                 },
                 "GetInstance": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "idempotent",
-                    "retry_params_name": "default"
+                    "retry_codes_name": "retry_policy_3_codes",
+                    "retry_params_name": "retry_policy_3_params"
                 },
                 "GetLogicalView": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "idempotent",
-                    "retry_params_name": "default"
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
                 },
                 "GetMaterializedView": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "idempotent",
-                    "retry_params_name": "default"
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
                 },
                 "ListAppProfiles": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "idempotent",
-                    "retry_params_name": "default"
+                    "retry_codes_name": "retry_policy_3_codes",
+                    "retry_params_name": "retry_policy_3_params"
                 },
                 "ListClusters": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "idempotent",
-                    "retry_params_name": "default"
+                    "retry_codes_name": "retry_policy_3_codes",
+                    "retry_params_name": "retry_policy_3_params"
                 },
                 "ListHotTablets": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "idempotent",
-                    "retry_params_name": "default"
+                    "retry_codes_name": "retry_policy_3_codes",
+                    "retry_params_name": "retry_policy_3_params"
                 },
                 "ListInstances": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "idempotent",
-                    "retry_params_name": "default"
+                    "retry_codes_name": "retry_policy_3_codes",
+                    "retry_params_name": "retry_policy_3_params"
                 },
                 "ListLogicalViews": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "idempotent",
-                    "retry_params_name": "default"
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
                 },
                 "ListMaterializedViews": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "idempotent",
-                    "retry_params_name": "default"
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
                 },
                 "PartialUpdateCluster": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "non_idempotent",
-                    "retry_params_name": "default"
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
                 },
                 "PartialUpdateInstance": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "non_idempotent",
-                    "retry_params_name": "default"
+                    "retry_codes_name": "retry_policy_3_codes",
+                    "retry_params_name": "retry_policy_3_params"
                 },
                 "SetIamPolicy": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "non_idempotent",
-                    "retry_params_name": "default"
+                    "retry_codes_name": "no_retry_5_codes",
+                    "retry_params_name": "no_retry_5_params"
                 },
                 "TestIamPermissions": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "non_idempotent",
-                    "retry_params_name": "default"
+                    "retry_codes_name": "retry_policy_3_codes",
+                    "retry_params_name": "retry_policy_3_params"
                 },
                 "UpdateAppProfile": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "non_idempotent",
-                    "retry_params_name": "default"
+                    "retry_codes_name": "retry_policy_3_codes",
+                    "retry_params_name": "retry_policy_3_params"
                 },
                 "UpdateCluster": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "non_idempotent",
-                    "retry_params_name": "default"
+                    "retry_codes_name": "retry_policy_3_codes",
+                    "retry_params_name": "retry_policy_3_params"
                 },
                 "UpdateInstance": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "non_idempotent",
-                    "retry_params_name": "default"
+                    "retry_codes_name": "retry_policy_3_codes",
+                    "retry_params_name": "retry_policy_3_params"
                 },
                 "UpdateLogicalView": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "non_idempotent",
-                    "retry_params_name": "default"
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
                 },
                 "UpdateMaterializedView": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "non_idempotent",
-                    "retry_params_name": "default"
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
                 }
             }
         }
