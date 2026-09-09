@@ -70,6 +70,7 @@ run_package_test() {
 
     # Update composer to use local packages
     local PACKAGE_DEPENDENCIES=(
+        "Auth,auth"
         "Gax,gax"
         "CommonProtos,common-protos,4.100"
         "BigQuery,cloud-bigquery"
@@ -155,6 +156,7 @@ export -f run_package_test_parallel
 export STRICT
 export PREFER_LOWEST
 export FAILED_FILE
+export GRPC_ENABLE_FORK_SUPPORT=1
 
 # Determine optimal parallelism: default to the number of CPU cores on the host runner
 MAX_JOBS=${MAX_JOBS:-$(nproc 2>/dev/null || echo 8)}
