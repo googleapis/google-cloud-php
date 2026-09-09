@@ -577,6 +577,12 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      */
     protected $desired_control_plane_egress = null;
     /**
+     * Optional. The desired rollback safe upgrade configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.RollbackSafeUpgrade desired_rollback_safe_upgrade = 161 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $desired_rollback_safe_upgrade = null;
+    /**
      * The desired managed open telemetry configuration.
      *
      * Generated from protobuf field <code>.google.container.v1.ManagedOpenTelemetryConfig desired_managed_opentelemetry_config = 163;</code>
@@ -600,6 +606,12 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.NodeCreationConfig desired_node_creation_config = 171 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $desired_node_creation_config = null;
+    /**
+     * Optional. The desired emulated version for the cluster.
+     *
+     * Generated from protobuf field <code>optional string desired_emulated_version = 182 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $desired_emulated_version = null;
 
     /**
      * Constructor.
@@ -852,6 +864,8 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      *           The desired privileged admission config for the cluster.
      *     @type \Google\Cloud\Container\V1\ControlPlaneEgress $desired_control_plane_egress
      *           The desired control plane egress control config for the cluster.
+     *     @type \Google\Cloud\Container\V1\RollbackSafeUpgrade $desired_rollback_safe_upgrade
+     *           Optional. The desired rollback safe upgrade configuration.
      *     @type \Google\Cloud\Container\V1\ManagedOpenTelemetryConfig $desired_managed_opentelemetry_config
      *           The desired managed open telemetry configuration.
      *     @type \Google\Cloud\Container\V1\ClusterPolicyConfig $desired_autopilot_cluster_policy_config
@@ -860,6 +874,8 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      *           The desired managed machine learning diagnostics configuration.
      *     @type \Google\Cloud\Container\V1\NodeCreationConfig $desired_node_creation_config
      *           Optional. The desired NodeCreationConfig for the cluster.
+     *     @type string $desired_emulated_version
+     *           Optional. The desired emulated version for the cluster.
      * }
      */
     public function __construct($data = NULL) {
@@ -3752,6 +3768,42 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. The desired rollback safe upgrade configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.RollbackSafeUpgrade desired_rollback_safe_upgrade = 161 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Container\V1\RollbackSafeUpgrade|null
+     */
+    public function getDesiredRollbackSafeUpgrade()
+    {
+        return $this->desired_rollback_safe_upgrade;
+    }
+
+    public function hasDesiredRollbackSafeUpgrade()
+    {
+        return isset($this->desired_rollback_safe_upgrade);
+    }
+
+    public function clearDesiredRollbackSafeUpgrade()
+    {
+        unset($this->desired_rollback_safe_upgrade);
+    }
+
+    /**
+     * Optional. The desired rollback safe upgrade configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.RollbackSafeUpgrade desired_rollback_safe_upgrade = 161 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Container\V1\RollbackSafeUpgrade $var
+     * @return $this
+     */
+    public function setDesiredRollbackSafeUpgrade($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\RollbackSafeUpgrade::class);
+        $this->desired_rollback_safe_upgrade = $var;
+
+        return $this;
+    }
+
+    /**
      * The desired managed open telemetry configuration.
      *
      * Generated from protobuf field <code>.google.container.v1.ManagedOpenTelemetryConfig desired_managed_opentelemetry_config = 163;</code>
@@ -3891,6 +3943,42 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\NodeCreationConfig::class);
         $this->desired_node_creation_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The desired emulated version for the cluster.
+     *
+     * Generated from protobuf field <code>optional string desired_emulated_version = 182 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getDesiredEmulatedVersion()
+    {
+        return isset($this->desired_emulated_version) ? $this->desired_emulated_version : '';
+    }
+
+    public function hasDesiredEmulatedVersion()
+    {
+        return isset($this->desired_emulated_version);
+    }
+
+    public function clearDesiredEmulatedVersion()
+    {
+        unset($this->desired_emulated_version);
+    }
+
+    /**
+     * Optional. The desired emulated version for the cluster.
+     *
+     * Generated from protobuf field <code>optional string desired_emulated_version = 182 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDesiredEmulatedVersion($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->desired_emulated_version = $var;
 
         return $this;
     }

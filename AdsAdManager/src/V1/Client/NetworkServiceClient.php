@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,9 +24,13 @@
 
 namespace Google\Ads\AdManager\V1\Client;
 
+use Google\Ads\AdManager\V1\DefaultThirdPartyDataDeclaration;
+use Google\Ads\AdManager\V1\GetDefaultThirdPartyDataDeclarationRequest;
 use Google\Ads\AdManager\V1\GetNetworkRequest;
 use Google\Ads\AdManager\V1\ListNetworksRequest;
 use Google\Ads\AdManager\V1\Network;
+use Google\Ads\AdManager\V1\ProvisionTestNetworkRequest;
+use Google\Ads\AdManager\V1\UpdateNetworkRequest;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
@@ -51,8 +55,11 @@ use Psr\Log\LoggerInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
+ * @method PromiseInterface<DefaultThirdPartyDataDeclaration> getDefaultThirdPartyDataDeclarationAsync(GetDefaultThirdPartyDataDeclarationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Network> getNetworkAsync(GetNetworkRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listNetworksAsync(ListNetworksRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Network> provisionTestNetworkAsync(ProvisionTestNetworkRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Network> updateNetworkAsync(UpdateNetworkRequest $request, array $optionalArgs = [])
  */
 final class NetworkServiceClient
 {
@@ -120,6 +127,38 @@ final class NetworkServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a ad_unit
+     * resource.
+     *
+     * @param string $networkCode
+     * @param string $adUnit
+     *
+     * @return string The formatted ad_unit resource.
+     */
+    public static function adUnitName(string $networkCode, string $adUnit): string
+    {
+        return self::getPathTemplate('adUnit')->render([
+            'network_code' => $networkCode,
+            'ad_unit' => $adUnit,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * default_third_party_data_declaration resource.
+     *
+     * @param string $networkCode
+     *
+     * @return string The formatted default_third_party_data_declaration resource.
+     */
+    public static function defaultThirdPartyDataDeclarationName(string $networkCode): string
+    {
+        return self::getPathTemplate('defaultThirdPartyDataDeclaration')->render([
+            'network_code' => $networkCode,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a network
      * resource.
      *
@@ -138,6 +177,8 @@ final class NetworkServiceClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - adUnit: networks/{network_code}/adUnits/{ad_unit}
+     * - defaultThirdPartyDataDeclaration: networks/{network_code}/defaultThirdPartyDataDeclaration
      * - network: networks/{network_code}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
@@ -241,6 +282,35 @@ final class NetworkServiceClient
     }
 
     /**
+     * Returns the [DefaultThirdPartyDataDeclaration] for this network.
+     *
+     * The async variant is
+     * {@see NetworkServiceClient::getDefaultThirdPartyDataDeclarationAsync()} .
+     *
+     * @example samples/V1/NetworkServiceClient/get_default_third_party_data_declaration.php
+     *
+     * @param GetDefaultThirdPartyDataDeclarationRequest $request     A request to house fields associated with the call.
+     * @param array                                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return DefaultThirdPartyDataDeclaration
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getDefaultThirdPartyDataDeclaration(
+        GetDefaultThirdPartyDataDeclarationRequest $request,
+        array $callOptions = []
+    ): DefaultThirdPartyDataDeclaration {
+        return $this->startApiCall('GetDefaultThirdPartyDataDeclaration', $request, $callOptions)->wait();
+    }
+
+    /**
      * Retrieves a `Network` object.
      *
      * The async variant is {@see NetworkServiceClient::getNetworkAsync()} .
@@ -290,5 +360,71 @@ final class NetworkServiceClient
     public function listNetworks(ListNetworksRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('ListNetworks', $request, $callOptions);
+    }
+
+    /**
+     * Provisions a test network associated with the current user. Only one test
+     * network can be provisioned per user.
+     *
+     * Before the test network can be used, you must complete setup in the Ad
+     * Manager UI. If the test network's owner is a service account, you must add
+     * a non-service account user by calling UserService.CreateUser.
+     *
+     * Test networks are limited in the following ways:
+     *
+     * * Test networks have a maximum of 10,000 objects per entity type.
+     * * Test networks cannot serve ads.
+     * * Reports on serving data have zero rows.
+     * * Forecast service results contain mock data.
+     * * Test networks do not have Ad Manager 360 or premium features enabled.
+     *
+     * The async variant is {@see NetworkServiceClient::provisionTestNetworkAsync()} .
+     *
+     * @example samples/V1/NetworkServiceClient/provision_test_network.php
+     *
+     * @param ProvisionTestNetworkRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Network
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function provisionTestNetwork(ProvisionTestNetworkRequest $request, array $callOptions = []): Network
+    {
+        return $this->startApiCall('ProvisionTestNetwork', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates a `Network` object. Currently, only the network display name can be
+     * updated.
+     *
+     * The async variant is {@see NetworkServiceClient::updateNetworkAsync()} .
+     *
+     * @example samples/V1/NetworkServiceClient/update_network.php
+     *
+     * @param UpdateNetworkRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Network
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateNetwork(UpdateNetworkRequest $request, array $callOptions = []): Network
+    {
+        return $this->startApiCall('UpdateNetwork', $request, $callOptions)->wait();
     }
 }

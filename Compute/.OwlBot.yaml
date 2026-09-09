@@ -1,4 +1,0 @@
-deep-copy-regex:
-    - source: /google/cloud/compute/(v1)/.*-php/(.*)
-      dest: /owl-bot-staging/Compute/$1/$2
-api-name: Compute

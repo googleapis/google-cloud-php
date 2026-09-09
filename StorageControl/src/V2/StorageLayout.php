@@ -49,6 +49,12 @@ class StorageLayout extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.storage.control.v2.StorageLayout.HierarchicalNamespace hierarchical_namespace = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $hierarchical_namespace = null;
+    /**
+     * Output only. The Rapid Cache configuration for the bucket.
+     *
+     * Generated from protobuf field <code>.google.storage.control.v2.StorageLayout.RapidCacheInfo rapid_cache_info = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $rapid_cache_info = null;
 
     /**
      * Constructor.
@@ -70,6 +76,8 @@ class StorageLayout extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Storage\Control\V2\StorageLayout\HierarchicalNamespace $hierarchical_namespace
      *           Output only. The bucket's hierarchical namespace configuration. If there is
      *           no configuration, the hierarchical namespace is disabled.
+     *     @type \Google\Cloud\Storage\Control\V2\StorageLayout\RapidCacheInfo $rapid_cache_info
+     *           Output only. The Rapid Cache configuration for the bucket.
      * }
      */
     public function __construct($data = NULL) {
@@ -231,6 +239,42 @@ class StorageLayout extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Storage\Control\V2\StorageLayout\HierarchicalNamespace::class);
         $this->hierarchical_namespace = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The Rapid Cache configuration for the bucket.
+     *
+     * Generated from protobuf field <code>.google.storage.control.v2.StorageLayout.RapidCacheInfo rapid_cache_info = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Storage\Control\V2\StorageLayout\RapidCacheInfo|null
+     */
+    public function getRapidCacheInfo()
+    {
+        return $this->rapid_cache_info;
+    }
+
+    public function hasRapidCacheInfo()
+    {
+        return isset($this->rapid_cache_info);
+    }
+
+    public function clearRapidCacheInfo()
+    {
+        unset($this->rapid_cache_info);
+    }
+
+    /**
+     * Output only. The Rapid Cache configuration for the bucket.
+     *
+     * Generated from protobuf field <code>.google.storage.control.v2.StorageLayout.RapidCacheInfo rapid_cache_info = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Storage\Control\V2\StorageLayout\RapidCacheInfo $var
+     * @return $this
+     */
+    public function setRapidCacheInfo($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Storage\Control\V2\StorageLayout\RapidCacheInfo::class);
+        $this->rapid_cache_info = $var;
 
         return $this;
     }

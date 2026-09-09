@@ -23,6 +23,15 @@ class BigQueryTableReferences extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1.BigQueryTableReference table_references = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $table_references;
+    /**
+     * Optional. References to BigQuery graphs.
+     * Note: "property graph" is the former name for BigQuery Graph. The field and
+     * message names retain the original term for backward compatibility; both
+     * refer to the same resource.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1.BigQueryPropertyGraphReference property_graph_references = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $property_graph_references;
 
     /**
      * Constructor.
@@ -32,6 +41,11 @@ class BigQueryTableReferences extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\GeminiDataAnalytics\V1\BigQueryTableReference[] $table_references
      *           Optional. References to BigQuery tables.
+     *     @type \Google\Cloud\GeminiDataAnalytics\V1\BigQueryPropertyGraphReference[] $property_graph_references
+     *           Optional. References to BigQuery graphs.
+     *           Note: "property graph" is the former name for BigQuery Graph. The field and
+     *           message names retain the original term for backward compatibility; both
+     *           refer to the same resource.
      * }
      */
     public function __construct($data = NULL) {
@@ -61,6 +75,38 @@ class BigQueryTableReferences extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\GeminiDataAnalytics\V1\BigQueryTableReference::class);
         $this->table_references = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. References to BigQuery graphs.
+     * Note: "property graph" is the former name for BigQuery Graph. The field and
+     * message names retain the original term for backward compatibility; both
+     * refer to the same resource.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1.BigQueryPropertyGraphReference property_graph_references = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return RepeatedField<\Google\Cloud\GeminiDataAnalytics\V1\BigQueryPropertyGraphReference>
+     */
+    public function getPropertyGraphReferences()
+    {
+        return $this->property_graph_references;
+    }
+
+    /**
+     * Optional. References to BigQuery graphs.
+     * Note: "property graph" is the former name for BigQuery Graph. The field and
+     * message names retain the original term for backward compatibility; both
+     * refer to the same resource.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1.BigQueryPropertyGraphReference property_graph_references = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\GeminiDataAnalytics\V1\BigQueryPropertyGraphReference[] $var
+     * @return $this
+     */
+    public function setPropertyGraphReferences($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\GeminiDataAnalytics\V1\BigQueryPropertyGraphReference::class);
+        $this->property_graph_references = $arr;
 
         return $this;
     }

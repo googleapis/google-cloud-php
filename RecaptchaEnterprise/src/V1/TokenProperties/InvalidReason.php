@@ -69,6 +69,19 @@ class InvalidReason
      * Generated from protobuf enum <code>UNEXPECTED_ACTION = 7;</code>
      */
     const UNEXPECTED_ACTION = 7;
+    /**
+     * The key used to generate the token does not match the `site_key`.
+     *
+     * Generated from protobuf enum <code>KEY_MISMATCH = 8;</code>
+     */
+    const KEY_MISMATCH = 8;
+    /**
+     * The domain of the page on which the token was generated does not match
+     * the `allowed_domains` configured in the `site_key`.
+     *
+     * Generated from protobuf enum <code>DOMAIN_MISMATCH = 9;</code>
+     */
+    const DOMAIN_MISMATCH = 9;
 
     private static $valueToName = [
         self::INVALID_REASON_UNSPECIFIED => 'INVALID_REASON_UNSPECIFIED',
@@ -79,6 +92,8 @@ class InvalidReason
         self::MISSING => 'MISSING',
         self::BROWSER_ERROR => 'BROWSER_ERROR',
         self::UNEXPECTED_ACTION => 'UNEXPECTED_ACTION',
+        self::KEY_MISMATCH => 'KEY_MISMATCH',
+        self::DOMAIN_MISMATCH => 'DOMAIN_MISMATCH',
     ];
 
     public static function name($value)

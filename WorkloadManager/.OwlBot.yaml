@@ -1,4 +1,0 @@
-deep-copy-regex:
-    - source: /google/cloud/workloadmanager/(v1)/.*-php/(.*)
-      dest: /owl-bot-staging/WorkloadManager/$1/$2
-api-name: WorkloadManager

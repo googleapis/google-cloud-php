@@ -46,17 +46,17 @@ class AnalyzeDataSourceRiskDetails extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dlp\V2\BigQueryTable $requested_source_table
      *           Input dataset to compute metrics over.
      *     @type \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\NumericalStatsResult $numerical_stats_result
-     *           Numerical stats result
+     *           Output only. Numerical stats result
      *     @type \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\CategoricalStatsResult $categorical_stats_result
-     *           Categorical stats result
+     *           Output only. Categorical stats result
      *     @type \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\KAnonymityResult $k_anonymity_result
-     *           K-anonymity result
+     *           Output only. K-anonymity result
      *     @type \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\LDiversityResult $l_diversity_result
-     *           L-divesity result
+     *           Output only. L-divesity result
      *     @type \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\KMapEstimationResult $k_map_estimation_result
-     *           K-map result
+     *           Output only. K-map result
      *     @type \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\DeltaPresenceEstimationResult $delta_presence_estimation_result
-     *           Delta-presence result
+     *           Output only. Delta-presence result
      *     @type \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\RequestedRiskAnalysisOptions $requested_options
      *           The configuration used for this job.
      * }
@@ -139,9 +139,9 @@ class AnalyzeDataSourceRiskDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Numerical stats result
+     * Output only. Numerical stats result
      *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.NumericalStatsResult numerical_stats_result = 3;</code>
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.NumericalStatsResult numerical_stats_result = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\NumericalStatsResult|null
      */
     public function getNumericalStatsResult()
@@ -155,9 +155,9 @@ class AnalyzeDataSourceRiskDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Numerical stats result
+     * Output only. Numerical stats result
      *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.NumericalStatsResult numerical_stats_result = 3;</code>
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.NumericalStatsResult numerical_stats_result = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\NumericalStatsResult $var
      * @return $this
      */
@@ -170,9 +170,9 @@ class AnalyzeDataSourceRiskDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Categorical stats result
+     * Output only. Categorical stats result
      *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.CategoricalStatsResult categorical_stats_result = 4;</code>
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.CategoricalStatsResult categorical_stats_result = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\CategoricalStatsResult|null
      */
     public function getCategoricalStatsResult()
@@ -186,9 +186,9 @@ class AnalyzeDataSourceRiskDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Categorical stats result
+     * Output only. Categorical stats result
      *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.CategoricalStatsResult categorical_stats_result = 4;</code>
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.CategoricalStatsResult categorical_stats_result = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\CategoricalStatsResult $var
      * @return $this
      */
@@ -201,9 +201,9 @@ class AnalyzeDataSourceRiskDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * K-anonymity result
+     * Output only. K-anonymity result
      *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.KAnonymityResult k_anonymity_result = 5;</code>
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.KAnonymityResult k_anonymity_result = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\KAnonymityResult|null
      */
     public function getKAnonymityResult()
@@ -217,9 +217,9 @@ class AnalyzeDataSourceRiskDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * K-anonymity result
+     * Output only. K-anonymity result
      *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.KAnonymityResult k_anonymity_result = 5;</code>
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.KAnonymityResult k_anonymity_result = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\KAnonymityResult $var
      * @return $this
      */
@@ -232,9 +232,9 @@ class AnalyzeDataSourceRiskDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * L-divesity result
+     * Output only. L-divesity result
      *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.LDiversityResult l_diversity_result = 6;</code>
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.LDiversityResult l_diversity_result = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\LDiversityResult|null
      */
     public function getLDiversityResult()
@@ -248,9 +248,9 @@ class AnalyzeDataSourceRiskDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * L-divesity result
+     * Output only. L-divesity result
      *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.LDiversityResult l_diversity_result = 6;</code>
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.LDiversityResult l_diversity_result = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\LDiversityResult $var
      * @return $this
      */
@@ -263,9 +263,9 @@ class AnalyzeDataSourceRiskDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * K-map result
+     * Output only. K-map result
      *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.KMapEstimationResult k_map_estimation_result = 7;</code>
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.KMapEstimationResult k_map_estimation_result = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\KMapEstimationResult|null
      */
     public function getKMapEstimationResult()
@@ -279,9 +279,9 @@ class AnalyzeDataSourceRiskDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * K-map result
+     * Output only. K-map result
      *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.KMapEstimationResult k_map_estimation_result = 7;</code>
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.KMapEstimationResult k_map_estimation_result = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\KMapEstimationResult $var
      * @return $this
      */
@@ -294,9 +294,9 @@ class AnalyzeDataSourceRiskDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Delta-presence result
+     * Output only. Delta-presence result
      *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.DeltaPresenceEstimationResult delta_presence_estimation_result = 9;</code>
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.DeltaPresenceEstimationResult delta_presence_estimation_result = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\DeltaPresenceEstimationResult|null
      */
     public function getDeltaPresenceEstimationResult()
@@ -310,9 +310,9 @@ class AnalyzeDataSourceRiskDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Delta-presence result
+     * Output only. Delta-presence result
      *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.DeltaPresenceEstimationResult delta_presence_estimation_result = 9;</code>
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.DeltaPresenceEstimationResult delta_presence_estimation_result = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\DeltaPresenceEstimationResult $var
      * @return $this
      */

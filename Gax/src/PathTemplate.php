@@ -83,9 +83,9 @@ class PathTemplate implements ResourceTemplateInterface
      *    can't be parsed.
      * @return string A rendered representation of this path template.
      */
-    public function render(array $bindings)
+    public function render(array $bindings, bool $urlEncode = false)
     {
-        return $this->resourceTemplate->render($bindings);
+        return $this->resourceTemplate->render($bindings, $urlEncode);
     }
 
     /**

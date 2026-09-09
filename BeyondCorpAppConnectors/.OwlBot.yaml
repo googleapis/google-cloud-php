@@ -1,4 +1,0 @@
-deep-copy-regex:
-    - source: /google/cloud/beyondcorp/appconnectors/(v1)/.*-php/(.*)
-      dest: /owl-bot-staging/BeyondCorpAppConnectors/$1/$2
-api-name: BeyondCorpAppConnectors

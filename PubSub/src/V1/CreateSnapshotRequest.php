@@ -52,8 +52,9 @@ class CreateSnapshotRequest extends \Google\Protobuf\Internal\Message
      * resource. For example:
      *   "123/environment": "production",
      *   "123/costCenter": "marketing"
-     * See https://docs.cloud.google.com/pubsub/docs/tags for more information on
-     * using tags with Pub/Sub resources.
+     * See
+     * https://{$universe.dns_names.final_documentation_domain}/pubsub/docs/tags
+     * for more information on using tags with Pub/Sub resources.
      *
      * Generated from protobuf field <code>map<string, string> tags = 4 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -120,8 +121,9 @@ class CreateSnapshotRequest extends \Google\Protobuf\Internal\Message
      *           resource. For example:
      *             "123/environment": "production",
      *             "123/costCenter": "marketing"
-     *           See https://docs.cloud.google.com/pubsub/docs/tags for more information on
-     *           using tags with Pub/Sub resources.
+     *           See
+     *           https://{$universe.dns_names.final_documentation_domain}/pubsub/docs/tags
+     *           for more information on using tags with Pub/Sub resources.
      * }
      */
     public function __construct($data = NULL) {
@@ -240,8 +242,9 @@ class CreateSnapshotRequest extends \Google\Protobuf\Internal\Message
      * resource. For example:
      *   "123/environment": "production",
      *   "123/costCenter": "marketing"
-     * See https://docs.cloud.google.com/pubsub/docs/tags for more information on
-     * using tags with Pub/Sub resources.
+     * See
+     * https://{$universe.dns_names.final_documentation_domain}/pubsub/docs/tags
+     * for more information on using tags with Pub/Sub resources.
      *
      * Generated from protobuf field <code>map<string, string> tags = 4 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -256,8 +259,9 @@ class CreateSnapshotRequest extends \Google\Protobuf\Internal\Message
      * resource. For example:
      *   "123/environment": "production",
      *   "123/costCenter": "marketing"
-     * See https://docs.cloud.google.com/pubsub/docs/tags for more information on
-     * using tags with Pub/Sub resources.
+     * See
+     * https://{$universe.dns_names.final_documentation_domain}/pubsub/docs/tags
+     * for more information on using tags with Pub/Sub resources.
      *
      * Generated from protobuf field <code>map<string, string> tags = 4 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

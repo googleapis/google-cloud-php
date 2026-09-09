@@ -56,6 +56,12 @@ class UrlRewrite extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string path_template_rewrite = 423409569;</code>
      */
     protected $path_template_rewrite = null;
+    /**
+     * The regex rewrite to be applied to the URL. Only one ofpathPrefixRewrite, pathTemplateRewrite, orregexRewrite may be specified.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.RegexRewrite regex_rewrite = 380801428;</code>
+     */
+    protected $regex_rewrite = null;
 
     /**
      * Constructor.
@@ -91,6 +97,8 @@ class UrlRewrite extends \Google\Protobuf\Internal\Message
      *           one non-empty routeRules[].matchRules[].path_template_match is
      *           required.
      *           Only one of path_prefix_rewrite orpath_template_rewrite may be specified.
+     *     @type \Google\Cloud\Compute\V1\RegexRewrite $regex_rewrite
+     *           The regex rewrite to be applied to the URL. Only one ofpathPrefixRewrite, pathTemplateRewrite, orregexRewrite may be specified.
      * }
      */
     public function __construct($data = NULL) {
@@ -246,6 +254,42 @@ class UrlRewrite extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->path_template_rewrite = $var;
+
+        return $this;
+    }
+
+    /**
+     * The regex rewrite to be applied to the URL. Only one ofpathPrefixRewrite, pathTemplateRewrite, orregexRewrite may be specified.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.RegexRewrite regex_rewrite = 380801428;</code>
+     * @return \Google\Cloud\Compute\V1\RegexRewrite|null
+     */
+    public function getRegexRewrite()
+    {
+        return $this->regex_rewrite;
+    }
+
+    public function hasRegexRewrite()
+    {
+        return isset($this->regex_rewrite);
+    }
+
+    public function clearRegexRewrite()
+    {
+        unset($this->regex_rewrite);
+    }
+
+    /**
+     * The regex rewrite to be applied to the URL. Only one ofpathPrefixRewrite, pathTemplateRewrite, orregexRewrite may be specified.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.RegexRewrite regex_rewrite = 380801428;</code>
+     * @param \Google\Cloud\Compute\V1\RegexRewrite $var
+     * @return $this
+     */
+    public function setRegexRewrite($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\RegexRewrite::class);
+        $this->regex_rewrite = $var;
 
         return $this;
     }

@@ -9,15 +9,17 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * Response object for `ListCompaniesRequest` containing matching `Company`
- * objects.
+ * Response object for
+ * [ListCompaniesRequest][google.ads.admanager.v1.ListCompaniesRequest]
+ * containing matching [Company][google.ads.admanager.v1.Company] objects.
  *
  * Generated from protobuf message <code>google.ads.admanager.v1.ListCompaniesResponse</code>
  */
 class ListCompaniesResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The `Company` objects from the specified network.
+     * The [Company][google.ads.admanager.v1.Company] objects from the specified
+     * network.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.Company companies = 1;</code>
      */
@@ -30,7 +32,7 @@ class ListCompaniesResponse extends \Google\Protobuf\Internal\Message
      */
     protected $next_page_token = '';
     /**
-     * Total number of `Company` objects.
+     * Total number of [Company][google.ads.admanager.v1.Company] objects.
      * If a filter was included in the request, this reflects the total number
      * after the filtering is applied.
      * `total_size` won't be calculated in the response unless it has been
@@ -51,12 +53,13 @@ class ListCompaniesResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Ads\AdManager\V1\Company[] $companies
-     *           The `Company` objects from the specified network.
+     *           The [Company][google.ads.admanager.v1.Company] objects from the specified
+     *           network.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
      *           If this field is omitted, there are no subsequent pages.
      *     @type int $total_size
-     *           Total number of `Company` objects.
+     *           Total number of [Company][google.ads.admanager.v1.Company] objects.
      *           If a filter was included in the request, this reflects the total number
      *           after the filtering is applied.
      *           `total_size` won't be calculated in the response unless it has been
@@ -73,7 +76,8 @@ class ListCompaniesResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The `Company` objects from the specified network.
+     * The [Company][google.ads.admanager.v1.Company] objects from the specified
+     * network.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.Company companies = 1;</code>
      * @return RepeatedField<\Google\Ads\AdManager\V1\Company>
@@ -84,7 +88,8 @@ class ListCompaniesResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The `Company` objects from the specified network.
+     * The [Company][google.ads.admanager.v1.Company] objects from the specified
+     * network.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.Company companies = 1;</code>
      * @param \Google\Ads\AdManager\V1\Company[] $var
@@ -127,7 +132,7 @@ class ListCompaniesResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Total number of `Company` objects.
+     * Total number of [Company][google.ads.admanager.v1.Company] objects.
      * If a filter was included in the request, this reflects the total number
      * after the filtering is applied.
      * `total_size` won't be calculated in the response unless it has been
@@ -146,7 +151,7 @@ class ListCompaniesResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Total number of `Company` objects.
+     * Total number of [Company][google.ads.admanager.v1.Company] objects.
      * If a filter was included in the request, this reflects the total number
      * after the filtering is applied.
      * `total_size` won't be calculated in the response unless it has been

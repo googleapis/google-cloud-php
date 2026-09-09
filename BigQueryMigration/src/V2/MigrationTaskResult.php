@@ -15,6 +15,12 @@ use Google\Protobuf\RepeatedField;
  */
 class MigrationTaskResult extends \Google\Protobuf\Internal\Message
 {
+    /**
+     * The map of task output types to the task outputs, e.g. "LINEAGE".
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.bigquery.migration.v2.TaskOutput> task_outputs = 3;</code>
+     */
+    private $task_outputs;
     protected $details;
 
     /**
@@ -25,6 +31,8 @@ class MigrationTaskResult extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\BigQuery\Migration\V2\TranslationTaskResult $translation_task_result
      *           Details specific to translation task types.
+     *     @type array|\Google\Protobuf\Internal\MapField $task_outputs
+     *           The map of task output types to the task outputs, e.g. "LINEAGE".
      * }
      */
     public function __construct($data = NULL) {
@@ -59,6 +67,32 @@ class MigrationTaskResult extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\Migration\V2\TranslationTaskResult::class);
         $this->writeOneof(2, $var);
+
+        return $this;
+    }
+
+    /**
+     * The map of task output types to the task outputs, e.g. "LINEAGE".
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.bigquery.migration.v2.TaskOutput> task_outputs = 3;</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getTaskOutputs()
+    {
+        return $this->task_outputs;
+    }
+
+    /**
+     * The map of task output types to the task outputs, e.g. "LINEAGE".
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.bigquery.migration.v2.TaskOutput> task_outputs = 3;</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setTaskOutputs($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\BigQuery\Migration\V2\TaskOutput::class);
+        $this->task_outputs = $arr;
 
         return $this;
     }

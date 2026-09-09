@@ -5,6 +5,30 @@
     "protoPackage": "google.cloud.visionai.v1",
     "libraryPackage": "Google\\Cloud\\VisionAI\\V1",
     "services": {
+        "HealthCheckService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "HealthCheckServiceClient",
+                    "rpcs": {
+                        "HealthCheck": {
+                            "methods": [
+                                "healthCheck"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "LiveVideoAnalytics": {
             "clients": {
                 "grpc": {
@@ -764,30 +788,6 @@
                         "ViewIndexedAssets": {
                             "methods": [
                                 "viewIndexedAssets"
-                            ]
-                        },
-                        "GetLocation": {
-                            "methods": [
-                                "getLocation"
-                            ]
-                        },
-                        "ListLocations": {
-                            "methods": [
-                                "listLocations"
-                            ]
-                        }
-                    }
-                }
-            }
-        },
-        "HealthCheckService": {
-            "clients": {
-                "grpc": {
-                    "libraryClient": "HealthCheckServiceClient",
-                    "rpcs": {
-                        "HealthCheck": {
-                            "methods": [
-                                "healthCheck"
                             ]
                         },
                         "GetLocation": {

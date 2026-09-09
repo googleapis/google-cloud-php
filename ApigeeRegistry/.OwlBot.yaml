@@ -1,4 +1,0 @@
-deep-copy-regex:
-    - source: /google/cloud/apigeeregistry/(v1)/.*-php/(.*)
-      dest: /owl-bot-staging/ApigeeRegistry/$1/$2
-api-name: ApigeeRegistry

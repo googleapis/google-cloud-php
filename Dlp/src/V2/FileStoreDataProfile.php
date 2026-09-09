@@ -45,7 +45,7 @@ class FileStoreDataProfile extends \Google\Protobuf\Internal\Message
     /**
      * The location of the file store.
      * * Cloud Storage:
-     * https://cloud.google.com/storage/docs/locations#available-locations
+     * https://docs.cloud.google.com/storage/docs/locations#available-locations
      * * Amazon S3:
      * https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints
      *
@@ -223,7 +223,7 @@ class FileStoreDataProfile extends \Google\Protobuf\Internal\Message
      *     @type string $file_store_location
      *           The location of the file store.
      *           * Cloud Storage:
-     *           https://cloud.google.com/storage/docs/locations#available-locations
+     *           https://docs.cloud.google.com/storage/docs/locations#available-locations
      *           * Amazon S3:
      *           https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints
      *     @type string[] $data_storage_locations
@@ -416,7 +416,7 @@ class FileStoreDataProfile extends \Google\Protobuf\Internal\Message
     /**
      * The location of the file store.
      * * Cloud Storage:
-     * https://cloud.google.com/storage/docs/locations#available-locations
+     * https://docs.cloud.google.com/storage/docs/locations#available-locations
      * * Amazon S3:
      * https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints
      *
@@ -431,7 +431,7 @@ class FileStoreDataProfile extends \Google\Protobuf\Internal\Message
     /**
      * The location of the file store.
      * * Cloud Storage:
-     * https://cloud.google.com/storage/docs/locations#available-locations
+     * https://docs.cloud.google.com/storage/docs/locations#available-locations
      * * Amazon S3:
      * https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints
      *

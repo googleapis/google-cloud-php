@@ -9,38 +9,45 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * Message for requesting all the controls for a compliance standard.
+ * Request message for
+ * [ListControls][google.cloud.auditmanager.v1.AuditManager.ListControls].
  *
  * Generated from protobuf message <code>google.cloud.auditmanager.v1.ListControlsRequest</code>
  */
 class ListControlsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Format
-     * projects/{project}/locations/{location}/standards/{standard},
-     * folders/{folder}/locations/{location}/standards/{standard}
+     * Required. Standard to list controls for, in one of the following formats:
+     * * `projects/{project}/locations/{location}/standards/{standard}`
+     * * `folders/{folder}/locations/{location}/standards/{standard}`
+     * * `organizations/{organization}/locations/{location}/standards/{standard}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $parent = '';
     /**
-     * Optional. The maximum number of resources to return.
+     * Optional. Maximum number of items to return in a single page. The service
+     * might return fewer items than this value. If unspecified, the service picks
+     * an appropriate default. The maximum value is 100; values above 100 are
+     * reduced to 100.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $page_size = 0;
     /**
-     * Optional. The next_page_token value returned from a previous List request,
-     * if any.
+     * Optional. A page token, received from a previous call, to retrieve the next
+     * page of results.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $page_token = '';
 
     /**
-     * @param string $parent Required. Format
-     *                       projects/{project}/locations/{location}/standards/{standard},
-     *                       folders/{folder}/locations/{location}/standards/{standard}
+     * @param string $parent Required. Standard to list controls for, in one of the following formats:
+     *
+     *                       * `projects/{project}/locations/{location}/standards/{standard}`
+     *                       * `folders/{folder}/locations/{location}/standards/{standard}`
+     *                       * `organizations/{organization}/locations/{location}/standards/{standard}`
      *                       Please see {@see AuditManagerClient::standardName()} for help formatting this field.
      *
      * @return \Google\Cloud\AuditManager\V1\ListControlsRequest
@@ -60,14 +67,18 @@ class ListControlsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. Format
-     *           projects/{project}/locations/{location}/standards/{standard},
-     *           folders/{folder}/locations/{location}/standards/{standard}
+     *           Required. Standard to list controls for, in one of the following formats:
+     *           * `projects/{project}/locations/{location}/standards/{standard}`
+     *           * `folders/{folder}/locations/{location}/standards/{standard}`
+     *           * `organizations/{organization}/locations/{location}/standards/{standard}`
      *     @type int $page_size
-     *           Optional. The maximum number of resources to return.
+     *           Optional. Maximum number of items to return in a single page. The service
+     *           might return fewer items than this value. If unspecified, the service picks
+     *           an appropriate default. The maximum value is 100; values above 100 are
+     *           reduced to 100.
      *     @type string $page_token
-     *           Optional. The next_page_token value returned from a previous List request,
-     *           if any.
+     *           Optional. A page token, received from a previous call, to retrieve the next
+     *           page of results.
      * }
      */
     public function __construct($data = NULL) {
@@ -76,9 +87,10 @@ class ListControlsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Format
-     * projects/{project}/locations/{location}/standards/{standard},
-     * folders/{folder}/locations/{location}/standards/{standard}
+     * Required. Standard to list controls for, in one of the following formats:
+     * * `projects/{project}/locations/{location}/standards/{standard}`
+     * * `folders/{folder}/locations/{location}/standards/{standard}`
+     * * `organizations/{organization}/locations/{location}/standards/{standard}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -89,9 +101,10 @@ class ListControlsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Format
-     * projects/{project}/locations/{location}/standards/{standard},
-     * folders/{folder}/locations/{location}/standards/{standard}
+     * Required. Standard to list controls for, in one of the following formats:
+     * * `projects/{project}/locations/{location}/standards/{standard}`
+     * * `folders/{folder}/locations/{location}/standards/{standard}`
+     * * `organizations/{organization}/locations/{location}/standards/{standard}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -106,7 +119,10 @@ class ListControlsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum number of resources to return.
+     * Optional. Maximum number of items to return in a single page. The service
+     * might return fewer items than this value. If unspecified, the service picks
+     * an appropriate default. The maximum value is 100; values above 100 are
+     * reduced to 100.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -117,7 +133,10 @@ class ListControlsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum number of resources to return.
+     * Optional. Maximum number of items to return in a single page. The service
+     * might return fewer items than this value. If unspecified, the service picks
+     * an appropriate default. The maximum value is 100; values above 100 are
+     * reduced to 100.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -132,8 +151,8 @@ class ListControlsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The next_page_token value returned from a previous List request,
-     * if any.
+     * Optional. A page token, received from a previous call, to retrieve the next
+     * page of results.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -144,8 +163,8 @@ class ListControlsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The next_page_token value returned from a previous List request,
-     * if any.
+     * Optional. A page token, received from a previous call, to retrieve the next
+     * page of results.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

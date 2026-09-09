@@ -30,6 +30,9 @@ class ExecutedQueryResult extends \Google\Protobuf\Internal\Message
     /**
      * The total number of rows in the full result set, if known.
      * This may be an estimate or an exact count.
+     * Note: if an internal limit (such as LIMIT 1000) was applied during query
+     * execution to guard against excessive data transfer, this count reflects the
+     * truncated result size rather than the unrestricted table result size.
      *
      * Generated from protobuf field <code>int64 total_row_count = 3;</code>
      */
@@ -65,6 +68,9 @@ class ExecutedQueryResult extends \Google\Protobuf\Internal\Message
      *     @type int|string $total_row_count
      *           The total number of rows in the full result set, if known.
      *           This may be an estimate or an exact count.
+     *           Note: if an internal limit (such as LIMIT 1000) was applied during query
+     *           execution to guard against excessive data transfer, this count reflects the
+     *           truncated result size rather than the unrestricted table result size.
      *     @type bool $partial_result
      *           Set to true if the returned rows in `query_result` are a subset of the
      *           full result. This can happen, for example, if the query execution hits a
@@ -136,6 +142,9 @@ class ExecutedQueryResult extends \Google\Protobuf\Internal\Message
     /**
      * The total number of rows in the full result set, if known.
      * This may be an estimate or an exact count.
+     * Note: if an internal limit (such as LIMIT 1000) was applied during query
+     * execution to guard against excessive data transfer, this count reflects the
+     * truncated result size rather than the unrestricted table result size.
      *
      * Generated from protobuf field <code>int64 total_row_count = 3;</code>
      * @return int|string
@@ -148,6 +157,9 @@ class ExecutedQueryResult extends \Google\Protobuf\Internal\Message
     /**
      * The total number of rows in the full result set, if known.
      * This may be an estimate or an exact count.
+     * Note: if an internal limit (such as LIMIT 1000) was applied during query
+     * execution to guard against excessive data transfer, this count reflects the
+     * truncated result size rather than the unrestricted table result size.
      *
      * Generated from protobuf field <code>int64 total_row_count = 3;</code>
      * @param int|string $var

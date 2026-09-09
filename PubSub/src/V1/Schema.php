@@ -48,6 +48,7 @@ class Schema extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp revision_create_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $revision_create_time = null;
+    protected $configuration;
 
     /**
      * Constructor.
@@ -64,6 +65,10 @@ class Schema extends \Google\Protobuf\Internal\Message
      *           The definition of the schema. This should contain a string representing
      *           the full definition of the schema that is a valid schema definition of
      *           the type specified in `type`.
+     *     @type \Google\Cloud\PubSub\V1\CompiledProtoSchema $compiled_proto_schema
+     *           Optional. Configuration for a schema provided as a pre-compiled Protocol
+     *           Buffer FileDescriptorSet. The `type` field above must be set to
+     *           PROTOCOL_BUFFER.
      *     @type string $revision_id
      *           Output only. Immutable. The revision ID of the schema.
      *     @type \Google\Protobuf\Timestamp $revision_create_time
@@ -160,6 +165,41 @@ class Schema extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. Configuration for a schema provided as a pre-compiled Protocol
+     * Buffer FileDescriptorSet. The `type` field above must be set to
+     * PROTOCOL_BUFFER.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.CompiledProtoSchema compiled_proto_schema = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\PubSub\V1\CompiledProtoSchema|null
+     */
+    public function getCompiledProtoSchema()
+    {
+        return $this->readOneof(8);
+    }
+
+    public function hasCompiledProtoSchema()
+    {
+        return $this->hasOneof(8);
+    }
+
+    /**
+     * Optional. Configuration for a schema provided as a pre-compiled Protocol
+     * Buffer FileDescriptorSet. The `type` field above must be set to
+     * PROTOCOL_BUFFER.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.CompiledProtoSchema compiled_proto_schema = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\PubSub\V1\CompiledProtoSchema $var
+     * @return $this
+     */
+    public function setCompiledProtoSchema($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\PubSub\V1\CompiledProtoSchema::class);
+        $this->writeOneof(8, $var);
+
+        return $this;
+    }
+
+    /**
      * Output only. Immutable. The revision ID of the schema.
      *
      * Generated from protobuf field <code>string revision_id = 4 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -219,6 +259,14 @@ class Schema extends \Google\Protobuf\Internal\Message
         $this->revision_create_time = $var;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getConfiguration()
+    {
+        return $this->whichOneof("configuration");
     }
 
 }

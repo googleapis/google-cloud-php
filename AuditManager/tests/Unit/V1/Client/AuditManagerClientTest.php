@@ -198,12 +198,10 @@ class AuditManagerClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $scope = 'scope109264468';
-        $complianceStandard = 'complianceStandard1339657825';
         $reportFormat = AuditReportFormat::AUDIT_REPORT_FORMAT_UNSPECIFIED;
         $complianceFramework = 'complianceFramework1384085210';
         $request = (new GenerateAuditReportRequest())
             ->setScope($scope)
-            ->setComplianceStandard($complianceStandard)
             ->setReportFormat($reportFormat)
             ->setComplianceFramework($complianceFramework);
         $response = $gapicClient->generateAuditReport($request);
@@ -218,8 +216,6 @@ class AuditManagerClientTest extends GeneratedTest
         $this->assertSame('/google.cloud.auditmanager.v1.AuditManager/GenerateAuditReport', $actualApiFuncCall);
         $actualValue = $actualApiRequestObject->getScope();
         $this->assertProtobufEquals($scope, $actualValue);
-        $actualValue = $actualApiRequestObject->getComplianceStandard();
-        $this->assertProtobufEquals($complianceStandard, $actualValue);
         $actualValue = $actualApiRequestObject->getReportFormat();
         $this->assertProtobufEquals($reportFormat, $actualValue);
         $actualValue = $actualApiRequestObject->getComplianceFramework();
@@ -279,12 +275,10 @@ class AuditManagerClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $scope = 'scope109264468';
-        $complianceStandard = 'complianceStandard1339657825';
         $reportFormat = AuditReportFormat::AUDIT_REPORT_FORMAT_UNSPECIFIED;
         $complianceFramework = 'complianceFramework1384085210';
         $request = (new GenerateAuditReportRequest())
             ->setScope($scope)
-            ->setComplianceStandard($complianceStandard)
             ->setReportFormat($reportFormat)
             ->setComplianceFramework($complianceFramework);
         $response = $gapicClient->generateAuditReport($request);
@@ -326,12 +320,10 @@ class AuditManagerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $scope = 'scope109264468';
-        $complianceStandard = 'complianceStandard1339657825';
         $reportFormat = AuditScopeReportFormat::AUDIT_SCOPE_REPORT_FORMAT_UNSPECIFIED;
         $complianceFramework = 'complianceFramework1384085210';
         $request = (new GenerateAuditScopeReportRequest())
             ->setScope($scope)
-            ->setComplianceStandard($complianceStandard)
             ->setReportFormat($reportFormat)
             ->setComplianceFramework($complianceFramework);
         $response = $gapicClient->generateAuditScopeReport($request);
@@ -343,8 +335,6 @@ class AuditManagerClientTest extends GeneratedTest
         $this->assertSame('/google.cloud.auditmanager.v1.AuditManager/GenerateAuditScopeReport', $actualFuncCall);
         $actualValue = $actualRequestObject->getScope();
         $this->assertProtobufEquals($scope, $actualValue);
-        $actualValue = $actualRequestObject->getComplianceStandard();
-        $this->assertProtobufEquals($complianceStandard, $actualValue);
         $actualValue = $actualRequestObject->getReportFormat();
         $this->assertProtobufEquals($reportFormat, $actualValue);
         $actualValue = $actualRequestObject->getComplianceFramework();
@@ -375,12 +365,10 @@ class AuditManagerClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $scope = 'scope109264468';
-        $complianceStandard = 'complianceStandard1339657825';
         $reportFormat = AuditScopeReportFormat::AUDIT_SCOPE_REPORT_FORMAT_UNSPECIFIED;
         $complianceFramework = 'complianceFramework1384085210';
         $request = (new GenerateAuditScopeReportRequest())
             ->setScope($scope)
-            ->setComplianceStandard($complianceStandard)
             ->setReportFormat($reportFormat)
             ->setComplianceFramework($complianceFramework);
         try {

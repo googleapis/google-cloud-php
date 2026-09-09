@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -38,7 +38,9 @@ use Google\Cloud\Dlp\V2\ActivateJobTriggerRequest;
 use Google\Cloud\Dlp\V2\CancelDlpJobRequest;
 use Google\Cloud\Dlp\V2\ColumnDataProfile;
 use Google\Cloud\Dlp\V2\Connection;
+use Google\Cloud\Dlp\V2\ContentPolicy;
 use Google\Cloud\Dlp\V2\CreateConnectionRequest;
+use Google\Cloud\Dlp\V2\CreateContentPolicyRequest;
 use Google\Cloud\Dlp\V2\CreateDeidentifyTemplateRequest;
 use Google\Cloud\Dlp\V2\CreateDiscoveryConfigRequest;
 use Google\Cloud\Dlp\V2\CreateDlpJobRequest;
@@ -49,6 +51,7 @@ use Google\Cloud\Dlp\V2\DeidentifyContentRequest;
 use Google\Cloud\Dlp\V2\DeidentifyContentResponse;
 use Google\Cloud\Dlp\V2\DeidentifyTemplate;
 use Google\Cloud\Dlp\V2\DeleteConnectionRequest;
+use Google\Cloud\Dlp\V2\DeleteContentPolicyRequest;
 use Google\Cloud\Dlp\V2\DeleteDeidentifyTemplateRequest;
 use Google\Cloud\Dlp\V2\DeleteDiscoveryConfigRequest;
 use Google\Cloud\Dlp\V2\DeleteDlpJobRequest;
@@ -63,6 +66,7 @@ use Google\Cloud\Dlp\V2\FileStoreDataProfile;
 use Google\Cloud\Dlp\V2\FinishDlpJobRequest;
 use Google\Cloud\Dlp\V2\GetColumnDataProfileRequest;
 use Google\Cloud\Dlp\V2\GetConnectionRequest;
+use Google\Cloud\Dlp\V2\GetContentPolicyRequest;
 use Google\Cloud\Dlp\V2\GetDeidentifyTemplateRequest;
 use Google\Cloud\Dlp\V2\GetDiscoveryConfigRequest;
 use Google\Cloud\Dlp\V2\GetDlpJobRequest;
@@ -81,6 +85,7 @@ use Google\Cloud\Dlp\V2\InspectTemplate;
 use Google\Cloud\Dlp\V2\JobTrigger;
 use Google\Cloud\Dlp\V2\ListColumnDataProfilesRequest;
 use Google\Cloud\Dlp\V2\ListConnectionsRequest;
+use Google\Cloud\Dlp\V2\ListContentPoliciesRequest;
 use Google\Cloud\Dlp\V2\ListDeidentifyTemplatesRequest;
 use Google\Cloud\Dlp\V2\ListDiscoveryConfigsRequest;
 use Google\Cloud\Dlp\V2\ListDlpJobsRequest;
@@ -101,6 +106,7 @@ use Google\Cloud\Dlp\V2\SearchConnectionsRequest;
 use Google\Cloud\Dlp\V2\StoredInfoType;
 use Google\Cloud\Dlp\V2\TableDataProfile;
 use Google\Cloud\Dlp\V2\UpdateConnectionRequest;
+use Google\Cloud\Dlp\V2\UpdateContentPolicyRequest;
 use Google\Cloud\Dlp\V2\UpdateDeidentifyTemplateRequest;
 use Google\Cloud\Dlp\V2\UpdateDiscoveryConfigRequest;
 use Google\Cloud\Dlp\V2\UpdateInspectTemplateRequest;
@@ -114,7 +120,7 @@ use Psr\Log\LoggerInterface;
  * inspection, classification, and de-identification platform that works
  * on text, images, and Google Cloud storage repositories.
  * To learn more about concepts and find how-to guides see
- * https://cloud.google.com/sensitive-data-protection/docs/.
+ * https://docs.cloud.google.com/sensitive-data-protection/docs/.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
@@ -127,6 +133,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<DlpJob> activateJobTriggerAsync(ActivateJobTriggerRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> cancelDlpJobAsync(CancelDlpJobRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Connection> createConnectionAsync(CreateConnectionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ContentPolicy> createContentPolicyAsync(CreateContentPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<DeidentifyTemplate> createDeidentifyTemplateAsync(CreateDeidentifyTemplateRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<DiscoveryConfig> createDiscoveryConfigAsync(CreateDiscoveryConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<DlpJob> createDlpJobAsync(CreateDlpJobRequest $request, array $optionalArgs = [])
@@ -135,6 +142,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<StoredInfoType> createStoredInfoTypeAsync(CreateStoredInfoTypeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<DeidentifyContentResponse> deidentifyContentAsync(DeidentifyContentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteConnectionAsync(DeleteConnectionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteContentPolicyAsync(DeleteContentPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteDeidentifyTemplateAsync(DeleteDeidentifyTemplateRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteDiscoveryConfigAsync(DeleteDiscoveryConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteDlpJobAsync(DeleteDlpJobRequest $request, array $optionalArgs = [])
@@ -146,6 +154,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<void> finishDlpJobAsync(FinishDlpJobRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ColumnDataProfile> getColumnDataProfileAsync(GetColumnDataProfileRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Connection> getConnectionAsync(GetConnectionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ContentPolicy> getContentPolicyAsync(GetContentPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<DeidentifyTemplate> getDeidentifyTemplateAsync(GetDeidentifyTemplateRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<DiscoveryConfig> getDiscoveryConfigAsync(GetDiscoveryConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<DlpJob> getDlpJobAsync(GetDlpJobRequest $request, array $optionalArgs = [])
@@ -160,6 +169,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<InspectContentResponse> inspectContentAsync(InspectContentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listColumnDataProfilesAsync(ListColumnDataProfilesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listConnectionsAsync(ListConnectionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listContentPoliciesAsync(ListContentPoliciesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listDeidentifyTemplatesAsync(ListDeidentifyTemplatesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listDiscoveryConfigsAsync(ListDiscoveryConfigsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listDlpJobsAsync(ListDlpJobsRequest $request, array $optionalArgs = [])
@@ -174,6 +184,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<ReidentifyContentResponse> reidentifyContentAsync(ReidentifyContentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> searchConnectionsAsync(SearchConnectionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Connection> updateConnectionAsync(UpdateConnectionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ContentPolicy> updateContentPolicyAsync(UpdateContentPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<DeidentifyTemplate> updateDeidentifyTemplateAsync(UpdateDeidentifyTemplateRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<DiscoveryConfig> updateDiscoveryConfigAsync(UpdateDiscoveryConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<InspectTemplate> updateInspectTemplateAsync(UpdateInspectTemplateRequest $request, array $optionalArgs = [])
@@ -268,6 +279,25 @@ final class DlpServiceClient
             'project' => $project,
             'location' => $location,
             'connection' => $connection,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * content_policy resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $contentPolicy
+     *
+     * @return string The formatted content_policy resource.
+     */
+    public static function contentPolicyName(string $project, string $location, string $contentPolicy): string
+    {
+        return self::getPathTemplate('contentPolicy')->render([
+            'project' => $project,
+            'location' => $location,
+            'content_policy' => $contentPolicy,
         ]);
     }
 
@@ -1034,6 +1064,7 @@ final class DlpServiceClient
      * Template: Pattern
      * - columnDataProfile: organizations/{organization}/locations/{location}/columnDataProfiles/{column_data_profile}
      * - connection: projects/{project}/locations/{location}/connections/{connection}
+     * - contentPolicy: projects/{project}/locations/{location}/contentPolicies/{content_policy}
      * - deidentifyTemplate: organizations/{organization}/deidentifyTemplates/{deidentify_template}
      * - discoveryConfig: projects/{project}/locations/{location}/discoveryConfigs/{discovery_config}
      * - dlpJob: projects/{project}/dlpJobs/{dlp_job}
@@ -1209,9 +1240,9 @@ final class DlpServiceClient
      * makes a best effort to cancel the DlpJob, but success is not
      * guaranteed.
      * See
-     * https://cloud.google.com/sensitive-data-protection/docs/inspecting-storage
+     * https://docs.cloud.google.com/sensitive-data-protection/docs/inspecting-storage
      * and
-     * https://cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis
+     * https://docs.cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis
      * to learn more.
      *
      * The async variant is {@see DlpServiceClient::cancelDlpJobAsync()} .
@@ -1262,10 +1293,36 @@ final class DlpServiceClient
     }
 
     /**
+     * Create a ContentPolicy.
+     *
+     * The async variant is {@see DlpServiceClient::createContentPolicyAsync()} .
+     *
+     * @example samples/V2/DlpServiceClient/create_content_policy.php
+     *
+     * @param CreateContentPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return ContentPolicy
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createContentPolicy(CreateContentPolicyRequest $request, array $callOptions = []): ContentPolicy
+    {
+        return $this->startApiCall('CreateContentPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
      * Creates a DeidentifyTemplate for reusing frequently used configuration
      * for de-identifying content, images, and storage.
      * See
-     * https://cloud.google.com/sensitive-data-protection/docs/creating-templates-deid
+     * https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates-deid
      * to learn more.
      *
      * The async variant is {@see DlpServiceClient::createDeidentifyTemplateAsync()} .
@@ -1324,9 +1381,9 @@ final class DlpServiceClient
     /**
      * Creates a new job to inspect storage or calculate risk metrics.
      * See
-     * https://cloud.google.com/sensitive-data-protection/docs/inspecting-storage
+     * https://docs.cloud.google.com/sensitive-data-protection/docs/inspecting-storage
      * and
-     * https://cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis
+     * https://docs.cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis
      * to learn more.
      *
      * When no InfoTypes or CustomInfoTypes are specified in inspect jobs, the
@@ -1360,7 +1417,7 @@ final class DlpServiceClient
      * Creates an InspectTemplate for reusing frequently used configuration
      * for inspecting content, images, and storage.
      * See
-     * https://cloud.google.com/sensitive-data-protection/docs/creating-templates
+     * https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates
      * to learn more.
      *
      * The async variant is {@see DlpServiceClient::createInspectTemplateAsync()} .
@@ -1392,7 +1449,7 @@ final class DlpServiceClient
      * Creates a job trigger to run DLP actions such as scanning storage for
      * sensitive information on a set schedule.
      * See
-     * https://cloud.google.com/sensitive-data-protection/docs/creating-job-triggers
+     * https://docs.cloud.google.com/sensitive-data-protection/docs/creating-job-triggers
      * to learn more.
      *
      * The async variant is {@see DlpServiceClient::createJobTriggerAsync()} .
@@ -1421,7 +1478,7 @@ final class DlpServiceClient
     /**
      * Creates a pre-built stored infoType to be used for inspection.
      * See
-     * https://cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes
+     * https://docs.cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes
      * to learn more.
      *
      * The async variant is {@see DlpServiceClient::createStoredInfoTypeAsync()} .
@@ -1451,7 +1508,7 @@ final class DlpServiceClient
      * De-identifies potentially sensitive info from a ContentItem.
      * This method has limits on input size and output size.
      * See
-     * https://cloud.google.com/sensitive-data-protection/docs/deidentify-sensitive-data
+     * https://docs.cloud.google.com/sensitive-data-protection/docs/deidentify-sensitive-data
      * to learn more.
      *
      * When no InfoTypes or CustomInfoTypes are specified in this request, the
@@ -1508,9 +1565,33 @@ final class DlpServiceClient
     }
 
     /**
+     * Delete a ContentPolicy.
+     *
+     * The async variant is {@see DlpServiceClient::deleteContentPolicyAsync()} .
+     *
+     * @example samples/V2/DlpServiceClient/delete_content_policy.php
+     *
+     * @param DeleteContentPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteContentPolicy(DeleteContentPolicyRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('DeleteContentPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
      * Deletes a DeidentifyTemplate.
      * See
-     * https://cloud.google.com/sensitive-data-protection/docs/creating-templates-deid
+     * https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates-deid
      * to learn more.
      *
      * The async variant is {@see DlpServiceClient::deleteDeidentifyTemplateAsync()} .
@@ -1563,9 +1644,9 @@ final class DlpServiceClient
      * no longer interested in the DlpJob result. The job will be canceled if
      * possible.
      * See
-     * https://cloud.google.com/sensitive-data-protection/docs/inspecting-storage
+     * https://docs.cloud.google.com/sensitive-data-protection/docs/inspecting-storage
      * and
-     * https://cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis
+     * https://docs.cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis
      * to learn more.
      *
      * The async variant is {@see DlpServiceClient::deleteDlpJobAsync()} .
@@ -1620,7 +1701,7 @@ final class DlpServiceClient
     /**
      * Deletes an InspectTemplate.
      * See
-     * https://cloud.google.com/sensitive-data-protection/docs/creating-templates
+     * https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates
      * to learn more.
      *
      * The async variant is {@see DlpServiceClient::deleteInspectTemplateAsync()} .
@@ -1647,7 +1728,7 @@ final class DlpServiceClient
     /**
      * Deletes a job trigger.
      * See
-     * https://cloud.google.com/sensitive-data-protection/docs/creating-job-triggers
+     * https://docs.cloud.google.com/sensitive-data-protection/docs/creating-job-triggers
      * to learn more.
      *
      * The async variant is {@see DlpServiceClient::deleteJobTriggerAsync()} .
@@ -1674,7 +1755,7 @@ final class DlpServiceClient
     /**
      * Deletes a stored infoType.
      * See
-     * https://cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes
+     * https://docs.cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes
      * to learn more.
      *
      * The async variant is {@see DlpServiceClient::deleteStoredInfoTypeAsync()} .
@@ -1803,9 +1884,35 @@ final class DlpServiceClient
     }
 
     /**
+     * Get a ContentPolicy.
+     *
+     * The async variant is {@see DlpServiceClient::getContentPolicyAsync()} .
+     *
+     * @example samples/V2/DlpServiceClient/get_content_policy.php
+     *
+     * @param GetContentPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return ContentPolicy
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getContentPolicy(GetContentPolicyRequest $request, array $callOptions = []): ContentPolicy
+    {
+        return $this->startApiCall('GetContentPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
      * Gets a DeidentifyTemplate.
      * See
-     * https://cloud.google.com/sensitive-data-protection/docs/creating-templates-deid
+     * https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates-deid
      * to learn more.
      *
      * The async variant is {@see DlpServiceClient::getDeidentifyTemplateAsync()} .
@@ -1862,9 +1969,9 @@ final class DlpServiceClient
     /**
      * Gets the latest state of a long-running DlpJob.
      * See
-     * https://cloud.google.com/sensitive-data-protection/docs/inspecting-storage
+     * https://docs.cloud.google.com/sensitive-data-protection/docs/inspecting-storage
      * and
-     * https://cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis
+     * https://docs.cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis
      * to learn more.
      *
      * The async variant is {@see DlpServiceClient::getDlpJobAsync()} .
@@ -1921,7 +2028,7 @@ final class DlpServiceClient
     /**
      * Gets an InspectTemplate.
      * See
-     * https://cloud.google.com/sensitive-data-protection/docs/creating-templates
+     * https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates
      * to learn more.
      *
      * The async variant is {@see DlpServiceClient::getInspectTemplateAsync()} .
@@ -1950,7 +2057,7 @@ final class DlpServiceClient
     /**
      * Gets a job trigger.
      * See
-     * https://cloud.google.com/sensitive-data-protection/docs/creating-job-triggers
+     * https://docs.cloud.google.com/sensitive-data-protection/docs/creating-job-triggers
      * to learn more.
      *
      * The async variant is {@see DlpServiceClient::getJobTriggerAsync()} .
@@ -2007,7 +2114,7 @@ final class DlpServiceClient
     /**
      * Gets a stored infoType.
      * See
-     * https://cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes
+     * https://docs.cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes
      * to learn more.
      *
      * The async variant is {@see DlpServiceClient::getStoredInfoTypeAsync()} .
@@ -2128,9 +2235,9 @@ final class DlpServiceClient
      * be all types, but may change over time as detectors are updated.
      *
      * For how to guides, see
-     * https://cloud.google.com/sensitive-data-protection/docs/inspecting-images
+     * https://docs.cloud.google.com/sensitive-data-protection/docs/inspecting-images
      * and
-     * https://cloud.google.com/sensitive-data-protection/docs/inspecting-text,
+     * https://docs.cloud.google.com/sensitive-data-protection/docs/inspecting-text,
      *
      * The async variant is {@see DlpServiceClient::inspectContentAsync()} .
      *
@@ -2211,9 +2318,35 @@ final class DlpServiceClient
     }
 
     /**
+     * Lists ContentPolicies in a parent.
+     *
+     * The async variant is {@see DlpServiceClient::listContentPoliciesAsync()} .
+     *
+     * @example samples/V2/DlpServiceClient/list_content_policies.php
+     *
+     * @param ListContentPoliciesRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listContentPolicies(ListContentPoliciesRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListContentPolicies', $request, $callOptions);
+    }
+
+    /**
      * Lists DeidentifyTemplates.
      * See
-     * https://cloud.google.com/sensitive-data-protection/docs/creating-templates-deid
+     * https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates-deid
      * to learn more.
      *
      * The async variant is {@see DlpServiceClient::listDeidentifyTemplatesAsync()} .
@@ -2272,9 +2405,9 @@ final class DlpServiceClient
     /**
      * Lists DlpJobs that match the specified filter in the request.
      * See
-     * https://cloud.google.com/sensitive-data-protection/docs/inspecting-storage
+     * https://docs.cloud.google.com/sensitive-data-protection/docs/inspecting-storage
      * and
-     * https://cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis
+     * https://docs.cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis
      * to learn more.
      *
      * The async variant is {@see DlpServiceClient::listDlpJobsAsync()} .
@@ -2331,7 +2464,7 @@ final class DlpServiceClient
     /**
      * Returns a list of the sensitive information types that the DLP API
      * supports. See
-     * https://cloud.google.com/sensitive-data-protection/docs/infotypes-reference
+     * https://docs.cloud.google.com/sensitive-data-protection/docs/infotypes-reference
      * to learn more.
      *
      * The async variant is {@see DlpServiceClient::listInfoTypesAsync()} .
@@ -2360,7 +2493,7 @@ final class DlpServiceClient
     /**
      * Lists InspectTemplates.
      * See
-     * https://cloud.google.com/sensitive-data-protection/docs/creating-templates
+     * https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates
      * to learn more.
      *
      * The async variant is {@see DlpServiceClient::listInspectTemplatesAsync()} .
@@ -2391,7 +2524,7 @@ final class DlpServiceClient
     /**
      * Lists job triggers.
      * See
-     * https://cloud.google.com/sensitive-data-protection/docs/creating-job-triggers
+     * https://docs.cloud.google.com/sensitive-data-protection/docs/creating-job-triggers
      * to learn more.
      *
      * The async variant is {@see DlpServiceClient::listJobTriggersAsync()} .
@@ -2448,7 +2581,7 @@ final class DlpServiceClient
     /**
      * Lists stored infoTypes.
      * See
-     * https://cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes
+     * https://docs.cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes
      * to learn more.
      *
      * The async variant is {@see DlpServiceClient::listStoredInfoTypesAsync()} .
@@ -2506,7 +2639,7 @@ final class DlpServiceClient
      * Redacts potentially sensitive info from an image.
      * This method has limits on input size, processing time, and output size.
      * See
-     * https://cloud.google.com/sensitive-data-protection/docs/redacting-sensitive-data-images
+     * https://docs.cloud.google.com/sensitive-data-protection/docs/redacting-sensitive-data-images
      * to learn more.
      *
      * When no InfoTypes or CustomInfoTypes are specified in this request, the
@@ -2542,7 +2675,7 @@ final class DlpServiceClient
     /**
      * Re-identifies content that has been de-identified.
      * See
-     * https://cloud.google.com/sensitive-data-protection/docs/pseudonymization#re-identification_in_free_text_code_example
+     * https://docs.cloud.google.com/sensitive-data-protection/docs/pseudonymization#re-identification_in_free_text_code_example
      * to learn more.
      *
      * The async variant is {@see DlpServiceClient::reidentifyContentAsync()} .
@@ -2623,9 +2756,35 @@ final class DlpServiceClient
     }
 
     /**
+     * Update a ContentPolicy.
+     *
+     * The async variant is {@see DlpServiceClient::updateContentPolicyAsync()} .
+     *
+     * @example samples/V2/DlpServiceClient/update_content_policy.php
+     *
+     * @param UpdateContentPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return ContentPolicy
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateContentPolicy(UpdateContentPolicyRequest $request, array $callOptions = []): ContentPolicy
+    {
+        return $this->startApiCall('UpdateContentPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
      * Updates the DeidentifyTemplate.
      * See
-     * https://cloud.google.com/sensitive-data-protection/docs/creating-templates-deid
+     * https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates-deid
      * to learn more.
      *
      * The async variant is {@see DlpServiceClient::updateDeidentifyTemplateAsync()} .
@@ -2684,7 +2843,7 @@ final class DlpServiceClient
     /**
      * Updates the InspectTemplate.
      * See
-     * https://cloud.google.com/sensitive-data-protection/docs/creating-templates
+     * https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates
      * to learn more.
      *
      * The async variant is {@see DlpServiceClient::updateInspectTemplateAsync()} .
@@ -2715,7 +2874,7 @@ final class DlpServiceClient
     /**
      * Updates a job trigger.
      * See
-     * https://cloud.google.com/sensitive-data-protection/docs/creating-job-triggers
+     * https://docs.cloud.google.com/sensitive-data-protection/docs/creating-job-triggers
      * to learn more.
      *
      * The async variant is {@see DlpServiceClient::updateJobTriggerAsync()} .
@@ -2745,7 +2904,7 @@ final class DlpServiceClient
      * Updates the stored infoType by creating a new version. The existing version
      * will continue to be used until the new version is ready.
      * See
-     * https://cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes
+     * https://docs.cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes
      * to learn more.
      *
      * The async variant is {@see DlpServiceClient::updateStoredInfoTypeAsync()} .

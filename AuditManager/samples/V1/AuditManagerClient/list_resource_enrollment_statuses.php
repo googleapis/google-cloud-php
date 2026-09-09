@@ -30,11 +30,15 @@ use Google\Cloud\AuditManager\V1\ListResourceEnrollmentStatusesRequest;
 use Google\Cloud\AuditManager\V1\ResourceEnrollmentStatus;
 
 /**
- * Fetches all resources under the parent along with their enrollment.
+ * Lists all the folders and projects in an organization or folder, along with
+ * their enrollments.
  *
- * @param string $formattedParent The parent scope for which the list of resources with enrollments
- *                                are required. Please see
- *                                {@see AuditManagerClient::enrollmentStatusScopeName()} for help formatting this field.
+ * @param string $formattedParent Parent organization or folder to list enrollment statuses for,
+ *                                in one of the following formats:
+ *
+ *                                * `folders/{folder}/locations/{location}`
+ *                                * `organizations/{organization}/locations/{location}`
+ *                                Please see {@see AuditManagerClient::enrollmentStatusScopeName()} for help formatting this field.
  */
 function list_resource_enrollment_statuses_sample(string $formattedParent): void
 {

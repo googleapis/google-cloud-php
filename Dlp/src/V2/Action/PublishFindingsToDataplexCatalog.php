@@ -12,7 +12,7 @@ use Google\Protobuf\RepeatedField;
  * Publish findings of a DlpJob to Dataplex Universal Catalog as a
  * `sensitive-data-protection-job-result` aspect. For more information,
  * see [Send inspection results to Dataplex Universal Catalog as
- * aspects](https://cloud.google.com/sensitive-data-protection/docs/add-aspects-inspection-job).
+ * aspects](https://docs.cloud.google.com/sensitive-data-protection/docs/add-aspects-inspection-job).
  * Aspects are stored in Dataplex Universal Catalog storage and are
  * governed by service-specific policies for Dataplex Universal Catalog. For
  * more information, see [Service Specific

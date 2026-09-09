@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,6 +25,19 @@
 namespace Google\Ads\AdManager\V1\Client;
 
 use Google\Ads\AdManager\V1\AudienceSegment;
+use Google\Ads\AdManager\V1\BatchActivateAudienceSegmentsRequest;
+use Google\Ads\AdManager\V1\BatchActivateAudienceSegmentsResponse;
+use Google\Ads\AdManager\V1\BatchApproveAudienceSegmentsRequest;
+use Google\Ads\AdManager\V1\BatchApproveAudienceSegmentsResponse;
+use Google\Ads\AdManager\V1\BatchCreateAudienceSegmentsRequest;
+use Google\Ads\AdManager\V1\BatchCreateAudienceSegmentsResponse;
+use Google\Ads\AdManager\V1\BatchDeactivateAudienceSegmentsRequest;
+use Google\Ads\AdManager\V1\BatchDeactivateAudienceSegmentsResponse;
+use Google\Ads\AdManager\V1\BatchPopulateAudienceSegmentsRequest;
+use Google\Ads\AdManager\V1\BatchPopulateAudienceSegmentsResponse;
+use Google\Ads\AdManager\V1\BatchRejectAudienceSegmentsRequest;
+use Google\Ads\AdManager\V1\BatchRejectAudienceSegmentsResponse;
+use Google\Ads\AdManager\V1\CreateAudienceSegmentRequest;
 use Google\Ads\AdManager\V1\GetAudienceSegmentRequest;
 use Google\Ads\AdManager\V1\ListAudienceSegmentsRequest;
 use Google\ApiCore\ApiException;
@@ -51,6 +64,13 @@ use Psr\Log\LoggerInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
+ * @method PromiseInterface<BatchActivateAudienceSegmentsResponse> batchActivateAudienceSegmentsAsync(BatchActivateAudienceSegmentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchApproveAudienceSegmentsResponse> batchApproveAudienceSegmentsAsync(BatchApproveAudienceSegmentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchCreateAudienceSegmentsResponse> batchCreateAudienceSegmentsAsync(BatchCreateAudienceSegmentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchDeactivateAudienceSegmentsResponse> batchDeactivateAudienceSegmentsAsync(BatchDeactivateAudienceSegmentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchPopulateAudienceSegmentsResponse> batchPopulateAudienceSegmentsAsync(BatchPopulateAudienceSegmentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BatchRejectAudienceSegmentsResponse> batchRejectAudienceSegmentsAsync(BatchRejectAudienceSegmentsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AudienceSegment> createAudienceSegmentAsync(CreateAudienceSegmentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<AudienceSegment> getAudienceSegmentAsync(GetAudienceSegmentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listAudienceSegmentsAsync(ListAudienceSegmentsRequest $request, array $optionalArgs = [])
  */
@@ -120,6 +140,23 @@ final class AudienceSegmentServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a ad_unit
+     * resource.
+     *
+     * @param string $networkCode
+     * @param string $adUnit
+     *
+     * @return string The formatted ad_unit resource.
+     */
+    public static function adUnitName(string $networkCode, string $adUnit): string
+    {
+        return self::getPathTemplate('adUnit')->render([
+            'network_code' => $networkCode,
+            'ad_unit' => $adUnit,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a
      * audience_segment resource.
      *
@@ -133,6 +170,57 @@ final class AudienceSegmentServiceClient
         return self::getPathTemplate('audienceSegment')->render([
             'network_code' => $networkCode,
             'audience_segment' => $audienceSegment,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * cms_metadata_value resource.
+     *
+     * @param string $networkCode
+     * @param string $cmsMetadataValue
+     *
+     * @return string The formatted cms_metadata_value resource.
+     */
+    public static function cmsMetadataValueName(string $networkCode, string $cmsMetadataValue): string
+    {
+        return self::getPathTemplate('cmsMetadataValue')->render([
+            'network_code' => $networkCode,
+            'cms_metadata_value' => $cmsMetadataValue,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * custom_targeting_key resource.
+     *
+     * @param string $networkCode
+     * @param string $customTargetingKey
+     *
+     * @return string The formatted custom_targeting_key resource.
+     */
+    public static function customTargetingKeyName(string $networkCode, string $customTargetingKey): string
+    {
+        return self::getPathTemplate('customTargetingKey')->render([
+            'network_code' => $networkCode,
+            'custom_targeting_key' => $customTargetingKey,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * custom_targeting_value resource.
+     *
+     * @param string $networkCode
+     * @param string $customTargetingValue
+     *
+     * @return string The formatted custom_targeting_value resource.
+     */
+    public static function customTargetingValueName(string $networkCode, string $customTargetingValue): string
+    {
+        return self::getPathTemplate('customTargetingValue')->render([
+            'network_code' => $networkCode,
+            'custom_targeting_value' => $customTargetingValue,
         ]);
     }
 
@@ -152,11 +240,33 @@ final class AudienceSegmentServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a placement
+     * resource.
+     *
+     * @param string $networkCode
+     * @param string $placement
+     *
+     * @return string The formatted placement resource.
+     */
+    public static function placementName(string $networkCode, string $placement): string
+    {
+        return self::getPathTemplate('placement')->render([
+            'network_code' => $networkCode,
+            'placement' => $placement,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - adUnit: networks/{network_code}/adUnits/{ad_unit}
      * - audienceSegment: networks/{network_code}/audienceSegments/{audience_segment}
+     * - cmsMetadataValue: networks/{network_code}/cmsMetadataValues/{cms_metadata_value}
+     * - customTargetingKey: networks/{network_code}/customTargetingKeys/{custom_targeting_key}
+     * - customTargetingValue: networks/{network_code}/customTargetingValues/{custom_targeting_value}
      * - network: networks/{network_code}
+     * - placement: networks/{network_code}/placements/{placement}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -259,7 +369,210 @@ final class AudienceSegmentServiceClient
     }
 
     /**
-     * API to retrieve an `AudienceSegment` object.
+     * Activates `AudienceSegment` objects.
+     *
+     * The async variant is
+     * {@see AudienceSegmentServiceClient::batchActivateAudienceSegmentsAsync()} .
+     *
+     * @example samples/V1/AudienceSegmentServiceClient/batch_activate_audience_segments.php
+     *
+     * @param BatchActivateAudienceSegmentsRequest $request     A request to house fields associated with the call.
+     * @param array                                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchActivateAudienceSegmentsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchActivateAudienceSegments(
+        BatchActivateAudienceSegmentsRequest $request,
+        array $callOptions = []
+    ): BatchActivateAudienceSegmentsResponse {
+        return $this->startApiCall('BatchActivateAudienceSegments', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Approves `AudienceSegment` objects.
+     *
+     * The async variant is
+     * {@see AudienceSegmentServiceClient::batchApproveAudienceSegmentsAsync()} .
+     *
+     * @example samples/V1/AudienceSegmentServiceClient/batch_approve_audience_segments.php
+     *
+     * @param BatchApproveAudienceSegmentsRequest $request     A request to house fields associated with the call.
+     * @param array                               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchApproveAudienceSegmentsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchApproveAudienceSegments(
+        BatchApproveAudienceSegmentsRequest $request,
+        array $callOptions = []
+    ): BatchApproveAudienceSegmentsResponse {
+        return $this->startApiCall('BatchApproveAudienceSegments', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates `AudienceSegment` objects.
+     *
+     * The async variant is
+     * {@see AudienceSegmentServiceClient::batchCreateAudienceSegmentsAsync()} .
+     *
+     * @example samples/V1/AudienceSegmentServiceClient/batch_create_audience_segments.php
+     *
+     * @param BatchCreateAudienceSegmentsRequest $request     A request to house fields associated with the call.
+     * @param array                              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchCreateAudienceSegmentsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchCreateAudienceSegments(
+        BatchCreateAudienceSegmentsRequest $request,
+        array $callOptions = []
+    ): BatchCreateAudienceSegmentsResponse {
+        return $this->startApiCall('BatchCreateAudienceSegments', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deactivates `AudienceSegment` objects.
+     *
+     * The async variant is
+     * {@see AudienceSegmentServiceClient::batchDeactivateAudienceSegmentsAsync()} .
+     *
+     * @example samples/V1/AudienceSegmentServiceClient/batch_deactivate_audience_segments.php
+     *
+     * @param BatchDeactivateAudienceSegmentsRequest $request     A request to house fields associated with the call.
+     * @param array                                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchDeactivateAudienceSegmentsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchDeactivateAudienceSegments(
+        BatchDeactivateAudienceSegmentsRequest $request,
+        array $callOptions = []
+    ): BatchDeactivateAudienceSegmentsResponse {
+        return $this->startApiCall('BatchDeactivateAudienceSegments', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Populates `AudienceSegment` objects.
+     *
+     * The async variant is
+     * {@see AudienceSegmentServiceClient::batchPopulateAudienceSegmentsAsync()} .
+     *
+     * @example samples/V1/AudienceSegmentServiceClient/batch_populate_audience_segments.php
+     *
+     * @param BatchPopulateAudienceSegmentsRequest $request     A request to house fields associated with the call.
+     * @param array                                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchPopulateAudienceSegmentsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchPopulateAudienceSegments(
+        BatchPopulateAudienceSegmentsRequest $request,
+        array $callOptions = []
+    ): BatchPopulateAudienceSegmentsResponse {
+        return $this->startApiCall('BatchPopulateAudienceSegments', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Rejects `AudienceSegment` objects.
+     *
+     * The async variant is
+     * {@see AudienceSegmentServiceClient::batchRejectAudienceSegmentsAsync()} .
+     *
+     * @example samples/V1/AudienceSegmentServiceClient/batch_reject_audience_segments.php
+     *
+     * @param BatchRejectAudienceSegmentsRequest $request     A request to house fields associated with the call.
+     * @param array                              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BatchRejectAudienceSegmentsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function batchRejectAudienceSegments(
+        BatchRejectAudienceSegmentsRequest $request,
+        array $callOptions = []
+    ): BatchRejectAudienceSegmentsResponse {
+        return $this->startApiCall('BatchRejectAudienceSegments', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates an `AudienceSegment` object.
+     *
+     * The async variant is
+     * {@see AudienceSegmentServiceClient::createAudienceSegmentAsync()} .
+     *
+     * @example samples/V1/AudienceSegmentServiceClient/create_audience_segment.php
+     *
+     * @param CreateAudienceSegmentRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return AudienceSegment
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createAudienceSegment(
+        CreateAudienceSegmentRequest $request,
+        array $callOptions = []
+    ): AudienceSegment {
+        return $this->startApiCall('CreateAudienceSegment', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Retrieves an `AudienceSegment` object.
      *
      * The async variant is
      * {@see AudienceSegmentServiceClient::getAudienceSegmentAsync()} .
@@ -286,7 +599,7 @@ final class AudienceSegmentServiceClient
     }
 
     /**
-     * API to retrieve a list of `AudienceSegment` objects.
+     * Lists `AudienceSegment` objects.
      *
      * The async variant is
      * {@see AudienceSegmentServiceClient::listAudienceSegmentsAsync()} .

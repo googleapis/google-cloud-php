@@ -9,25 +9,29 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * Message for requesting the overall audit report for an audit report name.
+ * Request message for
+ * [GetAuditReport][google.cloud.auditmanager.v1.AuditManager.GetAuditReport].
  *
  * Generated from protobuf message <code>google.cloud.auditmanager.v1.GetAuditReportRequest</code>
  */
 class GetAuditReportRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Format
-     * projects/{project}/locations/{location}/auditReports/{audit_report},
-     * folders/{folder}/locations/{location}/auditReports/{audit_report}
+     * Required. Name of the audit report, in one of the following formats:
+     * * `projects/{project}/locations/{location}/auditReports/{audit_report}`
+     * * `folders/{folder}/locations/{location}/auditReports/{audit_report}`
+     * * `organizations/{organization}/locations/{location}/auditReports/{audit_report}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $name = '';
 
     /**
-     * @param string $name Required. Format
-     *                     projects/{project}/locations/{location}/auditReports/{audit_report},
-     *                     folders/{folder}/locations/{location}/auditReports/{audit_report}
+     * @param string $name Required. Name of the audit report, in one of the following formats:
+     *
+     *                     * `projects/{project}/locations/{location}/auditReports/{audit_report}`
+     *                     * `folders/{folder}/locations/{location}/auditReports/{audit_report}`
+     *                     * `organizations/{organization}/locations/{location}/auditReports/{audit_report}`
      *                     Please see {@see AuditManagerClient::auditReportName()} for help formatting this field.
      *
      * @return \Google\Cloud\AuditManager\V1\GetAuditReportRequest
@@ -47,9 +51,10 @@ class GetAuditReportRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. Format
-     *           projects/{project}/locations/{location}/auditReports/{audit_report},
-     *           folders/{folder}/locations/{location}/auditReports/{audit_report}
+     *           Required. Name of the audit report, in one of the following formats:
+     *           * `projects/{project}/locations/{location}/auditReports/{audit_report}`
+     *           * `folders/{folder}/locations/{location}/auditReports/{audit_report}`
+     *           * `organizations/{organization}/locations/{location}/auditReports/{audit_report}`
      * }
      */
     public function __construct($data = NULL) {
@@ -58,9 +63,10 @@ class GetAuditReportRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Format
-     * projects/{project}/locations/{location}/auditReports/{audit_report},
-     * folders/{folder}/locations/{location}/auditReports/{audit_report}
+     * Required. Name of the audit report, in one of the following formats:
+     * * `projects/{project}/locations/{location}/auditReports/{audit_report}`
+     * * `folders/{folder}/locations/{location}/auditReports/{audit_report}`
+     * * `organizations/{organization}/locations/{location}/auditReports/{audit_report}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -71,9 +77,10 @@ class GetAuditReportRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Format
-     * projects/{project}/locations/{location}/auditReports/{audit_report},
-     * folders/{folder}/locations/{location}/auditReports/{audit_report}
+     * Required. Name of the audit report, in one of the following formats:
+     * * `projects/{project}/locations/{location}/auditReports/{audit_report}`
+     * * `folders/{folder}/locations/{location}/auditReports/{audit_report}`
+     * * `organizations/{organization}/locations/{location}/auditReports/{audit_report}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

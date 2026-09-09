@@ -1,4 +1,0 @@
-deep-copy-regex:
-    - source: /google/cloud/devicestreaming/(v1)/.*-php/(.*)
-      dest: /owl-bot-staging/DeviceStreaming/$1/$2
-api-name: DeviceStreaming

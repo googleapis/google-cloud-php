@@ -237,7 +237,10 @@ final class FirestoreAdminClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = $methodName && isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
+        $options =
+            $methodName && isset($this->descriptors[$methodName]['longRunning'])
+                ? $this->descriptors[$methodName]['longRunning']
+                : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -1170,8 +1173,10 @@ final class FirestoreAdminClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listBackupSchedules(ListBackupSchedulesRequest $request, array $callOptions = []): ListBackupSchedulesResponse
-    {
+    public function listBackupSchedules(
+        ListBackupSchedulesRequest $request,
+        array $callOptions = []
+    ): ListBackupSchedulesResponse {
         return $this->startApiCall('ListBackupSchedules', $request, $callOptions)->wait();
     }
 

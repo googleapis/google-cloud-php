@@ -7,44 +7,45 @@ namespace Google\Cloud\AuditManager\V1;
 use UnexpectedValueException;
 
 /**
- * The compliance state after evaluation.
+ * Compliance state after evaluation.
  *
  * Protobuf type <code>google.cloud.auditmanager.v1.ComplianceState</code>
  */
 class ComplianceState
 {
     /**
-     * Unspecified. Invalid state.
+     * Default value. This value is unused.
      *
      * Generated from protobuf enum <code>COMPLIANCE_STATE_UNSPECIFIED = 0;</code>
      */
     const COMPLIANCE_STATE_UNSPECIFIED = 0;
     /**
-     * Compliant.
+     * The resource is compliant.
      *
      * Generated from protobuf enum <code>COMPLIANT = 1;</code>
      */
     const COMPLIANT = 1;
     /**
-     * Violation.
+     * The resource isn't compliant.
      *
      * Generated from protobuf enum <code>VIOLATION = 2;</code>
      */
     const VIOLATION = 2;
     /**
-     * MANUAL_REVIEW_NEEDED, requires manual review
+     * You must complete a manual review.
      *
      * Generated from protobuf enum <code>MANUAL_REVIEW_NEEDED = 3;</code>
      */
     const MANUAL_REVIEW_NEEDED = 3;
     /**
-     * Error while computing status.
+     * An error was encountered during the evaluation or evidence gathering
+     * process.
      *
      * Generated from protobuf enum <code>ERROR = 4;</code>
      */
     const ERROR = 4;
     /**
-     * Cannot be audited
+     * The resource can't be audited.
      *
      * Generated from protobuf enum <code>AUDIT_NOT_SUPPORTED = 5;</code>
      */

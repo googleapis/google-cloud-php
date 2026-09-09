@@ -19,7 +19,7 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
      * Required. Parent resource name.
      * The format of this value varies depending on whether you have [specified a
      * processing
-     * location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
+     * location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location):
      * + Projects scope, location specified:
      *   `projects/{project_id}/locations/{location_id}`
      * + Projects scope, no location specified (defaults to global):
@@ -106,7 +106,7 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
      *
      *                       The format of this value varies depending on whether you have [specified a
      *                       processing
-     *                       location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
+     *                       location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location):
      *
      *                       + Projects scope, location specified:
      *                       `projects/{project_id}/locations/{location_id}`
@@ -140,7 +140,7 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
      *           Required. Parent resource name.
      *           The format of this value varies depending on whether you have [specified a
      *           processing
-     *           location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
+     *           location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location):
      *           + Projects scope, location specified:
      *             `projects/{project_id}/locations/{location_id}`
      *           + Projects scope, no location specified (defaults to global):
@@ -204,7 +204,7 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
      * Required. Parent resource name.
      * The format of this value varies depending on whether you have [specified a
      * processing
-     * location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
+     * location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location):
      * + Projects scope, location specified:
      *   `projects/{project_id}/locations/{location_id}`
      * + Projects scope, no location specified (defaults to global):
@@ -226,7 +226,7 @@ class ListJobTriggersRequest extends \Google\Protobuf\Internal\Message
      * Required. Parent resource name.
      * The format of this value varies depending on whether you have [specified a
      * processing
-     * location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
+     * location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location):
      * + Projects scope, location specified:
      *   `projects/{project_id}/locations/{location_id}`
      * + Projects scope, no location specified (defaults to global):

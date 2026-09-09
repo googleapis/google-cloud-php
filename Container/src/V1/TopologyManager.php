@@ -9,9 +9,13 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * TopologyManager defines the configuration options for Topology Manager
- * feature. See
- * https://kubernetes.io/docs/tasks/administer-cluster/topology-manager/
+ * TopologyManager defines the configuration options for the
+ * [`kubelet` Topology Manager
+ * component](https://kubernetes.io/docs/tasks/administer-cluster/topology-manager/).
+ * For more information about the supported machine types and versions for the
+ * Topology Manager in GKE, see
+ * [Customizing node system
+ * configuration](https://docs.cloud.google.com/kubernetes-engine/docs/how-to/node-system-config#kubelet-resource-managers).
  *
  * Generated from protobuf message <code>google.container.v1.TopologyManager</code>
  */

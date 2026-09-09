@@ -213,7 +213,7 @@ class RelativeDateRange
      */
     const LAST_6_MONTHS = 19;
     /**
-     * The entire previous 6 calendar months preceding the calendar month the
+     * The entire previous 12 calendar months preceding the calendar month the
      * report is run.
      *
      * Generated from protobuf enum <code>LAST_12_MONTHS = 20;</code>

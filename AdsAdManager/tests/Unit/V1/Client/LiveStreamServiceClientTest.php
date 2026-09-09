@@ -562,6 +562,7 @@ class LiveStreamServiceClientTest extends GeneratedTest
         $displayName = 'displayName1615086568';
         $endTimeUnlimited = false;
         $assetKey = 'assetKey1315618960';
+        $slate = 'slate109519257';
         $enableDaiAuthenticationKeys = true;
         $enableMaxFillerDuration = true;
         $enableDurationlessAdBreaks = true;
@@ -580,6 +581,7 @@ class LiveStreamServiceClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setEndTimeUnlimited($endTimeUnlimited);
         $expectedResponse->setAssetKey($assetKey);
+        $expectedResponse->setSlate($slate);
         $expectedResponse->setEnableDaiAuthenticationKeys($enableDaiAuthenticationKeys);
         $expectedResponse->setEnableMaxFillerDuration($enableMaxFillerDuration);
         $expectedResponse->setEnableDurationlessAdBreaks($enableDurationlessAdBreaks);
@@ -677,6 +679,7 @@ class LiveStreamServiceClientTest extends GeneratedTest
         $displayName = 'displayName1615086568';
         $endTimeUnlimited = false;
         $assetKey = 'assetKey1315618960';
+        $slate = 'slate109519257';
         $enableDaiAuthenticationKeys = true;
         $enableMaxFillerDuration = true;
         $enableDurationlessAdBreaks = true;
@@ -695,6 +698,7 @@ class LiveStreamServiceClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setEndTimeUnlimited($endTimeUnlimited);
         $expectedResponse->setAssetKey($assetKey);
+        $expectedResponse->setSlate($slate);
         $expectedResponse->setEnableDaiAuthenticationKeys($enableDaiAuthenticationKeys);
         $expectedResponse->setEnableMaxFillerDuration($enableMaxFillerDuration);
         $expectedResponse->setEnableDurationlessAdBreaks($enableDurationlessAdBreaks);
@@ -849,6 +853,7 @@ class LiveStreamServiceClientTest extends GeneratedTest
         $displayName = 'displayName1615086568';
         $endTimeUnlimited = false;
         $assetKey = 'assetKey1315618960';
+        $slate = 'slate109519257';
         $enableDaiAuthenticationKeys = true;
         $enableMaxFillerDuration = true;
         $enableDurationlessAdBreaks = true;
@@ -867,6 +872,7 @@ class LiveStreamServiceClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setEndTimeUnlimited($endTimeUnlimited);
         $expectedResponse->setAssetKey($assetKey);
+        $expectedResponse->setSlate($slate);
         $expectedResponse->setEnableDaiAuthenticationKeys($enableDaiAuthenticationKeys);
         $expectedResponse->setEnableMaxFillerDuration($enableMaxFillerDuration);
         $expectedResponse->setEnableDurationlessAdBreaks($enableDurationlessAdBreaks);

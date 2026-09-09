@@ -166,8 +166,11 @@ return [
             ],
             'templateMap' => [
                 'cdnConfig' => 'networks/{network_code}/cdnConfigs/{cdn_config}',
+                'daiAuthenticationKey' => 'networks/{network_code}/daiAuthenticationKeys/{dai_authentication_key}',
+                'daiEncodingProfile' => 'networks/{network_code}/daiEncodingProfiles/{dai_encoding_profile}',
                 'liveStream' => 'networks/{network_code}/liveStreams/{live_stream}',
                 'network' => 'networks/{network_code}',
+                'slate' => 'networks/{network_code}/slates/{slate}',
             ],
         ],
     ],

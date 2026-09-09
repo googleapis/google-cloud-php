@@ -25,6 +25,30 @@ class ReservationGroup extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
+    /**
+     * Optional. The parent reservation group of the reservation group.
+     * Format: `projects/{@*}locations/{@*}reservationGroups/team1-prod` for non-root
+     * reservation groups, or `projects/{@*}locations/*` for root reservation
+     * groups.
+     *
+     * Generated from protobuf field <code>string parent_group = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     */
+    protected $parent_group = '';
+    /**
+     * Output only. Creation time of the reservation group.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp creation_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $creation_time = null;
+    /**
+     * Output only. Last update time of the reservation group via a user
+     * operation. This timestamp is updated only when an update operation
+     * explicitly targets this reservation group directly. It is not updated when
+     * parent or child groups are created, updated, or deleted.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $update_time = null;
 
     /**
      * Constructor.
@@ -38,6 +62,18 @@ class ReservationGroup extends \Google\Protobuf\Internal\Message
      *           The reservation_group_id must only contain lower case alphanumeric
      *           characters or dashes. It must start with a letter and must not end with a
      *           dash. Its maximum length is 64 characters.
+     *     @type string $parent_group
+     *           Optional. The parent reservation group of the reservation group.
+     *           Format: `projects/{@*}locations/{@*}reservationGroups/team1-prod` for non-root
+     *           reservation groups, or `projects/{@*}locations/*` for root reservation
+     *           groups.
+     *     @type \Google\Protobuf\Timestamp $creation_time
+     *           Output only. Creation time of the reservation group.
+     *     @type \Google\Protobuf\Timestamp $update_time
+     *           Output only. Last update time of the reservation group via a user
+     *           operation. This timestamp is updated only when an update operation
+     *           explicitly targets this reservation group directly. It is not updated when
+     *           parent or child groups are created, updated, or deleted.
      * }
      */
     public function __construct($data = NULL) {
@@ -75,6 +111,116 @@ class ReservationGroup extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The parent reservation group of the reservation group.
+     * Format: `projects/{@*}locations/{@*}reservationGroups/team1-prod` for non-root
+     * reservation groups, or `projects/{@*}locations/*` for root reservation
+     * groups.
+     *
+     * Generated from protobuf field <code>string parent_group = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getParentGroup()
+    {
+        return $this->parent_group;
+    }
+
+    /**
+     * Optional. The parent reservation group of the reservation group.
+     * Format: `projects/{@*}locations/{@*}reservationGroups/team1-prod` for non-root
+     * reservation groups, or `projects/{@*}locations/*` for root reservation
+     * groups.
+     *
+     * Generated from protobuf field <code>string parent_group = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setParentGroup($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->parent_group = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Creation time of the reservation group.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp creation_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getCreationTime()
+    {
+        return $this->creation_time;
+    }
+
+    public function hasCreationTime()
+    {
+        return isset($this->creation_time);
+    }
+
+    public function clearCreationTime()
+    {
+        unset($this->creation_time);
+    }
+
+    /**
+     * Output only. Creation time of the reservation group.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp creation_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setCreationTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->creation_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Last update time of the reservation group via a user
+     * operation. This timestamp is updated only when an update operation
+     * explicitly targets this reservation group directly. It is not updated when
+     * parent or child groups are created, updated, or deleted.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getUpdateTime()
+    {
+        return $this->update_time;
+    }
+
+    public function hasUpdateTime()
+    {
+        return isset($this->update_time);
+    }
+
+    public function clearUpdateTime()
+    {
+        unset($this->update_time);
+    }
+
+    /**
+     * Output only. Last update time of the reservation group via a user
+     * operation. This timestamp is updated only when an update operation
+     * explicitly targets this reservation group directly. It is not updated when
+     * parent or child groups are created, updated, or deleted.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setUpdateTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->update_time = $var;
 
         return $this;
     }

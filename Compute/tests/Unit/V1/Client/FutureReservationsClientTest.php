@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -440,6 +440,7 @@ class FutureReservationsClientTest extends GeneratedTest
         $planningStatus = 'planningStatus1630327572';
         $reservationMode = 'reservationMode-1870189002';
         $reservationName = 'reservationName-1870172386';
+        $resourceName = 'resourceName979421212';
         $schedulingType = 'schedulingType199835397';
         $selfLink = 'selfLink-1691268851';
         $selfLinkWithId = 'selfLinkWithId-1029220862';
@@ -460,6 +461,7 @@ class FutureReservationsClientTest extends GeneratedTest
         $expectedResponse->setPlanningStatus($planningStatus);
         $expectedResponse->setReservationMode($reservationMode);
         $expectedResponse->setReservationName($reservationName);
+        $expectedResponse->setResourceName($resourceName);
         $expectedResponse->setSchedulingType($schedulingType);
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setSelfLinkWithId($selfLinkWithId);

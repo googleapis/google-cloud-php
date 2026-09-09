@@ -59,9 +59,11 @@ class SecurityPolicyRuleRateLimitOptionsEnforceOnKeyConfig extends \Google\Proto
      *    which is resolved based on "userIpRequestHeaders" configured with the
      *    security policy. If there is no "userIpRequestHeaders" configuration
      *    or an IP address cannot be resolved from it, the key type defaults toIP.
-     * - TLS_JA4_FINGERPRINT: JA4 TLS/SSL fingerprint if the
-     * client connects using HTTPS, HTTP/2 or HTTP/3. If not available, the
-     * key type defaults to ALL.
+     *    - ASN: The autonomous system number of the originating
+     *    client. If not available, the key type defaults toALL.
+     *    - TLS_JA4_FINGERPRINT: JA4 TLS/SSL fingerprint if the
+     *    client connects using HTTPS, HTTP/2 or HTTP/3. If not available, the
+     *    key type defaults to ALL.
      * Check the EnforceOnKeyType enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string enforce_on_key_type = 132757149;</code>
@@ -115,9 +117,11 @@ class SecurityPolicyRuleRateLimitOptionsEnforceOnKeyConfig extends \Google\Proto
      *              which is resolved based on "userIpRequestHeaders" configured with the
      *              security policy. If there is no "userIpRequestHeaders" configuration
      *              or an IP address cannot be resolved from it, the key type defaults toIP.
-     *           - TLS_JA4_FINGERPRINT: JA4 TLS/SSL fingerprint if the
-     *           client connects using HTTPS, HTTP/2 or HTTP/3. If not available, the
-     *           key type defaults to ALL.
+     *              - ASN: The autonomous system number of the originating
+     *              client. If not available, the key type defaults toALL.
+     *              - TLS_JA4_FINGERPRINT: JA4 TLS/SSL fingerprint if the
+     *              client connects using HTTPS, HTTP/2 or HTTP/3. If not available, the
+     *              key type defaults to ALL.
      *           Check the EnforceOnKeyType enum for the list of possible values.
      * }
      */
@@ -204,9 +208,11 @@ class SecurityPolicyRuleRateLimitOptionsEnforceOnKeyConfig extends \Google\Proto
      *    which is resolved based on "userIpRequestHeaders" configured with the
      *    security policy. If there is no "userIpRequestHeaders" configuration
      *    or an IP address cannot be resolved from it, the key type defaults toIP.
-     * - TLS_JA4_FINGERPRINT: JA4 TLS/SSL fingerprint if the
-     * client connects using HTTPS, HTTP/2 or HTTP/3. If not available, the
-     * key type defaults to ALL.
+     *    - ASN: The autonomous system number of the originating
+     *    client. If not available, the key type defaults toALL.
+     *    - TLS_JA4_FINGERPRINT: JA4 TLS/SSL fingerprint if the
+     *    client connects using HTTPS, HTTP/2 or HTTP/3. If not available, the
+     *    key type defaults to ALL.
      * Check the EnforceOnKeyType enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string enforce_on_key_type = 132757149;</code>
@@ -263,9 +269,11 @@ class SecurityPolicyRuleRateLimitOptionsEnforceOnKeyConfig extends \Google\Proto
      *    which is resolved based on "userIpRequestHeaders" configured with the
      *    security policy. If there is no "userIpRequestHeaders" configuration
      *    or an IP address cannot be resolved from it, the key type defaults toIP.
-     * - TLS_JA4_FINGERPRINT: JA4 TLS/SSL fingerprint if the
-     * client connects using HTTPS, HTTP/2 or HTTP/3. If not available, the
-     * key type defaults to ALL.
+     *    - ASN: The autonomous system number of the originating
+     *    client. If not available, the key type defaults toALL.
+     *    - TLS_JA4_FINGERPRINT: JA4 TLS/SSL fingerprint if the
+     *    client connects using HTTPS, HTTP/2 or HTTP/3. If not available, the
+     *    key type defaults to ALL.
      * Check the EnforceOnKeyType enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string enforce_on_key_type = 132757149;</code>

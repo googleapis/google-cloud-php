@@ -102,6 +102,22 @@ class LiveStream extends \Google\Protobuf\Internal\Message
      */
     protected $asset_key = null;
     /**
+     * Optional. The slate to use for this live stream. If not set, network
+     * default slate will be used. Format:
+     * "networks/{network_code}/slates/{slate_id}"
+     *
+     * Generated from protobuf field <code>optional string slate = 12 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     */
+    protected $slate = null;
+    /**
+     * Optional. The duration of the DVR window. If unset the default window as
+     * provided by the input encoder will be used. Modifying this value for an
+     * active live stream can impact traffic.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.Duration dvr_window_duration = 59 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $dvr_window_duration = null;
+    /**
      * Optional. Whether the live stream's requests to the IMA SDK API will be
      * authenticated using the DAI authentication keys.
      *
@@ -174,6 +190,16 @@ class LiveStream extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional .google.protobuf.Duration default_ad_break_duration = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $default_ad_break_duration = null;
+    /**
+     * Optional. The list of DaiAuthenticationKey objects used to authenticate
+     * stream create requests for this live stream. Modifying settings for an
+     * active live stream may break the stream for some users. Exercise caution.
+     * Format:
+     * "networks/{network_code}/daiAuthenticationKeys/{dai_authentication_key_id}"
+     *
+     * Generated from protobuf field <code>repeated string dai_authentication_keys = 24 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     */
+    private $dai_authentication_keys;
     /**
      * Optional. The list of CdnConfigurations that provide settings for ingesting
      * and delivering the videos associated with this source. Modifying settings
@@ -277,6 +303,22 @@ class LiveStream extends \Google\Protobuf\Internal\Message
      */
     protected $custom_asset_key = null;
     /**
+     * Optional. The list of DaiEncodingProfiles that will be used for this live
+     * stream event. Format:
+     * "networks/{network_code}/daiEncodingProfiles/{dai_encoding_profile_id}"
+     *
+     * Generated from protobuf field <code>repeated string dai_encoding_profiles = 40 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     */
+    private $dai_encoding_profiles;
+    /**
+     * Optional. The list of DaiAuthenticationKeys used to authenticate ad segment
+     * url requests for this live stream. Format:
+     * "networks/{network_code}/daiAuthenticationKeys/{dai_authentication_key_id}"
+     *
+     * Generated from protobuf field <code>repeated string segment_url_authentication_keys = 41 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     */
+    private $segment_url_authentication_keys;
+    /**
      * Optional. The formats that will be recognized as ad break start/end
      * markers. This field is ignored if `adBreakMarkupTypesEnabled` is false.
      *
@@ -370,6 +412,14 @@ class LiveStream extends \Google\Protobuf\Internal\Message
      *     @type string $asset_key
      *           Output only. The code used in constructing a live stream master playlist
      *           URL.
+     *     @type string $slate
+     *           Optional. The slate to use for this live stream. If not set, network
+     *           default slate will be used. Format:
+     *           "networks/{network_code}/slates/{slate_id}"
+     *     @type \Google\Protobuf\Duration $dvr_window_duration
+     *           Optional. The duration of the DVR window. If unset the default window as
+     *           provided by the input encoder will be used. Modifying this value for an
+     *           active live stream can impact traffic.
      *     @type bool $enable_dai_authentication_keys
      *           Optional. Whether the live stream's requests to the IMA SDK API will be
      *           authenticated using the DAI authentication keys.
@@ -407,6 +457,12 @@ class LiveStream extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Duration $default_ad_break_duration
      *           Optional. The default ad pod duration that will be requested when an ad
      *           break cue-out does not specify a duration. Defaults to 0.
+     *     @type string[] $dai_authentication_keys
+     *           Optional. The list of DaiAuthenticationKey objects used to authenticate
+     *           stream create requests for this live stream. Modifying settings for an
+     *           active live stream may break the stream for some users. Exercise caution.
+     *           Format:
+     *           "networks/{network_code}/daiAuthenticationKeys/{dai_authentication_key_id}"
      *     @type string[] $source_content_configurations
      *           Optional. The list of CdnConfigurations that provide settings for ingesting
      *           and delivering the videos associated with this source. Modifying settings
@@ -457,6 +513,14 @@ class LiveStream extends \Google\Protobuf\Internal\Message
      *           key may be at most 64 characters and can contain alphanumeric characters
      *           and symbols other than the following:
      *           ", ', =, !, +, #, *, ~, ;, ^, (, ), <, >, [, ], the white space character.
+     *     @type string[] $dai_encoding_profiles
+     *           Optional. The list of DaiEncodingProfiles that will be used for this live
+     *           stream event. Format:
+     *           "networks/{network_code}/daiEncodingProfiles/{dai_encoding_profile_id}"
+     *     @type string[] $segment_url_authentication_keys
+     *           Optional. The list of DaiAuthenticationKeys used to authenticate ad segment
+     *           url requests for this live stream. Format:
+     *           "networks/{network_code}/daiAuthenticationKeys/{dai_authentication_key_id}"
      *     @type int[] $ad_break_markups
      *           Optional. The formats that will be recognized as ad break start/end
      *           markers. This field is ignored if `adBreakMarkupTypesEnabled` is false.
@@ -884,6 +948,86 @@ class LiveStream extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. The slate to use for this live stream. If not set, network
+     * default slate will be used. Format:
+     * "networks/{network_code}/slates/{slate_id}"
+     *
+     * Generated from protobuf field <code>optional string slate = 12 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getSlate()
+    {
+        return isset($this->slate) ? $this->slate : '';
+    }
+
+    public function hasSlate()
+    {
+        return isset($this->slate);
+    }
+
+    public function clearSlate()
+    {
+        unset($this->slate);
+    }
+
+    /**
+     * Optional. The slate to use for this live stream. If not set, network
+     * default slate will be used. Format:
+     * "networks/{network_code}/slates/{slate_id}"
+     *
+     * Generated from protobuf field <code>optional string slate = 12 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSlate($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->slate = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The duration of the DVR window. If unset the default window as
+     * provided by the input encoder will be used. Modifying this value for an
+     * active live stream can impact traffic.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.Duration dvr_window_duration = 59 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Duration|null
+     */
+    public function getDvrWindowDuration()
+    {
+        return $this->dvr_window_duration;
+    }
+
+    public function hasDvrWindowDuration()
+    {
+        return isset($this->dvr_window_duration);
+    }
+
+    public function clearDvrWindowDuration()
+    {
+        unset($this->dvr_window_duration);
+    }
+
+    /**
+     * Optional. The duration of the DVR window. If unset the default window as
+     * provided by the input encoder will be used. Modifying this value for an
+     * active live stream can impact traffic.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.Duration dvr_window_duration = 59 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\Duration $var
+     * @return $this
+     */
+    public function setDvrWindowDuration($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
+        $this->dvr_window_duration = $var;
+
+        return $this;
+    }
+
+    /**
      * Optional. Whether the live stream's requests to the IMA SDK API will be
      * authenticated using the DAI authentication keys.
      *
@@ -1241,6 +1385,40 @@ class LiveStream extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
         $this->default_ad_break_duration = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The list of DaiAuthenticationKey objects used to authenticate
+     * stream create requests for this live stream. Modifying settings for an
+     * active live stream may break the stream for some users. Exercise caution.
+     * Format:
+     * "networks/{network_code}/daiAuthenticationKeys/{dai_authentication_key_id}"
+     *
+     * Generated from protobuf field <code>repeated string dai_authentication_keys = 24 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return RepeatedField<string>
+     */
+    public function getDaiAuthenticationKeys()
+    {
+        return $this->dai_authentication_keys;
+    }
+
+    /**
+     * Optional. The list of DaiAuthenticationKey objects used to authenticate
+     * stream create requests for this live stream. Modifying settings for an
+     * active live stream may break the stream for some users. Exercise caution.
+     * Format:
+     * "networks/{network_code}/daiAuthenticationKeys/{dai_authentication_key_id}"
+     *
+     * Generated from protobuf field <code>repeated string dai_authentication_keys = 24 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param string[] $var
+     * @return $this
+     */
+    public function setDaiAuthenticationKeys($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->dai_authentication_keys = $arr;
 
         return $this;
     }
@@ -1747,6 +1925,66 @@ class LiveStream extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->custom_asset_key = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The list of DaiEncodingProfiles that will be used for this live
+     * stream event. Format:
+     * "networks/{network_code}/daiEncodingProfiles/{dai_encoding_profile_id}"
+     *
+     * Generated from protobuf field <code>repeated string dai_encoding_profiles = 40 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return RepeatedField<string>
+     */
+    public function getDaiEncodingProfiles()
+    {
+        return $this->dai_encoding_profiles;
+    }
+
+    /**
+     * Optional. The list of DaiEncodingProfiles that will be used for this live
+     * stream event. Format:
+     * "networks/{network_code}/daiEncodingProfiles/{dai_encoding_profile_id}"
+     *
+     * Generated from protobuf field <code>repeated string dai_encoding_profiles = 40 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param string[] $var
+     * @return $this
+     */
+    public function setDaiEncodingProfiles($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->dai_encoding_profiles = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The list of DaiAuthenticationKeys used to authenticate ad segment
+     * url requests for this live stream. Format:
+     * "networks/{network_code}/daiAuthenticationKeys/{dai_authentication_key_id}"
+     *
+     * Generated from protobuf field <code>repeated string segment_url_authentication_keys = 41 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return RepeatedField<string>
+     */
+    public function getSegmentUrlAuthenticationKeys()
+    {
+        return $this->segment_url_authentication_keys;
+    }
+
+    /**
+     * Optional. The list of DaiAuthenticationKeys used to authenticate ad segment
+     * url requests for this live stream. Format:
+     * "networks/{network_code}/daiAuthenticationKeys/{dai_authentication_key_id}"
+     *
+     * Generated from protobuf field <code>repeated string segment_url_authentication_keys = 41 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param string[] $var
+     * @return $this
+     */
+    public function setSegmentUrlAuthenticationKeys($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->segment_url_authentication_keys = $arr;
 
         return $this;
     }

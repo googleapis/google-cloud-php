@@ -122,9 +122,9 @@ class NodePool extends \Google\Protobuf\Internal\Message
      */
     protected $max_pods_constraint = null;
     /**
-     * Which conditions caused the current node pool state.
+     * Output only. Which conditions caused the current node pool state.
      *
-     * Generated from protobuf field <code>repeated .google.container.v1.StatusCondition conditions = 105;</code>
+     * Generated from protobuf field <code>repeated .google.container.v1.StatusCondition conditions = 105 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $conditions;
     /**
@@ -153,11 +153,11 @@ class NodePool extends \Google\Protobuf\Internal\Message
      */
     protected $update_info = null;
     /**
-     * This checksum is computed by the server based on the value of node pool
-     * fields, and may be sent on update requests to ensure the client has an
-     * up-to-date value before proceeding.
+     * Output only. This checksum is computed by the server based on the value of
+     * node pool fields, and may be sent on update requests to ensure the client
+     * has an up-to-date value before proceeding.
      *
-     * Generated from protobuf field <code>string etag = 110;</code>
+     * Generated from protobuf field <code>string etag = 110 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $etag = '';
     /**
@@ -184,6 +184,12 @@ class NodePool extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.NodePool.NodePoolMaintenancePolicy maintenance_policy = 118 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $maintenance_policy = null;
+    /**
+     * Output only. Contains expiry information about the kubelet certificate.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodePool.KubeletCertInfo kubelet_cert_info = 119 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $kubelet_cert_info = null;
 
     /**
      * Constructor.
@@ -240,7 +246,7 @@ class NodePool extends \Google\Protobuf\Internal\Message
      *           The constraint on the maximum number of pods that can be run
      *           simultaneously on a node in the node pool.
      *     @type \Google\Cloud\Container\V1\StatusCondition[] $conditions
-     *           Which conditions caused the current node pool state.
+     *           Output only. Which conditions caused the current node pool state.
      *     @type int $pod_ipv4_cidr_size
      *           Output only. The pod CIDR block size per node in this node pool.
      *     @type \Google\Cloud\Container\V1\NodePool\UpgradeSettings $upgrade_settings
@@ -251,9 +257,9 @@ class NodePool extends \Google\Protobuf\Internal\Message
      *           Output only. Update info contains relevant information during a node
      *           pool update.
      *     @type string $etag
-     *           This checksum is computed by the server based on the value of node pool
-     *           fields, and may be sent on update requests to ensure the client has an
-     *           up-to-date value before proceeding.
+     *           Output only. This checksum is computed by the server based on the value of
+     *           node pool fields, and may be sent on update requests to ensure the client
+     *           has an up-to-date value before proceeding.
      *     @type \Google\Cloud\Container\V1\NodePool\QueuedProvisioning $queued_provisioning
      *           Specifies the configuration of queued provisioning.
      *     @type \Google\Cloud\Container\V1\BestEffortProvisioning $best_effort_provisioning
@@ -262,6 +268,8 @@ class NodePool extends \Google\Protobuf\Internal\Message
      *           Specifies the node drain configuration for this node pool.
      *     @type \Google\Cloud\Container\V1\NodePool\NodePoolMaintenancePolicy $maintenance_policy
      *           Optional. Specifies the maintenance policy for the node pool.
+     *     @type \Google\Cloud\Container\V1\NodePool\KubeletCertInfo $kubelet_cert_info
+     *           Output only. Contains expiry information about the kubelet certificate.
      * }
      */
     public function __construct($data = NULL) {
@@ -708,9 +716,9 @@ class NodePool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Which conditions caused the current node pool state.
+     * Output only. Which conditions caused the current node pool state.
      *
-     * Generated from protobuf field <code>repeated .google.container.v1.StatusCondition conditions = 105;</code>
+     * Generated from protobuf field <code>repeated .google.container.v1.StatusCondition conditions = 105 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return RepeatedField<\Google\Cloud\Container\V1\StatusCondition>
      */
     public function getConditions()
@@ -719,9 +727,9 @@ class NodePool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Which conditions caused the current node pool state.
+     * Output only. Which conditions caused the current node pool state.
      *
-     * Generated from protobuf field <code>repeated .google.container.v1.StatusCondition conditions = 105;</code>
+     * Generated from protobuf field <code>repeated .google.container.v1.StatusCondition conditions = 105 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Container\V1\StatusCondition[] $var
      * @return $this
      */
@@ -870,11 +878,11 @@ class NodePool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This checksum is computed by the server based on the value of node pool
-     * fields, and may be sent on update requests to ensure the client has an
-     * up-to-date value before proceeding.
+     * Output only. This checksum is computed by the server based on the value of
+     * node pool fields, and may be sent on update requests to ensure the client
+     * has an up-to-date value before proceeding.
      *
-     * Generated from protobuf field <code>string etag = 110;</code>
+     * Generated from protobuf field <code>string etag = 110 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getEtag()
@@ -883,11 +891,11 @@ class NodePool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This checksum is computed by the server based on the value of node pool
-     * fields, and may be sent on update requests to ensure the client has an
-     * up-to-date value before proceeding.
+     * Output only. This checksum is computed by the server based on the value of
+     * node pool fields, and may be sent on update requests to ensure the client
+     * has an up-to-date value before proceeding.
      *
-     * Generated from protobuf field <code>string etag = 110;</code>
+     * Generated from protobuf field <code>string etag = 110 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -1039,6 +1047,42 @@ class NodePool extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\NodePool\NodePoolMaintenancePolicy::class);
         $this->maintenance_policy = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Contains expiry information about the kubelet certificate.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodePool.KubeletCertInfo kubelet_cert_info = 119 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Container\V1\NodePool\KubeletCertInfo|null
+     */
+    public function getKubeletCertInfo()
+    {
+        return $this->kubelet_cert_info;
+    }
+
+    public function hasKubeletCertInfo()
+    {
+        return isset($this->kubelet_cert_info);
+    }
+
+    public function clearKubeletCertInfo()
+    {
+        unset($this->kubelet_cert_info);
+    }
+
+    /**
+     * Output only. Contains expiry information about the kubelet certificate.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodePool.KubeletCertInfo kubelet_cert_info = 119 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Container\V1\NodePool\KubeletCertInfo $var
+     * @return $this
+     */
+    public function setKubeletCertInfo($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\NodePool\KubeletCertInfo::class);
+        $this->kubelet_cert_info = $var;
 
         return $this;
     }

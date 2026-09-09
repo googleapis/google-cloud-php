@@ -11,7 +11,8 @@ use Google\Protobuf\RepeatedField;
 /**
  * Create Dataplex Universal Catalog aspects for profiled resources with the
  * aspect type Sensitive Data Protection Profile. To learn more about aspects,
- * see https://cloud.google.com/sensitive-data-protection/docs/add-aspects.
+ * see
+ * https://docs.cloud.google.com/sensitive-data-protection/docs/add-aspects.
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.DataProfileAction.PublishToDataplexCatalog</code>
  */

@@ -5,8 +5,8 @@
 namespace Google\Cloud\VectorSearch\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Defines a ranker using the Vertex AI ranking service.
@@ -18,30 +18,21 @@ use Google\Protobuf\Internal\GPBUtil;
 class VertexRanker extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The query against which the records are ranked and scored.
-     *
-     * Generated from protobuf field <code>string query = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     */
-    protected $query = '';
-    /**
-     * Optional. The template used to generate the record's title.
-     *
-     * Generated from protobuf field <code>string title_template = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     */
-    protected $title_template = '';
-    /**
-     * Optional. The template used to generate the record's content.
-     *
-     * Generated from protobuf field <code>string content_template = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     */
-    protected $content_template = '';
-    /**
-     * Required. The model used for ranking documents. If no model is specified,
-     * then semantic-ranker-default&#64;latest is used.
+     * Required. The model used for ranking documents. The list of available
+     * models is described in
+     * https://docs.cloud.google.com/generative-ai-app-builder/docs/ranking#models.
+     * Currently, only `semantic-ranker-fast\@latest` is supported.
      *
      * Generated from protobuf field <code>string model = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $model = '';
+    /**
+     * Required. The number of documents to be processed for ranking.
+     *
+     * Generated from protobuf field <code>int32 top_n = 5 [(.google.api.field_behavior) = REQUIRED];</code>
+     */
+    protected $top_n = 0;
+    protected $record_spec;
 
     /**
      * Constructor.
@@ -49,15 +40,15 @@ class VertexRanker extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string $query
-     *           Required. The query against which the records are ranked and scored.
-     *     @type string $title_template
-     *           Optional. The template used to generate the record's title.
-     *     @type string $content_template
-     *           Optional. The template used to generate the record's content.
+     *     @type \Google\Cloud\VectorSearch\V1\VertexRanker\TextRecordSpec $text_record_spec
+     *           The record spec for text search.
      *     @type string $model
-     *           Required. The model used for ranking documents. If no model is specified,
-     *           then semantic-ranker-default&#64;latest is used.
+     *           Required. The model used for ranking documents. The list of available
+     *           models is described in
+     *           https://docs.cloud.google.com/generative-ai-app-builder/docs/ranking#models.
+     *           Currently, only `semantic-ranker-fast\@latest` is supported.
+     *     @type int $top_n
+     *           Required. The number of documents to be processed for ranking.
      * }
      */
     public function __construct($data = NULL) {
@@ -66,86 +57,41 @@ class VertexRanker extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The query against which the records are ranked and scored.
+     * The record spec for text search.
      *
-     * Generated from protobuf field <code>string query = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return string
+     * Generated from protobuf field <code>.google.cloud.vectorsearch.v1.VertexRanker.TextRecordSpec text_record_spec = 6;</code>
+     * @return \Google\Cloud\VectorSearch\V1\VertexRanker\TextRecordSpec|null
      */
-    public function getQuery()
+    public function getTextRecordSpec()
     {
-        return $this->query;
+        return $this->readOneof(6);
+    }
+
+    public function hasTextRecordSpec()
+    {
+        return $this->hasOneof(6);
     }
 
     /**
-     * Required. The query against which the records are ranked and scored.
+     * The record spec for text search.
      *
-     * Generated from protobuf field <code>string query = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param string $var
+     * Generated from protobuf field <code>.google.cloud.vectorsearch.v1.VertexRanker.TextRecordSpec text_record_spec = 6;</code>
+     * @param \Google\Cloud\VectorSearch\V1\VertexRanker\TextRecordSpec $var
      * @return $this
      */
-    public function setQuery($var)
+    public function setTextRecordSpec($var)
     {
-        GPBUtil::checkString($var, True);
-        $this->query = $var;
+        GPBUtil::checkMessage($var, \Google\Cloud\VectorSearch\V1\VertexRanker\TextRecordSpec::class);
+        $this->writeOneof(6, $var);
 
         return $this;
     }
 
     /**
-     * Optional. The template used to generate the record's title.
-     *
-     * Generated from protobuf field <code>string title_template = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return string
-     */
-    public function getTitleTemplate()
-    {
-        return $this->title_template;
-    }
-
-    /**
-     * Optional. The template used to generate the record's title.
-     *
-     * Generated from protobuf field <code>string title_template = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setTitleTemplate($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->title_template = $var;
-
-        return $this;
-    }
-
-    /**
-     * Optional. The template used to generate the record's content.
-     *
-     * Generated from protobuf field <code>string content_template = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return string
-     */
-    public function getContentTemplate()
-    {
-        return $this->content_template;
-    }
-
-    /**
-     * Optional. The template used to generate the record's content.
-     *
-     * Generated from protobuf field <code>string content_template = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setContentTemplate($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->content_template = $var;
-
-        return $this;
-    }
-
-    /**
-     * Required. The model used for ranking documents. If no model is specified,
-     * then semantic-ranker-default&#64;latest is used.
+     * Required. The model used for ranking documents. The list of available
+     * models is described in
+     * https://docs.cloud.google.com/generative-ai-app-builder/docs/ranking#models.
+     * Currently, only `semantic-ranker-fast\@latest` is supported.
      *
      * Generated from protobuf field <code>string model = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -156,8 +102,10 @@ class VertexRanker extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The model used for ranking documents. If no model is specified,
-     * then semantic-ranker-default&#64;latest is used.
+     * Required. The model used for ranking documents. The list of available
+     * models is described in
+     * https://docs.cloud.google.com/generative-ai-app-builder/docs/ranking#models.
+     * Currently, only `semantic-ranker-fast\@latest` is supported.
      *
      * Generated from protobuf field <code>string model = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -169,6 +117,40 @@ class VertexRanker extends \Google\Protobuf\Internal\Message
         $this->model = $var;
 
         return $this;
+    }
+
+    /**
+     * Required. The number of documents to be processed for ranking.
+     *
+     * Generated from protobuf field <code>int32 top_n = 5 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @return int
+     */
+    public function getTopN()
+    {
+        return $this->top_n;
+    }
+
+    /**
+     * Required. The number of documents to be processed for ranking.
+     *
+     * Generated from protobuf field <code>int32 top_n = 5 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setTopN($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->top_n = $var;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRecordSpec()
+    {
+        return $this->whichOneof("record_spec");
     }
 
 }

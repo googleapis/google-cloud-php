@@ -30,10 +30,16 @@ use Google\Cloud\AuditManager\V1\Client\AuditManagerClient;
 use Google\Cloud\AuditManager\V1\ListAuditReportsRequest;
 
 /**
- * Lists audit reports in the selected parent scope
+ * Lists the audit reports for the organization, folder, or project that you
+ * specify as the parent scope.
  *
- * @param string $formattedParent The parent scope for which to list the reports. Please see
- *                                {@see AuditManagerClient::folderLocationName()} for help formatting this field.
+ * @param string $formattedParent Parent organization, folder, or project to list reports for,
+ *                                in one of the following formats:
+ *
+ *                                * `projects/{project}/locations/{location}`
+ *                                * `folders/{folder}/locations/{location}`
+ *                                * `organizations/{organization}/locations/{location}`
+ *                                Please see {@see AuditManagerClient::folderLocationName()} for help formatting this field.
  */
 function list_audit_reports_sample(string $formattedParent): void
 {

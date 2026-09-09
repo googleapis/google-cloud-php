@@ -30,6 +30,12 @@ class ConfigureExascaleCloudExadataInfrastructureRequest extends \Google\Protobu
      */
     protected $total_storage_size_gb = 0;
     /**
+     * Optional. Storage size needed for VM storage on Exascale in GBs.
+     *
+     * Generated from protobuf field <code>int32 total_vm_storage_size_gb = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $total_vm_storage_size_gb = 0;
+    /**
      * Optional. An optional ID to identify the request.
      *
      * Generated from protobuf field <code>string request_id = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
@@ -66,6 +72,8 @@ class ConfigureExascaleCloudExadataInfrastructureRequest extends \Google\Protobu
      *           projects/{project}/locations/{location}/cloudExadataInfrastructures/{cloud_exadata_infrastructure}.
      *     @type int $total_storage_size_gb
      *           Required. The total storage to be allocated to Exascale in GBs.
+     *     @type int $total_vm_storage_size_gb
+     *           Optional. Storage size needed for VM storage on Exascale in GBs.
      *     @type string $request_id
      *           Optional. An optional ID to identify the request.
      * }
@@ -127,6 +135,32 @@ class ConfigureExascaleCloudExadataInfrastructureRequest extends \Google\Protobu
     {
         GPBUtil::checkInt32($var);
         $this->total_storage_size_gb = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Storage size needed for VM storage on Exascale in GBs.
+     *
+     * Generated from protobuf field <code>int32 total_vm_storage_size_gb = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getTotalVmStorageSizeGb()
+    {
+        return $this->total_vm_storage_size_gb;
+    }
+
+    /**
+     * Optional. Storage size needed for VM storage on Exascale in GBs.
+     *
+     * Generated from protobuf field <code>int32 total_vm_storage_size_gb = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setTotalVmStorageSizeGb($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->total_vm_storage_size_gb = $var;
 
         return $this;
     }

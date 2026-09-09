@@ -165,8 +165,8 @@ class AbsoluteResourceTemplateTest extends TestCase
             ],
             [
                 '/buckets/*/*/*/objects/*:action',
-                '/buckets/f/o/o/objects/google.com:a-b:action',
-                ['$0' => 'f', '$1' => 'o', '$2' => 'o', '$3' => 'google.com:a-b'],
+                '/buckets/f/o/o/objects/google.com-a-b:action',
+                ['$0' => 'f', '$1' => 'o', '$2' => 'o', '$3' => 'google.com-a-b'],
             ],
             [
                 '/buckets/*/objects/**:action',
@@ -180,8 +180,8 @@ class AbsoluteResourceTemplateTest extends TestCase
             ],
             [
                 '/buckets/*',
-                '/buckets/{}!@#$%^&*()+=[]\|`~-_',
-                ['$0' => '{}!@#$%^&*()+=[]\|`~-_'],
+                '/buckets/abc~-_',
+                ['$0' => 'abc~-_'],
             ],
         ];
     }

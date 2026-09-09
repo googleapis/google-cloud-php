@@ -52,6 +52,18 @@ class UpgradeDetails extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.UpgradeDetails.StartType start_type = 6;</code>
      */
     protected $start_type = 0;
+    /**
+     * Output only. The emulated version before the upgrade.
+     *
+     * Generated from protobuf field <code>string initial_emulated_version = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $initial_emulated_version = '';
+    /**
+     * Output only. The emulated version after the upgrade.
+     *
+     * Generated from protobuf field <code>string target_emulated_version = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $target_emulated_version = '';
 
     /**
      * Constructor.
@@ -71,6 +83,10 @@ class UpgradeDetails extends \Google\Protobuf\Internal\Message
      *           The version after the upgrade.
      *     @type int $start_type
      *           The start type of the upgrade.
+     *     @type string $initial_emulated_version
+     *           Output only. The emulated version before the upgrade.
+     *     @type string $target_emulated_version
+     *           Output only. The emulated version after the upgrade.
      * }
      */
     public function __construct($data = NULL) {
@@ -250,6 +266,58 @@ class UpgradeDetails extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Container\V1\UpgradeDetails\StartType::class);
         $this->start_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The emulated version before the upgrade.
+     *
+     * Generated from protobuf field <code>string initial_emulated_version = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getInitialEmulatedVersion()
+    {
+        return $this->initial_emulated_version;
+    }
+
+    /**
+     * Output only. The emulated version before the upgrade.
+     *
+     * Generated from protobuf field <code>string initial_emulated_version = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setInitialEmulatedVersion($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->initial_emulated_version = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The emulated version after the upgrade.
+     *
+     * Generated from protobuf field <code>string target_emulated_version = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getTargetEmulatedVersion()
+    {
+        return $this->target_emulated_version;
+    }
+
+    /**
+     * Output only. The emulated version after the upgrade.
+     *
+     * Generated from protobuf field <code>string target_emulated_version = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setTargetEmulatedVersion($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->target_emulated_version = $var;
 
         return $this;
     }

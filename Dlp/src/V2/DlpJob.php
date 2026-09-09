@@ -16,9 +16,9 @@ use Google\Protobuf\RepeatedField;
 class DlpJob extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The server-assigned name.
+     * Output only. The server-assigned name.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $name = '';
     /**
@@ -28,52 +28,52 @@ class DlpJob extends \Google\Protobuf\Internal\Message
      */
     protected $type = 0;
     /**
-     * State of a job.
+     * Output only. State of a job.
      *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.DlpJob.JobState state = 3;</code>
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.DlpJob.JobState state = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $state = 0;
     /**
-     * Time when the job was created.
+     * Output only. Time when the job was created.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 6;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $create_time = null;
     /**
-     * Time when the job started.
+     * Output only. Time when the job started.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 7;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $start_time = null;
     /**
-     * Time when the job finished.
+     * Output only. Time when the job finished.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 8;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $end_time = null;
     /**
-     * Time when the job was last modified by the system.
+     * Output only. Time when the job was last modified by the system.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp last_modified = 15;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp last_modified = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $last_modified = null;
     /**
-     * If created by a job trigger, the resource name of the trigger that
-     * instantiated the job.
+     * Output only. If created by a job trigger, the resource name of the trigger
+     * that instantiated the job.
      *
-     * Generated from protobuf field <code>string job_trigger_name = 10;</code>
+     * Generated from protobuf field <code>string job_trigger_name = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $job_trigger_name = '';
     /**
-     * A stream of errors encountered running the job.
+     * Output only. A stream of errors encountered running the job.
      *
-     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Error errors = 11;</code>
+     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Error errors = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $errors;
     /**
-     * Events that should occur after the job has completed.
+     * Output only. Events that should occur after the job has completed.
      *
-     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.ActionDetails action_details = 12;</code>
+     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.ActionDetails action_details = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $action_details;
     protected $details;
@@ -85,30 +85,30 @@ class DlpJob extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The server-assigned name.
+     *           Output only. The server-assigned name.
      *     @type int $type
      *           The type of job.
      *     @type int $state
-     *           State of a job.
+     *           Output only. State of a job.
      *     @type \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails $risk_details
      *           Results from analyzing risk of a data source.
      *     @type \Google\Cloud\Dlp\V2\InspectDataSourceDetails $inspect_details
      *           Results from inspecting a data source.
      *     @type \Google\Protobuf\Timestamp $create_time
-     *           Time when the job was created.
+     *           Output only. Time when the job was created.
      *     @type \Google\Protobuf\Timestamp $start_time
-     *           Time when the job started.
+     *           Output only. Time when the job started.
      *     @type \Google\Protobuf\Timestamp $end_time
-     *           Time when the job finished.
+     *           Output only. Time when the job finished.
      *     @type \Google\Protobuf\Timestamp $last_modified
-     *           Time when the job was last modified by the system.
+     *           Output only. Time when the job was last modified by the system.
      *     @type string $job_trigger_name
-     *           If created by a job trigger, the resource name of the trigger that
-     *           instantiated the job.
+     *           Output only. If created by a job trigger, the resource name of the trigger
+     *           that instantiated the job.
      *     @type \Google\Cloud\Dlp\V2\Error[] $errors
-     *           A stream of errors encountered running the job.
+     *           Output only. A stream of errors encountered running the job.
      *     @type \Google\Cloud\Dlp\V2\ActionDetails[] $action_details
-     *           Events that should occur after the job has completed.
+     *           Output only. Events that should occur after the job has completed.
      * }
      */
     public function __construct($data = NULL) {
@@ -117,9 +117,9 @@ class DlpJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The server-assigned name.
+     * Output only. The server-assigned name.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getName()
@@ -128,9 +128,9 @@ class DlpJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The server-assigned name.
+     * Output only. The server-assigned name.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -169,9 +169,9 @@ class DlpJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * State of a job.
+     * Output only. State of a job.
      *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.DlpJob.JobState state = 3;</code>
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.DlpJob.JobState state = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
      */
     public function getState()
@@ -180,9 +180,9 @@ class DlpJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * State of a job.
+     * Output only. State of a job.
      *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.DlpJob.JobState state = 3;</code>
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.DlpJob.JobState state = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
      * @return $this
      */
@@ -257,9 +257,9 @@ class DlpJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Time when the job was created.
+     * Output only. Time when the job was created.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 6;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
@@ -278,9 +278,9 @@ class DlpJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Time when the job was created.
+     * Output only. Time when the job was created.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 6;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -293,9 +293,9 @@ class DlpJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Time when the job started.
+     * Output only. Time when the job started.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 7;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
      */
     public function getStartTime()
@@ -314,9 +314,9 @@ class DlpJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Time when the job started.
+     * Output only. Time when the job started.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 7;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -329,9 +329,9 @@ class DlpJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Time when the job finished.
+     * Output only. Time when the job finished.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 8;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
      */
     public function getEndTime()
@@ -350,9 +350,9 @@ class DlpJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Time when the job finished.
+     * Output only. Time when the job finished.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 8;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -365,9 +365,9 @@ class DlpJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Time when the job was last modified by the system.
+     * Output only. Time when the job was last modified by the system.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp last_modified = 15;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp last_modified = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
      */
     public function getLastModified()
@@ -386,9 +386,9 @@ class DlpJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Time when the job was last modified by the system.
+     * Output only. Time when the job was last modified by the system.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp last_modified = 15;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp last_modified = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -401,10 +401,10 @@ class DlpJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If created by a job trigger, the resource name of the trigger that
-     * instantiated the job.
+     * Output only. If created by a job trigger, the resource name of the trigger
+     * that instantiated the job.
      *
-     * Generated from protobuf field <code>string job_trigger_name = 10;</code>
+     * Generated from protobuf field <code>string job_trigger_name = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getJobTriggerName()
@@ -413,10 +413,10 @@ class DlpJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If created by a job trigger, the resource name of the trigger that
-     * instantiated the job.
+     * Output only. If created by a job trigger, the resource name of the trigger
+     * that instantiated the job.
      *
-     * Generated from protobuf field <code>string job_trigger_name = 10;</code>
+     * Generated from protobuf field <code>string job_trigger_name = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -429,9 +429,9 @@ class DlpJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A stream of errors encountered running the job.
+     * Output only. A stream of errors encountered running the job.
      *
-     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Error errors = 11;</code>
+     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Error errors = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return RepeatedField<\Google\Cloud\Dlp\V2\Error>
      */
     public function getErrors()
@@ -440,9 +440,9 @@ class DlpJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A stream of errors encountered running the job.
+     * Output only. A stream of errors encountered running the job.
      *
-     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Error errors = 11;</code>
+     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Error errors = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Dlp\V2\Error[] $var
      * @return $this
      */
@@ -455,9 +455,9 @@ class DlpJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Events that should occur after the job has completed.
+     * Output only. Events that should occur after the job has completed.
      *
-     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.ActionDetails action_details = 12;</code>
+     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.ActionDetails action_details = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return RepeatedField<\Google\Cloud\Dlp\V2\ActionDetails>
      */
     public function getActionDetails()
@@ -466,9 +466,9 @@ class DlpJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Events that should occur after the job has completed.
+     * Output only. Events that should occur after the job has completed.
      *
-     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.ActionDetails action_details = 12;</code>
+     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.ActionDetails action_details = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Dlp\V2\ActionDetails[] $var
      * @return $this
      */

@@ -9,15 +9,18 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * The audit scope report.
+ * Audit scope report.
  *
  * Generated from protobuf message <code>google.cloud.auditmanager.v1.AuditScopeReport</code>
  */
 class AuditScopeReport extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Identifier. The name of this Audit Report, in the format of scope given in
-     * request.
+     * Identifier. Name for the audit scope report, in one of the following
+     * formats:
+     * * `projects/{project}/locations/{location}/auditScopeReports/{audit_scope_report}`
+     * * `folders/{folder}/locations/{location}/auditScopeReports/{audit_scope_report}`
+     * * `organizations/{organization}/locations/{location}/auditScopeReports/{audit_scope_report}`
      *
      * Generated from protobuf field <code>string name = 2 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
@@ -31,10 +34,13 @@ class AuditScopeReport extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $scope_report_contents
-     *           The audit scope report content in byte format.
+     *           Audit scope report content in byte format.
      *     @type string $name
-     *           Identifier. The name of this Audit Report, in the format of scope given in
-     *           request.
+     *           Identifier. Name for the audit scope report, in one of the following
+     *           formats:
+     *           * `projects/{project}/locations/{location}/auditScopeReports/{audit_scope_report}`
+     *           * `folders/{folder}/locations/{location}/auditScopeReports/{audit_scope_report}`
+     *           * `organizations/{organization}/locations/{location}/auditScopeReports/{audit_scope_report}`
      * }
      */
     public function __construct($data = NULL) {
@@ -43,7 +49,7 @@ class AuditScopeReport extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The audit scope report content in byte format.
+     * Audit scope report content in byte format.
      *
      * Generated from protobuf field <code>bytes scope_report_contents = 1;</code>
      * @return string
@@ -59,7 +65,7 @@ class AuditScopeReport extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The audit scope report content in byte format.
+     * Audit scope report content in byte format.
      *
      * Generated from protobuf field <code>bytes scope_report_contents = 1;</code>
      * @param string $var
@@ -74,8 +80,11 @@ class AuditScopeReport extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Identifier. The name of this Audit Report, in the format of scope given in
-     * request.
+     * Identifier. Name for the audit scope report, in one of the following
+     * formats:
+     * * `projects/{project}/locations/{location}/auditScopeReports/{audit_scope_report}`
+     * * `folders/{folder}/locations/{location}/auditScopeReports/{audit_scope_report}`
+     * * `organizations/{organization}/locations/{location}/auditScopeReports/{audit_scope_report}`
      *
      * Generated from protobuf field <code>string name = 2 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
@@ -86,8 +95,11 @@ class AuditScopeReport extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Identifier. The name of this Audit Report, in the format of scope given in
-     * request.
+     * Identifier. Name for the audit scope report, in one of the following
+     * formats:
+     * * `projects/{project}/locations/{location}/auditScopeReports/{audit_scope_report}`
+     * * `folders/{folder}/locations/{location}/auditScopeReports/{audit_scope_report}`
+     * * `organizations/{organization}/locations/{location}/auditScopeReports/{audit_scope_report}`
      *
      * Generated from protobuf field <code>string name = 2 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var

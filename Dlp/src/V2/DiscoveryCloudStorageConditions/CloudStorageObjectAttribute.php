@@ -8,8 +8,8 @@ use UnexpectedValueException;
 
 /**
  * The attribute of an object. See
- * https://cloud.google.com/storage/docs/storage-classes for more information
- * on storage classes.
+ * https://docs.cloud.google.com/storage/docs/storage-classes for more
+ * information on storage classes.
  *
  * Protobuf type <code>google.privacy.dlp.v2.DiscoveryCloudStorageConditions.CloudStorageObjectAttribute</code>
  */

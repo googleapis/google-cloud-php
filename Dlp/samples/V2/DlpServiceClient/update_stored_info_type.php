@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2022 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,7 +32,7 @@ use Google\Cloud\Dlp\V2\UpdateStoredInfoTypeRequest;
  * Updates the stored infoType by creating a new version. The existing version
  * will continue to be used until the new version is ready.
  * See
- * https://cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes
+ * https://docs.cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes
  * to learn more.
  *
  * @param string $formattedName Resource name of organization and storedInfoType to be updated,

@@ -7,9 +7,6 @@ namespace Google\Cloud\Compute\V1\NetworkProfileNetworkFeatures;
 use UnexpectedValueException;
 
 /**
- * 
- * Additional supported values which may be not listed in the enum directly due to technical reasons:
- * PRIVATE_SERVICE_CONNECT
  *
  * Protobuf type <code>google.cloud.compute.v1.NetworkProfileNetworkFeatures.AddressPurposes</code>
  */
@@ -52,6 +49,9 @@ class AddressPurposes
      */
     const NAT_AUTO = 163666477;
     /**
+     * A private network IP address that can be used to configure Private
+     * Service Connect. This purpose can be specified only forGLOBAL addresses of Type INTERNAL
+     *
      * Generated from protobuf enum <code>PRIVATE_SERVICE_CONNECT = 48134724;</code>
      */
     const PRIVATE_SERVICE_CONNECT = 48134724;

@@ -26,7 +26,7 @@ class DataProfileFinding extends \Google\Protobuf\Internal\Message
     protected $quote = '';
     /**
      * The [type of
-     * content](https://cloud.google.com/sensitive-data-protection/docs/infotypes-reference)
+     * content](https://docs.cloud.google.com/sensitive-data-protection/docs/infotypes-reference)
      * that might have been found.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InfoType infotype = 2;</code>
@@ -96,7 +96,7 @@ class DataProfileFinding extends \Google\Protobuf\Internal\Message
      *           4096 bytes in length, the quote may be omitted.
      *     @type \Google\Cloud\Dlp\V2\InfoType $infotype
      *           The [type of
-     *           content](https://cloud.google.com/sensitive-data-protection/docs/infotypes-reference)
+     *           content](https://docs.cloud.google.com/sensitive-data-protection/docs/infotypes-reference)
      *           that might have been found.
      *     @type \Google\Cloud\Dlp\V2\QuoteInfo $quote_info
      *           Contains data parsed from quotes. Currently supported infoTypes: DATE,
@@ -156,7 +156,7 @@ class DataProfileFinding extends \Google\Protobuf\Internal\Message
 
     /**
      * The [type of
-     * content](https://cloud.google.com/sensitive-data-protection/docs/infotypes-reference)
+     * content](https://docs.cloud.google.com/sensitive-data-protection/docs/infotypes-reference)
      * that might have been found.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InfoType infotype = 2;</code>
@@ -179,7 +179,7 @@ class DataProfileFinding extends \Google\Protobuf\Internal\Message
 
     /**
      * The [type of
-     * content](https://cloud.google.com/sensitive-data-protection/docs/infotypes-reference)
+     * content](https://docs.cloud.google.com/sensitive-data-protection/docs/infotypes-reference)
      * that might have been found.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InfoType infotype = 2;</code>

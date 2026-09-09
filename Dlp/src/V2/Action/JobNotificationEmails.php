@@ -11,7 +11,7 @@ use Google\Protobuf\RepeatedField;
 /**
  * Sends an email when the job completes. The email goes to IAM project owners
  * and technical [Essential
- * Contacts](https://cloud.google.com/resource-manager/docs/managing-notification-contacts).
+ * Contacts](https://docs.cloud.google.com/resource-manager/docs/managing-notification-contacts).
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.Action.JobNotificationEmails</code>
  */

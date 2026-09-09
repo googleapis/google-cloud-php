@@ -8,7 +8,7 @@
         "Compliance": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ComplianceGapicClient",
+                    "libraryClient": "ComplianceClient",
                     "rpcs": {
                         "GetEnum": {
                             "methods": [
@@ -67,7 +67,7 @@
         "Echo": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "EchoGapicClient",
+                    "libraryClient": "EchoClient",
                     "rpcs": {
                         "Block": {
                             "methods": [
@@ -132,7 +132,7 @@
         "Identity": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "IdentityGapicClient",
+                    "libraryClient": "IdentityClient",
                     "rpcs": {
                         "CreateUser": {
                             "methods": [
@@ -166,7 +166,7 @@
         "Messaging": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "MessagingGapicClient",
+                    "libraryClient": "MessagingClient",
                     "rpcs": {
                         "Connect": {
                             "methods": [
@@ -242,10 +242,24 @@
                 }
             }
         },
+        "ResumableUploadService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ResumableUploadServiceClient",
+                    "rpcs": {
+                        "UploadMedia": {
+                            "methods": [
+                                "uploadMedia"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "SequenceService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "SequenceServiceGapicClient",
+                    "libraryClient": "SequenceServiceClient",
                     "rpcs": {
                         "AttemptSequence": {
                             "methods": [
@@ -284,7 +298,7 @@
         "Testing": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "TestingGapicClient",
+                    "libraryClient": "TestingClient",
                     "rpcs": {
                         "CreateSession": {
                             "methods": [

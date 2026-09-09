@@ -3,7 +3,7 @@
 # default to "emulators", which is the latest available version
 EMULATOR_VERSION=emulators
 if [ "$#" -eq 2 ]; then
-    # use the supplied emulator version (e.g. "384.0.1-emulators")
+    # use the supplied emulator version (e.g. "581.0.0-emulators")
     EMULATOR_VERSION=$2
 elif [ "$#" -ne 1 ]; then
     echo "usage: start-emulator.sh PRODUCT_GROUP [EMULATOR_VERSION]"

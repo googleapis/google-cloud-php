@@ -1,4 +1,0 @@
-deep-copy-regex:
-    - source: /google/cloud/bigquery/migration/(v2)/.*-php/(.*)
-      dest: /owl-bot-staging/BigQueryMigration/$1/$2
-api-name: BigQueryMigration

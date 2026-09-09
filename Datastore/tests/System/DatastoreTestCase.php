@@ -73,13 +73,29 @@ class DatastoreTestCase extends TestCase
         }
 
         $backoff = new ExponentialBackoff(8);
-        $transaction = self::$restClient->transaction();
 
-        self::$localDeletionQueue->process(function ($items) use ($backoff, $transaction) {
-            $backoff->execute(function () use ($items, $transaction) {
-                $transaction->deleteBatch($items);
-            });
+        self::$localDeletionQueue->process(function ($items) use ($backoff) {
+            $keysByDb = [];
+            foreach ($items as $key) {
+                $dbId = '';
+                if ($key instanceof \Google\Cloud\Datastore\Key) {
+                    $keyObj = $key->keyObject();
+                    if (isset($keyObj['partitionId']['databaseId'])) {
+                        $dbId = $keyObj['partitionId']['databaseId'];
+                    }
+                }
+                $keysByDb[$dbId][] = $key;
+            }
+
+            foreach ($keysByDb as $dbId => $dbItems) {
+                foreach (array_chunk($dbItems, 500) as $chunk) {
+                    $backoff->execute(function () use ($chunk, $dbId) {
+                        self::$restClient->deleteBatch($chunk, ['databaseId' => $dbId]);
+                    });
+                }
+            }
         });
+        self::$localDeletionQueue = new DeletionQueue(true);
     }
 
     public function defaultDbClientProvider()

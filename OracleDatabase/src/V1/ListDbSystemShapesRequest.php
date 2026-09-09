@@ -37,9 +37,11 @@ class ListDbSystemShapesRequest extends \Google\Protobuf\Internal\Message
      */
     protected $page_token = '';
     /**
-     * Optional. An expression for filtering the results of the request. Only the
-     * gcp_oracle_zone_id field is supported in this format:
-     * `gcp_oracle_zone_id="{gcp_oracle_zone_id}"`.
+     * Optional. An expression for filtering the results of the request. The
+     * `gcp_oracle_zone_id`, `shape_family`, and `database_edition` fields
+     * are supported in the following format:
+     * `gcp_oracle_zone_id="{gcp_oracle_zone_id}" AND
+     * shape_family="{shape_family}" AND database_edition="{database_edition}"`.
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -76,9 +78,11 @@ class ListDbSystemShapesRequest extends \Google\Protobuf\Internal\Message
      *     @type string $page_token
      *           Optional. A token identifying a page of results the server should return.
      *     @type string $filter
-     *           Optional. An expression for filtering the results of the request. Only the
-     *           gcp_oracle_zone_id field is supported in this format:
-     *           `gcp_oracle_zone_id="{gcp_oracle_zone_id}"`.
+     *           Optional. An expression for filtering the results of the request. The
+     *           `gcp_oracle_zone_id`, `shape_family`, and `database_edition` fields
+     *           are supported in the following format:
+     *           `gcp_oracle_zone_id="{gcp_oracle_zone_id}" AND
+     *           shape_family="{shape_family}" AND database_edition="{database_edition}"`.
      * }
      */
     public function __construct($data = NULL) {
@@ -171,9 +175,11 @@ class ListDbSystemShapesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. An expression for filtering the results of the request. Only the
-     * gcp_oracle_zone_id field is supported in this format:
-     * `gcp_oracle_zone_id="{gcp_oracle_zone_id}"`.
+     * Optional. An expression for filtering the results of the request. The
+     * `gcp_oracle_zone_id`, `shape_family`, and `database_edition` fields
+     * are supported in the following format:
+     * `gcp_oracle_zone_id="{gcp_oracle_zone_id}" AND
+     * shape_family="{shape_family}" AND database_edition="{database_edition}"`.
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -184,9 +190,11 @@ class ListDbSystemShapesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. An expression for filtering the results of the request. Only the
-     * gcp_oracle_zone_id field is supported in this format:
-     * `gcp_oracle_zone_id="{gcp_oracle_zone_id}"`.
+     * Optional. An expression for filtering the results of the request. The
+     * `gcp_oracle_zone_id`, `shape_family`, and `database_edition` fields
+     * are supported in the following format:
+     * `gcp_oracle_zone_id="{gcp_oracle_zone_id}" AND
+     * shape_family="{shape_family}" AND database_edition="{database_edition}"`.
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

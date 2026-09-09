@@ -148,6 +148,7 @@ class SearchSpacesRequest extends \Google\Protobuf\Internal\Message
      * When `useAdminAccess` is set to `false`:
      * - `create_time DESC`
      * - `relevance DESC`
+     *    [Developer Preview](https://developers.google.com/workspace/preview).
      *
      * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -276,6 +277,7 @@ class SearchSpacesRequest extends \Google\Protobuf\Internal\Message
      *           When `useAdminAccess` is set to `false`:
      *           - `create_time DESC`
      *           - `relevance DESC`
+     *              [Developer Preview](https://developers.google.com/workspace/preview).
      * }
      */
     public function __construct($data = NULL) {
@@ -581,6 +583,7 @@ class SearchSpacesRequest extends \Google\Protobuf\Internal\Message
      * When `useAdminAccess` is set to `false`:
      * - `create_time DESC`
      * - `relevance DESC`
+     *    [Developer Preview](https://developers.google.com/workspace/preview).
      *
      * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -614,6 +617,7 @@ class SearchSpacesRequest extends \Google\Protobuf\Internal\Message
      * When `useAdminAccess` is set to `false`:
      * - `create_time DESC`
      * - `relevance DESC`
+     *    [Developer Preview](https://developers.google.com/workspace/preview).
      *
      * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

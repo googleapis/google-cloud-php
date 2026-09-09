@@ -1,4 +1,4 @@
-# Copyright 2022 Google LLC
+# Copyright 2026 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -61,12 +61,4 @@ for proto in protos:
 # move metadata to more specific directories (owlbot isnt smart enough to do this)
 s.move("metadata/Google/Iam/V1", "metadata/Iam/V1")
 s.move("metadata/Google/Logging/Type", "metadata/Logging/Type")
-
-s.replace(
-    "src/**/*.php",
-    r"^// Adding a class alias for backwards compatibility with the previous class name.$"
-    + "\n"
-    + r"^class_alias\(.*\);$"
-    + "\n",
-    '')
 

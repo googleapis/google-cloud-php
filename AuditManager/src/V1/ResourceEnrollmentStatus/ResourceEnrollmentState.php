@@ -7,32 +7,32 @@ namespace Google\Cloud\AuditManager\V1\ResourceEnrollmentStatus;
 use UnexpectedValueException;
 
 /**
- * The different enrollment states of a resource.
+ * Different enrollment states of the resource and its parent.
  *
  * Protobuf type <code>google.cloud.auditmanager.v1.ResourceEnrollmentStatus.ResourceEnrollmentState</code>
  */
 class ResourceEnrollmentState
 {
     /**
-     * Unspecified. Invalid state.
+     * Default value. This value is unused.
      *
      * Generated from protobuf enum <code>RESOURCE_ENROLLMENT_STATE_UNSPECIFIED = 0;</code>
      */
     const RESOURCE_ENROLLMENT_STATE_UNSPECIFIED = 0;
     /**
-     * Not enrolled.
+     * The resource isn't enrolled.
      *
      * Generated from protobuf enum <code>NOT_ENROLLED = 1;</code>
      */
     const NOT_ENROLLED = 1;
     /**
-     * Resource is not enrolled but the parent is enrolled.
+     * The resource isn't enrolled but the parent is enrolled.
      *
      * Generated from protobuf enum <code>INHERITED = 2;</code>
      */
     const INHERITED = 2;
     /**
-     * Enrolled.
+     * The resource is enrolled.
      *
      * Generated from protobuf enum <code>ENROLLED = 3;</code>
      */

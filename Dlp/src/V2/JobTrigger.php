@@ -11,7 +11,7 @@ use Google\Protobuf\RepeatedField;
 /**
  * Contains a configuration to make API calls on a repeating basis.
  * See
- * https://cloud.google.com/sensitive-data-protection/docs/concepts-job-triggers
+ * https://docs.cloud.google.com/sensitive-data-protection/docs/concepts-job-triggers
  * to learn more.
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.JobTrigger</code>
@@ -19,11 +19,11 @@ use Google\Protobuf\RepeatedField;
 class JobTrigger extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Unique resource name for the triggeredJob, assigned by the service when the
-     * triggeredJob is created, for example
+     * Output only. Unique resource name for the triggeredJob, assigned by the
+     * service when the triggeredJob is created, for example
      * `projects/dlp-test-project/jobTriggers/53234423`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $name = '';
     /**
@@ -88,8 +88,8 @@ class JobTrigger extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Unique resource name for the triggeredJob, assigned by the service when the
-     *           triggeredJob is created, for example
+     *           Output only. Unique resource name for the triggeredJob, assigned by the
+     *           service when the triggeredJob is created, for example
      *           `projects/dlp-test-project/jobTriggers/53234423`.
      *     @type string $display_name
      *           Display name (max 100 chars)
@@ -122,11 +122,11 @@ class JobTrigger extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Unique resource name for the triggeredJob, assigned by the service when the
-     * triggeredJob is created, for example
+     * Output only. Unique resource name for the triggeredJob, assigned by the
+     * service when the triggeredJob is created, for example
      * `projects/dlp-test-project/jobTriggers/53234423`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getName()
@@ -135,11 +135,11 @@ class JobTrigger extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Unique resource name for the triggeredJob, assigned by the service when the
-     * triggeredJob is created, for example
+     * Output only. Unique resource name for the triggeredJob, assigned by the
+     * service when the triggeredJob is created, for example
      * `projects/dlp-test-project/jobTriggers/53234423`.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */

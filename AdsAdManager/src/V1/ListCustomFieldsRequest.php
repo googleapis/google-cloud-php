@@ -44,18 +44,16 @@ class ListCustomFieldsRequest extends \Google\Protobuf\Internal\Message
      * Optional. Expression to filter the response.
      *  See syntax details at
      *  https://developers.google.com/ad-manager/api/beta/filters
-     * <b>Filterable fields:</b>
-     * <ul style="list-style-type:none">
-     *   <li><code>dataType</code></li>
-     *   <li><code>description</code></li>
-     *   <li><code>displayName</code></li>
-     *   <li><code>entityType</code></li>
-     *   <li><code>name</code></li>
-     *   <li><code>options.customFieldOptionId</code></li>
-     *   <li><code>options.displayName</code></li>
-     *   <li><code>status</code></li>
-     *   <li><code>visibility</code></li>
-     * </ul>
+     * **Filterable fields:**
+     * * `dataType`
+     * * `description`
+     * * `displayName`
+     * * `entityType`
+     * * `name`
+     * * `options.customFieldOptionId`
+     * * `options.displayName`
+     * * `status`
+     * * `visibility`
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -113,18 +111,16 @@ class ListCustomFieldsRequest extends \Google\Protobuf\Internal\Message
      *           Optional. Expression to filter the response.
      *            See syntax details at
      *            https://developers.google.com/ad-manager/api/beta/filters
-     *           <b>Filterable fields:</b>
-     *           <ul style="list-style-type:none">
-     *             <li><code>dataType</code></li>
-     *             <li><code>description</code></li>
-     *             <li><code>displayName</code></li>
-     *             <li><code>entityType</code></li>
-     *             <li><code>name</code></li>
-     *             <li><code>options.customFieldOptionId</code></li>
-     *             <li><code>options.displayName</code></li>
-     *             <li><code>status</code></li>
-     *             <li><code>visibility</code></li>
-     *           </ul>
+     *           **Filterable fields:**
+     *           * `dataType`
+     *           * `description`
+     *           * `displayName`
+     *           * `entityType`
+     *           * `name`
+     *           * `options.customFieldOptionId`
+     *           * `options.displayName`
+     *           * `status`
+     *           * `visibility`
      *     @type string $order_by
      *           Optional. Expression to specify sorting order.
      *           See syntax details at
@@ -234,18 +230,16 @@ class ListCustomFieldsRequest extends \Google\Protobuf\Internal\Message
      * Optional. Expression to filter the response.
      *  See syntax details at
      *  https://developers.google.com/ad-manager/api/beta/filters
-     * <b>Filterable fields:</b>
-     * <ul style="list-style-type:none">
-     *   <li><code>dataType</code></li>
-     *   <li><code>description</code></li>
-     *   <li><code>displayName</code></li>
-     *   <li><code>entityType</code></li>
-     *   <li><code>name</code></li>
-     *   <li><code>options.customFieldOptionId</code></li>
-     *   <li><code>options.displayName</code></li>
-     *   <li><code>status</code></li>
-     *   <li><code>visibility</code></li>
-     * </ul>
+     * **Filterable fields:**
+     * * `dataType`
+     * * `description`
+     * * `displayName`
+     * * `entityType`
+     * * `name`
+     * * `options.customFieldOptionId`
+     * * `options.displayName`
+     * * `status`
+     * * `visibility`
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -259,18 +253,16 @@ class ListCustomFieldsRequest extends \Google\Protobuf\Internal\Message
      * Optional. Expression to filter the response.
      *  See syntax details at
      *  https://developers.google.com/ad-manager/api/beta/filters
-     * <b>Filterable fields:</b>
-     * <ul style="list-style-type:none">
-     *   <li><code>dataType</code></li>
-     *   <li><code>description</code></li>
-     *   <li><code>displayName</code></li>
-     *   <li><code>entityType</code></li>
-     *   <li><code>name</code></li>
-     *   <li><code>options.customFieldOptionId</code></li>
-     *   <li><code>options.displayName</code></li>
-     *   <li><code>status</code></li>
-     *   <li><code>visibility</code></li>
-     * </ul>
+     * **Filterable fields:**
+     * * `dataType`
+     * * `description`
+     * * `displayName`
+     * * `entityType`
+     * * `name`
+     * * `options.customFieldOptionId`
+     * * `options.displayName`
+     * * `status`
+     * * `visibility`
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

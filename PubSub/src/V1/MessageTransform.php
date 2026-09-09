@@ -41,6 +41,8 @@ class MessageTransform extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\PubSub\V1\JavaScriptUDF $javascript_udf
      *           Optional. JavaScript User Defined Function. If multiple JavaScriptUDF's
      *           are specified on a resource, each must have a unique `function_name`.
+     *     @type \Google\Cloud\PubSub\V1\Compression $compression
+     *           Optional. Compression/Decompression.
      *     @type \Google\Cloud\PubSub\V1\AIInference $ai_inference
      *           Optional. AI Inference. Specifies the Vertex AI endpoint that inference
      *           requests built from the Pub/Sub message data and provided parameters will
@@ -87,6 +89,37 @@ class MessageTransform extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\PubSub\V1\JavaScriptUDF::class);
         $this->writeOneof(2, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. Compression/Decompression.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.Compression compression = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\PubSub\V1\Compression|null
+     */
+    public function getCompression()
+    {
+        return $this->readOneof(7);
+    }
+
+    public function hasCompression()
+    {
+        return $this->hasOneof(7);
+    }
+
+    /**
+     * Optional. Compression/Decompression.
+     *
+     * Generated from protobuf field <code>.google.pubsub.v1.Compression compression = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\PubSub\V1\Compression $var
+     * @return $this
+     */
+    public function setCompression($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\PubSub\V1\Compression::class);
+        $this->writeOneof(7, $var);
 
         return $this;
     }

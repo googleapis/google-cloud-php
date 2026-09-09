@@ -323,6 +323,13 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.TaintConfig taint_config = 51;</code>
      */
     protected $taint_config = null;
+    /**
+     * Optional. Specifies the maintenance policy for the node pool, including
+     * maintenance exclusion options.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodePool.NodePoolMaintenancePolicy maintenance_policy = 52 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $maintenance_policy = null;
 
     /**
      * Constructor.
@@ -474,6 +481,9 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
      *           default behavior, i.e. according to the chosen autoscaling profile.
      *     @type \Google\Cloud\Container\V1\TaintConfig $taint_config
      *           The taint configuration for the node pool.
+     *     @type \Google\Cloud\Container\V1\NodePool\NodePoolMaintenancePolicy $maintenance_policy
+     *           Optional. Specifies the maintenance policy for the node pool, including
+     *           maintenance exclusion options.
      * }
      */
     public function __construct($data = NULL) {
@@ -1909,6 +1919,44 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\TaintConfig::class);
         $this->taint_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies the maintenance policy for the node pool, including
+     * maintenance exclusion options.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodePool.NodePoolMaintenancePolicy maintenance_policy = 52 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Container\V1\NodePool\NodePoolMaintenancePolicy|null
+     */
+    public function getMaintenancePolicy()
+    {
+        return $this->maintenance_policy;
+    }
+
+    public function hasMaintenancePolicy()
+    {
+        return isset($this->maintenance_policy);
+    }
+
+    public function clearMaintenancePolicy()
+    {
+        unset($this->maintenance_policy);
+    }
+
+    /**
+     * Optional. Specifies the maintenance policy for the node pool, including
+     * maintenance exclusion options.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodePool.NodePoolMaintenancePolicy maintenance_policy = 52 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Container\V1\NodePool\NodePoolMaintenancePolicy $var
+     * @return $this
+     */
+    public function setMaintenancePolicy($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\NodePool\NodePoolMaintenancePolicy::class);
+        $this->maintenance_policy = $var;
 
         return $this;
     }

@@ -57,6 +57,12 @@ class ClusterUpgradeInfo extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string end_of_extended_support_timestamp = 6;</code>
      */
     protected $end_of_extended_support_timestamp = null;
+    /**
+     * Output only. The cluster's rollback-safe upgrade status.
+     *
+     * Generated from protobuf field <code>.google.container.v1.RollbackSafeUpgradeStatus rollback_safe_upgrade_status = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $rollback_safe_upgrade_status = null;
 
     /**
      * Constructor.
@@ -78,6 +84,8 @@ class ClusterUpgradeInfo extends \Google\Protobuf\Internal\Message
      *           The cluster's current minor version's end of standard support timestamp.
      *     @type string $end_of_extended_support_timestamp
      *           The cluster's current minor version's end of extended support timestamp.
+     *     @type \Google\Cloud\Container\V1\RollbackSafeUpgradeStatus $rollback_safe_upgrade_status
+     *           Output only. The cluster's rollback-safe upgrade status.
      * }
      */
     public function __construct($data = NULL) {
@@ -303,6 +311,42 @@ class ClusterUpgradeInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->end_of_extended_support_timestamp = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The cluster's rollback-safe upgrade status.
+     *
+     * Generated from protobuf field <code>.google.container.v1.RollbackSafeUpgradeStatus rollback_safe_upgrade_status = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Container\V1\RollbackSafeUpgradeStatus|null
+     */
+    public function getRollbackSafeUpgradeStatus()
+    {
+        return $this->rollback_safe_upgrade_status;
+    }
+
+    public function hasRollbackSafeUpgradeStatus()
+    {
+        return isset($this->rollback_safe_upgrade_status);
+    }
+
+    public function clearRollbackSafeUpgradeStatus()
+    {
+        unset($this->rollback_safe_upgrade_status);
+    }
+
+    /**
+     * Output only. The cluster's rollback-safe upgrade status.
+     *
+     * Generated from protobuf field <code>.google.container.v1.RollbackSafeUpgradeStatus rollback_safe_upgrade_status = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Container\V1\RollbackSafeUpgradeStatus $var
+     * @return $this
+     */
+    public function setRollbackSafeUpgradeStatus($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\RollbackSafeUpgradeStatus::class);
+        $this->rollback_safe_upgrade_status = $var;
 
         return $this;
     }

@@ -193,6 +193,7 @@ return [
                 'folderLocationStandard' => 'folders/{folder}/locations/{location}/standards/{standard}',
                 'location' => 'projects/{project}/locations/{location}',
                 'organizationLocation' => 'organizations/{organization}/locations/{location}',
+                'organizationLocationAuditReport' => 'organizations/{organization}/locations/{location}/auditReports/{audit_report}',
                 'organizationLocationResourceEnrollmentStatus' => 'organizations/{organization}/locations/{location}/resourceEnrollmentStatuses/{resource_enrollment_status}',
                 'organizationLocationStandard' => 'organizations/{organization}/locations/{location}/standards/{standard}',
                 'projectLocationAuditReport' => 'projects/{project}/locations/{location}/auditReports/{audit_report}',

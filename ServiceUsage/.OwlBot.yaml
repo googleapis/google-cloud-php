@@ -1,4 +1,0 @@
-deep-copy-regex:
-    - source: /google/api/serviceusage/(v1)/.*-php/(.*)
-      dest: /owl-bot-staging/ServiceUsage/$1/$2
-api-name: ServiceUsage

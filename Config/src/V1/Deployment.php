@@ -103,8 +103,8 @@ class Deployment extends \Google\Protobuf\Internal\Message
      */
     protected $error_logs = '';
     /**
-     * Optional. User-defined location of Cloud Build logs and artifacts in Google
-     * Cloud Storage. Format: `gs://{bucket}/{folder}`
+     * User-defined location of Cloud Build logs and artifacts in Google Cloud
+     * Storage. Format: `gs://{bucket}/{folder}`
      * A default bucket will be bootstrapped if the field is not set or empty.
      * Default bucket format: `gs://<project number>-<region>-blueprint-config`
      * Constraints:
@@ -112,7 +112,7 @@ class Deployment extends \Google\Protobuf\Internal\Message
      * - The path cannot be within the path of `gcs_source`
      * - The field cannot be updated, including changing its presence
      *
-     * Generated from protobuf field <code>optional string artifacts_gcs_bucket = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string artifacts_gcs_bucket = 15;</code>
      */
     protected $artifacts_gcs_bucket = null;
     /**
@@ -135,13 +135,13 @@ class Deployment extends \Google\Protobuf\Internal\Message
      */
     protected $import_existing_resources = null;
     /**
-     * Optional. The user-specified Cloud Build worker pool resource in which the
-     * Cloud Build job will execute. Format:
+     * The user-specified Cloud Build worker pool resource in which the Cloud
+     * Build job will execute. Format:
      * `projects/{project}/locations/{location}/workerPools/{workerPoolId}`.
      * If this field is unspecified, the default Cloud Build worker pool will be
      * used.
      *
-     * Generated from protobuf field <code>optional string worker_pool = 19 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>optional string worker_pool = 19 [(.google.api.resource_reference) = {</code>
      */
     protected $worker_pool = null;
     /**
@@ -151,10 +151,10 @@ class Deployment extends \Google\Protobuf\Internal\Message
      */
     protected $lock_state = 0;
     /**
-     * Optional. The user-specified Terraform version constraint.
+     * The user-specified Terraform version constraint.
      * Example: "=1.3.10".
      *
-     * Generated from protobuf field <code>optional string tf_version_constraint = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string tf_version_constraint = 21;</code>
      */
     protected $tf_version_constraint = null;
     /**
@@ -233,8 +233,8 @@ class Deployment extends \Google\Protobuf\Internal\Message
      *           Output only. Location of Terraform error logs in Google Cloud Storage.
      *           Format: `gs://{bucket}/{object}`.
      *     @type string $artifacts_gcs_bucket
-     *           Optional. User-defined location of Cloud Build logs and artifacts in Google
-     *           Cloud Storage. Format: `gs://{bucket}/{folder}`
+     *           User-defined location of Cloud Build logs and artifacts in Google Cloud
+     *           Storage. Format: `gs://{bucket}/{folder}`
      *           A default bucket will be bootstrapped if the field is not set or empty.
      *           Default bucket format: `gs://<project number>-<region>-blueprint-config`
      *           Constraints:
@@ -253,15 +253,15 @@ class Deployment extends \Google\Protobuf\Internal\Message
      *           supported resource types) and continue actuation.
      *           Not all resource types are supported, refer to documentation.
      *     @type string $worker_pool
-     *           Optional. The user-specified Cloud Build worker pool resource in which the
-     *           Cloud Build job will execute. Format:
+     *           The user-specified Cloud Build worker pool resource in which the Cloud
+     *           Build job will execute. Format:
      *           `projects/{project}/locations/{location}/workerPools/{workerPoolId}`.
      *           If this field is unspecified, the default Cloud Build worker pool will be
      *           used.
      *     @type int $lock_state
      *           Output only. Current lock state of the deployment.
      *     @type string $tf_version_constraint
-     *           Optional. The user-specified Terraform version constraint.
+     *           The user-specified Terraform version constraint.
      *           Example: "=1.3.10".
      *     @type string $tf_version
      *           Output only. The current Terraform version set on the deployment.
@@ -702,8 +702,8 @@ class Deployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. User-defined location of Cloud Build logs and artifacts in Google
-     * Cloud Storage. Format: `gs://{bucket}/{folder}`
+     * User-defined location of Cloud Build logs and artifacts in Google Cloud
+     * Storage. Format: `gs://{bucket}/{folder}`
      * A default bucket will be bootstrapped if the field is not set or empty.
      * Default bucket format: `gs://<project number>-<region>-blueprint-config`
      * Constraints:
@@ -711,7 +711,7 @@ class Deployment extends \Google\Protobuf\Internal\Message
      * - The path cannot be within the path of `gcs_source`
      * - The field cannot be updated, including changing its presence
      *
-     * Generated from protobuf field <code>optional string artifacts_gcs_bucket = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string artifacts_gcs_bucket = 15;</code>
      * @return string
      */
     public function getArtifactsGcsBucket()
@@ -730,8 +730,8 @@ class Deployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. User-defined location of Cloud Build logs and artifacts in Google
-     * Cloud Storage. Format: `gs://{bucket}/{folder}`
+     * User-defined location of Cloud Build logs and artifacts in Google Cloud
+     * Storage. Format: `gs://{bucket}/{folder}`
      * A default bucket will be bootstrapped if the field is not set or empty.
      * Default bucket format: `gs://<project number>-<region>-blueprint-config`
      * Constraints:
@@ -739,7 +739,7 @@ class Deployment extends \Google\Protobuf\Internal\Message
      * - The path cannot be within the path of `gcs_source`
      * - The field cannot be updated, including changing its presence
      *
-     * Generated from protobuf field <code>optional string artifacts_gcs_bucket = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string artifacts_gcs_bucket = 15;</code>
      * @param string $var
      * @return $this
      */
@@ -838,13 +838,13 @@ class Deployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The user-specified Cloud Build worker pool resource in which the
-     * Cloud Build job will execute. Format:
+     * The user-specified Cloud Build worker pool resource in which the Cloud
+     * Build job will execute. Format:
      * `projects/{project}/locations/{location}/workerPools/{workerPoolId}`.
      * If this field is unspecified, the default Cloud Build worker pool will be
      * used.
      *
-     * Generated from protobuf field <code>optional string worker_pool = 19 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>optional string worker_pool = 19 [(.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getWorkerPool()
@@ -863,13 +863,13 @@ class Deployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The user-specified Cloud Build worker pool resource in which the
-     * Cloud Build job will execute. Format:
+     * The user-specified Cloud Build worker pool resource in which the Cloud
+     * Build job will execute. Format:
      * `projects/{project}/locations/{location}/workerPools/{workerPoolId}`.
      * If this field is unspecified, the default Cloud Build worker pool will be
      * used.
      *
-     * Generated from protobuf field <code>optional string worker_pool = 19 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>optional string worker_pool = 19 [(.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -908,10 +908,10 @@ class Deployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The user-specified Terraform version constraint.
+     * The user-specified Terraform version constraint.
      * Example: "=1.3.10".
      *
-     * Generated from protobuf field <code>optional string tf_version_constraint = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string tf_version_constraint = 21;</code>
      * @return string
      */
     public function getTfVersionConstraint()
@@ -930,10 +930,10 @@ class Deployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The user-specified Terraform version constraint.
+     * The user-specified Terraform version constraint.
      * Example: "=1.3.10".
      *
-     * Generated from protobuf field <code>optional string tf_version_constraint = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string tf_version_constraint = 21;</code>
      * @param string $var
      * @return $this
      */

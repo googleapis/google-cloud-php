@@ -205,6 +205,69 @@ class GapicClientTraitTest extends TestCase
         $this->assertTrue($prependedCalled, 'Prepended middleware should have been called');
     }
 
+    public function testMiddlewareOptionsPreservedByCallOptionsOnNewSurface()
+    {
+        $middlewareOptions = ["metricsContext" => new \stdClass()];
+        $callOptions = new \Google\ApiCore\Options\CallOptions([
+            "middlewareOptions" => $middlewareOptions,
+        ]);
+        $this->assertEquals($middlewareOptions, $callOptions->toArray()["middlewareOptions"] ?? null);
+
+        $unaryDescriptors = [
+            "callType" => Call::UNARY_CALL,
+            "responseType" => "decodeType"
+        ];
+        $request = new MockRequestBody([]);
+        $transport = $this->prophesize(TransportInterface::class);
+
+        $transport->startUnaryCall(
+            Argument::type(Call::class),
+            Argument::that(function ($options) use ($middlewareOptions) {
+                return isset($options["middlewareOptions"])
+                    && $options["middlewareOptions"] === $middlewareOptions;
+            })
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($this->prophesize(PromiseInterface::class)->reveal());
+
+        $credentialsWrapper = CredentialsWrapper::build([
+            "keyFile" => __DIR__ . "/testdata/creds/json-key-file.json"
+        ]);
+
+        $client = new class extends StubGapicClient {
+            protected function isNewClientSurface(): bool {
+                return true;
+            }
+        };
+
+        $client->set("agentHeader", []);
+        $client->set(
+            "retrySettings",
+            ["method" => $this->prophesize(RetrySettings::class)->reveal()]
+        );
+        $client->set("transport", $transport->reveal());
+        $client->set("credentialsWrapper", $credentialsWrapper);
+        $client->set("descriptors", ["method" => $unaryDescriptors]);
+
+        $middlewareCalled = false;
+        $client->addMiddleware(function (callable $handler) use (&$middlewareCalled, $middlewareOptions) {
+            return function (Call $call, array $options) use ($handler, &$middlewareCalled, $middlewareOptions) {
+                $middlewareCalled = true;
+                $this->assertArrayHasKey("middlewareOptions", $options);
+                $this->assertEquals($middlewareOptions, $options["middlewareOptions"]);
+                return $handler($call, $options);
+            };
+        });
+
+        $client->startApiCall(
+            "method",
+            $request,
+            ["middlewareOptions" => $middlewareOptions]
+        );
+
+        $this->assertTrue($middlewareCalled, "Middleware should have received middlewareOptions on new surface");
+    }
+
     public function testVersionedHeadersOverwriteBehavior()
     {
         $unaryDescriptors = [
@@ -701,6 +764,15 @@ class GapicClientTraitTest extends TestCase
                 [
                     'Method' => [
                         'callType' => Call::BIDI_STREAMING_CALL,
+                        'responseType' => 'Google\Longrunning\Operation'
+                    ]
+                ],
+                'not supported for async execution'
+            ],
+            [
+                [
+                    'Method' => [
+                        'callType' => Call::RESUMABLE_UPLOAD_CALL,
                         'responseType' => 'Google\Longrunning\Operation'
                     ]
                 ],
@@ -1683,6 +1755,7 @@ class GapicClientTraitTest extends TestCase
                 'timeoutMillis' => null, // adds null timeoutMillis,
                 'transportOptions' => [],
                 'metadataCallback' => null,
+                'middlewareOptions' => null,
             ]
         )
 
@@ -2100,4 +2173,5 @@ class GapicV2SurfaceClient
     {
         return $this->agentHeader;
     }
+
 }

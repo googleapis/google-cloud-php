@@ -1,4 +1,4 @@
-# Copyright 2022 Google LLC
+# Copyright 2026 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,7 +16,6 @@
 
 import logging
 from pathlib import Path
-from pathlib import PosixPath
 import subprocess
 
 import synthtool as s
@@ -67,17 +66,4 @@ s.replace(
     "src/**/*.php",
     "\$arr->count\(\)",
     "count($arr)")
-
-# remove class_alias code (but keep the existing class aliases)
-sources = list(Path(".").glob("src/**/*.php"))
-sources.remove(PosixPath("src/Audit/ServiceAccountDelegationInfo/FirstPartyPrincipal.php"))
-sources.remove(PosixPath("src/Audit/ServiceAccountDelegationInfo/ThirdPartyPrincipal.php"))
-sources.remove(PosixPath("src/DevTools/Source/V1/AliasContext/Kind.php"))
-s.replace(
-    sources,
-    r"^// Adding a class alias for backwards compatibility with the previous class name.$"
-    + "\n"
-    + r"^class_alias\(.*\);$"
-    + "\n",
-    '')
 

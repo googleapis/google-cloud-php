@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2022 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -98,22 +98,16 @@ class OperationsGapicClient
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'apiEndpoint' =>
-                self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
-            'clientConfig' =>
-                __DIR__ . '/../resources/operations_client_config.json',
-            'descriptorsConfigPath' =>
-                __DIR__ . '/../resources/operations_descriptor_config.php',
-            'gcpApiConfigPath' =>
-                __DIR__ . '/../resources/operations_grpc_config.json',
+            'apiEndpoint' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
+            'clientConfig' => __DIR__ . '/../resources/operations_client_config.json',
+            'descriptorsConfigPath' => __DIR__ . '/../resources/operations_descriptor_config.php',
+            'gcpApiConfigPath' => __DIR__ . '/../resources/operations_grpc_config.json',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' =>
-                        __DIR__ .
-                        '/../resources/operations_rest_client_config.php',
+                    'restClientConfigPath' => __DIR__ . '/../resources/operations_rest_client_config.php',
                 ],
             ],
         ];
@@ -221,18 +215,11 @@ class OperationsGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers'])
             ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
-        return $this->startCall(
-            'CancelOperation',
-            GPBEmpty::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        return $this->startCall('CancelOperation', GPBEmpty::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -270,18 +257,11 @@ class OperationsGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers'])
             ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
-        return $this->startCall(
-            'DeleteOperation',
-            GPBEmpty::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        return $this->startCall('DeleteOperation', GPBEmpty::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -320,18 +300,11 @@ class OperationsGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers'])
             ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
-        return $this->startCall(
-            'GetOperation',
-            Operation::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        return $this->startCall('GetOperation', Operation::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -413,23 +386,14 @@ class OperationsGapicClient
         }
 
         if (isset($optionalArgs['returnPartialSuccess'])) {
-            $request->setReturnPartialSuccess(
-                $optionalArgs['returnPartialSuccess']
-            );
+            $request->setReturnPartialSuccess($optionalArgs['returnPartialSuccess']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor(
-            $requestParamHeaders
-        );
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers'])
             ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
             : $requestParams->getHeader();
-        return $this->getPagedListResponse(
-            'ListOperations',
-            $optionalArgs,
-            ListOperationsResponse::class,
-            $request
-        );
+        return $this->getPagedListResponse('ListOperations', $optionalArgs, ListOperationsResponse::class, $request);
     }
 
     /**
@@ -483,11 +447,6 @@ class OperationsGapicClient
             $request->setTimeout($optionalArgs['timeout']);
         }
 
-        return $this->startCall(
-            'WaitOperation',
-            Operation::class,
-            $optionalArgs,
-            $request
-        )->wait();
+        return $this->startCall('WaitOperation', Operation::class, $optionalArgs, $request)->wait();
     }
 }

@@ -44,7 +44,7 @@ php.owlbot_main(
 )
 
 # Firestore Admin also lives here
-admin_library = Path(f"../{php.STAGING_DIR}/Firestore/v1/Admin").resolve()
+admin_library = Path(f"../{php.STAGING_DIR}/Firestore/Admin/v1").resolve()
 
 # copy all src
 s.move(
@@ -73,7 +73,7 @@ yearFixes = [
             "tests/**/V1beta1/*Test.php"
         ]
     }, {
-        "year": "2019",
+        "year": "2026",
         "files": [
             "src/V1/Gapic/*GapicClient.php",
             "src/V1/*Client.php",
@@ -98,15 +98,6 @@ s.replace(
     'tests/**/Admin/V1/*Test.php',
     r'@group admin',
     '@group firestore-admin')
-
-# remove ReadOnly class_alias code
-s.replace(
-    "src/V*/**/PBReadOnly.php",
-    r"^// Adding a class alias for backwards compatibility with the \"readonly\" keyword.$"
-    + "\n"
-    + r"^class_alias\(PBReadOnly::class, __NAMESPACE__ . '\\ReadOnly'\);$"
-    + "\n",
-    '')
 
 ### [START] protoc backwards compatibility fixes
 

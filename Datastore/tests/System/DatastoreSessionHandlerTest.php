@@ -51,18 +51,23 @@ class DatastoreSessionHandlerTest extends DatastoreMultipleDbTestCase
         $q = $client->query();
         $q->kind('PHPSESSID');
 
-        $res = $client->runQuery($q, [
-            'namespaceId' => $namespace,
-        ]);
-
         $hasEntity = false;
-        $keys = [];
-        foreach ($res as $e) {
-            if (!$hasEntity) {
-                $hasEntity = $e['data'] === $storedValue;
+        for ($i = 0; $i < 10; $i++) {
+            $res = $client->runQuery($q, [
+                'namespaceId' => $namespace,
+            ]);
+
+            foreach ($res as $e) {
+                if ($e['data'] === $storedValue) {
+                    $hasEntity = true;
+                }
+                self::$localDeletionQueue->add($e->key());
             }
 
-            self::$localDeletionQueue->add($e->key());
+            if ($hasEntity) {
+                break;
+            }
+            sleep(1);
         }
 
         $this->assertTrue($hasEntity);
@@ -95,18 +100,24 @@ class DatastoreSessionHandlerTest extends DatastoreMultipleDbTestCase
         $q->kind('PHPSESSID');
 
         // multi db should have data
-        $res = $client->runQuery($q, [
-            'namespaceId' => $namespace,
-            'databaseId' => self::TEST_DB_NAME,
-        ]);
-
         $hasEntity = false;
-        foreach ($res as $e) {
-            if (!$hasEntity) {
-                $hasEntity = $e['data'] === $storedValue;
+        for ($i = 0; $i < 10; $i++) {
+            $res = $client->runQuery($q, [
+                'namespaceId' => $namespace,
+                'databaseId' => self::TEST_DB_NAME,
+            ]);
+
+            foreach ($res as $e) {
+                if ($e['data'] === $storedValue) {
+                    $hasEntity = true;
+                }
+                self::$localDeletionQueue->add($e->key());
             }
 
-            self::$localDeletionQueue->add($e->key());
+            if ($hasEntity) {
+                break;
+            }
+            sleep(1);
         }
 
         $this->assertTrue($hasEntity);

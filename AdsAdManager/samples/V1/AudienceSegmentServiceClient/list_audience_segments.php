@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,7 +29,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 
 /**
- * API to retrieve a list of `AudienceSegment` objects.
+ * Lists `AudienceSegment` objects.
  *
  * @param string $formattedParent The parent publisher network associated with these audience
  *                                segments. Format: `networks/{network_code}`

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@ use Google\Ads\AdManager\V1\EntitySignalsMapping;
 use Google\ApiCore\ApiException;
 
 /**
- * API to batch create `EntitySignalsMapping` objects.
+ * Creates `EntitySignalsMapping` objects.
  *
  * @param string $formattedParent         The parent resource where `EntitySignalsMappings` will be
  *                                        created. Format: `networks/{network_code}` The parent field in the

@@ -267,20 +267,24 @@ class StreamWrapperTest extends TestCase
         set_error_handler(static function (int $errno, string $errstr): never {
             throw new Exception($errstr, $errno);
         }, E_WARNING);
-        $this->expectException(Exception::class);
+        try {
+            $this->expectException(Exception::class);
 
-        $object = $this->prophesize(StorageObject::class);
-        $object->info()->willThrow(NotFoundException::class);
-        $this->bucket->object('non-existent/file.txt')
-            ->shouldBeCalled()
-            ->willReturn($object->reveal());
-        $this->bucket->objects(Argument::allOf(
-            Argument::withEntry('prefix', 'non-existent/file.txt/'),
-            Argument::withEntry('resultLimit', 1),
-            Argument::withEntry('fields', Argument::any())
-        ))->shouldBeCalled()->willReturn(new \ArrayIterator());
+            $object = $this->prophesize(StorageObject::class);
+            $object->info()->willThrow(NotFoundException::class);
+            $this->bucket->object('non-existent/file.txt')
+                ->shouldBeCalled()
+                ->willReturn($object->reveal());
+            $this->bucket->objects(Argument::allOf(
+                Argument::withEntry('prefix', 'non-existent/file.txt/'),
+                Argument::withEntry('resultLimit', 1),
+                Argument::withEntry('fields', Argument::any())
+            ))->shouldBeCalled()->willReturn(new \ArrayIterator());
 
-        stat('gs://my_bucket/non-existent/file.txt');
+            stat('gs://my_bucket/non-existent/file.txt');
+        } finally {
+            restore_error_handler();
+        }
     }
 
     /**

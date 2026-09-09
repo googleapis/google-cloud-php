@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -50,7 +50,9 @@ class CssProductsServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return CssProductsServiceClient */
@@ -83,8 +85,7 @@ class CssProductsServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->cssProductName('[ACCOUNT]', '[CSS_PRODUCT]');
-        $request = (new GetCssProductRequest())
-            ->setName($formattedName);
+        $request = (new GetCssProductRequest())->setName($formattedName);
         $response = $gapicClient->getCssProduct($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -108,17 +109,19 @@ class CssProductsServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->cssProductName('[ACCOUNT]', '[CSS_PRODUCT]');
-        $request = (new GetCssProductRequest())
-            ->setName($formattedName);
+        $request = (new GetCssProductRequest())->setName($formattedName);
         try {
             $gapicClient->getCssProduct($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -143,17 +146,14 @@ class CssProductsServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $cssProductsElement = new CssProduct();
-        $cssProducts = [
-            $cssProductsElement,
-        ];
+        $cssProducts = [$cssProductsElement];
         $expectedResponse = new ListCssProductsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setCssProducts($cssProducts);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->accountName('[ACCOUNT]');
-        $request = (new ListCssProductsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListCssProductsRequest())->setParent($formattedParent);
         $response = $gapicClient->listCssProducts($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -180,17 +180,19 @@ class CssProductsServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->accountName('[ACCOUNT]');
-        $request = (new ListCssProductsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListCssProductsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listCssProducts($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -225,8 +227,7 @@ class CssProductsServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->cssProductName('[ACCOUNT]', '[CSS_PRODUCT]');
-        $request = (new GetCssProductRequest())
-            ->setName($formattedName);
+        $request = (new GetCssProductRequest())->setName($formattedName);
         $response = $gapicClient->getCssProductAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();

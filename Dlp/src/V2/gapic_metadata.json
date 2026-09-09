@@ -25,6 +25,11 @@
                                 "createConnection"
                             ]
                         },
+                        "CreateContentPolicy": {
+                            "methods": [
+                                "createContentPolicy"
+                            ]
+                        },
                         "CreateDeidentifyTemplate": {
                             "methods": [
                                 "createDeidentifyTemplate"
@@ -63,6 +68,11 @@
                         "DeleteConnection": {
                             "methods": [
                                 "deleteConnection"
+                            ]
+                        },
+                        "DeleteContentPolicy": {
+                            "methods": [
+                                "deleteContentPolicy"
                             ]
                         },
                         "DeleteDeidentifyTemplate": {
@@ -118,6 +128,11 @@
                         "GetConnection": {
                             "methods": [
                                 "getConnection"
+                            ]
+                        },
+                        "GetContentPolicy": {
+                            "methods": [
+                                "getContentPolicy"
                             ]
                         },
                         "GetDeidentifyTemplate": {
@@ -190,6 +205,11 @@
                                 "listConnections"
                             ]
                         },
+                        "ListContentPolicies": {
+                            "methods": [
+                                "listContentPolicies"
+                            ]
+                        },
                         "ListDeidentifyTemplates": {
                             "methods": [
                                 "listDeidentifyTemplates"
@@ -258,6 +278,11 @@
                         "UpdateConnection": {
                             "methods": [
                                 "updateConnection"
+                            ]
+                        },
+                        "UpdateContentPolicy": {
+                            "methods": [
+                                "updateContentPolicy"
                             ]
                         },
                         "UpdateDeidentifyTemplate": {

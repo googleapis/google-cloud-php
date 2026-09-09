@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -372,6 +372,17 @@ return [
             'GetAutonomousDatabase' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/autonomousDatabases/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetAutonomousDatabaseRefreshableClones' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/autonomousDatabases/*}:getRefreshableClones',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -833,6 +844,18 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'RefreshAutonomousDatabase' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/autonomousDatabases/*}:refresh',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
                         ],
                     ],
                 ],

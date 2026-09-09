@@ -1,4 +1,0 @@
-deep-copy-regex:
-    - source: /google/cloud/orgpolicy/(v2)/.*-php/(.*)
-      dest: /owl-bot-staging/OrgPolicy/$1/$2
-api-name: OrgPolicy

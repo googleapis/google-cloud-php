@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,6 +33,7 @@ use Google\Cloud\Location\Location;
 use Google\Cloud\OracleDatabase\V1\AutonomousDatabase;
 use Google\Cloud\OracleDatabase\V1\AutonomousDatabaseBackup;
 use Google\Cloud\OracleDatabase\V1\AutonomousDatabaseCharacterSet;
+use Google\Cloud\OracleDatabase\V1\AutonomousDatabaseRefreshableClones;
 use Google\Cloud\OracleDatabase\V1\AutonomousDbVersion;
 use Google\Cloud\OracleDatabase\V1\Client\OracleDatabaseClient;
 use Google\Cloud\OracleDatabase\V1\CloudExadataInfrastructure;
@@ -79,6 +80,7 @@ use Google\Cloud\OracleDatabase\V1\ExascaleDbStorageVaultProperties;
 use Google\Cloud\OracleDatabase\V1\FailoverAutonomousDatabaseRequest;
 use Google\Cloud\OracleDatabase\V1\GenerateAutonomousDatabaseWalletRequest;
 use Google\Cloud\OracleDatabase\V1\GenerateAutonomousDatabaseWalletResponse;
+use Google\Cloud\OracleDatabase\V1\GetAutonomousDatabaseRefreshableClonesRequest;
 use Google\Cloud\OracleDatabase\V1\GetAutonomousDatabaseRequest;
 use Google\Cloud\OracleDatabase\V1\GetCloudExadataInfrastructureRequest;
 use Google\Cloud\OracleDatabase\V1\GetCloudVmClusterRequest;
@@ -167,6 +169,7 @@ use Google\Cloud\OracleDatabase\V1\OdbNetwork;
 use Google\Cloud\OracleDatabase\V1\OdbSubnet;
 use Google\Cloud\OracleDatabase\V1\OdbSubnet\Purpose;
 use Google\Cloud\OracleDatabase\V1\PluggableDatabase;
+use Google\Cloud\OracleDatabase\V1\RefreshAutonomousDatabaseRequest;
 use Google\Cloud\OracleDatabase\V1\RemoveVirtualMachineExadbVmClusterRequest;
 use Google\Cloud\OracleDatabase\V1\RestartAutonomousDatabaseRequest;
 use Google\Cloud\OracleDatabase\V1\RestoreAutonomousDatabaseRequest;
@@ -3904,6 +3907,72 @@ class OracleDatabaseClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function getAutonomousDatabaseRefreshableClonesTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new AutonomousDatabaseRefreshableClones();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->autonomousDatabaseName('[PROJECT]', '[LOCATION]', '[AUTONOMOUS_DATABASE]');
+        $request = (new GetAutonomousDatabaseRefreshableClonesRequest())->setName($formattedName);
+        $response = $gapicClient->getAutonomousDatabaseRefreshableClones($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.oracledatabase.v1.OracleDatabase/GetAutonomousDatabaseRefreshableClones',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getAutonomousDatabaseRefreshableClonesExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->autonomousDatabaseName('[PROJECT]', '[LOCATION]', '[AUTONOMOUS_DATABASE]');
+        $request = (new GetAutonomousDatabaseRefreshableClonesRequest())->setName($formattedName);
+        try {
+            $gapicClient->getAutonomousDatabaseRefreshableClones($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function getCloudExadataInfrastructureTest()
     {
         $transport = $this->createTransport();
@@ -6930,6 +6999,159 @@ class OracleDatabaseClientTest extends GeneratedTest
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function refreshAutonomousDatabaseTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/refreshAutonomousDatabaseTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name2 = 'name2-1052831874';
+        $database = 'database1789464955';
+        $displayName = 'displayName1615086568';
+        $entitlementId = 'entitlementId-1715775123';
+        $adminPassword = 'adminPassword1579561355';
+        $adminPasswordSecretVersion = 'adminPasswordSecretVersion-1735395459';
+        $network = 'network1843485230';
+        $cidr = 'cidr3053428';
+        $odbNetwork = 'odbNetwork-1199754980';
+        $odbSubnet = 'odbSubnet118675119';
+        $expectedResponse = new AutonomousDatabase();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setDatabase($database);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setEntitlementId($entitlementId);
+        $expectedResponse->setAdminPassword($adminPassword);
+        $expectedResponse->setAdminPasswordSecretVersion($adminPasswordSecretVersion);
+        $expectedResponse->setNetwork($network);
+        $expectedResponse->setCidr($cidr);
+        $expectedResponse->setOdbNetwork($odbNetwork);
+        $expectedResponse->setOdbSubnet($odbSubnet);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/refreshAutonomousDatabaseTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedName = $gapicClient->autonomousDatabaseName('[PROJECT]', '[LOCATION]', '[AUTONOMOUS_DATABASE]');
+        $refreshCutoffTime = new Timestamp();
+        $request = (new RefreshAutonomousDatabaseRequest())
+            ->setName($formattedName)
+            ->setRefreshCutoffTime($refreshCutoffTime);
+        $response = $gapicClient->refreshAutonomousDatabase($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.oracledatabase.v1.OracleDatabase/RefreshAutonomousDatabase',
+            $actualApiFuncCall
+        );
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualApiRequestObject->getRefreshCutoffTime();
+        $this->assertProtobufEquals($refreshCutoffTime, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/refreshAutonomousDatabaseTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function refreshAutonomousDatabaseExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/refreshAutonomousDatabaseTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->autonomousDatabaseName('[PROJECT]', '[LOCATION]', '[AUTONOMOUS_DATABASE]');
+        $refreshCutoffTime = new Timestamp();
+        $request = (new RefreshAutonomousDatabaseRequest())
+            ->setName($formattedName)
+            ->setRefreshCutoffTime($refreshCutoffTime);
+        $response = $gapicClient->refreshAutonomousDatabase($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/refreshAutonomousDatabaseTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /** @test */

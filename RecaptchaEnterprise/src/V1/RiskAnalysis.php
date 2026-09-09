@@ -30,15 +30,25 @@ class RiskAnalysis extends \Google\Protobuf\Internal\Message
      */
     private $reasons;
     /**
-     * Output only. Extended verdict reasons to be used for experimentation only.
-     * The set of possible reasons is subject to change.
+     * Output only. Additional reasons contributing to the risk analysis verdict.
+     * These reasons are available to Enterprise tier projects only. Contact sales
+     * for more information.
+     * The set of reasons is subject to change.
      *
      * Generated from protobuf field <code>repeated string extended_verdict_reasons = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $extended_verdict_reasons;
     /**
-     * Output only. Challenge information for POLICY_BASED_CHALLENGE and INVISIBLE
-     * keys.
+     * Output only. Type of the last challenge presented to the user for
+     * Universal, `POLICY_BASED_CHALLENGE` and `INVISIBLE` keys. The field is only
+     * set when a challenge was presented to the user.
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.ChallengeType last_challenge_type = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $last_challenge_type = 0;
+    /**
+     * Output only. Challenge information for Universal, `POLICY_BASED_CHALLENGE`
+     * and `INVISIBLE` keys.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.RiskAnalysis.Challenge challenge = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -64,11 +74,17 @@ class RiskAnalysis extends \Google\Protobuf\Internal\Message
      *     @type int[] $reasons
      *           Output only. Reasons contributing to the risk analysis verdict.
      *     @type string[] $extended_verdict_reasons
-     *           Output only. Extended verdict reasons to be used for experimentation only.
-     *           The set of possible reasons is subject to change.
+     *           Output only. Additional reasons contributing to the risk analysis verdict.
+     *           These reasons are available to Enterprise tier projects only. Contact sales
+     *           for more information.
+     *           The set of reasons is subject to change.
+     *     @type int $last_challenge_type
+     *           Output only. Type of the last challenge presented to the user for
+     *           Universal, `POLICY_BASED_CHALLENGE` and `INVISIBLE` keys. The field is only
+     *           set when a challenge was presented to the user.
      *     @type int $challenge
-     *           Output only. Challenge information for POLICY_BASED_CHALLENGE and INVISIBLE
-     *           keys.
+     *           Output only. Challenge information for Universal, `POLICY_BASED_CHALLENGE`
+     *           and `INVISIBLE` keys.
      *     @type \Google\Cloud\RecaptchaEnterprise\V1\Bot[] $verified_bots
      *           Output only. Bots with identities that have been verified by reCAPTCHA and
      *           detected in the event.
@@ -136,8 +152,10 @@ class RiskAnalysis extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Extended verdict reasons to be used for experimentation only.
-     * The set of possible reasons is subject to change.
+     * Output only. Additional reasons contributing to the risk analysis verdict.
+     * These reasons are available to Enterprise tier projects only. Contact sales
+     * for more information.
+     * The set of reasons is subject to change.
      *
      * Generated from protobuf field <code>repeated string extended_verdict_reasons = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return RepeatedField<string>
@@ -148,8 +166,10 @@ class RiskAnalysis extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Extended verdict reasons to be used for experimentation only.
-     * The set of possible reasons is subject to change.
+     * Output only. Additional reasons contributing to the risk analysis verdict.
+     * These reasons are available to Enterprise tier projects only. Contact sales
+     * for more information.
+     * The set of reasons is subject to change.
      *
      * Generated from protobuf field <code>repeated string extended_verdict_reasons = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string[] $var
@@ -164,8 +184,38 @@ class RiskAnalysis extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Challenge information for POLICY_BASED_CHALLENGE and INVISIBLE
-     * keys.
+     * Output only. Type of the last challenge presented to the user for
+     * Universal, `POLICY_BASED_CHALLENGE` and `INVISIBLE` keys. The field is only
+     * set when a challenge was presented to the user.
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.ChallengeType last_challenge_type = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
+     */
+    public function getLastChallengeType()
+    {
+        return $this->last_challenge_type;
+    }
+
+    /**
+     * Output only. Type of the last challenge presented to the user for
+     * Universal, `POLICY_BASED_CHALLENGE` and `INVISIBLE` keys. The field is only
+     * set when a challenge was presented to the user.
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.ChallengeType last_challenge_type = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setLastChallengeType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\RecaptchaEnterprise\V1\ChallengeType::class);
+        $this->last_challenge_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Challenge information for Universal, `POLICY_BASED_CHALLENGE`
+     * and `INVISIBLE` keys.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.RiskAnalysis.Challenge challenge = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
@@ -176,8 +226,8 @@ class RiskAnalysis extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Challenge information for POLICY_BASED_CHALLENGE and INVISIBLE
-     * keys.
+     * Output only. Challenge information for Universal, `POLICY_BASED_CHALLENGE`
+     * and `INVISIBLE` keys.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.RiskAnalysis.Challenge challenge = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var

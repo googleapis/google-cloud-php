@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,6 +23,42 @@
 return [
     'interfaces' => [
         'google.ads.admanager.v1.CompanyService' => [
+            'BatchCreateCompanies' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/companies:batchCreate',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchUpdateCompanies' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/companies:batchUpdate',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateCompany' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/companies',
+                'body' => 'company',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'GetCompany' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=networks/*/companies/*}',
@@ -41,6 +77,19 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateCompany' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{company.name=networks/*/companies/*}',
+                'body' => 'company',
+                'placeholders' => [
+                    'company.name' => [
+                        'getters' => [
+                            'getCompany',
+                            'getName',
                         ],
                     ],
                 ],
