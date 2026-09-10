@@ -1,0 +1,123 @@
+### YamlMime:UniversalReference
+items:
+  -
+    uid: \Google\ApiCore\Transport\TransportInterface
+    name: TransportInterface
+    friendlyApiName: 'Google API Core Client'
+    id: TransportInterface
+    summary: |-
+      Classes which implement this interface in this package:
+       - <xref uid="\Google\ApiCore\Transport\GrpcFallbackTransport">GrpcFallbackTransport</xref>
+       - <xref uid="\Google\ApiCore\Transport\GrpcTransport">GrpcTransport</xref>
+       - <xref uid="\Google\ApiCore\Transport\RestTransport">RestTransport</xref>
+    type: class
+    namespace: 'Google \ ApiCore \ Transport'
+    langs:
+      - php
+    children:
+      - '\Google\ApiCore\Transport\TransportInterface::startBidiStreamingCall()'
+      - '\Google\ApiCore\Transport\TransportInterface::startClientStreamingCall()'
+      - '\Google\ApiCore\Transport\TransportInterface::startServerStreamingCall()'
+      - '\Google\ApiCore\Transport\TransportInterface::startUnaryCall()'
+      - '\Google\ApiCore\Transport\TransportInterface::close()'
+  -
+    uid: '\Google\ApiCore\Transport\TransportInterface::startBidiStreamingCall()'
+    name: startBidiStreamingCall
+    id: startBidiStreamingCall
+    summary: 'Starts a bidi streaming call.'
+    parent: \Google\ApiCore\Transport\TransportInterface
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: call
+          var_type: '<xref uid="\Google\ApiCore\Call">Google\ApiCore\Call</xref>'
+          description: ''
+        -
+          id: options
+          var_type: array
+          description: ''
+      returns:
+        -
+          var_type: '<xref uid="\Google\ApiCore\BidiStream">Google\ApiCore\BidiStream</xref>'
+  -
+    uid: '\Google\ApiCore\Transport\TransportInterface::startClientStreamingCall()'
+    name: startClientStreamingCall
+    id: startClientStreamingCall
+    summary: 'Starts a client streaming call.'
+    parent: \Google\ApiCore\Transport\TransportInterface
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: call
+          var_type: '<xref uid="\Google\ApiCore\Call">Google\ApiCore\Call</xref>'
+          description: ''
+        -
+          id: options
+          var_type: array
+          description: ''
+      returns:
+        -
+          var_type: '<xref uid="\Google\ApiCore\ClientStream">Google\ApiCore\ClientStream</xref>'
+  -
+    uid: '\Google\ApiCore\Transport\TransportInterface::startServerStreamingCall()'
+    name: startServerStreamingCall
+    id: startServerStreamingCall
+    summary: 'Starts a server streaming call.'
+    parent: \Google\ApiCore\Transport\TransportInterface
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: call
+          var_type: '<xref uid="\Google\ApiCore\Call">Google\ApiCore\Call</xref>'
+          description: ''
+        -
+          id: options
+          var_type: array
+          description: ''
+      returns:
+        -
+          var_type: '<xref uid="\Google\ApiCore\ServerStream">Google\ApiCore\ServerStream</xref>'
+  -
+    uid: '\Google\ApiCore\Transport\TransportInterface::startUnaryCall()'
+    name: startUnaryCall
+    id: startUnaryCall
+    summary: 'Returns a promise used to execute network requests.'
+    parent: \Google\ApiCore\Transport\TransportInterface
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: call
+          var_type: '<xref uid="\Google\ApiCore\Call">Google\ApiCore\Call</xref>'
+          description: ''
+        -
+          id: options
+          var_type: array
+          description: ''
+      returns:
+        -
+          var_type: '<a href="https://docs.aws.amazon.com/aws-sdk-php/v3/api/class-GuzzleHttp.Promise.Promise.html">GuzzleHttp\Promise\PromiseInterface</a>'
+  -
+    uid: '\Google\ApiCore\Transport\TransportInterface::close()'
+    name: close
+    id: close
+    summary: 'Closes the connection, if one exists.'
+    parent: \Google\ApiCore\Transport\TransportInterface
+    type: method
+    langs:
+      - php
+    syntax:
+      returns:
+        -
+          var_type: void

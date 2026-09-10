@@ -1,0 +1,88 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.ftp.v1",
+    "libraryPackage": "Google\\Cloud\\Ftp\\V1",
+    "services": {
+        "CloudFtp": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "CloudFtpClient",
+                    "rpcs": {
+                        "CreateServer": {
+                            "methods": [
+                                "createServer"
+                            ]
+                        },
+                        "CreateUser": {
+                            "methods": [
+                                "createUser"
+                            ]
+                        },
+                        "DeleteServer": {
+                            "methods": [
+                                "deleteServer"
+                            ]
+                        },
+                        "DeleteUser": {
+                            "methods": [
+                                "deleteUser"
+                            ]
+                        },
+                        "GetServer": {
+                            "methods": [
+                                "getServer"
+                            ]
+                        },
+                        "GetUser": {
+                            "methods": [
+                                "getUser"
+                            ]
+                        },
+                        "ListServers": {
+                            "methods": [
+                                "listServers"
+                            ]
+                        },
+                        "ListUsers": {
+                            "methods": [
+                                "listUsers"
+                            ]
+                        },
+                        "StartServer": {
+                            "methods": [
+                                "startServer"
+                            ]
+                        },
+                        "StopServer": {
+                            "methods": [
+                                "stopServer"
+                            ]
+                        },
+                        "UpdateServer": {
+                            "methods": [
+                                "updateServer"
+                            ]
+                        },
+                        "UpdateUser": {
+                            "methods": [
+                                "updateUser"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
