@@ -34,6 +34,7 @@ namespace Google\ApiCore\Tests\Unit;
 use Google\ApiCore\AgentHeader;
 use Google\ApiCore\Version;
 use PHPUnit\Framework\TestCase;
+use stdClass;
 
 class AgentHeaderTest extends TestCase
 {
@@ -163,5 +164,16 @@ class AgentHeaderTest extends TestCase
         ]);
 
         $this->assertSame($expectedHeader, $header);
+    }
+
+    public function testReadPackageNameFromFile()
+    {
+        $packageName = AgentHeader::readPackageNameFromFile(AgentHeader::class);
+        $this->assertSame('google/gax', $packageName);
+    }
+
+    public function testReadPackageNameFromUnknownClassReturnsNull()
+    {
+        $this->assertNull(AgentHeader::readPackageNameFromFile(stdClass::class));
     }
 }
