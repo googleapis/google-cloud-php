@@ -192,8 +192,7 @@ class ComponentUpdateCommand extends Command
     private function owlbotPostProcessor(): string
     {
         list($userId, $groupId) = $this->getUserAndGroupId();
-        $owlbotLock = Yaml::parse(file_get_contents($this->rootPath . '/.github/.OwlBot.lock.yaml'));
-        $owlbotPhpImage = sprintf('%s@%s', $owlbotLock['docker']['image'], $owlbotLock['docker']['digest']);
+        $owlbotPhpImage = 'gcr.io/cloud-devrel-public-resources/owlbot-php:latest';
 
         $command = [
             'docker', 'pull', $owlbotPhpImage

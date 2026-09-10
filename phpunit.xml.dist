@@ -23,12 +23,13 @@
   <testsuites>
     <testsuite name="Unit Test Suite">
       <directory>*/tests/Unit</directory>
+      <directory suffix="Test.php">Auth/tests</directory>
       <exclude>dev/tests/Unit</exclude>
       <exclude>Core</exclude>
     </testsuite>
   </testsuites>
   <php>
     <ini name="memory_limit" value="2048M"/>
+    <env name="GRPC_ENABLE_FORK_SUPPORT" value="1"/>
   </php>
-
 </phpunit>

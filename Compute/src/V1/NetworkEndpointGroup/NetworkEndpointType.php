@@ -26,6 +26,14 @@ class NetworkEndpointType
      */
     const GCE_VM_IP = 401880793;
     /**
+     * The network endpoint for targeting a specific network interface of a
+     * VM instance in configurations with multiple network interfaces on the
+     * same network.
+     *
+     * Generated from protobuf enum <code>GCE_VM_IP_DEDICATED_BACKEND = 321618974;</code>
+     */
+    const GCE_VM_IP_DEDICATED_BACKEND = 321618974;
+    /**
      * The network endpoint is represented by IP address and port pair.
      *
      * Generated from protobuf enum <code>GCE_VM_IP_PORT = 501838375;</code>
@@ -76,6 +84,7 @@ class NetworkEndpointType
     private static $valueToName = [
         self::UNDEFINED_NETWORK_ENDPOINT_TYPE => 'UNDEFINED_NETWORK_ENDPOINT_TYPE',
         self::GCE_VM_IP => 'GCE_VM_IP',
+        self::GCE_VM_IP_DEDICATED_BACKEND => 'GCE_VM_IP_DEDICATED_BACKEND',
         self::GCE_VM_IP_PORT => 'GCE_VM_IP_PORT',
         self::GCE_VM_IP_PORTMAP => 'GCE_VM_IP_PORTMAP',
         self::INTERNET_FQDN_PORT => 'INTERNET_FQDN_PORT',
