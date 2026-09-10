@@ -41,10 +41,12 @@ use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Middleware\MiddlewareInterface;
+use Google\ApiCore\Middleware\TracingMiddleware;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\ServerStream;
+use Google\ApiCore\Telemetry\SpanAttributes;
 use Google\ApiCore\Testing\MockRequest;
 use Google\ApiCore\Testing\MockRequestBody;
 use Google\ApiCore\Testing\MockResponse;
@@ -58,6 +60,13 @@ use Google\LongRunning\Operation;
 use Grpc\Gcp\Config;
 use GuzzleHttp\Promise\FulfilledPromise;
 use GuzzleHttp\Promise\PromiseInterface;
+use OpenTelemetry\API\Trace\SpanBuilderInterface;
+use OpenTelemetry\API\Trace\SpanInterface;
+use OpenTelemetry\API\Trace\SpanKind;
+use OpenTelemetry\API\Trace\StatusCode;
+use OpenTelemetry\API\Trace\TracerInterface;
+use OpenTelemetry\API\Trace\TracerProviderInterface;
+use OpenTelemetry\Context\ScopeInterface;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -1963,6 +1972,122 @@ class GapicClientTraitTest extends TestCase
             DefaultScopeAndAudienceGapicClient::getServiceScopes()
         );
     }
+
+    public function testPreInstantiatedTransportReceivesTelemetryOptions()
+    {
+        $transport = new class() implements TransportInterface {
+            public ?array $telemetryOptions = null;
+
+            public function setTelemetryOptions(array $telemetryOptions): void
+            {
+                $this->telemetryOptions = $telemetryOptions;
+            }
+
+            public function startUnaryCall(Call $call, array $options)
+            {
+            }
+
+            public function startServerStreamingCall(Call $call, array $options)
+            {
+            }
+
+            public function startClientStreamingCall(Call $call, array $options)
+            {
+            }
+
+            public function startBidiStreamingCall(Call $call, array $options)
+            {
+            }
+
+            public function close()
+            {
+            }
+        };
+
+        $tracerProvider = $this->createMock(TracerProviderInterface::class);
+        $client = new StubGapicClient();
+        $options = $client->buildClientOptions([
+            'transport' => $transport,
+            'openTelemetryTracerProvider' => $tracerProvider,
+            'clientPackageName' => 'google/cloud-secret-manager',
+        ]);
+        $client->setClientOptions($options);
+
+        $this->assertSame($transport, $client->getTransport());
+        $this->assertNotNull($transport->telemetryOptions);
+        $this->assertSame($tracerProvider, $transport->telemetryOptions['openTelemetryTracerProvider']);
+        $this->assertSame('google/cloud-secret-manager', $transport->telemetryOptions[SpanAttributes::GCP_CLIENT_ARTIFACT]);
+    }
+
+    public function testCreateCallStackIncludesTracingMiddlewareWhenTracingEnabled(): void
+    {
+        $tracerProvider = $this->createMock(TracerProviderInterface::class);
+        $tracer = $this->createMock(TracerInterface::class);
+        $spanBuilder = $this->createMock(SpanBuilderInterface::class);
+        $span = $this->createMock(SpanInterface::class);
+        $scope = $this->createMock(ScopeInterface::class);
+
+        $tracerProvider->expects($this->once())
+            ->method('getTracer')
+            ->willReturn($tracer);
+
+        $tracer->expects($this->once())
+            ->method('spanBuilder')
+            ->with('testMethod')
+            ->willReturn($spanBuilder);
+
+        $spanBuilder->expects($this->once())
+            ->method('setSpanKind')
+            ->with(SpanKind::KIND_INTERNAL)
+            ->willReturnSelf();
+
+        $spanBuilder->method('setAttribute')
+            ->willReturnSelf();
+
+        $spanBuilder->expects($this->once())
+            ->method('startSpan')
+            ->willReturn($span);
+
+        $span->expects($this->once())
+            ->method('activate')
+            ->willReturn($scope);
+
+        $span->expects($this->once())
+            ->method('setStatus')
+            ->with(StatusCode::STATUS_OK);
+
+        $span->expects($this->once())
+            ->method('end');
+
+        $scope->expects($this->once())
+            ->method('detach');
+
+        $transport = $this->prophesize(TransportInterface::class);
+        $transport->startUnaryCall(Argument::type(Call::class), Argument::type('array'))
+            ->willReturn(new FulfilledPromise('response'));
+
+        $credentialsWrapper = $this->prophesize(CredentialsWrapper::class);
+        $credentialsWrapper->getQuotaProject()->willReturn(null);
+
+        $client = new StubGapicClient();
+        $client->set('transport', $transport->reveal());
+        $client->set('credentialsWrapper', $credentialsWrapper->reveal());
+        $client->set('apiEndpoint', 'secretmanager.googleapis.com:443');
+        $client->set('openTelemetryTracerProvider', $tracerProvider);
+
+        $callStack = $client->createCallStack([
+            'retrySettings' => RetrySettings::constructDefault(),
+            'autoPopulationSettings' => [],
+        ]);
+
+        $this->assertInstanceOf(TracingMiddleware::class, $callStack);
+
+        $call = new Call('testMethod', 'decodeType', new MockRequestBody([]));
+        $promise = $callStack($call, []);
+        $result = $promise->wait();
+
+        $this->assertSame('response', $result);
+    }
 }
 
 class StubGapicClient
@@ -1971,6 +2096,7 @@ class StubGapicClient
         buildClientOptions as public;
         buildRequestParamsHeader as public;
         configureCallConstructionOptions as public;
+        createCallStack as public;
         createCredentialsWrapper as public;
         createOperationsClient as public;
         createTransport as public;
