@@ -121,7 +121,6 @@ class ResumableUpload
      *           for stall control. Must be set together with transferStallMinimumRate.
      * }
      * @return Message
-     * @throws ApiException
      */
     public function startUpload(StreamInterface $dataStream, array $resumableUploadOptions = []): Message
     {
