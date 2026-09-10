@@ -45,6 +45,7 @@ use Google\ApiCore\Options\CallOptions;
 use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\Options\TransportOptions;
 use Google\ApiCore\ResumableUpload\ResumableUpload;
+use Google\ApiCore\Telemetry\SpanAttributes;
 use Google\ApiCore\Transport\GrpcFallbackTransport;
 use Google\ApiCore\Transport\GrpcTransport;
 use Google\ApiCore\Transport\RestTransport;
@@ -53,6 +54,7 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Internal\Message;
 use GuzzleHttp\Promise\PromiseInterface;
+use OpenTelemetry\API\Trace\TracerProviderInterface;
 
 /**
  * Common functions used to work with various clients.
@@ -69,6 +71,9 @@ trait GapicClientTrait
 
     private ?TransportInterface $transport = null;
     private ?HeaderCredentialsInterface $credentialsWrapper = null;
+    /** @var TracerProviderInterface|null */
+    private $openTelemetryTracerProvider;
+    private array $telemetryOptions = [];
     /** @var RetrySettings[] $retrySettings */
     private array $retrySettings = [];
     private string $serviceName = '';
@@ -364,22 +369,40 @@ trait GapicClientTrait
             $this->credentialsWrapper = $this->createCredentialsWrapper(
                 $options['credentials'],
                 $options['credentialsConfig'] + [
-                    'enableRegionalAccessBoundary' => $enableRegionalAccessBoundary && !$isRegional
+                    'enableRegionalAccessBoundary' => $enableRegionalAccessBoundary && !$isRegional,
+                    'openTelemetryTracerProvider' => $options['openTelemetryTracerProvider'] ?? null,
+                    'clientVersion' => $options['libVersion'] ?? '',
                 ],
                 $options['universeDomain'],
             );
         }
 
+        $this->openTelemetryTracerProvider = $options['openTelemetryTracerProvider'] ?? null;
+        $telemetryOptions = [
+            'openTelemetryTracerProvider' => $options['openTelemetryTracerProvider'] ?? null,
+            SpanAttributes::GCP_CLIENT_REPO => 'googleapis/google-cloud-php',
+            SpanAttributes::GCP_CLIENT_ARTIFACT => $options['clientPackageName'] ?? null,
+            SpanAttributes::GCP_CLIENT_SERVICE => $this->serviceName,
+            SpanAttributes::GCP_CLIENT_VERSION => $options['libVersion'] ?? null,
+        ];
+        $this->telemetryOptions = $telemetryOptions;
+
         $transport = $options['transport'] ?: self::defaultTransport();
-        $this->transport = $transport instanceof TransportInterface
-            ? $transport
-            : $this->createTransport(
+        if ($transport instanceof TransportInterface) {
+            if (method_exists($transport, 'setTelemetryOptions')) {
+                $transport->setTelemetryOptions($telemetryOptions);
+            }
+            $this->transport = $transport;
+        } else {
+            $this->transport = $this->createTransport(
                 $options['apiEndpoint'],
                 $transport,
                 $options['transportConfig'],
                 $options['clientCertSource'],
-                $hasEmulator
+                $hasEmulator,
+                $telemetryOptions
             );
+        }
     }
 
     /**
@@ -396,7 +419,8 @@ trait GapicClientTrait
         $transport,
         $transportConfig,
         ?callable $clientCertSource = null,
-        bool $hasEmulator = false
+        bool $hasEmulator = false,
+        array $telemetryOptions = []
     ) {
         if (!is_string($transport)) {
             throw new ValidationException(
@@ -419,6 +443,7 @@ trait GapicClientTrait
             $configForSpecifiedTransport->setClientCertSource($clientCertSource);
             $configForSpecifiedTransport = $configForSpecifiedTransport->toArray();
         }
+        $configForSpecifiedTransport += $telemetryOptions;
         switch ($transport) {
             case 'grpc':
                 // Setting the user agent for gRPC requires special handling
@@ -731,7 +756,15 @@ trait GapicClientTrait
 
         $callStack = new CredentialsWrapperMiddleware($callStack, $this->credentialsWrapper);
         $callStack = new FixedHeaderMiddleware($callStack, $fixedHeaders, true);
-        $callStack = new RetryMiddleware($callStack, $callConstructionOptions['retrySettings']);
+        $callStack = new RetryMiddleware(
+            $callStack,
+            $callConstructionOptions['retrySettings'],
+            null,
+            0,
+            null,
+            $this->openTelemetryTracerProvider ?? null,
+            $this->telemetryOptions
+        );
         $callStack = new RequestAutoPopulationMiddleware(
             $callStack,
             $callConstructionOptions['autoPopulationSettings'],

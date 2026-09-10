@@ -45,6 +45,7 @@ use Google\ApiCore\OperationResponse;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\ServerStream;
+use Google\ApiCore\Telemetry\SpanAttributes;
 use Google\ApiCore\Testing\MockRequest;
 use Google\ApiCore\Testing\MockRequestBody;
 use Google\ApiCore\Testing\MockResponse;
@@ -58,6 +59,7 @@ use Google\LongRunning\Operation;
 use Grpc\Gcp\Config;
 use GuzzleHttp\Promise\FulfilledPromise;
 use GuzzleHttp\Promise\PromiseInterface;
+use OpenTelemetry\API\Trace\TracerProviderInterface;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -1962,6 +1964,52 @@ class GapicClientTraitTest extends TestCase
             ['default-scope-1', 'default-scope-2'],
             DefaultScopeAndAudienceGapicClient::getServiceScopes()
         );
+    }
+
+    public function testPreInstantiatedTransportReceivesTelemetryOptions()
+    {
+        $transport = new class() implements TransportInterface {
+            public ?array $telemetryOptions = null;
+
+            public function setTelemetryOptions(array $telemetryOptions): void
+            {
+                $this->telemetryOptions = $telemetryOptions;
+            }
+
+            public function startUnaryCall(Call $call, array $options)
+            {
+            }
+
+            public function startServerStreamingCall(Call $call, array $options)
+            {
+            }
+
+            public function startClientStreamingCall(Call $call, array $options)
+            {
+            }
+
+            public function startBidiStreamingCall(Call $call, array $options)
+            {
+            }
+
+            public function close()
+            {
+            }
+        };
+
+        $tracerProvider = $this->createMock(TracerProviderInterface::class);
+        $client = new StubGapicClient();
+        $options = $client->buildClientOptions([
+            'transport' => $transport,
+            'openTelemetryTracerProvider' => $tracerProvider,
+            'clientPackageName' => 'google/cloud-secret-manager',
+        ]);
+        $client->setClientOptions($options);
+
+        $this->assertSame($transport, $client->getTransport());
+        $this->assertNotNull($transport->telemetryOptions);
+        $this->assertSame($tracerProvider, $transport->telemetryOptions['openTelemetryTracerProvider']);
+        $this->assertSame('google/cloud-secret-manager', $transport->telemetryOptions[SpanAttributes::GCP_CLIENT_ARTIFACT]);
     }
 }
 
