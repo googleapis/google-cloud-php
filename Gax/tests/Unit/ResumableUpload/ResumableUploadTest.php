@@ -251,6 +251,51 @@ class ResumableUploadTest extends TestCase
         new ResumableUpload($client, null);
     }
 
+    public function testChunkSizeGetterAndSetter()
+    {
+        $requestBuilder = $this->prophesize(\Google\ApiCore\RequestBuilder::class)->reveal();
+        $client = new ResumableUploadClient(
+            $this->createStubTransport($requestBuilder, function () {
+            }),
+            $this->prophesize(CredentialsWrapper::class)->reveal()
+        );
+        $call = new Call('v1/test:create', Timestamp::class, new Timestamp(), [], Call::RESUMABLE_UPLOAD_CALL);
+        $upload = new ResumableUpload($client, $call, [], null, 524288);
+
+        $this->assertEquals(524288, $upload->getChunkSize());
+        $upload->setChunkSize(1048576);
+        $this->assertEquals(1048576, $upload->getChunkSize());
+    }
+
+    public function testResumeWithChunkSize()
+    {
+        $requests = [];
+        $httpHandler = $this->createMockHttpHandler([
+            new Response(200, ['X-Goog-Upload-Status' => 'active', 'X-Goog-Upload-Size-Received' => '0']),
+            new Response(200, ['X-Goog-Upload-Status' => 'active']),
+            new Response(200, ['X-Goog-Upload-Status' => 'final'], '"1970-01-01T00:00:00Z"')
+        ], $requests);
+
+        $requestBuilder = $this->prophesize(\Google\ApiCore\RequestBuilder::class)->reveal();
+        $client = new ResumableUploadClient(
+            $this->createStubTransport($requestBuilder, $httpHandler),
+            $this->prophesize(CredentialsWrapper::class)->reveal()
+        );
+        $call = new Call('test.method', Timestamp::class, null, [], Call::RESUMABLE_UPLOAD_CALL);
+        $upload = new ResumableUpload($client, $call, [], 'https://upload.url/session123', 6);
+
+        $stream = Utils::streamFor('hello world');
+        $upload->startUpload($stream);
+
+        $this->assertEquals(6, $upload->getChunkSize());
+        $this->assertCount(3, $requests);
+        $this->assertEquals('query', $requests[0]->getHeaderLine('X-Goog-Upload-Command'));
+        $this->assertEquals('upload', $requests[1]->getHeaderLine('X-Goog-Upload-Command'));
+        $this->assertEquals('hello ', (string) $requests[1]->getBody());
+        $this->assertEquals('upload, finalize', $requests[2]->getHeaderLine('X-Goog-Upload-Command'));
+        $this->assertEquals('world', (string) $requests[2]->getBody());
+    }
+
     private function createMockHttpHandler(array $responses, ?array &$requests = []): callable
     {
         return function ($request, $options = []) use (&$responses, &$requests) {

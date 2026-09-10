@@ -63,12 +63,14 @@ class ResumableUpload
      * }
      * @param ?string $uploadUrl An existing resumable upload session URL to resume an upload
      *        across process restarts or interruptions.
+     * @param ?int $chunkSize Optional. The chunk size in bytes for the upload.
      */
     public function __construct(
         private ResumableUploadClient $resumableUploadClient,
         private Call $call,
         private array $callOptions = [],
-        private ?string $uploadUrl = null
+        private ?string $uploadUrl = null,
+        private ?int $chunkSize = null
     ) {
     }
 
@@ -96,10 +98,37 @@ class ResumableUpload
     }
 
     /**
+     * Returns the actual chunk size in bytes used for the upload, if determined.
+     * This may be the user-specified chunk size, or the chunk size adjusted to
+     * match the server-specified chunk granularity.
+     *
+     * @return ?int
+     */
+    public function getChunkSize(): ?int
+    {
+        return $this->chunkSize;
+    }
+
+    /**
+     * Sets the chunk size in bytes for the upload.
+     *
+     * @param int $chunkSize
+     * @return void
+     */
+    public function setChunkSize(int $chunkSize): void
+    {
+        $this->chunkSize = $chunkSize;
+    }
+
+    /**
      * Starts or resumes the resumable upload exchange using the provided data stream.
      * If this instance already has an `uploadUrl` (e.g. created via `$client->resumeUpload($methodName, $uploadUrl)`
      * or after a previous start/interruption), calling `startUpload($dataStream, $resumableUploadOptions)` queries
      * the server for the current byte offset and resumes transmitting remaining chunks.
+     *
+     * When resuming an upload, it is recommended that the data stream is rewound to offset 0.
+     * If the stream is not rewound and not seekable, an error may occur if unconfirmed
+     * chunks must be re-read.
      *
      * @param StreamInterface $dataStream
      * @param array $resumableUploadOptions {
@@ -119,6 +148,10 @@ class ResumableUpload
      */
     public function startUpload(StreamInterface $dataStream, array $resumableUploadOptions = []): Message
     {
+        if ($this->chunkSize !== null && !isset($resumableUploadOptions['chunkSize'])) {
+            $resumableUploadOptions['chunkSize'] = $this->chunkSize;
+        }
+
         return $this->resumableUploadClient->startUpload(
             $this,
             $dataStream,

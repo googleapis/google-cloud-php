@@ -130,12 +130,17 @@ class ResumableUploadClient
             ?? self::DEFAULT_TOTAL_TIMEOUT_MILLIS);
         $deadlineMs = microtime(true) * 1000 + $totalTimeoutMillis;
 
+        $chunkSize = $resumableUploadOptions['chunkSize']
+            ?? $upload->getChunkSize()
+            ?? self::DEFAULT_CHUNK_SIZE;
+
         $state = new ResumableUploadState(
-            $resumableUploadOptions['chunkSize'] ?? self::DEFAULT_CHUNK_SIZE,
+            $chunkSize,
             $resumableUploadOptions['progressCallback'] ?? null,
             $uploadUrl,
             $uploadUrl !== null ? self::PHASE_RECOVERY : self::PHASE_STARTING
         );
+        $upload->setChunkSize($chunkSize);
 
         while ($state->phase !== self::PHASE_DONE) {
             $this->checkDeadline($deadlineMs);
@@ -232,6 +237,16 @@ class ResumableUploadClient
         }
         $granularityHeader = $response->getHeaderLine('X-Goog-Upload-Chunk-Granularity');
         $state->chunkGranularity = !empty($granularityHeader) ? (int) $granularityHeader : 1;
+        if ($state->chunkGranularity > 0 && ($state->chunkSize % $state->chunkGranularity !== 0)) {
+            $state->chunkSize = (int) (
+                floor($state->chunkSize / $state->chunkGranularity) * $state->chunkGranularity
+            );
+            if ($state->chunkSize === 0) {
+                $state->chunkSize = $state->chunkGranularity;
+            }
+        }
+        $upload->setChunkSize($state->chunkSize);
+
         $statusHeader = $response->getHeaderLine('X-Goog-Upload-Status');
         if ($statusHeader === 'final') {
             $this->finalResponse = $response;
