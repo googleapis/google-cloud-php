@@ -33,6 +33,8 @@ namespace Google\ApiCore;
 
 use DomainException;
 use Exception;
+use Google\ApiCore\Telemetry\AuthHttpHandler;
+use Google\ApiCore\Telemetry\TelemetryConfiguration;
 use Google\Auth\ApplicationDefaultCredentials;
 use Google\Auth\Cache\MemoryCacheItemPool;
 use Google\Auth\Credentials\GCECredentials;
@@ -42,8 +44,10 @@ use Google\Auth\FetchAuthTokenCache;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Auth\GetQuotaProjectInterface;
 use Google\Auth\GetUniverseDomainInterface;
+use Google\Auth\HttpHandler\HttpHandlerFactory;
 use Google\Auth\ProjectIdProviderInterface;
 use Google\Auth\UpdateMetadataInterface;
+use OpenTelemetry\API\Trace\TracerProviderInterface;
 use Psr\Cache\CacheItemPoolInterface;
 
 /**
@@ -70,6 +74,8 @@ class CredentialsWrapper implements HeaderCredentialsInterface, ProjectIdProvide
      * @param callable $authHttpHandler A handler used to deliver PSR-7 requests
      *        specifically for authentication. Should match a signature of
      *        `function (RequestInterface $request, array $options) : ResponseInterface`.
+     * @param string $universeDomain The expected universe of the credentials. Defaults to
+     *        "googleapis.com"
      * @throws ValidationException
      */
     public function __construct(
@@ -138,7 +144,15 @@ class CredentialsWrapper implements HeaderCredentialsInterface, ProjectIdProvide
             'defaultScopes'     => null,
             'useJwtAccessWithScope' => true,
             'enableRegionalAccessBoundary' => false,
+            'openTelemetryTracerProvider' => null,
+            'clientVersion'     => '',
         ];
+
+        $args['authHttpHandler'] = self::wrapAuthHttpHandler(
+            $args['authHttpHandler'],
+            $args['openTelemetryTracerProvider'],
+            $args['clientVersion']
+        );
 
         $keyFile = $args['keyFile'];
 
@@ -190,7 +204,49 @@ class CredentialsWrapper implements HeaderCredentialsInterface, ProjectIdProvide
             );
         }
 
-        return new CredentialsWrapper($loader, $args['authHttpHandler'], $universeDomain);
+        return new CredentialsWrapper(
+            $loader,
+            $args['authHttpHandler'],
+            $universeDomain
+        );
+    }
+
+    /**
+     * @internal
+     * @param callable|null $authHttpHandler
+     * @param TracerProviderInterface|null $openTelemetryTracerProvider
+     * @param string $clientVersion
+     * @return callable|null
+     */
+    public static function wrapAuthHttpHandler(
+        ?callable $authHttpHandler,
+        ?TracerProviderInterface $openTelemetryTracerProvider = null,
+        string $clientVersion = ''
+    ): ?callable {
+        $tracerProvider = TelemetryConfiguration::resolveTracerProvider($openTelemetryTracerProvider);
+        if ($tracerProvider && !($authHttpHandler instanceof AuthHttpHandler)) {
+            $handler = $authHttpHandler ?: HttpHandlerFactory::build();
+            return new AuthHttpHandler($handler, $tracerProvider, $clientVersion);
+        }
+        return $authHttpHandler;
+    }
+
+    /**
+     * @internal
+     * @param TracerProviderInterface|null $openTelemetryTracerProvider
+     * @param string $clientVersion
+     * @return $this
+     */
+    public function setOpenTelemetryTracerProvider(
+        ?TracerProviderInterface $openTelemetryTracerProvider,
+        string $clientVersion = ''
+    ): self {
+        $this->authHttpHandler = self::wrapAuthHttpHandler(
+            $this->authHttpHandler,
+            $openTelemetryTracerProvider,
+            $clientVersion
+        );
+        return $this;
     }
 
     /**

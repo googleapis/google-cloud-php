@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright 2023 Google LLC
  * All rights reserved.
@@ -38,6 +39,7 @@ use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\Auth\FetchAuthTokenInterface;
 use InvalidArgumentException;
+use OpenTelemetry\API\Trace\TracerProviderInterface;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -98,6 +100,8 @@ class ClientOptions implements ArrayAccess, OptionsInterface
     private ?string $apiKey;
 
     private null|false|LoggerInterface $logger;
+
+    private ?TracerProviderInterface $openTelemetryTracerProvider = null;
 
     /**
      * @param array $options {
@@ -200,6 +204,7 @@ class ClientOptions implements ArrayAccess, OptionsInterface
         $this->setUniverseDomain($arr['universeDomain'] ?? null);
         $this->setApiKey($arr['apiKey'] ?? null);
         $this->setLogger($arr['logger'] ?? null);
+        $this->setOpenTelemetryTracerProvider($arr['openTelemetryTracerProvider'] ?? null);
     }
 
     /**
@@ -417,5 +422,29 @@ class ClientOptions implements ArrayAccess, OptionsInterface
         $this->logger = $logger;
 
         return $this;
+    }
+
+    /**
+     * @internal
+     *
+     * @param TracerProviderInterface|null $openTelemetryTracerProvider
+     *
+     * @return $this
+     */
+    public function setOpenTelemetryTracerProvider(?TracerProviderInterface $openTelemetryTracerProvider): self
+    {
+        $this->openTelemetryTracerProvider = $openTelemetryTracerProvider;
+
+        return $this;
+    }
+
+    /**
+     * @internal
+     *
+     * @return TracerProviderInterface|null
+     */
+    public function getOpenTelemetryTracerProvider(): ?TracerProviderInterface
+    {
+        return $this->openTelemetryTracerProvider;
     }
 }

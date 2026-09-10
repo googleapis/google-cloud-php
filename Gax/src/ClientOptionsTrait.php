@@ -33,6 +33,7 @@
 namespace Google\ApiCore;
 
 use Google\ApiCore\Options\ClientOptions;
+use Google\ApiCore\Telemetry\TelemetryConfiguration;
 use Google\Auth\ApplicationDefaultCredentials;
 use Google\Auth\CredentialsLoader;
 use Google\Auth\FetchAuthTokenInterface;
@@ -122,6 +123,7 @@ trait ClientOptionsTrait
             'clientCertSource' => null,
             'universeDomain' => null,
             'logger' => null,
+            'openTelemetryTracerProvider' => null,
         ];
 
         $supportedTransports = $this->supportedTransports();
@@ -146,6 +148,10 @@ trait ClientOptionsTrait
         // variables, then going into deeper nesting, so that
         // we will not encounter missing keys
         $options += $defaultOptions;
+
+        $options['openTelemetryTracerProvider'] = TelemetryConfiguration::resolveTracerProvider(
+            $options['openTelemetryTracerProvider']
+        );
 
         // If logger is explicitly set to false, logging is disabled
         if (is_null($options['logger'])) {
@@ -326,11 +332,25 @@ trait ClientOptionsTrait
         }
 
         if ($credentials instanceof FetchAuthTokenInterface) {
-            $authHttpHandler = $credentialsConfig['authHttpHandler'] ?? null;
-            return new CredentialsWrapper($credentials, $authHttpHandler, $universeDomain);
+            $authHttpHandler = CredentialsWrapper::wrapAuthHttpHandler(
+                $credentialsConfig['authHttpHandler'] ?? null,
+                $credentialsConfig['openTelemetryTracerProvider'] ?? null,
+                $credentialsConfig['clientVersion'] ?? ''
+            );
+            return new CredentialsWrapper(
+                $credentials,
+                $authHttpHandler,
+                $universeDomain
+            );
         }
 
         if ($credentials instanceof CredentialsWrapper) {
+            if (!empty($credentialsConfig['openTelemetryTracerProvider'])) {
+                $credentials->setOpenTelemetryTracerProvider(
+                    $credentialsConfig['openTelemetryTracerProvider'],
+                    $credentialsConfig['clientVersion'] ?? ''
+                );
+            }
             return $credentials;
         }
 

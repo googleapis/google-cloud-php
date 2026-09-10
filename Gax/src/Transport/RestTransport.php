@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright 2018 Google LLC
  * All rights reserved.
@@ -29,8 +30,10 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+
 namespace Google\ApiCore\Transport;
 
+use Exception;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\Call;
 use Google\ApiCore\InsecureRequestBuilder;
@@ -38,13 +41,16 @@ use Google\ApiCore\RequestBuilder;
 use Google\ApiCore\ResumableUpload\ResumableUploadTransportInterface;
 use Google\ApiCore\ServerStream;
 use Google\ApiCore\ServiceAddressTrait;
+use Google\ApiCore\Telemetry\TelemetryTrait;
 use Google\ApiCore\Transport\Rest\RestServerStreamingCall;
 use Google\ApiCore\ValidationException;
 use Google\ApiCore\ValidationTrait;
 use Google\Protobuf\Internal\Message;
 use GuzzleHttp\Exception\RequestException;
+use OpenTelemetry\API\Trace\StatusCode;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
+use Throwable;
 
 /**
  * A REST based transport implementation.
@@ -53,6 +59,7 @@ class RestTransport implements TransportInterface, ResumableUploadTransportInter
 {
     use ValidationTrait;
     use ServiceAddressTrait;
+    use TelemetryTrait;
     use HttpUnaryTransportTrait {
         startServerStreamingCall as protected unsupportedServerStreamingCall;
     }
@@ -97,13 +104,14 @@ class RestTransport implements TransportInterface, ResumableUploadTransportInter
             'clientCertSource' => null,
             'hasEmulator' => false,
             'logger' => null,
-        ];
+        ] + self::getTelemetryDefaultConfig();
         list($baseUri, $port) = self::normalizeServiceAddress($apiEndpoint);
         $requestBuilder = $config['hasEmulator']
             ? new InsecureRequestBuilder("$baseUri:$port", $restConfigPath)
             : new RequestBuilder("$baseUri:$port", $restConfigPath);
         $httpHandler = $config['httpHandler'] ?: self::buildHttpHandlerAsync($config['logger']);
         $transport = new RestTransport($requestBuilder, $httpHandler);
+        $transport->setTelemetryOptions($config);
         if ($config['clientCertSource']) {
             $transport->configureMtlsChannel($config['clientCertSource']);
         }
@@ -120,21 +128,41 @@ class RestTransport implements TransportInterface, ResumableUploadTransportInter
         // Add the $call object ID for logging
         $options['requestId'] = crc32((string) spl_object_id($call) . getmypid());
 
-        // call the HTTP handler
-        $httpHandler = $this->httpHandler;
-        return $httpHandler(
-            $this->requestBuilder->build(
+        $spanMarshaling = $this->startTransportSpan('RequestMarshaling', $call);
+
+        try {
+            $request = $this->requestBuilder->build(
                 $call->getMethod(),
                 $call->getMessage(),
                 $headers
-            ),
+            );
+            if ($spanMarshaling) {
+                $spanMarshaling->setStatus(StatusCode::STATUS_OK);
+            }
+        } catch (Throwable $ex) {
+            $this->recordException($spanMarshaling, $ex);
+            throw $ex;
+        } finally {
+            if ($spanMarshaling) {
+                $spanMarshaling->end();
+            }
+        }
+
+        // call the HTTP handler
+        $httpHandler = $this->httpHandler;
+        $promise = $httpHandler(
+            $request,
             $this->getCallOptions($options)
-        )->then(
+        );
+
+        return $promise->then(
             function (ResponseInterface $response) use ($call, $options) {
                 $decodeType = $call->getDecodeType();
                 /** @var Message $return */
                 $return = new $decodeType();
                 $body = (string) $response->getBody();
+
+                $spanUnmarshaling = $this->startTransportSpan('ResponseUnmarshaling', $call);
 
                 // In some rare cases LRO response metadata may not be loaded
                 // in the descriptor pool, triggering an exception. The catch
@@ -142,24 +170,36 @@ class RestTransport implements TransportInterface, ResumableUploadTransportInter
                 // metadata type to the pool by directly instantiating the
                 // metadata class.
                 try {
-                    $return->mergeFromJsonString(
-                        $body,
-                        true
-                    );
-                } catch (\Exception $ex) {
-                    if (!isset($options['metadataReturnType'])) {
-                        throw $ex;
-                    }
+                    try {
+                        $return->mergeFromJsonString(
+                            $body,
+                            true
+                        );
+                    } catch (Exception $ex) {
+                        if (!isset($options['metadataReturnType'])) {
+                            throw $ex;
+                        }
 
-                    if (strpos($ex->getMessage(), 'Error occurred during parsing:') !== 0) {
-                        throw $ex;
-                    }
+                        if (strpos($ex->getMessage(), 'Error occurred during parsing:') !== 0) {
+                            throw $ex;
+                        }
 
-                    new $options['metadataReturnType']();
-                    $return->mergeFromJsonString(
-                        $body,
-                        true
-                    );
+                        new $options['metadataReturnType']();
+                        $return->mergeFromJsonString(
+                            $body,
+                            true
+                        );
+                    }
+                    if ($spanUnmarshaling) {
+                        $spanUnmarshaling->setStatus(StatusCode::STATUS_OK);
+                    }
+                } catch (Throwable $ex) {
+                    $this->recordException($spanUnmarshaling, $ex);
+                    throw $ex;
+                } finally {
+                    if ($spanUnmarshaling) {
+                        $spanUnmarshaling->end();
+                    }
                 }
 
                 if (isset($options['metadataCallback'])) {

@@ -40,6 +40,8 @@ use Google\ApiCore\ClientStream;
 use Google\ApiCore\GrpcSupportTrait;
 use Google\ApiCore\ServerStream;
 use Google\ApiCore\ServiceAddressTrait;
+use Google\ApiCore\Telemetry\SpanAttributes;
+use Google\ApiCore\Telemetry\TelemetryTrait;
 use Google\ApiCore\Transport\Grpc\ServerStreamingCallWrapper;
 use Google\ApiCore\Transport\Grpc\UnaryInterceptorInterface;
 use Google\ApiCore\ValidationException;
@@ -52,7 +54,10 @@ use Grpc\Channel;
 use Grpc\ChannelCredentials;
 use Grpc\Interceptor;
 use GuzzleHttp\Promise\Promise;
+use OpenTelemetry\API\Trace\SpanKind;
+use OpenTelemetry\API\Trace\StatusCode;
 use Psr\Log\LoggerInterface;
+use Throwable;
 
 /**
  * A gRPC based transport implementation.
@@ -63,8 +68,11 @@ class GrpcTransport extends BaseStub implements TransportInterface
     use GrpcSupportTrait;
     use ServiceAddressTrait;
     use LoggingTrait;
+    use TelemetryTrait;
 
     private null|LoggerInterface $logger;
+    private string $serverAddress = '';
+    private int $serverPort = 443;
 
     /**
      * @param string $hostname
@@ -100,6 +108,11 @@ class GrpcTransport extends BaseStub implements TransportInterface
 
         parent::__construct($hostname, $opts, $channel);
         $this->logger = $logger;
+        if ($hostname !== '') {
+            list($addr, $port) = self::normalizeServiceAddress($hostname);
+            $this->serverAddress = $addr;
+            $this->serverPort = (int) $port;
+        }
     }
 
     /**
@@ -136,7 +149,7 @@ class GrpcTransport extends BaseStub implements TransportInterface
             'interceptors'     => [],
             'clientCertSource' => null,
             'logger'           => null,
-        ];
+        ] + self::getTelemetryDefaultConfig();
         list($addr, $port) = self::normalizeServiceAddress($apiEndpoint);
         $host = "$addr:$port";
         $stubOpts = $config['stubOpts'];
@@ -161,7 +174,11 @@ class GrpcTransport extends BaseStub implements TransportInterface
             if ($config['logger'] === false) {
                 $config['logger'] = null;
             }
-            return new GrpcTransport($host, $stubOpts, $channel, $config['interceptors'], $config['logger']);
+            $transport = new GrpcTransport($host, $stubOpts, $channel, $config['interceptors'], $config['logger']);
+            $transport->serverAddress = $addr;
+            $transport->serverPort = (int) $port;
+            $transport->setTelemetryOptions($config);
+            return $transport;
         } catch (Exception $ex) {
             throw new ValidationException(
                 'Failed to build GrpcTransport: ' . $ex->getMessage(),
@@ -281,6 +298,20 @@ class GrpcTransport extends BaseStub implements TransportInterface
         $headers = $options['headers'] ?? [];
         $requestEvent = null;
 
+        $span = null;
+        if ($this->openTelemetryTracerProvider && $call->getMethod()) {
+            $span = $this->startSpan(
+                $call->getMethod(),
+                [
+                    SpanAttributes::RPC_SYSTEM_NAME => 'grpc',
+                    SpanAttributes::RPC_METHOD => $call->getMethod(),
+                    SpanAttributes::SERVER_ADDRESS => $this->serverAddress,
+                    SpanAttributes::SERVER_PORT => $this->serverPort,
+                ],
+                SpanKind::KIND_CLIENT
+            );
+        }
+
         $unaryCall = $this->_simpleRequest(
             '/' . $call->getMethod(),
             $call->getMessage(),
@@ -306,32 +337,57 @@ class GrpcTransport extends BaseStub implements TransportInterface
 
         /** @var Promise $promise */
         $promise = new Promise(
-            function () use ($unaryCall, $options, &$promise, $requestEvent) {
-                list($response, $status) = $unaryCall->wait();
+            function () use ($unaryCall, $options, &$promise, $requestEvent, $span) {
+                try {
+                    list($response, $status) = $unaryCall->wait();
 
-                if ($this->logger) {
-                    $responseEvent = new RpcLogEvent($requestEvent->milliseconds);
+                    if ($this->logger) {
+                        $responseEvent = new RpcLogEvent($requestEvent->milliseconds);
 
-                    $responseEvent->headers = $status->metadata;
-                    $responseEvent->payload = ($response) ? $response->serializeToJsonString() : null;
-                    $responseEvent->status = $status->code;
-                    $responseEvent->processId = $requestEvent->processId;
-                    $responseEvent->requestId = $requestEvent->requestId;
+                        $responseEvent->headers = $status->metadata;
+                        $responseEvent->payload = ($response) ? $response->serializeToJsonString() : null;
+                        $responseEvent->status = $status->code;
+                        $responseEvent->processId = $requestEvent->processId;
+                        $responseEvent->requestId = $requestEvent->requestId;
 
-                    $this->logResponse($responseEvent);
-                }
-
-                if ($status->code == Code::OK) {
-                    if (isset($options['metadataCallback'])) {
-                        $metadataCallback = $options['metadataCallback'];
-                        $metadataCallback($unaryCall->getMetadata());
+                        $this->logResponse($responseEvent);
                     }
-                    $promise->resolve($response);
-                } else {
-                    throw ApiException::createFromStdClass($status);
+
+                    if ($status->code == Code::OK) {
+                        if ($span) {
+                            $span->setAttribute(SpanAttributes::RPC_RESPONSE_STATUS_CODE, 'OK');
+                            $span->setStatus(StatusCode::STATUS_OK);
+                        }
+                        if (isset($options['metadataCallback'])) {
+                            $metadataCallback = $options['metadataCallback'];
+                            $metadataCallback($unaryCall->getMetadata());
+                        }
+                        $promise->resolve($response);
+                    } else {
+                        if ($span) {
+                            $span->setAttribute(SpanAttributes::RPC_RESPONSE_STATUS_CODE, Code::name($status->code));
+                        }
+                        throw ApiException::createFromStdClass($status);
+                    }
+                } catch (Throwable $e) {
+                    if ($span) {
+                        $this->recordException($span, $e);
+                    }
+                    throw $e;
+                } finally {
+                    if ($span) {
+                        $span->end();
+                    }
                 }
             },
-            [$unaryCall, 'cancel']
+            function () use ($unaryCall, $span) {
+                if ($span) {
+                    $span->setStatus(StatusCode::STATUS_ERROR, 'Call cancelled');
+                    $span->setAttribute(SpanAttributes::ERROR_TYPE, 'CANCELLED');
+                    $span->end();
+                }
+                $unaryCall->cancel();
+            }
         );
 
         return $promise;

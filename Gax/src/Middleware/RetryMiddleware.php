@@ -35,7 +35,12 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\ApiStatus;
 use Google\ApiCore\Call;
 use Google\ApiCore\RetrySettings;
+use Google\ApiCore\Telemetry\SpanAttributes;
+use Google\ApiCore\Telemetry\TelemetryTrait;
 use GuzzleHttp\Promise\PromiseInterface;
+use OpenTelemetry\API\Trace\StatusCode;
+use OpenTelemetry\API\Trace\TracerProviderInterface;
+use Throwable;
 
 /**
  * Middleware that adds retry functionality.
@@ -44,6 +49,8 @@ use GuzzleHttp\Promise\PromiseInterface;
  */
 class RetryMiddleware implements MiddlewareInterface
 {
+    use TelemetryTrait;
+
     /** @var callable */
     private $nextHandler;
     private RetrySettings $retrySettings;
@@ -61,14 +68,17 @@ class RetryMiddleware implements MiddlewareInterface
         callable $nextHandler,
         RetrySettings $retrySettings,
         $deadlineMs = null,
-        $retryAttempts = 0,
-        ?callable $delayHandler = null
+        int $retryAttempts = 0,
+        ?callable $delayHandler = null,
+        ?TracerProviderInterface $openTelemetryTracerProvider = null,
+        array $telemetryOptions = []
     ) {
         $this->nextHandler = $nextHandler;
         $this->retrySettings = $retrySettings;
         $this->deadlineMs = $deadlineMs;
         $this->retryAttempts = $retryAttempts;
         $this->delayHandler = ($delayHandler ?? [$this, 'sleepMillis']);
+        $this->initTelemetry($telemetryOptions, $openTelemetryTracerProvider);
     }
 
     /**
@@ -169,13 +179,36 @@ class RetryMiddleware implements MiddlewareInterface
             $this->deadlineMs,
             $this->retryAttempts + 1,
             $this->delayHandler,
+            $this->openTelemetryTracerProvider,
+            $this->getTelemetryOptions()
         );
 
         // Set the timeout for the call
         $options['timeoutMillis'] = $timeoutMs;
 
-        // Sleep for the length of the delay
-        ($this->delayHandler)((int) $delayMs);
+        $span = $this->startSpan('RetryDelay', [
+            SpanAttributes::HTTP_REQUEST_RESEND_COUNT => $this->retryAttempts,
+            SpanAttributes::RPC_METHOD => $call->getMethod(),
+        ]);
+        $scope = $span ? $span->activate() : null;
+
+        try {
+            // Sleep for the length of the delay
+            ($this->delayHandler)((int) $delayMs);
+            if ($span) {
+                $span->setStatus(StatusCode::STATUS_OK);
+            }
+        } catch (Throwable $ex) {
+            $this->recordException($span, $ex);
+            throw $ex;
+        } finally {
+            if ($scope) {
+                $scope->detach();
+            }
+            if ($span) {
+                $span->end();
+            }
+        }
 
         return $nextHandler(
             $call,
