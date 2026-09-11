@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /*
  * Copyright 2023 Google LLC
  * All rights reserved.
@@ -36,7 +38,6 @@ use ArrayAccess;
 use Closure;
 use Google\ApiCore\Options\OptionsInterface;
 use Google\ApiCore\Options\OptionsTrait;
-use Google\ApiCore\Transport\Grpc\UnaryInterceptorInterface;
 use Grpc\Channel;
 use Grpc\Interceptor;
 use Psr\Log\LoggerInterface;
@@ -56,7 +57,7 @@ class GrpcTransportOptions implements ArrayAccess, OptionsInterface
     private null|false|LoggerInterface $logger;
 
     /**
-     * @var Interceptor[]|UnaryInterceptorInterface[]
+     * @var Interceptor[]
      */
     private array $interceptors;
 
@@ -69,14 +70,8 @@ class GrpcTransportOptions implements ArrayAccess, OptionsInterface
      *    @type array $stubOpts Options used to construct the gRPC stub (see
      *          {@link https://grpc.github.io/grpc/core/group__grpc__arg__keys.html}).
      *    @type Channel $channel Grpc channel to be used.
-     *    @type Interceptor[]|UnaryInterceptorInterface[] $interceptors *EXPERIMENTAL*
+     *    @type Interceptor[] $interceptors *EXPERIMENTAL*
      *          Interceptors used to intercept RPC invocations before a call starts.
-     *          Please note that implementations of
-     *          {@see \Google\ApiCore\Transport\Grpc\UnaryInterceptorInterface} are
-     *          considered deprecated and support will be removed in a future
-     *          release. To prepare for this, please take the time to convert
-     *          `UnaryInterceptorInterface` implementations over to a class which
-     *          extends {@see Grpc\Interceptor}.
      *    @type callable $clientCertSource A callable which returns the client cert as a string.
      *    @type null|false|LoggerInterface A PSR-3 Logger Interface.
      * }
@@ -125,7 +120,7 @@ class GrpcTransportOptions implements ArrayAccess, OptionsInterface
     }
 
     /**
-     * @param Interceptor[]|UnaryInterceptorInterface[] $interceptors
+     * @param Interceptor[] $interceptors
      *
      * @return $this
      */

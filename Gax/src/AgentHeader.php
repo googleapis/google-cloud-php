@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /*
  * Copyright 2016 Google LLC
  * All rights reserved.
@@ -124,7 +126,7 @@ class AgentHeader
         $versionFile = substr(
             $callingClassFile,
             0,
-            strrpos($callingClassFile, DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR)
+            strrpos($callingClassFile, DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR) ?: 0
         ) . DIRECTORY_SEPARATOR . 'VERSION';
 
         return Version::readVersionFile($versionFile);
