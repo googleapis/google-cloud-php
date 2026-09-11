@@ -612,12 +612,12 @@ class StorageClientTest extends TestCase
         $client->createBucket('myBucket');
     }
 
-    public static function getCreateBucketSuccessResponse()
+    public static function getCreateHmacKeySuccessResponse()
     {
         return new Response(
             200,
             ['Content-Type' => 'application/json'],
-            json_encode(['name' => 'myBucket'])
+            json_encode(['secret' => 'foo', 'metadata' => ['accessId' => 'test']])
         );
     }
 
@@ -625,7 +625,7 @@ class StorageClientTest extends TestCase
     {
         $httpHandler = self::getHttpHandlerMock([
             new Response(503), // Service Unavailable
-            self::getCreateBucketSuccessResponse(),
+            self::getCreateHmacKeySuccessResponse(),
         ])[1];
 
         $client = new StorageClient([
@@ -642,7 +642,8 @@ class StorageClientTest extends TestCase
             },
         ]);
 
-        $this->assertInstanceOf(Bucket::class, $client->createBucket('myBucket'));
+        // Test using an operation that is not idempotent
+        $this->assertInstanceOf(CreatedHmacKey::class, $client->createHmacKey('test@example.com'));
     }
 
     public function testDelayFunctionsConfiguration()
