@@ -41,6 +41,7 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\ValidationException;
 use Google\Protobuf\Internal\Message;
 use Google\Rpc\Code;
+use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Promise\Create;
 use GuzzleHttp\Psr7\Request;
@@ -539,7 +540,7 @@ class ResumableUploadClient
 
         // If request timed out during stall control, raise Upload stalled
         if ($state->isStallControlEnabled()
-            && $e instanceof RequestException
+            && ($e instanceof RequestException || $e instanceof ConnectException)
             && in_array($code, [0, 408])
         ) {
             throw new ApiException(
@@ -552,7 +553,10 @@ class ResumableUploadClient
 
         // If request timed out or connection was dropped during an active upload session,
         // transition to recovery to query server for committed bytes, provided uploadUrl is set
-        if ($state->uploadUrl !== null && $e instanceof RequestException && in_array($code, [0, 408])) {
+        if ($state->uploadUrl !== null
+            && ($e instanceof RequestException || $e instanceof ConnectException)
+            && in_array($code, [0, 408])
+        ) {
             return self::PHASE_RECOVERY;
         }
 
