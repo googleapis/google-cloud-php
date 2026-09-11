@@ -465,12 +465,24 @@ class RequestWrapper
     /**
      * Gets a set of request options.
      *
+     * Per-call options are merged over the client-level ones rather than replacing
+     * them, so that transport settings configured once on the client (`proxy`,
+     * `verify`, `cert`, ...) still apply to calls that supply their own options.
+     * The merge is shallow, because Guzzle options are a flat list of mostly
+     * scalar values; `headers` is the one nested array worth merging on its own,
+     * so that a per-call header does not drop the client's default headers.
+     *
      * @param array $options
      * @return array
      */
     private function getRequestOptions(array $options)
     {
-        $restOptions = $options['restOptions'] ?? $this->restOptions;
+        $restOptions = ($options['restOptions'] ?? []) + $this->restOptions;
+
+        if ($headers = ($options['restOptions']['headers'] ?? []) + ($this->restOptions['headers'] ?? [])) {
+            $restOptions['headers'] = $headers;
+        }
+
         $timeout = $options['requestTimeout'] ?? $this->requestTimeout;
 
         if ($timeout && !array_key_exists('timeout', $restOptions)) {
