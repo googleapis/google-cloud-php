@@ -300,7 +300,7 @@
         "google/common-protos": "4.14.2",
         "google/developer-knowledge": "0.4.0",
         "google/developers-knowledge": "0.0.0",
-        "google/gax": "1.49.0",
+        "google/gax": "1.50.0",
         "google/geo-common-protos": "0.2.5",
         "google/grafeas": "1.9.1",
         "google/longrunning": "0.8.3",

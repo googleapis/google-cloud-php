@@ -37,11 +37,20 @@ use Google\ApiCore\ApiStatus;
 use Google\ApiCore\Call;
 use Google\ApiCore\Middleware\RetryMiddleware;
 use Google\ApiCore\RetrySettings;
+use Google\ApiCore\Telemetry\SpanAttributes;
 use Google\Rpc\Code;
+use GuzzleHttp\Promise\FulfilledPromise;
 use GuzzleHttp\Promise\Promise;
+use GuzzleHttp\Promise\RejectedPromise;
+use OpenTelemetry\API\Trace\SpanBuilderInterface;
+use OpenTelemetry\API\Trace\SpanInterface;
+use OpenTelemetry\API\Trace\SpanKind;
+use OpenTelemetry\API\Trace\TracerInterface;
+use OpenTelemetry\API\Trace\TracerProviderInterface;
+use OpenTelemetry\Context\ScopeInterface;
 use PHPUnit\Framework\TestCase;
-use Prophecy\PhpUnit\ProphecyTrait;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 use function usleep;
 
 class RetryMiddlewareTest extends TestCase
@@ -564,5 +573,101 @@ class RetryMiddlewareTest extends TestCase
         // 4 calls results in 3 retries, therefore 3 delays
         $this->assertCount(3, $delays);
         $this->assertEquals([100, 130, 169], $delays);
+    }
+    public function testRetryMiddlewareTracerProvider()
+    {
+        $openTelemetryTracerProvider = $this->createMock(TracerProviderInterface::class);
+        $tracer = $this->createMock(TracerInterface::class);
+        $spanBuilder = $this->createMock(SpanBuilderInterface::class);
+        $span = $this->createMock(SpanInterface::class);
+        $scope = $this->createMock(ScopeInterface::class);
+
+        $openTelemetryTracerProvider->expects($this->once())
+            ->method('getTracer')
+            ->with('google-cloud-php', '1.0.0')
+            ->willReturn($tracer);
+
+        $tracer->expects($this->once())
+            ->method('spanBuilder')
+            ->with('RetryDelay')
+            ->willReturn($spanBuilder);
+
+        $spanBuilder->expects($this->once())
+            ->method('setSpanKind')
+            ->with(SpanKind::KIND_INTERNAL)
+            ->willReturnSelf();
+
+        $attributes = [];
+        $spanBuilder->method('setAttribute')
+            ->willReturnCallback(function ($key, $val) use (&$attributes, $spanBuilder) {
+                $attributes[$key] = $val;
+                return $spanBuilder;
+            });
+
+        $spanBuilder->expects($this->once())
+            ->method('startSpan')
+            ->willReturn($span);
+            
+        $span->expects($this->once())
+            ->method('activate')
+            ->willReturn($scope);
+
+        $span->expects($this->once())
+            ->method('end');
+            
+        $scope->expects($this->once())
+            ->method('detach');
+
+        $retrySettings = RetrySettings::constructDefault()->with([
+            'retriesEnabled' => true,
+            'retryableCodes' => [Code::UNAVAILABLE],
+        ]);
+        $delayHandlerCalled = false;
+        $delayHandler = function ($delay) use (&$delayHandlerCalled) {
+            $delayHandlerCalled = true;
+        };
+        
+        $nextHandlerCalled = 0;
+        $nextHandler = function ($call, $options) use (&$nextHandlerCalled) {
+            $nextHandlerCalled++;
+            if ($nextHandlerCalled === 1) {
+                return new RejectedPromise(
+                    new ApiException('test', 14, Code::UNAVAILABLE)
+                );
+            }
+            return new FulfilledPromise('success');
+        };
+
+        $telemetryOptions = [
+            SpanAttributes::GCP_CLIENT_REPO => 'googleapis/google-cloud-php',
+            SpanAttributes::GCP_CLIENT_ARTIFACT => 'google-cloud-secretmanager',
+            SpanAttributes::GCP_CLIENT_SERVICE => 'secretmanager',
+            SpanAttributes::GCP_CLIENT_VERSION => '1.0.0',
+        ];
+
+        $middleware = new RetryMiddleware(
+            $nextHandler,
+            $retrySettings,
+            null,
+            0,
+            $delayHandler,
+            $openTelemetryTracerProvider,
+            $telemetryOptions
+        );
+
+        $method = 'google.cloud.secretmanager.v1.SecretManagerService/AccessSecretVersion';
+        $call = $this->prophesize(Call::class);
+        $call->getMethod()->willReturn($method);
+        $promise = $middleware($call->reveal(), []);
+        $promise->wait();
+        
+        $this->assertTrue($delayHandlerCalled);
+        $this->assertEquals(2, $nextHandlerCalled);
+        $this->assertEquals(0, $attributes[SpanAttributes::HTTP_REQUEST_RESEND_COUNT]);
+        $this->assertEquals($method, $attributes[SpanAttributes::RPC_METHOD]);
+        $this->assertEquals('googleapis/google-cloud-php', $attributes[SpanAttributes::GCP_CLIENT_REPO]);
+        $this->assertEquals('google-cloud-secretmanager', $attributes[SpanAttributes::GCP_CLIENT_ARTIFACT]);
+        $this->assertEquals('secretmanager', $attributes[SpanAttributes::GCP_CLIENT_SERVICE]);
+        $this->assertEquals('1.0.0', $attributes[SpanAttributes::GCP_CLIENT_VERSION]);
     }
 }

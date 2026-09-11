@@ -35,14 +35,17 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\ApiStatus;
 use Google\ApiCore\Call;
 use Google\ApiCore\ServiceAddressTrait;
+use Google\ApiCore\Telemetry\TelemetryTrait;
 use Google\ApiCore\ValidationException;
 use Google\ApiCore\ValidationTrait;
 use Google\Protobuf\Internal\Message;
 use Google\Rpc\Status;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Request;
+use OpenTelemetry\API\Trace\StatusCode;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
+use Throwable;
 
 /**
  * A transport that sends protobuf over HTTP 1.1 that can be used when full gRPC support
@@ -52,12 +55,13 @@ class GrpcFallbackTransport implements TransportInterface
 {
     use ValidationTrait;
     use ServiceAddressTrait;
+    use TelemetryTrait;
     use HttpUnaryTransportTrait;
 
     private string $baseUri;
 
     /**
-     * @param string $baseUri
+     * @param string $baseUri The base URI to connect to.
      * @param callable $httpHandler A handler used to deliver PSR-7 requests.
      */
     public function __construct(
@@ -88,10 +92,11 @@ class GrpcFallbackTransport implements TransportInterface
             'httpHandler'  => null,
             'clientCertSource' => null,
             'logger' => null,
-        ];
+        ] + self::getTelemetryDefaultConfig();
         list($baseUri, $port) = self::normalizeServiceAddress($apiEndpoint);
         $httpHandler = $config['httpHandler'] ?: self::buildHttpHandlerAsync(logger: $config['logger']);
         $transport = new GrpcFallbackTransport("$baseUri:$port", $httpHandler);
+        $transport->setTelemetryOptions($config);
         if ($config['clientCertSource']) {
             $transport->configureMtlsChannel($config['clientCertSource']);
         }
@@ -107,8 +112,24 @@ class GrpcFallbackTransport implements TransportInterface
 
         $options['requestId'] = crc32((string) spl_object_id($call) . getmypid());
 
+        $spanMarshaling = $this->startTransportSpan('RequestMarshaling', $call);
+
+        try {
+            $request = $this->buildGrpcFallbackRequest($call, $options);
+            if ($spanMarshaling) {
+                $spanMarshaling->setStatus(StatusCode::STATUS_OK);
+            }
+        } catch (Throwable $ex) {
+            $this->recordException($spanMarshaling, $ex);
+            throw $ex;
+        } finally {
+            if ($spanMarshaling) {
+                $spanMarshaling->end();
+            }
+        }
+
         return $httpHandler(
-            $this->buildGrpcFallbackRequest($call, $options),
+            $request,
             $this->getCallOptions($options)
         )->then(
             function (ResponseInterface $response) use ($options) {
@@ -158,14 +179,29 @@ class GrpcFallbackTransport implements TransportInterface
      * @param Call $call
      * @param ResponseInterface $response
      * @return Message
+     * @throws Throwable
      */
     private function unpackResponse(Call $call, ResponseInterface $response)
     {
-        $decodeType = $call->getDecodeType();
-        /** @var Message $responseMessage */
-        $responseMessage = new $decodeType();
-        $responseMessage->mergeFromString((string) $response->getBody());
-        return $responseMessage;
+        $spanUnmarshaling = $this->startTransportSpan('ResponseUnmarshaling', $call);
+
+        try {
+            $decodeType = $call->getDecodeType();
+            /** @var Message $responseMessage */
+            $responseMessage = new $decodeType();
+            $responseMessage->mergeFromString((string) $response->getBody());
+            if ($spanUnmarshaling) {
+                $spanUnmarshaling->setStatus(StatusCode::STATUS_OK);
+            }
+            return $responseMessage;
+        } catch (Throwable $ex) {
+            $this->recordException($spanUnmarshaling, $ex);
+            throw $ex;
+        } finally {
+            if ($spanUnmarshaling) {
+                $spanUnmarshaling->end();
+            }
+        }
     }
 
     /**
