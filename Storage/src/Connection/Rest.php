@@ -19,7 +19,6 @@ namespace Google\Cloud\Storage\Connection;
 
 use Google\Auth\GetUniverseDomainInterface;
 use Google\Cloud\Core\RequestBuilder;
-use Google\Cloud\Core\RequestWrapper;
 use Google\Cloud\Core\RestTrait;
 use Google\Cloud\Core\Retry;
 use Google\Cloud\Core\Upload\AbstractUploader;
@@ -141,7 +140,7 @@ class Rest implements ConnectionInterface
 
         $this->apiEndpoint = $this->getApiEndpoint(null, $config, self::DEFAULT_API_ENDPOINT_TEMPLATE);
 
-        $this->setRequestWrapper(new RequestWrapper($config));
+        $this->setRequestWrapper(new StorageRequestWrapper($config));
         $this->setRequestBuilder(new RequestBuilder(
             $config['serviceDefinitionPath'],
             $this->apiEndpoint
@@ -611,7 +610,7 @@ class Rest implements ConnectionInterface
 
         // Passing the preconditions we want to extract out of arguments
         // into our query params.
-        $preconditions = self::$condIdempotentOps['objects.insert'];
+        $preconditions = ['ifGenerationMatch', 'ifGenerationNotMatch'];
         foreach ($preconditions as $precondition) {
             if (isset($args[$precondition])) {
                 $uriParams['query'][$precondition] = $args[$precondition];

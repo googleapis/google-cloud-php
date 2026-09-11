@@ -17,18 +17,22 @@
 
 namespace Google\Cloud\Storage\Tests\Unit\Connection;
 
-use Google\Auth\HttpHandler\Guzzle7HttpHandler;
+use Google\Auth\HttpHandler\HttpHandlerFactory;
 use Google\Cloud\Core\RequestBuilder;
 use Google\Cloud\Core\RequestWrapper;
 use Google\Cloud\Core\Retry;
-use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Upload\MultipartUploader;
 use Google\Cloud\Core\Upload\ResumableUploader;
 use Google\Cloud\Core\Upload\StreamableUploader;
 use Google\Cloud\Storage\Connection\Rest;
 use Google\Cloud\Storage\Connection\RetryTrait;
+use Google\Cloud\Storage\Connection\StorageRequestWrapper;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\BadResponseException;
+use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Handler\MockHandler;
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Middleware;
 use GuzzleHttp\Promise\Create;
 use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\Psr7\Request;
@@ -517,7 +521,7 @@ class RestTest extends TestCase
             }
         );
         $requestWrapper = new RequestWrapper([
-            'httpHandler' => new Guzzle7HttpHandler($mockClient->reveal()),
+            'httpHandler' => HttpHandlerFactory::build($mockClient->reveal()),
             'accessToken' => 'Fake token',
             'retries' => 3,
         ]);
@@ -1028,6 +1032,195 @@ class RestTest extends TestCase
             [2],
             [3],
         ];
+    }
+
+    public function testIdempotencyTokenHeaderAdded()
+    {
+        $mockClient = $this->prophesize(Client::class);
+        $mockClient->send(
+            Argument::type(RequestInterface::class),
+            Argument::that(function ($options) {
+                if (!isset($options['headers']['x-goog-gcs-idempotency-token'])) {
+                    return false;
+                }
+                $token = $options['headers']['x-goog-gcs-idempotency-token'];
+                return preg_match('/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/', $token) === 1;
+            })
+        )->willReturn(new Response(200, [], '{}'))->shouldBeCalled();
+
+        $rest = new Rest();
+        $rest->setRequestWrapper(new StorageRequestWrapper([
+            'httpHandler' => HttpHandlerFactory::build($mockClient->reveal()),
+            'accessToken' => 'Fake token',
+        ]));
+
+        $rest->insertBucket();
+    }
+
+    public function testIdempotencyTokenNotOverwrittenIfProvided()
+    {
+        $customToken = 'my-custom-uuid-1234';
+
+        $mockClient = $this->prophesize(Client::class);
+        $mockClient->send(
+            Argument::type(RequestInterface::class),
+            Argument::that(function ($options) use ($customToken) {
+                if (!isset($options['headers']['x-goog-gcs-idempotency-token'])) {
+                    return false;
+                }
+                return $options['headers']['x-goog-gcs-idempotency-token'] === $customToken;
+            })
+        )->willReturn(new Response(200, [], '{}'))->shouldBeCalled();
+
+        $rest = new Rest();
+        $rest->setRequestWrapper(new StorageRequestWrapper([
+            'httpHandler' => HttpHandlerFactory::build($mockClient->reveal()),
+            'accessToken' => 'Fake token',
+        ]));
+
+        $rest->insertBucket([
+            'restOptions' => [
+                'headers' => [
+                    'x-goog-gcs-idempotency-token' => $customToken
+                ]
+            ]
+        ]);
+    }
+
+    public function testIdempotencyTokenNotOverwrittenIfProvidedWithMixedCase()
+    {
+        $customToken = 'my-custom-uuid-1234';
+
+        $mockClient = $this->prophesize(Client::class);
+        $mockClient->send(
+            Argument::type(RequestInterface::class),
+            Argument::that(function ($options) use ($customToken) {
+                if (isset($options['headers']['x-goog-gcs-idempotency-token'])) {
+                    return false;
+                }
+                if (!isset($options['headers']['X-Goog-Gcs-Idempotency-Token'])) {
+                    return false;
+                }
+                return $options['headers']['X-Goog-Gcs-Idempotency-Token'] === $customToken;
+            })
+        )->willReturn(new Response(200, [], '{}'))->shouldBeCalled();
+
+        $rest = new Rest();
+        $rest->setRequestWrapper(new StorageRequestWrapper([
+            'httpHandler' => HttpHandlerFactory::build($mockClient->reveal()),
+            'accessToken' => 'Fake token',
+        ]));
+
+        $rest->insertBucket([
+            'restOptions' => [
+                'headers' => [
+                    'X-Goog-Gcs-Idempotency-Token' => $customToken
+                ]
+            ]
+        ]);
+    }
+
+    public function testIdempotencyTokenGeneratedIfGcclInvocationIdMalformed()
+    {
+        $mockClient = $this->prophesize(Client::class);
+        $mockClient->send(
+            Argument::type(RequestInterface::class),
+            Argument::that(function ($options) {
+                if (!isset($options['headers']['x-goog-gcs-idempotency-token'])) {
+                    return false;
+                }
+                $token = $options['headers']['x-goog-gcs-idempotency-token'];
+                return preg_match('/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/', $token) === 1;
+            })
+        )->willReturn(new Response(200, [], '{}'))->shouldBeCalled();
+
+        $rest = new Rest();
+        $rest->setRequestWrapper(new StorageRequestWrapper([
+            'httpHandler' => HttpHandlerFactory::build($mockClient->reveal()),
+            'accessToken' => 'Fake token',
+        ]));
+
+        $rest->insertBucket([
+            'retryHeaders' => [
+                'gccl-invocation-id/'
+            ]
+        ]);
+    }
+
+    /**
+     * Test idempotency token and custom headers are preserved across retries.
+     */
+    public function testIdempotencyTokenReusedOnRetry()
+    {
+        $container = [];
+        $history = Middleware::history($container);
+
+        $mockHandler = new MockHandler([
+            new Response(500, [], 'Internal Server Error'),
+            new Response(200, [], '{}')
+        ]);
+
+        $handlerStack = HandlerStack::create($mockHandler);
+        $handlerStack->push($history);
+
+        $client = new Client(['handler' => $handlerStack]);
+
+        $customToken = 'my-custom-idempotency-token-12345';
+        $contentType = 'application/json';
+        $customHeader = 'my-custom-header-value';
+
+        $rest = new Rest([
+            'restDelayFunction' => function () {
+            },
+        ]);
+        $rest->setRequestWrapper(new StorageRequestWrapper([
+            'httpHandler' => HttpHandlerFactory::build($client),
+            'accessToken' => 'Fake token',
+            'restDelayFunction' => function () {
+            },
+        ]));
+
+        $rest->insertBucket([
+            'restOptions' => [
+                'headers' => [
+                    'x-goog-gcs-idempotency-token' => $customToken,
+                    'Content-Type' => $contentType,
+                    'X-Custom-Header' => $customHeader,
+                ]
+            ]
+        ]);
+
+        $this->assertCount(2, $container);
+
+        $firstRequest = $container[0]['request'];
+        $secondRequest = $container[1]['request'];
+
+        $this->assertEquals(
+            $customToken,
+            $firstRequest->getHeaderLine('x-goog-gcs-idempotency-token')
+        );
+        $this->assertEquals(
+            $firstRequest->getHeaderLine('x-goog-gcs-idempotency-token'),
+            $secondRequest->getHeaderLine('x-goog-gcs-idempotency-token')
+        );
+
+        $this->assertEquals(
+            $contentType,
+            $firstRequest->getHeaderLine('Content-Type')
+        );
+        $this->assertEquals(
+            $firstRequest->getHeaderLine('Content-Type'),
+            $secondRequest->getHeaderLine('Content-Type')
+        );
+
+        $this->assertEquals(
+            $customHeader,
+            $firstRequest->getHeaderLine('X-Custom-Header')
+        );
+        $this->assertEquals(
+            $firstRequest->getHeaderLine('X-Custom-Header'),
+            $secondRequest->getHeaderLine('X-Custom-Header')
+        );
     }
 
     private function getContentTypeAndMetadata(RequestInterface $request)
