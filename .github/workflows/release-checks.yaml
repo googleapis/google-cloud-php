@@ -146,4 +146,5 @@ jobs:
             -t $GH_TOKEN \
             -p $PG_TOKEN \
             --skip Gax:repo \
-            --skip Auth:repo # Skip repo check for Gax and Auth because issues are enabled
+            --skip Auth:repo \
+            --skip Jwt:repo # Skip repo check for Gax, Auth, and Jwt because issues are enabled on those repos
