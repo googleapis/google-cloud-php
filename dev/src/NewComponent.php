@@ -37,22 +37,38 @@ class NewComponent
     public string $protoPath;
     public ?string $version;
 
+    /**
+     * @param array<string, mixed> $options
+     */
     public static function fromProto(string $protoContents, string $protoFilename, array $options = []): self
     {
         $new = new self();
+        $hasGapicClient = self::hasGapicClient($protoContents);
         $new->protoPackage = $options['proto-package']
-            ?? self::extractPackageNameFromProtoContents($protoContents);
+            ?? self::extractPackageNameFromProtoContents($protoContents, $hasGapicClient);
         $new->phpNamespace = $options['php-namespace']
-            ?? (self::extractPhpNamespaceFromProtoContents($protoContents)
+            ?? (self::extractPhpNamespaceFromProtoContents($protoContents, $hasGapicClient)
                 ?: self::derivePhpNamespaceFromProtoPackage($new->protoPackage));
         $new->displayName = self::getDisplayName($new->phpNamespace);
         $new->componentName = $options['component-name']
             ?? self::getComponentName($new->displayName);
-        $new->composerPackage = self::getComposerPackageFromProtoPackage($new->protoPackage);
+        if (!$hasGapicClient) {
+            if (!str_ends_with($new->componentName, 'CommonProtos')) {
+                $new->componentName .= 'CommonProtos';
+            }
+            if (!str_ends_with($new->displayName, 'Common Protos')) {
+                $new->displayName .= ' Common Protos';
+            }
+        }
+        $new->composerPackage = self::getComposerPackage(
+            $new->protoPackage,
+            $new->phpNamespace,
+            $hasGapicClient
+        );
         $new->githubRepo = self::getGithubRepo($new->composerPackage);
         $new->gpbMetadataNamespace = self::getGpbMetadataNamespace($new->protoPackage);
         $new->shortName = $options['api-short-name']
-            ?? self::extractShortNameFromProtoContents($protoContents);
+            ?? self::extractShortNameFromProtoContents($protoContents, $hasGapicClient);
         $new->version = array_key_exists('api-version', $options)
             ? $options['api-version']
             : self::extractVersionFromProtoFilename($protoFilename);
@@ -61,6 +77,9 @@ class NewComponent
         return $new;
     }
 
+    /**
+     * @param array<string, mixed> $options
+     */
     public static function fromOptions(array $options): self
     {
         $new = new self();
@@ -68,7 +87,15 @@ class NewComponent
         $new->phpNamespace = $options['php-namespace'] ?? '';
         $new->displayName = self::getDisplayName($new->phpNamespace);
         $new->componentName = $options['component-name'] ?? '';
-        $new->composerPackage = self::getComposerPackageFromProtoPackage($new->protoPackage);
+        $hasGapicClient = !str_ends_with($new->componentName, 'CommonProtos');
+        if (!$hasGapicClient && !str_ends_with($new->displayName, 'Common Protos')) {
+            $new->displayName .= ' Common Protos';
+        }
+        $new->composerPackage = self::getComposerPackage(
+            $new->protoPackage,
+            $new->phpNamespace,
+            $hasGapicClient
+        );
         $new->githubRepo = self::getGithubRepo($new->composerPackage);
         $new->gpbMetadataNamespace = self::getGpbMetadataNamespace($new->protoPackage);
         $new->shortName = $options['api-short-name'] ?? '';
@@ -88,6 +115,9 @@ class NewComponent
 
     private static function getGithubRepo(string $composerPackage): string
     {
+        if (str_starts_with($composerPackage, 'googleads/')) {
+            return 'googleapis/php-ads-' . substr($composerPackage, 10);
+        }
         return 0 === strpos($composerPackage, 'google/cloud-')
             ? 'googleapis/google-cloud-php-' . substr($composerPackage, 13)
             : 'googleapis/php-' . substr($composerPackage, 7);
@@ -117,13 +147,47 @@ class NewComponent
         return implode('\\', array_map('ucfirst', explode('.', $protoPackage)));
     }
 
-    private static function getComposerPackageFromProtoPackage(string $protoPackage): string
-    {
-        return 'google/' . str_replace(
+    private static function getComposerPackage(
+        string $protoPackage,
+        string $phpNamespace,
+        bool $hasGapicClient = true
+    ): string {
+        $parts = explode('.', $protoPackage);
+        if (str_starts_with($phpNamespace, 'Google\\Ads')) {
+            if (count($parts) > 1 && 'v' === strtolower($parts[count($parts) - 1][0] ?? '')) {
+                array_pop($parts);
+            }
+            $name = str_replace(
+                ['google.', 'devtools.cloud', '.'],
+                ['', 'cloud-', '-'],
+                implode('.', $parts)
+            );
+            if (str_starts_with($name, 'ads-')) {
+                $name = substr($name, 4);
+            }
+            if (str_ends_with($name, 'manager') && !str_ends_with($name, '-manager')) {
+                $name = substr($name, 0, -7) . '-manager';
+            }
+            if (!$hasGapicClient && !str_ends_with($name, '-common-protos')) {
+                $name .= '-common-protos';
+            }
+            return 'googleads/' . $name;
+        }
+
+        if (!$hasGapicClient && count($parts) > 2 && in_array(end($parts), ['type', 'common'])) {
+            array_pop($parts);
+        }
+
+        $name = str_replace(
             ['google.', 'devtools.cloud', '.'],
             ['', 'cloud-', '-'],
-            $protoPackage
+            implode('.', $parts)
         );
+
+        if (!$hasGapicClient && !str_ends_with($name, '-common-protos')) {
+            $name .= '-common-protos';
+        }
+        return 'google/' . $name;
     }
 
     private static function getProtoPath(string $protoFilename, ?string $version): string
@@ -140,41 +204,67 @@ class NewComponent
         return implode('/', $parts);
     }
 
-    private static function extractPackageNameFromProtoContents(string $protoContents): string
+    private static function hasGapicClient(string $protoContents): bool
     {
+        return (bool) preg_match('/^\s*service\s+[A-Za-z0-9_]+/m', $protoContents);
+    }
+
+    private static function extractPackageNameFromProtoContents(
+        string $protoContents,
+        bool $hasGapicClient = true
+    ): string {
         if (!preg_match('/package (.*);/', $protoContents, $matches)) {
             throw new RuntimeException('package name not found in proto file ');
         }
         $parts = explode('.', $matches[1]);
-        $version = array_pop($parts);
-        if ('v' !== $version[0]) {
-            $parts[] = $version;
+        while (count($parts) > 1) {
+            $last = end($parts);
+            if ('v' === $last[0]) {
+                array_pop($parts);
+            } elseif (!$hasGapicClient && count($parts) > 2 && in_array($last, ['type', 'common'])) {
+                array_pop($parts);
+            } else {
+                break;
+            }
         }
         return implode('.', $parts);
     }
 
-    private static function extractShortNameFromProtoContents(string $protoContents): string
-    {
+    private static function extractShortNameFromProtoContents(
+        string $protoContents,
+        bool $hasGapicClient = true
+    ): string {
         if (!preg_match(
             '/option \(google.api.default_host\) =[\n\r\s]+"(.*).googleapis.com";/',
             $protoContents,
-            $matches)
-        ) {
+            $matches
+        )) {
+            if (!$hasGapicClient) {
+                return '';
+            }
             throw new RuntimeException('short name not found in proto file');
         }
         return $matches[1];
     }
 
-    private static function extractPhpNamespaceFromProtoContents(string $protoContents): ?string
-    {
+    private static function extractPhpNamespaceFromProtoContents(
+        string $protoContents,
+        bool $hasGapicClient = true
+    ): ?string {
         if (!preg_match('/option php_namespace = "(.*)";/', $protoContents, $matches)) {
             return null;
         }
         // Remove version from namespace
         $parts = explode('\\\\', $matches[1]);
-        $version = array_pop($parts);
-        if ('v' !== strtolower($version[0])) {
-            $parts[] = $version;
+        while (count($parts) > 1) {
+            $last = end($parts);
+            if ('v' === strtolower($last[0])) {
+                array_pop($parts);
+            } elseif (!$hasGapicClient && count($parts) > 2 && in_array(strtolower($last), ['type', 'common'])) {
+                array_pop($parts);
+            } else {
+                break;
+            }
         }
 
         return implode('\\', $parts);
