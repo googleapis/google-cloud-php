@@ -317,18 +317,18 @@ class Rest implements ConnectionInterface
             'prettyPrint' => false,
         ];
 
-        $args['restRetryFunction'] = $this->restRetryFunction ?? $this->getRestRetryFunction(
-            'objects',
-            'get',
-            $args
-        );
-
         $args += array_filter([
             'retryStrategy' => $this->retryStrategy,
             'restDelayFunction' => $this->restDelayFunction,
             'restCalcDelayFunction' => $this->restCalcDelayFunction,
             'restRetryListener' => $this->restRetryListener,
         ]);
+
+        $args['restRetryFunction'] = $this->restRetryFunction ?? $this->getRestRetryFunction(
+            'objects',
+            'get',
+            $args
+        );
 
         $args = $this->addRetryHeaderLogic($args);
 
@@ -1023,18 +1023,18 @@ class Rest implements ConnectionInterface
         ];
         $retryResource = isset($retryMap[$resource]) ? $retryMap[$resource] : $resource;
 
-        $options['restRetryFunction'] = $this->restRetryFunction ?? $this->getRestRetryFunction(
-            $retryResource,
-            $method,
-            $options
-        );
-
         $options += array_filter([
             'retryStrategy' => $this->retryStrategy,
             'restDelayFunction' => $this->restDelayFunction,
             'restCalcDelayFunction' => $this->restCalcDelayFunction,
             'restRetryListener' => $this->restRetryListener,
         ]);
+
+        $options['restRetryFunction'] = $this->restRetryFunction ?? $this->getRestRetryFunction(
+            $retryResource,
+            $method,
+            $options
+        );
 
         $options = $this->addRetryHeaderLogic($options);
 

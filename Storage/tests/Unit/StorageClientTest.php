@@ -623,10 +623,10 @@ class StorageClientTest extends TestCase
 
     public function testAlwaysRetryStrategySuccessful()
     {
-        $httpHandler = self::getHttpHandlerMock([
+        list($mockHandler, $httpHandler) = self::getHttpHandlerMock([
             new Response(503), // Service Unavailable
-            self::getCreateBucketSuccessResponse(),
-        ])[1];
+            new Response(204),
+        ]);
 
         $client = new StorageClient([
             'projectId' => self::PROJECT,
@@ -642,7 +642,85 @@ class StorageClientTest extends TestCase
             },
         ]);
 
-        $this->assertInstanceOf(Bucket::class, $client->createBucket('myBucket'));
+        $client->bucket('myBucket')->object('myObject')->delete();
+        $this->assertEquals(0, $mockHandler->count());
+    }
+
+    public function testDefaultRetryStrategyDoesNotRetryNonIdempotentOperation()
+    {
+        $httpHandler = self::getHttpHandlerMock([
+            new Response(503), // Service Unavailable
+            new Response(204),
+        ])[1];
+
+        $client = new StorageClient([
+            'projectId' => self::PROJECT,
+            // Mock the authHttpHandler so it doesn't make a real request
+            'httpHandler' => $httpHandler,
+            // Mock the authHttpHandler so it doesn't make a real request
+            'authHttpHandler' => function () {
+                return new Response(200, [], '{"access_token": "abc"}');
+            },
+            // Mock the delay function so the tests execute faster
+            'restDelayFunction' => function () {
+            },
+        ]);
+
+        $this->expectException(ServiceException::class);
+
+        $client->bucket('myBucket')->object('myObject')->delete();
+    }
+
+    public function testNeverRetryStrategyDoesNotRetryHeadObject()
+    {
+        $httpHandler = self::getHttpHandlerMock([
+            new Response(503), // Service Unavailable
+            new Response(200),
+        ])[1];
+
+        $client = new StorageClient([
+            'projectId' => self::PROJECT,
+            'retryStrategy' => StorageClient::RETRY_NEVER,
+            // Mock the authHttpHandler so it doesn't make a real request
+            'httpHandler' => $httpHandler,
+            // Mock the authHttpHandler so it doesn't make a real request
+            'authHttpHandler' => function () {
+                return new Response(200, [], '{"access_token": "abc"}');
+            },
+            // Mock the delay function so the tests execute faster
+            'restDelayFunction' => function () {
+            },
+        ]);
+
+        $this->expectException(ServiceException::class);
+
+        $client->bucket('myBucket')->object('myObject')->exists();
+    }
+
+    public function testNeverRetryStrategyDoesNotRetryIdempotentOperation()
+    {
+        $httpHandler = self::getHttpHandlerMock([
+            new Response(503), // Service Unavailable
+            self::getCreateBucketSuccessResponse(),
+        ])[1];
+
+        $client = new StorageClient([
+            'projectId' => self::PROJECT,
+            'retryStrategy' => StorageClient::RETRY_NEVER,
+            // Mock the authHttpHandler so it doesn't make a real request
+            'httpHandler' => $httpHandler,
+            // Mock the authHttpHandler so it doesn't make a real request
+            'authHttpHandler' => function () {
+                return new Response(200, [], '{"access_token": "abc"}');
+            },
+            // Mock the delay function so the tests execute faster
+            'restDelayFunction' => function () {
+            },
+        ]);
+
+        $this->expectException(ServiceException::class);
+
+        $client->createBucket('myBucket');
     }
 
     public function testDelayFunctionsConfiguration()
