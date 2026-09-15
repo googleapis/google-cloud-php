@@ -26,21 +26,40 @@ use ReflectionMethod;
 class X509SourceTest extends TestCase
 {
     private $x509Json;
+    private string $certConfigFile;
 
     public function setUp(): void
     {
+        $this->certConfigFile = tempnam(sys_get_temp_dir(), 'gauth_');
+        file_put_contents($this->certConfigFile, json_encode([
+            'cert_configs' => [
+                'workload' => [
+                    'key_path' => __DIR__ . '/../fixtures/fixtures8/leaf.key',
+                    'cert_path' => __DIR__ . '/../fixtures/fixtures8/leaf.crt',
+                ],
+            ],
+        ]));
+
         $this->x509Json = [
             'type' => 'external_account',
-            'audience' => '//iam.googleapis.com/projects/12345/locations/global/workloadIdentityPools/pool/providers/provider',
+            'audience' => '//iam.googleapis.com/projects/12345/locations/global'
+                . '/workloadIdentityPools/pool/providers/provider',
             'subject_token_type' => 'urn:ietf:params:oauth:token-type:mtls',
             'token_url' => 'https://sts.mtls.googleapis.com/v1/token',
             'credential_source' => [
                 'certificate' => [
-                    'certificate_config_location' => __DIR__ . '/../fixtures/fixtures8/cert_config.json',
+                    'certificate_config_location' => $this->certConfigFile,
                     'trust_chain_path' => __DIR__ . '/../fixtures/fixtures8/intermediate.crt',
                 ]
             ]
         ];
+    }
+
+    public function tearDown(): void
+    {
+        if (isset($this->certConfigFile) && file_exists($this->certConfigFile)) {
+            unlink($this->certConfigFile);
+        }
     }
 
     public function testPemToDerB64ConversionIsCorrect()
@@ -73,7 +92,11 @@ class X509SourceTest extends TestCase
         $leafDerB64 = base64_encode(base64_decode($leafMatches[1]));
 
         $intermediatePem = file_get_contents(__DIR__ . '/../fixtures/fixtures8/intermediate.crt');
-        preg_match('/-----BEGIN CERTIFICATE-----\s*(.*?)\s*-----END CERTIFICATE-----/s', $intermediatePem, $intermediateMatches);
+        preg_match(
+            '/-----BEGIN CERTIFICATE-----\s*(.*?)\s*-----END CERTIFICATE-----/s',
+            $intermediatePem,
+            $intermediateMatches
+        );
         $intermediateDerB64 = base64_encode(base64_decode($intermediateMatches[1]));
 
         // Construct the expected final JSON string
@@ -166,7 +189,7 @@ class X509SourceTest extends TestCase
         $this->expectExceptionMessage('Trust chain path is invalid');
 
         new X509Source(
-            __DIR__ . '/../fixtures/fixtures8/cert_config.json',
+            $this->certConfigFile,
             'nonexistent_trust_chain.crt'
         );
     }
