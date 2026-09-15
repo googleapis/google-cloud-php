@@ -645,6 +645,32 @@ class StorageClientTest extends TestCase
         $this->assertInstanceOf(Bucket::class, $client->createBucket('myBucket'));
     }
 
+    public function testAlwaysRetryStrategyWithNonIdempotentOpSuccessful()
+    {
+        $httpHandler = self::getHttpHandlerMock([
+            new Response(503), // Service Unavailable
+            new Response(200, [], ''), // Successful delete
+        ])[1];
+
+        $client = new StorageClient([
+            'projectId' => self::PROJECT,
+            'retryStrategy' => StorageClient::RETRY_ALWAYS,
+            // Mock the httpHandler so it doesn't make a real request
+            'httpHandler' => $httpHandler,
+            // Mock the authHttpHandler so it doesn't make a real request
+            'authHttpHandler' => function () {
+                return new Response(200, [], '{"access_token": "abc"}');
+            },
+            // Mock the delay function so the tests execute faster
+            'restDelayFunction' => function () {
+            },
+        ]);
+
+        $bucket = $client->bucket('myBucket');
+        $bucket->object('myObject')->delete();
+        $this->assertTrue(true); // If no exception was thrown, we succeeded.
+    }
+
     public function testDelayFunctionsConfiguration()
     {
         $httpHandler = self::getHttpHandlerMock([
