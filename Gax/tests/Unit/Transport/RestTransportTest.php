@@ -39,6 +39,7 @@ use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\RequestBuilder;
 use Google\ApiCore\ResumableUpload\ResumableUploadTransportInterface;
+use Google\ApiCore\Telemetry\SpanAttributes;
 use Google\ApiCore\Testing\MockRequest;
 use Google\ApiCore\Testing\MockResponse;
 use Google\ApiCore\Tests\Unit\TestTrait;
@@ -51,12 +52,19 @@ use Google\Rpc\ErrorInfo;
 use Google\Type\DateTime;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Promise\Create;
+use GuzzleHttp\Promise\FulfilledPromise;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use InvalidArgumentException;
+use OpenTelemetry\API\Trace\SpanBuilderInterface;
+use OpenTelemetry\API\Trace\SpanInterface;
+use OpenTelemetry\API\Trace\SpanKind;
+use OpenTelemetry\API\Trace\StatusCode;
+use OpenTelemetry\API\Trace\TracerInterface;
+use OpenTelemetry\API\Trace\TracerProviderInterface;
 use PHPUnit\Framework\TestCase;
-use Prophecy\PhpUnit\ProphecyTrait;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 use Psr\Http\Message\RequestInterface;
 use TypeError;
 use UnexpectedValueException;
@@ -680,5 +688,181 @@ class RestTransportTest extends TestCase
 
         $actualRequest = $transport->buildRequest($method, $message);
         $this->assertSame($expectedRequest, $actualRequest);
+    }
+
+    public function testStartUnaryCallWithTracing()
+    {
+        $openTelemetryTracerProvider = $this->createMock(TracerProviderInterface::class);
+        $tracer = $this->createMock(TracerInterface::class);
+        $marshalingSpanBuilder = $this->createMock(SpanBuilderInterface::class);
+        $marshalingSpan = $this->createMock(SpanInterface::class);
+        $unmarshalingSpanBuilder = $this->createMock(SpanBuilderInterface::class);
+        $unmarshalingSpan = $this->createMock(SpanInterface::class);
+
+        $openTelemetryTracerProvider->expects($this->exactly(2))
+            ->method('getTracer')
+            ->with('google-cloud-php', '1.0.0')
+            ->willReturn($tracer);
+
+        $marshalingAttributes = [];
+        $marshalingSpanBuilder->method('setSpanKind')
+            ->with(SpanKind::KIND_INTERNAL)
+            ->willReturnSelf();
+        $marshalingSpanBuilder->method('setAttribute')
+            ->willReturnCallback(function ($k, $v) use (&$marshalingAttributes, $marshalingSpanBuilder) {
+                $marshalingAttributes[$k] = $v;
+                return $marshalingSpanBuilder;
+            });
+        $marshalingSpanBuilder->expects($this->once())
+            ->method('startSpan')
+            ->willReturn($marshalingSpan);
+        $marshalingSpan->expects($this->once())->method('end');
+
+        $unmarshalingAttributes = [];
+        $unmarshalingSpanBuilder->method('setSpanKind')
+            ->with(SpanKind::KIND_INTERNAL)
+            ->willReturnSelf();
+        $unmarshalingSpanBuilder->method('setAttribute')
+            ->willReturnCallback(function ($k, $v) use (&$unmarshalingAttributes, $unmarshalingSpanBuilder) {
+                $unmarshalingAttributes[$k] = $v;
+                return $unmarshalingSpanBuilder;
+            });
+        $unmarshalingSpanBuilder->expects($this->once())
+            ->method('startSpan')
+            ->willReturn($unmarshalingSpan);
+        $unmarshalingSpan->expects($this->once())->method('setStatus')->with(StatusCode::STATUS_OK);
+        $unmarshalingSpan->expects($this->once())->method('end');
+
+        $tracer->expects($this->exactly(2))
+            ->method('spanBuilder')
+            ->willReturnCallback(function ($spanName) use ($marshalingSpanBuilder, $unmarshalingSpanBuilder) {
+                if ($spanName === 'RequestMarshaling') {
+                    return $marshalingSpanBuilder;
+                }
+                if ($spanName === 'ResponseUnmarshaling') {
+                    return $unmarshalingSpanBuilder;
+                }
+                throw new InvalidArgumentException("Unexpected span name: $spanName");
+            });
+
+        $httpHandler = function ($request, $options) {
+            return new FulfilledPromise(
+                new Response(200, [], '{}')
+            );
+        };
+
+        $requestBuilder = $this->createMock(RequestBuilder::class);
+        $requestBuilder->method('build')->willReturn(new Request('POST', 'https://example.com'));
+
+        $transport = (new RestTransport(
+            $requestBuilder,
+            $httpHandler
+        ))->setTelemetryOptions([
+            'openTelemetryTracerProvider' => $openTelemetryTracerProvider,
+            SpanAttributes::GCP_CLIENT_REPO => 'googleapis/google-cloud-php',
+            SpanAttributes::GCP_CLIENT_ARTIFACT => 'google-cloud-secretmanager',
+            SpanAttributes::GCP_CLIENT_SERVICE => 'secretmanager',
+            SpanAttributes::GCP_CLIENT_VERSION => '1.0.0',
+        ]);
+
+        $call = $this->createMock(Call::class);
+        $call->method('getMethod')->willReturn('TestService/TestMethod');
+        $call->method('getMessage')->willReturn(new MockRequest());
+        $call->method('getDecodeType')->willReturn(MockResponse::class);
+
+        $response = $transport->startUnaryCall($call, [])->wait();
+        $this->assertInstanceOf(MockResponse::class, $response);
+
+        // Verify RequestMarshaling attributes
+        $this->assertEquals('googleapis/google-cloud-php', $marshalingAttributes[SpanAttributes::GCP_CLIENT_REPO]);
+        $this->assertEquals('google-cloud-secretmanager', $marshalingAttributes[SpanAttributes::GCP_CLIENT_ARTIFACT]);
+        $this->assertEquals('secretmanager', $marshalingAttributes[SpanAttributes::GCP_CLIENT_SERVICE]);
+        $this->assertEquals('1.0.0', $marshalingAttributes[SpanAttributes::GCP_CLIENT_VERSION]);
+        $this->assertEquals('TestService/TestMethod', $marshalingAttributes[SpanAttributes::RPC_METHOD]);
+        $this->assertEquals('http', $marshalingAttributes[SpanAttributes::RPC_SYSTEM]);
+
+        // Verify ResponseUnmarshaling attributes
+        $this->assertEquals('googleapis/google-cloud-php', $unmarshalingAttributes[SpanAttributes::GCP_CLIENT_REPO]);
+        $this->assertEquals(
+            'google-cloud-secretmanager',
+            $unmarshalingAttributes[SpanAttributes::GCP_CLIENT_ARTIFACT]
+        );
+        $this->assertEquals('secretmanager', $unmarshalingAttributes[SpanAttributes::GCP_CLIENT_SERVICE]);
+        $this->assertEquals('1.0.0', $unmarshalingAttributes[SpanAttributes::GCP_CLIENT_VERSION]);
+        $this->assertEquals('TestService/TestMethod', $unmarshalingAttributes[SpanAttributes::RPC_METHOD]);
+        $this->assertEquals('http', $unmarshalingAttributes[SpanAttributes::RPC_SYSTEM]);
+    }
+
+    public function testStartUnaryCallResponseUnmarshalingError()
+    {
+        $openTelemetryTracerProvider = $this->createMock(TracerProviderInterface::class);
+        $tracer = $this->createMock(TracerInterface::class);
+        $marshalingSpanBuilder = $this->createMock(SpanBuilderInterface::class);
+        $marshalingSpan = $this->createMock(SpanInterface::class);
+        $unmarshalingSpanBuilder = $this->createMock(SpanBuilderInterface::class);
+        $unmarshalingSpan = $this->createMock(SpanInterface::class);
+
+        $openTelemetryTracerProvider->expects($this->exactly(2))
+            ->method('getTracer')
+            ->willReturn($tracer);
+
+        $marshalingSpanBuilder->method('setSpanKind')->willReturnSelf();
+        $marshalingSpanBuilder->method('setAttribute')->willReturnSelf();
+        $marshalingSpanBuilder->method('startSpan')->willReturn($marshalingSpan);
+
+        $unmarshalingSpanAttributes = [];
+        $unmarshalingSpanBuilder->method('setSpanKind')->willReturnSelf();
+        $unmarshalingSpanBuilder->method('setAttribute')
+            ->willReturnCallback(function ($k, $v) use (&$unmarshalingSpanAttributes, $unmarshalingSpanBuilder) {
+                $unmarshalingSpanAttributes[$k] = $v;
+                return $unmarshalingSpanBuilder;
+            });
+        $unmarshalingSpanBuilder->method('startSpan')->willReturn($unmarshalingSpan);
+
+        $errorAttributes = [];
+        $unmarshalingSpan->method('setAttribute')
+            ->willReturnCallback(function ($k, $v) use (&$errorAttributes, $unmarshalingSpan) {
+                $errorAttributes[$k] = $v;
+                return $unmarshalingSpan;
+            });
+        $unmarshalingSpan->expects($this->once())->method('setStatus')->with(StatusCode::STATUS_ERROR);
+        $unmarshalingSpan->expects($this->once())->method('end');
+
+        $tracer->method('spanBuilder')
+            ->willReturnCallback(function ($spanName) use ($marshalingSpanBuilder, $unmarshalingSpanBuilder) {
+                return $spanName === 'RequestMarshaling' ? $marshalingSpanBuilder : $unmarshalingSpanBuilder;
+            });
+
+        $httpHandler = function ($request, $options) {
+            return new FulfilledPromise(
+                new Response(200, [], 'invalid-json')
+            );
+        };
+
+        $requestBuilder = $this->createMock(RequestBuilder::class);
+        $requestBuilder->method('build')->willReturn(new Request('POST', 'https://example.com'));
+
+        $transport = (new RestTransport(
+            $requestBuilder,
+            $httpHandler
+        ))->setTelemetryOptions([
+            'openTelemetryTracerProvider' => $openTelemetryTracerProvider,
+            SpanAttributes::GCP_CLIENT_SERVICE => 'test-service',
+            SpanAttributes::GCP_CLIENT_VERSION => '1.0.0'
+        ]);
+
+        $call = $this->createMock(Call::class);
+        $call->method('getMethod')->willReturn('TestService/TestMethod');
+        $call->method('getMessage')->willReturn(new MockRequest());
+        $call->method('getDecodeType')->willReturn(MockResponse::class);
+
+        try {
+            $transport->startUnaryCall($call, [])->wait();
+            $this->fail('Expected exception during unmarshaling');
+        } catch (Exception $e) {
+            $this->assertEquals(get_class($e), $errorAttributes[SpanAttributes::ERROR_TYPE]);
+            $this->assertEquals(get_class($e), $errorAttributes[SpanAttributes::EXCEPTION_TYPE]);
+            $this->assertNotEmpty($errorAttributes[SpanAttributes::STATUS_MESSAGE]);
+        }
     }
 }
