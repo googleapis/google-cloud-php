@@ -78,7 +78,7 @@ jobs:
           persist-credentials: false
       # Version of librarian is pulled from librarian.yaml,
       # action is pinned to commit SHA to satisfy blanket security policy.
-      - uses: googleapis/librarian@7a24d8d8063cf1bbe2dad3e2b80d2715bd799108 # v0.42.0
+      - uses: googleapis/librarian@6a380869033a50e634b7f3e3b26d14e5b620d664 # v0.43.0
       - name: Run librarian tidy
         run: librarian tidy
       - name: Check for diff
