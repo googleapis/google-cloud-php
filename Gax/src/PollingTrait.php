@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /*
  * Copyright 2018 Google LLC
  * All rights reserved.
@@ -64,7 +66,7 @@ trait PollingTrait
             if ($hasTotalPollTimeout && $this->getCurrentTimeMillis() > $endTime) {
                 return false;
             }
-            $this->sleepMillis($currentPollDelayMillis);
+            $this->sleepMillis((int) $currentPollDelayMillis);
             if ($pollCallable()) {
                 return true;
             }

@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /*
  * Copyright 2018 Google LLC
  * All rights reserved.
@@ -31,10 +33,10 @@
  */
 namespace Google\ApiCore\Transport;
 
+use Google\ApiCore\ApiEndpointTrait;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\ApiStatus;
 use Google\ApiCore\Call;
-use Google\ApiCore\ServiceAddressTrait;
 use Google\ApiCore\ValidationException;
 use Google\ApiCore\ValidationTrait;
 use Google\Protobuf\Internal\Message;
@@ -50,8 +52,8 @@ use Psr\Http\Message\ResponseInterface;
  */
 class GrpcFallbackTransport implements TransportInterface
 {
+    use ApiEndpointTrait;
     use ValidationTrait;
-    use ServiceAddressTrait;
     use HttpUnaryTransportTrait;
 
     private string $baseUri;
@@ -89,7 +91,7 @@ class GrpcFallbackTransport implements TransportInterface
             'clientCertSource' => null,
             'logger' => null,
         ];
-        list($baseUri, $port) = self::normalizeServiceAddress($apiEndpoint);
+        list($baseUri, $port) = self::normalizeApiEndpoint($apiEndpoint);
         $httpHandler = $config['httpHandler'] ?: self::buildHttpHandlerAsync(logger: $config['logger']);
         $transport = new GrpcFallbackTransport("$baseUri:$port", $httpHandler);
         if ($config['clientCertSource']) {
