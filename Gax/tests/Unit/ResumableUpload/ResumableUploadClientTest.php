@@ -1138,7 +1138,10 @@ class ResumableUploadClientTest extends TestCase
         $capturedRetryTimeout = null;
 
         $requests = [];
-        $httpHandler = function ($request, $options = []) use (
+        $httpHandler = function (
+            $request,
+            $options = []
+        ) use (
             &$requests,
             &$currentTime,
             &$capturedRecoveryTimeout,

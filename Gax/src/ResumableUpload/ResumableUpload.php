@@ -32,6 +32,7 @@
 
 namespace Google\ApiCore\ResumableUpload;
 
+use Google\ApiCore\ApiException;
 use Google\ApiCore\Call;
 use Google\Protobuf\Internal\Message;
 use Psr\Http\Message\StreamInterface;
