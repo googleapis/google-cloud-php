@@ -71,6 +71,7 @@ run_package_test() {
     # Update composer to use local packages
     local PACKAGE_DEPENDENCIES=(
         "Auth,auth"
+        "Jwt,firebase/php-jwt,6.10.0"
         "Gax,gax"
         "CommonProtos,common-protos,4.100"
         "BigQuery,cloud-bigquery"
@@ -84,7 +85,11 @@ run_package_test() {
     )
     for i in "${PACKAGE_DEPENDENCIES[@]}"; do
         IFS="," read -r PKG_DIR PKG_NAME PKG_VERSION <<< "$i"
-        if grep -q "\"google/${PKG_NAME}\":" "${DIR}/composer.json"; then
+        local FULL_PKG_NAME="google/${PKG_NAME}"
+        if [[ "${PKG_NAME}" == *"/"* ]]; then
+            FULL_PKG_NAME="${PKG_NAME}"
+        fi
+        if grep -q "\"${FULL_PKG_NAME}\":" "${DIR}/composer.json"; then
             # determine local package version
             local VERSION
             if [ "${STRICT}" = "true" ]; then
@@ -94,11 +99,12 @@ run_package_test() {
             else
                 VERSION=${PKG_VERSION}
             fi
-            echo "Use local package ${PKG_DIR} as google/${PKG_NAME}:${VERSION} in ${DIR}"
+            echo "Use local package ${PKG_DIR} as ${FULL_PKG_NAME}:${VERSION} in ${DIR}"
             # "canonical: false" ensures composer will try to install from packagist when the "--prefer-lowest" flag is set.
             local JSON_CONFIG
-            JSON_CONFIG=$(printf '{"type":"path","url":"../%s","options":{"versions":{"google/%s":"%s"}},"canonical":false}' "${PKG_DIR}" "${PKG_NAME}" "${VERSION}")
-            composer config "repositories.${PKG_NAME}" -d "${DIR}" "${JSON_CONFIG}"
+            JSON_CONFIG=$(printf '{"type":"path","url":"../%s","options":{"versions":{"%s":"%s"}},"canonical":false}' "${PKG_DIR}" "${FULL_PKG_NAME}" "${VERSION}")
+            local REPO_NAME="${PKG_NAME#*/}"
+            composer config "repositories.${REPO_NAME}" -d "${DIR}" "${JSON_CONFIG}"
         fi
     done
 

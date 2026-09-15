@@ -67,7 +67,6 @@
         "psr/cache": "^2.0||^3.0",
         "psr/log": "^2.0||^3.0",
         "grpc/grpc": "^1.13",
-        "firebase/php-jwt": "^6.0||^7.0",
         "google/common-protos": "^4.4",
         "google/protobuf": "^4.31||^5.34",
         "google/grpc-gcp": "^0.4",
@@ -89,9 +88,12 @@
         "dms/phpunit-arraysubset-asserts": "^0.5.0",
         "symfony/process": "^6.4",
         "kelvinmo/simplejwt": "^1.1.0",
-        "webmozart/assert": "^1.11.0"
+        "webmozart/assert": "^1.11.0",
+        "phpfastcache/phpfastcache": "^9.2",
+        "psr/http-factory": "^1.0"
     },
     "replace": {
+        "firebase/php-jwt": "7.1.1",
         "google/access-context-manager": "1.2.2",
         "google/analytics-admin": "0.34.2",
         "google/analytics-data": "0.26.1",
@@ -334,6 +336,7 @@
     },
     "autoload": {
         "psr-4": {
+            "Firebase\\JWT\\": "Jwt/src",
             "GPBMetadata\\Google\\Ads\\Admanager\\": "AdsAdManager/metadata",
             "GPBMetadata\\Google\\Ads\\Datamanager\\": "AdsDataManager/metadata",
             "GPBMetadata\\Google\\Analytics\\Admin\\": "AnalyticsAdmin/metadata",
@@ -835,6 +838,7 @@
     },
     "autoload-dev": {
         "psr-4": {
+            "Firebase\\JWT\\": "Jwt/tests",
             "Google\\ApiCore\\Tests\\": "Gax/tests",
             "Google\\ApiCore\\Testing\\": "Gax/tests/Unit/testdata/generated",
             "Google\\Analytics\\Admin\\Tests\\": "AnalyticsAdmin/tests",

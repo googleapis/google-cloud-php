@@ -14,6 +14,7 @@ parameters:
         - Gax
         # ignore Auth because we implement a stricter phpstan.neon.dist there
         - Auth
+        - Jwt
     ignoreErrors:
         # Protobuf constant classes sometimes contain multiple values for one array key
         - identifier: array.duplicateKey
