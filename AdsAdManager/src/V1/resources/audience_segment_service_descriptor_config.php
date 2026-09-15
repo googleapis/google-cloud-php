@@ -47,6 +47,18 @@ return [
                     ],
                 ],
             ],
+            'BatchCreateAudienceSegments' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Ads\AdManager\V1\BatchCreateAudienceSegmentsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'BatchDeactivateAudienceSegments' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Ads\AdManager\V1\BatchDeactivateAudienceSegmentsResponse',
@@ -74,6 +86,18 @@ return [
             'BatchRejectAudienceSegments' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Ads\AdManager\V1\BatchRejectAudienceSegmentsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateAudienceSegment' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Ads\AdManager\V1\AudienceSegment',
                 'headerParams' => [
                     [
                         'keyName' => 'parent',
@@ -116,8 +140,13 @@ return [
                 ],
             ],
             'templateMap' => [
+                'adUnit' => 'networks/{network_code}/adUnits/{ad_unit}',
                 'audienceSegment' => 'networks/{network_code}/audienceSegments/{audience_segment}',
+                'cmsMetadataValue' => 'networks/{network_code}/cmsMetadataValues/{cms_metadata_value}',
+                'customTargetingKey' => 'networks/{network_code}/customTargetingKeys/{custom_targeting_key}',
+                'customTargetingValue' => 'networks/{network_code}/customTargetingValues/{custom_targeting_value}',
                 'network' => 'networks/{network_code}',
+                'placement' => 'networks/{network_code}/placements/{placement}',
             ],
         ],
     ],

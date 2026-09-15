@@ -47,6 +47,14 @@
         "library_type": "GAPIC_AUTO",
         "api_shortname": "advisorynotifications"
     },
+    "AgentRegistry": {
+        "language": "php",
+        "distribution_name": "google/cloud-agentregistry",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-agentregistry/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "agentregistry"
+    },
     "AiPlatform": {
         "language": "php",
         "distribution_name": "google/cloud-ai-platform",
@@ -153,6 +161,14 @@
         "library_type": "GAPIC_AUTO",
         "api_shortname": "appoptimize"
     },
+    "AppTopology": {
+        "language": "php",
+        "distribution_name": "google/cloud-apptopology",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-apptopology/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "apptopology"
+    },
     "AppsChat": {
         "language": "php",
         "distribution_name": "google/apps-chat",
@@ -208,6 +224,14 @@
         "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-auditmanager/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "auditmanager"
+    },
+    "Auth": {
+        "language": "php",
+        "distribution_name": "google/auth",
+        "release_level": "stable",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/auth/latest",
+        "library_type": "CORE",
+        "api_shortname": ""
     },
     "AutoMl": {
         "language": "php",
@@ -805,6 +829,14 @@
         "library_type": "GAPIC_COMBO",
         "api_shortname": "firestore"
     },
+    "Ftp": {
+        "language": "php",
+        "distribution_name": "google/cloud-ftp",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-ftp/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "ftp"
+    },
     "Functions": {
         "language": "php",
         "distribution_name": "google/cloud-functions",
@@ -1055,6 +1087,14 @@
         "client_documentation": "https://cloud.google.com/php/docs/reference/maps-fleetengine-delivery/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "fleetengine"
+    },
+    "MapsIsochrones": {
+        "language": "php",
+        "distribution_name": "google/maps-isochrones",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/maps-isochrones/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "isochrones"
     },
     "MapsRouteOptimization": {
         "language": "php",
@@ -1533,6 +1573,14 @@
         "distribution_name": "google/shopping-merchant-lfp",
         "release_level": "stable",
         "client_documentation": "https://cloud.google.com/php/docs/reference/shopping-merchant-lfp/latest",
+        "library_type": "GAPIC_AUTO",
+        "api_shortname": "merchantapi"
+    },
+    "ShoppingMerchantLoyaltyCustomers": {
+        "language": "php",
+        "distribution_name": "google/shopping-merchant-loyaltycustomers",
+        "release_level": "preview",
+        "client_documentation": "https://cloud.google.com/php/docs/reference/shopping-merchant-loyaltycustomers/latest",
         "library_type": "GAPIC_AUTO",
         "api_shortname": "merchantapi"
     },

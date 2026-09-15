@@ -618,4 +618,136 @@ class ResumableUploadClientTest extends TestCase
         $this->assertEquals('upload, finalize', $requests[1]->getHeaderLine('X-Goog-Upload-Command'));
         $this->assertEquals('', $requests[1]->getHeaderLine('X-Initial-Custom-Header'));
     }
+
+    public function testStartUploadRetriesWhenMissingUploadStatusHeaderOnStart()
+    {
+        $requests = [];
+        $httpHandler = function ($request, $options = []) use (&$requests) {
+            $requests[] = $request;
+            if (count($requests) === 1) {
+                // Return 200 without X-Goog-Upload-Status
+                return \GuzzleHttp\Promise\Create::promiseFor(new \GuzzleHttp\Psr7\Response(200, [
+                    'X-Goog-Upload-URL' => 'https://upload.url/123'
+                ]));
+            }
+            if (count($requests) === 2) {
+                return \GuzzleHttp\Promise\Create::promiseFor(new \GuzzleHttp\Psr7\Response(200, [
+                    'X-Goog-Upload-Status' => 'active',
+                    'X-Goog-Upload-URL' => 'https://upload.url/123'
+                ]));
+            }
+            return \GuzzleHttp\Promise\Create::promiseFor(new \GuzzleHttp\Psr7\Response(200, [
+                'X-Goog-Upload-Status' => 'final'
+            ], '"1970-01-01T00:00:00Z"'));
+        };
+
+        $requestBuilder = $this->prophesize(\Google\ApiCore\RequestBuilder::class);
+        $requestBuilder->build(Argument::any(), Argument::any(), Argument::any())->will(function ($args) {
+            return new \GuzzleHttp\Psr7\Request('POST', 'https://test.googleapis.com/' . $args[0], $args[2] ?? []);
+        });
+
+        $client = new ResumableUploadClient(
+            $this->createStubTransport($requestBuilder->reveal(), $httpHandler),
+            $this->prophesize(CredentialsWrapper::class)->reveal()
+        );
+
+        $call = new Call('test.method', Timestamp::class, new Timestamp(), [], Call::RESUMABLE_UPLOAD_CALL);
+        $upload = new ResumableUpload($client, $call);
+
+        $client->startUpload($upload, Utils::streamFor('hello'), $call);
+
+        $this->assertCount(3, $requests);
+        $this->assertEquals('start', $requests[0]->getHeaderLine('X-Goog-Upload-Command'));
+        $this->assertEquals('start', $requests[1]->getHeaderLine('X-Goog-Upload-Command'));
+        $this->assertEquals('upload, finalize', $requests[2]->getHeaderLine('X-Goog-Upload-Command'));
+    }
+
+    public function testUploadTransitionsToRecoveryWhenMissingUploadStatusHeaderOnUpload()
+    {
+        $requests = [];
+        $httpHandler = function ($request, $options = []) use (&$requests) {
+            $requests[] = $request;
+            if (count($requests) === 1) {
+                return \GuzzleHttp\Promise\Create::promiseFor(new \GuzzleHttp\Psr7\Response(200, [
+                    'X-Goog-Upload-Status' => 'active',
+                    'X-Goog-Upload-URL' => 'https://upload.url/123'
+                ]));
+            }
+            if (count($requests) === 2) {
+                // First chunk upload returns 200 with missing X-Goog-Upload-Status
+                return \GuzzleHttp\Promise\Create::promiseFor(new \GuzzleHttp\Psr7\Response(200, []));
+            }
+            if (count($requests) === 3) {
+                // Recovery query
+                return \GuzzleHttp\Promise\Create::promiseFor(new \GuzzleHttp\Psr7\Response(200, [
+                    'X-Goog-Upload-Status' => 'active',
+                    'X-Goog-Upload-Size-Received' => '0'
+                ]));
+            }
+            if (count($requests) === 4) {
+                // Re-attempt first chunk upload
+                return \GuzzleHttp\Promise\Create::promiseFor(new \GuzzleHttp\Psr7\Response(200, [
+                    'X-Goog-Upload-Status' => 'active'
+                ]));
+            }
+            return \GuzzleHttp\Promise\Create::promiseFor(new \GuzzleHttp\Psr7\Response(200, [
+                'X-Goog-Upload-Status' => 'final'
+            ], '"1970-01-01T00:00:00Z"'));
+        };
+
+        $requestBuilder = $this->prophesize(\Google\ApiCore\RequestBuilder::class);
+        $requestBuilder->build(Argument::any(), Argument::any(), Argument::any())->will(function ($args) {
+            return new \GuzzleHttp\Psr7\Request('POST', 'https://test.googleapis.com/' . $args[0], $args[2] ?? []);
+        });
+
+        $client = new ResumableUploadClient(
+            $this->createStubTransport($requestBuilder->reveal(), $httpHandler),
+            $this->prophesize(CredentialsWrapper::class)->reveal()
+        );
+
+        $call = new Call('test.method', Timestamp::class, new Timestamp(), [], Call::RESUMABLE_UPLOAD_CALL);
+        $upload = new ResumableUpload($client, $call);
+
+        $payload = str_repeat('c', 8);
+        $client->startUpload($upload, Utils::streamFor($payload), $call, [], [
+            'chunkSize' => 5
+        ]);
+
+        $this->assertCount(5, $requests);
+        $this->assertEquals('start', $requests[0]->getHeaderLine('X-Goog-Upload-Command'));
+        $this->assertEquals('upload', $requests[1]->getHeaderLine('X-Goog-Upload-Command'));
+        $this->assertEquals('query', $requests[2]->getHeaderLine('X-Goog-Upload-Command'));
+        $this->assertEquals('upload', $requests[3]->getHeaderLine('X-Goog-Upload-Command'));
+        $this->assertEquals('upload, finalize', $requests[4]->getHeaderLine('X-Goog-Upload-Command'));
+    }
+
+    public function testRecoveryThrowsExceptionWhenMissingUploadStatusHeaderOnQuery()
+    {
+        $this->expectException(ApiException::class);
+        $this->expectExceptionMessage('Missing X-Goog-Upload-Status header in recovery query response.');
+
+        $requests = [];
+        $httpHandler = function ($request, $options = []) use (&$requests) {
+            $requests[] = $request;
+            if (count($requests) === 1) {
+                // Initial query when resuming
+                return \GuzzleHttp\Promise\Create::promiseFor(new \GuzzleHttp\Psr7\Response(200, [
+                    'X-Goog-Upload-Size-Received' => '0'
+                    // Missing X-Goog-Upload-Status
+                ]));
+            }
+            return \GuzzleHttp\Promise\Create::promiseFor(new \GuzzleHttp\Psr7\Response(200, []));
+        };
+
+        $requestBuilder = $this->prophesize(\Google\ApiCore\RequestBuilder::class)->reveal();
+        $client = new ResumableUploadClient(
+            $this->createStubTransport($requestBuilder, $httpHandler),
+            $this->prophesize(CredentialsWrapper::class)->reveal()
+        );
+
+        $call = new Call('test.method', Timestamp::class, null, [], Call::RESUMABLE_UPLOAD_CALL);
+        $upload = new ResumableUpload($client, $call, [], 'https://upload.url/123');
+
+        $client->startUpload($upload, Utils::streamFor('hello'), $call);
+    }
 }

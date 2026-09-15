@@ -62,11 +62,3 @@ for proto in protos:
 s.move("metadata/Google/Iam/V1", "metadata/Iam/V1")
 s.move("metadata/Google/Logging/Type", "metadata/Logging/Type")
 
-s.replace(
-    "src/**/*.php",
-    r"^// Adding a class alias for backwards compatibility with the previous class name.$"
-    + "\n"
-    + r"^class_alias\(.*\);$"
-    + "\n",
-    '')
-

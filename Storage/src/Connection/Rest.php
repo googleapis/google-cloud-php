@@ -316,6 +316,8 @@ class Rest implements ConnectionInterface
             'prettyPrint' => false,
         ];
 
+        $args['retryStrategy'] ??= $this->retryStrategy;
+
         $args['restRetryFunction'] = $this->restRetryFunction ?? $this->getRestRetryFunction(
             'objects',
             'get',
@@ -323,7 +325,6 @@ class Rest implements ConnectionInterface
         );
 
         $args += array_filter([
-            'retryStrategy' => $this->retryStrategy,
             'restDelayFunction' => $this->restDelayFunction,
             'restCalcDelayFunction' => $this->restCalcDelayFunction,
             'restRetryListener' => $this->restRetryListener,
@@ -1022,6 +1023,8 @@ class Rest implements ConnectionInterface
         ];
         $retryResource = isset($retryMap[$resource]) ? $retryMap[$resource] : $resource;
 
+        $options['retryStrategy'] ??= $this->retryStrategy;
+
         $options['restRetryFunction'] = $this->restRetryFunction ?? $this->getRestRetryFunction(
             $retryResource,
             $method,
@@ -1029,7 +1032,6 @@ class Rest implements ConnectionInterface
         );
 
         $options += array_filter([
-            'retryStrategy' => $this->retryStrategy,
             'restDelayFunction' => $this->restDelayFunction,
             'restCalcDelayFunction' => $this->restCalcDelayFunction,
             'restRetryListener' => $this->restRetryListener,

@@ -47,6 +47,18 @@ return [
                     ],
                 ],
             ],
+            'BatchCreateAudienceSegments' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/audienceSegments:batchCreate',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'BatchDeactivateAudienceSegments' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=networks/*}/audienceSegments:batchDeactivate',
@@ -75,6 +87,18 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=networks/*}/audienceSegments:batchReject',
                 'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateAudienceSegment' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/audienceSegments',
+                'body' => 'audience_segment',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [

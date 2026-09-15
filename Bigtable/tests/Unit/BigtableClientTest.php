@@ -108,4 +108,46 @@ class BigtableClientTest extends TestCase
         $bigtable->table('my-instance', 'my-table-2'); // still not called
         $bigtable->table('my-instance-2', 'my-table'); // called
     }
+
+    public function testDefaultClientConfig()
+    {
+        $bigtable = new BigtableClient([
+            'projectId' => 'my-project',
+            'credentials' => new InsecureCredentialsWrapper(),
+        ]);
+
+        $gapicClient = (fn() => $this->gapicClient)->call($bigtable);
+        $retrySettings = (fn() => $this->retrySettings)->call($gapicClient);
+
+        $this->assertEquals(60000, $retrySettings['CheckAndMutateRow']->getNoRetriesRpcTimeoutMillis());
+        $this->assertEquals(60000, $retrySettings['ExecuteQuery']->getNoRetriesRpcTimeoutMillis());
+    }
+
+    public function testCustomClientConfig()
+    {
+        $customConfig = [
+            'interfaces' => [
+                'google.bigtable.v2.Bigtable' => [
+                    'retry_codes' => [],
+                    'retry_params' => [],
+                    'methods' => [
+                        'CheckAndMutateRow' => [
+                            'timeout_millis' => 12345,
+                        ],
+                    ],
+                ],
+            ],
+        ];
+
+        $bigtable = new BigtableClient([
+            'projectId' => 'my-project',
+            'credentials' => new InsecureCredentialsWrapper(),
+            'clientConfig' => $customConfig,
+        ]);
+
+        $gapicClient = (fn() => $this->gapicClient)->call($bigtable);
+        $retrySettings = (fn() => $this->retrySettings)->call($gapicClient);
+
+        $this->assertEquals(12345, $retrySettings['CheckAndMutateRow']->getNoRetriesRpcTimeoutMillis());
+    }
 }

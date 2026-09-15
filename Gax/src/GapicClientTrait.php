@@ -902,6 +902,11 @@ trait GapicClientTrait
         ?Message $request,
         ?string $interfaceName = null
     ) {
+        if (isset($this->retrySettings[$methodName])) {
+            $callConstructionOptions = $this->configureCallConstructionOptions($methodName, $optionalArgs);
+            $optionalArgs['retrySettings'] = $callConstructionOptions['retrySettings'];
+        }
+
         $call = new Call(
             $this->buildMethod($interfaceName, $methodName),
             $decodeType,

@@ -19,6 +19,12 @@ class ConfidentialComputeType
      */
     const UNDEFINED_CONFIDENTIAL_COMPUTE_TYPE = 0;
     /**
+     * Bare Metal Secure AI.
+     *
+     * Generated from protobuf enum <code>CONFIDENTIAL_COMPUTE_TYPE_BMSAI = 103738250;</code>
+     */
+    const CONFIDENTIAL_COMPUTE_TYPE_BMSAI = 103738250;
+    /**
      * Intel Trust Domain Extensions.
      *
      * Generated from protobuf enum <code>CONFIDENTIAL_COMPUTE_TYPE_TDX = 301241954;</code>
@@ -31,6 +37,7 @@ class ConfidentialComputeType
 
     private static $valueToName = [
         self::UNDEFINED_CONFIDENTIAL_COMPUTE_TYPE => 'UNDEFINED_CONFIDENTIAL_COMPUTE_TYPE',
+        self::CONFIDENTIAL_COMPUTE_TYPE_BMSAI => 'CONFIDENTIAL_COMPUTE_TYPE_BMSAI',
         self::CONFIDENTIAL_COMPUTE_TYPE_TDX => 'CONFIDENTIAL_COMPUTE_TYPE_TDX',
         self::CONFIDENTIAL_COMPUTE_TYPE_UNSPECIFIED => 'CONFIDENTIAL_COMPUTE_TYPE_UNSPECIFIED',
     ];

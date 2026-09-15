@@ -279,6 +279,11 @@
                                 "batchApproveAudienceSegments"
                             ]
                         },
+                        "BatchCreateAudienceSegments": {
+                            "methods": [
+                                "batchCreateAudienceSegments"
+                            ]
+                        },
                         "BatchDeactivateAudienceSegments": {
                             "methods": [
                                 "batchDeactivateAudienceSegments"
@@ -292,6 +297,11 @@
                         "BatchRejectAudienceSegments": {
                             "methods": [
                                 "batchRejectAudienceSegments"
+                            ]
+                        },
+                        "CreateAudienceSegment": {
+                            "methods": [
+                                "createAudienceSegment"
                             ]
                         },
                         "GetAudienceSegment": {
@@ -321,6 +331,45 @@
                         "ListBandwidthGroups": {
                             "methods": [
                                 "listBandwidthGroups"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "BreakTemplateService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "BreakTemplateServiceClient",
+                    "rpcs": {
+                        "BatchCreateBreakTemplates": {
+                            "methods": [
+                                "batchCreateBreakTemplates"
+                            ]
+                        },
+                        "BatchUpdateBreakTemplates": {
+                            "methods": [
+                                "batchUpdateBreakTemplates"
+                            ]
+                        },
+                        "CreateBreakTemplate": {
+                            "methods": [
+                                "createBreakTemplate"
+                            ]
+                        },
+                        "GetBreakTemplate": {
+                            "methods": [
+                                "getBreakTemplate"
+                            ]
+                        },
+                        "ListBreakTemplates": {
+                            "methods": [
+                                "listBreakTemplates"
+                            ]
+                        },
+                        "UpdateBreakTemplate": {
+                            "methods": [
+                                "updateBreakTemplate"
                             ]
                         }
                     }

@@ -99,15 +99,6 @@ s.replace(
     r'@group admin',
     '@group firestore-admin')
 
-# remove ReadOnly class_alias code
-s.replace(
-    "src/V*/**/PBReadOnly.php",
-    r"^// Adding a class alias for backwards compatibility with the \"readonly\" keyword.$"
-    + "\n"
-    + r"^class_alias\(PBReadOnly::class, __NAMESPACE__ . '\\ReadOnly'\);$"
-    + "\n",
-    '')
-
 ### [START] protoc backwards compatibility fixes
 
 # roll back to private properties.

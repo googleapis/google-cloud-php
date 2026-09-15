@@ -26,6 +26,23 @@ class ResolveSubnetMask
      */
     const ARP_ALL_RANGES = 445655380;
     /**
+     * VMs will receive an ARP response from a VM instance owning the target IP
+     * address within the subnetwork's primary CIDR range, if such a VM instance
+     * exists and is running.
+     *
+     * Generated from protobuf enum <code>ARP_BROADCAST_PRIMARY_RANGE = 123887458;</code>
+     */
+    const ARP_BROADCAST_PRIMARY_RANGE = 123887458;
+    /**
+     * Combines ARP_BROADCAST_PRIMARY_RANGE with MAC learning. Enables cache
+     * mapping between IP addresses and custom MAC addresses of instances and
+     * use of it to set the correct destination MAC address. If this option is
+     * chosen, the subnetwork must have /24 or a smaller CIDR range.
+     *
+     * Generated from protobuf enum <code>ARP_BROADCAST_PRIMARY_RANGE_WITH_LEARNING = 425592922;</code>
+     */
+    const ARP_BROADCAST_PRIMARY_RANGE_WITH_LEARNING = 425592922;
+    /**
      * Only the primary range of the VM NIC will respond to ARP.
      *
      * Generated from protobuf enum <code>ARP_PRIMARY_RANGE = 120210048;</code>
@@ -35,6 +52,8 @@ class ResolveSubnetMask
     private static $valueToName = [
         self::UNDEFINED_RESOLVE_SUBNET_MASK => 'UNDEFINED_RESOLVE_SUBNET_MASK',
         self::ARP_ALL_RANGES => 'ARP_ALL_RANGES',
+        self::ARP_BROADCAST_PRIMARY_RANGE => 'ARP_BROADCAST_PRIMARY_RANGE',
+        self::ARP_BROADCAST_PRIMARY_RANGE_WITH_LEARNING => 'ARP_BROADCAST_PRIMARY_RANGE_WITH_LEARNING',
         self::ARP_PRIMARY_RANGE => 'ARP_PRIMARY_RANGE',
     ];
 

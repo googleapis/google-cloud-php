@@ -12,6 +12,8 @@ parameters:
         - Logging/src/LogMessageProcessor/MonologV3MessageProcessor.php
         # ignore GAX because we implement a stricter phpstan.neon.dist there
         - Gax
+        # ignore Auth because we implement a stricter phpstan.neon.dist there
+        - Auth
     ignoreErrors:
         # Protobuf constant classes sometimes contain multiple values for one array key
         - identifier: array.duplicateKey
