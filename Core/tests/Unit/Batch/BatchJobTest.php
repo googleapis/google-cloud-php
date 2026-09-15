@@ -70,4 +70,34 @@ class BatchJobTest extends TestCase
         }
         return true;
     }
+
+    public function testIsMsgTooBig()
+    {
+        $job = new BatchJob('testing', array($this, 'runJob'), 1);
+        $this->assertTrue($job->isMsgTooBig(7));
+        if (defined('PCNTL_E2BIG')) {
+            $this->assertTrue($job->isMsgTooBig(PCNTL_E2BIG));
+        }
+        if (defined('SOCKET_E2BIG')) {
+            $this->assertTrue($job->isMsgTooBig(SOCKET_E2BIG));
+        }
+        $this->assertFalse($job->isMsgTooBig(0));
+        $this->assertFalse($job->isMsgTooBig(4));
+        $this->assertFalse($job->isMsgTooBig(35));
+    }
+
+    public function testDrainOversizedMessage()
+    {
+        if (!extension_loaded('sysvmsg')) {
+            $this->markTestSkipped('sysvmsg extension required');
+        }
+        $key = ftok(__FILE__, 'B');
+        $q = msg_get_queue($key);
+        while (@msg_receive($q, 0, $t, 8192, $m, false, MSG_IPC_NOWAIT | MSG_NOERROR, $e)) {
+        }
+        $job = new BatchJob('testing', array($this, 'runJob'), 1);
+        $result = $job->drainOversizedMessage($q);
+        $this->assertFalse($result);
+        msg_remove_queue($q);
+    }
 }

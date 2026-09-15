@@ -18,6 +18,7 @@
 namespace Google\Cloud\Core\Batch;
 
 use Google\Cloud\Core\SysvTrait;
+use RuntimeException;
 
 /**
  * ProcessItemInterface implementation with SysV IPC message queue.
@@ -32,6 +33,8 @@ class SysvProcessor implements ProcessItemInterface
     use BatchDaemonTrait;
     use SysvTrait;
 
+    const MAX_DIRECT_SIZE = 8192;
+
     /* @var array */
     private $sysvQs = [];
 
@@ -42,7 +45,7 @@ class SysvProcessor implements ProcessItemInterface
      * @param int $idNum A numeric id of the job.
      * @return void
      *
-     * @throws \RuntimeException when failed to store the item.
+     * @throws RuntimeException when failed to store the item.
      */
     public function submit($item, $idNum)
     {
@@ -50,19 +53,23 @@ class SysvProcessor implements ProcessItemInterface
             $this->sysvQs[$idNum] =
                 msg_get_queue($this->getSysvKey($idNum));
         }
-        $result = @msg_send(
-            $this->sysvQs[$idNum],
-            self::$typeDirect,
-            $item,
-            true,
-            false
-        );
+        $serialized = serialize($item);
+        $result = false;
+        if (strlen($serialized) <= self::MAX_DIRECT_SIZE) {
+            $result = @msg_send(
+                $this->sysvQs[$idNum],
+                self::$typeDirect,
+                $item,
+                true,
+                false
+            );
+        }
         if ($result === false) {
             // Try to put the content in a temp file and send the filename.
             $tempFile = tempnam(sys_get_temp_dir(), 'Item');
-            $result = file_put_contents($tempFile, serialize($item));
+            $result = file_put_contents($tempFile, $serialized);
             if ($result === false) {
-                throw new \RuntimeException(
+                throw new RuntimeException(
                     "Failed to write to $tempFile while submiting the item"
                 );
             }

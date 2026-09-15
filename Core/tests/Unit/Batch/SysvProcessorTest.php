@@ -81,7 +81,9 @@ class SysvProcessorTest extends TestCase
     {
         return [
             ['item', self::$typeDirect],
-            [str_repeat('x', 8193), self::$typeFile]
+            [str_repeat('x', 8186), self::$typeFile],
+            [str_repeat('x', 8193), self::$typeFile],
+            [str_repeat('x', 20000), self::$typeFile]
         ];
     }
 
