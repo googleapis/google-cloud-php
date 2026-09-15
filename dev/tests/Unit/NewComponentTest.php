@@ -271,7 +271,7 @@ EOF;
             'api-version' => null,
         ];
         $new = NewComponent::fromOptions($options);
-        $this->assertEquals('Google Geo Common Protos', $new->displayName);
+        $this->assertEquals('Google Geo', $new->displayName);
         $this->assertEquals('GeoCommonProtos', $new->componentName);
         $this->assertEquals('google/geo-common-protos', $new->composerPackage);
         $this->assertEquals('googleapis/php-geo-common-protos', $new->githubRepo);
