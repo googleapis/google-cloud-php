@@ -1,5 +1,27 @@
 # Changelog
 
+## 0.346.0
+
+<details><summary>google/auth 1.55.0</summary>
+
+
+
+### Features
+
+* add X509 credential source ([#9681](https://github.com/googleapis/google-cloud-php/issues/9681)) ([512ad22](https://github.com/googleapis/google-cloud-php/commit/512ad22d586fb754e2ded9cf75119a8700d7d392))
+
+</details>
+
+<details><summary>google/cloud-storage 2.5.4</summary>
+
+
+
+### Bug Fixes
+
+* **Storage:** ensure StorageClient retryStrategy is applied correctly to all operations ([#9516](https://github.com/googleapis/google-cloud-php/issues/9516)) ([3310e5d](https://github.com/googleapis/google-cloud-php/commit/3310e5dc1bea20598895119fbf82f45be5cabd31))
+
+</details>
+
 ## 0.345.0
 
 <details><summary>google/cloud-access-approval 2.2.2</summary>
