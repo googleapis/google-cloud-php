@@ -35,6 +35,7 @@ jobs:
       - name: "Install dependencies"
         run: |
           composer global require "roave/backward-compatibility-check:^8.2"
+          # TODO: Remove this line after https://github.com/googleapis/google-cloud-php/pull/9697 is merged and released
           sed -i.bak 's/return ($this->propertyBased)/return (new ExcludeInternalProperty($this->propertyBased))/' ~/.composer/vendor/roave/backward-compatibility-check/src/DetectChanges/BCBreak/PropertyBased/OnlyPublicPropertyChanged.php
       - name: "Check for BC breaks"
         if: github.event.pull_request.user.login != 'release-please[bot]'
