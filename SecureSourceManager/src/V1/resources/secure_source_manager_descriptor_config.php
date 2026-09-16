@@ -612,6 +612,26 @@ return [
                     ],
                 ],
             ],
+            'FetchRefs' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getRefs',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\SecureSourceManager\V1\FetchRefsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'repository',
+                        'fieldAccessors' => [
+                            'getRepository',
+                        ],
+                    ],
+                ],
+            ],
             'FetchTree' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',

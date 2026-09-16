@@ -10,9 +10,24 @@
                 "grpc": {
                     "libraryClient": "SpacesServiceClient",
                     "rpcs": {
+                        "BatchUpdateMembers": {
+                            "methods": [
+                                "batchUpdateMembers"
+                            ]
+                        },
+                        "CreateMember": {
+                            "methods": [
+                                "createMember"
+                            ]
+                        },
                         "CreateSpace": {
                             "methods": [
                                 "createSpace"
+                            ]
+                        },
+                        "DeleteMember": {
+                            "methods": [
+                                "deleteMember"
                             ]
                         },
                         "EndActiveConference": {
@@ -20,9 +35,24 @@
                                 "endActiveConference"
                             ]
                         },
+                        "GetMember": {
+                            "methods": [
+                                "getMember"
+                            ]
+                        },
                         "GetSpace": {
                             "methods": [
                                 "getSpace"
+                            ]
+                        },
+                        "ListMembers": {
+                            "methods": [
+                                "listMembers"
+                            ]
+                        },
+                        "UpdateMember": {
+                            "methods": [
+                                "updateMember"
                             ]
                         },
                         "UpdateSpace": {
@@ -59,6 +89,11 @@
                                 "getRecording"
                             ]
                         },
+                        "GetSmartNote": {
+                            "methods": [
+                                "getSmartNote"
+                            ]
+                        },
                         "GetTranscript": {
                             "methods": [
                                 "getTranscript"
@@ -87,6 +122,11 @@
                         "ListRecordings": {
                             "methods": [
                                 "listRecordings"
+                            ]
+                        },
+                        "ListSmartNotes": {
+                            "methods": [
+                                "listSmartNotes"
                             ]
                         },
                         "ListTranscriptEntries": {

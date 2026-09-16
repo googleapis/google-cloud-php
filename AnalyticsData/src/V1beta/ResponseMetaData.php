@@ -91,6 +91,12 @@ class ResponseMetaData extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.SamplingMetadata sampling_metadatas = 9;</code>
      */
     private $sampling_metadatas;
+    /**
+     * If set, indicate there is data truncation in the report.
+     *
+     * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.ResponseMetaData.DataTruncationReason data_truncation_reasons = 10;</code>
+     */
+    private $data_truncation_reasons;
 
     /**
      * Constructor.
@@ -146,6 +152,8 @@ class ResponseMetaData extends \Google\Protobuf\Internal\Message
      *           `samplingMetadatas` corresponds to a date range in order that date ranges
      *           were specified in the request.
      *           However if the results are not sampled, this field will not be defined.
+     *     @type \Google\Analytics\Data\V1beta\ResponseMetaData\DataTruncationReason[] $data_truncation_reasons
+     *           If set, indicate there is data truncation in the report.
      * }
      */
     public function __construct($data = NULL) {
@@ -449,6 +457,32 @@ class ResponseMetaData extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Analytics\Data\V1beta\SamplingMetadata::class);
         $this->sampling_metadatas = $arr;
+
+        return $this;
+    }
+
+    /**
+     * If set, indicate there is data truncation in the report.
+     *
+     * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.ResponseMetaData.DataTruncationReason data_truncation_reasons = 10;</code>
+     * @return RepeatedField<\Google\Analytics\Data\V1beta\ResponseMetaData\DataTruncationReason>
+     */
+    public function getDataTruncationReasons()
+    {
+        return $this->data_truncation_reasons;
+    }
+
+    /**
+     * If set, indicate there is data truncation in the report.
+     *
+     * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.ResponseMetaData.DataTruncationReason data_truncation_reasons = 10;</code>
+     * @param \Google\Analytics\Data\V1beta\ResponseMetaData\DataTruncationReason[] $var
+     * @return $this
+     */
+    public function setDataTruncationReasons($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Analytics\Data\V1beta\ResponseMetaData\DataTruncationReason::class);
+        $this->data_truncation_reasons = $arr;
 
         return $this;
     }

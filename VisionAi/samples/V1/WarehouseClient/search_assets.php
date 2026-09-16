@@ -33,7 +33,7 @@ use Google\Cloud\VisionAI\V1\SearchResultItem;
  * Search media asset.
  *
  * @param string $formattedCorpus The parent corpus to search.
- *                                Format: `projects/{project_id}/locations/{location_id}/corpora/{corpus_id}'
+ *                                Format: `projects/{project_id}/locations/{location_id}/corpora/{corpus_id}`
  *                                Please see {@see WarehouseClient::corpusName()} for help formatting this field.
  */
 function search_assets_sample(string $formattedCorpus): void

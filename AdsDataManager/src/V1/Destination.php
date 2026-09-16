@@ -55,11 +55,13 @@ class Destination extends \Google\Protobuf\Internal\Message
      */
     protected $operating_account = null;
     /**
-     * Required. The object within the product account to ingest into. For
+     * Optional. The object within the product account to ingest into. For
      * example, a Google Ads audience ID, a Display & Video 360 audience ID or a
      * Google Ads conversion action ID.
+     * This field is optional for Google Ad Manager event ingestion and User
+     * ingestion. Required for all other use cases.
      *
-     * Generated from protobuf field <code>string product_destination_id = 5 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string product_destination_id = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $product_destination_id = '';
 
@@ -92,9 +94,11 @@ class Destination extends \Google\Protobuf\Internal\Message
      *     @type \Google\Ads\DataManager\V1\ProductAccount $operating_account
      *           Required. The account to send the data to or remove the data from.
      *     @type string $product_destination_id
-     *           Required. The object within the product account to ingest into. For
+     *           Optional. The object within the product account to ingest into. For
      *           example, a Google Ads audience ID, a Display & Video 360 audience ID or a
      *           Google Ads conversion action ID.
+     *           This field is optional for Google Ad Manager event ingestion and User
+     *           ingestion. Required for all other use cases.
      * }
      */
     public function __construct($data = NULL) {
@@ -265,11 +269,13 @@ class Destination extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The object within the product account to ingest into. For
+     * Optional. The object within the product account to ingest into. For
      * example, a Google Ads audience ID, a Display & Video 360 audience ID or a
      * Google Ads conversion action ID.
+     * This field is optional for Google Ad Manager event ingestion and User
+     * ingestion. Required for all other use cases.
      *
-     * Generated from protobuf field <code>string product_destination_id = 5 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string product_destination_id = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getProductDestinationId()
@@ -278,11 +284,13 @@ class Destination extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The object within the product account to ingest into. For
+     * Optional. The object within the product account to ingest into. For
      * example, a Google Ads audience ID, a Display & Video 360 audience ID or a
      * Google Ads conversion action ID.
+     * This field is optional for Google Ad Manager event ingestion and User
+     * ingestion. Required for all other use cases.
      *
-     * Generated from protobuf field <code>string product_destination_id = 5 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string product_destination_id = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

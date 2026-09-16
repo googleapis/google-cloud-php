@@ -23,6 +23,19 @@ class SearchAsYouTypeSpec extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.SearchAsYouTypeSpec.Condition condition = 1;</code>
      */
     protected $condition = 0;
+    /**
+     * Optional. The list of fields to be used for Search As You Type scoring.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.SearchRequest.SearchAsYouTypeSpec.Field fields = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $fields;
+    /**
+     * Optional. Search As You Type score threshold for filtering purpose.
+     * We keep the result if `score` >= `score_threshold`.
+     *
+     * Generated from protobuf field <code>optional double score_threshold = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $score_threshold = null;
 
     /**
      * Constructor.
@@ -34,6 +47,11 @@ class SearchAsYouTypeSpec extends \Google\Protobuf\Internal\Message
      *           The condition under which search as you type should occur.
      *           Default to
      *           [Condition.DISABLED][google.cloud.discoveryengine.v1.SearchRequest.SearchAsYouTypeSpec.Condition.DISABLED].
+     *     @type \Google\Cloud\DiscoveryEngine\V1\SearchRequest\SearchAsYouTypeSpec\Field[] $fields
+     *           Optional. The list of fields to be used for Search As You Type scoring.
+     *     @type float $score_threshold
+     *           Optional. Search As You Type score threshold for filtering purpose.
+     *           We keep the result if `score` >= `score_threshold`.
      * }
      */
     public function __construct($data = NULL) {
@@ -67,6 +85,70 @@ class SearchAsYouTypeSpec extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\DiscoveryEngine\V1\SearchRequest\SearchAsYouTypeSpec\Condition::class);
         $this->condition = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The list of fields to be used for Search As You Type scoring.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.SearchRequest.SearchAsYouTypeSpec.Field fields = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\SearchRequest\SearchAsYouTypeSpec\Field>
+     */
+    public function getFields()
+    {
+        return $this->fields;
+    }
+
+    /**
+     * Optional. The list of fields to be used for Search As You Type scoring.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.SearchRequest.SearchAsYouTypeSpec.Field fields = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\SearchRequest\SearchAsYouTypeSpec\Field[] $var
+     * @return $this
+     */
+    public function setFields($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\DiscoveryEngine\V1\SearchRequest\SearchAsYouTypeSpec\Field::class);
+        $this->fields = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Search As You Type score threshold for filtering purpose.
+     * We keep the result if `score` >= `score_threshold`.
+     *
+     * Generated from protobuf field <code>optional double score_threshold = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return float
+     */
+    public function getScoreThreshold()
+    {
+        return isset($this->score_threshold) ? $this->score_threshold : 0.0;
+    }
+
+    public function hasScoreThreshold()
+    {
+        return isset($this->score_threshold);
+    }
+
+    public function clearScoreThreshold()
+    {
+        unset($this->score_threshold);
+    }
+
+    /**
+     * Optional. Search As You Type score threshold for filtering purpose.
+     * We keep the result if `score` >= `score_threshold`.
+     *
+     * Generated from protobuf field <code>optional double score_threshold = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setScoreThreshold($var)
+    {
+        GPBUtil::checkDouble($var);
+        $this->score_threshold = $var;
 
         return $this;
     }

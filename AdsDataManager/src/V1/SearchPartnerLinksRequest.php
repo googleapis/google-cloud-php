@@ -66,6 +66,7 @@ class SearchPartnerLinksRequest extends \Google\Protobuf\Internal\Message
      * [FEATURE_SET_AD_EVENT_MANAGEMENT][google.ads.datamanager.v1.FeatureSet.FEATURE_SET_AD_EVENT_MANAGEMENT]
      * feature set, the following fields are also supported:
      * - `partner_customer_account.account_id`
+     * - `partner_link_metadata.implicit_accounts.account_id`
      * Example:
      * `owning_account.account_type = "GOOGLE_ADS" AND partner_account.account_id
      * = 987654321`
@@ -135,6 +136,7 @@ class SearchPartnerLinksRequest extends \Google\Protobuf\Internal\Message
      *           [FEATURE_SET_AD_EVENT_MANAGEMENT][google.ads.datamanager.v1.FeatureSet.FEATURE_SET_AD_EVENT_MANAGEMENT]
      *           feature set, the following fields are also supported:
      *           - `partner_customer_account.account_id`
+     *           - `partner_link_metadata.implicit_accounts.account_id`
      *           Example:
      *           `owning_account.account_type = "GOOGLE_ADS" AND partner_account.account_id
      *           = 987654321`
@@ -263,6 +265,7 @@ class SearchPartnerLinksRequest extends \Google\Protobuf\Internal\Message
      * [FEATURE_SET_AD_EVENT_MANAGEMENT][google.ads.datamanager.v1.FeatureSet.FEATURE_SET_AD_EVENT_MANAGEMENT]
      * feature set, the following fields are also supported:
      * - `partner_customer_account.account_id`
+     * - `partner_link_metadata.implicit_accounts.account_id`
      * Example:
      * `owning_account.account_type = "GOOGLE_ADS" AND partner_account.account_id
      * = 987654321`
@@ -297,6 +300,7 @@ class SearchPartnerLinksRequest extends \Google\Protobuf\Internal\Message
      * [FEATURE_SET_AD_EVENT_MANAGEMENT][google.ads.datamanager.v1.FeatureSet.FEATURE_SET_AD_EVENT_MANAGEMENT]
      * feature set, the following fields are also supported:
      * - `partner_customer_account.account_id`
+     * - `partner_link_metadata.implicit_accounts.account_id`
      * Example:
      * `owning_account.account_type = "GOOGLE_ADS" AND partner_account.account_id
      * = 987654321`
