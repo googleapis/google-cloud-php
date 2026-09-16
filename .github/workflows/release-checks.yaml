@@ -33,7 +33,9 @@ jobs:
             exit 1
           fi
       - name: "Install dependencies"
-        run: composer global require "roave/backward-compatibility-check:^8.2"
+        run: |
+          composer global require "roave/backward-compatibility-check:^8.2"
+          sed -i.bak 's/return ($this->propertyBased)/return (new ExcludeInternalProperty($this->propertyBased))/' ~/.composer/vendor/roave/backward-compatibility-check/src/DetectChanges/BCBreak/PropertyBased/OnlyPublicPropertyChanged.php
       - name: "Check for BC breaks"
         if: github.event.pull_request.user.login != 'release-please[bot]'
         run: |
