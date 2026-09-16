@@ -35,6 +35,7 @@ namespace Google\ApiCore\Tests\Unit;
 use Google\ApiCore\ClientOptionsTrait;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Options\ClientOptions;
+use Google\ApiCore\Telemetry\AuthHttpHandler;
 use Google\ApiCore\ValidationException;
 use Google\Auth\CredentialsLoader;
 use Google\Auth\FetchAuthTokenInterface;
@@ -43,9 +44,11 @@ use Google\Auth\Logging\StdOutLogger;
 use Grpc\Gcp\ApiConfig;
 use Grpc\Gcp\Config;
 use InvalidArgumentException;
+use OpenTelemetry\API\Trace\TracerProviderInterface;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Psr\Log\LogLevel;
+use ReflectionClass;
 
 class ClientOptionsTraitTest extends TestCase
 {
@@ -71,7 +74,7 @@ class ClientOptionsTraitTest extends TestCase
             public function set($name, $val, $static = false)
             {
                 if (!property_exists($this, $name)) {
-                    throw new \InvalidArgumentException("Property not found: $name");
+                    throw new InvalidArgumentException("Property not found: $name");
                 }
                 if ($static) {
                     $this::$$name = $val;
@@ -228,6 +231,24 @@ class ClientOptionsTraitTest extends TestCase
         ];
     }
 
+    public function testCreateCredentialsWrapperWithPreInstantiatedWrapperAndTracing()
+    {
+        $fetcher = $this->prophesize(FetchAuthTokenInterface::class)->reveal();
+        $credentialsWrapper = new CredentialsWrapper($fetcher);
+        $tracerProvider = $this->createMock(TracerProviderInterface::class);
+
+        $result = $this->clientStub->createCredentialsWrapper(
+            $credentialsWrapper,
+            ['openTelemetryTracerProvider' => $tracerProvider, 'clientVersion' => '1.0.0'],
+            GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN
+        );
+
+        $this->assertSame($credentialsWrapper, $result);
+        $reflection = new ReflectionClass($result);
+        $prop = $reflection->getProperty('authHttpHandler');
+        $this->assertInstanceOf(AuthHttpHandler::class, $prop->getValue($result));
+    }
+
     /**
      * @dataProvider buildClientOptionsProvider
      */
@@ -276,6 +297,8 @@ class ClientOptionsTraitTest extends TestCase
             'clientCertSource' => null,
             'logger' => null,
             'universeDomain' => 'googleapis.com',
+            'clientPackageName' => null,
+            'openTelemetryTracerProvider' => null,
         ];
 
         $restConfigOptions = $defaultOptions;
@@ -357,7 +380,9 @@ class ClientOptionsTraitTest extends TestCase
             'libVersion' => null,
             'clientCertSource' => null,
             'universeDomain' => 'googleapis.com',
-            'logger' => null
+            'logger' => null,
+            'clientPackageName' => null,
+            'openTelemetryTracerProvider' => null,
         ];
 
         $restConfigOptions = $defaultOptions;
@@ -746,5 +771,24 @@ class ClientOptionsTraitTest extends TestCase
             'logger' => 'nonValidOption'
         ];
         $this->clientStub->buildClientOptions($optionsArray);
+    }
+
+    public function testClientPackageNameOptionExplicit()
+    {
+        $optionsArray = [
+            'clientPackageName' => 'google/cloud-secret-manager'
+        ];
+        $options = $this->clientStub->buildClientOptions($optionsArray);
+        $this->assertSame('google/cloud-secret-manager', $options['clientPackageName']);
+    }
+
+    public function testOpenTelemetryTracerProviderOption()
+    {
+        $mockProvider = $this->createMock(TracerProviderInterface::class);
+        $optionsArray = [
+            'openTelemetryTracerProvider' => $mockProvider
+        ];
+        $options = $this->clientStub->buildClientOptions($optionsArray);
+        $this->assertSame($mockProvider, $options['openTelemetryTracerProvider']);
     }
 }

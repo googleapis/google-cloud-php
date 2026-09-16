@@ -32,6 +32,9 @@
 
 namespace Google\ApiCore;
 
+use ReflectionClass;
+use ReflectionException;
+
 /**
  * Class containing functions used to build the Agent header.
  */
@@ -128,5 +131,53 @@ class AgentHeader
         ) . DIRECTORY_SEPARATOR . 'VERSION';
 
         return Version::readVersionFile($versionFile);
+    }
+
+    /**
+     * Reads the package name from composer.json. In order to determine the file
+     * location, this method follows this procedure:
+     * - accepts a class name $callingClass
+     * - identifies the file defining that class
+     * - searches up the directory structure for the 'src' directory
+     * - looks in the directory above 'src' for a file named composer.json
+     * - parses the file to retrieve the "name" property
+     *
+     * @param string $callingClass
+     * @return string|null The package name or null if not found
+     */
+    public static function readPackageNameFromFile(string $callingClass): ?string
+    {
+        static $packageNames = [];
+
+        if (array_key_exists($callingClass, $packageNames)) {
+            return $packageNames[$callingClass];
+        }
+
+        try {
+            $callingClassFile = (new ReflectionClass($callingClass))->getFileName();
+            if ($callingClassFile === false) {
+                return $packageNames[$callingClass] = null;
+            }
+            $srcPos = strrpos($callingClassFile, DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR);
+            if ($srcPos === false) {
+                return $packageNames[$callingClass] = null;
+            }
+            $composerFile = substr($callingClassFile, 0, $srcPos) . DIRECTORY_SEPARATOR . 'composer.json';
+            if (!file_exists($composerFile)) {
+                return $packageNames[$callingClass] = null;
+            }
+            $content = file_get_contents($composerFile);
+            if ($content === false) {
+                return $packageNames[$callingClass] = null;
+            }
+            $json = json_decode($content, true);
+            if (isset($json['name']) && is_string($json['name'])) {
+                return $packageNames[$callingClass] = $json['name'];
+            }
+        } catch (ReflectionException $e) {
+            return $packageNames[$callingClass] = null;
+        }
+
+        return $packageNames[$callingClass] = null;
     }
 }
