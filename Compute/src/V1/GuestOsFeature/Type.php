@@ -41,6 +41,13 @@ class Type
      */
     const BARE_METAL_LINUX_COMPATIBLE = 354232740;
     /**
+     * Indicates the guest OS is capable of Bare Metal Secure AI (BMSAI)
+     * confidential computing.
+     *
+     * Generated from protobuf enum <code>BMSAI_CAPABLE = 449302109;</code>
+     */
+    const BMSAI_CAPABLE = 449302109;
+    /**
      * Generated from protobuf enum <code>CCA_CAPABLE = 79012270;</code>
      */
     const CCA_CAPABLE = 79012270;
@@ -111,6 +118,7 @@ class Type
     private static $valueToName = [
         self::UNDEFINED_TYPE => 'UNDEFINED_TYPE',
         self::BARE_METAL_LINUX_COMPATIBLE => 'BARE_METAL_LINUX_COMPATIBLE',
+        self::BMSAI_CAPABLE => 'BMSAI_CAPABLE',
         self::CCA_CAPABLE => 'CCA_CAPABLE',
         self::FEATURE_TYPE_UNSPECIFIED => 'FEATURE_TYPE_UNSPECIFIED',
         self::GVNIC => 'GVNIC',

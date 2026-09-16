@@ -279,6 +279,17 @@ return [
                     ],
                 ],
             ],
+            'FetchRefs' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{repository=projects/*/locations/*/repositories/*}:fetchRefs',
+                'placeholders' => [
+                    'repository' => [
+                        'getters' => [
+                            'getRepository',
+                        ],
+                    ],
+                ],
+            ],
             'FetchTree' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{repository=projects/*/locations/*/repositories/*}:fetchTree',

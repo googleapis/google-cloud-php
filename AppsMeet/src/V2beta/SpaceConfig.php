@@ -32,7 +32,6 @@ class SpaceConfig extends \Google\Protobuf\Internal\Message
      */
     protected $entry_point_access = 0;
     /**
-     * [Developer Preview](https://developers.google.com/workspace/preview):
      * The pre-configured moderation mode for the Meeting.
      * Default: Controlled by the user's policies.
      *
@@ -40,7 +39,6 @@ class SpaceConfig extends \Google\Protobuf\Internal\Message
      */
     protected $moderation = 0;
     /**
-     * [Developer Preview](https://developers.google.com/workspace/preview):
      * When moderation.ON, these restrictions go into effect for the meeting.
      * When moderation.OFF, will be reset to default ModerationRestrictions.
      *
@@ -48,14 +46,12 @@ class SpaceConfig extends \Google\Protobuf\Internal\Message
      */
     protected $moderation_restrictions = null;
     /**
-     * [Developer Preview](https://developers.google.com/workspace/preview):
      * Whether attendance report is enabled for the meeting space.
      *
      * Generated from protobuf field <code>.google.apps.meet.v2beta.SpaceConfig.AttendanceReportGenerationType attendance_report_generation_type = 6;</code>
      */
     protected $attendance_report_generation_type = 0;
     /**
-     * [Developer Preview](https://developers.google.com/workspace/preview):
      * Configuration pertaining to the auto-generated artifacts that the meeting
      * supports.
      *
@@ -78,18 +74,14 @@ class SpaceConfig extends \Google\Protobuf\Internal\Message
      *           meeting space.
      *           Default: EntryPointAccess.ALL
      *     @type int $moderation
-     *           [Developer Preview](https://developers.google.com/workspace/preview):
      *           The pre-configured moderation mode for the Meeting.
      *           Default: Controlled by the user's policies.
      *     @type \Google\Apps\Meet\V2beta\SpaceConfig\ModerationRestrictions $moderation_restrictions
-     *           [Developer Preview](https://developers.google.com/workspace/preview):
      *           When moderation.ON, these restrictions go into effect for the meeting.
      *           When moderation.OFF, will be reset to default ModerationRestrictions.
      *     @type int $attendance_report_generation_type
-     *           [Developer Preview](https://developers.google.com/workspace/preview):
      *           Whether attendance report is enabled for the meeting space.
      *     @type \Google\Apps\Meet\V2beta\SpaceConfig\ArtifactConfig $artifact_config
-     *           [Developer Preview](https://developers.google.com/workspace/preview):
      *           Configuration pertaining to the auto-generated artifacts that the meeting
      *           supports.
      * }
@@ -160,7 +152,6 @@ class SpaceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Developer Preview](https://developers.google.com/workspace/preview):
      * The pre-configured moderation mode for the Meeting.
      * Default: Controlled by the user's policies.
      *
@@ -173,7 +164,6 @@ class SpaceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Developer Preview](https://developers.google.com/workspace/preview):
      * The pre-configured moderation mode for the Meeting.
      * Default: Controlled by the user's policies.
      *
@@ -190,7 +180,6 @@ class SpaceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Developer Preview](https://developers.google.com/workspace/preview):
      * When moderation.ON, these restrictions go into effect for the meeting.
      * When moderation.OFF, will be reset to default ModerationRestrictions.
      *
@@ -213,7 +202,6 @@ class SpaceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Developer Preview](https://developers.google.com/workspace/preview):
      * When moderation.ON, these restrictions go into effect for the meeting.
      * When moderation.OFF, will be reset to default ModerationRestrictions.
      *
@@ -230,7 +218,6 @@ class SpaceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Developer Preview](https://developers.google.com/workspace/preview):
      * Whether attendance report is enabled for the meeting space.
      *
      * Generated from protobuf field <code>.google.apps.meet.v2beta.SpaceConfig.AttendanceReportGenerationType attendance_report_generation_type = 6;</code>
@@ -242,7 +229,6 @@ class SpaceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Developer Preview](https://developers.google.com/workspace/preview):
      * Whether attendance report is enabled for the meeting space.
      *
      * Generated from protobuf field <code>.google.apps.meet.v2beta.SpaceConfig.AttendanceReportGenerationType attendance_report_generation_type = 6;</code>
@@ -258,7 +244,6 @@ class SpaceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Developer Preview](https://developers.google.com/workspace/preview):
      * Configuration pertaining to the auto-generated artifacts that the meeting
      * supports.
      *
@@ -281,7 +266,6 @@ class SpaceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Developer Preview](https://developers.google.com/workspace/preview):
      * Configuration pertaining to the auto-generated artifacts that the meeting
      * supports.
      *

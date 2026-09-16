@@ -71,6 +71,18 @@ return [
                     ],
                 ],
             ],
+            'GetSmartNote' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Apps\Meet\V2\SmartNote',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetTranscript' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Apps\Meet\V2\Transcript',
@@ -167,6 +179,26 @@ return [
                     ],
                 ],
             ],
+            'ListSmartNotes' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getSmartNotes',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Apps\Meet\V2\ListSmartNotesResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListTranscriptEntries' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
@@ -212,6 +244,7 @@ return [
                 'participant' => 'conferenceRecords/{conference_record}/participants/{participant}',
                 'participantSession' => 'conferenceRecords/{conference_record}/participants/{participant}/participantSessions/{participant_session}',
                 'recording' => 'conferenceRecords/{conference_record}/recordings/{recording}',
+                'smartNote' => 'conferenceRecords/{conference_record}/smartNotes/{smart_note}',
                 'transcript' => 'conferenceRecords/{conference_record}/transcripts/{transcript}',
                 'transcriptEntry' => 'conferenceRecords/{conference_record}/transcripts/{transcript}/entries/{entry}',
             ],

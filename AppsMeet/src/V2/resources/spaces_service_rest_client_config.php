@@ -23,15 +23,61 @@
 return [
     'interfaces' => [
         'google.apps.meet.v2.SpacesService' => [
+            'BatchUpdateMembers' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{parent=spaces/*}/members:batchUpdate',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateMember' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{parent=spaces/*}/members',
+                'body' => 'member',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateSpace' => [
                 'method' => 'post',
                 'uriTemplate' => '/v2/spaces',
                 'body' => 'space',
             ],
+            'DeleteMember' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v2/{name=spaces/*/members/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'EndActiveConference' => [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{name=spaces/*}:endActiveConference',
                 'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetMember' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{name=spaces/*/members/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -46,6 +92,30 @@ return [
                 'placeholders' => [
                     'name' => [
                         'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListMembers' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{parent=spaces/*}/members',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateMember' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v2/{member.name=spaces/*/members/*}',
+                'body' => 'member',
+                'placeholders' => [
+                    'member.name' => [
+                        'getters' => [
+                            'getMember',
                             'getName',
                         ],
                     ],

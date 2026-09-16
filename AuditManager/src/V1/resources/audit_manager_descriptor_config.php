@@ -42,6 +42,18 @@ return [
                     ],
                 ],
             ],
+            'CreateAuditSchedule' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\AuditManager\V1\AuditSchedule',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'EnrollResource' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\AuditManager\V1\Enrollment',
@@ -78,6 +90,18 @@ return [
                     ],
                 ],
             ],
+            'GetAuditSchedule' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\AuditManager\V1\AuditSchedule',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetResourceEnrollmentStatus' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\AuditManager\V1\ResourceEnrollmentStatus',
@@ -101,6 +125,26 @@ return [
                 ],
                 'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
                 'responseType' => 'Google\Cloud\AuditManager\V1\ListAuditReportsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListAuditSchedules' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getAuditSchedules',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\AuditManager\V1\ListAuditSchedulesResponse',
                 'headerParams' => [
                     [
                         'keyName' => 'parent',
@@ -150,6 +194,19 @@ return [
                     ],
                 ],
             ],
+            'UpdateAuditSchedule' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\AuditManager\V1\AuditSchedule',
+                'headerParams' => [
+                    [
+                        'keyName' => 'audit_schedule.name',
+                        'fieldAccessors' => [
+                            'getAuditSchedule',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetLocation' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Location\Location',
@@ -186,17 +243,21 @@ return [
             ],
             'templateMap' => [
                 'auditReport' => 'projects/{project}/locations/{location}/auditReports/{audit_report}',
+                'auditSchedule' => 'projects/{project}/locations/{location}/auditSchedules/{audit_schedule}',
                 'enrollmentStatusScope' => 'folders/{folder}/locations/{location}',
                 'folderLocation' => 'folders/{folder}/locations/{location}',
                 'folderLocationAuditReport' => 'folders/{folder}/locations/{location}/auditReports/{audit_report}',
+                'folderLocationAuditSchedule' => 'folders/{folder}/locations/{location}/auditSchedules/{audit_schedule}',
                 'folderLocationResourceEnrollmentStatus' => 'folders/{folder}/locations/{location}/resourceEnrollmentStatuses/{resource_enrollment_status}',
                 'folderLocationStandard' => 'folders/{folder}/locations/{location}/standards/{standard}',
                 'location' => 'projects/{project}/locations/{location}',
                 'organizationLocation' => 'organizations/{organization}/locations/{location}',
                 'organizationLocationAuditReport' => 'organizations/{organization}/locations/{location}/auditReports/{audit_report}',
+                'organizationLocationAuditSchedule' => 'organizations/{organization}/locations/{location}/auditSchedules/{audit_schedule}',
                 'organizationLocationResourceEnrollmentStatus' => 'organizations/{organization}/locations/{location}/resourceEnrollmentStatuses/{resource_enrollment_status}',
                 'organizationLocationStandard' => 'organizations/{organization}/locations/{location}/standards/{standard}',
                 'projectLocationAuditReport' => 'projects/{project}/locations/{location}/auditReports/{audit_report}',
+                'projectLocationAuditSchedule' => 'projects/{project}/locations/{location}/auditSchedules/{audit_schedule}',
                 'projectLocationResourceEnrollmentStatus' => 'projects/{project}/locations/{location}/resourceEnrollmentStatuses/{resource_enrollment_status}',
                 'projectLocationStandard' => 'projects/{project}/locations/{location}/standards/{standard}',
                 'resourceEnrollmentStatus' => 'folders/{folder}/locations/{location}/resourceEnrollmentStatuses/{resource_enrollment_status}',

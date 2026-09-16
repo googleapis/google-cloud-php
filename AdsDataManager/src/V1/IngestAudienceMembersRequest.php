@@ -46,13 +46,14 @@ class IngestAudienceMembersRequest extends \Google\Protobuf\Internal\Message
      */
     protected $validate_only = false;
     /**
-     * Optional. Required for [UserData][google.ads.datamanager.v1.UserData]
-     * uploads. The encoding type of the user identifiers. For hashed user
-     * identifiers, this is the encoding type of the hashed string. For encrypted
-     * hashed user identifiers, this is the encoding type of the outer encrypted
-     * string, but not necessarily the inner hashed string, meaning the inner
-     * hashed string could be encoded in a different way than the outer encrypted
-     * string. For non `UserData` uploads, this field is ignored.
+     * Optional. Must be provided for
+     * [UserData][google.ads.datamanager.v1.UserData] uploads. The encoding type
+     * of the user identifiers. For hashed user identifiers, this is the encoding
+     * type of the hashed string. For encrypted hashed user identifiers, this is
+     * the encoding type of the outer encrypted string, but not necessarily the
+     * inner hashed string, meaning the inner hashed string could be encoded in a
+     * different way than the outer encrypted string. For non `UserData` uploads,
+     * this field is ignored.
      *
      * Generated from protobuf field <code>.google.ads.datamanager.v1.Encoding encoding = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -93,13 +94,14 @@ class IngestAudienceMembersRequest extends \Google\Protobuf\Internal\Message
      *           Optional. For testing purposes. If `true`, the request is validated but not
      *           executed. Only errors are returned, not results.
      *     @type int $encoding
-     *           Optional. Required for [UserData][google.ads.datamanager.v1.UserData]
-     *           uploads. The encoding type of the user identifiers. For hashed user
-     *           identifiers, this is the encoding type of the hashed string. For encrypted
-     *           hashed user identifiers, this is the encoding type of the outer encrypted
-     *           string, but not necessarily the inner hashed string, meaning the inner
-     *           hashed string could be encoded in a different way than the outer encrypted
-     *           string. For non `UserData` uploads, this field is ignored.
+     *           Optional. Must be provided for
+     *           [UserData][google.ads.datamanager.v1.UserData] uploads. The encoding type
+     *           of the user identifiers. For hashed user identifiers, this is the encoding
+     *           type of the hashed string. For encrypted hashed user identifiers, this is
+     *           the encoding type of the outer encrypted string, but not necessarily the
+     *           inner hashed string, meaning the inner hashed string could be encoded in a
+     *           different way than the outer encrypted string. For non `UserData` uploads,
+     *           this field is ignored.
      *     @type \Google\Ads\DataManager\V1\EncryptionInfo $encryption_info
      *           Optional. Encryption information for
      *           [UserData][google.ads.datamanager.v1.UserData] uploads. If not set, it's
@@ -239,13 +241,14 @@ class IngestAudienceMembersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Required for [UserData][google.ads.datamanager.v1.UserData]
-     * uploads. The encoding type of the user identifiers. For hashed user
-     * identifiers, this is the encoding type of the hashed string. For encrypted
-     * hashed user identifiers, this is the encoding type of the outer encrypted
-     * string, but not necessarily the inner hashed string, meaning the inner
-     * hashed string could be encoded in a different way than the outer encrypted
-     * string. For non `UserData` uploads, this field is ignored.
+     * Optional. Must be provided for
+     * [UserData][google.ads.datamanager.v1.UserData] uploads. The encoding type
+     * of the user identifiers. For hashed user identifiers, this is the encoding
+     * type of the hashed string. For encrypted hashed user identifiers, this is
+     * the encoding type of the outer encrypted string, but not necessarily the
+     * inner hashed string, meaning the inner hashed string could be encoded in a
+     * different way than the outer encrypted string. For non `UserData` uploads,
+     * this field is ignored.
      *
      * Generated from protobuf field <code>.google.ads.datamanager.v1.Encoding encoding = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -256,13 +259,14 @@ class IngestAudienceMembersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Required for [UserData][google.ads.datamanager.v1.UserData]
-     * uploads. The encoding type of the user identifiers. For hashed user
-     * identifiers, this is the encoding type of the hashed string. For encrypted
-     * hashed user identifiers, this is the encoding type of the outer encrypted
-     * string, but not necessarily the inner hashed string, meaning the inner
-     * hashed string could be encoded in a different way than the outer encrypted
-     * string. For non `UserData` uploads, this field is ignored.
+     * Optional. Must be provided for
+     * [UserData][google.ads.datamanager.v1.UserData] uploads. The encoding type
+     * of the user identifiers. For hashed user identifiers, this is the encoding
+     * type of the hashed string. For encrypted hashed user identifiers, this is
+     * the encoding type of the outer encrypted string, but not necessarily the
+     * inner hashed string, meaning the inner hashed string could be encoded in a
+     * different way than the outer encrypted string. For non `UserData` uploads,
+     * this field is ignored.
      *
      * Generated from protobuf field <code>.google.ads.datamanager.v1.Encoding encoding = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var

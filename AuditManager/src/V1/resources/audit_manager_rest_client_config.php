@@ -23,6 +23,39 @@
 return [
     'interfaces' => [
         'google.cloud.auditmanager.v1.AuditManager' => [
+            'CreateAuditSchedule' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/auditSchedules',
+                'body' => 'audit_schedule',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{parent=folders/*/locations/*}/auditSchedules',
+                        'body' => 'audit_schedule',
+                        'queryParams' => [
+                            'audit_schedule_id',
+                        ],
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{parent=organizations/*/locations/*}/auditSchedules',
+                        'body' => 'audit_schedule',
+                        'queryParams' => [
+                            'audit_schedule_id',
+                        ],
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'audit_schedule_id',
+                ],
+            ],
             'EnrollResource' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{scope=folders/*/locations/*}:enrollResource',
@@ -116,6 +149,27 @@ return [
                     ],
                 ],
             ],
+            'GetAuditSchedule' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/auditSchedules/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=folders/*/locations/*/auditSchedules/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=organizations/*/locations/*/auditSchedules/*}',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetResourceEnrollmentStatus' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/resourceEnrollmentStatuses/*}',
@@ -148,6 +202,27 @@ return [
                     [
                         'method' => 'get',
                         'uriTemplate' => '/v1/{parent=projects/*/locations/*}/auditReports',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListAuditSchedules' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/auditSchedules',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{parent=folders/*/locations/*}/auditSchedules',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{parent=organizations/*/locations/*}/auditSchedules',
                     ],
                 ],
                 'placeholders' => [
@@ -192,6 +267,31 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateAuditSchedule' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{audit_schedule.name=projects/*/locations/*/auditSchedules/*}',
+                'body' => 'audit_schedule',
+                'additionalBindings' => [
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v1/{audit_schedule.name=folders/*/locations/*/auditSchedules/*}',
+                        'body' => 'audit_schedule',
+                    ],
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v1/{audit_schedule.name=organizations/*/locations/*/auditSchedules/*}',
+                        'body' => 'audit_schedule',
+                    ],
+                ],
+                'placeholders' => [
+                    'audit_schedule.name' => [
+                        'getters' => [
+                            'getAuditSchedule',
+                            'getName',
                         ],
                     ],
                 ],

@@ -27,24 +27,32 @@ use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\AuditManager\V1\AuditReport;
+use Google\Cloud\AuditManager\V1\AuditSchedule;
+use Google\Cloud\AuditManager\V1\AuditSchedule\AuditReportFormat;
 use Google\Cloud\AuditManager\V1\AuditScopeReport;
 use Google\Cloud\AuditManager\V1\Client\AuditManagerClient;
 use Google\Cloud\AuditManager\V1\Control;
+use Google\Cloud\AuditManager\V1\CreateAuditScheduleRequest;
 use Google\Cloud\AuditManager\V1\EnrollResourceRequest;
 use Google\Cloud\AuditManager\V1\Enrollment;
 use Google\Cloud\AuditManager\V1\GenerateAuditReportRequest;
-use Google\Cloud\AuditManager\V1\GenerateAuditReportRequest\AuditReportFormat;
 use Google\Cloud\AuditManager\V1\GenerateAuditScopeReportRequest;
 use Google\Cloud\AuditManager\V1\GenerateAuditScopeReportRequest\AuditScopeReportFormat;
 use Google\Cloud\AuditManager\V1\GetAuditReportRequest;
+use Google\Cloud\AuditManager\V1\GetAuditScheduleRequest;
 use Google\Cloud\AuditManager\V1\GetResourceEnrollmentStatusRequest;
 use Google\Cloud\AuditManager\V1\ListAuditReportsRequest;
 use Google\Cloud\AuditManager\V1\ListAuditReportsResponse;
+use Google\Cloud\AuditManager\V1\ListAuditSchedulesRequest;
+use Google\Cloud\AuditManager\V1\ListAuditSchedulesResponse;
 use Google\Cloud\AuditManager\V1\ListControlsRequest;
 use Google\Cloud\AuditManager\V1\ListControlsResponse;
 use Google\Cloud\AuditManager\V1\ListResourceEnrollmentStatusesRequest;
 use Google\Cloud\AuditManager\V1\ListResourceEnrollmentStatusesResponse;
 use Google\Cloud\AuditManager\V1\ResourceEnrollmentStatus;
+use Google\Cloud\AuditManager\V1\ScheduleConfig;
+use Google\Cloud\AuditManager\V1\ScheduleConfig\Frequency;
+use Google\Cloud\AuditManager\V1\UpdateAuditScheduleRequest;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\ListLocationsResponse;
@@ -53,6 +61,7 @@ use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
+use Google\Protobuf\Timestamp;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -84,6 +93,117 @@ class AuditManagerClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ];
         return new AuditManagerClient($options);
+    }
+
+    /** @test */
+    public function createAuditScheduleTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $displayName = 'displayName1615086568';
+        $gcsUri = 'gcsUri-132964284';
+        $complianceFramework = 'complianceFramework1384085210';
+        $errorMessage = 'errorMessage-1938755376';
+        $expectedResponse = new AuditSchedule();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setGcsUri($gcsUri);
+        $expectedResponse->setComplianceFramework($complianceFramework);
+        $expectedResponse->setErrorMessage($errorMessage);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->folderLocationName('[FOLDER]', '[LOCATION]');
+        $auditSchedule = new AuditSchedule();
+        $auditScheduleGcsUri = 'auditScheduleGcsUri963367175';
+        $auditSchedule->setGcsUri($auditScheduleGcsUri);
+        $auditScheduleComplianceFramework = 'auditScheduleComplianceFramework-235572431';
+        $auditSchedule->setComplianceFramework($auditScheduleComplianceFramework);
+        $auditScheduleReportFormat = AuditReportFormat::AUDIT_REPORT_FORMAT_UNSPECIFIED;
+        $auditSchedule->setReportFormat($auditScheduleReportFormat);
+        $auditScheduleScheduleConfig = new ScheduleConfig();
+        $scheduleConfigStartTime = new Timestamp();
+        $auditScheduleScheduleConfig->setStartTime($scheduleConfigStartTime);
+        $scheduleConfigFrequency = Frequency::FREQUENCY_UNSPECIFIED;
+        $auditScheduleScheduleConfig->setFrequency($scheduleConfigFrequency);
+        $auditSchedule->setScheduleConfig($auditScheduleScheduleConfig);
+        $auditScheduleId = 'auditScheduleId1585335647';
+        $request = (new CreateAuditScheduleRequest())
+            ->setParent($formattedParent)
+            ->setAuditSchedule($auditSchedule)
+            ->setAuditScheduleId($auditScheduleId);
+        $response = $gapicClient->createAuditSchedule($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.auditmanager.v1.AuditManager/CreateAuditSchedule', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getAuditSchedule();
+        $this->assertProtobufEquals($auditSchedule, $actualValue);
+        $actualValue = $actualRequestObject->getAuditScheduleId();
+        $this->assertProtobufEquals($auditScheduleId, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function createAuditScheduleExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->folderLocationName('[FOLDER]', '[LOCATION]');
+        $auditSchedule = new AuditSchedule();
+        $auditScheduleGcsUri = 'auditScheduleGcsUri963367175';
+        $auditSchedule->setGcsUri($auditScheduleGcsUri);
+        $auditScheduleComplianceFramework = 'auditScheduleComplianceFramework-235572431';
+        $auditSchedule->setComplianceFramework($auditScheduleComplianceFramework);
+        $auditScheduleReportFormat = AuditReportFormat::AUDIT_REPORT_FORMAT_UNSPECIFIED;
+        $auditSchedule->setReportFormat($auditScheduleReportFormat);
+        $auditScheduleScheduleConfig = new ScheduleConfig();
+        $scheduleConfigStartTime = new Timestamp();
+        $auditScheduleScheduleConfig->setStartTime($scheduleConfigStartTime);
+        $scheduleConfigFrequency = Frequency::FREQUENCY_UNSPECIFIED;
+        $auditScheduleScheduleConfig->setFrequency($scheduleConfigFrequency);
+        $auditSchedule->setScheduleConfig($auditScheduleScheduleConfig);
+        $auditScheduleId = 'auditScheduleId1585335647';
+        $request = (new CreateAuditScheduleRequest())
+            ->setParent($formattedParent)
+            ->setAuditSchedule($auditSchedule)
+            ->setAuditScheduleId($auditScheduleId);
+        try {
+            $gapicClient->createAuditSchedule($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
@@ -198,7 +318,8 @@ class AuditManagerClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $scope = 'scope109264468';
-        $reportFormat = AuditReportFormat::AUDIT_REPORT_FORMAT_UNSPECIFIED;
+        $reportFormat =
+            \Google\Cloud\AuditManager\V1\GenerateAuditReportRequest\AuditReportFormat::AUDIT_REPORT_FORMAT_UNSPECIFIED;
         $complianceFramework = 'complianceFramework1384085210';
         $request = (new GenerateAuditReportRequest())
             ->setScope($scope)
@@ -275,7 +396,8 @@ class AuditManagerClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $scope = 'scope109264468';
-        $reportFormat = AuditReportFormat::AUDIT_REPORT_FORMAT_UNSPECIFIED;
+        $reportFormat =
+            \Google\Cloud\AuditManager\V1\GenerateAuditReportRequest\AuditReportFormat::AUDIT_REPORT_FORMAT_UNSPECIFIED;
         $complianceFramework = 'complianceFramework1384085210';
         $request = (new GenerateAuditReportRequest())
             ->setScope($scope)
@@ -460,6 +582,79 @@ class AuditManagerClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function getAuditScheduleTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $displayName = 'displayName1615086568';
+        $gcsUri = 'gcsUri-132964284';
+        $complianceFramework = 'complianceFramework1384085210';
+        $errorMessage = 'errorMessage-1938755376';
+        $expectedResponse = new AuditSchedule();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setGcsUri($gcsUri);
+        $expectedResponse->setComplianceFramework($complianceFramework);
+        $expectedResponse->setErrorMessage($errorMessage);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->auditScheduleName('[PROJECT]', '[LOCATION]', '[AUDIT_SCHEDULE]');
+        $request = (new GetAuditScheduleRequest())->setName($formattedName);
+        $response = $gapicClient->getAuditSchedule($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.auditmanager.v1.AuditManager/GetAuditSchedule', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getAuditScheduleExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->auditScheduleName('[PROJECT]', '[LOCATION]', '[AUDIT_SCHEDULE]');
+        $request = (new GetAuditScheduleRequest())->setName($formattedName);
+        try {
+            $gapicClient->getAuditSchedule($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function getResourceEnrollmentStatusTest()
     {
         $transport = $this->createTransport();
@@ -596,6 +791,77 @@ class AuditManagerClientTest extends GeneratedTest
         $request = (new ListAuditReportsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listAuditReports($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listAuditSchedulesTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $auditSchedulesElement = new AuditSchedule();
+        $auditSchedules = [$auditSchedulesElement];
+        $expectedResponse = new ListAuditSchedulesResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setAuditSchedules($auditSchedules);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->folderLocationName('[FOLDER]', '[LOCATION]');
+        $request = (new ListAuditSchedulesRequest())->setParent($formattedParent);
+        $response = $gapicClient->listAuditSchedules($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getAuditSchedules()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.auditmanager.v1.AuditManager/ListAuditSchedules', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listAuditSchedulesExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->folderLocationName('[FOLDER]', '[LOCATION]');
+        $request = (new ListAuditSchedulesRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->listAuditSchedules($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -750,6 +1016,103 @@ class AuditManagerClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function updateAuditScheduleTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $displayName = 'displayName1615086568';
+        $gcsUri = 'gcsUri-132964284';
+        $complianceFramework = 'complianceFramework1384085210';
+        $errorMessage = 'errorMessage-1938755376';
+        $expectedResponse = new AuditSchedule();
+        $expectedResponse->setName($name);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setGcsUri($gcsUri);
+        $expectedResponse->setComplianceFramework($complianceFramework);
+        $expectedResponse->setErrorMessage($errorMessage);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $auditSchedule = new AuditSchedule();
+        $auditScheduleGcsUri = 'auditScheduleGcsUri963367175';
+        $auditSchedule->setGcsUri($auditScheduleGcsUri);
+        $auditScheduleComplianceFramework = 'auditScheduleComplianceFramework-235572431';
+        $auditSchedule->setComplianceFramework($auditScheduleComplianceFramework);
+        $auditScheduleReportFormat = AuditReportFormat::AUDIT_REPORT_FORMAT_UNSPECIFIED;
+        $auditSchedule->setReportFormat($auditScheduleReportFormat);
+        $auditScheduleScheduleConfig = new ScheduleConfig();
+        $scheduleConfigStartTime = new Timestamp();
+        $auditScheduleScheduleConfig->setStartTime($scheduleConfigStartTime);
+        $scheduleConfigFrequency = Frequency::FREQUENCY_UNSPECIFIED;
+        $auditScheduleScheduleConfig->setFrequency($scheduleConfigFrequency);
+        $auditSchedule->setScheduleConfig($auditScheduleScheduleConfig);
+        $request = (new UpdateAuditScheduleRequest())->setAuditSchedule($auditSchedule);
+        $response = $gapicClient->updateAuditSchedule($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.auditmanager.v1.AuditManager/UpdateAuditSchedule', $actualFuncCall);
+        $actualValue = $actualRequestObject->getAuditSchedule();
+        $this->assertProtobufEquals($auditSchedule, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateAuditScheduleExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $auditSchedule = new AuditSchedule();
+        $auditScheduleGcsUri = 'auditScheduleGcsUri963367175';
+        $auditSchedule->setGcsUri($auditScheduleGcsUri);
+        $auditScheduleComplianceFramework = 'auditScheduleComplianceFramework-235572431';
+        $auditSchedule->setComplianceFramework($auditScheduleComplianceFramework);
+        $auditScheduleReportFormat = AuditReportFormat::AUDIT_REPORT_FORMAT_UNSPECIFIED;
+        $auditSchedule->setReportFormat($auditScheduleReportFormat);
+        $auditScheduleScheduleConfig = new ScheduleConfig();
+        $scheduleConfigStartTime = new Timestamp();
+        $auditScheduleScheduleConfig->setStartTime($scheduleConfigStartTime);
+        $scheduleConfigFrequency = Frequency::FREQUENCY_UNSPECIFIED;
+        $auditScheduleScheduleConfig->setFrequency($scheduleConfigFrequency);
+        $auditSchedule->setScheduleConfig($auditScheduleScheduleConfig);
+        $request = (new UpdateAuditScheduleRequest())->setAuditSchedule($auditSchedule);
+        try {
+            $gapicClient->updateAuditSchedule($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function getLocationTest()
     {
         $transport = $this->createTransport();
@@ -878,7 +1241,7 @@ class AuditManagerClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function enrollResourceAsyncTest()
+    public function createAuditScheduleAsyncTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -887,24 +1250,50 @@ class AuditManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name = 'name3373707';
-        $expectedResponse = new Enrollment();
+        $displayName = 'displayName1615086568';
+        $gcsUri = 'gcsUri-132964284';
+        $complianceFramework = 'complianceFramework1384085210';
+        $errorMessage = 'errorMessage-1938755376';
+        $expectedResponse = new AuditSchedule();
         $expectedResponse->setName($name);
+        $expectedResponse->setDisplayName($displayName);
+        $expectedResponse->setGcsUri($gcsUri);
+        $expectedResponse->setComplianceFramework($complianceFramework);
+        $expectedResponse->setErrorMessage($errorMessage);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $scope = 'scope109264468';
-        $destinations = [];
-        $request = (new EnrollResourceRequest())->setScope($scope)->setDestinations($destinations);
-        $response = $gapicClient->enrollResourceAsync($request)->wait();
+        $formattedParent = $gapicClient->folderLocationName('[FOLDER]', '[LOCATION]');
+        $auditSchedule = new AuditSchedule();
+        $auditScheduleGcsUri = 'auditScheduleGcsUri963367175';
+        $auditSchedule->setGcsUri($auditScheduleGcsUri);
+        $auditScheduleComplianceFramework = 'auditScheduleComplianceFramework-235572431';
+        $auditSchedule->setComplianceFramework($auditScheduleComplianceFramework);
+        $auditScheduleReportFormat = AuditReportFormat::AUDIT_REPORT_FORMAT_UNSPECIFIED;
+        $auditSchedule->setReportFormat($auditScheduleReportFormat);
+        $auditScheduleScheduleConfig = new ScheduleConfig();
+        $scheduleConfigStartTime = new Timestamp();
+        $auditScheduleScheduleConfig->setStartTime($scheduleConfigStartTime);
+        $scheduleConfigFrequency = Frequency::FREQUENCY_UNSPECIFIED;
+        $auditScheduleScheduleConfig->setFrequency($scheduleConfigFrequency);
+        $auditSchedule->setScheduleConfig($auditScheduleScheduleConfig);
+        $auditScheduleId = 'auditScheduleId1585335647';
+        $request = (new CreateAuditScheduleRequest())
+            ->setParent($formattedParent)
+            ->setAuditSchedule($auditSchedule)
+            ->setAuditScheduleId($auditScheduleId);
+        $response = $gapicClient->createAuditScheduleAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.auditmanager.v1.AuditManager/EnrollResource', $actualFuncCall);
-        $actualValue = $actualRequestObject->getScope();
-        $this->assertProtobufEquals($scope, $actualValue);
-        $actualValue = $actualRequestObject->getDestinations();
-        $this->assertProtobufEquals($destinations, $actualValue);
+        $this->assertSame('/google.cloud.auditmanager.v1.AuditManager/CreateAuditSchedule', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getAuditSchedule();
+        $this->assertProtobufEquals($auditSchedule, $actualValue);
+        $actualValue = $actualRequestObject->getAuditScheduleId();
+        $this->assertProtobufEquals($auditScheduleId, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

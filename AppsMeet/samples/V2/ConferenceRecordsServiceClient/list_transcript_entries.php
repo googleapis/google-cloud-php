@@ -35,7 +35,8 @@ use Google\Apps\Meet\V2\TranscriptEntry;
  *
  * Note: The transcript entries returned by the Google Meet API might not
  * match the transcription found in the Google Docs transcript file. This can
- * occur when the Google Docs transcript file is modified after generation.
+ * occur when 1) we have interleaved speakers within milliseconds, or
+ * 2) the Google Docs transcript file is modified after generation.
  *
  * @param string $formattedParent Format:
  *                                `conferenceRecords/{conference_record}/transcripts/{transcript}`

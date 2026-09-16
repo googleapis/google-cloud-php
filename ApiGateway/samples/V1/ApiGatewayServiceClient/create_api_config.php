@@ -36,8 +36,8 @@ use Google\Rpc\Status;
  * @param string $formattedParent Parent resource of the API Config, of the form:
  *                                `projects/&#42;/locations/global/apis/*`
  *                                Please see {@see ApiGatewayServiceClient::apiName()} for help formatting this field.
- * @param string $apiConfigId     Identifier to assign to the API Config. Must be unique within scope of
- *                                the parent resource.
+ * @param string $apiConfigId     Identifier to assign to the API Config. Must be unique within
+ *                                scope of the parent resource.
  */
 function create_api_config_sample(string $formattedParent, string $apiConfigId): void
 {

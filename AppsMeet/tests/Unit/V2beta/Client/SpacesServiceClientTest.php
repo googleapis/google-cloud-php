@@ -26,6 +26,8 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
+use Google\Apps\Meet\V2beta\BatchUpdateMembersRequest;
+use Google\Apps\Meet\V2beta\BatchUpdateMembersResponse;
 use Google\Apps\Meet\V2beta\Client\SpacesServiceClient;
 use Google\Apps\Meet\V2beta\ConnectActiveConferenceRequest;
 use Google\Apps\Meet\V2beta\ConnectActiveConferenceResponse;
@@ -39,6 +41,7 @@ use Google\Apps\Meet\V2beta\ListMembersRequest;
 use Google\Apps\Meet\V2beta\ListMembersResponse;
 use Google\Apps\Meet\V2beta\Member;
 use Google\Apps\Meet\V2beta\Space;
+use Google\Apps\Meet\V2beta\UpdateMemberRequest;
 use Google\Apps\Meet\V2beta\UpdateSpaceRequest;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
@@ -72,6 +75,73 @@ class SpacesServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ];
         return new SpacesServiceClient($options);
+    }
+
+    /** @test */
+    public function batchUpdateMembersTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new BatchUpdateMembersResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->spaceName('[SPACE]');
+        $requests = [];
+        $request = (new BatchUpdateMembersRequest())->setParent($formattedParent)->setRequests($requests);
+        $response = $gapicClient->batchUpdateMembers($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.apps.meet.v2beta.SpacesService/BatchUpdateMembers', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getRequests();
+        $this->assertProtobufEquals($requests, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function batchUpdateMembersExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->spaceName('[SPACE]');
+        $requests = [];
+        $request = (new BatchUpdateMembersRequest())->setParent($formattedParent)->setRequests($requests);
+        try {
+            $gapicClient->batchUpdateMembers($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
@@ -615,6 +685,75 @@ class SpacesServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function updateMemberTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $email = 'email96619420';
+        $user = 'user3599307';
+        $expectedResponse = new Member();
+        $expectedResponse->setName($name);
+        $expectedResponse->setEmail($email);
+        $expectedResponse->setUser($user);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $member = new Member();
+        $request = (new UpdateMemberRequest())->setMember($member);
+        $response = $gapicClient->updateMember($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.apps.meet.v2beta.SpacesService/UpdateMember', $actualFuncCall);
+        $actualValue = $actualRequestObject->getMember();
+        $this->assertProtobufEquals($member, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateMemberExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $member = new Member();
+        $request = (new UpdateMemberRequest())->setMember($member);
+        try {
+            $gapicClient->updateMember($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function updateSpaceTest()
     {
         $transport = $this->createTransport();
@@ -684,7 +823,7 @@ class SpacesServiceClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function connectActiveConferenceAsyncTest()
+    public function batchUpdateMembersAsyncTest()
     {
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
@@ -692,27 +831,23 @@ class SpacesServiceClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
-        $answer = 'answer-1412808770';
-        $traceId = 'traceId1270300245';
-        $expectedResponse = new ConnectActiveConferenceResponse();
-        $expectedResponse->setAnswer($answer);
-        $expectedResponse->setTraceId($traceId);
+        $expectedResponse = new BatchUpdateMembersResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->spaceName('[SPACE]');
-        $offer = 'offer105650780';
-        $request = (new ConnectActiveConferenceRequest())->setName($formattedName)->setOffer($offer);
-        $response = $gapicClient->connectActiveConferenceAsync($request)->wait();
+        $formattedParent = $gapicClient->spaceName('[SPACE]');
+        $requests = [];
+        $request = (new BatchUpdateMembersRequest())->setParent($formattedParent)->setRequests($requests);
+        $response = $gapicClient->batchUpdateMembersAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.apps.meet.v2beta.SpacesService/ConnectActiveConference', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($formattedName, $actualValue);
-        $actualValue = $actualRequestObject->getOffer();
-        $this->assertProtobufEquals($offer, $actualValue);
+        $this->assertSame('/google.apps.meet.v2beta.SpacesService/BatchUpdateMembers', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getRequests();
+        $this->assertProtobufEquals($requests, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

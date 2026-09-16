@@ -23,6 +23,13 @@ class ActiveConference extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string conference_record = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
     protected $conference_record = '';
+    /**
+     * Output only. Indicates whether a media api consenter is present in the
+     * conference.
+     *
+     * Generated from protobuf field <code>bool media_api_consenter_present = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $media_api_consenter_present = false;
 
     /**
      * Constructor.
@@ -34,6 +41,9 @@ class ActiveConference extends \Google\Protobuf\Internal\Message
      *           Output only. Reference to 'ConferenceRecord' resource.
      *           Format: `conferenceRecords/{conference_record}` where `{conference_record}`
      *           is a unique ID for each instance of a call within a space.
+     *     @type bool $media_api_consenter_present
+     *           Output only. Indicates whether a media api consenter is present in the
+     *           conference.
      * }
      */
     public function __construct($data = NULL) {
@@ -67,6 +77,34 @@ class ActiveConference extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->conference_record = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Indicates whether a media api consenter is present in the
+     * conference.
+     *
+     * Generated from protobuf field <code>bool media_api_consenter_present = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getMediaApiConsenterPresent()
+    {
+        return $this->media_api_consenter_present;
+    }
+
+    /**
+     * Output only. Indicates whether a media api consenter is present in the
+     * conference.
+     *
+     * Generated from protobuf field <code>bool media_api_consenter_present = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setMediaApiConsenterPresent($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->media_api_consenter_present = $var;
 
         return $this;
     }

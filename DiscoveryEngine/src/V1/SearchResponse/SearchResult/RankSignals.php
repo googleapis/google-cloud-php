@@ -69,6 +69,14 @@ class RankSignals extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.SearchResponse.SearchResult.RankSignals.CustomSignal custom_signals = 33 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $custom_signals;
+    /**
+     * Optional. A list of precomputed expression results for a given
+     * document, in the same order as requested in
+     * `SearchRequest.custom_ranking_params.expressions_to_precompute`.
+     *
+     * Generated from protobuf field <code>repeated float precomputed_expression_values = 34 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $precomputed_expression_values;
 
     /**
      * Constructor.
@@ -94,6 +102,10 @@ class RankSignals extends \Google\Protobuf\Internal\Message
      *           Optional. The default rank of the result.
      *     @type \Google\Cloud\DiscoveryEngine\V1\SearchResponse\SearchResult\RankSignals\CustomSignal[] $custom_signals
      *           Optional. A list of custom clearbox signals.
+     *     @type float[] $precomputed_expression_values
+     *           Optional. A list of precomputed expression results for a given
+     *           document, in the same order as requested in
+     *           `SearchRequest.custom_ranking_params.expressions_to_precompute`.
      * }
      */
     public function __construct($data = NULL) {
@@ -401,6 +413,36 @@ class RankSignals extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\DiscoveryEngine\V1\SearchResponse\SearchResult\RankSignals\CustomSignal::class);
         $this->custom_signals = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. A list of precomputed expression results for a given
+     * document, in the same order as requested in
+     * `SearchRequest.custom_ranking_params.expressions_to_precompute`.
+     *
+     * Generated from protobuf field <code>repeated float precomputed_expression_values = 34 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return RepeatedField<float>
+     */
+    public function getPrecomputedExpressionValues()
+    {
+        return $this->precomputed_expression_values;
+    }
+
+    /**
+     * Optional. A list of precomputed expression results for a given
+     * document, in the same order as requested in
+     * `SearchRequest.custom_ranking_params.expressions_to_precompute`.
+     *
+     * Generated from protobuf field <code>repeated float precomputed_expression_values = 34 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param float[] $var
+     * @return $this
+     */
+    public function setPrecomputedExpressionValues($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::FLOAT);
+        $this->precomputed_expression_values = $arr;
 
         return $this;
     }
