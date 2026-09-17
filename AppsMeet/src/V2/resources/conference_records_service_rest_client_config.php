@@ -67,6 +67,17 @@ return [
                     ],
                 ],
             ],
+            'GetSmartNote' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{name=conferenceRecords/*/smartNotes/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetTranscript' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{name=conferenceRecords/*/transcripts/*}',
@@ -118,6 +129,17 @@ return [
             'ListRecordings' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{parent=conferenceRecords/*}/recordings',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListSmartNotes' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{parent=conferenceRecords/*}/smartNotes',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [

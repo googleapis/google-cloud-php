@@ -32,6 +32,7 @@ use Google\Apps\Meet\V2\GetConferenceRecordRequest;
 use Google\Apps\Meet\V2\GetParticipantRequest;
 use Google\Apps\Meet\V2\GetParticipantSessionRequest;
 use Google\Apps\Meet\V2\GetRecordingRequest;
+use Google\Apps\Meet\V2\GetSmartNoteRequest;
 use Google\Apps\Meet\V2\GetTranscriptEntryRequest;
 use Google\Apps\Meet\V2\GetTranscriptRequest;
 use Google\Apps\Meet\V2\ListConferenceRecordsRequest;
@@ -42,6 +43,8 @@ use Google\Apps\Meet\V2\ListParticipantsRequest;
 use Google\Apps\Meet\V2\ListParticipantsResponse;
 use Google\Apps\Meet\V2\ListRecordingsRequest;
 use Google\Apps\Meet\V2\ListRecordingsResponse;
+use Google\Apps\Meet\V2\ListSmartNotesRequest;
+use Google\Apps\Meet\V2\ListSmartNotesResponse;
 use Google\Apps\Meet\V2\ListTranscriptEntriesRequest;
 use Google\Apps\Meet\V2\ListTranscriptEntriesResponse;
 use Google\Apps\Meet\V2\ListTranscriptsRequest;
@@ -49,6 +52,7 @@ use Google\Apps\Meet\V2\ListTranscriptsResponse;
 use Google\Apps\Meet\V2\Participant;
 use Google\Apps\Meet\V2\ParticipantSession;
 use Google\Apps\Meet\V2\Recording;
+use Google\Apps\Meet\V2\SmartNote;
 use Google\Apps\Meet\V2\Transcript;
 use Google\Apps\Meet\V2\TranscriptEntry;
 use Google\Rpc\Code;
@@ -343,6 +347,71 @@ class ConferenceRecordsServiceClientTest extends GeneratedTest
         $request = (new GetRecordingRequest())->setName($formattedName);
         try {
             $gapicClient->getRecording($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getSmartNoteTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $expectedResponse = new SmartNote();
+        $expectedResponse->setName($name2);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->smartNoteName('[CONFERENCE_RECORD]', '[SMART_NOTE]');
+        $request = (new GetSmartNoteRequest())->setName($formattedName);
+        $response = $gapicClient->getSmartNote($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.apps.meet.v2.ConferenceRecordsService/GetSmartNote', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getSmartNoteExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->smartNoteName('[CONFERENCE_RECORD]', '[SMART_NOTE]');
+        $request = (new GetSmartNoteRequest())->setName($formattedName);
+        try {
+            $gapicClient->getSmartNote($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -759,6 +828,77 @@ class ConferenceRecordsServiceClientTest extends GeneratedTest
         $request = (new ListRecordingsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listRecordings($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listSmartNotesTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $smartNotesElement = new SmartNote();
+        $smartNotes = [$smartNotesElement];
+        $expectedResponse = new ListSmartNotesResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setSmartNotes($smartNotes);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->conferenceRecordName('[CONFERENCE_RECORD]');
+        $request = (new ListSmartNotesRequest())->setParent($formattedParent);
+        $response = $gapicClient->listSmartNotes($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getSmartNotes()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.apps.meet.v2.ConferenceRecordsService/ListSmartNotes', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listSmartNotesExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->conferenceRecordName('[CONFERENCE_RECORD]');
+        $request = (new ListSmartNotesRequest())->setParent($formattedParent);
+        try {
+            $gapicClient->listSmartNotes($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

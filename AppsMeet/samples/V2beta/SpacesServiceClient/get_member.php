@@ -29,8 +29,7 @@ use Google\Apps\Meet\V2beta\GetMemberRequest;
 use Google\Apps\Meet\V2beta\Member;
 
 /**
- * [Developer Preview](https://developers.google.com/workspace/preview):
- * Get a member.
+ * Gets a member.
  *
  * This API supports the `fields` parameter in
  * [SystemParameterContext](https://cloud.google.com/apis/docs/system-parameters).

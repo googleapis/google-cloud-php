@@ -23,6 +23,18 @@
 return [
     'interfaces' => [
         'google.apps.meet.v2beta.SpacesService' => [
+            'BatchUpdateMembers' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Apps\Meet\V2beta\BatchUpdateMembersResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ConnectActiveConference' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Apps\Meet\V2beta\ConnectActiveConferenceResponse',
@@ -115,6 +127,19 @@ return [
                         'keyName' => 'parent',
                         'fieldAccessors' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateMember' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Apps\Meet\V2beta\Member',
+                'headerParams' => [
+                    [
+                        'keyName' => 'member.name',
+                        'fieldAccessors' => [
+                            'getMember',
+                            'getName',
                         ],
                     ],
                 ],

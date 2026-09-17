@@ -23,6 +23,18 @@
 return [
     'interfaces' => [
         'google.apps.meet.v2beta.SpacesService' => [
+            'BatchUpdateMembers' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2beta/{parent=spaces/*}/members:batchUpdate',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ConnectActiveConference' => [
                 'method' => 'post',
                 'uriTemplate' => '/v2beta/{name=spaces/*}:connectActiveConference',
@@ -104,6 +116,19 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateMember' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v2beta/{member.name=spaces/*/members/*}',
+                'body' => 'member',
+                'placeholders' => [
+                    'member.name' => [
+                        'getters' => [
+                            'getMember',
+                            'getName',
                         ],
                     ],
                 ],

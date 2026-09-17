@@ -575,6 +575,7 @@ return [
             'templateMap' => [
                 'cryptoKey' => 'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}',
                 'cryptoKeyVersion' => 'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}',
+                'ekmConnection' => 'projects/{project}/locations/{location}/ekmConnections/{ekm_connection}',
                 'importJob' => 'projects/{project}/locations/{location}/keyRings/{key_ring}/importJobs/{import_job}',
                 'keyRing' => 'projects/{project}/locations/{location}/keyRings/{key_ring}',
                 'location' => 'projects/{project}/locations/{location}',
