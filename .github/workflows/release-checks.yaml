@@ -33,7 +33,7 @@ jobs:
             exit 1
           fi
       - name: "Install dependencies"
-        run: composer global require "roave/backward-compatibility-check:^8.2"
+        run: composer global require "roave/backward-compatibility-check:^8.22"
       - name: "Check for BC breaks"
         if: github.event.pull_request.user.login != 'release-please[bot]'
         run: |
