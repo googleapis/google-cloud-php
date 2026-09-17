@@ -183,8 +183,8 @@ EOF;
         $this->assertEquals('Google\Ads\AdManager', $new->phpNamespace);
         $this->assertEquals('Google Ads Ad Manager', $new->displayName);
         $this->assertEquals('AdsAdManager', $new->componentName);
-        $this->assertEquals('googleads/ad-manager', $new->composerPackage);
-        $this->assertEquals('googleapis/php-ads-ad-manager', $new->githubRepo);
+        $this->assertEquals('googleads/admanager', $new->composerPackage);
+        $this->assertEquals('googleapis/php-ads-admanager', $new->githubRepo);
         $this->assertEquals('GPBMetadata\Google\Ads\Admanager', $new->gpbMetadataNamespace);
         $this->assertEquals('admanager', $new->shortName);
         $this->assertEquals('v1', $new->version);
@@ -199,8 +199,8 @@ EOF;
 EOF;
         $new = NewComponent::fromProto($protoContents, 'google/ads/datamanager/v1/data_manager.proto');
         $this->assertEquals('AdsDataManager', $new->componentName);
-        $this->assertEquals('googleads/data-manager', $new->composerPackage);
-        $this->assertEquals('googleapis/php-ads-data-manager', $new->githubRepo);
+        $this->assertEquals('googleads/datamanager', $new->composerPackage);
+        $this->assertEquals('googleapis/php-ads-datamanager', $new->githubRepo);
 
         // MarketingPlatform Admin
         $protoContents = <<<EOF
@@ -252,13 +252,13 @@ EOF;
         $options = [
             'component-name' => 'AdsAdManager',
             'php-namespace' => 'Google\Ads\AdManager\V1',
-            'proto-package' => 'google.ads.admanager.v1',
+            'proto-package' => 'google.ads.admanager',
             'api-short-name' => 'admanager',
             'api-version' => 'v1',
         ];
         $new = NewComponent::fromOptions($options);
-        $this->assertEquals('googleads/ad-manager', $new->composerPackage);
-        $this->assertEquals('googleapis/php-ads-ad-manager', $new->githubRepo);
+        $this->assertEquals('googleads/admanager', $new->composerPackage);
+        $this->assertEquals('googleapis/php-ads-admanager', $new->githubRepo);
     }
 
     public function testFromOptionsWithCommonProtos()

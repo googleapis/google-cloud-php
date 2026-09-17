@@ -148,35 +148,22 @@ class NewComponent
         string $phpNamespace,
         bool $isCommonProtos = false
     ): string {
-        $parts = explode('.', $protoPackage);
-        if ($isCommonProtos && in_array(end($parts), ['type', 'common'])) {
-            array_pop($parts);
-        }
+        $vendor = 'google';
+
         if (str_starts_with($phpNamespace, 'Google\\Ads')) {
-            if (count($parts) > 1 && 'v' === strtolower(end($parts)[0])) {
-                array_pop($parts);
-            }
-            $name = str_replace(
-                ['google.ads.', 'ads.', 'google.', '.'],
-                ['', '', '', '-'],
-                implode('.', $parts)
-            );
-            if (str_ends_with($name, 'manager') && !str_ends_with($name, '-manager')) {
-                $name = substr($name, 0, -7) . '-manager';
-            }
             $vendor = 'googleads';
-        } else {
-            $name = str_replace(
-                ['google.', 'devtools.cloud', '.'],
-                ['', 'cloud-', '-'],
-                implode('.', $parts)
-            );
-            $vendor = 'google';
         }
+
+        $name = str_replace(
+            ['google.ads.', 'google.', 'devtools.cloud', '.'],
+            ['', '', 'cloud-', '-'],
+            $protoPackage
+        );
 
         if ($isCommonProtos && !str_ends_with($name, '-common-protos')) {
             $name .= '-common-protos';
         }
+
         return $vendor . '/' . $name;
     }
 

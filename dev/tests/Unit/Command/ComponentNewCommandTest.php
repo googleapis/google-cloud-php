@@ -452,7 +452,7 @@ class ComponentNewCommandTest extends TestCase
             '--no-update' => true,
             '--component-name' => 'AdsAdManager',
             '--php-namespace' => 'Google\Ads\AdManager\V1',
-            '--proto-package' => 'google.ads.admanager.v1',
+            '--proto-package' => 'google.ads.admanager',
             '--api-short-name' => 'admanager',
             '--api-version' => 'v1',
             '--product-docs' => 'https://developers.google.com/ad-manager/api',
@@ -462,7 +462,7 @@ class ComponentNewCommandTest extends TestCase
         $repoMetadataFull = json_decode(file_get_contents(self::$tmpDir . '/.repo-metadata-full.json'), true);
         $this->assertArrayHasKey('AdsAdManager', $repoMetadataFull);
         $this->assertEquals('GAPIC_AUTO', $repoMetadataFull['AdsAdManager']['library_type']);
-        $this->assertEquals('googleads/ad-manager', $repoMetadataFull['AdsAdManager']['distribution_name']);
+        $this->assertEquals('googleads/admanager', $repoMetadataFull['AdsAdManager']['distribution_name']);
         $this->assertEquals('admanager', $repoMetadataFull['AdsAdManager']['api_shortname']);
     }
 
