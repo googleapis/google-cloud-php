@@ -27,6 +27,7 @@ class NewComponentTest extends TestCase
     private string $protoMinimum = <<<EOF
         package foo.bar.baz;
         option (google.api.default_host) = "foobarbaz.googleapis.com";
+        service FooBarBaz {}
     EOF;
 
     /**
@@ -158,6 +159,7 @@ class NewComponentTest extends TestCase
             package google.cloud.speech.v2;
             option (google.api.default_host) = "speech.googleapis.com";
             option php_namespace = "Google\\\\Cloud\\\\Speech\\\\V2";
+            service Speech {}
 EOF;
         $new = NewComponent::fromProto($protoContents, 'google/cloud/speech/v2/speech.proto', $options);
         $this->assertEquals('CustomSpeechName', $new->componentName);
@@ -166,5 +168,113 @@ EOF;
         $this->assertEquals('speech', $new->shortName);
         $this->assertEquals('v2', $new->version);
         $this->assertEquals('google/cloud/speech/(v2)', $new->protoPath);
+    }
+
+    public function testFromProtoWithAds()
+    {
+        $protoContents = <<<EOF
+            package google.ads.admanager.v1;
+            option (google.api.default_host) = "admanager.googleapis.com";
+            option php_namespace = "Google\\\\Ads\\\\AdManager\\\\V1";
+            service AdManagerService {}
+EOF;
+        $new = NewComponent::fromProto($protoContents, 'google/ads/admanager/v1/ad_manager.proto');
+        $this->assertEquals('google.ads.admanager', $new->protoPackage);
+        $this->assertEquals('Google\Ads\AdManager', $new->phpNamespace);
+        $this->assertEquals('Google Ads Ad Manager', $new->displayName);
+        $this->assertEquals('AdsAdManager', $new->componentName);
+        $this->assertEquals('googleads/admanager', $new->composerPackage);
+        $this->assertEquals('googleapis/php-ads-admanager', $new->githubRepo);
+        $this->assertEquals('GPBMetadata\Google\Ads\Admanager', $new->gpbMetadataNamespace);
+        $this->assertEquals('admanager', $new->shortName);
+        $this->assertEquals('v1', $new->version);
+        $this->assertEquals('google/ads/admanager/(v1)', $new->protoPath);
+
+        // DataManager
+        $protoContents = <<<EOF
+            package google.ads.datamanager.v1;
+            option (google.api.default_host) = "datamanager.googleapis.com";
+            option php_namespace = "Google\\\\Ads\\\\DataManager\\\\V1";
+            service DataManagerService {}
+EOF;
+        $new = NewComponent::fromProto($protoContents, 'google/ads/datamanager/v1/data_manager.proto');
+        $this->assertEquals('AdsDataManager', $new->componentName);
+        $this->assertEquals('googleads/datamanager', $new->composerPackage);
+        $this->assertEquals('googleapis/php-ads-datamanager', $new->githubRepo);
+
+        // MarketingPlatform Admin
+        $protoContents = <<<EOF
+            package google.ads.marketingplatform.admin.v1alpha;
+            option (google.api.default_host) = "marketingplatformadmin.googleapis.com";
+            option php_namespace = "Google\\\\Ads\\\\MarketingPlatform\\\\Admin\\\\V1alpha";
+            service MarketingplatformAdminService {}
+EOF;
+        $new = NewComponent::fromProto($protoContents, 'google/ads/marketingplatform/admin/v1alpha/admin.proto');
+        $this->assertEquals('AdsMarketingPlatformAdmin', $new->componentName);
+        $this->assertEquals('googleads/marketingplatform-admin', $new->composerPackage);
+        $this->assertEquals('googleapis/php-ads-marketingplatform-admin', $new->githubRepo);
+    }
+
+    public function testFromProtoWithCommonProtos()
+    {
+        $protoContents = <<<EOF
+            package google.geo.type;
+            option php_namespace = "Google\\\\Geo\\\\Type";
+EOF;
+        $new = NewComponent::fromProto($protoContents, 'google/geo/type/viewport.proto');
+        $this->assertEquals('google.geo', $new->protoPackage);
+        $this->assertEquals('Google\Geo', $new->phpNamespace);
+        $this->assertEquals('Google Geo Common Protos', $new->displayName);
+        $this->assertEquals('GeoCommonProtos', $new->componentName);
+        $this->assertEquals('google/geo-common-protos', $new->composerPackage);
+        $this->assertEquals('googleapis/php-geo-common-protos', $new->githubRepo);
+        $this->assertEquals('', $new->shortName);
+        $this->assertNull($new->version);
+        $this->assertEquals('google/geo/type', $new->protoPath);
+
+        // Shopping common protos
+        $protoContents = <<<EOF
+            package google.shopping.type;
+            option php_namespace = "Google\\\\Shopping\\\\Type";
+EOF;
+        $new = NewComponent::fromProto($protoContents, 'google/shopping/type/types.proto');
+        $this->assertEquals('google.shopping', $new->protoPackage);
+        $this->assertEquals('Google\Shopping', $new->phpNamespace);
+        $this->assertEquals('Google Shopping Common Protos', $new->displayName);
+        $this->assertEquals('ShoppingCommonProtos', $new->componentName);
+        $this->assertEquals('google/shopping-common-protos', $new->composerPackage);
+        $this->assertEquals('googleapis/php-shopping-common-protos', $new->githubRepo);
+        $this->assertEquals('', $new->shortName);
+    }
+
+    public function testFromOptionsWithAds()
+    {
+        $options = [
+            'component-name' => 'AdsAdManager',
+            'php-namespace' => 'Google\Ads\AdManager\V1',
+            'proto-package' => 'google.ads.admanager',
+            'api-short-name' => 'admanager',
+            'api-version' => 'v1',
+        ];
+        $new = NewComponent::fromOptions($options);
+        $this->assertEquals('googleads/admanager', $new->composerPackage);
+        $this->assertEquals('googleapis/php-ads-admanager', $new->githubRepo);
+    }
+
+    public function testFromOptionsWithCommonProtos()
+    {
+        $options = [
+            'component-name' => 'GeoCommonProtos',
+            'php-namespace' => 'Google\Geo',
+            'proto-package' => 'google.geo',
+            'api-short-name' => '',
+            'api-version' => null,
+        ];
+        $new = NewComponent::fromOptions($options);
+        $this->assertEquals('Google Geo', $new->displayName);
+        $this->assertEquals('GeoCommonProtos', $new->componentName);
+        $this->assertEquals('google/geo-common-protos', $new->composerPackage);
+        $this->assertEquals('googleapis/php-geo-common-protos', $new->githubRepo);
+        $this->assertEquals('', $new->shortName);
     }
 }
