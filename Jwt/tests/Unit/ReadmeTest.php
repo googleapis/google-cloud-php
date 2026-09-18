@@ -161,7 +161,7 @@ class ReadmeTest extends TestCase
     private function extractCodeBlock(string $header)
     {
         // Normalize line endings to \n to make regex handling consistent across platforms
-        $markdown = str_replace(["\r\n", "\r"], "\n", file_get_contents(__DIR__ . '/../README.md'));
+        $markdown = str_replace(["\r\n", "\r"], "\n", file_get_contents(__DIR__ . '/../../README.md'));
 
         // find by header
         $pattern = '/^#+\s*' . preg_quote($header, '/') . '\s*\n([\s\S]*?)(?=^#+.*$|\Z)/m';
