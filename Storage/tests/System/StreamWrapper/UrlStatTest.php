@@ -53,6 +53,7 @@ class UrlStatTest extends StreamWrapperTestCase
         // Reset default context
         stream_context_set_default(['gs' => []]);
     }
+
     public function testUrlStatFile()
     {
         $stat = stat(self::$fileUrl);

@@ -294,6 +294,7 @@ class StreamWrapperTest extends TestCase
         // Reset default context so other tests are not affected
         stream_context_set_default(['gs' => []]);
     }
+
     public function testStatOnNonExistentFile()
     {
         set_error_handler(static function (int $errno, string $errstr): never {

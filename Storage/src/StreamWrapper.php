@@ -733,7 +733,7 @@ class StreamWrapper
     }
 
     /**
-     * Determine if the bucket is writable. 
+     * Determine if the bucket is writable.
      * Allows bypassing the expensive API call via context options.
      *
      * @return bool
