@@ -75,7 +75,7 @@ run_package_test() {
         "CommonProtos,google/common-protos,4.100"
         "BigQuery,google/cloud-bigquery"
         "Core,google/cloud-core"
-        "Jwt,firebase/php-jwt,6.10.0"
+        "Jwt,firebase/php-jwt,6.100"
         "Logging,google/cloud-logging"
         "PubSub,google/cloud-pubsub"
         "Storage,google/cloud-storage,2.100"
