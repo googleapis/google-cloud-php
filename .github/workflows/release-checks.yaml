@@ -28,9 +28,11 @@ jobs:
           git config user.name "Github Actions"
           git config user.email "actions@github.com"
           git checkout "$HEAD_SHA"
-          if ! git rebase origin/main; then
-            echo "Failed to rebase PR branch onto main. There may be conflicts. Please resolve conflicts or rebase manually."
-            exit 1
+          if ! git merge-base --is-ancestor origin/main HEAD; then
+            if ! git rebase origin/main; then
+              echo "Failed to rebase PR branch onto main. There may be conflicts. Please resolve conflicts or rebase manually."
+              exit 1
+            fi
           fi
       - name: "Install dependencies"
         run: composer global require "roave/backward-compatibility-check:^8.22"
