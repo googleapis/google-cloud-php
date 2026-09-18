@@ -24,6 +24,7 @@
     <testsuite name="Unit Test Suite">
       <directory>*/tests/Unit</directory>
       <directory suffix="Test.php">Auth/tests</directory>
+      <directory suffix="Test.php">Jwt/tests</directory>
       <exclude>dev/tests/Unit</exclude>
       <exclude>Core</exclude>
     </testsuite>
