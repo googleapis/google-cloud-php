@@ -106,6 +106,73 @@ class RequestWrapperTest extends TestCase
         );
     }
 
+    public function testClientLevelRestOptionsSurvivePerCallRestOptions()
+    {
+        $actualOptions = [];
+        $requestWrapper = new RequestWrapper([
+            'accessToken' => 'abc',
+            'restOptions' => ['proxy' => 'http://proxy.example.com:8080', 'verify' => false],
+            'httpHandler' => function ($request, $options = []) use (&$actualOptions) {
+                $actualOptions = $options;
+                return new Response(200);
+            }
+        ]);
+
+        $requestWrapper->send(
+            new Request('GET', 'http://www.example.com'),
+            ['restOptions' => ['headers' => ['X-Goog-Hash' => 'crc32c=abc']]]
+        );
+
+        $this->assertEquals('http://proxy.example.com:8080', $actualOptions['proxy']);
+        $this->assertFalse($actualOptions['verify']);
+        $this->assertEquals(['X-Goog-Hash' => 'crc32c=abc'], $actualOptions['headers']);
+    }
+
+    public function testPerCallRestOptionsTakePrecedenceOverClientLevelOnes()
+    {
+        $actualOptions = [];
+        $requestWrapper = new RequestWrapper([
+            'accessToken' => 'abc',
+            'restOptions' => ['proxy' => 'http://proxy.example.com:8080', 'debug' => false],
+            'httpHandler' => function ($request, $options = []) use (&$actualOptions) {
+                $actualOptions = $options;
+                return new Response(200);
+            }
+        ]);
+
+        $requestWrapper->send(
+            new Request('GET', 'http://www.example.com'),
+            ['restOptions' => ['debug' => true]]
+        );
+
+        $this->assertTrue($actualOptions['debug']);
+        $this->assertEquals('http://proxy.example.com:8080', $actualOptions['proxy']);
+    }
+
+    public function testRestOptionHeadersAreMergedRatherThanReplaced()
+    {
+        $actualOptions = [];
+        $requestWrapper = new RequestWrapper([
+            'accessToken' => 'abc',
+            'restOptions' => ['headers' => ['X-Client' => 'default', 'X-Keep' => 'yes']],
+            'httpHandler' => function ($request, $options = []) use (&$actualOptions) {
+                $actualOptions = $options;
+                return new Response(200);
+            }
+        ]);
+
+        $requestWrapper->send(
+            new Request('GET', 'http://www.example.com'),
+            ['restOptions' => ['headers' => ['X-Client' => 'per-call', 'X-Goog-Hash' => 'crc32c=abc']]]
+        );
+
+        $this->assertEquals([
+            'X-Client' => 'per-call',
+            'X-Goog-Hash' => 'crc32c=abc',
+            'X-Keep' => 'yes',
+        ], $actualOptions['headers']);
+    }
+
     public function testSendAsyncRetriesOnFailure()
     {
         $actualDelays = 0;
