@@ -172,14 +172,19 @@ class ResumableUploadClient
             ? $this->getMicrotime() * self::MILLIS_PER_SECOND + (float) $totalTimeoutMillis
             : null;
 
+        $chunkSize = $resumableUploadOptions['chunkSize']
+            ?? $upload->getChunkSize()
+            ?? self::DEFAULT_CHUNK_SIZE;
+
         $state = new ResumableUploadState(
-            $resumableUploadOptions['chunkSize'] ?? self::DEFAULT_CHUNK_SIZE,
+            $chunkSize,
             $resumableUploadOptions['progressCallback'] ?? null,
             $uploadUrl,
             $uploadUrl !== null ? self::PHASE_RECOVERY : self::PHASE_STARTING,
             $stallRate,
             $stallTimeout
         );
+        $upload->setChunkSize($chunkSize);
 
         while ($state->phase !== self::PHASE_DONE) {
             $this->checkDeadline($state, $globalDeadlineMs);
@@ -286,6 +291,16 @@ class ResumableUploadClient
         }
         $granularityHeader = $response->getHeaderLine('X-Goog-Upload-Chunk-Granularity');
         $state->chunkGranularity = !empty($granularityHeader) ? (int) $granularityHeader : 1;
+        if ($state->chunkGranularity > 0 && ($state->chunkSize % $state->chunkGranularity !== 0)) {
+            $state->chunkSize = (int) (
+                floor($state->chunkSize / $state->chunkGranularity) * $state->chunkGranularity
+            );
+            if ($state->chunkSize === 0) {
+                $state->chunkSize = $state->chunkGranularity;
+            }
+        }
+        $upload->setChunkSize($state->chunkSize);
+
         $statusHeader = $response->getHeaderLine('X-Goog-Upload-Status');
         if (empty($statusHeader)) {
             // Missing X-Goog-Upload-Status header on Start is a Category 1 transient error
