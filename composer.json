@@ -838,12 +838,12 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Firebase\\JWT\\": "Jwt/tests",
+            "Firebase\\JWT\\": "Jwt/tests/Unit",
             "Google\\ApiCore\\Tests\\": "Gax/tests",
             "Google\\ApiCore\\Testing\\": "Gax/tests/Unit/testdata/generated",
             "Google\\Analytics\\Admin\\Tests\\": "AnalyticsAdmin/tests",
             "Google\\Analytics\\Data\\Tests\\": "AnalyticsData/tests",
-            "Google\\Auth\\Tests\\": "Auth/tests",
+            "Google\\Auth\\Tests\\": "Auth/tests/Unit",
             "Google\\Cloud\\AIPlatform\\Tests\\": "AiPlatform/tests",
             "Google\\Cloud\\AccessApproval\\Tests\\": "AccessApproval/tests",
             "Google\\Cloud\\ApiGateway\\Tests\\": "ApiGateway/tests",

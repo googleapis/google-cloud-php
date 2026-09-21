@@ -12,7 +12,7 @@
 >
     <testsuites>
         <testsuite name="PHP JSON Web Token Test Suite">
-            <directory>./tests</directory>
+            <directory>./tests/Unit</directory>
         </testsuite>
     </testsuites>
 </phpunit>
