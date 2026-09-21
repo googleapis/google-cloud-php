@@ -42,12 +42,12 @@
         "phpfastcache/phpfastcache": "^9.2",
         "phpseclib/phpseclib": "~3.0"
     },
-     "extra": {
+    "extra": {
         "component": {
-        "id": "jwt",
-        "target": "googleapis/php-jwt.git",
-        "path": "Jwt",
-        "entry": "README.md"
+            "id": "jwt",
+            "target": "googleapis/php-jwt.git",
+            "path": "Jwt",
+            "entry": "README.md"
         }
     }
 }
