@@ -53,6 +53,7 @@ use Google\Cloud\Bigtable\Admin\V2\GetClusterRequest;
 use Google\Cloud\Bigtable\Admin\V2\GetInstanceRequest;
 use Google\Cloud\Bigtable\Admin\V2\GetLogicalViewRequest;
 use Google\Cloud\Bigtable\Admin\V2\GetMaterializedViewRequest;
+use Google\Cloud\Bigtable\Admin\V2\GetMemoryLayerRequest;
 use Google\Cloud\Bigtable\Admin\V2\Instance;
 use Google\Cloud\Bigtable\Admin\V2\ListAppProfilesRequest;
 use Google\Cloud\Bigtable\Admin\V2\ListClustersRequest;
@@ -62,13 +63,16 @@ use Google\Cloud\Bigtable\Admin\V2\ListInstancesRequest;
 use Google\Cloud\Bigtable\Admin\V2\ListInstancesResponse;
 use Google\Cloud\Bigtable\Admin\V2\ListLogicalViewsRequest;
 use Google\Cloud\Bigtable\Admin\V2\ListMaterializedViewsRequest;
+use Google\Cloud\Bigtable\Admin\V2\ListMemoryLayersRequest;
 use Google\Cloud\Bigtable\Admin\V2\LogicalView;
 use Google\Cloud\Bigtable\Admin\V2\MaterializedView;
+use Google\Cloud\Bigtable\Admin\V2\MemoryLayer;
 use Google\Cloud\Bigtable\Admin\V2\PartialUpdateClusterRequest;
 use Google\Cloud\Bigtable\Admin\V2\PartialUpdateInstanceRequest;
 use Google\Cloud\Bigtable\Admin\V2\UpdateAppProfileRequest;
 use Google\Cloud\Bigtable\Admin\V2\UpdateLogicalViewRequest;
 use Google\Cloud\Bigtable\Admin\V2\UpdateMaterializedViewRequest;
+use Google\Cloud\Bigtable\Admin\V2\UpdateMemoryLayerRequest;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
 use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\SetIamPolicyRequest;
@@ -109,12 +113,14 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<Instance> getInstanceAsync(GetInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<LogicalView> getLogicalViewAsync(GetLogicalViewRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<MaterializedView> getMaterializedViewAsync(GetMaterializedViewRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<MemoryLayer> getMemoryLayerAsync(GetMemoryLayerRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listAppProfilesAsync(ListAppProfilesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ListClustersResponse> listClustersAsync(ListClustersRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listHotTabletsAsync(ListHotTabletsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ListInstancesResponse> listInstancesAsync(ListInstancesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listLogicalViewsAsync(ListLogicalViewsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listMaterializedViewsAsync(ListMaterializedViewsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listMemoryLayersAsync(ListMemoryLayersRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> partialUpdateClusterAsync(PartialUpdateClusterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> partialUpdateInstanceAsync(PartialUpdateInstanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
@@ -124,6 +130,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<Instance> updateInstanceAsync(Instance $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateLogicalViewAsync(UpdateLogicalViewRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateMaterializedViewAsync(UpdateMaterializedViewRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateMemoryLayerAsync(UpdateMemoryLayerRequest $request, array $optionalArgs = [])
  */
 final class BigtableInstanceAdminClient
 {
@@ -368,6 +375,25 @@ final class BigtableInstanceAdminClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a memory_layer
+     * resource.
+     *
+     * @param string $project
+     * @param string $instance
+     * @param string $cluster
+     *
+     * @return string The formatted memory_layer resource.
+     */
+    public static function memoryLayerName(string $project, string $instance, string $cluster): string
+    {
+        return self::getPathTemplate('memoryLayer')->render([
+            'project' => $project,
+            'instance' => $instance,
+            'cluster' => $cluster,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a project
      * resource.
      *
@@ -393,6 +419,7 @@ final class BigtableInstanceAdminClient
      * - location: projects/{project}/locations/{location}
      * - logicalView: projects/{project}/instances/{instance}/logicalViews/{logical_view}
      * - materializedView: projects/{project}/instances/{instance}/materializedViews/{materialized_view}
+     * - memoryLayer: projects/{project}/instances/{instance}/clusters/{cluster}/memoryLayer
      * - project: projects/{project}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
@@ -933,6 +960,32 @@ final class BigtableInstanceAdminClient
     }
 
     /**
+     * Gets information about the memory layer of a cluster.
+     *
+     * The async variant is {@see BigtableInstanceAdminClient::getMemoryLayerAsync()} .
+     *
+     * @example samples/V2/BigtableInstanceAdminClient/get_memory_layer.php
+     *
+     * @param GetMemoryLayerRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return MemoryLayer
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getMemoryLayer(GetMemoryLayerRequest $request, array $callOptions = []): MemoryLayer
+    {
+        return $this->startApiCall('GetMemoryLayer', $request, $callOptions)->wait();
+    }
+
+    /**
      * Lists information about app profiles in an instance.
      *
      * The async variant is {@see BigtableInstanceAdminClient::listAppProfilesAsync()}
@@ -1092,6 +1145,33 @@ final class BigtableInstanceAdminClient
         array $callOptions = []
     ): PagedListResponse {
         return $this->startApiCall('ListMaterializedViews', $request, $callOptions);
+    }
+
+    /**
+     * Lists information about memory layers.
+     *
+     * The async variant is {@see BigtableInstanceAdminClient::listMemoryLayersAsync()}
+     * .
+     *
+     * @example samples/V2/BigtableInstanceAdminClient/list_memory_layers.php
+     *
+     * @param ListMemoryLayersRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listMemoryLayers(ListMemoryLayersRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListMemoryLayers', $request, $callOptions);
     }
 
     /**
@@ -1359,6 +1439,36 @@ final class BigtableInstanceAdminClient
         array $callOptions = []
     ): OperationResponse {
         return $this->startApiCall('UpdateMaterializedView', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates the memory layer of a cluster.
+     *
+     * To enable the memory layer, set the memory_config.
+     * To disable the memory layer, unset the memory_config.
+     *
+     * The async variant is
+     * {@see BigtableInstanceAdminClient::updateMemoryLayerAsync()} .
+     *
+     * @example samples/V2/BigtableInstanceAdminClient/update_memory_layer.php
+     *
+     * @param UpdateMemoryLayerRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<MemoryLayer>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateMemoryLayer(UpdateMemoryLayerRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('UpdateMemoryLayer', $request, $callOptions)->wait();
     }
 
     /** Configure the gapic configuration to use a service emulator. */

@@ -52,6 +52,17 @@ class DataStoreSpec extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string custom_search_operators = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $custom_search_operators = '';
+    /**
+     * Optional. The maximum number of results to retrieve from this data store.
+     * If not specified, it will use the
+     * [SearchRequest.num_results_per_data_store][google.cloud.discoveryengine.v1.SearchRequest.num_results_per_data_store]
+     * if provided, otherwise there is no limit. If both this field and
+     * [SearchRequest.num_results_per_data_store][google.cloud.discoveryengine.v1.SearchRequest.num_results_per_data_store]
+     * are specified, this field will be used.
+     *
+     * Generated from protobuf field <code>int32 num_results = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $num_results = 0;
 
     /**
      * Constructor.
@@ -78,6 +89,13 @@ class DataStoreSpec extends \Google\Protobuf\Internal\Message
      *           filter results from workspace data stores. For more information on custom
      *           search operators, see
      *           [SearchOperators](https://support.google.com/cloudsearch/answer/6172299).
+     *     @type int $num_results
+     *           Optional. The maximum number of results to retrieve from this data store.
+     *           If not specified, it will use the
+     *           [SearchRequest.num_results_per_data_store][google.cloud.discoveryengine.v1.SearchRequest.num_results_per_data_store]
+     *           if provided, otherwise there is no limit. If both this field and
+     *           [SearchRequest.num_results_per_data_store][google.cloud.discoveryengine.v1.SearchRequest.num_results_per_data_store]
+     *           are specified, this field will be used.
      * }
      */
     public function __construct($data = NULL) {
@@ -217,6 +235,42 @@ class DataStoreSpec extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->custom_search_operators = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The maximum number of results to retrieve from this data store.
+     * If not specified, it will use the
+     * [SearchRequest.num_results_per_data_store][google.cloud.discoveryengine.v1.SearchRequest.num_results_per_data_store]
+     * if provided, otherwise there is no limit. If both this field and
+     * [SearchRequest.num_results_per_data_store][google.cloud.discoveryengine.v1.SearchRequest.num_results_per_data_store]
+     * are specified, this field will be used.
+     *
+     * Generated from protobuf field <code>int32 num_results = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getNumResults()
+    {
+        return $this->num_results;
+    }
+
+    /**
+     * Optional. The maximum number of results to retrieve from this data store.
+     * If not specified, it will use the
+     * [SearchRequest.num_results_per_data_store][google.cloud.discoveryengine.v1.SearchRequest.num_results_per_data_store]
+     * if provided, otherwise there is no limit. If both this field and
+     * [SearchRequest.num_results_per_data_store][google.cloud.discoveryengine.v1.SearchRequest.num_results_per_data_store]
+     * are specified, this field will be used.
+     *
+     * Generated from protobuf field <code>int32 num_results = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setNumResults($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->num_results = $var;
 
         return $this;
     }

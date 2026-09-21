@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * Wrapper message for ReportVisibility enum.
+ * Wrapper message for
+ * [ReportVisibility][google.ads.admanager.v1.ReportVisibilityEnum.ReportVisibility].
  *
  * Generated from protobuf message <code>google.ads.admanager.v1.ReportVisibilityEnum</code>
  */

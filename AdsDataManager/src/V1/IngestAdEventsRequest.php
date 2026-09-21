@@ -22,10 +22,11 @@ class IngestAdEventsRequest extends \Google\Protobuf\Internal\Message
      */
     private $ad_events;
     /**
-     * Required. Information about encryption keys which are used to encrypt the
-     * data.
+     * Optional. Information about encryption keys which are used to encrypt the
+     * data. This field must be provided when ad events contain
+     * [UserData][google.ads.datamanager.v1.UserData].
      *
-     * Generated from protobuf field <code>.google.ads.datamanager.v1.EncryptionInfo encryption_info = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.ads.datamanager.v1.EncryptionInfo encryption_info = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $encryption_info = null;
     /**
@@ -45,8 +46,9 @@ class IngestAdEventsRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Ads\DataManager\V1\AdEvent[] $ad_events
      *           Required. Required (at least 1). A list of ad events.
      *     @type \Google\Ads\DataManager\V1\EncryptionInfo $encryption_info
-     *           Required. Information about encryption keys which are used to encrypt the
-     *           data.
+     *           Optional. Information about encryption keys which are used to encrypt the
+     *           data. This field must be provided when ad events contain
+     *           [UserData][google.ads.datamanager.v1.UserData].
      *     @type bool $validate_only
      *           Optional. If true, the request is validated, but not executed.
      * }
@@ -83,10 +85,11 @@ class IngestAdEventsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Information about encryption keys which are used to encrypt the
-     * data.
+     * Optional. Information about encryption keys which are used to encrypt the
+     * data. This field must be provided when ad events contain
+     * [UserData][google.ads.datamanager.v1.UserData].
      *
-     * Generated from protobuf field <code>.google.ads.datamanager.v1.EncryptionInfo encryption_info = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.ads.datamanager.v1.EncryptionInfo encryption_info = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Ads\DataManager\V1\EncryptionInfo|null
      */
     public function getEncryptionInfo()
@@ -105,10 +108,11 @@ class IngestAdEventsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Information about encryption keys which are used to encrypt the
-     * data.
+     * Optional. Information about encryption keys which are used to encrypt the
+     * data. This field must be provided when ad events contain
+     * [UserData][google.ads.datamanager.v1.UserData].
      *
-     * Generated from protobuf field <code>.google.ads.datamanager.v1.EncryptionInfo encryption_info = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.ads.datamanager.v1.EncryptionInfo encryption_info = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Ads\DataManager\V1\EncryptionInfo $var
      * @return $this
      */

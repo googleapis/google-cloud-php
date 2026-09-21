@@ -23,8 +23,8 @@ class CreateGatewayRequest extends \Google\Protobuf\Internal\Message
      */
     protected $parent = '';
     /**
-     * Required. Identifier to assign to the Gateway. Must be unique within scope of
-     * the parent resource.
+     * Required. Identifier to assign to the Gateway. Must be unique within scope
+     * of the parent resource.
      *
      * Generated from protobuf field <code>string gateway_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -41,8 +41,8 @@ class CreateGatewayRequest extends \Google\Protobuf\Internal\Message
      *                                                       `projects/&#42;/locations/*`
      *                                                       Please see {@see ApiGatewayServiceClient::locationName()} for help formatting this field.
      * @param \Google\Cloud\ApiGateway\V1\Gateway $gateway   Required. Gateway resource.
-     * @param string                              $gatewayId Required. Identifier to assign to the Gateway. Must be unique within scope of
-     *                                                       the parent resource.
+     * @param string                              $gatewayId Required. Identifier to assign to the Gateway. Must be unique within scope
+     *                                                       of the parent resource.
      *
      * @return \Google\Cloud\ApiGateway\V1\CreateGatewayRequest
      *
@@ -66,8 +66,8 @@ class CreateGatewayRequest extends \Google\Protobuf\Internal\Message
      *           Required. Parent resource of the Gateway, of the form:
      *           `projects/{@*}locations/*`
      *     @type string $gateway_id
-     *           Required. Identifier to assign to the Gateway. Must be unique within scope of
-     *           the parent resource.
+     *           Required. Identifier to assign to the Gateway. Must be unique within scope
+     *           of the parent resource.
      *     @type \Google\Cloud\ApiGateway\V1\Gateway $gateway
      *           Required. Gateway resource.
      * }
@@ -106,8 +106,8 @@ class CreateGatewayRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Identifier to assign to the Gateway. Must be unique within scope of
-     * the parent resource.
+     * Required. Identifier to assign to the Gateway. Must be unique within scope
+     * of the parent resource.
      *
      * Generated from protobuf field <code>string gateway_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -118,8 +118,8 @@ class CreateGatewayRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Identifier to assign to the Gateway. Must be unique within scope of
-     * the parent resource.
+     * Required. Identifier to assign to the Gateway. Must be unique within scope
+     * of the parent resource.
      *
      * Generated from protobuf field <code>string gateway_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

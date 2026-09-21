@@ -32,7 +32,7 @@ use Google\Apps\Meet\V2beta\Space;
  * Gets details about a meeting space.
  *
  * For an example, see [Get a meeting
- * space](https://developers.google.com/meet/api/guides/meeting-spaces#get-meeting-space).
+ * space](https://developers.google.com/workspace/meet/api/guides/meeting-spaces#get-meeting-space).
  *
  * @param string $formattedName Resource name of the space.
  *
@@ -52,7 +52,7 @@ use Google\Apps\Meet\V2beta\Space;
  *                              Meet](https://support.google.com/meet/answer/10710509).
  *
  *                              For more information, see [How Meet identifies a meeting
- *                              space](https://developers.google.com/meet/api/guides/meeting-spaces#identify-meeting-space). Please see
+ *                              space](https://developers.google.com/workspace/meet/api/guides/meeting-spaces#identify-meeting-space). Please see
  *                              {@see SpacesServiceClient::spaceName()} for help formatting this field.
  */
 function get_space_sample(string $formattedName): void
