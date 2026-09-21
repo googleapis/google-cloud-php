@@ -701,6 +701,21 @@ class DatabaseTest extends TestCase
         $this->assertInstanceOf(Snapshot::class, $res);
     }
 
+    public function testSnapshotForwardsCallOptions()
+    {
+        $this->spannerClient->beginTransaction(
+            Argument::type(BeginTransactionRequest::class),
+            Argument::that(function (array $callOptions) {
+                $this->assertEquals(1234, $callOptions['timeoutMillis']);
+                return true;
+            })
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn(new TransactionProto(['id' => self::TRANSACTION]));
+
+        $this->database->snapshot(['timeoutMillis' => 1234]);
+    }
+
     public function testSnapshotMinReadTimestamp()
     {
         $this->expectException(\BadMethodCallException::class);
