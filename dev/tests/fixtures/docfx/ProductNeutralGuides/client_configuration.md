@@ -141,36 +141,30 @@ $pubsub = new PubSubClient([
 ### Setting a Default Timeout for Every Call
 
 There is no single client option for "time out every request after N seconds". To change the
-defaults for a whole client, pass a `clientConfig` array built from the configuration the library
-ships with:
+defaults for a whole client, pass a `clientConfig` array built from the `*_client_config.json`
+file the library ships with:
 
 ```php
-use Google\Cloud\Spanner\SpannerClient;
+use Google\Cloud\SecretManager\V1\Client\SecretManagerServiceClient;
 
 $timeoutMillis = 5000;
-$configFiles = [
-    'Spanner/src/V1/resources/spanner_client_config.json',
-    'Spanner/src/Admin/Instance/V1/resources/instance_admin_client_config.json',
-    'Spanner/src/Admin/Database/V1/resources/database_admin_client_config.json',
-];
+$configFile = $vendorDir
+    . '/google/cloud-secret-manager/src/V1/resources/secret_manager_service_client_config.json';
 
-$clientConfig = ['interfaces' => []];
-foreach ($configFiles as $configFile) {
-    $decoded = json_decode(file_get_contents($vendorDir . '/google/cloud-spanner/' . $configFile), true);
-    foreach ($decoded['interfaces'] as $interface => $settings) {
-        foreach ($settings['methods'] as $method => $methodConfig) {
-            $settings['methods'][$method]['timeout_millis'] = $timeoutMillis;
-        }
-        foreach ($settings['retry_params'] as $name => $params) {
-            $settings['retry_params'][$name]['initial_rpc_timeout_millis'] = $timeoutMillis;
-            $settings['retry_params'][$name]['max_rpc_timeout_millis'] = $timeoutMillis;
-            $settings['retry_params'][$name]['total_timeout_millis'] = $timeoutMillis;
-        }
-        $clientConfig['interfaces'][$interface] = $settings;
+$clientConfig = json_decode(file_get_contents($configFile), true);
+foreach ($clientConfig['interfaces'] as $interface => $settings) {
+    foreach (array_keys($settings['methods']) as $method) {
+        $settings['methods'][$method]['timeout_millis'] = $timeoutMillis;
     }
+    foreach (array_keys($settings['retry_params']) as $name) {
+        $settings['retry_params'][$name]['initial_rpc_timeout_millis'] = $timeoutMillis;
+        $settings['retry_params'][$name]['max_rpc_timeout_millis'] = $timeoutMillis;
+        $settings['retry_params'][$name]['total_timeout_millis'] = $timeoutMillis;
+    }
+    $clientConfig['interfaces'][$interface] = $settings;
 }
 
-$spanner = new SpannerClient(['clientConfig' => $clientConfig]);
+$client = new SecretManagerServiceClient(['clientConfig' => $clientConfig]);
 ```
 
 Three things are easy to get wrong here:
@@ -180,14 +174,19 @@ Three things are easy to get wrong here:
    retry policy, the effective deadline comes from `retry_params`, so
    `initial_rpc_timeout_millis`, `max_rpc_timeout_millis` and `total_timeout_millis` must be set
    as well.
-2. **The config must cover every interface the client uses.** Handwritten clients such as
-   `SpannerClient` construct several underlying clients (data plane, instance admin, database
-   admin) from the same options. A config containing only `google.spanner.v1.Spanner` leaves the
-   others without retry settings, and calls to them fail with a `TypeError`.
+2. **The config must cover every interface the client uses.** Handwritten clients build several
+   generated clients from the same options, and each one has its own `*_client_config.json`. A
+   config that omits one of those interfaces leaves it without retry settings, and calls to it
+   fail with a `TypeError`.
 3. **Read the shipped files at runtime; don't copy them into your project.** A stale copy that is
    missing a method added in a later release causes that method to fail with the same `TypeError`.
 
 For a single call, prefer the per-call `timeoutMillis` option described above.
+
+> [!NOTE]
+> For a worked example covering a handwritten client with several interfaces, see
+> [Setting a Default Timeout for Every Call](https://github.com/googleapis/google-cloud-php/blob/main/Spanner/README.md#setting-a-default-timeout-for-every-call)
+> in the Spanner README.
 
 ## 5. Logging
 
