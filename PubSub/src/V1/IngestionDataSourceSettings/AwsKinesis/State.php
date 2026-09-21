@@ -59,6 +59,15 @@ class State
      * Generated from protobuf enum <code>CONSUMER_NOT_FOUND = 5;</code>
      */
     const CONSUMER_NOT_FOUND = 5;
+    /**
+     * Indicates an error state where the ingestion source cannot be
+     * processed because the selected ingestion region is not permitted
+     * by the Regional Access Boundary (RAB) restrictions on the project's
+     * service account.
+     *
+     * Generated from protobuf enum <code>CONFLICTING_REGION_CONSTRAINTS = 6;</code>
+     */
+    const CONFLICTING_REGION_CONSTRAINTS = 6;
 
     private static $valueToName = [
         self::STATE_UNSPECIFIED => 'STATE_UNSPECIFIED',
@@ -67,6 +76,7 @@ class State
         self::PUBLISH_PERMISSION_DENIED => 'PUBLISH_PERMISSION_DENIED',
         self::STREAM_NOT_FOUND => 'STREAM_NOT_FOUND',
         self::CONSUMER_NOT_FOUND => 'CONSUMER_NOT_FOUND',
+        self::CONFLICTING_REGION_CONSTRAINTS => 'CONFLICTING_REGION_CONSTRAINTS',
     ];
 
     public static function name($value)

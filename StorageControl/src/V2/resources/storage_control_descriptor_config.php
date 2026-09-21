@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -87,6 +87,28 @@ return [
                 ],
                 'autoPopulatedFields' => [
                     'requestId' => \Google\Api\FieldInfo\Format::UUID4,
+                ],
+            ],
+            'DisableRapidCache' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Storage\Control\V2\RapidCache',
+                    'metadataReturnType' => '\Google\Cloud\Storage\Control\V2\DisableRapidCacheMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'bucket',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                        'matchers' => [
+                            '/^(?<bucket>projects\/[^\/]+\/buckets\/[^\/]+)(?:\/.*)?$/',
+                        ],
+                    ],
                 ],
             ],
             'RenameFolder' => [
@@ -677,6 +699,21 @@ return [
                     ],
                 ],
             ],
+            'ViewObjectFullContext' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Storage\Control\V2\ObjectFullContext',
+                'headerParams' => [
+                    [
+                        'keyName' => 'bucket',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                        'matchers' => [
+                            '/^(?<bucket>projects\/[^\/]+\/buckets\/[^\/]+)(?:\/.*)?$/',
+                        ],
+                    ],
+                ],
+            ],
             'templateMap' => [
                 'anywhereCache' => 'projects/{project}/buckets/{bucket}/anywhereCaches/{anywhere_cache}',
                 'bucket' => 'projects/{project}/buckets/{bucket}',
@@ -687,6 +724,7 @@ return [
                 'intelligenceFindingRevision' => 'projects/{project}/locations/{location}/intelligenceFindings/{intelligence_finding}/revisions/{revision}',
                 'location' => 'projects/{project}/locations/{location}',
                 'managedFolder' => 'projects/{project}/buckets/{bucket}/managedFolders/{managed_folder=**}',
+                'object' => 'projects/{project}/buckets/{bucket}/objects/{object}',
                 'orgLocationIntelligenceConfig' => 'organizations/{org}/locations/{location}/intelligenceConfig',
                 'projectLocationIntelligenceConfig' => 'projects/{project}/locations/{location}/intelligenceConfig',
                 'rapidCache' => 'projects/{project}/buckets/{bucket}/rapidCaches/{rapid_cache}',

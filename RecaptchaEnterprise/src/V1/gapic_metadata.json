@@ -60,6 +60,11 @@
                                 "getMetrics"
                             ]
                         },
+                        "GetPolicy": {
+                            "methods": [
+                                "getPolicy"
+                            ]
+                        },
                         "ListFirewallPolicies": {
                             "methods": [
                                 "listFirewallPolicies"
@@ -118,6 +123,11 @@
                         "UpdateKey": {
                             "methods": [
                                 "updateKey"
+                            ]
+                        },
+                        "UpdatePolicy": {
+                            "methods": [
+                                "updatePolicy"
                             ]
                         }
                     }

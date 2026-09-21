@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -54,7 +54,9 @@ class OperationsClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return OperationsClient */
@@ -79,8 +81,7 @@ class OperationsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $name = 'name3373707';
-        $request = (new CancelOperationRequest())
-            ->setName($name);
+        $request = (new CancelOperationRequest())->setName($name);
         $gapicClient->cancelOperation($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -103,17 +104,19 @@ class OperationsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $name = 'name3373707';
-        $request = (new CancelOperationRequest())
-            ->setName($name);
+        $request = (new CancelOperationRequest())->setName($name);
         try {
             $gapicClient->cancelOperation($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -140,8 +143,7 @@ class OperationsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $name = 'name3373707';
-        $request = (new DeleteOperationRequest())
-            ->setName($name);
+        $request = (new DeleteOperationRequest())->setName($name);
         $gapicClient->deleteOperation($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -164,17 +166,19 @@ class OperationsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $name = 'name3373707';
-        $request = (new DeleteOperationRequest())
-            ->setName($name);
+        $request = (new DeleteOperationRequest())->setName($name);
         try {
             $gapicClient->deleteOperation($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -205,8 +209,7 @@ class OperationsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $name = 'name3373707';
-        $request = (new GetOperationRequest())
-            ->setName($name);
+        $request = (new GetOperationRequest())->setName($name);
         $response = $gapicClient->getOperation($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -230,17 +233,19 @@ class OperationsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $name = 'name3373707';
-        $request = (new GetOperationRequest())
-            ->setName($name);
+        $request = (new GetOperationRequest())->setName($name);
         try {
             $gapicClient->getOperation($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -265,9 +270,7 @@ class OperationsClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $operationsElement = new Operation();
-        $operations = [
-            $operationsElement,
-        ];
+        $operations = [$operationsElement];
         $expectedResponse = new ListOperationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setOperations($operations);
@@ -275,9 +278,7 @@ class OperationsClientTest extends GeneratedTest
         // Mock request
         $name = 'name3373707';
         $filter = 'filter-1274492040';
-        $request = (new ListOperationsRequest())
-            ->setName($name)
-            ->setFilter($filter);
+        $request = (new ListOperationsRequest())->setName($name)->setFilter($filter);
         $response = $gapicClient->listOperations($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -306,19 +307,20 @@ class OperationsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $name = 'name3373707';
         $filter = 'filter-1274492040';
-        $request = (new ListOperationsRequest())
-            ->setName($name)
-            ->setFilter($filter);
+        $request = (new ListOperationsRequest())->setName($name)->setFilter($filter);
         try {
             $gapicClient->listOperations($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -369,12 +371,15 @@ class OperationsClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         $request = new WaitOperationRequest();
         try {
@@ -403,8 +408,7 @@ class OperationsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $name = 'name3373707';
-        $request = (new CancelOperationRequest())
-            ->setName($name);
+        $request = (new CancelOperationRequest())->setName($name);
         $gapicClient->cancelOperationAsync($request)->wait();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));

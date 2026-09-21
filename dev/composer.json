@@ -13,7 +13,7 @@
         "phpstan/phpstan": "^2.0",
         "symfony/finder": "^6.2",
         "phpdocumentor/reflection": "^6.3",
-        "nikic/php-parser": "v5.8.0",
+        "nikic/php-parser": "v5.9.0",
         "kcs/class-finder": "^0.6.1"
     },
     "autoload": {

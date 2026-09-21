@@ -1,4 +1,0 @@
-deep-copy-regex:
-    - source: /google/cloud/mediatranslation/(v1beta1)/.*-php/(.*)
-      dest: /owl-bot-staging/MediaTranslation/$1/$2
-api-name: MediaTranslation

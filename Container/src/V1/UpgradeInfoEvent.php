@@ -53,6 +53,18 @@ class UpgradeInfoEvent extends \Google\Protobuf\Internal\Message
      */
     protected $target_version = '';
     /**
+     * Output only. The current emulated version before the upgrade.
+     *
+     * Generated from protobuf field <code>string current_emulated_version = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $current_emulated_version = '';
+    /**
+     * Output only. The target emulated version for the upgrade.
+     *
+     * Generated from protobuf field <code>string target_emulated_version = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $target_emulated_version = '';
+    /**
      * Optional relative path to the resource. For example in node pool upgrades,
      * the relative path of the node pool.
      *
@@ -115,6 +127,10 @@ class UpgradeInfoEvent extends \Google\Protobuf\Internal\Message
      *           The current version before the upgrade.
      *     @type string $target_version
      *           The target version for the upgrade.
+     *     @type string $current_emulated_version
+     *           Output only. The current emulated version before the upgrade.
+     *     @type string $target_emulated_version
+     *           Output only. The target emulated version for the upgrade.
      *     @type string $resource
      *           Optional relative path to the resource. For example in node pool upgrades,
      *           the relative path of the node pool.
@@ -310,6 +326,58 @@ class UpgradeInfoEvent extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->target_version = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The current emulated version before the upgrade.
+     *
+     * Generated from protobuf field <code>string current_emulated_version = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getCurrentEmulatedVersion()
+    {
+        return $this->current_emulated_version;
+    }
+
+    /**
+     * Output only. The current emulated version before the upgrade.
+     *
+     * Generated from protobuf field <code>string current_emulated_version = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCurrentEmulatedVersion($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->current_emulated_version = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The target emulated version for the upgrade.
+     *
+     * Generated from protobuf field <code>string target_emulated_version = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getTargetEmulatedVersion()
+    {
+        return $this->target_emulated_version;
+    }
+
+    /**
+     * Output only. The target emulated version for the upgrade.
+     *
+     * Generated from protobuf field <code>string target_emulated_version = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setTargetEmulatedVersion($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->target_emulated_version = $var;
 
         return $this;
     }

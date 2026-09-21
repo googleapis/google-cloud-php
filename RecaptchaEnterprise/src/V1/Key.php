@@ -75,6 +75,8 @@ class Key extends \Google\Protobuf\Internal\Message
      *           Settings for keys that can be used by iOS apps.
      *     @type \Google\Cloud\RecaptchaEnterprise\V1\ExpressKeySettings $express_settings
      *           Settings for keys that can be used by reCAPTCHA Express.
+     *     @type \Google\Cloud\RecaptchaEnterprise\V1\UniversalKeySettings $universal_settings
+     *           Settings for keys that are configured through their Policy.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Optional. See [Creating and managing labels]
      *           (https://cloud.google.com/recaptcha/docs/labels).
@@ -265,6 +267,37 @@ class Key extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\RecaptchaEnterprise\V1\ExpressKeySettings::class);
         $this->writeOneof(11, $var);
+
+        return $this;
+    }
+
+    /**
+     * Settings for keys that are configured through their Policy.
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.UniversalKeySettings universal_settings = 13;</code>
+     * @return \Google\Cloud\RecaptchaEnterprise\V1\UniversalKeySettings|null
+     */
+    public function getUniversalSettings()
+    {
+        return $this->readOneof(13);
+    }
+
+    public function hasUniversalSettings()
+    {
+        return $this->hasOneof(13);
+    }
+
+    /**
+     * Settings for keys that are configured through their Policy.
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.UniversalKeySettings universal_settings = 13;</code>
+     * @param \Google\Cloud\RecaptchaEnterprise\V1\UniversalKeySettings $var
+     * @return $this
+     */
+    public function setUniversalSettings($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\RecaptchaEnterprise\V1\UniversalKeySettings::class);
+        $this->writeOneof(13, $var);
 
         return $this;
     }

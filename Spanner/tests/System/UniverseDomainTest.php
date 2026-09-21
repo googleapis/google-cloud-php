@@ -75,6 +75,12 @@ class UniverseDomainTest extends SystemTestCase
         $this->assertEquals(LongRunningOperation::STATE_SUCCESS, $op->state(), json_encode($op->error()));
 
         self::$instance = self::$client->instance(self::$instanceId);
+        self::$deletionQueue->add(function () {
+            if (self::$instance->exists()) {
+                self::$instance->delete();
+            }
+        });
+
         $info = self::$instance->info();
 
         $this->assertStringEndsWith('/' . self::$instanceId, $info['name']);
@@ -88,20 +94,24 @@ class UniverseDomainTest extends SystemTestCase
      */
     public function testCreateDatabaseWithUniverseDomain()
     {
-        $op = self::$instance->createDatabase(self::$dbName);
+        $op = self::$instance->createDatabase(self::$dbName, [
+            'statements' => [
+                'CREATE TABLE ' . self::$tableName . ' (
+                    id INT64 NOT NULL,
+                    name STRING(MAX) NOT NULL
+                ) PRIMARY KEY (id)'
+            ]
+        ]);
         $op->pollUntilComplete();
 
         self::$database = self::$instance->database(self::$dbName);
+        self::$deletionQueue->add(function () {
+            if (self::$database->exists()) {
+                self::$database->drop();
+            }
+        });
+        
         $this->assertStringEndsWith('/' . self::$dbName, self::$database->name());
-
-        // Create a test table
-        $op = self::$database->updateDdlBatch([
-            'CREATE TABLE ' . self::$tableName . ' (
-                id INT64 NOT NULL,
-                name STRING(MAX) NOT NULL
-            ) PRIMARY KEY (id)'
-        ]);
-        $op->pollUntilComplete();
 
         // Verify the table was created
         $result = self::$database->execute(

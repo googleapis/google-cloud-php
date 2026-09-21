@@ -258,10 +258,12 @@ class Component
         $this->namespaces = $namespaces;
 
         $this->componentDependencies = [];
-        // All components depend on google/auth
-        if ($this->name !== 'auth') {
-            $this->componentDependencies[] = new Component('auth', self::ROOT_DIR . '/dev/vendor/google/auth');
+
+        // Skip if Auth to avoid recursion, skip if Jwt because Jwt does not rely on Auth
+        if ($this->name !== 'Auth' && $this->name !== 'Jwt') {
+            $this->componentDependencies[] = new Component('Auth');
         }
+
         // find dependencies which are google/cloud components
         foreach ($composerJson['require'] ?? [] as $name => $version) {
             if ($componentName = key(array_filter(

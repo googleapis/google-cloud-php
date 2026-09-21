@@ -305,8 +305,10 @@ final class FirestoreClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function beginTransaction(BeginTransactionRequest $request, array $callOptions = []): BeginTransactionResponse
-    {
+    public function beginTransaction(
+        BeginTransactionRequest $request,
+        array $callOptions = []
+    ): BeginTransactionResponse {
         return $this->startApiCall('BeginTransaction', $request, $callOptions)->wait();
     }
 

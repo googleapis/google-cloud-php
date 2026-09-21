@@ -29,11 +29,13 @@ use Google\Cloud\AuditManager\V1\Client\AuditManagerClient;
 use Google\Cloud\AuditManager\V1\GetAuditReportRequest;
 
 /**
- * Get the overall audit report
+ * Gets the full metadata and findings for an audit report.
  *
- * @param string $formattedName Format
- *                              projects/{project}/locations/{location}/auditReports/{audit_report},
- *                              folders/{folder}/locations/{location}/auditReports/{audit_report}
+ * @param string $formattedName Name of the audit report, in one of the following formats:
+ *
+ *                              * `projects/{project}/locations/{location}/auditReports/{audit_report}`
+ *                              * `folders/{folder}/locations/{location}/auditReports/{audit_report}`
+ *                              * `organizations/{organization}/locations/{location}/auditReports/{audit_report}`
  *                              Please see {@see AuditManagerClient::auditReportName()} for help formatting this field.
  */
 function get_audit_report_sample(string $formattedName): void

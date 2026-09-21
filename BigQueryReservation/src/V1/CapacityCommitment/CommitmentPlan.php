@@ -22,11 +22,13 @@ class CommitmentPlan
      */
     const COMMITMENT_PLAN_UNSPECIFIED = 0;
     /**
+     * Deprecated: Flex commitments are deprecated. Please use Edition-based
+     * capacity commitments.
      * Flex commitments have committed period of 1 minute after becoming ACTIVE.
      * After that, they are not in a committed period anymore and can be removed
      * any time.
      *
-     * Generated from protobuf enum <code>FLEX = 3;</code>
+     * Generated from protobuf enum <code>FLEX = 3 [deprecated = true];</code>
      */
     const FLEX = 3;
     /**

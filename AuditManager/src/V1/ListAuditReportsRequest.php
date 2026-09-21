@@ -9,35 +9,48 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * Message for requesting to list the audit reports.
+ * Request message for
+ * [ListAuditReports][google.cloud.auditmanager.v1.AuditManager.ListAuditReports].
  *
  * Generated from protobuf message <code>google.cloud.auditmanager.v1.ListAuditReportsRequest</code>
  */
 class ListAuditReportsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The parent scope for which to list the reports.
+     * Required. Parent organization, folder, or project to list reports for,
+     * in one of the following formats:
+     * * `projects/{project}/locations/{location}`
+     * * `folders/{folder}/locations/{location}`
+     * * `organizations/{organization}/locations/{location}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $parent = '';
     /**
-     * Optional. The maximum number of resources to return.
+     * Optional. Maximum number of items to return in a single page. The service
+     * might return fewer items than this value. If unspecified, the service picks
+     * an appropriate default. The maximum value is 100; values above 100 are
+     * reduced to 100.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $page_size = 0;
     /**
-     * Optional. The next_page_token value returned from a previous List request,
-     * if any.
+     * Optional. A page token, received from a previous call, to retrieve the next
+     * page of results.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $page_token = '';
 
     /**
-     * @param string $parent Required. The parent scope for which to list the reports. Please see
-     *                       {@see AuditManagerClient::folderLocationName()} for help formatting this field.
+     * @param string $parent Required. Parent organization, folder, or project to list reports for,
+     *                       in one of the following formats:
+     *
+     *                       * `projects/{project}/locations/{location}`
+     *                       * `folders/{folder}/locations/{location}`
+     *                       * `organizations/{organization}/locations/{location}`
+     *                       Please see {@see AuditManagerClient::folderLocationName()} for help formatting this field.
      *
      * @return \Google\Cloud\AuditManager\V1\ListAuditReportsRequest
      *
@@ -56,12 +69,19 @@ class ListAuditReportsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The parent scope for which to list the reports.
+     *           Required. Parent organization, folder, or project to list reports for,
+     *           in one of the following formats:
+     *           * `projects/{project}/locations/{location}`
+     *           * `folders/{folder}/locations/{location}`
+     *           * `organizations/{organization}/locations/{location}`
      *     @type int $page_size
-     *           Optional. The maximum number of resources to return.
+     *           Optional. Maximum number of items to return in a single page. The service
+     *           might return fewer items than this value. If unspecified, the service picks
+     *           an appropriate default. The maximum value is 100; values above 100 are
+     *           reduced to 100.
      *     @type string $page_token
-     *           Optional. The next_page_token value returned from a previous List request,
-     *           if any.
+     *           Optional. A page token, received from a previous call, to retrieve the next
+     *           page of results.
      * }
      */
     public function __construct($data = NULL) {
@@ -70,7 +90,11 @@ class ListAuditReportsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent scope for which to list the reports.
+     * Required. Parent organization, folder, or project to list reports for,
+     * in one of the following formats:
+     * * `projects/{project}/locations/{location}`
+     * * `folders/{folder}/locations/{location}`
+     * * `organizations/{organization}/locations/{location}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -81,7 +105,11 @@ class ListAuditReportsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent scope for which to list the reports.
+     * Required. Parent organization, folder, or project to list reports for,
+     * in one of the following formats:
+     * * `projects/{project}/locations/{location}`
+     * * `folders/{folder}/locations/{location}`
+     * * `organizations/{organization}/locations/{location}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -96,7 +124,10 @@ class ListAuditReportsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum number of resources to return.
+     * Optional. Maximum number of items to return in a single page. The service
+     * might return fewer items than this value. If unspecified, the service picks
+     * an appropriate default. The maximum value is 100; values above 100 are
+     * reduced to 100.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -107,7 +138,10 @@ class ListAuditReportsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum number of resources to return.
+     * Optional. Maximum number of items to return in a single page. The service
+     * might return fewer items than this value. If unspecified, the service picks
+     * an appropriate default. The maximum value is 100; values above 100 are
+     * reduced to 100.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -122,8 +156,8 @@ class ListAuditReportsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The next_page_token value returned from a previous List request,
-     * if any.
+     * Optional. A page token, received from a previous call, to retrieve the next
+     * page of results.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -134,8 +168,8 @@ class ListAuditReportsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The next_page_token value returned from a previous List request,
-     * if any.
+     * Optional. A page token, received from a previous call, to retrieve the next
+     * page of results.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

@@ -1,4 +1,0 @@
-deep-copy-regex:
-    - source: /google/cloud/vectorsearch/(v1)/.*-php/(.*)
-      dest: /owl-bot-staging/VectorSearch/$1/$2
-api-name: VectorSearch

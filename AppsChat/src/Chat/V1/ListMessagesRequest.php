@@ -92,6 +92,13 @@ class ListMessagesRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool show_deleted = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $show_deleted = false;
+    /**
+     * Optional. Specifies the desired output syntax for the Chat message
+     * `formatted_text` field.
+     *
+     * Generated from protobuf field <code>.google.chat.v1.MarkupSyntax markup_syntax = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $markup_syntax = 0;
 
     /**
      * @param string $parent Required. The resource name of the space to list messages from.
@@ -168,6 +175,9 @@ class ListMessagesRequest extends \Google\Protobuf\Internal\Message
      *           Optional. Whether to include deleted messages. Deleted messages include
      *           deleted time and metadata about their deletion, but message content is
      *           unavailable.
+     *     @type int $markup_syntax
+     *           Optional. Specifies the desired output syntax for the Chat message
+     *           `formatted_text` field.
      * }
      */
     public function __construct($data = NULL) {
@@ -409,6 +419,34 @@ class ListMessagesRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->show_deleted = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies the desired output syntax for the Chat message
+     * `formatted_text` field.
+     *
+     * Generated from protobuf field <code>.google.chat.v1.MarkupSyntax markup_syntax = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getMarkupSyntax()
+    {
+        return $this->markup_syntax;
+    }
+
+    /**
+     * Optional. Specifies the desired output syntax for the Chat message
+     * `formatted_text` field.
+     *
+     * Generated from protobuf field <code>.google.chat.v1.MarkupSyntax markup_syntax = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setMarkupSyntax($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Apps\Chat\V1\MarkupSyntax::class);
+        $this->markup_syntax = $var;
 
         return $this;
     }

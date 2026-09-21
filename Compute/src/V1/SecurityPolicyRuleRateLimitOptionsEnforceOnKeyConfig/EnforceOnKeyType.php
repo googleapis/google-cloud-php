@@ -42,9 +42,11 @@ use UnexpectedValueException;
  *    which is resolved based on "userIpRequestHeaders" configured with the
  *    security policy. If there is no "userIpRequestHeaders" configuration
  *    or an IP address cannot be resolved from it, the key type defaults toIP.
- * - TLS_JA4_FINGERPRINT: JA4 TLS/SSL fingerprint if the
- * client connects using HTTPS, HTTP/2 or HTTP/3. If not available, the
- * key type defaults to ALL.
+ *    - ASN: The autonomous system number of the originating
+ *    client. If not available, the key type defaults toALL.
+ *    - TLS_JA4_FINGERPRINT: JA4 TLS/SSL fingerprint if the
+ *    client connects using HTTPS, HTTP/2 or HTTP/3. If not available, the
+ *    key type defaults to ALL.
  *
  * Protobuf type <code>google.cloud.compute.v1.SecurityPolicyRuleRateLimitOptionsEnforceOnKeyConfig.EnforceOnKeyType</code>
  */
@@ -60,6 +62,10 @@ class EnforceOnKeyType
      * Generated from protobuf enum <code>ALL = 64897;</code>
      */
     const ALL = 64897;
+    /**
+     * Generated from protobuf enum <code>ASN = 65116;</code>
+     */
+    const ASN = 65116;
     /**
      * Generated from protobuf enum <code>HTTP_COOKIE = 494981627;</code>
      */
@@ -104,6 +110,7 @@ class EnforceOnKeyType
     private static $valueToName = [
         self::UNDEFINED_ENFORCE_ON_KEY_TYPE => 'UNDEFINED_ENFORCE_ON_KEY_TYPE',
         self::ALL => 'ALL',
+        self::ASN => 'ASN',
         self::HTTP_COOKIE => 'HTTP_COOKIE',
         self::HTTP_HEADER => 'HTTP_HEADER',
         self::HTTP_PATH => 'HTTP_PATH',

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -319,6 +319,25 @@ final class KeyManagementServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * ekm_connection resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $ekmConnection
+     *
+     * @return string The formatted ekm_connection resource.
+     */
+    public static function ekmConnectionName(string $project, string $location, string $ekmConnection): string
+    {
+        return self::getPathTemplate('ekmConnection')->render([
+            'project' => $project,
+            'location' => $location,
+            'ekm_connection' => $ekmConnection,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a import_job
      * resource.
      *
@@ -400,6 +419,7 @@ final class KeyManagementServiceClient
      * Template: Pattern
      * - cryptoKey: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}
      * - cryptoKeyVersion: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}
+     * - ekmConnection: projects/{project}/locations/{location}/ekmConnections/{ekm_connection}
      * - importJob: projects/{project}/locations/{location}/keyRings/{key_ring}/importJobs/{import_job}
      * - keyRing: projects/{project}/locations/{location}/keyRings/{key_ring}
      * - location: projects/{project}/locations/{location}

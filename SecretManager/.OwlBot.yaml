@@ -1,4 +1,0 @@
-deep-copy-regex:
-    - source: /google/cloud/secretmanager/(v1|v1beta2)/.*-php/(.*)
-      dest: /owl-bot-staging/SecretManager/$1/$2
-api-name: SecretManager

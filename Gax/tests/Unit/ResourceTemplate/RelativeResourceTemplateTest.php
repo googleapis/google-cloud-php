@@ -186,8 +186,8 @@ class RelativeResourceTemplateTest extends TestCase
             ],
             [
                 'buckets/*/*/*/objects/*',
-                'buckets/f/o/o/objects/google.com:a-b',
-                ['$0' => 'f', '$1' => 'o', '$2' => 'o', '$3' => 'google.com:a-b'],
+                'buckets/f/o/o/objects/google.com-a-b',
+                ['$0' => 'f', '$1' => 'o', '$2' => 'o', '$3' => 'google.com-a-b'],
             ],
             [
                 'buckets/*/objects/**',
@@ -201,8 +201,8 @@ class RelativeResourceTemplateTest extends TestCase
             ],
             [
                 'buckets/*',
-                'buckets/{}!@#$%^&*()+=[]\|`~-_',
-                ['$0' => '{}!@#$%^&*()+=[]\|`~-_'],
+                'buckets/abc~-_',
+                ['$0' => 'abc~-_'],
             ],
             [
                 'foos/{foo}_{oof}',
@@ -378,6 +378,102 @@ class RelativeResourceTemplateTest extends TestCase
                 'foo/*/{bar=*/rar/*}/**/*:action',
                 ['$0' => 'fizz', '$1' => 'bizz/buzz', '$2' => 'baz', 'bar' => 'fuzz/rat/bar'],
                 // Invalid binding
+            ],
+        ];
+    }
+
+    /**
+     * @param string $pathTemplate
+     * @param array $bindings
+     * @param string $expectedExceptionMessage
+     * @dataProvider invalidRenderDataInvalidArgument
+     */
+    public function testFailRenderInvalidArgument($pathTemplate, $bindings, $expectedExceptionMessage = null)
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        if (isset($expectedExceptionMessage)) {
+            $this->expectExceptionMessage($expectedExceptionMessage);
+        }
+
+        $template = new RelativeResourceTemplate($pathTemplate);
+        $template->render($bindings);
+    }
+
+    public function invalidRenderDataInvalidArgument()
+    {
+        return [
+            [
+                'buckets/{hello}',
+                ['hello' => '.'],
+                "Invalid value . for hello.",
+            ],
+            [
+                'buckets/{hello}',
+                ['hello' => '..'],
+                "Invalid value .. for hello.",
+            ],
+            [
+                'buckets/{hello=*}',
+                ['hello' => '.'],
+                "Invalid value . for hello.",
+            ],
+            [
+                'buckets/{hello=**}',
+                ['hello' => 'foo/./bar'],
+                "Value for hello must not contain segments that are exactly . or .. .",
+            ],
+            [
+                'buckets/{hello=**}',
+                ['hello' => 'foo/..'],
+                "Value for hello must not contain segments that are exactly . or .. .",
+            ],
+            [
+                'buckets/*/objects/**',
+                ['$0' => '.', '$1' => 'foo/bar'],
+                "Invalid value . for $0.",
+            ],
+            [
+                'buckets/*/objects/**',
+                ['$0' => 'foo', '$1' => '../bar'],
+                "Value for $1 must not contain segments that are exactly . or .. .",
+            ],
+            [
+                'projects/*/locations/*',
+                ['$0' => 'my-proj', '$1' => '.'],
+                "Invalid value . for $1.",
+            ]
+        ];
+    }
+
+    /**
+     * @dataProvider renderEncodingData
+     */
+    public function testRenderEncoding($pathTemplate, $expectedPath, $bindings)
+    {
+        $template = new RelativeResourceTemplate($pathTemplate);
+        $this->assertEquals($expectedPath, $template->render($bindings, true));
+    }
+
+    public function renderEncodingData()
+    {
+        return [
+            [
+                'buckets/{hello}',
+                'buckets/world%20order',
+                ['hello' => 'world order'],
+            ],
+            [
+                'buckets/{hello=**}',
+                'buckets/foo/bar%21/baz~',
+                ['hello' => 'foo/bar!/baz~'],
+            ],
+            [
+                'projects/{project}/locations/{location}',
+                'projects/my%20project/locations/us-central1',
+                [
+                    'project' => 'my project',
+                    'location' => 'us-central1',
+                ]
             ],
         ];
     }

@@ -162,6 +162,40 @@ final class LiveStreamServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * dai_authentication_key resource.
+     *
+     * @param string $networkCode
+     * @param string $daiAuthenticationKey
+     *
+     * @return string The formatted dai_authentication_key resource.
+     */
+    public static function daiAuthenticationKeyName(string $networkCode, string $daiAuthenticationKey): string
+    {
+        return self::getPathTemplate('daiAuthenticationKey')->render([
+            'network_code' => $networkCode,
+            'dai_authentication_key' => $daiAuthenticationKey,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * dai_encoding_profile resource.
+     *
+     * @param string $networkCode
+     * @param string $daiEncodingProfile
+     *
+     * @return string The formatted dai_encoding_profile resource.
+     */
+    public static function daiEncodingProfileName(string $networkCode, string $daiEncodingProfile): string
+    {
+        return self::getPathTemplate('daiEncodingProfile')->render([
+            'network_code' => $networkCode,
+            'dai_encoding_profile' => $daiEncodingProfile,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a live_stream
      * resource.
      *
@@ -194,12 +228,32 @@ final class LiveStreamServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a slate
+     * resource.
+     *
+     * @param string $networkCode
+     * @param string $slate
+     *
+     * @return string The formatted slate resource.
+     */
+    public static function slateName(string $networkCode, string $slate): string
+    {
+        return self::getPathTemplate('slate')->render([
+            'network_code' => $networkCode,
+            'slate' => $slate,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - cdnConfig: networks/{network_code}/cdnConfigs/{cdn_config}
+     * - daiAuthenticationKey: networks/{network_code}/daiAuthenticationKeys/{dai_authentication_key}
+     * - daiEncodingProfile: networks/{network_code}/daiEncodingProfiles/{dai_encoding_profile}
      * - liveStream: networks/{network_code}/liveStreams/{live_stream}
      * - network: networks/{network_code}
+     * - slate: networks/{network_code}/slates/{slate}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is

@@ -1,0 +1,123 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.agentregistry.v1",
+    "libraryPackage": "Google\\Cloud\\AgentRegistry\\V1",
+    "services": {
+        "AgentRegistry": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "AgentRegistryClient",
+                    "rpcs": {
+                        "CreateBinding": {
+                            "methods": [
+                                "createBinding"
+                            ]
+                        },
+                        "CreateService": {
+                            "methods": [
+                                "createService"
+                            ]
+                        },
+                        "DeleteBinding": {
+                            "methods": [
+                                "deleteBinding"
+                            ]
+                        },
+                        "DeleteService": {
+                            "methods": [
+                                "deleteService"
+                            ]
+                        },
+                        "FetchAvailableBindings": {
+                            "methods": [
+                                "fetchAvailableBindings"
+                            ]
+                        },
+                        "GetAgent": {
+                            "methods": [
+                                "getAgent"
+                            ]
+                        },
+                        "GetBinding": {
+                            "methods": [
+                                "getBinding"
+                            ]
+                        },
+                        "GetEndpoint": {
+                            "methods": [
+                                "getEndpoint"
+                            ]
+                        },
+                        "GetMcpServer": {
+                            "methods": [
+                                "getMcpServer"
+                            ]
+                        },
+                        "GetService": {
+                            "methods": [
+                                "getService"
+                            ]
+                        },
+                        "ListAgents": {
+                            "methods": [
+                                "listAgents"
+                            ]
+                        },
+                        "ListBindings": {
+                            "methods": [
+                                "listBindings"
+                            ]
+                        },
+                        "ListEndpoints": {
+                            "methods": [
+                                "listEndpoints"
+                            ]
+                        },
+                        "ListMcpServers": {
+                            "methods": [
+                                "listMcpServers"
+                            ]
+                        },
+                        "ListServices": {
+                            "methods": [
+                                "listServices"
+                            ]
+                        },
+                        "SearchAgents": {
+                            "methods": [
+                                "searchAgents"
+                            ]
+                        },
+                        "SearchMcpServers": {
+                            "methods": [
+                                "searchMcpServers"
+                            ]
+                        },
+                        "UpdateBinding": {
+                            "methods": [
+                                "updateBinding"
+                            ]
+                        },
+                        "UpdateService": {
+                            "methods": [
+                                "updateService"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

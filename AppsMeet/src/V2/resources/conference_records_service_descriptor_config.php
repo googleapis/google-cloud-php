@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -62,6 +62,18 @@ return [
             'GetRecording' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Apps\Meet\V2\Recording',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetSmartNote' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Apps\Meet\V2\SmartNote',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -167,6 +179,26 @@ return [
                     ],
                 ],
             ],
+            'ListSmartNotes' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getSmartNotes',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Apps\Meet\V2\ListSmartNotesResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListTranscriptEntries' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
@@ -212,6 +244,7 @@ return [
                 'participant' => 'conferenceRecords/{conference_record}/participants/{participant}',
                 'participantSession' => 'conferenceRecords/{conference_record}/participants/{participant}/participantSessions/{participant_session}',
                 'recording' => 'conferenceRecords/{conference_record}/recordings/{recording}',
+                'smartNote' => 'conferenceRecords/{conference_record}/smartNotes/{smart_note}',
                 'transcript' => 'conferenceRecords/{conference_record}/transcripts/{transcript}',
                 'transcriptEntry' => 'conferenceRecords/{conference_record}/transcripts/{transcript}/entries/{entry}',
             ],

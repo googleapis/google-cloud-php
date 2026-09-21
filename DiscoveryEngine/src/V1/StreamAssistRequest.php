@@ -52,6 +52,12 @@ class StreamAssistRequest extends \Google\Protobuf\Internal\Message
      */
     protected $user_metadata = null;
     /**
+     * Optional. Specification of agents that are used to serve the request.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.StreamAssistRequest.AgentsSpec agents_spec = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $agents_spec = null;
+    /**
      * Optional. Specification of tools that are used to serve the request.
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.StreamAssistRequest.ToolsSpec tools_spec = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -88,6 +94,8 @@ class StreamAssistRequest extends \Google\Protobuf\Internal\Message
      *           `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/sessions/{session}`
      *     @type \Google\Cloud\DiscoveryEngine\V1\AssistUserMetadata $user_metadata
      *           Optional. Information about the user initiating the query.
+     *     @type \Google\Cloud\DiscoveryEngine\V1\StreamAssistRequest\AgentsSpec $agents_spec
+     *           Optional. Specification of agents that are used to serve the request.
      *     @type \Google\Cloud\DiscoveryEngine\V1\StreamAssistRequest\ToolsSpec $tools_spec
      *           Optional. Specification of tools that are used to serve the request.
      *     @type \Google\Cloud\DiscoveryEngine\V1\StreamAssistRequest\GenerationSpec $generation_spec
@@ -239,6 +247,42 @@ class StreamAssistRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\AssistUserMetadata::class);
         $this->user_metadata = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specification of agents that are used to serve the request.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.StreamAssistRequest.AgentsSpec agents_spec = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1\StreamAssistRequest\AgentsSpec|null
+     */
+    public function getAgentsSpec()
+    {
+        return $this->agents_spec;
+    }
+
+    public function hasAgentsSpec()
+    {
+        return isset($this->agents_spec);
+    }
+
+    public function clearAgentsSpec()
+    {
+        unset($this->agents_spec);
+    }
+
+    /**
+     * Optional. Specification of agents that are used to serve the request.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.StreamAssistRequest.AgentsSpec agents_spec = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\StreamAssistRequest\AgentsSpec $var
+     * @return $this
+     */
+    public function setAgentsSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\StreamAssistRequest\AgentsSpec::class);
+        $this->agents_spec = $var;
 
         return $this;
     }

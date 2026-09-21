@@ -56,13 +56,9 @@ class MetricsOperationMiddleware implements MiddlewareInterface
 
     /** @var callable */
     private $nextHandler;
-    private string $projectId;
     private string $clientId;
     private string $clientName;
-    private string $location;
     private bool $directPathEnabled;
-
-    private const INSTANCE_CONFIG = 'unknown';
 
     private const BUCKET_BOUNDS = [
         0.0, 0.5, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0,
@@ -79,34 +75,28 @@ class MetricsOperationMiddleware implements MiddlewareInterface
      * @param callable $nextHandler
      * @param MeterInterface $meter
      * @param string $clientId
-     * @param string $projectId
-     * @param string $location
      */
     public function __construct(
         callable $nextHandler,
         MeterInterface $meter,
         string $clientId,
-        string $projectId,
-        string $clientName,
-        string $location
+        string $clientName
     ) {
         $this->nextHandler = $nextHandler;
         $advisory = ['ExplicitBucketBoundaries' => self::BUCKET_BOUNDS];
         $this->operationLatencyHistogram = $meter->createHistogram(
-            'operation_latencies',
+            'spanner.googleapis.com/internal/client/operation_latencies',
             'ms',
             'The latency of an RPC operations',
             $advisory
         );
         $this->operationCountCounter = $meter->createCounter(
-            'operation_count',
+            'spanner.googleapis.com/internal/client/operation_count',
             '1',
             'The number of RPC operations'
         );
         $this->clientId = $clientId;
-        $this->projectId = $projectId;
         $this->clientName = 'spanner-php/' . $clientName;
-        $this->location = $location;
         $this->directPathEnabled = filter_var(
             getenv('GOOGLE_SPANNER_ENABLE_DIRECT_ACCESS'),
             FILTER_VALIDATE_BOOLEAN
@@ -222,13 +212,9 @@ class MetricsOperationMiddleware implements MiddlewareInterface
         $labels = [
             'method' => $methodName,
             'status' => $codeName,
-            'instance_id' => $instanceId,
             'database' => $databaseId,
-            'project_id' => $this->projectId,
             'client_uid' => $this->clientId,
             'client_name' => $this->clientName,
-            'instance_config' => self::INSTANCE_CONFIG,
-            'location' => $this->location,
             'directpath_enabled' => $this->directPathEnabled ? 'true' : 'false',
             'directpath_used' => $directPathUsed ? 'true' : 'false'
         ];

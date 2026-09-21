@@ -217,6 +217,16 @@ class Reservation extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.bigquery.reservation.v1.SchedulingPolicy scheduling_policy = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $scheduling_policy = null;
+    /**
+     * Output only. The reservation group path of the reservation from root to
+     * leaf. The order of elements matters: the first element is the top level
+     * group and the last element is the direct parent reservation group. For
+     * example, if a reservation is under group-1 -> group-2 -> group-3, then the
+     * reservation group path is ["group-1", "group-2", "group-3"].
+     *
+     * Generated from protobuf field <code>repeated string reservation_group_path = 28 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $reservation_group_path;
 
     /**
      * Constructor.
@@ -353,6 +363,12 @@ class Reservation extends \Google\Protobuf\Internal\Message
      *           this reservation. The scheduling policy controls how the reservation's
      *           resources are distributed.
      *           This feature is not yet generally available.
+     *     @type string[] $reservation_group_path
+     *           Output only. The reservation group path of the reservation from root to
+     *           leaf. The order of elements matters: the first element is the top level
+     *           group and the last element is the direct parent reservation group. For
+     *           example, if a reservation is under group-1 -> group-2 -> group-3, then the
+     *           reservation group path is ["group-1", "group-2", "group-3"].
      * }
      */
     public function __construct($data = NULL) {
@@ -1076,6 +1092,40 @@ class Reservation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\Reservation\V1\SchedulingPolicy::class);
         $this->scheduling_policy = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The reservation group path of the reservation from root to
+     * leaf. The order of elements matters: the first element is the top level
+     * group and the last element is the direct parent reservation group. For
+     * example, if a reservation is under group-1 -> group-2 -> group-3, then the
+     * reservation group path is ["group-1", "group-2", "group-3"].
+     *
+     * Generated from protobuf field <code>repeated string reservation_group_path = 28 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return RepeatedField<string>
+     */
+    public function getReservationGroupPath()
+    {
+        return $this->reservation_group_path;
+    }
+
+    /**
+     * Output only. The reservation group path of the reservation from root to
+     * leaf. The order of elements matters: the first element is the top level
+     * group and the last element is the direct parent reservation group. For
+     * example, if a reservation is under group-1 -> group-2 -> group-3, then the
+     * reservation group path is ["group-1", "group-2", "group-3"].
+     *
+     * Generated from protobuf field <code>repeated string reservation_group_path = 28 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string[] $var
+     * @return $this
+     */
+    public function setReservationGroupPath($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->reservation_group_path = $arr;
 
         return $this;
     }

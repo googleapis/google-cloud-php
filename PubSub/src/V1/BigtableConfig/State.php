@@ -27,15 +27,13 @@ class State
      */
     const ACTIVE = 1;
     /**
-     * Cannot write to Bigtable because the instance, table, or app profile
-     * does not exist.
+     * Unused in the current implementation. Placeholder for future use.
      *
      * Generated from protobuf enum <code>NOT_FOUND = 2;</code>
      */
     const NOT_FOUND = 2;
     /**
-     * Cannot write to Bigtable because the app profile is not configured for
-     * single-cluster routing.
+     * Unused in the current implementation. Placeholder for future use.
      *
      * Generated from protobuf enum <code>APP_PROFILE_MISCONFIGURED = 3;</code>
      */
@@ -43,6 +41,7 @@ class State
     /**
      * Cannot write to Bigtable because of permission denied errors.
      * This can happen if:
+     * - The Bigtable instance, table, or app profile does not exist.
      * - The Pub/Sub service agent has not been granted the
      *   [appropriate Bigtable IAM permission
      *   bigtable.tables.mutateRows]({$universe.dns_names.final_documentation_domain}/bigtable/docs/access-control#permissions)
@@ -53,8 +52,9 @@ class State
      */
     const PERMISSION_DENIED = 4;
     /**
-     * Cannot write to Bigtable because of a missing column family ("data") or
-     * if there is no structured row key for the subscription name + message ID.
+     * Cannot write to Bigtable because of a missing column family (`data`), or
+     * if there is no structured row key for the subscription name + message ID,
+     * if because the app profile is not configured for single-cluster routing.
      *
      * Generated from protobuf enum <code>SCHEMA_MISMATCH = 5;</code>
      */

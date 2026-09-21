@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -603,6 +603,26 @@ return [
             'FetchBlob' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\SecureSourceManager\V1\FetchBlobResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'repository',
+                        'fieldAccessors' => [
+                            'getRepository',
+                        ],
+                    ],
+                ],
+            ],
+            'FetchRefs' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getRefs',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\SecureSourceManager\V1\FetchRefsResponse',
                 'headerParams' => [
                     [
                         'keyName' => 'repository',

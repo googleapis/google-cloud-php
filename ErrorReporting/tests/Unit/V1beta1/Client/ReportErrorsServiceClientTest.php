@@ -50,7 +50,9 @@ class ReportErrorsServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return ReportErrorsServiceClient */
@@ -80,16 +82,17 @@ class ReportErrorsServiceClientTest extends GeneratedTest
         $event->setServiceContext($eventServiceContext);
         $eventMessage = 'eventMessage1863181325';
         $event->setMessage($eventMessage);
-        $request = (new ReportErrorEventRequest())
-            ->setProjectName($formattedProjectName)
-            ->setEvent($event);
+        $request = (new ReportErrorEventRequest())->setProjectName($formattedProjectName)->setEvent($event);
         $response = $gapicClient->reportErrorEvent($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.devtools.clouderrorreporting.v1beta1.ReportErrorsService/ReportErrorEvent', $actualFuncCall);
+        $this->assertSame(
+            '/google.devtools.clouderrorreporting.v1beta1.ReportErrorsService/ReportErrorEvent',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getProjectName();
         $this->assertProtobufEquals($formattedProjectName, $actualValue);
         $actualValue = $actualRequestObject->getEvent();
@@ -108,12 +111,15 @@ class ReportErrorsServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedProjectName = $gapicClient->projectName('[PROJECT]');
@@ -122,9 +128,7 @@ class ReportErrorsServiceClientTest extends GeneratedTest
         $event->setServiceContext($eventServiceContext);
         $eventMessage = 'eventMessage1863181325';
         $event->setMessage($eventMessage);
-        $request = (new ReportErrorEventRequest())
-            ->setProjectName($formattedProjectName)
-            ->setEvent($event);
+        $request = (new ReportErrorEventRequest())->setProjectName($formattedProjectName)->setEvent($event);
         try {
             $gapicClient->reportErrorEvent($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -156,16 +160,17 @@ class ReportErrorsServiceClientTest extends GeneratedTest
         $event->setServiceContext($eventServiceContext);
         $eventMessage = 'eventMessage1863181325';
         $event->setMessage($eventMessage);
-        $request = (new ReportErrorEventRequest())
-            ->setProjectName($formattedProjectName)
-            ->setEvent($event);
+        $request = (new ReportErrorEventRequest())->setProjectName($formattedProjectName)->setEvent($event);
         $response = $gapicClient->reportErrorEventAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.devtools.clouderrorreporting.v1beta1.ReportErrorsService/ReportErrorEvent', $actualFuncCall);
+        $this->assertSame(
+            '/google.devtools.clouderrorreporting.v1beta1.ReportErrorsService/ReportErrorEvent',
+            $actualFuncCall
+        );
         $actualValue = $actualRequestObject->getProjectName();
         $this->assertProtobufEquals($formattedProjectName, $actualValue);
         $actualValue = $actualRequestObject->getEvent();

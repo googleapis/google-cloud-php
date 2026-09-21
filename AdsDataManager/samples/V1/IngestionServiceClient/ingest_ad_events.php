@@ -27,7 +27,6 @@ use Google\Ads\DataManager\V1\AdEvent;
 use Google\Ads\DataManager\V1\AdEvent\EventType;
 use Google\Ads\DataManager\V1\Client\IngestionServiceClient;
 use Google\Ads\DataManager\V1\DeviceInfo;
-use Google\Ads\DataManager\V1\EncryptionInfo;
 use Google\Ads\DataManager\V1\IngestAdEventsRequest;
 use Google\Ads\DataManager\V1\IngestAdEventsResponse;
 use Google\Ads\DataManager\V1\ViewType;
@@ -81,10 +80,8 @@ function ingest_ad_events_sample(
         ->setMedium($adEventsMedium)
         ->setViewabilityInfo($adEventsViewabilityInfo);
     $adEvents = [$adEvent,];
-    $encryptionInfo = new EncryptionInfo();
     $request = (new IngestAdEventsRequest())
-        ->setAdEvents($adEvents)
-        ->setEncryptionInfo($encryptionInfo);
+        ->setAdEvents($adEvents);
 
     // Call the API and handle any network failures.
     try {

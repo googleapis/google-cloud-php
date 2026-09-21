@@ -1,4 +1,0 @@
-deep-copy-regex:
-    - source: /google/cloud/video/stitcher/(v1)/.*-php/(.*)
-      dest: /owl-bot-staging/VideoStitcher/$1/$2
-api-name: VideoStitcher

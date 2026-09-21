@@ -35,6 +35,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\Call;
 use Google\ApiCore\InsecureRequestBuilder;
 use Google\ApiCore\RequestBuilder;
+use Google\ApiCore\ResumableUpload\ResumableUploadTransportInterface;
 use Google\ApiCore\ServerStream;
 use Google\ApiCore\ServiceAddressTrait;
 use Google\ApiCore\Transport\Rest\RestServerStreamingCall;
@@ -48,7 +49,7 @@ use Psr\Http\Message\ResponseInterface;
 /**
  * A REST based transport implementation.
  */
-class RestTransport implements TransportInterface
+class RestTransport implements TransportInterface, ResumableUploadTransportInterface
 {
     use ValidationTrait;
     use ServiceAddressTrait;
@@ -222,6 +223,31 @@ class RestTransport implements TransportInterface
             ),
             $call->getDescriptor()
         );
+    }
+
+    /**
+     * Sends a raw PSR-7 request.
+     *
+     * @param RequestInterface $request
+     * @param array            $options
+     * @return \Psr\Http\Message\ResponseInterface|\GuzzleHttp\Promise\PromiseInterface
+     */
+    public function sendRawRequest(RequestInterface $request, array $options = [])
+    {
+        return ($this->httpHandler)($request, $options);
+    }
+
+    /**
+     * Builds a PSR-7 request.
+     *
+     * @param string   $method
+     * @param ?Message $message
+     * @param array    $headers
+     * @return RequestInterface
+     */
+    public function buildRequest(string $method, ?Message $message = null, array $headers = []): RequestInterface
+    {
+        return $this->requestBuilder->build($method, $message, $headers);
     }
 
     /**

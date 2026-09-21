@@ -39,9 +39,9 @@ class ListMinorVersionsRequest extends \Google\Protobuf\Internal\Message
      */
     protected $page_token = '';
     /**
-     * Optional. An expression for filtering the results of the request.
-     * Only shapeFamily and gcp_oracle_zone_id are supported in this format:
-     * `shape_family="{shapeFamily}" AND
+     * Optional. An expression for filtering the results of the request. Only the
+     * `shape_family` and `gcp_oracle_zone_id` fields are supported in the
+     * following format: `shape_family="{shape_family}" AND
      * gcp_oracle_zone_id="{gcp_oracle_zone_id}"`.
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -81,9 +81,9 @@ class ListMinorVersionsRequest extends \Google\Protobuf\Internal\Message
      *           fields except the filter should remain the same as in the request that
      *           provided this page token.
      *     @type string $filter
-     *           Optional. An expression for filtering the results of the request.
-     *           Only shapeFamily and gcp_oracle_zone_id are supported in this format:
-     *           `shape_family="{shapeFamily}" AND
+     *           Optional. An expression for filtering the results of the request. Only the
+     *           `shape_family` and `gcp_oracle_zone_id` fields are supported in the
+     *           following format: `shape_family="{shape_family}" AND
      *           gcp_oracle_zone_id="{gcp_oracle_zone_id}"`.
      * }
      */
@@ -181,9 +181,9 @@ class ListMinorVersionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. An expression for filtering the results of the request.
-     * Only shapeFamily and gcp_oracle_zone_id are supported in this format:
-     * `shape_family="{shapeFamily}" AND
+     * Optional. An expression for filtering the results of the request. Only the
+     * `shape_family` and `gcp_oracle_zone_id` fields are supported in the
+     * following format: `shape_family="{shape_family}" AND
      * gcp_oracle_zone_id="{gcp_oracle_zone_id}"`.
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -195,9 +195,9 @@ class ListMinorVersionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. An expression for filtering the results of the request.
-     * Only shapeFamily and gcp_oracle_zone_id are supported in this format:
-     * `shape_family="{shapeFamily}" AND
+     * Optional. An expression for filtering the results of the request. Only the
+     * `shape_family` and `gcp_oracle_zone_id` fields are supported in the
+     * following format: `shape_family="{shape_family}" AND
      * gcp_oracle_zone_id="{gcp_oracle_zone_id}"`.
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>

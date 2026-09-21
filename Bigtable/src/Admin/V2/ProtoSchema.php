@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * Represents a protobuf schema.
+ * Represents a collection of protobuf schemas.
  *
  * Generated from protobuf message <code>google.bigtable.admin.v2.ProtoSchema</code>
  */

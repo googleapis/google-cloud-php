@@ -47,12 +47,6 @@ class PgPartitionedDmlTest extends SystemTestCase
 
         $db = self::$database;
 
-        $db->updateDdl('CREATE TABLE IF NOT EXISTS ' . self::PDML_TABLE . '(
-            id bigint NOT NULL,
-            stringField varchar(1024),
-            boolField BOOL,
-            PRIMARY KEY(id)
-        )')->pollUntilComplete();
 
         $this->seedTable();
 

@@ -11,10 +11,10 @@ use Google\Protobuf\RepeatedField;
 /**
  * Configuration for a custom dictionary created from a data source of any size
  * up to the maximum size defined in the
- * [limits](https://cloud.google.com/sensitive-data-protection/limits) page. The
- * artifacts of dictionary creation are stored in the specified Cloud Storage
- * location. Consider using `CustomInfoType.Dictionary` for smaller dictionaries
- * that satisfy the size requirements.
+ * [limits](https://docs.cloud.google.com/sensitive-data-protection/limits)
+ * page. The artifacts of dictionary creation are stored in the specified Cloud
+ * Storage location. Consider using `CustomInfoType.Dictionary` for smaller
+ * dictionaries that satisfy the size requirements.
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.LargeCustomDictionaryConfig</code>
  */

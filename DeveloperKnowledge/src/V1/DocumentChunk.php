@@ -61,6 +61,14 @@ class DocumentChunk extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.developers.knowledge.v1.Document document = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $document = null;
+    /**
+     * Output only. Represents the relevance score of the chunk to the search
+     * query. Higher score indicates higher chunk relevance. The score is in range
+     * [0.0, 1.0].
+     *
+     * Generated from protobuf field <code>optional double relevance_score = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $relevance_score = null;
 
     /**
      * Constructor.
@@ -93,6 +101,10 @@ class DocumentChunk extends \Google\Protobuf\Internal\Message
      *           or
      *           [DeveloperKnowledge.BatchGetDocuments][google.developers.knowledge.v1.DeveloperKnowledge.BatchGetDocuments]
      *           to fetch the full document content.
+     *     @type float $relevance_score
+     *           Output only. Represents the relevance score of the chunk to the search
+     *           query. Higher score indicates higher chunk relevance. The score is in range
+     *           [0.0, 1.0].
      * }
      */
     public function __construct($data = NULL) {
@@ -244,6 +256,46 @@ class DocumentChunk extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Developers\DeveloperKnowledge\V1\Document::class);
         $this->document = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Represents the relevance score of the chunk to the search
+     * query. Higher score indicates higher chunk relevance. The score is in range
+     * [0.0, 1.0].
+     *
+     * Generated from protobuf field <code>optional double relevance_score = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return float
+     */
+    public function getRelevanceScore()
+    {
+        return isset($this->relevance_score) ? $this->relevance_score : 0.0;
+    }
+
+    public function hasRelevanceScore()
+    {
+        return isset($this->relevance_score);
+    }
+
+    public function clearRelevanceScore()
+    {
+        unset($this->relevance_score);
+    }
+
+    /**
+     * Output only. Represents the relevance score of the chunk to the search
+     * query. Higher score indicates higher chunk relevance. The score is in range
+     * [0.0, 1.0].
+     *
+     * Generated from protobuf field <code>optional double relevance_score = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setRelevanceScore($var)
+    {
+        GPBUtil::checkDouble($var);
+        $this->relevance_score = $var;
 
         return $this;
     }

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -89,9 +89,7 @@ final class LocalInventoryServiceClient
      *
      * @internal
      */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/content',
-    ];
+    public static $serviceScopes = ['https://www.googleapis.com/auth/content'];
 
     private static function getClientDefaults()
     {
@@ -363,8 +361,10 @@ final class LocalInventoryServiceClient
      *
      * @experimental
      */
-    public function listLocalInventories(ListLocalInventoriesRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listLocalInventories(
+        ListLocalInventoriesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListLocalInventories', $request, $callOptions);
     }
 }

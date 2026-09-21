@@ -26,6 +26,13 @@ class GetMessageRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $name = '';
+    /**
+     * Optional. Specifies the desired output syntax for the Chat message
+     * `formatted_text` field.
+     *
+     * Generated from protobuf field <code>.google.chat.v1.MarkupSyntax markup_syntax = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $markup_syntax = 0;
 
     /**
      * @param string $name Required. Resource name of the message.
@@ -61,6 +68,9 @@ class GetMessageRequest extends \Google\Protobuf\Internal\Message
      *           `clientAssignedMessageId` field for `{message}`. For details, see [Name a
      *           message]
      *           (https://developers.google.com/workspace/chat/create-messages#name_a_created_message).
+     *     @type int $markup_syntax
+     *           Optional. Specifies the desired output syntax for the Chat message
+     *           `formatted_text` field.
      * }
      */
     public function __construct($data = NULL) {
@@ -100,6 +110,34 @@ class GetMessageRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies the desired output syntax for the Chat message
+     * `formatted_text` field.
+     *
+     * Generated from protobuf field <code>.google.chat.v1.MarkupSyntax markup_syntax = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getMarkupSyntax()
+    {
+        return $this->markup_syntax;
+    }
+
+    /**
+     * Optional. Specifies the desired output syntax for the Chat message
+     * `formatted_text` field.
+     *
+     * Generated from protobuf field <code>.google.chat.v1.MarkupSyntax markup_syntax = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setMarkupSyntax($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Apps\Chat\V1\MarkupSyntax::class);
+        $this->markup_syntax = $var;
 
         return $this;
     }

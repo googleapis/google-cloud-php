@@ -16,10 +16,10 @@ use Google\Protobuf\RepeatedField;
 class RequestedOptions extends \Google\Protobuf\Internal\Message
 {
     /**
-     * If run with an InspectTemplate, a snapshot of its state at the time of
-     * this run.
+     * Output only. If run with an InspectTemplate, a snapshot of its state at
+     * the time of this run.
      *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.InspectTemplate snapshot_inspect_template = 1;</code>
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.InspectTemplate snapshot_inspect_template = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $snapshot_inspect_template = null;
     /**
@@ -36,8 +36,8 @@ class RequestedOptions extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Dlp\V2\InspectTemplate $snapshot_inspect_template
-     *           If run with an InspectTemplate, a snapshot of its state at the time of
-     *           this run.
+     *           Output only. If run with an InspectTemplate, a snapshot of its state at
+     *           the time of this run.
      *     @type \Google\Cloud\Dlp\V2\InspectJobConfig $job_config
      *           Inspect config.
      * }
@@ -48,10 +48,10 @@ class RequestedOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If run with an InspectTemplate, a snapshot of its state at the time of
-     * this run.
+     * Output only. If run with an InspectTemplate, a snapshot of its state at
+     * the time of this run.
      *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.InspectTemplate snapshot_inspect_template = 1;</code>
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.InspectTemplate snapshot_inspect_template = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\Dlp\V2\InspectTemplate|null
      */
     public function getSnapshotInspectTemplate()
@@ -70,10 +70,10 @@ class RequestedOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If run with an InspectTemplate, a snapshot of its state at the time of
-     * this run.
+     * Output only. If run with an InspectTemplate, a snapshot of its state at
+     * the time of this run.
      *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.InspectTemplate snapshot_inspect_template = 1;</code>
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.InspectTemplate snapshot_inspect_template = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Dlp\V2\InspectTemplate $var
      * @return $this
      */
