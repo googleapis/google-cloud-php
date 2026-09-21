@@ -55,13 +55,6 @@ class RepoComplianceCommand extends Command
             ->addOption('token', 't', InputOption::VALUE_REQUIRED, 'Github token to use for authentication')
             ->addOption('format', 'f', InputOption::VALUE_REQUIRED, 'can be "ci" or "table"', 'table')
             ->addOption('packagist-token', 'p', InputOption::VALUE_REQUIRED, 'Packagist token for the webhook')
-            ->addOption(
-                'skip',
-                null,
-                InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY,
-                'key:value pair of component to compliance type to skip. Compliance types are ' .
-                'repo, packagist, webhook, and teams. For example: "--skip Gax:teams,repo --skip Bigtable:teams"'
-            )
         ;
     }
 
@@ -89,13 +82,6 @@ class RepoComplianceCommand extends Command
         ];
         (clone $table)->setHeaders($headers)->render();
 
-        // Allow skipping checks via --skip option
-        $skips = array_reduce($input->getOption('skip'), function ($list, $pair) {
-            [$key, $val] = explode(':', $pair);
-            $list[$key] = explode(',', $val);
-            return $list;
-        });
-
         $components = $input->getOption('component')
             ? array_map(fn ($c) => new Component($c), $input->getOption('component'))
             : Component::getComponents();
@@ -114,32 +100,30 @@ class RepoComplianceCommand extends Command
                     $details[0] = str_replace('googleapis/', '', $component->getRepoName());
                     continue;
                 }
-                [$repoCheck, $packagistCheck, $webhookCheck, $teamsCheck] = array_map(
-                    fn($type) => in_array($type, $skips[$component->getName()] ?? []) ? 'skipped' : true,
-                    ['repo', 'packagist', 'webhook', 'teams']
-                );
-                if ($repoCheck !== 'skipped' && !$this->checkSettingsCompliance($details)) {
+                $repoCheck = $packagistCheck = $webhookCheck = $teamsCheck = true;
+                if (!$this->checkSettingsCompliance($component, $details)) {
                     $repoCheck = false;
-                    $refreshDetails |= $this->askFixSettingsCompliance($input, $output, $details);
+                    $refreshDetails |= $this->askFixSettingsCompliance($input, $output, $component, $details);
                 }
-                if ($webhookCheck !== 'skipped' && !$this->checkWebhookCompliance($details)) {
+                if (!$this->checkWebhookCompliance($details)) {
                     $webhookCheck = $this->github->token ? ($isNewComponent ? 'skipped' : false) : null;
                     $refreshDetails |= $this->askFixWebhookCompliance($input, $output, $details);
                 }
-                if ($packagistCheck !== 'skipped' && !$this->checkPackagistCompliance($details)) {
+                if (!$this->checkPackagistCompliance($details)) {
                     // New components don't have packagist config, so bypass for CI.
                     $packagistCheck = $isNewComponent ? 'skipped' : false;
                     $refreshDetails |= $this->askFixPackagistCompliance($input, $output, $details);
                     $details['packagist_config'] ??= '**PACKAGE NOT FOUND**';
                 }
-                if ($teamsCheck !== 'skipped' && !$this->checkTeamCompliance($details)) {
+                if (!$this->checkTeamCompliance($details)) {
                     $teamsCheck = $this->github->token ? false : null;
                     $refreshDetails |= $this->askFixTeamCompliance($input, $output, $component->getRepoName());
                 }
             } while ($refreshDetails);
 
             $details['compliant'] = implode("\n", [
-                sprintf('%s [repo] Issues, Projects, Wiki, Pages, and Discussion are disabled', $emoji($repoCheck)),
+                sprintf('%s [repo] Issues, Projects, Wiki, Pages, Discussions and Pull Requests are ' .
+                    'configured correctly', $emoji($repoCheck)),
                 sprintf('%s [webhook] Packagist webhook is configured', $emoji($webhookCheck)),
                 sprintf('%s [packagist] Packagist maintainer is "google-cloud"', $emoji($packagistCheck)),
                 sprintf('%s [teams] Github teams permissions are configured correctly', $emoji($teamsCheck)),
@@ -167,13 +151,40 @@ class RepoComplianceCommand extends Command
         return Command::SUCCESS;
     }
 
-    private function checkSettingsCompliance(array $details)
+    /**
+     * The GitHub settings each split repository is expected to have.
+     *
+     * Migrated repositories have issues and pull requests which our commit
+     * history links to, and disabling either would hide them, so both tabs stay
+     * visible. New issues are turned away by the issue template config, and new
+     * pull requests by the "collaborators only" creation policy.
+     */
+    private function getExpectedSettings(Component $component): array
     {
-        return $details['repo_config'] === "issues: false
-projects: false
-wiki: false
-pages: false
-discussions: false";
+        $isMigrated = $component->isMigratedRepo();
+
+        return [
+            'has_issues' => $isMigrated,
+            'has_projects' => false,
+            'has_wiki' => false,
+            'has_pages' => false,
+            'has_discussions' => false,
+            'has_pull_requests' => $isMigrated,
+        ] + ($isMigrated ? ['pull_request_creation_policy' => 'collaborators_only'] : []);
+    }
+
+    private function formatSettings(array $settings): string
+    {
+        return implode("\n", array_map(
+            fn ($v, $k) => sprintf('%s: %s', str_replace('has_', '', $k), var_export($v, true)),
+            $settings,
+            array_keys($settings),
+        ));
+    }
+
+    private function checkSettingsCompliance(Component $component, array $details)
+    {
+        return $details['repo_config'] === $this->formatSettings($this->getExpectedSettings($component));
     }
 
     private function checkTeamCompliance(array $details)
@@ -184,28 +195,25 @@ discussions: false";
         ));
     }
 
-    private function askFixSettingsCompliance(InputInterface $input, OutputInterface $output, array $details)
-    {
+    private function askFixSettingsCompliance(
+        InputInterface $input,
+        OutputInterface $output,
+        Component $component,
+        array $details
+    ) {
         if (!$this->github->token || $input->getOption('format') == 'ci') {
             // without a token, or in CI mode, don't ask to fix compliance
             return false;
         }
-        $explodedConfig = array_map(fn ($line) => explode(': ', $line), explode("\n", $details['repo_config']));
-        $fields = array_combine(array_column($explodedConfig, 0), array_column($explodedConfig, 1));
-        $fieldsToUpdate = array_keys(array_filter($fields, fn ($value) => $value === 'true'));
+        $expected = $this->getExpectedSettings($component);
         $question = new ConfirmationQuestion(sprintf(
-            'Repo %s has the following configuration enabled: %s. Would you like to disable them? (Y/n)',
+            "Repo %s has the following configuration:\n%s\n\nExpected:\n%s\n\nWould you like to update it? (Y/n)",
             $details['name'],
-            implode(', ', $fieldsToUpdate)
+            $details['repo_config'],
+            $this->formatSettings($expected)
         ), true);
         if ($this->getHelper('question')->ask($input, $output, $question)) {
-            $this->github->updateRepoDetails(
-                'googleapis/' . $details['name'],
-                array_fill_keys(array_map(
-                    fn ($key) => 'has_' . $key,
-                    array_keys($fields)
-                ), false)
-            );
+            $this->github->updateRepoDetails('googleapis/' . $details['name'], $expected);
             return true;
         }
         return false;
@@ -297,22 +305,15 @@ discussions: false";
             $packagistDetails = implode("\n", $packagistDetails);
         }
 
-        // use "array_intersect_key" to filter out fields that were not requested.
-        $fields = array_map(
-            fn ($field) => var_export($field, true),
-            array_intersect_key(
-                $repoDetails,
-                array_flip(['has_issues', 'has_projects', 'has_wiki', 'has_pages', 'has_discussions'])
-            )
-        );
+        // only display the settings we have an expectation for, in a stable order.
+        $actual = [];
+        foreach (array_keys($this->getExpectedSettings($component)) as $key) {
+            $actual[$key] = $repoDetails[$key] ?? null;
+        }
 
         return [
             'name' => $repoDetails['name'],
-            'repo_config' => implode("\n", array_map(
-                fn ($v, $k) => sprintf('%s: %s', str_replace('has_', '', $k), $v),
-                $fields,
-                array_keys($fields),
-            )),
+            'repo_config' => $this->formatSettings($actual),
             'packagist_config' => $packagistDetails,
             'teams' => $this->getRepoTeamDetails($component),
         ];

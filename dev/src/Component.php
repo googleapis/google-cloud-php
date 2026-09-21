@@ -29,6 +29,11 @@ class Component
 {
     const VERSION_REGEX = '/^V([0-9])?(p[0-9])?(beta|alpha)?[0-9]?$/';
     private const PROTOBUF = 'google/protobuf';
+    /**
+     * Components whose repositories existed before they were migrated into this
+     * monorepo, and which therefore have issues and pull requests of their own.
+     */
+    private const MIGRATED_COMPONENTS = ['Auth', 'Gax', 'Jwt'];
     public const ROOT_DIR = __DIR__ . '/../../';
     private string $path;
     private string $releaseLevel;
@@ -79,6 +84,16 @@ class Component
     public function getName(): string
     {
         return $this->name;
+    }
+
+    /**
+     * Whether this component's repository existed before it was migrated into
+     * this monorepo. Those repositories have issues and pull requests which our
+     * commit history links to, so they keep both tabs visible.
+     */
+    public function isMigratedRepo(): bool
+    {
+        return in_array($this->name, self::MIGRATED_COMPONENTS);
     }
 
     public function getPath(): string

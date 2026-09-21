@@ -38,7 +38,6 @@ class ComponentNewCommandTest extends TestCase
     private static $expectedFiles = [
         '.OwlBot.yaml' => '.OwlBot.yaml.test', // so OwlBot doesn't read the test file
         '.gitattributes' => null,
-        '.github/pull_request_template.md' => null,
         'CONTRIBUTING.md' => null,
         'LICENSE' => null,
         'README.md' => null,

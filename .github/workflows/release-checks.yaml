@@ -146,7 +146,4 @@ jobs:
           ./dev/google-cloud repo:compliance \
             --format=ci  \
             -t $GH_TOKEN \
-            -p $PG_TOKEN \
-            --skip Gax:repo \
-            --skip Auth:repo \
-            --skip Jwt:repo # Skip repo check for Gax, Auth, and Jwt because issues are enabled on those repos
+            -p $PG_TOKEN
