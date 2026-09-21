@@ -183,6 +183,7 @@ class ResumableUploadState
             $this->buffer = null;
         }
 
+        // Note: strict comparison, as empty() would also match a buffer holding the byte "0".
         if ($this->buffer === '') {
             $this->buffer = null;
         }

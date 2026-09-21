@@ -67,6 +67,7 @@ class ResumableUploadClient
     private const DEFAULT_CHUNK_SIZE = 8388608;
     private const DEFAULT_TOTAL_TIMEOUT_MILLIS = 600000;
     private const MAX_RECOVERY_ATTEMPTS = 3;
+    private const MILLIS_PER_SECOND = 1000;
 
     private ?ResponseInterface $finalResponse = null;
     /** @var callable|null */
@@ -162,10 +163,13 @@ class ResumableUploadClient
         $stallRate = $stallControlEnabled ? $stallRate : null;
         $stallTimeout = $stallControlEnabled ? $stallTimeout : null;
 
-        $totalTimeoutMillis = $resumableUploadOptions['totalTimeoutMillis']
-            ?? ($stallControlEnabled ? null : self::DEFAULT_TOTAL_TIMEOUT_MILLIS);
+        $totalTimeoutMillis = $resumableUploadOptions['totalTimeoutMillis'] ?? self::DEFAULT_TOTAL_TIMEOUT_MILLIS;
+        if ($stallControlEnabled && !isset($resumableUploadOptions['totalTimeoutMillis'])) {
+            // stall control replaces the default global deadline
+            $totalTimeoutMillis = null;
+        }
         $globalDeadlineMs = $totalTimeoutMillis !== null
-            ? $this->getMicrotime() * 1000 + (float) $totalTimeoutMillis
+            ? $this->getMicrotime() * self::MILLIS_PER_SECOND + (float) $totalTimeoutMillis
             : null;
 
         $state = new ResumableUploadState(
@@ -326,10 +330,10 @@ class ResumableUploadClient
         if ($state->isStallControlEnabled()) {
             $chunkTimeout = $state->calculateNextChunkTimeout($chunkSizeMiB);
             if ($globalDeadlineMs !== null) {
-                $globalRemaining = ($globalDeadlineMs / 1000.0) - $now;
+                $globalRemaining = ($globalDeadlineMs / self::MILLIS_PER_SECOND) - $now;
                 $chunkTimeout = min($chunkTimeout, $globalRemaining);
             }
-            $timeoutMillis = max(1, (int) round($chunkTimeout * 1000));
+            $timeoutMillis = max(1, (int) round($chunkTimeout * self::MILLIS_PER_SECOND));
         }
 
         $response = $this->sendRequest(
@@ -389,10 +393,10 @@ class ResumableUploadClient
         if ($state->isStallControlEnabled()) {
             $stallTimeout = (float) $state->stallTimeout;
             if ($globalDeadlineMs !== null) {
-                $remaining = ($globalDeadlineMs / 1000.0) - $now;
+                $remaining = ($globalDeadlineMs / self::MILLIS_PER_SECOND) - $now;
                 $stallTimeout = min($stallTimeout, $remaining);
             }
-            $timeoutMillis = max(1, (int) round($stallTimeout * 1000));
+            $timeoutMillis = max(1, (int) round($stallTimeout * self::MILLIS_PER_SECOND));
         }
 
         $headers = ['X-Goog-Upload-Command' => 'query'];
@@ -448,7 +452,7 @@ class ResumableUploadClient
 
         $callOptions = [];
         if ($timeoutMillis !== null && $timeoutMillis > 0) {
-            $callOptions['timeout'] = $timeoutMillis / 1000;
+            $callOptions['timeout'] = $timeoutMillis / self::MILLIS_PER_SECOND;
         }
 
         if ($retrySettings !== null) {
@@ -481,7 +485,7 @@ class ResumableUploadClient
         $now = $this->getMicrotime();
 
         // 1. Check global deadline if set
-        if ($globalDeadlineMs !== null && $now * 1000 >= $globalDeadlineMs) {
+        if ($globalDeadlineMs !== null && $now * self::MILLIS_PER_SECOND >= $globalDeadlineMs) {
             throw new ApiException(
                 'Resumable upload total timeout exceeded.',
                 Code::DEADLINE_EXCEEDED,

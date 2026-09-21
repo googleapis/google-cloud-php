@@ -18,10 +18,13 @@
 namespace Google\Generator\Tests\Conformance;
 
 use Google\ApiCore\ApiException;
+use Google\ApiCore\InsecureCredentialsWrapper;
 use Google\ApiCore\ResumableUpload\ResumableUpload;
+use Google\Auth\HttpHandler\HttpHandlerFactory;
 use Google\Showcase\V1beta1\Client\ResumableUploadServiceClient;
 use Google\Showcase\V1beta1\UploadMediaRequest;
 use Google\Showcase\V1beta1\UploadMediaResponse;
+use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Utils;
 use PHPUnit\Framework\TestCase;
 
@@ -45,18 +48,18 @@ class ResumableUploadTest extends TestCase
             'apiEndpoint' => self::SHOWCASE_HOST,
         ];
         if (file_exists(self::PEM_PATH)) {
-            $httpHandler = \Google\Auth\HttpHandler\HttpHandlerFactory::build(
-                new \GuzzleHttp\Client(['verify' => self::PEM_PATH])
+            $httpHandler = HttpHandlerFactory::build(
+                new Client(['verify' => self::PEM_PATH])
             );
             $options['transportConfig'] = [
                 'rest' => [
                     'httpHandler' => [$httpHandler, 'async'],
                 ],
             ];
-            $options['credentials'] = new \Google\ApiCore\InsecureCredentialsWrapper();
+            $options['credentials'] = new InsecureCredentialsWrapper();
         } else {
             $options['hasEmulator'] = true;
-            $options['credentials'] = new \Google\ApiCore\InsecureCredentialsWrapper();
+            $options['credentials'] = new InsecureCredentialsWrapper();
         }
 
         $client = new ResumableUploadServiceClient($options);
