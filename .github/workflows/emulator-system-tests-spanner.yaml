@@ -15,7 +15,7 @@ permissions:
 jobs:
   test:
     name: Spanner
-    runs-on: 'ubuntu-24.04'
+    runs-on: 'ubuntu-26.04'
     services:
       emulator:
         image: gcr.io/cloud-spanner-emulator/emulator:1.5.58@sha256:e5bb3535cb3c1e821802531efd9a1d29bbf9804db57a4ae36731764926e3bcb8
