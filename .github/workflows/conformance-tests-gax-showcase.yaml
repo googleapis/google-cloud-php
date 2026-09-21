@@ -11,7 +11,7 @@ jobs:
     name: GAPIC Showcase Conformance Tests
     runs-on: ubuntu-latest
     env:
-      GAPIC_SHOWCASE_VERSION: 0.42.0
+      GAPIC_SHOWCASE_VERSION: 0.44.0
       OS: linux
       ARCH: amd64
     steps:

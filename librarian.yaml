@@ -366,6 +366,13 @@ libraries:
           additional_protos:
             - google/cloud/location/locations.proto
             - google/iam/v1/iam_policy.proto
+          staging_subdir: v1
+      - path: google/cloud/backupdr/v1beta
+        php:
+          additional_protos:
+            - google/cloud/location/locations.proto
+            - google/iam/v1/iam_policy.proto
+          staging_subdir: v1beta
     copyright_year: "2026"
     output: BackupDr
   - name: baremetalsolution
@@ -1391,6 +1398,13 @@ libraries:
           additional_protos:
             - google/cloud/location/locations.proto
             - google/iam/v1/iam_policy.proto
+          staging_subdir: v1
+      - path: google/cloud/networkservices/v1beta1
+        php:
+          additional_protos:
+            - google/cloud/location/locations.proto
+            - google/iam/v1/iam_policy.proto
+          staging_subdir: v1beta1
     copyright_year: "2026"
     output: NetworkServices
   - name: notebooks
