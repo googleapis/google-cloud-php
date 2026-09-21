@@ -106,6 +106,9 @@ class BatchJob implements JobInterface
         $q = msg_get_queue($sysvKey);
         $items = [];
         $lastInvoked = microtime(true);
+        $maxSize = is_array($stat = @msg_stat_queue($q)) && isset($stat['msg_qbytes'])
+            ? $stat['msg_qbytes']
+            : 8192;
 
         if (!is_null($this->bootstrapFile)) {
             require_once($this->bootstrapFile);
@@ -118,7 +121,7 @@ class BatchJob implements JobInterface
                 $q,
                 0,
                 $type,
-                8192,
+                $maxSize,
                 $message,
                 true,
                 0, // blocking mode
