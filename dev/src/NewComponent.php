@@ -183,6 +183,7 @@ class NewComponent
 
     private static function isCommonProtos(string $protoContents): bool
     {
+        // Any package which does not contain service clients is considered "Common Protos"
         return !preg_match('/^\s*service\s+[A-Za-z0-9_]+/m', $protoContents);
     }
 
@@ -211,6 +212,7 @@ class NewComponent
             $matches
         )) {
             if ($isCommonProtos) {
+                // common protos do not have an API shortname
                 return '';
             }
             throw new RuntimeException('short name not found in proto file');
