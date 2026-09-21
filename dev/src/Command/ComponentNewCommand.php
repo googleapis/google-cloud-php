@@ -52,6 +52,7 @@ class ComponentNewCommand extends Command
         'VERSION',
     ];
     private const TEMPLATE_FILES = [
+        '.github/pull_request_template.md.twig',
         '.OwlBot.yaml.twig',
         'owlbot.py.twig',
         'phpunit.xml.dist.twig',

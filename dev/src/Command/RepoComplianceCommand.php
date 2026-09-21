@@ -118,9 +118,9 @@ class RepoComplianceCommand extends Command
                     fn($type) => in_array($type, $skips[$component->getName()] ?? []) ? 'skipped' : true,
                     ['repo', 'packagist', 'webhook', 'teams']
                 );
-                if ($repoCheck !== 'skipped' && !$this->checkSettingsCompliance($component, $details)) {
+                if ($repoCheck !== 'skipped' && !$this->checkSettingsCompliance($details)) {
                     $repoCheck = false;
-                    $refreshDetails |= $this->askFixSettingsCompliance($input, $output, $component, $details);
+                    $refreshDetails |= $this->askFixSettingsCompliance($input, $output, $details);
                 }
                 if ($webhookCheck !== 'skipped' && !$this->checkWebhookCompliance($details)) {
                     $webhookCheck = $this->github->token ? ($isNewComponent ? 'skipped' : false) : null;
@@ -139,8 +139,7 @@ class RepoComplianceCommand extends Command
             } while ($refreshDetails);
 
             $details['compliant'] = implode("\n", [
-                sprintf('%s [repo] Issues, Projects, Wiki, Pages, Discussions and Pull Requests are ' .
-                    'configured correctly', $emoji($repoCheck)),
+                sprintf('%s [repo] Issues, Projects, Wiki, Pages, and Discussion are disabled', $emoji($repoCheck)),
                 sprintf('%s [webhook] Packagist webhook is configured', $emoji($webhookCheck)),
                 sprintf('%s [packagist] Packagist maintainer is "google-cloud"', $emoji($packagistCheck)),
                 sprintf('%s [teams] Github teams permissions are configured correctly', $emoji($teamsCheck)),
@@ -168,41 +167,13 @@ class RepoComplianceCommand extends Command
         return Command::SUCCESS;
     }
 
-    /**
-     * The GitHub settings each split repository is expected to have.
-     *
-     * Repositories which were moved into this monorepo (e.g. Auth, Gax and Jwt)
-     * have issues and pull requests which our commit history links to. Hiding
-     * those tabs would 404 those links, so instead they stay visible and new
-     * contributions are turned away by the issue template config (issues) and
-     * the "collaborators only" creation policy (pull requests).
-     */
-    private function getExpectedSettings(Component $component): array
+    private function checkSettingsCompliance(array $details)
     {
-        $hasHistory = file_exists($component->getPath() . '/.github/ISSUE_TEMPLATE/config.yml');
-
-        return [
-            'has_issues' => $hasHistory,
-            'has_projects' => false,
-            'has_wiki' => false,
-            'has_pages' => false,
-            'has_discussions' => false,
-            'has_pull_requests' => $hasHistory,
-        ] + ($hasHistory ? ['pull_request_creation_policy' => 'collaborators_only'] : []);
-    }
-
-    private function formatSettings(array $settings): string
-    {
-        return implode("\n", array_map(
-            fn ($v, $k) => sprintf('%s: %s', str_replace('has_', '', $k), var_export($v, true)),
-            $settings,
-            array_keys($settings),
-        ));
-    }
-
-    private function checkSettingsCompliance(Component $component, array $details)
-    {
-        return $details['repo_config'] === $this->formatSettings($this->getExpectedSettings($component));
+        return $details['repo_config'] === "issues: false
+projects: false
+wiki: false
+pages: false
+discussions: false";
     }
 
     private function checkTeamCompliance(array $details)
@@ -213,25 +184,28 @@ class RepoComplianceCommand extends Command
         ));
     }
 
-    private function askFixSettingsCompliance(
-        InputInterface $input,
-        OutputInterface $output,
-        Component $component,
-        array $details
-    ) {
+    private function askFixSettingsCompliance(InputInterface $input, OutputInterface $output, array $details)
+    {
         if (!$this->github->token || $input->getOption('format') == 'ci') {
             // without a token, or in CI mode, don't ask to fix compliance
             return false;
         }
-        $expected = $this->getExpectedSettings($component);
+        $explodedConfig = array_map(fn ($line) => explode(': ', $line), explode("\n", $details['repo_config']));
+        $fields = array_combine(array_column($explodedConfig, 0), array_column($explodedConfig, 1));
+        $fieldsToUpdate = array_keys(array_filter($fields, fn ($value) => $value === 'true'));
         $question = new ConfirmationQuestion(sprintf(
-            "Repo %s has the following configuration:\n%s\n\nExpected:\n%s\n\nWould you like to update it? (Y/n)",
+            'Repo %s has the following configuration enabled: %s. Would you like to disable them? (Y/n)',
             $details['name'],
-            $details['repo_config'],
-            $this->formatSettings($expected)
+            implode(', ', $fieldsToUpdate)
         ), true);
         if ($this->getHelper('question')->ask($input, $output, $question)) {
-            $this->github->updateRepoDetails('googleapis/' . $details['name'], $expected);
+            $this->github->updateRepoDetails(
+                'googleapis/' . $details['name'],
+                array_fill_keys(array_map(
+                    fn ($key) => 'has_' . $key,
+                    array_keys($fields)
+                ), false)
+            );
             return true;
         }
         return false;
@@ -323,15 +297,22 @@ class RepoComplianceCommand extends Command
             $packagistDetails = implode("\n", $packagistDetails);
         }
 
-        // only display the settings we have an expectation for, in a stable order.
-        $actual = [];
-        foreach (array_keys($this->getExpectedSettings($component)) as $key) {
-            $actual[$key] = $repoDetails[$key] ?? null;
-        }
+        // use "array_intersect_key" to filter out fields that were not requested.
+        $fields = array_map(
+            fn ($field) => var_export($field, true),
+            array_intersect_key(
+                $repoDetails,
+                array_flip(['has_issues', 'has_projects', 'has_wiki', 'has_pages', 'has_discussions'])
+            )
+        );
 
         return [
             'name' => $repoDetails['name'],
-            'repo_config' => $this->formatSettings($actual),
+            'repo_config' => implode("\n", array_map(
+                fn ($v, $k) => sprintf('%s: %s', str_replace('has_', '', $k), $v),
+                $fields,
+                array_keys($fields),
+            )),
             'packagist_config' => $packagistDetails,
             'teams' => $this->getRepoTeamDetails($component),
         ];

@@ -356,7 +356,6 @@ class RepoSplitCommand extends Command
                 'has_wiki' => false,
                 'has_pages' => false,
                 'has_discussions' => false,
-                'has_pull_requests' => false,
                 'visibility' => 'public',
             ]);
 
