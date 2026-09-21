@@ -1,5 +1,219 @@
 # Changelog
 
+## 0.346.0
+
+<details><summary>googleads/ad-manager 0.14.0</summary>
+
+
+
+### Features
+
+* update API sources and regenerate ([#9696](https://github.com/googleapis/google-cloud-php/issues/9696)) ([c318adb](https://github.com/googleapis/google-cloud-php/commit/c318adbafeb44bf92e6ebd258ae65f8ea7140da8))
+
+</details>
+
+<details><summary>googleads/data-manager 0.9.0</summary>
+
+
+
+### Features
+
+* update API sources and regenerate ([#9696](https://github.com/googleapis/google-cloud-php/issues/9696)) ([c318adb](https://github.com/googleapis/google-cloud-php/commit/c318adbafeb44bf92e6ebd258ae65f8ea7140da8))
+
+</details>
+
+<details><summary>google/analytics-data 0.27.0</summary>
+
+
+
+### Features
+
+* update API sources and regenerate ([#9696](https://github.com/googleapis/google-cloud-php/issues/9696)) ([c318adb](https://github.com/googleapis/google-cloud-php/commit/c318adbafeb44bf92e6ebd258ae65f8ea7140da8))
+
+</details>
+
+<details><summary>google/cloud-api-gateway 2.3.0</summary>
+
+
+
+### Features
+
+* update API sources and regenerate ([#9696](https://github.com/googleapis/google-cloud-php/issues/9696)) ([c318adb](https://github.com/googleapis/google-cloud-php/commit/c318adbafeb44bf92e6ebd258ae65f8ea7140da8))
+
+</details>
+
+<details><summary>google/apps-meet 0.7.0</summary>
+
+
+
+### Features
+
+* update API sources and regenerate ([#9696](https://github.com/googleapis/google-cloud-php/issues/9696)) ([c318adb](https://github.com/googleapis/google-cloud-php/commit/c318adbafeb44bf92e6ebd258ae65f8ea7140da8))
+
+</details>
+
+<details><summary>google/cloud-auditmanager 0.4.0</summary>
+
+
+
+### Features
+
+* update API sources and regenerate ([#9696](https://github.com/googleapis/google-cloud-php/issues/9696)) ([c318adb](https://github.com/googleapis/google-cloud-php/commit/c318adbafeb44bf92e6ebd258ae65f8ea7140da8))
+
+</details>
+
+<details><summary>google/auth 1.55.0</summary>
+
+
+
+### Features
+
+* add X509 credential source ([#9681](https://github.com/googleapis/google-cloud-php/issues/9681)) ([512ad22](https://github.com/googleapis/google-cloud-php/commit/512ad22d586fb754e2ded9cf75119a8700d7d392))
+
+
+### Bug Fixes
+
+* **Auth:** retain expiration in FileSystemCacheItemPool and return null in CacheTrait ([#9687](https://github.com/googleapis/google-cloud-php/issues/9687)) ([47ff41c](https://github.com/googleapis/google-cloud-php/commit/47ff41caa1e65a1995d849e29a7beab61b2f0aef))
+
+</details>
+
+<details><summary>google/cloud-backupdr 0.15.0</summary>
+
+
+
+### Features
+
+* **google/cloud/backupdr/v1beta:** add backupdr ([#9701](https://github.com/googleapis/google-cloud-php/issues/9701)) ([055b39d](https://github.com/googleapis/google-cloud-php/commit/055b39dac941c8f643bc575058be446acf06773a))
+
+</details>
+
+<details><summary>google/cloud-bigtable 2.28.0</summary>
+
+
+
+### Features
+
+* update API sources and regenerate ([#9696](https://github.com/googleapis/google-cloud-php/issues/9696)) ([c318adb](https://github.com/googleapis/google-cloud-php/commit/c318adbafeb44bf92e6ebd258ae65f8ea7140da8))
+
+</details>
+
+<details><summary>google/cloud-compute 2.14.0</summary>
+
+
+
+### Features
+
+* update API sources and regenerate ([#9696](https://github.com/googleapis/google-cloud-php/issues/9696)) ([c318adb](https://github.com/googleapis/google-cloud-php/commit/c318adbafeb44bf92e6ebd258ae65f8ea7140da8))
+
+</details>
+
+<details><summary>google/cloud-core 1.73.4</summary>
+
+
+
+### Bug Fixes
+
+* **Core:** dynamically set msg_receive buffer size to prevent CPU spin ([#9436](https://github.com/googleapis/google-cloud-php/issues/9436)) ([4299d3d](https://github.com/googleapis/google-cloud-php/commit/4299d3dd9251408096ed6eaf4723a2a9113ed8f4))
+
+</details>
+
+<details><summary>google/cloud-devicestreaming 0.4.0</summary>
+
+
+
+### Features
+
+* update API sources and regenerate ([#9696](https://github.com/googleapis/google-cloud-php/issues/9696)) ([c318adb](https://github.com/googleapis/google-cloud-php/commit/c318adbafeb44bf92e6ebd258ae65f8ea7140da8))
+
+</details>
+
+<details><summary>google/cloud-discoveryengine 1.15.0</summary>
+
+
+
+### Features
+
+* update API sources and regenerate ([#9696](https://github.com/googleapis/google-cloud-php/issues/9696)) ([c318adb](https://github.com/googleapis/google-cloud-php/commit/c318adbafeb44bf92e6ebd258ae65f8ea7140da8))
+
+</details>
+
+<details><summary>google/gax 1.50.0</summary>
+
+
+
+### Features
+
+* **Gax:** add stall control for resumable uploads ([#9682](https://github.com/googleapis/google-cloud-php/issues/9682)) ([8d38dfd](https://github.com/googleapis/google-cloud-php/commit/8d38dfd9c9188de8a664dea642ebfaf598e705d0))
+* **Gax:** support chunkSize on resume and surface actual chunk size ([#9626](https://github.com/googleapis/google-cloud-php/issues/9626)) ([326a61a](https://github.com/googleapis/google-cloud-php/commit/326a61a0e75e4ee684ac48ba150a6ebe652cc3d8))
+
+</details>
+
+<details><summary>firebase/php-jwt 7.2.0</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-kms 2.13.0</summary>
+
+
+
+### Features
+
+* update API sources and regenerate ([#9696](https://github.com/googleapis/google-cloud-php/issues/9696)) ([c318adb](https://github.com/googleapis/google-cloud-php/commit/c318adbafeb44bf92e6ebd258ae65f8ea7140da8))
+
+</details>
+
+<details><summary>google/cloud-networkservices 0.13.0</summary>
+
+
+
+### Features
+
+* **google/cloud/networkservices/v1beta1:** add networkservices ([#9700](https://github.com/googleapis/google-cloud-php/issues/9700)) ([d5da4b7](https://github.com/googleapis/google-cloud-php/commit/d5da4b756498a85954651308d86deba3b0e5b84b))
+
+</details>
+
+<details><summary>google/cloud-pubsub 2.22.0</summary>
+
+
+
+### Features
+
+* update API sources and regenerate ([#9696](https://github.com/googleapis/google-cloud-php/issues/9696)) ([c318adb](https://github.com/googleapis/google-cloud-php/commit/c318adbafeb44bf92e6ebd258ae65f8ea7140da8))
+
+</details>
+
+<details><summary>google/cloud-securesourcemanager 1.11.0</summary>
+
+
+
+### Features
+
+* update API sources and regenerate ([#9696](https://github.com/googleapis/google-cloud-php/issues/9696)) ([c318adb](https://github.com/googleapis/google-cloud-php/commit/c318adbafeb44bf92e6ebd258ae65f8ea7140da8))
+
+</details>
+
+<details><summary>google/cloud-storage 2.5.4</summary>
+
+
+
+### Bug Fixes
+
+* **Storage:** ensure StorageClient retryStrategy is applied correctly to all operations ([#9516](https://github.com/googleapis/google-cloud-php/issues/9516)) ([3310e5d](https://github.com/googleapis/google-cloud-php/commit/3310e5dc1bea20598895119fbf82f45be5cabd31))
+
+</details>
+
+<details><summary>google/cloud-visionai 0.5.0</summary>
+
+
+
+### Features
+
+* update API sources and regenerate ([#9696](https://github.com/googleapis/google-cloud-php/issues/9696)) ([c318adb](https://github.com/googleapis/google-cloud-php/commit/c318adbafeb44bf92e6ebd258ae65f8ea7140da8))
+
+</details>
+
 ## 0.345.0
 
 <details><summary>google/cloud-access-approval 2.2.2</summary>
