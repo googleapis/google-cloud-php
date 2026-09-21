@@ -138,6 +138,57 @@ $pubsub = new PubSubClient([
 ]);
 ```
 
+### Setting a Default Timeout for Every Call
+
+There is no single client option for "time out every request after N seconds". To change the
+defaults for a whole client, pass a `clientConfig` array built from the configuration the library
+ships with:
+
+```php
+use Google\Cloud\Spanner\SpannerClient;
+
+$timeoutMillis = 5000;
+$configFiles = [
+    'Spanner/src/V1/resources/spanner_client_config.json',
+    'Spanner/src/Admin/Instance/V1/resources/instance_admin_client_config.json',
+    'Spanner/src/Admin/Database/V1/resources/database_admin_client_config.json',
+];
+
+$clientConfig = ['interfaces' => []];
+foreach ($configFiles as $configFile) {
+    $decoded = json_decode(file_get_contents($vendorDir . '/google/cloud-spanner/' . $configFile), true);
+    foreach ($decoded['interfaces'] as $interface => $settings) {
+        foreach ($settings['methods'] as $method => $methodConfig) {
+            $settings['methods'][$method]['timeout_millis'] = $timeoutMillis;
+        }
+        foreach ($settings['retry_params'] as $name => $params) {
+            $settings['retry_params'][$name]['initial_rpc_timeout_millis'] = $timeoutMillis;
+            $settings['retry_params'][$name]['max_rpc_timeout_millis'] = $timeoutMillis;
+            $settings['retry_params'][$name]['total_timeout_millis'] = $timeoutMillis;
+        }
+        $clientConfig['interfaces'][$interface] = $settings;
+    }
+}
+
+$spanner = new SpannerClient(['clientConfig' => $clientConfig]);
+```
+
+Three things are easy to get wrong here:
+
+1. **`timeout_millis` alone has no effect on retryable methods.** It only supplies
+   `noRetriesRpcTimeoutMillis`, which is used when retries are disabled. For any method with a
+   retry policy, the effective deadline comes from `retry_params`, so
+   `initial_rpc_timeout_millis`, `max_rpc_timeout_millis` and `total_timeout_millis` must be set
+   as well.
+2. **The config must cover every interface the client uses.** Handwritten clients such as
+   `SpannerClient` construct several underlying clients (data plane, instance admin, database
+   admin) from the same options. A config containing only `google.spanner.v1.Spanner` leaves the
+   others without retry settings, and calls to them fail with a `TypeError`.
+3. **Read the shipped files at runtime; don't copy them into your project.** A stale copy that is
+   missing a method added in a later release causes that method to fail with the same `TypeError`.
+
+For a single call, prefer the per-call `timeoutMillis` option described above.
+
 ## 5. Logging
 
 You can attach any PSR-3 compliant logger (like Monolog) to debug request headers, status codes, and
