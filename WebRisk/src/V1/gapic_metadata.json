@@ -8,7 +8,7 @@
         "WebRiskService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "WebRiskServiceGapicClient",
+                    "libraryClient": "WebRiskServiceClient",
                     "rpcs": {
                         "ComputeThreatListDiff": {
                             "methods": [

@@ -42,6 +42,38 @@ class AddressInfo extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string postal_code = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $postal_code = '';
+    /**
+     * Optional. The street and number of the user's address. Used only for
+     * Google Analytics. This field is hashed and possibly encrypted.
+     * Normalize the value before hashing:
+     * - Remove symbol characters
+     * - Convert to lowercase
+     * - Remove leading and trailing whitespace
+     *
+     * Generated from protobuf field <code>string address_line = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $address_line = '';
+    /**
+     * Optional. The city of the user's address. Used only for Google Analytics.
+     * The value should be normalized as such:
+     * - Remove symbol characters
+     * - Convert to lowercase
+     * - Remove leading and trailing whitespace
+     *
+     * Generated from protobuf field <code>string city = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $city = '';
+    /**
+     * Optional. The administrative area (state/province) of the user's address.
+     * Used only for Google Analytics.
+     * The value should be normalized as such:
+     * - Remove symbol characters
+     * - Convert to lowercase
+     * - Remove leading and trailing whitespace
+     *
+     * Generated from protobuf field <code>string administrative_area = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $administrative_area = '';
 
     /**
      * Constructor.
@@ -60,6 +92,26 @@ class AddressInfo extends \Google\Protobuf\Internal\Message
      *           address.
      *     @type string $postal_code
      *           Required. The postal code of the user's address.
+     *     @type string $address_line
+     *           Optional. The street and number of the user's address. Used only for
+     *           Google Analytics. This field is hashed and possibly encrypted.
+     *           Normalize the value before hashing:
+     *           - Remove symbol characters
+     *           - Convert to lowercase
+     *           - Remove leading and trailing whitespace
+     *     @type string $city
+     *           Optional. The city of the user's address. Used only for Google Analytics.
+     *           The value should be normalized as such:
+     *           - Remove symbol characters
+     *           - Convert to lowercase
+     *           - Remove leading and trailing whitespace
+     *     @type string $administrative_area
+     *           Optional. The administrative area (state/province) of the user's address.
+     *           Used only for Google Analytics.
+     *           The value should be normalized as such:
+     *           - Remove symbol characters
+     *           - Convert to lowercase
+     *           - Remove leading and trailing whitespace
      * }
      */
     public function __construct($data = NULL) {
@@ -173,6 +225,112 @@ class AddressInfo extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->postal_code = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The street and number of the user's address. Used only for
+     * Google Analytics. This field is hashed and possibly encrypted.
+     * Normalize the value before hashing:
+     * - Remove symbol characters
+     * - Convert to lowercase
+     * - Remove leading and trailing whitespace
+     *
+     * Generated from protobuf field <code>string address_line = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getAddressLine()
+    {
+        return $this->address_line;
+    }
+
+    /**
+     * Optional. The street and number of the user's address. Used only for
+     * Google Analytics. This field is hashed and possibly encrypted.
+     * Normalize the value before hashing:
+     * - Remove symbol characters
+     * - Convert to lowercase
+     * - Remove leading and trailing whitespace
+     *
+     * Generated from protobuf field <code>string address_line = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAddressLine($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->address_line = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The city of the user's address. Used only for Google Analytics.
+     * The value should be normalized as such:
+     * - Remove symbol characters
+     * - Convert to lowercase
+     * - Remove leading and trailing whitespace
+     *
+     * Generated from protobuf field <code>string city = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * Optional. The city of the user's address. Used only for Google Analytics.
+     * The value should be normalized as such:
+     * - Remove symbol characters
+     * - Convert to lowercase
+     * - Remove leading and trailing whitespace
+     *
+     * Generated from protobuf field <code>string city = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCity($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->city = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The administrative area (state/province) of the user's address.
+     * Used only for Google Analytics.
+     * The value should be normalized as such:
+     * - Remove symbol characters
+     * - Convert to lowercase
+     * - Remove leading and trailing whitespace
+     *
+     * Generated from protobuf field <code>string administrative_area = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getAdministrativeArea()
+    {
+        return $this->administrative_area;
+    }
+
+    /**
+     * Optional. The administrative area (state/province) of the user's address.
+     * Used only for Google Analytics.
+     * The value should be normalized as such:
+     * - Remove symbol characters
+     * - Convert to lowercase
+     * - Remove leading and trailing whitespace
+     *
+     * Generated from protobuf field <code>string administrative_area = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAdministrativeArea($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->administrative_area = $var;
 
         return $this;
     }

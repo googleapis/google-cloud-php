@@ -16,7 +16,7 @@ use Google\Protobuf\RepeatedField;
 class RegionInstanceGroupManagersApplyUpdatesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Flag to update all instances instead of specified list of “instances”.
+     * Flag to update all instances instead of specified list of "instances".
      * If the flag is set to true then the instances may not be specified
      * in the request.
      *
@@ -74,7 +74,7 @@ class RegionInstanceGroupManagersApplyUpdatesRequest extends \Google\Protobuf\In
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $all_instances
-     *           Flag to update all instances instead of specified list of “instances”.
+     *           Flag to update all instances instead of specified list of "instances".
      *           If the flag is set to true then the instances may not be specified
      *           in the request.
      *     @type string[] $instances
@@ -116,7 +116,7 @@ class RegionInstanceGroupManagersApplyUpdatesRequest extends \Google\Protobuf\In
     }
 
     /**
-     * Flag to update all instances instead of specified list of “instances”.
+     * Flag to update all instances instead of specified list of "instances".
      * If the flag is set to true then the instances may not be specified
      * in the request.
      *
@@ -139,7 +139,7 @@ class RegionInstanceGroupManagersApplyUpdatesRequest extends \Google\Protobuf\In
     }
 
     /**
-     * Flag to update all instances instead of specified list of “instances”.
+     * Flag to update all instances instead of specified list of "instances".
      * If the flag is set to true then the instances may not be specified
      * in the request.
      *

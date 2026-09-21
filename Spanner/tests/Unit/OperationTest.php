@@ -622,13 +622,15 @@ class OperationTest extends TestCase
             ]));
 
         $res = $this->operation->partitionQuery($this->session, $transactionId, $sql, [
-            'parameters' => $params
+            'parameters' => $params,
+            'dataBoostEnabled' => true
         ]);
 
         $this->assertContainsOnlyInstancesOf(QueryPartition::class, $res);
         $this->assertCount(2, $res);
         $this->assertEquals($partitionToken1, $res[0]->token());
         $this->assertEquals($partitionToken2, $res[1]->token());
+        $this->assertTrue($res[0]->options()['dataBoostEnabled']);
     }
 
     public function testPartitionRead()
@@ -680,6 +682,7 @@ class OperationTest extends TestCase
             'retrySettings' => ['retriesEnabled' => false],
             'timeoutMillis' => 1234,
             'transportOptions' => ['grpc' => ['timeout' => 100]],
+            'dataBoostEnabled' => true,
         ];
 
         $this->spannerClient->partitionRead(
@@ -711,6 +714,7 @@ class OperationTest extends TestCase
         $this->assertContainsOnlyInstancesOf(ReadPartition::class, $res);
         $this->assertCount(1, $res);
         $this->assertEquals($partitionToken1, $res[0]->token());
+        $this->assertTrue($res[0]->options()['dataBoostEnabled']);
     }
 
     public function testCommitWithPrecommitTokenOnRetry()

@@ -8,7 +8,7 @@
         "WorkloadManager": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "WorkloadManagerGapicClient",
+                    "libraryClient": "WorkloadManagerClient",
                     "rpcs": {
                         "CreateEvaluation": {
                             "methods": [

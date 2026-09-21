@@ -9,64 +9,57 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * The `ReportGenerationProgress` is part of
- * [google.longrunning.Operation][google.longrunning.Operation] returned to the
- * client for every `GetOperation` request.
+ * Details about the current status of the report-generation process.
  *
  * Generated from protobuf message <code>google.cloud.auditmanager.v1.ReportGenerationProgress</code>
  */
 class ReportGenerationProgress extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The current state of execution for report generation.
+     * Output only. Current state of execution for report generation.
      *
      * Generated from protobuf field <code>.google.cloud.auditmanager.v1.OperationState state = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $state = 0;
     /**
-     * Output only. States the reason of failure during the audit report
-     * generation process. This field is set only if the state attribute is
-     * OPERATION_STATE_FAILED.
+     * Output only. Reason for failure during the audit report generation process.
+     * This field is set only if the `OperationState` attribute is
+     * `OPERATION_STATE_FAILED`.
      *
      * Generated from protobuf field <code>string failure_reason = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $failure_reason = '';
     /**
-     * Shows the progress of the CESS service evaluation process. The progress is
-     * defined in terms of percentage complete and is being fetched from the CESS
-     * service.
+     * Progress of the evaluation process. The progress is
+     * defined in terms of percentage complete.
      *
      * Generated from protobuf field <code>double evaluation_percent_complete = 20;</code>
      */
     protected $evaluation_percent_complete = 0.0;
     /**
-     * Shows the report generation progress of the CESS Result Processor Service.
-     * The // progress is defined in terms of percentage complete and is being
-     * fetched from the CESS service. If report_generation_in_progress is non zero
-     * then evaluation_percent_complete will be 100%.
+     * Report generation progress, defined in terms of percentage complete.
+     * Until evaluation is complete, this value is always `0`.
      *
      * Generated from protobuf field <code>double report_generation_percent_complete = 30;</code>
      */
     protected $report_generation_percent_complete = 0.0;
     /**
-     * Shows the report uploading progress of the CESS Result Processor Service.
-     * The progress is defined in terms of percentage complete and is being
-     * fetched from the CESS service. If report_uploading_in_progress is non zero
-     * then evaluation_percent_complete and report_generation_percent_complete
-     * will be 100%.
+     * Report uploading progress, defined in terms of percentage complete.
+     * Until evaluation and report generation are complete, this value is always
+     * `0`.
      *
      * Generated from protobuf field <code>double report_uploading_percent_complete = 40;</code>
      */
     protected $report_uploading_percent_complete = 0.0;
     /**
-     * Output only. The Cloud Storage bucket where the audit report will be
-     * uploaded once the evaluation process is completed.
+     * Output only. Cloud Storage bucket where the audit report is uploaded to
+     * after the evaluation process is completed.
      *
      * Generated from protobuf field <code>string destination_gcs_bucket = 50 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $destination_gcs_bucket = '';
     /**
-     * Output only. The name of the audit report.
+     * Output only. Name of the audit report.
      *
      * Generated from protobuf field <code>string audit_report = 51 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
@@ -79,31 +72,26 @@ class ReportGenerationProgress extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $state
-     *           Output only. The current state of execution for report generation.
+     *           Output only. Current state of execution for report generation.
      *     @type string $failure_reason
-     *           Output only. States the reason of failure during the audit report
-     *           generation process. This field is set only if the state attribute is
-     *           OPERATION_STATE_FAILED.
+     *           Output only. Reason for failure during the audit report generation process.
+     *           This field is set only if the `OperationState` attribute is
+     *           `OPERATION_STATE_FAILED`.
      *     @type float $evaluation_percent_complete
-     *           Shows the progress of the CESS service evaluation process. The progress is
-     *           defined in terms of percentage complete and is being fetched from the CESS
-     *           service.
+     *           Progress of the evaluation process. The progress is
+     *           defined in terms of percentage complete.
      *     @type float $report_generation_percent_complete
-     *           Shows the report generation progress of the CESS Result Processor Service.
-     *           The // progress is defined in terms of percentage complete and is being
-     *           fetched from the CESS service. If report_generation_in_progress is non zero
-     *           then evaluation_percent_complete will be 100%.
+     *           Report generation progress, defined in terms of percentage complete.
+     *           Until evaluation is complete, this value is always `0`.
      *     @type float $report_uploading_percent_complete
-     *           Shows the report uploading progress of the CESS Result Processor Service.
-     *           The progress is defined in terms of percentage complete and is being
-     *           fetched from the CESS service. If report_uploading_in_progress is non zero
-     *           then evaluation_percent_complete and report_generation_percent_complete
-     *           will be 100%.
+     *           Report uploading progress, defined in terms of percentage complete.
+     *           Until evaluation and report generation are complete, this value is always
+     *           `0`.
      *     @type string $destination_gcs_bucket
-     *           Output only. The Cloud Storage bucket where the audit report will be
-     *           uploaded once the evaluation process is completed.
+     *           Output only. Cloud Storage bucket where the audit report is uploaded to
+     *           after the evaluation process is completed.
      *     @type string $audit_report
-     *           Output only. The name of the audit report.
+     *           Output only. Name of the audit report.
      * }
      */
     public function __construct($data = NULL) {
@@ -112,7 +100,7 @@ class ReportGenerationProgress extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The current state of execution for report generation.
+     * Output only. Current state of execution for report generation.
      *
      * Generated from protobuf field <code>.google.cloud.auditmanager.v1.OperationState state = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
@@ -123,7 +111,7 @@ class ReportGenerationProgress extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The current state of execution for report generation.
+     * Output only. Current state of execution for report generation.
      *
      * Generated from protobuf field <code>.google.cloud.auditmanager.v1.OperationState state = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
@@ -138,9 +126,9 @@ class ReportGenerationProgress extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. States the reason of failure during the audit report
-     * generation process. This field is set only if the state attribute is
-     * OPERATION_STATE_FAILED.
+     * Output only. Reason for failure during the audit report generation process.
+     * This field is set only if the `OperationState` attribute is
+     * `OPERATION_STATE_FAILED`.
      *
      * Generated from protobuf field <code>string failure_reason = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -151,9 +139,9 @@ class ReportGenerationProgress extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. States the reason of failure during the audit report
-     * generation process. This field is set only if the state attribute is
-     * OPERATION_STATE_FAILED.
+     * Output only. Reason for failure during the audit report generation process.
+     * This field is set only if the `OperationState` attribute is
+     * `OPERATION_STATE_FAILED`.
      *
      * Generated from protobuf field <code>string failure_reason = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -168,9 +156,8 @@ class ReportGenerationProgress extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Shows the progress of the CESS service evaluation process. The progress is
-     * defined in terms of percentage complete and is being fetched from the CESS
-     * service.
+     * Progress of the evaluation process. The progress is
+     * defined in terms of percentage complete.
      *
      * Generated from protobuf field <code>double evaluation_percent_complete = 20;</code>
      * @return float
@@ -181,9 +168,8 @@ class ReportGenerationProgress extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Shows the progress of the CESS service evaluation process. The progress is
-     * defined in terms of percentage complete and is being fetched from the CESS
-     * service.
+     * Progress of the evaluation process. The progress is
+     * defined in terms of percentage complete.
      *
      * Generated from protobuf field <code>double evaluation_percent_complete = 20;</code>
      * @param float $var
@@ -198,10 +184,8 @@ class ReportGenerationProgress extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Shows the report generation progress of the CESS Result Processor Service.
-     * The // progress is defined in terms of percentage complete and is being
-     * fetched from the CESS service. If report_generation_in_progress is non zero
-     * then evaluation_percent_complete will be 100%.
+     * Report generation progress, defined in terms of percentage complete.
+     * Until evaluation is complete, this value is always `0`.
      *
      * Generated from protobuf field <code>double report_generation_percent_complete = 30;</code>
      * @return float
@@ -212,10 +196,8 @@ class ReportGenerationProgress extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Shows the report generation progress of the CESS Result Processor Service.
-     * The // progress is defined in terms of percentage complete and is being
-     * fetched from the CESS service. If report_generation_in_progress is non zero
-     * then evaluation_percent_complete will be 100%.
+     * Report generation progress, defined in terms of percentage complete.
+     * Until evaluation is complete, this value is always `0`.
      *
      * Generated from protobuf field <code>double report_generation_percent_complete = 30;</code>
      * @param float $var
@@ -230,11 +212,9 @@ class ReportGenerationProgress extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Shows the report uploading progress of the CESS Result Processor Service.
-     * The progress is defined in terms of percentage complete and is being
-     * fetched from the CESS service. If report_uploading_in_progress is non zero
-     * then evaluation_percent_complete and report_generation_percent_complete
-     * will be 100%.
+     * Report uploading progress, defined in terms of percentage complete.
+     * Until evaluation and report generation are complete, this value is always
+     * `0`.
      *
      * Generated from protobuf field <code>double report_uploading_percent_complete = 40;</code>
      * @return float
@@ -245,11 +225,9 @@ class ReportGenerationProgress extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Shows the report uploading progress of the CESS Result Processor Service.
-     * The progress is defined in terms of percentage complete and is being
-     * fetched from the CESS service. If report_uploading_in_progress is non zero
-     * then evaluation_percent_complete and report_generation_percent_complete
-     * will be 100%.
+     * Report uploading progress, defined in terms of percentage complete.
+     * Until evaluation and report generation are complete, this value is always
+     * `0`.
      *
      * Generated from protobuf field <code>double report_uploading_percent_complete = 40;</code>
      * @param float $var
@@ -264,8 +242,8 @@ class ReportGenerationProgress extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The Cloud Storage bucket where the audit report will be
-     * uploaded once the evaluation process is completed.
+     * Output only. Cloud Storage bucket where the audit report is uploaded to
+     * after the evaluation process is completed.
      *
      * Generated from protobuf field <code>string destination_gcs_bucket = 50 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -276,8 +254,8 @@ class ReportGenerationProgress extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The Cloud Storage bucket where the audit report will be
-     * uploaded once the evaluation process is completed.
+     * Output only. Cloud Storage bucket where the audit report is uploaded to
+     * after the evaluation process is completed.
      *
      * Generated from protobuf field <code>string destination_gcs_bucket = 50 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -292,7 +270,7 @@ class ReportGenerationProgress extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The name of the audit report.
+     * Output only. Name of the audit report.
      *
      * Generated from protobuf field <code>string audit_report = 51 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @return string
@@ -303,7 +281,7 @@ class ReportGenerationProgress extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The name of the audit report.
+     * Output only. Name of the audit report.
      *
      * Generated from protobuf field <code>string audit_report = 51 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @param string $var

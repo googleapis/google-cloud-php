@@ -16,11 +16,9 @@ use Google\Protobuf\RepeatedField;
 class TokenProperties extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. Whether the provided user response token is valid. When valid
-     * = false, the reason could be specified in invalid_reason or it could also
-     * be due to a user failing to solve a challenge or a sitekey mismatch (i.e
-     * the sitekey used to generate the token was different than the one specified
-     * in the assessment).
+     * Output only. Indicates whether the provided user response token is valid.
+     * If `false`, the token is invalid, either because the user failed the
+     * challenge or for a reason provided in the `invalid_reason` field.
      *
      * Generated from protobuf field <code>bool valid = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -72,11 +70,9 @@ class TokenProperties extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $valid
-     *           Output only. Whether the provided user response token is valid. When valid
-     *           = false, the reason could be specified in invalid_reason or it could also
-     *           be due to a user failing to solve a challenge or a sitekey mismatch (i.e
-     *           the sitekey used to generate the token was different than the one specified
-     *           in the assessment).
+     *           Output only. Indicates whether the provided user response token is valid.
+     *           If `false`, the token is invalid, either because the user failed the
+     *           challenge or for a reason provided in the `invalid_reason` field.
      *     @type int $invalid_reason
      *           Output only. Reason associated with the response when valid = false.
      *     @type \Google\Protobuf\Timestamp $create_time
@@ -100,11 +96,9 @@ class TokenProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Whether the provided user response token is valid. When valid
-     * = false, the reason could be specified in invalid_reason or it could also
-     * be due to a user failing to solve a challenge or a sitekey mismatch (i.e
-     * the sitekey used to generate the token was different than the one specified
-     * in the assessment).
+     * Output only. Indicates whether the provided user response token is valid.
+     * If `false`, the token is invalid, either because the user failed the
+     * challenge or for a reason provided in the `invalid_reason` field.
      *
      * Generated from protobuf field <code>bool valid = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return bool
@@ -115,11 +109,9 @@ class TokenProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Whether the provided user response token is valid. When valid
-     * = false, the reason could be specified in invalid_reason or it could also
-     * be due to a user failing to solve a challenge or a sitekey mismatch (i.e
-     * the sitekey used to generate the token was different than the one specified
-     * in the assessment).
+     * Output only. Indicates whether the provided user response token is valid.
+     * If `false`, the token is invalid, either because the user failed the
+     * challenge or for a reason provided in the `invalid_reason` field.
      *
      * Generated from protobuf field <code>bool valid = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param bool $var

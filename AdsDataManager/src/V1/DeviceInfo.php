@@ -22,16 +22,8 @@ class DeviceInfo extends \Google\Protobuf\Internal\Message
      */
     protected $user_agent = '';
     /**
-     * Optional. The IP address of the device for the given context.
-     * **Note:** Google Ads does not support IP address matching for end users in
-     * the European Economic Area (EEA), United Kingdom (UK), or Switzerland (CH).
-     * Add logic to conditionally exclude sharing IP addresses from users from
-     * these regions and ensure that you provide users with clear and
-     * comprehensive information about the data you collect on your sites, apps,
-     * and other properties and get consent where required by law or any
-     * applicable Google policies. See the [About offline conversion
-     * imports](https://support.google.com/google-ads/answer/2998031) page for
-     * more details.
+     * Optional. The IP address of the device for the given context. Required when
+     * used in an [AdEvent][google.ads.datamanager.v1.AdEvent] for geo checks.
      *
      * Generated from protobuf field <code>string ip_address = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
      */
@@ -107,16 +99,8 @@ class DeviceInfo extends \Google\Protobuf\Internal\Message
      *     @type string $user_agent
      *           Optional. The user-agent string of the device for the given context.
      *     @type string $ip_address
-     *           Optional. The IP address of the device for the given context.
-     *           **Note:** Google Ads does not support IP address matching for end users in
-     *           the European Economic Area (EEA), United Kingdom (UK), or Switzerland (CH).
-     *           Add logic to conditionally exclude sharing IP addresses from users from
-     *           these regions and ensure that you provide users with clear and
-     *           comprehensive information about the data you collect on your sites, apps,
-     *           and other properties and get consent where required by law or any
-     *           applicable Google policies. See the [About offline conversion
-     *           imports](https://support.google.com/google-ads/answer/2998031) page for
-     *           more details.
+     *           Optional. The IP address of the device for the given context. Required when
+     *           used in an [AdEvent][google.ads.datamanager.v1.AdEvent] for geo checks.
      *     @type string $category
      *           Optional. The category of device. For example, “desktop”, “tablet”,
      *           “mobile”, “smart TV”.
@@ -172,16 +156,8 @@ class DeviceInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The IP address of the device for the given context.
-     * **Note:** Google Ads does not support IP address matching for end users in
-     * the European Economic Area (EEA), United Kingdom (UK), or Switzerland (CH).
-     * Add logic to conditionally exclude sharing IP addresses from users from
-     * these regions and ensure that you provide users with clear and
-     * comprehensive information about the data you collect on your sites, apps,
-     * and other properties and get consent where required by law or any
-     * applicable Google policies. See the [About offline conversion
-     * imports](https://support.google.com/google-ads/answer/2998031) page for
-     * more details.
+     * Optional. The IP address of the device for the given context. Required when
+     * used in an [AdEvent][google.ads.datamanager.v1.AdEvent] for geo checks.
      *
      * Generated from protobuf field <code>string ip_address = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
      * @return string
@@ -192,16 +168,8 @@ class DeviceInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The IP address of the device for the given context.
-     * **Note:** Google Ads does not support IP address matching for end users in
-     * the European Economic Area (EEA), United Kingdom (UK), or Switzerland (CH).
-     * Add logic to conditionally exclude sharing IP addresses from users from
-     * these regions and ensure that you provide users with clear and
-     * comprehensive information about the data you collect on your sites, apps,
-     * and other properties and get consent where required by law or any
-     * applicable Google policies. See the [About offline conversion
-     * imports](https://support.google.com/google-ads/answer/2998031) page for
-     * more details.
+     * Optional. The IP address of the device for the given context. Required when
+     * used in an [AdEvent][google.ads.datamanager.v1.AdEvent] for geo checks.
      *
      * Generated from protobuf field <code>string ip_address = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
      * @param string $var

@@ -82,6 +82,12 @@ class ListDocumentsRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool show_missing = 12;</code>
      */
     private $show_missing = false;
+    /**
+     * Optional. Any additional options for the request.
+     *
+     * Generated from protobuf field <code>.google.firestore.v1.RequestOptions request_options = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $request_options = null;
     protected $consistency_selector;
 
     /**
@@ -135,6 +141,8 @@ class ListDocumentsRequest extends \Google\Protobuf\Internal\Message
      *           [`create_time`][google.firestore.v1.Document.create_time], or
      *           [`update_time`][google.firestore.v1.Document.update_time] set.
      *           Requests with `show_missing` may not specify `where` or `order_by`.
+     *     @type \Google\Cloud\Firestore\V1\RequestOptions $request_options
+     *           Optional. Any additional options for the request.
      * }
      */
     public function __construct($data = NULL) {
@@ -446,6 +454,42 @@ class ListDocumentsRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->show_missing = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Any additional options for the request.
+     *
+     * Generated from protobuf field <code>.google.firestore.v1.RequestOptions request_options = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Firestore\V1\RequestOptions|null
+     */
+    public function getRequestOptions()
+    {
+        return $this->request_options;
+    }
+
+    public function hasRequestOptions()
+    {
+        return isset($this->request_options);
+    }
+
+    public function clearRequestOptions()
+    {
+        unset($this->request_options);
+    }
+
+    /**
+     * Optional. Any additional options for the request.
+     *
+     * Generated from protobuf field <code>.google.firestore.v1.RequestOptions request_options = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Firestore\V1\RequestOptions $var
+     * @return $this
+     */
+    public function setRequestOptions($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Firestore\V1\RequestOptions::class);
+        $this->request_options = $var;
 
         return $this;
     }

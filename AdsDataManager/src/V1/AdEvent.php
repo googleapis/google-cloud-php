@@ -54,12 +54,20 @@ class AdEvent extends \Google\Protobuf\Internal\Message
      */
     protected $user_data = null;
     /**
-     * Optional. Information gathered about the device being used when the ad
+     * Required. Information gathered about the device being used when the ad
      * event happened.
      *
-     * Generated from protobuf field <code>.google.ads.datamanager.v1.DeviceInfo device_info = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.ads.datamanager.v1.DeviceInfo device_info = 8 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $device_info = null;
+    /**
+     * Optional. IP address used for measurement. This must be same value as
+     * [DeviceInfo.ip_address][google.ads.datamanager.v1.DeviceInfo.ip_address].
+     * Keep it blank if you do not want to share IP for measurement.
+     *
+     * Generated from protobuf field <code>string ip_address = 34 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
+     */
+    protected $ip_address = '';
     /**
      * Optional. The device ID of the device that the ad was served to.
      *
@@ -103,9 +111,9 @@ class AdEvent extends \Google\Protobuf\Internal\Message
      */
     protected $ad_width = 0;
     /**
-     * Required. The ISO 3166-2 country plus subdivision.
+     * Optional. The ISO 3166-2 country plus subdivision.
      *
-     * Generated from protobuf field <code>string region_code = 22 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string region_code = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $region_code = '';
     /**
@@ -180,8 +188,12 @@ class AdEvent extends \Google\Protobuf\Internal\Message
      *           email address). The more data provided, the more likely a match will be
      *           found.
      *     @type \Google\Ads\DataManager\V1\DeviceInfo $device_info
-     *           Optional. Information gathered about the device being used when the ad
+     *           Required. Information gathered about the device being used when the ad
      *           event happened.
+     *     @type string $ip_address
+     *           Optional. IP address used for measurement. This must be same value as
+     *           [DeviceInfo.ip_address][google.ads.datamanager.v1.DeviceInfo.ip_address].
+     *           Keep it blank if you do not want to share IP for measurement.
      *     @type string $mobile_device_id
      *           Optional. The device ID of the device that the ad was served to.
      *     @type string $campaign_id
@@ -209,7 +221,7 @@ class AdEvent extends \Google\Protobuf\Internal\Message
      *     @type int $ad_width
      *           Optional. The width of the ad in pixels.
      *     @type string $region_code
-     *           Required. The ISO 3166-2 country plus subdivision.
+     *           Optional. The ISO 3166-2 country plus subdivision.
      *     @type string $source
      *           Required. The platform source of the ad, akin to the Google Analytics
      *           source.
@@ -473,10 +485,10 @@ class AdEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Information gathered about the device being used when the ad
+     * Required. Information gathered about the device being used when the ad
      * event happened.
      *
-     * Generated from protobuf field <code>.google.ads.datamanager.v1.DeviceInfo device_info = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.ads.datamanager.v1.DeviceInfo device_info = 8 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Ads\DataManager\V1\DeviceInfo|null
      */
     public function getDeviceInfo()
@@ -495,10 +507,10 @@ class AdEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Information gathered about the device being used when the ad
+     * Required. Information gathered about the device being used when the ad
      * event happened.
      *
-     * Generated from protobuf field <code>.google.ads.datamanager.v1.DeviceInfo device_info = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.ads.datamanager.v1.DeviceInfo device_info = 8 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Ads\DataManager\V1\DeviceInfo $var
      * @return $this
      */
@@ -506,6 +518,36 @@ class AdEvent extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Ads\DataManager\V1\DeviceInfo::class);
         $this->device_info = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. IP address used for measurement. This must be same value as
+     * [DeviceInfo.ip_address][google.ads.datamanager.v1.DeviceInfo.ip_address].
+     * Keep it blank if you do not want to share IP for measurement.
+     *
+     * Generated from protobuf field <code>string ip_address = 34 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
+     * @return string
+     */
+    public function getIpAddress()
+    {
+        return $this->ip_address;
+    }
+
+    /**
+     * Optional. IP address used for measurement. This must be same value as
+     * [DeviceInfo.ip_address][google.ads.datamanager.v1.DeviceInfo.ip_address].
+     * Keep it blank if you do not want to share IP for measurement.
+     *
+     * Generated from protobuf field <code>string ip_address = 34 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setIpAddress($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->ip_address = $var;
 
         return $this;
     }
@@ -879,9 +921,9 @@ class AdEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The ISO 3166-2 country plus subdivision.
+     * Optional. The ISO 3166-2 country plus subdivision.
      *
-     * Generated from protobuf field <code>string region_code = 22 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string region_code = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getRegionCode()
@@ -890,9 +932,9 @@ class AdEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The ISO 3166-2 country plus subdivision.
+     * Optional. The ISO 3166-2 country plus subdivision.
      *
-     * Generated from protobuf field <code>string region_code = 22 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string region_code = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

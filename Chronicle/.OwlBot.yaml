@@ -1,4 +1,0 @@
-deep-copy-regex:
-    - source: /google/cloud/chronicle/(v1)/.*-php/(.*)
-      dest: /owl-bot-staging/Chronicle/$1/$2
-api-name: Chronicle

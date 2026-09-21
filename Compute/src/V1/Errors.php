@@ -9,6 +9,8 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
+ * Represents a single error encountered during the processing of an
+ * operation.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.Errors</code>
  */

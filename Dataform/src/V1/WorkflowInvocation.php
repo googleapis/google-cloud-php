@@ -69,6 +69,13 @@ class WorkflowInvocation extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.dataform.v1.PrivateResourceMetadata private_resource_metadata = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $private_resource_metadata = null;
+    /**
+     * Output only. The pipeline options which defines the pipeline type and path
+     * within the Git repository.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1.PipelineConfig pipeline_config = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $pipeline_config = null;
     protected $compilation_source;
 
     /**
@@ -106,6 +113,9 @@ class WorkflowInvocation extends \Google\Protobuf\Internal\Message
      *           Output only. Metadata indicating whether this resource is user-scoped.
      *           `WorkflowInvocation` resource is `user_scoped` only if it is sourced
      *           from a compilation result and the compilation result is user-scoped.
+     *     @type \Google\Cloud\Dataform\V1\PipelineConfig $pipeline_config
+     *           Output only. The pipeline options which defines the pipeline type and path
+     *           within the Git repository.
      * }
      */
     public function __construct($data = NULL) {
@@ -447,6 +457,44 @@ class WorkflowInvocation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dataform\V1\PrivateResourceMetadata::class);
         $this->private_resource_metadata = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The pipeline options which defines the pipeline type and path
+     * within the Git repository.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1.PipelineConfig pipeline_config = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Dataform\V1\PipelineConfig|null
+     */
+    public function getPipelineConfig()
+    {
+        return $this->pipeline_config;
+    }
+
+    public function hasPipelineConfig()
+    {
+        return isset($this->pipeline_config);
+    }
+
+    public function clearPipelineConfig()
+    {
+        unset($this->pipeline_config);
+    }
+
+    /**
+     * Output only. The pipeline options which defines the pipeline type and path
+     * within the Git repository.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1.PipelineConfig pipeline_config = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Dataform\V1\PipelineConfig $var
+     * @return $this
+     */
+    public function setPipelineConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataform\V1\PipelineConfig::class);
+        $this->pipeline_config = $var;
 
         return $this;
     }

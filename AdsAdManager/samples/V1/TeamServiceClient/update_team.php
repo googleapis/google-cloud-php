@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,7 +29,7 @@ use Google\Ads\AdManager\V1\UpdateTeamRequest;
 use Google\ApiCore\ApiException;
 
 /**
- * API to update a `Team` object.
+ * Updates a `Team` object.
  *
  * @param string $teamDisplayName The name of the Team. This value has a maximum length of 127
  *                                characters.

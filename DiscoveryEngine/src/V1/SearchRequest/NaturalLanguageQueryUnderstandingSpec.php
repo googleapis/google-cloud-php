@@ -27,8 +27,6 @@ class NaturalLanguageQueryUnderstandingSpec extends \Google\Protobuf\Internal\Me
      * Field names used for location-based filtering, where geolocation filters
      * are detected in natural language search queries.
      * Only valid when the FilterExtractionCondition is set to `ENABLED`.
-     * If this field is set, it overrides the field names set in
-     * [ServingConfig.geo_search_query_detection_field_names][google.cloud.discoveryengine.v1.ServingConfig.geo_search_query_detection_field_names].
      *
      * Generated from protobuf field <code>repeated string geo_search_query_detection_field_names = 2;</code>
      */
@@ -75,8 +73,6 @@ class NaturalLanguageQueryUnderstandingSpec extends \Google\Protobuf\Internal\Me
      *           Field names used for location-based filtering, where geolocation filters
      *           are detected in natural language search queries.
      *           Only valid when the FilterExtractionCondition is set to `ENABLED`.
-     *           If this field is set, it overrides the field names set in
-     *           [ServingConfig.geo_search_query_detection_field_names][google.cloud.discoveryengine.v1.ServingConfig.geo_search_query_detection_field_names].
      *     @type int $extracted_filter_behavior
      *           Optional. Controls behavior of how extracted filters are applied to the
      *           search. The default behavior depends on the request. For single datastore
@@ -136,8 +132,6 @@ class NaturalLanguageQueryUnderstandingSpec extends \Google\Protobuf\Internal\Me
      * Field names used for location-based filtering, where geolocation filters
      * are detected in natural language search queries.
      * Only valid when the FilterExtractionCondition is set to `ENABLED`.
-     * If this field is set, it overrides the field names set in
-     * [ServingConfig.geo_search_query_detection_field_names][google.cloud.discoveryengine.v1.ServingConfig.geo_search_query_detection_field_names].
      *
      * Generated from protobuf field <code>repeated string geo_search_query_detection_field_names = 2;</code>
      * @return RepeatedField<string>
@@ -151,8 +145,6 @@ class NaturalLanguageQueryUnderstandingSpec extends \Google\Protobuf\Internal\Me
      * Field names used for location-based filtering, where geolocation filters
      * are detected in natural language search queries.
      * Only valid when the FilterExtractionCondition is set to `ENABLED`.
-     * If this field is set, it overrides the field names set in
-     * [ServingConfig.geo_search_query_detection_field_names][google.cloud.discoveryengine.v1.ServingConfig.geo_search_query_detection_field_names].
      *
      * Generated from protobuf field <code>repeated string geo_search_query_detection_field_names = 2;</code>
      * @param string[] $var

@@ -1585,7 +1585,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      */
     public function getTagKeys()
     {
-        if ($this->tag_keys->count() !== 0) {
+        if (count($this->tag_keys) !== 0) {
             @trigger_error('tag_keys is deprecated.', E_USER_DEPRECATED);
         }
         return $this->tag_keys;
@@ -1639,7 +1639,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      */
     public function getTagValues()
     {
-        if ($this->tag_values->count() !== 0) {
+        if (count($this->tag_values) !== 0) {
             @trigger_error('tag_values is deprecated.', E_USER_DEPRECATED);
         }
         return $this->tag_values;
@@ -1691,7 +1691,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      */
     public function getTagValueIds()
     {
-        if ($this->tag_value_ids->count() !== 0) {
+        if (count($this->tag_value_ids) !== 0) {
             @trigger_error('tag_value_ids is deprecated.', E_USER_DEPRECATED);
         }
         return $this->tag_value_ids;

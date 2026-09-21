@@ -290,6 +290,13 @@ class ProcessingErrorReason
      * Generated from protobuf enum <code>PROCESSING_ERROR_REASON_CLICK_NOT_FOUND = 43;</code>
      */
     const PROCESSING_ERROR_REASON_CLICK_NOT_FOUND = 43;
+    /**
+     * External attribution data is missing. Sending events to a destination for
+     * an external attribution conversion action isn't supported.
+     *
+     * Generated from protobuf enum <code>PROCESSING_ERROR_REASON_EXTERNAL_ATTRIBUTION_DATA_MISSING = 44;</code>
+     */
+    const PROCESSING_ERROR_REASON_EXTERNAL_ATTRIBUTION_DATA_MISSING = 44;
 
     private static $valueToName = [
         self::PROCESSING_ERROR_REASON_UNSPECIFIED => 'PROCESSING_ERROR_REASON_UNSPECIFIED',
@@ -336,6 +343,7 @@ class ProcessingErrorReason
         self::PROCESSING_ERROR_REASON_INVALID_CLICK => 'PROCESSING_ERROR_REASON_INVALID_CLICK',
         self::PROCESSING_ERROR_REASON_INVALID_OPERATING_ACCOUNT_FOR_CLICK => 'PROCESSING_ERROR_REASON_INVALID_OPERATING_ACCOUNT_FOR_CLICK',
         self::PROCESSING_ERROR_REASON_CLICK_NOT_FOUND => 'PROCESSING_ERROR_REASON_CLICK_NOT_FOUND',
+        self::PROCESSING_ERROR_REASON_EXTERNAL_ATTRIBUTION_DATA_MISSING => 'PROCESSING_ERROR_REASON_EXTERNAL_ATTRIBUTION_DATA_MISSING',
     ];
 
     public static function name($value)

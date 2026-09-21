@@ -8,7 +8,7 @@
         "Eventarc": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "EventarcGapicClient",
+                    "libraryClient": "EventarcClient",
                     "rpcs": {
                         "CreateChannel": {
                             "methods": [

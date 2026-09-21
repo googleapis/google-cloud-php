@@ -8,7 +8,7 @@
         "OrgPolicy": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "OrgPolicyGapicClient",
+                    "libraryClient": "OrgPolicyClient",
                     "rpcs": {
                         "CreateCustomConstraint": {
                             "methods": [

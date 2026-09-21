@@ -223,6 +223,20 @@ class CloudVmClusterProperties extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.CloudVmClusterProperties.StorageManagementType storage_management_type = 38 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $storage_management_type = 0;
+    /**
+     * Optional. Specifies whether VM file system storage / VM images are stored
+     * on local DB server storage or Exascale storage.
+     *
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.CloudVmClusterProperties.VmFileSystemStorageType vm_file_system_storage_type = 39 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $vm_file_system_storage_type = 0;
+    /**
+     * Optional. Specifies whether VM backups are stored on local DB server
+     * storage or Exascale storage.
+     *
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.CloudVmClusterProperties.VmBackupStorageType vm_backup_storage_type = 40 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $vm_backup_storage_type = 0;
 
     /**
      * Constructor.
@@ -302,6 +316,12 @@ class CloudVmClusterProperties extends \Google\Protobuf\Internal\Message
      *           Output only. The compute model of the VM Cluster.
      *     @type int $storage_management_type
      *           Output only. The storage management type of the VM Cluster.
+     *     @type int $vm_file_system_storage_type
+     *           Optional. Specifies whether VM file system storage / VM images are stored
+     *           on local DB server storage or Exascale storage.
+     *     @type int $vm_backup_storage_type
+     *           Optional. Specifies whether VM backups are stored on local DB server
+     *           storage or Exascale storage.
      * }
      */
     public function __construct($data = NULL) {
@@ -1217,6 +1237,62 @@ class CloudVmClusterProperties extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\OracleDatabase\V1\CloudVmClusterProperties\StorageManagementType::class);
         $this->storage_management_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies whether VM file system storage / VM images are stored
+     * on local DB server storage or Exascale storage.
+     *
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.CloudVmClusterProperties.VmFileSystemStorageType vm_file_system_storage_type = 39 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getVmFileSystemStorageType()
+    {
+        return $this->vm_file_system_storage_type;
+    }
+
+    /**
+     * Optional. Specifies whether VM file system storage / VM images are stored
+     * on local DB server storage or Exascale storage.
+     *
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.CloudVmClusterProperties.VmFileSystemStorageType vm_file_system_storage_type = 39 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setVmFileSystemStorageType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\OracleDatabase\V1\CloudVmClusterProperties\VmFileSystemStorageType::class);
+        $this->vm_file_system_storage_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies whether VM backups are stored on local DB server
+     * storage or Exascale storage.
+     *
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.CloudVmClusterProperties.VmBackupStorageType vm_backup_storage_type = 40 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getVmBackupStorageType()
+    {
+        return $this->vm_backup_storage_type;
+    }
+
+    /**
+     * Optional. Specifies whether VM backups are stored on local DB server
+     * storage or Exascale storage.
+     *
+     * Generated from protobuf field <code>.google.cloud.oracledatabase.v1.CloudVmClusterProperties.VmBackupStorageType vm_backup_storage_type = 40 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setVmBackupStorageType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\OracleDatabase\V1\CloudVmClusterProperties\VmBackupStorageType::class);
+        $this->vm_backup_storage_type = $var;
 
         return $this;
     }

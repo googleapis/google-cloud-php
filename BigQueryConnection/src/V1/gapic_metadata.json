@@ -8,7 +8,7 @@
         "ConnectionService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ConnectionServiceGapicClient",
+                    "libraryClient": "ConnectionServiceClient",
                     "rpcs": {
                         "CreateConnection": {
                             "methods": [

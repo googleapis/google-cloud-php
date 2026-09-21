@@ -9,6 +9,7 @@
 # explicitly taken by someone else.
 *                               @googleapis/cloud-sdk-php-team
 
+/librarian.yaml  @googleapis/cloud-sdk-php-team @googleapis/cloud-sdk-librarian-team
 /Bigtable       @googleapis/bigtable-team @googleapis/cloud-sdk-php-team
 /Datastore/     @googleapis/cloud-sdk-php-team
 /Firestore/     @googleapis/firestore-team @googleapis/cloud-sdk-php-team

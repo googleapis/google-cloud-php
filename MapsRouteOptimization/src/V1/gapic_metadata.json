@@ -8,7 +8,7 @@
         "RouteOptimization": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "RouteOptimizationGapicClient",
+                    "libraryClient": "RouteOptimizationClient",
                     "rpcs": {
                         "BatchOptimizeTours": {
                             "methods": [

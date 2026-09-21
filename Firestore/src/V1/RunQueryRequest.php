@@ -33,6 +33,12 @@ class RunQueryRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.firestore.v1.ExplainOptions explain_options = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $explain_options = null;
+    /**
+     * Optional. Any additional options for the request.
+     *
+     * Generated from protobuf field <code>.google.firestore.v1.RequestOptions request_options = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $request_options = null;
     protected $query_type;
     protected $consistency_selector;
 
@@ -67,6 +73,8 @@ class RunQueryRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Firestore\V1\ExplainOptions $explain_options
      *           Optional. Explain options for the query. If set, additional query
      *           statistics will be returned. If not, only query results will be returned.
+     *     @type \Google\Cloud\Firestore\V1\RequestOptions $request_options
+     *           Optional. Any additional options for the request.
      * }
      */
     public function __construct($data = NULL) {
@@ -282,6 +290,42 @@ class RunQueryRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Firestore\V1\ExplainOptions::class);
         $this->explain_options = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Any additional options for the request.
+     *
+     * Generated from protobuf field <code>.google.firestore.v1.RequestOptions request_options = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Firestore\V1\RequestOptions|null
+     */
+    public function getRequestOptions()
+    {
+        return $this->request_options;
+    }
+
+    public function hasRequestOptions()
+    {
+        return isset($this->request_options);
+    }
+
+    public function clearRequestOptions()
+    {
+        unset($this->request_options);
+    }
+
+    /**
+     * Optional. Any additional options for the request.
+     *
+     * Generated from protobuf field <code>.google.firestore.v1.RequestOptions request_options = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Firestore\V1\RequestOptions $var
+     * @return $this
+     */
+    public function setRequestOptions($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Firestore\V1\RequestOptions::class);
+        $this->request_options = $var;
 
         return $this;
     }

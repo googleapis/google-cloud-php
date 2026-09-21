@@ -8,7 +8,7 @@
         "CertificateManager": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "CertificateManagerGapicClient",
+                    "libraryClient": "CertificateManagerClient",
                     "rpcs": {
                         "CreateCertificate": {
                             "methods": [

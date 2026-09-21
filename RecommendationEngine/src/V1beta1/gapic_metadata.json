@@ -8,7 +8,7 @@
         "CatalogService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "CatalogServiceGapicClient",
+                    "libraryClient": "CatalogServiceClient",
                     "rpcs": {
                         "CreateCatalogItem": {
                             "methods": [
@@ -47,7 +47,7 @@
         "PredictionApiKeyRegistry": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "PredictionApiKeyRegistryGapicClient",
+                    "libraryClient": "PredictionApiKeyRegistryClient",
                     "rpcs": {
                         "CreatePredictionApiKeyRegistration": {
                             "methods": [
@@ -71,7 +71,7 @@
         "PredictionService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "PredictionServiceGapicClient",
+                    "libraryClient": "PredictionServiceClient",
                     "rpcs": {
                         "Predict": {
                             "methods": [
@@ -85,7 +85,7 @@
         "UserEventService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "UserEventServiceGapicClient",
+                    "libraryClient": "UserEventServiceClient",
                     "rpcs": {
                         "CollectUserEvent": {
                             "methods": [

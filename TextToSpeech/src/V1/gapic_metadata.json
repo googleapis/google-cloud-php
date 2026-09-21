@@ -8,7 +8,7 @@
         "TextToSpeech": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "TextToSpeechGapicClient",
+                    "libraryClient": "TextToSpeechClient",
                     "rpcs": {
                         "ListVoices": {
                             "methods": [
@@ -32,7 +32,7 @@
         "TextToSpeechLongAudioSynthesize": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "TextToSpeechLongAudioSynthesizeGapicClient",
+                    "libraryClient": "TextToSpeechLongAudioSynthesizeClient",
                     "rpcs": {
                         "SynthesizeLongAudio": {
                             "methods": [

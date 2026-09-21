@@ -370,7 +370,7 @@ class InterceptEndpointGroupAssociation extends \Google\Protobuf\Internal\Messag
      */
     public function getLocationsDetails()
     {
-        if ($this->locations_details->count() !== 0) {
+        if (count($this->locations_details) !== 0) {
             @trigger_error('locations_details is deprecated.', E_USER_DEPRECATED);
         }
         return $this->locations_details;
@@ -389,7 +389,7 @@ class InterceptEndpointGroupAssociation extends \Google\Protobuf\Internal\Messag
     public function setLocationsDetails($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\NetworkSecurity\V1\InterceptEndpointGroupAssociation\LocationDetails::class);
-        if ($arr->count() !== 0) {
+        if (count($arr) !== 0) {
             @trigger_error('locations_details is deprecated.', E_USER_DEPRECATED);
         }
         $this->locations_details = $arr;

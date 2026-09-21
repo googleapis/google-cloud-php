@@ -964,6 +964,17 @@ class Database
             $this->isRunningTransaction = true;
             try {
                 $res = call_user_func($operation, $transaction);
+            } catch (\Throwable $e) {
+                $active = $transaction->state() === Transaction::STATE_ACTIVE;
+                $singleUse = $transaction->type() === Transaction::TYPE_SINGLE_USE;
+                if ($active && !$singleUse) {
+                    try {
+                        $transaction->rollback();
+                    } catch (\Throwable $rollbackException) {
+                        // ignore rollback failure and bubble up the original exception
+                    }
+                }
+                throw $e;
             } finally {
                 $this->isRunningTransaction = false;
             }
@@ -971,7 +982,7 @@ class Database
             $active = $transaction->state() === Transaction::STATE_ACTIVE;
             $singleUse = $transaction->type() === Transaction::TYPE_SINGLE_USE;
             if ($active && !$singleUse) {
-                $transaction->rollback($options);
+                $transaction->rollback();
                 throw new \RuntimeException('Transactions must be rolled back or committed.');
             }
 

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -36,6 +36,11 @@ return [
             'IngestEvents' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/events:ingest',
+                'body' => '*',
+            ],
+            'RemoveAllAudienceMembers' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/audienceMembers:removeAll',
                 'body' => '*',
             ],
             'RemoveAudienceMembers' => [

@@ -41,7 +41,7 @@ class TableDataProfile extends \Google\Protobuf\Internal\Message
     protected $dataset_project_id = '';
     /**
      * If supported, the location where the dataset's data is stored.
-     * See https://cloud.google.com/bigquery/docs/locations for supported
+     * See https://docs.cloud.google.com/bigquery/docs/locations for supported
      * locations.
      *
      * Generated from protobuf field <code>string dataset_location = 29;</code>
@@ -221,7 +221,7 @@ class TableDataProfile extends \Google\Protobuf\Internal\Message
      *           The Google Cloud project ID that owns the resource.
      *     @type string $dataset_location
      *           If supported, the location where the dataset's data is stored.
-     *           See https://cloud.google.com/bigquery/docs/locations for supported
+     *           See https://docs.cloud.google.com/bigquery/docs/locations for supported
      *           locations.
      *     @type string $dataset_id
      *           If the resource is BigQuery, the dataset ID.
@@ -403,7 +403,7 @@ class TableDataProfile extends \Google\Protobuf\Internal\Message
 
     /**
      * If supported, the location where the dataset's data is stored.
-     * See https://cloud.google.com/bigquery/docs/locations for supported
+     * See https://docs.cloud.google.com/bigquery/docs/locations for supported
      * locations.
      *
      * Generated from protobuf field <code>string dataset_location = 29;</code>
@@ -416,7 +416,7 @@ class TableDataProfile extends \Google\Protobuf\Internal\Message
 
     /**
      * If supported, the location where the dataset's data is stored.
-     * See https://cloud.google.com/bigquery/docs/locations for supported
+     * See https://docs.cloud.google.com/bigquery/docs/locations for supported
      * locations.
      *
      * Generated from protobuf field <code>string dataset_location = 29;</code>

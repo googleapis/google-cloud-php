@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2022 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,9 +32,9 @@ use Google\Cloud\Dlp\V2\Client\DlpServiceClient;
  * makes a best effort to cancel the DlpJob, but success is not
  * guaranteed.
  * See
- * https://cloud.google.com/sensitive-data-protection/docs/inspecting-storage
+ * https://docs.cloud.google.com/sensitive-data-protection/docs/inspecting-storage
  * and
- * https://cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis
+ * https://docs.cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis
  * to learn more.
  *
  * @param string $formattedName The name of the DlpJob resource to be cancelled. Please see

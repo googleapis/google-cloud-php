@@ -25,7 +25,7 @@ return [
         'google.cloud.support.v2.SupportEventSubscriptionService' => [
             'CreateSupportEventSubscription' => [
                 'method' => 'post',
-                'uriTemplate' => '/v2/{parent=*/*}/supportEventSubscriptions',
+                'uriTemplate' => '/v2/{parent=organizations/*}/supportEventSubscriptions',
                 'body' => 'support_event_subscription',
                 'placeholders' => [
                     'parent' => [
@@ -37,7 +37,19 @@ return [
             ],
             'DeleteSupportEventSubscription' => [
                 'method' => 'delete',
-                'uriTemplate' => '/v2/{name=*/*/supportEventSubscriptions/*}',
+                'uriTemplate' => '/v2/{name=organizations/*/supportEventSubscriptions/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ExpungeSupportEventSubscription' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{name=organizations/*/supportEventSubscriptions/*}:expunge',
+                'body' => '*',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -48,7 +60,7 @@ return [
             ],
             'GetSupportEventSubscription' => [
                 'method' => 'get',
-                'uriTemplate' => '/v2/{name=*/*/supportEventSubscriptions/*}',
+                'uriTemplate' => '/v2/{name=organizations/*/supportEventSubscriptions/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -59,7 +71,7 @@ return [
             ],
             'ListSupportEventSubscriptions' => [
                 'method' => 'get',
-                'uriTemplate' => '/v2/{parent=*/*}/supportEventSubscriptions',
+                'uriTemplate' => '/v2/{parent=organizations/*}/supportEventSubscriptions',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -70,7 +82,7 @@ return [
             ],
             'UndeleteSupportEventSubscription' => [
                 'method' => 'post',
-                'uriTemplate' => '/v2/{name=*/*/supportEventSubscriptions/*}:undelete',
+                'uriTemplate' => '/v2/{name=organizations/*/supportEventSubscriptions/*}:undelete',
                 'body' => '*',
                 'placeholders' => [
                     'name' => [
@@ -82,7 +94,7 @@ return [
             ],
             'UpdateSupportEventSubscription' => [
                 'method' => 'patch',
-                'uriTemplate' => '/v2/{support_event_subscription.name=*/*/supportEventSubscriptions/*}',
+                'uriTemplate' => '/v2/{support_event_subscription.name=organizations/*/supportEventSubscriptions/*}',
                 'body' => 'support_event_subscription',
                 'placeholders' => [
                     'support_event_subscription.name' => [

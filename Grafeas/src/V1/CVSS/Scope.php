@@ -7,19 +7,27 @@ namespace Grafeas\V1\CVSS;
 use UnexpectedValueException;
 
 /**
+ * Scope.
+ *
  * Protobuf type <code>grafeas.v1.CVSS.Scope</code>
  */
 class Scope
 {
     /**
+     * Unspecified.
+     *
      * Generated from protobuf enum <code>SCOPE_UNSPECIFIED = 0;</code>
      */
     const SCOPE_UNSPECIFIED = 0;
     /**
+     * Scope: Unchanged (S:U). Defined in CVSS v3.
+     *
      * Generated from protobuf enum <code>SCOPE_UNCHANGED = 1;</code>
      */
     const SCOPE_UNCHANGED = 1;
     /**
+     * Scope: Changed (S:C). Defined in CVSS v3.
+     *
      * Generated from protobuf enum <code>SCOPE_CHANGED = 2;</code>
      */
     const SCOPE_CHANGED = 2;

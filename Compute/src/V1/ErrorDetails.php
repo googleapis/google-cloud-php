@@ -9,24 +9,34 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
+ * Container for structured error details providing additional context
+ * specific to the encountered error code.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.ErrorDetails</code>
  */
 class ErrorDetails extends \Google\Protobuf\Internal\Message
 {
     /**
+     * Error information containing structured domain, reason, and metadata.
+     *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ErrorInfo error_info = 25251973;</code>
      */
     protected $error_info = null;
     /**
+     * Links and information to help the user resolve the error.
+     *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Help help = 3198785;</code>
      */
     protected $help = null;
     /**
+     * A localized human-readable error message intended for end users.
+     *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.LocalizedMessage localized_message = 404537155;</code>
      */
     protected $localized_message = null;
     /**
+     * Details about quota limits and metrics when a quota is exceeded.
+     *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.QuotaExceededInfo quota_info = 93923861;</code>
      */
     protected $quota_info = null;
@@ -38,9 +48,13 @@ class ErrorDetails extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Compute\V1\ErrorInfo $error_info
+     *           Error information containing structured domain, reason, and metadata.
      *     @type \Google\Cloud\Compute\V1\Help $help
+     *           Links and information to help the user resolve the error.
      *     @type \Google\Cloud\Compute\V1\LocalizedMessage $localized_message
+     *           A localized human-readable error message intended for end users.
      *     @type \Google\Cloud\Compute\V1\QuotaExceededInfo $quota_info
+     *           Details about quota limits and metrics when a quota is exceeded.
      * }
      */
     public function __construct($data = NULL) {
@@ -49,6 +63,8 @@ class ErrorDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Error information containing structured domain, reason, and metadata.
+     *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ErrorInfo error_info = 25251973;</code>
      * @return \Google\Cloud\Compute\V1\ErrorInfo|null
      */
@@ -68,6 +84,8 @@ class ErrorDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Error information containing structured domain, reason, and metadata.
+     *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ErrorInfo error_info = 25251973;</code>
      * @param \Google\Cloud\Compute\V1\ErrorInfo $var
      * @return $this
@@ -81,6 +99,8 @@ class ErrorDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Links and information to help the user resolve the error.
+     *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Help help = 3198785;</code>
      * @return \Google\Cloud\Compute\V1\Help|null
      */
@@ -100,6 +120,8 @@ class ErrorDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Links and information to help the user resolve the error.
+     *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Help help = 3198785;</code>
      * @param \Google\Cloud\Compute\V1\Help $var
      * @return $this
@@ -113,6 +135,8 @@ class ErrorDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * A localized human-readable error message intended for end users.
+     *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.LocalizedMessage localized_message = 404537155;</code>
      * @return \Google\Cloud\Compute\V1\LocalizedMessage|null
      */
@@ -132,6 +156,8 @@ class ErrorDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * A localized human-readable error message intended for end users.
+     *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.LocalizedMessage localized_message = 404537155;</code>
      * @param \Google\Cloud\Compute\V1\LocalizedMessage $var
      * @return $this
@@ -145,6 +171,8 @@ class ErrorDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Details about quota limits and metrics when a quota is exceeded.
+     *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.QuotaExceededInfo quota_info = 93923861;</code>
      * @return \Google\Cloud\Compute\V1\QuotaExceededInfo|null
      */
@@ -164,6 +192,8 @@ class ErrorDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Details about quota limits and metrics when a quota is exceeded.
+     *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.QuotaExceededInfo quota_info = 93923861;</code>
      * @param \Google\Cloud\Compute\V1\QuotaExceededInfo $var
      * @return $this

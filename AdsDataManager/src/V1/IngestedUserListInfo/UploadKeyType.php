@@ -53,6 +53,7 @@ class UploadKeyType
      * - Roku ID
      * - Amazon Fire TV ID
      * - Xbox or Microsoft ID
+     * - Generic Device ID
      *
      * Generated from protobuf enum <code>PSEUDONYMOUS_ID = 5;</code>
      */

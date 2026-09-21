@@ -8,7 +8,7 @@
         "Autokey": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "AutokeyGapicClient",
+                    "libraryClient": "AutokeyClient",
                     "rpcs": {
                         "CreateKeyHandle": {
                             "methods": [
@@ -57,7 +57,7 @@
         "AutokeyAdmin": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "AutokeyAdminGapicClient",
+                    "libraryClient": "AutokeyAdminClient",
                     "rpcs": {
                         "GetAutokeyConfig": {
                             "methods": [
@@ -106,7 +106,7 @@
         "EkmService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "EkmServiceGapicClient",
+                    "libraryClient": "EkmServiceClient",
                     "rpcs": {
                         "CreateEkmConnection": {
                             "methods": [
@@ -175,7 +175,7 @@
         "HsmManagement": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "HsmManagementGapicClient",
+                    "libraryClient": "HsmManagementClient",
                     "rpcs": {
                         "ApproveSingleTenantHsmInstanceProposal": {
                             "methods": [
@@ -254,7 +254,7 @@
         "KeyManagementService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "KeyManagementServiceGapicClient",
+                    "libraryClient": "KeyManagementServiceClient",
                     "rpcs": {
                         "AsymmetricDecrypt": {
                             "methods": [

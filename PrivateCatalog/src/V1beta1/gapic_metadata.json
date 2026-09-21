@@ -8,7 +8,7 @@
         "PrivateCatalog": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "PrivateCatalogGapicClient",
+                    "libraryClient": "PrivateCatalogClient",
                     "rpcs": {
                         "SearchCatalogs": {
                             "methods": [

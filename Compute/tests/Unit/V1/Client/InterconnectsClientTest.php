@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -229,6 +229,7 @@ class InterconnectsClientTest extends GeneratedTest
         $requestedLinkCount = 1118793211;
         $satisfiesPzs = false;
         $selfLink = 'selfLink-1691268851';
+        $selfLinkWithId = 'selfLinkWithId-1029220862';
         $state = 'state109757585';
         $subzone = 'subzone-1867398676';
         $expectedResponse = new Interconnect();
@@ -256,6 +257,7 @@ class InterconnectsClientTest extends GeneratedTest
         $expectedResponse->setRequestedLinkCount($requestedLinkCount);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $expectedResponse->setSelfLink($selfLink);
+        $expectedResponse->setSelfLinkWithId($selfLinkWithId);
         $expectedResponse->setState($state);
         $expectedResponse->setSubzone($subzone);
         $transport->addResponse($expectedResponse);

@@ -8,7 +8,7 @@
         "KeyDashboardService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "KeyDashboardServiceGapicClient",
+                    "libraryClient": "KeyDashboardServiceClient",
                     "rpcs": {
                         "ListCryptoKeys": {
                             "methods": [
@@ -22,7 +22,7 @@
         "KeyTrackingService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "KeyTrackingServiceGapicClient",
+                    "libraryClient": "KeyTrackingServiceClient",
                     "rpcs": {
                         "GetProtectedResourcesSummary": {
                             "methods": [

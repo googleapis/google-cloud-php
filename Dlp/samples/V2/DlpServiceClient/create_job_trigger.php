@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2022 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,14 +33,14 @@ use Google\Cloud\Dlp\V2\JobTrigger\Status;
  * Creates a job trigger to run DLP actions such as scanning storage for
  * sensitive information on a set schedule.
  * See
- * https://cloud.google.com/sensitive-data-protection/docs/creating-job-triggers
+ * https://docs.cloud.google.com/sensitive-data-protection/docs/creating-job-triggers
  * to learn more.
  *
  * @param string $formattedParent  Parent resource name.
  *
  *                                 The format of this value varies depending on whether you have [specified a
  *                                 processing
- *                                 location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
+ *                                 location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location):
  *
  *                                 + Projects scope, location specified:
  *                                 `projects/{project_id}/locations/{location_id}`

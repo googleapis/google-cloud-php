@@ -30,17 +30,18 @@ use Google\Cloud\AuditManager\V1\EnrollResourceRequest\EligibleDestination;
 use Google\Cloud\AuditManager\V1\Enrollment;
 
 /**
- * Enrolls the customer resource(folder/project/organization) to the audit
- * manager service by creating the audit managers Service Agent in customers
- * workload and granting required permissions to the Service Agent. Please
- * note that if enrollment request is made on the already enrolled workload
- * then enrollment is executed overriding the existing set of destinations.
+ * Adds your project, folder, or organization to Audit
+ * Manager. This method creates the Audit Manager service agent in your
+ * workload and grants required permissions to the service agent.
+ * If you make this request on a workload that's already enrolled,
+ * then this method overrides the existing set of destinations.
  *
- * @param string $scope The resource to be enrolled to the audit manager. Scope format
- *                      should be resource_type/resource_identifier Eg:
- *                      projects/{project}/locations/{location},
- *                      folders/{folder}/locations/{location}
- *                      organizations/{organization}/locations/{location}
+ * @param string $scope Organization, folder, or project to enroll in Audit Manager, in
+ *                      one of the following formats:
+ *
+ *                      * `projects/{project}/locations/{location}`
+ *                      * `folders/{folder}/locations/{location}`
+ *                      * `organizations/{organization}/locations/{location}`
  */
 function enroll_resource_sample(string $scope): void
 {

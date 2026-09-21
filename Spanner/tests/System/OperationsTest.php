@@ -97,13 +97,14 @@ class OperationsTest extends SystemTestCase
     public function testUpdate()
     {
         $db = self::$database;
+        $newName = uniqid('Doug');
         $row = $this->getRow();
-        $row['name'] = 'Doug';
+        $row['name'] = $newName;
 
         $db->update('Users', $row);
 
         $row = $this->getRow();
-        $this->assertEquals('Doug', $row['name']);
+        $this->assertEquals($newName, $row['name']);
     }
 
     public function testInsertOrUpdate()

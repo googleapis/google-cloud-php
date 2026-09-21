@@ -7,42 +7,42 @@ namespace Google\Cloud\AuditManager\V1\AuditReport;
 use UnexpectedValueException;
 
 /**
- * The different states of the Audit Manager report generation.
+ * Different states of report generation.
  *
  * Protobuf type <code>google.cloud.auditmanager.v1.AuditReport.ReportGenerationState</code>
  */
 class ReportGenerationState
 {
     /**
-     * Unspecified. Invalid state.
+     * Default value. This value is unused.
      *
      * Generated from protobuf enum <code>REPORT_GENERATION_STATE_UNSPECIFIED = 0;</code>
      */
     const REPORT_GENERATION_STATE_UNSPECIFIED = 0;
     /**
-     * Audit report generation process is in progress, ie. operation state is
-     * neither OPERATION_STATE_DONE nor OPERATION_STATE_FAILED.
+     * The process is in progress. The operation can have any state
+     * except for `OPERATION_STATE_DONE` or `OPERATION_STATE_FAILED`.
      *
      * Generated from protobuf enum <code>IN_PROGRESS = 1;</code>
      */
     const IN_PROGRESS = 1;
     /**
-     * Audit report generation process is completed. Operation state is
-     * OPERATION_STATE_DONE.
+     * The process is completed. The operation state is
+     * `OPERATION_STATE_DONE`.
      *
      * Generated from protobuf enum <code>COMPLETED = 2;</code>
      */
     const COMPLETED = 2;
     /**
-     * Audit report generation process has failed. Operation state is
-     * OPERATION_STATE_FAILED.
+     * The process has failed. The operation state is
+     * `OPERATION_STATE_FAILED`.
      *
      * Generated from protobuf enum <code>FAILED = 3;</code>
      */
     const FAILED = 3;
     /**
-     * Audit report generation process has completed. But report summary is
-     * unknown. This is valid for older reports.
+     * The process completed, but the report summary's status is unknown. This
+     * state isn't used for new reports.
      *
      * Generated from protobuf enum <code>SUMMARY_UNKNOWN = 4;</code>
      */

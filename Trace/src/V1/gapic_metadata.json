@@ -8,7 +8,7 @@
         "TraceService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "TraceServiceGapicClient",
+                    "libraryClient": "TraceServiceClient",
                     "rpcs": {
                         "GetTrace": {
                             "methods": [

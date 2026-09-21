@@ -8,7 +8,7 @@
         "ConfidentialComputing": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ConfidentialComputingGapicClient",
+                    "libraryClient": "ConfidentialComputingClient",
                     "rpcs": {
                         "CreateChallenge": {
                             "methods": [

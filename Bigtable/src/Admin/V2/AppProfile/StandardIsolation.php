@@ -22,6 +22,13 @@ class StandardIsolation extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.bigtable.admin.v2.AppProfile.Priority priority = 1;</code>
      */
     protected $priority = 0;
+    /**
+     * Optional. The memory config to use for requests sent using this app
+     * profile.
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.AppProfile.StandardIsolation.MemoryConfig memory_config = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $memory_config = null;
 
     /**
      * Constructor.
@@ -31,6 +38,9 @@ class StandardIsolation extends \Google\Protobuf\Internal\Message
      *
      *     @type int $priority
      *           The priority of requests sent using this app profile.
+     *     @type \Google\Cloud\Bigtable\Admin\V2\AppProfile\StandardIsolation\MemoryConfig $memory_config
+     *           Optional. The memory config to use for requests sent using this app
+     *           profile.
      * }
      */
     public function __construct($data = NULL) {
@@ -60,6 +70,44 @@ class StandardIsolation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Bigtable\Admin\V2\AppProfile\Priority::class);
         $this->priority = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The memory config to use for requests sent using this app
+     * profile.
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.AppProfile.StandardIsolation.MemoryConfig memory_config = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Bigtable\Admin\V2\AppProfile\StandardIsolation\MemoryConfig|null
+     */
+    public function getMemoryConfig()
+    {
+        return $this->memory_config;
+    }
+
+    public function hasMemoryConfig()
+    {
+        return isset($this->memory_config);
+    }
+
+    public function clearMemoryConfig()
+    {
+        unset($this->memory_config);
+    }
+
+    /**
+     * Optional. The memory config to use for requests sent using this app
+     * profile.
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.AppProfile.StandardIsolation.MemoryConfig memory_config = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Bigtable\Admin\V2\AppProfile\StandardIsolation\MemoryConfig $var
+     * @return $this
+     */
+    public function setMemoryConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\Admin\V2\AppProfile\StandardIsolation\MemoryConfig::class);
+        $this->memory_config = $var;
 
         return $this;
     }

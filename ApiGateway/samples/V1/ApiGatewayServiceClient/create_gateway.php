@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2022 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -36,8 +36,8 @@ use Google\Rpc\Status;
  * @param string $formattedParent           Parent resource of the Gateway, of the form:
  *                                          `projects/&#42;/locations/*`
  *                                          Please see {@see ApiGatewayServiceClient::locationName()} for help formatting this field.
- * @param string $gatewayId                 Identifier to assign to the Gateway. Must be unique within scope of
- *                                          the parent resource.
+ * @param string $gatewayId                 Identifier to assign to the Gateway. Must be unique within scope
+ *                                          of the parent resource.
  * @param string $formattedGatewayApiConfig Resource name of the API Config for this Gateway.
  *                                          Format: projects/{project}/locations/global/apis/{api}/configs/{apiConfig}
  *                                          Please see {@see ApiGatewayServiceClient::apiConfigName()} for help formatting this field.

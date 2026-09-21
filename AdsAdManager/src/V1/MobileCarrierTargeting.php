@@ -10,8 +10,7 @@ use Google\Protobuf\RepeatedField;
 
 /**
  * Mobile Carrier Targeting.
- * Can be used to target/exclude a variety of mobile carriers, such as AT&T,
- * Verizon, or T-Mobile.
+ * Used to target or exclude mobile carriers.
  *
  * Generated from protobuf message <code>google.ads.admanager.v1.MobileCarrierTargeting</code>
  */

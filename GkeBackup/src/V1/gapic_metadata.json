@@ -8,7 +8,7 @@
         "BackupForGKE": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "BackupForGKEGapicClient",
+                    "libraryClient": "BackupForGKEClient",
                     "rpcs": {
                         "CreateBackup": {
                             "methods": [

@@ -8,7 +8,7 @@
         "AppOptimize": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "AppOptimizeGapicClient",
+                    "libraryClient": "AppOptimizeClient",
                     "rpcs": {
                         "CreateReport": {
                             "methods": [

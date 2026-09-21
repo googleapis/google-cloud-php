@@ -34,7 +34,7 @@ use Google\Cloud\VisionAI\V1\SearchResultItem;
  *
  * @param string $formattedIndexEndpoint The index endpoint to search.
  *                                       Format:
- *                                       `projects/{project_id}/locations/{location_id}/indexEndpoints/{index_endpoint_id}'
+ *                                       `projects/{project_id}/locations/{location_id}/indexEndpoints/{index_endpoint_id}`
  *                                       Please see {@see WarehouseClient::indexEndpointName()} for help formatting this field.
  */
 function search_index_endpoint_sample(string $formattedIndexEndpoint): void

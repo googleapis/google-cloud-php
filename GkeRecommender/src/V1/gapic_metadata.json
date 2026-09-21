@@ -8,7 +8,7 @@
         "GkeInferenceQuickstart": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "GkeInferenceQuickstartGapicClient",
+                    "libraryClient": "GkeInferenceQuickstartClient",
                     "rpcs": {
                         "FetchBenchmarkingData": {
                             "methods": [

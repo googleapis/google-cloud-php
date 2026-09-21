@@ -8,7 +8,7 @@
         "FleetRouting": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "FleetRoutingGapicClient",
+                    "libraryClient": "FleetRoutingClient",
                     "rpcs": {
                         "BatchOptimizeTours": {
                             "methods": [

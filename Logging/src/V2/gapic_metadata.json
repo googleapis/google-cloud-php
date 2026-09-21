@@ -8,7 +8,7 @@
         "LoggingServiceV2": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "LoggingServiceV2GapicClient",
+                    "libraryClient": "LoggingServiceV2Client",
                     "rpcs": {
                         "DeleteLog": {
                             "methods": [
@@ -47,7 +47,7 @@
         "ConfigServiceV2": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ConfigServiceV2GapicClient",
+                    "libraryClient": "ConfigServiceV2Client",
                     "rpcs": {
                         "CopyLogEntries": {
                             "methods": [
@@ -216,7 +216,7 @@
         "MetricsServiceV2": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "MetricsServiceV2GapicClient",
+                    "libraryClient": "MetricsServiceV2Client",
                     "rpcs": {
                         "CreateLogMetric": {
                             "methods": [

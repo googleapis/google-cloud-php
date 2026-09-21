@@ -8,7 +8,7 @@
         "AdvisoryNotificationsService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "AdvisoryNotificationsServiceGapicClient",
+                    "libraryClient": "AdvisoryNotificationsServiceClient",
                     "rpcs": {
                         "GetNotification": {
                             "methods": [

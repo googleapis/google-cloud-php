@@ -8,7 +8,7 @@
         "DataMigrationService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "DataMigrationServiceGapicClient",
+                    "libraryClient": "DataMigrationServiceClient",
                     "rpcs": {
                         "ApplyConversionWorkspace": {
                             "methods": [

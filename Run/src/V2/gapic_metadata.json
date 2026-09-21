@@ -8,7 +8,7 @@
         "Builds": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "BuildsGapicClient",
+                    "libraryClient": "BuildsClient",
                     "rpcs": {
                         "SubmitBuild": {
                             "methods": [
@@ -22,7 +22,7 @@
         "Executions": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ExecutionsGapicClient",
+                    "libraryClient": "ExecutionsClient",
                     "rpcs": {
                         "CancelExecution": {
                             "methods": [
@@ -51,7 +51,7 @@
         "Instances": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "InstancesGapicClient",
+                    "libraryClient": "InstancesClient",
                     "rpcs": {
                         "CreateInstance": {
                             "methods": [
@@ -90,7 +90,7 @@
         "Jobs": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "JobsGapicClient",
+                    "libraryClient": "JobsClient",
                     "rpcs": {
                         "CreateJob": {
                             "methods": [
@@ -144,7 +144,7 @@
         "Revisions": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "RevisionsGapicClient",
+                    "libraryClient": "RevisionsClient",
                     "rpcs": {
                         "DeleteRevision": {
                             "methods": [
@@ -168,7 +168,7 @@
         "Services": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ServicesGapicClient",
+                    "libraryClient": "ServicesClient",
                     "rpcs": {
                         "CreateService": {
                             "methods": [
@@ -217,7 +217,7 @@
         "Tasks": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "TasksGapicClient",
+                    "libraryClient": "TasksClient",
                     "rpcs": {
                         "GetTask": {
                             "methods": [
@@ -236,7 +236,7 @@
         "WorkerPools": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "WorkerPoolsGapicClient",
+                    "libraryClient": "WorkerPoolsClient",
                     "rpcs": {
                         "CreateWorkerPool": {
                             "methods": [

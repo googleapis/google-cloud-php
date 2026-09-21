@@ -80,6 +80,21 @@ class CodeCompilationConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.dataform.v1.NotebookRuntimeOptions default_notebook_runtime_options = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $default_notebook_runtime_options = null;
+    /**
+     * Optional. The pipeline options which defines the pipeline type and path
+     * within the Git repository.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1.PipelineConfig pipeline_config = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $pipeline_config = null;
+    /**
+     * Output only. Whether OpenLineage events are emitted for actions in this
+     * workflow. Reflects the `lineage.enabled` setting from
+     * `workflow_settings.yaml`.
+     *
+     * Generated from protobuf field <code>optional bool lineage_enabled = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $lineage_enabled = null;
 
     /**
      * Constructor.
@@ -112,6 +127,13 @@ class CodeCompilationConfig extends \Google\Protobuf\Internal\Message
      *           Optional. The prefix to prepend to built-in assertion names.
      *     @type \Google\Cloud\Dataform\V1\NotebookRuntimeOptions $default_notebook_runtime_options
      *           Optional. The default notebook runtime options.
+     *     @type \Google\Cloud\Dataform\V1\PipelineConfig $pipeline_config
+     *           Optional. The pipeline options which defines the pipeline type and path
+     *           within the Git repository.
+     *     @type bool $lineage_enabled
+     *           Output only. Whether OpenLineage events are emitted for actions in this
+     *           workflow. Reflects the `lineage.enabled` setting from
+     *           `workflow_settings.yaml`.
      * }
      */
     public function __construct($data = NULL) {
@@ -395,6 +417,84 @@ class CodeCompilationConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dataform\V1\NotebookRuntimeOptions::class);
         $this->default_notebook_runtime_options = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The pipeline options which defines the pipeline type and path
+     * within the Git repository.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1.PipelineConfig pipeline_config = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dataform\V1\PipelineConfig|null
+     */
+    public function getPipelineConfig()
+    {
+        return $this->pipeline_config;
+    }
+
+    public function hasPipelineConfig()
+    {
+        return isset($this->pipeline_config);
+    }
+
+    public function clearPipelineConfig()
+    {
+        unset($this->pipeline_config);
+    }
+
+    /**
+     * Optional. The pipeline options which defines the pipeline type and path
+     * within the Git repository.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1.PipelineConfig pipeline_config = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dataform\V1\PipelineConfig $var
+     * @return $this
+     */
+    public function setPipelineConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataform\V1\PipelineConfig::class);
+        $this->pipeline_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Whether OpenLineage events are emitted for actions in this
+     * workflow. Reflects the `lineage.enabled` setting from
+     * `workflow_settings.yaml`.
+     *
+     * Generated from protobuf field <code>optional bool lineage_enabled = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getLineageEnabled()
+    {
+        return isset($this->lineage_enabled) ? $this->lineage_enabled : false;
+    }
+
+    public function hasLineageEnabled()
+    {
+        return isset($this->lineage_enabled);
+    }
+
+    public function clearLineageEnabled()
+    {
+        unset($this->lineage_enabled);
+    }
+
+    /**
+     * Output only. Whether OpenLineage events are emitted for actions in this
+     * workflow. Reflects the `lineage.enabled` setting from
+     * `workflow_settings.yaml`.
+     *
+     * Generated from protobuf field <code>optional bool lineage_enabled = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setLineageEnabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->lineage_enabled = $var;
 
         return $this;
     }

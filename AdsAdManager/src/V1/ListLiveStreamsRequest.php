@@ -44,21 +44,23 @@ class ListLiveStreamsRequest extends \Google\Protobuf\Internal\Message
      * Optional. Expression to filter the response.
      *  See syntax details at
      *  https://developers.google.com/ad-manager/api/beta/filters
-     * <b>Filterable fields:</b>
-     * <ul style="list-style-type:none">
-     *   <li><code>assetKey</code></li>
-     *   <li><code>createTime</code></li>
-     *   <li><code>customAssetKey</code></li>
-     *   <li><code>displayName</code></li>
-     *   <li><code>dynamicAdInsertionType</code></li>
-     *   <li><code>effectiveAssetKey</code></li>
-     *   <li><code>endTime</code></li>
-     *   <li><code>sourceContentConfigurations</code></li>
-     *   <li><code>startTime</code></li>
-     *   <li><code>status</code></li>
-     *   <li><code>streamingFormat</code></li>
-     *   <li><code>updateTime</code></li>
-     * </ul>
+     * **Filterable fields:**
+     * * `assetKey`
+     * * `createTime`
+     * * `customAssetKey`
+     * * `daiAuthenticationKeys`
+     * * `daiEncodingProfiles`
+     * * `displayName`
+     * * `dynamicAdInsertionType`
+     * * `effectiveAssetKey`
+     * * `endTime`
+     * * `segmentUrlAuthenticationKeys`
+     * * `slate`
+     * * `sourceContentConfigurations`
+     * * `startTime`
+     * * `status`
+     * * `streamingFormat`
+     * * `updateTime`
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -116,21 +118,23 @@ class ListLiveStreamsRequest extends \Google\Protobuf\Internal\Message
      *           Optional. Expression to filter the response.
      *            See syntax details at
      *            https://developers.google.com/ad-manager/api/beta/filters
-     *           <b>Filterable fields:</b>
-     *           <ul style="list-style-type:none">
-     *             <li><code>assetKey</code></li>
-     *             <li><code>createTime</code></li>
-     *             <li><code>customAssetKey</code></li>
-     *             <li><code>displayName</code></li>
-     *             <li><code>dynamicAdInsertionType</code></li>
-     *             <li><code>effectiveAssetKey</code></li>
-     *             <li><code>endTime</code></li>
-     *             <li><code>sourceContentConfigurations</code></li>
-     *             <li><code>startTime</code></li>
-     *             <li><code>status</code></li>
-     *             <li><code>streamingFormat</code></li>
-     *             <li><code>updateTime</code></li>
-     *           </ul>
+     *           **Filterable fields:**
+     *           * `assetKey`
+     *           * `createTime`
+     *           * `customAssetKey`
+     *           * `daiAuthenticationKeys`
+     *           * `daiEncodingProfiles`
+     *           * `displayName`
+     *           * `dynamicAdInsertionType`
+     *           * `effectiveAssetKey`
+     *           * `endTime`
+     *           * `segmentUrlAuthenticationKeys`
+     *           * `slate`
+     *           * `sourceContentConfigurations`
+     *           * `startTime`
+     *           * `status`
+     *           * `streamingFormat`
+     *           * `updateTime`
      *     @type string $order_by
      *           Optional. Expression to specify sorting order.
      *           See syntax details at
@@ -240,21 +244,23 @@ class ListLiveStreamsRequest extends \Google\Protobuf\Internal\Message
      * Optional. Expression to filter the response.
      *  See syntax details at
      *  https://developers.google.com/ad-manager/api/beta/filters
-     * <b>Filterable fields:</b>
-     * <ul style="list-style-type:none">
-     *   <li><code>assetKey</code></li>
-     *   <li><code>createTime</code></li>
-     *   <li><code>customAssetKey</code></li>
-     *   <li><code>displayName</code></li>
-     *   <li><code>dynamicAdInsertionType</code></li>
-     *   <li><code>effectiveAssetKey</code></li>
-     *   <li><code>endTime</code></li>
-     *   <li><code>sourceContentConfigurations</code></li>
-     *   <li><code>startTime</code></li>
-     *   <li><code>status</code></li>
-     *   <li><code>streamingFormat</code></li>
-     *   <li><code>updateTime</code></li>
-     * </ul>
+     * **Filterable fields:**
+     * * `assetKey`
+     * * `createTime`
+     * * `customAssetKey`
+     * * `daiAuthenticationKeys`
+     * * `daiEncodingProfiles`
+     * * `displayName`
+     * * `dynamicAdInsertionType`
+     * * `effectiveAssetKey`
+     * * `endTime`
+     * * `segmentUrlAuthenticationKeys`
+     * * `slate`
+     * * `sourceContentConfigurations`
+     * * `startTime`
+     * * `status`
+     * * `streamingFormat`
+     * * `updateTime`
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -268,21 +274,23 @@ class ListLiveStreamsRequest extends \Google\Protobuf\Internal\Message
      * Optional. Expression to filter the response.
      *  See syntax details at
      *  https://developers.google.com/ad-manager/api/beta/filters
-     * <b>Filterable fields:</b>
-     * <ul style="list-style-type:none">
-     *   <li><code>assetKey</code></li>
-     *   <li><code>createTime</code></li>
-     *   <li><code>customAssetKey</code></li>
-     *   <li><code>displayName</code></li>
-     *   <li><code>dynamicAdInsertionType</code></li>
-     *   <li><code>effectiveAssetKey</code></li>
-     *   <li><code>endTime</code></li>
-     *   <li><code>sourceContentConfigurations</code></li>
-     *   <li><code>startTime</code></li>
-     *   <li><code>status</code></li>
-     *   <li><code>streamingFormat</code></li>
-     *   <li><code>updateTime</code></li>
-     * </ul>
+     * **Filterable fields:**
+     * * `assetKey`
+     * * `createTime`
+     * * `customAssetKey`
+     * * `daiAuthenticationKeys`
+     * * `daiEncodingProfiles`
+     * * `displayName`
+     * * `dynamicAdInsertionType`
+     * * `effectiveAssetKey`
+     * * `endTime`
+     * * `segmentUrlAuthenticationKeys`
+     * * `slate`
+     * * `sourceContentConfigurations`
+     * * `startTime`
+     * * `status`
+     * * `streamingFormat`
+     * * `updateTime`
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

@@ -48,7 +48,9 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Identifies whether the user has requested cancellation
      * of the operation. Operations that have successfully been cancelled
-     * have [Operation.error][] value with a [google.rpc.Status.code][google.rpc.Status.code] of 1,
+     * have
+     * [google.longrunning.Operation.error][google.longrunning.Operation.error]
+     * value with a [google.rpc.Status.code][google.rpc.Status.code] of 1,
      * corresponding to `Code.CANCELLED`.
      *
      * Generated from protobuf field <code>bool requested_cancellation = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -61,7 +63,8 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      */
     protected $api_version = '';
     /**
-     * Output only. Diagnostics generated during processing of configuration source files.
+     * Output only. Diagnostics generated during processing of configuration
+     * source files.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apigateway.v1.OperationMetadata.Diagnostic diagnostics = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -86,12 +89,15 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      *     @type bool $requested_cancellation
      *           Output only. Identifies whether the user has requested cancellation
      *           of the operation. Operations that have successfully been cancelled
-     *           have [Operation.error][] value with a [google.rpc.Status.code][google.rpc.Status.code] of 1,
+     *           have
+     *           [google.longrunning.Operation.error][google.longrunning.Operation.error]
+     *           value with a [google.rpc.Status.code][google.rpc.Status.code] of 1,
      *           corresponding to `Code.CANCELLED`.
      *     @type string $api_version
      *           Output only. API version used to start the operation.
      *     @type \Google\Cloud\ApiGateway\V1\OperationMetadata\Diagnostic[] $diagnostics
-     *           Output only. Diagnostics generated during processing of configuration source files.
+     *           Output only. Diagnostics generated during processing of configuration
+     *           source files.
      * }
      */
     public function __construct($data = NULL) {
@@ -252,7 +258,9 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Identifies whether the user has requested cancellation
      * of the operation. Operations that have successfully been cancelled
-     * have [Operation.error][] value with a [google.rpc.Status.code][google.rpc.Status.code] of 1,
+     * have
+     * [google.longrunning.Operation.error][google.longrunning.Operation.error]
+     * value with a [google.rpc.Status.code][google.rpc.Status.code] of 1,
      * corresponding to `Code.CANCELLED`.
      *
      * Generated from protobuf field <code>bool requested_cancellation = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -266,7 +274,9 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Identifies whether the user has requested cancellation
      * of the operation. Operations that have successfully been cancelled
-     * have [Operation.error][] value with a [google.rpc.Status.code][google.rpc.Status.code] of 1,
+     * have
+     * [google.longrunning.Operation.error][google.longrunning.Operation.error]
+     * value with a [google.rpc.Status.code][google.rpc.Status.code] of 1,
      * corresponding to `Code.CANCELLED`.
      *
      * Generated from protobuf field <code>bool requested_cancellation = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -308,7 +318,8 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Diagnostics generated during processing of configuration source files.
+     * Output only. Diagnostics generated during processing of configuration
+     * source files.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apigateway.v1.OperationMetadata.Diagnostic diagnostics = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return RepeatedField<\Google\Cloud\ApiGateway\V1\OperationMetadata\Diagnostic>
@@ -319,7 +330,8 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Diagnostics generated during processing of configuration source files.
+     * Output only. Diagnostics generated during processing of configuration
+     * source files.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apigateway.v1.OperationMetadata.Diagnostic diagnostics = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\ApiGateway\V1\OperationMetadata\Diagnostic[] $var

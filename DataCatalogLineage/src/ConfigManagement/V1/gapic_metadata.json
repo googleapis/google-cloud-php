@@ -8,7 +8,7 @@
         "ConfigManagementService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ConfigManagementServiceGapicClient",
+                    "libraryClient": "ConfigManagementServiceClient",
                     "rpcs": {
                         "GetConfig": {
                             "methods": [

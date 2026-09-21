@@ -8,7 +8,7 @@
         "BinauthzManagementServiceV1": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "BinauthzManagementServiceV1GapicClient",
+                    "libraryClient": "BinauthzManagementServiceV1Client",
                     "rpcs": {
                         "CreateAttestor": {
                             "methods": [
@@ -67,7 +67,7 @@
         "SystemPolicyV1": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "SystemPolicyV1GapicClient",
+                    "libraryClient": "SystemPolicyV1Client",
                     "rpcs": {
                         "GetSystemPolicy": {
                             "methods": [
@@ -96,7 +96,7 @@
         "ValidationHelperV1": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ValidationHelperV1GapicClient",
+                    "libraryClient": "ValidationHelperV1Client",
                     "rpcs": {
                         "ValidateAttestationOccurrence": {
                             "methods": [

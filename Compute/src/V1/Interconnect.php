@@ -307,6 +307,12 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      */
     protected $self_link = null;
     /**
+     * Output only. Server-defined URL for this resource with the resource id.
+     *
+     * Generated from protobuf field <code>optional string self_link_with_id = 44520962;</code>
+     */
+    protected $self_link_with_id = null;
+    /**
      * Output only. [Output Only] The current state of Interconnect functionality, which can
      * take one of the following values:
      *    - ACTIVE: The Interconnect is valid, turned up and ready to use.
@@ -495,6 +501,8 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      *           Output only. [Output Only] Reserved for future use.
      *     @type string $self_link
      *           Output only. [Output Only] Server-defined URL for the resource.
+     *     @type string $self_link_with_id
+     *           Output only. Server-defined URL for this resource with the resource id.
      *     @type string $state
      *           Output only. [Output Only] The current state of Interconnect functionality, which can
      *           take one of the following values:
@@ -1838,6 +1846,42 @@ class Interconnect extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->self_link = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Server-defined URL for this resource with the resource id.
+     *
+     * Generated from protobuf field <code>optional string self_link_with_id = 44520962;</code>
+     * @return string
+     */
+    public function getSelfLinkWithId()
+    {
+        return isset($this->self_link_with_id) ? $this->self_link_with_id : '';
+    }
+
+    public function hasSelfLinkWithId()
+    {
+        return isset($this->self_link_with_id);
+    }
+
+    public function clearSelfLinkWithId()
+    {
+        unset($this->self_link_with_id);
+    }
+
+    /**
+     * Output only. Server-defined URL for this resource with the resource id.
+     *
+     * Generated from protobuf field <code>optional string self_link_with_id = 44520962;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSelfLinkWithId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->self_link_with_id = $var;
 
         return $this;
     }

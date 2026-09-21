@@ -141,7 +141,7 @@ class ShowcaseGenerateCommand extends Command
         $this->runProcess($protocDescCmd);
 
         // 6. Generate Showcase PHP Client via CodeGenerator
-        $output->writeln('<info>3. Generating Showcase PHP client (NEW_SURFACE_ONLY mode)...</info>');
+        $output->writeln('<info>3. Generating Showcase PHP client...</info>');
 
         $descBytes = file_get_contents($descFile);
         $grpcConfig = file_get_contents($schemaDir . '/showcase_grpc_service_config.json');
@@ -159,7 +159,6 @@ class ShowcaseGenerateCommand extends Command
             numericEnums: false,
             licenseYear: -1,
             generateSnippets: false,
-            migrationMode: MigrationMode::NEW_SURFACE_ONLY
         );
 
         foreach ($files as [$relPath, $content]) {
@@ -191,7 +190,7 @@ class ShowcaseGenerateCommand extends Command
         foreach ($mappings as $source => $dest) {
             $srcDir = $tmpOutputDir . $source;
             if (is_dir($srcDir)) {
-                $this->fs->mirror($srcDir, $outDir . $dest);
+                $this->fs->mirror($srcDir, $targetDir . $dest);
             }
         }
 

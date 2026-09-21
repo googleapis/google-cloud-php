@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,6 +23,18 @@
 return [
     'interfaces' => [
         'google.ads.admanager.v1.NetworkService' => [
+            'GetDefaultThirdPartyDataDeclaration' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Ads\AdManager\V1\DefaultThirdPartyDataDeclaration',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetNetwork' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Ads\AdManager\V1\Network',
@@ -47,7 +59,26 @@ return [
                 'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
                 'responseType' => 'Google\Ads\AdManager\V1\ListNetworksResponse',
             ],
+            'ProvisionTestNetwork' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Ads\AdManager\V1\Network',
+            ],
+            'UpdateNetwork' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Ads\AdManager\V1\Network',
+                'headerParams' => [
+                    [
+                        'keyName' => 'network.name',
+                        'fieldAccessors' => [
+                            'getNetwork',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'templateMap' => [
+                'adUnit' => 'networks/{network_code}/adUnits/{ad_unit}',
+                'defaultThirdPartyDataDeclaration' => 'networks/{network_code}/defaultThirdPartyDataDeclaration',
                 'network' => 'networks/{network_code}',
             ],
         ],

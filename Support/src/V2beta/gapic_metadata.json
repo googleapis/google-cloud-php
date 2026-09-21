@@ -8,7 +8,7 @@
         "CaseAttachmentService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "CaseAttachmentServiceGapicClient",
+                    "libraryClient": "CaseAttachmentServiceClient",
                     "rpcs": {
                         "GetAttachment": {
                             "methods": [
@@ -27,7 +27,7 @@
         "CaseService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "CaseServiceGapicClient",
+                    "libraryClient": "CaseServiceClient",
                     "rpcs": {
                         "CloseCase": {
                             "methods": [
@@ -76,7 +76,7 @@
         "CommentService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "CommentServiceGapicClient",
+                    "libraryClient": "CommentServiceClient",
                     "rpcs": {
                         "CreateComment": {
                             "methods": [
@@ -100,7 +100,7 @@
         "FeedService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "FeedServiceGapicClient",
+                    "libraryClient": "FeedServiceClient",
                     "rpcs": {
                         "ShowFeed": {
                             "methods": [
@@ -114,7 +114,7 @@
         "SupportEventSubscriptionService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "SupportEventSubscriptionServiceGapicClient",
+                    "libraryClient": "SupportEventSubscriptionServiceClient",
                     "rpcs": {
                         "CreateSupportEventSubscription": {
                             "methods": [
@@ -124,6 +124,11 @@
                         "DeleteSupportEventSubscription": {
                             "methods": [
                                 "deleteSupportEventSubscription"
+                            ]
+                        },
+                        "ExpungeSupportEventSubscription": {
+                            "methods": [
+                                "expungeSupportEventSubscription"
                             ]
                         },
                         "GetSupportEventSubscription": {

@@ -915,7 +915,7 @@ class SpannerClientTest extends TestCase
             'credentials' => Fixtures::KEYFILE_STUB_FIXTURE()
         ]);
         $end = microtime(true);
-        
+
         // Assert that the client instantiated quickly.
         // If it probed the GCE metadata server without a mock, it would take ~1.5s to time out.
         $this->assertLessThan(1.0, $end - $start);

@@ -8,7 +8,7 @@
         "ReachabilityService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ReachabilityServiceGapicClient",
+                    "libraryClient": "ReachabilityServiceClient",
                     "rpcs": {
                         "CreateConnectivityTest": {
                             "methods": [
@@ -72,7 +72,7 @@
         "VpcFlowLogsService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "VpcFlowLogsServiceGapicClient",
+                    "libraryClient": "VpcFlowLogsServiceClient",
                     "rpcs": {
                         "CreateVpcFlowLogsConfig": {
                             "methods": [
@@ -141,7 +141,7 @@
         "OrganizationVpcFlowLogsService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "OrganizationVpcFlowLogsServiceGapicClient",
+                    "libraryClient": "OrganizationVpcFlowLogsServiceClient",
                     "rpcs": {
                         "CreateVpcFlowLogsConfig": {
                             "methods": [

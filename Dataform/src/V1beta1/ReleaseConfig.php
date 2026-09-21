@@ -47,9 +47,9 @@ class ReleaseConfig extends \Google\Protobuf\Internal\Message
     protected $cron_schedule = '';
     /**
      * Optional. Specifies the time zone to be used when interpreting
-     * cron_schedule. Must be a time zone name from the time zone database
-     * (https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). If left
-     * unspecified, the default is UTC.
+     * cron_schedule. Must be a time zone name from the [time zone
+     * database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). If
+     * left unspecified, the default is `UTC`.
      *
      * Generated from protobuf field <code>string time_zone = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -111,9 +111,9 @@ class ReleaseConfig extends \Google\Protobuf\Internal\Message
      *           compilation results.
      *     @type string $time_zone
      *           Optional. Specifies the time zone to be used when interpreting
-     *           cron_schedule. Must be a time zone name from the time zone database
-     *           (https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). If left
-     *           unspecified, the default is UTC.
+     *           cron_schedule. Must be a time zone name from the [time zone
+     *           database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). If
+     *           left unspecified, the default is `UTC`.
      *     @type \Google\Cloud\Dataform\V1beta1\ReleaseConfig\ScheduledReleaseRecord[] $recent_scheduled_release_records
      *           Output only. Records of the 10 most recent scheduled release attempts,
      *           ordered in descending order of `release_time`. Updated whenever automatic
@@ -267,9 +267,9 @@ class ReleaseConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Specifies the time zone to be used when interpreting
-     * cron_schedule. Must be a time zone name from the time zone database
-     * (https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). If left
-     * unspecified, the default is UTC.
+     * cron_schedule. Must be a time zone name from the [time zone
+     * database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). If
+     * left unspecified, the default is `UTC`.
      *
      * Generated from protobuf field <code>string time_zone = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -281,9 +281,9 @@ class ReleaseConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Specifies the time zone to be used when interpreting
-     * cron_schedule. Must be a time zone name from the time zone database
-     * (https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). If left
-     * unspecified, the default is UTC.
+     * cron_schedule. Must be a time zone name from the [time zone
+     * database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). If
+     * left unspecified, the default is `UTC`.
      *
      * Generated from protobuf field <code>string time_zone = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

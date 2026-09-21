@@ -44,16 +44,41 @@ class ListLineItemsRequest extends \Google\Protobuf\Internal\Message
      * Optional. Expression to filter the response.
      *  See syntax details at
      *  https://developers.google.com/ad-manager/api/beta/filters
-     * <b>Filterable fields:</b>
-     * <ul style="list-style-type:none">
-     *   <li><code>displayName</code></li>
-     *   <li><code>endTime</code></li>
-     *   <li><code>goal.units</code></li>
-     *   <li><code>lineItemType</code></li>
-     *   <li><code>name</code></li>
-     *   <li><code>order</code></li>
-     *   <li><code>startTime</code></li>
-     * </ul>
+     * **Filterable fields:**
+     * * `archived`
+     * * `contractedUnitsBought`
+     * * `costType`
+     * * `createTime`
+     * * `creativePlaceholders.size.canonicalName`
+     * * `dealInfo.externalDealId`
+     * * `deliveryRateType`
+     * * `displayName`
+     * * `endTime`
+     * * `environmentType`
+     * * `externalLineItemId`
+     * * `goal.units`
+     * * `grpSettings.growbirdNielsenEnabled`
+     * * `grpSettings.inTargetRatioEstimateMilliPercent`
+     * * `lineItemType`
+     * * `missingCreatives`
+     * * `name`
+     * * `notes`
+     * * `order`
+     * * `orderDisplayName`
+     * * `priority`
+     * * `roadblockingType`
+     * * `startTime`
+     * * `stats.clickThroughRate`
+     * * `stats.clicksDelivered`
+     * * `stats.impressionsDelivered`
+     * * `stats.viewableImpressionsDelivered`
+     * * `status`
+     * * `targeting.inventoryTargeting.targetedAdUnits.adUnit`
+     * * `targeting.inventoryTargeting.targetedPlacements`
+     * * `targeting.mobileApplicationTargeting.firstPartyTargeting.targetedApplications`
+     * * `updateSource`
+     * * `updateTime`
+     * * `webPropertyCode`
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -111,16 +136,41 @@ class ListLineItemsRequest extends \Google\Protobuf\Internal\Message
      *           Optional. Expression to filter the response.
      *            See syntax details at
      *            https://developers.google.com/ad-manager/api/beta/filters
-     *           <b>Filterable fields:</b>
-     *           <ul style="list-style-type:none">
-     *             <li><code>displayName</code></li>
-     *             <li><code>endTime</code></li>
-     *             <li><code>goal.units</code></li>
-     *             <li><code>lineItemType</code></li>
-     *             <li><code>name</code></li>
-     *             <li><code>order</code></li>
-     *             <li><code>startTime</code></li>
-     *           </ul>
+     *           **Filterable fields:**
+     *           * `archived`
+     *           * `contractedUnitsBought`
+     *           * `costType`
+     *           * `createTime`
+     *           * `creativePlaceholders.size.canonicalName`
+     *           * `dealInfo.externalDealId`
+     *           * `deliveryRateType`
+     *           * `displayName`
+     *           * `endTime`
+     *           * `environmentType`
+     *           * `externalLineItemId`
+     *           * `goal.units`
+     *           * `grpSettings.growbirdNielsenEnabled`
+     *           * `grpSettings.inTargetRatioEstimateMilliPercent`
+     *           * `lineItemType`
+     *           * `missingCreatives`
+     *           * `name`
+     *           * `notes`
+     *           * `order`
+     *           * `orderDisplayName`
+     *           * `priority`
+     *           * `roadblockingType`
+     *           * `startTime`
+     *           * `stats.clickThroughRate`
+     *           * `stats.clicksDelivered`
+     *           * `stats.impressionsDelivered`
+     *           * `stats.viewableImpressionsDelivered`
+     *           * `status`
+     *           * `targeting.inventoryTargeting.targetedAdUnits.adUnit`
+     *           * `targeting.inventoryTargeting.targetedPlacements`
+     *           * `targeting.mobileApplicationTargeting.firstPartyTargeting.targetedApplications`
+     *           * `updateSource`
+     *           * `updateTime`
+     *           * `webPropertyCode`
      *     @type string $order_by
      *           Optional. Expression to specify sorting order.
      *           See syntax details at
@@ -230,16 +280,41 @@ class ListLineItemsRequest extends \Google\Protobuf\Internal\Message
      * Optional. Expression to filter the response.
      *  See syntax details at
      *  https://developers.google.com/ad-manager/api/beta/filters
-     * <b>Filterable fields:</b>
-     * <ul style="list-style-type:none">
-     *   <li><code>displayName</code></li>
-     *   <li><code>endTime</code></li>
-     *   <li><code>goal.units</code></li>
-     *   <li><code>lineItemType</code></li>
-     *   <li><code>name</code></li>
-     *   <li><code>order</code></li>
-     *   <li><code>startTime</code></li>
-     * </ul>
+     * **Filterable fields:**
+     * * `archived`
+     * * `contractedUnitsBought`
+     * * `costType`
+     * * `createTime`
+     * * `creativePlaceholders.size.canonicalName`
+     * * `dealInfo.externalDealId`
+     * * `deliveryRateType`
+     * * `displayName`
+     * * `endTime`
+     * * `environmentType`
+     * * `externalLineItemId`
+     * * `goal.units`
+     * * `grpSettings.growbirdNielsenEnabled`
+     * * `grpSettings.inTargetRatioEstimateMilliPercent`
+     * * `lineItemType`
+     * * `missingCreatives`
+     * * `name`
+     * * `notes`
+     * * `order`
+     * * `orderDisplayName`
+     * * `priority`
+     * * `roadblockingType`
+     * * `startTime`
+     * * `stats.clickThroughRate`
+     * * `stats.clicksDelivered`
+     * * `stats.impressionsDelivered`
+     * * `stats.viewableImpressionsDelivered`
+     * * `status`
+     * * `targeting.inventoryTargeting.targetedAdUnits.adUnit`
+     * * `targeting.inventoryTargeting.targetedPlacements`
+     * * `targeting.mobileApplicationTargeting.firstPartyTargeting.targetedApplications`
+     * * `updateSource`
+     * * `updateTime`
+     * * `webPropertyCode`
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -253,16 +328,41 @@ class ListLineItemsRequest extends \Google\Protobuf\Internal\Message
      * Optional. Expression to filter the response.
      *  See syntax details at
      *  https://developers.google.com/ad-manager/api/beta/filters
-     * <b>Filterable fields:</b>
-     * <ul style="list-style-type:none">
-     *   <li><code>displayName</code></li>
-     *   <li><code>endTime</code></li>
-     *   <li><code>goal.units</code></li>
-     *   <li><code>lineItemType</code></li>
-     *   <li><code>name</code></li>
-     *   <li><code>order</code></li>
-     *   <li><code>startTime</code></li>
-     * </ul>
+     * **Filterable fields:**
+     * * `archived`
+     * * `contractedUnitsBought`
+     * * `costType`
+     * * `createTime`
+     * * `creativePlaceholders.size.canonicalName`
+     * * `dealInfo.externalDealId`
+     * * `deliveryRateType`
+     * * `displayName`
+     * * `endTime`
+     * * `environmentType`
+     * * `externalLineItemId`
+     * * `goal.units`
+     * * `grpSettings.growbirdNielsenEnabled`
+     * * `grpSettings.inTargetRatioEstimateMilliPercent`
+     * * `lineItemType`
+     * * `missingCreatives`
+     * * `name`
+     * * `notes`
+     * * `order`
+     * * `orderDisplayName`
+     * * `priority`
+     * * `roadblockingType`
+     * * `startTime`
+     * * `stats.clickThroughRate`
+     * * `stats.clicksDelivered`
+     * * `stats.impressionsDelivered`
+     * * `stats.viewableImpressionsDelivered`
+     * * `status`
+     * * `targeting.inventoryTargeting.targetedAdUnits.adUnit`
+     * * `targeting.inventoryTargeting.targetedPlacements`
+     * * `targeting.mobileApplicationTargeting.firstPartyTargeting.targetedApplications`
+     * * `updateSource`
+     * * `updateTime`
+     * * `webPropertyCode`
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

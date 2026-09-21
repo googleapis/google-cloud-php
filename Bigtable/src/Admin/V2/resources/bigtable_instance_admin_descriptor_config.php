@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -218,6 +218,26 @@ return [
                     ],
                 ],
             ],
+            'UpdateMemoryLayer' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Bigtable\Admin\V2\MemoryLayer',
+                    'metadataReturnType' => '\Google\Cloud\Bigtable\Admin\V2\UpdateMemoryLayerMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'memory_layer.name',
+                        'fieldAccessors' => [
+                            'getMemoryLayer',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'CreateAppProfile' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Bigtable\Admin\V2\AppProfile',
@@ -362,6 +382,18 @@ return [
                     ],
                 ],
             ],
+            'GetMemoryLayer' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Bigtable\Admin\V2\MemoryLayer',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'ListAppProfiles' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
@@ -466,6 +498,26 @@ return [
                     ],
                 ],
             ],
+            'ListMemoryLayers' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getMemoryLayers',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Bigtable\Admin\V2\ListMemoryLayersResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'SetIamPolicy' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Iam\V1\Policy',
@@ -510,6 +562,7 @@ return [
                 'location' => 'projects/{project}/locations/{location}',
                 'logicalView' => 'projects/{project}/instances/{instance}/logicalViews/{logical_view}',
                 'materializedView' => 'projects/{project}/instances/{instance}/materializedViews/{materialized_view}',
+                'memoryLayer' => 'projects/{project}/instances/{instance}/clusters/{cluster}/memoryLayer',
                 'project' => 'projects/{project}',
             ],
         ],

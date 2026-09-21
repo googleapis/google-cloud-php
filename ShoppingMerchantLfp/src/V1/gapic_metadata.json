@@ -8,7 +8,7 @@
         "LfpInventoryService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "LfpInventoryServiceGapicClient",
+                    "libraryClient": "LfpInventoryServiceClient",
                     "rpcs": {
                         "InsertLfpInventory": {
                             "methods": [
@@ -22,7 +22,7 @@
         "LfpMerchantStateService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "LfpMerchantStateServiceGapicClient",
+                    "libraryClient": "LfpMerchantStateServiceClient",
                     "rpcs": {
                         "GetLfpMerchantState": {
                             "methods": [
@@ -36,7 +36,7 @@
         "LfpSaleService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "LfpSaleServiceGapicClient",
+                    "libraryClient": "LfpSaleServiceClient",
                     "rpcs": {
                         "InsertLfpSale": {
                             "methods": [
@@ -50,7 +50,7 @@
         "LfpStoreService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "LfpStoreServiceGapicClient",
+                    "libraryClient": "LfpStoreServiceClient",
                     "rpcs": {
                         "DeleteLfpStore": {
                             "methods": [

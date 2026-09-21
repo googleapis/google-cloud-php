@@ -136,7 +136,7 @@ class RuntimeConfig extends \Google\Protobuf\Internal\Message
      */
     public function getParameters()
     {
-        if ($this->parameters->count() !== 0) {
+        if (count($this->parameters) !== 0) {
             @trigger_error('parameters is deprecated.', E_USER_DEPRECATED);
         }
         return $this->parameters;

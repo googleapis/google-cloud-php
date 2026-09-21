@@ -10,9 +10,6 @@ use UnexpectedValueException;
  * Allows to define a preferred approach for handling inter-region cost in
  * the selection process when using the STANDARD BGP best path
  * selection algorithm. Can be DEFAULT orADD_COST_TO_MED.
- * Additional supported values which may be not listed in the enum directly due to technical reasons:
- * ADD_COST_TO_MED
- * DEFAULT
  *
  * Protobuf type <code>google.cloud.compute.v1.NetworkRoutingConfig.BgpInterRegionCost</code>
  */

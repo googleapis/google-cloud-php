@@ -8,7 +8,7 @@
         "ReportService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ReportServiceGapicClient",
+                    "libraryClient": "ReportServiceClient",
                     "rpcs": {
                         "Search": {
                             "methods": [

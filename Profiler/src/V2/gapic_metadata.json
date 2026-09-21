@@ -8,7 +8,7 @@
         "ProfilerService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ProfilerServiceGapicClient",
+                    "libraryClient": "ProfilerServiceClient",
                     "rpcs": {
                         "CreateOfflineProfile": {
                             "methods": [
@@ -32,7 +32,7 @@
         "ExportService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ExportServiceGapicClient",
+                    "libraryClient": "ExportServiceClient",
                     "rpcs": {
                         "ListProfiles": {
                             "methods": [

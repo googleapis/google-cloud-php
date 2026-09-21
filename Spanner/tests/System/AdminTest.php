@@ -68,7 +68,7 @@ class AdminTest extends SystemTestCase
         $this->assertEquals(Instance::STATE_READY, $instance->state());
 
         $displayName = uniqid(self::TESTING_PREFIX);
-        $processingUnits = 500;
+        $processingUnits = 1000;
         $op = $instance->update([
             'displayName' => $displayName,
             'processingUnits' => $processingUnits,

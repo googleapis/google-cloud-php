@@ -8,11 +8,16 @@
         "Dataform": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "DataformGapicClient",
+                    "libraryClient": "DataformClient",
                     "rpcs": {
                         "CancelWorkflowInvocation": {
                             "methods": [
                                 "cancelWorkflowInvocation"
+                            ]
+                        },
+                        "CheckoutWorkspaceBranch": {
+                            "methods": [
+                                "checkoutWorkspaceBranch"
                             ]
                         },
                         "CommitRepositoryChanges": {
@@ -70,6 +75,11 @@
                                 "createWorkspace"
                             ]
                         },
+                        "DeleteBranch": {
+                            "methods": [
+                                "deleteBranch"
+                            ]
+                        },
                         "DeleteFolder": {
                             "methods": [
                                 "deleteFolder"
@@ -120,6 +130,11 @@
                                 "deleteWorkspace"
                             ]
                         },
+                        "FetchCurrentWorkspaceBranch": {
+                            "methods": [
+                                "fetchCurrentWorkspaceBranch"
+                            ]
+                        },
                         "FetchFileDiff": {
                             "methods": [
                                 "fetchFileDiff"
@@ -143,6 +158,11 @@
                         "FetchRepositoryHistory": {
                             "methods": [
                                 "fetchRepositoryHistory"
+                            ]
+                        },
+                        "FetchWorkspaceBranches": {
+                            "methods": [
+                                "fetchWorkspaceBranches"
                             ]
                         },
                         "GetCompilationResult": {
@@ -338,6 +358,11 @@
                         "SetIamPolicy": {
                             "methods": [
                                 "setIamPolicy"
+                            ]
+                        },
+                        "SyncWorkspaceRefs": {
+                            "methods": [
+                                "syncWorkspaceRefs"
                             ]
                         },
                         "TestIamPermissions": {

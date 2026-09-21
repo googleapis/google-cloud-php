@@ -373,7 +373,7 @@ class FirewallEndpoint extends \Google\Protobuf\Internal\Message
      */
     public function getAssociatedNetworks()
     {
-        if ($this->associated_networks->count() !== 0) {
+        if (count($this->associated_networks) !== 0) {
             @trigger_error('associated_networks is deprecated.', E_USER_DEPRECATED);
         }
         return $this->associated_networks;
@@ -394,7 +394,7 @@ class FirewallEndpoint extends \Google\Protobuf\Internal\Message
     public function setAssociatedNetworks($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
-        if ($arr->count() !== 0) {
+        if (count($arr) !== 0) {
             @trigger_error('associated_networks is deprecated.', E_USER_DEPRECATED);
         }
         $this->associated_networks = $arr;

@@ -29,7 +29,7 @@ use Google\Ads\AdManager\V1\ThirdPartyCompany;
 use Google\ApiCore\ApiException;
 
 /**
- * API to retrieve a `ThirdPartyCompany` object.
+ * Retrieves a `ThirdPartyCompany` object.
  *
  * @param string $formattedName The resource name of the ThirdPartyCompany.
  *                              Format:

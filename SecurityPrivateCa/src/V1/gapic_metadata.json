@@ -8,7 +8,7 @@
         "CertificateAuthorityService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "CertificateAuthorityServiceGapicClient",
+                    "libraryClient": "CertificateAuthorityServiceClient",
                     "rpcs": {
                         "ActivateCertificateAuthority": {
                             "methods": [

@@ -8,8 +8,13 @@
         "SpacesService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "SpacesServiceGapicClient",
+                    "libraryClient": "SpacesServiceClient",
                     "rpcs": {
+                        "BatchUpdateMembers": {
+                            "methods": [
+                                "batchUpdateMembers"
+                            ]
+                        },
                         "ConnectActiveConference": {
                             "methods": [
                                 "connectActiveConference"
@@ -50,6 +55,11 @@
                                 "listMembers"
                             ]
                         },
+                        "UpdateMember": {
+                            "methods": [
+                                "updateMember"
+                            ]
+                        },
                         "UpdateSpace": {
                             "methods": [
                                 "updateSpace"
@@ -62,7 +72,7 @@
         "ConferenceRecordsService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ConferenceRecordsServiceGapicClient",
+                    "libraryClient": "ConferenceRecordsServiceClient",
                     "rpcs": {
                         "GetConferenceRecord": {
                             "methods": [
@@ -82,6 +92,11 @@
                         "GetRecording": {
                             "methods": [
                                 "getRecording"
+                            ]
+                        },
+                        "GetSmartNote": {
+                            "methods": [
+                                "getSmartNote"
                             ]
                         },
                         "GetTranscript": {
@@ -112,6 +127,11 @@
                         "ListRecordings": {
                             "methods": [
                                 "listRecordings"
+                            ]
+                        },
+                        "ListSmartNotes": {
+                            "methods": [
+                                "listSmartNotes"
                             ]
                         },
                         "ListTranscriptEntries": {

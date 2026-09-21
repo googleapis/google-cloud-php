@@ -65,15 +65,27 @@ class ProtobufMessageComparator extends Comparator
      */
     public function assertEquals($expected, $actual, $delta = 0, $canonicalize = false, $ignoreCase = false)
     {
-        if ($expected->serializeToString() !== $actual->serializeToString()) {
-            throw new ComparisonFailure(
-                $expected,
-                $actual,
-                $this->exporter->shortenedExport($expected),
-                $this->exporter->shortenedExport($actual),
-                false,
-                'Given 2 Message objects are not the same'
-            );
+        if (get_class($expected) === get_class($actual)) {
+            if ($expected->serializeToString() === $actual->serializeToString()) {
+                return;
+            }
+
+            try {
+                if (json_decode($expected->serializeToJsonString(), true) == json_decode($actual->serializeToJsonString(), true)) {
+                    return;
+                }
+            } catch (\Throwable $e) {
+                // Fall through to throw ComparisonFailure
+            }
         }
+
+        throw new ComparisonFailure(
+            $expected,
+            $actual,
+            $this->exporter->shortenedExport($expected),
+            $this->exporter->shortenedExport($actual),
+            false,
+            'Given 2 Message objects are not the same'
+        );
     }
 }

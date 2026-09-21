@@ -8,8 +8,13 @@
         "AuditManager": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "AuditManagerGapicClient",
+                    "libraryClient": "AuditManagerClient",
                     "rpcs": {
+                        "CreateAuditSchedule": {
+                            "methods": [
+                                "createAuditSchedule"
+                            ]
+                        },
                         "EnrollResource": {
                             "methods": [
                                 "enrollResource"
@@ -30,6 +35,11 @@
                                 "getAuditReport"
                             ]
                         },
+                        "GetAuditSchedule": {
+                            "methods": [
+                                "getAuditSchedule"
+                            ]
+                        },
                         "GetResourceEnrollmentStatus": {
                             "methods": [
                                 "getResourceEnrollmentStatus"
@@ -40,6 +50,11 @@
                                 "listAuditReports"
                             ]
                         },
+                        "ListAuditSchedules": {
+                            "methods": [
+                                "listAuditSchedules"
+                            ]
+                        },
                         "ListControls": {
                             "methods": [
                                 "listControls"
@@ -48,6 +63,11 @@
                         "ListResourceEnrollmentStatuses": {
                             "methods": [
                                 "listResourceEnrollmentStatuses"
+                            ]
+                        },
+                        "UpdateAuditSchedule": {
+                            "methods": [
+                                "updateAuditSchedule"
                             ]
                         },
                         "GetLocation": {

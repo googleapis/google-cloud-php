@@ -58,40 +58,40 @@ class BuiltInMetricsAttemptMiddlewareTest extends TestCase
         $this->meter = $this->prophesize(MeterInterface::class);
 
         $this->meter->createHistogram(
-            'attempt_latencies',
+            'spanner.googleapis.com/internal/client/attempt_latencies',
             'ms',
             Argument::any(),
             Argument::any()
         )->willReturn($this->attemptHistogram->reveal());
 
         $this->meter->createCounter(
-            'attempt_count',
+            'spanner.googleapis.com/internal/client/attempt_count',
             '1',
             Argument::any()
         )->willReturn($this->attemptCounter->reveal());
 
         $this->meter->createHistogram(
-            'gfe_latencies',
+            'spanner.googleapis.com/internal/client/gfe_latencies',
             'ms',
             Argument::any(),
             Argument::any()
         )->willReturn($this->gfeHistogram->reveal());
 
         $this->meter->createCounter(
-            'gfe_connectivity_error_count',
+            'spanner.googleapis.com/internal/client/gfe_connectivity_error_count',
             '1',
             Argument::any()
         )->willReturn($this->gfeErrorCounter->reveal());
 
         $this->meter->createHistogram(
-            'afe_latencies',
+            'spanner.googleapis.com/internal/client/afe_latencies',
             'ms',
             Argument::any(),
             Argument::any()
         )->willReturn($this->afeHistogram->reveal());
 
         $this->meter->createCounter(
-            'afe_connectivity_error_count',
+            'spanner.googleapis.com/internal/client/afe_connectivity_error_count',
             '1',
             Argument::any()
         )->willReturn($this->afeErrorCounter->reveal());
@@ -118,9 +118,7 @@ class BuiltInMetricsAttemptMiddlewareTest extends TestCase
             $this->nextHandler,
             $this->meter->reveal(),
             $clientId,
-            $projectId,
-            $version,
-            $location
+            $version
         );
 
         $call = $this->prophesize(Call::class);
@@ -137,13 +135,9 @@ class BuiltInMetricsAttemptMiddlewareTest extends TestCase
         $expectedLabels = [
             'method' => 'Commit',
             'status' => 'OK',
-            'instance_id' => 'i',
             'database' => 'd',
-            'project_id' => $projectId,
             'client_uid' => $clientId,
             'client_name' => $expectedClientName,
-            'instance_config' => 'unknown',
-            'location' => $location,
             'directpath_enabled' => 'false',
             'directpath_used' => 'true'
         ];
@@ -174,9 +168,7 @@ class BuiltInMetricsAttemptMiddlewareTest extends TestCase
             $this->nextHandler,
             $this->meter->reveal(),
             'client',
-            'project',
-            'name',
-            'global'
+            'name'
         );
 
         $call = $this->prophesize(Call::class);
@@ -209,9 +201,7 @@ class BuiltInMetricsAttemptMiddlewareTest extends TestCase
             $this->nextHandler,
             $this->meter->reveal(),
             'client',
-            'project',
-            'name',
-            'global'
+            'name'
         );
 
         $call = $this->prophesize(Call::class);
@@ -239,9 +229,7 @@ class BuiltInMetricsAttemptMiddlewareTest extends TestCase
             $this->nextHandler,
             $this->meter->reveal(),
             'client',
-            'project',
-            'name',
-            'global'
+            'name'
         );
 
         $call = $this->prophesize(Call::class);

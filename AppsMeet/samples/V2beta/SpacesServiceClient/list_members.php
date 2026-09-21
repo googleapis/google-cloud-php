@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,8 +30,7 @@ use Google\Apps\Meet\V2beta\ListMembersRequest;
 use Google\Apps\Meet\V2beta\Member;
 
 /**
- * [Developer Preview](https://developers.google.com/workspace/preview):
- * List members.
+ * Lists members.
  *
  * This API supports the `fields` parameter in
  * [SystemParameterContext](https://cloud.google.com/apis/docs/system-parameters).

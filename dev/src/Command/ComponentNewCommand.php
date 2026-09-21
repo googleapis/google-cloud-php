@@ -77,7 +77,49 @@ class ComponentNewCommand extends Command
     {
         $this->setName('component:new')
             ->setDescription('Add a new Component')
-            ->addArgument('proto', InputArgument::REQUIRED, 'Path to service proto.')
+            ->addArgument('proto', InputArgument::OPTIONAL, 'Path to service proto.')
+            ->addOption(
+                'component-name',
+                null,
+                InputOption::VALUE_REQUIRED,
+                'The component name (e.g. Speech)'
+            )
+            ->addOption(
+                'php-namespace',
+                null,
+                InputOption::VALUE_REQUIRED,
+                'The PHP namespace (e.g. Google\Cloud\Speech\V2)'
+            )
+            ->addOption(
+                'proto-package',
+                null,
+                InputOption::VALUE_REQUIRED,
+                'The proto package (e.g. google.cloud.speech.v2)'
+            )
+            ->addOption(
+                'api-short-name',
+                null,
+                InputOption::VALUE_REQUIRED,
+                'The API short name (e.g. speech)'
+            )
+            ->addOption(
+                'api-version',
+                null,
+                InputOption::VALUE_REQUIRED,
+                'The API version (e.g. v2)'
+            )
+            ->addOption(
+                'product-docs',
+                null,
+                InputOption::VALUE_REQUIRED,
+                'The product documentation URL'
+            )
+            ->addOption(
+                'product-homepage',
+                null,
+                InputOption::VALUE_REQUIRED,
+                'The product homepage URL'
+            )
             ->addOption(
                 'no-update',
                 null,
@@ -95,12 +137,45 @@ class ComponentNewCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $componentName = $input->getOption('component-name');
+        $phpNamespace = $input->getOption('php-namespace');
+        $protoPackage = $input->getOption('proto-package');
+        $apiShortName = $input->getOption('api-short-name');
+        $apiVersion = $input->getOption('api-version');
+        $productDocumentation = $input->getOption('product-docs');
+        $productHomePage = $input->getOption('product-homepage');
+
+        $options = array_filter([
+            'component-name' => $componentName,
+            'php-namespace' => $phpNamespace,
+            'proto-package' => $protoPackage,
+            'api-short-name' => $apiShortName,
+            'api-version' => $apiVersion,
+            'product-docs' => $productDocumentation,
+            'product-homepage' => $productHomePage,
+        ], 'is_string');
+
+        $allOptionsProvided = count($options) === 7;
+
         $proto = $input->getArgument('proto');
-        $protoFile = file_exists($proto) ? substr($proto, strpos($proto, 'google/')) : $proto;
-        $new = NewComponent::fromProto($this->loadProtoContent($proto), $protoFile);
+        if ($proto && $allOptionsProvided) {
+            // When all 7 options are supplied, the proto path is unused.
+            throw new RuntimeException('Error: Cannot provide both a proto file path and all 7 component options.');
+        }
+        if (!$proto && !$allOptionsProvided) {
+            throw new RuntimeException('Error: You must provide a proto file path or all 7 component options.');
+        }
+
+        if ($proto) {
+            $protoFile = file_exists($proto) ? substr($proto, strpos($proto, 'google/')) : $proto;
+            $protoContents = $this->loadProtoContent($proto);
+            $new = NewComponent::fromProto($protoContents, $protoFile, $options);
+        } else {
+            $new = NewComponent::fromOptions($options);
+        }
         $new->componentPath = $this->rootPath;
 
-        if (is_dir($this->rootPath . '/' . $new->componentName)) {
+        if ($input->isInteractive() && is_dir($this->rootPath . '/' . $new->componentName)) {
             // component already exists
             $output->writeln(''); // blank line
             if (!$this->getHelper('question')->ask($input, $output, new ConfirmationQuestion(
@@ -120,7 +195,7 @@ class ComponentNewCommand extends Command
         $timeout = (int) $unsafeTimeout;
 
         $output->writeln(''); // blank line
-        $output->writeln(sprintf('Your package (%s) will have the following info:', $protoFile));
+        $output->writeln(sprintf('Your package (%s) will have the following info:', $new->componentName));
 
         $f = fn($f, $v) => ["<info>$f</info>", $v];
         $newArray = (array) $new;
@@ -129,40 +204,50 @@ class ComponentNewCommand extends Command
             ->setRows(array_map($f, array_keys($newArray), $newArray))
             ->render();
 
-        while (
-            !$this->getHelper('question')->ask(
-                $input,
-                $output,
-                new ConfirmationQuestion('Does this information look correct? ("n" to customize) [Y/n] ', 'Y')
-            )
-        ) {
-            foreach ($new as $field => $val) {
-                $new->$field = $this->getHelper('question')->ask(
+        if ($input->isInteractive()) {
+            while (
+                !$this->getHelper('question')->ask(
                     $input,
                     $output,
-                    new Question(sprintf('What is the %s? (ENTER for "%s") ', $field, $val), $val)
-                );
+                    new ConfirmationQuestion('Does this information look correct? ("n" to customize) [Y/n] ', 'Y')
+                )
+            ) {
+                foreach ($new as $field => $val) {
+                    $new->$field = $this->getHelper('question')->ask(
+                        $input,
+                        $output,
+                        new Question(sprintf('What is the %s? (ENTER for "%s") ', $field, $val), $val)
+                    );
+                }
+                $newArray = (array) $new;
+                (new Table($output))
+                    ->setRows(array_map($f, array_keys($newArray), $newArray))
+                    ->render();
             }
-            $newArray = (array) $new;
-            (new Table($output))
-                ->setRows(array_map($f, array_keys($newArray), $newArray))
-                ->render();
         }
 
-        $productDocumentation = null;
-        $yamlFileContent = $this->loadYamlConfigContent($new, dirname($proto));
-        $productDocumentation = $yamlFileContent['publishing']['documentation_uri'] ?? null;
-        $productDocumentation = $productDocumentation ?: $this->getHelper('question')->ask(
-            $input,
-            $output,
-            new Question('What is the product documentation URL? ')
-        );
-        $productHomePage = $this->getHomePageFromDocsUrl($productDocumentation);
-        $productHomePage = $productHomePage ?: $this->getHelper('question')->ask(
-            $input,
-            $output,
-            new Question('What is the product homepage? ')
-        );
+        if (!$productDocumentation && $proto) {
+            $yamlFileContent = $this->loadYamlConfigContent($new, dirname($proto));
+            $productDocumentation = $yamlFileContent['publishing']['documentation_uri'] ?? null;
+        }
+        if (!$productDocumentation && $input->isInteractive()) {
+            $productDocumentation = $this->getHelper('question')->ask(
+                $input,
+                $output,
+                new Question('What is the product documentation URL? ')
+            );
+        }
+
+        if (!$productHomePage && $productDocumentation) {
+            $productHomePage = $this->getHomePageFromDocsUrl($productDocumentation);
+        }
+        if (!$productHomePage && $input->isInteractive()) {
+            $productHomePage = $this->getHelper('question')->ask(
+                $input,
+                $output,
+                new Question('What is the product homepage? ')
+            );
+        }
 
         $documentationUrl = $new->getDocumentationUrl();
 
@@ -185,6 +270,10 @@ class ComponentNewCommand extends Command
         $loader = new FilesystemLoader(self::TEMPLATE_DIR);
         $twig = new Environment($loader);
         foreach (self::TEMPLATE_FILES as $template) {
+            // No need to generate .OwlBot.yaml when calling from librarian
+            if ('.OwlBot.yaml.twig' === $template && $allOptionsProvided) {
+                continue;
+            }
             $file = str_replace('.twig', '', $template);
             $output->writeln(sprintf('<info>%s</info> Creating %s from twig template.', $file, $file));
             $filesystem->dumpFile($componentDir . '/' . $file, $twig->render($template, [

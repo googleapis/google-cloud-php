@@ -842,7 +842,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     public function getDiscoveryEndpoints()
     {
-        if ($this->discovery_endpoints->count() !== 0) {
+        if (count($this->discovery_endpoints) !== 0) {
             @trigger_error('discovery_endpoints is deprecated.', E_USER_DEPRECATED);
         }
         return $this->discovery_endpoints;
@@ -1106,7 +1106,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     public function getPscAutoConnections()
     {
-        if ($this->psc_auto_connections->count() !== 0) {
+        if (count($this->psc_auto_connections) !== 0) {
             @trigger_error('psc_auto_connections is deprecated.', E_USER_DEPRECATED);
         }
         return $this->psc_auto_connections;

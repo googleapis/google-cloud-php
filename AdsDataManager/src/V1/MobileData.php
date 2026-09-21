@@ -16,8 +16,10 @@ use Google\Protobuf\RepeatedField;
 class MobileData extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The list of mobile device IDs (advertising ID/IDFA). At most 10
-     * `mobileIds` can be provided in a single
+     * Required. The list of mobile device IDs (Android advertising ID, iOS IDFA
+     * for Customer Match user lists and Android advertising ID, iOS IDFA,
+     * Xbox or Microsoft ID, Amazon Fire TV ID, Roku ID, Generic Device ID for
+     * basic user lists). At most 10 `mobileIds` can be provided in a single
      * [AudienceMember][google.ads.datamanager.v1.AudienceMember].
      *
      * Generated from protobuf field <code>repeated string mobile_ids = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -31,8 +33,10 @@ class MobileData extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string[] $mobile_ids
-     *           Required. The list of mobile device IDs (advertising ID/IDFA). At most 10
-     *           `mobileIds` can be provided in a single
+     *           Required. The list of mobile device IDs (Android advertising ID, iOS IDFA
+     *           for Customer Match user lists and Android advertising ID, iOS IDFA,
+     *           Xbox or Microsoft ID, Amazon Fire TV ID, Roku ID, Generic Device ID for
+     *           basic user lists). At most 10 `mobileIds` can be provided in a single
      *           [AudienceMember][google.ads.datamanager.v1.AudienceMember].
      * }
      */
@@ -42,8 +46,10 @@ class MobileData extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The list of mobile device IDs (advertising ID/IDFA). At most 10
-     * `mobileIds` can be provided in a single
+     * Required. The list of mobile device IDs (Android advertising ID, iOS IDFA
+     * for Customer Match user lists and Android advertising ID, iOS IDFA,
+     * Xbox or Microsoft ID, Amazon Fire TV ID, Roku ID, Generic Device ID for
+     * basic user lists). At most 10 `mobileIds` can be provided in a single
      * [AudienceMember][google.ads.datamanager.v1.AudienceMember].
      *
      * Generated from protobuf field <code>repeated string mobile_ids = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -55,8 +61,10 @@ class MobileData extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The list of mobile device IDs (advertising ID/IDFA). At most 10
-     * `mobileIds` can be provided in a single
+     * Required. The list of mobile device IDs (Android advertising ID, iOS IDFA
+     * for Customer Match user lists and Android advertising ID, iOS IDFA,
+     * Xbox or Microsoft ID, Amazon Fire TV ID, Roku ID, Generic Device ID for
+     * basic user lists). At most 10 `mobileIds` can be provided in a single
      * [AudienceMember][google.ads.datamanager.v1.AudienceMember].
      *
      * Generated from protobuf field <code>repeated string mobile_ids = 1 [(.google.api.field_behavior) = REQUIRED];</code>

@@ -25,6 +25,7 @@ class NotebookRuntimeOptions extends \Google\Protobuf\Internal\Message
      */
     protected $ai_platform_notebook_runtime_template = '';
     protected $execution_sink;
+    protected $repository_snapshot_storage;
 
     /**
      * Constructor.
@@ -35,6 +36,10 @@ class NotebookRuntimeOptions extends \Google\Protobuf\Internal\Message
      *     @type string $gcs_output_bucket
      *           Optional. The Google Cloud Storage location to upload the result to.
      *           Format: `gs://bucket-name`.
+     *     @type \Google\Cloud\Dataform\V1\GcsRepositorySnapshotDestination $gcs_repository_snapshot_destination
+     *           Optional. The Google Cloud Storage destination to upload the snapshot to.
+     *           For empty URI it defaults to the provided gcs_output_bucket.
+     *           Format: `gs://bucket-name/path/`.
      *     @type string $ai_platform_notebook_runtime_template
      *           Optional. The resource name of the [Colab runtime template]
      *           (https://cloud.google.com/colab/docs/runtimes), from which a runtime is
@@ -81,6 +86,41 @@ class NotebookRuntimeOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. The Google Cloud Storage destination to upload the snapshot to.
+     * For empty URI it defaults to the provided gcs_output_bucket.
+     * Format: `gs://bucket-name/path/`.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1.GcsRepositorySnapshotDestination gcs_repository_snapshot_destination = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dataform\V1\GcsRepositorySnapshotDestination|null
+     */
+    public function getGcsRepositorySnapshotDestination()
+    {
+        return $this->readOneof(3);
+    }
+
+    public function hasGcsRepositorySnapshotDestination()
+    {
+        return $this->hasOneof(3);
+    }
+
+    /**
+     * Optional. The Google Cloud Storage destination to upload the snapshot to.
+     * For empty URI it defaults to the provided gcs_output_bucket.
+     * Format: `gs://bucket-name/path/`.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1.GcsRepositorySnapshotDestination gcs_repository_snapshot_destination = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dataform\V1\GcsRepositorySnapshotDestination $var
+     * @return $this
+     */
+    public function setGcsRepositorySnapshotDestination($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataform\V1\GcsRepositorySnapshotDestination::class);
+        $this->writeOneof(3, $var);
+
+        return $this;
+    }
+
+    /**
      * Optional. The resource name of the [Colab runtime template]
      * (https://cloud.google.com/colab/docs/runtimes), from which a runtime is
      * created for notebook executions. If not specified, a runtime is created
@@ -118,6 +158,14 @@ class NotebookRuntimeOptions extends \Google\Protobuf\Internal\Message
     public function getExecutionSink()
     {
         return $this->whichOneof("execution_sink");
+    }
+
+    /**
+     * @return string
+     */
+    public function getRepositorySnapshotStorage()
+    {
+        return $this->whichOneof("repository_snapshot_storage");
     }
 
 }

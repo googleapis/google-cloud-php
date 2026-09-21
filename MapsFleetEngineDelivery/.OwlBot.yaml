@@ -1,4 +1,0 @@
-deep-copy-regex:
-    - source: /google/maps/fleetengine/delivery/(v1)/.*-php/(.*)
-      dest: /owl-bot-staging/MapsFleetEngineDelivery/$1/$2
-api-name: MapsFleetEngineDelivery

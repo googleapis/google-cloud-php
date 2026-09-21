@@ -61,11 +61,17 @@ class DeviceSession extends \Google\Protobuf\Internal\Message
      */
     protected $active_start_time = null;
     /**
-     * Required. The requested device
+     * Required. The requested device.
      *
      * Generated from protobuf field <code>.google.cloud.devicestreaming.v1.AndroidDevice android_device = 15 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $android_device = null;
+    /**
+     * Optional. Information about the client which invoked the device session.
+     *
+     * Generated from protobuf field <code>.google.cloud.devicestreaming.v1.ClientInfo client_info = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $client_info = null;
     protected $expiration;
 
     /**
@@ -100,7 +106,9 @@ class DeviceSession extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $active_start_time
      *           Output only. The timestamp that the session first became ACTIVE.
      *     @type \Google\Cloud\DeviceStreaming\V1\AndroidDevice $android_device
-     *           Required. The requested device
+     *           Required. The requested device.
+     *     @type \Google\Cloud\DeviceStreaming\V1\ClientInfo $client_info
+     *           Optional. Information about the client which invoked the device session.
      * }
      */
     public function __construct($data = NULL) {
@@ -397,7 +405,7 @@ class DeviceSession extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The requested device
+     * Required. The requested device.
      *
      * Generated from protobuf field <code>.google.cloud.devicestreaming.v1.AndroidDevice android_device = 15 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\DeviceStreaming\V1\AndroidDevice|null
@@ -418,7 +426,7 @@ class DeviceSession extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The requested device
+     * Required. The requested device.
      *
      * Generated from protobuf field <code>.google.cloud.devicestreaming.v1.AndroidDevice android_device = 15 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\DeviceStreaming\V1\AndroidDevice $var
@@ -428,6 +436,42 @@ class DeviceSession extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\DeviceStreaming\V1\AndroidDevice::class);
         $this->android_device = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Information about the client which invoked the device session.
+     *
+     * Generated from protobuf field <code>.google.cloud.devicestreaming.v1.ClientInfo client_info = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\DeviceStreaming\V1\ClientInfo|null
+     */
+    public function getClientInfo()
+    {
+        return $this->client_info;
+    }
+
+    public function hasClientInfo()
+    {
+        return isset($this->client_info);
+    }
+
+    public function clearClientInfo()
+    {
+        unset($this->client_info);
+    }
+
+    /**
+     * Optional. Information about the client which invoked the device session.
+     *
+     * Generated from protobuf field <code>.google.cloud.devicestreaming.v1.ClientInfo client_info = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\DeviceStreaming\V1\ClientInfo $var
+     * @return $this
+     */
+    public function setClientInfo($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DeviceStreaming\V1\ClientInfo::class);
+        $this->client_info = $var;
 
         return $this;
     }

@@ -8,7 +8,7 @@
         "CloudMemcache": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "CloudMemcacheGapicClient",
+                    "libraryClient": "CloudMemcacheClient",
                     "rpcs": {
                         "ApplyParameters": {
                             "methods": [

@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * Bounding box encompassing detected text within an image.
+ * Bounding box encompassing detected text within an image. Coordinates are in
+ * pixels and strictly within the image or frame bounds.
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.BoundingBox</code>
  */

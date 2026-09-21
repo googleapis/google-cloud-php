@@ -44,7 +44,7 @@ class TransactionTest extends SystemTestCase
 
     private static $row = [];
 
-    private static $tableName;
+    
     private static $id1;
     private static $isSetup = false;
 
@@ -58,8 +58,7 @@ class TransactionTest extends SystemTestCase
         }
         self::setUpTestDatabase();
 
-        self::$tableName = uniqid(self::TABLE_NAME);
-        self::$id1 = rand(1000, 9999);
+        self::$id1 = self::randId();
 
         self::$row = [
             'id' => self::$id1,
@@ -69,19 +68,13 @@ class TransactionTest extends SystemTestCase
 
         self::$database->insert(self::TEST_TABLE_NAME, self::$row);
 
-        self::$database->updateDdl(
-            'CREATE TABLE ' . self::$tableName . ' (
-                    id INT64 NOT NULL,
-                    number INT64 NOT NULL
-                ) PRIMARY KEY (id)'
-        )->pollUntilComplete();
         self::$isSetup = true;
     }
 
     public function testRunTransaction()
     {
         $db = self::$database;
-        $id = rand(1, 346464);
+        $id = self::randId();
         $keySet = new KeySet([
             'keys' => [$id]
         ]);
@@ -122,7 +115,7 @@ class TransactionTest extends SystemTestCase
         $db = self::$database;
 
         $id = $this->randId();
-        $db->insert(self::$tableName, [
+        $db->insert(self::TABLE_NAME, [
             'id' => $id,
             'number' => 0
         ]);
@@ -131,11 +124,11 @@ class TransactionTest extends SystemTestCase
             'php',
             __DIR__ . '/pcntl/ConcurrentTransactionsIncrementValueWithRead.php',
             $db->name(),
-            self::$tableName,
+            self::TABLE_NAME,
             $id
         ]));
 
-        $row = $db->execute('SELECT * FROM ' . self::$tableName . ' WHERE id = @id', [
+        $row = $db->execute('SELECT * FROM ' . self::TABLE_NAME . ' WHERE id = @id', [
             'parameters' => [
                 'id' => $id
             ]
@@ -157,7 +150,7 @@ class TransactionTest extends SystemTestCase
         $ex = false;
         try {
             $db->runTransaction(function ($t) {
-                $t->execute('SELECT * FROM ' . self::$tableName);
+                $t->execute('SELECT * FROM ' . self::TABLE_NAME);
             });
         } catch (\RuntimeException $e) {
             $this->assertEquals('Transactions must be rolled back or committed.', $e->getMessage());
@@ -181,7 +174,7 @@ class TransactionTest extends SystemTestCase
         $db = self::$database;
 
         $id = $this->randId();
-        $db->insert(self::$tableName, [
+        $db->insert(self::TABLE_NAME, [
             'id' => $id,
             'number' => 0
         ]);
@@ -190,11 +183,11 @@ class TransactionTest extends SystemTestCase
             'php',
             __DIR__ . '/pcntl/AbortedErrorCausesRetry.php',
             $db->name(),
-            self::$tableName,
+            self::TABLE_NAME,
             $id
         ]));
 
-        $row = $db->execute('SELECT * FROM ' . self::$tableName . ' WHERE id = @id', [
+        $row = $db->execute('SELECT * FROM ' . self::TABLE_NAME . ' WHERE id = @id', [
             'parameters' => [
                 'id' => $id
             ]
@@ -220,7 +213,7 @@ class TransactionTest extends SystemTestCase
         $db = self::$database;
 
         $id = $this->randId();
-        $db->insert(self::$tableName, [
+        $db->insert(self::TABLE_NAME, [
             'id' => $id,
             'number' => 0
         ]);
@@ -229,11 +222,11 @@ class TransactionTest extends SystemTestCase
             'php',
             __DIR__ . '/pcntl/ConcurrentTransactionsIncrementValueWithExecute.php',
             $db->name(),
-            self::$tableName,
+            self::TABLE_NAME,
             $id
         ]));
 
-        $row = $db->execute('SELECT * FROM ' . self::$tableName . ' WHERE id = @id', [
+        $row = $db->execute('SELECT * FROM ' . self::TABLE_NAME . ' WHERE id = @id', [
             'parameters' => [
                 'id' => $id
             ]
@@ -285,7 +278,7 @@ class TransactionTest extends SystemTestCase
 
         try {
             $db->runTransaction(function ($t) use ($values) {
-                $id = rand(1, 346464);
+                $id = self::randId();
                 $t->insert(self::TEST_TABLE_NAME, $values);
 
                 $t->commit();
@@ -312,20 +305,20 @@ class TransactionTest extends SystemTestCase
         $db = self::$database;
         $id = $this->randId();
 
-        $db->insert(self::$tableName, [
+        $db->insert(self::TABLE_NAME, [
             'id' => $id,
             'number' => 0
         ]);
 
         $snapshot = $db->snapshot();
         $rows = $snapshot->execute(
-            'SELECT * FROM ' . self::$tableName . ' WHERE id = ' . $id,
+            'SELECT * FROM ' . self::TABLE_NAME . ' WHERE id = ' . $id,
             $directedReadOptions
         )->rows()->current();
         $this->assertEquals(0, $rows['number']);
 
         $rows = $db->execute(
-            'SELECT * FROM ' . self::$tableName . ' WHERE id = ' . $id,
+            'SELECT * FROM ' . self::TABLE_NAME . ' WHERE id = ' . $id,
             ['transactionId' => $snapshot->id()] + $directedReadOptions
         )->rows()->current();
         $this->assertEquals(0, $rows['number']);
@@ -346,7 +339,7 @@ class TransactionTest extends SystemTestCase
 
         try {
             $rows = $db->execute(
-                'SELECT * FROM ' . self::$tableName,
+                'SELECT * FROM ' . self::TABLE_NAME,
                 ['transactionId' => $transaction->id()] + $directedReadOptions
             )->rows()->current();
         } catch (ServiceException $e) {
@@ -357,7 +350,7 @@ class TransactionTest extends SystemTestCase
         $exception = null;
         try {
             $row = $transaction->execute(
-                'SELECT * FROM ' . self::$tableName,
+                'SELECT * FROM ' . self::TABLE_NAME,
                 $directedReadOptions
             )->rows()->current();
         } catch (ServiceException $e) {
@@ -412,7 +405,7 @@ class TransactionTest extends SystemTestCase
         $db = self::$database;
 
         $res = $db->runTransaction(function ($t) {
-            $id = rand(1, 346464);
+            $id = self::randId();
             $row = [
                 'id' => $id,
                 'name' => uniqid(self::TESTING_PREFIX),
@@ -422,7 +415,7 @@ class TransactionTest extends SystemTestCase
             $t->insert(self::TEST_TABLE_NAME, $row);
             $this->assertNull($t->id());
 
-            $id = rand(1, 346464);
+            $id = self::randId();
             $t->executeUpdate(
                 'INSERT INTO ' . self::TEST_TABLE_NAME . ' (id, name, birthday) VALUES (@id, @name, @birthday)',
                 [
@@ -496,7 +489,7 @@ class TransactionTest extends SystemTestCase
         };
 
         $res = $db->runTransaction(function ($t) use ($getChannel) {
-            $id = rand(1, 346464);
+            $id = self::randId();
             $row = [
                 'id' => $id,
                 'name' => uniqid(self::TESTING_PREFIX),
@@ -506,7 +499,7 @@ class TransactionTest extends SystemTestCase
             $t->insert(self::TEST_TABLE_NAME, $row);
             $this->assertNull($t->id());
 
-            $id = rand(1, 346464);
+            $id = self::randId();
             $t->executeUpdate(
                 'INSERT INTO ' . self::TEST_TABLE_NAME . ' (id, name, birthday) VALUES (@id, @name, @birthday)',
                 [
@@ -684,7 +677,7 @@ class TransactionTest extends SystemTestCase
         // if $total is 10, then we will generate 9 rows.
         for ($i = 0; $i < $total; $i++) {
             $rows[] = [
-                'id' => rand(1, 346464),
+                'id' => self::randId(),
                 'name' => uniqid(self::TESTING_PREFIX),
                 'birthday' => new Date(new \DateTime('2000-01-01'))
             ];

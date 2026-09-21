@@ -382,7 +382,7 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      */
     public function getPhraseHints()
     {
-        if ($this->phrase_hints->count() !== 0) {
+        if (count($this->phrase_hints) !== 0) {
             @trigger_error('phrase_hints is deprecated.', E_USER_DEPRECATED);
         }
         return $this->phrase_hints;

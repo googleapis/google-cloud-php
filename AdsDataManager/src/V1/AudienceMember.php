@@ -57,6 +57,10 @@ class AudienceMember extends \Google\Protobuf\Internal\Message
      *           This feature is only available to data partners.
      *     @type \Google\Ads\DataManager\V1\CompositeData $composite_data
      *           Group of multiple identifier types.
+     *     @type \Google\Ads\DataManager\V1\GoogleUserIdData $google_user_id_data
+     *           Encrypted Google User IDs.
+     *     @type \Google\Ads\DataManager\V1\PartnerProvidedIdData $partner_provided_id_data
+     *           Partner-provided identifiers.
      *     @type \Google\Ads\DataManager\V1\Consent $consent
      *           Optional. The consent setting for the user.
      * }
@@ -286,6 +290,68 @@ class AudienceMember extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Ads\DataManager\V1\CompositeData::class);
         $this->writeOneof(8, $var);
+
+        return $this;
+    }
+
+    /**
+     * Encrypted Google User IDs.
+     *
+     * Generated from protobuf field <code>.google.ads.datamanager.v1.GoogleUserIdData google_user_id_data = 9;</code>
+     * @return \Google\Ads\DataManager\V1\GoogleUserIdData|null
+     */
+    public function getGoogleUserIdData()
+    {
+        return $this->readOneof(9);
+    }
+
+    public function hasGoogleUserIdData()
+    {
+        return $this->hasOneof(9);
+    }
+
+    /**
+     * Encrypted Google User IDs.
+     *
+     * Generated from protobuf field <code>.google.ads.datamanager.v1.GoogleUserIdData google_user_id_data = 9;</code>
+     * @param \Google\Ads\DataManager\V1\GoogleUserIdData $var
+     * @return $this
+     */
+    public function setGoogleUserIdData($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Ads\DataManager\V1\GoogleUserIdData::class);
+        $this->writeOneof(9, $var);
+
+        return $this;
+    }
+
+    /**
+     * Partner-provided identifiers.
+     *
+     * Generated from protobuf field <code>.google.ads.datamanager.v1.PartnerProvidedIdData partner_provided_id_data = 10;</code>
+     * @return \Google\Ads\DataManager\V1\PartnerProvidedIdData|null
+     */
+    public function getPartnerProvidedIdData()
+    {
+        return $this->readOneof(10);
+    }
+
+    public function hasPartnerProvidedIdData()
+    {
+        return $this->hasOneof(10);
+    }
+
+    /**
+     * Partner-provided identifiers.
+     *
+     * Generated from protobuf field <code>.google.ads.datamanager.v1.PartnerProvidedIdData partner_provided_id_data = 10;</code>
+     * @param \Google\Ads\DataManager\V1\PartnerProvidedIdData $var
+     * @return $this
+     */
+    public function setPartnerProvidedIdData($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Ads\DataManager\V1\PartnerProvidedIdData::class);
+        $this->writeOneof(10, $var);
 
         return $this;
     }

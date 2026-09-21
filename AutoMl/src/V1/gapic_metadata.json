@@ -8,7 +8,7 @@
         "PredictionService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "PredictionServiceGapicClient",
+                    "libraryClient": "PredictionServiceClient",
                     "rpcs": {
                         "BatchPredict": {
                             "methods": [
@@ -27,7 +27,7 @@
         "AutoMl": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "AutoMlGapicClient",
+                    "libraryClient": "AutoMlClient",
                     "rpcs": {
                         "CreateDataset": {
                             "methods": [

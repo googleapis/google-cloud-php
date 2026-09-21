@@ -1,4 +1,0 @@
-deep-copy-regex:
-    - source: /google/api/servicecontrol/(v1)/.*-php/(.*)
-      dest: /owl-bot-staging/ServiceControl/$1/$2
-api-name: ServiceControl

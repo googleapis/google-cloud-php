@@ -91,6 +91,8 @@ class CustomInfoType extends \Google\Protobuf\Internal\Message
      *           Loads an existing `StoredInfoType` resource.
      *     @type \Google\Cloud\Dlp\V2\CustomInfoType\MetadataKeyValueExpression $metadata_key_value_expression
      *           Key-value pair to detect in the metadata.
+     *     @type \Google\Cloud\Dlp\V2\CustomInfoType\FileLabelInfoType $file_label_info_type
+     *           File label to detect.
      *     @type \Google\Cloud\Dlp\V2\CustomInfoType\DetectionRule[] $detection_rules
      *           Set of detection rules to apply to all findings of this CustomInfoType.
      *           Rules are applied in the order that they are specified. Only supported
@@ -341,6 +343,37 @@ class CustomInfoType extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\CustomInfoType\MetadataKeyValueExpression::class);
         $this->writeOneof(10, $var);
+
+        return $this;
+    }
+
+    /**
+     * File label to detect.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.CustomInfoType.FileLabelInfoType file_label_info_type = 12;</code>
+     * @return \Google\Cloud\Dlp\V2\CustomInfoType\FileLabelInfoType|null
+     */
+    public function getFileLabelInfoType()
+    {
+        return $this->readOneof(12);
+    }
+
+    public function hasFileLabelInfoType()
+    {
+        return $this->hasOneof(12);
+    }
+
+    /**
+     * File label to detect.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.CustomInfoType.FileLabelInfoType file_label_info_type = 12;</code>
+     * @param \Google\Cloud\Dlp\V2\CustomInfoType\FileLabelInfoType $var
+     * @return $this
+     */
+    public function setFileLabelInfoType($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\CustomInfoType\FileLabelInfoType::class);
+        $this->writeOneof(12, $var);
 
         return $this;
     }

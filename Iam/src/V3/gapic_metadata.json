@@ -8,7 +8,7 @@
         "AccessPolicies": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "AccessPoliciesGapicClient",
+                    "libraryClient": "AccessPoliciesClient",
                     "rpcs": {
                         "CreateAccessPolicy": {
                             "methods": [
@@ -47,7 +47,7 @@
         "PolicyBindings": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "PolicyBindingsGapicClient",
+                    "libraryClient": "PolicyBindingsClient",
                     "rpcs": {
                         "CreatePolicyBinding": {
                             "methods": [
@@ -86,7 +86,7 @@
         "PrincipalAccessBoundaryPolicies": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "PrincipalAccessBoundaryPoliciesGapicClient",
+                    "libraryClient": "PrincipalAccessBoundaryPoliciesClient",
                     "rpcs": {
                         "CreatePrincipalAccessBoundaryPolicy": {
                             "methods": [

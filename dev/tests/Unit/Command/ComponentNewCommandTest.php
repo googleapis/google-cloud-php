@@ -267,6 +267,156 @@ class ComponentNewCommandTest extends TestCase
         ]);
     }
 
+    public function testNewComponentWithAllOptions()
+    {
+        $application = new Application();
+        $application->add(new ComponentNewCommand(self::$tmpDir));
+
+        $commandTester = new CommandTester($application->get('component:new'));
+        $commandTester->setInputs(['Y']);
+
+        $commandTester->execute([
+            '--no-update' => true,
+            '--component-name' => 'Speech',
+            '--php-namespace' => 'Google\Cloud\Speech\V2',
+            '--proto-package' => 'google.cloud.speech.v2',
+            '--api-short-name' => 'speech',
+            '--api-version' => 'v2',
+            '--product-docs' => 'https://cloud.google.com/speech-to-text/docs',
+            '--product-homepage' => 'https://cloud.google.com/speech-to-text',
+        ]);
+
+        $display = $commandTester->getDisplay();
+        $expectedDisplay = sprintf(<<<EOF
+        | protoPackage         | google.cloud.speech.v2
+        | phpNamespace         | Google\Cloud\Speech\V2
+        | displayName          | Google Cloud Speech V2
+        | componentName        | Speech
+        | componentPath        | %s
+        | composerPackage      | google/cloud-speech-v2
+        | githubRepo           | googleapis/google-cloud-php-speech-v2
+        | gpbMetadataNamespace | GPBMetadata\Google\Cloud\Speech\V2
+        | shortName            | speech
+        | protoPath            | 
+        | version              | v2
+        EOF, self::$tmpDir);
+
+        foreach (explode("\n", $expectedDisplay) as $expectedLine) {
+            $this->assertStringContainsString($expectedLine, $display);
+        }
+
+        $this->assertFileExists(self::$tmpDir . '/Speech/README.md');
+        $this->assertFalse(file_exists(self::$tmpDir . '/Speech/.OwlBot.yaml'));
+
+        $repoMetadataFull = json_decode(file_get_contents(self::$tmpDir . '/.repo-metadata-full.json'), true);
+        $this->assertArrayHasKey('Speech', $repoMetadataFull);
+        $this->assertEquals('speech', $repoMetadataFull['Speech']['api_shortname']);
+    }
+
+    public function testNewComponentWithAllOptionsNonInteractive()
+    {
+        $application = new Application();
+        $application->add(new ComponentNewCommand(self::$tmpDir));
+
+        $commandTester = new CommandTester($application->get('component:new'));
+
+        $commandTester->execute([
+            '--no-update' => true,
+            '--component-name' => 'SpeechNonInteractive',
+            '--php-namespace' => 'Google\Cloud\Speech\V2',
+            '--proto-package' => 'google.cloud.speech.v2',
+            '--api-short-name' => 'speech',
+            '--api-version' => 'v2',
+            '--product-docs' => 'https://cloud.google.com/speech-to-text/docs',
+            '--product-homepage' => 'https://cloud.google.com/speech-to-text',
+        ], ['interactive' => false]);
+
+        $display = $commandTester->getDisplay();
+        $this->assertStringContainsString('| componentName        | SpeechNonInteractive', $display);
+        $this->assertFileExists(self::$tmpDir . '/SpeechNonInteractive/README.md');
+    }
+
+    public function testNewComponentWithAllOptionsAndEmptyProductHomepage()
+    {
+        $application = new Application();
+        $application->add(new ComponentNewCommand(self::$tmpDir));
+
+        $commandTester = new CommandTester($application->get('component:new'));
+        $commandTester->setInputs(['Y']);
+
+        $commandTester->execute([
+            '--no-update' => true,
+            '--component-name' => 'SpeechEmptyHomepage',
+            '--php-namespace' => 'Google\Cloud\Speech\V2',
+            '--proto-package' => 'google.cloud.speech.v2',
+            '--api-short-name' => 'speech',
+            '--api-version' => 'v2',
+            '--product-docs' => 'https://cloud.google.com/speech-to-text/docs',
+            '--product-homepage' => '',
+        ]);
+
+        $display = $commandTester->getDisplay();
+        $this->assertStringContainsString('| componentName        | SpeechEmptyHomepage', $display);
+        $this->assertFileExists(self::$tmpDir . '/SpeechEmptyHomepage/README.md');
+    }
+
+    public function testNewComponentWithoutProtoOrOptionsFails()
+    {
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage('Error: You must provide a proto file path or all 7 component options.');
+
+        $application = new Application();
+        $application->add(new ComponentNewCommand(self::$tmpDir));
+
+        $commandTester = new CommandTester($application->get('component:new'));
+        $commandTester->execute([]);
+    }
+
+    public function testNewComponentWithAllOptionsAndProtoPathFails()
+    {
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage('Error: Cannot provide both a proto file path and all 7 component options.');
+
+        $application = new Application();
+        $application->add(new ComponentNewCommand(self::$tmpDir));
+
+        $commandTester = new CommandTester($application->get('component:new'));
+
+        $commandTester->execute([
+            'proto' => 'google/cloud/secretmanager/v1/service.proto',
+            '--no-update' => true,
+            '--component-name' => 'SecretManagerWithOptions',
+            '--php-namespace' => 'Google\Cloud\SecretManager',
+            '--proto-package' => 'google.cloud.secretmanager',
+            '--api-short-name' => 'secretmanager',
+            '--api-version' => 'v1',
+            '--product-docs' => 'https://cloud.google.com/secret-manager/docs',
+            '--product-homepage' => 'https://cloud.google.com/secret-manager',
+        ]);
+    }
+
+    public function testNewComponentWithPartialOptionsAndProtoPath()
+    {
+        $application = new Application();
+        $application->add(new ComponentNewCommand(self::$tmpDir));
+
+        $commandTester = new CommandTester($application->get('component:new'));
+        $commandTester->setInputs([
+            'Y', // Does this information look correct? [Y/n]
+            'https://cloud.google.com/secret-manager', // What is the product homepage?
+        ]);
+
+        $commandTester->execute([
+            'proto' => 'google/cloud/secretmanager/v1/service.proto',
+            '--no-update' => true,
+            '--component-name' => 'CustomSecretManagerName',
+        ]);
+
+        $display = $commandTester->getDisplay();
+        $this->assertStringContainsString('| componentName        | CustomSecretManagerName', $display);
+        $this->assertFileExists(self::$tmpDir . '/CustomSecretManagerName/README.md');
+    }
+
     private function assertComposerJson(string $componentName)
     {
         $composerPath = sprintf('%s/../../fixtures/component/%s/composer.json', __DIR__, $componentName);

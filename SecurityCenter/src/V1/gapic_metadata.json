@@ -8,7 +8,7 @@
         "SecurityCenter": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "SecurityCenterGapicClient",
+                    "libraryClient": "SecurityCenterClient",
                     "rpcs": {
                         "BatchCreateResourceValueConfigs": {
                             "methods": [

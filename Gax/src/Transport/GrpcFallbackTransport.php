@@ -108,7 +108,7 @@ class GrpcFallbackTransport implements TransportInterface
         $options['requestId'] = crc32((string) spl_object_id($call) . getmypid());
 
         return $httpHandler(
-            $this->buildRequest($call, $options),
+            $this->buildGrpcFallbackRequest($call, $options),
             $this->getCallOptions($options)
         )->then(
             function (ResponseInterface $response) use ($options) {
@@ -133,7 +133,7 @@ class GrpcFallbackTransport implements TransportInterface
      * @param array $options
      * @return RequestInterface
      */
-    private function buildRequest(Call $call, array $options)
+    private function buildGrpcFallbackRequest(Call $call, array $options)
     {
         // Build common headers and set the content type to 'application/x-protobuf'
         $headers = ['Content-Type' => 'application/x-protobuf'] + self::buildCommonHeaders($options);

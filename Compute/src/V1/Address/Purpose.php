@@ -28,6 +28,12 @@ use UnexpectedValueException;
  *      - `PRIVATE_SERVICE_CONNECT` for a private network address that is
  *      used to configure Private Service Connect. Only global internal addresses
  *      can use this purpose.
+ *      - `PASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP0` for addresses
+ *      that can only be assigned to global external Passthrough Network Load
+ *      Balancer forwarding rules, as an Availability Group 0 address.
+ *      - `PASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP1` for addresses that
+ *      can only be assigned to global external Passthrough Network Load Balancer
+ *      forwarding rules, as an Availability Group 1 address.
  *
  * Protobuf type <code>google.cloud.compute.v1.Address.Purpose</code>
  */
@@ -58,7 +64,7 @@ class Purpose
      * of subnet/route in the VPC network and its peering networks. After the
      * VLAN attachment is created with the reserved IP address range, when
      * creating a new VPN gateway, its interface IP address is allocated
-     * from the associated VLAN attachment’s IP address range.
+     * from the associated VLAN attachment's IP address range.
      *
      * Generated from protobuf enum <code>IPSEC_INTERCONNECT = 340437251;</code>
      */

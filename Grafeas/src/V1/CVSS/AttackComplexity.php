@@ -7,23 +7,33 @@ namespace Grafeas\V1\CVSS;
 use UnexpectedValueException;
 
 /**
+ * Attack Complexity.
+ *
  * Protobuf type <code>grafeas.v1.CVSS.AttackComplexity</code>
  */
 class AttackComplexity
 {
     /**
+     * Unspecified.
+     *
      * Generated from protobuf enum <code>ATTACK_COMPLEXITY_UNSPECIFIED = 0;</code>
      */
     const ATTACK_COMPLEXITY_UNSPECIFIED = 0;
     /**
+     * Low attack complexity (AC:L). Defined in CVSS v2, v3, v4.
+     *
      * Generated from protobuf enum <code>ATTACK_COMPLEXITY_LOW = 1;</code>
      */
     const ATTACK_COMPLEXITY_LOW = 1;
     /**
+     * High attack complexity (AC:H). Defined in CVSS v2, v3, v4.
+     *
      * Generated from protobuf enum <code>ATTACK_COMPLEXITY_HIGH = 2;</code>
      */
     const ATTACK_COMPLEXITY_HIGH = 2;
     /**
+     * Medium attack complexity (AC:M). Defined in CVSS v2.
+     *
      * Generated from protobuf enum <code>ATTACK_COMPLEXITY_MEDIUM = 3;</code>
      */
     const ATTACK_COMPLEXITY_MEDIUM = 3;
