@@ -297,7 +297,7 @@ class ComponentNewCommand extends Command
             'distribution_name' => $new->composerPackage,
             'release_level' => 'preview',
             'client_documentation' => $documentationUrl,
-            'library_type' => 'GAPIC_AUTO',
+            'library_type' => str_ends_with($new->componentName, 'CommonProtos') ? 'CORE' : 'GAPIC_AUTO',
             'api_shortname' => $new->shortName
         ];
         $repoMetadataFullPath = $this->rootPath . '/.repo-metadata-full.json';
