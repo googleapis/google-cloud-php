@@ -73,7 +73,11 @@ class Component
 
     public function getId(): string
     {
-        return str_replace(['google/', 'googleads/'], '', $this->getPackageName());
+        // Strip the vendor prefix (e.g. "google/", "googleads/", "firebase/")
+        $packageName = $this->getPackageName();
+        return false === ($pos = strpos($packageName, '/'))
+            ? $packageName
+            : substr($packageName, $pos + 1);
     }
 
     public function getName(): string
