@@ -190,7 +190,8 @@ class ConformanceTest extends TestCase
 
         $this->executeAndHandleError($test, function ($test) {
             $fields = [];
-            foreach ($test['fieldPaths'] as $key => $val) {
+            // "update-paths: no paths" has no fieldPaths and expects update([]) to error.
+            foreach ($test['fieldPaths'] ?? [] as $key => $val) {
                 $fields[] = [
                     'path' => new FieldPath($val['field']),
                     'value' => $this->injectSentinel(
