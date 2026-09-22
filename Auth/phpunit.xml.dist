@@ -10,7 +10,10 @@
   </coverage>
   <testsuites>
     <testsuite name="google-auth-tests">
-      <directory suffix="Test.php">tests</directory>
+      <directory suffix="Test.php">tests/Unit</directory>
     </testsuite>
   </testsuites>
+  <php>
+    <env name="GRPC_ENABLE_FORK_SUPPORT" value="1"/>
+  </php>
 </phpunit>

@@ -902,6 +902,11 @@ trait GapicClientTrait
         ?Message $request,
         ?string $interfaceName = null
     ) {
+        if (isset($this->retrySettings[$methodName])) {
+            $callConstructionOptions = $this->configureCallConstructionOptions($methodName, $optionalArgs);
+            $optionalArgs['retrySettings'] = $callConstructionOptions['retrySettings'];
+        }
+
         $call = new Call(
             $this->buildMethod($interfaceName, $methodName),
             $decodeType,
@@ -914,7 +919,8 @@ trait GapicClientTrait
             $this->resumableUploadClient,
             $call,
             $optionalArgs,
-            $optionalArgs['uploadUrl'] ?? null
+            $optionalArgs['uploadUrl'] ?? null,
+            $optionalArgs['chunkSize'] ?? null
         );
     }
 

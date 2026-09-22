@@ -105,6 +105,11 @@
                                 "fetchBlob"
                             ]
                         },
+                        "FetchRefs": {
+                            "methods": [
+                                "fetchRefs"
+                            ]
+                        },
                         "FetchTree": {
                             "methods": [
                                 "fetchTree"

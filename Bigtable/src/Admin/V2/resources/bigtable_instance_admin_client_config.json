@@ -129,6 +129,11 @@
                     "retry_codes_name": "no_retry_codes",
                     "retry_params_name": "no_retry_params"
                 },
+                "GetMemoryLayer": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
                 "ListAppProfiles": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "retry_policy_3_codes",
@@ -155,6 +160,11 @@
                     "retry_params_name": "no_retry_params"
                 },
                 "ListMaterializedViews": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "ListMemoryLayers": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "no_retry_codes",
                     "retry_params_name": "no_retry_params"
@@ -200,6 +210,11 @@
                     "retry_params_name": "no_retry_params"
                 },
                 "UpdateMaterializedView": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "UpdateMemoryLayer": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "no_retry_codes",
                     "retry_params_name": "no_retry_params"

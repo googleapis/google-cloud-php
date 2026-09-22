@@ -28,8 +28,7 @@ use Google\Apps\Meet\V2beta\Client\SpacesServiceClient;
 use Google\Apps\Meet\V2beta\DeleteMemberRequest;
 
 /**
- * [Developer Preview](https://developers.google.com/workspace/preview):
- * Delete the member who was previously assigned roles in the space.
+ * Deletes the member who was previously assigned roles in the space.
  *
  * @param string $formattedName Format: “spaces/{space}/members/{member}”
  *                              Please see {@see SpacesServiceClient::memberName()} for help formatting this field.

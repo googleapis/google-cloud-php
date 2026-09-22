@@ -232,6 +232,17 @@ return [
                     ],
                 ],
             ],
+            'GetMemoryLayer' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{name=projects/*/instances/*/clusters/*/memoryLayer}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'ListAppProfiles' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{parent=projects/*/instances/*}/appProfiles',
@@ -290,6 +301,17 @@ return [
             'ListMaterializedViews' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{parent=projects/*/instances/*}/materializedViews',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListMemoryLayers' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{parent=projects/*/instances/*/clusters/*}/memoryLayers',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -439,6 +461,19 @@ return [
                     'materialized_view.name' => [
                         'getters' => [
                             'getMaterializedView',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateMemoryLayer' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v2/{memory_layer.name=projects/*/instances/*/clusters/*/memoryLayer}',
+                'body' => 'memory_layer',
+                'placeholders' => [
+                    'memory_layer.name' => [
+                        'getters' => [
+                            'getMemoryLayer',
                             'getName',
                         ],
                     ],

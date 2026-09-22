@@ -35,6 +35,13 @@ class Scheduling extends \Google\Protobuf\Internal\Message
      */
     protected $availability_domain = null;
     /**
+     * This optional flag exposes the hashed physical host ID in the
+     * ResourceStatus resource of the VM.
+     *
+     * Generated from protobuf field <code>optional bool expose_host_topology = 428530155;</code>
+     */
+    protected $expose_host_topology = null;
+    /**
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.SchedulingGracefulShutdown graceful_shutdown = 226325136;</code>
      */
     protected $graceful_shutdown = null;
@@ -166,6 +173,9 @@ class Scheduling extends \Google\Protobuf\Internal\Message
      *           Specifies the availability domain to place the instance in. The value
      *           must be a number between 1 and the number of availability domains
      *           specified in the spread placement policy attached to the instance.
+     *     @type bool $expose_host_topology
+     *           This optional flag exposes the hashed physical host ID in the
+     *           ResourceStatus resource of the VM.
      *     @type \Google\Cloud\Compute\V1\SchedulingGracefulShutdown $graceful_shutdown
      *     @type int $host_error_timeout_seconds
      *           Specify the time in seconds for host error detection, the value must be
@@ -311,6 +321,44 @@ class Scheduling extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->availability_domain = $var;
+
+        return $this;
+    }
+
+    /**
+     * This optional flag exposes the hashed physical host ID in the
+     * ResourceStatus resource of the VM.
+     *
+     * Generated from protobuf field <code>optional bool expose_host_topology = 428530155;</code>
+     * @return bool
+     */
+    public function getExposeHostTopology()
+    {
+        return isset($this->expose_host_topology) ? $this->expose_host_topology : false;
+    }
+
+    public function hasExposeHostTopology()
+    {
+        return isset($this->expose_host_topology);
+    }
+
+    public function clearExposeHostTopology()
+    {
+        unset($this->expose_host_topology);
+    }
+
+    /**
+     * This optional flag exposes the hashed physical host ID in the
+     * ResourceStatus resource of the VM.
+     *
+     * Generated from protobuf field <code>optional bool expose_host_topology = 428530155;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setExposeHostTopology($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->expose_host_topology = $var;
 
         return $this;
     }

@@ -968,6 +968,14 @@
         "library_type": "GAPIC_AUTO",
         "api_shortname": "ids"
     },
+    "Jwt": {
+        "language": "php",
+        "distribution_name": "firebase/php-jwt",
+        "release_level": "stable",
+        "client_documentation": "https://github.com/firebase/php-jwt",
+        "library_type": "CORE",
+        "api_shortname": ""
+    },
     "Kms": {
         "language": "php",
         "distribution_name": "google/cloud-kms",

@@ -65,6 +65,7 @@ use Google\Cloud\SecureSourceManager\V1\DeletePullRequestCommentRequest;
 use Google\Cloud\SecureSourceManager\V1\DeleteRepositoryRequest;
 use Google\Cloud\SecureSourceManager\V1\FetchBlobRequest;
 use Google\Cloud\SecureSourceManager\V1\FetchBlobResponse;
+use Google\Cloud\SecureSourceManager\V1\FetchRefsRequest;
 use Google\Cloud\SecureSourceManager\V1\FetchTreeRequest;
 use Google\Cloud\SecureSourceManager\V1\GetBranchRuleRequest;
 use Google\Cloud\SecureSourceManager\V1\GetHookRequest;
@@ -141,6 +142,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<OperationResponse> deletePullRequestCommentAsync(DeletePullRequestCommentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteRepositoryAsync(DeleteRepositoryRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<FetchBlobResponse> fetchBlobAsync(FetchBlobRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> fetchRefsAsync(FetchRefsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> fetchTreeAsync(FetchTreeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<BranchRule> getBranchRuleAsync(GetBranchRuleRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Hook> getHookAsync(GetHookRequest $request, array $optionalArgs = [])
@@ -209,7 +211,10 @@ final class SecureSourceManagerClient
      *
      * @internal
      */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/cloud-platform',
+        'https://www.googleapis.com/auth/securesourcemanager.read-write',
+    ];
 
     private $operationsClient;
 
@@ -1219,6 +1224,32 @@ final class SecureSourceManagerClient
     public function fetchBlob(FetchBlobRequest $request, array $callOptions = []): FetchBlobResponse
     {
         return $this->startApiCall('FetchBlob', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Fetches git references from a repository.
+     *
+     * The async variant is {@see SecureSourceManagerClient::fetchRefsAsync()} .
+     *
+     * @example samples/V1/SecureSourceManagerClient/fetch_refs.php
+     *
+     * @param FetchRefsRequest $request     A request to house fields associated with the call.
+     * @param array            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function fetchRefs(FetchRefsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('FetchRefs', $request, $callOptions);
     }
 
     /**

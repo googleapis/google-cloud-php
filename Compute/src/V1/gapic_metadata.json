@@ -87,6 +87,16 @@
                             "methods": [
                                 "calendarMode"
                             ]
+                        },
+                        "Capacity": {
+                            "methods": [
+                                "capacity"
+                            ]
+                        },
+                        "CapacityHistory": {
+                            "methods": [
+                                "capacityHistory"
+                            ]
                         }
                     }
                 }
@@ -2874,6 +2884,20 @@
                         "Update": {
                             "methods": [
                                 "update"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "ProjectViews": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ProjectViewsClient",
+                    "rpcs": {
+                        "Get": {
+                            "methods": [
+                                "get"
                             ]
                         }
                     }

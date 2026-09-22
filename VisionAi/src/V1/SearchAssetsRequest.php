@@ -17,7 +17,7 @@ class SearchAssetsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The parent corpus to search.
-     * Format: `projects/{project_id}/locations/{location_id}/corpora/{corpus_id}'
+     * Format: `projects/{project_id}/locations/{location_id}/corpora/{corpus_id}`
      *
      * Generated from protobuf field <code>string corpus = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -88,7 +88,7 @@ class SearchAssetsRequest extends \Google\Protobuf\Internal\Message
      *           Sort by the value under the data schema key.
      *     @type string $corpus
      *           Required. The parent corpus to search.
-     *           Format: `projects/{project_id}/locations/{location_id}/corpora/{corpus_id}'
+     *           Format: `projects/{project_id}/locations/{location_id}/corpora/{corpus_id}`
      *     @type int $page_size
      *           The number of results to be returned in this page. If it's 0, the server
      *           will decide the appropriate page_size.
@@ -155,7 +155,7 @@ class SearchAssetsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent corpus to search.
-     * Format: `projects/{project_id}/locations/{location_id}/corpora/{corpus_id}'
+     * Format: `projects/{project_id}/locations/{location_id}/corpora/{corpus_id}`
      *
      * Generated from protobuf field <code>string corpus = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -167,7 +167,7 @@ class SearchAssetsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent corpus to search.
-     * Format: `projects/{project_id}/locations/{location_id}/corpora/{corpus_id}'
+     * Format: `projects/{project_id}/locations/{location_id}/corpora/{corpus_id}`
      *
      * Generated from protobuf field <code>string corpus = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

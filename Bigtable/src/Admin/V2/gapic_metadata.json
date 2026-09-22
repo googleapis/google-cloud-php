@@ -90,6 +90,11 @@
                                 "getMaterializedView"
                             ]
                         },
+                        "GetMemoryLayer": {
+                            "methods": [
+                                "getMemoryLayer"
+                            ]
+                        },
                         "ListAppProfiles": {
                             "methods": [
                                 "listAppProfiles"
@@ -118,6 +123,11 @@
                         "ListMaterializedViews": {
                             "methods": [
                                 "listMaterializedViews"
+                            ]
+                        },
+                        "ListMemoryLayers": {
+                            "methods": [
+                                "listMemoryLayers"
                             ]
                         },
                         "PartialUpdateCluster": {
@@ -163,6 +173,11 @@
                         "UpdateMaterializedView": {
                             "methods": [
                                 "updateMaterializedView"
+                            ]
+                        },
+                        "UpdateMemoryLayer": {
+                            "methods": [
+                                "updateMemoryLayer"
                             ]
                         }
                     }

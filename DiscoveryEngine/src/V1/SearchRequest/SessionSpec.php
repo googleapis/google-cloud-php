@@ -10,9 +10,6 @@ use Google\Protobuf\RepeatedField;
 
 /**
  * Session specification.
- * Multi-turn Search feature is currently at private GA stage. Please use
- * v1alpha or v1beta version instead before we launch this feature to public
- * GA. Or ask for allowlisting through Google Support team.
  *
  * Generated from protobuf message <code>google.cloud.discoveryengine.v1.SearchRequest.SessionSpec</code>
  */
