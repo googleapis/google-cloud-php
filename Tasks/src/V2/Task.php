@@ -79,6 +79,10 @@ class Task extends \Google\Protobuf\Internal\Message
      *   at most a few seconds more than the app handler's timeout. For more
      *   information see
      *   [Timeouts](https://cloud.google.com/tasks/docs/creating-appengine-handlers#timeouts).
+     * The value must be given as a string that indicates the length of time
+     * (in seconds) followed by `s` (for "seconds"). For more information on the
+     * format, see the documentation for
+     * [Duration](https://protobuf.dev/reference/protobuf/google.protobuf/#duration).
      * `dispatch_deadline` will be truncated to the nearest millisecond. The
      * deadline is an approximate deadline.
      *
@@ -121,6 +125,16 @@ class Task extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.tasks.v2.Task.View view = 11;</code>
      */
     protected $view = 0;
+    /**
+     * Optional. Specifies the task-level
+     * [RetryConfig][google.cloud.tasks.v2.RetryConfig].
+     * If present, this overrides the
+     * [Queue.retry_config][google.cloud.tasks.v2.Queue.retry_config] for this
+     * task.
+     *
+     * Generated from protobuf field <code>.google.cloud.tasks.v2.RetryConfig retry_config = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $retry_config = null;
     protected $message_type;
 
     /**
@@ -189,6 +203,10 @@ class Task extends \Google\Protobuf\Internal\Message
      *             at most a few seconds more than the app handler's timeout. For more
      *             information see
      *             [Timeouts](https://cloud.google.com/tasks/docs/creating-appengine-handlers#timeouts).
+     *           The value must be given as a string that indicates the length of time
+     *           (in seconds) followed by `s` (for "seconds"). For more information on the
+     *           format, see the documentation for
+     *           [Duration](https://protobuf.dev/reference/protobuf/google.protobuf/#duration).
      *           `dispatch_deadline` will be truncated to the nearest millisecond. The
      *           deadline is an approximate deadline.
      *     @type int $dispatch_count
@@ -207,6 +225,12 @@ class Task extends \Google\Protobuf\Internal\Message
      *     @type int $view
      *           Output only. The view specifies which subset of the
      *           [Task][google.cloud.tasks.v2.Task] has been returned.
+     *     @type \Google\Cloud\Tasks\V2\RetryConfig $retry_config
+     *           Optional. Specifies the task-level
+     *           [RetryConfig][google.cloud.tasks.v2.RetryConfig].
+     *           If present, this overrides the
+     *           [Queue.retry_config][google.cloud.tasks.v2.Queue.retry_config] for this
+     *           task.
      * }
      */
     public function __construct($data = NULL) {
@@ -447,6 +471,10 @@ class Task extends \Google\Protobuf\Internal\Message
      *   at most a few seconds more than the app handler's timeout. For more
      *   information see
      *   [Timeouts](https://cloud.google.com/tasks/docs/creating-appengine-handlers#timeouts).
+     * The value must be given as a string that indicates the length of time
+     * (in seconds) followed by `s` (for "seconds"). For more information on the
+     * format, see the documentation for
+     * [Duration](https://protobuf.dev/reference/protobuf/google.protobuf/#duration).
      * `dispatch_deadline` will be truncated to the nearest millisecond. The
      * deadline is an approximate deadline.
      *
@@ -495,6 +523,10 @@ class Task extends \Google\Protobuf\Internal\Message
      *   at most a few seconds more than the app handler's timeout. For more
      *   information see
      *   [Timeouts](https://cloud.google.com/tasks/docs/creating-appengine-handlers#timeouts).
+     * The value must be given as a string that indicates the length of time
+     * (in seconds) followed by `s` (for "seconds"). For more information on the
+     * format, see the documentation for
+     * [Duration](https://protobuf.dev/reference/protobuf/google.protobuf/#duration).
      * `dispatch_deadline` will be truncated to the nearest millisecond. The
      * deadline is an approximate deadline.
      *
@@ -668,6 +700,50 @@ class Task extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Tasks\V2\Task\View::class);
         $this->view = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies the task-level
+     * [RetryConfig][google.cloud.tasks.v2.RetryConfig].
+     * If present, this overrides the
+     * [Queue.retry_config][google.cloud.tasks.v2.Queue.retry_config] for this
+     * task.
+     *
+     * Generated from protobuf field <code>.google.cloud.tasks.v2.RetryConfig retry_config = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Tasks\V2\RetryConfig|null
+     */
+    public function getRetryConfig()
+    {
+        return $this->retry_config;
+    }
+
+    public function hasRetryConfig()
+    {
+        return isset($this->retry_config);
+    }
+
+    public function clearRetryConfig()
+    {
+        unset($this->retry_config);
+    }
+
+    /**
+     * Optional. Specifies the task-level
+     * [RetryConfig][google.cloud.tasks.v2.RetryConfig].
+     * If present, this overrides the
+     * [Queue.retry_config][google.cloud.tasks.v2.Queue.retry_config] for this
+     * task.
+     *
+     * Generated from protobuf field <code>.google.cloud.tasks.v2.RetryConfig retry_config = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Tasks\V2\RetryConfig $var
+     * @return $this
+     */
+    public function setRetryConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Tasks\V2\RetryConfig::class);
+        $this->retry_config = $var;
 
         return $this;
     }

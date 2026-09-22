@@ -23,6 +23,8 @@
 namespace Google\Analytics\Data\Tests\Unit\V1alpha\Client;
 
 use Google\Analytics\Data\V1alpha\AudienceList;
+use Google\Analytics\Data\V1alpha\ChatRequest;
+use Google\Analytics\Data\V1alpha\ChatResponse;
 use Google\Analytics\Data\V1alpha\Client\AlphaAnalyticsDataClient;
 use Google\Analytics\Data\V1alpha\CreateAudienceListRequest;
 use Google\Analytics\Data\V1alpha\CreateRecurringAudienceListRequest;
@@ -89,6 +91,75 @@ class AlphaAnalyticsDataClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ];
         return new AlphaAnalyticsDataClient($options);
+    }
+
+    /** @test */
+    public function chatTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $sessionId2 = 'sessionId2-686579177';
+        $expectedResponse = new ChatResponse();
+        $expectedResponse->setSessionId($sessionId2);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedProperty = $gapicClient->propertyName('[PROPERTY]');
+        $userQuery = 'userQuery1932993364';
+        $request = (new ChatRequest())->setProperty($formattedProperty)->setUserQuery($userQuery);
+        $response = $gapicClient->chat($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.analytics.data.v1alpha.AlphaAnalyticsData/Chat', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProperty();
+        $this->assertProtobufEquals($formattedProperty, $actualValue);
+        $actualValue = $actualRequestObject->getUserQuery();
+        $this->assertProtobufEquals($userQuery, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function chatExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedProperty = $gapicClient->propertyName('[PROPERTY]');
+        $userQuery = 'userQuery1932993364';
+        $request = (new ChatRequest())->setProperty($formattedProperty)->setUserQuery($userQuery);
+        try {
+            $gapicClient->chat($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */
@@ -1285,88 +1356,33 @@ class AlphaAnalyticsDataClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function createAudienceListAsyncTest()
+    public function chatAsyncTest()
     {
-        $operationsTransport = $this->createTransport();
-        $operationsClient = new OperationsClient([
-            'apiEndpoint' => '',
-            'transport' => $operationsTransport,
-            'credentials' => $this->createCredentials(),
-        ]);
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
             'transport' => $transport,
-            'operationsClient' => $operationsClient,
         ]);
         $this->assertTrue($transport->isExhausted());
-        $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
-        $incompleteOperation = new Operation();
-        $incompleteOperation->setName('operations/createAudienceListTest');
-        $incompleteOperation->setDone(false);
-        $transport->addResponse($incompleteOperation);
-        $name = 'name3373707';
-        $audience = 'audience975628804';
-        $audienceDisplayName = 'audienceDisplayName406858307';
-        $creationQuotaTokensCharged = 1232901266;
-        $rowCount = 1340416618;
-        $errorMessage = 'errorMessage-1938755376';
-        $percentageCompleted = -1.29204764e8;
-        $recurringAudienceList = 'recurringAudienceList2056789015';
-        $expectedResponse = new AudienceList();
-        $expectedResponse->setName($name);
-        $expectedResponse->setAudience($audience);
-        $expectedResponse->setAudienceDisplayName($audienceDisplayName);
-        $expectedResponse->setCreationQuotaTokensCharged($creationQuotaTokensCharged);
-        $expectedResponse->setRowCount($rowCount);
-        $expectedResponse->setErrorMessage($errorMessage);
-        $expectedResponse->setPercentageCompleted($percentageCompleted);
-        $expectedResponse->setRecurringAudienceList($recurringAudienceList);
-        $anyResponse = new Any();
-        $anyResponse->setValue($expectedResponse->serializeToString());
-        $completeOperation = new Operation();
-        $completeOperation->setName('operations/createAudienceListTest');
-        $completeOperation->setDone(true);
-        $completeOperation->setResponse($anyResponse);
-        $operationsTransport->addResponse($completeOperation);
+        $sessionId2 = 'sessionId2-686579177';
+        $expectedResponse = new ChatResponse();
+        $expectedResponse->setSessionId($sessionId2);
+        $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $gapicClient->propertyName('[PROPERTY]');
-        $audienceList = new AudienceList();
-        $audienceListAudience = 'audienceListAudience867162342';
-        $audienceList->setAudience($audienceListAudience);
-        $audienceListDimensions = [];
-        $audienceList->setDimensions($audienceListDimensions);
-        $request = (new CreateAudienceListRequest())->setParent($formattedParent)->setAudienceList($audienceList);
-        $response = $gapicClient->createAudienceListAsync($request)->wait();
-        $this->assertFalse($response->isDone());
-        $this->assertNull($response->getResult());
-        $apiRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($apiRequests));
-        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
-        $this->assertSame(0, count($operationsRequestsEmpty));
-        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
-        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.analytics.data.v1alpha.AlphaAnalyticsData/CreateAudienceList', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getParent();
-        $this->assertProtobufEquals($formattedParent, $actualValue);
-        $actualValue = $actualApiRequestObject->getAudienceList();
-        $this->assertProtobufEquals($audienceList, $actualValue);
-        $expectedOperationsRequestObject = new GetOperationRequest();
-        $expectedOperationsRequestObject->setName('operations/createAudienceListTest');
-        $response->pollUntilComplete([
-            'initialPollDelayMillis' => 1,
-        ]);
-        $this->assertTrue($response->isDone());
-        $this->assertEquals($expectedResponse, $response->getResult());
-        $apiRequestsEmpty = $transport->popReceivedCalls();
-        $this->assertSame(0, count($apiRequestsEmpty));
-        $operationsRequests = $operationsTransport->popReceivedCalls();
-        $this->assertSame(1, count($operationsRequests));
-        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
-        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
-        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
-        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $formattedProperty = $gapicClient->propertyName('[PROPERTY]');
+        $userQuery = 'userQuery1932993364';
+        $request = (new ChatRequest())->setProperty($formattedProperty)->setUserQuery($userQuery);
+        $response = $gapicClient->chatAsync($request)->wait();
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.analytics.data.v1alpha.AlphaAnalyticsData/Chat', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProperty();
+        $this->assertProtobufEquals($formattedProperty, $actualValue);
+        $actualValue = $actualRequestObject->getUserQuery();
+        $this->assertProtobufEquals($userQuery, $actualValue);
         $this->assertTrue($transport->isExhausted());
-        $this->assertTrue($operationsTransport->isExhausted());
     }
 }

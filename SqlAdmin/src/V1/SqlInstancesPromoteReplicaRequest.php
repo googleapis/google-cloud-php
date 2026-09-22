@@ -38,6 +38,12 @@ class SqlInstancesPromoteReplicaRequest extends \Google\Protobuf\Internal\Messag
      * Generated from protobuf field <code>bool failover = 3;</code>
      */
     protected $failover = false;
+    /**
+     * Optional. Region of the Cloud SQL instance.
+     *
+     * Generated from protobuf field <code>string location = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $location = '';
 
     /**
      * Constructor.
@@ -56,6 +62,8 @@ class SqlInstancesPromoteReplicaRequest extends \Google\Protobuf\Internal\Messag
      *           DR replica when the original primary instance comes back online.
      *           If set to false or not specified, then the original primary
      *           instance becomes an independent Cloud SQL primary instance.
+     *     @type string $location
+     *           Optional. Region of the Cloud SQL instance.
      * }
      */
     public function __construct($data = NULL) {
@@ -147,6 +155,32 @@ class SqlInstancesPromoteReplicaRequest extends \Google\Protobuf\Internal\Messag
     {
         GPBUtil::checkBool($var);
         $this->failover = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Region of the Cloud SQL instance.
+     *
+     * Generated from protobuf field <code>string location = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getLocation()
+    {
+        return $this->location;
+    }
+
+    /**
+     * Optional. Region of the Cloud SQL instance.
+     *
+     * Generated from protobuf field <code>string location = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setLocation($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->location = $var;
 
         return $this;
     }

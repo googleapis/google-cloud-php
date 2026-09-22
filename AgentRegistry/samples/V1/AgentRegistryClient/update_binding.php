@@ -26,7 +26,6 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\AgentRegistry\V1\Binding;
-use Google\Cloud\AgentRegistry\V1\Binding\Source;
 use Google\Cloud\AgentRegistry\V1\Binding\Target;
 use Google\Cloud\AgentRegistry\V1\Client\AgentRegistryClient;
 use Google\Cloud\AgentRegistry\V1\UpdateBindingRequest;
@@ -44,11 +43,9 @@ function update_binding_sample(string $bindingName): void
     $agentRegistryClient = new AgentRegistryClient();
 
     // Prepare the request message.
-    $bindingSource = new Source();
     $bindingTarget = new Target();
     $binding = (new Binding())
         ->setName($bindingName)
-        ->setSource($bindingSource)
         ->setTarget($bindingTarget);
     $request = (new UpdateBindingRequest())
         ->setBinding($binding);

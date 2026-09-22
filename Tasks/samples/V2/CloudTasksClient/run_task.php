@@ -41,10 +41,6 @@ use Google\Cloud\Tasks\V2\Task;
  * retry a failed task after a fix has been made or to manually force a task
  * to be dispatched now.
  *
- * The dispatched task is returned. That is, the task that is returned
- * contains the [status][Task.status] after the task is dispatched but
- * before the task is received by its target.
- *
  * If Cloud Tasks receives a successful response from the task's
  * target, then the task will be deleted; otherwise the task's
  * [schedule_time][google.cloud.tasks.v2.Task.schedule_time] will be reset to

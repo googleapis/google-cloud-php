@@ -64,6 +64,18 @@ return [
                     ],
                 ],
             ],
+            'CreateMessagePin' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=spaces/*}/messagePins',
+                'body' => 'message_pin',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateReaction' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=spaces/*/messages/*}/reactions',
@@ -118,6 +130,17 @@ return [
             'DeleteMessage' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=spaces/*/messages/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteMessagePin' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=spaces/*/messagePins/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -284,6 +307,17 @@ return [
             'ListMemberships' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=spaces/*}/members',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListMessagePins' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=spaces/*}/messagePins',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [

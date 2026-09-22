@@ -20,6 +20,7 @@ class ExampleQuery extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A natural language question that a user might ask.
      * For example: "How many orders were placed last month?"
+     * Must be at most 2,000 bytes (approx. 2,000 characters).
      *
      * Generated from protobuf field <code>string natural_language_question = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -45,9 +46,11 @@ class ExampleQuery extends \Google\Protobuf\Internal\Message
      *           Optional. The SQL query that should be generated to answer the natural
      *           language question. For example: "SELECT COUNT(*) FROM orders WHERE
      *           order_date BETWEEN '2024-01-01' AND '2024-01-31'"
+     *           Must be at most 50,000 bytes (approx. 50,000 characters).
      *     @type string $natural_language_question
      *           Optional. A natural language question that a user might ask.
      *           For example: "How many orders were placed last month?"
+     *           Must be at most 2,000 bytes (approx. 2,000 characters).
      *     @type \Google\Cloud\GeminiDataAnalytics\V1\QueryParameter[] $parameters
      *           Optional. The list of query parameters.
      *           Example: The parameterized SQL query
@@ -64,6 +67,7 @@ class ExampleQuery extends \Google\Protobuf\Internal\Message
      * Optional. The SQL query that should be generated to answer the natural
      * language question. For example: "SELECT COUNT(*) FROM orders WHERE
      * order_date BETWEEN '2024-01-01' AND '2024-01-31'"
+     * Must be at most 50,000 bytes (approx. 50,000 characters).
      *
      * Generated from protobuf field <code>string sql_query = 101 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -82,6 +86,7 @@ class ExampleQuery extends \Google\Protobuf\Internal\Message
      * Optional. The SQL query that should be generated to answer the natural
      * language question. For example: "SELECT COUNT(*) FROM orders WHERE
      * order_date BETWEEN '2024-01-01' AND '2024-01-31'"
+     * Must be at most 50,000 bytes (approx. 50,000 characters).
      *
      * Generated from protobuf field <code>string sql_query = 101 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -98,6 +103,7 @@ class ExampleQuery extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A natural language question that a user might ask.
      * For example: "How many orders were placed last month?"
+     * Must be at most 2,000 bytes (approx. 2,000 characters).
      *
      * Generated from protobuf field <code>string natural_language_question = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -110,6 +116,7 @@ class ExampleQuery extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A natural language question that a user might ask.
      * For example: "How many orders were placed last month?"
+     * Must be at most 2,000 bytes (approx. 2,000 characters).
      *
      * Generated from protobuf field <code>string natural_language_question = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

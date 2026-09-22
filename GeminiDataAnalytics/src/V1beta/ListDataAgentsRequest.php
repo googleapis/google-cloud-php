@@ -58,6 +58,12 @@ class ListDataAgentsRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool show_deleted = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $show_deleted = false;
+    /**
+     * Optional. Filter for the creator of the agent.
+     *
+     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.ListAccessibleDataAgentsRequest.CreatorFilter creator_filter = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $creator_filter = 0;
 
     /**
      * @param string $parent Required. Parent value for ListDataAgentsRequest. Please see
@@ -98,6 +104,8 @@ class ListDataAgentsRequest extends \Google\Protobuf\Internal\Message
      *     @type bool $show_deleted
      *           Optional. If true, the list results will include soft-deleted DataAgents.
      *           Defaults to false.
+     *     @type int $creator_filter
+     *           Optional. Filter for the creator of the agent.
      * }
      */
     public function __construct($data = NULL) {
@@ -271,6 +279,32 @@ class ListDataAgentsRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->show_deleted = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Filter for the creator of the agent.
+     *
+     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.ListAccessibleDataAgentsRequest.CreatorFilter creator_filter = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getCreatorFilter()
+    {
+        return $this->creator_filter;
+    }
+
+    /**
+     * Optional. Filter for the creator of the agent.
+     *
+     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.ListAccessibleDataAgentsRequest.CreatorFilter creator_filter = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setCreatorFilter($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\GeminiDataAnalytics\V1beta\ListAccessibleDataAgentsRequest\CreatorFilter::class);
+        $this->creator_filter = $var;
 
         return $this;
     }

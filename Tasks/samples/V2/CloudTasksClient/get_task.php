@@ -31,6 +31,10 @@ use Google\Cloud\Tasks\V2\Task;
 /**
  * Gets a task.
  *
+ * After a task is successfully executed or has exhausted its retry attempts,
+ * the task is deleted. A `GetTask` request for a deleted task returns a
+ * `NOT_FOUND` error.
+ *
  * @param string $formattedName The task name. For example:
  *                              `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
  *                              Please see {@see CloudTasksClient::taskName()} for help formatting this field.

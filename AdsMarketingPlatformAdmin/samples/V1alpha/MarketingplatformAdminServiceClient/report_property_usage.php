@@ -29,7 +29,7 @@ use Google\Ads\MarketingPlatform\Admin\V1alpha\ReportPropertyUsageResponse;
 use Google\ApiCore\ApiException;
 
 /**
- * Get the usage and billing data for properties within the organization for
+ * Gets the usage and billing data for properties within the organization for
  * the specified month.
  *
  * Per direct client org, user needs to be OrgAdmin/BillingAdmin on the

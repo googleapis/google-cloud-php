@@ -63,6 +63,21 @@ class Parameter extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string kms_key = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
     protected $kms_key = null;
+    /**
+     * Optional. Input only. Immutable. Tag keys and tag values that are bound to
+     * this Parameter. You must represent each item in the map as:
+     * `"<tag-key-namespaced-name>" : "<tag-value-short-name>"`.
+     * For example, a single resource can have the following tags:
+     * ```
+     *   "123/environment": "production",
+     *   "123/costCenter": "marketing",
+     * ```
+     * Tags are used to organize and group resources.
+     * Tags can be used to control policy evaluation for the resource.
+     *
+     * Generated from protobuf field <code>map<string, string> tags = 8 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $tags;
 
     /**
      * Constructor.
@@ -90,6 +105,17 @@ class Parameter extends \Google\Protobuf\Internal\Message
      *           will be used. Cloud KMS CryptoKeys must reside in the same location as the
      *           Parameter. The expected format is
      *           `projects/{@*}locations/{@*}keyRings/{@*}cryptoKeys/*`.
+     *     @type array|\Google\Protobuf\Internal\MapField $tags
+     *           Optional. Input only. Immutable. Tag keys and tag values that are bound to
+     *           this Parameter. You must represent each item in the map as:
+     *           `"<tag-key-namespaced-name>" : "<tag-value-short-name>"`.
+     *           For example, a single resource can have the following tags:
+     *           ```
+     *             "123/environment": "production",
+     *             "123/costCenter": "marketing",
+     *           ```
+     *           Tags are used to organize and group resources.
+     *           Tags can be used to control policy evaluation for the resource.
      * }
      */
     public function __construct($data = NULL) {
@@ -327,6 +353,50 @@ class Parameter extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->kms_key = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Input only. Immutable. Tag keys and tag values that are bound to
+     * this Parameter. You must represent each item in the map as:
+     * `"<tag-key-namespaced-name>" : "<tag-value-short-name>"`.
+     * For example, a single resource can have the following tags:
+     * ```
+     *   "123/environment": "production",
+     *   "123/costCenter": "marketing",
+     * ```
+     * Tags are used to organize and group resources.
+     * Tags can be used to control policy evaluation for the resource.
+     *
+     * Generated from protobuf field <code>map<string, string> tags = 8 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
+    /**
+     * Optional. Input only. Immutable. Tag keys and tag values that are bound to
+     * this Parameter. You must represent each item in the map as:
+     * `"<tag-key-namespaced-name>" : "<tag-value-short-name>"`.
+     * For example, a single resource can have the following tags:
+     * ```
+     *   "123/environment": "production",
+     *   "123/costCenter": "marketing",
+     * ```
+     * Tags are used to organize and group resources.
+     * Tags can be used to control policy evaluation for the resource.
+     *
+     * Generated from protobuf field <code>map<string, string> tags = 8 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setTags($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->tags = $arr;
 
         return $this;
     }

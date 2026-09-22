@@ -61,6 +61,25 @@ return [
                     ],
                 ],
             ],
+            'SetAgentOpsObservability' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\GeminiDataAnalytics\V1beta\SetAgentOpsObservabilityResponse',
+                    'metadataReturnType' => '\Google\Cloud\GeminiDataAnalytics\V1beta\SetAgentOpsObservabilityMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateDataAgent' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\GeminiDataAnalytics\V1beta\DataAgent',
@@ -160,6 +179,18 @@ return [
                 ],
                 'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
                 'responseType' => 'Google\Cloud\GeminiDataAnalytics\V1beta\ListDataAgentsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'RetrieveAgentOpsObservability' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\GeminiDataAnalytics\V1beta\RetrieveAgentOpsObservabilityResponse',
                 'headerParams' => [
                     [
                         'keyName' => 'parent',

@@ -61,6 +61,18 @@ return [
                     ],
                 ],
             ],
+            'Chat' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Analytics\Data\V1alpha\ChatResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'property',
+                        'fieldAccessors' => [
+                            'getProperty',
+                        ],
+                    ],
+                ],
+            ],
             'CreateRecurringAudienceList' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Analytics\Data\V1alpha\RecurringAudienceList',

@@ -23,6 +23,18 @@
 return [
     'interfaces' => [
         'google.marketingplatform.admin.v1alpha.MarketingplatformAdminService' => [
+            'CreateAdminAccessBinding' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Ads\MarketingPlatform\Admin\V1alpha\AdminAccessBinding',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateAnalyticsAccountLink' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Ads\MarketingPlatform\Admin\V1alpha\AnalyticsAccountLink',
@@ -35,7 +47,55 @@ return [
                     ],
                 ],
             ],
+            'CreateUserGroup' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Ads\MarketingPlatform\Admin\V1alpha\UserGroup',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateUserGroupMember' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Ads\MarketingPlatform\Admin\V1alpha\UserGroupMember',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteAnalyticsAccountLink' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Protobuf\GPBEmpty',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteUserGroup' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Protobuf\GPBEmpty',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteUserGroupMember' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Protobuf\GPBEmpty',
                 'headerParams' => [
@@ -59,6 +119,18 @@ return [
                     ],
                 ],
             ],
+            'GetAdminAccessBinding' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Ads\MarketingPlatform\Admin\V1alpha\AdminAccessBinding',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetOrganization' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Ads\MarketingPlatform\Admin\V1alpha\Organization',
@@ -67,6 +139,50 @@ return [
                         'keyName' => 'name',
                         'fieldAccessors' => [
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetUserGroup' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Ads\MarketingPlatform\Admin\V1alpha\UserGroup',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetUserGroupMember' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Ads\MarketingPlatform\Admin\V1alpha\UserGroupMember',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListAdminAccessBindings' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getAdminAccessBindings',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Ads\MarketingPlatform\Admin\V1alpha\ListAdminAccessBindingsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
                         ],
                     ],
                 ],
@@ -103,6 +219,46 @@ return [
                 'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
                 'responseType' => 'Google\Ads\MarketingPlatform\Admin\V1alpha\ListOrganizationsResponse',
             ],
+            'ListUserGroupMembers' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getUserGroupMembers',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Ads\MarketingPlatform\Admin\V1alpha\ListUserGroupMembersResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListUserGroups' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getUserGroups',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Ads\MarketingPlatform\Admin\V1alpha\ListUserGroupsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ReportPropertyUsage' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Ads\MarketingPlatform\Admin\V1alpha\ReportPropertyUsageResponse',
@@ -127,11 +283,53 @@ return [
                     ],
                 ],
             ],
+            'UpdateAdminAccessBinding' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Ads\MarketingPlatform\Admin\V1alpha\AdminAccessBinding',
+                'headerParams' => [
+                    [
+                        'keyName' => 'admin_access_binding.name',
+                        'fieldAccessors' => [
+                            'getAdminAccessBinding',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateUserGroup' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Ads\MarketingPlatform\Admin\V1alpha\UserGroup',
+                'headerParams' => [
+                    [
+                        'keyName' => 'user_group.name',
+                        'fieldAccessors' => [
+                            'getUserGroup',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateUserGroupMember' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Ads\MarketingPlatform\Admin\V1alpha\UserGroupMember',
+                'headerParams' => [
+                    [
+                        'keyName' => 'user_group_member.name',
+                        'fieldAccessors' => [
+                            'getUserGroupMember',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'templateMap' => [
                 'account' => 'accounts/{account}',
+                'adminAccessBinding' => 'organizations/{organization}/adminAccessBindings/{admin_access_binding}',
                 'analyticsAccountLink' => 'organizations/{organization}/analyticsAccountLinks/{analytics_account_link}',
                 'organization' => 'organizations/{organization}',
                 'property' => 'properties/{property}',
+                'userGroup' => 'organizations/{organization}/userGroups/{user_group}',
+                'userGroupMember' => 'organizations/{organization}/userGroups/{user_group}/members/{member}',
             ],
         ],
     ],
