@@ -324,11 +324,11 @@ class GrpcFallbackTransportTest extends TestCase
 
         // Verify RequestMarshaling attributes
         $this->assertEquals('Testing123', $marshalingAttributes[SpanAttributes::RPC_METHOD]);
-        $this->assertEquals('http', $marshalingAttributes[SpanAttributes::RPC_SYSTEM]);
+        $this->assertEquals('http', $marshalingAttributes[SpanAttributes::RPC_SYSTEM_NAME]);
 
         // Verify ResponseUnmarshaling attributes
         $this->assertEquals('Testing123', $unmarshalingAttributes[SpanAttributes::RPC_METHOD]);
-        $this->assertEquals('http', $unmarshalingAttributes[SpanAttributes::RPC_SYSTEM]);
+        $this->assertEquals('http', $unmarshalingAttributes[SpanAttributes::RPC_SYSTEM_NAME]);
     }
 
     public function testStartUnaryCallResponseUnmarshalingError()

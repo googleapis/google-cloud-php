@@ -42,7 +42,6 @@ use Google\Protobuf\Internal\Message;
 use Google\Rpc\Status;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Request;
-use OpenTelemetry\API\Trace\StatusCode;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Throwable;
@@ -112,21 +111,9 @@ class GrpcFallbackTransport implements TransportInterface
 
         $options['requestId'] = crc32((string) spl_object_id($call) . getmypid());
 
-        $spanMarshaling = $this->startTransportSpan('RequestMarshaling', $call);
-
-        try {
-            $request = $this->buildGrpcFallbackRequest($call, $options);
-            if ($spanMarshaling) {
-                $spanMarshaling->setStatus(StatusCode::STATUS_OK);
-            }
-        } catch (Throwable $ex) {
-            $this->recordException($spanMarshaling, $ex);
-            throw $ex;
-        } finally {
-            if ($spanMarshaling) {
-                $spanMarshaling->end();
-            }
-        }
+        $request = $this->traceTransportOperation('RequestMarshaling', $call, function () use ($call, $options) {
+            return $this->buildGrpcFallbackRequest($call, $options);
+        });
 
         return $httpHandler(
             $request,
@@ -183,25 +170,13 @@ class GrpcFallbackTransport implements TransportInterface
      */
     private function unpackResponse(Call $call, ResponseInterface $response)
     {
-        $spanUnmarshaling = $this->startTransportSpan('ResponseUnmarshaling', $call);
-
-        try {
+        return $this->traceTransportOperation('ResponseUnmarshaling', $call, function () use ($call, $response) {
             $decodeType = $call->getDecodeType();
             /** @var Message $responseMessage */
             $responseMessage = new $decodeType();
             $responseMessage->mergeFromString((string) $response->getBody());
-            if ($spanUnmarshaling) {
-                $spanUnmarshaling->setStatus(StatusCode::STATUS_OK);
-            }
             return $responseMessage;
-        } catch (Throwable $ex) {
-            $this->recordException($spanUnmarshaling, $ex);
-            throw $ex;
-        } finally {
-            if ($spanUnmarshaling) {
-                $spanUnmarshaling->end();
-            }
-        }
+        });
     }
 
     /**

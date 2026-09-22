@@ -105,16 +105,14 @@ class TracingMiddleware implements MiddlewareInterface
 
         $scope = $span->activate();
 
-        $onFulfilled = function ($response) use ($span, $scope) {
+        $onFulfilled = function ($response) use ($span) {
             $span->setStatus(StatusCode::STATUS_OK);
-            $scope->detach();
             $span->end();
             return $response;
         };
 
-        $onRejected = function (Throwable $e) use ($span, $scope) {
+        $onRejected = function (Throwable $e) use ($span) {
             $this->recordException($span, $e);
-            $scope->detach();
             $span->end();
             throw $e;
         };
@@ -126,14 +124,14 @@ class TracingMiddleware implements MiddlewareInterface
             }
 
             $span->setStatus(StatusCode::STATUS_OK);
-            $scope->detach();
             $span->end();
             return $result;
         } catch (Throwable $e) {
             $this->recordException($span, $e);
-            $scope->detach();
             $span->end();
             throw $e;
+        } finally {
+            $scope->detach();
         }
     }
 }
