@@ -717,6 +717,37 @@ class CredentialsWrapperTest extends TestCase
         $this->assertSame($authHttpHandler, $handler);
     }
 
+    public function testSetOpenTelemetryTracerProviderReconfiguresExistingAuthHttpHandler()
+    {
+        $credentials = $this->createMock(FetchAuthTokenInterface::class);
+        $dummyInner = function () {
+        };
+        $initialProvider = $this->createMock(TracerProviderInterface::class);
+        $updatedProvider = $this->createMock(TracerProviderInterface::class);
+
+        $authHttpHandler = new AuthHttpHandler($dummyInner, $initialProvider, '1.0.0');
+
+        $wrapper = new CredentialsWrapper(
+            $credentials,
+            $authHttpHandler,
+            GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN
+        );
+        $wrapper->setOpenTelemetryTracerProvider($updatedProvider, '2.0.0');
+
+        $reflection = new ReflectionClass($wrapper);
+        $property = $reflection->getProperty('authHttpHandler');
+        $handler = $property->getValue($wrapper);
+
+        $this->assertSame($authHttpHandler, $handler);
+
+        $handlerReflection = new ReflectionClass($handler);
+        $providerProp = $handlerReflection->getProperty('openTelemetryTracerProvider');
+        $versionProp = $handlerReflection->getProperty('clientVersion');
+
+        $this->assertSame($updatedProvider, $providerProp->getValue($handler));
+        $this->assertSame('2.0.0', $versionProp->getValue($handler));
+    }
+
     private function setEnv(string $env, ?string $value = null)
     {
         if ($value === null) {

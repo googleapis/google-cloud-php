@@ -224,7 +224,11 @@ class CredentialsWrapper implements HeaderCredentialsInterface, ProjectIdProvide
         string $clientVersion = ''
     ): ?callable {
         $tracerProvider = TelemetryConfiguration::resolveTracerProvider($openTelemetryTracerProvider);
-        if ($tracerProvider && !($authHttpHandler instanceof AuthHttpHandler)) {
+        if ($authHttpHandler instanceof AuthHttpHandler) {
+            $authHttpHandler->setTelemetryOptions(['clientVersion' => $clientVersion], $tracerProvider);
+            return $authHttpHandler;
+        }
+        if ($tracerProvider) {
             $handler = $authHttpHandler ?: HttpHandlerFactory::build();
             return new AuthHttpHandler($handler, $tracerProvider, $clientVersion);
         }

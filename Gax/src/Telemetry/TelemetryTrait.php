@@ -175,6 +175,7 @@ trait TelemetryTrait
     private function traceTransportOperation(string $spanName, Call $call, callable $operation)
     {
         $span = $this->startTransportSpan($spanName, $call);
+        $scope = $span ? $span->activate() : null;
 
         try {
             $result = $operation();
@@ -186,6 +187,9 @@ trait TelemetryTrait
             $this->recordException($span, $ex);
             throw $ex;
         } finally {
+            if ($scope) {
+                $scope->detach();
+            }
             if ($span) {
                 $span->end();
             }
