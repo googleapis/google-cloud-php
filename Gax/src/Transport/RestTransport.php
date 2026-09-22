@@ -47,10 +47,8 @@ use Google\ApiCore\ValidationException;
 use Google\ApiCore\ValidationTrait;
 use Google\Protobuf\Internal\Message;
 use GuzzleHttp\Exception\RequestException;
-use OpenTelemetry\API\Trace\StatusCode;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
-use Throwable;
 
 /**
  * A REST based transport implementation.
@@ -128,25 +126,13 @@ class RestTransport implements TransportInterface, ResumableUploadTransportInter
         // Add the $call object ID for logging
         $options['requestId'] = crc32((string) spl_object_id($call) . getmypid());
 
-        $spanMarshaling = $this->startTransportSpan('RequestMarshaling', $call);
-
-        try {
-            $request = $this->requestBuilder->build(
+        $request = $this->traceTransportOperation('RequestMarshaling', $call, function () use ($call, $headers) {
+            return $this->requestBuilder->build(
                 $call->getMethod(),
                 $call->getMessage(),
                 $headers
             );
-            if ($spanMarshaling) {
-                $spanMarshaling->setStatus(StatusCode::STATUS_OK);
-            }
-        } catch (Throwable $ex) {
-            $this->recordException($spanMarshaling, $ex);
-            throw $ex;
-        } finally {
-            if ($spanMarshaling) {
-                $spanMarshaling->end();
-            }
-        }
+        });
 
         // call the HTTP handler
         $httpHandler = $this->httpHandler;
@@ -162,45 +148,39 @@ class RestTransport implements TransportInterface, ResumableUploadTransportInter
                 $return = new $decodeType();
                 $body = (string) $response->getBody();
 
-                $spanUnmarshaling = $this->startTransportSpan('ResponseUnmarshaling', $call);
+                $return = $this->traceTransportOperation(
+                    'ResponseUnmarshaling',
+                    $call,
+                    function () use ($return, $body, $options) {
+                        // In some rare cases LRO response metadata may not be loaded
+                        // in the descriptor pool, triggering an exception. The catch
+                        // statement handles this case and attempts to add the LRO
+                        // metadata type to the pool by directly instantiating the
+                        // metadata class.
+                        try {
+                            $return->mergeFromJsonString(
+                                $body,
+                                true
+                            );
+                        } catch (Exception $ex) {
+                            if (!isset($options['metadataReturnType'])) {
+                                throw $ex;
+                            }
 
-                // In some rare cases LRO response metadata may not be loaded
-                // in the descriptor pool, triggering an exception. The catch
-                // statement handles this case and attempts to add the LRO
-                // metadata type to the pool by directly instantiating the
-                // metadata class.
-                try {
-                    try {
-                        $return->mergeFromJsonString(
-                            $body,
-                            true
-                        );
-                    } catch (Exception $ex) {
-                        if (!isset($options['metadataReturnType'])) {
-                            throw $ex;
+                            if (strpos($ex->getMessage(), 'Error occurred during parsing:') !== 0) {
+                                throw $ex;
+                            }
+
+                            new $options['metadataReturnType']();
+                            $return->mergeFromJsonString(
+                                $body,
+                                true
+                            );
                         }
 
-                        if (strpos($ex->getMessage(), 'Error occurred during parsing:') !== 0) {
-                            throw $ex;
-                        }
-
-                        new $options['metadataReturnType']();
-                        $return->mergeFromJsonString(
-                            $body,
-                            true
-                        );
+                        return $return;
                     }
-                    if ($spanUnmarshaling) {
-                        $spanUnmarshaling->setStatus(StatusCode::STATUS_OK);
-                    }
-                } catch (Throwable $ex) {
-                    $this->recordException($spanUnmarshaling, $ex);
-                    throw $ex;
-                } finally {
-                    if ($spanUnmarshaling) {
-                        $spanUnmarshaling->end();
-                    }
-                }
+                );
 
                 if (isset($options['metadataCallback'])) {
                     $metadataCallback = $options['metadataCallback'];

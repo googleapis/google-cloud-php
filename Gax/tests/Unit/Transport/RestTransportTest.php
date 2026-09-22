@@ -772,11 +772,11 @@ class RestTransportTest extends TestCase
 
         // Verify RequestMarshaling attributes
         $this->assertEquals('TestService/TestMethod', $marshalingAttributes[SpanAttributes::RPC_METHOD]);
-        $this->assertEquals('http', $marshalingAttributes[SpanAttributes::RPC_SYSTEM]);
+        $this->assertEquals('http', $marshalingAttributes[SpanAttributes::RPC_SYSTEM_NAME]);
 
         // Verify ResponseUnmarshaling attributes
         $this->assertEquals('TestService/TestMethod', $unmarshalingAttributes[SpanAttributes::RPC_METHOD]);
-        $this->assertEquals('http', $unmarshalingAttributes[SpanAttributes::RPC_SYSTEM]);
+        $this->assertEquals('http', $unmarshalingAttributes[SpanAttributes::RPC_SYSTEM_NAME]);
     }
 
     public function testStartUnaryCallResponseUnmarshalingError()

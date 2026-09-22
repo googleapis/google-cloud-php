@@ -426,6 +426,10 @@ class ClientOptions implements ArrayAccess, OptionsInterface
 
     /**
      * @internal
+     * Sets an explicit OpenTelemetry TracerProvider for this client instance.
+     * When omitted, the client defaults to the globally registered OpenTelemetry
+     * TracerProvider when GOOGLE_SDK_PHP_TRACING_ENABLED=true, or no-ops with zero
+     * overhead when disabled.
      *
      * @param TracerProviderInterface|null $openTelemetryTracerProvider
      *
@@ -440,6 +444,7 @@ class ClientOptions implements ArrayAccess, OptionsInterface
 
     /**
      * @internal
+     * Gets the configured OpenTelemetry TracerProvider for this client instance.
      *
      * @return TracerProviderInterface|null
      */

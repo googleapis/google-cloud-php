@@ -164,6 +164,35 @@ trait TelemetryTrait
     }
 
     /**
+     * Executes an internal transport operation wrapped in an internal operation span.
+     *
+     * @param string $spanName
+     * @param Call $call
+     * @param callable $operation
+     * @return mixed
+     * @throws Throwable
+     */
+    private function traceTransportOperation(string $spanName, Call $call, callable $operation)
+    {
+        $span = $this->startTransportSpan($spanName, $call);
+
+        try {
+            $result = $operation();
+            if ($span) {
+                $span->setStatus(StatusCode::STATUS_OK);
+            }
+            return $result;
+        } catch (Throwable $ex) {
+            $this->recordException($span, $ex);
+            throw $ex;
+        } finally {
+            if ($span) {
+                $span->end();
+            }
+        }
+    }
+
+    /**
      * Records error status and attributes on a span from a Throwable.
      *
      * @param SpanInterface|null $span
@@ -191,6 +220,7 @@ trait TelemetryTrait
             $errorType = get_class($e);
         }
 
+        $span->recordException($e);
         $span->setStatus(StatusCode::STATUS_ERROR, $e->getMessage());
         $span->setAttribute(SpanAttributes::ERROR_TYPE, $errorType);
         $span->setAttribute(SpanAttributes::EXCEPTION_TYPE, get_class($e));

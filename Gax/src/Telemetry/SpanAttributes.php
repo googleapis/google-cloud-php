@@ -41,8 +41,6 @@ final class SpanAttributes
     // RPC & Transport attributes
     public const RPC_METHOD = 'rpc.method';
     public const RPC_SYSTEM_NAME = 'rpc.system.name';
-    /** @deprecated Use RPC_SYSTEM_NAME instead */
-    public const RPC_SYSTEM = 'rpc.system.name';
     public const RPC_RESPONSE_STATUS_CODE = 'rpc.response.status_code';
 
     // HTTP & Network attributes
