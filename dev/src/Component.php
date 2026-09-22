@@ -93,7 +93,7 @@ class Component
      */
     public function isMigratedRepo(): bool
     {
-        return in_array($this->name, self::MIGRATED_COMPONENTS);
+        return in_array($this->name, self::MIGRATED_COMPONENTS, true);
     }
 
     public function getPath(): string

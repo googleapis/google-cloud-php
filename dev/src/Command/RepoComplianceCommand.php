@@ -213,7 +213,12 @@ class RepoComplianceCommand extends Command
             $this->formatSettings($expected)
         ), true);
         if ($this->getHelper('question')->ask($input, $output, $question)) {
-            $this->github->updateRepoDetails('googleapis/' . $details['name'], $expected);
+            if ($this->github->updateRepoDetails('googleapis/' . $details['name'], $expected)) {
+                $output->writeln(sprintf('<comment>%s</comment>: Repo settings updated.', $details['name']));
+                return true;
+            }
+            $output->writeln(sprintf('<error>%s</error>: Unable to update repo settings.', $details['name']));
+            return false;
             return true;
         }
         return false;
