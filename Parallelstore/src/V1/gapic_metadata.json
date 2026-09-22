@@ -8,7 +8,7 @@
         "Parallelstore": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ParallelstoreGapicClient",
+                    "libraryClient": "ParallelstoreClient",
                     "rpcs": {
                         "CreateInstance": {
                             "methods": [

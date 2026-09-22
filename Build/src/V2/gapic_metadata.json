@@ -8,7 +8,7 @@
         "RepositoryManager": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "RepositoryManagerGapicClient",
+                    "libraryClient": "RepositoryManagerClient",
                     "rpcs": {
                         "BatchCreateRepositories": {
                             "methods": [

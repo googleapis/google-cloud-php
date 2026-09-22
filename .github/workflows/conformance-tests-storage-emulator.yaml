@@ -14,7 +14,7 @@ permissions:
   contents: read
 jobs:
   test:
-    runs-on: 'ubuntu-24.04'
+    runs-on: 'ubuntu-26.04'
 
     services:
       emulator:
@@ -31,7 +31,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # v2
         with:
-          php-version: '8.1'
+          php-version: '8.2'
 
       - name: Install dependencies
         run: |

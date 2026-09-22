@@ -8,7 +8,7 @@
         "Config": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ConfigGapicClient",
+                    "libraryClient": "ConfigClient",
                     "rpcs": {
                         "CreateDeployment": {
                             "methods": [

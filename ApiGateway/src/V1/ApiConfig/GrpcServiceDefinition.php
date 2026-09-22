@@ -26,8 +26,8 @@ class GrpcServiceDefinition extends \Google\Protobuf\Internal\Message
      */
     protected $file_descriptor_set = null;
     /**
-     * Optional. Uncompiled proto files associated with the descriptor set, used for
-     * display purposes (server-side compilation is not supported). These
+     * Optional. Uncompiled proto files associated with the descriptor set, used
+     * for display purposes (server-side compilation is not supported). These
      * should match the inputs to 'protoc' command used to generate
      * file_descriptor_set.
      *
@@ -48,8 +48,8 @@ class GrpcServiceDefinition extends \Google\Protobuf\Internal\Message
      *           in a new file named out.pb.
      *           $ protoc --include_imports --include_source_info test.proto -o out.pb
      *     @type \Google\Cloud\ApiGateway\V1\ApiConfig\File[] $source
-     *           Optional. Uncompiled proto files associated with the descriptor set, used for
-     *           display purposes (server-side compilation is not supported). These
+     *           Optional. Uncompiled proto files associated with the descriptor set, used
+     *           for display purposes (server-side compilation is not supported). These
      *           should match the inputs to 'protoc' command used to generate
      *           file_descriptor_set.
      * }
@@ -104,8 +104,8 @@ class GrpcServiceDefinition extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Uncompiled proto files associated with the descriptor set, used for
-     * display purposes (server-side compilation is not supported). These
+     * Optional. Uncompiled proto files associated with the descriptor set, used
+     * for display purposes (server-side compilation is not supported). These
      * should match the inputs to 'protoc' command used to generate
      * file_descriptor_set.
      *
@@ -118,8 +118,8 @@ class GrpcServiceDefinition extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Uncompiled proto files associated with the descriptor set, used for
-     * display purposes (server-side compilation is not supported). These
+     * Optional. Uncompiled proto files associated with the descriptor set, used
+     * for display purposes (server-side compilation is not supported). These
      * should match the inputs to 'protoc' command used to generate
      * file_descriptor_set.
      *

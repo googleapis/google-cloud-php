@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,6 +29,12 @@ use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Compute\V1\CalendarModeAdviceRequest;
 use Google\Cloud\Compute\V1\CalendarModeAdviceResponse;
 use Google\Cloud\Compute\V1\CalendarModeAdviceRpcRequest;
+use Google\Cloud\Compute\V1\CapacityAdviceRequest;
+use Google\Cloud\Compute\V1\CapacityAdviceResponse;
+use Google\Cloud\Compute\V1\CapacityAdviceRpcRequest;
+use Google\Cloud\Compute\V1\CapacityHistoryAdviceRequest;
+use Google\Cloud\Compute\V1\CapacityHistoryRequest;
+use Google\Cloud\Compute\V1\CapacityHistoryResponse;
 use Google\Cloud\Compute\V1\Client\AdviceClient;
 use Google\Rpc\Code;
 use stdClass;
@@ -129,6 +135,164 @@ class AdviceClientTest extends GeneratedTest
             ->setRegion($region);
         try {
             $gapicClient->calendarMode($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function capacityTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new CapacityAdviceResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $capacityAdviceRequestResource = new CapacityAdviceRequest();
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $request = (new CapacityAdviceRpcRequest())
+            ->setCapacityAdviceRequestResource($capacityAdviceRequestResource)
+            ->setProject($project)
+            ->setRegion($region);
+        $response = $gapicClient->capacity($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.Advice/Capacity', $actualFuncCall);
+        $actualValue = $actualRequestObject->getCapacityAdviceRequestResource();
+        $this->assertProtobufEquals($capacityAdviceRequestResource, $actualValue);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function capacityExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $capacityAdviceRequestResource = new CapacityAdviceRequest();
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $request = (new CapacityAdviceRpcRequest())
+            ->setCapacityAdviceRequestResource($capacityAdviceRequestResource)
+            ->setProject($project)
+            ->setRegion($region);
+        try {
+            $gapicClient->capacity($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function capacityHistoryTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $location = 'location1901043637';
+        $machineType = 'machineType1838323762';
+        $expectedResponse = new CapacityHistoryResponse();
+        $expectedResponse->setLocation($location);
+        $expectedResponse->setMachineType($machineType);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $capacityHistoryRequestResource = new CapacityHistoryRequest();
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $request = (new CapacityHistoryAdviceRequest())
+            ->setCapacityHistoryRequestResource($capacityHistoryRequestResource)
+            ->setProject($project)
+            ->setRegion($region);
+        $response = $gapicClient->capacityHistory($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.Advice/CapacityHistory', $actualFuncCall);
+        $actualValue = $actualRequestObject->getCapacityHistoryRequestResource();
+        $this->assertProtobufEquals($capacityHistoryRequestResource, $actualValue);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function capacityHistoryExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $capacityHistoryRequestResource = new CapacityHistoryRequest();
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $request = (new CapacityHistoryAdviceRequest())
+            ->setCapacityHistoryRequestResource($capacityHistoryRequestResource)
+            ->setProject($project)
+            ->setRegion($region);
+        try {
+            $gapicClient->capacityHistory($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

@@ -163,6 +163,13 @@ class SearchMessagesRequest extends \Google\Protobuf\Internal\Message
      */
     protected $order_by = '';
     /**
+     * Optional. Specifies the desired output syntax for the Chat message
+     * `formatted_text` field.
+     *
+     * Generated from protobuf field <code>.google.chat.v1.MarkupSyntax markup_syntax = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $markup_syntax = 0;
+    /**
      * Optional. Specifies what kind of search results view to return. The default
      * is `SEARCH_MESSAGES_VIEW_BASIC`.
      *
@@ -449,6 +456,9 @@ class SearchMessagesRequest extends \Google\Protobuf\Internal\Message
      *           The default ordering is `create_time desc`. Only a single order per query
      *           (`create_time` or `relevance`) is supported. Only descending order (`desc`)
      *           is supported, and it must be specified after the order attribute.
+     *     @type int $markup_syntax
+     *           Optional. Specifies the desired output syntax for the Chat message
+     *           `formatted_text` field.
      *     @type int $view
      *           Optional. Specifies what kind of search results view to return. The default
      *           is `SEARCH_MESSAGES_VIEW_BASIC`.
@@ -819,6 +829,34 @@ class SearchMessagesRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->order_by = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies the desired output syntax for the Chat message
+     * `formatted_text` field.
+     *
+     * Generated from protobuf field <code>.google.chat.v1.MarkupSyntax markup_syntax = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getMarkupSyntax()
+    {
+        return $this->markup_syntax;
+    }
+
+    /**
+     * Optional. Specifies the desired output syntax for the Chat message
+     * `formatted_text` field.
+     *
+     * Generated from protobuf field <code>.google.chat.v1.MarkupSyntax markup_syntax = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setMarkupSyntax($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Apps\Chat\V1\MarkupSyntax::class);
+        $this->markup_syntax = $var;
 
         return $this;
     }

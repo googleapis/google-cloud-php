@@ -70,20 +70,22 @@ run_package_test() {
 
     # Update composer to use local packages
     local PACKAGE_DEPENDENCIES=(
-        "Gax,gax"
-        "CommonProtos,common-protos,4.100"
-        "BigQuery,cloud-bigquery"
-        "Core,cloud-core"
-        "Logging,cloud-logging"
-        "PubSub,cloud-pubsub"
-        "Storage,cloud-storage,2.100"
-        "ShoppingCommonProtos,shopping-common-protos"
-        "GeoCommonProtos,geo-common-protos,0.1",
-        "Monitoring,cloud-monitoring"
+        "Auth,google/auth"
+        "Gax,google/gax"
+        "CommonProtos,google/common-protos,4.100"
+        "BigQuery,google/cloud-bigquery"
+        "Core,google/cloud-core"
+        "Jwt,firebase/php-jwt,6.100"
+        "Logging,google/cloud-logging"
+        "PubSub,google/cloud-pubsub"
+        "Storage,google/cloud-storage,2.100"
+        "ShoppingCommonProtos,google/shopping-common-protos"
+        "GeoCommonProtos,google/geo-common-protos,0.1"
+        "Monitoring,google/cloud-monitoring"
     )
     for i in "${PACKAGE_DEPENDENCIES[@]}"; do
         IFS="," read -r PKG_DIR PKG_NAME PKG_VERSION <<< "$i"
-        if grep -q "\"google/${PKG_NAME}\":" "${DIR}/composer.json"; then
+        if grep -q "\"${PKG_NAME}\":" "${DIR}/composer.json"; then
             # determine local package version
             local VERSION
             if [ "${STRICT}" = "true" ]; then
@@ -93,11 +95,12 @@ run_package_test() {
             else
                 VERSION=${PKG_VERSION}
             fi
-            echo "Use local package ${PKG_DIR} as google/${PKG_NAME}:${VERSION} in ${DIR}"
+            echo "Use local package ${PKG_DIR} as ${PKG_NAME}:${VERSION} in ${DIR}"
             # "canonical: false" ensures composer will try to install from packagist when the "--prefer-lowest" flag is set.
             local JSON_CONFIG
-            JSON_CONFIG=$(printf '{"type":"path","url":"../%s","options":{"versions":{"google/%s":"%s"}},"canonical":false}' "${PKG_DIR}" "${PKG_NAME}" "${VERSION}")
-            composer config "repositories.${PKG_NAME}" -d "${DIR}" "${JSON_CONFIG}"
+            JSON_CONFIG=$(printf '{"type":"path","url":"../%s","options":{"versions":{"%s":"%s"}},"canonical":false}' "${PKG_DIR}" "${PKG_NAME}" "${VERSION}")
+            local REPO_NAME="${PKG_NAME#*/}"
+            composer config "repositories.${REPO_NAME}" -d "${DIR}" "${JSON_CONFIG}"
         fi
     done
 
@@ -107,10 +110,11 @@ run_package_test() {
     fi
     echo ""
     if ! composer -q --no-interaction --no-ansi --no-progress ${PREFER_LOWEST} update -d "${DIR}"; then
-        echo "${DIR}: composer install failed" >> "${FAILED_FILE}"
-        # run again but without "-q" so we can see the error
-        composer --no-interaction --no-ansi --no-progress ${PREFER_LOWEST} update -d "${DIR}"
-        return 1
+        # Retry once without -q to see error and heal transient parallel cache contention
+        if ! composer --no-interaction --no-ansi --no-progress ${PREFER_LOWEST} update -d "${DIR}"; then
+            echo "${DIR}: composer install failed" >> "${FAILED_FILE}"
+            return 1
+        fi
     fi
 
     echo "Running ${DIR} Unit Tests"

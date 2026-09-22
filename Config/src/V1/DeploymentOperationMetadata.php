@@ -40,6 +40,12 @@ class DeploymentOperationMetadata extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string logs = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $logs = '';
+    /**
+     * Output only. Indicating if early apply results are available.
+     *
+     * Generated from protobuf field <code>bool apply_results_available = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $apply_results_available = false;
 
     /**
      * Constructor.
@@ -56,6 +62,8 @@ class DeploymentOperationMetadata extends \Google\Protobuf\Internal\Message
      *     @type string $logs
      *           Output only. Location of Deployment operations logs in
      *           `gs://{bucket}/{object}` format.
+     *     @type bool $apply_results_available
+     *           Output only. Indicating if early apply results are available.
      * }
      */
     public function __construct($data = NULL) {
@@ -175,6 +183,32 @@ class DeploymentOperationMetadata extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->logs = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Indicating if early apply results are available.
+     *
+     * Generated from protobuf field <code>bool apply_results_available = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getApplyResultsAvailable()
+    {
+        return $this->apply_results_available;
+    }
+
+    /**
+     * Output only. Indicating if early apply results are available.
+     *
+     * Generated from protobuf field <code>bool apply_results_available = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setApplyResultsAvailable($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->apply_results_available = $var;
 
         return $this;
     }

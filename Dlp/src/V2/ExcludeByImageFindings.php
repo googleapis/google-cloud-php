@@ -20,7 +20,7 @@ class ExcludeByImageFindings extends \Google\Protobuf\Internal\Message
 {
     /**
      * A list of image-supported infoTypes—excluding [document
-     *  infoTypes](https://cloud.google.com/sensitive-data-protection/docs/infotypes-reference#documents)—to
+     *  infoTypes](https://docs.cloud.google.com/sensitive-data-protection/docs/infotypes-reference#documents)—to
      *  be used as context for the exclusion rule. A finding is excluded if
      *  its bounding box has the specified spatial relationship (defined by
      *  `image_containment_type`) with a finding of an infoType in this list.
@@ -50,7 +50,7 @@ class ExcludeByImageFindings extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Dlp\V2\InfoType[] $info_types
      *           A list of image-supported infoTypes—excluding [document
-     *            infoTypes](https://cloud.google.com/sensitive-data-protection/docs/infotypes-reference#documents)—to
+     *            infoTypes](https://docs.cloud.google.com/sensitive-data-protection/docs/infotypes-reference#documents)—to
      *            be used as context for the exclusion rule. A finding is excluded if
      *            its bounding box has the specified spatial relationship (defined by
      *            `image_containment_type`) with a finding of an infoType in this list.
@@ -72,7 +72,7 @@ class ExcludeByImageFindings extends \Google\Protobuf\Internal\Message
 
     /**
      * A list of image-supported infoTypes—excluding [document
-     *  infoTypes](https://cloud.google.com/sensitive-data-protection/docs/infotypes-reference#documents)—to
+     *  infoTypes](https://docs.cloud.google.com/sensitive-data-protection/docs/infotypes-reference#documents)—to
      *  be used as context for the exclusion rule. A finding is excluded if
      *  its bounding box has the specified spatial relationship (defined by
      *  `image_containment_type`) with a finding of an infoType in this list.
@@ -93,7 +93,7 @@ class ExcludeByImageFindings extends \Google\Protobuf\Internal\Message
 
     /**
      * A list of image-supported infoTypes—excluding [document
-     *  infoTypes](https://cloud.google.com/sensitive-data-protection/docs/infotypes-reference#documents)—to
+     *  infoTypes](https://docs.cloud.google.com/sensitive-data-protection/docs/infotypes-reference#documents)—to
      *  be used as context for the exclusion rule. A finding is excluded if
      *  its bounding box has the specified spatial relationship (defined by
      *  `image_containment_type`) with a finding of an infoType in this list.

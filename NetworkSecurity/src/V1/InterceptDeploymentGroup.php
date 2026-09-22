@@ -351,7 +351,7 @@ class InterceptDeploymentGroup extends \Google\Protobuf\Internal\Message
      */
     public function getNestedDeployments()
     {
-        if ($this->nested_deployments->count() !== 0) {
+        if (count($this->nested_deployments) !== 0) {
             @trigger_error('nested_deployments is deprecated.', E_USER_DEPRECATED);
         }
         return $this->nested_deployments;
@@ -368,7 +368,7 @@ class InterceptDeploymentGroup extends \Google\Protobuf\Internal\Message
     public function setNestedDeployments($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\NetworkSecurity\V1\InterceptDeploymentGroup\Deployment::class);
-        if ($arr->count() !== 0) {
+        if (count($arr) !== 0) {
             @trigger_error('nested_deployments is deprecated.', E_USER_DEPRECATED);
         }
         $this->nested_deployments = $arr;

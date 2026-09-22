@@ -9,40 +9,45 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * A resource with its enrollment status.
+ * An organization, folder, or project with its enrollment status.
  *
  * Generated from protobuf message <code>google.cloud.auditmanager.v1.ResourceEnrollmentStatus</code>
  */
 class ResourceEnrollmentStatus extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Identifier. The name of this resource.
+     * Identifier. Name of the resource enrollment status, in one of the following
+     * formats:
+     * * `folders/{folder}/locations/{location}/resourceEnrollmentStatuses/{resource_enrollment_status}`
+     * * `projects/{project}/locations/{location}/resourceEnrollmentStatuses/{resource_enrollment_status}`
+     * * `organizations/{organization}/locations/{location}/resourceEnrollmentStatuses/{resource_enrollment_status}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
-     * Output only. Enrollment which contains enrolled destination details for a
-     * resource
+     * Output only. Enrolled destination details for the organization, folder, or
+     * project.
      *
      * Generated from protobuf field <code>.google.cloud.auditmanager.v1.Enrollment enrollment = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $enrollment = null;
     /**
-     * Output only. Is resource enrolled.
+     * Output only. Deprecated. Whether the organization, folder, or project is
+     * enrolled. Use `enrollment_state` instead.
      *
      * Generated from protobuf field <code>bool enrolled = 3 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @deprecated
      */
     protected $enrolled = false;
     /**
-     * Output only. Display name of the project/folder/organization.
+     * Output only. Display name for the organization, folder, or project.
      *
      * Generated from protobuf field <code>string display_name = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $display_name = '';
     /**
-     * Output only. Enrollment state of the resource.
+     * Output only. Enrollment state of the organization, folder, or project.
      *
      * Generated from protobuf field <code>.google.cloud.auditmanager.v1.ResourceEnrollmentStatus.ResourceEnrollmentState enrollment_state = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -55,16 +60,21 @@ class ResourceEnrollmentStatus extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Identifier. The name of this resource.
+     *           Identifier. Name of the resource enrollment status, in one of the following
+     *           formats:
+     *           * `folders/{folder}/locations/{location}/resourceEnrollmentStatuses/{resource_enrollment_status}`
+     *           * `projects/{project}/locations/{location}/resourceEnrollmentStatuses/{resource_enrollment_status}`
+     *           * `organizations/{organization}/locations/{location}/resourceEnrollmentStatuses/{resource_enrollment_status}`
      *     @type \Google\Cloud\AuditManager\V1\Enrollment $enrollment
-     *           Output only. Enrollment which contains enrolled destination details for a
-     *           resource
+     *           Output only. Enrolled destination details for the organization, folder, or
+     *           project.
      *     @type bool $enrolled
-     *           Output only. Is resource enrolled.
+     *           Output only. Deprecated. Whether the organization, folder, or project is
+     *           enrolled. Use `enrollment_state` instead.
      *     @type string $display_name
-     *           Output only. Display name of the project/folder/organization.
+     *           Output only. Display name for the organization, folder, or project.
      *     @type int $enrollment_state
-     *           Output only. Enrollment state of the resource.
+     *           Output only. Enrollment state of the organization, folder, or project.
      * }
      */
     public function __construct($data = NULL) {
@@ -73,7 +83,11 @@ class ResourceEnrollmentStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Identifier. The name of this resource.
+     * Identifier. Name of the resource enrollment status, in one of the following
+     * formats:
+     * * `folders/{folder}/locations/{location}/resourceEnrollmentStatuses/{resource_enrollment_status}`
+     * * `projects/{project}/locations/{location}/resourceEnrollmentStatuses/{resource_enrollment_status}`
+     * * `organizations/{organization}/locations/{location}/resourceEnrollmentStatuses/{resource_enrollment_status}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
@@ -84,7 +98,11 @@ class ResourceEnrollmentStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Identifier. The name of this resource.
+     * Identifier. Name of the resource enrollment status, in one of the following
+     * formats:
+     * * `folders/{folder}/locations/{location}/resourceEnrollmentStatuses/{resource_enrollment_status}`
+     * * `projects/{project}/locations/{location}/resourceEnrollmentStatuses/{resource_enrollment_status}`
+     * * `organizations/{organization}/locations/{location}/resourceEnrollmentStatuses/{resource_enrollment_status}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
@@ -99,8 +117,8 @@ class ResourceEnrollmentStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Enrollment which contains enrolled destination details for a
-     * resource
+     * Output only. Enrolled destination details for the organization, folder, or
+     * project.
      *
      * Generated from protobuf field <code>.google.cloud.auditmanager.v1.Enrollment enrollment = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\AuditManager\V1\Enrollment|null
@@ -121,8 +139,8 @@ class ResourceEnrollmentStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Enrollment which contains enrolled destination details for a
-     * resource
+     * Output only. Enrolled destination details for the organization, folder, or
+     * project.
      *
      * Generated from protobuf field <code>.google.cloud.auditmanager.v1.Enrollment enrollment = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\AuditManager\V1\Enrollment $var
@@ -137,7 +155,8 @@ class ResourceEnrollmentStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Is resource enrolled.
+     * Output only. Deprecated. Whether the organization, folder, or project is
+     * enrolled. Use `enrollment_state` instead.
      *
      * Generated from protobuf field <code>bool enrolled = 3 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return bool
@@ -152,7 +171,8 @@ class ResourceEnrollmentStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Is resource enrolled.
+     * Output only. Deprecated. Whether the organization, folder, or project is
+     * enrolled. Use `enrollment_state` instead.
      *
      * Generated from protobuf field <code>bool enrolled = 3 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param bool $var
@@ -169,7 +189,7 @@ class ResourceEnrollmentStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Display name of the project/folder/organization.
+     * Output only. Display name for the organization, folder, or project.
      *
      * Generated from protobuf field <code>string display_name = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -180,7 +200,7 @@ class ResourceEnrollmentStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Display name of the project/folder/organization.
+     * Output only. Display name for the organization, folder, or project.
      *
      * Generated from protobuf field <code>string display_name = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -195,7 +215,7 @@ class ResourceEnrollmentStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Enrollment state of the resource.
+     * Output only. Enrollment state of the organization, folder, or project.
      *
      * Generated from protobuf field <code>.google.cloud.auditmanager.v1.ResourceEnrollmentStatus.ResourceEnrollmentState enrollment_state = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
@@ -206,7 +226,7 @@ class ResourceEnrollmentStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Enrollment state of the resource.
+     * Output only. Enrollment state of the organization, folder, or project.
      *
      * Generated from protobuf field <code>.google.cloud.auditmanager.v1.ResourceEnrollmentStatus.ResourceEnrollmentState enrollment_state = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var

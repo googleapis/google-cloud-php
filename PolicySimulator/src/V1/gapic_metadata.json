@@ -8,7 +8,7 @@
         "OrgPolicyViolationsPreviewService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "OrgPolicyViolationsPreviewServiceGapicClient",
+                    "libraryClient": "OrgPolicyViolationsPreviewServiceClient",
                     "rpcs": {
                         "CreateOrgPolicyViolationsPreview": {
                             "methods": [
@@ -37,7 +37,7 @@
         "Simulator": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "SimulatorGapicClient",
+                    "libraryClient": "SimulatorClient",
                     "rpcs": {
                         "CreateReplay": {
                             "methods": [

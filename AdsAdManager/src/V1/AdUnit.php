@@ -201,6 +201,13 @@ class AdUnit extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional bool effective_adsense_enabled = 27 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $effective_adsense_enabled = null;
+    /**
+     * Optional. Non-empty default. Defines the type of refresh rate control for
+     * this ad unit. This field defaults to `DISABLED`.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.RefreshRateTypeEnum.RefreshRateType refresh_rate_type = 78 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = NON_EMPTY_DEFAULT];</code>
+     */
+    protected $refresh_rate_type = null;
 
     /**
      * Constructor.
@@ -292,6 +299,9 @@ class AdUnit extends \Google\Protobuf\Internal\Message
      *           from the AdSense content network. This attribute defaults to the ad unit's
      *           parent or ancestor's setting if one has been set. If no ancestor of the ad
      *           unit has set appliedAdsenseEnabled, the attribute is defaulted to true.
+     *     @type int $refresh_rate_type
+     *           Optional. Non-empty default. Defines the type of refresh rate control for
+     *           this ad unit. This field defaults to `DISABLED`.
      * }
      */
     public function __construct($data = NULL) {
@@ -1179,6 +1189,44 @@ class AdUnit extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->effective_adsense_enabled = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Non-empty default. Defines the type of refresh rate control for
+     * this ad unit. This field defaults to `DISABLED`.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.RefreshRateTypeEnum.RefreshRateType refresh_rate_type = 78 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = NON_EMPTY_DEFAULT];</code>
+     * @return int
+     */
+    public function getRefreshRateType()
+    {
+        return isset($this->refresh_rate_type) ? $this->refresh_rate_type : 0;
+    }
+
+    public function hasRefreshRateType()
+    {
+        return isset($this->refresh_rate_type);
+    }
+
+    public function clearRefreshRateType()
+    {
+        unset($this->refresh_rate_type);
+    }
+
+    /**
+     * Optional. Non-empty default. Defines the type of refresh rate control for
+     * this ad unit. This field defaults to `DISABLED`.
+     *
+     * Generated from protobuf field <code>optional .google.ads.admanager.v1.RefreshRateTypeEnum.RefreshRateType refresh_rate_type = 78 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = NON_EMPTY_DEFAULT];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setRefreshRateType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Ads\AdManager\V1\RefreshRateTypeEnum\RefreshRateType::class);
+        $this->refresh_rate_type = $var;
 
         return $this;
     }

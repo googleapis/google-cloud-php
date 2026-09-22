@@ -100,7 +100,9 @@ class DbSystemProperties extends \Google\Protobuf\Internal\Message
      */
     protected $ocid = '';
     /**
-     * Optional. The memory size in GB.
+     * Optional. The memory size in GB. This value can not be set and is
+     * automatically calculated based on the number of ECPUs allocated to the
+     * DbSystem.
      *
      * Generated from protobuf field <code>int32 memory_size_gb = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -113,13 +115,15 @@ class DbSystemProperties extends \Google\Protobuf\Internal\Message
     protected $compute_model = 0;
     /**
      * Optional. The data storage size in GB that is currently available to
-     * DbSystems.
+     * DbSystems. The value is same as initial_data_storage_size_gb. This can be
+     * modified from OCI console.
      *
      * Generated from protobuf field <code>int32 data_storage_size_gb = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $data_storage_size_gb = 0;
     /**
-     * Optional. The reco/redo storage size in GB.
+     * Optional. The reco/redo storage size in GB. The value for recovery storage
+     * size is based on the available data storage size.
      *
      * Generated from protobuf field <code>int32 reco_storage_size_gb = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -131,7 +135,8 @@ class DbSystemProperties extends \Google\Protobuf\Internal\Message
      */
     protected $domain = '';
     /**
-     * Optional. The number of nodes in the DbSystem.
+     * Optional. The number of nodes to launch for a virtual machine DbSystem. By
+     * default this will be set to 1.
      *
      * Generated from protobuf field <code>int32 node_count = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -178,18 +183,23 @@ class DbSystemProperties extends \Google\Protobuf\Internal\Message
      *     @type string $ocid
      *           Output only. OCID of the DbSystem.
      *     @type int $memory_size_gb
-     *           Optional. The memory size in GB.
+     *           Optional. The memory size in GB. This value can not be set and is
+     *           automatically calculated based on the number of ECPUs allocated to the
+     *           DbSystem.
      *     @type int $compute_model
      *           Optional. The compute model of the DbSystem.
      *     @type int $data_storage_size_gb
      *           Optional. The data storage size in GB that is currently available to
-     *           DbSystems.
+     *           DbSystems. The value is same as initial_data_storage_size_gb. This can be
+     *           modified from OCI console.
      *     @type int $reco_storage_size_gb
-     *           Optional. The reco/redo storage size in GB.
+     *           Optional. The reco/redo storage size in GB. The value for recovery storage
+     *           size is based on the available data storage size.
      *     @type string $domain
      *           Optional. The host domain name of the DbSystem.
      *     @type int $node_count
-     *           Optional. The number of nodes in the DbSystem.
+     *           Optional. The number of nodes to launch for a virtual machine DbSystem. By
+     *           default this will be set to 1.
      *     @type \Google\Cloud\OracleDatabase\V1\DbSystemOptions $db_system_options
      *           Optional. The options for the DbSystem.
      * }
@@ -594,7 +604,9 @@ class DbSystemProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The memory size in GB.
+     * Optional. The memory size in GB. This value can not be set and is
+     * automatically calculated based on the number of ECPUs allocated to the
+     * DbSystem.
      *
      * Generated from protobuf field <code>int32 memory_size_gb = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -605,7 +617,9 @@ class DbSystemProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The memory size in GB.
+     * Optional. The memory size in GB. This value can not be set and is
+     * automatically calculated based on the number of ECPUs allocated to the
+     * DbSystem.
      *
      * Generated from protobuf field <code>int32 memory_size_gb = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -647,7 +661,8 @@ class DbSystemProperties extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The data storage size in GB that is currently available to
-     * DbSystems.
+     * DbSystems. The value is same as initial_data_storage_size_gb. This can be
+     * modified from OCI console.
      *
      * Generated from protobuf field <code>int32 data_storage_size_gb = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -659,7 +674,8 @@ class DbSystemProperties extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The data storage size in GB that is currently available to
-     * DbSystems.
+     * DbSystems. The value is same as initial_data_storage_size_gb. This can be
+     * modified from OCI console.
      *
      * Generated from protobuf field <code>int32 data_storage_size_gb = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -674,7 +690,8 @@ class DbSystemProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The reco/redo storage size in GB.
+     * Optional. The reco/redo storage size in GB. The value for recovery storage
+     * size is based on the available data storage size.
      *
      * Generated from protobuf field <code>int32 reco_storage_size_gb = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -685,7 +702,8 @@ class DbSystemProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The reco/redo storage size in GB.
+     * Optional. The reco/redo storage size in GB. The value for recovery storage
+     * size is based on the available data storage size.
      *
      * Generated from protobuf field <code>int32 reco_storage_size_gb = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -726,7 +744,8 @@ class DbSystemProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The number of nodes in the DbSystem.
+     * Optional. The number of nodes to launch for a virtual machine DbSystem. By
+     * default this will be set to 1.
      *
      * Generated from protobuf field <code>int32 node_count = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -737,7 +756,8 @@ class DbSystemProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The number of nodes in the DbSystem.
+     * Optional. The number of nodes to launch for a virtual machine DbSystem. By
+     * default this will be set to 1.
      *
      * Generated from protobuf field <code>int32 node_count = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var

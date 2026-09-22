@@ -1,4 +1,0 @@
-deep-copy-regex:
-    - source: /google/ads/admanager/(v1)/.*-php/(.*)
-      dest: /owl-bot-staging/AdsAdManager/$1/$2
-api-name: AdsAdManager

@@ -8,7 +8,7 @@
         "PrivilegedAccessManager": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "PrivilegedAccessManagerGapicClient",
+                    "libraryClient": "PrivilegedAccessManagerClient",
                     "rpcs": {
                         "ApproveGrant": {
                             "methods": [

@@ -8,7 +8,7 @@
         "Applications": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ApplicationsGapicClient",
+                    "libraryClient": "ApplicationsClient",
                     "rpcs": {
                         "CreateApplication": {
                             "methods": [
@@ -37,7 +37,7 @@
         "Services": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ServicesGapicClient",
+                    "libraryClient": "ServicesClient",
                     "rpcs": {
                         "DeleteService": {
                             "methods": [
@@ -66,7 +66,7 @@
         "Versions": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "VersionsGapicClient",
+                    "libraryClient": "VersionsClient",
                     "rpcs": {
                         "CreateVersion": {
                             "methods": [
@@ -100,7 +100,7 @@
         "Instances": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "InstancesGapicClient",
+                    "libraryClient": "InstancesClient",
                     "rpcs": {
                         "DebugInstance": {
                             "methods": [
@@ -129,7 +129,7 @@
         "Firewall": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "FirewallGapicClient",
+                    "libraryClient": "FirewallClient",
                     "rpcs": {
                         "BatchUpdateIngressRules": {
                             "methods": [
@@ -168,7 +168,7 @@
         "AuthorizedDomains": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "AuthorizedDomainsGapicClient",
+                    "libraryClient": "AuthorizedDomainsClient",
                     "rpcs": {
                         "ListAuthorizedDomains": {
                             "methods": [
@@ -182,7 +182,7 @@
         "AuthorizedCertificates": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "AuthorizedCertificatesGapicClient",
+                    "libraryClient": "AuthorizedCertificatesClient",
                     "rpcs": {
                         "CreateAuthorizedCertificate": {
                             "methods": [
@@ -216,7 +216,7 @@
         "DomainMappings": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "DomainMappingsGapicClient",
+                    "libraryClient": "DomainMappingsClient",
                     "rpcs": {
                         "CreateDomainMapping": {
                             "methods": [

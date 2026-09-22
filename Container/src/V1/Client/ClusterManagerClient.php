@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -39,6 +39,7 @@ use Google\Cloud\Container\V1\CheckAutopilotCompatibilityRequest;
 use Google\Cloud\Container\V1\CheckAutopilotCompatibilityResponse;
 use Google\Cloud\Container\V1\Cluster;
 use Google\Cloud\Container\V1\ClusterUpgradeInfo;
+use Google\Cloud\Container\V1\CompleteControlPlaneUpgradeRequest;
 use Google\Cloud\Container\V1\CompleteIPRotationRequest;
 use Google\Cloud\Container\V1\CompleteNodePoolUpgradeRequest;
 use Google\Cloud\Container\V1\CreateClusterRequest;
@@ -97,6 +98,7 @@ use Psr\Log\LoggerInterface;
  *
  * @method PromiseInterface<void> cancelOperationAsync(CancelOperationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<CheckAutopilotCompatibilityResponse> checkAutopilotCompatibilityAsync(CheckAutopilotCompatibilityRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Operation> completeControlPlaneUpgradeAsync(CompleteControlPlaneUpgradeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Operation> completeIPRotationAsync(CompleteIPRotationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> completeNodePoolUpgradeAsync(CompleteNodePoolUpgradeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Operation> createClusterAsync(CreateClusterRequest $request, array $optionalArgs = [])
@@ -156,7 +158,11 @@ final class ClusterManagerClient
     /** The name of the code generator, to be included in the agent header. */
     private const CODEGEN_NAME = 'gapic';
 
-    /** The default scopes required by the service. */
+    /**
+     * The default scopes required by the service.
+     *
+     * @internal
+     */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
         'https://www.googleapis.com/auth/container',
@@ -429,6 +435,36 @@ final class ClusterManagerClient
         array $callOptions = []
     ): CheckAutopilotCompatibilityResponse {
         return $this->startApiCall('CheckAutopilotCompatibility', $request, $callOptions)->wait();
+    }
+
+    /**
+     * CompleteControlPlaneUpgrade completes the rollback-safe upgrade by
+     * performing the step two upgrade for a specific cluster.
+     *
+     * The async variant is
+     * {@see ClusterManagerClient::completeControlPlaneUpgradeAsync()} .
+     *
+     * @example samples/V1/ClusterManagerClient/complete_control_plane_upgrade.php
+     *
+     * @param CompleteControlPlaneUpgradeRequest $request     A request to house fields associated with the call.
+     * @param array                              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Operation
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function completeControlPlaneUpgrade(
+        CompleteControlPlaneUpgradeRequest $request,
+        array $callOptions = []
+    ): Operation {
+        return $this->startApiCall('CompleteControlPlaneUpgrade', $request, $callOptions)->wait();
     }
 
     /**

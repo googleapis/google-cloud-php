@@ -8,7 +8,7 @@
         "BareMetalSolution": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "BareMetalSolutionGapicClient",
+                    "libraryClient": "BareMetalSolutionClient",
                     "rpcs": {
                         "CreateNfsShare": {
                             "methods": [

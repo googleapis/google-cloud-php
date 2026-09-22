@@ -8,7 +8,7 @@
         "VideoIntelligenceService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "VideoIntelligenceServiceGapicClient",
+                    "libraryClient": "VideoIntelligenceServiceClient",
                     "rpcs": {
                         "AnnotateVideo": {
                             "methods": [

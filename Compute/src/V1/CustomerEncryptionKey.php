@@ -38,6 +38,7 @@ class CustomerEncryptionKey extends \Google\Protobuf\Internal\Message
      */
     protected $kms_key_service_account = null;
     /**
+     * [DEPRECATED] CSEK is no longer supported. Use CMEK instead.
      * Specifies a 256-bit customer-supplied
      * encryption key, encoded in RFC
      * 4648 base64 to either encrypt or decrypt this resource. You can
@@ -50,6 +51,7 @@ class CustomerEncryptionKey extends \Google\Protobuf\Internal\Message
      */
     protected $raw_key = null;
     /**
+     * [DEPRECATED] CSEK is no longer supported. Use CMEK instead.
      * Specifies an RFC 4648 base64 encoded, RSA-wrapped 2048-bit
      * customer-supplied encryption key to either encrypt or decrypt this
      * resource. You can provide either the rawKey or thersaEncryptedKey.
@@ -71,6 +73,7 @@ class CustomerEncryptionKey extends \Google\Protobuf\Internal\Message
      */
     protected $rsa_encrypted_key = null;
     /**
+     * [DEPRECATED] CSEK is no longer supported. Use CMEK instead.
      * [Output only] TheRFC
      * 4648 base64 encoded SHA-256 hash of the customer-supplied
      * encryption key that protects this resource.
@@ -101,6 +104,7 @@ class CustomerEncryptionKey extends \Google\Protobuf\Internal\Message
      *           For example:
      *           "kmsKeyServiceAccount": "name\@project_id.iam.gserviceaccount.com/
      *     @type string $raw_key
+     *           [DEPRECATED] CSEK is no longer supported. Use CMEK instead.
      *           Specifies a 256-bit customer-supplied
      *           encryption key, encoded in RFC
      *           4648 base64 to either encrypt or decrypt this resource. You can
@@ -109,6 +113,7 @@ class CustomerEncryptionKey extends \Google\Protobuf\Internal\Message
      *           "rawKey":
      *           "SGVsbG8gZnJvbSBHb29nbGUgQ2xvdWQgUGxhdGZvcm0="
      *     @type string $rsa_encrypted_key
+     *           [DEPRECATED] CSEK is no longer supported. Use CMEK instead.
      *           Specifies an RFC 4648 base64 encoded, RSA-wrapped 2048-bit
      *           customer-supplied encryption key to either encrypt or decrypt this
      *           resource. You can provide either the rawKey or thersaEncryptedKey.
@@ -126,6 +131,7 @@ class CustomerEncryptionKey extends \Google\Protobuf\Internal\Message
      *           Gets the RSA public key certificate provided by Google at:
      *           https://cloud-certs.storage.googleapis.com/google-cloud-csek-ingress.pem
      *     @type string $sha256
+     *           [DEPRECATED] CSEK is no longer supported. Use CMEK instead.
      *           [Output only] TheRFC
      *           4648 base64 encoded SHA-256 hash of the customer-supplied
      *           encryption key that protects this resource.
@@ -231,6 +237,7 @@ class CustomerEncryptionKey extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * [DEPRECATED] CSEK is no longer supported. Use CMEK instead.
      * Specifies a 256-bit customer-supplied
      * encryption key, encoded in RFC
      * 4648 base64 to either encrypt or decrypt this resource. You can
@@ -258,6 +265,7 @@ class CustomerEncryptionKey extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * [DEPRECATED] CSEK is no longer supported. Use CMEK instead.
      * Specifies a 256-bit customer-supplied
      * encryption key, encoded in RFC
      * 4648 base64 to either encrypt or decrypt this resource. You can
@@ -279,6 +287,7 @@ class CustomerEncryptionKey extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * [DEPRECATED] CSEK is no longer supported. Use CMEK instead.
      * Specifies an RFC 4648 base64 encoded, RSA-wrapped 2048-bit
      * customer-supplied encryption key to either encrypt or decrypt this
      * resource. You can provide either the rawKey or thersaEncryptedKey.
@@ -315,6 +324,7 @@ class CustomerEncryptionKey extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * [DEPRECATED] CSEK is no longer supported. Use CMEK instead.
      * Specifies an RFC 4648 base64 encoded, RSA-wrapped 2048-bit
      * customer-supplied encryption key to either encrypt or decrypt this
      * resource. You can provide either the rawKey or thersaEncryptedKey.
@@ -345,6 +355,7 @@ class CustomerEncryptionKey extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * [DEPRECATED] CSEK is no longer supported. Use CMEK instead.
      * [Output only] TheRFC
      * 4648 base64 encoded SHA-256 hash of the customer-supplied
      * encryption key that protects this resource.
@@ -368,6 +379,7 @@ class CustomerEncryptionKey extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * [DEPRECATED] CSEK is no longer supported. Use CMEK instead.
      * [Output only] TheRFC
      * 4648 base64 encoded SHA-256 hash of the customer-supplied
      * encryption key that protects this resource.

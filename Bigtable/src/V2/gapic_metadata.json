@@ -8,7 +8,7 @@
         "Bigtable": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "BigtableGapicClient",
+                    "libraryClient": "BigtableClient",
                     "rpcs": {
                         "CheckAndMutateRow": {
                             "methods": [

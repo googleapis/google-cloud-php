@@ -8,7 +8,7 @@
         "DataCatalog": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "DataCatalogGapicClient",
+                    "libraryClient": "DataCatalogClient",
                     "rpcs": {
                         "CreateEntry": {
                             "methods": [
@@ -202,7 +202,7 @@
         "PolicyTagManager": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "PolicyTagManagerGapicClient",
+                    "libraryClient": "PolicyTagManagerClient",
                     "rpcs": {
                         "CreatePolicyTag": {
                             "methods": [
@@ -276,7 +276,7 @@
         "PolicyTagManagerSerialization": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "PolicyTagManagerSerializationGapicClient",
+                    "libraryClient": "PolicyTagManagerSerializationClient",
                     "rpcs": {
                         "ExportTaxonomies": {
                             "methods": [

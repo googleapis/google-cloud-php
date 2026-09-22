@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -53,7 +53,9 @@ class AccountLabelsServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return AccountLabelsServiceClient */
@@ -89,9 +91,7 @@ class AccountLabelsServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->accountName('[ACCOUNT]');
         $accountLabel = new AccountLabel();
-        $request = (new CreateAccountLabelRequest())
-            ->setParent($formattedParent)
-            ->setAccountLabel($accountLabel);
+        $request = (new CreateAccountLabelRequest())->setParent($formattedParent)->setAccountLabel($accountLabel);
         $response = $gapicClient->createAccountLabel($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -117,19 +117,20 @@ class AccountLabelsServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->accountName('[ACCOUNT]');
         $accountLabel = new AccountLabel();
-        $request = (new CreateAccountLabelRequest())
-            ->setParent($formattedParent)
-            ->setAccountLabel($accountLabel);
+        $request = (new CreateAccountLabelRequest())->setParent($formattedParent)->setAccountLabel($accountLabel);
         try {
             $gapicClient->createAccountLabel($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -156,8 +157,7 @@ class AccountLabelsServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->accountLabelName('[ACCOUNT]', '[LABEL]');
-        $request = (new DeleteAccountLabelRequest())
-            ->setName($formattedName);
+        $request = (new DeleteAccountLabelRequest())->setName($formattedName);
         $gapicClient->deleteAccountLabel($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -180,17 +180,19 @@ class AccountLabelsServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->accountLabelName('[ACCOUNT]', '[LABEL]');
-        $request = (new DeleteAccountLabelRequest())
-            ->setName($formattedName);
+        $request = (new DeleteAccountLabelRequest())->setName($formattedName);
         try {
             $gapicClient->deleteAccountLabel($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -215,17 +217,14 @@ class AccountLabelsServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $accountLabelsElement = new AccountLabel();
-        $accountLabels = [
-            $accountLabelsElement,
-        ];
+        $accountLabels = [$accountLabelsElement];
         $expectedResponse = new ListAccountLabelsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setAccountLabels($accountLabels);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->accountName('[ACCOUNT]');
-        $request = (new ListAccountLabelsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListAccountLabelsRequest())->setParent($formattedParent);
         $response = $gapicClient->listAccountLabels($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -252,17 +251,19 @@ class AccountLabelsServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->accountName('[ACCOUNT]');
-        $request = (new ListAccountLabelsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListAccountLabelsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listAccountLabels($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -299,8 +300,7 @@ class AccountLabelsServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $accountLabel = new AccountLabel();
-        $request = (new UpdateAccountLabelRequest())
-            ->setAccountLabel($accountLabel);
+        $request = (new UpdateAccountLabelRequest())->setAccountLabel($accountLabel);
         $response = $gapicClient->updateAccountLabel($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -324,17 +324,19 @@ class AccountLabelsServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $accountLabel = new AccountLabel();
-        $request = (new UpdateAccountLabelRequest())
-            ->setAccountLabel($accountLabel);
+        $request = (new UpdateAccountLabelRequest())->setAccountLabel($accountLabel);
         try {
             $gapicClient->updateAccountLabel($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -372,9 +374,7 @@ class AccountLabelsServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->accountName('[ACCOUNT]');
         $accountLabel = new AccountLabel();
-        $request = (new CreateAccountLabelRequest())
-            ->setParent($formattedParent)
-            ->setAccountLabel($accountLabel);
+        $request = (new CreateAccountLabelRequest())->setParent($formattedParent)->setAccountLabel($accountLabel);
         $response = $gapicClient->createAccountLabelAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();

@@ -7,7 +7,6 @@
       <exclude>Datastore/tests/System</exclude>
       <exclude>Firestore/tests/System</exclude>
       <exclude>Logging/tests/System</exclude>
-      <exclude>Spanner/tests/System</exclude>
     </testsuite>
   </testsuites>
   <php>

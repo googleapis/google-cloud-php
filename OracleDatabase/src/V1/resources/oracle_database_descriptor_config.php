@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -479,6 +479,25 @@ return [
                     ],
                 ],
             ],
+            'RefreshAutonomousDatabase' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\OracleDatabase\V1\AutonomousDatabase',
+                    'metadataReturnType' => '\Google\Cloud\OracleDatabase\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'RemoveVirtualMachineExadbVmCluster' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\OracleDatabase\V1\ExadbVmCluster',
@@ -686,6 +705,18 @@ return [
             'GetAutonomousDatabase' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\OracleDatabase\V1\AutonomousDatabase',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetAutonomousDatabaseRefreshableClones' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\OracleDatabase\V1\AutonomousDatabaseRefreshableClones',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -1467,6 +1498,7 @@ return [
             ],
             'templateMap' => [
                 'autonomousDatabase' => 'projects/{project}/locations/{location}/autonomousDatabases/{autonomous_database}',
+                'autonomousDatabaseBackup' => 'projects/{project}/locations/{location}/autonomousDatabaseBackups/{autonomous_database_backup}',
                 'cloudExadataInfrastructure' => 'projects/{project}/locations/{location}/cloudExadataInfrastructures/{cloud_exadata_infrastructure}',
                 'cloudVmCluster' => 'projects/{project}/locations/{location}/cloudVmClusters/{cloud_vm_cluster}',
                 'cryptoKey' => 'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}',

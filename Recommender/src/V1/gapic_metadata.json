@@ -8,7 +8,7 @@
         "Recommender": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "RecommenderGapicClient",
+                    "libraryClient": "RecommenderClient",
                     "rpcs": {
                         "GetInsight": {
                             "methods": [

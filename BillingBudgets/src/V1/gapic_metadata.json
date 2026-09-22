@@ -8,7 +8,7 @@
         "BudgetService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "BudgetServiceGapicClient",
+                    "libraryClient": "BudgetServiceClient",
                     "rpcs": {
                         "CreateBudget": {
                             "methods": [

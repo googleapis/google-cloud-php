@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -78,7 +78,11 @@ final class TaxonomyCategoryServiceClient
     /** The name of the code generator, to be included in the agent header. */
     private const CODEGEN_NAME = 'gapic';
 
-    /** The default scopes required by the service. */
+    /**
+     * The default scopes required by the service.
+     *
+     * @internal
+     */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/admanager',
         'https://www.googleapis.com/auth/admanager.readonly',
@@ -256,7 +260,7 @@ final class TaxonomyCategoryServiceClient
     }
 
     /**
-     * API to retrieve a `TaxonomyCategory` object.
+     * Retrieves a `TaxonomyCategory` object.
      *
      * The async variant is
      * {@see TaxonomyCategoryServiceClient::getTaxonomyCategoryAsync()} .
@@ -283,7 +287,7 @@ final class TaxonomyCategoryServiceClient
     }
 
     /**
-     * API to retrieve a list of `TaxonomyCategory` objects.
+     * Lists `TaxonomyCategory` objects.
      *
      * The async variant is
      * {@see TaxonomyCategoryServiceClient::listTaxonomyCategoriesAsync()} .

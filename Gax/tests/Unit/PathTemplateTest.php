@@ -163,9 +163,10 @@ class PathTemplateTest extends TestCase
     {
         $template = new PathTemplate('/buckets/*/*/*/objects/*:action');
         $url = $template->render(
-            ['$0' => 'f', '$1' => 'o', '$2' => 'o', '$3' => 'google.com:a-b']
+            ['$0' => 'f', '$1' => 'o', '$2' => 'o', '$3' => 'google.com:a-b'],
+            true
         );
-        $this->assertEquals($url, '/buckets/f/o/o/objects/google.com:a-b:action');
+        $this->assertEquals($url, '/buckets/f/o/o/objects/google.com%3Aa-b:action');
     }
 
     public function testMatchUnboundedWildcardWithColon()
@@ -206,9 +207,10 @@ class PathTemplateTest extends TestCase
     {
         $template = new PathTemplate('buckets/*/*/*/objects/*');
         $url = $template->render(
-            ['$0' => 'f', '$1' => 'o', '$2' => 'o', '$3' => 'google.com:a-b']
+            ['$0' => 'f', '$1' => 'o', '$2' => 'o', '$3' => 'google.com:a-b'],
+            true
         );
-        $this->assertEquals($url, 'buckets/f/o/o/objects/google.com:a-b');
+        $this->assertEquals($url, 'buckets/f/o/o/objects/google.com%3Aa-b');
     }
 
     public function testRenderFailWhenTooFewVariables()
@@ -254,19 +256,21 @@ class PathTemplateTest extends TestCase
     {
         $template = new PathTemplate('projects/{project}/topics/{topic}');
         $url = $template->render(
-            ['project' => 'google.com:proj-test', 'topic' => 'some-topic']
+            ['project' => 'google.com:proj-test', 'topic' => 'some-topic'],
+            true
         );
         $this->assertEquals(
             $url,
-            'projects/google.com:proj-test/topics/some-topic'
+            'projects/google.com%3Aproj-test/topics/some-topic'
         );
         $template = new PathTemplate('projects/{project}/topics/{topic}');
         $url = $template->render(
-            ['project' => 'g.,;:~`!@#$%^&()+-', 'topic' => 'sdf<>,.?[]']
+            ['project' => 'g.,;:~`!@#$%^&()+-', 'topic' => 'sdf<>,.?[]'],
+            true
         );
         $this->assertEquals(
             $url,
-            'projects/g.,;:~`!@#$%^&()+-/topics/sdf<>,.?[]'
+            'projects/g.%2C%3B%3A~%60%21%40%23%24%25%5E%26%28%29%2B-/topics/sdf%3C%3E%2C.%3F%5B%5D'
         );
     }
 }

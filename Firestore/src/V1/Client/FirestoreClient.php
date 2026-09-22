@@ -110,7 +110,11 @@ final class FirestoreClient
     /** The name of the code generator, to be included in the agent header. */
     private const CODEGEN_NAME = 'gapic';
 
-    /** The default scopes required by the service. */
+    /**
+     * The default scopes required by the service.
+     *
+     * @internal
+     */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
         'https://www.googleapis.com/auth/datastore',
@@ -301,8 +305,10 @@ final class FirestoreClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function beginTransaction(BeginTransactionRequest $request, array $callOptions = []): BeginTransactionResponse
-    {
+    public function beginTransaction(
+        BeginTransactionRequest $request,
+        array $callOptions = []
+    ): BeginTransactionResponse {
         return $this->startApiCall('BeginTransaction', $request, $callOptions)->wait();
     }
 

@@ -30,11 +30,14 @@ use Google\Cloud\AuditManager\V1\Control;
 use Google\Cloud\AuditManager\V1\ListControlsRequest;
 
 /**
- * Gets controls needed to be implemented to be compliant to a standard.
+ * Lists the controls that you must implement to become compliant to a
+ * regulatory standard.
  *
- * @param string $formattedParent Format
- *                                projects/{project}/locations/{location}/standards/{standard},
- *                                folders/{folder}/locations/{location}/standards/{standard}
+ * @param string $formattedParent Standard to list controls for, in one of the following formats:
+ *
+ *                                * `projects/{project}/locations/{location}/standards/{standard}`
+ *                                * `folders/{folder}/locations/{location}/standards/{standard}`
+ *                                * `organizations/{organization}/locations/{location}/standards/{standard}`
  *                                Please see {@see AuditManagerClient::standardName()} for help formatting this field.
  */
 function list_controls_sample(string $formattedParent): void

@@ -1,4 +1,0 @@
-deep-copy-regex:
-    - source: /google/cloud/talent/(v4)/.*-php/(.*)
-      dest: /owl-bot-staging/Talent/$1/$2
-api-name: Talent

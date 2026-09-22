@@ -8,7 +8,7 @@
         "ClusterManager": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ClusterManagerGapicClient",
+                    "libraryClient": "ClusterManagerClient",
                     "rpcs": {
                         "CancelOperation": {
                             "methods": [
@@ -18,6 +18,11 @@
                         "CheckAutopilotCompatibility": {
                             "methods": [
                                 "checkAutopilotCompatibility"
+                            ]
+                        },
+                        "CompleteControlPlaneUpgrade": {
+                            "methods": [
+                                "completeControlPlaneUpgrade"
                             ]
                         },
                         "CompleteIPRotation": {

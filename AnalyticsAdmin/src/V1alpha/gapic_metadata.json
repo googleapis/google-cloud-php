@@ -8,7 +8,7 @@
         "AnalyticsAdminService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "AnalyticsAdminServiceGapicClient",
+                    "libraryClient": "AnalyticsAdminServiceClient",
                     "rpcs": {
                         "AcknowledgeUserDataCollection": {
                             "methods": [

@@ -44,10 +44,22 @@ class ListAudienceSegmentsRequest extends \Google\Protobuf\Internal\Message
      * Optional. Expression to filter the response.
      *  See syntax details at
      *  https://developers.google.com/ad-manager/api/beta/filters
-     * <b>Filterable fields:</b>
-     * <ul style="list-style-type:none">
-     *   <li><code>displayName</code></li>
-     * </ul>
+     * **Filterable fields:**
+     * * `adIdSize`
+     * * `categoryIds`
+     * * `dataProviderDisplayName`
+     * * `displayName`
+     * * `idfaSize`
+     * * `mobileWebSize`
+     * * `ppidSize`
+     * * `segmentType`
+     * * `sharedId`
+     * * `size`
+     * * `status`
+     * * `thirdPartyAudienceSegment.approvalStatus`
+     * * `thirdPartyAudienceSegment.cost`
+     * * `thirdPartyAudienceSegment.endTime`
+     * * `thirdPartyAudienceSegment.startTime`
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -105,10 +117,22 @@ class ListAudienceSegmentsRequest extends \Google\Protobuf\Internal\Message
      *           Optional. Expression to filter the response.
      *            See syntax details at
      *            https://developers.google.com/ad-manager/api/beta/filters
-     *           <b>Filterable fields:</b>
-     *           <ul style="list-style-type:none">
-     *             <li><code>displayName</code></li>
-     *           </ul>
+     *           **Filterable fields:**
+     *           * `adIdSize`
+     *           * `categoryIds`
+     *           * `dataProviderDisplayName`
+     *           * `displayName`
+     *           * `idfaSize`
+     *           * `mobileWebSize`
+     *           * `ppidSize`
+     *           * `segmentType`
+     *           * `sharedId`
+     *           * `size`
+     *           * `status`
+     *           * `thirdPartyAudienceSegment.approvalStatus`
+     *           * `thirdPartyAudienceSegment.cost`
+     *           * `thirdPartyAudienceSegment.endTime`
+     *           * `thirdPartyAudienceSegment.startTime`
      *     @type string $order_by
      *           Optional. Expression to specify sorting order.
      *           See syntax details at
@@ -218,10 +242,22 @@ class ListAudienceSegmentsRequest extends \Google\Protobuf\Internal\Message
      * Optional. Expression to filter the response.
      *  See syntax details at
      *  https://developers.google.com/ad-manager/api/beta/filters
-     * <b>Filterable fields:</b>
-     * <ul style="list-style-type:none">
-     *   <li><code>displayName</code></li>
-     * </ul>
+     * **Filterable fields:**
+     * * `adIdSize`
+     * * `categoryIds`
+     * * `dataProviderDisplayName`
+     * * `displayName`
+     * * `idfaSize`
+     * * `mobileWebSize`
+     * * `ppidSize`
+     * * `segmentType`
+     * * `sharedId`
+     * * `size`
+     * * `status`
+     * * `thirdPartyAudienceSegment.approvalStatus`
+     * * `thirdPartyAudienceSegment.cost`
+     * * `thirdPartyAudienceSegment.endTime`
+     * * `thirdPartyAudienceSegment.startTime`
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -235,10 +271,22 @@ class ListAudienceSegmentsRequest extends \Google\Protobuf\Internal\Message
      * Optional. Expression to filter the response.
      *  See syntax details at
      *  https://developers.google.com/ad-manager/api/beta/filters
-     * <b>Filterable fields:</b>
-     * <ul style="list-style-type:none">
-     *   <li><code>displayName</code></li>
-     * </ul>
+     * **Filterable fields:**
+     * * `adIdSize`
+     * * `categoryIds`
+     * * `dataProviderDisplayName`
+     * * `displayName`
+     * * `idfaSize`
+     * * `mobileWebSize`
+     * * `ppidSize`
+     * * `segmentType`
+     * * `sharedId`
+     * * `size`
+     * * `status`
+     * * `thirdPartyAudienceSegment.approvalStatus`
+     * * `thirdPartyAudienceSegment.cost`
+     * * `thirdPartyAudienceSegment.endTime`
+     * * `thirdPartyAudienceSegment.startTime`
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

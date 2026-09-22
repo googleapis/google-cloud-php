@@ -1,4 +1,0 @@
-deep-copy-regex:
-    - source: /google/cloud/confidentialcomputing/(v1)/.*-php/(.*)
-      dest: /owl-bot-staging/ConfidentialComputing/$1/$2
-api-name: ConfidentialComputing

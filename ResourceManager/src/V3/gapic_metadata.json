@@ -8,7 +8,7 @@
         "Folders": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "FoldersGapicClient",
+                    "libraryClient": "FoldersClient",
                     "rpcs": {
                         "CreateFolder": {
                             "methods": [
@@ -72,7 +72,7 @@
         "Organizations": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "OrganizationsGapicClient",
+                    "libraryClient": "OrganizationsClient",
                     "rpcs": {
                         "GetIamPolicy": {
                             "methods": [
@@ -106,7 +106,7 @@
         "Projects": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ProjectsGapicClient",
+                    "libraryClient": "ProjectsClient",
                     "rpcs": {
                         "CreateProject": {
                             "methods": [
@@ -170,7 +170,7 @@
         "TagBindings": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "TagBindingsGapicClient",
+                    "libraryClient": "TagBindingsClient",
                     "rpcs": {
                         "CreateTagBinding": {
                             "methods": [
@@ -199,7 +199,7 @@
         "TagHolds": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "TagHoldsGapicClient",
+                    "libraryClient": "TagHoldsClient",
                     "rpcs": {
                         "CreateTagHold": {
                             "methods": [
@@ -223,7 +223,7 @@
         "TagKeys": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "TagKeysGapicClient",
+                    "libraryClient": "TagKeysClient",
                     "rpcs": {
                         "CreateTagKey": {
                             "methods": [
@@ -277,7 +277,7 @@
         "TagValues": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "TagValuesGapicClient",
+                    "libraryClient": "TagValuesClient",
                     "rpcs": {
                         "CreateTagValue": {
                             "methods": [

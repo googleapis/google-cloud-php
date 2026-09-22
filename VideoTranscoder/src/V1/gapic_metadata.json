@@ -8,7 +8,7 @@
         "TranscoderService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "TranscoderServiceGapicClient",
+                    "libraryClient": "TranscoderServiceClient",
                     "rpcs": {
                         "CreateJob": {
                             "methods": [

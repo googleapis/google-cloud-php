@@ -55,6 +55,38 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
      */
     protected $disk_size_gb = null;
     /**
+     * Specifies the disk type used for the boot disk or an additional data
+     * disk. For valid disk type values, see
+     * Supported types for Hyperdisk volumes and
+     * Persistent Disk type variables.
+     * When creating a single instance, you must provide either the full or
+     * partial URL of the disk type. For example, the following values are
+     * valid:
+     *      - https://www.googleapis.com/compute/v1/projects/project/zones/zone/diskTypes/diskType
+     *      - projects/project/zones/zone/diskTypes/diskType
+     *      - zones/zone/diskTypes/diskType
+     * When creating an instance template, instance flexibility policy, or when
+     * creating or updating an all-instances configuration, you specify the
+     * disk type without a URL, for example, hyperdisk-balanced.
+     * If you omit this field for a disk, the default disk type depends on
+     * the instance's machine series, as follows.
+     *     - For first- and second-generation machine series like N1, N2, T2, and
+     *     M1, the
+     *        default disk type is Standard Persistent Disk
+     *        (pd-standard).
+     *     - For C3, C3D, and M3 the default is Balanced Persistent Disk
+     *     (pd-balanced).
+     *    - For other third-generation machine
+     *     series like A3, H3, Z3, all
+     *         fourth-generation types like C4, N4, M4, and newer machine series,
+     *         the default is Hyperdisk Balanced
+     *         (hyperdisk-balanced).
+     * The disk type you specify must be compatible with the instance's machine
+     * series. For a list of machine series that support Persistent Disk, see Machine
+     * series support for Persistent Disk.
+     * For a list of machine series that support Hyperdisk, seeMachine
+     * series support for Hyperdisk.
+     *
      * Generated from protobuf field <code>optional string disk_type = 93009052;</code>
      */
     protected $disk_type = null;
@@ -222,6 +254,37 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
      *           If you do not specify a sourceImage, the default disk size
      *           is 500 GB.
      *     @type string $disk_type
+     *           Specifies the disk type used for the boot disk or an additional data
+     *           disk. For valid disk type values, see
+     *           Supported types for Hyperdisk volumes and
+     *           Persistent Disk type variables.
+     *           When creating a single instance, you must provide either the full or
+     *           partial URL of the disk type. For example, the following values are
+     *           valid:
+     *                - https://www.googleapis.com/compute/v1/projects/project/zones/zone/diskTypes/diskType
+     *                - projects/project/zones/zone/diskTypes/diskType
+     *                - zones/zone/diskTypes/diskType
+     *           When creating an instance template, instance flexibility policy, or when
+     *           creating or updating an all-instances configuration, you specify the
+     *           disk type without a URL, for example, hyperdisk-balanced.
+     *           If you omit this field for a disk, the default disk type depends on
+     *           the instance's machine series, as follows.
+     *               - For first- and second-generation machine series like N1, N2, T2, and
+     *               M1, the
+     *                  default disk type is Standard Persistent Disk
+     *                  (pd-standard).
+     *               - For C3, C3D, and M3 the default is Balanced Persistent Disk
+     *               (pd-balanced).
+     *              - For other third-generation machine
+     *               series like A3, H3, Z3, all
+     *                   fourth-generation types like C4, N4, M4, and newer machine series,
+     *                   the default is Hyperdisk Balanced
+     *                   (hyperdisk-balanced).
+     *           The disk type you specify must be compatible with the instance's machine
+     *           series. For a list of machine series that support Persistent Disk, see Machine
+     *           series support for Persistent Disk.
+     *           For a list of machine series that support Hyperdisk, seeMachine
+     *           series support for Hyperdisk.
      *     @type bool $enable_confidential_compute
      *           Whether this disk is using confidential compute mode.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
@@ -475,6 +538,38 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Specifies the disk type used for the boot disk or an additional data
+     * disk. For valid disk type values, see
+     * Supported types for Hyperdisk volumes and
+     * Persistent Disk type variables.
+     * When creating a single instance, you must provide either the full or
+     * partial URL of the disk type. For example, the following values are
+     * valid:
+     *      - https://www.googleapis.com/compute/v1/projects/project/zones/zone/diskTypes/diskType
+     *      - projects/project/zones/zone/diskTypes/diskType
+     *      - zones/zone/diskTypes/diskType
+     * When creating an instance template, instance flexibility policy, or when
+     * creating or updating an all-instances configuration, you specify the
+     * disk type without a URL, for example, hyperdisk-balanced.
+     * If you omit this field for a disk, the default disk type depends on
+     * the instance's machine series, as follows.
+     *     - For first- and second-generation machine series like N1, N2, T2, and
+     *     M1, the
+     *        default disk type is Standard Persistent Disk
+     *        (pd-standard).
+     *     - For C3, C3D, and M3 the default is Balanced Persistent Disk
+     *     (pd-balanced).
+     *    - For other third-generation machine
+     *     series like A3, H3, Z3, all
+     *         fourth-generation types like C4, N4, M4, and newer machine series,
+     *         the default is Hyperdisk Balanced
+     *         (hyperdisk-balanced).
+     * The disk type you specify must be compatible with the instance's machine
+     * series. For a list of machine series that support Persistent Disk, see Machine
+     * series support for Persistent Disk.
+     * For a list of machine series that support Hyperdisk, seeMachine
+     * series support for Hyperdisk.
+     *
      * Generated from protobuf field <code>optional string disk_type = 93009052;</code>
      * @return string
      */
@@ -494,6 +589,38 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Specifies the disk type used for the boot disk or an additional data
+     * disk. For valid disk type values, see
+     * Supported types for Hyperdisk volumes and
+     * Persistent Disk type variables.
+     * When creating a single instance, you must provide either the full or
+     * partial URL of the disk type. For example, the following values are
+     * valid:
+     *      - https://www.googleapis.com/compute/v1/projects/project/zones/zone/diskTypes/diskType
+     *      - projects/project/zones/zone/diskTypes/diskType
+     *      - zones/zone/diskTypes/diskType
+     * When creating an instance template, instance flexibility policy, or when
+     * creating or updating an all-instances configuration, you specify the
+     * disk type without a URL, for example, hyperdisk-balanced.
+     * If you omit this field for a disk, the default disk type depends on
+     * the instance's machine series, as follows.
+     *     - For first- and second-generation machine series like N1, N2, T2, and
+     *     M1, the
+     *        default disk type is Standard Persistent Disk
+     *        (pd-standard).
+     *     - For C3, C3D, and M3 the default is Balanced Persistent Disk
+     *     (pd-balanced).
+     *    - For other third-generation machine
+     *     series like A3, H3, Z3, all
+     *         fourth-generation types like C4, N4, M4, and newer machine series,
+     *         the default is Hyperdisk Balanced
+     *         (hyperdisk-balanced).
+     * The disk type you specify must be compatible with the instance's machine
+     * series. For a list of machine series that support Persistent Disk, see Machine
+     * series support for Persistent Disk.
+     * For a list of machine series that support Hyperdisk, seeMachine
+     * series support for Hyperdisk.
+     *
      * Generated from protobuf field <code>optional string disk_type = 93009052;</code>
      * @param string $var
      * @return $this

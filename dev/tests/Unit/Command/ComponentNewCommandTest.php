@@ -27,7 +27,6 @@ use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Tester\CommandTester;
 
-
 /**
  * @group dev
  */
@@ -415,6 +414,56 @@ class ComponentNewCommandTest extends TestCase
         $display = $commandTester->getDisplay();
         $this->assertStringContainsString('| componentName        | CustomSecretManagerName', $display);
         $this->assertFileExists(self::$tmpDir . '/CustomSecretManagerName/README.md');
+    }
+
+    public function testNewComponentCommonProtosWithAllOptions()
+    {
+        $application = new Application();
+        $application->add(new ComponentNewCommand(self::$tmpDir));
+
+        $commandTester = new CommandTester($application->get('component:new'));
+
+        $commandTester->execute([
+            '--no-update' => true,
+            '--component-name' => 'GeoCommonProtos',
+            '--php-namespace' => 'Google\Geo',
+            '--proto-package' => 'google.geo',
+            '--api-short-name' => '',
+            '--api-version' => '',
+            '--product-docs' => 'https://cloud.google.com/geo/docs',
+            '--product-homepage' => 'https://cloud.google.com/geo',
+        ]);
+
+        $repoMetadataFull = json_decode(file_get_contents(self::$tmpDir . '/.repo-metadata-full.json'), true);
+        $this->assertArrayHasKey('GeoCommonProtos', $repoMetadataFull);
+        $this->assertEquals('CORE', $repoMetadataFull['GeoCommonProtos']['library_type']);
+        $this->assertEquals('google/geo-common-protos', $repoMetadataFull['GeoCommonProtos']['distribution_name']);
+        $this->assertEquals('', $repoMetadataFull['GeoCommonProtos']['api_shortname']);
+    }
+
+    public function testNewComponentAdsWithAllOptions()
+    {
+        $application = new Application();
+        $application->add(new ComponentNewCommand(self::$tmpDir));
+
+        $commandTester = new CommandTester($application->get('component:new'));
+
+        $commandTester->execute([
+            '--no-update' => true,
+            '--component-name' => 'AdsAdManager',
+            '--php-namespace' => 'Google\Ads\AdManager\V1',
+            '--proto-package' => 'google.ads.admanager',
+            '--api-short-name' => 'admanager',
+            '--api-version' => 'v1',
+            '--product-docs' => 'https://developers.google.com/ad-manager/api',
+            '--product-homepage' => 'https://developers.google.com/ad-manager',
+        ]);
+
+        $repoMetadataFull = json_decode(file_get_contents(self::$tmpDir . '/.repo-metadata-full.json'), true);
+        $this->assertArrayHasKey('AdsAdManager', $repoMetadataFull);
+        $this->assertEquals('GAPIC_AUTO', $repoMetadataFull['AdsAdManager']['library_type']);
+        $this->assertEquals('googleads/admanager', $repoMetadataFull['AdsAdManager']['distribution_name']);
+        $this->assertEquals('admanager', $repoMetadataFull['AdsAdManager']['api_shortname']);
     }
 
     private function assertComposerJson(string $componentName)

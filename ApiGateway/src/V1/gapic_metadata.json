@@ -8,7 +8,7 @@
         "ApiGatewayService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ApiGatewayServiceGapicClient",
+                    "libraryClient": "ApiGatewayServiceClient",
                     "rpcs": {
                         "CreateApi": {
                             "methods": [

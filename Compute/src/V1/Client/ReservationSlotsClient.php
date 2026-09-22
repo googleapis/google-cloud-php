@@ -34,6 +34,7 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\Compute\V1\GetHealthReservationSlotRequest;
 use Google\Cloud\Compute\V1\GetReservationSlotRequest;
 use Google\Cloud\Compute\V1\GetVersionReservationSlotRequest;
 use Google\Cloud\Compute\V1\ListReservationSlotsRequest;
@@ -49,6 +50,7 @@ use Psr\Log\LoggerInterface;
  * calls that map to API methods.
  *
  * @method PromiseInterface<ReservationSlotsGetResponse> getAsync(GetReservationSlotRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> getHealthAsync(GetHealthReservationSlotRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> getVersionAsync(GetVersionReservationSlotRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listAsync(ListReservationSlotsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateAsync(UpdateReservationSlotRequest $request, array $optionalArgs = [])
@@ -76,7 +78,11 @@ final class ReservationSlotsClient
     /** The name of the code generator, to be included in the agent header. */
     private const CODEGEN_NAME = 'gapic';
 
-    /** The default scopes required by the service. */
+    /**
+     * The default scopes required by the service.
+     *
+     * @internal
+     */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/compute',
         'https://www.googleapis.com/auth/cloud-platform',
@@ -157,7 +163,10 @@ final class ReservationSlotsClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = $this->descriptors[$methodName]['longRunning'] ?? $this->getDefaultOperationDescriptor();
+        $options =
+            $methodName && isset($this->descriptors[$methodName]['longRunning'])
+                ? $this->descriptors[$methodName]['longRunning']
+                : $this->getDefaultOperationDescriptor();
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -289,6 +298,32 @@ final class ReservationSlotsClient
     public function get(GetReservationSlotRequest $request, array $callOptions = []): ReservationSlotsGetResponse
     {
         return $this->startApiCall('Get', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Get health info on a reservation slot.
+     *
+     * The async variant is {@see ReservationSlotsClient::getHealthAsync()} .
+     *
+     * @example samples/V1/ReservationSlotsClient/get_health.php
+     *
+     * @param GetHealthReservationSlotRequest $request     A request to house fields associated with the call.
+     * @param array                           $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getHealth(GetHealthReservationSlotRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('GetHealth', $request, $callOptions)->wait();
     }
 
     /**

@@ -105,7 +105,7 @@ class ValidationMessage extends \Google\Protobuf\Internal\Message
      */
     public function getResources()
     {
-        if ($this->resources->count() !== 0) {
+        if (count($this->resources) !== 0) {
             @trigger_error('resources is deprecated.', E_USER_DEPRECATED);
         }
         return $this->resources;
@@ -122,7 +122,7 @@ class ValidationMessage extends \Google\Protobuf\Internal\Message
     public function setResources($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
-        if ($arr->count() !== 0) {
+        if (count($arr) !== 0) {
             @trigger_error('resources is deprecated.', E_USER_DEPRECATED);
         }
         $this->resources = $arr;

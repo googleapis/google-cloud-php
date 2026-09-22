@@ -8,7 +8,7 @@
         "OracleDatabase": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "OracleDatabaseGapicClient",
+                    "libraryClient": "OracleDatabaseClient",
                     "rpcs": {
                         "ConfigureExascaleCloudExadataInfrastructure": {
                             "methods": [
@@ -138,6 +138,11 @@
                         "GetAutonomousDatabase": {
                             "methods": [
                                 "getAutonomousDatabase"
+                            ]
+                        },
+                        "GetAutonomousDatabaseRefreshableClones": {
+                            "methods": [
+                                "getAutonomousDatabaseRefreshableClones"
                             ]
                         },
                         "GetCloudExadataInfrastructure": {
@@ -343,6 +348,11 @@
                         "ListPluggableDatabases": {
                             "methods": [
                                 "listPluggableDatabases"
+                            ]
+                        },
+                        "RefreshAutonomousDatabase": {
+                            "methods": [
+                                "refreshAutonomousDatabase"
                             ]
                         },
                         "RemoveVirtualMachineExadbVmCluster": {

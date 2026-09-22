@@ -905,7 +905,7 @@ class Operation
         $partitions = [];
         $queryPartitionOptions = $this->optionsValidator->stripUnknownOptions(
             $options,
-            ['parameters', 'types', 'maxPartitions', 'partitionSizeBytes'],
+            ['parameters', 'types', 'maxPartitions', 'partitionSizeBytes', 'dataBoostEnabled'],
             CallOptions::class
         );
 
@@ -991,7 +991,7 @@ class Operation
         $partitions = [];
         $readPartitionOptions = $this->optionsValidator->stripUnknownOptions(
             $options,
-            ['index', 'maxPartitions', 'partitionSizeBytes'],
+            ['index', 'maxPartitions', 'partitionSizeBytes', 'dataBoostEnabled'],
             CallOptions::class
         );
         /** @var RepeatedField<Partition> $protoPartitions */

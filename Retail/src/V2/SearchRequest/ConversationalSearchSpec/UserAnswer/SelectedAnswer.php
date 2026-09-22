@@ -58,7 +58,7 @@ class SelectedAnswer extends \Google\Protobuf\Internal\Message
      */
     public function getProductAttributeValues()
     {
-        if ($this->product_attribute_values->count() !== 0) {
+        if (count($this->product_attribute_values) !== 0) {
             @trigger_error('product_attribute_values is deprecated.', E_USER_DEPRECATED);
         }
         return $this->product_attribute_values;

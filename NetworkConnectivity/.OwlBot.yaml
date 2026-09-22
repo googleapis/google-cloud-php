@@ -1,4 +1,0 @@
-deep-copy-regex:
-    - source: /google/cloud/networkconnectivity/(v1)/.*-php/(.*)
-      dest: /owl-bot-staging/NetworkConnectivity/$1/$2
-api-name: NetworkConnectivity

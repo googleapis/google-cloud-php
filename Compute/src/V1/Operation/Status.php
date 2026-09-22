@@ -22,14 +22,20 @@ class Status
      */
     const UNDEFINED_STATUS = 0;
     /**
+     * The operation has completed processing successfully or with an error.
+     *
      * Generated from protobuf enum <code>DONE = 2104194;</code>
      */
     const DONE = 2104194;
     /**
+     * The operation is waiting to be processed.
+     *
      * Generated from protobuf enum <code>PENDING = 35394935;</code>
      */
     const PENDING = 35394935;
     /**
+     * The operation is actively being processed.
+     *
      * Generated from protobuf enum <code>RUNNING = 121282975;</code>
      */
     const RUNNING = 121282975;

@@ -518,7 +518,7 @@ class Conversation extends \Google\Protobuf\Internal\Message
      */
     public function getMessages()
     {
-        if ($this->messages->count() !== 0) {
+        if (count($this->messages) !== 0) {
             @trigger_error('messages is deprecated.', E_USER_DEPRECATED);
         }
         return $this->messages;
@@ -535,7 +535,7 @@ class Conversation extends \Google\Protobuf\Internal\Message
     public function setMessages($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Ces\V1\Message::class);
-        if ($arr->count() !== 0) {
+        if (count($arr) !== 0) {
             @trigger_error('messages is deprecated.', E_USER_DEPRECATED);
         }
         $this->messages = $arr;

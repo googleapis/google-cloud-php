@@ -425,7 +425,7 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
      */
     public function getFaceAnnotations()
     {
-        if ($this->face_annotations->count() !== 0) {
+        if (count($this->face_annotations) !== 0) {
             @trigger_error('face_annotations is deprecated.', E_USER_DEPRECATED);
         }
         return $this->face_annotations;

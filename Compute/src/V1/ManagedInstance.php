@@ -123,6 +123,15 @@ class ManagedInstance extends \Google\Protobuf\Internal\Message
      */
     protected $shutdown_details = null;
     /**
+     * Output only. The eventual status of the instance. The instance group
+     * manager will not be identified as stable till each managed instance reaches
+     * its targetStatus.
+     * Check the TargetStatus enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string target_status = 307799648;</code>
+     */
+    protected $target_status = null;
+    /**
      * Output only. [Output Only] Intended version of this instance.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ManagedInstanceVersion version = 351608024;</code>
@@ -194,6 +203,11 @@ class ManagedInstance extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Compute\V1\ManagedInstanceShutdownDetails $shutdown_details
      *           Output only. Specifies the graceful shutdown details if the instance is in
      *           `PENDING_STOP` state or there is a programmed stop scheduled.
+     *     @type string $target_status
+     *           Output only. The eventual status of the instance. The instance group
+     *           manager will not be identified as stable till each managed instance reaches
+     *           its targetStatus.
+     *           Check the TargetStatus enum for the list of possible values.
      *     @type \Google\Cloud\Compute\V1\ManagedInstanceVersion $version
      *           Output only. [Output Only] Intended version of this instance.
      * }
@@ -691,6 +705,48 @@ class ManagedInstance extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\ManagedInstanceShutdownDetails::class);
         $this->shutdown_details = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The eventual status of the instance. The instance group
+     * manager will not be identified as stable till each managed instance reaches
+     * its targetStatus.
+     * Check the TargetStatus enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string target_status = 307799648;</code>
+     * @return string
+     */
+    public function getTargetStatus()
+    {
+        return isset($this->target_status) ? $this->target_status : '';
+    }
+
+    public function hasTargetStatus()
+    {
+        return isset($this->target_status);
+    }
+
+    public function clearTargetStatus()
+    {
+        unset($this->target_status);
+    }
+
+    /**
+     * Output only. The eventual status of the instance. The instance group
+     * manager will not be identified as stable till each managed instance reaches
+     * its targetStatus.
+     * Check the TargetStatus enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string target_status = 307799648;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setTargetStatus($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->target_status = $var;
 
         return $this;
     }

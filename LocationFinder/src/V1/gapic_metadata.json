@@ -8,7 +8,7 @@
         "CloudLocationFinder": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "CloudLocationFinderGapicClient",
+                    "libraryClient": "CloudLocationFinderClient",
                     "rpcs": {
                         "GetCloudLocation": {
                             "methods": [

@@ -234,7 +234,7 @@ class UnstructuredDocumentInfo extends \Google\Protobuf\Internal\Message
      */
     public function getExtractiveAnswers()
     {
-        if ($this->extractive_answers->count() !== 0) {
+        if (count($this->extractive_answers) !== 0) {
             @trigger_error('extractive_answers is deprecated.', E_USER_DEPRECATED);
         }
         return $this->extractive_answers;

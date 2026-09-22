@@ -99,7 +99,11 @@ final class DeveloperKnowledgeClient
     /** The name of the code generator, to be included in the agent header. */
     private const CODEGEN_NAME = 'gapic';
 
-    /** The default scopes required by the service. */
+    /**
+     * The default scopes required by the service.
+     *
+     * @internal
+     */
     public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private static function getClientDefaults()
@@ -329,7 +333,7 @@ final class DeveloperKnowledgeClient
      * Searches for developer knowledge across Google's developer documentation.
      * Returns [DocumentChunk][google.developers.knowledge.v1.DocumentChunk]s
      * based on the user's query. There may be many chunks from the same
-     * [Document][google.developers.knowledge.v1.Document].  To retrieve full
+     * [Document][google.developers.knowledge.v1.Document]. To retrieve full
      * documents, use
      * [DeveloperKnowledge.GetDocument][google.developers.knowledge.v1.DeveloperKnowledge.GetDocument]
      * or

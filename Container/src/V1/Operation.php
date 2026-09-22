@@ -586,7 +586,7 @@ class Operation extends \Google\Protobuf\Internal\Message
      */
     public function getClusterConditions()
     {
-        if ($this->cluster_conditions->count() !== 0) {
+        if (count($this->cluster_conditions) !== 0) {
             @trigger_error('cluster_conditions is deprecated.', E_USER_DEPRECATED);
         }
         return $this->cluster_conditions;
@@ -622,7 +622,7 @@ class Operation extends \Google\Protobuf\Internal\Message
      */
     public function getNodepoolConditions()
     {
-        if ($this->nodepool_conditions->count() !== 0) {
+        if (count($this->nodepool_conditions) !== 0) {
             @trigger_error('nodepool_conditions is deprecated.', E_USER_DEPRECATED);
         }
         return $this->nodepool_conditions;

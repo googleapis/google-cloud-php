@@ -338,7 +338,7 @@ class JobStats extends \Google\Protobuf\Internal\Message
      */
     public function getReservationUsage()
     {
-        if ($this->reservation_usage->count() !== 0) {
+        if (count($this->reservation_usage) !== 0) {
             @trigger_error('reservation_usage is deprecated.', E_USER_DEPRECATED);
         }
         return $this->reservation_usage;

@@ -8,7 +8,7 @@
         "AlertPolicyService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "AlertPolicyServiceGapicClient",
+                    "libraryClient": "AlertPolicyServiceClient",
                     "rpcs": {
                         "CreateAlertPolicy": {
                             "methods": [
@@ -42,7 +42,7 @@
         "GroupService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "GroupServiceGapicClient",
+                    "libraryClient": "GroupServiceClient",
                     "rpcs": {
                         "CreateGroup": {
                             "methods": [
@@ -81,7 +81,7 @@
         "MetricService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "MetricServiceGapicClient",
+                    "libraryClient": "MetricServiceClient",
                     "rpcs": {
                         "CreateMetricDescriptor": {
                             "methods": [
@@ -135,7 +135,7 @@
         "NotificationChannelService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "NotificationChannelServiceGapicClient",
+                    "libraryClient": "NotificationChannelServiceClient",
                     "rpcs": {
                         "CreateNotificationChannel": {
                             "methods": [
@@ -194,7 +194,7 @@
         "QueryService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "QueryServiceGapicClient",
+                    "libraryClient": "QueryServiceClient",
                     "rpcs": {
                         "QueryTimeSeries": {
                             "methods": [
@@ -208,7 +208,7 @@
         "ServiceMonitoringService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ServiceMonitoringServiceGapicClient",
+                    "libraryClient": "ServiceMonitoringServiceClient",
                     "rpcs": {
                         "CreateService": {
                             "methods": [
@@ -267,7 +267,7 @@
         "SnoozeService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "SnoozeServiceGapicClient",
+                    "libraryClient": "SnoozeServiceClient",
                     "rpcs": {
                         "CreateSnooze": {
                             "methods": [
@@ -296,7 +296,7 @@
         "UptimeCheckService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "UptimeCheckServiceGapicClient",
+                    "libraryClient": "UptimeCheckServiceClient",
                     "rpcs": {
                         "CreateUptimeCheckConfig": {
                             "methods": [

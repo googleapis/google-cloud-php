@@ -8,7 +8,7 @@
         "SecretManagerService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "SecretManagerServiceGapicClient",
+                    "libraryClient": "SecretManagerServiceClient",
                     "rpcs": {
                         "AccessSecretVersion": {
                             "methods": [

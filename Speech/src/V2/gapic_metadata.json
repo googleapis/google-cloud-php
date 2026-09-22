@@ -8,7 +8,7 @@
         "Speech": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "SpeechGapicClient",
+                    "libraryClient": "SpeechClient",
                     "rpcs": {
                         "BatchRecognize": {
                             "methods": [

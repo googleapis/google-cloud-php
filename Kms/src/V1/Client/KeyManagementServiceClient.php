@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -187,7 +187,11 @@ final class KeyManagementServiceClient
     /** The name of the code generator, to be included in the agent header. */
     private const CODEGEN_NAME = 'gapic';
 
-    /** The default scopes required by the service. */
+    /**
+     * The default scopes required by the service.
+     *
+     * @internal
+     */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
         'https://www.googleapis.com/auth/cloudkms',
@@ -237,7 +241,10 @@ final class KeyManagementServiceClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = $this->descriptors[$methodName]['longRunning'] ?? [];
+        $options =
+            $methodName && isset($this->descriptors[$methodName]['longRunning'])
+                ? $this->descriptors[$methodName]['longRunning']
+                : [];
         $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
         $operation->reload();
         return $operation;
@@ -308,6 +315,25 @@ final class KeyManagementServiceClient
             'key_ring' => $keyRing,
             'crypto_key' => $cryptoKey,
             'crypto_key_version' => $cryptoKeyVersion,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * ekm_connection resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $ekmConnection
+     *
+     * @return string The formatted ekm_connection resource.
+     */
+    public static function ekmConnectionName(string $project, string $location, string $ekmConnection): string
+    {
+        return self::getPathTemplate('ekmConnection')->render([
+            'project' => $project,
+            'location' => $location,
+            'ekm_connection' => $ekmConnection,
         ]);
     }
 
@@ -393,6 +419,7 @@ final class KeyManagementServiceClient
      * Template: Pattern
      * - cryptoKey: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}
      * - cryptoKeyVersion: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}
+     * - ekmConnection: projects/{project}/locations/{location}/ekmConnections/{ekm_connection}
      * - importJob: projects/{project}/locations/{location}/keyRings/{key_ring}/importJobs/{import_job}
      * - keyRing: projects/{project}/locations/{location}/keyRings/{key_ring}
      * - location: projects/{project}/locations/{location}

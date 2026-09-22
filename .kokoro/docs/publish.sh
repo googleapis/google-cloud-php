@@ -16,8 +16,8 @@ PROJECT_DIR=$(dirname $(dirname $SCRIPT_DIR))
 phpdoc --version
 
 # Run "composer install" if it hasn't been run yet
-if [ ! -d 'dev/vendor/' ]; then
-    composer install -d $PROJECT_DIR/dev
+if [ ! -d "$PROJECT_DIR/dev/vendor" ]; then
+    composer install --no-dev -d "$PROJECT_DIR/dev"
 fi
 STAGING_FLAG="";
 if [ "$STAGING_BUCKET" != "" ]; then
@@ -90,15 +90,6 @@ if [ ${#DIR_ARRAY[@]} -gt 0 ]; then
     MAX_JOBS=${MAX_JOBS:-$(nproc 2>/dev/null || echo 8)}
     printf "%s\n" "${DIR_ARRAY[@]}" | xargs -P "${MAX_JOBS}" -I {} bash -c 'run_docfx_parallel "$@"' _ {}
 fi
-
-# Add Auth repo
-AUTH_DIR=$PROJECT_DIR/dev/vendor/google/auth
-$PROJECT_DIR/dev/google-cloud docfx \
-    --path $AUTH_DIR \
-    --out auth-out \
-    --metadata-version $(cat $AUTH_DIR/VERSION) \
-    $STAGING_FLAG \
-    $VERBOSITY_FLAG
 
 # Add protobuf
 PROTOBUF_DIR=$PROJECT_DIR/dev/vendor/google/protobuf

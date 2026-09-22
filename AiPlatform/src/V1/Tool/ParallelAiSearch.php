@@ -27,6 +27,16 @@ class ParallelAiSearch extends \Google\Protobuf\Internal\Message
      */
     protected $api_key = '';
     /**
+     * Optional. Instructs Vertex Grounding to use Parallel's Zero Data
+     * Retention Marketplace product. If this value is "false" or omitted, the
+     * Parallel Web Search for Grounding standard subscription will be used. If
+     * this value is "true", the Parallel Web Search for Grounding - ZDR
+     * subscription will be used.
+     *
+     * Generated from protobuf field <code>bool enable_zero_data_retention = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $enable_zero_data_retention = false;
+    /**
      * Optional. Custom configs for ParallelAiSearch.
      * This field can be used to pass any parameter from the Parallel.ai
      * Search API.
@@ -61,6 +71,12 @@ class ParallelAiSearch extends \Google\Protobuf\Internal\Message
      *           by checking for an active Parallel.ai subscription through the Google
      *           Cloud Marketplace.
      *           See https://docs.parallel.ai/search/search-quickstart for more details.
+     *     @type bool $enable_zero_data_retention
+     *           Optional. Instructs Vertex Grounding to use Parallel's Zero Data
+     *           Retention Marketplace product. If this value is "false" or omitted, the
+     *           Parallel Web Search for Grounding standard subscription will be used. If
+     *           this value is "true", the Parallel Web Search for Grounding - ZDR
+     *           subscription will be used.
      *     @type \Google\Protobuf\Struct $custom_configs
      *           Optional. Custom configs for ParallelAiSearch.
      *           This field can be used to pass any parameter from the Parallel.ai
@@ -116,6 +132,40 @@ class ParallelAiSearch extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->api_key = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Instructs Vertex Grounding to use Parallel's Zero Data
+     * Retention Marketplace product. If this value is "false" or omitted, the
+     * Parallel Web Search for Grounding standard subscription will be used. If
+     * this value is "true", the Parallel Web Search for Grounding - ZDR
+     * subscription will be used.
+     *
+     * Generated from protobuf field <code>bool enable_zero_data_retention = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getEnableZeroDataRetention()
+    {
+        return $this->enable_zero_data_retention;
+    }
+
+    /**
+     * Optional. Instructs Vertex Grounding to use Parallel's Zero Data
+     * Retention Marketplace product. If this value is "false" or omitted, the
+     * Parallel Web Search for Grounding standard subscription will be used. If
+     * this value is "true", the Parallel Web Search for Grounding - ZDR
+     * subscription will be used.
+     *
+     * Generated from protobuf field <code>bool enable_zero_data_retention = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableZeroDataRetention($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_zero_data_retention = $var;
 
         return $this;
     }

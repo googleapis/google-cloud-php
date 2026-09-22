@@ -38,14 +38,10 @@ use Google\ApiCore\ApiException;
  * @param int    $destinationsOperatingAccountAccountType The type of the account. For example, `GOOGLE_ADS`.
  *                                                        Either `account_type` or the deprecated `product` is required.
  *                                                        If both are set, the values must match.
- * @param string $destinationsProductDestinationId        The object within the product account to ingest into. For
- *                                                        example, a Google Ads audience ID, a Display & Video 360 audience ID or a
- *                                                        Google Ads conversion action ID.
  */
 function remove_all_audience_members_sample(
     string $destinationsOperatingAccountAccountId,
-    int $destinationsOperatingAccountAccountType,
-    string $destinationsProductDestinationId
+    int $destinationsOperatingAccountAccountType
 ): void {
     // Create a client.
     $ingestionServiceClient = new IngestionServiceClient();
@@ -55,8 +51,7 @@ function remove_all_audience_members_sample(
         ->setAccountId($destinationsOperatingAccountAccountId)
         ->setAccountType($destinationsOperatingAccountAccountType);
     $destination = (new Destination())
-        ->setOperatingAccount($destinationsOperatingAccount)
-        ->setProductDestinationId($destinationsProductDestinationId);
+        ->setOperatingAccount($destinationsOperatingAccount);
     $destinations = [$destination,];
     $request = (new RemoveAllAudienceMembersRequest())
         ->setDestinations($destinations);
@@ -84,12 +79,10 @@ function callSample(): void
 {
     $destinationsOperatingAccountAccountId = '[ACCOUNT_ID]';
     $destinationsOperatingAccountAccountType = AccountType::ACCOUNT_TYPE_UNSPECIFIED;
-    $destinationsProductDestinationId = '[PRODUCT_DESTINATION_ID]';
 
     remove_all_audience_members_sample(
         $destinationsOperatingAccountAccountId,
-        $destinationsOperatingAccountAccountType,
-        $destinationsProductDestinationId
+        $destinationsOperatingAccountAccountType
     );
 }
 // [END datamanager_v1_generated_IngestionService_RemoveAllAudienceMembers_sync]

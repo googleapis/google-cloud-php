@@ -8,7 +8,7 @@
         "ReservationService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "ReservationServiceGapicClient",
+                    "libraryClient": "ReservationServiceClient",
                     "rpcs": {
                         "CreateAssignment": {
                             "methods": [
@@ -153,6 +153,11 @@
                         "UpdateReservation": {
                             "methods": [
                                 "updateReservation"
+                            ]
+                        },
+                        "UpdateReservationGroup": {
+                            "methods": [
+                                "updateReservationGroup"
                             ]
                         }
                     }

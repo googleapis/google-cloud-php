@@ -8,7 +8,7 @@
         "UsageService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "UsageServiceGapicClient",
+                    "libraryClient": "UsageServiceClient",
                     "rpcs": {
                         "ExportForecasts": {
                             "methods": [

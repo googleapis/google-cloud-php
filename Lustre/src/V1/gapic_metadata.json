@@ -8,7 +8,7 @@
         "Lustre": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "LustreGapicClient",
+                    "libraryClient": "LustreClient",
                     "rpcs": {
                         "CreateInstance": {
                             "methods": [

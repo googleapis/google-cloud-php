@@ -30,6 +30,12 @@ class StopInstanceRequest extends \Google\Protobuf\Internal\Message
      */
     protected $instance = '';
     /**
+     * If set to true, Graceful Shutdown is skipped.
+     *
+     * Generated from protobuf field <code>optional bool no_graceful_shutdown = 336255890;</code>
+     */
+    protected $no_graceful_shutdown = null;
+    /**
      * Project ID for this request.
      *
      * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "project"];</code>
@@ -87,6 +93,8 @@ class StopInstanceRequest extends \Google\Protobuf\Internal\Message
      *           If true, the contents of any attached Local SSD disks will be discarded.
      *     @type string $instance
      *           Name of the instance resource to stop.
+     *     @type bool $no_graceful_shutdown
+     *           If set to true, Graceful Shutdown is skipped.
      *     @type string $project
      *           Project ID for this request.
      *     @type string $request_id
@@ -172,6 +180,42 @@ class StopInstanceRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->instance = $var;
+
+        return $this;
+    }
+
+    /**
+     * If set to true, Graceful Shutdown is skipped.
+     *
+     * Generated from protobuf field <code>optional bool no_graceful_shutdown = 336255890;</code>
+     * @return bool
+     */
+    public function getNoGracefulShutdown()
+    {
+        return isset($this->no_graceful_shutdown) ? $this->no_graceful_shutdown : false;
+    }
+
+    public function hasNoGracefulShutdown()
+    {
+        return isset($this->no_graceful_shutdown);
+    }
+
+    public function clearNoGracefulShutdown()
+    {
+        unset($this->no_graceful_shutdown);
+    }
+
+    /**
+     * If set to true, Graceful Shutdown is skipped.
+     *
+     * Generated from protobuf field <code>optional bool no_graceful_shutdown = 336255890;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setNoGracefulShutdown($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->no_graceful_shutdown = $var;
 
         return $this;
     }

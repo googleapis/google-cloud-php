@@ -32,7 +32,7 @@ class Report extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The visibility of a report.
      *
-     * Generated from protobuf field <code>.google.ads.admanager.v1.Report.Visibility visibility = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.ads.admanager.v1.ReportVisibilityEnum.ReportVisibility visibility = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $visibility = 0;
     /**
@@ -166,7 +166,7 @@ class Report extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The visibility of a report.
      *
-     * Generated from protobuf field <code>.google.ads.admanager.v1.Report.Visibility visibility = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.ads.admanager.v1.ReportVisibilityEnum.ReportVisibility visibility = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getVisibility()
@@ -177,13 +177,13 @@ class Report extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The visibility of a report.
      *
-     * Generated from protobuf field <code>.google.ads.admanager.v1.Report.Visibility visibility = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.ads.admanager.v1.ReportVisibilityEnum.ReportVisibility visibility = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
     public function setVisibility($var)
     {
-        GPBUtil::checkEnum($var, \Google\Ads\AdManager\V1\Report\Visibility::class);
+        GPBUtil::checkEnum($var, \Google\Ads\AdManager\V1\ReportVisibilityEnum\ReportVisibility::class);
         $this->visibility = $var;
 
         return $this;

@@ -8,7 +8,7 @@
         "TranslationService": {
             "clients": {
                 "grpc": {
-                    "libraryClient": "TranslationServiceGapicClient",
+                    "libraryClient": "TranslationServiceClient",
                     "rpcs": {
                         "AdaptiveMtTranslate": {
                             "methods": [

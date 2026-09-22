@@ -85,7 +85,7 @@ class QueryDeployedModelsResponse extends \Google\Protobuf\Internal\Message
      */
     public function getDeployedModels()
     {
-        if ($this->deployed_models->count() !== 0) {
+        if (count($this->deployed_models) !== 0) {
             @trigger_error('deployed_models is deprecated.', E_USER_DEPRECATED);
         }
         return $this->deployed_models;
