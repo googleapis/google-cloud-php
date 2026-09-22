@@ -786,7 +786,7 @@ trait GapicClientTrait
         }
 
         if ($this->openTelemetryTracerProvider) {
-            list($serverAddress, $serverPort) = self::normalizeServiceAddress($this->apiEndpoint);
+            [$serverAddress, $serverPort] = self::normalizeServiceAddress($this->apiEndpoint);
             $systemName = $this->transport instanceof GrpcTransport ? 'grpc' : 'http';
             $callStack = new TracingMiddleware(
                 $callStack,

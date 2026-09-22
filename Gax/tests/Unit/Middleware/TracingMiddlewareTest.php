@@ -38,6 +38,7 @@ use Google\ApiCore\Middleware\TracingMiddleware;
 use Google\ApiCore\Telemetry\SpanAttributes;
 use Google\ApiCore\ValidationException;
 use GuzzleHttp\Promise\FulfilledPromise;
+use GuzzleHttp\Promise\Promise;
 use GuzzleHttp\Promise\RejectedPromise;
 use OpenTelemetry\API\Trace\SpanBuilderInterface;
 use OpenTelemetry\API\Trace\SpanInterface;
@@ -314,5 +315,215 @@ class TracingMiddlewareTest extends TestCase
 
         $result = $middleware($call, []);
         $this->assertSame($mockStream, $result);
+    }
+
+    public function testPendingPromiseWaitActivatesAndDetachesScopeDuringWait(): void
+    {
+        $tracerProvider = $this->createMock(TracerProviderInterface::class);
+        $tracer = $this->createMock(TracerInterface::class);
+        $spanBuilder = $this->createMock(SpanBuilderInterface::class);
+        $span = $this->createMock(SpanInterface::class);
+        $initialScope = $this->createMock(ScopeInterface::class);
+        $waitScope = $this->createMock(ScopeInterface::class);
+
+        $method = 'google.cloud.secretmanager.v1.SecretManagerService/AccessSecretVersion';
+
+        $tracerProvider->method('getTracer')->willReturn($tracer);
+        $tracer->method('spanBuilder')->willReturn($spanBuilder);
+        $spanBuilder->method('setSpanKind')->willReturnSelf();
+        $spanBuilder->method('setAttribute')->willReturnSelf();
+        $spanBuilder->method('startSpan')->willReturn($span);
+
+        // First activate() in __invoke(), second activate() in wait() callback
+        $span->expects($this->exactly(2))
+            ->method('activate')
+            ->willReturnOnConsecutiveCalls($initialScope, $waitScope);
+
+        // Initial scope must detach synchronously before wait()
+        $initialScopeDetached = false;
+        $initialScope->expects($this->once())
+            ->method('detach')
+            ->willReturnCallback(function () use (&$initialScopeDetached) {
+                $initialScopeDetached = true;
+                return 0;
+            });
+
+        // Wait scope must detach during wait()
+        $waitScopeDetached = false;
+        $waitScope->expects($this->once())
+            ->method('detach')
+            ->willReturnCallback(function () use (&$waitScopeDetached) {
+                $waitScopeDetached = true;
+                return 0;
+            });
+
+        $span->expects($this->once())
+            ->method('setStatus')
+            ->with(StatusCode::STATUS_OK);
+        $span->expects($this->once())
+            ->method('end');
+
+        $call = $this->createMock(Call::class);
+        $call->method('getMethod')->willReturn($method);
+
+        // Create a pending promise whose waitfn verifies scopes
+        $innerWaitExecuted = false;
+        $innerPromise = new Promise(
+            function () use (
+                &$innerWaitExecuted,
+                &$initialScopeDetached,
+                &$waitScopeDetached,
+                &$innerPromise
+            ) {
+                $innerWaitExecuted = true;
+                $this->assertTrue($initialScopeDetached, 'Initial scope must be detached before wait executes');
+                $this->assertFalse($waitScopeDetached, 'Wait scope must not be detached while wait is executing');
+                $innerPromise->resolve('success-result');
+            }
+        );
+
+        $nextHandler = function ($c, $opts) use ($innerPromise) {
+            return $innerPromise;
+        };
+
+        $middleware = new TracingMiddleware(
+            $nextHandler,
+            $tracerProvider,
+            'secretmanager.googleapis.com',
+            443,
+            'grpc'
+        );
+
+        $wrappedPromise = $middleware($call, []);
+
+        // Before wait(), initial scope must already be detached
+        $this->assertTrue($initialScopeDetached, 'Initial scope must be detached immediately after __invoke');
+        $this->assertFalse($innerWaitExecuted, 'Wait should not have executed yet');
+        $this->assertFalse($waitScopeDetached, 'Wait scope should not have detached yet');
+
+        $result = $wrappedPromise->wait();
+
+        $this->assertSame('success-result', $result);
+        $this->assertTrue($innerWaitExecuted);
+        $this->assertTrue($waitScopeDetached, 'Wait scope must be detached after wait completes');
+    }
+
+    public function testPendingPromiseWaitRejectionDetachesScopeAndRecordsException(): void
+    {
+        $tracerProvider = $this->createMock(TracerProviderInterface::class);
+        $tracer = $this->createMock(TracerInterface::class);
+        $spanBuilder = $this->createMock(SpanBuilderInterface::class);
+        $span = $this->createMock(SpanInterface::class);
+        $initialScope = $this->createMock(ScopeInterface::class);
+        $waitScope = $this->createMock(ScopeInterface::class);
+
+        $method = 'google.cloud.secretmanager.v1.SecretManagerService/AccessSecretVersion';
+
+        $tracerProvider->method('getTracer')->willReturn($tracer);
+        $tracer->method('spanBuilder')->willReturn($spanBuilder);
+        $spanBuilder->method('setSpanKind')->willReturnSelf();
+        $spanBuilder->method('setAttribute')->willReturnSelf();
+        $spanBuilder->method('startSpan')->willReturn($span);
+
+        $span->expects($this->exactly(2))
+            ->method('activate')
+            ->willReturnOnConsecutiveCalls($initialScope, $waitScope);
+
+        $initialScopeDetached = false;
+        $initialScope->expects($this->once())
+            ->method('detach')
+            ->willReturnCallback(function () use (&$initialScopeDetached) {
+                $initialScopeDetached = true;
+                return 0;
+            });
+
+        $waitScopeDetached = false;
+        $waitScope->expects($this->once())
+            ->method('detach')
+            ->willReturnCallback(function () use (&$waitScopeDetached) {
+                $waitScopeDetached = true;
+                return 0;
+            });
+
+        $span->expects($this->once())
+            ->method('setStatus')
+            ->with(StatusCode::STATUS_ERROR, 'Call failed in wait');
+        $span->expects($this->once())
+            ->method('end');
+
+        $call = $this->createMock(Call::class);
+        $call->method('getMethod')->willReturn($method);
+
+        $apiException = new ApiException('Call failed in wait', 14, 'UNAVAILABLE');
+        $innerPromise = new Promise(function () use (&$innerPromise, $apiException) {
+            $innerPromise->reject($apiException);
+        });
+
+        $nextHandler = function ($c, $opts) use ($innerPromise) {
+            return $innerPromise;
+        };
+
+        $middleware = new TracingMiddleware(
+            $nextHandler,
+            $tracerProvider,
+            'secretmanager.googleapis.com',
+            443,
+            'grpc'
+        );
+
+        $wrappedPromise = $middleware($call, []);
+
+        $this->expectException(ApiException::class);
+        $this->expectExceptionMessage('Call failed in wait');
+
+        try {
+            $wrappedPromise->wait();
+        } finally {
+            $this->assertTrue($initialScopeDetached);
+            $this->assertTrue($waitScopeDetached);
+        }
+    }
+
+    public function testPendingPromiseCancellationCancelsInnerPromise(): void
+    {
+        $tracerProvider = $this->createMock(TracerProviderInterface::class);
+        $tracer = $this->createMock(TracerInterface::class);
+        $spanBuilder = $this->createMock(SpanBuilderInterface::class);
+        $span = $this->createMock(SpanInterface::class);
+        $scope = $this->createMock(ScopeInterface::class);
+
+        $tracerProvider->method('getTracer')->willReturn($tracer);
+        $tracer->method('spanBuilder')->willReturn($spanBuilder);
+        $spanBuilder->method('setSpanKind')->willReturnSelf();
+        $spanBuilder->method('setAttribute')->willReturnSelf();
+        $spanBuilder->method('startSpan')->willReturn($span);
+        $span->method('activate')->willReturn($scope);
+
+        $call = $this->createMock(Call::class);
+        $call->method('getMethod')->willReturn('some/method');
+
+        $cancelled = false;
+        $innerPromise = new Promise(
+            function () {
+            },
+            function () use (&$cancelled) {
+                $cancelled = true;
+            }
+        );
+
+        $middleware = new TracingMiddleware(
+            function () use ($innerPromise) {
+                return $innerPromise;
+            },
+            $tracerProvider,
+            'test.googleapis.com',
+            443,
+            'grpc'
+        );
+
+        $wrappedPromise = $middleware($call, []);
+        $wrappedPromise->cancel();
+
+        $this->assertTrue($cancelled);
     }
 }

@@ -35,6 +35,7 @@ namespace Google\ApiCore\Middleware;
 use Google\ApiCore\Call;
 use Google\ApiCore\Telemetry\SpanAttributes;
 use Google\ApiCore\Telemetry\TelemetryTrait;
+use GuzzleHttp\Promise\Promise;
 use GuzzleHttp\Promise\PromiseInterface;
 use OpenTelemetry\API\Trace\SpanKind;
 use OpenTelemetry\API\Trace\StatusCode;
@@ -42,7 +43,7 @@ use OpenTelemetry\API\Trace\TracerProviderInterface;
 use Throwable;
 
 /**
- * Middleware that wraps API calls in an OpenTelemetry T3 Client Request span.
+ * Middleware that wraps API calls in an OpenTelemetry Client Request span.
  *
  * @internal
  */
@@ -120,7 +121,28 @@ class TracingMiddleware implements MiddlewareInterface
         try {
             $result = ($this->nextHandler)($call, $options);
             if ($result instanceof PromiseInterface) {
-                return $result->then($onFulfilled, $onRejected);
+                if ($result->getState() !== PromiseInterface::PENDING) {
+                    return $result->then($onFulfilled, $onRejected);
+                }
+
+                $wrapper = new Promise(
+                    function () use ($result, $span) {
+                        $waitScope = $span->activate();
+                        try {
+                            $result->wait();
+                        } finally {
+                            $waitScope->detach();
+                        }
+                    },
+                    [$result, 'cancel']
+                );
+
+                $result->then(
+                    [$wrapper, 'resolve'],
+                    [$wrapper, 'reject']
+                );
+
+                return $wrapper->then($onFulfilled, $onRejected);
             }
 
             $span->setStatus(StatusCode::STATUS_OK);
