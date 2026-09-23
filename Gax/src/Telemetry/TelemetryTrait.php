@@ -34,7 +34,6 @@
 namespace Google\ApiCore\Telemetry;
 
 use Google\ApiCore\ApiException;
-use Google\ApiCore\Call;
 use OpenTelemetry\API\Trace\SpanInterface;
 use OpenTelemetry\API\Trace\SpanKind;
 use OpenTelemetry\API\Trace\StatusCode;
@@ -140,60 +139,6 @@ trait TelemetryTrait
         }
 
         return $spanBuilder->startSpan();
-    }
-
-    /**
-     * Starts an internal transport span with standard client metadata attributes.
-     *
-     * @param string $spanName
-     * @param Call $call
-     * @param array<string, mixed> $attributes
-     * @param SpanKind::KIND_* $spanKind
-     * @return SpanInterface|null
-     */
-    private function startTransportSpan(
-        string $spanName,
-        Call $call,
-        array $attributes = [],
-        int $spanKind = SpanKind::KIND_INTERNAL
-    ): ?SpanInterface {
-        return $this->startSpan($spanName, array_merge([
-            SpanAttributes::RPC_METHOD => $call->getMethod(),
-            SpanAttributes::RPC_SYSTEM_NAME => 'http',
-        ], $attributes), $spanKind);
-    }
-
-    /**
-     * Executes an internal transport operation wrapped in an internal operation span.
-     *
-     * @param string $spanName
-     * @param Call $call
-     * @param callable $operation
-     * @return mixed
-     * @throws Throwable
-     */
-    private function traceTransportOperation(string $spanName, Call $call, callable $operation)
-    {
-        $span = $this->startTransportSpan($spanName, $call);
-        $scope = $span ? $span->activate() : null;
-
-        try {
-            $result = $operation();
-            if ($span) {
-                $span->setStatus(StatusCode::STATUS_OK);
-            }
-            return $result;
-        } catch (Throwable $ex) {
-            $this->recordException($span, $ex);
-            throw $ex;
-        } finally {
-            if ($scope) {
-                $scope->detach();
-            }
-            if ($span) {
-                $span->end();
-            }
-        }
     }
 
     /**

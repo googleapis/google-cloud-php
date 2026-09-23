@@ -1,5 +1,4 @@
 <?php
-
 /*
  * Copyright 2018 Google LLC
  * All rights reserved.
@@ -30,10 +29,8 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-
 namespace Google\ApiCore\Transport;
 
-use Exception;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\Call;
 use Google\ApiCore\InsecureRequestBuilder;
@@ -41,7 +38,6 @@ use Google\ApiCore\RequestBuilder;
 use Google\ApiCore\ResumableUpload\ResumableUploadTransportInterface;
 use Google\ApiCore\ServerStream;
 use Google\ApiCore\ServiceAddressTrait;
-use Google\ApiCore\Telemetry\TelemetryTrait;
 use Google\ApiCore\Transport\Rest\RestServerStreamingCall;
 use Google\ApiCore\ValidationException;
 use Google\ApiCore\ValidationTrait;
@@ -57,7 +53,6 @@ class RestTransport implements TransportInterface, ResumableUploadTransportInter
 {
     use ValidationTrait;
     use ServiceAddressTrait;
-    use TelemetryTrait;
     use HttpUnaryTransportTrait {
         startServerStreamingCall as protected unsupportedServerStreamingCall;
     }
@@ -102,14 +97,13 @@ class RestTransport implements TransportInterface, ResumableUploadTransportInter
             'clientCertSource' => null,
             'hasEmulator' => false,
             'logger' => null,
-        ] + self::getTelemetryDefaultConfig();
+        ];
         list($baseUri, $port) = self::normalizeServiceAddress($apiEndpoint);
         $requestBuilder = $config['hasEmulator']
             ? new InsecureRequestBuilder("$baseUri:$port", $restConfigPath)
             : new RequestBuilder("$baseUri:$port", $restConfigPath);
         $httpHandler = $config['httpHandler'] ?: self::buildHttpHandlerAsync($config['logger']);
         $transport = new RestTransport($requestBuilder, $httpHandler);
-        $transport->setTelemetryOptions($config);
         if ($config['clientCertSource']) {
             $transport->configureMtlsChannel($config['clientCertSource']);
         }
@@ -126,61 +120,47 @@ class RestTransport implements TransportInterface, ResumableUploadTransportInter
         // Add the $call object ID for logging
         $options['requestId'] = crc32((string) spl_object_id($call) . getmypid());
 
-        $request = $this->traceTransportOperation('RequestMarshaling', $call, function () use ($call, $headers) {
-            return $this->requestBuilder->build(
+        // call the HTTP handler
+        $httpHandler = $this->httpHandler;
+        return $httpHandler(
+            $this->requestBuilder->build(
                 $call->getMethod(),
                 $call->getMessage(),
                 $headers
-            );
-        });
-
-        // call the HTTP handler
-        $httpHandler = $this->httpHandler;
-        $promise = $httpHandler(
-            $request,
+            ),
             $this->getCallOptions($options)
-        );
-
-        return $promise->then(
+        )->then(
             function (ResponseInterface $response) use ($call, $options) {
                 $decodeType = $call->getDecodeType();
                 /** @var Message $return */
                 $return = new $decodeType();
                 $body = (string) $response->getBody();
 
-                $return = $this->traceTransportOperation(
-                    'ResponseUnmarshaling',
-                    $call,
-                    function () use ($return, $body, $options) {
-                        // In some rare cases LRO response metadata may not be loaded
-                        // in the descriptor pool, triggering an exception. The catch
-                        // statement handles this case and attempts to add the LRO
-                        // metadata type to the pool by directly instantiating the
-                        // metadata class.
-                        try {
-                            $return->mergeFromJsonString(
-                                $body,
-                                true
-                            );
-                        } catch (Exception $ex) {
-                            if (!isset($options['metadataReturnType'])) {
-                                throw $ex;
-                            }
-
-                            if (strpos($ex->getMessage(), 'Error occurred during parsing:') !== 0) {
-                                throw $ex;
-                            }
-
-                            new $options['metadataReturnType']();
-                            $return->mergeFromJsonString(
-                                $body,
-                                true
-                            );
-                        }
-
-                        return $return;
+                // In some rare cases LRO response metadata may not be loaded
+                // in the descriptor pool, triggering an exception. The catch
+                // statement handles this case and attempts to add the LRO
+                // metadata type to the pool by directly instantiating the
+                // metadata class.
+                try {
+                    $return->mergeFromJsonString(
+                        $body,
+                        true
+                    );
+                } catch (\Exception $ex) {
+                    if (!isset($options['metadataReturnType'])) {
+                        throw $ex;
                     }
-                );
+
+                    if (strpos($ex->getMessage(), 'Error occurred during parsing:') !== 0) {
+                        throw $ex;
+                    }
+
+                    new $options['metadataReturnType']();
+                    $return->mergeFromJsonString(
+                        $body,
+                        true
+                    );
+                }
 
                 if (isset($options['metadataCallback'])) {
                     $metadataCallback = $options['metadataCallback'];
