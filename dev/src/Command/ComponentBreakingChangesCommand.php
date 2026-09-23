@@ -17,14 +17,17 @@
 
 namespace Google\Cloud\Dev\Command;
 
-use Google\Cloud\Dev\BreakingChanges\RoaveRunner;
 use Google\Cloud\Dev\BreakingChanges\SnapshotBuilder;
 use InvalidArgumentException;
+use RuntimeException;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\ConsoleOutputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Process\ExecutableFinder;
+use Symfony\Component\Process\Process;
 
 /**
  * Detect backwards compatibility breaks in one or more components.
@@ -35,19 +38,30 @@ class ComponentBreakingChangesCommand extends Command
 {
     public const FORMAT_GITHUB_ACTIONS = 'github-actions';
     public const FORMAT_MARKDOWN = 'markdown';
+    public const ROAVE_BINARY = 'roave-backward-compatibility-check';
 
     private const FORMATS = [self::FORMAT_GITHUB_ACTIONS, self::FORMAT_MARKDOWN];
 
     private SnapshotBuilder $snapshots;
-    private RoaveRunner $roave;
+    private Filesystem $filesystem;
+    /** @var callable(string, string): Process */
+    private $processFactory;
+    private ?string $roaveBinary = null;
 
     public function __construct(
         string $rootDir,
         ?SnapshotBuilder $snapshots = null,
-        ?RoaveRunner $roave = null
+        ?callable $processFactory = null,
+        ?Filesystem $filesystem = null
     ) {
         $this->snapshots = $snapshots ?: new SnapshotBuilder($rootDir);
-        $this->roave = $roave ?: new RoaveRunner();
+        $this->filesystem = $filesystem ?: new Filesystem();
+        $this->processFactory = $processFactory ?: function (string $workTree, string $format): Process {
+            return (new Process(
+                [$this->getRoaveBinary(), '--from=HEAD~1', '--format=' . $format],
+                $workTree
+            ))->setTimeout(600);
+        };
 
         parent::__construct();
     }
@@ -65,9 +79,9 @@ Check specific components:
 
     ./dev/google-cloud component:breaking-changes -c Storage -c BigQuery
 
-Compare against a release tag and report without failing:
+Compare against a release tag in markdown format:
 
-    ./dev/google-cloud component:breaking-changes --base-ref=v0.346.0 --format=markdown --report-only
+    ./dev/google-cloud component:breaking-changes --base-ref=v0.346.0 --format=markdown
 
 EOF)
             ->addOption(
@@ -91,12 +105,6 @@ EOF)
                 'Output format (' . implode(', ', self::FORMATS) . ')',
                 self::FORMAT_GITHUB_ACTIONS
             )
-            ->addOption(
-                'report-only',
-                null,
-                InputOption::VALUE_NONE,
-                'Report breaking changes without failing. Exits 0 even when breaks are found'
-            )
         ;
     }
 
@@ -112,7 +120,6 @@ EOF)
         }
 
         $baseRef = $input->getOption('base-ref');
-        $reportOnly = $input->getOption('report-only');
 
         // Progress goes to stderr so that stdout holds nothing but the report,
         // keeping the markdown format pipeable.
@@ -132,24 +139,25 @@ EOF)
         foreach ($components as $componentName) {
             $progress->writeln(sprintf('Checking %s against %s', $componentName, $baseRef));
 
-            $snapshot = $this->snapshots->build($componentName, $baseRef);
-            if (null === $snapshot) {
+            $workTree = $this->snapshots->build($componentName, $baseRef);
+            if (null === $workTree) {
                 $progress->writeln(sprintf('  <info>skipped</info> %s: nothing to compare', $componentName));
                 continue;
             }
 
             try {
-                $result = $this->roave->run($snapshot, $format);
+                $process = ($this->processFactory)($workTree, $format);
+                $process->run();
             } finally {
-                $snapshot->remove();
+                $this->filesystem->remove($workTree);
             }
 
-            if (!$result['hasBreakingChanges']) {
+            if ($process->isSuccessful()) {
                 $progress->writeln(sprintf('  <info>ok</info> %s', $componentName));
                 continue;
             }
 
-            $broken[$componentName] = $result['output'];
+            $broken[$componentName] = $process->getOutput() . $process->getErrorOutput();
             $progress->writeln(sprintf('  <error>breaking changes</error> %s', $componentName));
         }
 
@@ -160,7 +168,26 @@ EOF)
 
         $output->write($this->report($broken, $format));
 
-        return $reportOnly ? Command::SUCCESS : Command::FAILURE;
+        return Command::FAILURE;
+    }
+
+    private function getRoaveBinary(): string
+    {
+        if ($this->roaveBinary) {
+            return $this->roaveBinary;
+        }
+
+        $default = getenv('HOME') . '/.composer/vendor/bin/' . self::ROAVE_BINARY;
+        $this->roaveBinary = (new ExecutableFinder())->find(self::ROAVE_BINARY, $default);
+
+        if (!is_executable($this->roaveBinary)) {
+            throw new RuntimeException(sprintf(
+                '"%s" not found. Install it with: composer global require roave/backward-compatibility-check',
+                self::ROAVE_BINARY
+            ));
+        }
+
+        return $this->roaveBinary;
     }
 
     /**

@@ -17,20 +17,19 @@
 
 namespace Google\Cloud\Dev\Tests\Unit\Command;
 
-use Google\Cloud\Dev\BreakingChanges\RoaveRunner;
-use Google\Cloud\Dev\BreakingChanges\Snapshot;
 use Google\Cloud\Dev\BreakingChanges\SnapshotBuilder;
 use Google\Cloud\Dev\Command\ComponentBreakingChangesCommand;
 use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Tester\CommandTester;
-use PHPUnit\Framework\TestCase;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Process\Process;
 
 /**
- * Real git snapshots with a stubbed Roave, so the command's own behaviour
- * (component selection, formatting, exit codes) is what is under test.
+ * Real git snapshots with a mocked Symfony Process for the Roave call, so the
+ * command's own behaviour (component selection, formatting, exit codes) is
+ * what is under test.
  *
  * @group dev
  */
@@ -69,22 +68,6 @@ class ComponentBreakingChangesCommandTest extends TestCase
         $exitCode = $tester->execute(['-c' => ['Alpha'], '--base-ref' => self::BASELINE]);
 
         $this->assertSame(Command::FAILURE, $exitCode);
-        $this->assertStringContainsString('BREAK in Alpha', $tester->getDisplay());
-    }
-
-    public function testReportOnlySucceedsDespiteBreakingChanges()
-    {
-        $this->changeComponent('Alpha');
-        $tester = $this->tester(['Alpha']);
-
-        $exitCode = $tester->execute([
-            '-c' => ['Alpha'],
-            '--base-ref' => self::BASELINE,
-            '--report-only' => true,
-        ]);
-
-        $this->assertSame(Command::SUCCESS, $exitCode);
-        // The report is still emitted; only the exit status differs.
         $this->assertStringContainsString('BREAK in Alpha', $tester->getDisplay());
     }
 
@@ -196,29 +179,30 @@ class ComponentBreakingChangesCommandTest extends TestCase
     }
 
     /**
-     * @param string[] $breaking Components the stubbed Roave reports breaks for
+     * @param string[] $breaking Components the mocked Roave process reports breaks for
      * @param string[] $checked Populated with the components Roave ran against
      */
     private function tester(array $breaking, array &$checked = []): CommandTester
     {
-        $roave = $this->createMock(RoaveRunner::class);
-        $roave->method('run')->willReturnCallback(
-            function (Snapshot $snapshot) use ($breaking, &$checked) {
-                $name = $snapshot->getComponentName();
-                $checked[] = $name;
-                $hasBreaks = in_array($name, $breaking, true);
+        $processFactory = function (string $workTree) use ($breaking, &$checked): Process {
+            preg_match('/^bc-check-(.+)-[0-9a-f]+$/', basename($workTree), $matches);
+            $name = $matches[1];
+            $checked[] = $name;
+            $hasBreaks = in_array($name, $breaking, true);
 
-                return [
-                    'hasBreakingChanges' => $hasBreaks,
-                    'output' => $hasBreaks ? 'BREAK in ' . $name : '',
-                ];
-            }
-        );
+            $process = $this->createMock(Process::class);
+            $process->method('isSuccessful')->willReturn(!$hasBreaks);
+            $process->method('getOutput')->willReturn($hasBreaks ? 'BREAK in ' . $name : '');
+            $process->method('getErrorOutput')->willReturn('');
+
+            return $process;
+        };
 
         return new CommandTester(new ComponentBreakingChangesCommand(
             $this->rootDir,
             new SnapshotBuilder($this->rootDir, $this->filesystem),
-            $roave
+            $processFactory,
+            $this->filesystem
         ));
     }
 

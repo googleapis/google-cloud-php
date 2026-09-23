@@ -17,7 +17,6 @@
 
 namespace Google\Cloud\Dev\Tests\Unit\BreakingChanges;
 
-use Google\Cloud\Dev\BreakingChanges\Snapshot;
 use Google\Cloud\Dev\BreakingChanges\SnapshotBuilder;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
@@ -26,12 +25,6 @@ use Symfony\Component\Process\Process;
 
 /**
  * Exercises the real git plumbing against a fixture repository.
- *
- * These deliberately avoid test doubles. The failure modes worth guarding here
- * (a deleted file surviving from the baseline, git metadata landing inside the
- * work tree, the baseline omitting export-ignored paths) are all properties of
- * how git and the filesystem actually behave, and a mock would happily assert
- * the buggy version was correct.
  *
  * @group dev
  */
@@ -42,7 +35,8 @@ class SnapshotBuilderTest extends TestCase
     private string $rootDir;
     private Filesystem $filesystem;
     private SnapshotBuilder $builder;
-    private array $snapshots = [];
+    /** @var string[] */
+    private array $workTrees = [];
 
     public function setUp(): void
     {
@@ -76,38 +70,35 @@ class SnapshotBuilderTest extends TestCase
 
     public function tearDown(): void
     {
-        foreach ($this->snapshots as $snapshot) {
-            $snapshot->remove();
-        }
-        $this->filesystem->remove($this->rootDir);
+        $this->filesystem->remove(array_merge($this->workTrees, [$this->rootDir]));
     }
 
     public function testDetectsDeletedFile()
     {
         $this->filesystem->remove($this->rootDir . '/Alpha/src/Bar.php');
 
-        $snapshot = $this->build('Alpha');
+        $workTree = $this->build('Alpha');
 
-        $this->assertSame(['D' => ['src/Bar.php']], $this->changes($snapshot));
-        $this->assertFileDoesNotExist($snapshot->getWorkTree() . '/src/Bar.php');
+        $this->assertSame(['D' => ['src/Bar.php']], $this->changes($workTree));
+        $this->assertFileDoesNotExist($workTree . '/src/Bar.php');
     }
 
     public function testDetectsModifiedFile()
     {
         $this->write('Alpha/src/Foo.php', '<?php class Foo { public function added() {} }');
 
-        $snapshot = $this->build('Alpha');
+        $workTree = $this->build('Alpha');
 
-        $this->assertSame(['M' => ['src/Foo.php']], $this->changes($snapshot));
+        $this->assertSame(['M' => ['src/Foo.php']], $this->changes($workTree));
     }
 
     public function testDetectsAddedFile()
     {
         $this->write('Alpha/src/Qux.php', '<?php class Qux {}');
 
-        $snapshot = $this->build('Alpha');
+        $workTree = $this->build('Alpha');
 
-        $this->assertSame(['A' => ['src/Qux.php']], $this->changes($snapshot));
+        $this->assertSame(['A' => ['src/Qux.php']], $this->changes($workTree));
     }
 
     public function testReturnsNullWhenComponentIsUnchanged()
@@ -135,9 +126,9 @@ class SnapshotBuilderTest extends TestCase
     {
         $this->write('Alpha/src/Foo.php', '<?php class Foo { public function added() {} }');
 
-        $snapshot = $this->build('Alpha');
+        $workTree = $this->build('Alpha');
 
-        $this->assertDirectoryExists($snapshot->getWorkTree() . '/.git');
+        $this->assertDirectoryExists($workTree . '/.git');
     }
 
     /**
@@ -149,10 +140,10 @@ class SnapshotBuilderTest extends TestCase
     {
         $this->write('Alpha/src/Foo.php', '<?php class Foo { public function added() {} }');
 
-        $snapshot = $this->build('Alpha');
+        $workTree = $this->build('Alpha');
 
-        $this->assertFileExists($snapshot->getWorkTree() . '/tests/Unit/FooTest.php');
-        $this->assertArrayNotHasKey('A', $this->changes($snapshot));
+        $this->assertFileExists($workTree . '/tests/Unit/FooTest.php');
+        $this->assertArrayNotHasKey('A', $this->changes($workTree));
     }
 
     public function testExcludesVendorAndComposerLocal()
@@ -161,10 +152,10 @@ class SnapshotBuilderTest extends TestCase
         $this->write('Alpha/composer-local.json', '{}');
         $this->write('Alpha/src/Foo.php', '<?php class Foo { public function added() {} }');
 
-        $snapshot = $this->build('Alpha');
+        $workTree = $this->build('Alpha');
 
-        $this->assertFileDoesNotExist($snapshot->getWorkTree() . '/vendor/autoload.php');
-        $this->assertFileDoesNotExist($snapshot->getWorkTree() . '/composer-local.json');
+        $this->assertFileDoesNotExist($workTree . '/vendor/autoload.php');
+        $this->assertFileDoesNotExist($workTree . '/composer-local.json');
     }
 
     public function testThrowsWhenDirectoryIsNotAComponent()
@@ -212,13 +203,13 @@ class SnapshotBuilderTest extends TestCase
         $this->assertSame([], $this->builder->getChangedComponents(self::BASELINE));
     }
 
-    private function build(string $componentName): Snapshot
+    private function build(string $componentName): string
     {
-        $snapshot = $this->builder->build($componentName, self::BASELINE);
-        $this->assertNotNull($snapshot, 'Expected a snapshot to be built');
-        $this->snapshots[] = $snapshot;
+        $workTree = $this->builder->build($componentName, self::BASELINE);
+        $this->assertNotNull($workTree, 'Expected a snapshot work tree to be built');
+        $this->workTrees[] = $workTree;
 
-        return $snapshot;
+        return $workTree;
     }
 
     /**
@@ -227,11 +218,11 @@ class SnapshotBuilderTest extends TestCase
      *
      * @return array<string, string[]>
      */
-    private function changes(Snapshot $snapshot): array
+    private function changes(string $workTree): array
     {
         $process = new Process(
             ['git', 'diff', '--name-status', 'HEAD~1', 'HEAD'],
-            $snapshot->getWorkTree()
+            $workTree
         );
         $process->mustRun();
 

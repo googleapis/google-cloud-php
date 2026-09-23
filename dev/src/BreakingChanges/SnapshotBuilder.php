@@ -88,11 +88,11 @@ class SnapshotBuilder
      * Build a scratch repository for $componentName with the baseline as the
      * first commit and the working copy as the second.
      *
-     * @return Snapshot|null Null when there is nothing to compare: either the
-     *     component is absent from the baseline (entirely new, so every symbol
-     *     in it is an addition), or it is byte-identical to the baseline.
+     * @return string|null Path to the scratch repository work tree, or null
+     *     when there is nothing to compare (either the component is absent
+     *     from the baseline or byte-identical to it).
      */
-    public function build(string $componentName, string $baseRef): ?Snapshot
+    public function build(string $componentName, string $baseRef): ?string
     {
         if (!$this->isComponent($componentName)) {
             throw new RuntimeException(sprintf(
@@ -106,16 +106,14 @@ class SnapshotBuilder
             return null;
         }
 
-        $scratchDir = $this->createScratchDir();
-        $workTree = $scratchDir . '/tree';
-        $this->filesystem->mkdir($workTree);
+        $workTree = $this->createScratchDir($componentName);
 
         // Roave locates the repository by looking for a ".git" directory at the
         // root of the directory it runs in, so git metadata cannot be moved out
         // of the work tree. See mirrorWorkingCopy() for why that matters.
         $this->git(['init', '--quiet', '--initial-branch=main'], $workTree);
 
-        $this->extractBaseline($componentName, $baseRef, $workTree, $scratchDir . '/index');
+        $this->extractBaseline($componentName, $baseRef, $workTree, $workTree . '/.git/bc-index');
         $this->git(['add', '--all'], $workTree);
         $this->commit($workTree, 'Baseline from ' . $baseRef);
 
@@ -123,13 +121,13 @@ class SnapshotBuilder
         $this->git(['add', '--all'], $workTree);
 
         if ($this->isIdenticalToBaseline($workTree)) {
-            $this->filesystem->remove($scratchDir);
+            $this->filesystem->remove($workTree);
             return null;
         }
 
         $this->commit($workTree, 'Working copy');
 
-        return new Snapshot($componentName, $workTree, $scratchDir, $this->filesystem);
+        return $workTree;
     }
 
     private function existsInBaseline(string $componentName, string $baseRef): bool
@@ -227,9 +225,9 @@ class SnapshotBuilder
         return $process->getOutput();
     }
 
-    private function createScratchDir(): string
+    private function createScratchDir(string $componentName): string
     {
-        $dir = sys_get_temp_dir() . '/bc-check-' . bin2hex(random_bytes(6));
+        $dir = sprintf('%s/bc-check-%s-%s', sys_get_temp_dir(), $componentName, bin2hex(random_bytes(6)));
         $this->filesystem->mkdir($dir);
 
         return $dir;
