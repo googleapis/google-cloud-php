@@ -126,19 +126,18 @@ class SnapshotBuilderTest extends TestCase
     }
 
     /**
-     * The work tree must hold component files and nothing else, so that
-     * mirroring the working copy over it with "delete" enabled cannot remove
-     * git's own metadata.
+     * Roave rejects any directory without a ".git" directory at its root, so
+     * the work tree has to be a repository in its own right. That is also what
+     * makes clearing the work tree (rather than mirroring with "delete" over
+     * it) necessary in mirrorWorkingCopy().
      */
-    public function testWorkTreeContainsNoGitMetadata()
+    public function testWorkTreeIsAGitRepository()
     {
         $this->write('Alpha/src/Foo.php', '<?php class Foo { public function added() {} }');
 
         $snapshot = $this->build('Alpha');
 
-        $this->assertFileDoesNotExist($snapshot->getWorkTree() . '/.git');
-        $this->assertDirectoryExists($snapshot->getGitDir());
-        $this->assertStringStartsNotWith($snapshot->getWorkTree(), $snapshot->getGitDir());
+        $this->assertDirectoryExists($snapshot->getWorkTree() . '/.git');
     }
 
     /**
@@ -171,9 +170,23 @@ class SnapshotBuilderTest extends TestCase
     public function testThrowsWhenDirectoryIsNotAComponent()
     {
         $this->expectException(RuntimeException::class);
-        $this->expectExceptionMessage('no composer.json found');
+        $this->expectExceptionMessage('Cannot check "docs": not a component');
 
         $this->builder->build('docs', self::BASELINE);
+    }
+
+    /**
+     * "dev" is a composer package, but it is repository tooling, not a
+     * published component.
+     */
+    public function testThrowsForLowercasePackageDirectories()
+    {
+        $this->writeComponent('dev', ['composer.json' => '{"name": "google/dev"}']);
+
+        $this->expectException(RuntimeException::class);
+        $this->expectExceptionMessage('Cannot check "dev": not a component');
+
+        $this->builder->build('dev', self::BASELINE);
     }
 
     public function testGetChangedComponents()
@@ -218,8 +231,7 @@ class SnapshotBuilderTest extends TestCase
     {
         $process = new Process(
             ['git', 'diff', '--name-status', 'HEAD~1', 'HEAD'],
-            $snapshot->getWorkTree(),
-            ['GIT_DIR' => $snapshot->getGitDir(), 'GIT_WORK_TREE' => $snapshot->getWorkTree()]
+            $snapshot->getWorkTree()
         );
         $process->mustRun();
 

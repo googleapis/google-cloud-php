@@ -52,10 +52,6 @@ class SnapshotBuilder
     /**
      * Components with files modified relative to $baseRef.
      *
-     * A directory counts as a component when it holds a composer.json, so a
-     * new top-level directory can never be mistaken for one, and no naming
-     * convention has to be assumed.
-     *
      * @return string[]
      */
     public function getChangedComponents(string $baseRef): array
@@ -76,9 +72,16 @@ class SnapshotBuilder
         return $names;
     }
 
+    /**
+     * Components are the capitalized top-level directories holding a
+     * composer.json. The capitalization requirement is what separates a
+     * component from repository tooling: "dev" is a composer package too, but
+     * it is not published, and checking it is meaningless.
+     */
     private function isComponent(string $name): bool
     {
-        return is_file($this->rootDir . '/' . $name . '/composer.json');
+        return (bool) preg_match('/^[A-Z]/', $name)
+            && is_file($this->rootDir . '/' . $name . '/composer.json');
     }
 
     /**
@@ -91,12 +94,11 @@ class SnapshotBuilder
      */
     public function build(string $componentName, string $baseRef): ?Snapshot
     {
-        $componentPath = $this->rootDir . '/' . $componentName;
-        if (!is_file($componentPath . '/composer.json')) {
+        if (!$this->isComponent($componentName)) {
             throw new RuntimeException(sprintf(
-                'Cannot check "%s": no composer.json found at %s.',
-                $componentName,
-                $componentPath
+                'Cannot check "%s": not a component. Components are capitalized '
+                    . 'top-level directories containing a composer.json.',
+                $componentName
             ));
         }
 
@@ -105,30 +107,29 @@ class SnapshotBuilder
         }
 
         $scratchDir = $this->createScratchDir();
-        $gitDir = $scratchDir . '/git';
         $workTree = $scratchDir . '/tree';
-        $this->filesystem->mkdir([$gitDir, $workTree]);
+        $this->filesystem->mkdir($workTree);
 
-        // The git directory is deliberately kept outside of the work tree, so
-        // the work tree holds nothing but component files. Mirroring over it
-        // with "delete" enabled therefore cannot corrupt git metadata.
-        $this->gitScratch($gitDir, $workTree, ['init', '--quiet', '--initial-branch=main']);
+        // Roave locates the repository by looking for a ".git" directory at the
+        // root of the directory it runs in, so git metadata cannot be moved out
+        // of the work tree. See mirrorWorkingCopy() for why that matters.
+        $this->git(['init', '--quiet', '--initial-branch=main'], $workTree);
 
         $this->extractBaseline($componentName, $baseRef, $workTree, $scratchDir . '/index');
-        $this->gitScratch($gitDir, $workTree, ['add', '--all']);
-        $this->commit($gitDir, $workTree, 'Baseline from ' . $baseRef);
+        $this->git(['add', '--all'], $workTree);
+        $this->commit($workTree, 'Baseline from ' . $baseRef);
 
-        $this->mirrorWorkingCopy($componentPath, $workTree);
-        $this->gitScratch($gitDir, $workTree, ['add', '--all']);
+        $this->mirrorWorkingCopy($this->rootDir . '/' . $componentName, $workTree);
+        $this->git(['add', '--all'], $workTree);
 
-        if ($this->isIdenticalToBaseline($gitDir, $workTree)) {
+        if ($this->isIdenticalToBaseline($workTree)) {
             $this->filesystem->remove($scratchDir);
             return null;
         }
 
-        $this->commit($gitDir, $workTree, 'Working copy');
+        $this->commit($workTree, 'Working copy');
 
-        return new Snapshot($componentName, $workTree, $gitDir, $scratchDir, $this->filesystem);
+        return new Snapshot($componentName, $workTree, $scratchDir, $this->filesystem);
     }
 
     private function existsInBaseline(string $componentName, string $baseRef): bool
@@ -166,14 +167,24 @@ class SnapshotBuilder
     }
 
     /**
-     * Copy the working copy of the component over the baseline.
+     * Replace the baseline in the work tree with the working copy.
      *
-     * "delete" is essential: without it, a file deleted by the change under
-     * test would survive from the baseline, and removing a public class (the
-     * most clear-cut breaking change there is) would go undetected.
+     * The baseline is cleared rather than copied over: without that, a file
+     * deleted by the change under test would survive, and removing a public
+     * class (the most clear-cut breaking change there is) would go undetected.
+     * Git metadata is the one thing that has to outlive the clear.
      */
     private function mirrorWorkingCopy(string $componentPath, string $workTree): void
     {
+        $this->filesystem->remove(
+            Finder::create()
+                ->in($workTree)
+                ->depth(0)
+                ->exclude('.git')
+                ->ignoreDotFiles(false)
+                ->ignoreVCS(false)
+        );
+
         $finder = Finder::create()
             ->in($componentPath)
             ->exclude(self::EXCLUDED_FROM_WORKING_COPY)
@@ -181,46 +192,26 @@ class SnapshotBuilder
             ->ignoreDotFiles(false)
             ->ignoreVCS(false);
 
-        $this->filesystem->mirror($componentPath, $workTree, $finder, [
-            'override' => true,
-            'delete' => true,
-        ]);
+        $this->filesystem->mirror($componentPath, $workTree, $finder);
     }
 
-    private function isIdenticalToBaseline(string $gitDir, string $workTree): bool
+    private function isIdenticalToBaseline(string $workTree): bool
     {
-        $process = new Process(
-            ['git', 'diff', '--cached', '--quiet'],
-            $workTree,
-            $this->scratchEnv($gitDir, $workTree)
-        );
+        $process = new Process(['git', 'diff', '--cached', '--quiet'], $workTree);
         $process->run();
 
         return $process->isSuccessful();
     }
 
-    private function commit(string $gitDir, string $workTree, string $message): void
+    private function commit(string $workTree, string $message): void
     {
         // Identity is supplied per-invocation so the command does not depend on
         // the machine having git user config, and never mutates it.
-        $this->gitScratch($gitDir, $workTree, [
+        $this->git([
             '-c', 'user.name=Breaking Change Detector',
             '-c', 'user.email=noreply@google.com',
             'commit', '--quiet', '--allow-empty', '--message', $message,
-        ]);
-    }
-
-    private function gitScratch(string $gitDir, string $workTree, array $args): string
-    {
-        return $this->git($args, $workTree, $this->scratchEnv($gitDir, $workTree));
-    }
-
-    /**
-     * @return array<string, string>
-     */
-    private function scratchEnv(string $gitDir, string $workTree): array
-    {
-        return ['GIT_DIR' => $gitDir, 'GIT_WORK_TREE' => $workTree];
+        ], $workTree);
     }
 
     /**

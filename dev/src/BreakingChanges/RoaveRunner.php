@@ -48,10 +48,7 @@ class RoaveRunner
     {
         $process = new Process(
             [$this->getBinary(), '--from=HEAD~1', '--format=' . $format],
-            $snapshot->getWorkTree(),
-            // Git metadata lives outside the work tree, so Roave has to be
-            // pointed at it explicitly.
-            ['GIT_DIR' => $snapshot->getGitDir()]
+            $snapshot->getWorkTree()
         );
         $process->setTimeout(600);
         $process->run();

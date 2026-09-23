@@ -31,7 +31,6 @@ class Snapshot
     public function __construct(
         private string $componentName,
         private string $workTree,
-        private string $gitDir,
         private string $scratchDir,
         private Filesystem $filesystem
     ) {
@@ -45,20 +44,11 @@ class Snapshot
     /**
      * The directory to run the backwards compatibility check in. The component
      * files sit at its root, matching the layout the component is published
-     * with. Git metadata lives outside of this directory.
+     * with, and its ".git" directory holds the two commits to compare.
      */
     public function getWorkTree(): string
     {
         return $this->workTree;
-    }
-
-    /**
-     * Git metadata for the work tree. Kept outside of the work tree itself, so
-     * anything operating on the work tree has to be told where it is.
-     */
-    public function getGitDir(): string
-    {
-        return $this->gitDir;
     }
 
     public function remove(): void
