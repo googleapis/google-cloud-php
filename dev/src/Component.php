@@ -51,9 +51,10 @@ class Component
 
     private static function getComponentNames(?string $rootDir): array
     {
-        $components = scandir($rootDir ?? self::ROOT_DIR);
+        $baseDir = rtrim($rootDir ?? self::ROOT_DIR, '/') . '/';
+        $components = scandir($baseDir);
         foreach ($components as $i => $name) {
-            if (!is_dir(self::ROOT_DIR . $name) || !preg_match('/^[A-Z]/', $name)) {
+            if (!is_dir($baseDir . $name) || !preg_match('/^[A-Z]/', $name)) {
                 unset($components[$i]);
             }
         }
