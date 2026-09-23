@@ -10,7 +10,7 @@ jobs:
   backwards-compatibility-check:
     name: Breaking Change Detector
     runs-on: ubuntu-latest
-    if: ${{ github.event.pull_request.user.login != 'release-please[bot]' && !contains(github.event.pull_request.body, 'BREAKING_CHANGE_REASON=') }}
+    if: ${{ !contains(github.event.pull_request.body, 'BREAKING_CHANGE_REASON=') }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
@@ -23,6 +23,7 @@ jobs:
       - name: "Install dependencies"
         run: composer global require "roave/backward-compatibility-check:^8.22"
       - name: "Check for BC breaks"
+        if: github.event.pull_request.user.login != 'release-please[bot]'
         run: |
           git config --global user.name "Github Actions"
           git config --global user.email "actions@github.com"
@@ -46,12 +47,14 @@ jobs:
           if [ "${FAIL}" = "true" ]; then
             exit 1
           fi
+      # Reached only when the BC check above passed, so no breaks were detected.
       - name: "Check for BC label"
+        if: github.event.pull_request.user.login != 'release-please[bot]'
         env:
           HAS_BC_LABEL: ${{ contains(github.event.pull_request.title, '!:') }}
         run: |
           if [[ "true" == "${HAS_BC_LABEL}" ]]; then
-            echo "Breaking change label found in PR title"
+            echo "❌ Error: You indicated breaking changes in your PR title (!:), but no backwards compatibility breaks were detected by the automated check."
             exit 1
           fi
 
