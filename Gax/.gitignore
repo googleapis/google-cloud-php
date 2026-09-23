@@ -6,7 +6,6 @@ composer.lock
 composer-test.lock
 vendor/
 build/artifacts/
-tests/Conformance/showcase.pem
 artifacts/
 .idea
 .metadata
