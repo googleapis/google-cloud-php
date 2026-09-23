@@ -371,8 +371,6 @@ trait GapicClientTrait
                 $options['credentials'],
                 $options['credentialsConfig'] + [
                     'enableRegionalAccessBoundary' => $enableRegionalAccessBoundary && !$isRegional,
-                    'openTelemetryTracerProvider' => $options['openTelemetryTracerProvider'] ?? null,
-                    'clientVersion' => $options['libVersion'] ?? '',
                 ],
                 $options['universeDomain'],
             );
@@ -755,15 +753,7 @@ trait GapicClientTrait
 
         $callStack = new CredentialsWrapperMiddleware($callStack, $this->credentialsWrapper);
         $callStack = new FixedHeaderMiddleware($callStack, $fixedHeaders, true);
-        $callStack = new RetryMiddleware(
-            $callStack,
-            $callConstructionOptions['retrySettings'],
-            null,
-            0,
-            null,
-            $this->openTelemetryTracerProvider ?? null,
-            $this->telemetryOptions
-        );
+        $callStack = new RetryMiddleware($callStack, $callConstructionOptions['retrySettings']);
         $callStack = new RequestAutoPopulationMiddleware(
             $callStack,
             $callConstructionOptions['autoPopulationSettings'],

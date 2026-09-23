@@ -33,7 +33,6 @@
 namespace Google\ApiCore\Tests\Unit;
 
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\Telemetry\AuthHttpHandler;
 use Google\ApiCore\ValidationException;
 use Google\Auth\ApplicationDefaultCredentials;
 use Google\Auth\Cache\MemoryCacheItemPool;
@@ -48,11 +47,9 @@ use Google\Auth\GetUniverseDomainInterface;
 use Google\Auth\HttpHandler\HttpHandlerFactory;
 use Google\Auth\ProjectIdProviderInterface;
 use Google\Auth\UpdateMetadataInterface;
-use OpenTelemetry\API\Trace\TracerProviderInterface;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
-use ReflectionClass;
 
 class CredentialsWrapperTest extends TestCase
 {
@@ -644,108 +641,6 @@ class CredentialsWrapperTest extends TestCase
         ]);
         $serialized = serialize($credentialsWrapper);
         $this->assertIsString($serialized);
-    }
-
-    public function testSetOpenTelemetryTracerProviderWrapsAuthHttpHandler()
-    {
-        $credentials = $this->createMock(FetchAuthTokenInterface::class);
-        $tracerProvider = $this->createMock(TracerProviderInterface::class);
-
-        $wrapper = new CredentialsWrapper(
-            $credentials,
-            null,
-            GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN
-        );
-        $wrapper->setOpenTelemetryTracerProvider($tracerProvider, '1.0.0');
-
-        $reflection = new ReflectionClass($wrapper);
-        $property = $reflection->getProperty('authHttpHandler');
-        $handler = $property->getValue($wrapper);
-
-        $this->assertInstanceOf(AuthHttpHandler::class, $handler);
-    }
-
-    public function testConstructorDoesNotWrapWhenTracingDisabled()
-    {
-        $credentials = $this->createMock(FetchAuthTokenInterface::class);
-
-        $wrapper = new CredentialsWrapper($credentials);
-
-        $reflection = new ReflectionClass($wrapper);
-        $property = $reflection->getProperty('authHttpHandler');
-        $handler = $property->getValue($wrapper);
-
-        $this->assertNull($handler);
-    }
-
-    public function testBuildWrapsAuthHttpHandlerWithTracing()
-    {
-        $tracerProvider = $this->createMock(TracerProviderInterface::class);
-
-        $wrapper = CredentialsWrapper::build([
-            'keyFile' => __DIR__ . '/testdata/creds/json-key-file.json',
-            'openTelemetryTracerProvider' => $tracerProvider,
-            'clientVersion' => '1.0.0',
-        ]);
-
-        $reflection = new ReflectionClass($wrapper);
-        $property = $reflection->getProperty('authHttpHandler');
-        $handler = $property->getValue($wrapper);
-
-        $this->assertInstanceOf(AuthHttpHandler::class, $handler);
-    }
-
-    public function testConstructorDoesNotDoubleWrap()
-    {
-        $credentials = $this->createMock(FetchAuthTokenInterface::class);
-        $tracerProvider = $this->createMock(TracerProviderInterface::class);
-        $dummyInner = function () {
-        };
-        $authHttpHandler = new AuthHttpHandler($dummyInner, $tracerProvider, '1.0.0');
-
-        $wrapper = new CredentialsWrapper(
-            $credentials,
-            $authHttpHandler,
-            GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN
-        );
-        $wrapper->setOpenTelemetryTracerProvider($tracerProvider, '1.0.0');
-
-        $reflection = new ReflectionClass($wrapper);
-        $property = $reflection->getProperty('authHttpHandler');
-        $handler = $property->getValue($wrapper);
-
-        $this->assertSame($authHttpHandler, $handler);
-    }
-
-    public function testSetOpenTelemetryTracerProviderReconfiguresExistingAuthHttpHandler()
-    {
-        $credentials = $this->createMock(FetchAuthTokenInterface::class);
-        $dummyInner = function () {
-        };
-        $initialProvider = $this->createMock(TracerProviderInterface::class);
-        $updatedProvider = $this->createMock(TracerProviderInterface::class);
-
-        $authHttpHandler = new AuthHttpHandler($dummyInner, $initialProvider, '1.0.0');
-
-        $wrapper = new CredentialsWrapper(
-            $credentials,
-            $authHttpHandler,
-            GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN
-        );
-        $wrapper->setOpenTelemetryTracerProvider($updatedProvider, '2.0.0');
-
-        $reflection = new ReflectionClass($wrapper);
-        $property = $reflection->getProperty('authHttpHandler');
-        $handler = $property->getValue($wrapper);
-
-        $this->assertSame($authHttpHandler, $handler);
-
-        $handlerReflection = new ReflectionClass($handler);
-        $providerProp = $handlerReflection->getProperty('openTelemetryTracerProvider');
-        $versionProp = $handlerReflection->getProperty('clientVersion');
-
-        $this->assertSame($updatedProvider, $providerProp->getValue($handler));
-        $this->assertSame('2.0.0', $versionProp->getValue($handler));
     }
 
     private function setEnv(string $env, ?string $value = null)

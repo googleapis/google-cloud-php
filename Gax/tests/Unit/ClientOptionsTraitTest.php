@@ -35,7 +35,6 @@ namespace Google\ApiCore\Tests\Unit;
 use Google\ApiCore\ClientOptionsTrait;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Options\ClientOptions;
-use Google\ApiCore\Telemetry\AuthHttpHandler;
 use Google\ApiCore\ValidationException;
 use Google\Auth\CredentialsLoader;
 use Google\Auth\FetchAuthTokenInterface;
@@ -48,7 +47,6 @@ use OpenTelemetry\API\Trace\TracerProviderInterface;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Psr\Log\LogLevel;
-use ReflectionClass;
 
 class ClientOptionsTraitTest extends TestCase
 {
@@ -231,23 +229,6 @@ class ClientOptionsTraitTest extends TestCase
         ];
     }
 
-    public function testCreateCredentialsWrapperWithPreInstantiatedWrapperAndTracing()
-    {
-        $fetcher = $this->prophesize(FetchAuthTokenInterface::class)->reveal();
-        $credentialsWrapper = new CredentialsWrapper($fetcher);
-        $tracerProvider = $this->createMock(TracerProviderInterface::class);
-
-        $result = $this->clientStub->createCredentialsWrapper(
-            $credentialsWrapper,
-            ['openTelemetryTracerProvider' => $tracerProvider, 'clientVersion' => '1.0.0'],
-            GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN
-        );
-
-        $this->assertSame($credentialsWrapper, $result);
-        $reflection = new ReflectionClass($result);
-        $prop = $reflection->getProperty('authHttpHandler');
-        $this->assertInstanceOf(AuthHttpHandler::class, $prop->getValue($result));
-    }
 
     /**
      * @dataProvider buildClientOptionsProvider

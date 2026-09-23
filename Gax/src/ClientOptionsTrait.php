@@ -332,25 +332,11 @@ trait ClientOptionsTrait
         }
 
         if ($credentials instanceof FetchAuthTokenInterface) {
-            $authHttpHandler = CredentialsWrapper::wrapAuthHttpHandler(
-                $credentialsConfig['authHttpHandler'] ?? null,
-                $credentialsConfig['openTelemetryTracerProvider'] ?? null,
-                $credentialsConfig['clientVersion'] ?? ''
-            );
-            return new CredentialsWrapper(
-                $credentials,
-                $authHttpHandler,
-                $universeDomain
-            );
+            $authHttpHandler = $credentialsConfig['authHttpHandler'] ?? null;
+            return new CredentialsWrapper($credentials, $authHttpHandler, $universeDomain);
         }
 
         if ($credentials instanceof CredentialsWrapper) {
-            if (!empty($credentialsConfig['openTelemetryTracerProvider'])) {
-                $credentials->setOpenTelemetryTracerProvider(
-                    $credentialsConfig['openTelemetryTracerProvider'],
-                    $credentialsConfig['clientVersion'] ?? ''
-                );
-            }
             return $credentials;
         }
 
