@@ -11,6 +11,10 @@ jobs:
     name: Breaking Change Detector
     runs-on: ubuntu-latest
     if: ${{ !contains(github.event.pull_request.body, 'BREAKING_CHANGE_REASON=') }}
+    # Overrides the workflow default so the release PR report can be commented.
+    permissions:
+      contents: read
+      pull-requests: write
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
@@ -57,6 +61,68 @@ jobs:
             echo "❌ Error: You indicated breaking changes in your PR title (!:), but no backwards compatibility breaks were detected by the automated check."
             exit 1
           fi
+
+      # Release PRs are expected to contain breaking changes that have already
+      # been approved and justified, so they are reported as an FYI comment
+      # rather than failing the build.
+      - name: "Report BC breaks against latest release"
+        if: github.event.pull_request.user.login == 'release-please[bot]'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --global user.name "Github Actions"
+          git config --global user.email "actions@github.com"
+
+          BASE_REF=$(gh release view --json tagName --jq .tagName)
+          echo "Comparing against latest release: ${BASE_REF}"
+
+          CHANGED_COMPONENTS=$(git diff "${BASE_REF}" --name-only | grep -E '^[A-Z][a-zA-Z0-9]*/' | cut -d'/' -f1 | sort -u || true)
+
+          # The script exits non-zero per component with breaks; here that is
+          # expected, so only the report on stdout matters.
+          : > bc-report.md
+          for COMPONENT in ${CHANGED_COMPONENTS}; do
+            BC_FORMAT=markdown .github/backwards-compatibility-check.sh "${COMPONENT}" "${BASE_REF}" >> bc-report.md || true
+          done
+      - name: "Comment BC breaks on release PR"
+        if: github.event.pull_request.user.login == 'release-please[bot]'
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9
+        with:
+          script: |
+            const fs = require('fs');
+            const marker = '<!-- bc-breaking-changes -->';
+            const { owner, repo } = context.repo;
+            const issue_number = context.payload.pull_request.number;
+            const report = fs.readFileSync('bc-report.md', 'utf8').trim();
+
+            const comments = await github.paginate(github.rest.issues.listComments, {
+              owner, repo, issue_number
+            });
+            const existing = comments.find(c => c.body.startsWith(marker));
+
+            // Re-runs must clear a stale comment once the breaks are resolved.
+            if (!report) {
+              core.info('No BC breaks detected against the latest release.');
+              if (existing) {
+                await github.rest.issues.deleteComment({ owner, repo, comment_id: existing.id });
+              }
+              return;
+            }
+
+            const body = [
+              marker,
+              '## ⚠️ Backwards Compatibility Breaking Changes',
+              '',
+              'The following BC breaks were detected against the latest release. This is informational only and does not block the release.',
+              '',
+              report,
+            ].join('\n');
+
+            if (existing) {
+              await github.rest.issues.updateComment({ owner, repo, comment_id: existing.id, body });
+            } else {
+              await github.rest.issues.createComment({ owner, repo, issue_number, body });
+            }
 
   # Ensure the release PR does not contain an unexpected (e.g. 2.0.0) major version release
   # Add "MAJOR_VERSION_ALLOWED=component1,component2" to the PR description to allow major version

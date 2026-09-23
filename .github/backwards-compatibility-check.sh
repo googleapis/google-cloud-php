@@ -21,6 +21,11 @@ set -euo pipefail
 #
 # COMPONENT: The component directory name to run the backwards compatibility check for.
 # BASE_REF: Optional. The baseline git ref (e.g. 'main', 'origin/main' or a release tag) to compare against. Defaults to 'main'.
+#
+# BC_FORMAT: Optional env var. 'github-actions' (default) streams Roave
+# annotations, 'markdown' writes a collapsible report to stdout instead. In both
+# cases the exit code is non-zero when BC breaks are found, and all progress
+# messages are written to stderr.
 
 if [ "$#" -lt 1 ] || [ "$#" -gt 2 ]; then
     echo "usage: backwards-compatibility-check.sh COMPONENT [BASE_REF]"
@@ -37,11 +42,11 @@ fi
 
 # Nothing to compare against if the component is new in this change.
 if ! git rev-parse --verify "${BASE_REF}:${COMPONENT}" >/dev/null 2>&1; then
-    echo "Component ${COMPONENT} did not exist in ${BASE_REF}. Skipping check (all additions)."
+    echo "Component ${COMPONENT} did not exist in ${BASE_REF}. Skipping check (all additions)." >&2
     exit 0
 fi
 
-echo "Checking backwards compatibility for ${COMPONENT} against ${BASE_REF}"
+echo "Checking backwards compatibility for ${COMPONENT} against ${BASE_REF}" >&2
 
 TMP_DIR=$(mktemp -d)
 trap 'rm -rf "${TMP_DIR}"' EXIT
@@ -64,15 +69,30 @@ rsync -a --delete --exclude=".git/" --exclude="vendor/" --exclude="composer-loca
 
 git -C "${TMP_DIR}" add -A
 if git -C "${TMP_DIR}" diff --cached --quiet; then
-    echo "No files modified in ${COMPONENT} compared to ${BASE_REF}. Skipping check."
+    echo "No files modified in ${COMPONENT} compared to ${BASE_REF}. Skipping check." >&2
     exit 0
 fi
 git -C "${TMP_DIR}" commit -q -m "Apply local changes"
 
 ROAVE=$(command -v roave-backward-compatibility-check || echo ~/.composer/vendor/bin/roave-backward-compatibility-check)
-if ! (cd "${TMP_DIR}" && "${ROAVE}" --from=HEAD~1 --format=github-actions); then
-    echo "❌ BC breaks detected in ${COMPONENT}!"
+
+if [ "${BC_FORMAT:-github-actions}" = "markdown" ]; then
+    # Capture the report so the caller can put it in a PR comment. Progress
+    # messages go to stderr above so stdout holds nothing but the report.
+    STATUS=0
+    OUTPUT=$(cd "${TMP_DIR}" && "${ROAVE}" --from=HEAD~1 --format=markdown) || STATUS=$?
+    if [ "${STATUS}" -ne 0 ]; then
+        printf '<details>\n<summary><b>%s</b></summary>\n\n%s\n\n</details>\n\n' "${COMPONENT}" "${OUTPUT}"
+    fi
+elif ! (cd "${TMP_DIR}" && "${ROAVE}" --from=HEAD~1 --format=github-actions); then
+    STATUS=1
+else
+    STATUS=0
+fi
+
+if [ "${STATUS}" -ne 0 ]; then
+    echo "❌ BC breaks detected in ${COMPONENT}!" >&2
     exit 1
 fi
 
-echo "✅ No BC breaks detected in ${COMPONENT}."
+echo "✅ No BC breaks detected in ${COMPONENT}." >&2
