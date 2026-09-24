@@ -61,7 +61,7 @@ class StorageRequestWrapper extends RequestWrapper
     private function addToken(RequestInterface $request, array $options)
     {
         $method = strtoupper($request->getMethod());
-        if (in_array($method, ['GET', 'HEAD', 'OPTIONS'])) {
+        if (in_array($method, ['GET', 'HEAD', 'OPTIONS'], true)) {
             return $request;
         }
 
