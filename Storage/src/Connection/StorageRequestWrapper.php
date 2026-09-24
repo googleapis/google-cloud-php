@@ -36,7 +36,7 @@ class StorageRequestWrapper extends RequestWrapper
      */
     public function send(RequestInterface $request, array $options = [])
     {
-        $options = $this->addToken($request, $options);
+        $request = $this->addToken($request, $options);
         return parent::send($request, $options);
     }
 
@@ -47,7 +47,7 @@ class StorageRequestWrapper extends RequestWrapper
      */
     public function sendAsync(RequestInterface $request, array $options = [])
     {
-        $options = $this->addToken($request, $options);
+        $request = $this->addToken($request, $options);
         return parent::sendAsync($request, $options);
     }
 
@@ -56,13 +56,13 @@ class StorageRequestWrapper extends RequestWrapper
      *
      * @param RequestInterface $request
      * @param array $options
-     * @return array
+     * @return RequestInterface
      */
     private function addToken(RequestInterface $request, array $options)
     {
         $method = strtoupper($request->getMethod());
         if (in_array($method, ['GET', 'HEAD', 'OPTIONS'])) {
-            return $options;
+            return $request;
         }
 
         $hasTokenInOptions = false;
@@ -88,8 +88,8 @@ class StorageRequestWrapper extends RequestWrapper
                     }
                 }
             }
-            $options['restOptions']['headers']['x-goog-gcs-idempotency-token'] = $token;
+            $request = $request->withHeader('x-goog-gcs-idempotency-token', $token);
         }
-        return $options;
+        return $request;
     }
 }

@@ -1038,14 +1038,14 @@ class RestTest extends TestCase
     {
         $mockClient = $this->prophesize(Client::class);
         $mockClient->send(
-            Argument::type(RequestInterface::class),
-            Argument::that(function ($options) {
-                if (!isset($options['headers']['x-goog-gcs-idempotency-token'])) {
+            Argument::that(function ($request) {
+                if (!$request->hasHeader('x-goog-gcs-idempotency-token')) {
                     return false;
                 }
-                $token = $options['headers']['x-goog-gcs-idempotency-token'];
+                $token = $request->getHeaderLine('x-goog-gcs-idempotency-token');
                 return preg_match('/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/', $token) === 1;
-            })
+            }),
+            Argument::type('array')
         )->willReturn(new Response(200, [], '{}'))->shouldBeCalled();
 
         $rest = new Rest();
@@ -1124,14 +1124,14 @@ class RestTest extends TestCase
     {
         $mockClient = $this->prophesize(Client::class);
         $mockClient->send(
-            Argument::type(RequestInterface::class),
-            Argument::that(function ($options) {
-                if (!isset($options['headers']['x-goog-gcs-idempotency-token'])) {
+            Argument::that(function ($request) {
+                if (!$request->hasHeader('x-goog-gcs-idempotency-token')) {
                     return false;
                 }
-                $token = $options['headers']['x-goog-gcs-idempotency-token'];
+                $token = $request->getHeaderLine('x-goog-gcs-idempotency-token');
                 return preg_match('/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/', $token) === 1;
-            })
+            }),
+            Argument::type('array')
         )->willReturn(new Response(200, [], '{}'))->shouldBeCalled();
 
         $rest = new Rest();

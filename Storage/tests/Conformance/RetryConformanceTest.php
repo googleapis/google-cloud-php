@@ -238,7 +238,6 @@ class RetryConformanceTest extends TestCase
         $precondtionProvided,
         $invocationIndex
     ) {
-        self::markTestSkipped('Conformance tests are currently blocked for idempotency tokens feature.');
         $caseId = $this->createRetryTestResource($methodName, $instructions, null);
 
         $methodInvocations = self::getMethodInvocationMapping();
