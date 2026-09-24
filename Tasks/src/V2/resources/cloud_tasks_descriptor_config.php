@@ -23,6 +23,44 @@
 return [
     'interfaces' => [
         'google.cloud.tasks.v2.CloudTasks' => [
+            'BatchCreateTasks' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Tasks\V2\BatchCreateTasksResponse',
+                    'metadataReturnType' => '\Google\Cloud\Tasks\V2\BatchCreateTasksMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchDeleteTasks' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
+                    'metadataReturnType' => '\Google\Cloud\Tasks\V2\BatchDeleteTasksMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateQueue' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Tasks\V2\Queue',
@@ -62,6 +100,18 @@ return [
             'DeleteTask' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Protobuf\GPBEmpty',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetCmekConfig' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Tasks\V2\CmekConfig',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -219,6 +269,19 @@ return [
                     ],
                 ],
             ],
+            'UpdateCmekConfig' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Tasks\V2\CmekConfig',
+                'headerParams' => [
+                    [
+                        'keyName' => 'cmek_config.name',
+                        'fieldAccessors' => [
+                            'getCmekConfig',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateQueue' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Tasks\V2\Queue',
@@ -267,6 +330,8 @@ return [
                 'interfaceOverride' => 'google.cloud.location.Locations',
             ],
             'templateMap' => [
+                'cmekConfig' => 'projects/{project}/locations/{location}/cmekConfig',
+                'cryptoKey' => 'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}',
                 'location' => 'projects/{project}/locations/{location}',
                 'queue' => 'projects/{project}/locations/{location}/queues/{queue}',
                 'task' => 'projects/{project}/locations/{location}/queues/{queue}/tasks/{task}',

@@ -38,6 +38,14 @@ class DeleteInstanceRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string request_id = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
      */
     protected $request_id = '';
+    /**
+     * Optional. If set to true, any sub-resources from this instance will also be
+     * deleted. Otherwise, the request will only work if the instance has no
+     * sub-resources.
+     *
+     * Generated from protobuf field <code>bool force = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $force = false;
 
     /**
      * @param string $name Required. The resource name of the instance to delete, in the format
@@ -75,6 +83,10 @@ class DeleteInstanceRequest extends \Google\Protobuf\Internal\Message
      *           clients from accidentally creating duplicate commitments.
      *           The request ID must be a valid UUID with the exception that zero UUID is
      *           not supported (00000000-0000-0000-0000-000000000000).
+     *     @type bool $force
+     *           Optional. If set to true, any sub-resources from this instance will also be
+     *           deleted. Otherwise, the request will only work if the instance has no
+     *           sub-resources.
      * }
      */
     public function __construct($data = NULL) {
@@ -152,6 +164,36 @@ class DeleteInstanceRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->request_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If set to true, any sub-resources from this instance will also be
+     * deleted. Otherwise, the request will only work if the instance has no
+     * sub-resources.
+     *
+     * Generated from protobuf field <code>bool force = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getForce()
+    {
+        return $this->force;
+    }
+
+    /**
+     * Optional. If set to true, any sub-resources from this instance will also be
+     * deleted. Otherwise, the request will only work if the instance has no
+     * sub-resources.
+     *
+     * Generated from protobuf field <code>bool force = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setForce($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->force = $var;
 
         return $this;
     }

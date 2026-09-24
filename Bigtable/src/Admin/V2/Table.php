@@ -77,6 +77,15 @@ class Table extends \Google\Protobuf\Internal\Message
      */
     protected $deletion_protection = false;
     /**
+     * Output only. The effective automated backup policy applied to the table.
+     * This represents the policy actually in effect, which may be a
+     * system-default policy if the user has not explicitly configured one.
+     * Views: `SCHEMA_VIEW`, `FULL`.
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Table.AutomatedBackupPolicy effective_automated_backup_policy = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $effective_automated_backup_policy = null;
+    /**
      * Rules to specify what data is stored in each storage tier.
      * Different tiers store data differently, providing different trade-offs
      * between cost and performance. Different parts of a table can be stored
@@ -187,6 +196,11 @@ class Table extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Bigtable\Admin\V2\Table\AutomatedBackupPolicy $automated_backup_policy
      *           If specified, automated backups are enabled for this table.
      *           Otherwise, automated backups are disabled.
+     *     @type \Google\Cloud\Bigtable\Admin\V2\Table\AutomatedBackupPolicy $effective_automated_backup_policy
+     *           Output only. The effective automated backup policy applied to the table.
+     *           This represents the policy actually in effect, which may be a
+     *           system-default policy if the user has not explicitly configured one.
+     *           Views: `SCHEMA_VIEW`, `FULL`.
      *     @type \Google\Cloud\Bigtable\Admin\V2\TieredStorageConfig $tiered_storage_config
      *           Rules to specify what data is stored in each storage tier.
      *           Different tiers store data differently, providing different trade-offs
@@ -521,6 +535,48 @@ class Table extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\Admin\V2\Table\AutomatedBackupPolicy::class);
         $this->writeOneof(13, $var);
+
+        return $this;
+    }
+
+    /**
+     * Output only. The effective automated backup policy applied to the table.
+     * This represents the policy actually in effect, which may be a
+     * system-default policy if the user has not explicitly configured one.
+     * Views: `SCHEMA_VIEW`, `FULL`.
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Table.AutomatedBackupPolicy effective_automated_backup_policy = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Bigtable\Admin\V2\Table\AutomatedBackupPolicy|null
+     */
+    public function getEffectiveAutomatedBackupPolicy()
+    {
+        return $this->effective_automated_backup_policy;
+    }
+
+    public function hasEffectiveAutomatedBackupPolicy()
+    {
+        return isset($this->effective_automated_backup_policy);
+    }
+
+    public function clearEffectiveAutomatedBackupPolicy()
+    {
+        unset($this->effective_automated_backup_policy);
+    }
+
+    /**
+     * Output only. The effective automated backup policy applied to the table.
+     * This represents the policy actually in effect, which may be a
+     * system-default policy if the user has not explicitly configured one.
+     * Views: `SCHEMA_VIEW`, `FULL`.
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Table.AutomatedBackupPolicy effective_automated_backup_policy = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Bigtable\Admin\V2\Table\AutomatedBackupPolicy $var
+     * @return $this
+     */
+    public function setEffectiveAutomatedBackupPolicy($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\Admin\V2\Table\AutomatedBackupPolicy::class);
+        $this->effective_automated_backup_policy = $var;
 
         return $this;
     }

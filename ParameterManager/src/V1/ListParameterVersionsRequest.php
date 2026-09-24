@@ -30,7 +30,10 @@ class ListParameterVersionsRequest extends \Google\Protobuf\Internal\Message
      */
     protected $page_size = 0;
     /**
-     * Optional. A token identifying a page of results the server should return.
+     * Optional. A page token, received from a previous `ListParameterVersions`
+     * call. Provide this to retrieve the subsequent page.
+     * When paginating, all other parameters provided to `ListParameterVersions`
+     * must match the call that provided the page token.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -76,7 +79,10 @@ class ListParameterVersionsRequest extends \Google\Protobuf\Internal\Message
      *           Optional. Requested page size. Server may return fewer items than
      *           requested. If unspecified, server will pick an appropriate default.
      *     @type string $page_token
-     *           Optional. A token identifying a page of results the server should return.
+     *           Optional. A page token, received from a previous `ListParameterVersions`
+     *           call. Provide this to retrieve the subsequent page.
+     *           When paginating, all other parameters provided to `ListParameterVersions`
+     *           must match the call that provided the page token.
      *     @type string $filter
      *           Optional. Filtering results
      *     @type string $order_by
@@ -145,7 +151,10 @@ class ListParameterVersionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A token identifying a page of results the server should return.
+     * Optional. A page token, received from a previous `ListParameterVersions`
+     * call. Provide this to retrieve the subsequent page.
+     * When paginating, all other parameters provided to `ListParameterVersions`
+     * must match the call that provided the page token.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -156,7 +165,10 @@ class ListParameterVersionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A token identifying a page of results the server should return.
+     * Optional. A page token, received from a previous `ListParameterVersions`
+     * call. Provide this to retrieve the subsequent page.
+     * When paginating, all other parameters provided to `ListParameterVersions`
+     * must match the call that provided the page token.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

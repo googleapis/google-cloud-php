@@ -39,18 +39,32 @@ use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
 use Google\Cloud\ParameterManager\V1\CreateParameterRequest;
 use Google\Cloud\ParameterManager\V1\CreateParameterVersionRequest;
+use Google\Cloud\ParameterManager\V1\CreateTemplateRequest;
+use Google\Cloud\ParameterManager\V1\CreateTemplateVersionRequest;
 use Google\Cloud\ParameterManager\V1\DeleteParameterRequest;
 use Google\Cloud\ParameterManager\V1\DeleteParameterVersionRequest;
+use Google\Cloud\ParameterManager\V1\DeleteTemplateRequest;
+use Google\Cloud\ParameterManager\V1\DeleteTemplateVersionRequest;
 use Google\Cloud\ParameterManager\V1\GetParameterRequest;
 use Google\Cloud\ParameterManager\V1\GetParameterVersionRequest;
+use Google\Cloud\ParameterManager\V1\GetTemplateRequest;
+use Google\Cloud\ParameterManager\V1\GetTemplateVersionRequest;
 use Google\Cloud\ParameterManager\V1\ListParameterVersionsRequest;
 use Google\Cloud\ParameterManager\V1\ListParametersRequest;
+use Google\Cloud\ParameterManager\V1\ListTemplateVersionsRequest;
+use Google\Cloud\ParameterManager\V1\ListTemplatesRequest;
 use Google\Cloud\ParameterManager\V1\Parameter;
 use Google\Cloud\ParameterManager\V1\ParameterVersion;
 use Google\Cloud\ParameterManager\V1\RenderParameterVersionRequest;
 use Google\Cloud\ParameterManager\V1\RenderParameterVersionResponse;
+use Google\Cloud\ParameterManager\V1\RenderTemplateVersionRequest;
+use Google\Cloud\ParameterManager\V1\RenderTemplateVersionResponse;
+use Google\Cloud\ParameterManager\V1\Template;
+use Google\Cloud\ParameterManager\V1\TemplateVersion;
 use Google\Cloud\ParameterManager\V1\UpdateParameterRequest;
 use Google\Cloud\ParameterManager\V1\UpdateParameterVersionRequest;
+use Google\Cloud\ParameterManager\V1\UpdateTemplateRequest;
+use Google\Cloud\ParameterManager\V1\UpdateTemplateVersionRequest;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
 
@@ -67,15 +81,26 @@ use Psr\Log\LoggerInterface;
  *
  * @method PromiseInterface<Parameter> createParameterAsync(CreateParameterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ParameterVersion> createParameterVersionAsync(CreateParameterVersionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Template> createTemplateAsync(CreateTemplateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TemplateVersion> createTemplateVersionAsync(CreateTemplateVersionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteParameterAsync(DeleteParameterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteParameterVersionAsync(DeleteParameterVersionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteTemplateAsync(DeleteTemplateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteTemplateVersionAsync(DeleteTemplateVersionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Parameter> getParameterAsync(GetParameterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ParameterVersion> getParameterVersionAsync(GetParameterVersionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Template> getTemplateAsync(GetTemplateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TemplateVersion> getTemplateVersionAsync(GetTemplateVersionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listParameterVersionsAsync(ListParameterVersionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listParametersAsync(ListParametersRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listTemplateVersionsAsync(ListTemplateVersionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listTemplatesAsync(ListTemplatesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<RenderParameterVersionResponse> renderParameterVersionAsync(RenderParameterVersionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<RenderTemplateVersionResponse> renderTemplateVersionAsync(RenderTemplateVersionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Parameter> updateParameterAsync(UpdateParameterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ParameterVersion> updateParameterVersionAsync(UpdateParameterVersionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Template> updateTemplateAsync(UpdateTemplateRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TemplateVersion> updateTemplateVersionAsync(UpdateTemplateVersionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
@@ -212,6 +237,50 @@ final class ParameterManagerClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a template
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $template
+     *
+     * @return string The formatted template resource.
+     */
+    public static function templateName(string $project, string $location, string $template): string
+    {
+        return self::getPathTemplate('template')->render([
+            'project' => $project,
+            'location' => $location,
+            'template' => $template,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * template_version resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $template
+     * @param string $templateVersion
+     *
+     * @return string The formatted template_version resource.
+     */
+    public static function templateVersionName(
+        string $project,
+        string $location,
+        string $template,
+        string $templateVersion
+    ): string {
+        return self::getPathTemplate('templateVersion')->render([
+            'project' => $project,
+            'location' => $location,
+            'template' => $template,
+            'template_version' => $templateVersion,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
@@ -219,6 +288,8 @@ final class ParameterManagerClient
      * - location: projects/{project}/locations/{location}
      * - parameter: projects/{project}/locations/{location}/parameters/{parameter}
      * - parameterVersion: projects/{project}/locations/{location}/parameters/{parameter}/versions/{parameter_version}
+     * - template: projects/{project}/locations/{location}/templates/{template}
+     * - templateVersion: projects/{project}/locations/{location}/templates/{template}/versions/{template_version}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -379,6 +450,61 @@ final class ParameterManagerClient
     }
 
     /**
+     * Creates a new Template in a given project and location.
+     *
+     * The async variant is {@see ParameterManagerClient::createTemplateAsync()} .
+     *
+     * @example samples/V1/ParameterManagerClient/create_template.php
+     *
+     * @param CreateTemplateRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Template
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createTemplate(CreateTemplateRequest $request, array $callOptions = []): Template
+    {
+        return $this->startApiCall('CreateTemplate', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates a new TemplateVersion in a given project, location, and template.
+     *
+     * The async variant is {@see ParameterManagerClient::createTemplateVersionAsync()}
+     * .
+     *
+     * @example samples/V1/ParameterManagerClient/create_template_version.php
+     *
+     * @param CreateTemplateVersionRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return TemplateVersion
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createTemplateVersion(
+        CreateTemplateVersionRequest $request,
+        array $callOptions = []
+    ): TemplateVersion {
+        return $this->startApiCall('CreateTemplateVersion', $request, $callOptions)->wait();
+    }
+
+    /**
      * Deletes a single Parameter.
      *
      * The async variant is {@see ParameterManagerClient::deleteParameterAsync()} .
@@ -425,6 +551,55 @@ final class ParameterManagerClient
     public function deleteParameterVersion(DeleteParameterVersionRequest $request, array $callOptions = []): void
     {
         $this->startApiCall('DeleteParameterVersion', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a single Template.
+     *
+     * The async variant is {@see ParameterManagerClient::deleteTemplateAsync()} .
+     *
+     * @example samples/V1/ParameterManagerClient/delete_template.php
+     *
+     * @param DeleteTemplateRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteTemplate(DeleteTemplateRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('DeleteTemplate', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a single TemplateVersion.
+     *
+     * The async variant is {@see ParameterManagerClient::deleteTemplateVersionAsync()}
+     * .
+     *
+     * @example samples/V1/ParameterManagerClient/delete_template_version.php
+     *
+     * @param DeleteTemplateVersionRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteTemplateVersion(DeleteTemplateVersionRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('DeleteTemplateVersion', $request, $callOptions)->wait();
     }
 
     /**
@@ -477,6 +652,58 @@ final class ParameterManagerClient
     public function getParameterVersion(GetParameterVersionRequest $request, array $callOptions = []): ParameterVersion
     {
         return $this->startApiCall('GetParameterVersion', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets details of a single Template.
+     *
+     * The async variant is {@see ParameterManagerClient::getTemplateAsync()} .
+     *
+     * @example samples/V1/ParameterManagerClient/get_template.php
+     *
+     * @param GetTemplateRequest $request     A request to house fields associated with the call.
+     * @param array              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Template
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getTemplate(GetTemplateRequest $request, array $callOptions = []): Template
+    {
+        return $this->startApiCall('GetTemplate', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets details of a single TemplateVersion.
+     *
+     * The async variant is {@see ParameterManagerClient::getTemplateVersionAsync()} .
+     *
+     * @example samples/V1/ParameterManagerClient/get_template_version.php
+     *
+     * @param GetTemplateVersionRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return TemplateVersion
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getTemplateVersion(GetTemplateVersionRequest $request, array $callOptions = []): TemplateVersion
+    {
+        return $this->startApiCall('GetTemplateVersion', $request, $callOptions)->wait();
     }
 
     /**
@@ -535,6 +762,61 @@ final class ParameterManagerClient
     }
 
     /**
+     * Lists TemplateVersions in a given project, location, and template.
+     *
+     * The async variant is {@see ParameterManagerClient::listTemplateVersionsAsync()}
+     * .
+     *
+     * @example samples/V1/ParameterManagerClient/list_template_versions.php
+     *
+     * @param ListTemplateVersionsRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listTemplateVersions(
+        ListTemplateVersionsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('ListTemplateVersions', $request, $callOptions);
+    }
+
+    /**
+     * Lists Templates in a given project and location.
+     *
+     * The async variant is {@see ParameterManagerClient::listTemplatesAsync()} .
+     *
+     * @example samples/V1/ParameterManagerClient/list_templates.php
+     *
+     * @param ListTemplatesRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listTemplates(ListTemplatesRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListTemplates', $request, $callOptions);
+    }
+
+    /**
      * Gets rendered version of a ParameterVersion.
      *
      * The async variant is
@@ -561,6 +843,35 @@ final class ParameterManagerClient
         array $callOptions = []
     ): RenderParameterVersionResponse {
         return $this->startApiCall('RenderParameterVersion', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets rendered version of a TemplateVersion.
+     *
+     * The async variant is {@see ParameterManagerClient::renderTemplateVersionAsync()}
+     * .
+     *
+     * @example samples/V1/ParameterManagerClient/render_template_version.php
+     *
+     * @param RenderTemplateVersionRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return RenderTemplateVersionResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function renderTemplateVersion(
+        RenderTemplateVersionRequest $request,
+        array $callOptions = []
+    ): RenderTemplateVersionResponse {
+        return $this->startApiCall('RenderTemplateVersion', $request, $callOptions)->wait();
     }
 
     /**
@@ -619,6 +930,61 @@ final class ParameterManagerClient
     }
 
     /**
+     * Updates a single Template.
+     *
+     * The async variant is {@see ParameterManagerClient::updateTemplateAsync()} .
+     *
+     * @example samples/V1/ParameterManagerClient/update_template.php
+     *
+     * @param UpdateTemplateRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Template
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateTemplate(UpdateTemplateRequest $request, array $callOptions = []): Template
+    {
+        return $this->startApiCall('UpdateTemplate', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates a single TemplateVersion.
+     *
+     * The async variant is {@see ParameterManagerClient::updateTemplateVersionAsync()}
+     * .
+     *
+     * @example samples/V1/ParameterManagerClient/update_template_version.php
+     *
+     * @param UpdateTemplateVersionRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return TemplateVersion
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateTemplateVersion(
+        UpdateTemplateVersionRequest $request,
+        array $callOptions = []
+    ): TemplateVersion {
+        return $this->startApiCall('UpdateTemplateVersion', $request, $callOptions)->wait();
+    }
+
+    /**
      * Gets information about a location.
      *
      * The async variant is {@see ParameterManagerClient::getLocationAsync()} .
@@ -646,6 +1012,21 @@ final class ParameterManagerClient
 
     /**
      * Lists information about the supported locations for this service.
+     *
+     * This method lists locations based on the resource scope provided in
+     * the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+     * **Global locations**: If `name` is empty, the method lists the
+     * public locations available to all projects. * **Project-specific
+     * locations**: If `name` follows the format
+     * `projects/{project}`, the method lists locations visible to that
+     * specific project. This includes public, private, or other
+     * project-specific locations enabled for the project.
+     *
+     * For gRPC and client library implementations, the resource name is
+     * passed as the `name` field. For direct service calls, the resource
+     * name is
+     * incorporated into the request path based on the specific service
+     * implementation and version.
      *
      * The async variant is {@see ParameterManagerClient::listLocationsAsync()} .
      *

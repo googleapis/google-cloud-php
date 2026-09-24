@@ -28,6 +28,7 @@ class SearchSpacesResponse extends \Google\Protobuf\Internal\Message
     /**
      * A token that can be used to retrieve the next page. If this field is empty,
      * there are no subsequent pages.
+     * Only populated when `useAdminAccess` is set to `true`.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
@@ -35,6 +36,7 @@ class SearchSpacesResponse extends \Google\Protobuf\Internal\Message
     /**
      * The total number of spaces that match the query, across all pages. If the
      * result is over 10,000 spaces, this value is an estimate.
+     * Only populated when `useAdminAccess` is set to `true`.
      *
      * Generated from protobuf field <code>int32 total_size = 3;</code>
      */
@@ -60,9 +62,11 @@ class SearchSpacesResponse extends \Google\Protobuf\Internal\Message
      *     @type string $next_page_token
      *           A token that can be used to retrieve the next page. If this field is empty,
      *           there are no subsequent pages.
+     *           Only populated when `useAdminAccess` is set to `true`.
      *     @type int $total_size
      *           The total number of spaces that match the query, across all pages. If the
      *           result is over 10,000 spaces, this value is an estimate.
+     *           Only populated when `useAdminAccess` is set to `true`.
      *     @type \Google\Apps\Chat\V1\SearchSpacesResponse\SearchSpaceResult[] $results
      *           Output only. The list of search results that matched the query.
      * }
@@ -115,6 +119,7 @@ class SearchSpacesResponse extends \Google\Protobuf\Internal\Message
     /**
      * A token that can be used to retrieve the next page. If this field is empty,
      * there are no subsequent pages.
+     * Only populated when `useAdminAccess` is set to `true`.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @return string
@@ -127,6 +132,7 @@ class SearchSpacesResponse extends \Google\Protobuf\Internal\Message
     /**
      * A token that can be used to retrieve the next page. If this field is empty,
      * there are no subsequent pages.
+     * Only populated when `useAdminAccess` is set to `true`.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @param string $var
@@ -143,6 +149,7 @@ class SearchSpacesResponse extends \Google\Protobuf\Internal\Message
     /**
      * The total number of spaces that match the query, across all pages. If the
      * result is over 10,000 spaces, this value is an estimate.
+     * Only populated when `useAdminAccess` is set to `true`.
      *
      * Generated from protobuf field <code>int32 total_size = 3;</code>
      * @return int
@@ -155,6 +162,7 @@ class SearchSpacesResponse extends \Google\Protobuf\Internal\Message
     /**
      * The total number of spaces that match the query, across all pages. If the
      * result is over 10,000 spaces, this value is an estimate.
+     * Only populated when `useAdminAccess` is set to `true`.
      *
      * Generated from protobuf field <code>int32 total_size = 3;</code>
      * @param int $var

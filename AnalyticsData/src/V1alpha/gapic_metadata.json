@@ -10,6 +10,11 @@
                 "grpc": {
                     "libraryClient": "AlphaAnalyticsDataClient",
                     "rpcs": {
+                        "Chat": {
+                            "methods": [
+                                "chat"
+                            ]
+                        },
                         "CreateAudienceList": {
                             "methods": [
                                 "createAudienceList"

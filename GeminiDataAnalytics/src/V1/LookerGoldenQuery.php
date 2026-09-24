@@ -19,6 +19,7 @@ class LookerGoldenQuery extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Natural language questions that a user might ask.
      * For example: "How many orders were placed last month?"
+     * Must be at most 2,000 bytes per question (approx. 2,000 characters).
      *
      * Generated from protobuf field <code>repeated string natural_language_questions = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -39,6 +40,7 @@ class LookerGoldenQuery extends \Google\Protobuf\Internal\Message
      *     @type string[] $natural_language_questions
      *           Optional. Natural language questions that a user might ask.
      *           For example: "How many orders were placed last month?"
+     *           Must be at most 2,000 bytes per question (approx. 2,000 characters).
      *     @type \Google\Cloud\GeminiDataAnalytics\V1\LookerQuery $looker_query
      *           Optional. The Looker Query corresponding to the natural language questions.
      * }
@@ -51,6 +53,7 @@ class LookerGoldenQuery extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Natural language questions that a user might ask.
      * For example: "How many orders were placed last month?"
+     * Must be at most 2,000 bytes per question (approx. 2,000 characters).
      *
      * Generated from protobuf field <code>repeated string natural_language_questions = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return RepeatedField<string>
@@ -63,6 +66,7 @@ class LookerGoldenQuery extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Natural language questions that a user might ask.
      * For example: "How many orders were placed last month?"
+     * Must be at most 2,000 bytes per question (approx. 2,000 characters).
      *
      * Generated from protobuf field <code>repeated string natural_language_questions = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string[] $var

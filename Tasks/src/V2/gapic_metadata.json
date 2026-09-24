@@ -10,6 +10,16 @@
                 "grpc": {
                     "libraryClient": "CloudTasksClient",
                     "rpcs": {
+                        "BatchCreateTasks": {
+                            "methods": [
+                                "batchCreateTasks"
+                            ]
+                        },
+                        "BatchDeleteTasks": {
+                            "methods": [
+                                "batchDeleteTasks"
+                            ]
+                        },
                         "CreateQueue": {
                             "methods": [
                                 "createQueue"
@@ -28,6 +38,11 @@
                         "DeleteTask": {
                             "methods": [
                                 "deleteTask"
+                            ]
+                        },
+                        "GetCmekConfig": {
+                            "methods": [
+                                "getCmekConfig"
                             ]
                         },
                         "GetIamPolicy": {
@@ -83,6 +98,11 @@
                         "TestIamPermissions": {
                             "methods": [
                                 "testIamPermissions"
+                            ]
+                        },
+                        "UpdateCmekConfig": {
+                            "methods": [
+                                "updateCmekConfig"
                             ]
                         },
                         "UpdateQueue": {

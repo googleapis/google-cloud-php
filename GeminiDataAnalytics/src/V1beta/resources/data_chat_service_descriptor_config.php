@@ -126,6 +126,19 @@ return [
                     ],
                 ],
             ],
+            'UpdateConversation' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\GeminiDataAnalytics\V1beta\Conversation',
+                'headerParams' => [
+                    [
+                        'keyName' => 'conversation.name',
+                        'fieldAccessors' => [
+                            'getConversation',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetLocation' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Location\Location',
