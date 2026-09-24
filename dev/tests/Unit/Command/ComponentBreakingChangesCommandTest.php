@@ -154,6 +154,37 @@ class ComponentBreakingChangesCommandTest extends TestCase
         $this->assertStringContainsString('inV57()', (string) $fooContents);
     }
 
+    public function testGaOnlyOptionFiltersOutPre10ComponentsWhenEnabled(): void
+    {
+        $this->fs->dumpFile($this->rootDir . '/Alpha/VERSION', "0.13.1\n");
+        $this->fs->dumpFile($this->rootDir . '/Alpha/src/Foo.php', '<?php class Foo { public function x(int $a) {} }');
+        $this->fs->dumpFile($this->rootDir . '/Beta/VERSION', "1.2.0\n");
+        $this->fs->dumpFile($this->rootDir . '/Beta/src/Baz.php', '<?php class Baz { public function y(int $b) {} }');
+        $this->commitAll('break pre-1.0 Alpha and GA Beta');
+
+        $checked = [];
+        $runner = function (string $wt) use (&$checked) {
+            $composer = json_decode((string) file_get_contents($wt . '/composer.json'), true);
+            $checked[] = $composer['name'];
+            return [false, ''];
+        };
+        $tester = new CommandTester(new ComponentBreakingChangesCommand($this->rootDir, $runner));
+
+        // Default (--ga-only = false): checks both Alpha (0.13.1) and Beta (1.2.0)
+        $code = $tester->execute(['--base-ref' => 'baseline'], ['capture_stderr_separately' => true]);
+        $this->assertSame(Command::SUCCESS, $code);
+        $this->assertSame(['google/alpha', 'google/beta'], $checked);
+
+        // With --ga-only: filters out Alpha (0.13.1) before running and only checks Beta (1.2.0)
+        $checked = [];
+        $code = $tester->execute(
+            ['--base-ref' => 'baseline', '--ga-only' => true],
+            ['capture_stderr_separately' => true]
+        );
+        $this->assertSame(Command::SUCCESS, $code);
+        $this->assertSame(['google/beta'], $checked);
+    }
+
     public function testRejectsLowercaseComponentName(): void
     {
         $cmd = new ComponentBreakingChangesCommand($this->rootDir);
