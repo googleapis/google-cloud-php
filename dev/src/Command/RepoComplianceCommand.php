@@ -67,9 +67,13 @@ class RepoComplianceCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        if (!$token = $input->getOption('token')) {
+            throw new InvalidArgumentException('A Github token is required (via --token or -t)');
+        }
+
         // Create github client wrapper
         $http = new Client();
-        $this->github = new GitHub(new RunShell(), $http, (string) $input->getOption('token'), $output);
+        $this->github = new GitHub(new RunShell(), $http, $token, $output);
         $this->packagist = new Packagist($http, self::PACKAGIST_USERNAME, $input->getOption('packagist-token') ?? '');
 
         $format = $input->getOption('format');
@@ -100,7 +104,7 @@ class RepoComplianceCommand extends Command
             ? array_map(fn ($c) => new Component($c), $input->getOption('component'))
             : Component::getComponents();
 
-        $emoji = fn ($check) => match ($check) { 'skipped' => '⚪', false => '❌', true => '✅', null => '❓'};
+        $emoji = fn ($check) => match ($check) { 'skipped' => '⚪', false => '❌', true => '✅'};
         $failed = [];
         foreach ($components as $i => $component) {
             $isNewComponent = $component->getPackageVersion() === '0.0.0'
@@ -123,7 +127,7 @@ class RepoComplianceCommand extends Command
                     $refreshDetails |= $this->askFixSettingsCompliance($input, $output, $details);
                 }
                 if ($webhookCheck !== 'skipped' && !$this->checkWebhookCompliance($details)) {
-                    $webhookCheck = $this->github->token ? ($isNewComponent ? 'skipped' : false) : null;
+                    $webhookCheck = $isNewComponent ? 'skipped' : false;
                     $refreshDetails |= $this->askFixWebhookCompliance($input, $output, $details);
                 }
                 if ($packagistCheck !== 'skipped' && !$this->checkPackagistCompliance($details)) {
@@ -133,7 +137,7 @@ class RepoComplianceCommand extends Command
                     $details['packagist_config'] ??= '**PACKAGE NOT FOUND**';
                 }
                 if ($teamsCheck !== 'skipped' && !$this->checkTeamCompliance($details)) {
-                    $teamsCheck = $this->github->token ? false : null;
+                    $teamsCheck = false;
                     $refreshDetails |= $this->askFixTeamCompliance($input, $output, $component->getRepoName());
                 }
             } while ($refreshDetails);
@@ -186,8 +190,8 @@ discussions: false";
 
     private function askFixSettingsCompliance(InputInterface $input, OutputInterface $output, array $details)
     {
-        if (!$this->github->token || $input->getOption('format') == 'ci') {
-            // without a token, or in CI mode, don't ask to fix compliance
+        if ($input->getOption('format') == 'ci') {
+            // in CI mode, don't ask to fix compliance
             return false;
         }
         $explodedConfig = array_map(fn ($line) => explode(': ', $line), explode("\n", $details['repo_config']));
@@ -213,10 +217,6 @@ discussions: false";
 
     private function checkWebhookCompliance(array $details): bool
     {
-        if (!$this->github->token) {
-            return false;
-        }
-
         $repoName = 'googleapis/' . $details['name'];
         $webhookUrl = $this->packagist->getWebhookUrl();
 
@@ -225,8 +225,8 @@ discussions: false";
 
     private function askFixWebhookCompliance(InputInterface $input, OutputInterface $output, array $details)
     {
-        if (!$this->github->token || $input->getOption('format') == 'ci') {
-            // without a token, or in CI mode, don't ask to fix compliance
+        if ($input->getOption('format') == 'ci') {
+            // in CI mode, don't ask to fix compliance
             return false;
         }
 
@@ -263,8 +263,8 @@ discussions: false";
 
     private function askFixPackagistCompliance(InputInterface $input, OutputInterface $output, array $details)
     {
-        if (!$this->github->token || $input->getOption('format') == 'ci' || $details['packagist_config'] === null) {
-            // cannot fix compliance without a token, or in CI mode, or without packagist config
+        if ($input->getOption('format') == 'ci' || $details['packagist_config'] === null) {
+            // cannot fix compliance in CI mode, or without packagist config
             return false;
         }
         throw new \Exception('not implemented');
@@ -272,8 +272,8 @@ discussions: false";
 
     private function askFixTeamCompliance(InputInterface $input, OutputInterface $output, string $repoName)
     {
-        if (!$this->github->token || $input->getOption('format') == 'ci') {
-            // without a token, or in CI mode, don't ask to fix compliance
+        if ($input->getOption('format') == 'ci') {
+            // in CI mode, don't ask to fix compliance
             return false;
         }
         $question = new ConfirmationQuestion(sprintf(
@@ -320,9 +320,6 @@ discussions: false";
 
     private function getRepoTeamDetails(Component $component)
     {
-        if (!$this->github->token) {
-            return '**Token Required**';
-        }
         // get team fields
         $teams = $this->github->getTeams($component->getRepoName());
         if (is_null($teams)) {
