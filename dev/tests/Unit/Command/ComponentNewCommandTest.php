@@ -37,7 +37,6 @@ class ComponentNewCommandTest extends TestCase
 
     private static $expectedFiles = [
         '.gitattributes' => null,
-        '.github/pull_request_template.md' => null,
         'CONTRIBUTING.md' => null,
         'LICENSE' => null,
         'README.md' => null,
