@@ -12,6 +12,7 @@ Available commands:
   list                            List commands
  component
   component:add-version           Add a new version to an existing Component
+  component:breaking-changes      Detect backwards compatibility breaks in modified components
   component:info                  [info] list info of a component or the whole library
   component:new                   Add a new Component
   component:update                Update one or all components using Owlbot
@@ -31,6 +32,21 @@ Additionally, there are scripts in the `sh` directory which are used in our CI:
 | ------------------- | --------------------------- |
 | `sh/static-analysis`| Run phpstan static ananlysis|
 | `sh/style-fix`      | Run phpcs style check       |
+
+### Checking for Breaking Changes Between Releases
+
+Use `component:breaking-changes` with `--base-ref` and `--target-ref` to inspect breaking changes between two releases or against the current branch:
+
+```sh
+# Check breaking changes between two release tags
+./dev/google-cloud component:breaking-changes --base-ref=v0.56.0 --target-ref=v0.57.0
+
+# Check all components modified since v0.346.0 on the current branch
+./dev/google-cloud component:breaking-changes --base-ref=v0.346.0
+
+# Check specific components against a release tag
+./dev/google-cloud component:breaking-changes --base-ref=v0.346.0 -c Storage -c BigQuery
+```
 
 ## Installation & Troubleshooting
 
