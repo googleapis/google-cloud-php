@@ -22,6 +22,7 @@ use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\VideoIntelligence\V1\Client\VideoIntelligenceServiceClient;
 use Prophecy\PhpUnit\ProphecyTrait;
+use Google\Cloud\Core\RequestWrapper;
 use ReflectionClass;
 
 /**
@@ -82,7 +83,7 @@ class AuthenticationTest extends SnippetTestCase
         $this->assertInstanceOf(StorageClient::class, $client);
         $connection = (new ReflectionClass($client))->getProperty('connection')->getValue($client);
         $requestWrapper = (new ReflectionClass($connection))->getProperty('requestWrapper')->getValue($connection);
-        $creds = (new ReflectionClass(\Google\Cloud\Core\RequestWrapper::class))->getProperty('credentialsFetcher')->getValue($requestWrapper);
+        $creds = (new ReflectionClass(RequestWrapper::class))->getProperty('credentialsFetcher')->getValue($requestWrapper);
         $this->assertInstanceOf(ServiceAccountCredentials::class, $creds);
         $this->assertEquals($clientEmail, $creds->getClientName());
     }
