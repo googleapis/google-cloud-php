@@ -58,9 +58,17 @@ class State
     /**
      * The instance is being updated.
      *
-     * Generated from protobuf enum <code>UPDATING = 7;</code>
+     * Generated from protobuf enum <code>UPDATING = 7 [deprecated = true];</code>
      */
     const UPDATING = 7;
+    /**
+     * The instance is suspended due to an issue related to Cloud KMS. The
+     * details are available in
+     * [state_reason][google.cloud.lustre.v1.Instance.state_reason].
+     *
+     * Generated from protobuf enum <code>SUSPENDED = 8;</code>
+     */
+    const SUSPENDED = 8;
 
     private static $valueToName = [
         self::STATE_UNSPECIFIED => 'STATE_UNSPECIFIED',
@@ -71,6 +79,7 @@ class State
         self::REPAIRING => 'REPAIRING',
         self::STOPPED => 'STOPPED',
         self::UPDATING => 'UPDATING',
+        self::SUSPENDED => 'SUSPENDED',
     ];
 
     public static function name($value)

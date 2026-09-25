@@ -24,10 +24,10 @@ class BigQueryTableReferences extends \Google\Protobuf\Internal\Message
      */
     private $table_references;
     /**
-     * Optional. Preview feature. References to BigQuery property graphs.
-     * Note: Data sources must exclusively use either tables or property graphs,
-     * not both. When using property graphs, a maximum of one graph reference is
-     * supported.
+     * Optional. References to BigQuery graphs.
+     * Note: "property graph" is the former name for BigQuery Graph. The field and
+     * message names retain the original term for backward compatibility; both
+     * refer to the same resource.
      *
      * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.BigQueryPropertyGraphReference property_graph_references = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -48,10 +48,10 @@ class BigQueryTableReferences extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\BigQueryTableReference[] $table_references
      *           Optional. References to BigQuery tables.
      *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\BigQueryPropertyGraphReference[] $property_graph_references
-     *           Optional. Preview feature. References to BigQuery property graphs.
-     *           Note: Data sources must exclusively use either tables or property graphs,
-     *           not both. When using property graphs, a maximum of one graph reference is
-     *           supported.
+     *           Optional. References to BigQuery graphs.
+     *           Note: "property graph" is the former name for BigQuery Graph. The field and
+     *           message names retain the original term for backward compatibility; both
+     *           refer to the same resource.
      *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\AgentContextReference $agent_context_reference
      *           Optional. Parameters for retrieving data from Agent Context.
      * }
@@ -88,10 +88,10 @@ class BigQueryTableReferences extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Preview feature. References to BigQuery property graphs.
-     * Note: Data sources must exclusively use either tables or property graphs,
-     * not both. When using property graphs, a maximum of one graph reference is
-     * supported.
+     * Optional. References to BigQuery graphs.
+     * Note: "property graph" is the former name for BigQuery Graph. The field and
+     * message names retain the original term for backward compatibility; both
+     * refer to the same resource.
      *
      * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.BigQueryPropertyGraphReference property_graph_references = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return RepeatedField<\Google\Cloud\GeminiDataAnalytics\V1beta\BigQueryPropertyGraphReference>
@@ -102,10 +102,10 @@ class BigQueryTableReferences extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Preview feature. References to BigQuery property graphs.
-     * Note: Data sources must exclusively use either tables or property graphs,
-     * not both. When using property graphs, a maximum of one graph reference is
-     * supported.
+     * Optional. References to BigQuery graphs.
+     * Note: "property graph" is the former name for BigQuery Graph. The field and
+     * message names retain the original term for backward compatibility; both
+     * refer to the same resource.
      *
      * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.BigQueryPropertyGraphReference property_graph_references = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\GeminiDataAnalytics\V1beta\BigQueryPropertyGraphReference[] $var

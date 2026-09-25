@@ -47,6 +47,30 @@ return [
             ],
         ],
         'google.cloud.tasks.v2.CloudTasks' => [
+            'BatchCreateTasks' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{parent=projects/*/locations/*/queues/*}/tasks:batchCreate',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'BatchDeleteTasks' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{parent=projects/*/locations/*/queues/*}/tasks:batchDelete',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateQueue' => [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{parent=projects/*/locations/*}/queues',
@@ -85,6 +109,17 @@ return [
             'DeleteTask' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v2/{name=projects/*/locations/*/queues/*/tasks/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetCmekConfig' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{name=projects/*/locations/*/cmekConfig}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -221,6 +256,19 @@ return [
                     ],
                 ],
             ],
+            'UpdateCmekConfig' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v2/{cmek_config.name=projects/*/locations/*/cmekConfig}',
+                'body' => 'cmek_config',
+                'placeholders' => [
+                    'cmek_config.name' => [
+                        'getters' => [
+                            'getCmekConfig',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateQueue' => [
                 'method' => 'patch',
                 'uriTemplate' => '/v2/{queue.name=projects/*/locations/*/queues/*}',
@@ -229,6 +277,19 @@ return [
                     'queue.name' => [
                         'getters' => [
                             'getQueue',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+        ],
+        'google.longrunning.Operations' => [
+            'GetOperation' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{name=projects/*/locations/*/operations/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
                             'getName',
                         ],
                     ],

@@ -38,16 +38,28 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
+use Google\Cloud\Lustre\V1\CreateDirectoryPolicyRequest;
 use Google\Cloud\Lustre\V1\CreateInstanceRequest;
+use Google\Cloud\Lustre\V1\CreateMirrorRequest;
+use Google\Cloud\Lustre\V1\DeleteDirectoryPolicyRequest;
 use Google\Cloud\Lustre\V1\DeleteInstanceRequest;
+use Google\Cloud\Lustre\V1\DeleteMirrorRequest;
+use Google\Cloud\Lustre\V1\DirectoryPolicy;
 use Google\Cloud\Lustre\V1\ExportDataRequest;
 use Google\Cloud\Lustre\V1\ExportDataResponse;
+use Google\Cloud\Lustre\V1\GetDirectoryPolicyRequest;
 use Google\Cloud\Lustre\V1\GetInstanceRequest;
+use Google\Cloud\Lustre\V1\GetMirrorRequest;
 use Google\Cloud\Lustre\V1\ImportDataRequest;
 use Google\Cloud\Lustre\V1\ImportDataResponse;
 use Google\Cloud\Lustre\V1\Instance;
+use Google\Cloud\Lustre\V1\ListDirectoryPoliciesRequest;
 use Google\Cloud\Lustre\V1\ListInstancesRequest;
+use Google\Cloud\Lustre\V1\ListMirrorsRequest;
+use Google\Cloud\Lustre\V1\Mirror;
+use Google\Cloud\Lustre\V1\RescheduleMaintenanceRequest;
 use Google\Cloud\Lustre\V1\UpdateInstanceRequest;
+use Google\Cloud\Lustre\V1\UpdateMirrorRequest;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
@@ -64,13 +76,23 @@ use Psr\Log\LoggerInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
+ * @method PromiseInterface<OperationResponse> createDirectoryPolicyAsync(CreateDirectoryPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createInstanceAsync(CreateInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createMirrorAsync(CreateMirrorRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteDirectoryPolicyAsync(DeleteDirectoryPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteInstanceAsync(DeleteInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteMirrorAsync(DeleteMirrorRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> exportDataAsync(ExportDataRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<DirectoryPolicy> getDirectoryPolicyAsync(GetDirectoryPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Instance> getInstanceAsync(GetInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Mirror> getMirrorAsync(GetMirrorRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> importDataAsync(ImportDataRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listDirectoryPoliciesAsync(ListDirectoryPoliciesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listInstancesAsync(ListInstancesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listMirrorsAsync(ListMirrorsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> rescheduleMaintenanceAsync(RescheduleMaintenanceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateInstanceAsync(UpdateInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateMirrorAsync(UpdateMirrorRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
@@ -178,6 +200,52 @@ final class LustreClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a crypto_key
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $keyRing
+     * @param string $cryptoKey
+     *
+     * @return string The formatted crypto_key resource.
+     */
+    public static function cryptoKeyName(string $project, string $location, string $keyRing, string $cryptoKey): string
+    {
+        return self::getPathTemplate('cryptoKey')->render([
+            'project' => $project,
+            'location' => $location,
+            'key_ring' => $keyRing,
+            'crypto_key' => $cryptoKey,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * directory_policy resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $instance
+     * @param string $directoryPolicy
+     *
+     * @return string The formatted directory_policy resource.
+     */
+    public static function directoryPolicyName(
+        string $project,
+        string $location,
+        string $instance,
+        string $directoryPolicy
+    ): string {
+        return self::getPathTemplate('directoryPolicy')->render([
+            'project' => $project,
+            'location' => $location,
+            'instance' => $instance,
+            'directory_policy' => $directoryPolicy,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a instance
      * resource.
      *
@@ -214,6 +282,27 @@ final class LustreClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a mirror
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $instance
+     * @param string $mirror
+     *
+     * @return string The formatted mirror resource.
+     */
+    public static function mirrorName(string $project, string $location, string $instance, string $mirror): string
+    {
+        return self::getPathTemplate('mirror')->render([
+            'project' => $project,
+            'location' => $location,
+            'instance' => $instance,
+            'mirror' => $mirror,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a network
      * resource.
      *
@@ -227,6 +316,69 @@ final class LustreClient
         return self::getPathTemplate('network')->render([
             'project' => $project,
             'network' => $network,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_resource_policy resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $resourcePolicy
+     *
+     * @return string The formatted project_location_resource_policy resource.
+     */
+    public static function projectLocationResourcePolicyName(
+        string $project,
+        string $location,
+        string $resourcePolicy
+    ): string {
+        return self::getPathTemplate('projectLocationResourcePolicy')->render([
+            'project' => $project,
+            'location' => $location,
+            'resource_policy' => $resourcePolicy,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_region_resource_policy resource.
+     *
+     * @param string $project
+     * @param string $region
+     * @param string $resourcePolicy
+     *
+     * @return string The formatted project_region_resource_policy resource.
+     */
+    public static function projectRegionResourcePolicyName(
+        string $project,
+        string $region,
+        string $resourcePolicy
+    ): string {
+        return self::getPathTemplate('projectRegionResourcePolicy')->render([
+            'project' => $project,
+            'region' => $region,
+            'resource_policy' => $resourcePolicy,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * resource_policy resource.
+     *
+     * @param string $project
+     * @param string $region
+     * @param string $resourcePolicy
+     *
+     * @return string The formatted resource_policy resource.
+     */
+    public static function resourcePolicyName(string $project, string $region, string $resourcePolicy): string
+    {
+        return self::getPathTemplate('resourcePolicy')->render([
+            'project' => $project,
+            'region' => $region,
+            'resource_policy' => $resourcePolicy,
         ]);
     }
 
@@ -251,9 +403,15 @@ final class LustreClient
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
+     * - cryptoKey: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}
+     * - directoryPolicy: projects/{project}/locations/{location}/instances/{instance}/directoryPolicies/{directory_policy}
      * - instance: projects/{project}/locations/{location}/instances/{instance}
      * - location: projects/{project}/locations/{location}
+     * - mirror: projects/{project}/locations/{location}/instances/{instance}/mirrors/{mirror}
      * - network: projects/{project}/global/networks/{network}
+     * - projectLocationResourcePolicy: projects/{project}/locations/{location}/resourcePolicies/{resource_policy}
+     * - projectRegionResourcePolicy: projects/{project}/regions/{region}/resourcePolicies/{resource_policy}
+     * - resourcePolicy: projects/{project}/regions/{region}/resourcePolicies/{resource_policy}
      * - serviceAccount: projects/{project}/serviceAccounts/{service_account}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
@@ -361,6 +519,34 @@ final class LustreClient
     }
 
     /**
+     * Creates a directory policy resource.
+     *
+     * The async variant is {@see LustreClient::createDirectoryPolicyAsync()} .
+     *
+     * @example samples/V1/LustreClient/create_directory_policy.php
+     *
+     * @param CreateDirectoryPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<DirectoryPolicy>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createDirectoryPolicy(
+        CreateDirectoryPolicyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('CreateDirectoryPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
      * Creates a new instance in a given project and location.
      *
      * The async variant is {@see LustreClient::createInstanceAsync()} .
@@ -384,6 +570,60 @@ final class LustreClient
     public function createInstance(CreateInstanceRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('CreateInstance', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates a new mirror in a given instance.
+     *
+     * The async variant is {@see LustreClient::createMirrorAsync()} .
+     *
+     * @example samples/V1/LustreClient/create_mirror.php
+     *
+     * @param CreateMirrorRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<Mirror>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createMirror(CreateMirrorRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('CreateMirror', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a directory policy resource.
+     *
+     * The async variant is {@see LustreClient::deleteDirectoryPolicyAsync()} .
+     *
+     * @example samples/V1/LustreClient/delete_directory_policy.php
+     *
+     * @param DeleteDirectoryPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<null>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteDirectoryPolicy(
+        DeleteDirectoryPolicyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('DeleteDirectoryPolicy', $request, $callOptions)->wait();
     }
 
     /**
@@ -413,6 +653,32 @@ final class LustreClient
     }
 
     /**
+     * Deletes a single mirror.
+     *
+     * The async variant is {@see LustreClient::deleteMirrorAsync()} .
+     *
+     * @example samples/V1/LustreClient/delete_mirror.php
+     *
+     * @param DeleteMirrorRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<null>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteMirror(DeleteMirrorRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DeleteMirror', $request, $callOptions)->wait();
+    }
+
+    /**
      * Exports data from a Managed Lustre instance to Cloud Storage.
      *
      * The async variant is {@see LustreClient::exportDataAsync()} .
@@ -436,6 +702,32 @@ final class LustreClient
     public function exportData(ExportDataRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('ExportData', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets details of a single directory policy.
+     *
+     * The async variant is {@see LustreClient::getDirectoryPolicyAsync()} .
+     *
+     * @example samples/V1/LustreClient/get_directory_policy.php
+     *
+     * @param GetDirectoryPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return DirectoryPolicy
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getDirectoryPolicy(GetDirectoryPolicyRequest $request, array $callOptions = []): DirectoryPolicy
+    {
+        return $this->startApiCall('GetDirectoryPolicy', $request, $callOptions)->wait();
     }
 
     /**
@@ -465,6 +757,32 @@ final class LustreClient
     }
 
     /**
+     * Gets details of a single mirror.
+     *
+     * The async variant is {@see LustreClient::getMirrorAsync()} .
+     *
+     * @example samples/V1/LustreClient/get_mirror.php
+     *
+     * @param GetMirrorRequest $request     A request to house fields associated with the call.
+     * @param array            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Mirror
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getMirror(GetMirrorRequest $request, array $callOptions = []): Mirror
+    {
+        return $this->startApiCall('GetMirror', $request, $callOptions)->wait();
+    }
+
+    /**
      * Imports data from Cloud Storage to a Managed Lustre instance.
      *
      * The async variant is {@see LustreClient::importDataAsync()} .
@@ -488,6 +806,34 @@ final class LustreClient
     public function importData(ImportDataRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('ImportData', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets details of multiple directory policies under a given instance.
+     *
+     * The async variant is {@see LustreClient::listDirectoryPoliciesAsync()} .
+     *
+     * @example samples/V1/LustreClient/list_directory_policies.php
+     *
+     * @param ListDirectoryPoliciesRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listDirectoryPolicies(
+        ListDirectoryPoliciesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('ListDirectoryPolicies', $request, $callOptions);
     }
 
     /**
@@ -517,6 +863,60 @@ final class LustreClient
     }
 
     /**
+     * Gets details of multiple mirrors under a given instance.
+     *
+     * The async variant is {@see LustreClient::listMirrorsAsync()} .
+     *
+     * @example samples/V1/LustreClient/list_mirrors.php
+     *
+     * @param ListMirrorsRequest $request     A request to house fields associated with the call.
+     * @param array              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listMirrors(ListMirrorsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListMirrors', $request, $callOptions);
+    }
+
+    /**
+     * Reschedules a planned maintenance event for a specific instance.
+     *
+     * The async variant is {@see LustreClient::rescheduleMaintenanceAsync()} .
+     *
+     * @example samples/V1/LustreClient/reschedule_maintenance.php
+     *
+     * @param RescheduleMaintenanceRequest $request     A request to house fields associated with the call.
+     * @param array                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<Instance>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function rescheduleMaintenance(
+        RescheduleMaintenanceRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('RescheduleMaintenance', $request, $callOptions)->wait();
+    }
+
+    /**
      * Updates the parameters of a single instance.
      *
      * The async variant is {@see LustreClient::updateInstanceAsync()} .
@@ -540,6 +940,32 @@ final class LustreClient
     public function updateInstance(UpdateInstanceRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('UpdateInstance', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates the parameters of a single mirror.
+     *
+     * The async variant is {@see LustreClient::updateMirrorAsync()} .
+     *
+     * @example samples/V1/LustreClient/update_mirror.php
+     *
+     * @param UpdateMirrorRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<Mirror>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateMirror(UpdateMirrorRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('UpdateMirror', $request, $callOptions)->wait();
     }
 
     /**
@@ -570,6 +996,21 @@ final class LustreClient
 
     /**
      * Lists information about the supported locations for this service.
+     *
+     * This method lists locations based on the resource scope provided in
+     * the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+     * **Global locations**: If `name` is empty, the method lists the
+     * public locations available to all projects. * **Project-specific
+     * locations**: If `name` follows the format
+     * `projects/{project}`, the method lists locations visible to that
+     * specific project. This includes public, private, or other
+     * project-specific locations enabled for the project.
+     *
+     * For gRPC and client library implementations, the resource name is
+     * passed as the `name` field. For direct service calls, the resource
+     * name is
+     * incorporated into the request path based on the specific service
+     * implementation and version.
      *
      * The async variant is {@see LustreClient::listLocationsAsync()} .
      *

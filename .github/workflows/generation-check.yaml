@@ -18,7 +18,7 @@ jobs:
           persist-credentials: false
       # Version of librarian is pulled from librarian.yaml, action version will not affect librarian version
       # and is pinned to commit SHA to satisfy blanket security policy.
-      - uses: googleapis/librarian@fce2189704ffb7743eeccf512077ad9070f4f823 # v0.44.0
+      - uses: googleapis/librarian@db8da62c971d5abc64e8fedc3022ad9819ae5c09 # v0.45.0
       - name: Setup PHP
         uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # v2
         with:
@@ -42,7 +42,7 @@ jobs:
           fi
       - name: Create issue if previous step fails
         if: ${{ failure() && github.event_name == 'push' && github.ref == 'refs/heads/main' }}
-        uses: googleapis/librarian/.github/actions/create-issue-on-failure@fce2189704ffb7743eeccf512077ad9070f4f823 # v0.44.0
+        uses: googleapis/librarian/.github/actions/create-issue-on-failure@db8da62c971d5abc64e8fedc3022ad9819ae5c09 # v0.45.0
         with:
           title: "Librarian generate diff check failed on main branch"
           body: |

@@ -23,6 +23,18 @@
 return [
     'interfaces' => [
         'google.analytics.data.v1alpha.AlphaAnalyticsData' => [
+            'Chat' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/{property=properties/*}:chat',
+                'body' => '*',
+                'placeholders' => [
+                    'property' => [
+                        'getters' => [
+                            'getProperty',
+                        ],
+                    ],
+                ],
+            ],
             'CreateAudienceList' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1alpha/{parent=properties/*}/audienceLists',

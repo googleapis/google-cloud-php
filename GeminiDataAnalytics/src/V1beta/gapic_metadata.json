@@ -5,6 +5,40 @@
     "protoPackage": "google.cloud.geminidataanalytics.v1beta",
     "libraryPackage": "Google\\Cloud\\GeminiDataAnalytics\\V1beta",
     "services": {
+        "DataA2AService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "DataA2AServiceClient",
+                    "rpcs": {
+                        "GetAgentCard": {
+                            "methods": [
+                                "getAgentCard"
+                            ]
+                        },
+                        "SendMessage": {
+                            "methods": [
+                                "sendMessage"
+                            ]
+                        },
+                        "SendStreamingMessage": {
+                            "methods": [
+                                "sendStreamingMessage"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "DataAgentService": {
             "clients": {
                 "grpc": {
@@ -48,6 +82,16 @@
                         "ListDataAgents": {
                             "methods": [
                                 "listDataAgents"
+                            ]
+                        },
+                        "RetrieveAgentOpsObservability": {
+                            "methods": [
+                                "retrieveAgentOpsObservability"
+                            ]
+                        },
+                        "SetAgentOpsObservability": {
+                            "methods": [
+                                "setAgentOpsObservability"
                             ]
                         },
                         "SetIamPolicy": {
@@ -117,6 +161,11 @@
                         "QueryData": {
                             "methods": [
                                 "queryData"
+                            ]
+                        },
+                        "UpdateConversation": {
+                            "methods": [
+                                "updateConversation"
                             ]
                         },
                         "GetLocation": {

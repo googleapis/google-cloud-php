@@ -30,6 +30,11 @@
                                 "createMessage"
                             ]
                         },
+                        "CreateMessagePin": {
+                            "methods": [
+                                "createMessagePin"
+                            ]
+                        },
                         "CreateReaction": {
                             "methods": [
                                 "createReaction"
@@ -58,6 +63,11 @@
                         "DeleteMessage": {
                             "methods": [
                                 "deleteMessage"
+                            ]
+                        },
+                        "DeleteMessagePin": {
+                            "methods": [
+                                "deleteMessagePin"
                             ]
                         },
                         "DeleteReaction": {
@@ -143,6 +153,11 @@
                         "ListMemberships": {
                             "methods": [
                                 "listMemberships"
+                            ]
+                        },
+                        "ListMessagePins": {
+                            "methods": [
+                                "listMessagePins"
                             ]
                         },
                         "ListMessages": {

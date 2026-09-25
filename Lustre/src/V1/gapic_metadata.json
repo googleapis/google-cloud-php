@@ -10,9 +10,24 @@
                 "grpc": {
                     "libraryClient": "LustreClient",
                     "rpcs": {
+                        "CreateDirectoryPolicy": {
+                            "methods": [
+                                "createDirectoryPolicy"
+                            ]
+                        },
                         "CreateInstance": {
                             "methods": [
                                 "createInstance"
+                            ]
+                        },
+                        "CreateMirror": {
+                            "methods": [
+                                "createMirror"
+                            ]
+                        },
+                        "DeleteDirectoryPolicy": {
+                            "methods": [
+                                "deleteDirectoryPolicy"
                             ]
                         },
                         "DeleteInstance": {
@@ -20,9 +35,19 @@
                                 "deleteInstance"
                             ]
                         },
+                        "DeleteMirror": {
+                            "methods": [
+                                "deleteMirror"
+                            ]
+                        },
                         "ExportData": {
                             "methods": [
                                 "exportData"
+                            ]
+                        },
+                        "GetDirectoryPolicy": {
+                            "methods": [
+                                "getDirectoryPolicy"
                             ]
                         },
                         "GetInstance": {
@@ -30,9 +55,19 @@
                                 "getInstance"
                             ]
                         },
+                        "GetMirror": {
+                            "methods": [
+                                "getMirror"
+                            ]
+                        },
                         "ImportData": {
                             "methods": [
                                 "importData"
+                            ]
+                        },
+                        "ListDirectoryPolicies": {
+                            "methods": [
+                                "listDirectoryPolicies"
                             ]
                         },
                         "ListInstances": {
@@ -40,9 +75,24 @@
                                 "listInstances"
                             ]
                         },
+                        "ListMirrors": {
+                            "methods": [
+                                "listMirrors"
+                            ]
+                        },
+                        "RescheduleMaintenance": {
+                            "methods": [
+                                "rescheduleMaintenance"
+                            ]
+                        },
                         "UpdateInstance": {
                             "methods": [
                                 "updateInstance"
+                            ]
+                        },
+                        "UpdateMirror": {
+                            "methods": [
+                                "updateMirror"
                             ]
                         },
                         "GetLocation": {

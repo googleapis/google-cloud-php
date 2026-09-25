@@ -80,6 +80,7 @@ class UpdateSpaceRequest extends \Google\Protobuf\Internal\Message
      * The supported field masks include:
      * - `access_settings.access_permission_settings.discoverSpaceSetting`
      * - `access_settings.access_permission_settings.joinSpaceSetting`
+     * - `access_settings.access_permission_settings.viewSpaceMembershipSetting`
      * `permission_settings`: Supports changing the
      * [permission settings](https://support.google.com/chat/answer/13340792)
      * of a space.
@@ -94,6 +95,7 @@ class UpdateSpaceRequest extends \Google\Protobuf\Internal\Message
      * - `permission_settings.manageApps`
      * - `permission_settings.manageWebhooks`
      * - `permission_settings.replyMessages`
+     * - `permission_settings.viewSpaceMembership`
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -181,6 +183,7 @@ class UpdateSpaceRequest extends \Google\Protobuf\Internal\Message
      *
      *                                               - `access_settings.access_permission_settings.discoverSpaceSetting`
      *                                               - `access_settings.access_permission_settings.joinSpaceSetting`
+     *                                               - `access_settings.access_permission_settings.viewSpaceMembershipSetting`
      *
      *                                               `permission_settings`: Supports changing the
      *                                               [permission settings](https://support.google.com/chat/answer/13340792)
@@ -197,6 +200,7 @@ class UpdateSpaceRequest extends \Google\Protobuf\Internal\Message
      *                                               - `permission_settings.manageApps`
      *                                               - `permission_settings.manageWebhooks`
      *                                               - `permission_settings.replyMessages`
+     *                                               - `permission_settings.viewSpaceMembership`
      *
      * @return \Google\Apps\Chat\V1\UpdateSpaceRequest
      *
@@ -276,6 +280,7 @@ class UpdateSpaceRequest extends \Google\Protobuf\Internal\Message
      *           The supported field masks include:
      *           - `access_settings.access_permission_settings.discoverSpaceSetting`
      *           - `access_settings.access_permission_settings.joinSpaceSetting`
+     *           - `access_settings.access_permission_settings.viewSpaceMembershipSetting`
      *           `permission_settings`: Supports changing the
      *           [permission settings](https://support.google.com/chat/answer/13340792)
      *           of a space.
@@ -290,6 +295,7 @@ class UpdateSpaceRequest extends \Google\Protobuf\Internal\Message
      *           - `permission_settings.manageApps`
      *           - `permission_settings.manageWebhooks`
      *           - `permission_settings.replyMessages`
+     *           - `permission_settings.viewSpaceMembership`
      *     @type bool $use_admin_access
      *           Optional. When `true`, the method runs using the user's Google Workspace
      *           administrator privileges.
@@ -404,6 +410,7 @@ class UpdateSpaceRequest extends \Google\Protobuf\Internal\Message
      * The supported field masks include:
      * - `access_settings.access_permission_settings.discoverSpaceSetting`
      * - `access_settings.access_permission_settings.joinSpaceSetting`
+     * - `access_settings.access_permission_settings.viewSpaceMembershipSetting`
      * `permission_settings`: Supports changing the
      * [permission settings](https://support.google.com/chat/answer/13340792)
      * of a space.
@@ -418,6 +425,7 @@ class UpdateSpaceRequest extends \Google\Protobuf\Internal\Message
      * - `permission_settings.manageApps`
      * - `permission_settings.manageWebhooks`
      * - `permission_settings.replyMessages`
+     * - `permission_settings.viewSpaceMembership`
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\FieldMask|null
@@ -494,6 +502,7 @@ class UpdateSpaceRequest extends \Google\Protobuf\Internal\Message
      * The supported field masks include:
      * - `access_settings.access_permission_settings.discoverSpaceSetting`
      * - `access_settings.access_permission_settings.joinSpaceSetting`
+     * - `access_settings.access_permission_settings.viewSpaceMembershipSetting`
      * `permission_settings`: Supports changing the
      * [permission settings](https://support.google.com/chat/answer/13340792)
      * of a space.
@@ -508,6 +517,7 @@ class UpdateSpaceRequest extends \Google\Protobuf\Internal\Message
      * - `permission_settings.manageApps`
      * - `permission_settings.manageWebhooks`
      * - `permission_settings.replyMessages`
+     * - `permission_settings.viewSpaceMembership`
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\FieldMask $var
