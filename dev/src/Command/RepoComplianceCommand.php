@@ -219,7 +219,6 @@ class RepoComplianceCommand extends Command
             }
             $output->writeln(sprintf('<error>%s</error>: Unable to update repo settings.', $details['name']));
             return false;
-            return true;
         }
         return false;
     }
