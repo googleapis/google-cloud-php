@@ -262,6 +262,39 @@ class StreamWrapperTest extends TestCase
     /**
      * @group storageInfo
      */
+    public function testStatBypassesPermissionCheck()
+    {
+        $object = $this->prophesize(StorageObject::class);
+        $object->info()->willReturn([
+            'size' => 1234,
+            'updated' => '2017-01-19T19:31:35.833Z',
+            'timeCreated' => '2017-01-19T19:31:35.833Z'
+        ]);
+
+        $this->bucket->objects(Argument::allOf(
+            Argument::withEntry('prefix', 'some_long_file.txt/'),
+            Argument::withEntry('resultLimit', 1),
+            Argument::withEntry('fields', Argument::any())
+        ))->willReturn(new \ArrayIterator());
+
+        $this->bucket->object('some_long_file.txt')
+            ->shouldBeCalled()
+            ->willReturn($object->reveal());
+
+        // We DO NOT EXPECT isWritable to be called.
+        $this->bucket->isWritable()->shouldNotBeCalled();
+
+        stream_context_set_default([
+            'gs' => ['stat_permission_check' => false]
+        ]);
+
+        $stat = stat('gs://my_bucket/some_long_file.txt');
+        $this->assertEquals(33206, $stat['mode']);
+        
+        // Reset default context so other tests are not affected
+        stream_context_set_default(['gs' => []]);
+    }
+
     public function testStatOnNonExistentFile()
     {
         set_error_handler(static function (int $errno, string $errstr): never {
