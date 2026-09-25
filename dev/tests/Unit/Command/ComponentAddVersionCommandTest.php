@@ -3,26 +3,44 @@
 namespace Google\Cloud\Dev\Tests\Unit\Command;
 
 use Google\Cloud\Dev\Command\ComponentAddVersionCommand;
-use Google\Cloud\Dev\Component;
+use Google\Cloud\Dev\RunProcess;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Tester\CommandTester;
 use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Yaml\Yaml;
 
 class ComponentAddVersionCommandTest extends TestCase
 {
-    private static $rootPath;
-    private static $componentPath;
-    private static $owlbotFile;
+    use ProphecyTrait;
+
+    private static string $rootPath;
+    private static string $librarianFile;
+
+    private const DEFAULT_TIMEOUT = 120;
 
     public static function setUpBeforeClass(): void
     {
-        self::$rootPath = sys_get_temp_dir() . '/google-cloud-php-tests';
-        self::$componentPath = self::$rootPath . '/component';
-        self::$owlbotFile = self::$componentPath . '/.OwlBot.yaml';
+        $rootPath = sys_get_temp_dir() . '/google-cloud-php-tests-' . time();
         $filesystem = new Filesystem();
-        $filesystem->mirror(__DIR__ . '/../../fixtures/component', self::$componentPath);
+        $filesystem->mkdir($rootPath);
+        self::$rootPath = realpath($rootPath);
+        self::$librarianFile = self::$rootPath . '/librarian.yaml';
+
+        file_put_contents(self::$librarianFile, Yaml::dump([
+            'libraries' => [
+                [
+                    'name' => 'example',
+                    'output' => 'Example',
+                    'apis' => [
+                        ['path' => 'google/cloud/example/v1'],
+                        ['path' => 'google/cloud/example/v1beta1'],
+                    ],
+                ],
+            ],
+        ]));
     }
 
     public static function tearDownAfterClass(): void
@@ -33,50 +51,67 @@ class ComponentAddVersionCommandTest extends TestCase
 
     public function testAddVersion()
     {
-        $command = new ComponentAddVersionCommand(self::$rootPath);
+        $runProcess = $this->prophesize(RunProcess::class);
+        $runProcess->execute(
+            ['librarian', 'add', 'google/cloud/example/v2'],
+            self::$rootPath,
+            self::DEFAULT_TIMEOUT
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn('');
+
+        $command = new ComponentAddVersionCommand(self::$rootPath, $runProcess->reveal());
         $command->setApplication($this->mockApplication());
         $tester = new CommandTester($command);
 
         $tester->execute([
-            'component' => 'component',
+            'component' => 'Example',
             'version' => 'v2',
         ]);
 
-        $this->assertStringContainsString('Adding new version \'v2\' to .OwlBot.yaml', $tester->getDisplay());
-        $this->assertStringContainsString('(v1|v1beta1|v2)', file_get_contents(self::$owlbotFile));
+        $this->assertStringContainsString('Adding new version \'v2\' to librarian.yaml', $tester->getDisplay());
     }
 
     public function testAddVersionNoUpdate()
     {
-        $command = new ComponentAddVersionCommand(self::$rootPath);
+        $runProcess = $this->prophesize(RunProcess::class);
+        $runProcess->execute(
+            ['librarian', 'add', 'google/cloud/example/v3'],
+            self::$rootPath,
+            self::DEFAULT_TIMEOUT
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn('');
+
+        $command = new ComponentAddVersionCommand(self::$rootPath, $runProcess->reveal());
         $command->setApplication($this->mockApplication(false));
         $tester = new CommandTester($command);
 
         $tester->execute([
-            'component' => 'component',
+            'component' => 'Example',
             'version' => 'v3',
             '--no-update' => true,
         ]);
 
-        $this->assertStringContainsString('Adding new version \'v3\' to .OwlBot.yaml', $tester->getDisplay());
-        $this->assertStringContainsString('(v1|v1beta1|v2|v3)', file_get_contents(self::$owlbotFile));
+        $this->assertStringContainsString('Adding new version \'v3\' to librarian.yaml', $tester->getDisplay());
         $this->assertStringContainsString('Skipping component update', $tester->getDisplay());
     }
 
-    public function testDoesNotUpdateOwlBotIfVersionExists()
+    public function testDoesNotAddIfVersionExists()
     {
-        $command = new ComponentAddVersionCommand(self::$rootPath);
+        $runProcess = $this->prophesize(RunProcess::class);
+        $runProcess->execute()->shouldNotBeCalled();
+
+        $command = new ComponentAddVersionCommand(self::$rootPath, $runProcess->reveal());
         $command->setApplication($this->mockApplication());
         $tester = new CommandTester($command);
 
         $tester->execute([
-            'component' => 'component',
+            'component' => 'Example',
             'version' => 'v1beta1',
         ]);
 
-        $this->assertStringContainsString('Adding new version \'v1beta1\' to .OwlBot.yaml', $tester->getDisplay());
-        $this->assertStringContainsString('Version \'v1beta1\' already exists in deep-copy-regex', $tester->getDisplay());
-        $this->assertStringContainsString('(v1|v1beta1|v2|v3)', file_get_contents(self::$owlbotFile));
+        $this->assertStringContainsString('Version \'v1beta1\' already exists in librarian.yaml', $tester->getDisplay());
     }
 
     private function mockApplication(bool $shouldCallUpdate = true): Application
