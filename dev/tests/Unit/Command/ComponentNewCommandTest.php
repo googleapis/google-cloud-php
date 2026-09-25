@@ -20,6 +20,7 @@ namespace Google\Cloud\Dev\Tests\Unit\Command;
 use Google\Cloud\Dev\Command\ComponentNewCommand;
 use Symfony\Component\Console\Input\InputDefinition;
 use Google\Cloud\Dev\Composer;
+use Google\Cloud\Dev\RunProcess;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -35,7 +36,6 @@ class ComponentNewCommandTest extends TestCase
     use ProphecyTrait;
 
     private static $expectedFiles = [
-        '.OwlBot.yaml' => '.OwlBot.yaml.test', // so OwlBot doesn't read the test file
         '.gitattributes' => null,
         'CONTRIBUTING.md' => null,
         'LICENSE' => null,
@@ -84,7 +84,7 @@ class ComponentNewCommandTest extends TestCase
         | githubRepo           | googleapis/google-cloud-php-secretmanager
         | gpbMetadataNamespace | GPBMetadata\Google\Cloud\Secretmanager
         | shortName            | secretmanager
-        | protoPath            | google/cloud/secretmanager/(v1)
+        | protoPath            | google/cloud/secretmanager/v1
         | version              | v1
         EOF, self::$tmpDir);
         foreach (explode("\n", $expectedDisplay) as $expectedLine) {
@@ -118,7 +118,7 @@ class ComponentNewCommandTest extends TestCase
             'googleapis/google-cloud-php-custom-repo',                      // custom value for "githubRepo"
             'GPBMetadata\Google\Custommetadatanamespace',                   // custom value for "gpbMetadataNamespace"
             'customshortname',                                              // custom value for "shortName"
-            'google/cloud/custompath/(.*)',                                 // custom value for "protoPath"
+            'google/cloud/custompath/v2',                                   // custom value for "protoPath"
             'v2',                                                           // custom value for "version"
             'Y',                                                            // Does this information look correct? [Y/n]
             'https://cloud.google.com/coustom-product/docs/reference/rest/', // What is the product documentation URL?
@@ -142,7 +142,7 @@ class ComponentNewCommandTest extends TestCase
         | githubRepo           | googleapis/google-cloud-php-custom-repo
         | gpbMetadataNamespace | GPBMetadata\Google\Custommetadatanamespace
         | shortName            | customshortname
-        | protoPath            | google/cloud/custompath/(.*)
+        | protoPath            | google/cloud/custompath/v2
         | version              | v2
         EOF, self::$tmpDir);
         foreach (explode("\n", $expectedDisplay) as $expectedLine) {
@@ -169,8 +169,17 @@ class ComponentNewCommandTest extends TestCase
         $dummyCommand->getAliases()->willReturn([]);
         $dummyCommand->setApplication(Argument::type(Application::class))->shouldBeCalled();
 
+        $runProcess = $this->prophesize(RunProcess::class);
+        $runProcess->execute(
+            ['librarian', 'add', 'google/cloud/secretmanager/v1'],
+            self::$tmpDir,
+            120
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn('');
+
         $application = new Application();
-        $application->add(new ComponentNewCommand(self::$tmpDir));
+        $application->add(new ComponentNewCommand(self::$tmpDir, null, $runProcess->reveal()));
 
         // Add dummy command for component:update and component:update:readme-sample to ensure they're called
         $dummyCommand->getName()->willReturn('component:update');
@@ -205,7 +214,7 @@ class ComponentNewCommandTest extends TestCase
         | githubRepo           | googleapis/google-cloud-php-secretmanager
         | gpbMetadataNamespace | GPBMetadata\Google\Cloud\Secretmanager
         | shortName            | secretmanager
-        | protoPath            | google/cloud/secretmanager/(v1)
+        | protoPath            | google/cloud/secretmanager/v1
         | version              | v1
         EOF, self::$tmpDir);
         foreach (explode("\n", $expectedDisplay) as $expectedLine) {

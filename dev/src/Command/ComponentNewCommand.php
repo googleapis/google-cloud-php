@@ -52,7 +52,6 @@ class ComponentNewCommand extends Command
         'VERSION',
     ];
     private const TEMPLATE_FILES = [
-        '.OwlBot.yaml.twig',
         'owlbot.py.twig',
         'phpunit.xml.dist.twig',
         'README.md.twig',
@@ -60,15 +59,18 @@ class ComponentNewCommand extends Command
 
     private $rootPath;
     private $httpClient;
+    private RunProcess $runProcess;
 
     /**
      * @param string $rootPath The path to the repository root directory.
-     * @param Client $httpClient specify the HTTP client, useful for tests.
+     * @param Client|null $httpClient specify the HTTP client, useful for tests.
+     * @param RunProcess|null $runProcess Instance to execute Symfony Process commands, useful for tests.
      */
-    public function __construct($rootPath, ?Client $httpClient = null)
+    public function __construct($rootPath, ?Client $httpClient = null, ?RunProcess $runProcess = null)
     {
         $this->rootPath = realpath($rootPath);
         $this->httpClient = $httpClient ?: new Client();
+        $this->runProcess = $runProcess ?: new RunProcess();
         parent::__construct();
     }
 
@@ -269,10 +271,6 @@ class ComponentNewCommand extends Command
         $loader = new FilesystemLoader(self::TEMPLATE_DIR);
         $twig = new Environment($loader);
         foreach (self::TEMPLATE_FILES as $template) {
-            // No need to generate .OwlBot.yaml when calling from librarian
-            if ('.OwlBot.yaml.twig' === $template && $allOptionsProvided) {
-                continue;
-            }
             $file = str_replace('.twig', '', $template);
             $output->writeln(sprintf('<info>%s</info> Creating %s from twig template.', $file, $file));
             $filesystem->dumpFile($componentDir . '/' . $file, $twig->render($template, [
@@ -280,7 +278,6 @@ class ComponentNewCommand extends Command
                 'component' => $new->componentName,
                 'package' => $new->composerPackage,
                 'repo' => $new->githubRepo,
-                'proto_path' => $new->protoPath,
                 'version' => $new->version,
                 'github_repo' => $new->githubRepo,
                 'documentation' => $documentationUrl,
@@ -320,6 +317,10 @@ class ComponentNewCommand extends Command
         $composer->createComponentComposer($new->displayName, $new->githubRepo);
 
         if (!$input->getOption('no-update')) {
+            if ($new->protoPath) {
+                $output->writeln(sprintf('<info>Librarian</info> Adding %s to librarian.yaml', $new->protoPath));
+                $this->runProcess->execute(['librarian', 'add', $new->protoPath], $this->rootPath, $timeout);
+            }
             $args = [
                 '--component' => [$new->componentName],
                 '--timeout' => $timeout,
@@ -390,13 +391,5 @@ class ComponentNewCommand extends Command
         $productHomePage = !empty($url) ? preg_replace('~(?<!/)/(docs)(/.*)?$~', '', $url) : null;
         $response = $this->httpClient->get($productHomePage, ['http_errors' => false]);
         return $response->getStatusCode() >= 400 ? null : $productHomePage;
-    }
-
-    private function getUserAndGroupId(): array
-    {
-        // Get the user ID and group ID
-        $userId = posix_getuid();
-        $groupId = posix_getgid();
-        return [$userId, $groupId];
     }
 }

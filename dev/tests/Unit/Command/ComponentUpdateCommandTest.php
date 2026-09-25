@@ -35,16 +35,24 @@ class ComponentUpdateCommandTest extends TestCase
     private static string $tmpDir;
     private static CommandTester $commandTester;
 
-    private const COMPONENT_NAME = 'Storage';
-    private const OWLBOT_CLI_IMAGE = 'gcr.io/cloud-devrel-public-resources/owlbot-cli:latest';
+    private const COMPONENT_NAME = 'SecretManager';
+    private const LIBRARY_NAME = 'secretmanager';
     private const DEFAULT_TIMEOUT = 120;
 
     public static function setUpBeforeClass(): void
     {
         $tmpDir = sys_get_temp_dir() . '/update-command-test-' . time();
         mkdir($tmpDir . '/' . self::COMPONENT_NAME, 0777, true);
-        mkdir($tmpDir . '/.github', 0777, true);
         self::$tmpDir = realpath($tmpDir);
+
+        file_put_contents(self::$tmpDir . '/librarian.yaml', Yaml::dump([
+            'libraries' => [
+                [
+                    'name' => self::LIBRARY_NAME,
+                    'output' => self::COMPONENT_NAME,
+                ],
+            ],
+        ]));
 
         $application = new Application();
         $application->add(new ComponentUpdateCommand(self::$tmpDir));
@@ -58,32 +66,13 @@ class ComponentUpdateCommandTest extends TestCase
         }
     }
 
-    public function testUpdateFailsWithInvalidGoogleapisDir()
+    public function testUpdateFailsWithNoLibrarian()
     {
         $this->expectException(\RuntimeException::class);
-        $this->expectExceptionMessage(
-            'Error: googleapis-gen directory not found at /path/to/googleapis-gen.'
-            . ' Please provide a valid path using the --googleapis-gen-path option.'
-        );
-
-        $googleapisGenPath = '/path/to/googleapis-gen';
-        $application = new Application();
-        $application->add(new ComponentUpdateCommand(self::$tmpDir));
-        $commandTester = new CommandTester($application->get('component:update'));
-
-        $commandTester->execute([
-            '--component' => [self::COMPONENT_NAME],
-            '--googleapis-gen-path' => $googleapisGenPath,
-        ]);
-    }
-
-    public function testUpdateFailsWithNoDocker()
-    {
-        $this->expectException(\RuntimeException::class);
-        $this->expectExceptionMessage('Error: Docker is not available.');
+        $this->expectExceptionMessage('Error: librarian is not available.');
 
         $runProcess = $this->prophesize(RunProcess::class);
-        $runProcess->execute(['which', 'docker'], null, self::DEFAULT_TIMEOUT)
+        $runProcess->execute(['which', 'librarian'], null, self::DEFAULT_TIMEOUT)
             ->shouldBeCalledOnce()
             ->willReturn('');
 
@@ -93,7 +82,6 @@ class ComponentUpdateCommandTest extends TestCase
 
         $commandTester->execute([
             '--component' => [self::COMPONENT_NAME],
-            '--googleapis-gen-path' => self::$tmpDir,
         ]);
     }
 
@@ -103,9 +91,9 @@ class ComponentUpdateCommandTest extends TestCase
         $this->expectExceptionMessage('Invalid component name provided: NonExistantComponent');
 
         $runProcess = $this->prophesize(RunProcess::class);
-        $runProcess->execute(['which', 'docker'], null, self::DEFAULT_TIMEOUT)
+        $runProcess->execute(['which', 'librarian'], null, self::DEFAULT_TIMEOUT)
             ->shouldBeCalledOnce()
-            ->willReturn('/path/to/docker');
+            ->willReturn('/path/to/librarian');
 
         $application = new Application();
         $application->add(new ComponentUpdateCommand(self::$tmpDir, $runProcess->reveal()));
@@ -113,66 +101,21 @@ class ComponentUpdateCommandTest extends TestCase
 
         $commandTester->execute([
             '--component' => ['NonExistantComponent'],
-            '--googleapis-gen-path' => self::$tmpDir,
         ]);
     }
 
     public function testUpdateComponentSucceeds()
     {
-        $googleapisGenPath = self::$tmpDir;
-
         $runProcess = $this->prophesize(RunProcess::class);
-        $runProcess->execute(['which', 'docker'], null, self::DEFAULT_TIMEOUT)
+        $runProcess->execute(['which', 'librarian'], null, self::DEFAULT_TIMEOUT)
             ->shouldBeCalledOnce()
-            ->willReturn('/path/to/docker');
+            ->willReturn('/path/to/librarian');
 
-        list($userId, $groupId) = [posix_getuid(), posix_getgid()];
-        $owlbotPhpImage = 'gcr.io/cloud-devrel-public-resources/owlbot-php:latest';
-
-        $copyCodeCommand = [
-            'docker', 'run', '--rm',
-            '--user', sprintf('%s:%s', $userId, $groupId),
-            '-v', sprintf('%s:/repo', self::$tmpDir),
-            '-v', sprintf('%s:/googleapis-gen', $googleapisGenPath),
-            '-w', '/repo',
-            '--env', 'HOME=/tmp',
-            self::OWLBOT_CLI_IMAGE,
-            'copy-code',
-            '--source-repo=/googleapis-gen',
-            sprintf('--config-file=%s/.OwlBot.yaml', self::COMPONENT_NAME)
-        ];
-
-        $runProcess->execute($copyCodeCommand, null, self::DEFAULT_TIMEOUT)
-            ->shouldBeCalledOnce()
-            ->willReturn('');
-
-        $copyBazelBinCommand = [
-            'docker', 'run', '--rm',
-            '--user', sprintf('%s:%s', $userId, $groupId),
-            '-v', sprintf('%s:/repo', self::$tmpDir),
-            '-v', sprintf('%s/bazel-bin:/bazel-bin', $googleapisGenPath),
-            self::OWLBOT_CLI_IMAGE,
-            'copy-bazel-bin',
-            sprintf('--config-file=%s/.OwlBot.yaml', self::COMPONENT_NAME),
-            '--source-dir', '/bazel-bin',
-            '--dest', '/repo'
-        ];
-        $runProcess->execute($copyBazelBinCommand, null, self::DEFAULT_TIMEOUT)
-            ->shouldBeCalledOnce()
-            ->willReturn('');
-
-        $runProcess->execute(['docker', 'pull', $owlbotPhpImage], null, self::DEFAULT_TIMEOUT)
-            ->shouldBeCalledOnce()
-            ->willReturn('');
-
-        $postProcessCommand = [
-            'docker', 'run', '--rm',
-            '--user', sprintf('%s:%s', $userId, $groupId),
-            '-v', sprintf('%s:/repo', self::$tmpDir),
-            '-w', '/repo',
-            $owlbotPhpImage
-        ];
-        $runProcess->execute($postProcessCommand, null, self::DEFAULT_TIMEOUT)
+        $runProcess->execute(
+            ['librarian', 'generate', self::LIBRARY_NAME],
+            self::$tmpDir,
+            self::DEFAULT_TIMEOUT
+        )
             ->shouldBeCalledOnce()
             ->willReturn('');
 
@@ -183,8 +126,35 @@ class ComponentUpdateCommandTest extends TestCase
 
         $commandTester->execute([
             '--component' => [self::COMPONENT_NAME],
-            '--googleapis-gen-path' => $googleapisGenPath,
         ]);
+
+        $this->assertStringContainsString(
+            'Component update completed successfully!',
+            $commandTester->getDisplay()
+        );
+    }
+
+    public function testUpdateAllComponentsSucceeds()
+    {
+        $runProcess = $this->prophesize(RunProcess::class);
+        $runProcess->execute(['which', 'librarian'], null, self::DEFAULT_TIMEOUT)
+            ->shouldBeCalledOnce()
+            ->willReturn('/path/to/librarian');
+
+        $runProcess->execute(
+            ['librarian', 'generate', '--all'],
+            self::$tmpDir,
+            self::DEFAULT_TIMEOUT
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn('');
+
+        $application = new Application();
+        $application->add(new ComponentUpdateCommand(self::$tmpDir, $runProcess->reveal()));
+
+        $commandTester = new CommandTester($application->get('component:update'));
+
+        $commandTester->execute([]);
 
         $this->assertStringContainsString(
             'Component update completed successfully!',
@@ -201,9 +171,6 @@ class ComponentUpdateCommandTest extends TestCase
         $application->add(new ComponentUpdateCommand(self::$tmpDir));
 
         $commandTester = new CommandTester($application->get('component:update'));
-        $commandTester->setInputs([
-            'Y' // Does this information look correct? [Y/n]
-        ]);
         $commandTester->execute([
             '--component' => [self::COMPONENT_NAME],
             '--timeout' => 'not-a-number',

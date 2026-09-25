@@ -64,7 +64,7 @@ class NewComponent
         $new->version = array_key_exists('api-version', $options)
             ? $options['api-version']
             : self::extractVersionFromProtoFilename($protoFilename);
-        $new->protoPath = self::getProtoPath($protoFilename, $new->version);
+        $new->protoPath = dirname($protoFilename);
 
         return $new;
     }
@@ -165,20 +165,6 @@ class NewComponent
         }
 
         return $vendor . '/' . $name;
-    }
-
-    private static function getProtoPath(string $protoFilename, ?string $version): string
-    {
-        $protoPath = dirname($protoFilename);
-        if (is_null($version)) {
-            return $protoPath;
-        }
-        $parts = explode('/', $protoPath);
-        if ($i = array_search($version, $parts)) {
-            $parts[$i] = "($version)";
-        }
-
-        return implode('/', $parts);
     }
 
     private static function isCommonProtos(string $protoContents): bool
