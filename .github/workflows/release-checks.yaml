@@ -28,9 +28,11 @@ jobs:
           git config user.name "Github Actions"
           git config user.email "actions@github.com"
           git checkout "$HEAD_SHA"
-          if ! git rebase origin/main; then
-            echo "Failed to rebase PR branch onto main. There may be conflicts. Please resolve conflicts or rebase manually."
-            exit 1
+          if ! git merge-base --is-ancestor origin/main HEAD; then
+            if ! git rebase origin/main; then
+              echo "Failed to rebase PR branch onto main. There may be conflicts. Please resolve conflicts or rebase manually."
+              exit 1
+            fi
           fi
       - name: "Install dependencies"
         run: composer global require "roave/backward-compatibility-check:^8.22"
@@ -146,4 +148,5 @@ jobs:
             -t $GH_TOKEN \
             -p $PG_TOKEN \
             --skip Gax:repo \
-            --skip Auth:repo # Skip repo check for Gax and Auth because issues are enabled
+            --skip Auth:repo \
+            --skip Jwt:repo # Skip repo check for Gax, Auth, and Jwt because issues are enabled on those repos

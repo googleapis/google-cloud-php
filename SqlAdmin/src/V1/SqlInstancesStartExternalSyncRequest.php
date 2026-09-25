@@ -63,6 +63,12 @@ class SqlInstancesStartExternalSyncRequest extends \Google\Protobuf\Internal\Mes
      * Generated from protobuf field <code>bool replica_overwrite_enabled = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $replica_overwrite_enabled = false;
+    /**
+     * Optional. Region of the Cloud SQL instance.
+     *
+     * Generated from protobuf field <code>string location = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $location = '';
     protected $sync_config;
 
     /**
@@ -93,6 +99,8 @@ class SqlInstancesStartExternalSyncRequest extends \Google\Protobuf\Internal\Mes
      *           will wipe replica databases overlapping with the proposed selected_objects.
      *           If this field is not set and there are both overlapping and additional
      *           databases proposed, an error will be returned.
+     *     @type string $location
+     *           Optional. Region of the Cloud SQL instance.
      * }
      */
     public function __construct($data = NULL) {
@@ -321,6 +329,32 @@ class SqlInstancesStartExternalSyncRequest extends \Google\Protobuf\Internal\Mes
     {
         GPBUtil::checkBool($var);
         $this->replica_overwrite_enabled = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Region of the Cloud SQL instance.
+     *
+     * Generated from protobuf field <code>string location = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getLocation()
+    {
+        return $this->location;
+    }
+
+    /**
+     * Optional. Region of the Cloud SQL instance.
+     *
+     * Generated from protobuf field <code>string location = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setLocation($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->location = $var;
 
         return $this;
     }

@@ -37,9 +37,9 @@ class Binding extends \Google\Protobuf\Internal\Message
      */
     protected $description = '';
     /**
-     * Required. The target Agent of the Binding.
+     * Optional. The source Agent of the Binding.
      *
-     * Generated from protobuf field <code>.google.cloud.agentregistry.v1.Binding.Source source = 4 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.agentregistry.v1.Binding.Source source = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $source = null;
     /**
@@ -80,7 +80,7 @@ class Binding extends \Google\Protobuf\Internal\Message
      *           Optional. User-defined description of a Binding.
      *           Can have a maximum length of `2048` characters.
      *     @type \Google\Cloud\AgentRegistry\V1\Binding\Source $source
-     *           Required. The target Agent of the Binding.
+     *           Optional. The source Agent of the Binding.
      *     @type \Google\Cloud\AgentRegistry\V1\Binding\Target $target
      *           Required. The target Agent Registry Resource of the Binding.
      *     @type \Google\Protobuf\Timestamp $create_time
@@ -210,9 +210,9 @@ class Binding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The target Agent of the Binding.
+     * Optional. The source Agent of the Binding.
      *
-     * Generated from protobuf field <code>.google.cloud.agentregistry.v1.Binding.Source source = 4 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.agentregistry.v1.Binding.Source source = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\AgentRegistry\V1\Binding\Source|null
      */
     public function getSource()
@@ -231,9 +231,9 @@ class Binding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The target Agent of the Binding.
+     * Optional. The source Agent of the Binding.
      *
-     * Generated from protobuf field <code>.google.cloud.agentregistry.v1.Binding.Source source = 4 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.agentregistry.v1.Binding.Source source = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\AgentRegistry\V1\Binding\Source $var
      * @return $this
      */

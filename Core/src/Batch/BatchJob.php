@@ -32,6 +32,7 @@ class BatchJob implements JobInterface
     const DEFAULT_BATCH_SIZE = 100;
     const DEFAULT_CALL_PERIOD = 2.0;
     const DEFAULT_WORKERS = 1;
+    const MAX_MESSAGE_SIZE = 8192;
 
     use JobTrait;
     use SysvTrait;
@@ -106,6 +107,9 @@ class BatchJob implements JobInterface
         $q = msg_get_queue($sysvKey);
         $items = [];
         $lastInvoked = microtime(true);
+        $maxSize = is_array($stat = @msg_stat_queue($q)) && isset($stat['msg_qbytes'])
+            ? $stat['msg_qbytes']
+            : self::MAX_MESSAGE_SIZE;
 
         if (!is_null($this->bootstrapFile)) {
             require_once($this->bootstrapFile);
@@ -118,7 +122,7 @@ class BatchJob implements JobInterface
                 $q,
                 0,
                 $type,
-                8192,
+                $maxSize,
                 $message,
                 true,
                 0, // blocking mode
@@ -130,6 +134,8 @@ class BatchJob implements JobInterface
                     $items[] = unserialize(file_get_contents($message));
                     @unlink($message);
                 }
+            } elseif ($this->isMsgTooBig($errorcode)) {
+                $this->drainOversizedMessage($q, $maxSize);
             }
             pcntl_signal_dispatch();
             // It runs the job when
@@ -203,5 +209,49 @@ class BatchJob implements JobInterface
     public function getBatchSize()
     {
         return $this->batchSize;
+    }
+
+    /**
+     * Drain an oversized message from the queue to prevent head-of-line blocking.
+     *
+     * @access private
+     * @internal
+     *
+     * @param resource $q The message queue resource.
+     * @param int $maxSize The max buffer size to receive.
+     * @return bool
+     */
+    public function drainOversizedMessage($q, $maxSize = self::MAX_MESSAGE_SIZE)
+    {
+        $discardType = 0;
+        $discardMessage = null;
+        $discardErrno = 0;
+        return @msg_receive(
+            $q,
+            0,
+            $discardType,
+            $maxSize,
+            $discardMessage,
+            false,
+            MSG_IPC_NOWAIT | MSG_NOERROR,
+            $discardErrno
+        );
+    }
+
+    /**
+     * Check if the error code from msg_receive indicates that the message was too big.
+     *
+     * @access private
+     * @internal
+     *
+     * @param int $errorcode
+     * @return bool
+     */
+    public function isMsgTooBig($errorcode)
+    {
+        return (defined('MSG_E2BIG') && $errorcode === constant('MSG_E2BIG'))
+            || (defined('PCNTL_E2BIG') && $errorcode === PCNTL_E2BIG)
+            || (defined('SOCKET_E2BIG') && $errorcode === SOCKET_E2BIG)
+            || $errorcode === 7;
     }
 }

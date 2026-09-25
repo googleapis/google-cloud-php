@@ -32,8 +32,9 @@ class SearchSpacesRequest extends \Google\Protobuf\Internal\Message
      * The maximum number of spaces to return. The service may return fewer than
      * this value.
      * If unspecified, at most 100 spaces are returned.
-     * The maximum value is 1000. If you use a value more than 1000, it's
-     * automatically changed to 1000.
+     * The maximum value is 1000 when `useAdminAccess` is set to `true`.
+     * Otherwise, the maximum value is 100. If you use a value more than the
+     * maximum value, it's automatically changed to the maximum value.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
@@ -120,6 +121,9 @@ class SearchSpacesRequest extends \Google\Protobuf\Internal\Message
      * (external_user_allowed = "true" AND display_name:"Hello" AND space_type =
      * "SPACE")
      * ```
+     * The maximum query length is 1,000 characters.
+     * Invalid queries are rejected by the server with an `INVALID_ARGUMENT`
+     * error.
      *
      * Generated from protobuf field <code>string query = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -173,8 +177,9 @@ class SearchSpacesRequest extends \Google\Protobuf\Internal\Message
      *           The maximum number of spaces to return. The service may return fewer than
      *           this value.
      *           If unspecified, at most 100 spaces are returned.
-     *           The maximum value is 1000. If you use a value more than 1000, it's
-     *           automatically changed to 1000.
+     *           The maximum value is 1000 when `useAdminAccess` is set to `true`.
+     *           Otherwise, the maximum value is 100. If you use a value more than the
+     *           maximum value, it's automatically changed to the maximum value.
      *     @type string $page_token
      *           A token, received from the previous search spaces call. Provide this
      *           parameter to retrieve the subsequent page.
@@ -253,6 +258,9 @@ class SearchSpacesRequest extends \Google\Protobuf\Internal\Message
      *           (external_user_allowed = "true" AND display_name:"Hello" AND space_type =
      *           "SPACE")
      *           ```
+     *           The maximum query length is 1,000 characters.
+     *           Invalid queries are rejected by the server with an `INVALID_ARGUMENT`
+     *           error.
      *     @type string $order_by
      *           Optional. How the list of spaces is ordered.
      *           Supported attributes to order by are:
@@ -329,8 +337,9 @@ class SearchSpacesRequest extends \Google\Protobuf\Internal\Message
      * The maximum number of spaces to return. The service may return fewer than
      * this value.
      * If unspecified, at most 100 spaces are returned.
-     * The maximum value is 1000. If you use a value more than 1000, it's
-     * automatically changed to 1000.
+     * The maximum value is 1000 when `useAdminAccess` is set to `true`.
+     * Otherwise, the maximum value is 100. If you use a value more than the
+     * maximum value, it's automatically changed to the maximum value.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      * @return int
@@ -344,8 +353,9 @@ class SearchSpacesRequest extends \Google\Protobuf\Internal\Message
      * The maximum number of spaces to return. The service may return fewer than
      * this value.
      * If unspecified, at most 100 spaces are returned.
-     * The maximum value is 1000. If you use a value more than 1000, it's
-     * automatically changed to 1000.
+     * The maximum value is 1000 when `useAdminAccess` is set to `true`.
+     * Otherwise, the maximum value is 100. If you use a value more than the
+     * maximum value, it's automatically changed to the maximum value.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      * @param int $var
@@ -465,6 +475,9 @@ class SearchSpacesRequest extends \Google\Protobuf\Internal\Message
      * (external_user_allowed = "true" AND display_name:"Hello" AND space_type =
      * "SPACE")
      * ```
+     * The maximum query length is 1,000 characters.
+     * Invalid queries are rejected by the server with an `INVALID_ARGUMENT`
+     * error.
      *
      * Generated from protobuf field <code>string query = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -546,6 +559,9 @@ class SearchSpacesRequest extends \Google\Protobuf\Internal\Message
      * (external_user_allowed = "true" AND display_name:"Hello" AND space_type =
      * "SPACE")
      * ```
+     * The maximum query length is 1,000 characters.
+     * Invalid queries are rejected by the server with an `INVALID_ARGUMENT`
+     * error.
      *
      * Generated from protobuf field <code>string query = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

@@ -321,6 +321,13 @@ return [
                             'getProject',
                         ],
                     ],
+                    [
+                        'keyName' => 'region',
+                        'fieldAccessors' => [
+                            'getBody',
+                            'getRegion',
+                        ],
+                    ],
                 ],
             ],
             'List' => [

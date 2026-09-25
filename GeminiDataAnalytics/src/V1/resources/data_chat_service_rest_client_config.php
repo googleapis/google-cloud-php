@@ -91,6 +91,19 @@ return [
                     ],
                 ],
             ],
+            'UpdateConversation' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{conversation.name=projects/*/locations/*/conversations/*}',
+                'body' => 'conversation',
+                'placeholders' => [
+                    'conversation.name' => [
+                        'getters' => [
+                            'getConversation',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
         ],
         'google.cloud.location.Locations' => [
             'GetLocation' => [

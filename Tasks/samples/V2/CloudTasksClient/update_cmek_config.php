@@ -1,0 +1,64 @@
+<?php
+/*
+ * Copyright 2026 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/*
+ * GENERATED CODE WARNING
+ * This file was automatically generated - do not edit!
+ */
+
+require_once __DIR__ . '/../../../vendor/autoload.php';
+
+// [START cloudtasks_v2_generated_CloudTasks_UpdateCmekConfig_sync]
+use Google\ApiCore\ApiException;
+use Google\Cloud\Tasks\V2\Client\CloudTasksClient;
+use Google\Cloud\Tasks\V2\CmekConfig;
+use Google\Cloud\Tasks\V2\UpdateCmekConfigRequest;
+
+/**
+ * Creates or Updates a CMEK config.
+ *
+ * Updates the Customer Managed Encryption Key associated with the Cloud Tasks
+ * location (Creates if the key does not already exist). All new tasks created
+ * in the location will be encrypted at-rest with the KMS-key provided in the
+ * config.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function update_cmek_config_sample(): void
+{
+    // Create a client.
+    $cloudTasksClient = new CloudTasksClient();
+
+    // Prepare the request message.
+    $cmekConfig = new CmekConfig();
+    $request = (new UpdateCmekConfigRequest())
+        ->setCmekConfig($cmekConfig);
+
+    // Call the API and handle any network failures.
+    try {
+        /** @var CmekConfig $response */
+        $response = $cloudTasksClient->updateCmekConfig($request);
+        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+    } catch (ApiException $ex) {
+        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+    }
+}
+// [END cloudtasks_v2_generated_CloudTasks_UpdateCmekConfig_sync]

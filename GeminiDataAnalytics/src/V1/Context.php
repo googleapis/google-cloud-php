@@ -21,6 +21,8 @@ class Context extends \Google\Protobuf\Internal\Message
      * Why: Business jargon (e.g., YTD revenue is calculated as…, Retirement Age
      * is 65 in the USA, etc) and system instructions (e.g., answer like a Pirate)
      * can help the model understand the business context around a user question.
+     * Must be at most 250,000 bytes (approx. 250,000 characters for English
+     * text).
      *
      * Generated from protobuf field <code>string system_instruction = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -87,6 +89,8 @@ class Context extends \Google\Protobuf\Internal\Message
      *           Why: Business jargon (e.g., YTD revenue is calculated as…, Retirement Age
      *           is 65 in the USA, etc) and system instructions (e.g., answer like a Pirate)
      *           can help the model understand the business context around a user question.
+     *           Must be at most 250,000 bytes (approx. 250,000 characters for English
+     *           text).
      *     @type \Google\Cloud\GeminiDataAnalytics\V1\DatasourceReferences $datasource_references
      *           Required. Data sources that are available for answering the question.
      *     @type \Google\Cloud\GeminiDataAnalytics\V1\ConversationOptions $options
@@ -121,6 +125,8 @@ class Context extends \Google\Protobuf\Internal\Message
      * Why: Business jargon (e.g., YTD revenue is calculated as…, Retirement Age
      * is 65 in the USA, etc) and system instructions (e.g., answer like a Pirate)
      * can help the model understand the business context around a user question.
+     * Must be at most 250,000 bytes (approx. 250,000 characters for English
+     * text).
      *
      * Generated from protobuf field <code>string system_instruction = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -136,6 +142,8 @@ class Context extends \Google\Protobuf\Internal\Message
      * Why: Business jargon (e.g., YTD revenue is calculated as…, Retirement Age
      * is 65 in the USA, etc) and system instructions (e.g., answer like a Pirate)
      * can help the model understand the business context around a user question.
+     * Must be at most 250,000 bytes (approx. 250,000 characters for English
+     * text).
      *
      * Generated from protobuf field <code>string system_instruction = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

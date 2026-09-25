@@ -77,6 +77,36 @@ return [
                     'parameter_version_id',
                 ],
             ],
+            'CreateTemplate' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/templates',
+                'body' => 'template',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'template_id',
+                ],
+            ],
+            'CreateTemplateVersion' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/templates/*}/versions',
+                'body' => 'template_version',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'template_version_id',
+                ],
+            ],
             'DeleteParameter' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/parameters/*}',
@@ -91,6 +121,28 @@ return [
             'DeleteParameterVersion' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/parameters/*/versions/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteTemplate' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/templates/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteTemplateVersion' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/templates/*/versions/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -121,6 +173,28 @@ return [
                     ],
                 ],
             ],
+            'GetTemplate' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/templates/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetTemplateVersion' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/templates/*/versions/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'ListParameterVersions' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*/parameters/*}/versions',
@@ -143,9 +217,42 @@ return [
                     ],
                 ],
             ],
+            'ListTemplateVersions' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/templates/*}/versions',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListTemplates' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/templates',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'RenderParameterVersion' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/parameters/*/versions/*}:render',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'RenderTemplateVersion' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/templates/*/versions/*}:render',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -175,6 +282,32 @@ return [
                     'parameter_version.name' => [
                         'getters' => [
                             'getParameterVersion',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateTemplate' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{template.name=projects/*/locations/*/templates/*}',
+                'body' => 'template',
+                'placeholders' => [
+                    'template.name' => [
+                        'getters' => [
+                            'getTemplate',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateTemplateVersion' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{template_version.name=projects/*/locations/*/templates/*/versions/*}',
+                'body' => 'template_version',
+                'placeholders' => [
+                    'template_version.name' => [
+                        'getters' => [
+                            'getTemplateVersion',
                             'getName',
                         ],
                     ],

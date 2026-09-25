@@ -7,14 +7,14 @@ namespace Google\Cloud\GeminiDataAnalytics\V1beta\ChatRequest;
 use UnexpectedValueException;
 
 /**
- * Model selection for the agent.
+ * Model selection for the agent for BigQuery users.
  *
  * Protobuf type <code>google.cloud.geminidataanalytics.v1beta.ChatRequest.Model</code>
  */
 class Model
 {
     /**
-     * No model specified. The default model will be used.
+     * No model specified. Either preview or non preview model can be used.
      *
      * Generated from protobuf enum <code>MODEL_UNSPECIFIED = 0;</code>
      */
