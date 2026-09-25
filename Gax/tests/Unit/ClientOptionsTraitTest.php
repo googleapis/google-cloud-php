@@ -43,6 +43,7 @@ use Google\Auth\Logging\StdOutLogger;
 use Grpc\Gcp\ApiConfig;
 use Grpc\Gcp\Config;
 use InvalidArgumentException;
+use OpenTelemetry\API\Trace\TracerProviderInterface;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Psr\Log\LogLevel;
@@ -71,7 +72,7 @@ class ClientOptionsTraitTest extends TestCase
             public function set($name, $val, $static = false)
             {
                 if (!property_exists($this, $name)) {
-                    throw new \InvalidArgumentException("Property not found: $name");
+                    throw new InvalidArgumentException("Property not found: $name");
                 }
                 if ($static) {
                     $this::$$name = $val;
@@ -228,6 +229,7 @@ class ClientOptionsTraitTest extends TestCase
         ];
     }
 
+
     /**
      * @dataProvider buildClientOptionsProvider
      */
@@ -276,6 +278,7 @@ class ClientOptionsTraitTest extends TestCase
             'clientCertSource' => null,
             'logger' => null,
             'universeDomain' => 'googleapis.com',
+            'openTelemetryTracerProvider' => null,
         ];
 
         $restConfigOptions = $defaultOptions;
@@ -357,7 +360,8 @@ class ClientOptionsTraitTest extends TestCase
             'libVersion' => null,
             'clientCertSource' => null,
             'universeDomain' => 'googleapis.com',
-            'logger' => null
+            'logger' => null,
+            'openTelemetryTracerProvider' => null,
         ];
 
         $restConfigOptions = $defaultOptions;
@@ -746,5 +750,15 @@ class ClientOptionsTraitTest extends TestCase
             'logger' => 'nonValidOption'
         ];
         $this->clientStub->buildClientOptions($optionsArray);
+    }
+
+    public function testOpenTelemetryTracerProviderOption()
+    {
+        $mockProvider = $this->createMock(TracerProviderInterface::class);
+        $optionsArray = [
+            'openTelemetryTracerProvider' => $mockProvider
+        ];
+        $options = $this->clientStub->buildClientOptions($optionsArray);
+        $this->assertSame($mockProvider, $options['openTelemetryTracerProvider']);
     }
 }
