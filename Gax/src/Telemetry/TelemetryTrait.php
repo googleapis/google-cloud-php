@@ -48,8 +48,7 @@ use Throwable;
  */
 trait TelemetryTrait
 {
-    /** @var TracerProviderInterface|null */
-    private $openTelemetryTracerProvider;
+    private ?TracerProviderInterface $openTelemetryTracerProvider = null;
     private ?string $clientVersion = null;
 
     /**

@@ -175,8 +175,6 @@ class GrpcTransport extends BaseStub implements TransportInterface
                 $config['logger'] = null;
             }
             $transport = new GrpcTransport($host, $stubOpts, $channel, $config['interceptors'], $config['logger']);
-            $transport->serverAddress = $addr;
-            $transport->serverPort = (int) $port;
             $transport->setTelemetryOptions($config);
             return $transport;
         } catch (Exception $ex) {
