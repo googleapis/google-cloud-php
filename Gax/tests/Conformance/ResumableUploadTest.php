@@ -18,10 +18,13 @@
 namespace Google\Generator\Tests\Conformance;
 
 use Google\ApiCore\ApiException;
+use Google\ApiCore\InsecureCredentialsWrapper;
 use Google\ApiCore\ResumableUpload\ResumableUpload;
+use Google\Auth\HttpHandler\HttpHandlerFactory;
 use Google\Showcase\V1beta1\Client\ResumableUploadServiceClient;
 use Google\Showcase\V1beta1\UploadMediaRequest;
 use Google\Showcase\V1beta1\UploadMediaResponse;
+use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Utils;
 use PHPUnit\Framework\TestCase;
 
@@ -37,33 +40,36 @@ class ResumableUploadTest extends TestCase
     private function createClientAndUpload(
         string $data,
         ?callable $progressCallback = null,
-        array $headers = []
+        array $headers = [],
+        array $additionalResumableUploadOptions = [],
+        array $additionalCallOptions = []
     ): UploadMediaResponse {
         $options = [
             'apiEndpoint' => self::SHOWCASE_HOST,
         ];
         if (file_exists(self::PEM_PATH)) {
-            $httpHandler = \Google\Auth\HttpHandler\HttpHandlerFactory::build(
-                new \GuzzleHttp\Client(['verify' => self::PEM_PATH])
+            $httpHandler = HttpHandlerFactory::build(
+                new Client(['verify' => self::PEM_PATH])
             );
             $options['transportConfig'] = [
                 'rest' => [
                     'httpHandler' => [$httpHandler, 'async'],
                 ],
             ];
-            $options['credentials'] = new \Google\ApiCore\InsecureCredentialsWrapper();
+            $options['credentials'] = new InsecureCredentialsWrapper();
         } else {
             $options['hasEmulator'] = true;
+            $options['credentials'] = new InsecureCredentialsWrapper();
         }
 
         $client = new ResumableUploadServiceClient($options);
 
-        $callOptions = [
+        $callOptions = array_merge([
             'headers' => $headers
-        ];
-        $resumableUploadOptions = [
+        ], $additionalCallOptions);
+        $resumableUploadOptions = array_merge([
             'chunkSize' => 1024
-        ];
+        ], $additionalResumableUploadOptions);
         if ($progressCallback !== null) {
             $resumableUploadOptions['progressCallback'] = $progressCallback;
         }
@@ -173,5 +179,109 @@ class ResumableUploadTest extends TestCase
         $this->expectExceptionCode(403);
 
         $this->createClientAndUpload($payload, null, $headers);
+    }
+
+    public function testStallControlHappyPath()
+    {
+        $payload = 'data uploaded with stall control enabled and no delays';
+        $resumableUploadOptions = [
+            'transferStallMinimumRate' => 10,
+            'transferStallTimeout' => 5,
+        ];
+
+        $result = $this->createClientAndUpload($payload, null, [], $resumableUploadOptions);
+        $this->assertInstanceOf(UploadMediaResponse::class, $result);
+    }
+
+    public function testStallControlUploadStalledOnDelay()
+    {
+        $payload = 'data exceeding chunk deadline stall timeout';
+        $headers = [
+            'X-Goog-Test-Scenario-Config' => json_encode([
+                'delay_ms' => 1500,
+            ])
+        ];
+        $resumableUploadOptions = [
+            'transferStallMinimumRate' => 10,
+            'transferStallTimeout' => 1,
+        ];
+
+        $this->expectException(ApiException::class);
+        $this->expectExceptionMessage('Upload stalled.');
+
+        $this->createClientAndUpload($payload, null, $headers, $resumableUploadOptions);
+    }
+
+    public function testStallControlUploadStalledAfterOffset()
+    {
+        $chunkSize = 256 * 1024;
+        $payload = str_repeat('c', $chunkSize * 2);
+        $headers = [
+            'X-Goog-Test-Scenario-Config' => json_encode([
+                'delay_ms' => 1500,
+                'after_offset' => $chunkSize,
+            ])
+        ];
+        $resumableUploadOptions = [
+            'chunkSize' => $chunkSize,
+            'transferStallMinimumRate' => 10,
+            'transferStallTimeout' => 1,
+        ];
+
+        $this->expectException(ApiException::class);
+        $this->expectExceptionMessage('Upload stalled.');
+
+        $this->createClientAndUpload($payload, null, $headers, $resumableUploadOptions);
+    }
+
+    public function testStallControlChunkDeadlineExceededConvertsToUploadStalledWhenGlobalDeadlineNotExceeded()
+    {
+        $payload = 'data stalling with global deadline not exceeded';
+        $headers = [
+            'X-Goog-Test-Scenario-Config' => json_encode([
+                'delay_ms' => 1500,
+            ])
+        ];
+        $resumableUploadOptions = [
+            'transferStallMinimumRate' => 10,
+            'transferStallTimeout' => 1,
+            'totalTimeoutMillis' => 30000,
+        ];
+
+        $this->expectException(ApiException::class);
+        $this->expectExceptionMessage('Upload stalled.');
+
+        $this->createClientAndUpload($payload, null, $headers, $resumableUploadOptions);
+    }
+
+    public function testStallControlThrowsDeadlineExceededWhenGlobalDeadlineExceeded()
+    {
+        $payload = 'data stalling with global deadline exceeded';
+        $headers = [
+            'X-Goog-Test-Scenario-Config' => json_encode([
+                'delay_ms' => 1500,
+            ])
+        ];
+        $resumableUploadOptions = [
+            'transferStallMinimumRate' => 10,
+            'transferStallTimeout' => 5,
+            'totalTimeoutMillis' => 500,
+        ];
+
+        $this->expectException(ApiException::class);
+        $this->expectExceptionMessage('Resumable upload total timeout exceeded.');
+
+        $this->createClientAndUpload($payload, null, $headers, $resumableUploadOptions);
+    }
+
+    public function testStallControlDisabledWhenOnlyOneOptionProvided()
+    {
+        $payload = 'data with partial stall control options';
+        $resumableUploadOptions = [
+            'transferStallMinimumRate' => 10,
+        ];
+
+        $result = $this->createClientAndUpload($payload, null, [], $resumableUploadOptions);
+        $this->assertInstanceOf(UploadMediaResponse::class, $result);
     }
 }

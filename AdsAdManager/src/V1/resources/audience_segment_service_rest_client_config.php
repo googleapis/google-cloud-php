@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -47,6 +47,18 @@ return [
                     ],
                 ],
             ],
+            'BatchCreateAudienceSegments' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/audienceSegments:batchCreate',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'BatchDeactivateAudienceSegments' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=networks/*}/audienceSegments:batchDeactivate',
@@ -75,6 +87,18 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=networks/*}/audienceSegments:batchReject',
                 'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateAudienceSegment' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=networks/*}/audienceSegments',
+                'body' => 'audience_segment',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [

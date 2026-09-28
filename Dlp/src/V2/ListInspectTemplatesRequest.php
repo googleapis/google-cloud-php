@@ -19,7 +19,7 @@ class ListInspectTemplatesRequest extends \Google\Protobuf\Internal\Message
      * Required. Parent resource name.
      * The format of this value varies depending on the scope of the request
      * (project or organization) and whether you have [specified a processing
-     * location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
+     * location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location):
      * + Projects scope, location specified:
      *   `projects/{project_id}/locations/{location_id}`
      * + Projects scope, no location specified (defaults to global):
@@ -77,7 +77,7 @@ class ListInspectTemplatesRequest extends \Google\Protobuf\Internal\Message
      *
      *                       The format of this value varies depending on the scope of the request
      *                       (project or organization) and whether you have [specified a processing
-     *                       location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
+     *                       location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location):
      *
      *                       + Projects scope, location specified:
      *                       `projects/{project_id}/locations/{location_id}`
@@ -115,7 +115,7 @@ class ListInspectTemplatesRequest extends \Google\Protobuf\Internal\Message
      *           Required. Parent resource name.
      *           The format of this value varies depending on the scope of the request
      *           (project or organization) and whether you have [specified a processing
-     *           location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
+     *           location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location):
      *           + Projects scope, location specified:
      *             `projects/{project_id}/locations/{location_id}`
      *           + Projects scope, no location specified (defaults to global):
@@ -158,7 +158,7 @@ class ListInspectTemplatesRequest extends \Google\Protobuf\Internal\Message
      * Required. Parent resource name.
      * The format of this value varies depending on the scope of the request
      * (project or organization) and whether you have [specified a processing
-     * location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
+     * location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location):
      * + Projects scope, location specified:
      *   `projects/{project_id}/locations/{location_id}`
      * + Projects scope, no location specified (defaults to global):
@@ -184,7 +184,7 @@ class ListInspectTemplatesRequest extends \Google\Protobuf\Internal\Message
      * Required. Parent resource name.
      * The format of this value varies depending on the scope of the request
      * (project or organization) and whether you have [specified a processing
-     * location](https://cloud.google.com/sensitive-data-protection/docs/specifying-location):
+     * location](https://docs.cloud.google.com/sensitive-data-protection/docs/specifying-location):
      * + Projects scope, location specified:
      *   `projects/{project_id}/locations/{location_id}`
      * + Projects scope, no location specified (defaults to global):

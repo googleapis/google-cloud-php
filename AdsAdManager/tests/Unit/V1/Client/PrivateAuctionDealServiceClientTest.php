@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -84,6 +84,8 @@ class PrivateAuctionDealServiceClientTest extends GeneratedTest
         $externalDealId = 66314918;
         $auctionPriorityEnabled = true;
         $blockOverrideEnabled = true;
+        $publisherFloorExempt = false;
+        $archived = true;
         $expectedResponse = new PrivateAuctionDeal();
         $expectedResponse->setName($name);
         $expectedResponse->setPrivateAuctionDealId($privateAuctionDealId);
@@ -93,6 +95,8 @@ class PrivateAuctionDealServiceClientTest extends GeneratedTest
         $expectedResponse->setExternalDealId($externalDealId);
         $expectedResponse->setAuctionPriorityEnabled($auctionPriorityEnabled);
         $expectedResponse->setBlockOverrideEnabled($blockOverrideEnabled);
+        $expectedResponse->setPublisherFloorExempt($publisherFloorExempt);
+        $expectedResponse->setArchived($archived);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');
@@ -178,6 +182,8 @@ class PrivateAuctionDealServiceClientTest extends GeneratedTest
         $externalDealId = 66314918;
         $auctionPriorityEnabled = true;
         $blockOverrideEnabled = true;
+        $publisherFloorExempt = false;
+        $archived = true;
         $expectedResponse = new PrivateAuctionDeal();
         $expectedResponse->setName($name2);
         $expectedResponse->setPrivateAuctionDealId($privateAuctionDealId);
@@ -187,6 +193,8 @@ class PrivateAuctionDealServiceClientTest extends GeneratedTest
         $expectedResponse->setExternalDealId($externalDealId);
         $expectedResponse->setAuctionPriorityEnabled($auctionPriorityEnabled);
         $expectedResponse->setBlockOverrideEnabled($blockOverrideEnabled);
+        $expectedResponse->setPublisherFloorExempt($publisherFloorExempt);
+        $expectedResponse->setArchived($archived);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->privateAuctionDealName('[NETWORK_CODE]', '[PRIVATE_AUCTION_DEAL]');
@@ -333,6 +341,8 @@ class PrivateAuctionDealServiceClientTest extends GeneratedTest
         $externalDealId = 66314918;
         $auctionPriorityEnabled = true;
         $blockOverrideEnabled = true;
+        $publisherFloorExempt = false;
+        $archived = true;
         $expectedResponse = new PrivateAuctionDeal();
         $expectedResponse->setName($name);
         $expectedResponse->setPrivateAuctionDealId($privateAuctionDealId);
@@ -342,6 +352,8 @@ class PrivateAuctionDealServiceClientTest extends GeneratedTest
         $expectedResponse->setExternalDealId($externalDealId);
         $expectedResponse->setAuctionPriorityEnabled($auctionPriorityEnabled);
         $expectedResponse->setBlockOverrideEnabled($blockOverrideEnabled);
+        $expectedResponse->setPublisherFloorExempt($publisherFloorExempt);
+        $expectedResponse->setArchived($archived);
         $transport->addResponse($expectedResponse);
         // Mock request
         $privateAuctionDeal = new PrivateAuctionDeal();
@@ -419,6 +431,8 @@ class PrivateAuctionDealServiceClientTest extends GeneratedTest
         $externalDealId = 66314918;
         $auctionPriorityEnabled = true;
         $blockOverrideEnabled = true;
+        $publisherFloorExempt = false;
+        $archived = true;
         $expectedResponse = new PrivateAuctionDeal();
         $expectedResponse->setName($name);
         $expectedResponse->setPrivateAuctionDealId($privateAuctionDealId);
@@ -428,6 +442,8 @@ class PrivateAuctionDealServiceClientTest extends GeneratedTest
         $expectedResponse->setExternalDealId($externalDealId);
         $expectedResponse->setAuctionPriorityEnabled($auctionPriorityEnabled);
         $expectedResponse->setBlockOverrideEnabled($blockOverrideEnabled);
+        $expectedResponse->setPublisherFloorExempt($publisherFloorExempt);
+        $expectedResponse->setArchived($archived);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->networkName('[NETWORK_CODE]');

@@ -10,6 +10,11 @@
                 "grpc": {
                     "libraryClient": "SpacesServiceClient",
                     "rpcs": {
+                        "BatchUpdateMembers": {
+                            "methods": [
+                                "batchUpdateMembers"
+                            ]
+                        },
                         "ConnectActiveConference": {
                             "methods": [
                                 "connectActiveConference"
@@ -50,6 +55,11 @@
                                 "listMembers"
                             ]
                         },
+                        "UpdateMember": {
+                            "methods": [
+                                "updateMember"
+                            ]
+                        },
                         "UpdateSpace": {
                             "methods": [
                                 "updateSpace"
@@ -84,6 +94,11 @@
                                 "getRecording"
                             ]
                         },
+                        "GetSmartNote": {
+                            "methods": [
+                                "getSmartNote"
+                            ]
+                        },
                         "GetTranscript": {
                             "methods": [
                                 "getTranscript"
@@ -112,6 +127,11 @@
                         "ListRecordings": {
                             "methods": [
                                 "listRecordings"
+                            ]
+                        },
+                        "ListSmartNotes": {
+                            "methods": [
+                                "listSmartNotes"
                             ]
                         },
                         "ListTranscriptEntries": {

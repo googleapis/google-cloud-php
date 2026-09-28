@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -149,6 +149,11 @@ use Google\Apps\Chat\V1\Space;
  *                      (external_user_allowed = "true" AND display_name:"Hello" AND space_type =
  *                      "SPACE")
  *                      ```
+ *
+ *                      The maximum query length is 1,000 characters.
+ *
+ *                      Invalid queries are rejected by the server with an `INVALID_ARGUMENT`
+ *                      error.
  */
 function search_spaces_sample(string $query): void
 {

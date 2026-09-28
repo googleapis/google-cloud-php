@@ -153,9 +153,47 @@ $spanner = new SpannerClient([
 ]);
 ```
 
+## Post-quantum Cryptography (PQC) Support
+
+To protect against the "Store Now, Decrypt Later" attack, Google Cloud is implementing Post-Quantum Cryptography (PQC) across its services.
+
+For more information on Google Cloud's approach, see [Post-Quantum Cryptography on Google Cloud](https://cloud.google.com/security/resources/post-quantum-cryptography?hl=en).
+
+## Post-quantum key exchange
+
+Google Cloud client libraries support post-quantum key exchange using the X25519MLKEM768 hybrid mechanism for TLS 1.3 connections.
+
+### gRPC Transport
+The grpc PHP extension statically bundles BoringSSL. Beginning with grpc v1.83.0, BoringSSL natively supports and advertises the X25519MLKEM768 hybrid group by default during TLS 1.3 handshakes.
+
+* Configuration: No code changes, compilation flags, or environment variables are required.
+
+* Verification: Confirm that your installed grpc extension version is 1.83.0 or higher:
+    ```bash
+    php -r "echo phpversion('grpc') . PHP_EOL;"
+    ```
+
+* Fallback: If connecting to an endpoint that does not support PQC, the handshake automatically falls back to classical X25519.
+
+### REST Transport (Guzzle / cURL)
+For clients configured to use the REST transport via Guzzle and cURL, key exchange negotiation relies on the host system's OpenSSL library linked to PHP's curl extension.
+
+Requirements:
+
+* OpenSSL 3.5.0 or higher: OpenSSL 3.5.0 introduced native support for X25519MLKEM768 and enabled it by default in TLS 1.3 supported groups.
+
+* Verification: Ensure PHP's ext-curl is linked to OpenSSL 3.5.0+, not an older system default:
+
+    ```bash
+    php -r "echo curl_version()['ssl_version'] . PHP_EOL;"
+    ```
+
+* Fallback: Guzzle inherits default curve preferences from the underlying TLS library. If OpenSSL 3.5+ is present, X25519MLKEM768 is preferred automatically, falling back gracefully to standard X25519 when unsupported by the peer.
+
+
 ## PHP Versions Supported
 
-All client libraries support PHP 8.1 and above.
+All client libraries support PHP 8.2 and above.
 
 ## Versioning
 

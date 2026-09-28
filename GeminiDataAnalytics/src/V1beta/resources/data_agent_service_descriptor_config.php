@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -57,6 +57,25 @@ return [
                         'keyName' => 'name',
                         'fieldAccessors' => [
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'SetAgentOpsObservability' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\GeminiDataAnalytics\V1beta\SetAgentOpsObservabilityResponse',
+                    'metadataReturnType' => '\Google\Cloud\GeminiDataAnalytics\V1beta\SetAgentOpsObservabilityMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
                         ],
                     ],
                 ],
@@ -160,6 +179,18 @@ return [
                 ],
                 'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
                 'responseType' => 'Google\Cloud\GeminiDataAnalytics\V1beta\ListDataAgentsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'RetrieveAgentOpsObservability' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\GeminiDataAnalytics\V1beta\RetrieveAgentOpsObservabilityResponse',
                 'headerParams' => [
                     [
                         'keyName' => 'parent',

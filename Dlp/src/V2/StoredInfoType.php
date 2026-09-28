@@ -17,9 +17,9 @@ use Google\Protobuf\RepeatedField;
 class StoredInfoType extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Resource name.
+     * Output only. Resource name.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $name = '';
     /**
@@ -43,7 +43,7 @@ class StoredInfoType extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Resource name.
+     *           Output only. Resource name.
      *     @type \Google\Cloud\Dlp\V2\StoredInfoTypeVersion $current_version
      *           Current version of the stored info type.
      *     @type \Google\Cloud\Dlp\V2\StoredInfoTypeVersion[] $pending_versions
@@ -57,9 +57,9 @@ class StoredInfoType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Resource name.
+     * Output only. Resource name.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getName()
@@ -68,9 +68,9 @@ class StoredInfoType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Resource name.
+     * Output only. Resource name.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */

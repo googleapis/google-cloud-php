@@ -38,6 +38,22 @@ class EnrollResourceRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.auditmanager.v1.EnrollResourceRequest.EligibleDestination destinations = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $destinations;
+    /**
+     * Optional. If `true`, only validates the request and does not enroll the
+     * resource. This executes standard request validation (such as schema, IAM,
+     * and destination checks) and skips the apply phase.
+     * Use this field for the following purposes:
+     * * **Infrastructure as Code (IaC)**: Allow tools like Terraform to run
+     *   dry-run mutations (e.g., `terraform plan`) without creating real
+     *   resources or incurring costs.
+     * * **User Interface Validation**: Enable real-time form and permission
+     *   validation in custom UIs before submitting requests.
+     * * **CI/CD & Automation**: Test your scripts, permissions, and parameters
+     *   safely without consuming resource quotas.
+     *
+     * Generated from protobuf field <code>bool validate_only = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $validate_only = false;
 
     /**
      * @param string                                                                    $scope        Required. Organization, folder, or project to enroll in Audit Manager, in
@@ -86,6 +102,18 @@ class EnrollResourceRequest extends \Google\Protobuf\Internal\Message
      *           at the project level using the service agent at the organization or folder
      *           level, all the buckets that are associated with the service agent are
      *           available.
+     *     @type bool $validate_only
+     *           Optional. If `true`, only validates the request and does not enroll the
+     *           resource. This executes standard request validation (such as schema, IAM,
+     *           and destination checks) and skips the apply phase.
+     *           Use this field for the following purposes:
+     *           * **Infrastructure as Code (IaC)**: Allow tools like Terraform to run
+     *             dry-run mutations (e.g., `terraform plan`) without creating real
+     *             resources or incurring costs.
+     *           * **User Interface Validation**: Enable real-time form and permission
+     *             validation in custom UIs before submitting requests.
+     *           * **CI/CD & Automation**: Test your scripts, permissions, and parameters
+     *             safely without consuming resource quotas.
      * }
      */
     public function __construct($data = NULL) {
@@ -161,6 +189,52 @@ class EnrollResourceRequest extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AuditManager\V1\EnrollResourceRequest\EligibleDestination::class);
         $this->destinations = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If `true`, only validates the request and does not enroll the
+     * resource. This executes standard request validation (such as schema, IAM,
+     * and destination checks) and skips the apply phase.
+     * Use this field for the following purposes:
+     * * **Infrastructure as Code (IaC)**: Allow tools like Terraform to run
+     *   dry-run mutations (e.g., `terraform plan`) without creating real
+     *   resources or incurring costs.
+     * * **User Interface Validation**: Enable real-time form and permission
+     *   validation in custom UIs before submitting requests.
+     * * **CI/CD & Automation**: Test your scripts, permissions, and parameters
+     *   safely without consuming resource quotas.
+     *
+     * Generated from protobuf field <code>bool validate_only = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getValidateOnly()
+    {
+        return $this->validate_only;
+    }
+
+    /**
+     * Optional. If `true`, only validates the request and does not enroll the
+     * resource. This executes standard request validation (such as schema, IAM,
+     * and destination checks) and skips the apply phase.
+     * Use this field for the following purposes:
+     * * **Infrastructure as Code (IaC)**: Allow tools like Terraform to run
+     *   dry-run mutations (e.g., `terraform plan`) without creating real
+     *   resources or incurring costs.
+     * * **User Interface Validation**: Enable real-time form and permission
+     *   validation in custom UIs before submitting requests.
+     * * **CI/CD & Automation**: Test your scripts, permissions, and parameters
+     *   safely without consuming resource quotas.
+     *
+     * Generated from protobuf field <code>bool validate_only = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setValidateOnly($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->validate_only = $var;
 
         return $this;
     }

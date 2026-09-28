@@ -91,15 +91,6 @@ if [ ${#DIR_ARRAY[@]} -gt 0 ]; then
     printf "%s\n" "${DIR_ARRAY[@]}" | xargs -P "${MAX_JOBS}" -I {} bash -c 'run_docfx_parallel "$@"' _ {}
 fi
 
-# Add Auth repo
-AUTH_DIR=$PROJECT_DIR/dev/vendor/google/auth
-$PROJECT_DIR/dev/google-cloud docfx \
-    --path $AUTH_DIR \
-    --out auth-out \
-    --metadata-version $(cat $AUTH_DIR/VERSION) \
-    $STAGING_FLAG \
-    $VERBOSITY_FLAG
-
 # Add protobuf
 PROTOBUF_DIR=$PROJECT_DIR/dev/vendor/google/protobuf
 PROTOBUF_VERSION=$(composer info google/protobuf -f json -d $PROJECT_DIR/dev | jq -r .versions[0])

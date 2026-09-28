@@ -337,6 +337,85 @@
                 }
             }
         },
+        "FeedsService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "FeedsServiceClient",
+                    "rpcs": {
+                        "CreateFeed": {
+                            "methods": [
+                                "createFeed"
+                            ]
+                        },
+                        "DeleteFeed": {
+                            "methods": [
+                                "deleteFeed"
+                            ]
+                        },
+                        "DisableFeed": {
+                            "methods": [
+                                "disableFeed"
+                            ]
+                        },
+                        "EnableFeed": {
+                            "methods": [
+                                "enableFeed"
+                            ]
+                        },
+                        "FetchServiceAccountForCustomer": {
+                            "methods": [
+                                "fetchServiceAccountForCustomer"
+                            ]
+                        },
+                        "GenerateSecret": {
+                            "methods": [
+                                "generateSecret"
+                            ]
+                        },
+                        "GetFeed": {
+                            "methods": [
+                                "getFeed"
+                            ]
+                        },
+                        "GetFeedPack": {
+                            "methods": [
+                                "getFeedPack"
+                            ]
+                        },
+                        "ImportPushLogs": {
+                            "methods": [
+                                "importPushLogs"
+                            ]
+                        },
+                        "ListFeedPacks": {
+                            "methods": [
+                                "listFeedPacks"
+                            ]
+                        },
+                        "ListFeedSourceTypeSchemas": {
+                            "methods": [
+                                "listFeedSourceTypeSchemas"
+                            ]
+                        },
+                        "ListFeeds": {
+                            "methods": [
+                                "listFeeds"
+                            ]
+                        },
+                        "ListLogTypeSchemas": {
+                            "methods": [
+                                "listLogTypeSchemas"
+                            ]
+                        },
+                        "UpdateFeed": {
+                            "methods": [
+                                "updateFeed"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "FindingsRefinementService": {
             "clients": {
                 "grpc": {

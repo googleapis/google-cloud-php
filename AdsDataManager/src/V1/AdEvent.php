@@ -61,6 +61,14 @@ class AdEvent extends \Google\Protobuf\Internal\Message
      */
     protected $device_info = null;
     /**
+     * Optional. IP address used for measurement. This must be same value as
+     * [DeviceInfo.ip_address][google.ads.datamanager.v1.DeviceInfo.ip_address].
+     * Keep it blank if you do not want to share IP for measurement.
+     *
+     * Generated from protobuf field <code>string ip_address = 34 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
+     */
+    protected $ip_address = '';
+    /**
      * Optional. The device ID of the device that the ad was served to.
      *
      * Generated from protobuf field <code>string mobile_device_id = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -182,6 +190,10 @@ class AdEvent extends \Google\Protobuf\Internal\Message
      *     @type \Google\Ads\DataManager\V1\DeviceInfo $device_info
      *           Required. Information gathered about the device being used when the ad
      *           event happened.
+     *     @type string $ip_address
+     *           Optional. IP address used for measurement. This must be same value as
+     *           [DeviceInfo.ip_address][google.ads.datamanager.v1.DeviceInfo.ip_address].
+     *           Keep it blank if you do not want to share IP for measurement.
      *     @type string $mobile_device_id
      *           Optional. The device ID of the device that the ad was served to.
      *     @type string $campaign_id
@@ -506,6 +518,36 @@ class AdEvent extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Ads\DataManager\V1\DeviceInfo::class);
         $this->device_info = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. IP address used for measurement. This must be same value as
+     * [DeviceInfo.ip_address][google.ads.datamanager.v1.DeviceInfo.ip_address].
+     * Keep it blank if you do not want to share IP for measurement.
+     *
+     * Generated from protobuf field <code>string ip_address = 34 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
+     * @return string
+     */
+    public function getIpAddress()
+    {
+        return $this->ip_address;
+    }
+
+    /**
+     * Optional. IP address used for measurement. This must be same value as
+     * [DeviceInfo.ip_address][google.ads.datamanager.v1.DeviceInfo.ip_address].
+     * Keep it blank if you do not want to share IP for measurement.
+     *
+     * Generated from protobuf field <code>string ip_address = 34 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setIpAddress($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->ip_address = $var;
 
         return $this;
     }

@@ -36,17 +36,22 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\AuditManager\V1\AuditReport;
+use Google\Cloud\AuditManager\V1\AuditSchedule;
 use Google\Cloud\AuditManager\V1\AuditScopeReport;
+use Google\Cloud\AuditManager\V1\CreateAuditScheduleRequest;
 use Google\Cloud\AuditManager\V1\EnrollResourceRequest;
 use Google\Cloud\AuditManager\V1\Enrollment;
 use Google\Cloud\AuditManager\V1\GenerateAuditReportRequest;
 use Google\Cloud\AuditManager\V1\GenerateAuditScopeReportRequest;
 use Google\Cloud\AuditManager\V1\GetAuditReportRequest;
+use Google\Cloud\AuditManager\V1\GetAuditScheduleRequest;
 use Google\Cloud\AuditManager\V1\GetResourceEnrollmentStatusRequest;
 use Google\Cloud\AuditManager\V1\ListAuditReportsRequest;
+use Google\Cloud\AuditManager\V1\ListAuditSchedulesRequest;
 use Google\Cloud\AuditManager\V1\ListControlsRequest;
 use Google\Cloud\AuditManager\V1\ListResourceEnrollmentStatusesRequest;
 use Google\Cloud\AuditManager\V1\ResourceEnrollmentStatus;
+use Google\Cloud\AuditManager\V1\UpdateAuditScheduleRequest;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
@@ -66,14 +71,18 @@ use Psr\Log\LoggerInterface;
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
+ * @method PromiseInterface<AuditSchedule> createAuditScheduleAsync(CreateAuditScheduleRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Enrollment> enrollResourceAsync(EnrollResourceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> generateAuditReportAsync(GenerateAuditReportRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<AuditScopeReport> generateAuditScopeReportAsync(GenerateAuditScopeReportRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<AuditReport> getAuditReportAsync(GetAuditReportRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AuditSchedule> getAuditScheduleAsync(GetAuditScheduleRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ResourceEnrollmentStatus> getResourceEnrollmentStatusAsync(GetResourceEnrollmentStatusRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listAuditReportsAsync(ListAuditReportsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAuditSchedulesAsync(ListAuditSchedulesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listControlsAsync(ListControlsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listResourceEnrollmentStatusesAsync(ListResourceEnrollmentStatusesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AuditSchedule> updateAuditScheduleAsync(UpdateAuditScheduleRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
@@ -204,6 +213,25 @@ final class AuditManagerClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * audit_schedule resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $auditSchedule
+     *
+     * @return string The formatted audit_schedule resource.
+     */
+    public static function auditScheduleName(string $project, string $location, string $auditSchedule): string
+    {
+        return self::getPathTemplate('auditSchedule')->render([
+            'project' => $project,
+            'location' => $location,
+            'audit_schedule' => $auditSchedule,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * enrollment_status_scope resource.
      *
      * @param string $folder
@@ -252,6 +280,28 @@ final class AuditManagerClient
             'folder' => $folder,
             'location' => $location,
             'audit_report' => $auditReport,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * folder_location_audit_schedule resource.
+     *
+     * @param string $folder
+     * @param string $location
+     * @param string $auditSchedule
+     *
+     * @return string The formatted folder_location_audit_schedule resource.
+     */
+    public static function folderLocationAuditScheduleName(
+        string $folder,
+        string $location,
+        string $auditSchedule
+    ): string {
+        return self::getPathTemplate('folderLocationAuditSchedule')->render([
+            'folder' => $folder,
+            'location' => $location,
+            'audit_schedule' => $auditSchedule,
         ]);
     }
 
@@ -354,6 +404,28 @@ final class AuditManagerClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * organization_location_audit_schedule resource.
+     *
+     * @param string $organization
+     * @param string $location
+     * @param string $auditSchedule
+     *
+     * @return string The formatted organization_location_audit_schedule resource.
+     */
+    public static function organizationLocationAuditScheduleName(
+        string $organization,
+        string $location,
+        string $auditSchedule
+    ): string {
+        return self::getPathTemplate('organizationLocationAuditSchedule')->render([
+            'organization' => $organization,
+            'location' => $location,
+            'audit_schedule' => $auditSchedule,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * organization_location_resource_enrollment_status resource.
      *
      * @param string $organization
@@ -415,6 +487,28 @@ final class AuditManagerClient
             'project' => $project,
             'location' => $location,
             'audit_report' => $auditReport,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * project_location_audit_schedule resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $auditSchedule
+     *
+     * @return string The formatted project_location_audit_schedule resource.
+     */
+    public static function projectLocationAuditScheduleName(
+        string $project,
+        string $location,
+        string $auditSchedule
+    ): string {
+        return self::getPathTemplate('projectLocationAuditSchedule')->render([
+            'project' => $project,
+            'location' => $location,
+            'audit_schedule' => $auditSchedule,
         ]);
     }
 
@@ -505,17 +599,21 @@ final class AuditManagerClient
      * The following name formats are supported:
      * Template: Pattern
      * - auditReport: projects/{project}/locations/{location}/auditReports/{audit_report}
+     * - auditSchedule: projects/{project}/locations/{location}/auditSchedules/{audit_schedule}
      * - enrollmentStatusScope: folders/{folder}/locations/{location}
      * - folderLocation: folders/{folder}/locations/{location}
      * - folderLocationAuditReport: folders/{folder}/locations/{location}/auditReports/{audit_report}
+     * - folderLocationAuditSchedule: folders/{folder}/locations/{location}/auditSchedules/{audit_schedule}
      * - folderLocationResourceEnrollmentStatus: folders/{folder}/locations/{location}/resourceEnrollmentStatuses/{resource_enrollment_status}
      * - folderLocationStandard: folders/{folder}/locations/{location}/standards/{standard}
      * - location: projects/{project}/locations/{location}
      * - organizationLocation: organizations/{organization}/locations/{location}
      * - organizationLocationAuditReport: organizations/{organization}/locations/{location}/auditReports/{audit_report}
+     * - organizationLocationAuditSchedule: organizations/{organization}/locations/{location}/auditSchedules/{audit_schedule}
      * - organizationLocationResourceEnrollmentStatus: organizations/{organization}/locations/{location}/resourceEnrollmentStatuses/{resource_enrollment_status}
      * - organizationLocationStandard: organizations/{organization}/locations/{location}/standards/{standard}
      * - projectLocationAuditReport: projects/{project}/locations/{location}/auditReports/{audit_report}
+     * - projectLocationAuditSchedule: projects/{project}/locations/{location}/auditSchedules/{audit_schedule}
      * - projectLocationResourceEnrollmentStatus: projects/{project}/locations/{location}/resourceEnrollmentStatuses/{resource_enrollment_status}
      * - projectLocationStandard: projects/{project}/locations/{location}/standards/{standard}
      * - resourceEnrollmentStatus: folders/{folder}/locations/{location}/resourceEnrollmentStatuses/{resource_enrollment_status}
@@ -623,6 +721,32 @@ final class AuditManagerClient
 
         array_unshift($args, substr($method, 0, -5));
         return call_user_func_array([$this, 'startAsyncCall'], $args);
+    }
+
+    /**
+     * Creates a new audit schedule in a given project and location.
+     *
+     * The async variant is {@see AuditManagerClient::createAuditScheduleAsync()} .
+     *
+     * @example samples/V1/AuditManagerClient/create_audit_schedule.php
+     *
+     * @param CreateAuditScheduleRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return AuditSchedule
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createAuditSchedule(CreateAuditScheduleRequest $request, array $callOptions = []): AuditSchedule
+    {
+        return $this->startApiCall('CreateAuditSchedule', $request, $callOptions)->wait();
     }
 
     /**
@@ -746,6 +870,32 @@ final class AuditManagerClient
     }
 
     /**
+     * Gets details of a single audit schedule.
+     *
+     * The async variant is {@see AuditManagerClient::getAuditScheduleAsync()} .
+     *
+     * @example samples/V1/AuditManagerClient/get_audit_schedule.php
+     *
+     * @param GetAuditScheduleRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return AuditSchedule
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getAuditSchedule(GetAuditScheduleRequest $request, array $callOptions = []): AuditSchedule
+    {
+        return $this->startApiCall('GetAuditSchedule', $request, $callOptions)->wait();
+    }
+
+    /**
      * Gets a resource and its enrollment status.
      *
      * The async variant is
@@ -799,6 +949,32 @@ final class AuditManagerClient
     public function listAuditReports(ListAuditReportsRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('ListAuditReports', $request, $callOptions);
+    }
+
+    /**
+     * Lists audit schedules in a given project and location.
+     *
+     * The async variant is {@see AuditManagerClient::listAuditSchedulesAsync()} .
+     *
+     * @example samples/V1/AuditManagerClient/list_audit_schedules.php
+     *
+     * @param ListAuditSchedulesRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listAuditSchedules(ListAuditSchedulesRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListAuditSchedules', $request, $callOptions);
     }
 
     /**
@@ -856,6 +1032,32 @@ final class AuditManagerClient
         array $callOptions = []
     ): PagedListResponse {
         return $this->startApiCall('ListResourceEnrollmentStatuses', $request, $callOptions);
+    }
+
+    /**
+     * Updates an existing audit schedule.
+     *
+     * The async variant is {@see AuditManagerClient::updateAuditScheduleAsync()} .
+     *
+     * @example samples/V1/AuditManagerClient/update_audit_schedule.php
+     *
+     * @param UpdateAuditScheduleRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return AuditSchedule
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateAuditSchedule(UpdateAuditScheduleRequest $request, array $callOptions = []): AuditSchedule
+    {
+        return $this->startApiCall('UpdateAuditSchedule', $request, $callOptions)->wait();
     }
 
     /**

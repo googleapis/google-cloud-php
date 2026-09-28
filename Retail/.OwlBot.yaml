@@ -1,4 +1,0 @@
-deep-copy-regex:
-    - source: /google/cloud/retail/(v2)/.*-php/(.*)
-      dest: /owl-bot-staging/Retail/$1/$2
-api-name: Retail

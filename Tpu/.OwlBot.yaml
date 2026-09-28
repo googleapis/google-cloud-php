@@ -1,4 +1,0 @@
-deep-copy-regex:
-    - source: /google/cloud/tpu/(v2)/.*-php/(.*)
-      dest: /owl-bot-staging/Tpu/$1/$2
-api-name: Tpu

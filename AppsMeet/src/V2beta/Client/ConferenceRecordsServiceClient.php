@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -40,17 +40,20 @@ use Google\Apps\Meet\V2beta\GetConferenceRecordRequest;
 use Google\Apps\Meet\V2beta\GetParticipantRequest;
 use Google\Apps\Meet\V2beta\GetParticipantSessionRequest;
 use Google\Apps\Meet\V2beta\GetRecordingRequest;
+use Google\Apps\Meet\V2beta\GetSmartNoteRequest;
 use Google\Apps\Meet\V2beta\GetTranscriptEntryRequest;
 use Google\Apps\Meet\V2beta\GetTranscriptRequest;
 use Google\Apps\Meet\V2beta\ListConferenceRecordsRequest;
 use Google\Apps\Meet\V2beta\ListParticipantSessionsRequest;
 use Google\Apps\Meet\V2beta\ListParticipantsRequest;
 use Google\Apps\Meet\V2beta\ListRecordingsRequest;
+use Google\Apps\Meet\V2beta\ListSmartNotesRequest;
 use Google\Apps\Meet\V2beta\ListTranscriptEntriesRequest;
 use Google\Apps\Meet\V2beta\ListTranscriptsRequest;
 use Google\Apps\Meet\V2beta\Participant;
 use Google\Apps\Meet\V2beta\ParticipantSession;
 use Google\Apps\Meet\V2beta\Recording;
+use Google\Apps\Meet\V2beta\SmartNote;
 use Google\Apps\Meet\V2beta\Transcript;
 use Google\Apps\Meet\V2beta\TranscriptEntry;
 use Google\Auth\FetchAuthTokenInterface;
@@ -74,12 +77,14 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<Participant> getParticipantAsync(GetParticipantRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ParticipantSession> getParticipantSessionAsync(GetParticipantSessionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Recording> getRecordingAsync(GetRecordingRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SmartNote> getSmartNoteAsync(GetSmartNoteRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Transcript> getTranscriptAsync(GetTranscriptRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<TranscriptEntry> getTranscriptEntryAsync(GetTranscriptEntryRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listConferenceRecordsAsync(ListConferenceRecordsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listParticipantSessionsAsync(ListParticipantSessionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listParticipantsAsync(ListParticipantsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listRecordingsAsync(ListRecordingsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listSmartNotesAsync(ListSmartNotesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listTranscriptEntriesAsync(ListTranscriptEntriesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listTranscriptsAsync(ListTranscriptsRequest $request, array $optionalArgs = [])
  */
@@ -217,6 +222,25 @@ final class ConferenceRecordsServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a smart_note
+     * resource.
+     *
+     * @param string $conferenceRecord
+     * @param string $smartNote
+     *
+     * @return string The formatted smart_note resource.
+     *
+     * @experimental
+     */
+    public static function smartNoteName(string $conferenceRecord, string $smartNote): string
+    {
+        return self::getPathTemplate('smartNote')->render([
+            'conference_record' => $conferenceRecord,
+            'smart_note' => $smartNote,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a transcript
      * resource.
      *
@@ -264,6 +288,7 @@ final class ConferenceRecordsServiceClient
      * - participant: conferenceRecords/{conference_record}/participants/{participant}
      * - participantSession: conferenceRecords/{conference_record}/participants/{participant}/participantSessions/{participant_session}
      * - recording: conferenceRecords/{conference_record}/recordings/{recording}
+     * - smartNote: conferenceRecords/{conference_record}/smartNotes/{smart_note}
      * - transcript: conferenceRecords/{conference_record}/transcripts/{transcript}
      * - transcriptEntry: conferenceRecords/{conference_record}/transcripts/{transcript}/entries/{entry}
      *
@@ -493,6 +518,35 @@ final class ConferenceRecordsServiceClient
     }
 
     /**
+     * Gets smart notes by smart note ID.
+     *
+     * The async variant is {@see ConferenceRecordsServiceClient::getSmartNoteAsync()}
+     * .
+     *
+     * @example samples/V2beta/ConferenceRecordsServiceClient/get_smart_note.php
+     *
+     * @param GetSmartNoteRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return SmartNote
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function getSmartNote(GetSmartNoteRequest $request, array $callOptions = []): SmartNote
+    {
+        return $this->startApiCall('GetSmartNote', $request, $callOptions)->wait();
+    }
+
+    /**
      * Gets a transcript by transcript ID.
      *
      * The async variant is {@see ConferenceRecordsServiceClient::getTranscriptAsync()}
@@ -526,7 +580,8 @@ final class ConferenceRecordsServiceClient
      *
      * Note: The transcript entries returned by the Google Meet API might not
      * match the transcription found in the Google Docs transcript file. This can
-     * occur when the Google Docs transcript file is modified after generation.
+     * occur when 1) we have interleaved speakers within milliseconds, or
+     * 2) the Google Docs transcript file is modified after generation.
      *
      * The async variant is
      * {@see ConferenceRecordsServiceClient::getTranscriptEntryAsync()} .
@@ -685,12 +740,43 @@ final class ConferenceRecordsServiceClient
     }
 
     /**
+     * Lists the set of smart notes from the conference record. By default,
+     * ordered by start time and in ascending order.
+     *
+     * The async variant is
+     * {@see ConferenceRecordsServiceClient::listSmartNotesAsync()} .
+     *
+     * @example samples/V2beta/ConferenceRecordsServiceClient/list_smart_notes.php
+     *
+     * @param ListSmartNotesRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     *
+     * @experimental
+     */
+    public function listSmartNotes(ListSmartNotesRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListSmartNotes', $request, $callOptions);
+    }
+
+    /**
      * Lists the structured transcript entries per transcript. By default, ordered
      * by start time and in ascending order.
      *
      * Note: The transcript entries returned by the Google Meet API might not
      * match the transcription found in the Google Docs transcript file. This can
-     * occur when the Google Docs transcript file is modified after generation.
+     * occur when 1) we have interleaved speakers within milliseconds, or
+     * 2) the Google Docs transcript file is modified after generation.
      *
      * The async variant is
      * {@see ConferenceRecordsServiceClient::listTranscriptEntriesAsync()} .

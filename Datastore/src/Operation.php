@@ -763,8 +763,8 @@ class Operation
 
         $commitRequest->setMode(
             empty($commitRequest->getTransaction())
-            ? MODE::NON_TRANSACTIONAL
-            : MODE::TRANSACTIONAL
+            ? Mode::NON_TRANSACTIONAL
+            : Mode::TRANSACTIONAL
         );
 
         try {

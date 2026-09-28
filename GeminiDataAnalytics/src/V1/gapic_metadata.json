@@ -50,6 +50,16 @@
                                 "listDataAgents"
                             ]
                         },
+                        "RetrieveAgentOpsObservability": {
+                            "methods": [
+                                "retrieveAgentOpsObservability"
+                            ]
+                        },
+                        "SetAgentOpsObservability": {
+                            "methods": [
+                                "setAgentOpsObservability"
+                            ]
+                        },
                         "SetIamPolicy": {
                             "methods": [
                                 "setIamPolicy"
@@ -112,6 +122,11 @@
                         "ListMessages": {
                             "methods": [
                                 "listMessages"
+                            ]
+                        },
+                        "UpdateConversation": {
+                            "methods": [
+                                "updateConversation"
                             ]
                         },
                         "GetLocation": {

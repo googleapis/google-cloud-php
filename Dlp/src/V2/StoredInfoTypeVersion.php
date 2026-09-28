@@ -23,24 +23,24 @@ class StoredInfoTypeVersion extends \Google\Protobuf\Internal\Message
      */
     protected $config = null;
     /**
-     * Create timestamp of the version. Read-only, determined by the system
-     * when the version is created.
+     * Output only. Create timestamp of the version. Read-only, determined by the
+     * system when the version is created.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $create_time = null;
     /**
-     * Stored info type version state. Read-only, updated by the system
-     * during dictionary creation.
+     * Output only. Stored info type version state. Read-only, updated by the
+     * system during dictionary creation.
      *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.StoredInfoTypeState state = 3;</code>
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.StoredInfoTypeState state = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $state = 0;
     /**
-     * Errors that occurred when creating this storedInfoType version, or
-     * anomalies detected in the storedInfoType data that render it unusable. Only
-     * the five most recent errors will be displayed, with the most recent error
-     * appearing first.
+     * Output only. Errors that occurred when creating this storedInfoType
+     * version, or anomalies detected in the storedInfoType data that render it
+     * unusable. Only the five most recent errors will be displayed, with the most
+     * recent error appearing first.
      * For example, some of the data for stored custom dictionaries is put in
      * the user's Cloud Storage bucket, and if this data is modified or
      * deleted by the user or another system, the dictionary becomes invalid.
@@ -49,13 +49,13 @@ class StoredInfoTypeVersion extends \Google\Protobuf\Internal\Message
      * storedInfoType to continue using it, reusing the same `config` if it was
      * not the source of the error.
      *
-     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Error errors = 4;</code>
+     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Error errors = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $errors;
     /**
-     * Statistics about this storedInfoType version.
+     * Output only. Statistics about this storedInfoType version.
      *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.StoredInfoTypeStats stats = 5;</code>
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.StoredInfoTypeStats stats = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $stats = null;
 
@@ -68,16 +68,16 @@ class StoredInfoTypeVersion extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dlp\V2\StoredInfoTypeConfig $config
      *           StoredInfoType configuration.
      *     @type \Google\Protobuf\Timestamp $create_time
-     *           Create timestamp of the version. Read-only, determined by the system
-     *           when the version is created.
+     *           Output only. Create timestamp of the version. Read-only, determined by the
+     *           system when the version is created.
      *     @type int $state
-     *           Stored info type version state. Read-only, updated by the system
-     *           during dictionary creation.
+     *           Output only. Stored info type version state. Read-only, updated by the
+     *           system during dictionary creation.
      *     @type \Google\Cloud\Dlp\V2\Error[] $errors
-     *           Errors that occurred when creating this storedInfoType version, or
-     *           anomalies detected in the storedInfoType data that render it unusable. Only
-     *           the five most recent errors will be displayed, with the most recent error
-     *           appearing first.
+     *           Output only. Errors that occurred when creating this storedInfoType
+     *           version, or anomalies detected in the storedInfoType data that render it
+     *           unusable. Only the five most recent errors will be displayed, with the most
+     *           recent error appearing first.
      *           For example, some of the data for stored custom dictionaries is put in
      *           the user's Cloud Storage bucket, and if this data is modified or
      *           deleted by the user or another system, the dictionary becomes invalid.
@@ -86,7 +86,7 @@ class StoredInfoTypeVersion extends \Google\Protobuf\Internal\Message
      *           storedInfoType to continue using it, reusing the same `config` if it was
      *           not the source of the error.
      *     @type \Google\Cloud\Dlp\V2\StoredInfoTypeStats $stats
-     *           Statistics about this storedInfoType version.
+     *           Output only. Statistics about this storedInfoType version.
      * }
      */
     public function __construct($data = NULL) {
@@ -131,10 +131,10 @@ class StoredInfoTypeVersion extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Create timestamp of the version. Read-only, determined by the system
-     * when the version is created.
+     * Output only. Create timestamp of the version. Read-only, determined by the
+     * system when the version is created.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
@@ -153,10 +153,10 @@ class StoredInfoTypeVersion extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Create timestamp of the version. Read-only, determined by the system
-     * when the version is created.
+     * Output only. Create timestamp of the version. Read-only, determined by the
+     * system when the version is created.
      *
-     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2;</code>
+     * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
      * @return $this
      */
@@ -169,10 +169,10 @@ class StoredInfoTypeVersion extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Stored info type version state. Read-only, updated by the system
-     * during dictionary creation.
+     * Output only. Stored info type version state. Read-only, updated by the
+     * system during dictionary creation.
      *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.StoredInfoTypeState state = 3;</code>
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.StoredInfoTypeState state = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
      */
     public function getState()
@@ -181,10 +181,10 @@ class StoredInfoTypeVersion extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Stored info type version state. Read-only, updated by the system
-     * during dictionary creation.
+     * Output only. Stored info type version state. Read-only, updated by the
+     * system during dictionary creation.
      *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.StoredInfoTypeState state = 3;</code>
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.StoredInfoTypeState state = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
      * @return $this
      */
@@ -197,10 +197,10 @@ class StoredInfoTypeVersion extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Errors that occurred when creating this storedInfoType version, or
-     * anomalies detected in the storedInfoType data that render it unusable. Only
-     * the five most recent errors will be displayed, with the most recent error
-     * appearing first.
+     * Output only. Errors that occurred when creating this storedInfoType
+     * version, or anomalies detected in the storedInfoType data that render it
+     * unusable. Only the five most recent errors will be displayed, with the most
+     * recent error appearing first.
      * For example, some of the data for stored custom dictionaries is put in
      * the user's Cloud Storage bucket, and if this data is modified or
      * deleted by the user or another system, the dictionary becomes invalid.
@@ -209,7 +209,7 @@ class StoredInfoTypeVersion extends \Google\Protobuf\Internal\Message
      * storedInfoType to continue using it, reusing the same `config` if it was
      * not the source of the error.
      *
-     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Error errors = 4;</code>
+     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Error errors = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return RepeatedField<\Google\Cloud\Dlp\V2\Error>
      */
     public function getErrors()
@@ -218,10 +218,10 @@ class StoredInfoTypeVersion extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Errors that occurred when creating this storedInfoType version, or
-     * anomalies detected in the storedInfoType data that render it unusable. Only
-     * the five most recent errors will be displayed, with the most recent error
-     * appearing first.
+     * Output only. Errors that occurred when creating this storedInfoType
+     * version, or anomalies detected in the storedInfoType data that render it
+     * unusable. Only the five most recent errors will be displayed, with the most
+     * recent error appearing first.
      * For example, some of the data for stored custom dictionaries is put in
      * the user's Cloud Storage bucket, and if this data is modified or
      * deleted by the user or another system, the dictionary becomes invalid.
@@ -230,7 +230,7 @@ class StoredInfoTypeVersion extends \Google\Protobuf\Internal\Message
      * storedInfoType to continue using it, reusing the same `config` if it was
      * not the source of the error.
      *
-     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Error errors = 4;</code>
+     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Error errors = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Dlp\V2\Error[] $var
      * @return $this
      */
@@ -243,9 +243,9 @@ class StoredInfoTypeVersion extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Statistics about this storedInfoType version.
+     * Output only. Statistics about this storedInfoType version.
      *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.StoredInfoTypeStats stats = 5;</code>
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.StoredInfoTypeStats stats = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\Dlp\V2\StoredInfoTypeStats|null
      */
     public function getStats()
@@ -264,9 +264,9 @@ class StoredInfoTypeVersion extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Statistics about this storedInfoType version.
+     * Output only. Statistics about this storedInfoType version.
      *
-     * Generated from protobuf field <code>.google.privacy.dlp.v2.StoredInfoTypeStats stats = 5;</code>
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.StoredInfoTypeStats stats = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Dlp\V2\StoredInfoTypeStats $var
      * @return $this
      */

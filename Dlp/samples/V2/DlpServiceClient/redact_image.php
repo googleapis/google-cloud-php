@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2022 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,7 +32,7 @@ use Google\Cloud\Dlp\V2\RedactImageResponse;
  * Redacts potentially sensitive info from an image.
  * This method has limits on input size, processing time, and output size.
  * See
- * https://cloud.google.com/sensitive-data-protection/docs/redacting-sensitive-data-images
+ * https://docs.cloud.google.com/sensitive-data-protection/docs/redacting-sensitive-data-images
  * to learn more.
  *
  * When no InfoTypes or CustomInfoTypes are specified in this request, the

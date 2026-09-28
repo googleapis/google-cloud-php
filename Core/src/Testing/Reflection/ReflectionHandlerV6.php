@@ -104,7 +104,7 @@ class ReflectionHandlerV6
      */
     public function createProjectFactory()
     {
-        $phpVersion = PhpVersion::fromString('8.1');  // PHP 8.1.0
+        $phpVersion = PhpVersion::fromString('8.2');  // PHP 8.2.0
         $parser = (new ParserFactory())->createForVersion($phpVersion);
         $nodeTraverser = new NodeTraverser();
         $nodeTraverser->addVisitor(new NameResolver());

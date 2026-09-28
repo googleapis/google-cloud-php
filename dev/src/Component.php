@@ -29,6 +29,11 @@ class Component
 {
     const VERSION_REGEX = '/^V([0-9])?(p[0-9])?(beta|alpha)?[0-9]?$/';
     private const PROTOBUF = 'google/protobuf';
+    /**
+     * Components whose repositories existed before they were migrated into this
+     * monorepo, and which therefore have issues and pull requests of their own.
+     */
+    private const MIGRATED_COMPONENTS = ['Auth', 'Gax', 'Jwt'];
     public const ROOT_DIR = __DIR__ . '/../../';
     private string $path;
     private string $releaseLevel;
@@ -73,12 +78,26 @@ class Component
 
     public function getId(): string
     {
-        return str_replace(['google/', 'googleads/'], '', $this->getPackageName());
+        // Strip the vendor prefix (e.g. "google/", "googleads/", "firebase/")
+        $packageName = $this->getPackageName();
+        return false === ($pos = strpos($packageName, '/'))
+            ? $packageName
+            : substr($packageName, $pos + 1);
     }
 
     public function getName(): string
     {
         return $this->name;
+    }
+
+    /**
+     * Whether this component's repository existed before it was migrated into
+     * this monorepo. Those repositories have issues and pull requests which our
+     * commit history links to, so they keep both tabs visible.
+     */
+    public function isMigratedRepo(): bool
+    {
+        return in_array($this->name, self::MIGRATED_COMPONENTS, true);
     }
 
     public function getPath(): string
@@ -258,10 +277,12 @@ class Component
         $this->namespaces = $namespaces;
 
         $this->componentDependencies = [];
-        // All components depend on google/auth
-        if ($this->name !== 'auth') {
-            $this->componentDependencies[] = new Component('auth', self::ROOT_DIR . '/dev/vendor/google/auth');
+
+        // Skip if Auth to avoid recursion, skip if Jwt because Jwt does not rely on Auth
+        if ($this->name !== 'Auth' && $this->name !== 'Jwt') {
+            $this->componentDependencies[] = new Component('Auth');
         }
+
         // find dependencies which are google/cloud components
         foreach ($composerJson['require'] ?? [] as $name => $version) {
             if ($componentName = key(array_filter(

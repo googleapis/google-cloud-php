@@ -16,6 +16,12 @@ use Google\Protobuf\RepeatedField;
 class InstancePropertiesPatch extends \Google\Protobuf\Internal\Message
 {
     /**
+     * This optional flag exposes the hashed physical host ID.
+     *
+     * Generated from protobuf field <code>optional bool expose_host_topology = 428530155;</code>
+     */
+    protected $expose_host_topology = null;
+    /**
      * The label key-value pairs that you want to patch onto the instance.
      *
      * Generated from protobuf field <code>map<string, string> labels = 500195327;</code>
@@ -36,6 +42,8 @@ class InstancePropertiesPatch extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type bool $expose_host_topology
+     *           This optional flag exposes the hashed physical host ID.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           The label key-value pairs that you want to patch onto the instance.
      *     @type array|\Google\Protobuf\Internal\MapField $metadata
@@ -47,6 +55,42 @@ class InstancePropertiesPatch extends \Google\Protobuf\Internal\Message
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Compute\V1\Compute::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * This optional flag exposes the hashed physical host ID.
+     *
+     * Generated from protobuf field <code>optional bool expose_host_topology = 428530155;</code>
+     * @return bool
+     */
+    public function getExposeHostTopology()
+    {
+        return isset($this->expose_host_topology) ? $this->expose_host_topology : false;
+    }
+
+    public function hasExposeHostTopology()
+    {
+        return isset($this->expose_host_topology);
+    }
+
+    public function clearExposeHostTopology()
+    {
+        unset($this->expose_host_topology);
+    }
+
+    /**
+     * This optional flag exposes the hashed physical host ID.
+     *
+     * Generated from protobuf field <code>optional bool expose_host_topology = 428530155;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setExposeHostTopology($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->expose_host_topology = $var;
+
+        return $this;
     }
 
     /**

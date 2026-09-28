@@ -1,4 +1,0 @@
-deep-copy-regex:
-    - source: /google/cloud/workloadidentity/(v1)/.*-php/(.*)
-      dest: /owl-bot-staging/WorkloadIdentity/$1/$2
-api-name: WorkloadIdentity

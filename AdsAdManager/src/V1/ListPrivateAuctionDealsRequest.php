@@ -47,6 +47,7 @@ class ListPrivateAuctionDealsRequest extends \Google\Protobuf\Internal\Message
      *  See syntax details at
      *  https://developers.google.com/ad-manager/api/beta/filters
      * **Filterable fields:**
+     * * `archived`
      * * `auctionPriorityEnabled`
      * * `blockOverrideEnabled`
      * * `buyerAccountId`
@@ -58,6 +59,7 @@ class ListPrivateAuctionDealsRequest extends \Google\Protobuf\Internal\Message
      * * `privateAuctionDealId`
      * * `privateAuctionDisplayName`
      * * `privateAuctionId`
+     * * `publisherFloorExempt`
      * * `status`
      * * `updateTime`
      *
@@ -121,6 +123,7 @@ class ListPrivateAuctionDealsRequest extends \Google\Protobuf\Internal\Message
      *            See syntax details at
      *            https://developers.google.com/ad-manager/api/beta/filters
      *           **Filterable fields:**
+     *           * `archived`
      *           * `auctionPriorityEnabled`
      *           * `blockOverrideEnabled`
      *           * `buyerAccountId`
@@ -132,6 +135,7 @@ class ListPrivateAuctionDealsRequest extends \Google\Protobuf\Internal\Message
      *           * `privateAuctionDealId`
      *           * `privateAuctionDisplayName`
      *           * `privateAuctionId`
+     *           * `publisherFloorExempt`
      *           * `status`
      *           * `updateTime`
      *     @type string $order_by
@@ -248,6 +252,7 @@ class ListPrivateAuctionDealsRequest extends \Google\Protobuf\Internal\Message
      *  See syntax details at
      *  https://developers.google.com/ad-manager/api/beta/filters
      * **Filterable fields:**
+     * * `archived`
      * * `auctionPriorityEnabled`
      * * `blockOverrideEnabled`
      * * `buyerAccountId`
@@ -259,6 +264,7 @@ class ListPrivateAuctionDealsRequest extends \Google\Protobuf\Internal\Message
      * * `privateAuctionDealId`
      * * `privateAuctionDisplayName`
      * * `privateAuctionId`
+     * * `publisherFloorExempt`
      * * `status`
      * * `updateTime`
      *
@@ -275,6 +281,7 @@ class ListPrivateAuctionDealsRequest extends \Google\Protobuf\Internal\Message
      *  See syntax details at
      *  https://developers.google.com/ad-manager/api/beta/filters
      * **Filterable fields:**
+     * * `archived`
      * * `auctionPriorityEnabled`
      * * `blockOverrideEnabled`
      * * `buyerAccountId`
@@ -286,6 +293,7 @@ class ListPrivateAuctionDealsRequest extends \Google\Protobuf\Internal\Message
      * * `privateAuctionDealId`
      * * `privateAuctionDisplayName`
      * * `privateAuctionId`
+     * * `publisherFloorExempt`
      * * `status`
      * * `updateTime`
      *

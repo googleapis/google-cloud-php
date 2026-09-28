@@ -12,7 +12,7 @@ use UnexpectedValueException;
  * The choice of machine series affects the discount rate and the eligible
  * resource types.
  *  The type must be one of the following:ACCELERATOR_OPTIMIZED, ACCELERATOR_OPTIMIZED_A3,ACCELERATOR_OPTIMIZED_A3_MEGA,COMPUTE_OPTIMIZED, COMPUTE_OPTIMIZED_C2D,
- *  COMPUTE_OPTIMIZED_C3, COMPUTE_OPTIMIZED_C3D,COMPUTE_OPTIMIZED_H3, GENERAL_PURPOSE,GENERAL_PURPOSE_C4, GENERAL_PURPOSE_E2,GENERAL_PURPOSE_N2, GENERAL_PURPOSE_N2D,GENERAL_PURPOSE_N4, GENERAL_PURPOSE_T2D,GRAPHICS_OPTIMIZED, GRAPHICS_OPTIMIZED_G4,GRAPHICS_OPTIMIZED_G4_VGPU,MEMORY_OPTIMIZED, MEMORY_OPTIMIZED_M3,MEMORY_OPTIMIZED_X4, STORAGE_OPTIMIZED_Z3. For
+ *  COMPUTE_OPTIMIZED_C3, COMPUTE_OPTIMIZED_C3D,COMPUTE_OPTIMIZED_H3, GENERAL_PURPOSE,GENERAL_PURPOSE_C4, GENERAL_PURPOSE_E2,GENERAL_PURPOSE_N2, GENERAL_PURPOSE_N2D,GENERAL_PURPOSE_N4, GENERAL_PURPOSE_T2D,GRAPHICS_OPTIMIZED, GRAPHICS_OPTIMIZED_G4,GRAPHICS_OPTIMIZED_G4_VGPU,MEMORY_OPTIMIZED, MEMORY_OPTIMIZED_M3,MEMORY_OPTIMIZED_X4, STORAGE_OPTIMIZED_Z3,STORAGE_OPTIMIZED_Z4DS, STORAGE_OPTIMIZED_Z4DH,STORAGE_OPTIMIZED_Z4D4T. For
  * example, type MEMORY_OPTIMIZED specifies a commitment that
  * applies only to eligible resources of memory optimized M1 and M2 machine
  * series. Type GENERAL_PURPOSE specifies a commitment that
@@ -221,6 +221,24 @@ class Type
      */
     const STORAGE_OPTIMIZED_Z3 = 316796085;
     /**
+     * CUD bucket for Z4D-4T machines.
+     *
+     * Generated from protobuf enum <code>STORAGE_OPTIMIZED_Z4D4T = 18503022;</code>
+     */
+    const STORAGE_OPTIMIZED_Z4D4T = 18503022;
+    /**
+     * CUD bucket for Z4DH machines.
+     *
+     * Generated from protobuf enum <code>STORAGE_OPTIMIZED_Z4DH = 35233722;</code>
+     */
+    const STORAGE_OPTIMIZED_Z4DH = 35233722;
+    /**
+     * CUD bucket for Z4DS machines.
+     *
+     * Generated from protobuf enum <code>STORAGE_OPTIMIZED_Z4DS = 35233733;</code>
+     */
+    const STORAGE_OPTIMIZED_Z4DS = 35233733;
+    /**
      * Note for internal users: When adding a new enum Type for v1, make sure
      * to also add it in the comment for the `optional Type type` definition.
      * This ensures that the public documentation displays the new enum Type.
@@ -274,6 +292,9 @@ class Type
         self::NETWORK_OPTIMIZED_U4P => 'NETWORK_OPTIMIZED_U4P',
         self::NETWORK_OPTIMIZED_U4S => 'NETWORK_OPTIMIZED_U4S',
         self::STORAGE_OPTIMIZED_Z3 => 'STORAGE_OPTIMIZED_Z3',
+        self::STORAGE_OPTIMIZED_Z4D4T => 'STORAGE_OPTIMIZED_Z4D4T',
+        self::STORAGE_OPTIMIZED_Z4DH => 'STORAGE_OPTIMIZED_Z4DH',
+        self::STORAGE_OPTIMIZED_Z4DS => 'STORAGE_OPTIMIZED_Z4DS',
         self::TYPE_UNSPECIFIED => 'TYPE_UNSPECIFIED',
     ];
 

@@ -87,6 +87,12 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      */
     protected $summary = null;
     /**
+     * Optional. Controls applied as part of the Control service.
+     *
+     * Generated from protobuf field <code>repeated string applied_controls = 10 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     */
+    private $applied_controls;
+    /**
      * Query expansion information for the returned results.
      *
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchResponse.QueryExpansionInfo query_expansion_info = 14;</code>
@@ -164,6 +170,8 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      *           This field is only returned if
      *           [SearchRequest.ContentSearchSpec.summary_spec][google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.summary_spec]
      *           is set.
+     *     @type string[] $applied_controls
+     *           Optional. Controls applied as part of the Control service.
      *     @type \Google\Cloud\DiscoveryEngine\V1\SearchResponse\QueryExpansionInfo $query_expansion_info
      *           Query expansion information for the returned results.
      *     @type \Google\Cloud\DiscoveryEngine\V1\SearchResponse\NaturalLanguageQueryUnderstandingInfo $natural_language_query_understanding_info
@@ -441,6 +449,32 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\SearchResponse\Summary::class);
         $this->summary = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Controls applied as part of the Control service.
+     *
+     * Generated from protobuf field <code>repeated string applied_controls = 10 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return RepeatedField<string>
+     */
+    public function getAppliedControls()
+    {
+        return $this->applied_controls;
+    }
+
+    /**
+     * Optional. Controls applied as part of the Control service.
+     *
+     * Generated from protobuf field <code>repeated string applied_controls = 10 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param string[] $var
+     * @return $this
+     */
+    public function setAppliedControls($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->applied_controls = $arr;
 
         return $this;
     }

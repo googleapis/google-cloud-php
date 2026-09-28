@@ -1,4 +1,0 @@
-deep-copy-regex:
-    - source: /google/cloud/tasks/(v2)/.*-php/(.*)
-      dest: /owl-bot-staging/Tasks/$1/$2
-api-name: Tasks

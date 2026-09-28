@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -42,14 +42,10 @@ use Google\Protobuf\Timestamp;
  * @param int    $destinationsOperatingAccountAccountType The type of the account. For example, `GOOGLE_ADS`.
  *                                                        Either `account_type` or the deprecated `product` is required.
  *                                                        If both are set, the values must match.
- * @param string $destinationsProductDestinationId        The object within the product account to ingest into. For
- *                                                        example, a Google Ads audience ID, a Display & Video 360 audience ID or a
- *                                                        Google Ads conversion action ID.
  */
 function ingest_events_sample(
     string $destinationsOperatingAccountAccountId,
-    int $destinationsOperatingAccountAccountType,
-    string $destinationsProductDestinationId
+    int $destinationsOperatingAccountAccountType
 ): void {
     // Create a client.
     $ingestionServiceClient = new IngestionServiceClient();
@@ -59,8 +55,7 @@ function ingest_events_sample(
         ->setAccountId($destinationsOperatingAccountAccountId)
         ->setAccountType($destinationsOperatingAccountAccountType);
     $destination = (new Destination())
-        ->setOperatingAccount($destinationsOperatingAccount)
-        ->setProductDestinationId($destinationsProductDestinationId);
+        ->setOperatingAccount($destinationsOperatingAccount);
     $destinations = [$destination,];
     $eventsEventTimestamp = new Timestamp();
     $event = (new Event())
@@ -93,12 +88,10 @@ function callSample(): void
 {
     $destinationsOperatingAccountAccountId = '[ACCOUNT_ID]';
     $destinationsOperatingAccountAccountType = AccountType::ACCOUNT_TYPE_UNSPECIFIED;
-    $destinationsProductDestinationId = '[PRODUCT_DESTINATION_ID]';
 
     ingest_events_sample(
         $destinationsOperatingAccountAccountId,
-        $destinationsOperatingAccountAccountType,
-        $destinationsProductDestinationId
+        $destinationsOperatingAccountAccountType
     );
 }
 // [END datamanager_v1_generated_IngestionService_IngestEvents_sync]

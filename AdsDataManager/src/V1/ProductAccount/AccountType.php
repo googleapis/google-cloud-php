@@ -62,6 +62,12 @@ class AccountType
      * Generated from protobuf enum <code>FLOODLIGHT_CONFIG = 7;</code>
      */
     const FLOODLIGHT_CONFIG = 7;
+    /**
+     * Google Ad Manager.
+     *
+     * Generated from protobuf enum <code>GOOGLE_AD_MANAGER = 8;</code>
+     */
+    const GOOGLE_AD_MANAGER = 8;
 
     private static $valueToName = [
         self::ACCOUNT_TYPE_UNSPECIFIED => 'ACCOUNT_TYPE_UNSPECIFIED',
@@ -72,6 +78,7 @@ class AccountType
         self::GOOGLE_ANALYTICS_PROPERTY => 'GOOGLE_ANALYTICS_PROPERTY',
         self::GOOGLE_AD_MANAGER_AUDIENCE_LINK => 'GOOGLE_AD_MANAGER_AUDIENCE_LINK',
         self::FLOODLIGHT_CONFIG => 'FLOODLIGHT_CONFIG',
+        self::GOOGLE_AD_MANAGER => 'GOOGLE_AD_MANAGER',
     ];
 
     public static function name($value)

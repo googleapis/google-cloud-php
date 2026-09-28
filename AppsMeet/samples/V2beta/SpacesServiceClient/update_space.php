@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,7 +32,7 @@ use Google\Apps\Meet\V2beta\UpdateSpaceRequest;
  * Updates details about a meeting space.
  *
  * For an example, see [Update a meeting
- * space](https://developers.google.com/meet/api/guides/meeting-spaces#update-meeting-space).
+ * space](https://developers.google.com/workspace/meet/api/guides/meeting-spaces#update-meeting-space).
  *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:

@@ -87,6 +87,16 @@
                             "methods": [
                                 "calendarMode"
                             ]
+                        },
+                        "Capacity": {
+                            "methods": [
+                                "capacity"
+                            ]
+                        },
+                        "CapacityHistory": {
+                            "methods": [
+                                "capacityHistory"
+                            ]
                         }
                     }
                 }
@@ -2880,6 +2890,20 @@
                 }
             }
         },
+        "ProjectViews": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ProjectViewsClient",
+                    "rpcs": {
+                        "Get": {
+                            "methods": [
+                                "get"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "Projects": {
             "clients": {
                 "grpc": {
@@ -4585,6 +4609,11 @@
                         "Get": {
                             "methods": [
                                 "get"
+                            ]
+                        },
+                        "GetHealth": {
+                            "methods": [
+                                "getHealth"
                             ]
                         },
                         "GetVersion": {

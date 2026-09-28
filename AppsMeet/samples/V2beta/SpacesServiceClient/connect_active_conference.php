@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -37,8 +37,8 @@ use Google\Apps\Meet\V2beta\ConnectActiveConferenceResponse;
  * additional functionality is available across WebRTC data channels.
  *
  * See [Meet Media API
- * overview](https://developers.google.com/meet/media-api/guides/overview) for
- * more details about this connection.
+ * overview](https://developers.google.com/workspace/meet/media-api/guides/overview)
+ * for more details about this connection.
  *
  * @param string $formattedName Resource name of the space.
  *                              Format: spaces/{spaceId}

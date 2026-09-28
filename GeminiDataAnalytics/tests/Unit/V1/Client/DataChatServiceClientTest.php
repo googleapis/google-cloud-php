@@ -39,6 +39,7 @@ use Google\Cloud\GeminiDataAnalytics\V1\ListMessagesRequest;
 use Google\Cloud\GeminiDataAnalytics\V1\ListMessagesResponse;
 use Google\Cloud\GeminiDataAnalytics\V1\Message;
 use Google\Cloud\GeminiDataAnalytics\V1\StorageMessage;
+use Google\Cloud\GeminiDataAnalytics\V1\UpdateConversationRequest;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\ListLocationsResponse;
@@ -172,12 +173,12 @@ class DataChatServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name = 'name3373707';
+        $title = 'title110371416';
         $kmsKey = 'kmsKey-591635343';
-        $memoryPaused = true;
         $expectedResponse = new Conversation();
         $expectedResponse->setName($name);
+        $expectedResponse->setTitle($title);
         $expectedResponse->setKmsKey($kmsKey);
-        $expectedResponse->setMemoryPaused($memoryPaused);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
@@ -311,12 +312,12 @@ class DataChatServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name2 = 'name2-1052831874';
+        $title = 'title110371416';
         $kmsKey = 'kmsKey-591635343';
-        $memoryPaused = true;
         $expectedResponse = new Conversation();
         $expectedResponse->setName($name2);
+        $expectedResponse->setTitle($title);
         $expectedResponse->setKmsKey($kmsKey);
-        $expectedResponse->setMemoryPaused($memoryPaused);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->conversationName('[PROJECT]', '[LOCATION]', '[CONVERSATION]');
@@ -513,6 +514,79 @@ class DataChatServiceClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function updateConversationTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $title = 'title110371416';
+        $kmsKey = 'kmsKey-591635343';
+        $expectedResponse = new Conversation();
+        $expectedResponse->setName($name);
+        $expectedResponse->setTitle($title);
+        $expectedResponse->setKmsKey($kmsKey);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $conversation = new Conversation();
+        $conversationAgents = [];
+        $conversation->setAgents($conversationAgents);
+        $request = (new UpdateConversationRequest())->setConversation($conversation);
+        $response = $gapicClient->updateConversation($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.geminidataanalytics.v1.DataChatService/UpdateConversation', $actualFuncCall);
+        $actualValue = $actualRequestObject->getConversation();
+        $this->assertProtobufEquals($conversation, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateConversationExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $conversation = new Conversation();
+        $conversationAgents = [];
+        $conversation->setAgents($conversationAgents);
+        $request = (new UpdateConversationRequest())->setConversation($conversation);
+        try {
+            $gapicClient->updateConversation($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function getLocationTest()
     {
         $transport = $this->createTransport();
@@ -650,12 +724,12 @@ class DataChatServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name = 'name3373707';
+        $title = 'title110371416';
         $kmsKey = 'kmsKey-591635343';
-        $memoryPaused = true;
         $expectedResponse = new Conversation();
         $expectedResponse->setName($name);
+        $expectedResponse->setTitle($title);
         $expectedResponse->setKmsKey($kmsKey);
-        $expectedResponse->setMemoryPaused($memoryPaused);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');

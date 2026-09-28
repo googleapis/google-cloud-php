@@ -42,7 +42,7 @@ class TimespanConfig extends \Google\Protobuf\Internal\Message
      * Valid data types of the provided BigQuery column are: `INTEGER`, `DATE`,
      * `TIMESTAMP`, and `DATETIME`.
      * If your BigQuery table is [partitioned at ingestion
-     * time](https://cloud.google.com/bigquery/docs/partitioned-tables#ingestion_time),
+     * time](https://docs.cloud.google.com/bigquery/docs/partitioned-tables#ingestion_time),
      * you can use any of the following pseudo-columns as your timestamp field.
      * When used with Cloud DLP, these pseudo-column names are case sensitive.
      * - `_PARTITIONTIME`
@@ -55,7 +55,7 @@ class TimespanConfig extends \Google\Protobuf\Internal\Message
      * Valid data types of the provided timestamp property are: `TIMESTAMP`.
      * See the
      * [known
-     * issue](https://cloud.google.com/sensitive-data-protection/docs/known-issues#bq-timespan)
+     * issue](https://docs.cloud.google.com/sensitive-data-protection/docs/known-issues#bq-timespan)
      * related to this operation.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.FieldId timestamp_field = 3;</code>
@@ -73,7 +73,7 @@ class TimespanConfig extends \Google\Protobuf\Internal\Message
      * buffer rows are not read during inspection and reading up to the current
      * timestamp will result in skipped rows.
      * See the [known
-     * issue](https://cloud.google.com/sensitive-data-protection/docs/known-issues#recently-streamed-data)
+     * issue](https://docs.cloud.google.com/sensitive-data-protection/docs/known-issues#recently-streamed-data)
      * related to this operation.
      *
      * Generated from protobuf field <code>bool enable_auto_population_of_timespan_config = 4;</code>
@@ -104,7 +104,7 @@ class TimespanConfig extends \Google\Protobuf\Internal\Message
      *           Valid data types of the provided BigQuery column are: `INTEGER`, `DATE`,
      *           `TIMESTAMP`, and `DATETIME`.
      *           If your BigQuery table is [partitioned at ingestion
-     *           time](https://cloud.google.com/bigquery/docs/partitioned-tables#ingestion_time),
+     *           time](https://docs.cloud.google.com/bigquery/docs/partitioned-tables#ingestion_time),
      *           you can use any of the following pseudo-columns as your timestamp field.
      *           When used with Cloud DLP, these pseudo-column names are case sensitive.
      *           - `_PARTITIONTIME`
@@ -117,7 +117,7 @@ class TimespanConfig extends \Google\Protobuf\Internal\Message
      *           Valid data types of the provided timestamp property are: `TIMESTAMP`.
      *           See the
      *           [known
-     *           issue](https://cloud.google.com/sensitive-data-protection/docs/known-issues#bq-timespan)
+     *           issue](https://docs.cloud.google.com/sensitive-data-protection/docs/known-issues#bq-timespan)
      *           related to this operation.
      *     @type bool $enable_auto_population_of_timespan_config
      *           When the job is started by a JobTrigger we will automatically figure out
@@ -131,7 +131,7 @@ class TimespanConfig extends \Google\Protobuf\Internal\Message
      *           buffer rows are not read during inspection and reading up to the current
      *           timestamp will result in skipped rows.
      *           See the [known
-     *           issue](https://cloud.google.com/sensitive-data-protection/docs/known-issues#recently-streamed-data)
+     *           issue](https://docs.cloud.google.com/sensitive-data-protection/docs/known-issues#recently-streamed-data)
      *           related to this operation.
      * }
      */
@@ -228,7 +228,7 @@ class TimespanConfig extends \Google\Protobuf\Internal\Message
      * Valid data types of the provided BigQuery column are: `INTEGER`, `DATE`,
      * `TIMESTAMP`, and `DATETIME`.
      * If your BigQuery table is [partitioned at ingestion
-     * time](https://cloud.google.com/bigquery/docs/partitioned-tables#ingestion_time),
+     * time](https://docs.cloud.google.com/bigquery/docs/partitioned-tables#ingestion_time),
      * you can use any of the following pseudo-columns as your timestamp field.
      * When used with Cloud DLP, these pseudo-column names are case sensitive.
      * - `_PARTITIONTIME`
@@ -241,7 +241,7 @@ class TimespanConfig extends \Google\Protobuf\Internal\Message
      * Valid data types of the provided timestamp property are: `TIMESTAMP`.
      * See the
      * [known
-     * issue](https://cloud.google.com/sensitive-data-protection/docs/known-issues#bq-timespan)
+     * issue](https://docs.cloud.google.com/sensitive-data-protection/docs/known-issues#bq-timespan)
      * related to this operation.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.FieldId timestamp_field = 3;</code>
@@ -274,7 +274,7 @@ class TimespanConfig extends \Google\Protobuf\Internal\Message
      * Valid data types of the provided BigQuery column are: `INTEGER`, `DATE`,
      * `TIMESTAMP`, and `DATETIME`.
      * If your BigQuery table is [partitioned at ingestion
-     * time](https://cloud.google.com/bigquery/docs/partitioned-tables#ingestion_time),
+     * time](https://docs.cloud.google.com/bigquery/docs/partitioned-tables#ingestion_time),
      * you can use any of the following pseudo-columns as your timestamp field.
      * When used with Cloud DLP, these pseudo-column names are case sensitive.
      * - `_PARTITIONTIME`
@@ -287,7 +287,7 @@ class TimespanConfig extends \Google\Protobuf\Internal\Message
      * Valid data types of the provided timestamp property are: `TIMESTAMP`.
      * See the
      * [known
-     * issue](https://cloud.google.com/sensitive-data-protection/docs/known-issues#bq-timespan)
+     * issue](https://docs.cloud.google.com/sensitive-data-protection/docs/known-issues#bq-timespan)
      * related to this operation.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.FieldId timestamp_field = 3;</code>
@@ -314,7 +314,7 @@ class TimespanConfig extends \Google\Protobuf\Internal\Message
      * buffer rows are not read during inspection and reading up to the current
      * timestamp will result in skipped rows.
      * See the [known
-     * issue](https://cloud.google.com/sensitive-data-protection/docs/known-issues#recently-streamed-data)
+     * issue](https://docs.cloud.google.com/sensitive-data-protection/docs/known-issues#recently-streamed-data)
      * related to this operation.
      *
      * Generated from protobuf field <code>bool enable_auto_population_of_timespan_config = 4;</code>
@@ -337,7 +337,7 @@ class TimespanConfig extends \Google\Protobuf\Internal\Message
      * buffer rows are not read during inspection and reading up to the current
      * timestamp will result in skipped rows.
      * See the [known
-     * issue](https://cloud.google.com/sensitive-data-protection/docs/known-issues#recently-streamed-data)
+     * issue](https://docs.cloud.google.com/sensitive-data-protection/docs/known-issues#recently-streamed-data)
      * related to this operation.
      *
      * Generated from protobuf field <code>bool enable_auto_population_of_timespan_config = 4;</code>

@@ -80,6 +80,20 @@ class AdIdentifiers extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.ads.datamanager.v1.EncryptedUserId encrypted_user_ids = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $encrypted_user_ids;
+    /**
+     * Optional. A unique identifier for an authenticated user (signed-in), as
+     * defined by the publisher.
+     *
+     * Generated from protobuf field <code>string ppid = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $ppid = '';
+    /**
+     * Optional. A unique identifier for an unauthenticated user (user who is not
+     * signed-in), as defined by the publisher.
+     *
+     * Generated from protobuf field <code>string visitor_ppid = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $visitor_ppid = '';
 
     /**
      * Constructor.
@@ -111,6 +125,12 @@ class AdIdentifiers extends \Google\Protobuf\Internal\Message
      *           Optional. The match ID field used to join this event with a previous event.
      *     @type \Google\Ads\DataManager\V1\EncryptedUserId[] $encrypted_user_ids
      *           Optional. Any number of encrypted user IDs.
+     *     @type string $ppid
+     *           Optional. A unique identifier for an authenticated user (signed-in), as
+     *           defined by the publisher.
+     *     @type string $visitor_ppid
+     *           Optional. A unique identifier for an unauthenticated user (user who is not
+     *           signed-in), as defined by the publisher.
      * }
      */
     public function __construct($data = NULL) {
@@ -392,6 +412,62 @@ class AdIdentifiers extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Ads\DataManager\V1\EncryptedUserId::class);
         $this->encrypted_user_ids = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. A unique identifier for an authenticated user (signed-in), as
+     * defined by the publisher.
+     *
+     * Generated from protobuf field <code>string ppid = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getPpid()
+    {
+        return $this->ppid;
+    }
+
+    /**
+     * Optional. A unique identifier for an authenticated user (signed-in), as
+     * defined by the publisher.
+     *
+     * Generated from protobuf field <code>string ppid = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPpid($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->ppid = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. A unique identifier for an unauthenticated user (user who is not
+     * signed-in), as defined by the publisher.
+     *
+     * Generated from protobuf field <code>string visitor_ppid = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getVisitorPpid()
+    {
+        return $this->visitor_ppid;
+    }
+
+    /**
+     * Optional. A unique identifier for an unauthenticated user (user who is not
+     * signed-in), as defined by the publisher.
+     *
+     * Generated from protobuf field <code>string visitor_ppid = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setVisitorPpid($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->visitor_ppid = $var;
 
         return $this;
     }

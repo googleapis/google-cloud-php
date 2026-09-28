@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -58,6 +58,8 @@ use Google\Cloud\SecureSourceManager\V1\DeletePullRequestCommentRequest;
 use Google\Cloud\SecureSourceManager\V1\DeleteRepositoryRequest;
 use Google\Cloud\SecureSourceManager\V1\FetchBlobRequest;
 use Google\Cloud\SecureSourceManager\V1\FetchBlobResponse;
+use Google\Cloud\SecureSourceManager\V1\FetchRefsRequest;
+use Google\Cloud\SecureSourceManager\V1\FetchRefsResponse;
 use Google\Cloud\SecureSourceManager\V1\FetchTreeRequest;
 use Google\Cloud\SecureSourceManager\V1\FetchTreeResponse;
 use Google\Cloud\SecureSourceManager\V1\FileDiff;
@@ -97,6 +99,7 @@ use Google\Cloud\SecureSourceManager\V1\OpenPullRequestRequest;
 use Google\Cloud\SecureSourceManager\V1\PullRequest;
 use Google\Cloud\SecureSourceManager\V1\PullRequestComment;
 use Google\Cloud\SecureSourceManager\V1\PullRequest\Branch;
+use Google\Cloud\SecureSourceManager\V1\Ref;
 use Google\Cloud\SecureSourceManager\V1\Repository;
 use Google\Cloud\SecureSourceManager\V1\ResolvePullRequestCommentsRequest;
 use Google\Cloud\SecureSourceManager\V1\ResolvePullRequestCommentsResponse;
@@ -874,9 +877,13 @@ class SecureSourceManagerClientTest extends GeneratedTest
         $transport->addResponse($incompleteOperation);
         $name = 'name3373707';
         $kmsKey = 'kmsKey-591635343';
+        $satisfiesPzi = false;
+        $satisfiesPzs = false;
         $expectedResponse = new Instance();
         $expectedResponse->setName($name);
         $expectedResponse->setKmsKey($kmsKey);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -2667,6 +2674,77 @@ class SecureSourceManagerClientTest extends GeneratedTest
     }
 
     /** @test */
+    public function fetchRefsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $refsElement = new Ref();
+        $refs = [$refsElement];
+        $expectedResponse = new FetchRefsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setRefs($refs);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedRepository = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
+        $request = (new FetchRefsRequest())->setRepository($formattedRepository);
+        $response = $gapicClient->fetchRefs($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getRefs()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.securesourcemanager.v1.SecureSourceManager/FetchRefs', $actualFuncCall);
+        $actualValue = $actualRequestObject->getRepository();
+        $this->assertProtobufEquals($formattedRepository, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function fetchRefsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedRepository = $gapicClient->repositoryName('[PROJECT]', '[LOCATION]', '[REPOSITORY]');
+        $request = (new FetchRefsRequest())->setRepository($formattedRepository);
+        try {
+            $gapicClient->fetchRefs($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
     public function fetchTreeTest()
     {
         $transport = $this->createTransport();
@@ -2975,9 +3053,13 @@ class SecureSourceManagerClientTest extends GeneratedTest
         // Mock response
         $name2 = 'name2-1052831874';
         $kmsKey = 'kmsKey-591635343';
+        $satisfiesPzi = false;
+        $satisfiesPzs = false;
         $expectedResponse = new Instance();
         $expectedResponse->setName($name2);
         $expectedResponse->setKmsKey($kmsKey);
+        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
+        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');

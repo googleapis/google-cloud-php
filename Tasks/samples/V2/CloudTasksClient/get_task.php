@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2022 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,6 +30,10 @@ use Google\Cloud\Tasks\V2\Task;
 
 /**
  * Gets a task.
+ *
+ * After a task is successfully executed or has exhausted its retry attempts,
+ * the task is deleted. A `GetTask` request for a deleted task returns a
+ * `NOT_FOUND` error.
  *
  * @param string $formattedName The task name. For example:
  *                              `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`

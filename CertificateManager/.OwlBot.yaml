@@ -1,4 +1,0 @@
-deep-copy-regex:
-    - source: /google/cloud/certificatemanager/(v1)/.*-php/(.*)
-      dest: /owl-bot-staging/CertificateManager/$1/$2
-api-name: CertificateManager

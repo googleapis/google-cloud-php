@@ -42,7 +42,7 @@ php.owlbot_main(
 s.replace(
     'tests/**/V1/*Test.php',
     r'Copyright \d{4}',
-    'Copyright 2018')
+    'Copyright 2026')
 
 # fix the link to the official doc
 s.replace(

@@ -51,8 +51,12 @@ class Datasource extends \Google\Protobuf\Internal\Message
      *           A reference to a Spanner database.
      *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\CloudSqlReference $cloud_sql_reference
      *           A reference to a CloudSQL database.
+     *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\BigtableReference $bigtable_reference
+     *           A reference to a Bigtable instance.
      *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\BigQueryPropertyGraphReference $bigquery_property_graph_reference
      *           A reference to a BigQuery property graph.
+     *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\FirestoreReference $firestore_reference
+     *           A reference to a Firestore database.
      *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\Schema $schema
      *           Optional. The schema of the datasource.
      *     @type \Google\Protobuf\Struct $struct_schema
@@ -255,6 +259,37 @@ class Datasource extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * A reference to a Bigtable instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.BigtableReference bigtable_reference = 15;</code>
+     * @return \Google\Cloud\GeminiDataAnalytics\V1beta\BigtableReference|null
+     */
+    public function getBigtableReference()
+    {
+        return $this->readOneof(15);
+    }
+
+    public function hasBigtableReference()
+    {
+        return $this->hasOneof(15);
+    }
+
+    /**
+     * A reference to a Bigtable instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.BigtableReference bigtable_reference = 15;</code>
+     * @param \Google\Cloud\GeminiDataAnalytics\V1beta\BigtableReference $var
+     * @return $this
+     */
+    public function setBigtableReference($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\GeminiDataAnalytics\V1beta\BigtableReference::class);
+        $this->writeOneof(15, $var);
+
+        return $this;
+    }
+
+    /**
      * A reference to a BigQuery property graph.
      *
      * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.BigQueryPropertyGraphReference bigquery_property_graph_reference = 16;</code>
@@ -281,6 +316,37 @@ class Datasource extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\GeminiDataAnalytics\V1beta\BigQueryPropertyGraphReference::class);
         $this->writeOneof(16, $var);
+
+        return $this;
+    }
+
+    /**
+     * A reference to a Firestore database.
+     *
+     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.FirestoreReference firestore_reference = 17;</code>
+     * @return \Google\Cloud\GeminiDataAnalytics\V1beta\FirestoreReference|null
+     */
+    public function getFirestoreReference()
+    {
+        return $this->readOneof(17);
+    }
+
+    public function hasFirestoreReference()
+    {
+        return $this->hasOneof(17);
+    }
+
+    /**
+     * A reference to a Firestore database.
+     *
+     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.FirestoreReference firestore_reference = 17;</code>
+     * @param \Google\Cloud\GeminiDataAnalytics\V1beta\FirestoreReference $var
+     * @return $this
+     */
+    public function setFirestoreReference($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\GeminiDataAnalytics\V1beta\FirestoreReference::class);
+        $this->writeOneof(17, $var);
 
         return $this;
     }

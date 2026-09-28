@@ -23,9 +23,9 @@ class ListMembersRequest extends \Google\Protobuf\Internal\Message
     protected $parent = '';
     /**
      * Optional. Maximum number of members to return. The service might return
-     * fewer than this value. If unspecified, at most 25 members are returned. The
-     * maximum value is 100; values above 100 are coerced to 100. Maximum might
-     * change in the future.
+     * fewer than this value. If unspecified or set to 0, at most 250 members are
+     * returned. The maximum value is 500; values above 500 are coerced to 500.
+     * Maximum might change in the future.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -61,9 +61,9 @@ class ListMembersRequest extends \Google\Protobuf\Internal\Message
      *           Required. Format: spaces/{space}
      *     @type int $page_size
      *           Optional. Maximum number of members to return. The service might return
-     *           fewer than this value. If unspecified, at most 25 members are returned. The
-     *           maximum value is 100; values above 100 are coerced to 100. Maximum might
-     *           change in the future.
+     *           fewer than this value. If unspecified or set to 0, at most 250 members are
+     *           returned. The maximum value is 500; values above 500 are coerced to 500.
+     *           Maximum might change in the future.
      *     @type string $page_token
      *           Optional. Page token returned from previous List Call.
      * }
@@ -101,9 +101,9 @@ class ListMembersRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Maximum number of members to return. The service might return
-     * fewer than this value. If unspecified, at most 25 members are returned. The
-     * maximum value is 100; values above 100 are coerced to 100. Maximum might
-     * change in the future.
+     * fewer than this value. If unspecified or set to 0, at most 250 members are
+     * returned. The maximum value is 500; values above 500 are coerced to 500.
+     * Maximum might change in the future.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -115,9 +115,9 @@ class ListMembersRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Maximum number of members to return. The service might return
-     * fewer than this value. If unspecified, at most 25 members are returned. The
-     * maximum value is 100; values above 100 are coerced to 100. Maximum might
-     * change in the future.
+     * fewer than this value. If unspecified or set to 0, at most 250 members are
+     * returned. The maximum value is 500; values above 500 are coerced to 500.
+     * Maximum might change in the future.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var

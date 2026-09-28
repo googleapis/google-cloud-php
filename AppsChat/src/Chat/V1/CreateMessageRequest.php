@@ -42,9 +42,22 @@ class CreateMessageRequest extends \Google\Protobuf\Internal\Message
      */
     protected $thread_key = '';
     /**
-     * Optional. A unique request ID for this message. Specifying an existing
-     * request ID returns the message created with that ID instead of creating a
-     * new message.
+     * Optional. A unique ID for this request. A random UUID is recommended.
+     * Specifying a request ID makes the request idempotent, which ensures that
+     * multiple identical requests with the same request ID result in only a
+     * single message being created. Subsequent requests with the same request
+     * ID return the existing message and do not update the message, even if the
+     * requested details differ from the current state.
+     * To use this field effectively:
+     * - Ensure that subsequent requests are identical and use the same
+     * authentication credentials as the original request.
+     * - If a message was already created with the provided request ID, the
+     * request returns that message. Note that the returned message might not be
+     * fully populated; the API echoes the message in your request with the
+     * system-assigned resource names populated. To retrieve the latest metadata
+     * for the message, call `GetMessage`.
+     * - Reusing an existing request ID with a different authenticated user
+     * results in an error.
      *
      * Generated from protobuf field <code>string request_id = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -141,9 +154,22 @@ class CreateMessageRequest extends \Google\Protobuf\Internal\Message
      *           reply to a message
      *           thread](https://developers.google.com/workspace/chat/create-messages#create-message-thread).
      *     @type string $request_id
-     *           Optional. A unique request ID for this message. Specifying an existing
-     *           request ID returns the message created with that ID instead of creating a
-     *           new message.
+     *           Optional. A unique ID for this request. A random UUID is recommended.
+     *           Specifying a request ID makes the request idempotent, which ensures that
+     *           multiple identical requests with the same request ID result in only a
+     *           single message being created. Subsequent requests with the same request
+     *           ID return the existing message and do not update the message, even if the
+     *           requested details differ from the current state.
+     *           To use this field effectively:
+     *           - Ensure that subsequent requests are identical and use the same
+     *           authentication credentials as the original request.
+     *           - If a message was already created with the provided request ID, the
+     *           request returns that message. Note that the returned message might not be
+     *           fully populated; the API echoes the message in your request with the
+     *           system-assigned resource names populated. To retrieve the latest metadata
+     *           for the message, call `GetMessage`.
+     *           - Reusing an existing request ID with a different authenticated user
+     *           results in an error.
      *     @type int $message_reply_option
      *           Optional. Specifies whether a message starts a thread or replies to one.
      *           Only supported in named spaces.
@@ -285,9 +311,22 @@ class CreateMessageRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A unique request ID for this message. Specifying an existing
-     * request ID returns the message created with that ID instead of creating a
-     * new message.
+     * Optional. A unique ID for this request. A random UUID is recommended.
+     * Specifying a request ID makes the request idempotent, which ensures that
+     * multiple identical requests with the same request ID result in only a
+     * single message being created. Subsequent requests with the same request
+     * ID return the existing message and do not update the message, even if the
+     * requested details differ from the current state.
+     * To use this field effectively:
+     * - Ensure that subsequent requests are identical and use the same
+     * authentication credentials as the original request.
+     * - If a message was already created with the provided request ID, the
+     * request returns that message. Note that the returned message might not be
+     * fully populated; the API echoes the message in your request with the
+     * system-assigned resource names populated. To retrieve the latest metadata
+     * for the message, call `GetMessage`.
+     * - Reusing an existing request ID with a different authenticated user
+     * results in an error.
      *
      * Generated from protobuf field <code>string request_id = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -298,9 +337,22 @@ class CreateMessageRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A unique request ID for this message. Specifying an existing
-     * request ID returns the message created with that ID instead of creating a
-     * new message.
+     * Optional. A unique ID for this request. A random UUID is recommended.
+     * Specifying a request ID makes the request idempotent, which ensures that
+     * multiple identical requests with the same request ID result in only a
+     * single message being created. Subsequent requests with the same request
+     * ID return the existing message and do not update the message, even if the
+     * requested details differ from the current state.
+     * To use this field effectively:
+     * - Ensure that subsequent requests are identical and use the same
+     * authentication credentials as the original request.
+     * - If a message was already created with the provided request ID, the
+     * request returns that message. Note that the returned message might not be
+     * fully populated; the API echoes the message in your request with the
+     * system-assigned resource names populated. To retrieve the latest metadata
+     * for the message, call `GetMessage`.
+     * - Reusing an existing request ID with a different authenticated user
+     * results in an error.
      *
      * Generated from protobuf field <code>string request_id = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

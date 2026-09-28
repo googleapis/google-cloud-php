@@ -851,6 +851,15 @@ class Metric
      */
     const AD_EXCHANGE_PLUS_YIELD_GROUP_REVENUE = 254;
     /**
+     * The ratio of impressions to responses served in Ad Exchange.
+     * Corresponds to "Ad Exchange render rate" in the Ad Manager UI.
+     * Compatible with the following report types: `HISTORICAL`
+     * Data format: `PERCENT`
+     *
+     * Generated from protobuf enum <code>AD_EXCHANGE_RENDER_RATE = 759;</code>
+     */
+    const AD_EXCHANGE_RENDER_RATE = 759;
+    /**
      * The total number of times that an Ad Exchange ad is delivered.
      * Corresponds to "Ad Exchange responses served" in the Ad Manager UI.
      * Compatible with the following report types: `HISTORICAL`
@@ -5335,6 +5344,7 @@ class Metric
         self::AD_EXCHANGE_PLUS_YIELD_GROUP_ECPM => 'AD_EXCHANGE_PLUS_YIELD_GROUP_ECPM',
         self::AD_EXCHANGE_PLUS_YIELD_GROUP_IMPRESSIONS => 'AD_EXCHANGE_PLUS_YIELD_GROUP_IMPRESSIONS',
         self::AD_EXCHANGE_PLUS_YIELD_GROUP_REVENUE => 'AD_EXCHANGE_PLUS_YIELD_GROUP_REVENUE',
+        self::AD_EXCHANGE_RENDER_RATE => 'AD_EXCHANGE_RENDER_RATE',
         self::AD_EXCHANGE_RESPONSES_SERVED => 'AD_EXCHANGE_RESPONSES_SERVED',
         self::AD_EXCHANGE_REVENUE => 'AD_EXCHANGE_REVENUE',
         self::AD_EXCHANGE_REVENUE_PAID_THROUGH_MCM_AUTOPAYMENT => 'AD_EXCHANGE_REVENUE_PAID_THROUGH_MCM_AUTOPAYMENT',

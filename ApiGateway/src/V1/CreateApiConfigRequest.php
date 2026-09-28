@@ -23,8 +23,8 @@ class CreateApiConfigRequest extends \Google\Protobuf\Internal\Message
      */
     protected $parent = '';
     /**
-     * Required. Identifier to assign to the API Config. Must be unique within scope of
-     * the parent resource.
+     * Required. Identifier to assign to the API Config. Must be unique within
+     * scope of the parent resource.
      *
      * Generated from protobuf field <code>string api_config_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -41,8 +41,8 @@ class CreateApiConfigRequest extends \Google\Protobuf\Internal\Message
      *                                                           `projects/&#42;/locations/global/apis/*`
      *                                                           Please see {@see ApiGatewayServiceClient::apiName()} for help formatting this field.
      * @param \Google\Cloud\ApiGateway\V1\ApiConfig $apiConfig   Required. API resource.
-     * @param string                                $apiConfigId Required. Identifier to assign to the API Config. Must be unique within scope of
-     *                                                           the parent resource.
+     * @param string                                $apiConfigId Required. Identifier to assign to the API Config. Must be unique within
+     *                                                           scope of the parent resource.
      *
      * @return \Google\Cloud\ApiGateway\V1\CreateApiConfigRequest
      *
@@ -66,8 +66,8 @@ class CreateApiConfigRequest extends \Google\Protobuf\Internal\Message
      *           Required. Parent resource of the API Config, of the form:
      *           `projects/{@*}locations/global/apis/*`
      *     @type string $api_config_id
-     *           Required. Identifier to assign to the API Config. Must be unique within scope of
-     *           the parent resource.
+     *           Required. Identifier to assign to the API Config. Must be unique within
+     *           scope of the parent resource.
      *     @type \Google\Cloud\ApiGateway\V1\ApiConfig $api_config
      *           Required. API resource.
      * }
@@ -106,8 +106,8 @@ class CreateApiConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Identifier to assign to the API Config. Must be unique within scope of
-     * the parent resource.
+     * Required. Identifier to assign to the API Config. Must be unique within
+     * scope of the parent resource.
      *
      * Generated from protobuf field <code>string api_config_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -118,8 +118,8 @@ class CreateApiConfigRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Identifier to assign to the API Config. Must be unique within scope of
-     * the parent resource.
+     * Required. Identifier to assign to the API Config. Must be unique within
+     * scope of the parent resource.
      *
      * Generated from protobuf field <code>string api_config_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

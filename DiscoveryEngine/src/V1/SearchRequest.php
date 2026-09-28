@@ -127,6 +127,15 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      */
     private $data_store_specs;
     /**
+     * Optional. The maximum number of results to retrieve from each data store.
+     * If not specified, it will use the
+     * [SearchRequest.DataStoreSpec.num_results][google.cloud.discoveryengine.v1.SearchRequest.DataStoreSpec.num_results]
+     * if provided, otherwise there is no limit.
+     *
+     * Generated from protobuf field <code>int32 num_results_per_data_store = 65 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $num_results_per_data_store = 0;
+    /**
      * The filter syntax consists of an expression language for constructing a
      * predicate from one or more fields of the documents being filtered. Filter
      * expression is case-sensitive.
@@ -338,6 +347,15 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *   Google model to determine the keyword-based overlap between the query and
      *   the document.
      *   * `base_rank`: the default rank of the result
+     *   * `media_actor_match`: whether the media actor matches the query
+     *   * `media_director_match`: whether the media director matches the query
+     *   * `media_genre_match`: whether the media genre matches the query
+     *   * `media_language_match`: whether the media language matches the query
+     *   * `media_title_match`: whether the media title matches the query
+     *   * `media_prefix_similarity_rank`: prefix similarity rank for media
+     *   results
+     *   * `media_semantic_similarity_rank`: semantic similarity rank for media
+     *   results
      *
      * Generated from protobuf field <code>string ranking_expression = 26 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -429,9 +447,6 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *   Call /answer API with the session ID generated in the first call.
      *   Here, the answer generation happens in the context of the search
      *   results from the first search call.
-     * Multi-turn Search feature is currently at private GA stage. Please use
-     * v1alpha or v1beta version instead before we launch this feature to public
-     * GA. Or ask for allowlisting through Google Support team.
      *
      * Generated from protobuf field <code>string session = 41 [(.google.api.resource_reference) = {</code>
      */
@@ -471,6 +486,31 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.RelevanceScoreSpec relevance_score_spec = 52 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $relevance_score_spec = null;
+    /**
+     * Optional. SearchAddonSpec is used to disable add-ons for search as per new
+     * repricing model.
+     * This field is only supported for search requests.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.SearchAddonSpec search_addon_spec = 62 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $search_addon_spec = null;
+    /**
+     * Optional. Optional configuration for the Custom Ranking feature.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.CustomRankingParams custom_ranking_params = 64 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $custom_ranking_params = null;
+    /**
+     * Optional. The entity for customers that may run multiple different
+     * entities, domains, sites or regions, for example, "Google US", "Google
+     * Ads", "Waymo", "google.com", "youtube.com", etc. If this is set, it should
+     * be exactly matched with
+     * [UserEvent.entity][google.cloud.discoveryengine.v1.UserEvent.entity] to get
+     * search results boosted by entity.
+     *
+     * Generated from protobuf field <code>string entity = 66 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $entity = '';
 
     /**
      * Constructor.
@@ -547,6 +587,11 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *           stores. For engines with a single data store, the specs directly under
      *           [SearchRequest][google.cloud.discoveryengine.v1.SearchRequest] should be
      *           used.
+     *     @type int $num_results_per_data_store
+     *           Optional. The maximum number of results to retrieve from each data store.
+     *           If not specified, it will use the
+     *           [SearchRequest.DataStoreSpec.num_results][google.cloud.discoveryengine.v1.SearchRequest.DataStoreSpec.num_results]
+     *           if provided, otherwise there is no limit.
      *     @type string $filter
      *           The filter syntax consists of an expression language for constructing a
      *           predicate from one or more fields of the documents being filtered. Filter
@@ -711,6 +756,15 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *             Google model to determine the keyword-based overlap between the query and
      *             the document.
      *             * `base_rank`: the default rank of the result
+     *             * `media_actor_match`: whether the media actor matches the query
+     *             * `media_director_match`: whether the media director matches the query
+     *             * `media_genre_match`: whether the media genre matches the query
+     *             * `media_language_match`: whether the media language matches the query
+     *             * `media_title_match`: whether the media title matches the query
+     *             * `media_prefix_similarity_rank`: prefix similarity rank for media
+     *             results
+     *             * `media_semantic_similarity_rank`: semantic similarity rank for media
+     *             results
      *     @type int $ranking_expression_backend
      *           Optional. The backend to use for the ranking expression evaluation.
      *     @type bool $safe_search
@@ -770,9 +824,6 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *             Call /answer API with the session ID generated in the first call.
      *             Here, the answer generation happens in the context of the search
      *             results from the first search call.
-     *           Multi-turn Search feature is currently at private GA stage. Please use
-     *           v1alpha or v1beta version instead before we launch this feature to public
-     *           GA. Or ask for allowlisting through Google Support team.
      *     @type \Google\Cloud\DiscoveryEngine\V1\SearchRequest\SessionSpec $session_spec
      *           Session specification.
      *           Can be used only when `session` is set.
@@ -792,6 +843,19 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *           This feature is currently supported only for custom and site search.
      *     @type \Google\Cloud\DiscoveryEngine\V1\SearchRequest\RelevanceScoreSpec $relevance_score_spec
      *           Optional. The specification for returning the relevance score.
+     *     @type \Google\Cloud\DiscoveryEngine\V1\SearchRequest\SearchAddonSpec $search_addon_spec
+     *           Optional. SearchAddonSpec is used to disable add-ons for search as per new
+     *           repricing model.
+     *           This field is only supported for search requests.
+     *     @type \Google\Cloud\DiscoveryEngine\V1\SearchRequest\CustomRankingParams $custom_ranking_params
+     *           Optional. Optional configuration for the Custom Ranking feature.
+     *     @type string $entity
+     *           Optional. The entity for customers that may run multiple different
+     *           entities, domains, sites or regions, for example, "Google US", "Google
+     *           Ads", "Waymo", "google.com", "youtube.com", etc. If this is set, it should
+     *           be exactly matched with
+     *           [UserEvent.entity][google.cloud.discoveryengine.v1.UserEvent.entity] to get
+     *           search results boosted by entity.
      * }
      */
     public function __construct($data = NULL) {
@@ -1163,6 +1227,38 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\DiscoveryEngine\V1\SearchRequest\DataStoreSpec::class);
         $this->data_store_specs = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The maximum number of results to retrieve from each data store.
+     * If not specified, it will use the
+     * [SearchRequest.DataStoreSpec.num_results][google.cloud.discoveryengine.v1.SearchRequest.DataStoreSpec.num_results]
+     * if provided, otherwise there is no limit.
+     *
+     * Generated from protobuf field <code>int32 num_results_per_data_store = 65 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getNumResultsPerDataStore()
+    {
+        return $this->num_results_per_data_store;
+    }
+
+    /**
+     * Optional. The maximum number of results to retrieve from each data store.
+     * If not specified, it will use the
+     * [SearchRequest.DataStoreSpec.num_results][google.cloud.discoveryengine.v1.SearchRequest.DataStoreSpec.num_results]
+     * if provided, otherwise there is no limit.
+     *
+     * Generated from protobuf field <code>int32 num_results_per_data_store = 65 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setNumResultsPerDataStore($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->num_results_per_data_store = $var;
 
         return $this;
     }
@@ -1732,6 +1828,15 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *   Google model to determine the keyword-based overlap between the query and
      *   the document.
      *   * `base_rank`: the default rank of the result
+     *   * `media_actor_match`: whether the media actor matches the query
+     *   * `media_director_match`: whether the media director matches the query
+     *   * `media_genre_match`: whether the media genre matches the query
+     *   * `media_language_match`: whether the media language matches the query
+     *   * `media_title_match`: whether the media title matches the query
+     *   * `media_prefix_similarity_rank`: prefix similarity rank for media
+     *   results
+     *   * `media_semantic_similarity_rank`: semantic similarity rank for media
+     *   results
      *
      * Generated from protobuf field <code>string ranking_expression = 26 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -1818,6 +1923,15 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *   Google model to determine the keyword-based overlap between the query and
      *   the document.
      *   * `base_rank`: the default rank of the result
+     *   * `media_actor_match`: whether the media actor matches the query
+     *   * `media_director_match`: whether the media director matches the query
+     *   * `media_genre_match`: whether the media genre matches the query
+     *   * `media_language_match`: whether the media language matches the query
+     *   * `media_title_match`: whether the media title matches the query
+     *   * `media_prefix_similarity_rank`: prefix similarity rank for media
+     *   results
+     *   * `media_semantic_similarity_rank`: semantic similarity rank for media
+     *   results
      *
      * Generated from protobuf field <code>string ranking_expression = 26 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -2119,9 +2233,6 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *   Call /answer API with the session ID generated in the first call.
      *   Here, the answer generation happens in the context of the search
      *   results from the first search call.
-     * Multi-turn Search feature is currently at private GA stage. Please use
-     * v1alpha or v1beta version instead before we launch this feature to public
-     * GA. Or ask for allowlisting through Google Support team.
      *
      * Generated from protobuf field <code>string session = 41 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -2145,9 +2256,6 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *   Call /answer API with the session ID generated in the first call.
      *   Here, the answer generation happens in the context of the search
      *   results from the first search call.
-     * Multi-turn Search feature is currently at private GA stage. Please use
-     * v1alpha or v1beta version instead before we launch this feature to public
-     * GA. Or ask for allowlisting through Google Support team.
      *
      * Generated from protobuf field <code>string session = 41 [(.google.api.resource_reference) = {</code>
      * @param string $var
@@ -2313,6 +2421,118 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\SearchRequest\RelevanceScoreSpec::class);
         $this->relevance_score_spec = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. SearchAddonSpec is used to disable add-ons for search as per new
+     * repricing model.
+     * This field is only supported for search requests.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.SearchAddonSpec search_addon_spec = 62 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1\SearchRequest\SearchAddonSpec|null
+     */
+    public function getSearchAddonSpec()
+    {
+        return $this->search_addon_spec;
+    }
+
+    public function hasSearchAddonSpec()
+    {
+        return isset($this->search_addon_spec);
+    }
+
+    public function clearSearchAddonSpec()
+    {
+        unset($this->search_addon_spec);
+    }
+
+    /**
+     * Optional. SearchAddonSpec is used to disable add-ons for search as per new
+     * repricing model.
+     * This field is only supported for search requests.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.SearchAddonSpec search_addon_spec = 62 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\SearchRequest\SearchAddonSpec $var
+     * @return $this
+     */
+    public function setSearchAddonSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\SearchRequest\SearchAddonSpec::class);
+        $this->search_addon_spec = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Optional configuration for the Custom Ranking feature.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.CustomRankingParams custom_ranking_params = 64 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1\SearchRequest\CustomRankingParams|null
+     */
+    public function getCustomRankingParams()
+    {
+        return $this->custom_ranking_params;
+    }
+
+    public function hasCustomRankingParams()
+    {
+        return isset($this->custom_ranking_params);
+    }
+
+    public function clearCustomRankingParams()
+    {
+        unset($this->custom_ranking_params);
+    }
+
+    /**
+     * Optional. Optional configuration for the Custom Ranking feature.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchRequest.CustomRankingParams custom_ranking_params = 64 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\SearchRequest\CustomRankingParams $var
+     * @return $this
+     */
+    public function setCustomRankingParams($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\SearchRequest\CustomRankingParams::class);
+        $this->custom_ranking_params = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The entity for customers that may run multiple different
+     * entities, domains, sites or regions, for example, "Google US", "Google
+     * Ads", "Waymo", "google.com", "youtube.com", etc. If this is set, it should
+     * be exactly matched with
+     * [UserEvent.entity][google.cloud.discoveryengine.v1.UserEvent.entity] to get
+     * search results boosted by entity.
+     *
+     * Generated from protobuf field <code>string entity = 66 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getEntity()
+    {
+        return $this->entity;
+    }
+
+    /**
+     * Optional. The entity for customers that may run multiple different
+     * entities, domains, sites or regions, for example, "Google US", "Google
+     * Ads", "Waymo", "google.com", "youtube.com", etc. If this is set, it should
+     * be exactly matched with
+     * [UserEvent.entity][google.cloud.discoveryengine.v1.UserEvent.entity] to get
+     * search results boosted by entity.
+     *
+     * Generated from protobuf field <code>string entity = 66 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setEntity($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->entity = $var;
 
         return $this;
     }

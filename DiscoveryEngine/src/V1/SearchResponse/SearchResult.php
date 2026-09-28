@@ -50,6 +50,13 @@ class SearchResult extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchResponse.SearchResult.RankSignals rank_signals = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $rank_signals = null;
+    /**
+     * Optional. A set of signals used by the relevance filter meant for use to
+     * fine-tune the relevance filter thresholds.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchResponse.SearchResult.RetrievalSignals retrieval_signals = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $retrieval_signals = null;
 
     /**
      * Constructor.
@@ -72,6 +79,9 @@ class SearchResult extends \Google\Protobuf\Internal\Message
      *           Output only. Google provided available scores.
      *     @type \Google\Cloud\DiscoveryEngine\V1\SearchResponse\SearchResult\RankSignals $rank_signals
      *           Optional. A set of ranking signals associated with the result.
+     *     @type \Google\Cloud\DiscoveryEngine\V1\SearchResponse\SearchResult\RetrievalSignals $retrieval_signals
+     *           Optional. A set of signals used by the relevance filter meant for use to
+     *           fine-tune the relevance filter thresholds.
      * }
      */
     public function __construct($data = NULL) {
@@ -245,6 +255,44 @@ class SearchResult extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\SearchResponse\SearchResult\RankSignals::class);
         $this->rank_signals = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. A set of signals used by the relevance filter meant for use to
+     * fine-tune the relevance filter thresholds.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchResponse.SearchResult.RetrievalSignals retrieval_signals = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\DiscoveryEngine\V1\SearchResponse\SearchResult\RetrievalSignals|null
+     */
+    public function getRetrievalSignals()
+    {
+        return $this->retrieval_signals;
+    }
+
+    public function hasRetrievalSignals()
+    {
+        return isset($this->retrieval_signals);
+    }
+
+    public function clearRetrievalSignals()
+    {
+        unset($this->retrieval_signals);
+    }
+
+    /**
+     * Optional. A set of signals used by the relevance filter meant for use to
+     * fine-tune the relevance filter thresholds.
+     *
+     * Generated from protobuf field <code>.google.cloud.discoveryengine.v1.SearchResponse.SearchResult.RetrievalSignals retrieval_signals = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\DiscoveryEngine\V1\SearchResponse\SearchResult\RetrievalSignals $var
+     * @return $this
+     */
+    public function setRetrievalSignals($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DiscoveryEngine\V1\SearchResponse\SearchResult\RetrievalSignals::class);
+        $this->retrieval_signals = $var;
 
         return $this;
     }

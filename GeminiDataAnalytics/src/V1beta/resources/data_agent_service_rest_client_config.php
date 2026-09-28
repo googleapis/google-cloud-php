@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -106,6 +106,29 @@ return [
             'ListDataAgents' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1beta/{parent=projects/*/locations/*}/dataAgents',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'RetrieveAgentOpsObservability' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta/{parent=projects/*/locations/*}:retrieveAgentOpsObservability',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'SetAgentOpsObservability' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta/{parent=projects/*/locations/*}/observabilitySettings:setAgentOpsObservability',
+                'body' => '*',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [

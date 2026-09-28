@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,7 +23,6 @@
 namespace Google\Ads\DataManager\Tests\Unit\V1\Client;
 
 use Google\Ads\DataManager\V1\Client\IngestionServiceClient;
-use Google\Ads\DataManager\V1\EncryptionInfo;
 use Google\Ads\DataManager\V1\IngestAdEventsRequest;
 use Google\Ads\DataManager\V1\IngestAdEventsResponse;
 use Google\Ads\DataManager\V1\IngestAudienceMembersRequest;
@@ -86,8 +85,7 @@ class IngestionServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $adEvents = [];
-        $encryptionInfo = new EncryptionInfo();
-        $request = (new IngestAdEventsRequest())->setAdEvents($adEvents)->setEncryptionInfo($encryptionInfo);
+        $request = (new IngestAdEventsRequest())->setAdEvents($adEvents);
         $response = $gapicClient->ingestAdEvents($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -97,8 +95,6 @@ class IngestionServiceClientTest extends GeneratedTest
         $this->assertSame('/google.ads.datamanager.v1.IngestionService/IngestAdEvents', $actualFuncCall);
         $actualValue = $actualRequestObject->getAdEvents();
         $this->assertProtobufEquals($adEvents, $actualValue);
-        $actualValue = $actualRequestObject->getEncryptionInfo();
-        $this->assertProtobufEquals($encryptionInfo, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -125,8 +121,7 @@ class IngestionServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $adEvents = [];
-        $encryptionInfo = new EncryptionInfo();
-        $request = (new IngestAdEventsRequest())->setAdEvents($adEvents)->setEncryptionInfo($encryptionInfo);
+        $request = (new IngestAdEventsRequest())->setAdEvents($adEvents);
         try {
             $gapicClient->ingestAdEvents($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -496,8 +491,7 @@ class IngestionServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $adEvents = [];
-        $encryptionInfo = new EncryptionInfo();
-        $request = (new IngestAdEventsRequest())->setAdEvents($adEvents)->setEncryptionInfo($encryptionInfo);
+        $request = (new IngestAdEventsRequest())->setAdEvents($adEvents);
         $response = $gapicClient->ingestAdEventsAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -507,8 +501,6 @@ class IngestionServiceClientTest extends GeneratedTest
         $this->assertSame('/google.ads.datamanager.v1.IngestionService/IngestAdEvents', $actualFuncCall);
         $actualValue = $actualRequestObject->getAdEvents();
         $this->assertProtobufEquals($adEvents, $actualValue);
-        $actualValue = $actualRequestObject->getEncryptionInfo();
-        $this->assertProtobufEquals($encryptionInfo, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }
