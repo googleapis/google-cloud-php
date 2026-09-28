@@ -82,7 +82,13 @@ EOF)
                 InputOption::VALUE_REQUIRED,
                 'Git ref to compare to (defaults to working copy)'
             )
-            ->addOption('ga-only', null, InputOption::VALUE_NONE, 'Only check GA (>= 1.0.0) components');
+            ->addOption('ga-only', null, InputOption::VALUE_NONE, 'Only check GA (>= 1.0.0) components')
+            ->addOption(
+                'expect-breaking-changes',
+                null,
+                InputOption::VALUE_NONE,
+                'Fail if no breaking changes are detected in checked components'
+            );
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
@@ -127,6 +133,14 @@ EOF)
         }
 
         if (!$breaks) {
+            if ($input->getOption('expect-breaking-changes')) {
+                $err->writeln(
+                    '❌ Error: You indicated breaking changes in your PR title (!:), '
+                    . 'but no backwards compatibility breaks were detected by the automated check.'
+                );
+                return Command::FAILURE;
+            }
+
             $err->writeln('No breaking changes detected.');
             return Command::SUCCESS;
         }
