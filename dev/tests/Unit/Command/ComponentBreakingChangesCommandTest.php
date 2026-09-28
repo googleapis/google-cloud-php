@@ -193,9 +193,9 @@ class ComponentBreakingChangesCommandTest extends TestCase
 
         $tester = new CommandTester(new ComponentBreakingChangesCommand($this->rootDir, fn() => [false, '']));
 
-        // Pre-GA component with --ga-only and --expect-breaking-changes succeeds (filtered out before check)
+        // Pre-GA component with --ga-only and --expect-breaking-changes=true succeeds (filtered out before check)
         $code = $tester->execute(
-            ['--base-ref' => 'baseline', '--ga-only' => true, '--expect-breaking-changes' => true],
+            ['--base-ref' => 'baseline', '--ga-only' => true, '--expect-breaking-changes' => 'true'],
             ['capture_stderr_separately' => true]
         );
         $this->assertSame(Command::SUCCESS, $code);
@@ -205,9 +205,16 @@ class ComponentBreakingChangesCommandTest extends TestCase
         $this->fs->dumpFile($this->rootDir . '/Beta/src/Baz.php', '<?php class Baz { public function y() {} }');
         $this->commitAll('modify GA Beta');
 
-        // GA component with --expect-breaking-changes fails when no BC breaks are detected
+        // GA component with --expect-breaking-changes=false succeeds when no BC breaks are detected
         $code = $tester->execute(
-            ['--base-ref' => 'baseline', '--ga-only' => true, '--expect-breaking-changes' => true],
+            ['--base-ref' => 'baseline', '--ga-only' => true, '--expect-breaking-changes' => 'false'],
+            ['capture_stderr_separately' => true]
+        );
+        $this->assertSame(Command::SUCCESS, $code);
+
+        // GA component with --expect-breaking-changes=true (or --expect-breaking-changes) fails when no BC breaks are detected
+        $code = $tester->execute(
+            ['--base-ref' => 'baseline', '--ga-only' => true, '--expect-breaking-changes' => 'true'],
             ['capture_stderr_separately' => true]
         );
         $this->assertSame(Command::FAILURE, $code);

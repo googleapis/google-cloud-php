@@ -29,13 +29,10 @@ jobs:
         env:
           HAS_BC_LABEL: ${{ contains(github.event.pull_request.title, '!:') }}
         run: |
-          if [[ "true" == "${HAS_BC_LABEL}" ]]; then
-            EXPECT_BC_FLAG="--expect-breaking-changes"
-          fi
           ./dev/google-cloud component:breaking-changes \
             --base-ref="$(git merge-base origin/main HEAD)" \
-            --ga-only \
-            ${EXPECT_BC_FLAG}
+            --expect-breaking-changes=${HAS_BC_LABEL} \
+            --ga-only
 
   # Ensure the release PR does not contain an unexpected (e.g. 2.0.0) major version release
   # Add "MAJOR_VERSION_ALLOWED=component1,component2" to the PR description to allow major version

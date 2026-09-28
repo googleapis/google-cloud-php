@@ -86,8 +86,9 @@ EOF)
             ->addOption(
                 'expect-breaking-changes',
                 null,
-                InputOption::VALUE_NONE,
-                'Fail if no breaking changes are detected in checked components'
+                InputOption::VALUE_OPTIONAL,
+                'Fail if no breaking changes are detected in checked components',
+                false
             );
     }
 
@@ -133,7 +134,11 @@ EOF)
         }
 
         if (!$breaks) {
-            if ($input->getOption('expect-breaking-changes')) {
+            $expectBreakingChanges = filter_var(
+                $input->getOption('expect-breaking-changes') ?? true,
+                FILTER_VALIDATE_BOOLEAN
+            );
+            if ($expectBreakingChanges) {
                 $err->writeln(
                     '❌ Error: You indicated breaking changes in your PR title (!:), '
                     . 'but no backwards compatibility breaks were detected by the automated check.'
