@@ -81,7 +81,8 @@ EOF)
                 null,
                 InputOption::VALUE_REQUIRED,
                 'Git ref to compare to (defaults to working copy)'
-            );
+            )
+            ->addOption('ga-only', null, InputOption::VALUE_NONE, 'Only check GA (>= 1.0.0) components');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
@@ -91,6 +92,12 @@ EOF)
         $err = $output instanceof ConsoleOutputInterface ? $output->getErrorOutput() : $output;
 
         $components = $input->getOption('component') ?: $this->getChangedComponents($baseRef, $targetRef);
+        if ($input->getOption('ga-only')) {
+            $components = array_values(array_filter(
+                $components,
+                fn(string $name) => $this->isGaComponent($name, $targetRef)
+            ));
+        }
         if (!$components) {
             $err->writeln('No components have changed.');
             return Command::SUCCESS;
@@ -154,6 +161,27 @@ EOF)
     {
         return (bool) preg_match('/^[A-Z]/', $name)
             && is_file($this->rootDir . '/' . $name . '/composer.json');
+    }
+
+    /**
+     * Only check GA (>= 1.0.0) components; skip 0.x preview components.
+     */
+    private function isGaComponent(string $name, ?string $targetRef = null): bool
+    {
+        if (null !== $targetRef) {
+            $show = new Process(['git', 'show', "$targetRef:$name/VERSION"], $this->rootDir);
+            $show->run();
+            if ($show->isSuccessful()) {
+                return version_compare(trim($show->getOutput()), '1.0.0', '>=');
+            }
+        }
+
+        $versionFile = $this->rootDir . '/' . $name . '/VERSION';
+        if (!is_file($versionFile)) {
+            return true;
+        }
+
+        return version_compare(trim((string) file_get_contents($versionFile)), '1.0.0', '>=');
     }
 
     public function prepareSnapshot(string $name, string $baseRef, ?string $targetRef = null): ?string

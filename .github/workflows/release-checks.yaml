@@ -28,7 +28,8 @@ jobs:
         if: github.event.pull_request.user.login != 'release-please[bot]'
         run: |
           ./dev/google-cloud component:breaking-changes \
-            --base-ref="$(git merge-base origin/main HEAD)"
+            --base-ref="$(git merge-base origin/main HEAD)" \
+            --ga-only
       - name: "Check for BC label"
         if: github.event.pull_request.user.login != 'release-please[bot]'
         env:
