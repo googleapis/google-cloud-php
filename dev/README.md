@@ -15,7 +15,7 @@ Available commands:
   component:breaking-changes      Detect backwards compatibility breaks in modified components
   component:info                  [info] list info of a component or the whole library
   component:new                   Add a new Component
-  component:update                Update one or all components using Owlbot
+  component:update                Update one or all components using Librarian
   component:update:deps           update a dependency across all components
   component:update:readme-sample  Add a sample to a component
  release
