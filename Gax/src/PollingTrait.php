@@ -52,7 +52,7 @@ trait PollingTrait
      * }
      * @return bool
      */
-    private function poll(callable $pollCallable, array $options)
+    private function poll(callable $pollCallable, array $options): bool
     {
         $currentPollDelayMillis = $options['initialPollDelayMillis'];
         $pollDelayMultiplier = $options['pollDelayMultiplier'];
@@ -82,7 +82,7 @@ trait PollingTrait
      *
      * @return float Current time in milliseconds
      */
-    protected function getCurrentTimeMillis()
+    protected function getCurrentTimeMillis(): float
     {
         return microtime(true) * 1000.0;
     }
@@ -92,7 +92,7 @@ trait PollingTrait
      *
      * @param int $millis
      */
-    protected function sleepMillis(int $millis)
+    protected function sleepMillis(int $millis): void
     {
         usleep($millis * 1000);
     }

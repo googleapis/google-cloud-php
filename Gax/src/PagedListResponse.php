@@ -83,7 +83,7 @@ use IteratorAggregate;
  */
 class PagedListResponse implements IteratorAggregate
 {
-    private $firstPage;
+    private Page $firstPage;
 
     /**
      * PagedListResponse constructor.
@@ -109,7 +109,7 @@ class PagedListResponse implements IteratorAggregate
      * @return Generator
      * @throws ValidationException
      */
-    public function iterateAllElements()
+    public function iterateAllElements(): Generator
     {
         return $this->getIterator();
     }
@@ -123,8 +123,7 @@ class PagedListResponse implements IteratorAggregate
      * @return Generator
      * @throws ValidationException
      */
-    #[\ReturnTypeWillChange]
-    public function getIterator()
+    public function getIterator(): Generator
     {
         foreach ($this->iteratePages() as $page) {
             foreach ($page as $key => $element) {
@@ -138,7 +137,7 @@ class PagedListResponse implements IteratorAggregate
      *
      * @return Page
      */
-    public function getPage()
+    public function getPage(): Page
     {
         return $this->firstPage;
     }
@@ -147,10 +146,10 @@ class PagedListResponse implements IteratorAggregate
      * Returns an iterator over pages of results. The pages are
      * retrieved lazily from the underlying API.
      *
-     * @return Page[]
+     * @return Generator<Page>
      * @throws ValidationException
      */
-    public function iteratePages()
+    public function iteratePages(): Generator
     {
         return $this->getPage()->iteratePages();
     }
@@ -170,7 +169,7 @@ class PagedListResponse implements IteratorAggregate
      * @throws ValidationException if a FixedSizeCollection of the specified size cannot be constructed
      * @return FixedSizeCollection
      */
-    public function expandToFixedSizeCollection(int $collectionSize)
+    public function expandToFixedSizeCollection(int $collectionSize): FixedSizeCollection
     {
         return $this->getPage()->expandToFixedSizeCollection($collectionSize);
     }
@@ -190,9 +189,9 @@ class PagedListResponse implements IteratorAggregate
      *
      * @param int $collectionSize
      * @throws ValidationException if a FixedSizeCollection of the specified size cannot be constructed
-     * @return Generator|FixedSizeCollection[]
+     * @return Generator<FixedSizeCollection>
      */
-    public function iterateFixedSizeCollections(int $collectionSize)
+    public function iterateFixedSizeCollections(int $collectionSize): Generator
     {
         return $this->expandToFixedSizeCollection($collectionSize)->iterateCollections();
     }

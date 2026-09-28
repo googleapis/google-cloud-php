@@ -49,15 +49,15 @@ class Call
     const PAGINATED_CALL = 5;
     const RESUMABLE_UPLOAD_CALL = 6;
 
-    private $method;
-    private $callType;
-    private $decodeType;
-    private $message;
-    private $descriptor;
+    private string $method;
+    private int $callType;
+    private ?string $decodeType;
+    private mixed $message;
+    private ?array $descriptor;
 
     /**
      * @param string $method
-     * @param string $decodeType
+     * @param string|null $decodeType
      * @param mixed|Message $message
      * @param array|null $descriptor
      * @param int $callType
@@ -65,8 +65,8 @@ class Call
     public function __construct(
         string $method,
         ?string $decodeType = null,
-        $message = null,
-        $descriptor = [],
+        mixed $message = null,
+        ?array $descriptor = [],
         int $callType = Call::UNARY_CALL
     ) {
         $this->method = $method;
@@ -79,7 +79,7 @@ class Call
     /**
      * @return string
      */
-    public function getMethod()
+    public function getMethod(): string
     {
         return $this->method;
     }
@@ -87,15 +87,15 @@ class Call
     /**
      * @return int
      */
-    public function getCallType()
+    public function getCallType(): int
     {
         return $this->callType;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getDecodeType()
+    public function getDecodeType(): ?string
     {
         return $this->decodeType;
     }
@@ -103,7 +103,7 @@ class Call
     /**
      * @return mixed|Message
      */
-    public function getMessage()
+    public function getMessage(): mixed
     {
         return $this->message;
     }
@@ -111,16 +111,16 @@ class Call
     /**
      * @return array|null
      */
-    public function getDescriptor()
+    public function getDescriptor(): ?array
     {
         return $this->descriptor;
     }
 
     /**
      * @param mixed|Message $message
-     * @return Call
+     * @return static
      */
-    public function withMessage($message)
+    public function withMessage(mixed $message): static
     {
         // @phpstan-ignore-next-line
         return new static(

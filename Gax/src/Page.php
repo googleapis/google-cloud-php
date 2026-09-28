@@ -46,14 +46,15 @@ class Page implements IteratorAggregate
 {
     const FINAL_PAGE_TOKEN = '';
 
-    private $call;
+    private Call $call;
+    /** @var callable */
     private $callable;
-    private $options;
-    private $pageStreamingDescriptor;
+    private array $options;
+    private PageStreamingDescriptor $pageStreamingDescriptor;
 
-    private $pageToken; // @phpstan-ignore-line
+    private string $pageToken; // @phpstan-ignore-line
 
-    private $response;
+    private Message $response;
 
     /**
      * Page constructor.
@@ -87,20 +88,20 @@ class Page implements IteratorAggregate
      *
      * @return bool
      */
-    public function hasNextPage()
+    public function hasNextPage(): bool
     {
-        return strcmp($this->getNextPageToken(), Page::FINAL_PAGE_TOKEN) != 0;
+        return strcmp((string) $this->getNextPageToken(), Page::FINAL_PAGE_TOKEN) != 0;
     }
 
     /**
      * Returns the next page token from the response.
      *
-     * @return string
+     * @return string|null
      */
-    public function getNextPageToken()
+    public function getNextPageToken(): ?string
     {
         $responsePageTokenGetMethod = $this->pageStreamingDescriptor->getResponsePageTokenGetMethod();
-        return $this->getResponseObject()->$responsePageTokenGetMethod();
+        return $this->response->$responsePageTokenGetMethod();
     }
 
     /**
@@ -112,7 +113,7 @@ class Page implements IteratorAggregate
      * @throws ApiException if the call to fetch the next page fails.
      * @return Page
      */
-    public function getNextPage(?int $pageSize = null)
+    public function getNextPage(?int $pageSize = null): self
     {
         if (!$this->hasNextPage()) {
             throw new ValidationException(
@@ -161,10 +162,10 @@ class Page implements IteratorAggregate
      *
      * @return int
      */
-    public function getPageElementCount()
+    public function getPageElementCount(): int
     {
         $resourcesGetMethod = $this->pageStreamingDescriptor->getResourcesGetMethod();
-        return count($this->getResponseObject()->$resourcesGetMethod());
+        return count($this->response->$resourcesGetMethod());
     }
 
     /**
@@ -172,11 +173,10 @@ class Page implements IteratorAggregate
      *
      * @return Generator
      */
-    #[\ReturnTypeWillChange]
-    public function getIterator()
+    public function getIterator(): Generator
     {
         $resourcesGetMethod = $this->pageStreamingDescriptor->getResourcesGetMethod();
-        $items = $this->getResponseObject()->$resourcesGetMethod();
+        $items = $this->response->$resourcesGetMethod();
         foreach ($items as $key => $element) {
             if ($items instanceof MapField) {
                 yield $key => $element;
@@ -191,11 +191,11 @@ class Page implements IteratorAggregate
      * Additional Page objects are retrieved lazily via API calls until
      * all elements have been retrieved.
      *
-     * @return Generator|array<Page>
+     * @return Generator<Page>
      * @throws ValidationException
      * @throws ApiException
      */
-    public function iteratePages()
+    public function iteratePages(): Generator
     {
         $currentPage = $this;
         yield $this;
@@ -210,7 +210,7 @@ class Page implements IteratorAggregate
      *
      * @return mixed|Message
      */
-    public function getRequestObject()
+    public function getRequestObject(): mixed
     {
         return $this->call->getMessage();
     }
@@ -218,9 +218,9 @@ class Page implements IteratorAggregate
     /**
      * Gets the API response object.
      *
-     * @return mixed|Message
+     * @return Message|null
      */
-    public function getResponseObject()
+    public function getResponseObject(): ?Message
     {
         return $this->response;
     }
@@ -241,7 +241,7 @@ class Page implements IteratorAggregate
      * @throws ValidationException if a FixedSizeCollection of the specified size cannot be constructed
      * @return FixedSizeCollection
      */
-    public function expandToFixedSizeCollection($collectionSize)
+    public function expandToFixedSizeCollection(int $collectionSize): FixedSizeCollection
     {
         if (!$this->pageStreamingDescriptor->requestHasPageSizeField()) {
             throw new ValidationException(

@@ -68,9 +68,8 @@ class OperationResponse
     const DEFAULT_POLLING_MULTIPLIER = 2;
     const DEFAULT_MAX_POLLING_INTERVAL = 60000;
     const DEFAULT_MAX_POLLING_DURATION = 0;
-    private const NEW_CLIENT_NAMESPACE = '\\Client\\';
 
-    private string $operationName;
+    private ?string $operationName;
     private ?object $operationsClient;
 
     private ?string $operationReturnType;
@@ -93,15 +92,14 @@ class OperationResponse
     private ?string $cancelOperationRequest;
     private ?string $deleteOperationRequest;
     private string $operationStatusMethod;
-    /** @var mixed */
-    private $operationStatusDoneValue;
+    private mixed $operationStatusDoneValue;
     private ?string $operationErrorCodeMethod;
     private ?string $operationErrorMessageMethod;
 
     /**
      * OperationResponse constructor.
      *
-     * @param string $operationName
+     * @param string|null $operationName
      * @param object|null $operationsClient
      * @param array $options {
      *                       Optional. Options for configuring the operation response object.
@@ -123,7 +121,7 @@ class OperationResponse
      *     @type string $operationErrorMessageMethod The method on the operation to get the error status
      * }
      */
-    public function __construct(string $operationName, $operationsClient, array $options = [])
+    public function __construct(?string $operationName, ?object $operationsClient, array $options = [])
     {
         $this->operationName = $operationName;
         $this->operationsClient = $operationsClient;
@@ -177,7 +175,7 @@ class OperationResponse
      *
      * @return bool
      */
-    public function isDone()
+    public function isDone(): bool
     {
         if (!$this->hasProtoResponse()) {
             return false;
@@ -197,7 +195,7 @@ class OperationResponse
      *
      * @return bool
      */
-    public function operationSucceeded()
+    public function operationSucceeded(): bool
     {
         if (!$this->hasProtoResponse()) {
             return false;
@@ -218,7 +216,7 @@ class OperationResponse
      *
      * @return bool
      */
-    public function operationFailed()
+    public function operationFailed(): bool
     {
         return $this->hasErrors();
     }
@@ -226,9 +224,9 @@ class OperationResponse
     /**
      * Get the formatted name of the operation
      *
-     * @return string The formatted name of the operation
+     * @return string|null The formatted name of the operation
      */
-    public function getName()
+    public function getName(): ?string
     {
         return $this->operationName;
     }
@@ -253,7 +251,7 @@ class OperationResponse
      * @throws ValidationException
      * @return bool Indicates if the operation completed.
      */
-    public function pollUntilComplete(array $options = [])
+    public function pollUntilComplete(array $options = []): bool
     {
         if ($this->isDone()) {
             return true;
@@ -272,7 +270,7 @@ class OperationResponse
      * @throws ApiException If the API call fails.
      * @throws ValidationException If called on a deleted operation.
      */
-    public function reload()
+    public function reload(): void
     {
         if ($this->deleted) {
             throw new ValidationException('Cannot call reload() on a deleted operation');
@@ -290,7 +288,7 @@ class OperationResponse
      *
      * @return T|null
      */
-    public function getResult()
+    public function getResult(): mixed
     {
         if (!$this->hasProtoResponse()) {
             return null;
@@ -322,10 +320,10 @@ class OperationResponse
     /**
      * If the operation failed, return the status. If operationFailed() is false, return null.
      *
-     * @return Status|null The status of the operation in case of failure, or null if
+     * @return Status|Message|null The status of the operation in case of failure, or null if
      *                                 operationFailed() is false.
      */
-    public function getError()
+    public function getError(): ?Message
     {
         if (!$this->hasProtoResponse() || !$this->isDone()) {
             return null;
@@ -358,7 +356,7 @@ class OperationResponse
      *
      * @return array
      */
-    public function getDescriptorOptions()
+    public function getDescriptorOptions(): array
     {
         return [
             'operationReturnType' => $this->operationReturnType,
@@ -367,18 +365,18 @@ class OperationResponse
     }
 
     /**
-     * @return Operation|mixed|null The last Operation object received from the server.
+     * @return Operation|object|null The last Operation object received from the server.
      */
-    public function getLastProtoResponse()
+    public function getLastProtoResponse(): ?object
     {
         return $this->lastProtoResponse;
     }
 
     /**
-     * @return object The OperationsClient object used to make
+     * @return object|null The OperationsClient object used to make
      * requests to the operations API.
      */
-    public function getOperationsClient()
+    public function getOperationsClient(): ?object
     {
         return $this->operationsClient;
     }
@@ -400,7 +398,7 @@ class OperationResponse
      * @throws ApiException If the API call fails.
      * @throws LogicException If the API call method has not been configured
      */
-    public function cancel()
+    public function cancel(): void
     {
         if (is_null($this->cancelOperationMethod)) {
             throw new LogicException('The cancel operation is not supported by this API');
@@ -420,7 +418,7 @@ class OperationResponse
      * @throws ApiException If the API call fails.
      * @throws LogicException If the API call method has not been configured
      */
-    public function delete()
+    public function delete(): void
     {
         if (is_null($this->deleteOperationMethod)) {
             throw new LogicException('The delete operation is not supported by this API');
@@ -437,7 +435,7 @@ class OperationResponse
      *
      * @return mixed The metadata returned from the server in the last response.
      */
-    public function getMetadata()
+    public function getMetadata(): mixed
     {
         if (!$this->hasProtoResponse()) {
             return null;
@@ -457,10 +455,6 @@ class OperationResponse
         if (is_null($any)) {
             return null;
         }
-        // @TODO: This is probably not doing anything and can be removed in the next release.
-        if (is_null($any->getValue())) {
-            return null;
-        }
         $metadataReturnType = $this->metadataReturnType;
         /** @var Message $metadata */
         $metadata = new $metadataReturnType();
@@ -475,7 +469,7 @@ class OperationResponse
      * @param string $requestClass The request class to use for the call.
      *                                  Will be null for legacy operations clients.
      */
-    private function operationsCall(string $method, string $requestClass)
+    private function operationsCall(string $method, string $requestClass): mixed
     {
         if (!method_exists($requestClass, 'build')) {
             throw new LogicException('Request class must support the static build method');
@@ -490,14 +484,14 @@ class OperationResponse
         return $this->operationsClient->$method($request);
     }
 
-    private function canHaveResult()
+    private function canHaveResult(): bool
     {
         // The call to getResponse is only for OnePlatform LROs, and is not
         // supported by other LRO GAPIC clients (e.g. Compute)
         return method_exists($this->lastProtoResponse, 'getResponse');
     }
 
-    private function hasErrors()
+    private function hasErrors(): bool
     {
         if (!$this->hasProtoResponse()) {
             return false;
@@ -516,7 +510,7 @@ class OperationResponse
         throw new LogicException('Unable to determine operation error status for this service');
     }
 
-    private function hasProtoResponse()
+    private function hasProtoResponse(): bool
     {
         return !is_null($this->lastProtoResponse);
     }

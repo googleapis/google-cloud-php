@@ -40,9 +40,6 @@ use Google\Auth\CredentialsLoader;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Auth\GetUniverseDomainInterface;
 use Google\Auth\Logging\StdOutLogger;
-use Grpc\Gcp\ApiConfig;
-use Grpc\Gcp\Config;
-use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Psr\Log\LogLevel;
@@ -84,7 +81,6 @@ class ClientOptionsTraitTest extends TestCase
             {
                 return [
                     'apiEndpoint' => 'test.address.com:443',
-                    'gcpApiConfigPath' => __DIR__ . '/testdata/resources/test_service_grpc_config.json',
                 ];
             }
         };
@@ -150,15 +146,10 @@ class ClientOptionsTraitTest extends TestCase
 
     public function createCredentialsWrapperData()
     {
-        $keyFilePath = __DIR__ . '/testdata/creds/json-key-file.json';
-        $keyFile = json_decode(file_get_contents($keyFilePath), true);
-
         $fetcher = $this->prophesize(FetchAuthTokenInterface::class)->reveal();
         $credentialsWrapper = new CredentialsWrapper($fetcher);
 
         return [
-            [$keyFilePath, [], CredentialsWrapper::build(['keyFile' => $keyFile])],
-            [$keyFile, [], CredentialsWrapper::build(['keyFile' => $keyFile])],
             [$fetcher, [], new CredentialsWrapper($fetcher)],
             [$credentialsWrapper, [], $credentialsWrapper],
         ];
@@ -182,83 +173,24 @@ class ClientOptionsTraitTest extends TestCase
         $this->assertEquals($expectedCredentialsWrapper, $actualCredentialsWrapper);
     }
 
-
-    /**
-     * @dataProvider createCredentialsWrapperValidationExceptionData
-     */
-    public function testCreateCredentialsWrapperValidationException($auth, $authConfig)
-    {
-
-        $this->expectException(ValidationException::class);
-
-        $this->clientStub->createCredentialsWrapper(
-            $auth,
-            $authConfig,
-            ''
-        );
-    }
-
-    public function createCredentialsWrapperValidationExceptionData()
-    {
-        return [
-            ['not a json string', []],
-            [new \stdClass(), []],
-        ];
-    }
-
-    /**
-     * @dataProvider createCredentialsWrapperInvalidArgumentExceptionData
-     */
-    public function testCreateCredentialsWrapperInvalidArgumentException($auth, $authConfig)
-    {
-
-        $this->expectException(InvalidArgumentException::class);
-
-        $this->clientStub->createCredentialsWrapper(
-            $auth,
-            $authConfig,
-            ''
-        );
-    }
-
-    public function createCredentialsWrapperInvalidArgumentExceptionData()
-    {
-        return [
-            [['array' => 'without right keys'], []],
-        ];
-    }
-
     /**
      * @dataProvider buildClientOptionsProvider
      */
     public function testBuildClientOptions($options, $expectedUpdatedOptions)
     {
-        if (!extension_loaded('sysvshm')) {
-            $this->markTestSkipped('The sysvshm extension must be installed to execute this test.');
-        }
         $updatedOptions = $this->clientStub->buildClientOptions($options);
         $this->assertEquals($expectedUpdatedOptions, $updatedOptions);
     }
 
     public function buildClientOptionsProvider()
     {
-        $apiConfig = new ApiConfig();
-        $apiConfig->mergeFromJsonString(
-            file_get_contents(__DIR__ . '/testdata/resources/test_service_grpc_config.json')
-        );
-        $grpcGcpConfig = new Config('test.address.com:443', $apiConfig);
-
         $defaultOptions = [
             'apiEndpoint' => 'test.address.com:443',
-            'gcpApiConfigPath' => __DIR__ . '/testdata/resources/test_service_grpc_config.json',
             'disableRetries' => false,
             'transport' => null,
             'transportConfig' => [
                 'grpc' => [
-                    'stubOpts' => [
-                        'grpc_call_invoker' => $grpcGcpConfig->callInvoker(),
-                        'grpc.service_config_disable_resolution' => 1,
-                    ],
+                    'stubOpts' => ['grpc.service_config_disable_resolution' => 1],
                     'logger' => null,
                 ],
                 'rest' => [
@@ -316,9 +248,6 @@ class ClientOptionsTraitTest extends TestCase
      */
     public function testBuildClientOptionsRestOnly($options, $expectedUpdatedOptions)
     {
-        if (!extension_loaded('sysvshm')) {
-            $this->markTestSkipped('The sysvshm extension must be installed to execute this test.');
-        }
         $restOnlyClient = new class() {
             use ClientOptionsTrait {
                 buildClientOptions as public;

@@ -32,7 +32,7 @@ declare(strict_types=1);
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace Google\ApiCore\Testing;
+namespace Google\ApiCore\Tests\Testing;
 
 use Google\ApiCore\Transport\GrpcTransport;
 use Grpc\ChannelCredentials;

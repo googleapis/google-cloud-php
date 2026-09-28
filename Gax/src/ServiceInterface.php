@@ -2,7 +2,7 @@
 declare(strict_types=1);
 
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2026 Google LLC
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -34,26 +34,13 @@ declare(strict_types=1);
 
 namespace Google\ApiCore;
 
-/**
- * For connect to emulator.
- */
-class InsecureCredentialsWrapper implements HeaderCredentialsInterface
+interface ServiceInterface
 {
-    /**
-     * @param string|null $audience
-     * @return callable|null Returns null so the gRPC can accept it as an insecure channel.
-     */
-    public function getAuthorizationHeaderCallback(?string $audience = null): ?callable
-    {
-        return null;
-    }
+    public function addMiddleware(callable $middlewareCallable): void;
 
-    public function checkUniverseDomain(): void
-    {
-    }
+    public function prependMiddleware(callable $middlewareCallable): void;
 
-    public function getQuotaProject(): ?string
-    {
-        return null;
-    }
+    public static function getServiceScopes(): array;
+
+    public function close(): void;
 }

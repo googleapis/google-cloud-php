@@ -131,7 +131,7 @@ class RelativeResourceTemplate implements ResourceTemplateInterface
                 );
             }
 
-            $encodedValue = $urlEncode ? self::encodeValue($value) : $value;
+            $encodedValue = $urlEncode ? self::encodeValue((string) $value) : (string) $value;
             $literalSegments[] = new Segment(
                 Segment::LITERAL_SEGMENT,
                 $encodedValue,

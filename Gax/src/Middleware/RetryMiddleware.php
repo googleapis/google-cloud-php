@@ -156,7 +156,7 @@ class RetryMiddleware implements MiddlewareInterface
             );
         }
 
-        $nextDelayMs = min($delayMs * $delayMult, $maxDelayMs);
+        $nextDelayMs = (int) min($delayMs * $delayMult, $maxDelayMs);
         $timeoutMs = (int) min(
             $timeoutMs * $timeoutMult,
             $maxTimeoutMs,

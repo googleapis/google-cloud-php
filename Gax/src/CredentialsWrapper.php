@@ -39,7 +39,6 @@ use Google\Auth\ApplicationDefaultCredentials;
 use Google\Auth\Cache\MemoryCacheItemPool;
 use Google\Auth\Credentials\GCECredentials;
 use Google\Auth\Credentials\ServiceAccountCredentials;
-use Google\Auth\CredentialsLoader;
 use Google\Auth\FetchAuthTokenCache;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Auth\GetQuotaProjectInterface;
@@ -92,10 +91,6 @@ class CredentialsWrapper implements HeaderCredentialsInterface, ProjectIdProvide
      * @param array $args {
      *     An array of optional arguments.
      *
-     *     @type string|array $keyFile
-     *           Credentials to be used. Accepts either a path to a credentials file, or a decoded
-     *           credentials file as a PHP array. If this is not specified, application default
-     *           credentials will be used.
      *     @type string[] $scopes
      *           A string array of scopes to use when acquiring credentials.
      *     @type callable $authHttpHandler
@@ -128,9 +123,8 @@ class CredentialsWrapper implements HeaderCredentialsInterface, ProjectIdProvide
     public static function build(
         array $args = [],
         string $universeDomain = GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN
-    ) {
+    ): self {
         $args += [
-            'keyFile'           => null,
             'scopes'            => null,
             'authHttpHandler'   => null,
             'enableCaching'     => true,
@@ -142,39 +136,17 @@ class CredentialsWrapper implements HeaderCredentialsInterface, ProjectIdProvide
             'enableRegionalAccessBoundary' => false,
         ];
 
-        $keyFile = $args['keyFile'];
-
-        if (is_null($keyFile)) {
-            $loader = self::buildApplicationDefaultCredentials(
-                $args['scopes'],
-                $args['authHttpHandler'],
-                $args['authCacheOptions'],
-                $args['authCache'],
-                $args['quotaProject'],
-                $args['defaultScopes'],
-                $args['enableRegionalAccessBoundary'],
-            );
-            if ($loader instanceof FetchAuthTokenCache) {
-                $loader = $loader->getFetcher();
-            }
-        } else {
-            if (is_string($keyFile)) {
-                if (!file_exists($keyFile)) {
-                    throw new ValidationException("Could not find keyfile: $keyFile");
-                }
-                $keyFile = json_decode(file_get_contents($keyFile), true);
-            }
-
-            if (isset($args['quotaProject'])) {
-                $keyFile['quota_project_id'] = $args['quotaProject'];
-            }
-
-            $loader = CredentialsLoader::makeCredentials(
-                $args['scopes'],
-                $keyFile,
-                $args['defaultScopes'],
-                $args['enableRegionalAccessBoundary'],
-            );
+        $loader = self::buildApplicationDefaultCredentials(
+            $args['scopes'],
+            $args['authHttpHandler'],
+            $args['authCacheOptions'],
+            $args['authCache'],
+            $args['quotaProject'],
+            $args['defaultScopes'],
+            $args['enableRegionalAccessBoundary'],
+        );
+        if ($loader instanceof FetchAuthTokenCache) {
+            $loader = $loader->getFetcher();
         }
 
         if ($loader instanceof ServiceAccountCredentials && $args['useJwtAccessWithScope']) {
@@ -221,10 +193,10 @@ class CredentialsWrapper implements HeaderCredentialsInterface, ProjectIdProvide
     }
 
     /**
-     * @param string $audience optional audience for self-signed JWTs.
-     * @return callable Callable function that returns an authorization header.
+     * @param string|null $audience optional audience for self-signed JWTs.
+     * @return callable|null Callable function that returns an authorization header.
      */
-    public function getAuthorizationHeaderCallback($audience = null): ?callable
+    public function getAuthorizationHeaderCallback(?string $audience = null): ?callable
     {
         // NOTE: changes to this function should be treated carefully and tested thoroughly. It will
         // be passed into the gRPC c extension, and changes have the potential to trigger very
@@ -309,10 +281,10 @@ class CredentialsWrapper implements HeaderCredentialsInterface, ProjectIdProvide
         ?callable $authHttpHandler = null,
         ?array $authCacheOptions = null,
         ?CacheItemPoolInterface $authCache = null,
-        $quotaProject = null,
+        ?string $quotaProject = null,
         ?array $defaultScopes = null,
         bool $enableRegionalAccessBoundary = true,
-    ) {
+    ): FetchAuthTokenInterface {
         try {
             return ApplicationDefaultCredentials::getCredentials(
                 $scopes,
@@ -333,7 +305,7 @@ class CredentialsWrapper implements HeaderCredentialsInterface, ProjectIdProvide
     /**
      * @param mixed $token
      */
-    private static function isValid($token)
+    private static function isValid(mixed $token): bool
     {
         return is_array($token)
             && array_key_exists('access_token', $token);
@@ -342,7 +314,7 @@ class CredentialsWrapper implements HeaderCredentialsInterface, ProjectIdProvide
     /**
      * @param mixed $token
      */
-    private static function isExpired($token)
+    private static function isExpired(mixed $token): bool
     {
         return !(self::isValid($token)
             && array_key_exists('expires_at', $token)
