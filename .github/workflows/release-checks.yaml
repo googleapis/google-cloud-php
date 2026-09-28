@@ -20,51 +20,24 @@ jobs:
         uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # v2
         with:
           php-version: "8.4"
-      - name: "Rebase PR branch onto main branch"
-        if: github.event.pull_request.user.login != 'release-please[bot]'
-        env:
-          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
-        run: |
-          git config user.name "Github Actions"
-          git config user.email "actions@github.com"
-          git checkout "$HEAD_SHA"
-          if ! git merge-base --is-ancestor origin/main HEAD; then
-            if ! git rebase origin/main; then
-              echo "Failed to rebase PR branch onto main. There may be conflicts. Please resolve conflicts or rebase manually."
-              exit 1
-            fi
-          fi
       - name: "Install dependencies"
-        run: composer global require "roave/backward-compatibility-check:^8.22"
+        run: |
+          composer global require "roave/backward-compatibility-check:^8.22"
+          composer install -d dev --no-interaction --no-progress
       - name: "Check for BC breaks"
         if: github.event.pull_request.user.login != 'release-please[bot]'
         run: |
-          ~/.composer/vendor/bin/roave-backward-compatibility-check --from=origin/main --format=github-actions
+          ./dev/google-cloud component:breaking-changes \
+            --base-ref="$(git merge-base origin/main HEAD)"
       - name: "Check for BC label"
+        if: github.event.pull_request.user.login != 'release-please[bot]'
         env:
           HAS_BC_LABEL: ${{ contains(github.event.pull_request.title, '!:') }}
         run: |
           if [[ "true" == "${HAS_BC_LABEL}" ]]; then
-            echo "Breaking change label found in PR title"
+            echo "❌ Error: You indicated breaking changes in your PR title (!:), but no backwards compatibility breaks were detected by the automated check."
             exit 1
           fi
-      - name: Get Latest Release
-        if: github.event.pull_request.user.login == 'release-please[bot]'
-        id: latest-release
-        uses: pozetroninc/github-action-get-latest-release@5ac6001ed175b443484c81ab32a20e12132be99c # master
-        with:
-          repository: ${{ github.repository }}
-          token: ${{ secrets.GITHUB_TOKEN }}
-      - name: "Check for BC breaks (Next Release)"
-        if: github.event.pull_request.user.login == 'release-please[bot]'
-        # We've already approved and justified the breaking changes. Run the check but continue on error
-        continue-on-error: true
-        run: |
-          ~/.composer/vendor/bin/roave-backward-compatibility-check \
-              --from=${STEPS_LATEST_RELEASE_OUTPUTS_RELEASE} \
-              --to=origin/main --format=github-actions
-        env:
-          STEPS_LATEST_RELEASE_OUTPUTS_RELEASE: ${{ steps.latest-release.outputs.release }}
 
   # Ensure the release PR does not contain an unexpected (e.g. 2.0.0) major version release
   # Add "MAJOR_VERSION_ALLOWED=component1,component2" to the PR description to allow major version
