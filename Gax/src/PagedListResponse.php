@@ -35,6 +35,7 @@ namespace Google\ApiCore;
 
 use Generator;
 use IteratorAggregate;
+use Traversable;
 
 /**
  * Response object for paged results from a list API method
@@ -123,7 +124,7 @@ class PagedListResponse implements IteratorAggregate
      * @return Generator
      * @throws ValidationException
      */
-    public function getIterator(): Generator
+    public function getIterator(): Traversable
     {
         foreach ($this->iteratePages() as $page) {
             foreach ($page as $key => $element) {

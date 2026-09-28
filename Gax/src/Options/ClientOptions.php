@@ -39,7 +39,6 @@ use Closure;
 use Google\ApiCore\HeaderCredentialsInterface;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\Auth\FetchAuthTokenInterface;
-use InvalidArgumentException;
 use Psr\Log\LoggerInterface;
 
 /**
